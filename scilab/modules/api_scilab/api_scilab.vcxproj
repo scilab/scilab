@@ -308,6 +308,7 @@ cd .. &gt;nul
     <ClCompile Include="src\cpp\api_error.cpp" />
     <ClCompile Include="src\cpp\api_handle.cpp" />
     <ClCompile Include="src\cpp\api_handle_cpp.cpp" />
+    <ClCompile Include="src\cpp\api_hypermat.cpp" />
     <ClCompile Include="src\cpp\api_int.cpp" />
     <ClCompile Include="src\cpp\api_int_cpp.cpp" />
     <ClCompile Include="src\cpp\api_list.cpp" />
@@ -335,6 +336,7 @@ cd .. &gt;nul
     <ClInclude Include="includes\api_error.h" />
     <ClInclude Include="includes\api_handle.h" />
     <ClInclude Include="includes\api_handle.hxx" />
+    <ClInclude Include="includes\api_hypermat.h" />
     <ClInclude Include="includes\api_int.h" />
     <ClInclude Include="includes\api_int.hxx" />
     <ClInclude Include="includes\api_list.hxx" />

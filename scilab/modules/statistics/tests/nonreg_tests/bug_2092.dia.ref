@@ -1,3 +1,10 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2006-2008 - INRIA -Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 2092 -->
 //
 // <-- Bugzilla URL -->
@@ -5,10 +12,6 @@
 //
 // <-- Short Description -->
 //    Incorrect handling of second input argument to function mad()
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2006
-// Date : 17 aout 2006
 A = mad([1:10;2:11],2);
 B = mad([1:10;2:11],'c');
 if or(A <> B) then bugmes();quit;end

@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Serge STEER <serge.steer@inria.fr>
@@ -19,7 +20,7 @@ try
 catch
     r=%t
 end
-r  = 
+ r  = 
 if ~r then bugmes();quit;end
 [str,n]=lasterror();
 if n == 0 then bugmes();quit;end
@@ -32,7 +33,7 @@ try
 catch
     r=%t
 end
-r  = 
+ r  = 
 if ~r then bugmes();quit;end
 [str,n]=lasterror();
 if n == 0 then bugmes();quit;end

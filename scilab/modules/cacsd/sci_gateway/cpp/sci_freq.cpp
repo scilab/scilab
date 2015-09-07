@@ -14,6 +14,7 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -35,10 +36,6 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_freq(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblA = NULL;
-    types::Double* pDblB = NULL;
-    types::Double* pDblP = NULL;
-
     if (in.size() < 3 || in.size() > 5)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "freq", 3, 5);
@@ -133,7 +130,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         {
             types::Polynom* pPolyDen = in[1]->getAs<types::Polynom>();
 
-            double dblEps = getRelativeMachinePrecision();
+            double dblEps = NumericConstants::eps;
 
             if (pPolyDen->isComplex())
             {
@@ -210,7 +207,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         {
             types::Polynom* pPolyNum = in[0]->getAs<types::Polynom>();
 
-            double dblEps = getRelativeMachinePrecision();
+            double dblEps = NumericConstants::eps;
             if (pPolyNum->isComplex())
             {
                 bool cplx = false;
@@ -370,7 +367,16 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     int iSizeF      = 0;
     int iOne        = 1;
     int iComplex    = 0;
+    int iSizeD      = 0;
+    int iSizeC      = 0;
+    int iSizeB      = 0;
+    int iSizeA      = 0;
 
+
+    double* pdblA       = NULL;
+    double* pdblB       = NULL;
+    double* pdblC       = NULL;
+    double* pdblD       = NULL;
     double* pdblF       = NULL;
     double* pdblFImg    = NULL;
 
@@ -491,12 +497,28 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
     double* pdblWgr = new double[iColsB * iSizeF * iRowsC];
     double* pdblWgi = new double[iColsB * iSizeF * iRowsC];
 
+    if (iNbInputArg == 5)
+    {
+        iSizeD = pDblD->getSize();
+        pdblD = new double[iSizeD];
+        memcpy(pdblD, pDblD->get(), iSizeD * sizeof(double));
+    }
+
+    iSizeC = pDblC->getSize();
+    pdblC = new double[iSizeC];
+    memcpy(pdblC, pDblC->get(), iSizeC * sizeof(double));
+    iSizeB = pDblB->getSize();
+    pdblB = new double[iSizeB];
+    memcpy(pdblB, pDblB->get(), iSizeB * sizeof(double));
+    iSizeA = pDblA->getSize();
+    pdblA = new double[iSizeA];
+    memcpy(pdblA, pDblA->get(), iSizeA * sizeof(double));
+
     for (int i = 0; i < iSizeF; i++)
     {
         int ig = i * iColsB * iRowsC;
         C2F(dfrmg)( &iJob, &iRowsA, &iRowsA, &iRowsC, &iRowsC, &iColsB, &iRowsA,
-                    pDblA->get(), pDblB->get(), pDblC->get(), pdblF,
-                    pdblFImg, pdblWgr + ig, pdblWgi + ig, &dRcond, pdblW, pdblW1);
+                    pdblA, pdblB, pdblC, pdblF, pdblFImg, pdblWgr + ig, pdblWgi + ig, &dRcond, pdblW, pdblW1);
 
         if (bFirst && dRcond + 1 == 1)
         {
@@ -508,11 +530,20 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
         if (iNbInputArg == 5)
         {
             int iSize = iColsB * iRowsC;
-            C2F(dadd)(&iSize, pDblD->get(), &iOne, pdblWgr + ig, &iOne);
+            C2F(dadd)(&iSize, pdblD, &iOne, pdblWgr + ig, &iOne);
         }
 
         pdblF++;
         pdblFImg += iComplex;
+    }
+
+    delete[] pdblA;
+    delete[] pdblB;
+    delete[] pdblC;
+
+    if (iNbInputArg == 5)
+    {
+        delete[] pdblD;
     }
 
     /*** retrun output arguments ***/

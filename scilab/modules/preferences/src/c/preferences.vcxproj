@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../dynamic_link/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -118,7 +118,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../dynamic_link/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -155,7 +155,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../dynamic_link/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -199,7 +199,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;.;../jni;../cpp;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/libxml2;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../fileio/includes;../../../output_stream/includes;../../../commons/src/jni;../../../string/includes;../../../windows_tools/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../dynamic_link/includes;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;PREFERENCES_SCILAB_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -275,10 +275,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\preferences_gw.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_addModulePreferences.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_preferences.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_removeModulePreferences.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_preferences.c" />
     <ClCompile Include="..\jni\ScilabPreferences.cpp" />
     <ClCompile Include="DllmainPreferences.c" />
     <ClCompile Include="getScilabPreference.c" />
@@ -286,7 +286,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_preferences_scilab.h" />
     <ClInclude Include="..\..\includes\getScilabPreference.h" />
-    <ClInclude Include="..\..\includes\gw_preferences.h" />
+    <ClInclude Include="..\..\includes\preferences_gw.hxx" />
     <ClInclude Include="..\jni\ScilabPreferences.hxx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

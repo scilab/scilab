@@ -11,7 +11,6 @@
  */
 
 #include "gw_io.h"
-#include "stack-c.h"
 #include "getpidc.h"
 /*--------------------------------------------------------------------------*/
 int sci_getpid(char *fname, unsigned long fname_len)

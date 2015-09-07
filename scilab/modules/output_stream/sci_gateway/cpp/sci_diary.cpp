@@ -348,6 +348,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
     {
         if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_LIST) == 0)
         {
+            FREE(wcArgumentTwo);
             int m1 = 0, n1 = 0;
             sciErr = getVarDimension(pvApiCtx, piAddressVarOne, &m1, &n1);
             if (sciErr.iErr)
@@ -369,6 +370,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         }
         else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_CLOSE) == 0)
         {
+            FREE(wcArgumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -395,6 +397,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         else if ( (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_PAUSE) == 0) ||
                   (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_OFF) == 0) )
         {
+            FREE(wcArgumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -421,6 +424,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         else if ( (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_RESUME) == 0) ||
                   (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_ON) == 0) )
         {
+            FREE(wcArgumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -446,6 +450,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         }
         else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_NEW) == 0)
         {
+            FREE(wcArgumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -469,6 +474,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         }
         else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_APPEND) == 0)
         {
+            FREE(wcArgumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -492,6 +498,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         }
         else if (wcscmp(wcArgumentTwo, DIARY_SECOND_ARG_EXISTS) == 0)
         {
+            FREE(wcArgumentTwo);
             int iType = 0;
             sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
             if (sciErr.iErr)
@@ -517,6 +524,7 @@ static int sci_diary_two_rhs(char *fname, void* pvApiCtx)
         }
         else
         {
+            FREE(wcArgumentTwo);
             Scierror(999, _("%s: Wrong value for input argument #%d.\n"), fname, 2);
             return 0;
         }
@@ -792,9 +800,11 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                 sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
                 if (sciErr.iErr)
                 {
+                    FREE(lenStVarOne);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                    return 0;
+                    *ierror = 1;
+                    return NULL;
                 }
 
                 wcFilenames = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m1 * n1));
@@ -816,11 +826,13 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
                     }
 
                     sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarOne, &m1, &n1, lenStVarOne, wcFilenames);
+                    FREE(lenStVarOne);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);
                         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                        return 0;
+                        *ierror = 1;
+                        return NULL;
                     }
 
                     *sizeReturnedArray = m1 * n1;
@@ -974,14 +986,17 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
                 sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
                 if (sciErr.iErr)
                 {
+                    FREE(lenStVarThree);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
-                    return 0;
+                    *ierror = 1;
+                    return NULL;
                 }
 
                 wcInputArgumentThree = (wchar_t **)MALLOC(sizeof(wchar_t *) * (m3 * n3));
                 if (wcInputArgumentThree == NULL)
                 {
+                    FREE(lenStVarThree);
                     Scierror(999, _("%s: Memory allocation error.\n"), fname);
                     *ierror = 1;
                 }
@@ -993,6 +1008,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
                     }
 
                     sciErr = getMatrixOfWideString(pvApiCtx, piAddressVarThree, &m3, &n3, lenStVarThree, wcInputArgumentThree);
+                    FREE(lenStVarThree);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);

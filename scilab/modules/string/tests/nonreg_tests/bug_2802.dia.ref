@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2802
 //
 // <-- Short Description -->
-//    convstr() doesn"t work if the string contains accented characters.
+//    convstr() doesn't work if the string contains accented characters.
 // The returned string is cut before the first accented character.
 ref  = "Bug convstr : Génération de l"+ascii(39)+"aide";
 refl = "bug convstr : génération de l"+ascii(39)+"aide";

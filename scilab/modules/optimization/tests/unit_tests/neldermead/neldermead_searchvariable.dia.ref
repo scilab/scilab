@@ -10,7 +10,7 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 function [ y , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 //
 // Test on Rosenbrock test case
@@ -44,8 +44,7 @@ assert_checkequal ( [iterations 1], sizefopt );
 funevals = neldermead_get(nm,"-funevals");
 assert_checkequal ( (funevals < 300) , %T )
  ans  =
- 
-  T  
+  T
 // Check optimum history
 historyxopt = neldermead_get(nm,"-historyxopt");
 sizexopt = size(historyxopt);

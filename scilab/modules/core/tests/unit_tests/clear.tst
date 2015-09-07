@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // Run with test_run('core, 'clear')
 

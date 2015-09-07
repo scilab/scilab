@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -191,7 +191,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lines.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_prompt.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_tohome.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_console.c" />
     <ClCompile Include="..\cpp\scilabRead.cpp" />
     <ClCompile Include="..\c\clc.c" />
     <ClCompile Include="..\c\DllmainConsole.c" />

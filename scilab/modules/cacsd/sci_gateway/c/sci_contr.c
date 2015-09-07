@@ -114,7 +114,7 @@ int sci_contr(char* fname, void* pvApiCtx)
         }
     }
 
-    theTOL = (double) C2F(dlamch)("e", 1L);
+    theTOL = nc_eps();
     // Retrieve a matrix of double at position 1.
     sciErr = getMatrixOfDouble(pvApiCtx, piAddrptrA, &mA, &nA, &ptrA);
     if (sciErr.iErr)

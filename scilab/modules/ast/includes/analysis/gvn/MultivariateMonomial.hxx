@@ -13,8 +13,6 @@
 #ifndef __MULTIVARIATE_MONOMIAL_HXX__
 #define __MULTIVARIATE_MONOMIAL_HXX__
 
-#include <cmath>
-#include <functional>
 #include <iostream>
 #include <map>
 #include <set>
@@ -23,6 +21,7 @@
 
 #include "tools.hxx"
 #include "VarExp.hxx"
+#include "dynlib_ast.h"
 
 namespace analysis
 {
@@ -31,7 +30,7 @@ namespace analysis
  * \struct MultivariateMonomial
  * \brief Represents a multivariate monomial
  */
-struct MultivariateMonomial
+struct EXTERN_AST MultivariateMonomial
 {
     typedef std::set<VarExp, VarExp::Compare> Monomial;
 
@@ -66,201 +65,93 @@ struct MultivariateMonomial
      * \param var an id
      * \return true if the monomial contains the var
      */
-    inline bool contains(const uint64_t var) const
-	{
-	    return monomial.find(var) != monomial.end();
-	}
-    
+    bool contains(const uint64_t var) const;
+
     /**
      * Check if the variables of the monomial have an id lower or equal to max
      * \param max an id
      * \return true if all the variables have an id leq to max
      */
-    inline bool checkVariable(const uint64_t max) const
-    {
-	return std::prev(monomial.end())->var <= max;
-    }
+    bool checkVariable(const uint64_t max) const;
 
     /**
      * \brief Get the sum of the exponents in the monomial
      * \return the total exponent
      */
-    inline unsigned int exponent() const
-    {
-        unsigned int exp = 0;
-        for (const auto & ve : monomial)
-        {
-            exp += ve.exp;
-        }
-        return exp;
-    }
+    unsigned int exponent() const;
 
     /**
      * \brief Add a varexp in the monomial
      * \param ve the varexp to add
      * \return *this
      */
-    inline MultivariateMonomial & add(const VarExp & ve)
-    {
-        Monomial::iterator i = monomial.find(ve);
-        if (i == monomial.end())
-        {
-            monomial.insert(ve);
-        }
-        else
-        {
-            i->exp += ve.exp;
-        }
-        return *this;
-    }
+    MultivariateMonomial & add(const VarExp & ve);
 
     /**
      * \brief Add a varexp in the monomial
      * \param ve the varexp to add
      * \return *this
      */
-    inline MultivariateMonomial & add(VarExp && ve)
-    {
-        Monomial::iterator i = monomial.find(ve);
-        if (i == monomial.end())
-        {
-            monomial.emplace(std::move(ve));
-        }
-        else
-        {
-            i->exp += ve.exp;
-        }
-        return *this;
-    }
+    MultivariateMonomial & add(VarExp && ve);
 
     /**
      * \brief Product of two monomials
      * \param R the RHS monomial
      * \return the product of *this and R
      */
-    inline MultivariateMonomial operator*(const MultivariateMonomial & R) const
-    {
-        MultivariateMonomial res(*this);
-        res.coeff *= R.coeff;
-        for (const auto & ve : R.monomial)
-        {
-            res.add(ve);
-        }
-        return res;
-    }
+    MultivariateMonomial operator*(const MultivariateMonomial & R) const;
 
     /**
      * \brief Product-assignment
      */
-    inline MultivariateMonomial & operator*=(const MultivariateMonomial & R)
-    {
-        coeff *= R.coeff;
-        for (const auto & ve : R.monomial)
-        {
-            add(ve);
-        }
-        return *this;
-    }
+    MultivariateMonomial & operator*=(const MultivariateMonomial & R);
 
     /**
      * \brief Product by a int64_t
      */
-    friend inline MultivariateMonomial operator*(const int64_t L, const MultivariateMonomial & R)
-    {
-        return R * L;
-    }
+    friend MultivariateMonomial operator*(const int64_t L, const MultivariateMonomial & R);
 
     /**
      * \brief Product by a int64_t
      */
-    inline MultivariateMonomial operator*(const int64_t R) const
-    {
-        MultivariateMonomial res(*this);
-        res.coeff *= R;
-        return res;
-    }
+    MultivariateMonomial operator*(const int64_t R) const;
 
     /**
      * \brief Product-assignment by a int64_t
      */
-    inline MultivariateMonomial & operator*=(const int64_t R)
-    {
-        coeff *= R;
-        return *this;
-    }
+    MultivariateMonomial & operator*=(const int64_t R);
 
     /**
      * \brief Division by a int64_t
      */
-    inline MultivariateMonomial operator/(const int64_t R) const
-    {
-        MultivariateMonomial res(*this);
-        res.coeff /= R;
-        return res;
-    }
+    MultivariateMonomial operator/(const int64_t R) const;
 
     /**
      * \brief Division-assignment by a int64_t
      */
-    inline MultivariateMonomial & operator/=(const int64_t R)
-    {
-        coeff /= R;
-        return *this;
-    }
+    MultivariateMonomial & operator/=(const int64_t R);
 
     /**
      * \brief Exponentation by an uint
      */
-    inline MultivariateMonomial operator^(unsigned int R) const
-    {
-        MultivariateMonomial res(*this);
-        if (R > 1)
-        {
-            coeff = std::pow(coeff, R);
-            for (auto & ve : res.monomial)
-            {
-                ve.exp *= R;
-            }
-        }
-        return res;
-    }
+    MultivariateMonomial operator^(unsigned int R) const;
 
     /**
      * \brief Equality
      */
-    inline bool operator==(const MultivariateMonomial & R) const
-    {
-        return coeff == R.coeff && monomial == R.monomial;
-    }
+    bool operator==(const MultivariateMonomial & R) const;
 
     /**
      * \brief Print a monomial
      * \param vars a map containing var id -> string representation
      * \return the printed monomial
      */
-    inline const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const
-    {
-        std::wostringstream wos;
-        wos << coeff;
-        for (const auto & ve : monomial)
-        {
-            wos << L"*" << ve.print(vars);
-        }
-        return wos.str();
-    }
+    const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const;
 
     /**
      * \brief Overload of the << operator
      */
-    friend inline std::wostream & operator<<(std::wostream & out, const MultivariateMonomial & m)
-    {
-        out << m.coeff;
-        for (const auto & ve : m.monomial)
-        {
-            out << L"*" << ve;
-        }
-        return out;
-    }
+    friend std::wostream & operator<<(std::wostream & out, const MultivariateMonomial & m);
 
     /**
      * \struct Hash
@@ -301,52 +192,7 @@ struct MultivariateMonomial
      */
     struct Compare
     {
-        inline bool operator()(const MultivariateMonomial & L, const MultivariateMonomial & R) const
-        {
-            const unsigned int le = L.exponent();
-            const unsigned int re = R.exponent();
-            if (le < re)
-            {
-                return true;
-            }
-            else if (le == re)
-            {
-                const unsigned int ls = static_cast<unsigned int>(L.monomial.size());
-                const unsigned int rs = static_cast<unsigned int>(R.monomial.size());
-                if (ls > rs)
-                {
-                    return true;
-                }
-                else if (ls == rs)
-                {
-                    for (Monomial::const_iterator i = L.monomial.begin(), j = R.monomial.begin(), e = L.monomial.end(); i != e; ++i, ++j)
-                    {
-                        if (VarExp::Compare()(*i, *j))
-                        {
-                            return true;
-                        }
-                        else if (!VarExp::Eq()(*i, *j))
-                        {
-                            return false;
-                        }
-                    }
-
-                    for (Monomial::const_iterator i = L.monomial.begin(), j = R.monomial.begin(), e = L.monomial.end(); i != e; ++i, ++j)
-                    {
-                        if (i->exp < j->exp)
-                        {
-                            return true;
-                        }
-                        else if (i->exp > j->exp)
-                        {
-                            return false;
-                        }
-                    }
-
-                }
-            }
-            return false;
-        }
+        bool operator()(const MultivariateMonomial & L, const MultivariateMonomial & R) const;
     };
 };
 

@@ -29,9 +29,6 @@
     <ClCompile Include="forkWindows.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_parallel.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_parallel_concurrency.c">
       <Filter>Source Files</Filter>
     </ClCompile>

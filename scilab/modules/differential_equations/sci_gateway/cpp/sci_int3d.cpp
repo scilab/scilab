@@ -319,17 +319,11 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     {
         C2F(dcutet)(int3d_f, &nf, pdData, &cols, &minpts, &maxpts, &epsabs, &epsrel, &maxsub, &dworkSize, &irestar, pdResult, pdErr, &nevals, &ifail, dwork, iwork);
     }
-    catch (ast::ScilabMessage &sm)
+    catch (ast::InternalError &ie)
     {
-        os << sm.GetErrorMessage();
+        os << ie.GetErrorMessage();
         bCatch = true;
     }
-    catch (ast::ScilabError &e)
-    {
-        os << e.GetErrorMessage();
-        bCatch = true;
-    }
-
 
     FREE(pdData);
     FREE(dwork);
@@ -341,7 +335,7 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int3d", "dcutet");
         os << szError;
-        throw ast::ScilabMessage(os.str());
+        throw ast::InternalError(os.str());
     }
 
     if (ifail)

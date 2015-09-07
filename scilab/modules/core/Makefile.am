@@ -21,12 +21,10 @@ CORE_C_SOURCES = \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
     src/c/getcommandlineargs.c \
-    src/c/callFunctionFromGateway.c \
     src/c/commandwords.c \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
     src/c/getdynamicdebuginfo.c \
-    src/c/gw_dynamic_generic.c \
     src/c/dynamic_gateways.c \
     src/c/setPrecisionFPU.c \
     src/c/getos.c \
@@ -37,17 +35,14 @@ CORE_C_SOURCES = \
     src/c/backtrace.c \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
-    src/c/setlines.c \
-    src/c/setformat.c \
-    src/c/InitializePreferences.c \
     src/c/saveCWDInPreferences.c \
     src/c/getmaxMALLOC.c \
     src/c/sci_mem_alloc.c \
     src/c/hashtable/hashtable.c \
-    src/c/hashtable/hashtable_utility.c
+    src/c/hashtable/hashtable_utility.c \
+    src/c/InitializePreferences.c
 
 CORE_CPP_SOURCES = \
-    src/cpp/namstr.cpp \
     src/cpp/demangle.cpp \
     src/cpp/backtrace_print.cpp \
     src/cpp/storeCommand.cpp \
@@ -58,16 +53,14 @@ CORE_CPP_SOURCES = \
     src/cpp/getvariablesname.cpp \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
-    src/cpp/InitScilab.cpp
+    src/cpp/InitScilab.cpp \
+    src/cpp/setformat.cpp
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
     src/fortran/folhp.f \
-    src/fortran/intstr.f \
     src/fortran/xerbla.f \
-    src/fortran/whatln.f \
     src/fortran/expsum.f \
-    src/fortran/putid.f \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \
@@ -75,9 +68,6 @@ CORE_FORTRAN_SOURCES = \
 	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/gw_core.c \
-	sci_gateway/c/gw_user.c \
-	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c
 
@@ -107,7 +97,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_pause.cpp \
 	sci_gateway/cpp/sci_abort.cpp \
 	sci_gateway/cpp/sci_who.cpp \
-	sci_gateway/cpp/sci_stacksize.cpp \
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \
@@ -226,16 +215,7 @@ includes/sci_malloc.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
 includes/scisparse.h \
-includes/stack-c.h \
 includes/sci_types.h \
-includes/stack-def.h \
-includes/stack.h \
-includes/stack1.h \
-includes/stack2.h \
-includes/stack3.h \
-includes/stack-optional.h \
-includes/stackinfo.h \
-includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
 includes/backtrace_print.h \

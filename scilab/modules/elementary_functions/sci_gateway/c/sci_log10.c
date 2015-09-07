@@ -20,7 +20,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "setieee.h"
+#include "configvariable_interface.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_log10(char *fname, void* pvApiCtx)

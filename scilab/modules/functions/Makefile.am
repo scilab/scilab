@@ -3,9 +3,6 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_functions.c
-
 GATEWAY_CPP_SOURCES =  \
     sci_gateway/cpp/sci_exec.cpp \
     sci_gateway/cpp/sci_functionlist.cpp \
@@ -48,7 +45,7 @@ libscifunctions_la_CPPFLAGS = \
 
 pkglib_LTLIBRARIES = libscifunctions.la
 
-libscifunctions_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscifunctions_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(FUNCTIONS_SOURCES) $(GATEWAY_SOURCES)

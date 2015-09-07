@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
@@ -34,12 +33,65 @@
     <br/>
 
     <div class="refsection">
-      <h3 class="title">What's new?</h3>
-      <h2 class="title">Scilab 6.0.0</h2>
-      Scilab 6.0.0 is ...
-      <br/><br/>
-      <a href="http://www.scilab.org/community/news/XXXXXXXX/release_notes">See Scilab 6.0.0 release notes.</a>
-      <br/>
+      <h3 class="title">Welcome to Scilab 6.0.0-alpha-1</h3>
+      <p class="para">
+        Scilab 6.0.0 is a major new release of Scilab, the open source platform for numerical computation. This 6.0.0-alpha-1 release, is a preview for developers, partners and community evaluation.
+      </p>
+      <p class="para">
+        As an alpha, this release is not yet ready for production usage. If you are new to Scilab, or if you are simply a user of Scilab, you should probably continue using the 5.5.2 release, and wait for a beta version before trying the 6 family.
+      </p>
+
+      <p class="para">
+        However, if you have already developed code on Scilab, or if you are an experienced user, then you should start looking at this release. Please try the work you have done on earlier releases of Scilab with this version: checking for compatibility may save you time later. If you find bugs or incompatibilities, please report them on our <a href="http://bugzilla.scilab.org/" class="ulink">Bug Tracker</a>: this will help get a better product, faster, which ultimately will be benefit you too.
+      </p>
+
+      <h2 class="title">What's new in Scilab 6.0.0-alpha-1 ?</h2>
+
+      <p class="para">
+        This release includes a major rewrite of Scilab's internal core. The changes to the visible aspects of the software are limited.
+      </p>
+      <p class="para">
+        The first big internal change, is a complete new language parser and interpreter, with the following changes:
+        <ul>
+          <li>The language is much more coherent and predictable,</li>
+          <li>The grammar is stricter, but more consistent,</li>
+          <li>Error handling has been improved (but may still be limited in the alpha: please report issues you find),</li>
+          <li>The language has slightly better compatibility with Matlab's language (for example control instructions such as switch/case statements).</li>
+        </ul>
+      </p>
+      <p class="para">
+        The language changes are not all backward-compatible. You will have to update your scripts/programs/modules, but it will be very simple in pretty much all cases. In particular, the following changes may require modifications to existing code:
+        <ul>
+          <li>Literal strings cannot mix single-quote and double-quote delimiters: they have to start and finish with either both single-quotes, or both double-quotes,</li>
+          <li>Usage of commas (to put multiple instructions on the same line) has been clarified: it can not be used following control instructions such as <a href="try.html">try</a>,</li>
+          <li>Three dots or more are not supported anymore.</li>
+        </ul>
+        </p>
+      <p class="para">
+        The second big internal change, is the ability to manipulate bigger data sets, without exhausting system resources. This includes in particular:
+        <ul>
+          <li>A much better memory management. Memory usage is now only limited by the machine's memory. This was a much-needed, and much-requested feature. There is no need anymore for <i>stacksize</i>,</li>
+          <li>Support for bigger data sizes, in particular with better support for HDF5 files,</li>
+          <li>Some new and improved data types: 64-bit integers; ability to define user types in C++ modules. Also, matrices with more than two dimensions are now implemented natively.</li>
+          <li>Native data structures (cell, struct), as well as multidimensional matrices, which yield, in most cases, better performance, both in memory usage, and execution speed. There could be some performance degradation in some cases: please feel free to report them.</li>
+        </ul>
+      </p>
+      <p class="para">
+        These changes may not amount much to end-users, but they were much needed, much worked-on, improvements to the Scilab platform. These improvements will enable further improvements in the future, in terms of code management, development tools (debugger, analyzer...), as well as improvements to other part of the platform (Xcos...) that would not be possible without this release.
+      </p>
+      <h2 class="title">Specific new features and complete changelog</h2>
+      <p class="para">
+        For a complete list of changes between the 5.5.2 release and this release, please look at the CHANGES_6.0.X file present at the root of the installation of Scilab.
+      </p>
+      <h2 class="title">Main limitations</h2>
+      <p class="para">
+        Several important parts of the platform are not functional in this alpha:
+        <ul>
+          <li>Xcos is not functional yet; the editor is not working yet at in this alpha 1 (it will in the final release, for sure). The simulator has been ported but is still not usable,</li>
+          <li>The debugging and profiling capabilities present in the 5.5.2 version are not ported to 6; most likely it will be replaced by completly new features,</li>
+          <li>ATOMS is functional, but since none of ATOMS modules currently on <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> have been ported, it is not of much use.</li>
+        </ul>
+      </p>
     </div>
 
     <hr/>
@@ -47,9 +99,9 @@
 
     <div class="refsection">
       <h3 class="title">Documentations and help</h3>
-      <p class="para">This help is also available at <a href="http://help.scilab.org">http://help.scilab.org</a>. It provides some advanced features like comments, favorites, search engine, etc.</p>
-      <p class="para">If you are new to Scilab, you can have a look at <a href="scilab_keywords.html">Scilab keyword help pages</a>.</p>
-      <p class="para">Scilab Enterprises also provides some <a href="http://www.scilab.org/support/documentation/tutorials">documentations and tutorials</a>.</p>
+      <p class="para">This help is also available at <a href="http://help.scilab.org">http://help.scilab.org</a>.</p>
+      <p class="para">If you are new to Scilab, please use the <a href="https://www.scilab.org/en/content/download/849/7901/file/Scilab_beginners.pdf">Scilab beginners tutorial</a> and <a href="https://www.scilab.org/en/content/download/1107/10095/file/Xcos_beginners.pdf">Xcos beginners tutorial</a> provided by Scilab Enterprises.</p>
+      <p class="para">Scilab Enterprises provides also some <a href="http://www.scilab.org/support/documentation/tutorials">documentation and tutorials</a>.</p>
       <br/>
     </div>
 
@@ -59,7 +111,7 @@
     <div class="refsection">
       <h3 class="title">Other resources</h3>
       <p class="para"><a href="http://www.scilab.org/" class="ulink">Scilab Homepage</a> - Consult Scilab official website</p>
-      <p class="para"><a href="http://wiki.scilab.org/" class="ulink">Wiki</a> - Consult documentations, tricks, etc</p>
+      <p class="para"><a href="http://wiki.scilab.org/" class="ulink">Wiki</a> - Consult documentations, tricks, etc.</p>
       <p class="para"><a href="http://bugzilla.scilab.org/" class="ulink">Bug Tracker</a> - Report bugs and wishes about Scilab</p>
       <p class="para"><a href="http://forge.scilab.org/" class="ulink">Forge</a> - Browse and publish Scilab modules</p>
       <p class="para"><a href="http://www.scilab.org/communities/developer_zone/tools/mailing_list" class="ulink">Mailing Lists</a> - Communicate and exchange with the community</p>

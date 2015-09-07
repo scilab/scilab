@@ -14,7 +14,7 @@
 
 #include "getScilabPreference.h"
 #include "api_scilab.h"
-#include "setieee.h"
+#include "configvariable_interface.h"
 #include "setlines.h"
 #include "setformat.h"
 #include "os_string.h"
@@ -78,7 +78,8 @@ void InitializePreferences(int useCWD)
             // it is not true so ...
             lines = (int)atof(prefs->linesToDisplay);
             cols = (int)atof(prefs->columnsToDisplay);
-            setlines(lines, cols);
+            setConsoleLines(lines);
+            setConsoleWidth(cols);
         }
     }
 

@@ -41,12 +41,6 @@
     <ClCompile Include="eigen.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_linear_algebra.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_linear_algebra2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hess.c">
       <Filter>Source Files</Filter>
     </ClCompile>

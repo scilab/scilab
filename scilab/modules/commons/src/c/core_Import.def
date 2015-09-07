@@ -5,9 +5,7 @@ EXPORTS
 ;
 ;core
 ;
-setieee
 setformat
-getieee
 getformat
 getformatwidth
 getScilabVersionMajor

@@ -19,6 +19,8 @@
 #include "cell.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "configvariable.hxx"
+#include "threadmanagement.hxx"
 
 extern "C"
 {
@@ -83,9 +85,25 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
         {
             break;
         }
+
         // get data
-        wcsRead = to_wide_string(scilabRead());
+        // mscanf is called from a callback
+        ConfigVariable::setScilabCommand(0);
+        char* pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
+        if (pcConsoleReadStr)
+        {
+            ThreadManagement::SendConsoleExecDoneSignal();
+        }
+        else // mscanf is called from the console
+        {
+            scilabRead();
+            pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
+        }
+
+        wcsRead = to_wide_string(pcConsoleReadStr);
+        FREE(pcConsoleReadStr);
         int err = do_xxscanf(L"sscanf", (FILE *)0, wcsFormat, &args, wcsRead, &retval, buf, type);
+        FREE(wcsRead);
         if (err < 0)
         {
             return types::Function::Error;
@@ -115,7 +133,6 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
                 break;
             }
         }
-        FREE(wcsRead);
     }
 
     unsigned int uiFormatUsed = 0;
@@ -176,7 +193,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     {
         if (sizeOfVector == 0)
         {
-            out.push_back(types::Double::Empty());
+            out.push_back(new types::String(L""));
             return types::Function::OK;
         }
 
@@ -271,7 +288,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
                 int dimsArrayOfCell[2] = {1, (int)pITTemp->size()};
                 types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
-                for (int i = 0; i < pITTemp->size(); i++)
+                for (int i = 0; i < dimsArrayOfCell[1]; i++)
                 {
                     pCell->set(i, (*pITTemp)[i]);
                 }

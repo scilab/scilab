@@ -3,10 +3,7 @@
 
 EXPORTS
 iop_
-stack_
-vstk_
 com_
-errgst_
 get_sci_data_strings
 getstackinfo_
 getIntermediateMemoryNeeded
@@ -17,7 +14,6 @@ putlhsvar_
 getmatdims_
 overload_
 vartype_
-intersci_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

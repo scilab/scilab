@@ -16,7 +16,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_mpi_finalize.c \
     sci_gateway/c/sci_mpi_comm_size.c \
     sci_gateway/c/sci_mpi_comm_rank.c \
-    sci_gateway/c/gw_mpi.c \
     sci_gateway/c/sci_mpi_recv.c \
     sci_gateway/c/sci_mpi_send.c \
     sci_gateway/c/sci_mpi_irecv.c \

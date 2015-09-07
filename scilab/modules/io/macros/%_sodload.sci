@@ -8,30 +8,18 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function %_sodload(%__filename__, varargin)
+function varargout = %_sodload(%__varnameList__)
 
-    function v = getScilabFileVersion(%__filename__)
-        verStr = h5readattr(%__filename__, "/", "SCILAB_scilab_version")
-        [a,b,c,d] = regexp(verStr, "/scilab-.*(\d)\.(\d)\.(\d)/");
-        if size(d, "*") == 3 then
-            v = evstr(d(1)) * 100 + evstr(d(2)) * 10 + evstr(d(3));
-        else
-            error("unable to find file version: %s", %__filename__);
-        end
-    endfunction
-
-    function [varValues] = %__convertVariable__(varValues, varNames)
-        for i = 1:size(varValues)
-            if typeof(varValues(i)) == "ScilabMatrixHandle" then
-                //convert tlist to handle
-                varValues(i) = createMatrixHandle(varValues(i));
-            elseif typeof(varValues(i)) == "ScilabMacro" then
-                //convert tlist to macro
-                varValues(i) = createMacro(varValues(i), varNames(i));
-            elseif isList(varValues(i)) then
-                //list container
-                varValues(i) = parseList(varValues(i));
-            end
+    function varValue = %__convertVariable__(varValue, varName)
+        if typeof(varValue) == "ScilabMatrixHandle" then
+            //convert tlist to handle
+            varValue = createMatrixHandle(varValue);
+        elseif typeof(varValue) == "ScilabMacro" then
+            //convert tlist to macro
+            varValue = createMacro(varValue, varName);
+        elseif isList(varValue) then
+            //list container
+            varValue = parseList(varValue);
         end
     endfunction
 
@@ -48,7 +36,7 @@ function %_sodload(%__filename__, varargin)
 
     function varValue = parseList(varValue)
 
-        if or(typeof(varValue)==["cell","st"]) then
+        if or(typeof(varValue)==["ce","st"]) then
             if typeof(varValue)=="st" then
                 fieldNames = fieldnames(varValue);
             else
@@ -952,7 +940,6 @@ function %_sodload(%__filename__, varargin)
     endfunction
 
     function macro = createMacro(macroStr, macroName)
-
         macroSt = macroStr(3);
         if macroStr(2) == %t then
             flag = "c";
@@ -968,58 +955,9 @@ function %_sodload(%__filename__, varargin)
         execstr("macro = " + macroName);
     endfunction
 
-    [%__lhs__, %__rhs__] = argn();
-    %__resumeList__ = list();
-    %__resumeVarlist__ = [];
-    if %__rhs__ < 1 then
-        error(999, msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "load", 1));
+    varargout = list();
+    for i = 1:size(%__varnameList__, "*")
+        varargout(i) = %__convertVariable__(evstr(%__varnameList__(i)), %__varnameList__(i));
+        //printf("add %s: type %s become %s\n", %__varnameList__(i), typeof(evstr(%__varnameList__(i))), typeof(varargout(i)));
     end
-
-    if %__rhs__ >= 1 then
-        if typeof(%__filename__) <> "string" | size(%__filename__, "*") <> 1 then
-            error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "load", 1));
-        end
-    end
-
-    if isfile(%__filename__) & is_hdf5_file(%__filename__) then
-        %__loadFunction__ = import_from_hdf5;
-        //fileVersion = getScilabFileVersion(%__filename__); // Not needed for the moment
-    else
-        %__loadFunction__ = load;
-    end
-
-    //multiple output variables to prevent listinfile prints
-    [%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(%__filename__);
-    //
-    if size(varargin) <> 0 then
-        for i = 1:size(varargin)
-            %__variableName__ = varargin(i);
-            if typeof(%__variableName__) <> "string" | size(%__variableName__, "*") <> 1 then
-                error(999, msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "load", i));
-            end
-
-            if or(%__variableList__ == %__variableName__) then
-                %__loadFunction__(%__filename__, %__variableName__);
-                %__resumeList__($+1) = evstr(%__variableName__);
-                %__resumeVarlist__($+1) = %__variableName__;
-                clear(%__variableName__);
-            else
-                error(999, msprintf(gettext("%s: variable ''%s'' does not exist in ''%s''.\n"), "load", %__variableName__, %__filename__));
-            end
-        end
-    else
-        for i = 1:size(%__variableList__, "*")
-            %__variableName__ = %__variableList__(i);
-            %__loadFunction__(%__filename__, %__variableName__);
-            %__resumeList__($+1) = evstr(%__variableName__);
-            %__resumeVarlist__($+1) = %__variableName__;
-            clear(%__variableName__);
-        end
-    end
-
-    if isfile(%__filename__) & is_hdf5_file(%__filename__) then
-        %__resumeList__ = %__convertVariable__(%__resumeList__, %__resumeVarlist__);
-    end
-
-    execstr("[" + strcat(%__resumeVarlist__, ",") + "] = resume(%__resumeList__(:))");
 endfunction

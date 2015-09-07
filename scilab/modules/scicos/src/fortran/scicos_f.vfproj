@@ -54,17 +54,14 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\scicos_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath=".\coselm.f"/>
 		<File RelativePath=".\ftree2.f"/>
 		<File RelativePath=".\ftree3.f"/>
 		<File RelativePath=".\ftree4.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tree2.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tree3.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tree4.f"/>
-		<File RelativePath=".\scierr.f"/>
 		<File RelativePath=".\scifunc.f"/>
-		<File RelativePath=".\sctree.f"/>
-		<File RelativePath=".\skipvars.f"/></Filter>
+		<File RelativePath=".\sctree.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\scicos_gateway.xml"/></Files>
 	<Globals/></VisualStudioProject>

@@ -13,9 +13,7 @@
 #include <sstream>
 #include <vector>
 #include "callable.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
-
 
 namespace types
 {
@@ -36,12 +34,12 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
         Ret = call(in, opt, _iRetCount, out, &execFunc);
         ConfigVariable::where_end();
     }
-    catch (ast::ScilabMessage & sm)
+    catch (ast::InternalError & ie)
     {
         ConfigVariable::where_end();
         ConfigVariable::setLastErrorFunction(getName());
 
-        throw sm;
+        throw ie;
     }
     catch (ast::InternalAbort & ia)
     {
@@ -50,19 +48,12 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
 
         throw ia;
     }
-    catch (ast::ScilabError & se)
-    {
-        ConfigVariable::where_end();
-        ConfigVariable::setLastErrorFunction(getName());
-
-        throw se;
-    }
 
     if (Ret == Callable::Error)
     {
         ConfigVariable::setLastErrorFunction(getName());
         ConfigVariable::setLastErrorLine(e.getLocation().first_line);
-        throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+        throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }
 
     return true;

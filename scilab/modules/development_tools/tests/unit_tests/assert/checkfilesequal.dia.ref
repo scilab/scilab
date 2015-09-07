@@ -245,7 +245,7 @@ endfunction
 // Check that the filter works as expected.
 // This is the pattern for a comment line of the form "// blabla"
 pattern = "/\/\/.*/"
-pattern  = 
+ pattern  = 
  /\/\/.*/
 itxt = [
 "bla 1"

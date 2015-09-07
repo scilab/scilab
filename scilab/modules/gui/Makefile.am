@@ -167,7 +167,6 @@ endif
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_x_choice.c \
-    sci_gateway/c/gw_gui.c \
     sci_gateway/c/sci_x_mdialog.c \
     sci_gateway/c/sci_x_dialog.c \
     sci_gateway/c/sci_x_choose.c \
@@ -337,6 +336,7 @@ images/icons/16x16/actions/list-remove.png \
 images/icons/16x16/actions/longe.png \
 images/icons/16x16/actions/long.png \
 images/icons/16x16/actions/media-playback-start.png \
+images/icons/16x16/actions/media-playback-stop.png \
 images/icons/16x16/actions/plot.png \
 images/icons/16x16/actions/save-and-execute.png \
 images/icons/16x16/actions/scilab_search.png \

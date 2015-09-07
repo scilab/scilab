@@ -309,7 +309,7 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquation
 {
     // differential equation functions
 private :
-    static std::map<__threadId, DifferentialEquationFunctions*> m_mapDifferentialEquationFunctions;
+    static DifferentialEquationFunctions* m_DifferentialEquationFunctions;
 
 public :
     static void addDifferentialEquationFunctions(DifferentialEquationFunctions* _deFunction);

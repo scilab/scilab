@@ -133,6 +133,12 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
+                            <term>mode_nwni_profiling</term>
+                            <listitem>
+                                <para>Add the "-nwni -profiling" option to the launch for detect valgrind error (Linux only)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
                             <term>nonreg_tests</term>
                             <listitem>
                                 <para>回帰的でないテストのみを実行し,
@@ -243,7 +249,7 @@
             <listitem>
                 <para>
                     &lt;-- TEST WITH GRAPHIC --&gt;
-                    このテストはオプション "mode_nwni" が使用された場合は実行されません.
+                    This test will be executed with scilab -nw. (default mode)
                 </para>
             </listitem>
             <listitem>
@@ -278,8 +284,9 @@
             <listitem>
                 <para>
                     &lt;-- CLI SHELL MODE --&gt;
-                    (was: &lt;-- JVM NOT MANDATORY --&gt;)
-                    このテストはデフォルトでscilab-cli (nwniモード)でのみ実行されます.
+                    (was &lt;-- JVM NOT MANDATORY --&gt; and is obsolete)
+                    This test will be executed with scilab -nwni.
+                    All tests without this, will not be executed in "mode_mwni".
                 </para>
             </listitem>
             <listitem>
@@ -484,6 +491,10 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                         XMLファイルにエクスポートする4番目の引数が追加されました
                     </para>
                 </revdescription>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>32/64bits separation available</revdescription>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>profiling mode added to profile execution with valgrind (Linux only)</revdescription>
             </revision>
         </revhistory>
     </refsection>

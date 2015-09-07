@@ -245,21 +245,21 @@ void FileManager::initialize()
     pErr->setFileMode(L"wb");
     pErr->setFileDesc(stderr);
     pErr->setFileSwap(0);
-    pErr->setFileType(1);
+    pErr->setFileType(3);
     pErr->setFilename(L"stderr");
 
     types::File* pIn = new types::File();
     pIn->setFileMode(L"rb");
     pIn->setFileDesc(stdin);
     pIn->setFileSwap(0);
-    pIn->setFileType(1);
+    pIn->setFileType(3);
     pIn->setFilename(L"stdin");
 
     types::File* pOut = new types::File();
     pOut->setFileMode(L"wb");
     pOut->setFileDesc(stdout);
     pOut->setFileSwap(0);
-    pOut->setFileType(1);
+    pOut->setFileType(3);
     pOut->setFilename(L"stdout");
 
     //put pErr at position 0

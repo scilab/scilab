@@ -70,19 +70,15 @@ AC_DEFUN([AC_PROG_JAVAC], [
          # Don't follow the symlink since Java under MacOS is messy
          # Uses the wrapper providing by Apple to retrieve the path
          # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-           JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/bin/javac
+           JAVAC=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)/bin/javac
                DONT_FOLLOW_SYMLINK=yes
          ;;
     esac
     fi
     if test "x$JAVAC" = "x" ; then
-        if test -d "$SCI_SRCDIR_FULL/java/jdk"; then # Scilab thirparties
-            AC_PATH_PROG(JAVAC, javac, ,"$SCI_SRCDIR_FULL/java/jdk/bin")
-        else
-            AC_PATH_PROG(JAVAC, javac)
-            if test "x$JAVAC" = "x" ; then
-                AC_MSG_ERROR([javac not found on PATH ... did you try with --with-jdk=DIR])
-            fi
+        AC_PATH_PROG(JAVAC, javac)
+        if test "x$JAVAC" = "x" ; then
+            AC_MSG_ERROR([javac not found on PATH ... did you try with --with-jdk=DIR])
         fi
     fi
     if test ! -f "$JAVAC" ; then
@@ -258,7 +254,7 @@ Maybe JAVA_HOME is pointing to a JRE (Java Runtime Environment) instead of a JDK
              *darwin* )
             AC_MSG_RESULT([Darwin (Mac OS X) found. Use the standard paths.])
             # See: http://developer.apple.com/mac/library/qa/qa2001/qa1170.html
-            ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+            ac_java_jvm_dir=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)
             JAVAC=$ac_java_jvm_dir/bin/javac
             ;;
         esac
@@ -400,7 +396,7 @@ AC_DEFUN([AC_JAVA_JNI_INCLUDE], [
          else
         case "$host_os" in
              *darwin* )
-                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)/include/ -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/"
+                       ac_java_jvm_jni_include_flags="-I/Developer/SDKs/MacOSX${macosx_version}.sdk/System/Library/Frameworks/JavaVM.framework/Headers -I$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)/include/ -I/System/Library/Frameworks/JavaVM.framework/Versions/A/Headers/"
                   ;;
               *)
                        AC_MSG_ERROR([Could not locate Java's jni.h include file])

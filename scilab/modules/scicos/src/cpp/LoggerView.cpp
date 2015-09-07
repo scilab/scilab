@@ -10,10 +10,13 @@
  *
  */
 
+#include <cwchar>
+#include <cstdarg>
+#include <cstdio>
+#include <string>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <cwchar>
 
 #include "scilabWrite.hxx"
 
@@ -44,6 +47,16 @@ static std::wstring levelTable[] =
     L"FATAL",
 };
 
+static std::string displayTable[] =
+{
+    "Xcos trace: ",
+    "Xcos debug: ",
+    "Xcos info: ",
+    "Xcos warning: ",
+    "Xcos error: ",
+    "Xcos fatal: ",
+};
+
 enum LogLevel LoggerView::indexOf(const wchar_t* name)
 {
     for (int i = LOG_TRACE; i <= LOG_FATAL; i++)
@@ -65,6 +78,15 @@ const wchar_t* LoggerView::toString(enum LogLevel level)
     return L"";
 }
 
+const char* LoggerView::toDisplay(enum LogLevel level)
+{
+    if (LOG_TRACE <= level && level <= LOG_FATAL)
+    {
+        return displayTable[level].data();
+    }
+    return "";
+}
+
 void LoggerView::log(enum LogLevel level, const std::stringstream& msg)
 {
     if (level >= this->m_level)
@@ -72,47 +94,87 @@ void LoggerView::log(enum LogLevel level, const std::stringstream& msg)
         std::string str = msg.str();
         if (USE_SCILAB_WRITE)
         {
+            scilabForcedWrite(LoggerView::toDisplay(level));
             scilabForcedWrite(str.data());
         }
         else
         {
+            std::cerr << LoggerView::toDisplay(level);
             std::cerr << str;
         }
     }
 }
 
-void LoggerView::log(enum LogLevel level, const char* msg)
+void LoggerView::log(enum LogLevel level, const std::string& msg)
 {
     if (level >= this->m_level)
     {
         if (USE_SCILAB_WRITE)
         {
-            scilabForcedWrite(msg);
+            scilabForcedWrite(LoggerView::toDisplay(level));
+            scilabForcedWrite(msg.data());
         }
         else
         {
-            std::wcerr << msg;
+            std::cerr << LoggerView::toDisplay(level);
+            std::cerr << msg;
         }
     }
 }
 
-void LoggerView::log(enum LogLevel level, const wchar_t* msg)
+void LoggerView::log(enum LogLevel level, const char* msg, ...)
 {
     if (level >= this->m_level)
     {
+        const int N = 1024;
+        char* str = new char[N];
+        va_list opts;
+        va_start(opts, msg);
+        vsnprintf(str, N, msg, opts);
+        va_end(opts);
+
         if (USE_SCILAB_WRITE)
         {
-            scilabForcedWriteW(msg);
+            scilabForcedWrite(LoggerView::toDisplay(level));
+            scilabForcedWrite(str);
         }
         else
         {
-            std::wcerr << msg;
+            std::cerr << LoggerView::toDisplay(level);
+            std::cerr << str;
         }
+    }
+}
+
+void LoggerView::log(enum LogLevel level, const wchar_t* msg, ...)
+{
+    if (level >= this->m_level)
+    {
+        const int N = 1024;
+        wchar_t* str = new wchar_t[N];
+
+        va_list opts;
+        va_start(opts, msg);
+        vswprintf(str, N, msg, opts);
+        va_end(opts);
+
+        if (USE_SCILAB_WRITE)
+        {
+            scilabForcedWrite(LoggerView::toDisplay(level));
+            scilabForcedWriteW(str);
+        }
+        else
+        {
+            std::cerr << LoggerView::toDisplay(level);
+            std::wcerr << str;
+        }
+
+        delete[] str;
     }
 }
 
 // generated with :
-// awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/YaSp/scilab/modules/scicos/includes/utilities.hxx
+// awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/master/scilab/modules/scicos/includes/utilities.hxx
 
 std::ostream& operator<<(std::ostream& os, update_status_t u)
 {
@@ -340,6 +402,16 @@ void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
     log(LOG_DEBUG, ss);
 }
 
+void LoggerView::objectReferenced(const ScicosID& uid, kind_t k)
+{
+    // NOT LOGGED YET
+}
+
+void LoggerView::objectUnreferenced(const ScicosID& uid, kind_t k)
+{
+    // NOT LOGGED YET
+}
+
 void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
@@ -347,20 +419,7 @@ void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
     log(LOG_DEBUG, ss);
 }
 
-void LoggerView::objectUpdated(const ScicosID& uid, kind_t k)
-{
-    std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(LOG_DEBUG, ss);
-}
-
-void LoggerView::propertyUpdated(const ScicosID& /*uid*/, kind_t /*k*/, object_properties_t /*p*/)
-{
-    // do not log anything on success; the message has already been logged
-}
-
-void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p,
-                                 update_status_t u)
+void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u)
 {
     std::stringstream ss;
     ss << __FUNCTION__ << "( " << uid << " , " << k << " , " << p << " ) : " << u << std::endl;

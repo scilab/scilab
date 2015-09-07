@@ -20,7 +20,6 @@ HDF5_SOURCES = \
     src/c/h5_writeDataToFile.c \
     src/c/h5_readDataFromFile.c \
     src/c/h5_readDataFromFile_v1.c \
-    src/cpp/import_from_hdf5_v1.cpp \
     src/cpp/listvar_in_hdf5_v1.cpp
 
 HDF5_CXX_SOURCES = \
@@ -46,14 +45,21 @@ HDF5_CXX_SOURCES = \
     src/cpp/H5ArrayData.cpp \
     src/cpp/H5VlenData.cpp \
     src/cpp/H5Options.cpp \
+    src/cpp/handle_properties.cpp \
     src/c/DllmainHdf5.c
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/hdf5_gw.cpp \
-    sci_gateway/cpp/sci_export_to_hdf5.cpp \
-    sci_gateway/cpp/sci_import_from_hdf5.cpp \
-    sci_gateway/cpp/sci_is_hdf5_file.cpp \
-    sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
+    sci_gateway/cpp/sci_hdf5_save.cpp \
+    sci_gateway/cpp/sci_hdf5_load.cpp \
+    sci_gateway/cpp/sci_hdf5_load_v1.cpp \
+    sci_gateway/cpp/sci_hdf5_load_v2.cpp \
+    sci_gateway/cpp/sci_hdf5_load_v3.cpp \
+    sci_gateway/cpp/sci_hdf5_is_file.cpp \
+    sci_gateway/cpp/sci_hdf5_listvar.cpp \
+    sci_gateway/cpp/sci_hdf5_listvar_v2.cpp \
+    sci_gateway/cpp/sci_hdf5_listvar_v3.cpp \
+    sci_gateway/cpp/sci_hdf5_file_version.cpp \
     sci_gateway/cpp/sci_h5dump.cpp \
     sci_gateway/cpp/sci_h5open.cpp \
     sci_gateway/cpp/sci_h5close.cpp \
@@ -116,6 +122,10 @@ libscihdf5_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/graphic_objects/includes/ \
+    -I$(top_srcdir)/modules/graphics/includes/ \
+    -I$(top_srcdir)/modules/io/includes/ \
     $(JAVA_JNI_INCLUDE) \
     $(HDF5_CFLAGS) \
     $(AM_CPPFLAGS) \

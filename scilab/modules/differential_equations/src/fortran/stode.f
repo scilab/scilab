@@ -3,8 +3,6 @@ C/MEMBR ADD NAME=STODE,SSI=0
      1   wm, iwm, f, jac, pjac, slvs)
 clll. optimize
 
-      include 'stack.h'
-
       external f, jac, pjac, slvs
       integer neq, nyh, iwm
       integer iownd, ialth, ipup, lmax, meo, nqnyh, nslp,

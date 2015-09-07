@@ -86,17 +86,6 @@ namespace analysis
             return symMap.emplace(sym, info).first->second;
         }
 
-        inline static Info & addSym(std::map<symbol::Symbol, Info> & M, const symbol::Symbol & sym, Info & info)
-        {
-            Data * old = info.data;
-            info.data = nullptr;
-            Info & i = M.emplace(sym, info).first->second;
-            i.data = old;
-            info.data = old;
-
-            return i;
-        }
-
         inline ast::Exp * getExp()
         {
             return exp;
@@ -110,13 +99,16 @@ namespace analysis
         inline bool getReturn() const
         {
             return isReturn;
-        }
+	}
+
+	static Info & addSym(std::map<symbol::Symbol, Info> & M, const symbol::Symbol & sym, Info & info);
 
         Info & setDefaultData(const symbol::Symbol & sym);
         void merge(std::map<symbol::Symbol, Info> & M, std::map<symbol::Symbol, Info> & N);
         void pullup(std::map<symbol::Symbol, Info> & M);
         Info & putSymsInScope(const symbol::Symbol & sym, Block * block, Info & info);
         Info & putSymsInScope(const symbol::Symbol & sym);
+        Info & putAndClear(const symbol::Symbol & sym, ast::Exp * exp);
 
 	virtual void addLocal(const symbol::Symbol & sym, const TIType & type, const bool isIntIterator);
 	virtual int getTmpId(const TIType & type, const bool isIntIterator);
@@ -135,13 +127,7 @@ namespace analysis
         virtual void finalize();
         virtual bool requiresAnotherTrip();
         virtual void addGlobal(const symbol::Symbol & sym);
-
-        virtual GVN & getGVN()
-        {
-            return *gvn;
-        }
-
-        Info & putAndClear(const symbol::Symbol & sym, ast::Exp * exp);
+        virtual GVN & getGVN();
 
         friend std::wostream & operator<<(std::wostream & out, const Block & block);
     };

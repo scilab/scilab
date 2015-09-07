@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -202,7 +202,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_getpid.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_read4b.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_readb.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_save.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_setenv.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_write4b.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_writeb.c" />
@@ -210,14 +209,13 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_file.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_genlib.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_host.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_load.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_unix.cpp" />
-    <ClCompile Include="loadlib.cpp" />
+    <ClCompile Include="readwrite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_io_gw.h" />
     <ClInclude Include="..\..\includes\io_gw.hxx" />
-    <ClInclude Include="loadlib.hxx" />
+    <ClInclude Include="readwrite.hxx" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

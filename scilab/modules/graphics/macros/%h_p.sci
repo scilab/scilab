@@ -55,6 +55,27 @@ function %h_p(h)
                 if length(bzs)>70 then bzs="matrix "+strcat(string(size(h.z_shift)),"x"),end
             end
 
+            if size(h.mark_size,"*") > 10 then
+                msz="matrix "+strcat(string(size(h.mark_size)),"x")
+            else
+                msz=sci2exp(h.mark_size,0)
+                if length(msz)>70 then msz="matrix "+strcat(string(size(h.mark_size)),"x"),end
+            end
+
+            if size(h.mark_foreground,"*") > 10 then
+                mfg="matrix "+strcat(string(size(h.mark_foreground)),"x")
+            else
+                mfg=sci2exp(h.mark_foreground,0)
+                if length(mfg)>70 then mfg="matrix "+strcat(string(size(h.mark_foreground)),"x"),end
+            end
+
+            if size(h.mark_background,"*") > 10 then
+                mbg="matrix "+strcat(string(size(h.mark_background)),"x")
+            else
+                mbg=sci2exp(h.mark_background,0)
+                if length(mbg)>70 then mbg="matrix "+strcat(string(size(h.mark_background)),"x"),end
+            end
+
             u=h.user_data;
             t=[t;
             "parent: "+h.parent.type
@@ -79,9 +100,9 @@ function %h_p(h)
             "mark_mode = "+sci2exp(h.mark_mode)
             "mark_style = "+sci2exp(h.mark_style)
             "mark_size_unit = "+sci2exp(h.mark_size_unit)
-            "mark_size = "+string(h.mark_size)
-            "mark_foreground = "+string(h.mark_foreground)
-            "mark_background = "+string(h.mark_background)
+            "mark_size = "+msz
+            "mark_foreground = "+mfg
+            "mark_background = "+mbg
             "mark_offset = "+string(h.mark_offset)
             "mark_stride = "+string(h.mark_stride)
             "x_shift = "+bxs
@@ -1083,6 +1104,8 @@ function %h_p(h)
             "ambient_color = "+sci2exp(h.ambient_color)
             "diffuse_color = "+sci2exp(h.diffuse_color)
             "specular_color= "+sci2exp(h.specular_color)
+            "user_data = "+fmtuser_data(h.userdata)
+            "tag = "+sci2exp(h.tag)
             ]
         end
     end

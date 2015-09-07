@@ -64,7 +64,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     (*col)->accept(*this);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     if (poRow)
                     {
@@ -109,7 +109,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                             {
                                 poRow = callOverloadMatrixExp(L"c", poRow, pIT);
                             }
-                            catch (ScilabError& error)
+                            catch (const InternalError& error)
                             {
                                 if (poResult)
                                 {
@@ -128,7 +128,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     pIT->killMe();
                     std::wostringstream os;
                     os << _W("unable to concatenate\n");
-                    throw ast::ScilabError(os.str(), 999, (*col)->getLocation());
+                    throw ast::InternalError(os.str(), 999, (*col)->getLocation());
                 }
 
                 GenericType* pGT = pIT->getAs<GenericType>();
@@ -154,7 +154,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         poRow = callOverloadMatrixExp(L"c", poRow, pGT);
                     }
-                    catch (ScilabError& error)
+                    catch (const InternalError& error)
                     {
                         if (poResult)
                         {
@@ -178,7 +178,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     }
                     std::wostringstream os;
                     os << _W("inconsistent row/column dimensions\n");
-                    throw ast::ScilabError(os.str(), 999, (*row)->getLocation());
+                    throw ast::InternalError(os.str(), 999, (*row)->getLocation());
                 }
 
                 // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -241,7 +241,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     {
                         poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
                     }
-                    catch (ScilabError& error)
+                    catch (const InternalError& error)
                     {
                         if (poResult)
                         {
@@ -282,7 +282,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", poResult, poRow);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     throw error;
                 }
@@ -301,7 +301,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     throw error;
                 }
@@ -316,7 +316,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     throw error;
                 }
@@ -333,7 +333,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 }
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
-                throw ast::ScilabError(os.str(), 999, (*e.getLines().begin())->getLocation());
+                throw ast::InternalError(os.str(), 999, (*e.getLines().begin())->getLocation());
             }
 
             // if we concatenate [Double Sparse], transform the Double to Sparse and perform [Sparse Sparse]
@@ -365,7 +365,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
-                catch (ScilabError& error)
+                catch (const InternalError& error)
                 {
                     throw error;
                 }
@@ -393,7 +393,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             setResult(Double::Empty());
         }
     }
-    catch (ast::ScilabError error)
+    catch (const InternalError& error)
     {
         setResult(NULL);
         throw error;
@@ -424,21 +424,16 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
             Ret = Overload::call(L"%" + _paramL->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<List>()->getShortTypeStr(), in, 1, out, this, true);
         }
     }
-    catch (ast::ScilabError error)
+    catch (const InternalError& error)
     {
         cleanInOut(in, out);
         throw error;
-    }
-    catch (ast::ScilabMessage msg)
-    {
-        cleanInOut(in, out);
-        throw msg;
     }
 
     if (Ret != Callable::OK)
     {
         cleanInOut(in, out);
-        throw ScilabError();
+        throw InternalError(ConfigVariable::getLastErrorMessage());
     }
 
     cleanIn(in, out);

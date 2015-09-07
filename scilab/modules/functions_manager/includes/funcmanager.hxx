@@ -60,7 +60,6 @@ public:
 
     bool LoadModules();
     bool UnloadModules();
-    bool StartModules();
     bool EndModules();
 
 private :

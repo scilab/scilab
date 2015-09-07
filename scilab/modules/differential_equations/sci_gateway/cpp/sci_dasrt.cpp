@@ -754,15 +754,9 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 Scierror(999, _("%s: %s return with state %d.\n"), "dasrt", "ddasrt", idid);
             }
         }
-        catch (ast::ScilabMessage &sm)
+        catch (ast::InternalError &ie)
         {
-            os << sm.GetErrorMessage();
-            bCatch = true;
-            iret = 1;
-        }
-        catch (ast::ScilabError &e)
-        {
-            os << e.GetErrorMessage();
+            os << ie.GetErrorMessage();
             bCatch = true;
             iret = 1;
         }
@@ -791,7 +785,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "dasrt", "ddasrt");
                 os << szError;
-                throw ast::ScilabMessage(os.str());
+                throw ast::InternalError(os.str());
             }
 
             return types::Function::Error;

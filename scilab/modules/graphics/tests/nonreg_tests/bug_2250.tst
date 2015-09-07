@@ -25,7 +25,7 @@ userdatavariable = ["my user_data - entry will not be saved, - but i.e. the back
 
 f.user_data = userdatavariable;
 
-save(pathconvert(TMPDIR+"/bug_2250.scg",%f), "f")
+save(pathconvert(TMPDIR+"/bug_2250.scg",%f), "f");
 
 delete(f)
 

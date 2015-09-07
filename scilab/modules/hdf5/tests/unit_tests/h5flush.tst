@@ -12,6 +12,9 @@ assert_checkerror("h5flush()",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A HDF5 object expected.\n"), "h5flush", 1);
 assert_checkerror("h5flush(42)",msgerr,999);
 
+deletefile(TMPDIR + "/test.h5");
+deletefile(TMPDIR + "/test1.h5");
+
 a = h5open(TMPDIR + "/test.h5", "w");
 x = uint8(1:24);
 h5dataset(a, "Dset1", [1 2 3 4 ; 1 1 1 1 ; 1 1 1 1 ; 1 1 1 1; 1 2 3 4], x, [1 2 3 4 ; 1 2 3 4 ; 1 1 1 1 ; 1 1 1 1 ; 1 1 1 1 ; 1 2 3 4]);
@@ -32,3 +35,4 @@ h5write(a.root.Grp_1, "Dset_1", [1 2 ; 3 4]);
 h5flush(a);
 h5mv(a.root.Grp_1, "Dset_1", a, "Dset_3")
 assert_checkequal(a.root.Dset_3.data,[1 2;3 4]);
+h5close(a);

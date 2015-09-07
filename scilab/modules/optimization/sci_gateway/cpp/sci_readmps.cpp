@@ -15,6 +15,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "tlist.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -56,7 +57,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     wchar_t* wcsFileName = NULL;
     char* strErrorBuf = new char[bsiz];
 
-    double big = C2F(dlamch)((char*)"o", 1L);
+    double big = NumericConstants::double_max;
 
     if (in.size() < 2 || in.size() > 3)
     {

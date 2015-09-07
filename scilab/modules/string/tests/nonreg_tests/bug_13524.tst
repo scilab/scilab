@@ -13,7 +13,7 @@
 // strtod did not ignore the tabs and CR
 //
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 // check \t
 str = msprintf("\t 10");

@@ -976,7 +976,6 @@ c the following card is for optimized compilation on lll compilers.
 clll. optimize
 c-----------------------------------------------------------------------
 
-      include 'stack.h'
       external prja, solsy
       integer illin, init, lyh, lewt, lacor, lsavf, lwm, liwm,
      1   mxstep, mxhnil, nhnil, ntrep, nslast, nyh, iowns

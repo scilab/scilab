@@ -102,6 +102,9 @@
     <ClCompile Include="src\cpp\api_list_cpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\api_hypermat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\api_boolean.h">
@@ -207,6 +210,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\api_list.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_hypermat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

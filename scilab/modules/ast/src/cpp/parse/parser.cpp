@@ -16,7 +16,6 @@
 #include <string.h>
 #include "parser.hxx"
 #include "parser_private.hxx"
-#include "scilabexception.hxx"
 
 #ifdef _MSC_VER
 #include "windows.h"
@@ -90,7 +89,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     {
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n").c_str(), L"parser", fileName.c_str());
-        throw ast::ScilabError(szError, 999, *new Location());
+        throw ast::InternalError(szError);
     }
 
 
@@ -99,6 +98,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     ParserSingleInstance::setFileName(fileName);
     ParserSingleInstance::setProgName(progName);
 
+    ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
@@ -106,7 +106,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     fclose(yyin);
 }
 
-void Parser::parse(char *command)
+void Parser::parse(const char *command)
 {
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
@@ -138,10 +138,16 @@ void Parser::parse(char *command)
         scan_throw(YYEOF);
     }
 
+    if (getExitStatus() != Parser::Succeded)
+    {
+        delete ParserSingleInstance::getTree();
+        ParserSingleInstance::setTree(nullptr);
+    }
+
     // FIXME : UNLOCK
 }
 
-void Parser::parse(wchar_t *command)
+void Parser::parse(const wchar_t *command)
 {
     char* pstCommand = wide_string_to_UTF8(command);
     parse(pstCommand);
@@ -149,7 +155,7 @@ void Parser::parse(wchar_t *command)
 }
 
 /** \brief parse the given file command */
-void ParserSingleInstance::parse(char *command)
+void ParserSingleInstance::parse(const char *command)
 {
     size_t len = strlen(command);
 
@@ -202,12 +208,13 @@ void ParserSingleInstance::parse(char *command)
 
 #ifndef _MSC_VER
 #ifndef __APPLE__
-    yyin = fmemopen(command, len, "r");
+    yyin = fmemopen((void*)command, len, "r");
 #endif
 #endif
 
     ParserSingleInstance::disableStrictMode();
     ParserSingleInstance::setFileName(L"prompt");
+    ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
@@ -272,8 +279,8 @@ std::wstring ParserSingleInstance::_prog_name;
 std::wstring ParserSingleInstance::_error_message;
 bool ParserSingleInstance::_strict_mode = false;
 bool ParserSingleInstance::_stop_on_first_error = false;
-ast::Exp* ParserSingleInstance::_the_program = NULL;
+ast::Exp* ParserSingleInstance::_the_program = nullptr;
 Parser::ParserStatus ParserSingleInstance::_exit_status = Parser::Succeded;
 std::list<Parser::ControlStatus> ParserSingleInstance::_control_status;
-FILE* ParserSingleInstance::fileLocker = NULL;
+FILE* ParserSingleInstance::fileLocker = nullptr;
 

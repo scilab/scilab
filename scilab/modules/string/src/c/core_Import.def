@@ -8,13 +8,10 @@ freeArrayOfString
 freeArrayOfWideString
 gettype_
 com_
-vstk_
 checklhs_
 checkrhs_
 iop_
-stack_
 putlhsvar_
-intersci_
 createvar_
 getrhsvar_
 vartype_

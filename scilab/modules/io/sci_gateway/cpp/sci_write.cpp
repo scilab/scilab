@@ -18,7 +18,7 @@
 #include "double.hxx"
 #include "int.hxx"
 #include "filemanager.hxx"
-
+#include "readwrite.hxx"
 
 extern "C"
 {
@@ -42,9 +42,6 @@ extern "C"
     extern int C2F(writestringfile)(int* ID, char* form, char* dat, int* ierro, int, int);
 
 }
-
-int checkformat(char* format);
-
 
 using namespace types;
 
@@ -81,6 +78,7 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
 
         if (iErr == 240)
         {
+            closeFile(in[0], iID);
             Scierror(999, _("File \"%s\" already exists or directory write access denied.\n"), pstFilename);
             FREE(pstFilename);
             return Function::Error;
@@ -129,12 +127,12 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
         return Function::OK;
     }
 
-
     if (iRhs > 2)
     {
         int iPos = iRhs - 1;
         if (in[iPos]->isString() == false)
         {
+            closeFile(in[0], iID);
             Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", iRhs);
             return Function::Error;
         }
@@ -142,6 +140,7 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
         String* pSFormat = in[iPos]->getAs<String>();
         if (pSFormat->isScalar() == false)
         {
+            closeFile(in[0], iID);
             Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", iRhs);
             return Function::Error;
         }
@@ -149,30 +148,13 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
         //checkformat
         pstFormat = wide_string_to_UTF8(pSFormat->get(0));
 
-        char cTypeData = checkformat(pstFormat);
-        if (cTypeData == 0)
+        itTypeOfData = checkformat(pstFormat);
+        if (itTypeOfData == InternalType::ScilabNull)
         {
+            closeFile(in[0], iID);
             Scierror(999, _("Incorrect file or format.\n"));
             return Function::Error;
         }
-        switch (cTypeData)
-        {
-            case '1':
-                itTypeOfData = types::InternalType::ScilabDouble;
-                break;
-            case '2':
-                itTypeOfData = types::InternalType::ScilabInt32;
-                break;
-            case '3':
-                itTypeOfData = types::InternalType::ScilabBool;
-                break;
-            case '4':
-                itTypeOfData = types::InternalType::ScilabString;
-                break;
-            default:
-                break;
-        }
-
     }
     else
     {
@@ -181,48 +163,36 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
             case types::InternalType::ScilabInt32:
             {
                 itTypeOfData = types::InternalType::ScilabInt32;
-                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(%d(1x,I4))\0") + (int)log10(iCols) + 2));
-                sprintf(pstFormat, "(%d(1x,I4))\0", iCols);
+                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(%d(1x,I4))") + (int)log10(iCols) + 2));
+                sprintf(pstFormat, "(%d(1x,I4))", iCols);
                 break;
             }
             case types::InternalType::ScilabDouble:
             {
                 if (iID == 6)
                 {
-                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))\0") + (int)log10(iCols) + 2));
-                    sprintf(pstFormat, "(%d(1x,1pd17.10))\0", iCols);
+                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))") + (int)log10(iCols) + 2));
+                    sprintf(pstFormat, "(%d(1x,1pd17.10))", iCols);
                 }
                 else
                 {
-                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))\0") + (int)log10(iCols) + 2));
-                    sprintf(pstFormat, "(%d(1x,1pd17.10))\0", iCols);
+                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("((1x,1pd17.10))") + (int)log10(iCols) + 2));
+                    sprintf(pstFormat, "(%d(1x,1pd17.10))", iCols);
                 }
                 break;
             }
             case types::InternalType::ScilabString:
             {
                 itTypeOfData = types::InternalType::ScilabString;
-                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(a)\0") + 1));
-                sprintf(pstFormat, "(a)\0");
+                pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(a)") + 1));
+                sprintf(pstFormat, "(a)");
                 break;
             }
             default:
             {
+                closeFile(in[0], iID);
                 Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
-
-                //close file
-                if (in[0]->isString())
-                {
-                    int piMode[2] = { 0, 0 };
-                    String* pSPath = in[0]->getAs<String>();
-                    char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-                    int  close = -iID;
-                    int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)strlen(pstFilename));
-                    FREE(pstFilename);
-                }
-
                 return Function::Error;
-                break;
             }
         }
     }
@@ -246,8 +216,6 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
                         C2F(writestringfile)(&iID, pstFormat, pd, &error, (int)strlen(pstFormat), (int)strlen(pd));
                         FREE(pd);
                     }
-
-
                 }
                 break;
                 case types::InternalType::ScilabInt32:
@@ -290,9 +258,7 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
                         }
 
                         delete[] pd;
-
                     }
-
                 }
                 break;
                 case types::InternalType::ScilabDouble:
@@ -339,39 +305,19 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
                 }
                 break;
                 default:
+                {
                     Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
-
-                    //close file
-                    if (in[0]->isString())
-                    {
-                        int piMode[2] = { 0, 0 };
-                        String* pSPath = in[0]->getAs<String>();
-                        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-                        int  close = -iID;
-                        int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)strlen(pstFilename));
-                        FREE(pstFilename);
-                    }
-
+                    closeFile(in[0], iID);
                     return Function::Error;
-                    break;
+                }
             }
 
             //close file
-            if (in[0]->isString())
-            {
-                int piMode[2] = { 0, 0 };
-                String* pSPath = in[0]->getAs<String>();
-                char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-                int  close = -iID;
-                int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)strlen(pstFilename));
-                FREE(pstFilename);
-            }
-
+            closeFile(in[0], iID);
         }
         else
         {
             //direct
-
             int iConsoleWidth = ConfigVariable::getConsoleWidth();
             switch (in[1]->getType())
             {
@@ -385,8 +331,6 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
                         C2F(writestring)(pstFormat, pd, &error, (int)strlen(pstFormat), (int)strlen(pd));
                         FREE(pd);
                     }
-
-
                 }
                 break;
                 case types::InternalType::ScilabInt32 :
@@ -476,16 +420,12 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
                 }
                 break;
                 default:
+                {
                     Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
                     return Function::Error;
-                    break;
+                }
             }
-
         }
-    }
-    else
-    {
-
     }
 
     if (pstFormat)
@@ -500,62 +440,4 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
     }
 
     return Function::OK;
-}
-
-int checkformat(char* format)
-{
-    char type1[] = { 'i', 'f', 'e', 'd', 'g', 'l', 'a', 'I', 'F', 'E', 'D', 'G', 'L', 'A' };
-    char type2[] = { '2', '1', '1', '1', '1', '3', '4', '2', '1', '1', '1', '1', '3', '4' };
-    int ret = 0;
-    int size = (int)strlen(format);
-    int count = 0;
-    bool isString = false;
-
-    if (size < 2 || format[0] != '(' || format[size - 1] != ')')
-    {
-        return 0;
-    }
-
-    for (int i = 1; i < size - 1; i++)
-    {
-        char c = format[i];
-
-        if (c == '\'')
-        {
-            isString = !isString;
-        }
-
-        if (isString)
-        {
-            if (count == 0)
-            {
-                count++;
-            }
-            else
-            {
-                count--;
-            }
-            continue;
-        }
-
-        for (int j = 0; j < sizeof(type1); j++)
-        {
-            if (c == type1[j])
-            {
-                if (ret == 0)
-                {
-                    ret = type2[j];
-                }
-
-                if (type2[j] != ret)
-                {
-                    return 0;
-                }
-
-                break;
-            }
-        }
-    }
-
-    return ret;
 }

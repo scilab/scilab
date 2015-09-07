@@ -2,6 +2,7 @@
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
  *  Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
+ *  Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -71,7 +72,6 @@ Function::ReturnValue sci_exit(typed_list &in, int _iRetCount, typed_list &out)
         }
         else
         {
-
             forceCloseMainScilabObject();
         }
     }
@@ -80,6 +80,8 @@ Function::ReturnValue sci_exit(typed_list &in, int _iRetCount, typed_list &out)
     {
         ConfigVariable::setExitStatus((int)dExit);
         ConfigVariable::setForceQuit(true);
+        // go out without continue any execution
+        throw ast::InternalAbort();
     }
     return Function::OK;
 }

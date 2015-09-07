@@ -18,12 +18,13 @@
 */
 %module ScilabCommons
 %{
+#include "sci_malloc.h"
 #include "sci_home.h"
 #include "sci_tmpdir.h"
 #include "createtempfilename.h"
 #include "setgetlanguage.h"
 #include "getversion.h"
-#include "setieee.h"
+#include "configvariable_interface.h"
 #include "setformat.h"
 %}
 
@@ -69,6 +70,11 @@ public class%}
   }
 %}
 
+%typemap(out, noblock=1) char * {if ($1)
+{
+    $result = JCALL1(NewStringUTF, jenv, (const char *)$1);
+    FREE($1);
+}}
 
 /* JavaDoc for ScilabCommons class */
 %pragma(java) moduleclassmodifiers="

@@ -102,12 +102,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\c\gw_csv_helpers.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_spreadsheet.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_csvDefault.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -179,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="src\c\ripole\ripole.c">
       <Filter>Source Files\ripole</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_csv_helpers.c">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

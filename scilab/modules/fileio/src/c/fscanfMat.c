@@ -128,16 +128,8 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
     }
 
     pwsLines = mgetl(fd, -1, &nblines, &errMGETL);
-
-    lines = (char**)MALLOC(sizeof(char*) * nblines);
-    for (i = 0 ; i < nblines ; i++)
-    {
-        lines[i] = wide_string_to_UTF8(pwsLines[i]);
-    }
-
-    freeArrayOfWideString(pwsLines, nblines);
-
     mclose(fd);
+
     if (errMGETL != MGETL_NO_ERROR)
     {
         resultFscanfMat = (fscanfMatResult*)(MALLOC(sizeof(fscanfMatResult)));
@@ -152,6 +144,14 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
         }
         return resultFscanfMat;
     }
+
+    lines = (char**)MALLOC(sizeof(char*) * nblines);
+    for (i = 0; i < nblines; i++)
+    {
+        lines[i] = wide_string_to_UTF8(pwsLines[i]);
+    }
+
+    freeArrayOfWideString(pwsLines, nblines);
 
     lines = removeEmptyLinesAtTheEnd(lines, &nblines);
     lines = removeTextLinesAtTheEnd(lines, &nblines, format, separator);
@@ -227,7 +227,7 @@ void freeFscanfMatResult(fscanfMatResult *resultStruct)
     {
         if (resultStruct->text)
         {
-            FREE(resultStruct->text);
+            freeArrayOfString(resultStruct->text, resultStruct->sizeText);
             resultStruct->text = NULL;
         }
 
@@ -807,6 +807,8 @@ static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *forma
         if (itCanBeMatrixLine(lines[i], format, separator) == FALSE)
         {
             nbLinesToRemove++;
+            FREE(lines[i]);
+            lines[i] = NULL;
         }
         else
         {
@@ -816,8 +818,9 @@ static char ** removeTextLinesAtTheEnd(char **lines, int *sizelines, char *forma
 
     if (nbLinesToRemove > 0)
     {
-        linesReturned = (char**)REALLOC(lines, sizeof(char*) * (*sizelines - nbLinesToRemove));
+        //must free last lines.
         *sizelines = *sizelines - nbLinesToRemove;
+        linesReturned = lines;
     }
     else
     {

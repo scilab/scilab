@@ -81,7 +81,7 @@ public:
         }
         else
         {
-            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; rv++)
+            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(); rv != _resultVect.end(); rv++)
             {
                 if (*rv != nullptr)
                 {
@@ -444,7 +444,7 @@ public :
             FREE(strErr);
             std::wstring wstError(pwstError);
             FREE(pwstError);
-            throw ScilabError(wstError, 999, e.getLocation());
+            throw InternalError(wstError, 999, e.getLocation());
             //Err, SimpleVar doesn't exist in Scilab scopes.
         }
     }
@@ -474,12 +474,14 @@ public :
             //restore previous prompt mode
             ConfigVariable::setSilentError(oldVal);
         }
-        catch (ScilabMessage sm)
+        catch (const InternalError& /* ie */)
         {
             //restore previous prompt mode
             ConfigVariable::setSilentError(oldVal);
             //to lock lasterror
             ConfigVariable::setLastErrorCall();
+            // reset call stack filled when error occured
+            ConfigVariable::resetWhereError();
             e.getCatch().accept(*this);
         }
     }
@@ -523,7 +525,7 @@ public :
             e.getInit().accept(*this);
             getResult()->IncreaseRef();
         }
-        catch (ScilabError error)
+        catch (const InternalError& error)
         {
             throw error;
         }

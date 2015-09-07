@@ -63,7 +63,7 @@ GUI_IMPEXP int sci_datatip_set_display(char *fname, void* pvApiCtx);
 GUI_IMPEXP int sci_datatip_set_interp(char *fname, void* pvApiCtx);
 GUI_IMPEXP int sci_datatip_set_orient(char *fname, void* pvApiCtx);
 
-// YaSp
+// Scilab 6
 GUI_IMPEXP int sci_about(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_mpopup(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_fire_closing_finished (char* fname, void* pvApiCtx);

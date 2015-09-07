@@ -69,7 +69,7 @@ public :
     /*
     ** Parsing functions
     */
-    static void parse(char *command);
+    static void parse(const char *command);
     static void parseFile(const std::wstring& fileName, const std::wstring& progName);
 
     /*

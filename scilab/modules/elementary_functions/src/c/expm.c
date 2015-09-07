@@ -310,7 +310,8 @@ int dbdiaga(int _iLeadDim, int _iSize, double *_pdblVal, double _dblEps,
     {
         dblEps = 1;
     }
-    dblEps = F2C(dlamch)("p", 1L) * dblEps;
+
+    dblEps = nc_eps_machine() * dblEps;
 
     //convert a to upper hessenberg form.
     dbalancs(_iLeadDim, _iSize, _pdblVal, &iLow, &iHigh, _pdblScale);
@@ -1293,7 +1294,7 @@ int dhqror2s(int _iLead, int _iSize, int _iLow, int _iHigh,
     int iHigh		= _iHigh - 1;
 
     double dblNorm	= 0;
-    double dblEps	= F2C(dlamch)("p", 1L);
+    double dblEps = nc_eps_machine();
 
     double dblP		= 0;
     double dblQ		= 0;
@@ -2848,12 +2849,12 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
         switch (iRet)
         {
             case -1 :
-                //YaSp
+                //Scilab 6
                 //sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
                 //Msgs(5,1);
                 break;
             case -2 :
-                //YaSp
+                //Scilab 6
                 //Msgs(9, (int)dblRcond);
                 break;
             default :

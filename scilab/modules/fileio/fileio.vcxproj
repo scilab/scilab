@@ -240,7 +240,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\getlongpathname.c" />
     <ClCompile Include="src\c\getrelativefilename.c" />
     <ClCompile Include="src\c\getshortpathname.c" />
-    <ClCompile Include="sci_gateway\c\gw_fileio.c" />
     <ClCompile Include="src\c\isdir.c" />
     <ClCompile Include="src\c\isDrive.c" />
     <ClCompile Include="src\cpp\mclose.cpp" />

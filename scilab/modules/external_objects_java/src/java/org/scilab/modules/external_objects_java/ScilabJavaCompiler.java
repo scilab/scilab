@@ -97,7 +97,7 @@ public class ScilabJavaCompiler {
 
             if (compiler == null) {
                 if (ecjLoaded) {
-                    throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-3.6.x.jar (Eclipse Compiler for Java)");
+                    throw new ScilabJavaException("No java compiler in the classpath\nCheck for tools.jar (comes from JDK) or ecj-4.4.x.jar (Eclipse Compiler for Java)");
                 }
 
                 // Compiler should be in thirdparty so we load it

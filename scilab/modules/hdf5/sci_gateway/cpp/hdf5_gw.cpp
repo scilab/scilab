@@ -19,7 +19,6 @@
 extern "C"
 {
 #include "gw_hdf5.h"
-#include "callFunctionFromGateway.h"
 #include "api_scilab.h"
 #include "sci_malloc.h"
 #include "h5_fileManagement.h"

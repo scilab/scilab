@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -112,7 +112,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -142,7 +142,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -180,7 +180,7 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/intl;../core/includes;../api_scilab/includes;../fileio/includes;../windows_tools/includes;../windows_tools/src/c/scilab_windows;../windows_tools/src/cpp/scilab_windows;../localization/includes;../action_binding/includes;../output_stream/includes;../graphics/includes../../libs/intl;../graphic_objects/includes;../string/includes;../console/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;CALL_SCILAB_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -216,7 +216,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\c\DllmainCall_scilab.c" />
     <ClCompile Include="src\c\fromc.c" />
     <ClCompile Include="src\c\fromjava.c" />
-    <ClCompile Include="sci_gateway\c\gw_call_scilab.c" />
     <ClCompile Include="sci_gateway\c\sci_fromc.c" />
     <ClCompile Include="sci_gateway\c\sci_fromjava.c" />
     <ClCompile Include="src\c\SendScilabJobs.c" />
@@ -275,6 +274,9 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\windows_tools\src\c\scilab_windows\scilab_windows.vcxproj">
       <Project>{8028f371-6a94-4a26-8804-6e7f05f1d1aa}</Project>

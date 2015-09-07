@@ -9,7 +9,7 @@
 //
 //
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 function v = while_return()
     v = 0;

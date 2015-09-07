@@ -45,7 +45,7 @@
                 <term>_pstVarName</term>
                 <listitem>
                     <para>
-                        Return the symbolic varaible name
+                        Return the symbolic variable name
                     </para>
                 </listitem>
             </varlistentry>

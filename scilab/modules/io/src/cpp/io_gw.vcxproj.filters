@@ -30,9 +30,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_load.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_unix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_readb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_save.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_setenv.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,13 +60,13 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="loadlib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_write.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_read.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="readwrite.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,7 +77,7 @@
     <ClInclude Include="..\..\includes\io_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="loadlib.hxx">
+    <ClInclude Include="readwrite.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

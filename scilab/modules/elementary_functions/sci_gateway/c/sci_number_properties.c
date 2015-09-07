@@ -54,36 +54,36 @@ int sci_number_properties(char *fname, void* pvApiCtx)
 
     if (strcmp(pstData[0], "eps") == 0)
     {
-        dblRet	= F2C(dlamch)("e", 1L);
+        dblRet = nc_eps();
     }
     else if (strcmp(pstData[0], "huge") == 0)
     {
-        dblRet	= F2C(dlamch)("oe", 1L);
+        dblRet = nc_double_max();
     }
     else if (strcmp(pstData[0], "tiny") == 0)
     {
-        dblRet	= F2C(dlamch)("u", 1L);
+        dblRet = nc_double_min();
     }
     else if (strcmp(pstData[0], "radix") == 0)
     {
-        dblRet	= F2C(dlamch)("b", 1L);
+        dblRet = nc_base();
     }
     else if (strcmp(pstData[0], "digits") == 0)
     {
-        dblRet	= F2C(dlamch)("n", 1L);
+        dblRet = nc_num_mantissa_digits();
     }
     else if (strcmp(pstData[0], "minexp") == 0)
     {
-        dblRet	= F2C(dlamch)("m", 1L);
+        dblRet = nc_exp_min();
     }
     else if (strcmp(pstData[0], "maxexp") == 0)
     {
-        dblRet	= F2C(dlamch)("l", 1L);
+        dblRet = nc_exp_max();
     }
     else if (strcmp(pstData[0], "denorm") == 0)
     {
         bBoolFlag = 1;
-        if (F2C(dlamch)("u", 1L) / F2C(dlamch)("b", 1L) > 0)
+        if (nc_double_min() / nc_base() > 0)
         {
             bRet	= 1;
         }
@@ -94,13 +94,13 @@ int sci_number_properties(char *fname, void* pvApiCtx)
     }
     else if (strcmp(pstData[0], "tiniest") == 0)
     {
-        double dblRadix	= F2C(dlamch)("b", 1L);
-        dblRet	= F2C(dlamch)("u", 1L);
+        double dblRadix = nc_base();
+        dblRet = nc_double_min();
 
         if (dblRet	/ dblRadix != 0)
         {
             //denormalised number are used
-            int iDigits = (int)F2C(dlamch)("n", 1L);
+            int iDigits = (int)nc_num_mantissa_digits();
             for (i = 1 ; i < iDigits ; i++)
             {
                 dblRet	/= dblRadix;

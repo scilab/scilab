@@ -163,7 +163,7 @@ types::Function::ReturnValue sci_data2sig(types::typed_list &in, int _iRetCount,
     }
     if (iDims > 3)
     {
-        Scierror(888, _("%s: Wrong size for intput argument #%d: Only hypermatrices with 3 dimensions are allowed.\n"), funname.data(), 1);
+        Scierror(888, _("%s: Wrong size for input argument #%d: Only hypermatrices with 3 dimensions are allowed.\n"), funname.data(), 1);
         B->killMe();
         return types::Function::Error;
     }

@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/system_env;../../../ast/includes/ast;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -115,7 +115,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/system_env;../../../ast/includes/ast;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -148,7 +148,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/system_env;../../../ast/includes/ast;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -188,7 +188,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;../../src/cpp;../../src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../localization/includes;../../../graphics/includes;../../../scicos/includes;../../../core/includes;../../../renderer/includes;../../../elementary_functions/includes;../../../string/includes;../../../windows_tools/includes;../../../jvm/includes;../../../fileio/includes;../../../commons/src/jni;../../../graphic_objects/includes;../../../api_scilab/includes;../../../ast/includes/system_env;../../../ast/includes/ast;../../../ast/includes/operations;../../../hdf5/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_BLOCKS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -578,6 +578,9 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     </ProjectReference>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>

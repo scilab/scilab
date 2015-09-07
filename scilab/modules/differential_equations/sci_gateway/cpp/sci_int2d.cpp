@@ -242,14 +242,9 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     {
         C2F(twodq)(int2d_f, &size, pDblX->get(), pDblY->get(), &tol, &iclose, &maxtri, &mevals, &result, &err, &nu, &nd, &nevals, &iflag, dwork, iwork);
     }
-    catch (ast::ScilabMessage &sm)
+    catch (ast::InternalError &ie)
     {
-        os << sm.GetErrorMessage();
-        bCatch = false;
-    }
-    catch (ast::ScilabError &e)
-    {
-        os << e.GetErrorMessage();
+        os << ie.GetErrorMessage();
         bCatch = false;
     }
 
@@ -262,7 +257,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int2d", "twodq");
         os << szError;
-        throw ast::ScilabMessage(os.str());
+        throw ast::InternalError(os.str());
     }
 
     if (iflag)

@@ -15,6 +15,8 @@
 
 #include <iostream>
 
+#include "tools.hxx"
+
 namespace analysis
 {
 
@@ -106,41 +108,7 @@ struct OpValue
     /**
      * \brief Overload of the operator <<
      */
-    friend inline std::wostream & operator<<(std::wostream & out, const OpValue & ov)
-    {
-        switch (ov.kind)
-        {
-            case UNARYMINUS:
-                out << L"-" << ov.lnum;
-                break;
-            case UNARYNEG:
-                out << L"~" << ov.lnum;
-                break;
-            case PLUS:
-                out << ov.lnum << L"+" << ov.rnum;
-                break;
-            case MINUS:
-                out << ov.lnum << L"-" << ov.rnum;
-                break;
-            case TIMES:
-            case DOTTIMES:
-                out << ov.lnum << L"*" << ov.rnum;
-                break;
-            case RDIV:
-            case DOTRDIV:
-                out << ov.lnum << L"/" << ov.rnum;
-                break;
-            case POWER:
-            case DOTPOWER:
-                out << ov.lnum << L"^" << ov.rnum;
-                break;
-            default:
-                out << ov.lnum << L"??" << ov.rnum;
-                break;
-        }
-
-        return out;
-    }
+    friend std::wostream & operator<<(std::wostream & out, const OpValue & ov);
 
     /**
      * \struct Hash

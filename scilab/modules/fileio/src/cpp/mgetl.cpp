@@ -111,7 +111,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             }
             while ( getLine ( Line, LINE_MAX * iLineSizeMult, pFile ) != NULL )
             {
-                if (wcslen(Line) >= (LINE_MAX * iLineSizeMult) - 1)
+                if (((int) wcslen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
                 {
                     FREE(Line);
                     iLineSizeMult++;
@@ -128,6 +128,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                     wchar_t* tmpLine = os_wcsdup(Line);
                     memset(Line, 0x00, LINE_MAX * iLineSizeMult);
                     wcscpy(Line, &tmpLine[1]);
+                    FREE(tmpLine);
                 }
 
                 nbLines++;
@@ -188,7 +189,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
                         if ( getLine ( Line, LINE_MAX * iLineSizeMult, pFile) != NULL)
                         {
-                            if (wcslen(Line) >= (LINE_MAX * iLineSizeMult) - 1)
+                            if (((int) wcslen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
                             {
                                 FREE(Line);
                                 iLineSizeMult++;
@@ -251,27 +252,18 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 /*--------------------------------------------------------------------------*/
 wchar_t* getLine(wchar_t* _pstLine, int _iLineSize, types::File* _pFile)
 {
-    if (_pFile->getFileModeAsInt() % 2 == 1)
+    char* pstTemp = (char*)MALLOC(sizeof(char) * _iLineSize);
+    if (fgets(pstTemp, _iLineSize, _pFile->getFiledesc()) == NULL)
     {
-        //binary mode
-        return fgetws(_pstLine, _iLineSize, _pFile->getFiledesc());
-    }
-    else
-    {
-        char* pstTemp = (char*)MALLOC(sizeof(char) * _iLineSize);
-        if (fgets(pstTemp, _iLineSize, _pFile->getFiledesc()) == NULL)
-        {
-            FREE(pstTemp);
-            return NULL;
-        }
-        //        char* pstUtf = convertAnsiToUtf(pstTemp);
-        wchar_t* pstTempWide = to_wide_string(pstTemp);
-        wcscpy(_pstLine, pstTempWide);
-        //FREE(pstUtf);
         FREE(pstTemp);
-        FREE(pstTempWide);
-        return _pstLine;
+        return NULL;
     }
+
+    wchar_t* pstTempWide = to_wide_string(pstTemp);
+    wcscpy(_pstLine, pstTempWide);
+    FREE(pstTemp);
+    FREE(pstTempWide);
+    return _pstLine;
 }
 /*--------------------------------------------------------------------------*/
 wchar_t *removeEOL(wchar_t *_inString)

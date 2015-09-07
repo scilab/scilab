@@ -36,16 +36,6 @@ void createNamedVariable(int *_piVarID);
 int updateLstk(int _iNewPos, int _iSCIDataAddress, int _iVarSize);
 
 /**
-*
-* @param[in]
-* @param[in]
-* @param[in]
-* @param[in]
-* @return
-*/
-int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress);
-
-/**
 * @param[in] _piAddress variable address
 * @param[in] _iType type to check
 * @return 1 for true and 0 for false
@@ -67,6 +57,7 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName);
 
 
 SciErr sciErrInit();
+void sciErrClean(SciErr* _psciErr);
 
 #endif /* __INTERNAL_COMMON_API__ */
 

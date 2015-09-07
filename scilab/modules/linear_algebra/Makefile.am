@@ -28,8 +28,6 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/find.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_linear_algebra2.c \
-    sci_gateway/c/gw_linear_algebra.c \
     sci_gateway/c/assembleEigenvectors.c \
     sci_gateway/c/sci_norm.c
 

@@ -1,14 +1,14 @@
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Antoine ELIAS
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
 
 #include <string.h>
 
@@ -22,7 +22,6 @@
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "context.hxx"
 
@@ -86,21 +85,21 @@ Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, ty
     pOut->addField(L"rows");
     if (t.rows.isConstant())
     {
-	pOut->get(0)->set(L"rows", new Double(t.rows.getConstant()));
+        pOut->get(0)->set(L"rows", new Double(t.rows.getConstant()));
     }
     else
     {
-	pOut->get(0)->set(L"rows", new Double(analysis::tools::NaN()));
+        pOut->get(0)->set(L"rows", new Double(analysis::tools::NaN()));
     }
 
     pOut->addField(L"cols");
     if (t.cols.isConstant())
     {
-	pOut->get(0)->set(L"cols", new Double(t.cols.getConstant()));
+        pOut->get(0)->set(L"cols", new Double(t.cols.getConstant()));
     }
     else
     {
-	pOut->get(0)->set(L"cols", new Double(analysis::tools::NaN()));
+        pOut->get(0)->set(L"cols", new Double(analysis::tools::NaN()));
     }
     out.push_back(pOut);
 

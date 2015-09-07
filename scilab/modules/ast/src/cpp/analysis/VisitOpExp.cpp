@@ -17,278 +17,278 @@
 namespace analysis
 {
 
-    
 
-    void AnalysisVisitor::visit(ast::OpExp & e)
+
+void AnalysisVisitor::visit(ast::OpExp & e)
+{
+    logger.log(L"OpExp", e.getLocation());
+    TIType resT(getGVN());
+    int tempId = -1;
+    bool safe = false;
+
+    e.getLeft().accept(*this);
+    Result LR = getResult();
+    e.getRight().accept(*this);
+    Result & RR = getResult();
+    if (LR.getType().isknown() && RR.getType().isknown())
     {
-        logger.log(L"OpExp", e.getLocation());
-        TIType resT(getGVN());
-        int tempId = -1;
-	bool safe;
+        TIType & LT = LR.getType();
+        TIType & RT = RR.getType();
 
-        e.getLeft().accept(*this);
-        Result LR = getResult();
-        e.getRight().accept(*this);
-        Result & RR = getResult();
-        if (LR.getType().isknown() && RR.getType().isknown())
+        if (!operSymbolicRange(e) && !operGVNValues(e))
         {
-            TIType & LT = LR.getType();
-            TIType & RT = RR.getType();
-
-            if (!operSymbolicRange(e) && !operGVNValues(e))
+            switch (e.getOper())
             {
-                switch (e.getOper())
-                {
                 case ast::OpExp::plus :
                 {
-		    resT = checkEWBinOp<check_____add____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_plus>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::minus:
                 {
-		    resT = checkEWBinOp<check_____sub____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_minus>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::times:
                 {
-                    resT = check_____times____(getGVN(), LT, RT);
+                    resT = Checkers::check_____times____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.cols.getValue(), RT.rows.getValue());
                         if (ret)
                         {
-                            resT = check_____times____(getGVN(), LT, RT);
-			    safe = true;
+                            resT = Checkers::check_____times____(getGVN(), LT, RT);
+                            safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
-		    else
-		    {
-			safe = true;
-		    }
+                    else
+                    {
+                        safe = true;
+                    }
 
-		    tempId = dm.getTmpId(resT, false);
-		    dm.releaseTmp(LR.getTempId());
-		    dm.releaseTmp(RR.getTempId());
-		    
+                    tempId = dm.getTmpId(resT, false);
+                    dm.releaseTmp(LR.getTempId());
+                    dm.releaseTmp(RR.getTempId());
+
                     break;
                 }
                 case ast::OpExp::rdivide:
                 {
-                    resT = check_____rdivide____(getGVN(), LT, RT);
+                    resT = Checkers::check_____rdivide____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.cols.getValue(), RT.cols.getValue());
                         if (ret)
                         {
-                            resT = check_____rdivide____(getGVN(), LT, RT);
-			    safe = true;
+                            resT = Checkers::check_____rdivide____(getGVN(), LT, RT);
+                            safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
-		    else
-		    {
-			safe = true;
-		    }
-		    
-		    tempId = dm.getTmpId(resT, false);
-		    dm.releaseTmp(LR.getTempId());
-		    dm.releaseTmp(RR.getTempId());
+                    else
+                    {
+                        safe = true;
+                    }
+
+                    tempId = dm.getTmpId(resT, false);
+                    dm.releaseTmp(LR.getTempId());
+                    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::ldivide:
                 {
-                    resT = check_____ldivide____(getGVN(), LT, RT);
+                    resT = Checkers::check_____ldivide____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.rows.getValue(), RT.rows.getValue());
                         if (ret)
                         {
-                            resT = check_____ldivide____(getGVN(), LT, RT);
-			    safe = true;
+                            resT = Checkers::check_____ldivide____(getGVN(), LT, RT);
+                            safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
-		    else
-		    {
-			safe = true;
-		    }
-		    
-		    tempId = dm.getTmpId(resT, false);
-		    dm.releaseTmp(LR.getTempId());
-		    dm.releaseTmp(RR.getTempId());
+                    else
+                    {
+                        safe = true;
+                    }
+
+                    tempId = dm.getTmpId(resT, false);
+                    dm.releaseTmp(LR.getTempId());
+                    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::power:
                 {
-                    resT = check_____power____(getGVN(), LT, RT);
+                    resT = Checkers::check_____power____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.rows.getValue(), LT.cols.getValue());
                         if (ret)
                         {
-                            resT = check_____power____(getGVN(), LT, RT);
-			    safe = true;
+                            resT = Checkers::check_____power____(getGVN(), LT, RT);
+                            safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
-		    else
-		    {
-			safe = true;
-		    }
-		    
-		    tempId = dm.getTmpId(resT, false);
-		    dm.releaseTmp(LR.getTempId());
-		    dm.releaseTmp(RR.getTempId());
+                    else
+                    {
+                        safe = true;
+                    }
+
+                    tempId = dm.getTmpId(resT, false);
+                    dm.releaseTmp(LR.getTempId());
+                    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::dottimes :
                 {
-		    resT = checkEWBinOp<check_____dottimes____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_dottimes>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::dotrdivide:
                 {
-		    resT = checkEWBinOp<check_____dotrdiv____>(LT, RT, LR, RR, safe, tempId);
-		    break;
+                    resT = checkEWBinOp<_check_dotrdiv>(LT, RT, LR, RR, safe, tempId);
+                    break;
                 }
                 case ast::OpExp::dotpower:
                 {
-		    resT = checkEWBinOp<check_____dotpower____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_dotpower>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::unaryMinus :
                 {
-                    resT = check_____unaryminus____(getGVN(), RT);
-		    if (!resT.hasInvalidDims())
-		    {
-			safe = true;
-		    }
-		    tempId = RR.getTempId();
+                    resT = Checkers::check_____unaryminus____(getGVN(), RT);
+                    if (!resT.hasInvalidDims())
+                    {
+                        safe = true;
+                    }
+                    tempId = RR.getTempId();
                     break;
                 }
                 case ast::OpExp::krontimes :
                 {
-                    resT = check_____krontimes____(getGVN(), LT, RT);
-		    if (!resT.hasInvalidDims())
-		    {
-			safe = true;
-		    }
-		    tempId = dm.getTmpId(resT, false);
-		    dm.releaseTmp(LR.getTempId());
-		    dm.releaseTmp(RR.getTempId());
+                    resT = Checkers::check_____krontimes____(getGVN(), LT, RT);
+                    if (!resT.hasInvalidDims())
+                    {
+                        safe = true;
+                    }
+                    tempId = dm.getTmpId(resT, false);
+                    dm.releaseTmp(LR.getTempId());
+                    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::eq:
                 {
-		    resT = checkEWBinOp<check_____eq____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_eq>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::ne:
                 {
-		    resT = checkEWBinOp<check_____neq____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_neq>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::lt:
                 {
-		    resT = checkEWBinOp<check_____lt____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_lt>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::le:
                 {
-		    resT = checkEWBinOp<check_____le____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_le>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::gt:
                 {
-		    resT = checkEWBinOp<check_____gt____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_gt>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::ge:
                 {
-		    resT = checkEWBinOp<check_____ge____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_ge>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalAnd:
                 {
-		    resT = checkEWBinOp<check_____and____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_and>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalOr:
                 {
-		    resT = checkEWBinOp<check_____or____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_or>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalShortCutAnd:
                 {
-		    resT = checkEWBinOp<check_____andand____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_andand>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalShortCutOr:
                 {
-		    resT = checkEWBinOp<check_____oror____>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_oror>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
-                }
             }
-            else
-            {
-                // SymbolicRange or GVNValue ops.
-                return;
-            }
-        }
-
-	e.getDecorator().safe = safe;
-        e.getDecorator().res = Result(resT, tempId);
-        setResult(e.getDecorator().res);
-
-	OperAnalyzer opAn;
-	opAn.analyze(*this, e);
-    }
-
-    void AnalysisVisitor::visit(ast::NotExp & e)
-    {
-        logger.log(L"NotExp", e.getLocation());
-        e.getExp().accept(*this);
-        Result & LR = getResult();
-        TIType & LT = LR.getType();
-	const int tempId = LR.getTempId();
-        if (LT.isknown())
-        {
-            TIType resT = check_____not____(getGVN(), LT);
-            e.getDecorator().res = Result(resT, tempId);
-	    e.getDecorator().safe = true;
         }
         else
         {
-            e.getDecorator().res = Result(TIType(getGVN()), tempId);
+            // SymbolicRange or GVNValue ops.
+            return;
         }
-        setResult(e.getDecorator().res);
     }
 
-    void AnalysisVisitor::visit(ast::TransposeExp & e)
+    e.getDecorator().safe = safe;
+    e.getDecorator().res = Result(resT, tempId);
+    setResult(e.getDecorator().res);
+
+    OperAnalyzer opAn;
+    opAn.analyze(*this, e);
+}
+
+void AnalysisVisitor::visit(ast::NotExp & e)
+{
+    logger.log(L"NotExp", e.getLocation());
+    e.getExp().accept(*this);
+    Result & LR = getResult();
+    TIType & LT = LR.getType();
+    const int tempId = LR.getTempId();
+    if (LT.isknown())
     {
-        logger.log(L"TransposeExp", e.getLocation());
-        e.getExp().accept(*this);
-        Result & res = getResult();
-        const TIType & type = res.getType();
-	TIType resType(dm.getGVN(), type.type, type.cols, type.rows);
-	e.getDecorator().res = Result(resType, dm.getTmpId(resType, false));
-	e.getDecorator().safe = true;
-	dm.releaseTmp(res.getTempId());
-	
-        setResult(e.getDecorator().res);
+        TIType resT = Checkers::check_____not____(getGVN(), LT);
+        e.getDecorator().res = Result(resT, tempId);
+        e.getDecorator().safe = true;
     }
+    else
+    {
+        e.getDecorator().res = Result(TIType(getGVN()), tempId);
+    }
+    setResult(e.getDecorator().res);
+}
+
+void AnalysisVisitor::visit(ast::TransposeExp & e)
+{
+    logger.log(L"TransposeExp", e.getLocation());
+    e.getExp().accept(*this);
+    Result & res = getResult();
+    const TIType & type = res.getType();
+    TIType resType(dm.getGVN(), type.type, type.cols, type.rows);
+    e.getDecorator().res = Result(resType, dm.getTmpId(resType, false));
+    e.getDecorator().safe = true;
+    dm.releaseTmp(res.getTempId());
+
+    setResult(e.getDecorator().res);
+}
 }

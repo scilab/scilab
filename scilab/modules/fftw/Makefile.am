@@ -45,7 +45,6 @@ FFTW_CPP_SOURCES = \
     src/cpp/fftw_common.cpp
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_fftw.c \
 	sci_gateway/c/sci_fftwlibraryisloaded.c \
 	sci_gateway/c/sci_disposefftwlibrary.c \
 	sci_gateway/c/sci_fftw_flags.c \

@@ -16,11 +16,9 @@
 #include "doublecomplex.h"
 #include <stdio.h> // debug
 #include <math.h> //sqrt
-
+#include "numericconstants_interface.h"
 #include "invert_matrix.h"
 
-
-extern double C2F(dlamch)(char const* , unsigned long int);
 extern double C2F(dlange)(char const * norm, int const * piRows, int const * piCols
                           , double const *pData, int const * piLDData, double* pdblWork);
 extern double C2F(zlange)(char const * norm, int const * piRows, int const * piCols
@@ -144,7 +142,7 @@ int iInvertMatrix(int iRows, int iCols, double* pData, int complexArg, double * 
             C2F(dgecon)("1", &iCols, pData, &iCols, &dblAnorm, pdblRcond, pdblWork, (int*)pWork, &iInfo);
         }
 
-        if (*pdblRcond <= sqrt(C2F(dlamch)("e", 1L)))
+        if (*pdblRcond <= sqrt(nc_eps()))
         {
             ret = -1;
         }

@@ -40,6 +40,7 @@
 #include "LanguagePreferences_Windows.h"
 #endif
 
+//#define FORCE_LOCALE_EN_US
 /*--------------------------------------------------------------------------*/
 
 BOOL InitializeLocalization(void)
@@ -141,11 +142,18 @@ BOOL InitializeLocalization(void)
 #ifndef _MSC_VER
     /* Here, the "" means that we will try to use the language of the system
      * first. If it doesn't work, we switch back to default (English) */
+#ifdef FORCE_LOCALE_EN_US
+    setlanguage(L"C");
+#else
     setlanguage(L"");
+#endif
 #else
     /* We look if registry value LANGUAGE exists */
     /* If not exists the "" means that we will try to use the language of the system.*/
     {
+#ifdef FORCE_LOCALE_EN_US
+        setlanguage(L"en_US");
+#else
         wchar_t *loadLanguage = getLanguagePreferences();
         setlanguage(loadLanguage);
         if (loadLanguage)
@@ -153,6 +161,7 @@ BOOL InitializeLocalization(void)
             FREE(loadLanguage);
             loadLanguage = NULL;
         }
+#endif
     }
 #endif
 

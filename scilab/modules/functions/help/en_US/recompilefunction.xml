@@ -46,8 +46,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    This function reverse-compiles a function variable via <link linkend="fun2string">fun2string</link>,
-                    and recompiles it to the desired kind with <link linkend="deff">deff</link>.
+                    This function recompiles a function variable to the desired kind with <link linkend="deff">deff</link>.
                 </para>
             </listitem>
         </itemizedlist>
@@ -68,9 +67,6 @@ showprofile(asinh)
             </member>
             <member>
                 <link linkend="deff">deff</link>
-            </member>
-            <member>
-                <link linkend="fun2string">fun2string</link>
             </member>
             <member>
                 <link linkend="profile">profile</link>

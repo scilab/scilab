@@ -24,24 +24,21 @@ extern "C"
 
 /*--------------------------------------------------------------------------*/
 
-std::map<__threadId, Signalprocessingfunctions*> Signalprocessing::m_mapSignalprocessingfunctions;
+Signalprocessingfunctions* Signalprocessing::m_Signalprocessingfunctions;
 
 void Signalprocessing::addSignalprocessingfunctions(Signalprocessingfunctions* _spFunction)
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapSignalprocessingfunctions[pThread->getThreadId()] = _spFunction;
+    m_Signalprocessingfunctions = _spFunction;
 }
 
 void Signalprocessing::removeSignalprocessingfunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapSignalprocessingfunctions.erase(pThread->getThreadId());
+    m_Signalprocessingfunctions = NULL;
 }
 
 Signalprocessingfunctions* Signalprocessing::getSignalprocessingfunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    return m_mapSignalprocessingfunctions[pThread->getThreadId()];
+    return m_Signalprocessingfunctions;
 }
 
 Signalprocessingfunctions::Signalprocessingfunctions(std::wstring callerName)
@@ -80,7 +77,7 @@ void Signalprocessingfunctions::execFunctionDgetx(double* x, int* siz, int* iss)
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDgetxDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((dgetx_f_t)(func->functionPtr))(x, siz, iss);
     }
@@ -91,7 +88,7 @@ void Signalprocessingfunctions::execFunctionDgetx(double* x, int* siz, int* iss)
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -121,7 +118,7 @@ void dgetx_f(double* x, int* siz, int* iss)
 
     if (spFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting Signalprocessingfunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting Signalprocessingfunctions object.\n"));
     }
 
     spFunction->execFunctionDgetx(x, siz, iss);
@@ -141,7 +138,7 @@ void Signalprocessingfunctions::execFunctionDgety(double* y, int* siz, int* iss)
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDgetyDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((dgety_f_t)(func->functionPtr))(y, siz, iss);
     }
@@ -152,7 +149,7 @@ void Signalprocessingfunctions::execFunctionDgety(double* y, int* siz, int* iss)
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -164,7 +161,7 @@ void dgety_f(double* y, int* siz, int* iss)
 
     if (spFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting Signalprocessingfunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting Signalprocessingfunctions object.\n"));
     }
 
     spFunction->execFunctionDgety(y, siz, iss);
@@ -210,7 +207,7 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
     if (bOk == false)
     {
         sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallDgety->getName().c_str());
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (out.size() != iRetCount)
@@ -218,7 +215,7 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
         char* pstrName = wide_string_to_UTF8(m_pCallDgety->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -244,7 +241,7 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
         char* pstrName = wide_string_to_UTF8(m_pCallDgety->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
     types::Double* pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->isComplex())
@@ -252,7 +249,7 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
         char* pstrName = wide_string_to_UTF8(m_pCallDgety->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(siz, pDblOut->get(), &one, y, &one);
@@ -304,7 +301,7 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
     if (bOk == false)
     {
         sprintf(errorMsg, _("%ls: error while calling user function.\n"), m_pCallDgetx->getName().c_str());
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (out.size() != iRetCount)
@@ -312,7 +309,7 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
         char* pstrName = wide_string_to_UTF8(m_pCallDgetx->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of input argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -338,7 +335,7 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
         char* pstrName = wide_string_to_UTF8(m_pCallDgetx->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
     types::Double* pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->isComplex())
@@ -346,7 +343,7 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
         char* pstrName = wide_string_to_UTF8(m_pCallDgetx->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(siz, pDblOut->get(), &one, x, &one);

@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
     wchar_t* wcsFormat          = NULL;
     types::String* pStrRead     = NULL;
     int dimsArray[2]            = {1, 1};
-    std::vector<types::InternalType*>* pIT = new std::vector<types::InternalType*>();
+    std::vector<types::InternalType*> IT;
 
     int args        = 0;
     int nrow        = 0;
@@ -132,7 +132,8 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 {
                     ps->set(j, data[i + ncol * j].s);
                 }
-                pIT->push_back(ps);
+                
+                IT.push_back(ps);
                 uiFormatUsed |= (1 << 1);
             }
             break;
@@ -150,23 +151,22 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                 {
                     p->set(j, data[i + ncol * j].d);
                 }
-                pIT->push_back(p);
+                
+                IT.push_back(p);
                 uiFormatUsed |= (1 << 2);
             }
             break;
         }
     }
 
-    int sizeOfVector = (int)pIT->size();
+    int sizeOfVector = (int)IT.size();
     if (_iRetCount > 1)
     {
-        types::Double* pDouble = new types::Double(2, dimsArray);
-        pDouble->set(0, retval);
-        out.push_back(pDouble);
+        out.push_back(new types::Double((double)retval));
 
         for (int i = 0; i < sizeOfVector; i++)
         {
-            out.push_back((*pIT)[i]);
+            out.push_back(IT[i]);
         }
         for (int i = sizeOfVector + 1; i < _iRetCount; i++)
         {
@@ -185,14 +185,14 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
         {
             case (1 << 1) :
             {
-                int sizeOfString = (*pIT)[0]->getAs<types::String>()->getRows();
+                int sizeOfString = IT[0]->getAs<types::String>()->getRows();
                 int dimsArrayOfRes[2] = {sizeOfString, sizeOfVector};
                 types::String* pString = new types::String(2, dimsArrayOfRes);
                 for (int i = 0; i < sizeOfVector; i++)
                 {
                     for (int j = 0; j < sizeOfString; j++)
                     {
-                        pString->set(i * sizeOfString + j, (*pIT)[i]->getAs<types::String>()->get(j));
+                        pString->set(i * sizeOfString + j, IT[i]->getAs<types::String>()->get(j));
                     }
                 }
                 out.push_back(pString);
@@ -200,15 +200,19 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             break;
             case (1 << 2) :
             {
-                int sizeOfDouble = (*pIT)[0]->getAs<types::Double>()->getRows();
+                int sizeOfDouble = IT[0]->getAs<types::Double>()->getRows();
                 int dimsArrayOfRes[2] = {sizeOfDouble, sizeOfVector};
                 types::Double* pDouble = new types::Double(2, dimsArrayOfRes);
                 for (int i = 0; i < sizeOfVector; i++)
                 {
+                    types::Double* pdbl = IT[i]->getAs<types::Double>();
+                    double* dbl = pdbl->get();
                     for (int j = 0; j < sizeOfDouble; j++)
                     {
-                        pDouble->set(i * sizeOfDouble + j, (*pIT)[i]->getAs<types::Double>()->get(j));
+                        pDouble->set(i * sizeOfDouble + j, dbl[j]);
                     }
+
+                    pdbl->killMe();
                 }
                 out.push_back(pDouble);
             }
@@ -216,12 +220,12 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
             default :
             {
                 std::vector<types::InternalType*>* pITTemp = new std::vector<types::InternalType*>();
-                pITTemp->push_back((*pIT)[0]);
+                pITTemp->push_back(IT[0]);
 
                 // sizeOfVector always > 1
                 for (int i = 1; i < sizeOfVector; i++) // concatenates the Cells. ex : [String 4x1] [String 4x1] = [String 4x2]
                 {
-                    if (pITTemp->back()->getType() == (*pIT)[i]->getType())
+                    if (pITTemp->back()->getType() == IT[i]->getType())
                     {
                         switch (pITTemp->back()->getType())
                         {
@@ -236,9 +240,9 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                                 {
                                     pType->set(k, pITTemp->back()->getAs<types::String>()->get(k));
                                 }
-                                for (int k = 0; k < (*pIT)[i]->getAs<types::String>()->getSize(); k++)
+                                for (int k = 0; k < IT[i]->getAs<types::String>()->getSize(); k++)
                                 {
-                                    pType->set(iRows * iCols + k, (*pIT)[i]->getAs<types::String>()->get(k));
+                                    pType->set(iRows * iCols + k, IT[i]->getAs<types::String>()->get(k));
                                 }
                                 pITTemp->pop_back();
                                 pITTemp->push_back(pType);
@@ -252,9 +256,9 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                                 types::Double* pType    = new types::Double(2, arrayOfType);
 
                                 pType->set(pITTemp->back()->getAs<types::Double>()->get());
-                                for (int k = 0; k < (*pIT)[i]->getAs<types::Double>()->getSize(); k++)
+                                for (int k = 0; k < IT[i]->getAs<types::Double>()->getSize(); k++)
                                 {
-                                    pType->set(iRows * iCols + k, (*pIT)[i]->getAs<types::Double>()->get(k));
+                                    pType->set(iRows * iCols + k, IT[i]->getAs<types::Double>()->get(k));
                                 }
                                 pITTemp->pop_back();
                                 pITTemp->push_back(pType);
@@ -266,7 +270,7 @@ types::Function::ReturnValue sci_msscanf(types::typed_list &in, int _iRetCount, 
                     }
                     else
                     {
-                        pITTemp->push_back((*pIT)[i]);
+                        pITTemp->push_back(IT[i]);
                     }
                 }
 

@@ -6,8 +6,7 @@
 // ===========================================================================
 // <-- CLI SHELL MODE -->
 doc = xmlReadStr("<root><foo a=""123"" b=""456"" c=""789""/></root>")
- doc  =
- 
+ doc  = 
 XML Document
 url: Undefined
 root: XML Element

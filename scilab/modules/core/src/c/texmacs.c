@@ -12,7 +12,6 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
-#include "stack-def.h" /* for paus */
 #include "texmacs.h"
 #include "prompt.h"
 #include "readline.h"

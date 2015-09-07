@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -42,10 +42,10 @@
         <para>
             Заданную линейную систему в виде блок-схемы <literal>bloc2ss</literal> преобразует в линейную систему пространство состояний. Первый элемент списка  <literal>blocd</literal> должен быть строкой <literal>'blocd'</literal>. Остальные элементы этого списка должны сами по себе быть списками одного из следующего типа:
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
 list('transfer','name_of_linear_system')
  ]]></programlisting>
-        <programlisting><![CDATA[  
+        <programlisting><![CDATA[
 list('link','name_of_link',
              [number_of_upstream_box,upstream_box_port],
              [downstream_box_1,downstream_box_1_portnumber],
@@ -83,33 +83,33 @@ list('link','name_of_link',
         </para>
         <para>
             Есть 4 связи. Первая (с именем <literal>'U'</literal>) связывает вход (порт 0
-            условного блока -1 не рассматривается) с портом 1 сумматора. Вторая и третья связи 
-            соответственно (выходной) порт 1 сумматора с (входным) портом 1 системы 
-            <literal>S1</literal>, а (выходной) порт 1  <literal>S1</literal> с (входным) портом 
-            1 <literal>S2</literal>. Четвёртая связь (названная <literal>'Y'</literal>) 
-            связывает (выходной) порт 1 <literal>S2</literal> с выходом (порт 0 условного блока 
+            условного блока -1 не рассматривается) с портом 1 сумматора. Вторая и третья связи
+            соответственно (выходной) порт 1 сумматора с (входным) портом 1 системы
+            <literal>S1</literal>, а (выходной) порт 1  <literal>S1</literal> с (входным) портом
+            1 <literal>S2</literal>. Четвёртая связь (названная <literal>'Y'</literal>)
+            связывает (выходной) порт 1 <literal>S2</literal> с выходом (порт 0 условного блока
             -1 не рассматривается) и с (входным) портом 2 сумматора.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Инициализация
 syst=list('blocd'); l=1;
- 
+
 //Системы
 l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //Система 1
 l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //Система 2
 l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //сумматор
- 
+
 //Связи
 // Выходы  -1 --> выход 1
 l=l+1;syst(l)=list('link','U1',[-1],[n_adder,1]);
- 
-// Внутренние 
+
+// Внутренние
 l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
 l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
- 
+
 // Выходы // -1 -> output 1
 l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
  ]]></programlisting>
@@ -117,16 +117,16 @@ l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
             Для <literal>s=poly(0,'s');S1=1/(s+1);S2=1/s;</literal> результатом вызова исполнения <literal>sl=bloc2ss(syst);</literal> является представление в пространстве состояний для <literal>1/(s^2+s-1)</literal>.
         </para>
         <para>[2] Пример LFT</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 // Инициализация
 syst=list('blocd'); l=1;
- 
+
 // Система (установка блоков 2x2)
-l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']); 
- 
+l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']);
+
 // Контроллер
 l=l+1;n_k=l;syst(l)=list('transfer','k');
- 
+
 // Связи
 l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
 l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
@@ -134,22 +134,19 @@ l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
 l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
  ]]></programlisting>
         <para>С</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[0,1;0,0];
 B=[1;1];
 C=[1,1];
 D=poly(0,'s');
 P=syslin('c',A,B,C,D);
  ]]></programlisting>
-        <para>
-            <literal>bloc2exp(syst)</literal> возвращает lft <literal>P</literal> и <literal>K</literal>.
-        </para>
     </refsection>
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="bloc2exp">bloc2exp</link>
+                <link linkend="poly">poly</link>
             </member>
         </simplelist>
     </refsection>

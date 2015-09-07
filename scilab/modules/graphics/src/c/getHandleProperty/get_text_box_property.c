@@ -32,7 +32,7 @@
 /*------------------------------------------------------------------------*/
 void* get_text_box_property(void* _pvCtx, int iObjUID)
 {
-    double* size;
+    double* size = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_TEXT_BOX__, jni_double_vector, (void **)&size);
 

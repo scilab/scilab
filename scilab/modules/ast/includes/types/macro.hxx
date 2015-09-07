@@ -84,8 +84,8 @@ public :
         m_stPath = _fileName;
     }
 
-    std::list<symbol::Variable*>*   inputs_get();
-    std::list<symbol::Variable*>*   outputs_get();
+    std::list<symbol::Variable*>*   getInputs();
+    std::list<symbol::Variable*>*   getOutputs();
 
     virtual int getNbInputArgument(void);
     virtual int getNbOutputArgument(void);

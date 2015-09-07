@@ -14,7 +14,7 @@ ilib_build("gw_list_createlist",["list_createlist","list_createlist"],"list_crea
 exec("loader.sce");
 size_ref    = 8;
 type_ref    = ["constant","string","int16","polynomial", "sparse", "boolean", "boolean sparse", "list"];
-dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],3);
+dim_ref     = list([3,2],[2,3],[2,3],[3,2],[3,10],[3,3],[3,10],2);
 l = list_createlist();
 if size(l) <> size_ref then bugmes();quit;end
 for i = 1 : size_ref

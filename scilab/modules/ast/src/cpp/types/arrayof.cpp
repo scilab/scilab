@@ -24,12 +24,6 @@ extern "C"
 
 namespace types
 {
-/*    template <typename T>
-ArrayOf<T>* createEmptyDouble()
-{
-return Double::Empty();
-}
-*/
 //n-uplet in french
 int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
 {
@@ -153,7 +147,8 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     std::vector<int> indexes;
-    if (getImplicitIndex(this, _pArgs, indexes))
+    std::vector<int> dims;
+    if (getImplicitIndex(this, _pArgs, indexes, dims))
     {
         if (indexes.size() == 0)
         {
@@ -177,7 +172,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             if (sizeIn == 1)
             {
-                for (int i : indexes)
+                for (int & i : indexes)
                 {
                     if (set(i, *pRealData) == false)
                     {
@@ -188,7 +183,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             }
             else
             {
-                for (int i : indexes)
+                for (int & i : indexes)
                 {
                     if (set(i, *pRealData) == false)
                     {
@@ -242,7 +237,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
     //remove last dimension at size 1
     //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= 2; i--)
+    for (int i = (iDims - 1); i >= m_iDims; i--)
     {
         if (piMaxDim[i] == 1)
         {
@@ -441,7 +436,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
             wchar_t szError[bsiz];
             os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
-            throw ast::ScilabError(szError);
+            throw ast::InternalError(szError);
         }
 
         if (pSource->isScalar())
@@ -902,7 +897,7 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         delete[] piNewDims;
-        return createEmptyDouble();
+        return createEmpty();
     }
 
     if (iDims == 1)
@@ -980,6 +975,128 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
     int iDims = (int)_pArgs->size();
     typed_list pArg;
 
+    int index;
+    if (getScalarIndex(this, _pArgs, &index))
+    {
+        if (index < 0)
+        {
+            return NULL;
+        }
+
+        if (getSize() == 0)
+        {
+            return createEmpty();
+        }
+
+        if (index >= getSize())
+        {
+            return NULL;
+        }
+
+        int dims[2] = {1, 1};
+        pOut = createEmpty(2, dims, isComplex());;
+        pOut->set(0, get(index));
+        if (isComplex())
+        {
+            pOut->setImg(0, getImg(index));
+        }
+
+        return pOut;
+    }
+
+    std::vector<double> il;
+    if (getScalarImplicitIndex(this, _pArgs, il))
+    {
+        double start = il[0];
+        double step = il[1];
+        double end = il[2];
+        //index are ":"
+        bool isForceColVector = il.size() == 4;
+
+        //std::cout << start << ":" << step << ":" << end << std::endl;
+        int size = static_cast<int>((end - start) / step + 1);
+        if (size <= 0 || getSize() == 0)
+        {
+            return createEmpty();
+        }
+
+        bool isRowVector = getRows() == 1;
+        isRowVector = isRowVector && !isForceColVector;
+        int dims[2] = {isRowVector ? 1 : size, isRowVector ? size : 1};
+        pOut = createEmpty(2, dims, isComplex());
+        double idx = start;
+
+        if (isComplex())
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                int index = static_cast<int>(idx) - 1;
+                pOut->set(i, get(index));
+                pOut->setImg(i, getImg(index));
+                idx += step;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                pOut->set(i, get(static_cast<int>(idx) - 1));
+                idx += step;
+            }
+        }
+        return pOut;
+    }
+
+    std::vector<int> indexes;
+    std::vector<int> dims;
+    if (getImplicitIndex(this, _pArgs, indexes, dims))
+    {
+        if (indexes.size() == 0)
+        {
+            return createEmpty();
+        }
+
+        if (dims.size() == 1)
+        {
+            int d[2] = {1, dims[0]};
+            pOut = createEmpty(2, d, isComplex());
+        }
+        else
+        {
+            pOut = createEmpty(static_cast<int>(dims.size()), dims.data(), isComplex());
+        }
+
+        int size = getSize();
+        if (isComplex())
+        {
+            int idx = 0;
+            for (int & i : indexes)
+            {
+                if (i < 0 || i >= size)
+                {
+                    pOut->killMe();
+                    return NULL;
+                }
+
+                pOut->set(idx, get(i));
+                pOut->setImg(idx, getImg(i));
+                ++idx;
+            }
+        }
+        else
+        {
+            int idx = 0;
+            for (int & i : indexes)
+            {
+                pOut->set(idx, get(i));
+                ++idx;
+            }
+        }
+
+        return pOut;
+    }
+
+
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
 
@@ -991,7 +1108,7 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
         delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        return createEmptyDouble();
+        return createEmpty();
     }
 
     if (iSeqCount < 0)
@@ -1001,6 +1118,16 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
+    }
+
+    //a = {};a(1:2, 1:2) -> {}
+    if (getSize() == 0)
+    {
+        delete[] piMaxDim;
+        delete[] piCountDim;
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return createEmpty();
     }
 
     if (iDims < m_iDims)
@@ -1081,7 +1208,7 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
             delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            return createEmptyDouble();
+            return createEmpty();
         }
         else
         {
@@ -1490,17 +1617,17 @@ bool ArrayOf<T>::neg(InternalType *& out)
 
 
 // used to allow definition of ArrayOf methode in this cpp file.
-template class EXTERN_AST ArrayOf<char>;
-template class EXTERN_AST ArrayOf<unsigned char>;
-template class EXTERN_AST ArrayOf<short>;
-template class EXTERN_AST ArrayOf<unsigned short>;
-template class EXTERN_AST ArrayOf<int>;
-template class EXTERN_AST ArrayOf<unsigned int>;
-template class EXTERN_AST ArrayOf<long long>;
-template class EXTERN_AST ArrayOf<unsigned long long>;
-template class EXTERN_AST ArrayOf<double>;
-template class EXTERN_AST ArrayOf<wchar_t*>;
-template class EXTERN_AST ArrayOf<SinglePoly*>;
-template class EXTERN_AST ArrayOf<SingleStruct*>;
-template class EXTERN_AST ArrayOf<InternalType*>; // Cell
+template class EXTERN_AST ArrayOf < char >;
+template class EXTERN_AST ArrayOf < unsigned char >;
+template class EXTERN_AST ArrayOf < short >;
+template class EXTERN_AST ArrayOf < unsigned short >;
+template class EXTERN_AST ArrayOf < int >;
+template class EXTERN_AST ArrayOf < unsigned int >;
+template class EXTERN_AST ArrayOf < long long >;
+template class EXTERN_AST ArrayOf < unsigned long long >;
+template class EXTERN_AST ArrayOf < double >;
+template class EXTERN_AST ArrayOf < wchar_t* >;
+template class EXTERN_AST ArrayOf < SinglePoly* >;
+template class EXTERN_AST ArrayOf < SingleStruct* >;
+template class EXTERN_AST ArrayOf < InternalType* >; // Cell
 }

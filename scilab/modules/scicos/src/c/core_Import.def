@@ -4,16 +4,12 @@ LIBRARY    core.dll
 EXPORTS
 ;
 ; core
-stack_
 com_
-vstk_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc
-intersci_
 xscion_
 iop_
-errgst_
 ierode_
 ismenu
-GetCommand 
+GetCommand

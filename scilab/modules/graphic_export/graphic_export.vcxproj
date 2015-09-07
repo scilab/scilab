@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -252,12 +252,11 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="sci_gateway\cpp\sci_xend.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_xinit.cpp" />
     <ClCompile Include="sci_gateway\c\sci_xs2emf.c" />
-    <ClCompile Include="sci_gateway\c\xs2file.c" />
     <ClCompile Include="src\cpp\exportToFile.cpp" />
+    <ClCompile Include="src\cpp\xs2file.cpp" />
     <ClCompile Include="src\jni\Driver.cpp" />
     <ClCompile Include="src\jni\FileExporter.cpp" />
     <ClCompile Include="src\c\DllmainGraphics_export.c" />
-    <ClCompile Include="sci_gateway\c\gw_graphic_export.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2bmp.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2eps.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2gif.c" />
@@ -271,8 +270,8 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
   <ItemGroup>
     <ClInclude Include="includes\dynlib_graphic_export.h" />
     <ClInclude Include="includes\gw_graphic_export.h" />
-    <ClInclude Include="includes\xs2file.h" />
     <ClInclude Include="src\cpp\exportToFile.hxx" />
+    <ClInclude Include="src\cpp\xs2file.h" />
     <ClInclude Include="src\jni\Driver.hxx" />
     <ClInclude Include="src\jni\FileExporter.hxx" />
   </ItemGroup>

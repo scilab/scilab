@@ -54,6 +54,7 @@ int read_pointer(char *fname, void* pvApiCtx)
         }
         pdblData = (double*)pvPtr;
         sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 2, 2, pdblData);
+        FREE(pvPtr);
     }
     else
     {

@@ -37,8 +37,6 @@ SCINOTES_CXX_SOURCES = \
     src/jni/SciNotes.cpp \
     src/cpp/callscinotes.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_scinotes.c
-
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_scinotes.cpp \
     sci_gateway/cpp/sci_closeSciNotesFromScilab.cpp
@@ -96,11 +94,11 @@ endif
 libsciscinotes_la_LDFLAGS = $(AM_LDFLAGS)
 
 libsciscinotes_algo_la_SOURCES = $(SCINOTES_C_SOURCES) $(SCINOTES_JNI_SOURCES) $(SCINOTES_CXX_SOURCES)
-libsciscinotes_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
+libsciscinotes_la_SOURCES = $(GATEWAY_CXX_SOURCES)
 libsciscinotes_algo_la_CPPFLAGS = $(libsciscinotes_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(SCINOTES_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(SCINOTES_C_SOURCES)
 INCLUDE_FLAGS = $(libsciscinotes_la_CPPFLAGS)
 
 GIWS_WRAPPERS = src/jni/SciNotes.giws.xml

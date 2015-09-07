@@ -267,6 +267,8 @@ int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
     *_piColPos			= (int*)MALLOC(sizeof(int) **_piNbItem);
     memcpy(*_piColPos, piColPos, sizeof(int) **_piNbItem);
 
+    FREE(piNbItemRow);
+    FREE(piColPos);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

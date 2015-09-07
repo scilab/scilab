@@ -15,10 +15,10 @@
 //    %nan
 // =============================================================================
 assert_checkfalse(execstr("modulo(5,0)", "errcatch") == 0);
-refMsg = msprintf(_("Division by zero...\n")); 
+refMsg = msprintf(_("Division by zero...\n"));
 assert_checkerror("modulo(5,0)", refMsg);
 assert_checkfalse(execstr("pmodulo(5,0)", "errcatch") == 0);
-refMsg = msprintf(_("Division by zero...\n")); 
+refMsg = msprintf(_("Division by zero...\n"));
 assert_checkerror("pmodulo(5,0)", refMsg);
 ieee(2)
 x = modulo(5,0);

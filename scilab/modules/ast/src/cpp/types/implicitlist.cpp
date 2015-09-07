@@ -18,6 +18,7 @@
 #include "configvariable.hxx"
 #include "scilabWrite.hxx"
 #include "type_traits.hxx"
+#include "numericconstants.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -235,7 +236,7 @@ bool ImplicitList::compute()
             }
 
             double dblVal = dblStart; // temp value
-            double dblEps = getRelativeMachinePrecision();
+            double dblEps = NumericConstants::eps;
             double dblPrec = 2 * std::max(fabs(dblStart), fabs(dblEnd)) * dblEps;
 
             while (dblStep * (dblVal - dblEnd) <= 0)
@@ -614,7 +615,7 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
         {
             std::wostringstream os;
             os << _W("Invalid index.\n");
-            throw ast::ScilabError(os.str(), 999, e.getLocation());
+            throw ast::InternalError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);
     }

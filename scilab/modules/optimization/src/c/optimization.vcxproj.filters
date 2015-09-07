@@ -26,9 +26,6 @@
     <ClCompile Include="DllmainOptimization.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_optimization.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_qld.c">
       <Filter>Source Files</Filter>
     </ClCompile>

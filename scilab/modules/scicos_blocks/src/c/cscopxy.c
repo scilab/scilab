@@ -126,8 +126,9 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row);
  * Set the polylines bounds
  *
  * \param block the block
+ * \param iAxeUID the axe id
  */
-static BOOL setPolylinesBounds(scicos_block * block);
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID);
 
 /*****************************************************************************
  * Simulation function
@@ -491,7 +492,7 @@ static int getFigure(scicos_block * block)
         setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
         setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
-        setPolylinesBounds(block);
+        setPolylinesBounds(block, iAxe);
     }
 
     if (sco->scope.cachedFigureUID == 0)
@@ -639,11 +640,8 @@ static int getPolyline(int iAxeUID, scicos_block * block, int row)
     return sco->scope.cachedPolylinesUIDs[row];
 }
 
-static BOOL setPolylinesBounds(scicos_block * block)
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     double dataBounds[6];
 
     dataBounds[0] = block->rpar[0]; // xMin
@@ -652,9 +650,6 @@ static BOOL setPolylinesBounds(scicos_block * block)
     dataBounds[3] = block->rpar[3]; // yMax
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
-
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block);
 
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

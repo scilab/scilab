@@ -20,6 +20,10 @@ assert_checkerror("h5mv(""42"",""42"",42)",msgerr,999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5mv", msprintf(gettext("Invalid hdf5 file: %s."),"42"));
 assert_checkerror("h5mv(""42"",""42"",""42"")",msgerr,999);
 
+deletefile(TMPDIR + "/test.h5");
+deletefile(TMPDIR + "/test1.h5");
+deletefile(TMPDIR + "/test2.h5");
+
 a = h5open(TMPDIR + "/test.h5");
 
 msgerr = msprintf(gettext("%s: %s\n"), "h5mv", msprintf(gettext("Invalid hdf5 file: %s."),"42"));

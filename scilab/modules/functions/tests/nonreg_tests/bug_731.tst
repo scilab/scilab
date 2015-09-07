@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=731
 //
 // <-- Short Description -->
-//    fun2string and macr2tree cannot cope with nested function
+//    macr2tree cannot cope with nested function
 //    definitions
 
 // =============== Test 1 ===============

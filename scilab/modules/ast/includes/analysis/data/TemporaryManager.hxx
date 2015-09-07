@@ -36,55 +36,9 @@ namespace analysis
 
 	TemporaryManager() : currentId(0) { }
 
-	int getTmp(const TIType & type, const bool isAnInt = false)
-	{
-	    TypeLocal tl = TypeLocal::get(type, isAnInt);
-	    if (availableTmp.empty())
-	    {
-		usedTmp.emplace(currentId, tl);
-		return currentId++;
-	    }
-	    else
-	    {
-		auto i = availableTmp.find(tl);
-		if (i == availableTmp.end())
-		{
-		    usedTmp.emplace(currentId, tl);
-		    return currentId++;
-		}
-		else
-		{
-		    const int id = i->second.top();
-		    i->second.pop();
-		    if (i->second.empty())
-		    {
-			availableTmp.erase(i);
-		    }
-		    usedTmp.emplace(id, tl);
-
-		    return id;
-		}
-	    }
-	}
-
-	void releaseTmp(const int id)
-	{
-	    if (id >= 0)
-	    {
-		const TypeLocal & tl = usedTmp.find(id)->second;
-		auto i = availableTmp.find(tl);
-		if (i == availableTmp.end())
-		{
-		    i = availableTmp.emplace(tl, std::stack<int>()).first;
-		}
-		i->second.push(id);
-	    }
-	}
-
-	inline const std::map<TypeLocal, std::stack<int>> & getTemp() const
-	{
-	    return availableTmp;
-	}
+	int getTmp(const TIType & type, const bool isAnInt = false);
+	void releaseTmp(const int id);
+	const std::map<TypeLocal, std::stack<int>> & getTemp() const;
     };
 
 } // namespace analysis

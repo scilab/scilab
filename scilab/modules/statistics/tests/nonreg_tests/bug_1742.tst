@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2006-2008 - INRIA -Serge STEER <serge.steer@inria.fr>

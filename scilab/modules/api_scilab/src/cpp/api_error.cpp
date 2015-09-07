@@ -22,43 +22,8 @@ extern "C"
 #include "Scierror.h"
 #include "os_string.h"
 #include "localization.h"
-#include "stackinfo.h"
 #include "configvariable_interface.h"
-}
-
-int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
-{
-    char pstMsg1[bsiz];
-    char pstMsg2[bsiz];
-    char pstMsg3[bsiz];
-    char pstMsg4[bsiz];
-    char pstMsg5[bsiz];
-
-    int Memory_used_for_variables = 0;
-    int Total_Memory_available = 0;
-
-    //C2F(getstackinfo)(&Total_Memory_available,&Memory_used_for_variables);
-
-#ifdef _MSC_VER
-    sprintf_s(pstMsg1, bsiz, "%s\n%s", _pstCaller, _("stack size exceeded!\n"));
-    sprintf_s(pstMsg2, bsiz, _("Use stacksize function to increase it.\n"));
-    sprintf_s(pstMsg3, bsiz, _("Memory used for variables: %d\n"), Memory_used_for_variables);
-    sprintf_s(pstMsg4, bsiz, _("Intermediate memory needed: %d\n"), _iNeeded);
-    sprintf_s(pstMsg5, bsiz, _("Total memory available: %d\n"), Total_Memory_available);
-#else
-    sprintf(pstMsg1, "%s\n%s", _pstCaller, _("stack size exceeded!\n"));
-    sprintf(pstMsg2, _("Use stacksize function to increase it.\n"));
-    sprintf(pstMsg3, _("Memory used for variables: %d\n"), Memory_used_for_variables);
-    sprintf(pstMsg4, _("Intermediate memory needed: %d\n"), _iNeeded);
-    sprintf(pstMsg5, _("Total memory available: %d\n"), Total_Memory_available);
-#endif
-
-    strcat(pstMsg1, pstMsg2);
-    strcat(pstMsg1, pstMsg3);
-    strcat(pstMsg1, pstMsg4);
-    strcat(pstMsg1, pstMsg5);
-
-    return addErrorMessage(_psciErr, API_ERROR_NO_MORE_MEMORY, pstMsg1);
+#include "api_internal_common.h"
 }
 
 int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
@@ -103,25 +68,25 @@ int printError(SciErr* _psciErr, int _iLastMsg)
 
     SciStoreError(_psciErr->iErr);
 
-    if (getPromptMode() == PROMPTMODE_SILENT || getSilentError() != VERBOSE_ERROR)
+    if (getPromptMode() != PROMPTMODE_SILENT && getSilentError() == VERBOSE_ERROR)
     {
-        return 0;
-    }
-
-    if (_iLastMsg)
-    {
-        sciprint(_("API Error:\n"));
-        sciprint(_("\tin %s\n"), _psciErr->pstMsg[0]);
-    }
-    else
-    {
-        sciprint(_("API Error:\n"));
-
-        for (int i = _psciErr->iMsgCount - 1 ;  i >= 0 ; i--)
+        if (_iLastMsg)
         {
-            sciprint(_("\tin %s\n"), _psciErr->pstMsg[i]);
+            sciprint(_("API Error:\n"));
+            sciprint(_("\tin %s\n"), _psciErr->pstMsg[0]);
+        }
+        else
+        {
+            sciprint(_("API Error:\n"));
+
+            for (int i = _psciErr->iMsgCount - 1; i >= 0; i--)
+            {
+                sciprint(_("\tin %s\n"), _psciErr->pstMsg[i]);
+            }
         }
     }
+
+    sciErrClean(_psciErr);
     return 0;
 }
 

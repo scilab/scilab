@@ -4808,7 +4808,7 @@ _LT_EOF
 	 && test "$tmp_diet" = no
       then
 	tmp_addflag=' $pic_flag'
-	tmp_sharedflag='-shared -Wl,--no-as-needed'
+	tmp_sharedflag='-shared'
 	case $cc_basename,$host_cpu in
         pgcc*)				# Portland Group C compiler
 	  _LT_TAGVAR(whole_archive_flag_spec, $1)='${wl}--whole-archive`for conv in $convenience\"\"; do test  -n \"$conv\" && new_convenience=\"$new_convenience,$conv\"; done; func_echo_all \"$new_convenience\"` ${wl}--no-whole-archive'

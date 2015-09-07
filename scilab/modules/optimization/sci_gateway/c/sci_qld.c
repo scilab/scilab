@@ -15,9 +15,9 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 /* fortran subroutines */
-extern double C2F(dlamch)  (char *CMACH, unsigned long int);
 extern int C2F(ql0001)(int *m, int *me, int *mmax, int *n, int *nmax, int *mnn,
                        double *c, double *d, double *a, double *b, double *xl,
                        double *xu, double *x, double *u, int *iout, int *ifail,
@@ -67,7 +67,7 @@ int sci_qld(char *fname, void* pvApiCtx)
 
     /* RhsVar: qld(Q,p,C,b,lb,ub,me,eps) */
     /*             1,2,3,4,5 ,6 ,7, 8  */
-    eps1 = C2F(dlamch)("e", 1L);
+    eps1 = nc_eps();
     next = nbInputArgument(pvApiCtx) + 1;
     /*   Variable 1 (Q)   */
     //get variable address
@@ -192,7 +192,7 @@ int sci_qld(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (nbis*unbis == 0)
+    if (nbis * unbis == 0)
     {
         sciErr = allocMatrixOfDouble(pvApiCtx, next, n, un, &lb);
         if (sciErr.iErr)
@@ -204,7 +204,7 @@ int sci_qld(char *fname, void* pvApiCtx)
 
         for (k = 0; k < n; k++)
         {
-            (lb)[k] = -C2F(dlamch)("o", 1L);
+            (lb)[k] = -nc_double_max();
         }
         next = next + 1;
     }
@@ -232,7 +232,7 @@ int sci_qld(char *fname, void* pvApiCtx)
         return 1;
     }
 
-    if (nbis*unbis == 0)
+    if (nbis * unbis == 0)
     {
         sciErr = allocMatrixOfDouble(pvApiCtx, next, n, un, &ub);
         if (sciErr.iErr)
@@ -244,7 +244,7 @@ int sci_qld(char *fname, void* pvApiCtx)
 
         for (k = 0; k < n; k++)
         {
-            (ub)[k] = C2F(dlamch)("o", 1L);
+            (ub)[k] = nc_double_max();
         }
         next = next + 1;
     }

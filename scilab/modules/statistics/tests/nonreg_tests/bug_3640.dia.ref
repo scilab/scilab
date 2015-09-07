@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - DIGITEO - Allan CORNET
@@ -11,7 +12,6 @@
 //
 // <-- Short Description -->
 // Calculating the mean value in the 3rd dimension "mean(A,3)", gives an error for input matrices of a certain size
-
 test = rand(150,1,165);
 assert_checkfalse(execstr("r = mean(test,3);"   ,"errcatch") <> 0);
 assert_checkequal(size(r), [150 1]);

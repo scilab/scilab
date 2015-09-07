@@ -14,7 +14,9 @@
 #define LOGGERVIEW_HXX_
 
 #include <cwchar>
+#include <string>
 #include <sstream>
+
 #include "View.hxx"
 #include "utilities.hxx"
 
@@ -44,6 +46,7 @@ public:
 
     static enum LogLevel indexOf(const wchar_t* name);
     static const wchar_t* toString(enum LogLevel level);
+    static const char* toDisplay(enum LogLevel level);
 
     enum LogLevel getLevel() const
     {
@@ -55,17 +58,18 @@ public:
     }
 
     void log(enum LogLevel level, const std::stringstream& msg);
-    void log(enum LogLevel level, const char* msg);
-    void log(enum LogLevel level, const wchar_t* msg);
+    void log(enum LogLevel level, const std::string& msg);
+    void log(enum LogLevel level, const char* msg, ...);
+    void log(enum LogLevel level, const wchar_t* msg, ...);
 
     /*
      * Implement the Logger as a View
      */
 
     void objectCreated(const ScicosID& uid, kind_t k);
+    void objectReferenced(const ScicosID& uid, kind_t k);
+    void objectUnreferenced(const ScicosID& uid, kind_t k);
     void objectDeleted(const ScicosID& uid, kind_t k);
-    void objectUpdated(const ScicosID& uid, kind_t k);
-    void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p);
     void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u);
 
 private:

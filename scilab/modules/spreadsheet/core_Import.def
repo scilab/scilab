@@ -4,13 +4,11 @@ LIBRARY    core.dll
 EXPORTS
  putlhsvar_
  createvar_
- stack_
  com_
  getrhsvar_
  checklhs_
  checkrhs_
- intersci_
- createvarfromptr_
+  createvarfromptr_
  callFunctionFromGateway
  returnanan_
  vartype_

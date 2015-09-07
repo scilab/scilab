@@ -13,7 +13,7 @@
 // <-- Short Description -->
 // Spaces within matrix should be processed a special way.
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 if or([1 - 1] <> [0]) then pause, end
 if or([1 -1] <> [1, -1]) then pause, end

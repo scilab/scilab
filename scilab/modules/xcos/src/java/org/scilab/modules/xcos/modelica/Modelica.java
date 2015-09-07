@@ -198,7 +198,7 @@ public final class Modelica {
     /**
      * Unmerge the model
      *
-     * @param model
+     * @param tree
      *            the model
      * @return the unmerged model
      */

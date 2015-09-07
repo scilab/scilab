@@ -106,9 +106,7 @@ double* SinglePoly::allocData(int _iSize)
             m_pImgData = NULL;
             char message[bsiz];
             os_sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
-            ast::ScilabError se(message);
-            se.SetErrorNumber(999);
-            throw (se);
+            throw ast::InternalError(message);
         }
         else
         {
@@ -119,9 +117,7 @@ double* SinglePoly::allocData(int _iSize)
     {
         char message[bsiz];
         os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
-        ast::ScilabError se(message);
-        se.SetErrorNumber(999);
-        throw (se);
+        throw ast::InternalError(message);
     }
 
     return pDbl;
@@ -235,7 +231,7 @@ bool SinglePoly::setCoef(Double* _pdblCoefR)
     return setCoef(pInR, pInI);
 }
 
-bool SinglePoly::setCoef(double* _pdblCoefR, double* _pdblCoefI)
+bool SinglePoly::setCoef(const double* _pdblCoefR, const double* _pdblCoefI)
 {
     if (_pdblCoefI != NULL && isComplex() == false)
     {

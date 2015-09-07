@@ -42,6 +42,19 @@
         }                                                       \
     }
 
+#define SetTree(PTR)					\
+    {									\
+        if(ParserSingleInstance::getExitStatus() == Parser::Failed)	\
+        {								\
+            delete PTR;							\
+	    ParserSingleInstance::setTree(nullptr);			\
+        }								\
+	else								\
+	{								\
+	    ParserSingleInstance::setTree(PTR);				\
+	}								\
+    }
+
 
 %}
 
@@ -106,6 +119,13 @@
 
     ast::SimpleVar*             t_simple_var;
 }
+
+%destructor { delete $$; } <*>
+%destructor { } <number>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_var>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_exp>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_case>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_mline>
 
 %token YYEOF    0	"end of file"
 
@@ -190,6 +210,8 @@
 %token TRY		"try"
 %token CATCH		"catch"
 %token RETURN		"return"
+
+%token FLEX_ERROR
 
 %token <str>		STR	"string"
 %token <str>		ID	"identifier"
@@ -316,14 +338,14 @@
 */
 /* Root of the Abstract Syntax Tree */
 program:
-expressions                     { ParserSingleInstance::setTree($1); }
-| EOL expressions 				{ ParserSingleInstance::setTree($2); }
+expressions                     { SetTree($1); }
+| EOL expressions 		{ SetTree($2); }
 | expressionLineBreak           {
                                   ast::exps_t* tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
                                       tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body");
                                   #endif
-                                  ParserSingleInstance::setTree(new ast::SeqExp(@$, *tmp));
+                                  SetTree(new ast::SeqExp(@$, *tmp));
 				  delete $1;
                                 }
 | /* Epsilon */                 {
@@ -331,7 +353,7 @@ expressions                     { ParserSingleInstance::setTree($1); }
                                   #ifdef BUILD_DEBUG_AST
                                       tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body")));
                                   #endif
-                                  ParserSingleInstance::setTree(new ast::SeqExp(@$, *tmp));
+                                  SetTree(new ast::SeqExp(@$, *tmp));
                                 }
 ;
 
@@ -446,7 +468,7 @@ functionDeclaration				{ $$ = $1; }
 | CONTINUE					{ $$ = new ast::ContinueExp(@$); }
 | returnControl					{ $$ = $1; }
 | COMMENT					{ $$ = new ast::CommentExp(@$, $1); }
-| error						{
+| error					        {
   $$ = new ast::CommentExp(@$, new std::wstring(L"@@ ERROR RECOVERY @@"));
   StopOnError();
   }
@@ -475,7 +497,6 @@ implicitFunctionCall implicitCallable		{
 /*
 ** -*- IMPLICIT CALLABLE -*-
 */
-/* FIXME : Must be improved */
 /* Bash-like : foo bar titi <=> foo('bar', 'titi').
 ** Describe 'bar', 'titi' that can be more complex.
 */
@@ -506,9 +527,6 @@ ID						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 						  $$ = new ast::StringExp(@$, tmp.str());
 						  delete $3;
 						}
-| implicitCallable DOT functionCall		{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable implicitCallable DOT functionCall !!")); }
-| simpleFunctionCall				{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable simpleFunctionCall !!")); }
-| implicitCallable rightOperand			{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable implicitCallable rightOperand !!")); }
 | PATH						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 ;
 
@@ -908,8 +926,12 @@ lineEnd				{ /* !! Do Nothing !! */ }
 */
 /* What may content a function */
 functionBody :
-expressions			{ $$ = $1; }
-| /* Epsilon */			{
+expressions			{
+                        $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+                        $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+                        $$ = $1;
+                    }
+| /* Epsilon */		{
 				  ast::exps_t* tmp = new ast::exps_t;
 				  #ifdef BUILD_DEBUG_AST
 				    tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty function body")));
@@ -1385,14 +1407,18 @@ IF condition then thenBody END                          { $$ = new ast::IfExp(@$
 */
 /* Instructions that can be managed inside THEN */
 thenBody :
-expressions                             { $$ = $1; }
-| /* Epsilon */                         {
+expressions     {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                }
+| /* Epsilon */ {
     ast::exps_t* tmp = new ast::exps_t;
     #ifdef BUILD_DEBUG_AST
     tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty then body")));
     #endif
     $$ = new ast::SeqExp(@$, *tmp);
-                                        }
+                }
 ;
 
 /*
@@ -1400,7 +1426,11 @@ expressions                             { $$ = $1; }
 */
 /* Instructions that can be managed inside ELSE */
 elseBody :
-expressions                             { $$ = $1; }
+expressions         {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                    }
 | /* Epsilon */                         {
                                         #ifdef BUILD_DEBUG_AST
                                             ast::exps_t* tmp = new ast::exps_t;
@@ -1589,7 +1619,11 @@ CASE variable caseControlBreak caseBody							{
 ;
 
 caseBody :
-expressions				{ $$ = $1; }
+expressions				{
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                        }
 | /* Epsilon */			{
                             ast::exps_t* tmp = new ast::exps_t;
                             #ifdef BUILD_DEBUG_AST
@@ -1653,7 +1687,11 @@ EOL						{ /* !! Do Nothing !! */ }
 ;
 
 forBody :
-expressions			{ $$ = $1; }
+expressions			{
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                    }
 | /* Epsilon */			{
                     ast::exps_t* tmp = new ast::exps_t;
                     #ifdef BUILD_DEBUG_AST
@@ -1676,7 +1714,11 @@ WHILE condition whileConditionBreak whileBody END	{ $$ = new ast::WhileExp(@$, *
 */
 /* Which instructions can be used in a while loop. */
 whileBody :
-expressions             { $$ = $1; }
+expressions             {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                        }
 | /* Epsilon */			{
                             ast::exps_t* tmp = new ast::exps_t;
                             #ifdef BUILD_DEBUG_AST
@@ -1731,10 +1773,26 @@ TRY catchBody CATCH catchBody END               { $$ =new ast::TryCatchExp(@$, *
 */
 /* Wich instructions can be used in a catch control. */
 catchBody :
-expressions                     { $$ = $1; }
-| EOL expressions               { $$ = $2; }
-| SEMI expressions              { $$ = $2; }
-| COMMA expressions             { $$ = $2; }
+expressions                     {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                                }
+| EOL expressions               {
+            $2->getLocation().last_line = $2->getExps().back()->getLocation().last_line;
+            $2->getLocation().last_column = $2->getExps().back()->getLocation().last_column;
+            $$ = $2;
+                                }
+| SEMI expressions              {
+            $2->getLocation().last_line = $2->getExps().back()->getLocation().last_line;
+            $2->getLocation().last_column = $2->getExps().back()->getLocation().last_column;
+            $$ = $2;
+                                }
+| COMMA expressions             {
+            $2->getLocation().last_line = $2->getExps().back()->getLocation().last_line;
+            $2->getLocation().last_column = $2->getExps().back()->getLocation().last_column;
+            $$ = $2;
+                                }
 | EOL                           {
                                     ast::exps_t* tmp = new ast::exps_t;
                                     #ifdef BUILD_DEBUG_AST
@@ -1806,13 +1864,25 @@ IF              { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"if")); }
 ;
 
 %%
+
+bool endsWith(const std::string & str, const std::string & end)
+{
+    if (end.size() > str.size())
+    {
+	return false;
+    }
+    
+    return std::equal(end.rbegin(), end.rend(), str.rbegin());
+}
+
 void yyerror(std::string msg) {
-    if(!ParserSingleInstance::isStrictMode()
+    if (!endsWith(msg, "FLEX_ERROR") && !ParserSingleInstance::isStrictMode()
        || ParserSingleInstance::getExitStatus() == Parser::Succeded)
     {
         wchar_t* pstMsg = to_wide_string(msg.c_str());
         ParserSingleInstance::PrintError(pstMsg);
         ParserSingleInstance::setExitStatus(Parser::Failed);
+	delete ParserSingleInstance::getTree();
         FREE(pstMsg);
     }
 }

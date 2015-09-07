@@ -51,6 +51,8 @@ lib
 #
 # windows files
 #
+vld.ini
+modules/windows_tools/src/c/WScilex/memory_leak_report.txt
 
 #
 # Innosetup files (Windows)
@@ -106,7 +108,6 @@ ipch
 _UpgradeReport_Files/
 UpgradeLog.XML
 
-
 # eclipse temp files
 workspace/
 .checkstyle
@@ -114,6 +115,9 @@ workspace/
 .project
 .cproject
 .settings/
+
+# VIM ctags temp files
+tags
 
 # MacOS files
 .DS_Store

@@ -105,13 +105,15 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
 //Scinotes module
 
 bool ScinotesModule::loadedDep = false;
-void ScinotesModule::LoadDeps(std::wstring _functionName)
+int ScinotesModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false)
     {
         loadOnUseClassPath("SciNotes");
         loadedDep = true;
     }
+
+    return 1;
 }
 
 int ScinotesModule::Load()
@@ -197,13 +199,15 @@ int SignalProcessingModule::Load()
     return 1;
 }
 
-void HelptoolsModule::LoadDeps(std::wstring _functionName)
+int HelptoolsModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false)
     {
         loadOnUseClassPath("documentationGeneration");
         loadedDep = true;
     }
+
+    return 1;
 }
 
 bool HelptoolsModule::loadedDep = false;
@@ -545,13 +549,15 @@ int ScicosModule::Load()
 }
 
 bool XcosModule::loadedDep = false;
-void XcosModule::LoadDeps(std::wstring _functionName)
+int XcosModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false && _functionName != L"closeXcos")
     {
         loadOnUseClassPath("Xcos");
         loadedDep = true;
     }
+
+    return 1;
 };
 
 int XcosModule::Load()

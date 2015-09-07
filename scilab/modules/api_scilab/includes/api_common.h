@@ -313,7 +313,7 @@ SciErr getDimFromNamedVar(void* _pvCtx, const char* _pstName, int* _piVal);
 
 /**
  * Get Rhs value from variable address
- * @param[in] _piAddress varaible address
+ * @param[in] _piAddress variable address
  * @return rhs value of the variable, if failed returns 0
  */
 int getRhsFromAddress(void* _pvCtx, int* _piAddress);

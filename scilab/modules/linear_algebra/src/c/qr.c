@@ -287,8 +287,7 @@ int iQr(double* pData, int iRows, int iCols,  int iRowsToCompute, double dblTol
             double tt = complexArg ? C2F(pythag)(pdblR, pdblR + 1) : Abs(*pdblR) ;
             if ( dblTol < 0) /* /!\ original Frotran code does strict fp comparison with -1.0 */
             {
-                // C2F(dlamch("p")) -> epsilon  * base
-                dblTol = Max(iRows, iCols) * C2F(dlamch)("p", 1L) * tt;
+                dblTol = Max(iRows, iCols) * nc_eps_machine() * tt;
             }
             {
                 int j, k = 0;

@@ -30,7 +30,7 @@ ref(3, 4) = %f;
 myMatBoolean = resize_matrix( myMat, 10, 10, "boolean");
 assert_checkequal(myMatBoolean, ref);
 myMat = ["Scilab" "5"; ..
-         "Test"   "bug_10836"];
+"Test"   "bug_10836"];
 myMatBoolean = resize_matrix( myMat, 2, 2, "boolean");
 ref = (zeros(2,2) <> 1);
 assert_checkequal(myMatBoolean, ref);

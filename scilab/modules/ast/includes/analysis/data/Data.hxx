@@ -16,7 +16,6 @@
 #include <iostream>
 #include <set>
 
-#include "tools.hxx"
 #include "symbol.hxx"
 
 namespace analysis
@@ -28,59 +27,16 @@ struct Data
     bool valid;
     std::set<symbol::Symbol> sharedSyms;
 
-    Data(const bool _known, const symbol::Symbol & sym) : known(_known), valid(true)
-    {
-        sharedSyms.emplace(sym);
-    }
-    
+    Data(const bool _known, const symbol::Symbol & sym);
     Data(const Data & d) : known(d.known), valid(true), sharedSyms(d.sharedSyms) {  }
 
-    inline void clear()
-    {
-        sharedSyms.clear();
-    }
-    
-    inline void add(const symbol::Symbol & sym)
-    {
-        if (valid)
-        {
-            sharedSyms.emplace(sym);
-        }
-    }
-
-    inline void rem(const symbol::Symbol & sym)
-    {
-        if (valid)
-        {
-            sharedSyms.erase(sym);
-        }
-    }
-
-    inline bool hasOneOwner() const
-    {
-        return valid && known && (sharedSyms.size() == 1);
-    }
-
-    inline bool isDeletable() const
-    {
-        return valid && known && sharedSyms.empty();
-    }
-
-    inline bool same(Data * data)
-    {
-        return (valid && data->valid) && (data == this || (known == data->known && sharedSyms == data->sharedSyms));
-    }
-
-    friend std::wostream & operator<<(std::wostream & out, const Data & data)
-    {
-        out << L"known:" << (data.known ? L"T" : L"F")
-            << L", valid:" << (data.valid ? L"T" : L"F")
-            << L", ";
-
-        tools::printSet(data.sharedSyms, out);
-
-        return out;
-    }
+    void clear();
+    void add(const symbol::Symbol & sym);
+    void rem(const symbol::Symbol & sym);
+    bool hasOneOwner() const;
+    bool isDeletable() const;
+    bool same(Data * data);
+    friend std::wostream & operator<<(std::wostream & out, const Data & data);
 };
 
 } // namespace analysis

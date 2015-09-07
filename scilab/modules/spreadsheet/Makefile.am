@@ -52,7 +52,6 @@ libscispreadsheet_la_CPPFLAGS= \
     $(AM_CPPFLAGS)
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_spreadsheet.c \
     sci_gateway/c/gw_csv_helpers.c \
     sci_gateway/c/sci_csvDefault.c \
     sci_gateway/c/sci_csvRead.c \

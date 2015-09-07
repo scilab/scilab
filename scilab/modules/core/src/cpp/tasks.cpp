@@ -10,7 +10,7 @@
 *
 */
 
-#include "AnalysisVisitor.hxx"
+//#include "AnalysisVisitor.hxx"
 #include "tasks.hxx"
 #include "timer.hxx"
 #include "context.hxx"
@@ -21,6 +21,7 @@
 #include "debugvisitor.hxx"
 #include "stepvisitor.hxx"
 #include "visitor_common.hxx"
+#include "threadmanagement.hxx"
 
 #include "scilabWrite.hxx"
 #include "runner.hxx"
@@ -182,14 +183,14 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         //call analyzer visitor before exec visitor
         if (ConfigVariable::getAnalyzerOptions() == 1)
         {
-            analysis::AnalysisVisitor analysis;
-            newTree->accept(analysis);
+            //analysis::AnalysisVisitor analysis;
+            //newTree->accept(analysis);
         }
 
         exec = new ast::ExecVisitor();
     }
 
-    Runner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, isConsoleCommand);
+    StaticRunner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, isConsoleCommand);
     //DO NOT DELETE tree or newTree, they was deleted by Runner or previously;
 
     if (timed)
@@ -226,18 +227,25 @@ void execScilabStartTask(bool _bSerialize)
 {
     Parser parse;
     wstring stSCI = ConfigVariable::getSCIPath();
-
     stSCI += SCILAB_START;
-    parse.parseFile(stSCI, L"");
 
+    ThreadManagement::LockParser();
+    parse.parseFile(stSCI, L"");
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");
+        ThreadManagement::UnlockParser();
         return;
     }
+    ThreadManagement::UnlockParser();
 
-    execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
+    ast::Exp* newTree = parse.getTree();
+    if (_bSerialize)
+    {
+        newTree = callTyper(parse.getTree());
+    }
+    StaticRunner::exec(newTree, new ast::ExecVisitor());
 }
 
 /*
@@ -248,18 +256,25 @@ void execScilabQuitTask(bool _bSerialize)
 {
     Parser parse;
     wstring stSCI = ConfigVariable::getSCIPath();
-
     stSCI += SCILAB_QUIT;
-    parse.parseFile(stSCI, L"");
 
+    ThreadManagement::LockParser();
+    parse.parseFile(stSCI, L"");
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.quit");
+        ThreadManagement::UnlockParser();
         return;
     }
+    ThreadManagement::UnlockParser();
 
-    execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
+    ast::Exp* newTree = parse.getTree();
+    if (_bSerialize)
+    {
+        newTree = callTyper(parse.getTree());
+    }
+    StaticRunner::exec(newTree, new ast::ExecVisitor());
 }
 
 

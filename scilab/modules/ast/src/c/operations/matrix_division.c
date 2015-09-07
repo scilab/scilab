@@ -296,7 +296,7 @@ int iRightDivisionOfRealMatrix(
 
     cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(dlange)(&cNorm, &_iRows2, &_iCols2, _pdblReal2, &_iRows2, pDwork);
 
@@ -444,7 +444,7 @@ int iRightDivisionOfComplexMatrix(
     pJpvt       = (int*)malloc(sizeof(int) * _iRows2);
     pRwork      = (double*)malloc(sizeof(double) * 2 * _iRows2);
 
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     cNorm       = '1';
     dblAnorm    = C2F(zlange)(&cNorm, &_iRows2, &_iCols2, (double*)poVar2, &_iRows2, (double*)poDwork);
@@ -473,7 +473,7 @@ int iRightDivisionOfComplexMatrix(
     {
         cNorm = 'F';
         C2F(zlacpy)(&cNorm, &_iCols2, &_iCols2, (double*)poAt, &_iCols2, (double*)poAf, &_iCols2);
-        C2F(zgetrf)(&_iCols2, &_iCols2, (double*)poAf, &_iCols2, pIpiv, &iInfo);
+        C2F(zgetrf)(&_iCols2, &_iCols2, poAf, &_iCols2, pIpiv, &iInfo);
         if (iInfo == 0)
         {
             cNorm = '1';
@@ -481,7 +481,7 @@ int iRightDivisionOfComplexMatrix(
             if (dblRcond > RCONDthresh)
             {
                 cNorm = 'N';
-                C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, (double*)poAf, &_iCols2, pIpiv, (double*)poBt, &_iCols2, &iInfo);
+                C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, poAf, &_iCols2, pIpiv, poBt, &_iCols2, &iInfo);
                 vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows1, poOut, 1);
                 vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
@@ -599,7 +599,7 @@ int iLeftDivisionOfRealMatrix(
 
     cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
-    dblEps      = C2F(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(dlange)(&cNorm, &_iRows1, &_iCols1, _pdblReal1, &_iRows1, pDwork);
 
@@ -722,20 +722,20 @@ int iLeftDivisionOfComplexMatrix(
 
     cNorm       = '1';
     pDwork      = (doublecomplex*)malloc(sizeof(doublecomplex) * iWorkMin);
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(zlange)(&cNorm, &_iRows1, &_iCols1, (double*)poVar1, &_iRows1, (double*)pDwork);
 
     if (_iRows1 == _iCols1)
     {
-        C2F(zgetrf)(&_iCols1, &_iCols1, (double*)poVar1, &_iCols1, pIpiv, &iInfo);
+        C2F(zgetrf)(&_iCols1, &_iCols1, poVar1, &_iCols1, pIpiv, &iInfo);
         if (iInfo == 0)
         {
             C2F(zgecon)(&cNorm, &_iCols1, poVar1, &_iCols1, &dblAnorm, &dblRcond, pDwork, pRwork, &iInfo);
             if (dblRcond > RCONDthresh)
             {
                 cNorm    = 'N';
-                C2F(zgetrs)(&cNorm, &_iCols1, &_iCols2, (double*)poVar1, &_iCols1, pIpiv, (double*)poVar2, &_iCols1, &iInfo);
+                C2F(zgetrs)(&cNorm, &_iCols1, &_iCols2, poVar1, &_iCols1, pIpiv, poVar2, &_iCols1, &iInfo);
                 vGetPointerFromDoubleComplex(poVar2, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
             }

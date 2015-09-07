@@ -49,15 +49,18 @@ int sci_xcosPalGet(char *fname, void* pvApiCtx)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
+        releaseVectorString(category, lenCategory);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
     catch (GiwsException::JniException &exception)
     {
+        releaseVectorString(category, lenCategory);
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 
+    releaseVectorString(category, lenCategory);
     PutLhsVar();
     return 0;
 }

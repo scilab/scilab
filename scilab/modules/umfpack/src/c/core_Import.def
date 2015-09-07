@@ -2,21 +2,18 @@ LIBRARY    core.dll
 
 
 EXPORTS
-;core 
+;core
 
-stack_
 createvar_
 com_
-vstk_
 callFunctionFromGateway
 putlhsvar_
-intersci_
 createcvar_
 getrhsvar_
 getrhscvar_
 checklhs_
 checkrhs_
-createvarfromptr_ 
+createvarfromptr_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

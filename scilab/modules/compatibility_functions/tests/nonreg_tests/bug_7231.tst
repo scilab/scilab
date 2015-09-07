@@ -18,7 +18,7 @@
 
 assert_checkequal(execstr("mtlb_num2str(2, ""%11.4f"")", "errcatch"), 0);
 assert_checkequal(execstr("mtlb_num2str(2, ""%11.4f"", 3)", "errcatch"), 999);
-assert_checkequal(execstr("mtlb_num2str(2, ""blabla"")", "errcatch"), 999);
+assert_checkequal(execstr("mtlb_num2str(2, ""blabla"")", "errcatch"), 0);
 
 if mtlb_num2str(2, "%11.4f") <> "     2.0000" then pause, end
 if mtlb_num2str(2) <> "2" then pause, end

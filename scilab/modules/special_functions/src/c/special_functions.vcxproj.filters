@@ -26,9 +26,6 @@
     <ClCompile Include="DllmainSpecial_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_special_functions.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_besselh.c">
       <Filter>Source Files</Filter>
     </ClCompile>

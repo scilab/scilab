@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // lex_sort() doesn't work anymore in Scilab 5.
-a = [   0.        1608. ;
+a = [   0.        1608. ; 
     0.        2014.  ;
     0.        2322.  ;
     0.        2332.  ;

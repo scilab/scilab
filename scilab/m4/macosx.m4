@@ -11,20 +11,11 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
          10.9*)
               AC_MSG_RESULT([Mac OS X 10.9 - Mavericks.])
          ;;
-         10.8*)
-              AC_MSG_RESULT([Mac OS X 10.8 - Mountain Lion.])
-         ;;
-         10.7*)
-              AC_MSG_RESULT([Mac OS X 10.7 - Lion.])
-         ;;
-         10.6*)
-              AC_MSG_RESULT([Mac OS X 10.6 - Snow Leopard.])
-         ;;
-         *10.5*)
-              AC_MSG_RESULT([Mac OS X 10.5 - Leopard.])
+         10.8.3|10.8.4|10.8.5)
+              AC_MSG_RESULT([Mac OS X $macosx_version - Mountain Lion.])
          ;;
          *)
-              AC_MSG_ERROR([MacOSX 10.5 to 10.10 are needed. Found $macosx_version])
+              AC_MSG_ERROR([MacOSX 10.8.3 to 10.10 are needed. Found $macosx_version])
          ;;
-	 esac
+    esac
 ])

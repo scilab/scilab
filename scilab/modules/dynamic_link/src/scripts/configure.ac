@@ -26,6 +26,9 @@ AM_INIT_AUTOMAKE([foreign])
 
 AM_MAINTAINER_MODE
 
+# Initialise libtool
+LT_INIT([shared disable-static dlopen])
+
 # Detect C compiler
 AC_PROG_CC
 
@@ -38,7 +41,6 @@ AC_PROG_FC
 
 # Initialise libtool
 LT_INIT
-
 # Specify which Makefile.in should be "adapted"
 AC_CONFIG_FILES([Makefile])
 

@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- TEST WITH GRAPHIC -->
 loadXcosLibs();
 scicos_log("TRACE");
 p = funcprot();
@@ -22,12 +23,12 @@ endfunction
 funcprot(p);
 // Allocate an Annotation
 o = TEXT_f("define")
-objectCreated( 1 , ANNOTATION )
-propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
-propertyUpdated( 1 , ANNOTATION , FONT ) : NO_CHANGES
-propertyUpdated( 1 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
+Xcos debug: objectCreated( 1 , ANNOTATION )
+Xcos trace: propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
 o  = 
 GUI     : 
 Graphics: 
@@ -50,20 +51,20 @@ o.gui
     []
 // Modify it
 o = TEXT_f("set", o)
-objectCreated( 2 , ANNOTATION )
-propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
-propertyUpdated( 2 , ANNOTATION , FONT ) : NO_CHANGES
-propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
-propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 2 , ANNOTATION , PARENT_DIAGRAM ) : NO_CHANGES
-propertyUpdated( 2 , ANNOTATION , PARENT_BLOCK ) : NO_CHANGES
-propertyUpdated( 2 , ANNOTATION , RELATED_TO ) : FAIL
-propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : SUCCESS
-propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : SUCCESS
-propertyUpdated( 2 , ANNOTATION , FONT ) : SUCCESS
-propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : SUCCESS
-objectDeleted( 1 , ANNOTATION )
+Xcos debug: objectCreated( 2 , ANNOTATION )
+Xcos trace: propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , PARENT_DIAGRAM ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , PARENT_BLOCK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , RELATED_TO ) : FAIL
+Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : SUCCESS
+Xcos debug: objectDeleted( 1 , ANNOTATION )
 o  = 
 GUI     : 
 Graphics: 
@@ -87,4 +88,4 @@ o.gui
     []
 // Check that all the model items are freed
 clear
-objectDeleted( 2 , ANNOTATION )
+Xcos debug: objectDeleted( 2 , ANNOTATION )

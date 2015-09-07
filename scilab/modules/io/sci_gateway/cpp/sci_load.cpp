@@ -19,7 +19,6 @@
 #include "library.hxx"
 #include "loadlib.hxx"
 
-
 extern "C"
 {
 #include "sci_malloc.h"
@@ -30,26 +29,24 @@ extern "C"
 }
 
 using namespace types;
-
+static const std::string fname("laod");
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    InternalType* pIT = in[0];
-
-    if (pIT->isString() == false)
+    if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "load", 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): at least %d expected.\n"), fname.data(), 1);
+        return types::Function::Error;
+    }
+
+    InternalType* pIT = in[0];
+    if (pIT->getId() != InternalType::IdScalarString)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname.data(), 1);
         return Function::Error;
     }
 
     String *pS = pIT->getAs<types::String>();
-
-    if (pS->isScalar() == false)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: Scalar string expected.\n"), "load", 1);
-        return Function::Error;
-    }
-
     wchar_t* pwstPathLib = expandPathVariableW(pS->get(0));
     char* pstPath = wide_string_to_UTF8(pwstPathLib);
     if (FileExist(pstPath))
@@ -68,22 +65,40 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
         }
         else
         {
-            Library* lib = loadlib(pS->get(0));
+            int err = 0;
+            Library* lib = loadlib(pS->get(0), &err);
             FREE(pstPath);
 
-            if (lib == NULL)
+            switch (err)
             {
-                Scierror(999, _("%s: Wrong file type \"%ls\".\n"), "load", pwstPathLib);
-                FREE(pwstPathLib);
-                return Function::Error;
+                case 0:
+                    //no error
+                    break;
+                case 1:
+                {
+                    char* pstPath = wide_string_to_UTF8(pS->get(0));
+                    Scierror(999, _("%s: %s is not a valid module file.\n"), fname.data(), pstPath);
+                    FREE(pstPath);
+                    return Function::Error;
+                }
+                case 2:
+                {
+                    Scierror(999, "%s: %s", fname.data(), _("Redefining permanent variable.\n"));
+                    return Function::Error;
+                }
+                default:
+                {
+                    //nothing
+                }
             }
+
             FREE(pwstPathLib);
             lib->killMe();
         }
     }
     else
     {
-        Scierror(999, _("%s: Unable to open file: \"%ls\".\n"), "load", pwstPathLib);
+        Scierror(999, _("%s: Unable to open file: \"%ls\".\n"), fname.data(), pwstPathLib);
         FREE(pstPath);
         FREE(pwstPathLib);
         return Function::Error;

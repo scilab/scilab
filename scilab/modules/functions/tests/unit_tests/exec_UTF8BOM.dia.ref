@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//<-- CLI SHELL MODE -->
 tab_ref = [
 "世界您好",
 "азеазея",
@@ -20,32 +21,22 @@ for i = 1 : size(tab_ref,'*')
   exec(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce');
   mdelete(TMPDIR + filesep() + tab_ref(i) + filesep() + tab_ref(i) + '.sce');
   rmdir(TMPDIR + filesep() + tab_ref(i));
-end  
- 
- OK   
- 
- OK   
- 
- OK   
- 
- OK   
- 
- OK   
- 
- OK   
+end
+ OK
+ OK
+ OK
+ OK
+ OK
+ OK
 // create a script file
 mputl('a=1;b=2',TMPDIR+'/myscript')
  ans  =
- 
-  T  
+  T
 // execute it
 exec(TMPDIR+'/myscript')
- 
 a=1;b=2
- b  =
- 
-    2.  
- 
+b  = 
+    2.
 if isdef('a')<> %t then bugmes();quit;end
 if isdef('b')<> %t then bugmes();quit;end
 if a <> 1 then bugmes();quit;end
@@ -61,8 +52,7 @@ if k <> 4 then bugmes();quit;end
 x=4; //create x to make it known by the script foo
 clear k y
 exec(foo);
- y  =
- 
-    25.  
+y  = 
+    25.
 if isdef('y')<> %t then bugmes();quit;end
 if y <> 25 then bugmes();quit;end

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -47,9 +47,6 @@
     <ClCompile Include="ezxml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_scicos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="import.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -95,9 +92,6 @@
     <ClCompile Include="var2sci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scilab5_needed_stubs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\var2vec.cpp">
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
@@ -105,6 +99,9 @@
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\Controller.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\controller_helpers.cpp">
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\LoggerView.cpp">
@@ -321,6 +318,9 @@
     </ClInclude>
     <ClInclude Include="sciblk4.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\controller_helpers.hxx">
+      <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\LoggerView.hxx">
       <Filter>Header Files\MVC</Filter>

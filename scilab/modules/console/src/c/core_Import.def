@@ -4,10 +4,8 @@ LIBRARY    core.dll
 EXPORTS
 callFunctionFromGateway
 com_
-stack_
 getrhsvar_
 gettype_
-vstk_
 createvar_
 vartype_
 with_module

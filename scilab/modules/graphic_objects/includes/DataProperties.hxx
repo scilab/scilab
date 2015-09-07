@@ -70,4 +70,7 @@
 #define DISPLAY_FUNCTION_DATA       40
 #define DISPLAY_FUNCTION_DATA_SIZE  41
 
+#define SIZES                       42
+#define NUM_SIZES                   43
+
 #endif

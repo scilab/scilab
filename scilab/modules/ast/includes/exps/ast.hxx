@@ -99,17 +99,17 @@ public:
 
     const analysis::Decorator & getDecorator() const
     {
-        return decorator;
+       return decorator;
     }
 
     analysis::Decorator & getDecorator()
     {
-        return decorator;
+       return decorator;
     }
 
     void setDecorator(analysis::Decorator & _decorator)
     {
-        decorator = _decorator;
+       decorator = _decorator;
     }
 
 private:

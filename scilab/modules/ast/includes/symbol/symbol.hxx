@@ -31,6 +31,11 @@ extern "C"
 #include "dynlib_ast.h"
 }
 
+#define SCOPE_ALL       -1
+#define SCOPE_GATEWAY   0
+#define SCOPE_MACRO     1
+#define SCOPE_CONSOLE   2
+
 namespace symbol
 {
 

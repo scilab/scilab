@@ -24,11 +24,13 @@
 #include "Controller.hxx"
 #include "GraphicsAdapter.hxx"
 #include "ports_management.hxx"
+#include "controller_helpers.hxx"
 
 #include "var2vec.hxx"
 #include "vec2var.hxx"
 
 extern "C" {
+#include "localization.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
@@ -75,12 +77,14 @@ struct orig
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "graphics", "orig");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 2)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "orig", 1, 2);
             return false;
         }
 
@@ -117,12 +121,14 @@ struct sz
     {
         if (v->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "graphics", "sz");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 2)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "sz", 1, 2);
             return false;
         }
 
@@ -158,12 +164,14 @@ struct flip
     {
         if (v->getType() != types::InternalType::ScilabBool)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Boolean matrix expected.\n"), "graphics", "flip");
             return false;
         }
 
         types::Bool* current = v->getAs<types::Bool>();
         if (current->isScalar() != true)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "flip", 1, 1);
             return false;
         }
 
@@ -198,12 +206,14 @@ struct theta
     {
         if (v->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "graphics", "theta");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
         if (current->isScalar() != true)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "theta", 1, 1);
             return false;
         }
 
@@ -244,6 +254,7 @@ struct exprs
         if (v->getType() == types::InternalType::ScilabString)
         {
             types::String* current = v->getAs<types::String>();
+            // FIXME: find a test case and check for this case
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
         {
@@ -296,6 +307,7 @@ struct exprs
                 {
                     types::String* second_string = initial_list->get(1)->getAs<types::String>();
                     // List coming from a "user-defined function" block
+                    // FIXME: why retrieve and not used ?
                 }
                 else if (initial_list->get(1)->getType() == types::InternalType::ScilabList)
                 {
@@ -445,6 +457,7 @@ struct exprs
                         return false;
                     }
                     types::String* last_string = ParamsPDE->get(nParams)->getAs<types::String>();
+                    // FIXME: find a related test case
 
                     // Next comes some code
                     if (initial_list->get(1)->getType() == types::InternalType::ScilabDouble)
@@ -458,6 +471,7 @@ struct exprs
                     else if (initial_list->get(1)->getType() == types::InternalType::ScilabString)
                     {
                         types::String* code = initial_list->get(1)->getAs<types::String>();
+                        // FIXME: find a related test case
                     }
                     else
                     {
@@ -642,7 +656,7 @@ struct exprs
                 return false;
             }
             types::String* outField = current->get(3)->getAs<types::String>();
-            if (!inField->isScalar())
+            if (!outField->isScalar())
             {
                 return false;
             }
@@ -722,6 +736,7 @@ struct exprs
                     return false;
                 }
                 types::String* funtxtField = current->get(9)->getAs<types::String>();
+                // FIXME: find a related test-case
             }
         }
         else
@@ -831,12 +846,14 @@ struct id
     {
         if (v->getType() != types::InternalType::ScilabString)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "graphics", "id");
             return false;
         }
 
         types::String* current = v->getAs<types::String>();
         if (!current->isScalar())
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "graphics", "id", 1, 1);
             return false;
         }
 
@@ -956,6 +973,7 @@ struct style
             types::String* current = v->getAs<types::String>();
             if (!current->isScalar())
             {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "graphics", "style", 1, 1);
                 return false;
             }
 
@@ -971,6 +989,7 @@ struct style
             types::Double* current = v->getAs<types::Double>();
             if (current->getSize() != 0)
             {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "graphics", "style");
                 return false;
             }
 
@@ -978,6 +997,8 @@ struct style
             controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
             return true;
         }
+
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "graphics", "style");
         return false;
     }
 };

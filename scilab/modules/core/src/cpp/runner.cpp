@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2014-2015 - Scilab Enterprises - Cedric Delamarre
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -23,26 +24,21 @@ extern "C"
 
 using namespace ast;
 
-void *Runner::launch(void *args)
+std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
+std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
+
+void StaticRunner::launch()
 {
-    bool bdoUnlock = false;
-    //try to lock locker ( waiting parent thread register me )
-    ThreadManagement::LockRunner();
-    //just release locker
-    ThreadManagement::UnlockRunner();
-
-    __threadKey currentThreadKey = __GetCurrentThreadKey();
-    ThreadId* pThread = ConfigVariable::getThread(currentThreadKey);
-
-    //exec !
-    Runner *me = (Runner *)args;
+    // get the runner to execute
+    Runner* runMe = getRunner();
+    // set if the current comment is interruptible
+    setInterruptibleCommand(runMe->isInterruptible());
 
     try
     {
-        me->getProgram()->accept(*(me->getVisitor()));
-        //ConfigVariable::clearLastError();
+        runMe->getProgram()->accept(*(runMe->getVisitor()));
     }
-    catch (const ast::ScilabException& se)
+    catch (const ast::InternalError& se)
     {
         scilabErrorW(se.GetErrorMessage().c_str());
         scilabErrorW(L"\n");
@@ -51,8 +47,33 @@ void *Runner::launch(void *args)
         scilabErrorW(ostr.str().c_str());
         ConfigVariable::resetWhereError();
     }
+    catch (const ast::InternalAbort& ia)
+    {
+        // management of pause
+        if (ConfigVariable::getPauseLevel())
+        {
+            ConfigVariable::DecreasePauseLevel();
+            delete runMe;
+            throw ia;
+        }
 
-    if (getScilabMode() != SCILAB_NWNI)
+        // close all scope before return to console scope
+        symbol::Context* pCtx = symbol::Context::getInstance();
+        while (pCtx->getScopeLevel() != SCOPE_CONSOLE)
+        {
+            pCtx->scope_end();
+        }
+
+        if (runMe->isConsoleCommand())
+        {
+            ThreadManagement::SendConsoleExecDoneSignal();
+        }
+
+        delete runMe;
+        throw ia;
+    }
+
+    if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
     {
         char *cwd = NULL;
         int err = 0;
@@ -69,112 +90,84 @@ void *Runner::launch(void *args)
     // reset error state when new prompt occurs
     ConfigVariable::resetError();
 
-    //change thread status
-    if (pThread->getStatus() != ThreadId::Aborted)
-    {
-        pThread->setStatus(ThreadId::Done);
-        bdoUnlock = true;
-    }
-
-    if (pThread->getInterrupt()) // non-prioritary
-    {
-        // Unlock prioritary thread waiting for
-        // non-prioritary thread end this "SeqExp" execution.
-        // This case appear when error is throw or when
-        // non-prioritary execute this last SeqExp.
-        pThread->setInterrupt(false);
-        ThreadManagement::SendAstPendingSignal();
-    }
-
-    if (pThread->isConsoleCommand())
+    if (runMe->isConsoleCommand())
     {
         ThreadManagement::SendConsoleExecDoneSignal();
     }
 
-    //unregister thread
-    ConfigVariable::deleteThread(currentThreadKey);
-
-    delete me;
-
-    if (bdoUnlock)
-    {
-        ThreadManagement::SendAwakeRunnerSignal();
-    }
-
-    return NULL;
+    delete runMe;
 }
 
-void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
-                         bool _isPrioritaryThread, bool _isInterruptibleThread, bool _isConsoleCommand)
+void StaticRunner::setRunner(Runner* _RunMe)
 {
-    try
-    {
-        Runner *runMe = new Runner(_theProgram, _visitor);
-        __threadKey threadKey;
-        __threadId threadId;
-
-        //lock locker
-        ThreadManagement::LockRunner();
-
-        types::ThreadId* pInterruptibleThread = ConfigVariable::getLastRunningThread();
-        if (_isPrioritaryThread)
-        {
-            if (pInterruptibleThread)
-            {
-                if (pInterruptibleThread->isInterruptible())
-                {
-                    pInterruptibleThread->setInterrupt(true);
-                    ThreadManagement::WaitForAstPendingSignal();
-                }
-                else
-                {
-                    __WaitThreadDie(pInterruptibleThread->getThreadId());
-                    pInterruptibleThread = NULL;
-                }
-            }
-        }
-        else if (pInterruptibleThread)
-        {
-            __WaitThreadDie(pInterruptibleThread->getThreadId());
-            pInterruptibleThread = NULL;
-        }
-
-        //launch thread but is can't really start since locker is locked
-        __CreateThreadWithParams(&threadId, &threadKey, &Runner::launch, runMe);
-        runMe->setThreadId(threadId);
-        runMe->setThreadKey(threadKey);
-
-        //register thread
-        types::ThreadId* pThread = new ThreadId(threadId, threadKey);
-        ConfigVariable::addThread(pThread);
-        pThread->setConsoleCommandFlag(_isConsoleCommand);
-        pThread->setInterruptible(_isInterruptibleThread);
-
-        //free locker to release thread && wait and of thread execution
-        ThreadManagement::WaitForAwakeRunnerSignal();
-
-        if (pInterruptibleThread && pInterruptibleThread->getInterrupt())
-        {
-            pInterruptibleThread->setInterrupt(false);
-            pInterruptibleThread->resume();
-        }
-
-        types::ThreadId* pExecThread = ConfigVariable::getThread(threadKey);
-        if (pExecThread == NULL)
-        {
-            //call pthread_join to clean stack allocation
-            __WaitThreadDie(threadId);
-        }
-    }
-    catch (const ast::ScilabException& se)
-    {
-        throw se;
-    }
+    m_RunMe = _RunMe;
 }
 
-void Runner::exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
+Runner* StaticRunner::getRunner(void)
 {
-    m_theProgram = _theProgram;
-    m_visitor = _visitor;
-    __CreateThreadWithParams(&m_threadId, &m_threadKey, &Runner::launch, this);
+    Runner* tmp = m_RunMe.exchange(nullptr);
+    ThreadManagement::SendAvailableRunnerSignal();
+    return tmp;
+}
+
+// return true if a Runner is already set in m_RunMe.
+bool StaticRunner::isRunnerAvailable(void)
+{
+    return m_RunMe.load() != nullptr;
+}
+
+void StaticRunner::setInterruptibleCommand(bool _bInterruptibleCommand)
+{
+    m_bInterruptibleCommand = _bInterruptibleCommand;
+}
+
+bool StaticRunner::isInterruptibleCommand()
+{
+    return m_bInterruptibleCommand;
+}
+
+void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
+                               bool _isPrioritaryThread, bool _isInterruptible, bool _isConsoleCommand)
+{
+    if (isRunnerAvailable())
+    {
+        // wait for managenement of last Runner
+        ThreadManagement::WaitForAvailableRunnerSignal();
+    }
+
+    // lock runner to be sure we are waiting for
+    // "AwakeRunner" signal before start execution
+    ThreadManagement::LockRunner();
+    Runner *runMe = new Runner(_theProgram, _visitor, _isConsoleCommand, _isInterruptible);
+    setRunner(runMe);
+
+    ThreadManagement::SendRunMeSignal();
+    ThreadManagement::WaitForAwakeRunnerSignal();
+}
+
+void StaticRunner::exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
+{
+    Runner *runMe = new Runner(_theProgram, _visitor);
+    setRunner(runMe);
+    launch();
+}
+
+void StaticRunner_launch(void)
+{
+    StaticRunner::launch();
+}
+
+int StaticRunner_isRunnerAvailable(void)
+{
+    return StaticRunner::isRunnerAvailable() ? 1 : 0;
+}
+
+int StaticRunner_isInterruptibleCommand(void)
+{
+    return StaticRunner::isInterruptibleCommand() ? 1 : 0;
+}
+
+void StaticRunner_setInterruptibleCommand(int val)
+{
+    StaticRunner::setInterruptibleCommand(val == 1);
 }

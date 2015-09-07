@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Antoine ELIAS
+* Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -22,8 +22,6 @@
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
-#include "configvariable.hxx"
 #include "context.hxx"
 
 #include <iostream>
@@ -76,7 +74,7 @@ Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, types::
 
     analysis::TestGVNVisitor gvn;
     pExp->accept(gvn);
-    //gvn.print_info();
+    gvn.print_info();
 
     Struct * pOut = new Struct(1, 1);
     std::map<std::wstring, uint64_t> maps = gvn.getSymMap();

@@ -136,7 +136,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            ostr << (get(iPos) ? L" T" : L" F");
+            ostr << (get(iPos) ? L"  T" : L"  F");
             ostr << std::endl;
         }
     }
@@ -266,7 +266,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
         {
             ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
         }
-        ostr << ostemp.str();
+        ostr << L" " << ostemp.str();
     }
 
     return true;

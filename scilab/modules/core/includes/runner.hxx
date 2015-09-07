@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2014-2015 - Scilab Enterprises - Cedric Delamarre
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -13,26 +14,33 @@
 #ifndef __RUNNER_HXX__
 #define __RUNNER_HXX__
 
-#include <iostream>
+#include <atomic>
+
 #include "exp.hxx"
 #include "execvisitor.hxx"
 
 extern "C"
 {
-#include "Thread_Wrapper.h"
 #include "dynlib_core.h"
 }
 
-#include "threadId.hxx"
-
-
 class CORE_IMPEXP Runner
 {
-private :
+public :
     Runner(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
     {
         m_theProgram = _theProgram;
         m_visitor = _visitor;
+        m_isConsoleCommand = false;
+        m_isInterruptible = true;
+    }
+
+    Runner(ast::Exp* _theProgram, ast::ExecVisitor *_visitor, bool _isConsoleCommand, bool _isInterruptible)
+    {
+        m_theProgram = _theProgram;
+        m_visitor = _visitor;
+        m_isConsoleCommand = _isConsoleCommand;
+        m_isInterruptible = _isInterruptible;
     }
 
     ~Runner()
@@ -40,13 +48,6 @@ private :
         delete m_theProgram;
         delete m_visitor;
     }
-
-public :
-
-    static void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
-                            bool _isInterruptible, bool _isPrioritary, bool _isConsoleCommand);
-
-    void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
 
     ast::ExecVisitor *getVisitor()
     {
@@ -58,33 +59,49 @@ public :
         return m_theProgram;
     }
 
-    __threadId getThreadId(void)
+    bool isConsoleCommand()
     {
-        return m_threadId;
+        return m_isConsoleCommand;
     }
 
-    void setThreadId(__threadId _threadId)
+    bool isInterruptible()
     {
-        m_threadId = _threadId;
-    }
-
-    __threadKey getThreadKey(void)
-    {
-        return m_threadKey;
-    }
-
-    void setThreadKey(__threadKey _threadId)
-    {
-        m_threadKey = _threadId;
+        return m_isInterruptible;
     }
 
 private :
-    static void *launch(void *args);
+    ast::Exp* m_theProgram;
+    ast::ExecVisitor* m_visitor;
+    bool m_isConsoleCommand;
+    bool m_isInterruptible;
 
-private :
-    __threadKey m_threadKey;
-    __threadId m_threadId;
-    ast::Exp*           m_theProgram;
-    ast::ExecVisitor*   m_visitor;
+    // static members to manage execution
 };
+
+class StaticRunner
+{
+public:
+    static void launch(void);
+    static void setRunner(Runner* _RunMe);
+    static Runner* getRunner(void);
+    static bool isRunnerAvailable(void);
+    static bool isInterruptibleCommand(void);
+    static void setInterruptibleCommand(bool _isInterruptible);
+    static void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
+                            bool _isInterruptible, bool _isPrioritary, bool _isConsoleCommand);
+    static void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
+
+private:
+    static std::atomic<Runner*> m_RunMe;
+    static std::atomic<bool> m_bInterruptibleCommand;
+};
+
+extern "C"
+{
+    void StaticRunner_launch(void);
+    int StaticRunner_isRunnerAvailable(void);
+    int StaticRunner_isInterruptibleCommand(void);
+    void StaticRunner_setInterruptibleCommand(int val);
+}
+
 #endif /* !__RUNNER_HXX__ */

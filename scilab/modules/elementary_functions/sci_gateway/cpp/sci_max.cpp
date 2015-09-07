@@ -189,6 +189,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
+    std::vector<bool> cloned(iCountElem, true);
     for (int i = 0; i < iCountElem; i++)
     {
         types::Double* pDbl = NULL;
@@ -204,6 +205,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
                 }
 
                 iLargerInput = 1000;
+                cloned[i] = false;
                 break;
             }
             case InternalType::ScilabInt8:
@@ -394,6 +396,13 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
             out.push_back(pDblOut);
     }
 
+    for (int i = 0; i < iCountElem; ++i)
+    {
+        if (cloned[i])
+        {
+            vectDouble[i]->killMe();
+        }
+    }
     if (iLargerInput != 1000)
     {
         //do not delete for double output

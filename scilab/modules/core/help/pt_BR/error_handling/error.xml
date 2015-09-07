@@ -42,7 +42,7 @@
             <literal>error</literal> permite escrever uma mensagem de erro e
             manipular o erro. Por padrão, <literal>error</literal> interrompe a
             execução corrente e retorna ao nível de prompt. Este padrão pode ser
-            modificado utilizando-se as funções <literal>errcatch</literal> ou
+            modificado utilizando-se as funções
             <literal>execstr(...,'errcatch')</literal>.
         </para>
         <para>
@@ -82,9 +82,6 @@ lasterror()]]></programlisting>
         <simplelist type="inline">
             <member>
                 <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>

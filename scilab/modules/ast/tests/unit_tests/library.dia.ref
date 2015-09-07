@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 // <-- ENGLISH IMPOSED -->
 //
@@ -21,6 +21,7 @@ mputl(["function ret = lib_test";"  ret= ""lib1""";"endfunction"], "lib1/lib_tes
 //generate lib ( aka "lib1lib" )
 genlib("lib1lib","lib1",%f,%t);
 -- Creation of [lib1lib] (Macros) --
+genlib: Processing file: lib_test.sci
 assert_checkequal(lib_test(), "lib1");
 clear lib1lib lib_test;
 //same things with TMPDIR/lib2
@@ -29,6 +30,7 @@ mputl(["function ret = lib_test";"  ret= ""lib2""";"endfunction"], "lib2/lib_tes
 //generate lib ( aka "lib2lib" )
 genlib("lib2lib","lib2",%f,%t);
 -- Creation of [lib2lib] (Macros) --
+genlib: Processing file: lib_test.sci
 assert_checkequal(lib_test(), "lib2");
 clear lib2lib lib_test;
 //now try to load lib1lib
@@ -51,6 +53,7 @@ mkdir("test");
 mputl(m, "test/test_macro.sci");
 genlib("testlib","test",%f,%t);
 -- Creation of [testlib] (Macros) --
+genlib: Processing file: test_macro.sci
 assert_checkequal(test_macro(4), 16);
 assert_checkequal(exists("internal_macro"), 0);
 assert_checkequal(exists("x"), 0);

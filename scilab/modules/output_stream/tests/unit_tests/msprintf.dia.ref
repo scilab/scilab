@@ -121,9 +121,6 @@ B = 100*rand(nb_row,1);
 assert_checkfalse(execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);","errcatch")     == 0);
 refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
 assert_checkerror("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B);", refMsg);
-assert_checkfalse(execstr("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B,B,B);","errcatch")     == 0);
-refMsg = msprintf(_("%s: Wrong number of input arguments: at most %d expected.\n"), "msprintf", 4);
-assert_checkerror("msprintf(""%10s => %08.4f %08.4f %08.4f\n"",A,B,B,B,B);", refMsg);
 // No arg
 assert_checkfalse(execstr("msprintf();","errcatch")     == 0);
 refMsg = msprintf(_("%s: Wrong number of input arguments: at least %d expected.\n"), "msprintf", 1);

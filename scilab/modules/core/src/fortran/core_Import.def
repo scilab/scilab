@@ -5,19 +5,8 @@ EXPORTS
 ; ---------------------------------------
 ; core
 ; ---------------------------------------
-iop_
-com_
-errgst_
-adre_
-dbg_
-intersci_
-ippty_
 mtlbc_
-basbrk_
-keepme_
-mprot_
 typnams_
-csimp_
 ptkeep_
 checkval_
 eqid_
@@ -34,9 +23,7 @@ getscihome_
 getsci_
 scigmem_
 scigmem_
-getdefaultgstacksize_
 scimem_
-getdefaultstacksize_
 initfuncprot_
 initscilab_
 lmatj_
@@ -46,4 +33,3 @@ freestacklastmemory_
 freeglobalstacklastmemory_
 freeStackCurrentMemory
 freeGlobalStackCurrentmemory
-stack_

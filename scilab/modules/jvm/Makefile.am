@@ -89,7 +89,6 @@ libscijvm_la_include_HEADERS = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_javaclasspath.c \
-    sci_gateway/c/gw_jvm.c \
     sci_gateway/c/sci_javalibrarypath.c
 
 GATEWAY_CPP_SOURCES = \

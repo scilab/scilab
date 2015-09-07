@@ -15,6 +15,7 @@
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "macrofile.hxx"
+#include "threadmanagement.hxx"
 
 extern "C"
 {
@@ -221,7 +222,7 @@ int ConfigVariable::getConsoleLines(void)
 ** \{
 */
 
-int ConfigVariable::m_iScilabMode = 0;
+int ConfigVariable::m_iScilabMode = 1; //SCILAB_API = 1  Scilab is launch as an API
 
 void ConfigVariable::setScilabMode(int _iScilabMode)
 {
@@ -380,7 +381,7 @@ int ConfigVariable::getLastErrorLine(void)
 ** \{
 */
 
-std::wstring ConfigVariable::m_wstErrorFunction;
+std::wstring ConfigVariable::m_wstErrorFunction = L"";
 
 void ConfigVariable::setLastErrorFunction(const std::wstring& _wstErrorFunction)
 {
@@ -692,7 +693,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
                 EntryPointStr* pEP = *it;
                 m_EntryPointList.remove(*it);
                 FREE(pEP->pwstEntryPointName);
-                delete pEP;
+                FREE(pEP);
                 if (m_EntryPointList.size() == 0)
                 {
                     break;
@@ -702,7 +703,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
         }
         //remove dynamic library
         FREE(m_DynLibList[_iDynamicLibraryIndex]->pwstLibraryName);
-        delete m_DynLibList[_iDynamicLibraryIndex];
+        FREE(m_DynLibList[_iDynamicLibraryIndex]);
         m_DynLibList[_iDynamicLibraryIndex] = NULL;
     }
 
@@ -878,13 +879,16 @@ void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
 
 wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
 {
-    wchar_t** pwstArgs = (wchar_t**)MALLOC(m_Args.size() * sizeof(wchar_t*));
-    for (int i = 0 ; i < (int)m_Args.size() ; i++)
-    {
-        pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
-    }
-
+    wchar_t** pwstArgs = NULL;
     *_piCount = (int)m_Args.size();
+    if (*_piCount != 0)
+    {
+        pwstArgs = (wchar_t**)MALLOC(*_piCount * sizeof(wchar_t*));
+        for (int i = 0; i < *_piCount; i++)
+        {
+            pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
+        }
+    }
     return pwstArgs;
 }
 
@@ -1262,8 +1266,13 @@ void ConfigVariable::fillWhereError(int _iErrorLine)
 {
     if (m_WhereError.empty())
     {
-        // +1 because the first line of the funtionDec "function func()" is the line 1.
-        int iTmp = _iErrorLine - getMacroFirstLines() + 1;
+        int iTmp = 0;
+        if (_iErrorLine != 0)
+        {
+            // +1 because the first line of the funtionDec "function func()" is the line 1.
+            iTmp = _iErrorLine - getMacroFirstLines() + 1;
+        }
+
         m_WhereError.reserve(m_Where.size());
         for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
         {
@@ -1393,3 +1402,44 @@ int ConfigVariable::getExecutedFileID()
 {
     return m_iFileID;
 }
+
+/*
+** string read from console by scilabRead
+** \{
+*/
+char* ConfigVariable::m_pcConsoleReadStr = NULL;
+void ConfigVariable::setConsoleReadStr(char* _pcConsoleReadStr)
+{
+    m_pcConsoleReadStr = _pcConsoleReadStr;
+}
+
+char* ConfigVariable::getConsoleReadStr()
+{
+    ThreadManagement::LockScilabRead();
+    char* tmp = m_pcConsoleReadStr;
+    m_pcConsoleReadStr = NULL;
+    ThreadManagement::UnlockScilabRead();
+    return tmp;
+}
+/*
+** \}
+*/
+
+/*
+** Tell to the console thread if the scilabRead return
+** is a scilab command or not.
+** \{
+*/
+int ConfigVariable::m_isScilabCommand = 1;
+void ConfigVariable::setScilabCommand(int _isciCmd)
+{
+    m_isScilabCommand = _isciCmd;
+}
+
+int ConfigVariable::isScilabCommand()
+{
+    return m_isScilabCommand;
+}
+/*
+** \}
+*/

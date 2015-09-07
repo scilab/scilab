@@ -62,8 +62,8 @@ public:
 
     inline Exp * getExp(const int64_t key) const
     {
-        const unsigned int size = table.size();
-        for (unsigned int i = 0; i < size; ++i)
+        const int size = static_cast<int>(table.size());
+        for (int i = 0; i < size; ++i)
         {
             if (table[i] == key)
             {

@@ -13,7 +13,7 @@
 // Computation of v1.^v2 was not done in place,
 // when v1 and v2 are real arrays, v1 >= 0 and v2 integer.
 // <-- ENGLISH IMPOSED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // Run with test_run('double', 'bug_12657', ['no_check_error_output'])
 // Checking that the results for said cases are still ok
 assert_checkequal([0.5 2; 100000 4.5578].^2, [0.25 4; 1e10 20.7735408400000025608]);

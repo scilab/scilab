@@ -15,7 +15,6 @@
 #include <string.h>
 #include "readline.h"
 #include "mgetl.h"
-#include "stack-def.h" /* bsiz */
 #include "freeArrayOfString.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/

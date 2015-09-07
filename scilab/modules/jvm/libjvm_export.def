@@ -5,7 +5,6 @@ EXPORTS
 ; --------------------------------------- 
 ; jvm module explicit export (SEP 35)
 ; --------------------------------------- 
-gw_jvm
 getScilabJavaVM
 InitializeJVM
 TerminateJVM

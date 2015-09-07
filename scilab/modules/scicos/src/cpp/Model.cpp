@@ -162,12 +162,41 @@ void Model::deleteObject(ScicosID uid)
     }
 }
 
+kind_t Model::getKind(ScicosID uid) const
+{
+    model::BaseObject* o = getObject(uid);
+    if (o != nullptr)
+    {
+        return o->kind();
+    }
+    else
+    {
+        // return the first kind, it will be always ignored as the object is no more valid
+        return ANNOTATION;
+    }
+}
+
+std::vector<ScicosID> Model::getAll(kind_t k) const
+{
+    std::vector<ScicosID> all;
+
+    for (objects_map_t::const_iterator it = allObjects.begin(); it != allObjects.end(); ++it)
+    {
+        if (it->second.m_o->kind() == k)
+        {
+            all.push_back(it->second.m_o->id());
+        }
+    }
+
+    return all;
+}
+
 model::BaseObject* Model::getObject(ScicosID uid) const
 {
     objects_map_t::const_iterator iter = allObjects.find(uid);
     if (iter == allObjects.end())
     {
-        throw std::string("key has not been found");
+        return nullptr;
     }
 
     return iter->second.m_o;

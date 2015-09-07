@@ -10,13 +10,10 @@ islittleendian
 mkmlistfromvars_
 createvarfromptr_
 putlhsvar_
-stack_
-intersci_
 createvar_
 freeArrayOfWideString
 getrhsvar_
 gettype_
-vstk_
 checklhs_
 checkrhs_
 transposeMatrixDouble

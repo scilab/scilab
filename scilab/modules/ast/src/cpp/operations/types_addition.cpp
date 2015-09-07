@@ -15,7 +15,6 @@
 #include "operations.hxx"
 #include "double.hxx"
 #include "int.hxx"
-#include "scilabexception.hxx"
 
 extern "C"
 {
@@ -1071,7 +1070,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1081,7 +1080,7 @@ InternalType* add_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1099,7 +1098,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1109,7 +1108,7 @@ InternalType* add_M_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1156,7 +1155,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1166,7 +1165,7 @@ InternalType* add_MC_MC(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1556,7 +1555,7 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1566,7 +1565,7 @@ InternalType* add_M_M<String, String, String>(String* _pL, String* _pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -1694,7 +1693,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         std::wostringstream os;
         os << _W("variables don't have the same formal variable");
         //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-        throw ast::ScilabError(os.str());
+        throw ast::InternalError(os.str());
     }
     if (_pR->isIdentity())
     {
@@ -1902,7 +1901,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
     {
         wchar_t pMsg[bsiz];
         os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::ScilabError(pMsg);
+        throw ast::InternalError(pMsg);
     }
 
     int* piDims1 = _pL->getDimsArray();
@@ -1914,7 +1913,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         {
             wchar_t pMsg[bsiz];
             os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
+            throw ast::InternalError(pMsg);
         }
     }
 
@@ -2110,7 +2109,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
     {
         wchar_t pMsg[bsiz];
         os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::ScilabError(pMsg);
+        throw ast::InternalError(pMsg);
     }
 
     int* piDims1 = _pR->getDimsArray();
@@ -2122,7 +2121,7 @@ template<> InternalType* add_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         {
             wchar_t pMsg[bsiz];
             os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-            throw ast::ScilabError(pMsg);
+            throw ast::InternalError(pMsg);
         }
     }
 
@@ -2284,7 +2283,7 @@ template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
      if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
      {
          //dimensions not match
-         throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+         throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
      }
 
      if (_pL->nonZeros() == 0)
@@ -2456,7 +2455,7 @@ template<> InternalType* add_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
     }
     else
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 }
 

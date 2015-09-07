@@ -13,8 +13,6 @@
 #include <sstream>
 #include "types.hxx"
 
-#include "scilabexception.hxx"
-
 extern "C"
 {
 #include "localization.h"

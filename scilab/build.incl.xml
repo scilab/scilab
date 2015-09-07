@@ -89,7 +89,7 @@
         <available property="jdk1.6+" classname="java.util.ArrayDeque"/>
         <available property="jdk1.7+" classname="java.nio.file.Path"/>
         <available property="jdk1.8+" classname="java.util.stream.DoubleStream"/>
-        <fail message="Require JDK 1.6 or higher. Found ${ant.java.version}" unless="jdk1.6+"/>
+        <fail message="Require JDK 1.8 or higher. Found ${ant.java.version}" unless="jdk1.8+"/>
         <mkdir dir="${classes.dir}"/>
         <mkdir dir="${classes.test.dir}"/>
         <mkdir dir="${build.jar.dir}"/>

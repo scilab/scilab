@@ -87,7 +87,7 @@ Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::type
     {
         pExp->accept(jit);
     }
-    catch (ast::ScilabError & se)
+    catch (ast::InternalError & /*se*/)
     {
         jit.dump();
         throw;

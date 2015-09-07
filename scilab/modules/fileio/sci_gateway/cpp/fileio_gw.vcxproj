@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -179,7 +179,6 @@
     <ClCompile Include="..\c\sci_fprintfMat.c" />
     <ClCompile Include="..\c\sci_fscanfMat.c" />
     <ClCompile Include="..\c\sci_getURL.c" />
-    <ClCompile Include="..\c\sci_maxfiles.c" />
     <ClCompile Include="..\c\sci_movefile.c" />
     <ClCompile Include="..\c\sci_pwd.c" />
     <ClCompile Include="..\c\sci_splitURL.c" />

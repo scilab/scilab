@@ -60,14 +60,17 @@ wchar_t **getDiaryFilenames(int *array_size)
     *array_size = 0;
     if (SCIDIARY)
     {
-        std::wstring * wstringFilenames = SCIDIARY->getFilenames(array_size);
+        std::list<std::wstring> wstringFilenames = SCIDIARY->getFilenames();
+        *array_size = (int)wstringFilenames.size();
         if (array_size > 0)
         {
             wchar_t **wcFilenames = (wchar_t **) MALLOC (sizeof(wchar_t*) * (*array_size));
-            for (int i = 0; i < *array_size; i++)
+            int i = 0;
+            for (const auto& filename : wstringFilenames)
             {
-                wcFilenames[i] = (wchar_t*) MALLOC(sizeof(wchar_t) * (wstringFilenames[i].length() + 1));
-                wcscpy(wcFilenames[i], wstringFilenames[i].c_str());
+                wcFilenames[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (filename.length() + 1));
+                wcscpy(wcFilenames[i], filename.data());
+                ++i;
             }
             return wcFilenames;
         }

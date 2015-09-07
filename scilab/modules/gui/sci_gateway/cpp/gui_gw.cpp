@@ -25,7 +25,7 @@ using namespace types;
 
 bool GuiModule::loadedDep = false;
 
-void GuiModule::LoadDeps(std::wstring _functionName)
+int GuiModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false &&
             (_functionName == L"uicontrol" ||
@@ -37,6 +37,8 @@ void GuiModule::LoadDeps(std::wstring _functionName)
         loadOnUseClassPath("graphics");
         loadedDep = true;
     }
+
+    return 1;
 }
 
 int GuiModule::Load()

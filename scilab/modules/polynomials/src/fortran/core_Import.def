@@ -4,15 +4,11 @@
 EXPORTS
 ;
 ;core_f
-vstk_
 com_
-stack_
 iop_
 csimp_
 ;
-; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
 ;
-errgst_
 adre_
-intersci_
 ;

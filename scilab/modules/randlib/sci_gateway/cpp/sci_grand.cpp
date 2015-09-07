@@ -76,23 +76,31 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    // *** find the mothod string. ***
+    // *** find the method string. ***
     for (int i = 0; i < in.size(); i++)
     {
         if (in[i]->isString())
         {
             pStrMethod = in[i]->getAs<types::String>();
             iStrPos = i;
-
             break;
         }
     }
 
-    if ((iStrPos == 0) && (in[0]->isString() == false))
+    if (pStrMethod == NULL)
     {
-        ast::ExecVisitor exec;
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        for (int i = 0; i < in.size(); i++)
+        {
+            if (in[i]->isDouble() == false)
+            {
+                ast::ExecVisitor exec;
+                std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
+                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            }
+        }
+
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "grand", in.size() + 1);
+        return types::Function::Error;
     }
 
     int iDims = iStrPos > 1 ? iStrPos : 2;
@@ -101,12 +109,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     //all variables are matrix
     itab[0] = 1;
     itab[1] = 1;
-
-    if (pStrMethod == NULL)
-    {
-        Scierror(78, _("%s: Wrong number of output argument(s): At least %d string expected.\n"), "grand", 1);
-        return types::Function::Error;
-    }
 
     wchar_t* wcsMeth = pStrMethod->get(0);
     int iNumInputArg = 5;
@@ -1329,7 +1331,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         ierr = set_state_mt_simple(vectpDblInput[0]->get(0));
                     }
-                    else if (vectpDblInput[0]->getSize() != 625)
+                    else if (vectpDblInput[0]->getSize() == 625)
                     {
                         ierr = set_state_mt(vectpDblInput[0]->get());
                     }

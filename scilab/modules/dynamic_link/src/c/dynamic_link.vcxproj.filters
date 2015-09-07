@@ -32,9 +32,6 @@
     <ClCompile Include="ilib_verbose.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_call.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dllinfo.c">
       <Filter>Source Files</Filter>
     </ClCompile>

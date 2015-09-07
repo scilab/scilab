@@ -12,8 +12,6 @@ HELPTOOLS_SOURCES = \
     src/jni/BuildDocObject.cpp \
 	src/jni/SciDocMain.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_helptools.c
-
 GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_buildDoc.cpp
 
 GIWS_WRAPPERS = \
@@ -23,7 +21,7 @@ GIWS_WRAPPERS = \
 libscihelptools_la_LIBADD = \
     libscihelptools-algo.la \
     $(top_builddir)/modules/commons/libscicommons.la
-    
+
 libscihelptools_algo_la_SOURCES =  $(HELPTOOLS_SOURCES)
 libscihelptools_algo_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 noinst_LTLIBRARIES = libscihelptools-algo.la
@@ -65,14 +63,13 @@ libscihelptools_la_CPPFLAGS= \
 	-I$(top_srcdir)/modules/string/includes \
 	$(AM_CPPFLAGS)
 
-libscihelptools_la_SOURCES =  $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
+libscihelptools_la_SOURCES =  $(GATEWAY_CXX_SOURCES)
 
 libscihelptools_disable_la_CPPFLAGS = $(libscihelptools_la_CPPFLAGS)
 
 libscihelptools_disable_la_SOURCES =  $(HELPTOOLS_DISABLE_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC= $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscihelptools_la_CFLAGS)
 
 
@@ -81,7 +78,7 @@ modulename=helptools
 
 #### helptools : Conf files ####
 libscihelptools_la_rootdir = $(mydatadir)
-libscihelptools_la_root_DATA =  license.txt 
+libscihelptools_la_root_DATA =  license.txt
 
 #### helptools : init scripts ####
 libscihelptools_la_etcdir = $(mydatadir)/etc
@@ -129,7 +126,6 @@ libscihelptools_la_data_pagesdir = $(mydatadir)/data/pages
 libscihelptools_la_data_pages_DATA = \
 data/pages/error.html \
 data/pages/homepage-en_US.html \
-data/pages/homepage-ru_RU.html \
 data/pages/homepage-fr_FR.html \
 data/pages/ban-en_US.png \
 data/pages/ban-fr_FR.png

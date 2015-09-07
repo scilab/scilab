@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -14,16 +15,13 @@
 #include "function.hxx"
 #include "threadmanagement.hxx"
 #include "configvariable.hxx"
-#include "threadId.hxx"
-#include "scilabexception.hxx"
+#include "runner.hxx"
 
 extern "C"
 {
 #include "charEncoding.h"
 #include "localization.h"
 #include "Scierror.h"
-
-#include "Thread_Wrapper.h"
 }
 
 types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -36,33 +34,22 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
 
     ConfigVariable::IncreasePauseLevel();
 
-    //unlock prompt thread.
-    ThreadManagement::SendAwakeRunnerSignal();
+    // unlock console thread to display prompt again
     ThreadManagement::SendConsoleExecDoneSignal();
-
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    if (pThread == NULL)
-    {
-        return types::Function::OK;
-    }
 
     //return to console so change mode to 2
     int iOldMode = ConfigVariable::getPromptMode();
     ConfigVariable::setPromptMode(2);
 
-    //suspend current thread
-    pThread->suspend();
-
-    // Running from here means we have been awaken by some resume / abort
+    int iPauseLevel = ConfigVariable::getPauseLevel();
+    while (ConfigVariable::getPauseLevel() == iPauseLevel)
+    {
+        ThreadManagement::SendAwakeRunnerSignal();
+        ThreadManagement::WaitForRunMeSignal();
+        StaticRunner_launch();
+    }
 
     //return from console so change mode to initial
     ConfigVariable::setPromptMode(iOldMode);
-
-    ConfigVariable::DecreasePauseLevel();
-    if (pThread->getStatus() == types::ThreadId::Aborted)
-    {
-        throw ast::InternalAbort();
-    }
-
     return types::Function::OK;
 }

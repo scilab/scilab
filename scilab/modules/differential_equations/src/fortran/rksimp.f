@@ -4,8 +4,6 @@ c
 c     fehlberg fourth-fifth order runge-kutta method
 c
 c
-      include 'stack.h'
-      
       integer neqn,iflag,iwork(*)
       double precision y(*),t,tout,rerr,aerr,work(*),h
 c
@@ -77,8 +75,6 @@ c
       double precision  y(*),t,h,yp(neqn),f1(neqn),f2(neqn),
      1  f3(neqn),f4(neqn),f5(neqn),s(neqn)
 c
-      include 'stack.h'      
-      
       double precision  ch
       integer  k
       external fydot2

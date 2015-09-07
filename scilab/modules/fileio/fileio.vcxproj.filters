@@ -87,9 +87,6 @@
     <ClCompile Include="src\c\getshortpathname.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_fileio.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\isdir.c">
       <Filter>Source Files</Filter>
     </ClCompile>

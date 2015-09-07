@@ -47,4 +47,12 @@ int readSingleString(void* pvApiCtx, int rhsPosition, char** out, const char* fn
  */
 int readVectorString(void* pvApiCtx, int rhsPosition, char*** out, int* vectorLength, char* fname);
 
+/**
+ * Free the allocated vector of strings after the readVectorString call
+ *
+ * @param str the vector of strings
+ * @param len the length of the vector
+ */
+void releaseVectorString(char** str, int len);
+
 #endif /* !__XCOS_UTILITIES_HXX__ */

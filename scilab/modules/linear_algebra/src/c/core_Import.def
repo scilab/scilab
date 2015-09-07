@@ -7,6 +7,5 @@ EXPORTS
 ;
 com_
 iop_
-intersci_
 MyHeapAlloc
 MyHeapFree

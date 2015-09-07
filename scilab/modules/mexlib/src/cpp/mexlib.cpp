@@ -1604,217 +1604,17 @@ mxArray *mexCallMATLABWithTrap(int nlhs, mxArray *plhs[], int nrhs, const mxArra
 
 int mexEvalString(const char *name)
 {
-    // TODO: It is almost copied from sci_execstr.cpp. Refactor needed!
-    int iErr = 0;
-    bool bErrCatch = false;
-    bool bMute = true;
-    Parser parser;
-    parser.parse(to_wide_string(name));
-    if (parser.getExitStatus() != Parser::Succeded)
+    types::typed_list in;
+    types::typed_list out;
+    in.push_back(new types::String(name));
+    ast::ExecVisitor execMe;
+    types::Callable::ReturnValue ret = Overload::call(L"execstr", in, 1, out, &execMe);
+    in.back()->killMe();
+    if (ret != types::Callable::OK)
     {
-        //mexPrintf(wide_string_to_UTF8(parser.getErrorMessage()));
         return 1;
     }
 
-    ast::Exp *pExp = parser.getTree();
-
-    if (pExp == NULL)
-    {
-        //mexPrintf("pExp is NULL");
-        return 1;
-    }
-
-    //save current prompt mode
-    int oldVal = ConfigVariable::getPromptMode();
-    if (bMute)
-    {
-        ConfigVariable::setPromptMode(-1);
-    }
-    ast::exps_t LExp = pExp->getAs<ast::SeqExp>()->getExps();
-
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd; ++j)
-    {
-        try
-        {
-            //excecute script
-            ast::ExecVisitor execMe;
-            (*j)->accept(execMe);
-
-            //to manage call without ()
-            if (execMe.getResult() != NULL && execMe.getResult()->getAs<Callable>())
-            {
-                Callable *pCall = execMe.getResult()->getAs<Callable>();
-                typed_list out;
-                typed_list in;
-                optional_list opt;
-                try
-                {
-                    ast::ExecVisitor execCall;
-                    Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
-                    if (Ret == Callable::OK)
-                    {
-                        if (out.size() == 0)
-                        {
-                            execMe.setResult(NULL);
-                        }
-                        else if (out.size() == 1)
-                        {
-                            out[0]->DecreaseRef();
-                            execMe.setResult(out[0]);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < static_cast<int>(out.size()); i++)
-                            {
-                                out[i]->DecreaseRef();
-                                execMe.setResult(i, out[i]);
-                            }
-                        }
-                    }
-                    else if (Ret == Callable::Error)
-                    {
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(pCall->getName());
-                        }
-
-                        if (pCall->isMacro() || pCall->isMacroFile())
-                        {
-                            wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->getLocation().first_line, pCall->getName().c_str());
-                            throw ast::ScilabMessage(szError);
-                        }
-                        else
-                        {
-                            throw ast::ScilabMessage();
-                        }
-                    }
-                }
-                catch (ast::ScilabMessage sm)
-                {
-                    wostringstream os;
-                    ast::PrintVisitor printMe(os);
-                    (*j)->accept(printMe);
-                    os << std::endl << std::endl;
-                    if (ConfigVariable::getLastErrorFunction() == L"")
-                    {
-                        ConfigVariable::setLastErrorFunction(pCall->getName());
-                    }
-
-                    if (pCall->isMacro() || pCall->isMacroFile())
-                    {
-                        wstring szAllError;
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                        szAllError = szError + os.str();
-                        os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n").c_str());
-                        szAllError += szError;
-                        throw ast::ScilabMessage(szAllError);
-                    }
-                    else
-                    {
-                        sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
-                        throw sm;
-                    }
-                }
-            }
-
-            //update ans variable.
-            if (execMe.getResult() != NULL && execMe.getResult()->isDeletable())
-            {
-                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), execMe.getResult());
-                if ((*j)->isVerbose() && bErrCatch == false)
-                {
-                    std::wostringstream ostr;
-                    ostr << L"ans = " << std::endl;
-                    ostr << std::endl;
-                    execMe.getResult()->toString(ostr);
-                    ostr << std::endl;
-                    scilabWriteW(ostr.str().c_str());
-                }
-            }
-        }
-        catch (ast::ScilabMessage sm)
-        {
-            if (bErrCatch == false && bMute == false)
-            {
-                scilabErrorW(sm.GetErrorMessage().c_str());
-
-                ast::CallExp* pCall = dynamic_cast<ast::CallExp*>(*j);
-                if (pCall != NULL)
-                {
-                    //to print call expression only of it is a macro
-                    ast::ExecVisitor execFunc;
-                    pCall->getName().accept(execFunc);
-
-                    if (execFunc.getResult() != NULL &&
-                            (execFunc.getResult()->isMacro() || execFunc.getResult()->isMacroFile()))
-                    {
-                        wostringstream os;
-
-                        //add function failed
-                        ast::PrintVisitor printMe(os);
-                        pCall->accept(printMe);
-                        os << std::endl;
-
-                        //add info on file failed
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                        os << szError;
-
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
-                        }
-
-                        //restore previous prompt mode
-                        ConfigVariable::setPromptMode(oldVal);
-                        throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
-                    }
-                }
-                throw ast::ScilabMessage((*j)->getLocation());
-            }
-            else
-            {
-                iErr = ConfigVariable::getLastErrorNumber();
-                break;
-            }
-        }
-        catch (ast::ScilabError se)
-        {
-            if (ConfigVariable::getLastErrorMessage() == L"")
-            {
-                ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
-                ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
-                ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
-                ConfigVariable::setLastErrorFunction(wstring(L""));
-            }
-
-            //store message
-            iErr = ConfigVariable::getLastErrorNumber();
-            if (bErrCatch == false)
-            {
-                //in case of error, change mode to 2 ( prompt )
-                ConfigVariable::setPromptMode(2);
-                //write error
-                scilabErrorW(ConfigVariable::getLastErrorMessage().c_str());
-                scilabErrorW(L"\n");
-
-                //write positino
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                //restore previous prompt mode
-                ConfigVariable::setPromptMode(oldVal);
-                throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
-            }
-            break;
-        }
-    }
-
-    //restore previous prompt mode
-    ConfigVariable::setPromptMode(oldVal);
-
-    delete parser.getTree();
     return 0;
 }
 
@@ -1947,7 +1747,7 @@ void mexWarnMsgIdAndTxt(const char *warningid, const char *warningmsg, ...)
 
 void mexErrMsgTxt(const char *error_msg)
 {
-    throw ast::ScilabError(error_msg);
+    throw ast::InternalError(error_msg);
 }
 
 void mexWarnMsgTxt(const char *error_msg)

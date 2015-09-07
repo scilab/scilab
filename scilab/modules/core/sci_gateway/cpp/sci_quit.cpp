@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -18,18 +19,14 @@
 types::Function::ReturnValue sci_quit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     //Terminates Scilab or decreases the pause level
-
-    types::ThreadId* pThreadId = ConfigVariable::getLastPausedThread();
-    if (pThreadId)
+    if (ConfigVariable::getPauseLevel())
     {
-        __threadId id = pThreadId->getThreadId();
-        pThreadId->abort();
-        __WaitThreadDie(id);
-
+        ConfigVariable::DecreasePauseLevel();
     }
     else
     {
         ConfigVariable::setForceQuit(true);
+        throw ast::InternalAbort();
     }
 
     return types::Function::OK;

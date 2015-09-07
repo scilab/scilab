@@ -1,11 +1,10 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_sound.c \
     sci_gateway/c/sci_beep.c \
     sci_gateway/c/sci_PlaySound.c
 
@@ -43,7 +42,7 @@ modulename=sound
 
 #### sound : Conf files ####
 libscisound_la_rootdir = $(mydatadir)
-libscisound_la_root_DATA =  license.txt 
+libscisound_la_root_DATA =  license.txt
 
 
 ####�sound : init scripts ####

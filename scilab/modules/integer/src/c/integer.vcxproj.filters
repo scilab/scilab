@@ -149,9 +149,6 @@
     <ClCompile Include="genvmul.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_integer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="tpconv.c">
       <Filter>Source Files</Filter>
     </ClCompile>

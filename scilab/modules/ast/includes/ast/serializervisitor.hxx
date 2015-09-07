@@ -176,8 +176,8 @@ private :
 
     void add_wstring(const std::wstring &w)
     {
-        int size = (int)w.size();
         char *c_str = wide_string_to_UTF8(w.c_str());
+        int size = strlen(c_str);
         int final_size = size * sizeof(char);
         add_uint32(final_size);
         need(final_size);

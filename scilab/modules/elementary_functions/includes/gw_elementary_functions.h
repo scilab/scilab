@@ -23,7 +23,7 @@ int sci_chinesehat(char *fname, unsigned long fname_len);
 //int sci_spones(char *fname, unsigned long fname_len);
 int sci_isequalbitwise(char *fname, unsigned long fname_len);
 
-// YaSp
+// Scilab 6
 //C_GATEWAY_PROTOTYPE(sci_abs);
 //C_GATEWAY_PROTOTYPE(sci_acos);
 //C_GATEWAY_PROTOTYPE(sci_asin);

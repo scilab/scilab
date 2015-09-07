@@ -18,7 +18,6 @@
 #include "context.hxx"
 #include "symbol.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "mutevisitor.hxx"
 #include "serializervisitor.hxx"
@@ -109,9 +108,17 @@ ast::SeqExp* Macro::getBody(void)
 bool Macro::toString(std::wostringstream& ostr)
 {
     // get macro name
-    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
-    ostr.str(L"");
+    wchar_t* wcsVarName = NULL;
+    if (ostr.str() == SPACES_LIST)
+    {
+        wcsVarName = os_wcsdup(getName().c_str());
+    }
+    else
+    {
+        wcsVarName = os_wcsdup(ostr.str().c_str());
+    }
 
+    ostr.str(L"");
     ostr << L"[";
 
     // output arguments [a,b,c] = ....
@@ -312,12 +319,12 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }
-    catch (ast::ScilabMessage & sm)
+    catch (const ast::InternalError& ie)
     {
         cleanCall(pContext, oldVal);
-        throw sm;
+        throw ie;
     }
-    catch (ast::InternalAbort & ia)
+    catch (const ast::InternalAbort& ia)
     {
         cleanCall(pContext, oldVal);
         throw ia;
@@ -387,9 +394,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 out.clear();
                 cleanCall(pContext, oldVal);
 
-                char* pst = wide_string_to_UTF8((*i)->getSymbol().getName().c_str());
-                Scierror(999, _("Undefined variable %s.\n"), pst);
-                FREE(pst);
+                char* pstArgName = wide_string_to_UTF8((*i)->getSymbol().getName().c_str());
+                char* pstMacroName = wide_string_to_UTF8(getName().c_str());
+                Scierror(999, _("Undefined variable '%s' in function '%s'.\n"), pstArgName, pstMacroName);
+                FREE(pstArgName);
+                FREE(pstMacroName);
                 return Callable::Error;
             }
         }
@@ -406,12 +415,12 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     return RetVal;
 }
 
-std::list<symbol::Variable*>* Macro::inputs_get()
+std::list<symbol::Variable*>* Macro::getInputs()
 {
     return m_inputArgs;
 }
 
-std::list<symbol::Variable*>* Macro::outputs_get()
+std::list<symbol::Variable*>* Macro::getOutputs()
 {
     return m_outputArgs;
 }
@@ -443,7 +452,7 @@ bool Macro::operator==(const InternalType& it)
     types::Macro* pRight = const_cast<InternalType &>(it).getAs<types::Macro>();
 
     //check inputs
-    pInput = pRight->inputs_get();
+    pInput = pRight->getInputs();
     if (pInput->size() != m_inputArgs->size())
     {
         return false;
@@ -462,7 +471,7 @@ bool Macro::operator==(const InternalType& it)
     }
 
     //check outputs
-    pOutput = pRight->outputs_get();
+    pOutput = pRight->getOutputs();
     if (pOutput->size() != m_outputArgs->size())
     {
         return false;

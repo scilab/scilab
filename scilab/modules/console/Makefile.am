@@ -69,7 +69,6 @@ endif
 
 libsciconsole_minimal_la_SOURCES = \
     src/noconsole/noconsole.c \
-    sci_gateway/c/gw_console.c \
     sci_gateway/cpp/sci_clc.cpp \
     sci_gateway/cpp/sci_tohome.cpp \
     sci_gateway/cpp/sci_lines.cpp \

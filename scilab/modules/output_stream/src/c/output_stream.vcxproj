@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -232,12 +232,10 @@ lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformSho
     <ClCompile Include="..\cpp\diary_manager.cpp" />
     <ClCompile Include="..\cpp\DiaryList.cpp" />
     <ClCompile Include="DllmainOutput_Stream.c" />
-    <ClCompile Include="errmds.c" />
     <ClCompile Include="erro.c" />
     <ClCompile Include="error.c" />
     <ClCompile Include="..\cpp\getDiaryDate.cpp" />
     <ClCompile Include="..\cpp\getFullFilename.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_output_stream.c" />
     <ClCompile Include="msgout.c" />
     <ClCompile Include="msgs.c" />
     <ClCompile Include="msgstore.c" />
@@ -278,7 +276,6 @@ lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformSho
     <ClInclude Include="..\..\includes\diary.h" />
     <ClInclude Include="..\..\includes\do_error_number.h" />
     <ClInclude Include="..\..\includes\dynlib_output_stream.h" />
-    <ClInclude Include="..\..\includes\errmds.h" />
     <ClInclude Include="..\..\includes\erro.h" />
     <ClInclude Include="..\..\includes\gw_output_stream.h" />
     <ClInclude Include="..\..\includes\msgs.h" />

@@ -25,7 +25,7 @@
         <refname>mexlib</refname>
         
         <refpurpose>
-            Mexlib is a module in Scilab YaSp. You can find build instructions in YaSp page. This module is based in <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">MATLAB mexlib specification.</ulink>
+            Mexlib is a module of Scilab 6. You can find build instructions in Scilab 6 page. This module is based in <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">MATLAB mexlib specification.</ulink>
         </refpurpose>
     </refnamediv>
     
@@ -102,9 +102,6 @@ r  =
             </member>
             <member>
                 <ulink url="http://www.mathworks.com/help/techdoc/apiref/bqoqnz0.html">mexlib specification</ulink>
-            </member>
-            <member>
-                <ulink url="http://wiki.scilab.org/YaSp">Build YaSp</ulink>
             </member>
         </simplelist>
     </refsection>

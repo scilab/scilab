@@ -92,12 +92,6 @@ flist(profilable)
                 <link linkend="deff">deff</link>
             </member>
             <member>
-                <link linkend="fun2string">fun2string</link>
-            </member>
-            <member>
-                <link linkend="macr2lst">macr2lst</link>
-            </member>
-            <member>
                 <link linkend="profile">profile</link>
             </member>
             <member>

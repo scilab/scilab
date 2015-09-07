@@ -40,7 +40,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     if (pIT->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for intput argument #%d: A string expected.\n"), "lib", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "lib", 1);
         return Function::Error;
     }
 
@@ -48,21 +48,37 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     if (pS->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for intput argument #%d: A string expected.\n"), "lib", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "lib", 1);
         return Function::Error;
     }
 
     wchar_t* pstPath = pS->get(0);
     wchar_t* pwstPath = expandPathVariableW(pstPath);
-    Library* lib = loadlib(pwstPath, false, false);
+    int err = 0;
+    Library* lib = loadlib(pwstPath, &err, false, false);
     FREE(pwstPath);
 
-    if (lib == NULL)
+    switch (err)
     {
-        char* path = wide_string_to_UTF8(pstPath);
-        Scierror(999, "File %s does not exist or read access denied.", path);
-        FREE(path);
-        return Function::Error;
+        case 0 :
+            //no error
+            break;
+        case 1:
+        {
+            char* pst = wide_string_to_UTF8(pstPath);
+            Scierror(999, _("%s: %s is not a valid lib path.\n"), "lib", pst);
+            FREE(pst);
+            return Function::Error;
+        }
+        case 2:
+        {
+            Scierror(999, "%s: %s", "lib", _("Redefining permanent variable.\n"));
+            return Function::Error;
+        }
+        default:
+        {
+            //nothing
+        }
     }
 
     out.push_back(lib);

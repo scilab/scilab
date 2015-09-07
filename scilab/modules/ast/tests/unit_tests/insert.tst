@@ -9,7 +9,7 @@
 //
 //
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 oldFuncProt = funcprot(0);
 ref = [0 0 0 ; 0 1 4 ; 0 2 5];
@@ -354,8 +354,11 @@ st.l.c = 24;
 assert_checkequal(st.l, struct("c", 24));
 clear st;
 
-// list delete
+// check error overload
+errmsg = msprintf(gettext("%s: Affection of a string in a matrix of numbers is not implemented.\n"), "%c_i_s");
+assert_checkerror("a=1;a(1,1)=""d""", errmsg);
 
+// list delete
 tl = tlist(["toto" "gg" "ff" "uu"], 45, 89, 87);
 tl(2) = null();
 
@@ -516,3 +519,10 @@ assert_checktrue(err <> 0);
 st=initst();
 err=execstr("st(1:2).f(1:4).e = 5;", "errcatch");
 assert_checktrue(err <> 0);
+
+// insert without arguments
+errmsg = msprintf(gettext("Wrong insertion : Cannot insert without arguments."));
+assert_checkerror("a()=1;", errmsg);
+assert_checkerror("a{}=1;", errmsg);
+a=1;
+assert_checkerror("a()=1;", errmsg);

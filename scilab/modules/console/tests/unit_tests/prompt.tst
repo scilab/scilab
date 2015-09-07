@@ -7,10 +7,10 @@
 // <-- CLI SHELL MODE -->
 // =============================================================================
 curprompt = prompt();
-if curprompt <> ascii([45.    45.    62.]) then pause,end
+if curprompt <> ascii([45.    45.    62.    32.]) then pause,end
 
 [curprompt, pause_level] = prompt();
-if curprompt <> ascii([45.    45.    62.]) then pause,end
+if curprompt <> ascii([45.    45.    62.    32.]) then pause,end
 if pause_level <> 0 then pause,end
 
 prompt("-- My Prompt -->");

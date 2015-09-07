@@ -7,6 +7,8 @@
 
 // <-- TEST WITH ATOMS -->
 //
+// <-- CLI SHELL MODE -->
+//
 // <-- Non-regression test for bug 13367 -->
 //
 // <-- Bugzilla URL -->

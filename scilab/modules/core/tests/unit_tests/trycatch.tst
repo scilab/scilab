@@ -331,7 +331,7 @@ deff("r=test()",[
 if test() then pause,end
 
 deff("test()",["try a=2; try a=xxxx; catch a=a+1,end; catch;b=2;end"])
-fun2string(test)
+macr2tree(tree2code(test))
 
 deff("r=test()",[
 "try a=2;try a=xxxx+33; catch a=a+1,end;catch;b=2;end"

@@ -177,14 +177,9 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
             {
                 deFunctionsManager.execFevalF(&nn, &valX, &valY, res, &itype);
             }
-            catch (ast::ScilabMessage &sm)
+            catch (ast::InternalError &ie)
             {
-                os << sm.GetErrorMessage();
-                bCatch = true;
-            }
-            catch (ast::ScilabError &e)
-            {
-                os << e.GetErrorMessage();
+                os << ie.GetErrorMessage();
                 bCatch = true;
             }
 
@@ -197,7 +192,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "feval", "execFevalF");
                 os << szError;
-                throw ast::ScilabMessage(os.str());
+                throw ast::InternalError(os.str());
             }
 
             if (itype) // is complex

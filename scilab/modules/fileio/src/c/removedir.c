@@ -197,6 +197,12 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
                     }
                 }
             }
+  
+            if (strFilePath)
+            {
+                FREE(strFilePath);
+                strFilePath = NULL;
+            }
         }
         while (FindNextFileW(hFile, &FileInformation) == TRUE);
 

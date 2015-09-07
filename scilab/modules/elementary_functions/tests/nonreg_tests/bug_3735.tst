@@ -9,7 +9,7 @@
 // Copyright INRIA 2008
 // Date : November 2008
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 A = ["First Row";"Second Row"];
 B = ["Third Row";"Fourth Row"];

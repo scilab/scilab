@@ -9,11 +9,8 @@ ExceptionMessage
 callFunctionFromGateway
 com_
 fortran_mex_gateway
-intersci_
 errorinfo_
-stack_
 GetData
-vstk_
 MyHeapAlloc
 MyHeapFree
 

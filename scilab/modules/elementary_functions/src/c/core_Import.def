@@ -10,14 +10,11 @@ isanan_
 callFunctionFromGateway
 com_
 overload_
-vstk_
-stack_
 crebmat_
 checklhs_
 checkrhs_
 createvarfromptr_
 putlhsvar_
-intersci_
 createvar_
 GetData
 check_length

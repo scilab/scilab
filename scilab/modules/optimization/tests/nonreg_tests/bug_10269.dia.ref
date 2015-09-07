@@ -38,7 +38,5 @@ refMsg = msprintf(_("%s: Q is not symmetric positive definite.\n"), "qp_solve");
 assert_checkerror("[x, iact, iter, f] = qp_solve(Q, p, [C1 C2], [b1; b2], me);", refMsg);
 // Provoked error, with flag
 [x, iact, iter, f, info] = qp_solve(Q, p, [C1 C2], [b1; b2], me);
-
 qp_solve: Warning: Q is not symmetric positive definite. The results may be inaccurate.
-
 assert_checkequal(info, 2);

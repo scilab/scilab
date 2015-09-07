@@ -391,7 +391,7 @@ inline static void putInContext_M(symbol::Context * ctxt, symbol::Variable * var
 
 static void jit_throw(const char * msg)
 {
-    throw ast::ScilabError(msg);
+    throw ast::InternalError(msg);
 }
 
 inline static bool InitializeLLVM()

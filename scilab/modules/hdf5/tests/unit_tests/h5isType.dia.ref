@@ -28,7 +28,7 @@ b = h5open(TMPDIR + "/x.sod", "r");
 assert_checkfalse(h5isType(b));
 assert_checkfalse(h5isType(b.root));
 assert_checkfalse(h5isType(b.root.x));
-assert_checktrue(h5isType(b.root.x.type));
+assert_checktrue(h5isType(b.root.x("0").type));
 h5close(b)
 c = h5open(TMPDIR + "/y.sod", "r");
 assert_checkfalse(h5isType(c));

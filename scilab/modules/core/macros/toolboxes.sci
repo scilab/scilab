@@ -30,7 +30,7 @@ function [y] = toolboxes(path)
         else
             Path = %toolboxes_dir + tmp;
         end
-        y = "exec(""" + %toolboxes_dir + %toolboxes(path) + filesep() + "loader.sce" + """);";
+        y = "exec(""" + pathconvert(Path) + filesep() + "loader.sce" + """);";
         return
     end
 

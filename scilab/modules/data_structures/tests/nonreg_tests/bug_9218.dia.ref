@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/9218
 //
 // <-- Short Description -->
-// a("b") = 10 makes Scilab crash 
+// a("b") = 10 makes Scilab crash
 // but a = struct(); a("b") = 10 works.
 clear a
 a("b") = 10;

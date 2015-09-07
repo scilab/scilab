@@ -60,6 +60,7 @@ wchar_t* mgetstr(int _iFileId, int _iSizeToRead)
                 if (feof(pF->getFiledesc()))
                 {
                     pwstOut = to_wide_string(buffer);
+                    FREE(buffer);
                     return pwstOut;
                 }
                 if (pstRes == NULL)

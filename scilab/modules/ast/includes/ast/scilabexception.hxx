@@ -17,6 +17,7 @@
 #include <stdexcept>
 #include "location.hxx"
 #include "localization.hxx"
+//#include "configvariable.hxx"
 
 extern "C"
 {
@@ -32,41 +33,41 @@ extern "C"
 
 namespace ast
 {
+
+enum ExceptionType
+{
+    TYPE_ERROR,
+    TYPE_EXCEPTION
+};
+
 class ScilabException : public std::exception
 {
 public :
-    ScilabException()
+    ScilabException() {}
+
+    ScilabException(const std::wstring& _wstErrorMesssage)
     {
-        createScilabException(L"", 0, Location());
+        m_type = TYPE_EXCEPTION;
+        createScilabException(_wstErrorMesssage, 999, Location());
     }
 
-    ScilabException(std::wstring _wstErrorMesssage)
+    ScilabException(const std::string& _stErrorMesssage)
     {
-        setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
-        createScilabException(_wstErrorMesssage, 0, Location());
-    }
-
-    ScilabException(std::string _stErrorMesssage)
-    {
+        m_type = TYPE_EXCEPTION;
         wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
-        setLastError(999, pwst, 0, NULL);
-        createScilabException(pwst, 0, Location());
+        createScilabException(pwst, 999, Location());
         FREE(pwst);
     }
-    ScilabException(const Location& _ErrorLocation)
-    {
-        createScilabException(L"", 0, _ErrorLocation);
-    }
 
-    ScilabException(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
+    ScilabException(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
     {
-        setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), _ErrorLocation.first_line, NULL);
+        m_type = TYPE_EXCEPTION;
         createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
     }
 
     virtual ~ScilabException() throw() {};
 
-    void SetErrorMessage(std::wstring _wstErrorMesssage)
+    void SetErrorMessage(const std::wstring& _wstErrorMesssage)
     {
         m_wstErrorMessage = _wstErrorMesssage;
     }
@@ -95,14 +96,25 @@ public :
     {
         return m_ErrorLocation;
     }
+
+    void SetErrorType(ExceptionType _type)
+    {
+        m_type = _type;
+    }
+
+    ExceptionType GetErrorType(void)
+    {
+        return m_type;
+    }
+
 protected :
     std::wstring m_wstErrorMessage;
-
     int m_iErrorNumber;
     Location m_ErrorLocation;
+    ExceptionType m_type;
 
 protected :
-    void createScilabException(std::wstring _wstErrorMessage, int _iErrorNumber, const Location& _ErrorLocation)
+    void createScilabException(const std::wstring& _wstErrorMessage, int _iErrorNumber, const Location& _ErrorLocation)
     {
         m_wstErrorMessage = _wstErrorMessage;
         m_iErrorNumber = _iErrorNumber;
@@ -110,44 +122,32 @@ protected :
     }
 };
 
-class ScilabError : public ScilabException
+class InternalError : public ScilabException
 {
 public :
-    ScilabError() : ScilabException() {}
-    ScilabError(std::wstring _wstErrorMesssage) : ScilabException(_wstErrorMesssage) {}
-    ScilabError(std::string _stErrorMesssage) : ScilabException(_stErrorMesssage) {}
-    ScilabError(const Location& _ErrorLocation) : ScilabException(_ErrorLocation) {}
-    ScilabError(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation) {}
+    InternalError(std::wstring _wstErrorMesssage) : ScilabException(_wstErrorMesssage)
+    {
+        m_type = TYPE_ERROR;
+        setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
+    }
+
+    InternalError(std::string _stErrorMesssage) : ScilabException(_stErrorMesssage)
+    {
+        m_type = TYPE_ERROR;
+        setLastError(999, m_wstErrorMessage.c_str(), 0, NULL);
+    }
+
+    InternalError(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation)
+    {
+        m_type = TYPE_ERROR;
+        setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), _ErrorLocation.first_line, NULL);
+    }
 };
 
 class InternalAbort : public ScilabException
 {
 public :
     InternalAbort() {}
-};
-
-class ScilabMessage : public ScilabException
-{
-public :
-    ScilabMessage() : ScilabException() {}
-    ScilabMessage(std::wstring _wstErrorMesssage)
-    {
-        createScilabException(_wstErrorMesssage, 0, Location());
-    }
-
-    ScilabMessage(std::string _stErrorMesssage)
-    {
-
-        wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
-        createScilabException(pwst, 0, Location());
-        FREE(pwst);
-    }
-
-    ScilabMessage(const Location& _ErrorLocation) : ScilabException(_ErrorLocation) {}
-    ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
-    {
-        createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
-    }
 };
 }
 #endif // !AST_SCILABEXCEPTION_HXX

@@ -160,7 +160,7 @@ int func_comp(char* fname, int _iMini, void* pvApiCtx)
             }
             break;
         case sci_sparse:
-            //TODO YASP
+            //TODO Scilab 6
             //if(iModeActive)
             //	sci_spmin(fname, pvApiCtx);
             //else

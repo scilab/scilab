@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -111,14 +111,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"hypermat"</term>
-                <listitem>
-                    <para>
-                        オブジェクトがハイパー行列の場合(N &gt;=3 のN次元配列).
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>"st"</term>
                 <listitem>
                     <para>オブジェクトが構造体配列の場合.</para>
@@ -151,7 +143,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"size implicit"</term>
+                <term>"implicitlist"</term>
                 <listitem>
                     <para>
                         オブジェクトが
@@ -178,7 +170,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 typeof(1)
 typeof(poly(0,'x'))
 typeof(1/poly(0,'x'))

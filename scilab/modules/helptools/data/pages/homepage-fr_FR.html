@@ -32,14 +32,66 @@
     <br/>
     <br/>
 
-    <!-- Scilab 6.0.0 -->
     <div class="refsection">
-      <h3 class="title">Nouveautés</h3>
-      <h2>Scilab 6.0.0</h2>
-      Scilab 6.0.0 est ...
-      <br/><br/>
-      <a href="http://www.scilab.org/community/news/XXXXXXXX/release_notes">Voir les notes de version de Scilab 6.0.0 (anglais)</a>
-      <br/>
+      <h3 class="title">Bienvenue dans Scilab 6.0.0-alpha-1</h3>
+      <p class="para">
+        Scilab 6.0.0 est une nouvelle version majeure de Scilab, la plateforme open source de calcul numérique. Cette version 6.0.0-alpha-1 est un aperçu pour les développeurs, les partenaires et la communauté à des fins de tests.
+      </p>
+      <p class="para">
+        Comme toute alpha, cette version n’est encore pas prête pour être utilisée en production. Si vous débutez sur Scilab, ou si vous êtes un simple utilisateur, vous devriez continuer à utiliser la version 5.5.2, et attendre une version bêta avant d'essayer la famille 6.
+      </p>
+
+      <p class="para">
+        Toutefois, si vous avez déjà développé du code sur Scilab, ou si vous êtes un utilisateur avancé, vous pourriez être intéressé par cette version. Pourquoi ne pas essayer vos développements effectués sur des versions antérieures de Scilab dans cette version : vérifier la compatibilité peut vous économiser du temps par la suite. Si vous trouvez des bugs ou des incompatibilités, merci de les signaler sur notre <a href="http://bugzilla.scilab.org/" class="ulink">gestionnaire de bugs</a> : cela vous aidera à avoir un meilleur produit, plus rapide, dont vous serez également bénéficiaire.
+      </p>
+
+      <h2 class="title">Les nouveautés de Scilab 6.0.0-alpha-1</h2>
+
+      <p class="para">
+        Cette version inclut une réécriture majeure du noyau interne de Scilab. Les modifications apportées aux aspects visibles du logiciel sont limitées.
+      </p>
+      <p class="para">
+        Le premier grand changement interne est un tout nouvel analyseur syntaxique et un interprète, incluant les modifications suivantes :
+        <ul>
+          <li>Le langage est beaucoup plus cohérent et prévisible,</li>
+          <li>La grammaire est plus stricte, mais plus cohérente,</li>
+          <li>La gestion des erreurs a été améliorée (mais peut encore être limitée dans l'alpha : merci d’avance de nous signaler les problèmes que vous pourriez rencontrer),</li>
+          <li>Le langage est légèrement plus comptabile avec le langage Matlab (par exemple dans le cas d’instructions de contrôle telles que les déclarations switch/case).</li>
+        </ul>
+      </p>
+      <p class="para">
+        Les changements de langage ne sont pas tous rétrocompatibles. Vous devez mettre à jour vos scripts/programmes/modules, ce qui devrait être très rapide dans la plupart des cas. Par exemple, les modifications suivantes peuvent nécessiter des adaptations d’un code existant :
+        <ul>
+          <li>Les chaînes de caractères littérales ne peuvent pas mélanger des délimiteurs simple quote et double quote: elles doivent commencer et finir avec soit des simple quotes, soit des double quotes,</li>
+          <li>L’utilisation des virgules (pour avoir plusieurs instructions sur une même ligne) a été clarifiée : elles ne peuvent pas être utilisées après des instructions de contrôle comme <a href="try.html">try</a>,</li>
+          <li>Trois points ou plus ne sont plus supportés.</li>
+        </ul>
+        </p>
+      <p class="para">
+        Le deuxième grand changement interne, est la possibilité de manipuler de plus grands ensembles de données, sans épuiser les ressources du système. Cela comprend en particulier :
+        <ul>
+          <li>Une meilleure gestion de la mémoire. L’utilisation de la mémoire est dorénavant limitée par la mémoire de la machine. Cette fonctionnalité était très attendue et nécessaire. <i>stacksize</i> n’est donc plus utile.</li>
+          <li>Les grandes tailles de données sont supportées en particulier pour les fichiers HDF5,</li>
+          <li>Des nouveaux types de données et des améliorations : les entiers 64 bits; la possibilité de définir des types d'utilisateurs dans les modules C++. En outre, les matrices de plus de deux dimensions sont maintenant implémentées de manière native.</li>
+          <li>Les structures de données natives (cell, struct), ainsi que les matrices multidimensionnelles ont, dans la plupart des cas, de meilleures performances, tant en utilisation de la mémoire, qu’en rapidité d'exécution. Si dans certains cas, vous observez une baisse de performances, nous vous remercions de nous le signaler.</li>
+        </ul>
+      </p>
+      <p class="para">
+        Ces changements peuvent ne pas impacter certains utilisateurs finaux, mais ils étaient grandement nécessaires, ont été travaillés très sérieusement pour apporter des améliorations majeures à la plateforme Scilab. Ces améliorations conduiront à de nouvelles améliorations futures, en termes de gestion de code, d’outils de développement (débogueur, analyseur ...), ainsi que des améliorations de Xcos, qui ne seraient pas possibles sans cette version.
+      </p>
+      <h2 class="title">Nouvelles fonctionnalités spécifiques et changelog complet</h2>
+      <p class="para">
+        Pour une liste complète des changements entre la version 5.5.2 et cette version, veuillez consulter le fichier CHANGES_6.0.X présent à la racine de l'installation de Scilab.
+      </p>
+      <h2 class="title">Principales limitations</h2>
+      <p class="para">
+        Plusieurs éléments importants de la plateforme ne sont pas fonctionnels dans cette alpha :
+        <ul>
+          <li>Xcos ne fonctionne pas encore; l'éditeur ne fonctionne pas encore dans cette version alpha 1 (il le sera dans la version finale, bien sûr). Le simulateur a été porté, mais n’est pas encore utilisable,</li>
+          <li>TLes fonctionnalités de débogage et de profiling disponibles dans la version 5.5.2 ne sont pas portées dans la 6; Très probablement, elles seront remplacées par de toutes nouvelles fonctionnalités,</li>
+          <li>ATOMS est fonctionnel, mais comme aucun des modules ATOMS actuellement disponibles sur <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> n’a été porté, il n’est pas d'une grande utilité.</li>
+        </ul>
+      </p>
     </div>
 
     <hr/>

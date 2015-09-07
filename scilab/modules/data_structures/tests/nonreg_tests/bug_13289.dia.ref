@@ -12,9 +12,4 @@
 //
 // <-- Short Description -->
 // l=mlist(["A" "a"],1);l(rand(2,1))=0 lead to a segfault
-l = mlist(["A" "a"], 1);
-assert_checkerror("l(rand(2,1)) = 0;", msprintf(_("Undefined operation for the given operands.\n") + "%s", msprintf(_("check or define function %s for overloading.\n"), "%s_i_A")));
-assert_checkerror: No error was produced while evaluating "l(rand(2,1)) = 0;".
-at line    93 of function assert_checkerror called by :
-assert_checkerror("l(rand(2,1)) = 0;", msprintf((_("Undefined operation for the given operands.\n") + "%s"), msprintf(_("check or define function %s for overloading.\n"), "%s_i_A")))
-at line    32 of exec file called by :
+assert_checkerror("l = mlist([""A"" ""a""], 1);l(rand(2,1)) = 0;", msprintf(_("Function not defined for given argument type(s),\n") + "%s", msprintf(_("  check arguments or define function %s for overloading.\n"), "%s_i_A")));

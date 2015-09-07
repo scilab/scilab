@@ -284,6 +284,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
             pD->setImg(_pdblImg[i]);
         }
         pP->setCoef(i, pD);
+        delete pD;
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);

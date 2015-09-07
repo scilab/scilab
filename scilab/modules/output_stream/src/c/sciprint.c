@@ -13,9 +13,9 @@
 #include <string.h>
 #include "sciprint.h"
 #include "diary.h"
-#include "stack-def.h" /* bsiz */
 #include "configvariable_interface.h"
 #include "ConsolePrintf.h"
+#include "machine.h" /* bsiz */
 #ifdef _MSC_VER
 #include "TermPrintf.h"
 #endif

@@ -8,7 +8,7 @@
 // Check scicos_diagram
 function assert_check_diagram(scs_m)
     // check type
-    assert_checkequal(type(scs_m), 17);
+    assert_checktrue(or(type(scs_m) == [17 128]));
     assert_checkequal(fieldnames(scs_m), ["props"; "objs"; "version"; "contrib"]);
     // check props
     assert_check_props(scs_m.props);

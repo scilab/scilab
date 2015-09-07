@@ -83,7 +83,7 @@ int Store_Scan(int *nrow, int *ncol, sfdir *type_s, sfdir *type, int *retval, in
             if ( (*data = (entry *) REALLOC(*data, nc * nr * sizeof(entry))) == NULL)
             {
                 err = DO_XXPRINTF_MEM_LACK;
-                goto bad2;
+                goto bad1;
             }
         }
     }
@@ -131,8 +131,9 @@ bad1:
         {
             FREE(buf[j].c);
         }
-
+    return err;
 bad2:
+
     return err;
 }
 /*--------------------------------------------------------------------------*/

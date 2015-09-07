@@ -96,8 +96,9 @@ void encode(T* input, std::vector<double> &ret)
 
     // Using contiguity of the memory, we save the input into 'ret'
     // Use a buffer to fill the entirety of 'ret'
-    double* data = &(*ret.end());
-    ret.resize(ret.size() + nDoubleNeeded);
+    size_t size = ret.size();
+    ret.resize(size + nDoubleNeeded);
+    double* data = ret.data() + size;
     memcpy(data, input->get(), iElements * sizeof(typename T::type));
 }
 
@@ -122,14 +123,14 @@ static void encode(types::Double* input, std::vector<double> &ret)
     }
     ret.push_back(isComplex);
 
-    double* data = &(*ret.end());
-    ret.resize(ret.size() + iElements);
+    size_t size = ret.size();
+    ret.resize(size + iElements * (isComplex + 1));
+    double* data = ret.data() + size;
     memcpy(data, input->getReal(), iElements * sizeof(double));
+
     if (isComplex == 1)
     {
-        data = &(*ret.end());
-        ret.resize(ret.size() + iElements);
-        memcpy(data, input->getImg(), iElements * sizeof(double));
+        memcpy(data + iElements, input->getImg(), iElements * sizeof(double));
     }
 
     // An empty matrix input will return [12; 2; 0; 0; 0]
@@ -176,8 +177,9 @@ static void encode(types::String* input, std::vector<double> &ret)
         ret.push_back(offsets[i]);
     }
 
-    double* data = &(*ret.end());
-    ret.resize(ret.size() + offsets[iElements - 1]);
+    size_t size = ret.size();
+    ret.resize(size + offsets[iElements - 1]);
+    double* data = ret.data() + size;
 
     size_t len = pLengths[0];
     memcpy(data, utf8[0], len * sizeof(char));

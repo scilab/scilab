@@ -11,4 +11,4 @@ rem http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
   @rem Allan CORNET INRIA 2006
   @cd ..\..\..\
   @del lib /s 2>NUL
-  @del *.moc /s 2>NUL
+  @del *.bin /s 2>NUL

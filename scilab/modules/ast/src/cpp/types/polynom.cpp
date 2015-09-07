@@ -989,7 +989,7 @@ InternalType* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
         wchar_t* pwstError = to_wide_string(szError);
         std::wstring wstError(pwstError);
         FREE(pwstError);
-        throw ast::ScilabError(wstError, 999, *new Location());
+        throw ast::InternalError(wstError);
     }
     return ArrayOf<SinglePoly*>::insert(_pArgs, _pSource);
 }

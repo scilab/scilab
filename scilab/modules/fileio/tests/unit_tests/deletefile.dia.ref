@@ -8,7 +8,7 @@
 filename = pathconvert(TMPDIR+"/filetodelete_1.txt",%F);
 // First test-case : Regular use
 fd=mopen ( filename , "w" );
-mclose(fd); 
+mclose(fd);
 computed = deletefile ( filename );
 if computed <> %t then bugmes();quit;end
 // Second test-case : Wrong use then correct use

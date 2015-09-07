@@ -56,7 +56,7 @@ void DebugVisitor::DEBUG(wstring str, const Exp &e)
     Location loc = e.getLocation();
     *ostr << L" @(" << loc.first_line << L"." << loc.first_column << L" -> ";
     *ostr << loc.last_line << L"." << loc.last_column << L")";
-    *ostr << L" Deco(" << e.getDecorator() << L")" << endl;
+    //*ostr << L" Deco(" << e.getDecorator() << L")" << endl;
 }
 
 
@@ -171,18 +171,18 @@ void DebugVisitor::visit (const NilExp &e)
 
 void DebugVisitor::visit (const SimpleVar &e)
 {
-    analysis::TIType type = e.getDecorator().getResult().getType();
     std::wstring ty;
+    analysis::TIType type = e.getDecorator().getResult().getType();
     if (type.type != analysis::TIType::UNKNOWN)
     {
-        if (type.isscalar())
-        {
-            ty = L" (" + analysis::TIType::toString(type.type) + L")";
-        }
-        else
-        {
-            ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
-        }
+       if (type.isscalar())
+       {
+           ty = L" (" + analysis::TIType::toString(type.type) + L")";
+       }
+       else
+       {
+           ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
+       }
     }
 
     DEBUG_START_NODE(e);

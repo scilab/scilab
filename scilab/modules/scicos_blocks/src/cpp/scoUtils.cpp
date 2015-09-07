@@ -35,8 +35,8 @@ int findChildWithKindAt(int parent, int type, const int position)
 {
     int child = 0;
 
-    int childrenCount;
-    int*children;
+    int childrenCount = 0;
+    int*children = NULL;
 
     int i;
     int iChildType = -1;

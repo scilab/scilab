@@ -10,9 +10,9 @@
 //===============================
 function [] = check_completion(actual, expected)
     for i = 1 : size(actual, "r")
-    [start,end,match] = regexp(actual(i,1), "/(?i)^(" + expected + ")/");
-    assert_checktrue(match <> "");
-end
+        [start,end,match] = regexp(actual(i,1), "/(?i)^(" + expected + ")/");
+        assert_checktrue(match <> "");
+    end
 endfunction
 // File paths
 if (getos() == "Windows") then

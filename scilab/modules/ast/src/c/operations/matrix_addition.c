@@ -29,7 +29,7 @@ int iAddScilabPolynomToScilabPolynom(double* _pCoef1R, int _iRank1, double* _pCo
     for (iRank = 0; iRank < iRankMin ; iRank++)
     {
         dblSum = _pCoef1R[iRank] + _pCoef2R[iRank];
-        if (fabs(dblSum) > Max(fabs(_pCoef1R[iRank]), fabs(_pCoef2R[iRank])) * 2 * getRelativeMachinePrecision())
+        if (fabs(dblSum) > Max(fabs(_pCoef1R[iRank]), fabs(_pCoef2R[iRank])) * 2 * nc_eps())
         {
             _pCoefOutR[iRank] = dblSum;
         }

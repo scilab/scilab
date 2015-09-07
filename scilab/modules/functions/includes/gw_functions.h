@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 FUNCTIONS_SCILAB_IMPEXP int gw_functions(void);
 /*--------------------------------------------------------------------------*/
-//YaSp
+//Scilab 6
 FUNCTIONS_SCILAB_IMPEXP int sci_libfunc(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FUNCTIONS_H__ */

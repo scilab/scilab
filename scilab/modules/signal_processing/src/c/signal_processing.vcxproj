@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -198,7 +198,6 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     <ClCompile Include="conv2.c" />
     <ClCompile Include="corrtable.c" />
     <ClCompile Include="DllmainSignal_processing.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_signal.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h" />

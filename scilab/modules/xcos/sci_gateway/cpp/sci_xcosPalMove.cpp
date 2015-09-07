@@ -47,6 +47,7 @@ int sci_xcosPalMove(char *fname, void* pvApiCtx)
     /* target setup */
     if (readVectorString(pvApiCtx, 2, &target, &targetLength, fname))
     {
+        releaseVectorString(target, targetLength);
         return 0;
     }
 
@@ -58,15 +59,21 @@ int sci_xcosPalMove(char *fname, void* pvApiCtx)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
+        releaseVectorString(source, sourceLength);
+        releaseVectorString(target, targetLength);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
     catch (GiwsException::JniException &exception)
     {
+        releaseVectorString(source, sourceLength);
+        releaseVectorString(target, targetLength);
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 
+    releaseVectorString(source, sourceLength);
+    releaseVectorString(target, targetLength);
     PutLhsVar();
     return 0;
 }

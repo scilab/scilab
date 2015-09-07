@@ -175,7 +175,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                 {
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n").c_str(), wstField.c_str());
-                    throw ast::ScilabError(szError, 999, e.getLocation());
+                    throw ast::InternalError(szError, 999, e.getLocation());
                 }
             }
 
@@ -375,6 +375,15 @@ void Struct::deleteAll()
 void Struct::deleteImg()
 {
     return;
+}
+
+bool Struct::isEmpty()
+{
+    if (getDims() == 2 && getRows() == 0 && getCols() == 0)
+    {
+        return true;
+    }
+    return false;
 }
 
 SingleStruct** Struct::allocData(int _iSize)
@@ -614,17 +623,15 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
         {
             break;
         }
-        else if (iIndex > (int)get(0)->getData().size() + 2)
+        else if (iIndex > (int)get(0)->getNumFields() + 2)
         {
             break;
         }
         else if (getSize() == 1)
         {
             //return elements
-            std::list<InternalType*> pData = get(0)->getData();
-            std::list<InternalType*>::iterator it = pData.begin();
-            std::advance(it, iIndex - 3);
-            ResultList.push_back((*it)->clone());
+            const std::vector<InternalType*> & pData = get(0)->getData();
+            ResultList.push_back(pData[iIndex - 3]->clone());
         }
         else
         {
@@ -634,10 +641,8 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
             for (int j = 0 ; j < getSize() ; j++)
             {
                 //-2 for fieldlist and dims, -1 for indexed at 0
-                std::list<InternalType*> pData = get(j)->getData();
-                std::list<InternalType*>::iterator it = pData.begin();
-                std::advance(it, iIndex - 3);
-                pL->append((*it)->clone());
+                const std::vector<InternalType*> & pData = get(j)->getData();
+                pL->append(pData[iIndex - 3]->clone());
             }
 
             ResultList.push_back(pL);
@@ -711,5 +716,10 @@ void Struct::deleteData(SingleStruct* data)
     {
         data->killMe();
     }
+}
+
+Struct* Struct::createEmpty()
+{
+    return new Struct();
 }
 }

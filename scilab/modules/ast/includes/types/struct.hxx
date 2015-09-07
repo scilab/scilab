@@ -78,13 +78,13 @@ public :
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring        getTypeStr()
     {
-        return L"st";
+        return L"struct";
     }
     /* return type as short string ( s, i, ce, l, ... )*/
     virtual std::wstring        getShortTypeStr()
     {
         return L"st";
-    };
+    }
     virtual bool                isContainer(void)
     {
         return true;
@@ -133,6 +133,7 @@ public :
 private :
     virtual SingleStruct*       getNullValue();
     virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual Struct*             createEmpty();
     virtual SingleStruct*       copyValue(SingleStruct* _pData);
     virtual void                deleteAll();
     virtual void                deleteImg();

@@ -152,11 +152,23 @@ public class XcosDiagram extends ScilabGraph {
     // the scicos engine current status
     private final transient CompilationEngineStatus engine;
 
+    // the associated object uid
+    private long id;
+
+
     /**
-     * Default constructor for a visible diagram
+     * FIXME:: do not commit
      */
     public XcosDiagram() {
         this(true);
+    }
+
+    /**
+     * Default constructor for a visible diagram
+     */
+    public XcosDiagram(long id) {
+        this(true);
+        this.id = id;
     }
 
     /**
@@ -1873,6 +1885,13 @@ public class XcosDiagram extends ScilabGraph {
      */
     public CompilationEngineStatus getEngine() {
         return engine;
+    }
+
+    /**
+     * @return the model ID
+     */
+    public long getId() {
+        return id;
     }
 
     /**

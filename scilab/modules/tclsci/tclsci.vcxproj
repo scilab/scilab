@@ -235,7 +235,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="src\c\DllMainTclsci.c" />
     <ClCompile Include="src\c\EnvTclTk.c" />
     <ClCompile Include="src\c\GlobalTclInterp.c" />
-    <ClCompile Include="sci_gateway\c\gw_tclsci.c" />
     <ClCompile Include="src\c\InitializeTclTk.c" />
     <ClCompile Include="src\c\InitTclTk.c" />
     <ClCompile Include="sci_gateway\c\sci_opentk.c" />

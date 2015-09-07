@@ -26,13 +26,11 @@ public:
     View() {};
     virtual ~View() {};
 
-    virtual void objectCreated(const ScicosID& uid, kind_t k) = 0;
-    virtual void objectDeleted(const ScicosID& uid, kind_t k) = 0;
-    virtual void objectUpdated(const ScicosID& uid, kind_t k) = 0;
-    virtual void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p) = 0;
-    virtual void propertyUpdated(const ScicosID& /*uid*/, kind_t /*k*/, object_properties_t /*p*/, update_status_t /*u*/)
-    {
-    };
+    virtual void objectCreated(const ScicosID& uid, kind_t kind) = 0;
+    virtual void objectReferenced(const ScicosID& uid, kind_t kind) = 0;
+    virtual void objectUnreferenced(const ScicosID& uid, kind_t kind) = 0;
+    virtual void objectDeleted(const ScicosID& uid, kind_t kind) = 0;
+    virtual void propertyUpdated(const ScicosID& uid, kind_t kind, object_properties_t property, update_status_t status) = 0;
 };
 
 } /* namespace org_scilab_modules_scicos */

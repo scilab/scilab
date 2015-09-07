@@ -64,7 +64,7 @@ int StoreCommand(char *command)
     return 0;
 }
 
-int StoreConsoleCommand(char *command)
+int StoreConsoleCommand(char *command, int iWaitFor)
 {
     ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),
@@ -72,11 +72,22 @@ int StoreConsoleCommand(char *command)
                                         /* is interruptible*/ 1,
                                         /* from console */ 1);
 
-    ThreadManagement::UnlockStoreCommand();
     // Awake Scilab to execute a new command
     ThreadManagement::SendCommandStoredSignal();
     // Awake Runner to execute this prioritary command
     ThreadManagement::SendAwakeRunnerSignal();
+
+    if (iWaitFor)
+    {
+        // make this wait before unlock the Store Command will prevent
+        // dead lock in case where an other thread get this command
+        // and execute it before this thread is waiting for.
+        ThreadManagement::WaitForConsoleExecDoneSignal();
+    }
+    else
+    {
+        ThreadManagement::UnlockStoreCommand();
+    }
 
     return 0;
 }
@@ -89,11 +100,12 @@ int StorePrioritaryCommand(char *command)
                                         /* is interruptible*/ 0,
                                         /* from console */ 0);
 
-    ThreadManagement::UnlockStoreCommand();
     // Awake Scilab to execute a new command
     ThreadManagement::SendCommandStoredSignal();
     // Awake Runner to execute this prioritary command
     ThreadManagement::SendAwakeRunnerSignal();
+
+    ThreadManagement::UnlockStoreCommand();
 
     return 0;
 }

@@ -17,7 +17,7 @@
 // <-- ENGLISH IMPOSED -->
 // Objective function
 function y=f(x)
-  y = sum(x.^2)
+    y = sum(x.^2)
 endfunction
 // Output function with a stop criterion
 function stop=output_ga_custom(gen_index, nb_generation, Pop, FObj_Pop, param)
@@ -59,7 +59,7 @@ ga_params = add_param(ga_params,"pressure",pressure);
 ga_params = add_param(ga_params, "threshold", 1E-6); // User defined parameter for the output function
 ga_params = add_param(ga_params, "output_func", output_ga_custom);
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = ..
-  optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
+optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 optim_ga: iteration 1 / 20 
     min / max value found = 6.4854E-03 / 1.1026E+00
 optim_ga: iteration 2 / 20 

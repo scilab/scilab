@@ -48,6 +48,7 @@ int sci_xcosPalCategoryAdd(char *fname, void* pvApiCtx)
     {
         if (readSingleBoolean(pvApiCtx, 2, &visible, fname))
         {
+            releaseVectorString(name, nameLength);
             return 0;
         }
     }
@@ -64,15 +65,18 @@ int sci_xcosPalCategoryAdd(char *fname, void* pvApiCtx)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
+        releaseVectorString(name, nameLength);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
     catch (GiwsException::JniException &exception)
     {
+        releaseVectorString(name, nameLength);
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 
+    releaseVectorString(name, nameLength);
     PutLhsVar();
     return 0;
 }

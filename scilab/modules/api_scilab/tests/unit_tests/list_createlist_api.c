@@ -38,7 +38,6 @@ int list_createlist(char *fname, void* pvApiCtx)
     double pdblSReal[]      = {1, 2, 3, 4};
     double pdblSImg[]       = {4, 3, 2, 1};
     int piBool[]            = {1, 0, 1, 0, 1, 0, 1, 0, 1};
-    double* pdblDataPtr     = NULL;
 
     sciErr = createList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 8, &piAddr);
     if (sciErr.iErr)
@@ -95,7 +94,7 @@ int list_createlist(char *fname, void* pvApiCtx)
     }
 
     //add list in list
-    sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 8, 3, &piChild);
+    sciErr = createListInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piAddr, 8, 2, &piChild);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -110,19 +109,6 @@ int list_createlist(char *fname, void* pvApiCtx)
     }
 
     sciErr = createSparseMatrixInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 2, 3, 10, 4, piNbItemRow, piColPos, pdblSReal);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
-    pdblDataPtr     = (double*)MALLOC(sizeof(double) * 4);
-    pdblDataPtr[0]  = 1;
-    pdblDataPtr[1]  = 2;
-    pdblDataPtr[2]  = 3;
-    pdblDataPtr[3]  = 4;
-
-    sciErr = createPointerInList(pvApiCtx, nbInputArgument(pvApiCtx) + 1, piChild, 3, pdblDataPtr);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

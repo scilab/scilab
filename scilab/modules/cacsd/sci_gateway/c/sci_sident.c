@@ -270,7 +270,6 @@ int sci_sident(char *fname, void* pvApiCtx)
     }
 
     // R(nr,nr)
-
     sciErr = getVarAddressFromPosition(pvApiCtx, 6, &piAddrR);
     if (sciErr.iErr)
     {
@@ -279,7 +278,7 @@ int sci_sident(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    getMatrixOfDouble(pvApiCtx, piAddrR, &iNR, &iNCOL, &pdblR);
+    sciErr = getMatrixOfDouble(pvApiCtx, piAddrR, &iNR, &iNCOL, &pdblR);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -305,7 +304,7 @@ int sci_sident(char *fname, void* pvApiCtx)
     iM = iNR / (2 * iNOBR) - iL;
 
     // tol
-    if (iRhs >= 6)
+    if (iRhs > 6)
     {
         int* piAddr = NULL;
 
@@ -317,8 +316,7 @@ int sci_sident(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        getScalarDouble(pvApiCtx, piAddr, &dblTOL);
-        if (sciErr.iErr)
+        if (getScalarDouble(pvApiCtx, piAddr, &dblTOL))
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 7);
@@ -328,7 +326,7 @@ int sci_sident(char *fname, void* pvApiCtx)
 
 
     // t
-    if (iRhs >= 7)
+    if (iRhs > 7)
     {
         cJOBCK = 'K';
         CHECK_PARAM(pvApiCtx, 8);
@@ -535,7 +533,7 @@ int sci_sident(char *fname, void* pvApiCtx)
     //Copy inputs from scilab workspace to locally allocated arrays.
     iSize = iLDR * iNCOL;
     C2F(dcopy)(&iSize, pdblR, &iOne, pR, &iOne);
-    if(iTASK >= 2 && iIJOB >= 3)
+    if (iTASK >= 2 && iIJOB >= 3)
     {
         iSize = iLDA * iN;
         C2F(dcopy)(&iSize, pdblA, &iOne, pA, &iOne);
@@ -549,26 +547,28 @@ int sci_sident(char *fname, void* pvApiCtx)
                 pRY, &iLDRY, pS, &iLDS, pK, &iLDK, &dblTOL, pIWORK, pDWORK,
                 &iLDWORK, pBWORK, &iWARN, &iINFO);
 
-    if(iWARN != 0 && iPRINTW)
+    if (iWARN != 0 && iPRINTW)
     {
         sciprint("IWARN = %d ON EXIT FROM IB01BD\n", iWARN);
     }
 
-    if(iINFO != 0)
+    if (iINFO != 0)
     {
         Scierror(999, _("%s: INFO = %d ON EXIT FROM IB01BD\n"), fname, iINFO);
     }
     else //Copy output to scilab workspace.
     {
-        if(iIJOB <= 2)
+        if (iIJOB <= 2)
         {
-            createMatrixOfDouble(pvApiCtx, iRhs + 1, iN, iN, pA);
             iIP = 1;
+            createMatrixOfDouble(pvApiCtx, iRhs + iIP, iN, iN, pA);
+            AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
 
-            if(iLhs > 1)
+            if (iLhs > 1)
             {
-                createMatrixOfDouble(pvApiCtx, iRhs + 2, iLDC, iN, pC);
                 iIP = 2;
+                createMatrixOfDouble(pvApiCtx, iRhs + iIP, iLDC, iN, pC);
+                AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
             }
         }
         else
@@ -576,38 +576,43 @@ int sci_sident(char *fname, void* pvApiCtx)
             iIP = 0;
         }
 
-        if(iLhs > iIP)
+        if (iLhs > iIP)
         {
-            if(iIJOB == iIP || iIJOB >= 3)
+            if (iIJOB == 1 || iIJOB >= 3)
             {
                 iIP++;
                 createMatrixOfDouble(pvApiCtx, iRhs + iIP, iN, iM, pB);
+                AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
             }
 
-            if(iLhs > iIP)
+            if (iLhs > iIP)
             {
-                if(iIJOB == 1 || iIJOB == 4)
+                if (iIJOB == 1 || iIJOB == 4)
                 {
                     iIP++;
                     createMatrixOfDouble(pvApiCtx, iRhs + iIP, iL, iM, pD);
+                    AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
                 }
             }
         }
 
-        if(iNSMPL > 0 && iLhs > iIP)
+        if (iNSMPL > 0 && iLhs > iIP)
         {
             iIP++;
             createMatrixOfDouble(pvApiCtx, iRhs + iIP, iN, iN, pQ);
+            AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
             iIP++;
             createMatrixOfDouble(pvApiCtx, iRhs + iIP, iL, iL, pRY);
+            AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
             iIP++;
             createMatrixOfDouble(pvApiCtx, iRhs + iIP, iN, iL, pS);
+            AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
         }
 
-        if(iLhs > iIP)
+        if (iLhs > iIP)
         {
             iIP++;
-            if(iNSMPL == 0)
+            if (iNSMPL == 0)
             {
                 iNRC = 4;
             }
@@ -616,7 +621,8 @@ int sci_sident(char *fname, void* pvApiCtx)
                 iNRC = 12;
             }
 
-            createMatrixOfDouble(pvApiCtx, iRhs + iIP, iNRC, 1, pDWORK+2-1);
+            createMatrixOfDouble(pvApiCtx, iRhs + iIP, iNRC, 1, pDWORK + 2 - 1);
+            AssignOutputVariable(pvApiCtx, iIP) = iRhs + iIP;
         }
     }
 

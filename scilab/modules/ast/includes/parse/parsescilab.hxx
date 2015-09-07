@@ -43,8 +43,8 @@ extern int yydebug;
 /* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-  enum yytokentype
-  {
+enum yytokentype
+{
     YYEOF = 0,
     DOTS = 258,
     EOL = 259,
@@ -113,22 +113,23 @@ extern int yydebug;
     TRY = 322,
     CATCH = 323,
     RETURN = 324,
-    STR = 325,
-    ID = 326,
-    VARINT = 327,
-    VARFLOAT = 328,
-    NUM = 329,
-    PATH = 330,
-    COMMENT = 331,
-    BLOCKCOMMENT = 332,
-    TOPLEVEL = 333,
-    HIGHLEVEL = 334,
-    UPLEVEL = 335,
-    LISTABLE = 336,
-    CONTROLBREAK = 337,
-    UMINUS = 338,
-    FUNCTIONCALL = 339
-  };
+    FLEX_ERROR = 325,
+    STR = 326,
+    ID = 327,
+    VARINT = 328,
+    VARFLOAT = 329,
+    NUM = 330,
+    PATH = 331,
+    COMMENT = 332,
+    BLOCKCOMMENT = 333,
+    TOPLEVEL = 334,
+    HIGHLEVEL = 335,
+    UPLEVEL = 336,
+    LISTABLE = 337,
+    CONTROLBREAK = 338,
+    UMINUS = 339,
+    FUNCTIONCALL = 340
+};
 #endif
 /* Tokens.  */
 #define YYEOF 0
@@ -199,21 +200,22 @@ extern int yydebug;
 #define TRY 322
 #define CATCH 323
 #define RETURN 324
-#define STR 325
-#define ID 326
-#define VARINT 327
-#define VARFLOAT 328
-#define NUM 329
-#define PATH 330
-#define COMMENT 331
-#define BLOCKCOMMENT 332
-#define TOPLEVEL 333
-#define HIGHLEVEL 334
-#define UPLEVEL 335
-#define LISTABLE 336
-#define CONTROLBREAK 337
-#define UMINUS 338
-#define FUNCTIONCALL 339
+#define FLEX_ERROR 325
+#define STR 326
+#define ID 327
+#define VARINT 328
+#define VARFLOAT 329
+#define NUM 330
+#define PATH 331
+#define COMMENT 332
+#define BLOCKCOMMENT 333
+#define TOPLEVEL 334
+#define HIGHLEVEL 335
+#define UPLEVEL 336
+#define LISTABLE 337
+#define CONTROLBREAK 338
+#define UMINUS 339
+#define FUNCTIONCALL 340
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -222,7 +224,7 @@ union YYSTYPE
 {
 
 
-  /* Tokens. */
+    /* Tokens. */
     double                      number;
     std::wstring*               str;
     std::wstring*               path;
@@ -286,10 +288,10 @@ union YYSTYPE
 typedef struct YYLTYPE YYLTYPE;
 struct YYLTYPE
 {
-  int first_line;
-  int first_column;
-  int last_line;
-  int last_column;
+    int first_line;
+    int first_column;
+    int last_line;
+    int last_column;
 };
 # define YYLTYPE_IS_DECLARED 1
 # define YYLTYPE_IS_TRIVIAL 1

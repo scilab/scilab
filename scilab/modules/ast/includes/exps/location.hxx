@@ -31,8 +31,8 @@ public:
     /** \brief Construct a Location. */
     Location (void)
     {
-        first_line = last_line = 1;
-        first_column = last_column = 1;
+        first_line = last_line = 0;
+        first_column = last_column = 0;
     }
     /** \} */
 

@@ -6,8 +6,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- NOT FIXED -->
-
 //Checks syntactical aspects  related to functions
 funcprot(0);
 //
@@ -207,36 +205,36 @@ if size(O,"*")<>10 then pause,end
 // test line count in compiled macros
 //
 function a=foo(),a=1,endfunction
-L=macr2lst(foo);
-if L(4)(1)<>"6" then pause,end
+L=macr2tree(foo);
+if L(6)<>1 then pause,end
 
 clear foo
 function a=foo()
     a=1,
 endfunction
-L=macr2lst(foo);
-if L(4)(1)<>"15" then pause,end
+L=macr2tree(foo);
+if L(6)<>3 then pause,end
 
 clear foo
 function a=foo()//xxcxcx
     a=1,
 endfunction
-L=macr2lst(foo);
-if L(4)(1)<>"31" then pause,end
+L=macr2tree(foo);
+if L(6)<>3 then pause,end
 
 clear foo
 function a=foo(),
     a=1,
 endfunction
-L=macr2lst(foo);
-if L(4)(1)<>"15" then pause,end
+L=macr2tree(foo);
+if L(6)<>3 then pause,end
 
 clear foo
 function a=foo(),a=1//xxcxcx
     b=2
 endfunction
-L=macr2lst(foo);
-if L(4)(1)<>"6" then pause,end
+L=macr2tree(foo);
+if L(6)<>3 then pause,end
 
 
 clear foo
@@ -257,10 +255,8 @@ function a=foo1()
     a=sin(1),
 endfunction
 
-L=macr2lst(foo);
-t=L(9)(1)<>"6";
-for k=4:8,t=t|L(k)(1)<>"15";end
-if t then pause,end
+L=macr2tree(foo);
+t=L(6)<>7;
 if foo<>foo1 then pause,end
 
 
@@ -276,8 +272,8 @@ endfunction
 function a=foo1(),a=sin(1),
 endfunction
 
-L=macr2lst(foo);
-if L(4)(1)<>"6"  then pause,end
+L=macr2tree(foo);
+if L(6)<>6  then pause,end
 if foo<>foo1 then pause,end
 
 

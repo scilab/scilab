@@ -15,6 +15,7 @@
 #define __MSGS_H__
 
 #include "dynlib_output_stream.h"
+#include "machine.h" // C2F
 
 /**
  * @TODO : comment

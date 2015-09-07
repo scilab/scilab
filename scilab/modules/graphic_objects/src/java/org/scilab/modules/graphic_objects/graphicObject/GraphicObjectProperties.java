@@ -416,5 +416,11 @@ public class GraphicObjectProperties {
     public static final int __GO_UI_FRAME_BORDER_TYPE__ = 392;
     public static final int __GO_UI_SCROLLABLE__ = 393;
     public static final int __GO_COLOR_SET__ = 394;
+    public static final int __GO_MARK_SIZES__ = 395;
+    public static final int __GO_NUM_MARK_SIZES__ = 396;
+    public static final int __GO_MARK_FOREGROUNDS__ = 397;
+    public static final int __GO_NUM_MARK_FOREGROUNDS__ = 398;
+    public static final int __GO_MARK_BACKGROUNDS__ = 399;
+    public static final int __GO_NUM_MARK_BACKGROUNDS__ = 400;
 
 }

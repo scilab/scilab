@@ -14,8 +14,9 @@
 #ifndef __SINGLESTRUCT_HXX__
 #define __SINGLESTRUCT_HXX__
 
-#include <map>
-#include <list>
+#include <unordered_map>
+#include <vector>
+
 #include "internal.hxx"
 #include "string.hxx"
 
@@ -47,21 +48,25 @@ public :
         return true;
     }
 
+    inline int getNumFields() const
+    {
+        return static_cast<int>(m_wstFields.size());
+    }
+
     bool                                    toString(std::wostringstream& ostr);
 
     bool                                    set(const std::wstring& _sKey, InternalType *_typedValue);
     InternalType*                           get(const std::wstring& _sKey);
     bool                                    exists(const std::wstring& _sKey);
     InternalType*                           insert(typed_list* _pArgs, InternalType* _pSource);
-    std::vector<InternalType*>              extract(std::list<std::wstring> _stFields);
+    std::vector<InternalType*>              extract(std::vector<std::wstring> & _stFields);
     String*                                 getFieldNames();
     bool                                    addField(const std::wstring& _sKey);
     bool                                    addFieldFront(const std::wstring& _sKey);
-    std::list<InternalType *>               getData();
-    std::list<std::wstring>                 getFields();
+    std::vector<InternalType *> &           getData();
+    std::unordered_map<std::wstring, int> & getFields();
     int                                     getFieldIndex(const std::wstring& _field);
     bool                                    removeField(const std::wstring& _sKey);
-    void                                    addFieldsFront(String* _pStrFieldNames);
 
     bool                                    operator==(const InternalType& it);
     bool                                    operator!=(const InternalType& it);
@@ -78,8 +83,9 @@ public :
     }
 
 private :
-    std::list<std::wstring> m_wstFields;
-    std::list<InternalType *> m_Data;
+
+    std::unordered_map<std::wstring, int> m_wstFields;
+    std::vector<InternalType *> m_Data;
 };
 }
 

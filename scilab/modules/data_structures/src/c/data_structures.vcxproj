@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -200,8 +200,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="..\..\sci_gateway\cpp\sci_rlist.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_setfield.cpp" />
     <ClCompile Include="DllmainData_structures.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_data_structures1.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_data_structures2.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\data_structures_gw.hxx" />

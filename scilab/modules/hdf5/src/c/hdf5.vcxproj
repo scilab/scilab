@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../io/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;../../../console/includes;../../../graphic_objects/includes;../../../graphics/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>H5Topen_vers=2;H5Dcreate_vers=2;H5Aiterate_vers=2;H5Gcreate_vers=2;H5Gopen_vers=2;H5Tget_array_dims_vers=2;H5Acreate_vers=2;_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -110,7 +110,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../io/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;../../../console/includes;../../../graphic_objects/includes;../../../graphics/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>H5Topen_vers=2;H5Dcreate_vers=2;H5Aiterate_vers=2;H5Gcreate_vers=2;H5Gopen_vers=2;H5Tget_array_dims_vers=2;H5Acreate_vers=2;_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -138,7 +138,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../io/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;../../../console/includes;../../../graphic_objects/includes;../../../graphics/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>H5Topen_vers=2;H5Dcreate_vers=2;H5Aiterate_vers=2;H5Gcreate_vers=2;H5Gopen_vers=2;H5Tget_array_dims_vers=2;H5Acreate_vers=2;_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -173,7 +173,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/intl;../../../../libs/hdf5/include;../../../output_stream/includes;../../../core/includes;../../../api_scilab/includes;../../../localization/includes;../../../windows_tools/includes;../../../fileio/includes;../../../io/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../threads/includes;../../../dynamic_link/includes;../../../console/includes;../../../graphic_objects/includes;../../../graphics/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>H5Topen_vers=2;H5Dcreate_vers=2;H5Aiterate_vers=2;H5Gcreate_vers=2;H5Gopen_vers=2;H5Tget_array_dims_vers=2;H5Acreate_vers=2;_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HDF5_SCILAB_EXPORTS;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -203,6 +203,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\hdf5_gw.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_save.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5attr.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5close.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5cp.cpp" />
@@ -224,8 +225,14 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5rm.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5umount.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5write.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_is_hdf5_file.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_listvar_in_hdf5.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_file_version.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load_v1.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load_v3.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_is_file.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_listvar.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_listvar_v2.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_listvar_v3.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_percent_H5Object_e.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_percent_H5Object_fieldnames.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_percent_H5Object_p.cpp" />
@@ -250,27 +257,27 @@
     <ClCompile Include="..\cpp\H5Type.cpp" />
     <ClCompile Include="..\cpp\H5VariableScope.cpp" />
     <ClCompile Include="..\cpp\H5VlenData.cpp" />
+    <ClCompile Include="..\cpp\handle_properties.cpp" />
     <ClCompile Include="..\cpp\HDF5Scilab.cpp" />
-    <ClCompile Include="..\cpp\import_from_hdf5_v1.cpp" />
     <ClCompile Include="..\cpp\listvar_in_hdf5_v1.cpp" />
     <ClCompile Include="DllmainHdf5.c" />
     <ClCompile Include="h5_fileManagement.c" />
     <ClCompile Include="h5_readDataFromFile.c" />
     <ClCompile Include="h5_readDataFromFile_v1.c" />
     <ClCompile Include="h5_writeDataToFile.c" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_export_to_hdf5.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load_v2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_hdf5_scilab.h" />
     <ClInclude Include="..\..\includes\h5_readDataFromFile_v1.h" />
     <ClInclude Include="..\..\includes\HDF5Objects.h" />
-    <ClInclude Include="..\..\includes\import_from_hdf5_v1.hxx" />
+    <ClInclude Include="..\..\includes\hdf5_gw.hxx" />
     <ClInclude Include="..\..\includes\gw_hdf5.h" />
     <ClInclude Include="..\..\includes\h5_attributeConstants.h" />
     <ClInclude Include="..\..\includes\h5_fileManagement.h" />
     <ClInclude Include="..\..\includes\h5_readDataFromFile.h" />
     <ClInclude Include="..\..\includes\h5_writeDataToFile.h" />
+    <ClInclude Include="..\..\includes\hdf5_load_v1.hxx" />
     <ClInclude Include="..\..\includes\listvar_in_hdf5_v1.hxx" />
     <ClInclude Include="..\cpp\H5ArrayData.hxx" />
     <ClInclude Include="..\cpp\H5Attribute.hxx" />
@@ -312,13 +319,16 @@
     <ClInclude Include="..\cpp\H5UnsignedCharData.hxx" />
     <ClInclude Include="..\cpp\H5VariableScope.hxx" />
     <ClInclude Include="..\cpp\H5VlenData.hxx" />
+    <ClInclude Include="..\cpp\handle_properties.hxx" />
     <ClInclude Include="..\cpp\HDF5Scilab.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\hdf5.pot" />
     <None Include="core_import.def" />
     <None Include="..\..\hdf5.iss" />
-    <None Include="..\..\sci_gateway\hdf5_gateway.xml" />
+    <None Include="..\..\sci_gateway\hdf5_gateway.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="..\..\Makefile.am" />
   </ItemGroup>
   <ItemGroup>
@@ -342,6 +352,15 @@
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\graphics\graphics.vcxproj">
+      <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\graphic_objects\src\c\graphic_objects.vcxproj">
+      <Project>{30f9ee41-587b-4618-8de7-698d3fba4985}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\io\src\c\io.vcxproj">
+      <Project>{80c0f142-184b-4e08-a8ee-5e71437cf904}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
       <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>

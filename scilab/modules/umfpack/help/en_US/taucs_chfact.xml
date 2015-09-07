@@ -36,11 +36,7 @@
         </para>
         <para>If your matrix is s.p.d. this function must be used in place of
             <link linkend="umf_lufact">umf_lufact</link> or in place of the scilab
-            function <link linkend="chfact">chfact</link> for a gain in speed (also as
-            chfact uses the scilab memory for the factors the user must set the
-            stacksize with a large value because of the fill-in occuring in computing
-            the factor C which then may take more memory than the initial matrix
-            A).
+            function <link linkend="chfact">chfact</link> for a gain in speed.
         </para>
         <para>When such a factorization have been computed, a linear system must
             be solved with <link linkend="taucs_chsolve">taucs_chsolve</link>. <emphasis role="bold">To free the memory used by the Cholesky factors, use 

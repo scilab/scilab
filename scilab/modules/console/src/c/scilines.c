@@ -42,7 +42,6 @@
 
 #include "scilines.h"
 #include "core_math.h"
-#include "stack-def.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 #endif

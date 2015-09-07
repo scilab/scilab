@@ -7,9 +7,9 @@
 // <-- CLI SHELL MODE -->
 // =============================================================================
 curprompt = prompt();
-if curprompt <> ascii([45.    45.    62.]) then bugmes();quit;end
+if curprompt <> ascii([45.    45.    62.    32.]) then bugmes();quit;end
 [curprompt, pause_level] = prompt();
-if curprompt <> ascii([45.    45.    62.]) then bugmes();quit;end
+if curprompt <> ascii([45.    45.    62.    32.]) then bugmes();quit;end
 if pause_level <> 0 then bugmes();quit;end
 prompt("-- My Prompt -->");
 1+1;

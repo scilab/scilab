@@ -6,12 +6,8 @@ EXPORTS
 ;core
 ;
 com_
-stack_
-vstk_
 iop_
-errgst_
 adre_
-intersci_
 mexerrmsgtxt_
 mxgetm_
 mxisnumeric_

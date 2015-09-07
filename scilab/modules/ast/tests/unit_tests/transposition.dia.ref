@@ -4,12 +4,12 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 S = 123;
 C = [1 2;3 4];
 R = [1 2 3;4 5 6];
 SC = 1+2*%i
-SC  = 
+ SC  = 
     1. + 2.i
 CC = C + %i * [5 6;7 8];
 RC = R + %i * [7 8 9;10 11 12];

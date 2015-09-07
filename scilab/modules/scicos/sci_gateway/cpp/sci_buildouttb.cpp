@@ -312,6 +312,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         if ((n2 == 0) || (m2 == 0))
         {
             out.push_back(pOut);
+            delete[] p1Copy;
             return types::Function::OK;
         }
         else
@@ -319,6 +320,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             Scierror(888, _("%s : inconsistent dimensions between arguments.\n"), funname.data());
             delete[] p1Copy;
             delete[] p2Copy;
+            delete pOut;
             return types::Function::Error;
         }
     }
@@ -327,6 +329,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         Scierror(888, _("%s : bad dimension for argument #%d.\n"), funname.data(), 1);
         delete[] p1Copy;
         delete[] p2Copy;
+        delete pOut;
         return types::Function::Error;
     }
 
@@ -347,6 +350,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             Scierror(888, _("%s : inconsistent dimensions between arguments.\n"), funname.data());
             delete[] p1Copy;
             delete[] p2Copy;
+            delete pOut;
             return types::Function::Error;
         }
     }
@@ -355,6 +359,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         Scierror(888, _("%s : bad dimension for argument #%d.\n"), funname.data(), 2);
         delete[] p1Copy;
         delete[] p2Copy;
+        delete pOut;
         return types::Function::Error;
     }
 
@@ -364,6 +369,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         Scierror(888, _("%s : arguments must have the same length.\n"), funname.data());
         delete[] p1Copy;
         delete[] p2Copy;
+        delete pOut;
         return types::Function::Error;
     }
 

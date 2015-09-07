@@ -11,6 +11,7 @@
  */
 
 #include "configvariable.hxx"
+#include "threadmanagement.hxx"
 
 extern "C"
 {
@@ -35,7 +36,7 @@ void setScilabInputMethod(SCILAB_INPUT_METHOD reader)
 void C2F(scilabread)(char* strRead, int len)
 {
     char* str = scilabRead();
-    int size = Min(strlen(str), len - 1);
+    int size = Min(static_cast<int>(strlen(str)), len - 1);
     strncpy(strRead, str, size);
     strRead[size] = '\0';
     FREE(str);
@@ -43,6 +44,7 @@ void C2F(scilabread)(char* strRead, int len)
 
 char *scilabRead()
 {
+    ThreadManagement::LockScilabRead();
     if (getScilabMode() == SCILAB_STD)
     {
         /* Send new prompt to Java Console, do not display it */
@@ -72,6 +74,9 @@ char *scilabRead()
     wchar_t* pwstIn = to_wide_string(pstTemp);
     diaryWriteln(pwstIn, TRUE);
     FREE(pwstIn);
+
+    ConfigVariable::setConsoleReadStr(pstTemp);
+    ThreadManagement::UnlockScilabRead();
 
     return pstTemp;
 }

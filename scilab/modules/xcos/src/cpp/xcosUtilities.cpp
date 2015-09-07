@@ -172,3 +172,12 @@ int readVectorString(void* pvApiCtx, int rhsPosition, char*** out, int* vectorLe
     return 0;
 }
 
+void releaseVectorString(char** str, int len)
+{
+    for (int i = 0; i < len; ++i)
+    {
+        FREE(str[i]);
+    }
+    FREE(str);
+}
+

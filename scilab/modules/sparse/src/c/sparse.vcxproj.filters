@@ -26,9 +26,6 @@
     <ClCompile Include="DllmainSparse.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_sparse.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lu.c">
       <Filter>Source Files</Filter>
     </ClCompile>

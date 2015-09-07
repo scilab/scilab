@@ -53,4 +53,5 @@
 #include "../../special_functions/includes/special_functions_gw.hxx"
 #include "../../fftw/includes/fftw_gw.hxx"
 #include "../../ui_data/includes/ui_data_gw.hxx"
+#include "../../preferences/includes/preferences_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

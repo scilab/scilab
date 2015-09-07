@@ -99,23 +99,17 @@ std::wstring DiaryList::getFilename(int ID_diary)
     return wFilename;
 }
 /*--------------------------------------------------------------------------*/
-std::wstring * DiaryList::getFilenames(int *sizeFilenames)
+std::list<std::wstring> DiaryList::getFilenames()
 {
-    std::wstring *wFilenames = NULL;
-    *sizeFilenames = 0;
-
     LSTDIARY.sort(compareDiary);
+    int size = (int)LSTDIARY.size();
+    std::list<std::wstring> wFilenames(size);
 
-    *sizeFilenames = (int)LSTDIARY.size();
-    if (*sizeFilenames > 0)
+    if (size > 0)
     {
-        int i = 0;
-        std::list<Diary>::iterator iter;
-        wFilenames = new std::wstring[*sizeFilenames];
-
-        for ( iter = LSTDIARY.begin(); iter != LSTDIARY.end(); iter++)
+        for (auto& iter : LSTDIARY)
         {
-            wFilenames[i++] = iter->getFilename();
+            wFilenames.push_back(iter.getFilename());
         }
     }
     return wFilenames;

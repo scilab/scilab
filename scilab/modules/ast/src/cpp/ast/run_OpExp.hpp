@@ -27,7 +27,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
+            throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
         pITL = getResult();
 
@@ -39,7 +39,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
+            throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
         pITR = getResult();
 
@@ -189,7 +189,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             pITR->killMe();
         }
     }
-    catch (ast::ScilabError & error)
+    catch (ast::InternalError& error)
     {
         setResult(NULL);
         if (pResult)
@@ -230,7 +230,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             std::wostringstream os;
             os << _W("Incompatible output argument.\n");
             //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
+            throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
         }
 
         setResult(NULL);
@@ -269,7 +269,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     std::wostringstream os;
                     os << _W("Incompatible output argument.\n");
                     //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == GenericType::ScilabImplicitList)
@@ -304,7 +304,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     std::wostringstream os;
                     os << _W("Incompatible output argument.\n");
                     //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.getRight().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }
 
                 if (pITR->getType() == GenericType::ScilabImplicitList)
@@ -344,7 +344,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
         // unprotect pResult
         pResult->DecreaseRef();
     }
-    catch (ast::ScilabError error)
+    catch (ast::InternalError& error)
     {
         clearResult();
         error.SetErrorLocation(e.getLocation());
@@ -370,7 +370,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
         {
             Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
         }
-        catch (ast::ScilabError e)
+        catch (const ast::InternalError& e)
         {
             _paramR->DecreaseRef();
             throw e;
@@ -389,7 +389,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
     {
         Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
     }
-    catch (ast::ScilabError e)
+    catch (const ast::InternalError& e)
     {
         _paramL->DecreaseRef();
         _paramR->DecreaseRef();

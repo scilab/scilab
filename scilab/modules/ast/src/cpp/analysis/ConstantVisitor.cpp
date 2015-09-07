@@ -329,4 +329,159 @@ namespace analysis
             setResult(false);
         }
     }
+
+    void ConstantVisitor::visit(ast::IfExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::DollarVar & e)
+    {
+        setResult(false);
+    }
+
+    void ConstantVisitor::visit(ast::ColonVar & e)
+    {
+        setResult(false);
+    }
+
+    void ConstantVisitor::visit(ast::ArrayListVar & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::DoubleExp & e)
+    {
+        setResult(true);
+    }
+
+    void ConstantVisitor::visit(ast::BoolExp & e)
+    {
+        setResult(true);
+    }
+
+    void ConstantVisitor::visit(ast::StringExp & e)
+    {
+        setResult(true);
+    }
+
+    void ConstantVisitor::visit(ast::CommentExp & e)
+    {
+        // ignored
+    }
+
+    void ConstantVisitor::visit(ast::NilExp & e)
+    {
+        // nothing to do
+    }
+
+    void ConstantVisitor::visit(ast::CellCallExp & e)
+    {
+        setResult(false);
+    }
+
+    void ConstantVisitor::visit(ast::AssignExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::WhileExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::ForExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::BreakExp & e)
+    {
+        // nothing to do
+    }
+
+    void ConstantVisitor::visit(ast::ContinueExp & e)
+    {
+        // nothing to do
+    }
+
+    void ConstantVisitor::visit(ast::TryCatchExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::SelectExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::CaseExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::ReturnExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::FieldExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::MatrixLineExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::SeqExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::ArrayListExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::AssignListExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::VarDec & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::FunctionDec & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::OptimizedExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::MemfillExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::DAXPYExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::IntSelectExp & e)
+    {
+    }
+
+    void ConstantVisitor::visit(ast::StringSelectExp & e)
+    {
+    }
+    
+    std::unordered_set<std::wstring> ConstantVisitor::init()
+    {
+        std::unordered_set<std::wstring> _constants;
+        _constants.emplace(L"%pi");
+        _constants.emplace(L"%eps");
+        _constants.emplace(L"%e");
+        _constants.emplace(L"%i");
+        _constants.emplace(L"%nan");
+        _constants.emplace(L"%inf");
+        _constants.emplace(L"%t");
+        _constants.emplace(L"%f");
+        _constants.emplace(L"%T");
+        _constants.emplace(L"%F");
+        _constants.emplace(L"SCI");
+        _constants.emplace(L"WSCI");
+        _constants.emplace(L"SCIHOME");
+        _constants.emplace(L"TMPDIR");
+
+        return _constants;
+    }
 }

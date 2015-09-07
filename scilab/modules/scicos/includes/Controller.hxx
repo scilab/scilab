@@ -53,6 +53,8 @@ public:
     void deleteObject(ScicosID uid);
     ScicosID cloneObject(ScicosID uid, bool cloneChildren);
 
+    kind_t getKind(ScicosID uid) const;
+    std::vector<ScicosID> getAll(kind_t k) const;
     model::BaseObject* getObject(ScicosID uid) const;
     template<typename T>
     T* getObject(ScicosID uid) const
@@ -70,13 +72,6 @@ public:
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
     {
         update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
-        if (status == SUCCESS)
-        {
-            for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
-            {
-                (*iter)->propertyUpdated(uid, k, p);
-            }
-        }
         for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
         {
             (*iter)->propertyUpdated(uid, k, p, status);

@@ -12,6 +12,8 @@
 
 #include "AnalysisVisitor.hxx"
 #include "data/Block.hxx"
+#include "data/LoopBlock.hxx"
+#include "data/XBlock.hxx"
 #include "data/DataManager.hxx"
 
 #include <algorithm>
@@ -34,6 +36,11 @@ namespace analysis
         dm->addGlobal(sym);
     }
 
+    GVN & Block::getGVN()
+    {
+	return *gvn;
+    }
+    
     Info & Block::setDefaultData(const symbol::Symbol & sym)
     {
         Info & i = addSym(sym, new Data(false, sym));
@@ -463,6 +470,17 @@ namespace analysis
         }
     }
 
+    Info & Block::addSym(std::map<symbol::Symbol, Info> & M, const symbol::Symbol & sym, Info & info)
+    {
+	Data * old = info.data;
+	info.data = nullptr;
+	Info & i = M.emplace(sym, info).first->second;
+	i.data = old;
+	info.data = old;
+	
+	return i;
+    }
+    
     std::wostream & operator<<(std::wostream & out, const Block & block)
     {
         const unsigned int n = block.blocks.size();

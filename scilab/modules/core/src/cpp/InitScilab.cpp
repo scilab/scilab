@@ -30,6 +30,9 @@
 #include "visitor_common.hxx"
 #include "operations.hxx"
 #include "threadmanagement.hxx"
+#include "numericconstants.hxx"
+
+#include "expandPathVariable.h"
 
 extern "C"
 {
@@ -60,7 +63,7 @@ extern "C"
 #include "BrowseVarManager.h"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
-
+#include "InitializePreferences.h"
 
 #ifdef _MSC_VER
 #include "InitializeWindows_tools.h"
@@ -121,8 +124,10 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->iNoBanner = 1;
 
     pSEI->iMultiLine = 0;
-    pSEI->isInterruptible = 1;  // by default all thread are interruptible
-    pSEI->isPrioritary = 0;     // by default all thread are non-prioritary
+    pSEI->isInterruptible = 1;      // by default all thread are interruptible
+    pSEI->isPrioritary = 0;         // by default all thread are non-prioritary
+    pSEI->iStartConsoleThread = 1;  // used in call_scilab to avoid "prompt" thread execution
+    pSEI->iForceQuit = 0;           // management of -quit argument
 
     return pSEI;
 }
@@ -131,6 +136,16 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 {
     int iMainRet = 0;
     ConfigVariable::setStartProcessing(true);
+
+    // ignore -e argument if the command is empty
+    if (_pSEI->pstExec && strcmp(_pSEI->pstExec, "") == 0)
+    {
+        _pSEI->pstExec = NULL;
+    }
+
+    // ignore -quit if -e or -f are not given
+    _pSEI->iForceQuit = _pSEI->iForceQuit && (_pSEI->pstExec || _pSEI->pstFile);
+    ConfigVariable::setForceQuit(_pSEI->iForceQuit == 1);
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -153,13 +168,13 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
 
     ThreadManagement::initialize();
-
+    NumericConstants::Initialize();
     checkForLinkerErrors();
 
 #ifdef _MSC_VER
     //get current console window and hide it
     int scilabMode = getScilabMode();
-    if (scilabMode == SCILAB_STD || scilabMode == SCILAB_NW)
+    if (scilabMode == SCILAB_STD || scilabMode == SCILAB_NW || scilabMode == SCILAB_API)
     {
         CreateScilabHiddenWndThread();
     }
@@ -194,6 +209,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     //create a thread for innosetup to allow reinstall during scilab running
     createInnosetupMutex();
 #endif
+
+    //open scope lvl 0 for gateway from modules and first variables ( SCI, HOME, TMPDIR, ...)
+    symbol::Context::getInstance()->scope_begin();
 
     /* Scilab Startup */
     xmlInitParser();
@@ -243,72 +261,73 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
     }
 
-    //open "protection" scope to protect all variables after scilab start
-    symbol::Context::getInstance()->scope_begin();
+    //set prompt value
+    int pause = 0;
+    C2F(setprlev) (&pause);
 
+    //load gateways
     LoadModules();
 
+    //open a scope for macros
+    symbol::Context::getInstance()->scope_begin();
     //execute scilab.start
     if (_pSEI->iNoStart == 0)
     {
-        StartModules();
         execScilabStartTask(_pSEI->iSerialize != 0);
     }
 
-    ConfigVariable::setStartProcessing(false);
-    int pause = 0;
+    //open console scope
+    symbol::Context::getInstance()->scope_begin();
 
-    //set prompt value
-    C2F(setprlev) (&pause);
+    ConfigVariable::setStartProcessing(false);
 
     ConfigVariable::setPromptMode(0);
-    try
+    int iScript = 0;
+    if (_pSEI->pstExec)
     {
-        if (_pSEI->pstExec)
+        //-e option
+        Parser parser;
+        parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
+
+        if (parser.getExitStatus() == Parser::Failed)
         {
-            //-e option
-            Parser parser;
-            parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
-
-            if (parser.getExitStatus() == Parser::Failed)
-            {
-                scilabWriteW(parser.getErrorMessage());
-            }
-            else if (parser.getControlStatus() !=  Parser::AllControlClosed)
-            {
-                _pSEI->iMultiLine = 1;
-            }
-            else
-            {
-                StoreConsoleCommand(_pSEI->pstExec);
-            }
-
-            if (parser.getTree())
-            {
-                delete parser.getTree();
-                parser.setTree(NULL);
-            }
-            iMainRet = ConfigVariable::getExitStatus();
+            scilabWriteW(parser.getErrorMessage());
         }
-        else if (_pSEI->pstFile)
+        else if (parser.getControlStatus() !=  Parser::AllControlClosed)
         {
-            //-f option execute exec('%s',-1)
-            char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
-            sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
-
-            StoreConsoleCommand(pstCommand);
-            FREE(pstCommand);
-            iMainRet = ConfigVariable::getExitStatus();
-            _pSEI->pstExec = NULL;
-            _pSEI->pstFile = NULL;
+            _pSEI->iMultiLine = 1;
         }
+        else
+        {
+            StoreConsoleCommand(_pSEI->pstExec, 0);
+        }
+
+        if (parser.getTree())
+        {
+            delete parser.getTree();
+            parser.setTree(NULL);
+        }
+        iMainRet = ConfigVariable::getExitStatus();
+        iScript = 1;
     }
-    catch (const ast::ScilabException& se)
+    else if (_pSEI->pstFile)
     {
-        scilabErrorW(se.GetErrorMessage().c_str());
+        //-f option execute exec('%s',-1)
+        char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
+        sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
+
+        StoreConsoleCommand(pstCommand, 0);
+        FREE(pstCommand);
+        iMainRet = ConfigVariable::getExitStatus();
+        _pSEI->pstExec = NULL;
+        _pSEI->pstFile = NULL;
+        iScript = 1;
     }
 
     ConfigVariable::setPromptMode(2);
+
+    InitializePreferences(iScript);
+
     return iMainRet;
 }
 
@@ -330,8 +349,7 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 {
     if (_pSEI->pstExec)
     {
-        StoreConsoleCommand(_pSEI->pstExec);
-        ThreadManagement::WaitForConsoleExecDoneSignal();
+        StoreConsoleCommand(_pSEI->pstExec, 1);
         return ConfigVariable::getExitStatus();
     }
 
@@ -351,7 +369,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     clearScilabPreferences();
 
-    //close "protection" scope
+    //close console scope
     symbol::Context::getInstance()->scope_end();
 
     //execute scilab.quit
@@ -371,6 +389,12 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         //call all modules.quit
         EndModules();
     }
+
+    //close macros scope
+    symbol::Context::getInstance()->scope_end();
+
+    //close gateways scope
+    symbol::Context::getInstance()->scope_end();
 
     //clean context
     symbol::Context::getInstance()->clearAll();
@@ -393,6 +417,11 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         TerminateGraphics();
         TerminateJVM();
     }
+
+    // reset struct to prevent the use of deleted objects
+    // when we start scilab again without kill process (ie: call_scilab)
+    resetVariableValueDefinedInScilab();
+
     /* TerminateCorePart2 */
 
     //clear opened files
@@ -434,6 +463,8 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
      */
     terminateMutexClosingScilab();
 #endif
+
+    ConfigVariable::clearLastError();
     ConfigVariable::setEndProcessing(false);
 }
 
@@ -485,7 +516,7 @@ void* scilabReadAndExecCommand(void* param)
 
     ScilabEngineInfo* _pSEI = (ScilabEngineInfo*)param;
 
-    while (ConfigVariable::getForceQuit() == false)
+    do
     {
         if (GetCommand(&command, &iInterruptibleCmd, &iPrioritaryCmd, &iConsoleCmd) == 0)
         {
@@ -522,6 +553,7 @@ void* scilabReadAndExecCommand(void* param)
         processCommand(_pSEI);
         FREE(command);
     }
+    while (ConfigVariable::getForceQuit() == false);
 
     return NULL;
 }
@@ -529,9 +561,6 @@ void* scilabReadAndExecCommand(void* param)
 //Thread used to parse and set console commands in storeCommand
 void* scilabReadAndStore(void* param)
 {
-    ThreadManagement::LockStart();
-    ThreadManagement::UnlockStart();
-
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
     char *command = NULL;
@@ -582,8 +611,17 @@ void* scilabReadAndStore(void* param)
             //set prompt value
             C2F(setprlev) (&pause);
 
-            char *pstRead = scilabRead();
+            ConfigVariable::setScilabCommand(1);
+            scilabRead();
+            if (ConfigVariable::isScilabCommand() == 0)
+            {
+                // happens when the return of scilabRead is used
+                // in other thread (ie: call mscanf in a callback)
+                ThreadManagement::WaitForConsoleExecDoneSignal();
+                continue;
+            }
 
+            char* pstRead = ConfigVariable::getConsoleReadStr();
             if (command == NULL)
             {
                 command = pstRead;
@@ -593,6 +631,9 @@ void* scilabReadAndStore(void* param)
                     command = NULL;
                     break;
                 }
+#ifdef DEBUG_THREAD
+                ThreadManagement::PrintDebugHead();
+#endif // DEBUG_THREAD
             }
             else
             {
@@ -637,12 +678,11 @@ void* scilabReadAndStore(void* param)
             continue;
         }
 
-        StoreConsoleCommand(command);
+        // store the command and wait for this execution ends.
+        StoreConsoleCommand(command, 1);
 
         FREE(command);
         command = NULL;
-
-        ThreadManagement::WaitForConsoleExecDoneSignal();
     }
 
     // Awake scilabReadAndExecCommand thread in case of scilab exit
@@ -668,7 +708,7 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 
     InitializeHistoryManager();
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
     {
 
         char *cwd = NULL;
@@ -684,28 +724,55 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
         }
     }
 
+    // -e -quit with parser error, command queue is empty
+    if (_pSEI->iForceQuit && isEmptyCommandQueue())
+    {
+        return 1;
+    }
+
     __threadId threadIdConsole;
     __threadKey threadKeyConsole;
     __threadId threadIdCommand;
     __threadKey threadKeyCommand;
 
-    ThreadManagement::LockStart();
-    // thread to manage console command
-    __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
+    if (_pSEI->iStartConsoleThread)
+    {
+        // thread to manage console command
+        __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
 
-    // scilabReadAndStore thread must be execute before scilabReadAndExecCommand
-    // to be such that the -f command stored is not removed
-    // from queue before scilabReadAndStore is waiting for.
-    ThreadManagement::WaitForStartPendingSignal();
+        // scilabReadAndStore thread must be execute before scilabReadAndExecCommand
+        // to be such that the -f command stored is not removed
+        // from queue before scilabReadAndStore is waiting for.
+        ThreadManagement::WaitForStartPendingSignal();
+    }
 
     // thread to manage command stored
     __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);
 
-    __WaitThreadDie(threadIdCommand);
+#ifdef DEBUG_THREAD
+    ThreadManagement::SetThreadKey( __GetCurrentThreadKey(), threadKeyCommand, threadKeyConsole);
+#endif // DEBUG_THREAD
 
-#ifdef DEBUG
-    std::cerr << "To end program press [ENTER]" << std::endl;
-#endif
+    do
+    {
+        // Some times, the signal "SendRunMeSignal" can be sent before the main thread is waiting for.
+        // If a Runner is available do not perform this wait.
+        if (StaticRunner::isRunnerAvailable() == false)
+        {
+            ThreadManagement::WaitForRunMeSignal();
+        }
+
+        try
+        {
+            StaticRunner::launch();
+        }
+        catch (const ast::InternalAbort& /*ia*/)
+        {
+            // go out when exit/quit is called
+        }
+        ThreadManagement::SendAwakeRunnerSignal();
+    }
+    while (ConfigVariable::getForceQuit() == false);
 
     return ConfigVariable::getExitStatus();
 }
@@ -727,7 +794,7 @@ static int batchMain(ScilabEngineInfo* _pSEI)
     /*
      ** -*- PARSING -*-
      */
-    parseFileTask(parser, _pSEI->iTimed != 0, pwstFileName, L"YaSp");
+    parseFileTask(parser, _pSEI->iTimed != 0, pwstFileName, L"scilab 6");
 
     /*
      ** -*- DUMPING TREE -*-
@@ -768,53 +835,56 @@ static void stateShow(Parser::ControlStatus status)
 {
     switch (status)
     {
-        case Parser::WithinFor:
-            SetTemporaryPrompt("-for       ->");
-            break;
-        case Parser::WithinWhile:
-            SetTemporaryPrompt("-while     ->");
-            break;
-        case Parser::WithinIf:
-            SetTemporaryPrompt("-if        ->");
-            break;
-        case Parser::WithinElse:
-            SetTemporaryPrompt("-else      ->");
-            break;
-        case Parser::WithinElseIf:
-            SetTemporaryPrompt("-elseif    ->");
-            break;
-        case Parser::WithinTry:
-            SetTemporaryPrompt("-try       ->");
-            break;
-        case Parser::WithinCatch:
-            SetTemporaryPrompt("-catch     ->");
-            break;
-        case Parser::WithinFunction:
-            SetTemporaryPrompt("-function  ->");
-            break;
-        case Parser::WithinSelect:
-            SetTemporaryPrompt("-select    ->");
-            break;
-        case Parser::WithinCase:
-            SetTemporaryPrompt("-case      ->");
-            break;
-        case Parser::WithinSwitch:
-            SetTemporaryPrompt("-switch    ->");
-            break;
-        case Parser::WithinOtherwise:
-            SetTemporaryPrompt("-otherwise ->");
-            break;
-        case Parser::WithinMatrix:
-            SetTemporaryPrompt("- [        ->");
-            break;
-        case Parser::WithinCell:
-            SetTemporaryPrompt("- {        ->");
-            break;
-        case Parser::WithinBlockComment:
-            SetTemporaryPrompt("- /*       ->");
-            break;
-        case Parser::WithinDots:
-            SetTemporaryPrompt("- ...      ->");
+        //case Parser::WithinFor:
+        //    SetTemporaryPrompt("-for       ->");
+        //    break;
+        //case Parser::WithinWhile:
+        //    SetTemporaryPrompt("-while     ->");
+        //    break;
+        //case Parser::WithinIf:
+        //    SetTemporaryPrompt("-if        ->");
+        //    break;
+        //case Parser::WithinElse:
+        //    SetTemporaryPrompt("-else      ->");
+        //    break;
+        //case Parser::WithinElseIf:
+        //    SetTemporaryPrompt("-elseif    ->");
+        //    break;
+        //case Parser::WithinTry:
+        //    SetTemporaryPrompt("-try       ->");
+        //    break;
+        //case Parser::WithinCatch:
+        //    SetTemporaryPrompt("-catch     ->");
+        //    break;
+        //case Parser::WithinFunction:
+        //    SetTemporaryPrompt("-function  ->");
+        //    break;
+        //case Parser::WithinSelect:
+        //    SetTemporaryPrompt("-select    ->");
+        //    break;
+        //case Parser::WithinCase:
+        //    SetTemporaryPrompt("-case      ->");
+        //    break;
+        //case Parser::WithinSwitch:
+        //    SetTemporaryPrompt("-switch    ->");
+        //    break;
+        //case Parser::WithinOtherwise:
+        //    SetTemporaryPrompt("-otherwise ->");
+        //    break;
+        //case Parser::WithinMatrix:
+        //    SetTemporaryPrompt("- [        ->");
+        //    break;
+        //case Parser::WithinCell:
+        //    SetTemporaryPrompt("- {        ->");
+        //    break;
+        //case Parser::WithinBlockComment:
+        //    SetTemporaryPrompt("- /*       ->");
+        //    break;
+        //case Parser::WithinDots:
+        //    SetTemporaryPrompt("- ...      ->");
+        //    break;
+        default :
+            SetTemporaryPrompt("  > ");
             break;
         case Parser::AllControlClosed:
             //ClearTemporaryPrompt();
@@ -851,7 +921,7 @@ static void checkForLinkerErrors(void)
 #define LINKER_ERROR_1 "Scilab startup function detected that the function proposed to the engine is the wrong one. Usually, it comes from a linker problem in your distribution/OS.\n"
 #define LINKER_ERROR_2 "If you do not know what it means, please report a bug on http://bugzilla.scilab.org/. If you do, you probably know that you should change the link order in SCI/modules/Makefile.am\n"
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
     {
         if (isItTheDisabledLib())
         {
@@ -859,7 +929,6 @@ static void checkForLinkerErrors(void)
             fprintf(stderr, "Here, Scilab should have 'libscijvm' defined but gets 'libscijvm-disable' instead.\n");
             fprintf(stderr, LINKER_ERROR_2);
             exit(1);
-
         }
     }
     else
@@ -926,7 +995,7 @@ static void Add_pi(void)
 
 static void Add_eps(void)
 {
-    Add_Double_Constant(L"%eps", C2F(dlamch) ("p", 1L), 0, false);
+    Add_Double_Constant(L"%eps", NumericConstants::eps_machine, 0, false);
 }
 
 static void Add_e(void)

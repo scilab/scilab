@@ -31,8 +31,9 @@ extern "C"
 #include "visitor.hxx" // for invoke
 #include "callexp.hxx"
 #include "localization.hxx"
-#include "scilabexception.hxx"
-
+#ifndef NDEBUG
+#include "inspector.hxx"
+#endif
 
 #define bsiz 4096
 

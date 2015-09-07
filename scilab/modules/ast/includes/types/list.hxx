@@ -22,7 +22,7 @@ class EXTERN_AST List : public Container
 {
 public :
     List();
-    ~List();
+    virtual ~List();
 
 protected :
     std::vector<InternalType *>*    getData();

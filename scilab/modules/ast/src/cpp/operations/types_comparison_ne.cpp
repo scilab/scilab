@@ -3614,7 +3614,7 @@ types::InternalType* compnoequal_M_M<Struct, Struct, Bool>(types::Struct* _pL, t
 template<class T, class U, class O>
 InternalType* compnoequal_LT_LT(T *_pL, U *_pR)
 {
-    if ((_pL->getType() != _pR->getType()) && (_pL->getType() == GenericType::ScilabList || _pR->getType() == GenericType::ScilabList))
+    if (_pL->getType() != GenericType::ScilabList || _pR->getType() != GenericType::ScilabList)
     {
         //try to find overload function, if symbol exist, return NULL to let opexep to call it.
         //otherwise do a "binary" comparison
@@ -3703,7 +3703,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     /* check dimension*/
     if (_pL->getDims() != _pR->getDims())
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -3713,7 +3713,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 

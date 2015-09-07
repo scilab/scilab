@@ -14,9 +14,6 @@
 
 #PARALLEL_C_SOURCES =
 
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_parallel.c
-
 libsciparallel_la_CPPFLAGS= \
     $(OPENMP_CXXFLAGS) \
     -I$(srcdir)/includes/ \
@@ -43,7 +40,7 @@ libsciparallel_la_LDFLAGS = $(OPENMP_LIBS) -version-number $(SCILAB_LIBRARY_VERS
 
 if OPENMP
 
-libsciparallel_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciparallel_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 
 else
 libsciparallel_la_SOURCES = src/noparallel/noparallel.h \
@@ -51,7 +48,7 @@ src/noparallel/noparallel.c
 endif
 
 # For the code check (splint)
-CHECK_SRC= $(PARALLEL_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(PARALLEL_C_SOURCES)
 INCLUDE_FLAGS = $(libsciparallel_la_CFLAGS)
 
 #### Target ######

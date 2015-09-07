@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -312,6 +312,9 @@
     </ProjectReference>
     <ProjectReference Include="..\polynomials\src\c\polynomials.vcxproj">
       <Project>{620d8fa7-3704-438e-bb1e-391c84401a2e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\preferences\src\c\preferences.vcxproj">
+      <Project>{7b893e9f-d032-44de-9b71-197a29c4989b}</Project>
     </ProjectReference>
     <ProjectReference Include="..\scinotes\src\c\scinotes.vcxproj">
       <Project>{bae68b54-2c1a-44d0-a0e9-05156a784e79}</Project>

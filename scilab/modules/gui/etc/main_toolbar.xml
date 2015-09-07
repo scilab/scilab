@@ -23,7 +23,7 @@
     <separator/>
     <!-- Clear -->
     <button icon="edit-clear" tooltiptext="Clear Console">
-        <callback instruction="clc();" type="0"/>
+        <callback instruction="clc();" type="10"/>
     </button>
     <separator/>
     <!-- Print -->
@@ -52,6 +52,6 @@
     </button>
     <!-- Help -->
     <button icon="help-browser" tooltiptext="Help Browser">
-        <callback instruction="help();" type="0"/>
+        <callback instruction="help();" type="10"/>
     </button>
 </toolbar>

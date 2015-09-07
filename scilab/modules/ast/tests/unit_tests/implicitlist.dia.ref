@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 function checkCallOverload(mat)
     assert_checkerror(mat, [], 999);
 endfunction

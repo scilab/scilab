@@ -21,7 +21,7 @@ function A = squeeze(A)
     // ------------------------------------------------------------
 
     Dims=size(A);
-    if or(size(Dims,'*') > 2 || typeof(A)==["cell","st"]) then
+    if or(size(Dims,"*") > 2 || typeof(A)==["ce","st"]) then
         Dims=size(A);
         newDims = Dims(Dims <> 1);
         if size(newDims,"*") < 2 then

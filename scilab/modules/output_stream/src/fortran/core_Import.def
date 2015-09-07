@@ -8,9 +8,7 @@ EXPORTS
 gethmat_
 ;
 com_
-vstk_
 iop_
-stack_
 isanan_
 objvide_
 gettype_
@@ -24,11 +22,9 @@ getwimat_
 getilist_
 getsmat_
 ;
-; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
 ;
 adre_
-intersci_
-errgst_
 ;
 
 

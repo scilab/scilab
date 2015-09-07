@@ -1,3 +1,10 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 743 -->
 //
 // <-- Bugzilla URL -->
@@ -9,9 +16,5 @@
 //    if ((x&int32(1))<>int32(0)) then
 //      printf('Test\n');
 //    end
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2005
-// Date : 21 octobre 2005
 x = int32(253);
 if ((x&int32(1)) == int32(0)) then bugmes();quit;end

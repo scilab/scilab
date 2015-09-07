@@ -15,6 +15,6 @@
 // <-- Short Description -->
 // save with negative second argument dit not trigger an error
 errmsg = [msprintf(gettext("Function not defined for given argument type(s),\n"));
-            msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%fptr_size")];
+msprintf(gettext("  check arguments or define function %s for overloading.\n"), "%fptr_size")];
 assert_checkerror("size(sin)", errmsg);
 assert_checkerror("size(sin,1)", errmsg);

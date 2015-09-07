@@ -15,7 +15,7 @@ modulename=external_objects
 
 #### external_objects : Conf files ####
 libsciexternal_objects_la_rootdir = $(mydatadir)
-libsciexternal_objects_la_root_DATA =  license.txt 
+libsciexternal_objects_la_root_DATA =  license.txt
 
 
 #### external_objects : init scripts & configuration files ####
@@ -26,9 +26,9 @@ libsciexternal_objects_la_etc_DATA = \
 
 include $(top_srcdir)/Makefile.incl.am
 
-EXTERNAL_OBJECTS_JNI_SOURCES = 
+EXTERNAL_OBJECTS_JNI_SOURCES =
 
-EXTERNAL_OBJECTS_C_SOURCES = 
+EXTERNAL_OBJECTS_C_SOURCES =
 
 EXTERNAL_OBJECTS_CPP_SOURCES = \
     src/cpp/ScilabEnvironments.cpp \
@@ -79,8 +79,6 @@ EXTERNAL_OBJECTS_CPP_SOURCES = \
     src/cpp/ExternalObjectsFunction.cpp \
     src/cpp/wrapInFloat.cpp \
     src/cpp/EOType.cpp
-
-GATEWAY_C_SOURCES = sci_gateway/c/gw_external_objects.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_percent_EObj_e.cpp \
@@ -145,13 +143,13 @@ libsciexternal_objects_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/console/includes
 
-pkglib_LTLIBRARIES = libsciexternal_objects.la 
-noinst_LTLIBRARIES = libsciexternal_objects-algo.la 
+pkglib_LTLIBRARIES = libsciexternal_objects.la
+noinst_LTLIBRARIES = libsciexternal_objects-algo.la
 
 libsciexternal_objects_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 
 libsciexternal_objects_algo_la_SOURCES = $(EXTERNAL_OBJECTS_C_SOURCES) $(EXTERNAL_OBJECTS_JNI_SOURCES) $(EXTERNAL_OBJECTS_CPP_SOURCES)
-libsciexternal_objects_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
+libsciexternal_objects_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciexternal_objects_algo_la_CFLAGS = $(libsciexternal_objects_la_CFLAGS)
 libsciexternal_objects_algo_la_CPPFLAGS = $(libsciexternal_objects_la_CPPFLAGS)
 

@@ -155,7 +155,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
 
     /*** perform operations ***/
     double* pdblW   = new double[iRowsA];
-    double* pdblWgr = new double[iRowsA * iColsU];
+    double* pdblWgr = new double[iRowsA * (iColsU + 1)];
 
     if (in.size() == 4)
     {
@@ -167,7 +167,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
     }
 
     int ig = 0;
-    for (int i = 0; i < iColsU - 1; i++)
+    for (int i = 0; i < iColsU; i++)
     {
         ig = (i + 1) * iRowsA;
         C2F(dmmul)(pdblA, &iRowsA, pdblWgr + ig - iRowsA, &iRowsA, pdblW, &iRowsA, &iRowsA, &iRowsA, &iOne);
@@ -180,7 +180,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
     {
         types::Double* pDblOutXf = new types::Double(iRowsA, 1);
         double* pdblOutXf = pDblOutXf->get();
-        C2F(dcopy)(&iRowsA, pdblWgr + ig, &iOne, pdblOutXf, &iOne);
+        C2F(dcopy)(&iRowsA, pdblWgr + iColsU, &iOne, pdblOutXf, &iOne);
         out.push_back(pDblOutXf);
     }
 

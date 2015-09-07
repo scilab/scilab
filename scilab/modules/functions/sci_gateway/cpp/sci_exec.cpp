@@ -21,13 +21,13 @@
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "types_tools.hxx"
 #include "runner.hxx"
 #include "threadmanagement.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
+#include "filemanager.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -69,6 +69,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
     std::string stFile;
     std::ifstream* file = NULL;
+    std::wstring wstFile;
 
     if (ConfigVariable::getStartProcessing() == false)
     {
@@ -78,7 +79,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            promptMode = -1;
+            promptMode = 0;
         }
     }
 
@@ -147,20 +148,26 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         pwstFile = expandPathVariableW(pS->get(0));
         pstFile = wide_string_to_UTF8(pwstFile);
-        stFile = std::string(pstFile);
+        stFile = pstFile;
         file = new std::ifstream(pstFile);
 
-        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        get_full_pathW(pwstTemp, (const wchar_t*)pwstFile, PATH_MAX * 2);
+        FREE(pstFile);
 
+        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+        get_full_pathW(pwstTemp, pwstFile, PATH_MAX * 2);
+        wstFile = pwstTemp;
+
+        FREE(pwstFile);
         /*fake call to mopen to show file within file()*/
         if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
         {
+            delete file;
             FREE(pwstTemp);
-            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", pstFile);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", stFile.data());
             return Function::Error;
         }
 
+        ThreadManagement::LockParser();
         parser.parseFile(pwstTemp, L"exec");
         FREE(pwstTemp);
         if (parser.getExitStatus() !=  Parser::Succeded)
@@ -173,7 +180,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
                 ConfigVariable::setLastErrorNumber(999);
                 delete parser.getTree();
-                mclose(iID);
+                // Check if file has not already been closed (for ex mclose('all') in function)
+                if (FileManager::isOpened(wstFile.data()) == true)
+                {
+                    mclose(iID);
+                }
+                ThreadManagement::UnlockParser();
                 return Function::OK;
             }
 
@@ -182,7 +194,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             FREE(pst);
 
             delete parser.getTree();
-            mclose(iID);
+            // Check if file has not already been closed (for ex mclose('all') in function)
+            if (FileManager::isOpened(wstFile.data()) == true)
+            {
+                mclose(iID);
+            }
+            ThreadManagement::UnlockParser();
             return Function::Error;
         }
 
@@ -205,8 +222,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             pExp = parser.getTree();
         }
 
+        ThreadManagement::UnlockParser();
         // update where to set the name of the executed file.
-        ConfigVariable::setFileNameToLastWhere(pwstFile);
+        ConfigVariable::setFileNameToLastWhere(wstFile.data());
 
         ConfigVariable::setExecutedFileID(iID);
     }
@@ -235,8 +253,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
 
         // unable for macro with varargin or varargout
-        auto inputs = pMacro->inputs_get();
-        auto outputs = pMacro->outputs_get();
+        auto inputs = pMacro->getInputs();
+        auto outputs = pMacro->getOutputs();
         if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
                 outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
         {
@@ -244,7 +262,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             return Function::Error;
         }
 
-        promptMode = 3;
         pExp = pMacro->getBody();
 
         // update where to set the name of the executed macro instead of "exec"
@@ -280,13 +297,18 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             ExecVisitor execExps;
             pSeqExp->accept(execExps);
         }
-        catch (ast::ScilabMessage sm)
+        catch (const ast::InternalAbort& ia)
+        {
+            delete pExp;
+            throw ia;
+        }
+        catch (const ast::InternalError& ie)
         {
             if (bErrCatch == false)
             {
                 ConfigVariable::setPromptMode(oldVal);
                 ConfigVariable::setExecutedFileID(0);
-                throw sm;
+                throw ie;
             }
 
             ConfigVariable::resetWhereError();
@@ -345,54 +367,39 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 ExecVisitor execExps;
                 seqExp.accept(execExps);
             }
-            catch (ast::ScilabMessage sm)
+            catch (const ast::InternalAbort& ia)
             {
-                ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
-
                 if (file)
                 {
                     delete pExp;
-                    mclose(iID);
+                    // Check if file has not already been closed (for ex mclose('all') in function)
+                    if (FileManager::isOpened(wstFile.data()) == true)
+                    {
+                        mclose(iID);
+                    }
                     file->close();
                     delete file;
-                    FREE(pstFile);
-                    FREE(pwstFile);
                 }
 
-                if (pMacro)
+                //restore previous prompt mode
+                ConfigVariable::setPromptMode(oldVal);
+
+                // avoid double delete on exps when "seqExp" is destryed and "LExp" too
+                ast::exps_t& protectExp = seqExp.getExps();
+                for (int i = 0; i < protectExp.size(); ++i)
                 {
-                    // reset last first line of macro called
-                    ConfigVariable::macroFirstLine_end();
+                    protectExp[i] = NULL;
                 }
 
-                if (bErrCatch == false)
-                {
-                    ConfigVariable::setPromptMode(oldVal);
-                    ConfigVariable::setExecutedFileID(0);
-
-                    // avoid double delete on exps when "seqExp" is destryed and "LExp" too
-                    ast::exps_t& protectExp = seqExp.getExps();
-                    for (int i = 0; i < protectExp.size(); ++i)
-                    {
-                        protectExp[i] = NULL;
-                    }
-
-                    throw sm;
-                }
-
-                ConfigVariable::resetWhereError();
-                iErr = ConfigVariable::getLastErrorNumber();
+                throw ia;
             }
-            catch (ast::ScilabError& se)
+            catch (const ast::InternalError& ie)
             {
                 ConfigVariable::setExecutedFileID(0);
-                ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
-                if (ConfigVariable::getLastErrorNumber() == 0)
+                ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
+                if (ConfigVariable::getLastErrorLine() == 0)
                 {
-                    ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
-                    ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
-                    ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
-                    ConfigVariable::setLastErrorFunction(wstring(L""));
+                    ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
                 }
 
                 //store message
@@ -402,11 +409,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     if (file)
                     {
                         delete pExp;
-                        mclose(iID);
+                        // Check if file has not already been closed (for ex mclose('all') in function)
+                        if (FileManager::isOpened(wstFile.data()) == true)
+                        {
+                            mclose(iID);
+                        }
                         file->close();
                         delete file;
-                        FREE(pstFile);
-                        FREE(pwstFile);
                     }
 
                     //restore previous prompt mode
@@ -419,7 +428,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                         protectExp[i] = NULL;
                     }
 
-                    throw se;
+                    throw ie;
                 }
 
                 if (pMacro)
@@ -455,11 +464,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     if (file)
     {
         delete pExp;
-        mclose(iID);
+        // Check if file has not already been closed (for ex mclose('all') in function)
+        if (FileManager::isOpened(wstFile.data()) == true)
+        {
+            mclose(iID);
+        }
         file->close();
         delete file;
-        FREE(pstFile);
-        FREE(pwstFile);
     }
 
     return Function::OK;

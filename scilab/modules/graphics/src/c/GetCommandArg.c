@@ -210,28 +210,32 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
         char* pstData = NULL;
         getVarAddressFromPosition(_pvCtx, pos, &piAddr);
         getVarType(_pvCtx, piAddr, &iType);
+        if (iType != 10)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, pos);
+            return 0;
+        }
 
-        if (iType)
+        getAllocatedSingleString(_pvCtx, piAddr, &pstData);
+        if ((int)strlen(pstData) != 3)
         {
-            getAllocatedSingleString(_pvCtx, piAddr, &pstData);
-            if ((int)strlen(pstData) != 3)
-            {
-                freeAllocatedSingleString(pstData);
-                Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, pos, 3);
-                return 0;
-            }
-            *strf = pstData;
+            freeAllocatedSingleString(pstData);
+            Scierror(999, _("%s: Wrong size for input argument #%d: String of %d characters expected.\n"), fname, pos, 3);
+            return 0;
         }
-        else
-        {
-            /* def value can be changed */
-            reinitDefStrf();
-            *strf = getDefStrf();
-        }
+        *strf = pstData;
     }
     else if ((kopt = FindOpt(_pvCtx, "strf", opts)) >= 0)
     {
         char* pstData = NULL;
+        int iType = 0;
+        getVarType(_pvCtx, opts[kopt].piAddr, &iType);
+        if (iType != 10)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, pos);
+            return 0;
+        }
+
         getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
         if ((int)strlen(pstData) != 3)
         {

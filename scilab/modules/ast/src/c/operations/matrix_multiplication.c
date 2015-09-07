@@ -167,7 +167,7 @@ int iMultiScilabPolynomByScilabPolynom(
         {
             dblMult = _pdblReal1[i1] * _pdblReal2[i2];
             dblAdd = _pdblRealOut[i1 + i2] + dblMult;
-            if (fabs(dblAdd) > 2 * getRelativeMachinePrecision() * Max(fabs(_pdblRealOut[i1 + i2]), fabs(dblMult)))
+            if (fabs(dblAdd) > 2 * nc_eps() * Max(fabs(_pdblRealOut[i1 + i2]), fabs(dblMult)))
             {
                 _pdblRealOut[i1 + i2] = dblAdd;
             }

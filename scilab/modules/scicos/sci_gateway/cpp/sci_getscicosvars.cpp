@@ -517,6 +517,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
             Scierror(999, _("%s: Error with parameter \"%s\".\n"), funname.data(), il_str->get(j));
             dyn_char->killMe();
             ret->killMe();
+            FREE(field);
             return types::Function::Error;
         }
 

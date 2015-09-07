@@ -17,7 +17,7 @@ function [scitree,trad,txt,crp]=m2sci(mtlbtree,nam,Recmode,prettyprintoutput)
     // Output arguments:
     //  - scitree: Scilab equivalent for mtlbtree
     //  - trad: code of function sci_<nam>
-    //  - txt: Scilab equivalent function code (function declaration and varaibles initialisation)
+    //  - txt: Scilab equivalent function code (function declaration and variables initialisation)
     //  - crp: Scilab equivalent function code (function body)
 
     [lhs,rhs]=argn(0)

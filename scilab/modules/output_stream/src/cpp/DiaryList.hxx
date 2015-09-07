@@ -42,7 +42,7 @@ public:
     int * getIDs(int *sizeID);
 
     /* get filenames of diaries */
-    std::wstring * getFilenames(int *sizeFilenames);
+    std::list<std::wstring> getFilenames();
 
     /* get filename by IDs */
     std::wstring getFilename(int ID_diary);

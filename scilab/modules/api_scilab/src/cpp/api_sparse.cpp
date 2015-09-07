@@ -122,6 +122,11 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
     {
         *_pdblImg = pI;
     }
+    else
+    {
+        FREE(pI);
+    }
+
     return sciErr;
 }
 
@@ -436,11 +441,17 @@ static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iC
     *_pdblReal = (double*)MALLOC(sizeof(double) **_piNbItem);
     C2F(dcopy)(_piNbItem, pdblReal, &iOne, *_pdblReal, &iOne);
 
+    FREE(piNbItemRow);
+    FREE(piColPos);
+    FREE(pdblReal);
+
     if (_iComplex)
     {
         *_pdblImg = (double*)MALLOC(sizeof(double) **_piNbItem);
         C2F(dcopy)(_piNbItem, pdblImg, &iOne, *_pdblImg, &iOne);
+        FREE(pdblImg);
     }
+
 
     return 0;
 }

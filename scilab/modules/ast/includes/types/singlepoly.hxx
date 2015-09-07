@@ -51,7 +51,7 @@ public :
     int                     getRank();
     bool                    setRank(int _iRank, bool bSave = false);
     bool                    setCoef(Double *_poPow);
-    bool                    setCoef(double *_pdblCoefR, double *_pdblCoefI);
+    bool                    setCoef(const double *_pdblCoefR, const double *_pdblCoefI);
     bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
     void                    updateRank(void);
 

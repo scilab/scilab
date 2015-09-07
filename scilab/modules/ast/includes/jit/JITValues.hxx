@@ -105,7 +105,7 @@ protected:
         }
         else
         {
-            throw ast::ScilabError("Scilab: Cannot store a value !");
+            throw ast::InternalError("Scilab: Cannot store a value !");
         }
     }
 };

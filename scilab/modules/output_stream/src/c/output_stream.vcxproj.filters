@@ -41,9 +41,6 @@
     <ClCompile Include="DllmainOutput_Stream.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="errmds.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="erro.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -54,9 +51,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\getFullFilename.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_output_stream.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="msgout.c">
@@ -129,9 +123,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_output_stream.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\errmds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\erro.h">

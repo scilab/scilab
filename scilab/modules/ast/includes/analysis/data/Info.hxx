@@ -21,144 +21,54 @@
 #include "gvn/SymbolicRange.hxx"
 #include "ConstantValue.hxx"
 
+namespace ast
+{
+    class Exp;
+}
+
 namespace analysis
 {
 
-struct Info
-{
-    enum Local
+    struct Info
     {
-        INFO_TRUE, INFO_FALSE, INFO_UNKNOWN
+        enum Local
+        {
+            INFO_TRUE, INFO_FALSE, INFO_UNKNOWN
+        };
+
+        bool R;
+        bool W;
+        bool O;
+        bool isint;
+        Local local;
+        bool cleared;
+        bool exists;
+        TIType type;
+        Data * data;
+        ast::Exp * exp;
+        ConstantValue constant;
+        SymbolicRange range;
+        SymbolicDimension maxIndex;
+
+        Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), data(_data), exp(nullptr) { }
+        Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), constant(i.constant), range(i.range), maxIndex(i.maxIndex), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp) { }
+
+        void merge(Info & info);
+        void addData(const bool known, const symbol::Symbol & sym);
+        void addData(Data * _data, const symbol::Symbol & sym);
+        SymbolicRange & getRange();
+        const SymbolicRange & getRange() const;
+        SymbolicDimension & getMaxIndex();
+        const SymbolicDimension & getMaxIndex() const;
+        SymbolicRange & setRange(SymbolicRange & _range);
+        ConstantValue & getConstant();
+        const ConstantValue & getConstant() const;
+        ConstantValue & setConstant(ConstantValue & val);
+        bool isknown() const;
+        static const symbol::Symbol & getRightSym(ast::Exp * exp);
+        const TIType & getType() const;
+        friend std::wostream & operator<<(std::wostream & out, const Info & info);
     };
-
-    bool R;
-    bool W;
-    bool O;
-    bool isint;
-    Local local;
-    bool cleared;
-    bool exists;
-    TIType type;
-    Data * data;
-    ast::Exp * exp;
-    ConstantValue constant;
-    SymbolicRange range;
-    SymbolicDimension maxIndex;
-
-    Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), data(_data), exp(nullptr) { }
-    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), constant(i.constant), range(i.range), maxIndex(i.maxIndex), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp) { }
-
-    inline void merge(Info & info)
-    {
-        R = R || info.R;
-        W = W || info.W;
-        O = O || info.O;
-        isint = isint && info.isint;
-        if (local != info.local)
-        {
-            local = Local::INFO_UNKNOWN;
-        }
-        cleared = cleared && info.cleared;
-        exists = exists || info.exists;
-        constant.merge(info.constant);
-	maxIndex.mergeAsMax(info.maxIndex);
-        type.merge(info.type);
-        data->valid = data->same(info.data);
-	// No need to merge range since this info is just used in for loop
-    }
-
-    inline void addData(const bool known, const symbol::Symbol & sym)
-    {
-        data = new Data(known, sym);
-    }
-    inline void addData(Data * _data, const symbol::Symbol & sym)
-    {
-        data = _data;
-        data->add(sym);
-    }
-
-    inline SymbolicRange & getRange()
-    {
-        return range;
-    }
-
-    inline const SymbolicRange & getRange() const
-    {
-        return range;
-    }
-
-    inline SymbolicDimension & getMaxIndex()
-    {
-        return maxIndex;
-    }
-
-    inline const SymbolicDimension & getMaxIndex() const
-    {
-        return maxIndex;
-    }
-
-    inline SymbolicRange & setRange(SymbolicRange & _range)
-    {
-        range = _range;
-        return range;
-    }
-    
-    inline ConstantValue & getConstant()
-    {
-        return constant;
-    }
-
-    inline const ConstantValue & getConstant() const
-    {
-        return constant;
-    }
-
-    inline ConstantValue & setConstant(ConstantValue & val)
-    {
-        constant = val;
-        return constant;
-    }
-
-    inline bool isknown() const
-    {
-        return local == Local::INFO_TRUE;
-    }
-
-    inline static const symbol::Symbol & getRightSym(ast::Exp * exp)
-    {
-        return static_cast<const ast::SimpleVar &>(static_cast<const ast::AssignExp *>(exp)->getRightExp()).getSymbol();
-    }
-
-    inline const TIType & getType() const
-    {
-        return type;
-    }
-
-    friend std::wostream & operator<<(std::wostream & out, const Info & info)
-    {
-        out << L"Type: " << info.type << L" - RWO:"
-            << (info.R ? L"T" : L"F")
-            << (info.W ? L"T" : L"F")
-            << (info.O ? L"T" : L"F")
-            << L" - int:" << (info.isint ? L"T" : L"F")
-            << L" - local:" << (info.local == Local::INFO_TRUE ? L"T" : (info.local == Local::INFO_FALSE ? L"F" : L"U"))
-            << L" - cleared:" << (info.cleared ? L"T" : L"F")
-            << L" - exists:" << (info.exists ? L"T" : L"F")
-            << L" - constant:" << info.constant;
-
-        out << L" - data:";
-        if (info.data)
-        {
-            out << *info.data;
-        }
-        else
-        {
-            out << L"null";
-        }
-
-        return out;
-    }
-};
 
 } // namespace analysis
 

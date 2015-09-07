@@ -51,7 +51,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [1,2]+1
 []+2
 s=poly(0,"s");
@@ -63,9 +63,6 @@ s+2
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="addf">addf</link>
-            </member>
             <member>
                 <link linkend="mtlb_mode">mtlb_mode</link>
             </member>

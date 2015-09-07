@@ -29,14 +29,14 @@ int C2F(sci_isdef)(char *fname, unsigned long fname_len);
 C_GATEWAY_PROTOTYPE(C2F(sci_predef));
 int C2F(sci_clearfun)(char *fname, unsigned long fname_len);
 int C2F(sci_funptr)(char *fname, unsigned long fname_len);
-int C2F(sci_macr2lst)(char *fname, unsigned long fname_len);
+//int C2F(sci_macr2lst)(char *fname, unsigned long fname_len);
 int C2F(sci_setbpt)(char *fname, unsigned long fname_len);
 int C2F(sci_delbpt)(char *fname, unsigned long fname_len);
 int C2F(sci_dispbpt)(char *fname, unsigned long fname_len);
 int C2F(sci_whereis)(char *fname, unsigned long fname_len);
 int C2F(sci_where)(char *fname, void* pvApiCtx);
 int C2F(sci_havewindow)(char *fname, unsigned long fname_len);
-int C2F(sci_stacksize)(char *fname, unsigned long fname_len);
+//int C2F(sci_stacksize)(char *fname, unsigned long fname_len);
 int C2F(sci_mtlb_mode)(char *fname, unsigned long fname_len);
 int C2F(sci_what)(char *fname, unsigned long fname_len);
 int C2F(sci_ieee)(char *fname, unsigned long fname_len);
@@ -49,13 +49,13 @@ int C2F(sci_getmodules)(char *fname, unsigned long fname_len);
 int C2F(sci_with_module)(char *fname, unsigned long fname_len);
 int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len);
 int C2F(sci_librarieslist)(char *fname, unsigned long fname_len);
-int C2F(sci_getvariablesonstack)(char *fname, unsigned long fname_len);
+//int C2F(sci_getvariablesonstack)(char *fname, unsigned long fname_len);
 
 //C_GATEWAY_PROTOTYPE(sci_typename); -> c++
 int C2F(sci_funcprot)(char *fname, void* pvApiCtx);
 //int C2F(sci_newfun)(char *fname, void* pvApiCtx); -> C++
 
-//Yasp
+//Scilab 6
 C_GATEWAY_PROTOTYPE(sci_type);
 C_GATEWAY_PROTOTYPE(sci_getdebuginfo);
 /*--------------------------------------------------------------------------*/

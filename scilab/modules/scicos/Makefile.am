@@ -19,6 +19,7 @@ src/cpp/il_sim.cpp \
 src/cpp/var2vec.cpp \
 src/cpp/vec2var.cpp \
 src/cpp/Controller.cpp \
+src/cpp/controller_helpers.cpp \
 src/cpp/LoggerView.cpp \
 src/cpp/Model.cpp \
 src/cpp/Model_getObjectProperties.cpp \
@@ -41,7 +42,6 @@ src/cpp/extractblklist.cpp
 
 
 SCICOS_C_SOURCES = \
-src/c/scilab5_needed_stubs.c \
 src/c/tree.c \
 src/c/scicos_malloc.c \
 src/c/scicos_print.c \
@@ -55,10 +55,7 @@ src/c/lsodar.c \
 src/c/ddaskr.c
 
 SCICOS_FORTRAN_SOURCES = \
-src/fortran/skipvars.f \
-src/fortran/coselm.f \
 src/fortran/sctree.f \
-src/fortran/scierr.f \
 src/fortran/ftree2.f \
 src/fortran/ftree3.f \
 src/fortran/ftree4.f \
@@ -99,7 +96,6 @@ sci_gateway/cpp/sci_callblk.cpp \
 sci_gateway/cpp/sci_model2blk.cpp
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_ftree2.c \
 sci_gateway/c/sci_ftree3.c \
 sci_gateway/c/sci_ftree4.c \
@@ -150,6 +146,7 @@ libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/ast/includes/analysis/ \
 			-I$(top_srcdir)/modules/threads/includes/ \
 			-I$(top_srcdir)/modules/console/includes/ \
+			-I$(top_srcdir)/modules/differential_equations/includes/ \
 			$(AM_CPPFLAGS)
 else
 libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \

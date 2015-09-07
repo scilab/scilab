@@ -16,6 +16,7 @@
 #include "dynlib_differential_equations.h"
 /*--------------------------------------------------------------------------*/
 //for Visual Leak Detector in debug compilation mode
+//#define DEBUG_VLD
 #if defined(DEBUG_VLD) && defined(_DEBUG)
 #include <vld.h>
 #endif

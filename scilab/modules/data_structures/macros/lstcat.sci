@@ -24,7 +24,7 @@ function l=lstcat(varargin)
             for j = 1 : size(var)
                 l($ + 1) = var(j);
             end
-        elseif type(var) < 10 then
+        elseif type(var) <= 10 then
             l($ + 1) = var;
         end
     end

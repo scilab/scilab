@@ -14,11 +14,8 @@
 //    clear may erase protected variables
 mputl('clear',TMPDIR+'/foo')
  ans  =
- 
-  T  
+  T
 execstr("exec(TMPDIR+''/foo'')")
- 
 clear
- 
 mdelete(TMPDIR+'/foo')
 if exists('home')==0 then bugmes();quit;end

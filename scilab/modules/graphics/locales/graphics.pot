@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-03-27 13:54+0100\n"
+"Revision-Date: 2015-07-03 10:13+0100\n"
 
 # File: sci_gateway/c/gw_graphics.c, line: 134
 # File: src/nographics/nographics.c, line: 83
@@ -3149,6 +3149,7 @@ msgstr ""
 # File: macros/fac3d.sci, line: 41
 # File: macros/fac3d1.sci, line: 43
 # File: macros/getcolor.sci, line: 38
+# File: macros/zoom_auto.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
@@ -3717,14 +3718,14 @@ msgid "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 
 #
-# File: macros/datatips/datatipRemoveAll.sci, line: 16
+# File: macros/datatips/datatipRemoveAll.sci, line: 17
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: an array of graphic handle expected.\n"
 msgstr ""
 
 #
-# File: macros/datatips/datatipRemoveAll.sci, line: 28
+# File: macros/datatips/datatipRemoveAll.sci, line: 29
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: the handles must have the same "
@@ -3732,7 +3733,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/datatips/datatipRemoveAll.sci, line: 33
+# File: macros/datatips/datatipRemoveAll.sci, line: 34
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: handle on axes or axes children "
@@ -4501,4 +4502,16 @@ msgstr ""
 # File: macros/xsetech.sci, line: 51
 #, c-format
 msgid "%s: Wrong value given for %s."
+msgstr ""
+
+#
+# File: macros/zoom_auto.sci, line: 43
+#, c-format
+msgid "%s: Wrong type for argument %d: a handle expected.\n"
+msgstr ""
+
+#
+# File: macros/zoom_auto.sci, line: 46
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a handle expected.\n"
 msgstr ""

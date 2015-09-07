@@ -233,9 +233,6 @@ c=call("foof",a,2,"d",b,3,"d",m,4,"i",n,5,"i","out",[m,n],1,"d");
                 <link linkend="c_link">c_link</link>
             </member>
             <member>
-                <link linkend="intersci">intersci</link>
-            </member>
-            <member>
                 <link linkend="addinter">addinter</link>
             </member>
         </simplelist>

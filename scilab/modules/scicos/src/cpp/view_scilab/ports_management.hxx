@@ -21,6 +21,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
+#include <cassert>
 
 #include "internal.hxx"
 #include "bool.hxx"
@@ -29,17 +30,108 @@
 
 #include "utilities.hxx"
 #include "Controller.hxx"
+#include "controller_helpers.hxx"
 #include "model/Port.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
 #include "charEncoding.h"
+#include "localization.h"
 }
 
 namespace org_scilab_modules_scicos
 {
 namespace view_scilab
 {
+
+/*
+ * Utilities function to emit the error messages
+ */
+template<object_properties_t p>
+std::string adapterName(const object_properties_t port_kind)
+{
+    switch (p)
+    {
+        case CONNECTED_SIGNALS:
+        case IMPLICIT:
+        case LABEL:
+        case STYLE:
+            return "graphics";
+        case DATATYPE_ROWS:
+        case DATATYPE_COLS:
+        case DATATYPE_TYPE:
+        case FIRING:
+            return "model";
+    }
+}
+
+template<object_properties_t p>
+std::string adapterFieldName(const object_properties_t port_kind)
+{
+    std::string postfix;
+    switch (p)
+    {
+        case CONNECTED_SIGNALS:
+        {
+            switch (port_kind)
+            {
+                case INPUTS:
+                    return "pin";
+                case OUTPUTS:
+                    return "pout";
+                case EVENT_INPUTS:
+                    return "pein";
+                case EVENT_OUTPUTS:
+                    return "peout";
+                default:
+                    break;
+            }
+        }
+        break;
+        case IMPLICIT:
+            postfix = "_implicit";
+            break;
+        case LABEL:
+            postfix = "_label";
+            break;
+        case STYLE:
+            postfix = "_style";
+            break;
+        case DATATYPE_TYPE:
+            postfix = "typ";
+            break;
+        case DATATYPE_ROWS:
+            postfix = "2";
+            break;
+        case DATATYPE_COLS:
+            break;
+        case FIRING:
+            return "firing";
+        default:
+            break;
+    }
+
+    std::string prefix;
+    switch (port_kind)
+    {
+        case INPUTS:
+            prefix = "in";
+            break;
+        case OUTPUTS:
+            prefix = "out";
+            break;
+        case EVENT_INPUTS:
+            prefix = "evtin";
+            break;
+        case EVENT_OUTPUTS:
+            prefix = "evtout";
+            break;
+        default:
+            break;
+    }
+
+    return prefix + postfix;
+}
 
 /*
  * Return a Scilab encoded value for a property.
@@ -215,6 +307,9 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             {
                 if (current->getSize() < static_cast<int>(ids.size()))
                 {
+                    std::string adapter = adapterName<p>(port_kind);
+                    std::string field = adapterFieldName<p>(port_kind);
+                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), adapter.data(), field.data(), ids.size(), 1);
                     return false;
                 }
 
@@ -232,12 +327,18 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                     }
                     else
                     {
+                        std::string adapter = adapterName<p>(port_kind);
+                        std::string field = adapterFieldName<p>(port_kind);
+                        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: %s or %s vector expected.\n"), adapter.data(), field.data(), "'E'", "'I'");
                         return false;
                     }
                 }
                 return true;
             }
             default:
+                std::string adapter = adapterName<p>(port_kind);
+                std::string field = adapterFieldName<p>(port_kind);
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s .\n"), adapter.data(), field.data());
                 return false;
         }
     }
@@ -259,6 +360,9 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
                 if (current->getSize() < static_cast<int>(ids.size()))
                 {
+                    std::string adapter = adapterName<p>(port_kind);
+                    std::string field = adapterFieldName<p>(port_kind);
+                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), adapter.data(), field.data(), ids.size(), 1);
                     return false;
                 }
 
@@ -298,6 +402,9 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                     double data = current->get(i);
                     if (std::floor(data) != data)
                     {
+                        std::string adapter = adapterName<p>(port_kind);
+                        std::string field = adapterFieldName<p>(port_kind);
+                        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: Round number expected.\n"), adapter.data(), field.data());
                         return false;
                     }
 
@@ -310,6 +417,12 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             case IMPLICIT:
                 // Do nothing, because if the sizes match, then there are already zero concerned ports, so no ports to update
                 return true;
+
+            default:
+                std::string adapter = adapterName<p>(port_kind);
+                std::string field = adapterFieldName<p>(port_kind);
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s .\n"), adapter.data(), field.data());
+                return false;
         }
 
     }
@@ -325,9 +438,15 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                 }
                 return true;
             default:
+                std::string adapter = adapterName<p>(port_kind);
+                std::string field = adapterFieldName<p>(port_kind);
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s .\n"), adapter.data(), field.data());
                 return false;
         }
     }
+    std::string adapter = adapterName<p>(port_kind);
+    std::string field = adapterFieldName<p>(port_kind);
+    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s .\n"), adapter.data(), field.data());
     return false;
 }
 
@@ -512,6 +631,9 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
 
     if (v->getType() != types::InternalType::ScilabDouble)
     {
+        std::string adapter = adapterName<p>(port_kind);
+        std::string field = adapterFieldName<p>(port_kind);
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real matrix expected.\n"), adapter.data(), field.data());
         return false;
     }
     types::Double* value = v->getAs<types::Double>();
@@ -541,6 +663,9 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     double* d = value->getReal();
     if (!fillNewPorts<Adaptor, p>(newPorts, children, d))
     {
+        std::string adapter = adapterName<p>(port_kind);
+        std::string field = adapterFieldName<p>(port_kind);
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Must be in the interval [%d, %d].\n"), adapter.data(), field.data(), 1, children.size());
         return false;
     }
 
@@ -556,6 +681,9 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
 
         if (!updateNewPort<Adaptor, p>(oldPort, newPort, controller, children, deletedObjects))
         {
+            std::string adapter = adapterName<p>(port_kind);
+            std::string field = adapterFieldName<p>(port_kind);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : FIXME port has not been updated.\n"), adapter.data(), field.data(), 1, children.size());
             return false;
         }
     }
@@ -625,6 +753,8 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
                     controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_EOUT);
                     break;
                 default:
+                    // should never happen
+                    assert(!"Not managed kind of port");
                     return false;
             }
             addNewPort<Adaptor, p>(id, newPort, children, controller);

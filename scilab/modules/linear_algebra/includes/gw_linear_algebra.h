@@ -43,7 +43,7 @@ int sci_norm(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 //LINEAR_ALGEBRA_IMPEXP int C2F(intschur)(char *fname, unsigned long fname_len); => C++ sci_schur
 
-//YaSp
+//Scilab 6
 //LINEAR_ALGEBRA_IMPEXP int sci_chol(char *fname, void* pvApiCtx); => C++
 //LINEAR_ALGEBRA_IMPEXP int sci_bdiagr(char *fname, void* pvApiCtx); => C++ => sci_bdiag
 //LINEAR_ALGEBRA_IMPEXP int sci_svd(char *fname, void* pvApiCtx); => C++

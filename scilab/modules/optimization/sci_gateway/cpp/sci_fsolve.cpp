@@ -281,7 +281,7 @@ types::Function::ReturnValue sci_fsolve(types::typed_list &in, int _iRetCount, t
             C2F(hybrd1)(fct, &iSizeX, pDblX->get(), pDblV->get(), &dTol, &iInfo, pdblWork, &iWorkSize);
         }
     }
-    catch (ast::ScilabError &e)
+    catch (const ast::InternalError &e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         sciprint(_("%s: exception caught in '%s' subroutine.\n"), "fsolve", pstrFunc);

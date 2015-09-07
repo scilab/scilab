@@ -109,6 +109,7 @@ int sci_Xcos(char *fname, void *pvApiCtx)
         var = (char**) MALLOC(sizeof(char*) * (m * n));
         if (var == NULL)
         {
+            FREE(len);
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }

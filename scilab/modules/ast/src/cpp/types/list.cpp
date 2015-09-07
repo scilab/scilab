@@ -16,7 +16,6 @@
 #include "listundefined.hxx"
 #include "listinsert.hxx"
 #include "types_tools.hxx"
-#include "scilabexception.hxx"
 #include "localization.hxx"
 #include "scilabWrite.hxx"
 #include "types_tools.hxx"
@@ -66,13 +65,14 @@ List::~List()
 List::List(List *_oListCopyMe)
 {
     m_plData = new std::vector<InternalType *>;
-
-    for (int i = 0 ; i < (int)_oListCopyMe->getData()->size() ; i++)
+    std::vector<InternalType *>* lData = _oListCopyMe->getData();
+    int size = lData->size();
+    for (int i = 0 ; i < size ; i++)
     {
-        append((*_oListCopyMe->getData())[i]);
+        append((*lData)[i]);
     }
 
-    m_iSize = static_cast<int>(m_plData->size());
+    m_iSize = static_cast<int>(size);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
@@ -224,7 +224,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         cleanIndexesArguments(_pArgs, &pArg);
         std::wostringstream os;
         os << _W("Unable to insert multiple item in a list.\n");
-        throw ast::ScilabError(os.str());
+        throw ast::InternalError(os.str());
     }
     else if (iSeqCount < 0)
     {
@@ -264,7 +264,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
             cleanIndexesArguments(_pArgs, &pArg);
             std::wostringstream os;
             os << _W("Index out of bounds.\n");
-            throw ast::ScilabError(os.str());
+            throw ast::InternalError(os.str());
         }
 
         InternalType* pInsert = _pSource->getAs<ListInsert>()->getInsert()->clone();

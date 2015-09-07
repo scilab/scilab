@@ -17,24 +17,32 @@
    fun:tgetstr
 }
 {
-   dlerror leak thread local storage memory
+   dynamic-leak/dlerror_run
    Memcheck:Leak
    match-leak-kinds: reachable
-   fun:calloc
+   ...
    fun:_dlerror_run
 }
 {
-   pthread_create will be clear on exit
+   dynamic-leak/dl_init
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   ...
+   fun:_dl_init
+}
+{
+   dynamic-leak/dl_allocate_tls
    Memcheck:Leak
    match-leak-kinds: possible
-   fun:calloc
-   fun:allocate_dtv
+   ...
    fun:_dl_allocate_tls
-   fun:allocate_stack
-   fun:pthread_create@@GLIBC_2.2.5
-   fun:__CreateThreadWithParams
-   fun:interactiveMain
-   fun:RunScilabEngine
-   fun:main
+   ...
+}
+{
+   hdf5/H5_build_extpath
+   Memcheck:Addr4
+   fun:H5_build_extpath
+   fun:H5F_open
+   ...
 }
 

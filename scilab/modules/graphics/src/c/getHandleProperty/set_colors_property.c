@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_colors_property(void* _pvCtx, int pobjUID, void* _pvData, int valueType, int nbRow, int nbCol )
+int set_colors_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int iNumElements = 0;
@@ -41,7 +41,7 @@ int set_colors_property(void* _pvCtx, int pobjUID, void* _pvData, int valueType,
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
 
     /*
      * A way to display a more explicit message would be to first get the
@@ -56,13 +56,13 @@ int set_colors_property(void* _pvCtx, int pobjUID, void* _pvData, int valueType,
     if (nbCol == 0)
     {
         int colorSet = 0;
-        status = setGraphicObjectProperty(pobjUID, __GO_COLOR_SET__, &colorSet, jni_bool, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_COLOR_SET__, &colorSet, jni_bool, 1);
         if (status == FALSE)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "colors");
             return SET_PROPERTY_ERROR;
         }
-        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, NULL, jni_int_vector, 0);
+        setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_COLORS__, NULL, jni_int_vector, 0);
 
         return SET_PROPERTY_SUCCEED;
     }
@@ -72,11 +72,11 @@ int set_colors_property(void* _pvCtx, int pobjUID, void* _pvData, int valueType,
         int * tmp = MALLOC(nbCol * sizeof(int));
         copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
 
-        status = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, tmp, jni_int_vector, nbCol);
+        status = setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_COLORS__, tmp, jni_int_vector, nbCol);
         if (status == TRUE)
         {
             int colorSet = 1;
-            setGraphicObjectProperty(pobjUID, __GO_COLOR_SET__, &colorSet, jni_bool, 1);
+            setGraphicObjectProperty(iObjUID, __GO_COLOR_SET__, &colorSet, jni_bool, 1);
             FREE(tmp);
             return SET_PROPERTY_SUCCEED;
         }

@@ -65,7 +65,6 @@ gui \
 graphic_export \
 graphics \
 optimization \
-symbolic \
 randlib \
 interpolation \
 sound \
@@ -155,7 +154,8 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
-	$(top_builddir)/modules/commons/libscicommons-disable.la
+	$(top_builddir)/modules/commons/libscicommons-disable.la \
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la
 
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
@@ -192,15 +192,13 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
-	$(top_builddir)/modules/preferences/libscipreferences-cli.la
+	$(top_builddir)/modules/external_objects/libsciexternal_objects.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \

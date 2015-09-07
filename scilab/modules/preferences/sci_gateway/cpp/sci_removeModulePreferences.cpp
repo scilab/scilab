@@ -12,10 +12,10 @@
 
 #include "ScilabPreferences.hxx"
 #include "GiwsException.hxx"
+#include "preferences_gw.hxx"
 
 extern "C"
 {
-#include "gw_preferences.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"

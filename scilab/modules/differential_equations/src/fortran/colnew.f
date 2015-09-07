@@ -463,7 +463,6 @@ C      IMPLICIT REAL*8 (A-H,O-Z)
       DIMENSION M(*), ZETA(*), IPAR(*), LTOL(*), TOL(*), DUMMY(1),
      1          FIXPNT(*), ISPACE(*), FSPACE(*)
 C
-      include 'stack.h'
       COMMON /COLOUT/ PRECIS, IOUT, IPRINT
       COMMON /COLLOC/ RHO(7), COEF(49)
       COMMON /COLORD/ K, NC, MSTAR, KD, MMAX, MT(20)
@@ -1244,7 +1243,7 @@ c            Create and display buffer row by row
 c            Format 620 write one space following by at most 8 double
 c            that's why the increment of iter is multiply by 8
              DO 405 iter = J, NZ, MSTAR*8
-  405            WRITE(TMPBUF,620) (Z(LJ), LJ = iter, iter+MSTAR*7, 
+  405            WRITE(TMPBUF,620) (Z(LJ), LJ = iter, iter+MSTAR*7,
      1              MSTAR)
              CALL COLNEWMSGS(TMPBUF)
   410        continue

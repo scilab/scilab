@@ -28,13 +28,13 @@ extern "C"
 
 namespace symbol
 {
-Context* Context::me;
+Context* Context::me = nullptr;
 
 Context::Context()
 {
-    m_iLevel = 0;
-    varStack.push(new VarList());
+    m_iLevel = SCOPE_ALL;
     globals = new std::list<Symbol>();
+    console = nullptr;
 }
 
 Context::~Context()
@@ -54,7 +54,7 @@ Context::~Context()
 
 Context* Context::getInstance(void)
 {
-    if (me == 0)
+    if (me == nullptr)
     {
         me = new Context();
     }
@@ -66,13 +66,22 @@ void Context::destroyInstance(void)
     if (me)
     {
         delete me;
+        me = nullptr;
     }
 }
 
 void Context::scope_begin()
 {
     m_iLevel++;
-    varStack.push(new VarList());
+    if (m_iLevel == SCOPE_CONSOLE)
+    {
+        console = new VarList();
+        varStack.push(console);
+    }
+    else
+    {
+        varStack.push(new VarList());
+    }
 }
 
 void Context::clearAll()
@@ -90,6 +99,11 @@ void Context::scope_end()
     }
 
     m_iLevel--;
+
+    if (m_iLevel < SCOPE_CONSOLE)
+    {
+        console = nullptr;
+    }
 }
 
 bool Context::clearCurrentScope(bool _bClose)
@@ -161,7 +175,7 @@ int Context::getLevel(const Symbol & _key) const
     else
     {
         const int ret = variables.getLevel(_key);
-        if (ret == -1)
+        if (ret == SCOPE_ALL)
         {
             return libraries.getLevel(_key);
         }
@@ -171,12 +185,12 @@ int Context::getLevel(const Symbol & _key) const
         }
     }
 
-    return -1;
+    return SCOPE_ALL;
 }
 
 types::InternalType* Context::get(const Symbol& _key)
 {
-    return get(_key, -1);
+    return get(_key, SCOPE_ALL);
 }
 
 types::InternalType* Context::get(const Variable* _var)
@@ -185,7 +199,7 @@ types::InternalType* Context::get(const Variable* _var)
     if (pIT == NULL)
     {
         //look in libraries
-        pIT = libraries.get(_var->getSymbol(), -1);
+        pIT = libraries.get(_var->getSymbol(), SCOPE_ALL);
         if (pIT && pIT->isLibrary() == false)
         {
             put((Variable*)_var, pIT);
@@ -198,7 +212,7 @@ types::InternalType* Context::get(const Variable* _var)
 types::InternalType* Context::get(const Symbol& _key, int _iLevel)
 {
     types::InternalType* pIT = NULL;
-    if (_iLevel == m_iLevel || _iLevel == -1)
+    if (_iLevel == m_iLevel || _iLevel == SCOPE_ALL)
     {
         //look for in current VarList
         VarList::iterator it = varStack.top()->find(_key);
@@ -238,6 +252,11 @@ types::InternalType* Context::getAllButCurrentLevel(const Symbol& _key)
     return variables.getAllButCurrentLevel(_key, m_iLevel);
 }
 
+types::InternalType* Context::getAtLevel(const Symbol& _key, int level)
+{
+    return variables.getAllButCurrentLevel(_key, level == SCOPE_ALL ? m_iLevel : level + 1);
+}
+
 types::InternalType* Context::getFunction(const Symbol& _key)
 {
     return get(_key);
@@ -246,6 +265,19 @@ types::InternalType* Context::getFunction(const Symbol& _key)
 int Context::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName)
 {
     return variables.getFunctionList(lst, _stModuleName, m_iLevel);
+}
+
+int Context::getConsoleVarsName(std::list<std::wstring>& lst)
+{
+    if (console)
+    {
+        for (const auto& var : *console)
+        {
+            lst.push_back(var.first.getName());
+        }
+    }
+
+    return static_cast<int>(lst.size());
 }
 
 int Context::getVarsName(std::list<std::wstring>& lst)
@@ -358,7 +390,7 @@ bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
 bool Context::addFunction(types::Function *_info)
 {
     Variable* var = variables.getOrCreate(Symbol(_info->getName()));
-    variables.putInPreviousScope(var, _info, 0);
+    variables.putInPreviousScope(var, _info, SCOPE_GATEWAY);
     return true;
 }
 

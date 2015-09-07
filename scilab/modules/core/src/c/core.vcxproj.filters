@@ -17,9 +17,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="callFunctionFromGateway.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="commandwords.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -68,18 +65,6 @@
     <ClCompile Include="GetXmlFileEncoding.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_core.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gw_dynamic_generic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_user.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_user2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="isanan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,9 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="md5.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\namstr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="returnanan.c">
@@ -110,15 +92,6 @@
     <ClCompile Include="DllmainCore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InitializePreferences.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setformat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setieee.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\with_module.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -129,9 +102,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="backtrace.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setlines.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getmaxMALLOC.c">
@@ -176,6 +146,15 @@
     <ClCompile Include="saveCWDInPreferences.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\setformat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InitializePreferences.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\setlines.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\core.iss" />
@@ -208,9 +187,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\BOOL.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\callFunctionFromGateway.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\commandwords.h">
@@ -270,9 +246,6 @@
     <ClInclude Include="..\..\includes\inffic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\InitializePreferences.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\initMacOSXEnv.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -318,9 +291,6 @@
     <ClInclude Include="..\..\includes\setformat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\setieee.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\setPrecisionFPU.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -328,24 +298,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\signal_mgmt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stack1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stack2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stack3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stack-def.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stackinfo.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stackTypeVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\storeCommand.h">
@@ -405,9 +357,6 @@
     <ClInclude Include="gw_dynamic_generic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="md5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\partition.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -421,9 +370,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\setlines.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\stackTypeVariable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getmaxMALLOC.h">
@@ -462,7 +408,10 @@
     <ClInclude Include="saveCWDInPreferences.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="funcprot.h">
+    <ClInclude Include="..\..\includes\InitializePreferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\md5.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -8,9 +8,9 @@
 // <-- CLI SHELL MODE -->
 warning("off");
 A = sparse( [ 2  3  0  0  0;
-              3  0  4  0  6;
-              0 -1 -3  2  0;
-              0  0  1  0  0;
+              3  0  4  0  6; 
+              0 -1 -3  2  0; 
+              0  0  1  0  0; 
               0  4  2  0  1] );
 K1 = condestsp(A);
 if norm(K1,39.385965) < 1E-6 then bugmes();quit;end

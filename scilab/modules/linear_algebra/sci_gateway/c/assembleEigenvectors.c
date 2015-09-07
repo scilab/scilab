@@ -11,8 +11,8 @@
 */
 
 #include "elementary_functions.h"
-#include "stack-c.h"
-#include "doublecomplex.h"
+#include "elem_common.h"
+
 extern int C2F(dlaset)();
 
 //

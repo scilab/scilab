@@ -23,6 +23,7 @@
 #include "Controller.hxx"
 #include "LoggerView.hxx"
 #include "utilities.hxx"
+#include "controller_helpers.hxx"
 
 extern "C"
 {
@@ -33,19 +34,6 @@ extern "C"
 using namespace org_scilab_modules_scicos;
 
 static const std::string funame = "scicos_log";
-
-LoggerView* get_or_allocate_logger()
-{
-    static const std::string loggerViewName = "logger";
-
-    View* registeredView = Controller::look_for_view(loggerViewName);
-    if (registeredView == nullptr)
-    {
-        registeredView = Controller::register_view(loggerViewName, new LoggerView());
-    }
-    LoggerView* logger = static_cast<LoggerView*>(registeredView);
-    return logger;
-}
 
 types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -90,14 +78,13 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
     if (logLevel < 0)
     {
         std::wstringstream buffer;
-        for (int i = 0; i <= LOG_TRACE; i++)
+        for (int i = LOG_TRACE; i < LOG_FATAL; i++)
         {
             buffer << LoggerView::toString(static_cast<enum LogLevel>(i));
-            if (i != LOG_TRACE)
-            {
-                buffer << L", ";
-            }
+            buffer << L", ";
         }
+        buffer << LoggerView::toString(LOG_FATAL);
+
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"), funame.data(), 1, buffer.str().data());
         return types::Function::Error;
     }

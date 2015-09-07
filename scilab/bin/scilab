@@ -78,7 +78,7 @@ start_debug_kdbg() {
 }
 
 start_profiling() {
-    VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --db-attach=yes --gen-suppressions=all --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
+    VALGRIND_OPTIONS=" --show-below-main=yes --num-callers=12 --demangle=yes --leak-check=full --show-reachable=yes --smc-check=all --show-below-main=yes --track-origins=yes --suppressions=$SCI/tools/profiling/valgrind.supp $SCILAB_VALGRIND_OPT"
     if test -n "$DEVENV"; then
         echo "Running profiling of Scilab  : " "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
         "$SCI"/libtool --mode=execute valgrind $VALGRIND_OPTIONS "$SCILABBIN" "$@"
@@ -296,8 +296,10 @@ set_macosx_java_vm () {
     # don't need to detect the CPU
     JAVA_SHLIB="libjava.jnilib"
     if test -z "$JAVA_HOME"; then
-      JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+      JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)
     fi
+    JAVA_JVM_VERSION=$JAVA_HOME
+    export JAVA_JVM_VERSION
     DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
 
 }
@@ -324,7 +326,12 @@ set_embedded_java_vm () {
                 esac
                 ;;
             *darwin* | *Darwin*) # MacOS X
-                set_macosx_java_vm
+                # JRE is now embedded in Mac OS X binary version
+                #set_macosx_java_vm
+                JAVA_HOME=$SCIBINARYBASE/thirdparty/java/Contents/Home/
+                JAVA_JVM_VERSION=$JAVA_HOME
+                export JAVA_JVM_VERSION
+                DYLD_LIBRARY_PATH="$JAVA_HOME/lib/server:${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
                 ;;
             *)
             echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
@@ -428,7 +435,7 @@ detect_java_vm() {
 # Browse "default directory" (if it means anything under Unix/Linux) of Java
 # to find where it could be !
             if test -z "$JAVA_HOME"; then
-                JAVA_DEFAULT_DIR="/usr/lib/jvm/default-java /usr/lib/jvm/java-6-openjdk/ /usr/lib/jvm/java-7-openjdk/ /usr/lib/jvm/java/ /usr/lib/jvm/java-6-sun/ /usr/lib/j2se/1.6 /usr/java/jdk1.6.0*/ /usr/java/jdk1.5.0*/ /usr/lib/j2sdk1.6-ibm /usr/lib/jvm/java-1.5.0-sun /usr/java/ /usr/lib/j2se/1.5 /usr/lib/j2se/1.4 /usr/java/jre1.6.0*/ /usr/java/jre1.5.0*/ /usr/lib/j2sdk1.5-ibm /usr/lib/j2sdk1.4-ibm /usr/lib/j2sdk1.5-sun /usr/lib/j2sdk1.4-sun /usr/lib/jvm/java-gcj /usr/lib/jvm/java-1.5.0-gcj/ /usr/lib/kaffe/pthreads /usr/lib/jvm/java-1.7.0-icedtea-*/ /usr/lib/jvm/jre/ /usr/local/diablo-jdk1.6.0/"
+                JAVA_DEFAULT_DIR="/usr/java/jdk1.8.*/ /usr/lib/jvm/java-1.8.0-*/ /etc/alternatives/java_sdk /etc/alternatives/jre /usr/java/jdk*/ /usr/lib/jvm/java-*/"
                 for DIR in $JAVA_DEFAULT_DIR ; do
                     if test $SCIVERBOSE -ne 0; then
                         echo "Trying to find Java in $DIR "
@@ -667,7 +674,7 @@ export GTK_MODULES
 # libEGL may be partially supported by the closed-source NVIDIA driver.
 # Until they release an EGL driver, we force the egl_glx driver.
 # http://bugzilla.scilab.org/show_bug.cgi?id=12940
-if test -x /usr/bin/glxinfo; then
+if test $SCILAB_MODE != "nwni" -a -x /usr/bin/glxinfo; then
     NVIDIA_GLX_VENDOR=$(/usr/bin/glxinfo |grep "NVIDIA Corporation")
     if test ! -z "$NVIDIA_GLX_VENDOR"; then
         EGL_DRIVER=egl_glx
@@ -713,7 +720,6 @@ set_macox_specific_path()
 
     PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
     PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
-    PATH_TO_SPECIFIC_10_5=$SCIBINARYBASE/lib/thirdparty/10.5/
 
     case $macosxMajorVersion in
         10)
@@ -724,16 +730,9 @@ set_macox_specific_path()
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
                 6)
-                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    # the iconv lib fails under 10.7, just declare it for 10.6
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    ;;
-                 5)
-                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
-                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
-                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_5${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
             esac
             ;;
@@ -751,37 +750,23 @@ check_macosx_version()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                7|8|9|10)
+                9|10)
                    # We force to install JRE on Lion
                    /usr/libexec/java_home --request > /dev/null
                    ;;
-                6)
-
-                    if test $macosxBuildVersion -le 4; then
-                        # Version <= 10.6.4
-                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                8)
+                    if test $macosxBuildVersion -le 3; then
+                        # Version <= 10.8.3
+                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
                     fi
                     ;;
-                 5)
-                     if test $macosxBuildVersion -le 7; then
-                         # Version <= 10.5.8
-                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.5.8 (Leopard) or newer system" || exit 128
-                     fi
-                     # Check if the default java is not 1.5 (magic)
-                     VERSION=$(/usr/libexec/java_home -v 1.5|grep 1.5.0)
-                     if test "$VERSION"; then
-                         open /Applications/Utilities/Java\ Preferences.app/ &
-                         osascript $BINPATH/checkmacosx.applescript $macosxVersion "Java 6 or newer. Please disable any version of Java 1.5 in the Java Preferences menu. An other workaround is to rename /System/Library/Frameworks/JavaVM.framework/Versions/1.5.0/Libraries/libjava.jnilib to libjava.jnilib_" || exit 128
-                     fi
-
-                     ;;
                 *)
-                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
                     ;;
             esac
             ;;
         *)
-            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
             ;;
     esac
 }
@@ -977,8 +962,9 @@ do_help()
     echo     "                    -e and -f arguments are mutually exclusive."
     echo     "  -f File         : execute the scilab script given in File argument."
     echo     "                    -e and -f arguments are mutually exclusive."
+    echo     "  -quit           : force scilab exit after execution of script from -e or -f argument."
+    echo     "                    this flag is ignored if it is not used with -e or -f argument."
     echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
-    echo     "  -mem N          : set the initial stacksize, for use with -ns argument."
     echo     "  -nb             : do not display Scilab loading on start."
     echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
     echo     "  -nouserstartup  : do not execute the user startup files SCIHOME/.scilab or SCIHOME/scilab.ini."
@@ -1084,14 +1070,14 @@ if test "$rest" = "yes"; then
                     exit 5
                 fi
                 ;;
-            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed|--serialize)
+            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed|--serialize|-quit)
 	    #This are Scilab6 dedicated options.
 	            ;;
             -psn_*)
             # Under Mac OS X, .app is adding the arg -psn_0_xxxx
             # (psn = ProcessSerialNumber). It is not used (but could be in the future)
                 ;;
-            -display|-f|-l|-e|-d|-mem|--parse-file)
+            -display|-f|-l|-e|-d|--parse-file)
                 prevarg=1
                 ;;
             -args) # Accept extra arguments

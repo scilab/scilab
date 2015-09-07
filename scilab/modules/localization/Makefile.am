@@ -31,7 +31,6 @@ LOCALIZATION_CPP_SOURCES = \
     src/cpp/localization.cpp
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_localization.c \
     sci_gateway/c/sci_addlocalizationdomain.c \
     sci_gateway/c/sci_gettext.c
 

@@ -21,7 +21,7 @@
 #include "machine.h"
 #include "isdir.h"
 /*--------------------------------------------------------------------------*/
-static void splitpath(char *composite,  char *path,  char *fname);
+static void mysplitpath(char *composite,  char *path,  char *fname);
 static char **addPath(char **dictionary, int sizearray, char *path);
 static char **addDirSeparator(char **dictionary, int sizearray, char *path);
 /*--------------------------------------------------------------------------*/
@@ -47,7 +47,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
         char *pathextended = NULL;
 
 
-        splitpath(somechars, pathname, filename);
+        mysplitpath(somechars, pathname, filename);
 
         if ( strcmp(pathname, "") == 0 )
         {
@@ -112,7 +112,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
     return dictionary;
 }
 /*--------------------------------------------------------------------------*/
-static void splitpath(char *composite,  char *path,  char *fname)
+static void mysplitpath(char *composite,  char *path,  char *fname)
 {
     if (composite && path && fname)
     {

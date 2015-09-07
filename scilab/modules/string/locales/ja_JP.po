@@ -58,20 +58,11 @@ msgstr ""
 "\n"
 
 #
-# File: sci_gateway/c/sci_code2str.c, line: 48
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実行列を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_code2str.c, line: 59
-# File: sci_gateway/c/sci_code2str.c, line: 73
 # File: sci_gateway/c/sci_convstr.c, line: 117
 # File: sci_gateway/c/sci_grep.c, line: 263
 # File: sci_gateway/c/sci_isascii.c, line: 102
 # File: sci_gateway/c/sci_part.c, line: 117
 # File: sci_gateway/c/sci_regexp.c, line: 168
-# File: sci_gateway/c/sci_str2code.c, line: 84
 # File: sci_gateway/c/sci_strcat.c, line: 128
 # File: sci_gateway/c/sci_strcat.c, line: 142
 # File: sci_gateway/c/sci_strcat.c, line: 150
@@ -121,7 +112,6 @@ msgstr "%s: 入力引数 #%d で不正な型: 'u' (Upper) または 'l' (Lower) 
 #
 # File: sci_gateway/c/sci_convstr.c, line: 103
 # File: sci_gateway/c/sci_convstr.c, line: 109
-# File: sci_gateway/c/sci_str2code.c, line: 90
 # File: sci_gateway/c/sci_strchr.c, line: 92
 # File: sci_gateway/c/sci_strcmp.c, line: 126
 # File: sci_gateway/c/sci_strcmp.c, line: 130

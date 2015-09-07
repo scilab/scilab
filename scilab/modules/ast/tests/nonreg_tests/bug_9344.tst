@@ -13,7 +13,8 @@
 // <-- Short Description -->
 // Parser did not display anything when failing on UTF-8 char
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 execstr("mclose(1");
 execstr("mclose(1°");
+

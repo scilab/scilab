@@ -46,9 +46,6 @@
             retorna resultados de profiling (ver <literal>profile</literal>) com o
             texto das linhas da função.
         </para>
-        <para>O texto da função é reconstruído com
-            <literal>fun2string</literal>.
-        </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
@@ -77,9 +74,6 @@ showprofile(foo)
             </member>
             <member>
                 <link linkend="plotprofile">plotprofile</link>
-            </member>
-            <member>
-                <link linkend="fun2string">fun2string</link>
             </member>
         </simplelist>
     </refsection>

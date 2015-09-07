@@ -179,7 +179,7 @@ void JITVisitor::visit(const ast::SimpleVar &e)
         /*types::InternalType * pIT = symbol::Context::getInstance()->get(((ast::SimpleVar&)e).stack_get());
 
           setResult(std::shared_ptr<JITVal>(JITVal::get(*this, pIT, _name)));*/
-        throw ast::ScilabError("Variable not declared before JIT: " + _name);
+        throw ast::InternalError("Variable not declared before JIT: " + _name);
     }
 }
 

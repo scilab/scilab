@@ -85,12 +85,18 @@ int read_write_bsparse(char *fname, void* pvApiCtx)
         iCol += piNbItemRow[i];
     }
 
+    FREE(piNbItemRow);
+    FREE(piColPos);
+
     sciErr = createBooleanSparseMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows, iCols, iNewItem, piNewRow, piNewCol);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
+
+    FREE(piNewRow);
+    FREE(piNewCol);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     return 0;

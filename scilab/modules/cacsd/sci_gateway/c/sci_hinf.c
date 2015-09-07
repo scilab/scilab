@@ -13,9 +13,9 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "numericconstants_interface.h"
 
 extern int C2F(sb10fd)();
-extern double C2F(dlamch)();
 
 // [Ak,Bk,Ck,Dk,RCOND]=hinf(A,B,C,D,ncon,nmeas,gamma)
 int sci_hinf(char *fname, void* pvApiCtx)
@@ -303,7 +303,7 @@ int sci_hinf(char *fname, void* pvApiCtx)
     }
 
     GAMMA = *lGAMMA;
-    EPS = C2F(dlamch)("e", 1L);
+    EPS = nc_eps();
     TOL = sqrt(EPS);
 
     sciErr = allocMatrixOfDouble(pvApiCtx, 8, N, N, &lAK);

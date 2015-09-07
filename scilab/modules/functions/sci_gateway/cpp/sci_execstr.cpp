@@ -11,7 +11,7 @@
 */
 
 #include <string.h>
-#include "AnalysisVisitor.hxx"
+//#include "AnalysisVisitor.hxx"
 #include "parser.hxx"
 #include "functions_gw.hxx"
 //#include "debugvisitor.hxx"
@@ -20,8 +20,8 @@
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
+#include "threadmanagement.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -139,6 +139,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         pstCommand[iPos] = 0;
     }
 
+    ThreadManagement::LockParser();
     parser.parse(pstCommand);
     FREE(pstCommand);
     if (parser.getExitStatus() !=  Parser::Succeded)
@@ -150,6 +151,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             ConfigVariable::setLastErrorCall();
             ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
             ConfigVariable::setLastErrorNumber(999);
+            ThreadManagement::UnlockParser();
             return Function::OK;
         }
         else
@@ -157,6 +159,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             char* pst = wide_string_to_UTF8(parser.getErrorMessage());
             Scierror(999, "%s", pst);
             FREE(pst);
+            ThreadManagement::UnlockParser();
             return Function::Error;
         }
     }
@@ -180,6 +183,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         pExp = parser.getTree();
     }
 
+    ThreadManagement::UnlockParser();
+
     if (pExp == NULL)
     {
         return Function::Error;
@@ -191,8 +196,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     if (ConfigVariable::getAnalyzerOptions() == 1)
     {
-        analysis::AnalysisVisitor analysis;
-        pExp->accept(analysis);
+        //analysis::AnalysisVisitor analysis;
+        //pExp->accept(analysis);
         //ast::DebugVisitor debugMe;
         //pExp->accept(debugMe);
     }
@@ -208,13 +213,19 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         ExecVisitor execExps;
         pSeqExp->accept(execExps);
     }
-    catch (ast::ScilabMessage sm)
+    catch (const ast::InternalError& ie)
     {
-        if (bErrCatch == false && bMute == false)
+        if (bErrCatch == false)
         {
+            delete pExp;
             ConfigVariable::macroFirstLine_end();
             ConfigVariable::setPromptMode(iPromptMode);
-            throw sm;
+            throw ie;
+        }
+
+        if (bMute == false)
+        {
+            scilabForcedWriteW(ie.GetErrorMessage().c_str());
         }
 
         ConfigVariable::resetWhereError();

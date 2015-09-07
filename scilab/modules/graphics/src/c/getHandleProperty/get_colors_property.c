@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_colors_property(void* _pvCtx, int pobjUID)
+void* get_colors_property(void* _pvCtx, int iObjUID)
 {
     int * colors = NULL;
     int numColors = 0;
@@ -34,15 +34,15 @@ void* get_colors_property(void* _pvCtx, int pobjUID)
     int colorSet = 0;
     int *piColorSet = &colorSet;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLOR_SET__, jni_bool, (void **)&piColorSet);
+    getGraphicObjectProperty(iObjUID, __GO_COLOR_SET__, jni_bool, (void **)&piColorSet);
     if (piColorSet == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "colors");
         return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, jni_int_vector, (void **)&colors);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_COLORS__, jni_int, &piNumColors);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_COLORS__, jni_int_vector, (void **)&colors);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_COLORS__, jni_int, &piNumColors);
 
     if (colors == NULL || numColors == 0)
     {

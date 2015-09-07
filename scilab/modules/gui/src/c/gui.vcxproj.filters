@@ -146,9 +146,6 @@
     <ClCompile Include="..\cpp\GetUiobjectForegroundColor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_gui.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="iconifyMainWindow.c">
       <Filter>Source Files</Filter>
     </ClCompile>

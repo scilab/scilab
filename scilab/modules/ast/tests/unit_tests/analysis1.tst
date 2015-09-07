@@ -4,8 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
-// <-- JVM NOT MANDATORY -->
+//
+// <-- CLI SHELL MODE -->
+//
 
 function y=test1(a, b)
     y = a+b;

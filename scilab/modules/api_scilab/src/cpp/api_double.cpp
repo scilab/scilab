@@ -230,7 +230,6 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
     }
 
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pStr->m_pIn;
     InternalType** out = pStr->m_pOut;
 
     Double* pDbl = NULL;
@@ -249,9 +248,9 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
             }
         }
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 

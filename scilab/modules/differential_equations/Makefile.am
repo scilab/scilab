@@ -17,7 +17,8 @@ DIFFERENTIAL_EQUATIONS_C_SOURCES = \
     src/c/rk4.c \
     src/c/Ex-odedc.c \
     src/c/Ex-ode.c \
-    src/c/Ex-daskr.c
+    src/c/Ex-daskr.c \
+    src/c/errmds.c
 
 DIFFERENTIAL_EQUATIONS_FORTRAN_SOURCES = \
     src/fortran/rscar1.f \

@@ -187,9 +187,6 @@ clear list_functions;
                 <link linkend="link">link</link>
             </member>
             <member>
-                <link linkend="intersci">intersci</link>
-            </member>
-            <member>
                 <link linkend="newfun">newfun</link>
             </member>
             <member>

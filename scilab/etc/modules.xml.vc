@@ -44,7 +44,6 @@
     <module name="sparse" activate="yes"/>
     <module name="special_functions" activate="yes"/>
     <module name="string" activate="yes"/>
-    <module name="symbolic" activate="yes"/>
     <module name="time" activate="yes"/>
     <module name="windows_tools" activate="yes"/>
     <module name="statistics" activate="yes"/>

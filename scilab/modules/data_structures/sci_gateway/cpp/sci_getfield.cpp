@@ -260,8 +260,11 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         if (!properties->isString())
         {
             Scierror(999, _("%s: Could not read the argument #%d properties.\n"), "getfield", 2);
+            delete one[0];
             return types::Function::Error;
         }
+        delete one[0];
+
         types::String* propertiesStr = properties->getAs<types::String>();
 
         // Checking the index validity

@@ -49,8 +49,8 @@
 iscell(1)
 iscell(cell())
 c = cell(1,2);
-c(1).entries="Scilab";
-c(2).entries=datenum();
+c{1} = "Scilab";
+c{2} = datenum();
 iscell(c)
  ]]></programlisting>
     </refsection>

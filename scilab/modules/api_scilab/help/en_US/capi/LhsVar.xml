@@ -61,7 +61,7 @@
         </para>
         <para>TODO: insert an example in the Scilab language</para>
         <programlisting role="example"><![CDATA[
-#include "stack-c.h"
+
 #include "api_scilab.h"
 int sci_mysizedouble(char * fname, unsigned long fname_len)
 {

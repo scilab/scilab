@@ -7,8 +7,7 @@ funtab_
 iop_
 callFunctionFromGateway
 com_
-putlhsvar_ 
-intersci_
+putlhsvar_
 freeArrayOfString
 getrhsvar_
 vartype_
@@ -16,9 +15,7 @@ checklhs_
 checkrhs_
 createvar_
 createvarfromptr_
-stack_
 gettype_
-vstk_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

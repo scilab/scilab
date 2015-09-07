@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-03-27 13:54+0100\n"
+"Revision-Date: 2015-07-03 10:13+0100\n"
 
 # File: sci_gateway/c/sci_dnaupd.c, line: 98
 # File: sci_gateway/c/sci_dnaupd.c, line: 116
@@ -489,11 +489,18 @@ msgstr ""
 
 #
 # File: macros/eigs.sci, line: 84
-# File: macros/eigs.sci, line: 156
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: If A is a matrix, use opts with tol, "
 "maxiter, ncv, resid, cholB"
+msgstr ""
+
+#
+# File: macros/eigs.sci, line: 156
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a function, use opts with tol, "
+"maxiter, ncv, resid, cholB, issym"
 msgstr ""
 
 #

@@ -50,6 +50,7 @@ namespace
 const std::wstring Deleted (L"Deleted");
 const std::wstring TextSharedTypeStr (L"Text");
 const std::wstring BlockSharedTypeStr (L"Block");
+const std::wstring LinkSharedTypeStr (L"Link");
 
 struct props
 {
@@ -221,6 +222,19 @@ struct objs
                 {
                     ScicosID localAdaptee = controller.createObject(BLOCK);
                     BlockAdapter* localAdaptor = new BlockAdapter(controller, controller.getObject<model::Block>(localAdaptee));
+                    if (!localAdaptor->setAsTList(modelElement, controller))
+                    {
+                        list->killMe();
+                        return false;
+                    }
+
+                    diagramChildren.push_back(localAdaptee);
+                    list->set(i, localAdaptor);
+                }
+                else if (header->get(0) == LinkSharedTypeStr)
+                {
+                    ScicosID localAdaptee = controller.createObject(LINK);
+                    LinkAdapter* localAdaptor = new LinkAdapter(controller, controller.getObject<model::Link>(localAdaptee));
                     if (!localAdaptor->setAsTList(modelElement, controller))
                     {
                         list->killMe();

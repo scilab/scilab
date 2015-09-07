@@ -5,12 +5,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 //build the list of loaded libs
 %libs=[];
 for %name=who('local')'
   if %name<>'ans' then
     execstr('%typ=type('+%name+')');
-    if %typ==14 then
+    if %typ==14 then 
       if and(%name<>['parameterslib','simulated_annealinglib','genetic_algorithmslib','scilab2fortranlib']) then
         %libs=[%libs %name];
       end

@@ -40,7 +40,7 @@ c                 to appear in siam review.
 c
 c
 c    the parameters represent-
-c      fydot -- subroutine fydot(neqn,t,y,yp) to evaluate derivatives 
+c      fydot -- subroutine fydot(neqn,t,y,yp) to evaluate derivatives
 c             yp(i)=dy(i)/dt
 c      neqn -- number of equations to be integrated
 c      y(*) -- solution vector at t
@@ -63,7 +63,7 @@ c  first call to rkf45
 c
 c    the user must provide storage in his calling program for the arrays
 c    in the call list  -      y(neqn) , work(3+6*neqn) , iwork(5)  ,
-c    declare fydot in an external statement, supply 
+c    declare fydot in an external statement, supply
 c    subroutine fydot(neqn,t,y,yp)
 c    and initialize the following parameters-
 c
@@ -180,8 +180,6 @@ c    required for subsequent integration. accordingly, work and iwork
 c    should not be altered.
 c
 c
-      include 'stack.h'
-      
       integer neqn,iflag,iwork(5)
       double precision y(neqn),t,tout,rerr,aerr,work(1)
 c
@@ -233,7 +231,7 @@ c         h  - an appropriate stepsize to be used for the next step
 c         nfe- counter on the number of derivative function evaluations
 c
 c
-      
+
       logical hfaild,output
 c
       integer  neqn,iflag,nfe,kop,init,jflag,kflag
@@ -600,9 +598,7 @@ c
       double precision  y(neqn),t,h,yp(neqn),f1(neqn),f2(neqn),
      1  f3(neqn),f4(neqn),f5(neqn),s(neqn),savey(neqn)
 c
-      
-      include 'stack.h'
-      
+
       double precision  ch
       integer  k
       external fydot

@@ -16,23 +16,28 @@
 
 #define DEFAULT_ENCODING "UTF-8"
 
+#ifdef _MSC_VER
+#define FILE_SEPARATOR L"\\"
+#else
 #define FILE_SEPARATOR L"/"
+#endif
 
 //XML API
 #include <libxml/xpath.h>
 #include <libxml/xmlwriter.h>
 
 #include <string.h>
+#include "string.hxx"
 #include "parser.hxx"
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "scilabWrite.hxx"
 #include "expandPathVariable.h"
 #include "configvariable.hxx"
-#include "string.hxx"
 #include "library.hxx"
 #include "macrofile.hxx"
 #include "serializervisitor.hxx"
+#include "loadlib.hxx"
 
 extern "C"
 {
@@ -49,18 +54,25 @@ extern "C"
 #include "sciprint.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
+#include "scicurdir.h"
+#include "md5.h"
 }
 
 
 xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName);
 void closeXMLFile(xmlTextWriterPtr _pWriter);
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<wstring, wstring> _pair);
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const wstring& name, const wstring& file, const wstring& md5);
 
 
 using namespace types;
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
+Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out)
 {
+    int succes = 1;
+    std::vector<std::wstring> failed_files;
+    std::vector<std::wstring> success_files;
+    std::vector<std::wstring> funcs;
+
     wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
     wchar_t pstVerbose[65535];
 
@@ -70,8 +82,9 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     wchar_t* pstLibName		= NULL;
     bool bVerbose           = false;
 
-    if (in.size() < 2 && in.size() > 4)
+    if (in.size() < 1 || in.size() > 4)
     {
+        Scierror(78, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "genlib", 1, 4);
         return Function::Error;
     }
 
@@ -79,26 +92,38 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     InternalType* pIT = in[0];
     if (pIT->isString() == false)
     {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "genlib", 1);
         return Function::Error;
     }
 
-    String *pS = pIT->getAs<types::String>();
+    String *pS = pIT->getAs<String>();
     if (pS->getSize() != 1)
     {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "genlib", 1);
         return Function::Error;
     }
     pstLibName = pS->get(0);
 
     //param 2, library path
-    pIT = in[1];
-    if (pIT->isString() == false)
+    if (in.size() > 1)
     {
-        return Function::Error;
+        pIT = in[1];
+        if (pIT->isString() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "genlib", 2);
+            return Function::Error;
+        }
+    }
+    else
+    {
+        int ierr = 0;
+        pIT = new String(scigetcwd(&ierr));
     }
 
-    pS = pIT->getAs<types::String>();
+    pS = pIT->getAs<String>();
     if (pS->isScalar() == false)
     {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "genlib", 2);
         return Function::Error;
     }
 
@@ -109,14 +134,14 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if (in.size() > 3)
     {
-        //versbose flag
+        //verbose flag
         pIT = in[3];
         if (pIT->isBool() == false)
         {
             return Function::Error;
         }
 
-        bVerbose = pIT->getAs<types::Bool>()->get()[0] == 1;
+        bVerbose = pIT->getAs<Bool>()->get()[0] == 1;
     }
 
     wchar_t* pstFile = pS->get(0);
@@ -137,8 +162,12 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
         ConfigVariable::setPromptMode(oldVal);
     }
 
+    MacroInfoList lstOld;
     if (FileExistW(pstParseFile))
     {
+        //read it to get previous information like md5
+        std::wstring libname;
+        parseLibFile(pstParseFile, lstOld, libname);
         deleteafileW(pstParseFile);
     }
 
@@ -159,7 +188,7 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
 
     if (pstPath)
     {
-        types::Library* pLib = new types::Library(pstParsePath);
+        Library* pLib = new Library(pstParsePath);
         for (int k = 0 ; k < iNbFile ; k++)
         {
             //version with direct parsing
@@ -170,15 +199,45 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             wstring pstPathBin(pstPath[k]);
             pstPathBin.replace(pstPathBin.end() - 3, pstPathBin.end(), L"bin");
 
-            //sciprint(_("%ls: Processing file: %ls\n"), L"genlib", pstPath[k]);
+            //compute file md5
+            FILE* fmdf5 = os_wfopen(stFullPath.data(), L"rb");
+            char* md5 = md5_file(fmdf5);
+            fclose(fmdf5);
+
+            wchar_t* wmd5 = to_wide_string(md5);
+            FREE(md5);
+            std::wstring wide_md5(wmd5);
+            FREE(wmd5);
+
+            //check if is exist in old file
+
+            MacroInfoList::iterator it = lstOld.find(pstPathBin);
+            if (it != lstOld.end())
+            {
+                if (wide_md5 == (*it).second.md5)
+                {
+                    //file not change, we can skip it
+                    AddMacroToXML(pWriter, (*it).second.name, pstPathBin, wide_md5);
+                    pLib->add((*it).second.name, new MacroFile((*it).second.name, stFullPathBin, pstLibName));
+                    success_files.push_back(stFullPath);
+                    funcs.push_back((*it).second.name);
+                    continue;
+                }
+            }
+
+            if (bVerbose)
+            {
+                sciprint(_("%ls: Processing file: %ls\n"), L"genlib", pstPath[k]);
+            }
 
             Parser parser;
             parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if (parser.getExitStatus() !=  Parser::Succeded)
             {
-                os_swprintf(pstVerbose, 65535, _W("%ls: Warning: Error in file %ls : %ls. File ignored\n").c_str(), L"genlib", pstPath[k], parser.getErrorMessage());
-                scilabWriteW(pstVerbose);
-                delete parser.getTree();
+                scilabWriteW(parser.getErrorMessage());
+                sciprint(_("%ls: Error in file %ls.\n"), L"genlib", stFullPath.data());
+                failed_files.push_back(stFullPath);
+                succes = 0;
                 continue;
             }
 
@@ -202,13 +261,15 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
                     const wstring& name = pFD->getSymbol().getName();
                     if (name + L".sci" == pstPath[k])
                     {
-                        if (AddMacroToXML(pWriter, pair<wstring, wstring>(name, pstPathBin)) == false)
+                        if (AddMacroToXML(pWriter, name, pstPathBin, wide_md5) == false)
                         {
                             os_swprintf(pstVerbose, 65535, _W("%ls: Warning: %ls information cannot be added to file %ls. File ignored\n").c_str(), L"genlib", pFD->getSymbol().getName().c_str(), pstPath[k]);
                             scilabWriteW(pstVerbose);
                         }
 
-                        pLib->add(name, new types::MacroFile(name, stFullPathBin, pstLibName));
+                        pLib->add(name, new MacroFile(name, stFullPathBin, pstLibName));
+                        success_files.push_back(stFullPath);
+                        funcs.push_back(name);
                         break;
                     }
                 }
@@ -233,7 +294,69 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
     }
 
     freeArrayOfWideString(pstPath, iNbFile);
-    out.push_back(new Bool(1));
+
+    out.push_back(new Bool(succes));
+
+    if (_iRetCount > 1)
+    {
+        int size = static_cast<int>(funcs.size());
+        if (size == 0)
+        {
+            out.push_back(Double::Empty());
+        }
+        else
+        {
+            String* s = new String(size, 1);
+
+            for (int i = 0; i < size; ++i)
+            {
+                s->set(i, funcs[i].data());
+            }
+
+            out.push_back(s);
+        }
+    }
+
+    if (_iRetCount > 2)
+    {
+        int size = static_cast<int>(success_files.size());
+        if (size == 0)
+        {
+            out.push_back(Double::Empty());
+        }
+        else
+        {
+            String* s = new String(size, 1);
+
+            for (int i = 0; i < size; ++i)
+            {
+                s->set(i, success_files[i].data());
+            }
+
+            out.push_back(s);
+        }
+    }
+
+    if (_iRetCount > 3)
+    {
+        int size = static_cast<int>(failed_files.size());
+        if (size == 0)
+        {
+            out.push_back(Double::Empty());
+        }
+        else
+        {
+            String* s = new String(size, 1);
+
+            for (int i = 0; i < size; ++i)
+            {
+                s->set(i, failed_files[i].data());
+            }
+
+            out.push_back(s);
+        }
+    }
+
     FREE(pstParsePath);
     closeXMLFile(pWriter);
     return Function::OK;
@@ -307,7 +430,7 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     return pWriter;
 }
 
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<wstring, wstring> _pair)
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const wstring& name, const wstring& file, const wstring& md5)
 {
     int iLen;
 
@@ -324,22 +447,31 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<wstring, wstring> _pair)
     }
 
     //Add attribute "name"
-    char* pstFirst = wide_string_to_UTF8(_pair.first.c_str());
-    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)pstFirst);
+    char* pst1 = wide_string_to_UTF8(name.data());
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"name", (xmlChar*)pst1);
     if (iLen < 0)
     {
         return false;
     }
-    FREE(pstFirst);
+    FREE(pst1);
 
     //Add attribute "file"
-    char* pstSecond = wide_string_to_UTF8(_pair.second.c_str());
-    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)pstSecond);
+    char* pst2 = wide_string_to_UTF8(file.data());
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"file", (xmlChar*)pst2);
     if (iLen < 0)
     {
         return false;
     }
-    FREE(pstSecond);
+    FREE(pst2);
+
+    //Add attribute "md5"
+    char* pst3 = wide_string_to_UTF8(md5.data());
+    iLen = xmlTextWriterWriteAttribute(_pWriter, (xmlChar*)"md5", (xmlChar*)pst3);
+    if (iLen < 0)
+    {
+        return false;
+    }
+    FREE(pst3);
 
     //close "macro" node
     iLen = xmlTextWriterEndElement(_pWriter);
@@ -347,5 +479,6 @@ bool AddMacroToXML(xmlTextWriterPtr _pWriter, pair<wstring, wstring> _pair)
     {
         return false;
     }
+
     return true;
 }

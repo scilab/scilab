@@ -51,7 +51,7 @@ JITVal * JITVal::get(JITVisitor & visitor, types::InternalType * const pIT, cons
                 case types::InternalType::ScilabBool:
                     return new JITScalarVal<bool>(visitor, static_cast<types::Bool *>(pGT)->get(0), alloc, name);
                 default:
-                    throw ast::ScilabError(std::wstring(L"Type not handled by JIT compiler: ") + pGT->getTypeStr());
+                    throw ast::InternalError(std::wstring(L"Type not handled by JIT compiler: ") + pGT->getTypeStr());
             }
         }
         else
@@ -109,12 +109,12 @@ JITVal * JITVal::get(JITVisitor & visitor, types::InternalType * const pIT, cons
                     return new JITMatrixVal<int>(visitor, p->getRows(), p->getCols(), p->get(), alloc, name);
                 }
                 default:
-                    throw ast::ScilabError(std::wstring(L"Type not handled by JIT compiler: ") + pGT->getTypeStr());
+                    throw ast::InternalError(std::wstring(L"Type not handled by JIT compiler: ") + pGT->getTypeStr());
             }
         }
     }
 
-    throw ast::ScilabError(std::wstring(L"Type not handled by JIT compiler: ") + pIT->getTypeStr());
+    throw ast::InternalError(std::wstring(L"Type not handled by JIT compiler: ") + pIT->getTypeStr());
 }
 
 JITVal * JITVal::get(JITVisitor & visitor, const analysis::TIType & t, const bool alloc, const std::string & name)
@@ -148,7 +148,7 @@ JITVal * JITVal::get(JITVisitor & visitor, const analysis::TIType & t, const boo
                 default :
                     std::wostringstream ostr;
                     ostr << t;
-                    throw ast::ScilabError(std::wstring(L"Type not handled by JIT compiler: ") + ostr.str());
+                    throw ast::InternalError(std::wstring(L"Type not handled by JIT compiler: ") + ostr.str());
             }
         }
         else
@@ -188,6 +188,6 @@ JITVal * JITVal::get(JITVisitor & visitor, const analysis::TIType & t, const boo
 
     std::wostringstream ostr;
     ostr << t;
-    throw ast::ScilabError(std::wstring(L"Type not handled by JIT compiler: ") + ostr.str());
+    throw ast::InternalError(std::wstring(L"Type not handled by JIT compiler: ") + ostr.str());
 }
 }

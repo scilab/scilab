@@ -54,9 +54,13 @@ Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed
     String* pOut1 = new String(pS->getRows() , pS->getCols());
     Bool* pOut2 = new Bool(pS->getRows() , pS->getCols());
     int* pBool = pOut2->get();
-    for (int i = 0 ; i < pS->getSize(); i++)
+    wchar_t** p = pS->get();
+    int size = pS->getSize();
+    for (int i = 0 ; i < size; i++)
     {
-        pOut1->set(i, getshortpathnameW(pS->get(i), (BOOL*) &pBool[i]));
+        wchar_t* tmp = getshortpathnameW(p[i], (BOOL*)&pBool[i]);
+        pOut1->set(i, tmp);
+        FREE(tmp);
     }
 
     out.push_back(pOut1);

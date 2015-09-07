@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/13689
 //
 // <-- Short Description -->
-// 
+//
 // There were errors in reading enum from hdf5 files
 h5 = h5open(SCI + "/modules/hdf5/tests/nonreg_tests/bug_13689.h5");
 assert_checkequal(h5.root.BooleanT.data, uint8(1));

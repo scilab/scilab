@@ -12,7 +12,7 @@
 // <-- Short Description -->
 // there were wrong results for matrix/hypermatrix with bitset function
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 clear "checkBitset"
 function checkBitset(x, pos, v, isOne, typeOfx)
     if isOne then

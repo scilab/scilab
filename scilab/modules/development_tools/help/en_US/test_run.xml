@@ -120,6 +120,12 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
+                            <term>mode_nwni_profiling</term>
+                            <listitem>
+                                <para>Add the "-nwni -profiling" option to the launch for detect valgrind error (Linux only)</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
                             <term>nonreg_tests</term>
                             <listitem>
                                 <para>runs only the non-regression tests, skipping unit tests</para>
@@ -218,7 +224,7 @@
             <listitem>
                 <para>
                     &lt;-- TEST WITH GRAPHIC --&gt;
-                    This test will not be executed if the option "mode_nwni" is used.
+                    This test will be executed with scilab -nw. (default mode)
                 </para>
             </listitem>
             <listitem>
@@ -253,8 +259,9 @@
             <listitem>
                 <para>
                     &lt;-- CLI SHELL MODE --&gt;
-                    (was: &lt;-- JVM NOT MANDATORY --&gt;)
-                    This test will be executed with scilab-cli (nwni mode) by default.
+                    (was &lt;-- JVM NOT MANDATORY --&gt; and is obsolete)
+                    This test will be executed with scilab -nwni.
+                    All tests without this, will not be executed in "mode_mwni".
                 </para>
             </listitem>
             <listitem>
@@ -486,6 +493,8 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
                 </revdescription>
                 <revnumber>5.5.0</revnumber>
                 <revdescription>32/64bits separation available</revdescription>
+                <revnumber>6.0.0</revnumber>
+                <revdescription>profiling mode added to profile execution with valgrind (Linux only)</revdescription>
             </revision>
         </revhistory>
     </refsection>

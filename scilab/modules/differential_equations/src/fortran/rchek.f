@@ -1,7 +1,5 @@
       subroutine rchek (job, g, neq, y, yh, nyh, g0, g1, gx, jroot, irt)
 clll. optimize
-      include 'stack.h'
-      
       external g
       integer job, neq, nyh, jroot, irt
       double precision y, yh, g0, g1, gx
@@ -24,7 +22,7 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
 cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ rownr3(2), t0, tlast, toutc,
-     1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge      
+     1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge
 
 
 c!purpose
@@ -133,7 +131,7 @@ c g has a zero at t0.  look at g at t + (small increment). -------------
       zroot = .false.
       do 250 i = 1,ngc
          if (dabs(g0(i)) .gt. 0.0d0) go to 250
-         
+
          if (jroot(i) .eq. 1) then
             irt = -1
             return
@@ -143,7 +141,7 @@ c g has a zero at t0.  look at g at t + (small increment). -------------
          endif
 
  250  continue
-      if (irt .eq. 1) return      
+      if (irt .eq. 1) return
 c g0 has no zero components.  proceed to check relevant interval. ------
  260  if (tn .eq. tlast) go to 390
 c

@@ -100,10 +100,17 @@ Function::~Function()
 
 Function::ReturnValue Function::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
     }
+
+    if (ret == 0)
+    {
+        return Error;
+    }
+
     return this->m_pFunc(in, _iRetCount, out);
 }
 
@@ -147,10 +154,17 @@ InternalType* OptFunction::clone()
 
 Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
     }
+
+    if (ret == 0)
+    {
+        return Error;
+    }
+
     return this->m_pFunc(in, opt, _iRetCount, out);
 }
 
@@ -177,9 +191,15 @@ InternalType* WrapFunction::clone()
 
 Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
+    }
+
+    if (ret == 0)
+    {
+        return Error;
     }
 
     ReturnValue retVal = Callable::OK;
@@ -329,9 +349,15 @@ InternalType* WrapMexFunction::clone()
 
 Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
+    }
+
+    if (ret == 0)
+    {
+        return Error;
     }
 
     ReturnValue retVal = Callable::OK;
@@ -355,11 +381,11 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
     {
         m_pOldFunc(nlhs, plhs, nrhs, prhs);
     }
-    catch (ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
         delete[] plhs;
         delete[] prhs;
-        throw se;
+        throw ie;
     }
 
     if (_iRetCount == 1 && plhs[0] == NULL)
@@ -489,11 +515,11 @@ Callable::ReturnValue DynamicFunction::Init()
 
             if (hLib == 0)
             {
-                Scierror(999, _("A error has been detected while loading %s: %s\n"), pstLibName, pstError);
+                Scierror(999, _("An error has been detected while loading %s: %s\n"), pstLibName, pstError);
                 FREE(pstError);
 
                 pstError = GetLastDynLibError();
-                Scierror(999, _("A error has been detected while loading %s: %s\n"), pstPathToLib, pstError);
+                Scierror(999, _("An error has been detected while loading %s: %s\n"), pstPathToLib, pstError);
 
                 FREE(pstLibName);
                 FREE(pstPathToLib);

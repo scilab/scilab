@@ -30,7 +30,6 @@
 #include "Chrono.hxx"
 #include "ForList.hxx"
 #include "Result.hxx"
-#include "SymInfo.hxx"
 #include "TIType.hxx"
 #include "ConstantVisitor.hxx"
 #include "gvn/SymbolicList.hxx"
@@ -49,13 +48,11 @@ class EXTERN_AST AnalysisVisitor : public ast::Visitor, public Chrono
 
 public:
 
-    typedef std::map<symbol::Symbol, SymInfo> MapSymInfo;
     typedef unordered_map<std::wstring, std::shared_ptr<CallAnalyzer>> MapSymCall;
     typedef std::vector<Call *> Calls;
 
 private:
 
-    MapSymInfo symsinfo;
     Result _result;
     Calls allCalls;
     DataManager dm;
@@ -195,18 +192,18 @@ public:
 
     inline void registerFBlockEmittedListener(FBlockEmittedListener * listener)
     {
-	if (listener)
-	{
-	    fblockListeners.push_back(listener);
-	}
+        if (listener)
+        {
+            fblockListeners.push_back(listener);
+        }
     }
 
     inline void emitFunctionBlock(FunctionBlock & fblock)
     {
-	for (auto listener : fblockListeners)
-	{
-	    listener->action(fblock);
-	}
+        for (auto listener : fblockListeners)
+        {
+            listener->action(fblock);
+        }
     }
 
     inline Info & getSymInfo(const symbol::Symbol & sym)
@@ -233,39 +230,118 @@ private:
         }
     }
 
-    template<TIType (F)(GVN &, const TIType &, const TIType &)>
-	inline TIType checkEWBinOp(TIType & LT, TIType & RT, const Result & LR, const Result & RR, bool & safe, int & tempId)
+    /*
+       Workaround for a C++11 bug with Intel compiler
+       https://software.intel.com/fr-fr/forums/topic/514793
+    */
+    inline static TIType _check_plus(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-	TIType resT = F(getGVN(), LT, RT);
-	if (resT.hasInvalidDims())
-	{
-	    const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-	    
-	    if (ret)
-	    {
-		resT = F(getGVN(), LT, RT);
-		safe = true;
-	    }
-	    else
-	    {
-		resT = resT.asUnknownMatrix();
-	    }
-	}
-	else
-	{
-	    safe = true;
-	}
-	
-	tempId = getTmpIdForEWOp(resT, LR, RR);
-	
-	if (resT.isscalar())
-	{
-	}
-
-	return resT;
+        return Checkers::check_____add____(gvn, Ltype, Rtype);
     }
 
-    
+    inline static TIType _check_minus(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____sub____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_dottimes(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____dottimes____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_dotrdiv(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____dotrdiv____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_dotpower(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____dotpower____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_eq(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____eq____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_neq(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____neq____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_lt(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____lt____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_le(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____le____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_gt(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____gt____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_ge(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____ge____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_and(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____and____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_or(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____or____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_andand(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____and____(gvn, Ltype, Rtype);
+    }
+
+    inline static TIType _check_oror(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
+    {
+        return Checkers::check_____or____(gvn, Ltype, Rtype);
+    }
+
+    template<TIType (F)(GVN &, const TIType &, const TIType &)>
+    inline TIType checkEWBinOp(TIType & LT, TIType & RT, const Result & LR, const Result & RR, bool & safe, int & tempId)
+    {
+        TIType resT = F(getGVN(), LT, RT);
+        if (resT.hasInvalidDims())
+        {
+            const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
+
+            if (ret)
+            {
+                resT = F(getGVN(), LT, RT);
+                safe = true;
+            }
+            else
+            {
+                resT = resT.asUnknownMatrix();
+            }
+        }
+        else
+        {
+            safe = true;
+        }
+
+        tempId = getTmpIdForEWOp(resT, LR, RR);
+
+        if (resT.isscalar())
+        {
+        }
+
+        return resT;
+    }
+
+
     bool operGVNValues(ast::OpExp & oe);
     bool operSymbolicRange(ast::OpExp & oe);
 
@@ -274,7 +350,7 @@ private:
     int getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR);
     void visitArguments(const std::wstring & name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, const ast::exps_t & args);
 
-    
+
 
     void visit(ast::SelectExp & e);
     void visit(ast::ListExp & e);
@@ -306,7 +382,7 @@ private:
         Result & res = e.getDecorator().setResult(info.type);
         res.setConstant(info.getConstant());
         res.setRange(info.getRange());
-	res.setMaxIndex(info.getMaxIndex());
+        res.setMaxIndex(info.getMaxIndex());
         setResult(res);
     }
 
@@ -379,10 +455,10 @@ private:
             const symbol::Symbol & sym = var.getSymbol();
             const std::wstring & name = sym.getName();
             Info & info = getSymInfo(sym); // that put the sym in the current block !
-	    Result & res = e.getName().getDecorator().setResult(info.type);
-	    res.setConstant(info.getConstant());
-	    res.setRange(info.getRange());
-	    res.setMaxIndex(info.getMaxIndex());
+            Result & res = e.getName().getDecorator().setResult(info.type);
+            res.setConstant(info.getConstant());
+            res.setRange(info.getRange());
+            res.setMaxIndex(info.getMaxIndex());
 
             logger.log(L"CallExp", e.getLocation(), name);
 
@@ -526,10 +602,10 @@ private:
                 exp->accept(*this);
             }
         }
-	if (!e.getParent())
-	{
-	    //e.accept(dv);
-	}
+        if (!e.getParent())
+        {
+            //e.accept(dv);
+        }
     }
 
     void visit(ast::ArrayListExp & e)
@@ -556,11 +632,11 @@ private:
         if (e.getInit().isListExp())
         {
             ast::ListExp & le = static_cast<ast::ListExp &>(e.getInit());
-	    e.setListInfo(ForList64());
-	    le.accept(*this);
-	    Result & res = getResult();
-	    Info & info = dm.define(sym, res.getType(), res.isAnInt(), &e);
-	    info.setRange(res.getRange());
+            //e.setListInfo(ForList64());
+            le.accept(*this);
+            Result & res = getResult();
+            Info & info = dm.define(sym, res.getType(), res.isAnInt(), &e);
+            info.setRange(res.getRange());
         }
     }
 

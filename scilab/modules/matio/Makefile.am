@@ -10,7 +10,6 @@ if MATIO
 
 #### List of the gateway files ####
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_matio.c \
     sci_gateway/c/sci_matfile_open.c \
     sci_gateway/c/sci_matfile_close.c \
     sci_gateway/c/sci_matfile_listvar.c \
@@ -26,7 +25,7 @@ MATIO_C_SOURCES = \
     src/c/CreateDoubleVariable.c \
     src/c/CreateIntegerVariable.c \
     src/c/CreateSparseVariable.c \
-    src/c/GetMatlabVariable.c 
+    src/c/GetMatlabVariable.c
 
 #### List of the C++ files ####
 MATIO_CPP_SOURCES = \
@@ -41,7 +40,7 @@ MATIO_CPP_SOURCES = \
     src/cpp/GetCharVariable.cpp \
 	src/cpp/GetDoubleVariable.cpp \
     src/cpp/GetSparseVariable.cpp \
-    src/cpp/GetMlistVariable.cpp 
+    src/cpp/GetMlistVariable.cpp
 
 libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 

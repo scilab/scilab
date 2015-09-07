@@ -54,7 +54,6 @@ static int sci_csvDefault_two_rhs(char *fname, void* pvApiCtx);
 // =============================================================================
 int sci_csvDefault(char *fname, void* pvApiCtx)
 {
-    printf("rhs %d\n", Rhs);
     Rhs = Max(0, Rhs);
     CheckRhs(0, 2);
     CheckLhs(1, 1);

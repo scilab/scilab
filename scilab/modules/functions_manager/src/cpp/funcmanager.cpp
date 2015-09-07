@@ -350,6 +350,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"mpi"] = pair<GW_MOD, GW_MOD>(&MPIModule::Load, &MPIModule::Unload);
     m_ModuleMap[L"external_objects"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsModule::Load, &ExternalObjectsModule::Unload);
     m_ModuleMap[L"external_objects_java"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsJavaModule::Load, &ExternalObjectsJavaModule::Unload);
+    m_ModuleMap[L"preferences"] = pair<GW_MOD, GW_MOD>(&PreferencesModule::Load, &PreferencesModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
@@ -386,15 +387,10 @@ bool FuncManager::ExecuteFile(wstring _stFile)
     try
     {
         parser.getTree()->accept(exec);
-
     }
-    catch (const ast::ScilabMessage& sm)
+    catch (const ast::InternalError& ie)
     {
-        scilabWriteW(sm.GetErrorMessage().c_str());
-    }
-    catch (const ast::ScilabError& se)
-    {
-        scilabWriteW(se.GetErrorMessage().c_str());
+        scilabWriteW(ie.GetErrorMessage().c_str());
     }
 
     //restore previous prompt mode
@@ -416,19 +412,6 @@ bool FuncManager::LoadModules()
             //call ::Load function
             itModule->second.first();
         }
-    }
-
-    return true;
-}
-
-bool FuncManager::StartModules()
-{
-    list<wstring>::const_iterator it = m_ModuleName.begin();
-    list<wstring>::const_iterator itEnd = m_ModuleName.end();
-    //excute .start file
-    for (; it != itEnd; ++it)
-    {
-        //ExecuteStartFile(*it);
     }
 
     return true;

@@ -50,9 +50,13 @@ Function::ReturnValue sci_getlongpathname(typed_list &in, int _iRetCount, typed_
     String* pOut1 = new String(pS->getRows() , pS->getCols());
     Bool* pOut2 = new Bool(pS->getRows() , pS->getCols());
     int* pBool = pOut2->get();
-    for (int i = 0 ; i < pS->getSize(); i++)
+    int size = pS->getSize();
+    wchar_t** p = pS->get();
+    for (int i = 0 ; i < size; i++)
     {
-        pOut1->set(i, getlongpathnameW(pS->get(i), (BOOL*) &pBool[i]));
+        wchar_t* tmp = getlongpathnameW(p[i], (BOOL*)&pBool[i]);
+        pOut1->set(i, tmp);
+        FREE(tmp);
     }
 
     out.push_back(pOut1);

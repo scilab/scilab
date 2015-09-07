@@ -89,6 +89,8 @@ wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat)
                 wcReturnedTempFilename = shortTempFilename;
             }
         }
+
+        FREE(wcTmpDir);
     }
 #else
     char *prefix = wide_string_to_UTF8(wcprefix);

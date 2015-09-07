@@ -240,7 +240,6 @@
   <ItemGroup>
     <ClCompile Include="src\c\DllmainTime.c" />
     <ClCompile Include="src\c\getdate.c" />
-    <ClCompile Include="sci_gateway\c\gw_time.c" />
     <ClCompile Include="src\c\realtime.c" />
     <ClCompile Include="src\c\timer.c" />
   </ItemGroup>

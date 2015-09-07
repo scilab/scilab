@@ -22,15 +22,14 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "getdrives.h"
+#include "freeArrayOfString.h"
 }
 /*--------------------------------------------------------------------------*/
-
-
 types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t **wcsDrives = NULL;
-    int iNbDrives       = 0;
-    int dimsArray[2]    = {1, 1};
+    int iNbDrives = 0;
+    int dimsArray[2] = {1, 1};
     types::String* pOut = NULL;
 
     if (in.size() > 0)
@@ -45,6 +44,7 @@ types::Function::ReturnValue sci_getdrives(types::typed_list &in, int _iRetCount
         dimsArray[1] = iNbDrives;
         pOut = new types::String(2, dimsArray);
         pOut->set(wcsDrives);
+        freeArrayOfWideString(wcsDrives, iNbDrives);
     }
     else
     {

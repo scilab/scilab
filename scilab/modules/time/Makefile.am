@@ -7,7 +7,7 @@
 TIME_C_SOURCES = \
     src/c/realtime.c \
     src/c/timer.c \
-    src/c/getdate.c 
+    src/c/getdate.c
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_realtime.c \
@@ -15,8 +15,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_calendar.c \
     sci_gateway/c/sci_xpause.c \
     sci_gateway/c/sci_sleep.c \
-    sci_gateway/c/sci_getdate.c \
-    sci_gateway/c/gw_time.c
+    sci_gateway/c/sci_getdate.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/time_gw.cpp \
@@ -67,7 +66,7 @@ modulename=time
 
 #### time : Conf files ####
 libscitime_la_rootdir = $(mydatadir)
-libscitime_la_root_DATA =  license.txt 
+libscitime_la_root_DATA =  license.txt
 
 
 #### time : init scripts ####

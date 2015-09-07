@@ -6,21 +6,21 @@
     <!-- File menu -->
     <menu label="&amp;File" enabled="true">
         <submenu label="&amp;Execute..." accelerator="OSSCKEY E">
-            <callback instruction="               %fileToExec = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to execute&quot;));               if ~(%fileToExec == &quot;&quot;) then                 exec(%fileToExec);                 disp(msprintf(gettext(&quot;Execution done.\n&quot;)));               end               clear(&quot;%fileToExec&quot;);" type="0"/>
+            <callback instruction="               %fileToExec = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to execute&quot;));               if ~(%fileToExec == &quot;&quot;) then                 exec(%fileToExec);                 disp(msprintf(gettext(&quot;Execution done.\n&quot;)));               end;               clear(&quot;%fileToExec&quot;);" type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Open a file..." accelerator="OSSCKEY O" icon="document-open-sci">
-            <callback instruction="               %fileToOpen = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to open with SciNotes&quot;));               if ~(%fileToOpen == &quot;&quot;) then                 editor(%fileToOpen);               end               clear(&quot;%fileToOpen&quot;);" type="0"/>
+            <callback instruction="               %fileToOpen = uigetfile(&quot;*.sc*&quot;, &quot;&quot;, gettext(&quot;Select a file to open with SciNotes&quot;));               if ~(%fileToOpen == &quot;&quot;) then                 editor(%fileToOpen);               end;               clear(&quot;%fileToOpen&quot;);" type="0"/>
         </submenu>
         <submenu label="&amp;Load environment..." accelerator="OSSCKEY L" icon="document-open">
-            <callback instruction="               %fileToLoad = uigetfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to load&quot;));               if ~(%fileToLoad == &quot;&quot;) then                 load(%fileToLoad);                 updatebrowsevar();                 disp(msprintf(gettext(&quot;Environment loaded.\n&quot;)));               end               clear(&quot;%fileToLoad&quot;);" type="0"/>
+            <callback instruction="               %fileToLoad = uigetfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to load&quot;));               if ~(%fileToLoad == &quot;&quot;) then                 load(%fileToLoad);                 updatebrowsevar();                 disp(msprintf(gettext(&quot;Environment loaded.\n&quot;)));               end;               clear(&quot;%fileToLoad&quot;);" type="0"/>
         </submenu>
         <submenu label="&amp;Save environment..." accelerator="OSSCKEY S" icon="document-save">
-            <callback instruction="               %fileToSave = uiputfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to write&quot;));               if ~(%fileToSave == &quot;&quot;) then                 if (fileparts(%fileToSave, &quot;extension&quot;) == &quot;&quot;) then                   %fileToSave = %fileToSave + &quot;.sav&quot;;                 end                 save(%fileToSave);                 disp(msprintf(gettext(&quot;Environment saved.\n&quot;)));               end               clear(&quot;%fileToSave&quot;);" type="0"/>
+            <callback instruction="               %fileToSave = uiputfile([&quot;*.sav&quot;;&quot;*.sod&quot;], &quot;&quot;, gettext(&quot;Select a file to write&quot;));               if ~(%fileToSave == &quot;&quot;) then                 if (fileparts(%fileToSave, &quot;extension&quot;) == &quot;&quot;) then                   %fileToSave = %fileToSave + &quot;.sav&quot;;                 end;                 save(%fileToSave);                 disp(msprintf(gettext(&quot;Environment saved.\n&quot;)));               end;               clear(&quot;%fileToSave&quot;);" type="0"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Change current directory..." icon="scilab-folder-open">
-            <callback instruction="               %newDir = uigetdir(pwd(), gettext(&quot;Select a directory&quot;));               if ~(%newDir == &quot;&quot;) then                 cd(%newDir);               end               clear(&quot;%newDir&quot;);" type="0"/>
+            <callback instruction="               %newDir = uigetdir(pwd(), gettext(&quot;Select a directory&quot;));               if ~(%newDir == &quot;&quot;) then                 cd(%newDir);               end;               clear(&quot;%newDir&quot;);" type="0"/>
         </submenu>
         <submenu label="&amp;Display current directory">
             <callback instruction="if iswaitingforinput() then printf(&quot;\n%s\n\n%s\n&quot;,prompt(),pwd()); else printf(&quot;\n\n%s\n\n&quot;,pwd());end" type="0"/>
@@ -75,13 +75,13 @@
     <!-- Control menu -->
     <menu label="&amp;Control" enabled="true">
         <submenu label="&amp;Resume" icon="media-playback-start">
-            <callback instruction="resume;" type="-2"/>
+            <callback instruction="resume;" type="4"/>
         </submenu>
         <submenu label="&amp;Abort" icon="process-stop">
-            <callback instruction="abort;" type="-2"/>
+            <callback instruction="abort;" type="4"/>
         </submenu>
         <submenu label="&amp;Interrupt">
-            <callback instruction="pause;" type="-2"/>
+            <callback instruction="pause;" type="4"/>
         </submenu>
     </menu>
     <!-- Applications menu -->
@@ -117,11 +117,11 @@
     <!-- Help menu -->
     <menu label="&amp;?" enabled="true">
         <submenu label="Scilab &amp;Help" accelerator="F1" icon="help-browser">
-            <callback instruction="help();" type="0"/>
+            <callback instruction="help();" type="10"/>
         </submenu>
         <separator/>
         <submenu label="Scilab &amp;Demonstrations" icon="applications-system">
-            <callback instruction="demo_gui();" type="0"/>
+            <callback instruction="demo_gui();" type="10"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Links">

@@ -24,7 +24,11 @@ class EXTERN_AST TreeVisitor : public DummyVisitor
 {
 public:
     TreeVisitor() : l(nullptr), eol(nullptr) {}
-    ~TreeVisitor() {}
+    ~TreeVisitor() 
+    {
+        eol->killMe();
+        l->killMe();
+    }
 
     virtual void visit(const SeqExp  &e);
     virtual void visit(const CommentExp &e);

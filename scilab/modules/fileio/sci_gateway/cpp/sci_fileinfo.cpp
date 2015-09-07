@@ -82,6 +82,13 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
         out.push_back(pErr);
     }
 
+
+    if (pS != in[0])
+    {
+        //in case of transpose
+        pS->killMe();
+    }
+
     delete[] piErr;
     FREE(pData);
     return Function::OK;

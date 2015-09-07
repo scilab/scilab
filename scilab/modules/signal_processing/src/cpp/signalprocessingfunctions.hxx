@@ -91,7 +91,7 @@ class SIGNAL_PROCESSING_IMPEXP Signalprocessing
 {
     // differential equation functions
 private :
-    static std::map<__threadId, Signalprocessingfunctions*> m_mapSignalprocessingfunctions;
+    static Signalprocessingfunctions* m_Signalprocessingfunctions;
 
 public :
     static void addSignalprocessingfunctions(Signalprocessingfunctions* _spFunction);

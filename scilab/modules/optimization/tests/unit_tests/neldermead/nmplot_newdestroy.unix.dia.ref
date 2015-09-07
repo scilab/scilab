@@ -43,14 +43,11 @@ sfn = nmplot_cget ( nm , "-sigmafn" );
 assert_checkequal ( sfn , sigfn );
 // Check the display
 disp(nm);
- 
 Nelder-Mead Plot Object:
 ======================
-
 Simplex data file : TMPDIR/simplex.txt
 Fbar data file : TMPDIR/fbar.txt
 Fopt data file : TMPDIR/fopt.txt
 Sigma data file : TMPDIR/sigma.txt
-
 nmbase: <TNELDER Object>
 nm = nmplot_destroy(nm);

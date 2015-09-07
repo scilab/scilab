@@ -23,7 +23,6 @@ extern "C"
 #include "callable.hxx"
 #include "overload.hxx"
 #include "context.hxx"
-#include "scilabexception.hxx"
 
 std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
 {
@@ -52,15 +51,16 @@ std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::ty
 types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
 {
     std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
-    types::Function::ReturnValue ret = types::Function::Error;
-    try
+    if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
-        ret = call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
+        return call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
     }
-    catch (ast::ScilabError se)
+
+    // if overload doesn't existe try with short name
+    std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
+    if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
-        std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
-        ret = call(stFunc2, in, _iRetCount, out, _execMe, _isOperator);
+        types::Function::ReturnValue ret = call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
         if (ret == types::Function::OK && ConfigVariable::getWarningMode())
         {
             char* pstFunc2 = wide_string_to_UTF8(stFunc2.c_str());
@@ -69,44 +69,44 @@ types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunct
             FREE(pstFunc);
             FREE(pstFunc2);
         }
+        return ret;
     }
-    return ret;
+
+    // get exeception with overloading error
+    return call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
 }
 
 types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
 {
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
-
-    if (pIT == NULL || pIT->isCallable() == false)
-    {
-        char pstError1[512];
-        char pstError2[512];
-        char *pstFuncName = wide_string_to_UTF8(_stOverloadingFunctionName.c_str());
-        wchar_t* pwstError = NULL;
-        if (_isOperator)
-        {
-            os_sprintf(pstError2, _("check or define function %s for overloading.\n"), pstFuncName);
-            os_sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
-            pwstError = to_wide_string(pstError1);
-            std::wstring wstError(pwstError);
-            FREE(pwstError);
-            FREE(pstFuncName);
-            throw ast::ScilabError(wstError, 999, Location());
-        }
-        else
-        {
-            os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
-            os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
-            pwstError = to_wide_string(pstError1);
-            std::wstring wstError(pwstError);
-            FREE(pwstError);
-            FREE(pstFuncName);
-            throw ast::ScilabError(wstError, 999, Location());
-        }
-    }
-    types::Callable *pCall = pIT->getAs<types::Callable>();
+    types::Callable *pCall = NULL;
     try
     {
+        if (pIT == NULL || pIT->isCallable() == false)
+        {
+            char pstError1[512];
+            char pstError2[512];
+            char *pstFuncName = wide_string_to_UTF8(_stOverloadingFunctionName.c_str());
+            wchar_t* pwstError = NULL;
+            if (_isOperator)
+            {
+                os_sprintf(pstError2, _("check or define function %s for overloading.\n"), pstFuncName);
+                os_sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
+            }
+            else
+            {
+                os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
+                os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
+            }
+
+            FREE(pstFuncName);
+            ast::InternalError ie(pstError1);
+            ie.SetErrorType(ast::TYPE_EXCEPTION);
+            throw ie;
+        }
+
+        pCall = pIT->getAs<types::Callable>();
+
         types::optional_list opt;
 
         // add line and function name in where
@@ -119,11 +119,22 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
 
         return ret;
     }
-    catch (ast::ScilabMessage sm)
+    catch (ast::InternalError ie)
     {
-        // remove function name in where
-        ConfigVariable::where_end();
-        throw sm;
+        ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
+        if (pCall)
+        {
+            if (ConfigVariable::getLastErrorFunction() == L"")
+            {
+                ConfigVariable::setLastErrorFunction(pCall->getName());
+                ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
+            }
+
+            // remove function name in where
+            ConfigVariable::where_end();
+        }
+
+        throw ie;
     }
 }
 

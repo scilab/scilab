@@ -32,24 +32,21 @@ extern "C"
 
 // need the current thread, not the last running thread.
 
-std::map<__threadId, DifferentialEquationFunctions*> DifferentialEquation::m_mapDifferentialEquationFunctions;
+DifferentialEquationFunctions* DifferentialEquation::m_DifferentialEquationFunctions;
 
 void DifferentialEquation::addDifferentialEquationFunctions(DifferentialEquationFunctions* _deFunction)
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapDifferentialEquationFunctions[pThread->getThreadId()] = _deFunction;
+    m_DifferentialEquationFunctions = _deFunction;
 }
 
 void DifferentialEquation::removeDifferentialEquationFunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapDifferentialEquationFunctions.erase(pThread->getThreadId());
+    m_DifferentialEquationFunctions = NULL;
 }
 
 DifferentialEquationFunctions* DifferentialEquation::getDifferentialEquationFunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    return m_mapDifferentialEquationFunctions[pThread->getThreadId()];
+    return m_DifferentialEquationFunctions;
 }
 
 
@@ -219,7 +216,7 @@ void DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, in
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((dasrt_g_t)(func->functionPtr))(ny, t, y, ng, gout, rpar, ipar);
     }
@@ -230,7 +227,7 @@ void DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, in
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -247,7 +244,7 @@ void DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydo
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((dassl_f_t)(func->functionPtr))(t, y, ydot, delta, ires, rpar, ipar);
     }
@@ -258,7 +255,7 @@ void DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydo
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -275,7 +272,7 @@ void DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* y
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((dassl_jac_t)(func->functionPtr))(t, y, ydot, pd, cj, rpar, ipar);
     }
@@ -286,7 +283,7 @@ void DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* y
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -306,7 +303,7 @@ void DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* n
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringPjacFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((daskr_pjac_t)(func->functionPtr))(res, ires, neq, t, y, ydot, rewt, savr,
                                             wk, h, cj, wp, iwp, ier, rpar, ipar);
@@ -319,7 +316,7 @@ void DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* n
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "pjac");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -339,7 +336,7 @@ void DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringPsolFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((daskr_psol_t)(func->functionPtr))(neq, t, y, ydot, savr, wk, cj, wght,
                                             wp, iwp, b, eplin, ier, rpar, ipar);
@@ -352,7 +349,7 @@ void DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "psol");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -369,7 +366,7 @@ void DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, do
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((impl_f_t)(func->functionPtr))(neq, t, y, s, r, ires);
     }
@@ -380,7 +377,7 @@ void DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, do
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -397,7 +394,7 @@ void DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, do
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((impl_g_t)(func->functionPtr))(neq, t, y, ml, mu, p, nrowp);
     }
@@ -408,7 +405,7 @@ void DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, do
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -425,7 +422,7 @@ void DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, 
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((impl_jac_t)(func->functionPtr))(neq, t, y, s, ml, mu, p, nrowp);
     }
@@ -436,7 +433,7 @@ void DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, 
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -453,7 +450,7 @@ void DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double 
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGuessFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
     }
@@ -464,7 +461,7 @@ void DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double 
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "guess");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -481,7 +478,7 @@ void DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double 
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDfsubFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
     }
@@ -492,7 +489,7 @@ void DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double 
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "fsub");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -509,7 +506,7 @@ void DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFsubFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
     }
@@ -520,7 +517,7 @@ void DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "fsub");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -537,7 +534,7 @@ void DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDgsubFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
     }
@@ -548,7 +545,7 @@ void DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "gsub");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -565,7 +562,7 @@ void DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGsubFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
     }
@@ -576,7 +573,7 @@ void DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "gsub");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -593,7 +590,7 @@ void DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, 
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
 
         ((feval_f_t)(func->functionPtr))(nn, x1, x2, xres, itype);
@@ -605,7 +602,7 @@ void DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, 
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -622,7 +619,7 @@ void DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* f
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((int3d_f_t)(func->functionPtr))(x, numfun, funvls);
     }
@@ -633,7 +630,7 @@ void DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* f
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -650,7 +647,7 @@ double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         return ((int2d_f_t)(func->functionPtr))(x, y);
     }
@@ -661,7 +658,7 @@ double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -678,7 +675,7 @@ double DifferentialEquationFunctions::execIntgF(double* x)
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         return ((intg_f_t)(func->functionPtr))(x);
     }
@@ -689,7 +686,7 @@ double DifferentialEquationFunctions::execIntgF(double* x)
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -706,7 +703,7 @@ void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, doubl
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
 
         if (m_wstrCaller == L"ode")
@@ -732,7 +729,7 @@ void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, doubl
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "f");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -749,7 +746,7 @@ void DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((func_jac_t)(func->functionPtr))(n, t, y, ml, mu, J, nrpd);
     }
@@ -760,7 +757,7 @@ void DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "jacobian");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -777,7 +774,7 @@ void DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, 
         if (func == NULL)
         {
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
-            throw ast::ScilabError(errorMsg);
+            throw ast::InternalError(errorMsg);
         }
         ((func_g_t)(func->functionPtr))(n, t, y, ng, gout);
     }
@@ -788,7 +785,7 @@ void DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, 
     else
     {
         sprintf(errorMsg, _("User function '%s' have not been setted.\n"), "g");
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 }
 
@@ -1161,7 +1158,6 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1216,11 +1212,17 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
 
     try
     {
-        bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
@@ -1228,29 +1230,12 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
         m_FArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallFFunction->getName());
-        }
-
-        if (m_pCallFFunction->isMacro() || m_pCallFFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -1295,7 +1280,7 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
     types::Double* pDblOut = out[0]->getAs<types::Double>();
     if (pDblOut->isComplex())
@@ -1303,7 +1288,7 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (m_odedcFlag && m_odedcYDSize)
@@ -1327,7 +1312,6 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
     int iRetCount   = 1;
     int one         = 1;
     int iMaxSize    = (*n) * (*nrpd);
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1352,33 +1336,22 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
 
     try
     {
-        bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_JacArgs.size(); i++)
+        {
+            m_JacArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_JacArgs.size(); i++)
     {
         m_JacArgs[i]->DecreaseRef();
-    }
-
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallJacFunction->getName());
-        }
-
-        if (m_pCallJacFunction->isMacro() || m_pCallJacFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallJacFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
     }
 
     out[0]->IncreaseRef();
@@ -1400,7 +1373,7 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->DecreaseRef();
@@ -1409,7 +1382,7 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
 
@@ -1421,7 +1394,7 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A size less or equal than %d expected.\n"), pstrName, 1, iMaxSize);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(&iSizeOut, pDblOut->get(), &one, J, &one);
@@ -1432,7 +1405,6 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
     char errorMsg[256];
     int iRetCount   = 1;
     int one         = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1457,11 +1429,17 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
 
     try
     {
-        bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallGFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_odeGArgs.size(); i++)
+        {
+            m_odeGArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_odeGArgs.size(); i++)
@@ -1469,29 +1447,12 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
         m_odeGArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallGFunction->getName());
-        }
-
-        if (m_pCallGFunction->isMacro() || m_pCallGFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallGFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -1515,7 +1476,7 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(ng, out[0]->getAs<types::Double>()->get(), &one, gout, &one);
@@ -1530,7 +1491,6 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1552,11 +1512,17 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
 
     try
     {
-        bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
@@ -1564,29 +1530,12 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
         m_FArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallFFunction->getName());
-        }
-
-        if (m_pCallFFunction->isMacro() || m_pCallFFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -1603,7 +1552,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
 
     }
 
@@ -1613,7 +1562,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     double res = pDblOut->get(0);
@@ -1630,7 +1579,6 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1655,11 +1603,17 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
 
     try
     {
-        bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
@@ -1667,29 +1621,12 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
         m_FArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallFFunction->getName());
-        }
-
-        if (m_pCallFFunction->isMacro() || m_pCallFFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -1712,7 +1649,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOut = out[0]->getAs<types::Double>();
@@ -1721,7 +1658,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     double res = pDblOut->get(0);
@@ -1738,7 +1675,6 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1764,11 +1700,17 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
 
     try
     {
-        bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
@@ -1776,29 +1718,12 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
         m_FArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallFFunction->getName());
-        }
-
-        if (m_pCallFFunction->isMacro() || m_pCallFFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -1821,7 +1746,7 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOut = out[0]->getAs<types::Double>();
@@ -1830,7 +1755,7 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"), pstrName, 1, *numfun);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(numfun, pDblOut->get(), &one, funvls, &one);
@@ -1845,7 +1770,6 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1875,11 +1799,17 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
     }
     try
     {
-        bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
@@ -1887,29 +1817,12 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
         m_FArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallFFunction->getName());
-        }
-
-        if (m_pCallFFunction->isMacro() || m_pCallFFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -1935,7 +1848,7 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
 
     }
 
@@ -1945,7 +1858,7 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (pDblOut->isComplex())
@@ -1971,7 +1884,6 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -1999,11 +1911,17 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
 
     try
     {
-        bOk = m_pCallGsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallGsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_GsubArgs.size(); i++)
+        {
+            m_GsubArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_GsubArgs.size(); i++)
@@ -2011,29 +1929,12 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
         m_GsubArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallGsubFunction->getName());
-        }
-
-        if (m_pCallGsubFunction->isMacro() || m_pCallGsubFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallGsubFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2056,7 +1957,7 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
         char* pstrName = wide_string_to_UTF8(m_pCallGsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOut = out[0]->getAs<types::Double>();
@@ -2065,7 +1966,7 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
         char* pstrName = wide_string_to_UTF8(m_pCallGsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     *g = pDblOut->get(0);
@@ -2080,7 +1981,6 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -2107,11 +2007,17 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
 
     try
     {
-        bOk = m_pCallDgsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallDgsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_DgsubArgs.size(); i++)
+        {
+            m_DgsubArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_DgsubArgs.size(); i++)
@@ -2119,29 +2025,12 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
         m_DgsubArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallDgsubFunction->getName());
-        }
-
-        if (m_pCallDgsubFunction->isMacro() || m_pCallDgsubFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallDgsubFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallDgsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2164,7 +2053,7 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
         char* pstrName = wide_string_to_UTF8(m_pCallDgsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOut = out[0]->getAs<types::Double>();
@@ -2173,7 +2062,7 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
         char* pstrName = wide_string_to_UTF8(m_pCallDgsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"), pstrName, 1, m_bvodeM);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(&m_bvodeM, pDblOut->get(), &one, g, &one);
@@ -2188,7 +2077,6 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -2215,11 +2103,17 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
 
     try
     {
-        bOk = m_pCallFsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_FsubArgs.size(); i++)
+        {
+            m_FsubArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_FsubArgs.size(); i++)
@@ -2227,29 +2121,12 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
         m_FsubArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallFsubFunction->getName());
-        }
-
-        if (m_pCallFsubFunction->isMacro() || m_pCallFsubFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFsubFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2272,7 +2149,7 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
         char* pstrName = wide_string_to_UTF8(m_pCallFsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOut = out[0]->getAs<types::Double>();
@@ -2281,7 +2158,7 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
         char* pstrName = wide_string_to_UTF8(m_pCallFsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_bvodeN);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(&m_bvodeN, pDblOut->get(), &one, d, &one);
@@ -2296,7 +2173,6 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -2323,11 +2199,17 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
 
     try
     {
-        bOk = m_pCallDfsubFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallDfsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_DfsubArgs.size(); i++)
+        {
+            m_DfsubArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_DfsubArgs.size(); i++)
@@ -2335,29 +2217,12 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
         m_DfsubArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallDfsubFunction->getName());
-        }
-
-        if (m_pCallDfsubFunction->isMacro() || m_pCallDfsubFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallDfsubFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallDfsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2380,7 +2245,7 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
         char* pstrName = wide_string_to_UTF8(m_pCallDfsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOut = out[0]->getAs<types::Double>();
@@ -2390,7 +2255,7 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
         char* pstrName = wide_string_to_UTF8(m_pCallDfsubFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, size);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(&size, pDblOut->get(), &one, d, &one);
@@ -2405,7 +2270,6 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 2;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -2426,11 +2290,17 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
 
     try
     {
-        bOk = m_pCallGuessFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallGuessFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_GuessArgs.size(); i++)
+        {
+            m_GuessArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_GuessArgs.size(); i++)
@@ -2438,29 +2308,12 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
         m_GuessArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallGuessFunction->getName());
-        }
-
-        if (m_pCallGuessFunction->isMacro() || m_pCallGuessFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallGuessFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2478,7 +2331,7 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
         char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[1]->DecreaseRef();
@@ -2487,7 +2340,7 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
         char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutZ = out[0]->getAs<types::Double>();
@@ -2496,7 +2349,7 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
         char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_bvodeM);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutD = out[1]->getAs<types::Double>();
@@ -2505,7 +2358,7 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
         char* pstrName = wide_string_to_UTF8(m_pCallGuessFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_bvodeN);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(&m_bvodeM, pDblOutZ->get(), &one, z, &one);
@@ -2526,7 +2379,6 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     *ires = 2;
 
@@ -2557,33 +2409,17 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
 
     try
     {
-        bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
-    }
-
-    for (int i = 0; i < (int)m_FArgs.size(); i++)
-    {
-        m_FArgs[i]->DecreaseRef();
-    }
-
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
+        for (int i = 0; i < (int)m_FArgs.size(); i++)
         {
-            ConfigVariable::setLastErrorFunction(m_pCallFFunction->getName());
+            m_FArgs[i]->DecreaseRef();
         }
 
-        if (m_pCallFFunction->isMacro() || m_pCallFFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
+        throw ie;
     }
 
     if (out.size() != iRetCount)
@@ -2591,7 +2427,7 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2620,7 +2456,7 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutR = out[0]->getAs<types::Double>();
@@ -2629,7 +2465,7 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"), pstrName, 1, *neq);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(neq, pDblOutR->get(), &one, r, &one);
@@ -2645,7 +2481,6 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -2674,11 +2509,17 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
 
     try
     {
-        bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallGFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_odeGArgs.size(); i++)
+        {
+            m_odeGArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_odeGArgs.size(); i++)
@@ -2686,29 +2527,12 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
         m_odeGArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallGFunction->getName());
-        }
-
-        if (m_pCallGFunction->isMacro() || m_pCallGFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallGFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2731,7 +2555,7 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutP = out[0]->getAs<types::Double>();
@@ -2740,7 +2564,7 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, *neq, *nrowp);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     int size = *neq **nrowp;
@@ -2756,7 +2580,6 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -2785,11 +2608,17 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
 
     try
     {
-        bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_JacArgs.size(); i++)
+        {
+            m_JacArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_JacArgs.size(); i++)
@@ -2797,29 +2626,12 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
         m_JacArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallJacFunction->getName());
-        }
-
-        if (m_pCallJacFunction->isMacro() || m_pCallJacFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallJacFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2848,7 +2660,7 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutP = out[0]->getAs<types::Double>();
@@ -2857,7 +2669,7 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, *neq, *nrowp);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     int size = *neq **nrowp;
@@ -2873,7 +2685,6 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 2;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -2902,11 +2713,17 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
 
     try
     {
-        bOk = m_pCallFFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_FArgs.size(); i++)
+        {
+            m_FArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
@@ -2914,29 +2731,12 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
         m_FArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallFFunction->getName());
-        }
-
-        if (m_pCallFFunction->isMacro() || m_pCallFFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallFFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -2966,7 +2766,7 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[1]->DecreaseRef();
@@ -2975,7 +2775,7 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutDelta = out[0]->getAs<types::Double>();
@@ -2984,7 +2784,7 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, m_odeYRows);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutIres = out[1]->getAs<types::Double>();
@@ -2993,7 +2793,7 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
         char* pstrName = wide_string_to_UTF8(m_pCallFFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 2);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(&m_odeYRows, pDblOutDelta->get(), &one, delta, &one);
@@ -3015,7 +2815,6 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -3048,11 +2847,17 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
 
     try
     {
-        bOk = m_pCallJacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_JacArgs.size(); i++)
+        {
+            m_JacArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_JacArgs.size(); i++)
@@ -3060,29 +2865,12 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
         m_JacArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallJacFunction->getName());
-        }
-
-        if (m_pCallJacFunction->isMacro() || m_pCallJacFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallJacFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -3117,7 +2905,7 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutPd = out[0]->getAs<types::Double>();
@@ -3128,7 +2916,7 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
         char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"), pstrName, 1, m_odeYRows, (2 * m_ml + m_mu + 1));
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     int size = pDblOutPd->getSize();
@@ -3144,7 +2932,6 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 1;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -3168,11 +2955,17 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
 
     try
     {
-        bOk = m_pCallGFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallGFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_odeGArgs.size(); i++)
+        {
+            m_odeGArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_odeGArgs.size(); i++)
@@ -3180,29 +2973,12 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
         m_odeGArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallGFunction->getName());
-        }
-
-        if (m_pCallGFunction->isMacro() || m_pCallGFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallGFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -3225,7 +3001,7 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     types::Double* pDblOutGout = out[0]->getAs<types::Double>();
@@ -3234,7 +3010,7 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
         char* pstrName = wide_string_to_UTF8(m_pCallGFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *ng);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     C2F(dcopy)(ng, pDblOutGout->get(), &one, gout, &one);
@@ -3252,7 +3028,6 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 3;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -3303,11 +3078,17 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
 
     try
     {
-        bOk = m_pCallPjacFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallPjacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_pJacArgs.size(); i++)
+        {
+            m_pJacArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_pJacArgs.size(); i++)
@@ -3315,29 +3096,12 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         m_pJacArgs[i]->DecreaseRef();
     }
 
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallPjacFunction->getName());
-        }
-
-        if (m_pCallPjacFunction->isMacro() || m_pCallPjacFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallPjacFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
-    }
-
     if (out.size() != iRetCount)
     {
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -3398,7 +3162,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (out[1]->isDouble() == false)
@@ -3406,7 +3170,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (out[2]->isDouble() == false)
@@ -3414,7 +3178,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 3);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     //  return [R, iR, ier]
@@ -3428,7 +3192,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *neq **neq);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (pDblOutIwp->getSize() != 2 * *neq **neq)
@@ -3436,7 +3200,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 2, 2 * *neq **neq);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (pDblOutIer->isScalar() == false)
@@ -3444,7 +3208,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
         char* pstrName = wide_string_to_UTF8(m_pCallPjacFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 3);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     // copy output macro results in output variables
@@ -3487,7 +3251,6 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     char errorMsg[256];
     int one         = 1;
     int iRetCount   = 2;
-    bool bOk        = false;
 
     typed_list in;
     typed_list out;
@@ -3523,34 +3286,22 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
 
     try
     {
-        // call macro
-        bOk = m_pCallPsolFunction->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+        // new std::wstring(L"") is delete in destructor of ast::CommentExp
+        m_pCallPsolFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
     }
-    catch (ast::ScilabMessage & /* sm */)
+    catch (const ast::InternalError& ie)
     {
-        bOk = false;
+        for (int i = 0; i < (int)m_pSolArgs.size(); i++)
+        {
+            m_pSolArgs[i]->DecreaseRef();
+        }
+
+        throw ie;
     }
 
     for (int i = 0; i < (int)m_pSolArgs.size(); i++)
     {
         m_pSolArgs[i]->DecreaseRef();
-    }
-
-    if (bOk == false)
-    {
-        if (ConfigVariable::getLastErrorFunction() == L"")
-        {
-            ConfigVariable::setLastErrorFunction(m_pCallPsolFunction->getName());
-        }
-
-        if (m_pCallPsolFunction->isMacro() || m_pCallPsolFunction->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), ConfigVariable::getLastErrorLine(), m_pCallPsolFunction->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-
-        throw ast::ScilabMessage();
     }
 
     // get output
@@ -3559,7 +3310,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
         char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong number of output argument(s): %d expected.\n"), pstrName, iRetCount);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     out[0]->IncreaseRef();
@@ -3590,7 +3341,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
         char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 1);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     if (out[1]->isDouble() == false)
@@ -3598,7 +3349,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
         char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong type for output argument #%d: Real matrix expected.\n"), pstrName, 2);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     // return arguments [b, ier] = psol()
@@ -3608,7 +3359,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
         char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"), pstrName, 1, *neq);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     // get scalar ier
@@ -3618,7 +3369,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
         char* pstrName = wide_string_to_UTF8(m_pCallPsolFunction->getName().c_str());
         sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A Scalar expected.\n"), pstrName, 2);
         FREE(pstrName);
-        throw ast::ScilabError(errorMsg);
+        throw ast::InternalError(errorMsg);
     }
 
     // copy output macro results in output variables

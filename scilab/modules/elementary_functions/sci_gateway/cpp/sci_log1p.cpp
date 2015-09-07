@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
     int size = pDblIn->getSize();
     for (int i = 0; i < size; i++)
     {
-        if (pInR[i] < 0)
+        if (pInR[i] <= -1)
         {
             if (ConfigVariable::getIeee() == 0)
             {

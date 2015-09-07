@@ -15,7 +15,7 @@
 // check failed of to_wide_string function in WideString functions
 // The conversion does not fail under Windows do we can not check that we have an error
 //
-// Modified for YaSp : now "ascii(190:210)" work.
+// Modified for Scilab 6 : now "ascii(190:210)" work.
 //
 
 ilib_verbose(0);

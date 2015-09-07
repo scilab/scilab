@@ -21,11 +21,11 @@
 "حريات وحقوق",
 "תוכנית"];
 length_ref = [
-    4,
-    7,
-    8,
-    11,
-    11,
+    4,   
+    7,   
+    8,   
+    11,  
+    11,  
     6];
 for i = 1:size(tab_ref,'*')
  if ( length(tab_ref(i)) <> length_ref(i) ) then bugmes();quit;end

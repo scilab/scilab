@@ -61,8 +61,8 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
                 Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 2);
                 return Function::Error;
             }
-            // Scalar String or [] allowed.
-            if ( !( (in[0]->isString() == true && in[0]->getAs<String>()->isScalar() == true)
+            // Matrix of String or [] allowed.
+            if ( !( (in[0]->isString() == true)
                     || (in[0]->isDouble() == true && in[0]->getAs<Double>()->isEmpty() == true)) )
             {
                 Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 1);

@@ -15,7 +15,6 @@
 #include "double.hxx"
 #include "doubleexp.hxx"
 #include "tostring_common.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "type_traits.hxx"
 

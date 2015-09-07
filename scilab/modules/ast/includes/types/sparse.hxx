@@ -69,6 +69,8 @@ struct EXTERN_AST Sparse : GenericType
     **/
     Sparse(Double SPARSE_CONST& xadj, Double SPARSE_CONST& adjncy, Double SPARSE_CONST& src, std::size_t r, std::size_t c);
 
+    //constructor to create a sparse from value extract to another ( save / load operation typically)
+    Sparse(int rows, int cols, int nonzeros, int* inner, int* outer, double* real, double* img);
 
     bool isSparse()
     {
@@ -100,12 +102,14 @@ struct EXTERN_AST Sparse : GenericType
         return getReal(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
+    double* get();
     double get(int r, int c) const;
     double get(int _iIndex) const
     {
         return get(_iIndex % m_iRows, _iIndex / m_iRows);
     }
 
+    std::complex<double>* getImg();
     std::complex<double> getImg(int r, int c) const;
     std::complex<double> getImg(int _iIndex) const
     {
@@ -213,7 +217,7 @@ struct EXTERN_AST Sparse : GenericType
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getLocation());
+                throw ast::InternalError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }
@@ -363,7 +367,9 @@ struct EXTERN_AST Sparse : GenericType
 
     int* getNbItemByRow(int* _piNbItemByRows);
     int* getColPos(int* _piColPos);
-    int  getNbItemByCol(int* _piNbItemByCols, int* _piRowPos);
+    int* getInnerPtr(int* count);
+    int* getOuterPtr(int* count);
+
 
     /**
        "in-place" cast into a sparse matrix of comlpex values
@@ -379,18 +385,7 @@ struct EXTERN_AST Sparse : GenericType
        @return ptr to a new Sparse matrix where each element is the result of the logical operator
         '<' between the elements of *this and those of o.
      */
-    SparseBool* newLessThan(Sparse const&o) const;
-
-    /* coefficient wise relational operator > between *this sparse matrix and an other.
-       Matrices must have the same dimensions except if one of them is of size (1,1)
-       (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
-
-       @param o other sparse matrix
-
-       @return ptr to a new Sparse matrix where each element is the result of the logical operator
-        '>' between the elements of *this and those of o.
-     */
-    SparseBool* newGreaterThan(Sparse const&o) const;
+    SparseBool* newLessThan(Sparse &o);
 
     /* coefficient wise relational operator != between *this sparse matrix and an other.
        Matrices must have the same dimensions except if one of them is of size (1,1)
@@ -416,22 +411,7 @@ struct EXTERN_AST Sparse : GenericType
        @return ptr to a new Sparse matrix where each element is the result of the logical operator
         '<=' between the elements of *this and those of o.
      */
-    SparseBool* newLessOrEqual(Sparse const&o) const;
-
-    /* coefficient wise relational operator >= between *this sparse matrix and an other.
-       Matrices must have the same dimensions except if one of them is of size (1,1)
-       (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
-
-       Do not use this function is possible as the result will be dense because
-       0. >= 0. is true, hence the result matrix will hold a non default value (i.e. true)
-       for each pair of default values (0.) of the sparse arguments !
-
-       @param o other sparse matrix
-
-       @return ptr to a new Sparse matrix where each element is the result of the logical operator
-        '>=' between the elements of *this and those of o.
-     */
-    SparseBool* newGreaterOrEqual(Sparse const&o) const;
+    SparseBool* newLessOrEqual(Sparse &o);
 
     /* coefficient wise relational operator == between *this sparse matrix and an other.
        Matrices must have the same dimensions except if one of them is of size (1,1)
@@ -446,7 +426,7 @@ struct EXTERN_AST Sparse : GenericType
        @return ptr to a new Sparse matrix where each element is the result of the logical operator
         '==' between the elements of *this and those of o.
      */
-    SparseBool* newEqualTo(Sparse const&o) const;
+    SparseBool* newEqualTo(Sparse &o);
 
     /**
        output 1-base column numbers of the non zero elements
@@ -561,6 +541,9 @@ struct EXTERN_AST SparseBool : GenericType
 
     SparseBool(SparseBool const& o);
 
+    //constructor to create a sparse from value extract to another ( save / load operation typically)
+    SparseBool(int rows, int cols, int trues, int* inner, int* outer);
+
     bool isSparseBool()
     {
         return true;
@@ -607,7 +590,7 @@ struct EXTERN_AST SparseBool : GenericType
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getLocation());
+                throw ast::InternalError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }
@@ -645,8 +628,13 @@ struct EXTERN_AST SparseBool : GenericType
      */
     std::size_t nbTrue(std::size_t i) const;
 
+    void setTrue(bool finalize = true);
+    void setFalse(bool finalize = true);
+
     int* getNbItemByRow(int* _piNbItemByRows);
     int* getColPos(int* _piColPos);
+    int* getInnerPtr(int* count);
+    int* getOuterPtr(int* count);
     /**
        output 1-base column numbers of the non zero elements
        @param out : ptr used as an output iterator over double values
@@ -680,7 +668,7 @@ struct EXTERN_AST SparseBool : GenericType
 
     bool isTrue()
     {
-        if (nbTrue() == m_iSize)
+        if (static_cast<int>(nbTrue()) == m_iSize)
         {
             return true;
         }
@@ -698,6 +686,7 @@ struct EXTERN_AST SparseBool : GenericType
 
     void whoAmI() SPARSE_CONST;
 
+    bool* get();
     bool get(int r, int c) SPARSE_CONST;
     bool get(int _iIndex) SPARSE_CONST
     {
@@ -714,7 +703,7 @@ struct EXTERN_AST SparseBool : GenericType
 
     Sparse* newOnes() const;
     SparseBool* newNotEqualTo(SparseBool const&o) const;
-    SparseBool* newEqualTo(SparseBool const&o) const;
+    SparseBool* newEqualTo(SparseBool& o);
 
     SparseBool* newLogicalOr(SparseBool const&o) const;
     SparseBool* newLogicalAnd(SparseBool const&o) const;
