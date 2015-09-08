@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="comments">
     <refnamediv>
         <refname>comments</refname>
-        <refpurpose>(//) commentaires</refpurpose>
+        <refpurpose>(// ou /*...*/) commentaires</refpurpose>
     </refnamediv>
     <refsection>
         <title>Description</title>
@@ -11,6 +11,10 @@
             d'une chaîne de caractères marque le début d'un commentaire. Les barres obliques 
             ainsi que tous les caractères suivants jusqu'à la fin de la ligne 
             ne sont pas interprétés.
+        </para>
+        <para>
+            Un autre moyen de commenter un bloc de code est d'utiliser les caractères /* pour débuter
+            un commentaire et */ pour le terminer.
         </para>
         <para>A l'intérieur d'une fonction, les premières lignes en commentaire, jusqu'à la première 
             instruction ou la première ligne vide peuvent être utilisées comme contenu par défaut 
@@ -23,6 +27,10 @@
 g=9.81// La gravité
 
 text='a//b'
+
+/* Comme ce commentaire est assez long pour devoir être écrit
+sur plusieurs lignes, il est plus pratique d'utiliser
+ces symboles */
 
 function y=myfunction(x)
   // Ma fonction calcule y=x^2+1
