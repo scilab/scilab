@@ -35,23 +35,23 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
 {
     if (signature.lhs <= macrodef->getLhs())
     {
-	visitor.getLogger().log(L"Visit macro ", macrodef->getName());
+        visitor.getLogger().log(L"Visit macro ", macrodef->getName());
         dm.addBlock(Block::MACRO, &macrodef->getBody());
         FunctionBlock & fblock = *static_cast<FunctionBlock *>(dm.getCurrent());
         fblock.setName(macrodef->getName());
         fblock.setLhsRhs(signature.lhs, rhs);
         fblock.setInOut(macrodef, rhs, in);
-	fblock.setGlobals(macrodef->getGlobals());
+        fblock.setGlobals(macrodef->getGlobals());
         if (!fblock.addIn(signature.tuple, values))
         {
-	    dm.finalizeBlock();
+            dm.finalizeBlock();
             return nullptr;
         }
 
         fblock.getExp()->accept(visitor);
         dm.finalizeBlock();
-	visitor.emitFunctionBlock(fblock);
-	//std::wcerr << fblock << std::endl;
+        //std::wcerr << fblock << std::endl;
+        visitor.emitFunctionBlock(fblock);
         outMap.emplace_back(fblock.getConstraints(), fblock.getGlobalConstants(), fblock.getOuts());
 
         return &outMap.back().out;

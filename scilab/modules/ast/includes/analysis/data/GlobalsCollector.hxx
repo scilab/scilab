@@ -15,8 +15,9 @@
 
 #include <iostream>
 #include <string>
-#include <set>
 #include <sstream>
+#include <stack>
+#include <vector>
 
 #include "visitor.hxx"
 #include "execvisitor.hxx"
@@ -42,7 +43,7 @@ public:
     virtual ~GlobalsCollector() { }
 
     static void collect(MacroDef & macrodef);
-    const std::set<symbol::Symbol> & getGlobals() const;
+    const tools::SymbolOrdSet & getGlobals() const;
     void print_info();
 
     friend std::wostream & operator<<(std::wostream & out, const GlobalsCollector & gc);

@@ -16,68 +16,68 @@
 
 namespace analysis
 {
-    TIType Checkers::check_____add____(GVN & gvn, const TIType & in0, const TIType & in1)
+TIType Checkers::check_____add____(GVN & gvn, const TIType & in0, const TIType & in1)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                return in1;
-            }
-            case TIType::COMPLEX :
-            {
-                return in1;
-            }
-            case TIType::DOUBLE :
-            {
-                return in1;
-            }
-            case TIType::INT16 :
-            {
-                return in1;
-            }
-            case TIType::INT32 :
-            {
-                return in1;
-            }
-            case TIType::INT64 :
-            {
-                return in1;
-            }
-            case TIType::INT8 :
-            {
-                return in1;
-            }
-            case TIType::STRING :
-            {
-                return in1;
-            }
-            case TIType::UINT16 :
-            {
-                return in1;
-            }
-            case TIType::UINT32 :
-            {
-                return in1;
-            }
-            case TIType::UINT64 :
-            {
-                return in1;
-            }
-            case TIType::UINT8 :
-            {
-                return in1;
-            }
-            default :
-                return TIType(gvn);
+                case TIType::EMPTY :
+                {
+                    return in0;
+                }
+                case TIType::BOOLEAN :
+                {
+                    return in1;
+                }
+                case TIType::COMPLEX :
+                {
+                    return in1;
+                }
+                case TIType::DOUBLE :
+                {
+                    return in1;
+                }
+                case TIType::INT16 :
+                {
+                    return in1;
+                }
+                case TIType::INT32 :
+                {
+                    return in1;
+                }
+                case TIType::INT64 :
+                {
+                    return in1;
+                }
+                case TIType::INT8 :
+                {
+                    return in1;
+                }
+                case TIType::STRING :
+                {
+                    return in1;
+                }
+                case TIType::UINT16 :
+                {
+                    return in1;
+                }
+                case TIType::UINT32 :
+                {
+                    return in1;
+                }
+                case TIType::UINT64 :
+                {
+                    return in1;
+                }
+                case TIType::UINT8 :
+                {
+                    return in1;
+                }
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -85,188 +85,188 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::EMPTY :
                 {
-                    return TIType(gvn, TIType::DOUBLE, in1.rows, in1.cols);
+                    return in0;
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::BOOLEAN :
                 {
-                    return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::DOUBLE, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::DOUBLE, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::COMPLEX :
                 {
-                    return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
                 }
-                return TIType(gvn, TIType::DOUBLE, -2, -2);
-            }
-            case TIType::COMPLEX :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::DOUBLE, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT16, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                return TIType(gvn, TIType::COMPLEX, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT8, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT8, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::DOUBLE, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return TIType(gvn, TIType::INT16, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT8, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT8, -2, -2);
                 }
-                return TIType(gvn, TIType::INT16, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT8, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT8, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT8, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT8, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -274,44 +274,60 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::COMPLEX, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::COMPLEX, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
                 }
-                return TIType(gvn, TIType::COMPLEX, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::COMPLEX :
                 {
-                    return TIType(gvn, TIType::COMPLEX, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::COMPLEX, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::COMPLEX, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -319,188 +335,188 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::DOUBLE, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::DOUBLE, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::DOUBLE, -2, -2);
                 }
-                return TIType(gvn, TIType::DOUBLE, -2, -2);
-            }
-            case TIType::COMPLEX :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::COMPLEX :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::DOUBLE, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT16 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT16, -2, -2);
                 }
-                return TIType(gvn, TIType::COMPLEX, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT32 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT64 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT8, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT8, -2, -2);
                 }
-                return TIType(gvn, TIType::DOUBLE, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT16 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return TIType(gvn, TIType::INT16, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT64 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                return TIType(gvn, TIType::INT16, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT8 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT8, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT8, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT8, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT8, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT8, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT8, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -508,172 +524,172 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT16, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT16, -2, -2);
                 }
-                return TIType(gvn, TIType::INT16, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::INT16, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT16, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT16, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                return TIType(gvn, TIType::INT16, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT16, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::INT16, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT16, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::INT16, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -681,172 +697,172 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -854,172 +870,172 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -1027,172 +1043,172 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT8, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT8, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT8, -2, -2);
                 }
-                return TIType(gvn, TIType::INT8, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::INT8, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT8, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT8, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT16, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT32, -2, -2);
                 }
-                return TIType(gvn, TIType::INT8, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::INT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return TIType(gvn, TIType::INT16, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::INT8, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::INT16, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return TIType(gvn, TIType::INT32, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return in1;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT8, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT8, -2, -2);
                 }
-                return TIType(gvn, TIType::INT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::INT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::INT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::INT8, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT8, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT8, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -1200,28 +1216,28 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::STRING :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::STRING :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::STRING, -2, -2);
                 }
-                return TIType(gvn, TIType::STRING, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -1229,172 +1245,172 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -1402,172 +1418,172 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -1575,172 +1591,172 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -1748,178 +1764,178 @@ namespace analysis
         {
             switch (in1.type)
             {
-            case TIType::EMPTY :
-            {
-                return in0;
-            }
-            case TIType::BOOLEAN :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT8, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::EMPTY :
                 {
                     return in0;
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::BOOLEAN :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT8, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT8, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT8, -2, -2);
-            }
-            case TIType::DOUBLE :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::DOUBLE :
                 {
-                    return TIType(gvn, TIType::UINT8, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT8, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT8, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT16 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::INT32 :
                 {
-                    return in0;
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT8, -2, -2);
-            }
-            case TIType::INT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::INT64 :
                 {
-                    return TIType(gvn, TIType::UINT16, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::INT8 :
                 {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT8, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT8, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT16 :
                 {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT16, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::INT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
+                case TIType::UINT32 :
                 {
-                    return TIType(gvn, TIType::UINT32, in1.rows, in1.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT32, -2, -2);
                 }
-                if (in1.rows == 1 && in1.cols == 1)
+                case TIType::UINT64 :
                 {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::UINT64, -2, -2);
                 }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
+                case TIType::UINT8 :
                 {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::UINT8, -2, -2);
                 }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::INT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::INT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT8, in1.rows, in1.cols);
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT8, -2, -2);
-            }
-            case TIType::UINT16 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT16, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT16, -2, -2);
-            }
-            case TIType::UINT32 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT32, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT32, -2, -2);
-            }
-            case TIType::UINT64 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::UINT64, in0.rows, in0.cols);
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in1;
-                }
-                return TIType(gvn, TIType::UINT64, -2, -2);
-            }
-            case TIType::UINT8 :
-            {
-                if (in0.rows == 1 && in0.cols == 1)
-                {
-                    return in1;
-                }
-                if (in1.rows == 1 && in1.cols == 1)
-                {
-                    return in0;
-                }
-                if (in1.rows == in0.rows && in1.cols == in0.cols)
-                {
-                    return in0;
-                }
-                return TIType(gvn, TIType::UINT8, -2, -2);
-            }
-            default :
-                return TIType(gvn);
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

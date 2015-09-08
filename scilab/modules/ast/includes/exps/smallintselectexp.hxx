@@ -83,6 +83,11 @@ public:
         return SMALLINTSELECTEXP;
     }
 
+    inline const std::vector<int64_t> & getTable() const
+    {
+        return table;
+    }
+
 private:
 
     std::vector<int64_t> table;

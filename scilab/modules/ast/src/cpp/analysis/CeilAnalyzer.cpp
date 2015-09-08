@@ -16,7 +16,9 @@
 
 namespace analysis
 {
-    bool CeilAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+bool CeilAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+{
+    if (lhs <= 1)
     {
         const ast::exps_t args = e.getArgs();
         if (args.size() == 1)
@@ -25,20 +27,36 @@ namespace analysis
             (*first)->accept(visitor);
             Result & R = visitor.getResult();
             const TIType & Rtype = R.getType();
+            const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(e.getName()).getSymbol();
+            const std::wstring & name = sym.getName();
+            std::vector<TIType> vargs({ Rtype });
+            std::vector<TIType> out = visitor.getDM().call(visitor, lhs, sym, vargs, &e);
             if (Rtype.isintegral())
             {
-		const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
-		const symbol::Symbol & sym = var.getSymbol();
-		const std::wstring & name = sym.getName();
+                const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
 
-		e.getDecorator().res = Result(Rtype);
-                e.getDecorator().setCall(name);
+                e.getDecorator().res = Result(Rtype, R.getTempId());
+                e.getDecorator().setCall(name, vargs);
                 visitor.setResult(e.getDecorator().res);
 
                 return true;
             }
-        }
 
-        return false;	
+            if (out[0].type != TIType::UNKNOWN)
+            {
+                e.getDecorator().res = Result(Rtype, R.getTempId());
+                e.getDecorator().setCall(name, vargs);
+                visitor.setResult(e.getDecorator().res);
+
+                return true;
+            }
+            else
+            {
+                visitor.getDM().releaseTmp(R.getTempId());
+            }
+        }
     }
+
+    return false;
+}
 }

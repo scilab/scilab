@@ -16,6 +16,7 @@
 #include <iostream>
 #include <set>
 
+#include "tools.hxx"
 #include "symbol.hxx"
 
 namespace analysis
@@ -25,7 +26,7 @@ struct Data
 {
     bool known;
     bool valid;
-    std::set<symbol::Symbol> sharedSyms;
+    tools::SymbolSet sharedSyms;
 
     Data(const bool _known, const symbol::Symbol & sym);
     Data(const Data & d) : known(d.known), valid(true), sharedSyms(d.sharedSyms) {  }

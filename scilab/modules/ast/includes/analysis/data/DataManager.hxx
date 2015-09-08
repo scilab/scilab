@@ -33,85 +33,85 @@
 namespace analysis
 {
 
-    class AnalysisVisitor;
-    class FunctionBlock;
-    class MacroDef;
-    class Data;
-    class Info;
+class AnalysisVisitor;
+class FunctionBlock;
+class MacroDef;
+class Data;
+class Info;
 
-    class DataManager
+class DataManager
+{
+    friend class Block;
+
+    Block * root;
+    Block * current;
+    std::vector<Data *> data;
+    unsigned int id;
+    tools::SymbolSet globals;
+    std::stack<FunctionBlock *> callStack;
+    std::unordered_map<types::Macro *, MacroDef *> macroDefCache;
+    GVN gvn;
+
+public:
+
+    DataManager();
+
+    ~DataManager();
+
+    GVN & getGVN();
+    GVN & getDefaultGVN();
+    MacroDef * getMacroDef(types::Macro * macro);
+    void addGlobal(const symbol::Symbol & sym);
+    void registerData(Data * _data, int line = 0, char * file = nullptr);
+    int getTmpId(const TIType & type, const bool isAnInt);
+    void releaseTmp(const int id);
+    Info & read(const symbol::Symbol & sym, ast::Exp * exp);
+    Info & write(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp);
+    Info & define(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);
+    Info & share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp);
+    Info & clear(const symbol::Symbol & sym, ast::Exp * exp);
+    Info & macrodef(ast::Exp * exp);
+    std::vector<TIType> call(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp);
+    void addBlock(Block::BlockKind kind, ast::Exp * exp);
+    Block * getCurrent();
+    void finalizeBlock();
+    bool requiresAnotherTrip();
+    void pushFunction(FunctionBlock * fblock);
+    FunctionBlock * poptopFunction();
+    FunctionBlock * topFunction();
+    void popFunction();
+    TIType getType(const symbol::Symbol & sym, const bool global = false);
+    Info & getInfo(const symbol::Symbol & sym);
+    friend std::wostream & operator<<(std::wostream & out, const DataManager & dm);
+
+    template<typename T>
+    bool getTypes(std::vector<TIType> & out, const T & syms)
     {
-        friend class Block;
-
-	Block * root;
-        Block * current;
-        std::vector<Data *> data;
-        unsigned int id;
-        std::set<symbol::Symbol> globals;
-        std::stack<FunctionBlock *> callStack;
-	std::unordered_map<types::Macro *, MacroDef *> macroDefCache;
-        GVN gvn;
-
-    public:
-
-        DataManager();
-	
-        ~DataManager();
-
-        GVN & getGVN();
-        GVN & getDefaultGVN();
-	MacroDef * getMacroDef(types::Macro * macro);
-        void addGlobal(const symbol::Symbol & sym);
-        void registerData(Data * _data, int line = 0, char * file = nullptr);
-	int getTmpId(const TIType & type, const bool isAnInt);
-	void releaseTmp(const int id);
-        Info & read(const symbol::Symbol & sym, ast::Exp * exp);
-        Info & write(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp);
-        Info & define(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);
-        Info & share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp);
-        Info & clear(const symbol::Symbol & sym, ast::Exp * exp);
-        Info & macrodef(ast::Exp * exp);
-        std::vector<TIType> call(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp);
-        void addBlock(Block::BlockKind kind, ast::Exp * exp);
-        Block * getCurrent();
-        void finalizeBlock();
-        bool requiresAnotherTrip();
-        void pushFunction(FunctionBlock * fblock);
-        FunctionBlock * poptopFunction();
-        FunctionBlock * topFunction();
-        void popFunction();
-	TIType getType(const symbol::Symbol & sym, const bool global = false);
-        Info & getInfo(const symbol::Symbol & sym);
-        friend std::wostream & operator<<(std::wostream & out, const DataManager & dm);
-
-        template<typename T>
-        bool getTypes(std::vector<TIType> & out, const T & syms)
+        Block * parent = getCurrent();
+        for (const auto & sym : syms)
+        {
+            tools::SymbolMap<Info>::iterator it;
+            Block * block = parent->getDefBlock(sym, it, false);
+            if (block)
             {
-                Block * parent = getCurrent();
-                for (const auto & sym : syms)
-                {
-                    std::map<symbol::Symbol, Info>::iterator it;
-                    Block * block = parent->getDefBlock(sym, it, false);
-                    if (block)
-                    {
-                        Info & i = it->second;
-                        out.emplace_back(i.type.type, i.type.isscalar());
-                    }
-                    else
-                    {
-                        // TODO: get type in Scilab context
-                        return false;
-                    }
-                }
-
-                return true;
+                Info & i = it->second;
+                out.emplace_back(i.type.type, i.type.isscalar());
             }
+            else
+            {
+                // TODO: get type in Scilab context
+                return false;
+            }
+        }
 
-	static TIType getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists);
-        static TIType getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, types::InternalType *& pIT);
-        static TIType getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists, types::InternalType *& pIT);
+        return true;
+    }
 
-    };
+    static TIType getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists);
+    static TIType getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, types::InternalType *& pIT);
+    static TIType getSymInScilabContext(GVN & gvn, const symbol::Symbol & sym, bool & exists, types::InternalType *& pIT);
+
+};
 }
 
 #endif // __DATA_MANAGER_HXX__
