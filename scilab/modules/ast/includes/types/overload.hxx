@@ -15,10 +15,10 @@
 
 #include "function.hxx"
 #include "visitor.hxx"
-#include "opexp.hxx"
 
 class EXTERN_AST Overload
 {
+
 public:
     /**
      ** This function will build an overload function name
@@ -30,14 +30,14 @@ public:
     /**
      */
     static types::Function::ReturnValue generateNameAndCall(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount,
-            types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator = false);
+            types::typed_list &out, ast::ConstVisitor *_execMe = nullptr, bool _isOperator = false);
 
     /**
      */
     static types::Function::ReturnValue call(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount,
-            types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator = false);
+            types::typed_list &out, ast::ConstVisitor *_execMe = nullptr, bool _isOperator = false);
 
-    static std::wstring getNameFromOper(ast::OpExp::Oper);
+    static std::wstring getNameFromOper(const int);
 
 };
 

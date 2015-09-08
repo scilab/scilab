@@ -14,6 +14,7 @@
 #include <vector>
 #include "callable.hxx"
 #include "configvariable.hxx"
+#include "exp.hxx"
 
 namespace types
 {

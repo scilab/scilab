@@ -16,6 +16,7 @@
 #include "int.hxx"
 #include "localization.hxx"
 #include "scilabWrite.hxx"
+#include "exp.hxx"
 
 namespace types
 {

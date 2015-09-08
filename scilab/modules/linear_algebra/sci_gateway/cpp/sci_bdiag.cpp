@@ -12,6 +12,8 @@
 */
 /*--------------------------------------------------------------------------*/
 
+#include <cmath>
+
 #include "linear_algebra_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
@@ -106,7 +108,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
             double t = 0.0;
             for (int i = 0; i < pDblMatrix->getCols(); i++)
             {
-                t += std::abs(pDblMatrix->get(i + j * pDblMatrix->getCols()));
+                t += std::fabs(pDblMatrix->get(i + j * pDblMatrix->getCols()));
             }
             rMax = std::max(t, rMax);
         }

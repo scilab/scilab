@@ -15,14 +15,12 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
 #include "basic_functions.h"
 #include "Scierror.h"
 }
-
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -36,7 +34,6 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
     double *pdblImg     = NULL;
     double *pdblRealRet = NULL;
     double *pdblImgRet  = NULL;
-
 
     if (in.size() != 1)
     {
@@ -98,9 +95,8 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sign";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

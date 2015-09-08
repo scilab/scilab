@@ -12,8 +12,8 @@
 
 #include "fftw_common.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "int.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -62,8 +62,7 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
-        return Overload::generateNameAndCall(name, in, _iRetCount, out, &exec);
+        return Overload::generateNameAndCall(name, in, _iRetCount, out);
     }
 
     //check option, last parameter

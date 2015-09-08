@@ -10,12 +10,15 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "sparse.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -142,9 +145,8 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_imult";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

@@ -14,8 +14,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
 
 extern "C"
 {
@@ -50,9 +48,8 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_asin";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
@@ -80,7 +77,7 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
         int size = pDblIn->getSize();
         for (int i = 0; i < size; i++)
         {
-            if (std::abs(pInR[i]) > 1)
+            if (std::fabs(pInR[i]) > 1)
             {
                 bOutSide = 1;
                 break;

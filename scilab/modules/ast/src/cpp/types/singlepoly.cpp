@@ -10,7 +10,7 @@
 *
 */
 #include <sstream>
-#include <math.h>
+#include <cmath>
 #include "singlepoly.hxx"
 #include "double.hxx"
 #include "tostring_common.hxx"
@@ -23,8 +23,6 @@ extern "C"
 #include "exp.h"
 #include "elem_common.h"
 }
-
-using namespace std;
 
 namespace types
 {
@@ -268,15 +266,15 @@ bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, dou
     for (int i = 0 ; i < m_iSize ; i++)
     {
         //real part
-        *_pdblOutR += m_pRealData[i] * pow(_dblInR, i);
+        *_pdblOutR += m_pRealData[i] * std::pow(_dblInR, i);
         //only if variable is complex
         if (isComplex())
         {
-            *_pdblOutR -= m_pImgData[i] * pow(_dblInI, i);
+            *_pdblOutR -= m_pImgData[i] * std::pow(_dblInI, i);
             //img part
-            *_pdblOutI += m_pRealData[i] * pow(_dblInR, i);
+            *_pdblOutI += m_pRealData[i] * std::pow(_dblInR, i);
         }
-        *_pdblOutI += m_pRealData[i] * pow(_dblInI, i);
+        *_pdblOutI += m_pRealData[i] * std::pow(_dblInI, i);
     }
 
     return true;
@@ -289,7 +287,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) == 0.0 && abs(m_pImgData[i]) == 0.0)
+            if (std::fabs(m_pRealData[i]) == 0.0 && std::fabs(m_pImgData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -303,7 +301,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) == 0.0)
+            if (std::fabs(m_pRealData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -326,12 +324,12 @@ bool SinglePoly::toString(std::wostringstream& ostr)
     return true;
 }
 
-void SinglePoly::toStringReal(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+void SinglePoly::toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef)
 {
     toStringInternal(m_pRealData, _szVar, _pListExp, _pListCoef);
 }
 
-void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+void SinglePoly::toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef)
 {
     if (isComplex() == false)
     {
@@ -343,17 +341,17 @@ void SinglePoly::toStringImg(wstring _szVar, list<wstring>* _pListExp , list<wst
     toStringInternal(m_pImgData, _szVar, _pListExp, _pListCoef);
 }
 
-bool SinglePoly::subMatrixToString(wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
+bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, int /*_iDims*/)
 {
     return false;
 }
 
-void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring>* _pListExp , list<wstring>* _pListCoef)
+void SinglePoly::toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef)
 {
     int iLineLen = ConfigVariable::getConsoleWidth();
 
-    wostringstream ostemp;
-    wostringstream ostemp2;
+    std::wostringstream ostemp;
+    std::wostringstream ostemp2;
 
     ostemp << L" ";
     ostemp2 << L" ";

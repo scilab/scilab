@@ -13,8 +13,8 @@
 
 #include "special_functions_gw.hxx"
 #include "function.hxx"
-#include "execvisitor.hxx"
 #include "double.hxx"
+#include "overload.hxx"
 
 extern "C"
 {
@@ -34,9 +34,8 @@ types::Function::ReturnValue sci_lgamma(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isList() || in[0]->isTList() || in[0]->isMList())
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gammaln";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in[0]->isDouble() == false)
@@ -56,8 +55,7 @@ types::Function::ReturnValue sci_lgamma(types::typed_list &in, int _iRetCount, t
 
     if (pDblIn->getDims() > 2)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%hm_gammaln", in, _iRetCount, out, &exec);
+        return Overload::call(L"%hm_gammaln", in, _iRetCount, out);
     }
 
     types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());

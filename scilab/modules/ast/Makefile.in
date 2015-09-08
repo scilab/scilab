@@ -223,14 +223,15 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/system_env/threadmanagement.cpp \
 	src/cpp/system_env/numericconstants.cpp \
 	src/cpp/system_env/numericconstants_interface.cpp \
-	src/cpp/types/addfunction.cpp src/cpp/types/arrayof.cpp \
-	src/cpp/types/bool.cpp src/cpp/types/callable.cpp \
-	src/cpp/types/cell.cpp src/cpp/types/double.cpp \
-	src/cpp/types/file.cpp src/cpp/types/function.cpp \
-	src/cpp/types/graphichandle.cpp src/cpp/types/implicitlist.cpp \
-	src/cpp/types/int.cpp src/cpp/types/library.cpp \
-	src/cpp/types/list.cpp src/cpp/types/listdelete.cpp \
-	src/cpp/types/listinsert.cpp src/cpp/types/listoperation.cpp \
+	src/cpp/types/addfunction.cpp src/cpp/types/internal.cpp \
+	src/cpp/types/arrayof.cpp src/cpp/types/bool.cpp \
+	src/cpp/types/callable.cpp src/cpp/types/cell.cpp \
+	src/cpp/types/double.cpp src/cpp/types/file.cpp \
+	src/cpp/types/function.cpp src/cpp/types/graphichandle.cpp \
+	src/cpp/types/implicitlist.cpp src/cpp/types/int.cpp \
+	src/cpp/types/library.cpp src/cpp/types/list.cpp \
+	src/cpp/types/listdelete.cpp src/cpp/types/listinsert.cpp \
+	src/cpp/types/listoperation.cpp \
 	src/cpp/types/listundefined.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/macrofile.cpp src/cpp/types/mlist.cpp \
 	src/cpp/types/overload.cpp src/cpp/types/polynom.cpp \
@@ -417,6 +418,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/system_env/libsciast_la-numericconstants.lo \
 	src/cpp/system_env/libsciast_la-numericconstants_interface.lo \
 	src/cpp/types/libsciast_la-addfunction.lo \
+	src/cpp/types/libsciast_la-internal.lo \
 	src/cpp/types/libsciast_la-arrayof.lo \
 	src/cpp/types/libsciast_la-bool.lo \
 	src/cpp/types/libsciast_la-callable.lo \
@@ -1008,14 +1010,15 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/system_env/threadmanagement.cpp \
 	src/cpp/system_env/numericconstants.cpp \
 	src/cpp/system_env/numericconstants_interface.cpp \
-	src/cpp/types/addfunction.cpp src/cpp/types/arrayof.cpp \
-	src/cpp/types/bool.cpp src/cpp/types/callable.cpp \
-	src/cpp/types/cell.cpp src/cpp/types/double.cpp \
-	src/cpp/types/file.cpp src/cpp/types/function.cpp \
-	src/cpp/types/graphichandle.cpp src/cpp/types/implicitlist.cpp \
-	src/cpp/types/int.cpp src/cpp/types/library.cpp \
-	src/cpp/types/list.cpp src/cpp/types/listdelete.cpp \
-	src/cpp/types/listinsert.cpp src/cpp/types/listoperation.cpp \
+	src/cpp/types/addfunction.cpp src/cpp/types/internal.cpp \
+	src/cpp/types/arrayof.cpp src/cpp/types/bool.cpp \
+	src/cpp/types/callable.cpp src/cpp/types/cell.cpp \
+	src/cpp/types/double.cpp src/cpp/types/file.cpp \
+	src/cpp/types/function.cpp src/cpp/types/graphichandle.cpp \
+	src/cpp/types/implicitlist.cpp src/cpp/types/int.cpp \
+	src/cpp/types/library.cpp src/cpp/types/list.cpp \
+	src/cpp/types/listdelete.cpp src/cpp/types/listinsert.cpp \
+	src/cpp/types/listoperation.cpp \
 	src/cpp/types/listundefined.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/macrofile.cpp src/cpp/types/mlist.cpp \
 	src/cpp/types/overload.cpp src/cpp/types/polynom.cpp \
@@ -1741,6 +1744,8 @@ src/cpp/types/$(DEPDIR)/$(am__dirstamp):
 src/cpp/types/libsciast_la-addfunction.lo:  \
 	src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
+src/cpp/types/libsciast_la-internal.lo: src/cpp/types/$(am__dirstamp) \
+	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-arrayof.lo: src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-bool.lo: src/cpp/types/$(am__dirstamp) \
@@ -2444,6 +2449,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-implicitlist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-int.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-internal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-library.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-listdelete.Plo@am__quote@
@@ -2928,6 +2934,13 @@ src/cpp/types/libsciast_la-addfunction.lo: src/cpp/types/addfunction.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/addfunction.cpp' object='src/cpp/types/libsciast_la-addfunction.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-addfunction.lo `test -f 'src/cpp/types/addfunction.cpp' || echo '$(srcdir)/'`src/cpp/types/addfunction.cpp
+
+src/cpp/types/libsciast_la-internal.lo: src/cpp/types/internal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-internal.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-internal.Tpo -c -o src/cpp/types/libsciast_la-internal.lo `test -f 'src/cpp/types/internal.cpp' || echo '$(srcdir)/'`src/cpp/types/internal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/types/$(DEPDIR)/libsciast_la-internal.Tpo src/cpp/types/$(DEPDIR)/libsciast_la-internal.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/internal.cpp' object='src/cpp/types/libsciast_la-internal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-internal.lo `test -f 'src/cpp/types/internal.cpp' || echo '$(srcdir)/'`src/cpp/types/internal.cpp
 
 src/cpp/types/libsciast_la-arrayof.lo: src/cpp/types/arrayof.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-arrayof.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-arrayof.Tpo -c -o src/cpp/types/libsciast_la-arrayof.lo `test -f 'src/cpp/types/arrayof.cpp' || echo '$(srcdir)/'`src/cpp/types/arrayof.cpp

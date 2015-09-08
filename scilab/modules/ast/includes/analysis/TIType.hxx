@@ -29,7 +29,9 @@ struct TIType
 {
     static const std::wstring _boolean_, _ce_, _constant_, _fptr_, _function_, _int16_, _int32_, _int64_, _int8_, _library_, _list_, _mlist_, _polynomial_, _sparse_, _st_, _string_, _tlist_, _uint16_, _uint32_, _uint64_, _uint8_, _unknown_;
 
-    enum Type { EMPTY = 0, BOOLEAN, COMPLEX, CELL, DOUBLE, FUNCTION, INT16, INT32, INT64, INT8, LIST, LIBRARY, MACRO, MACROFILE, MLIST, POLYNOMIAL, STRING, SPARSE, STRUCT, TLIST, UNKNOWN, UINT16, UINT32, UINT64, UINT8, COUNT };
+    enum Type {
+        EMPTY = 0, BOOLEAN, COMPLEX, CELL, DOUBLE, FUNCTION, INT16, INT32, INT64, INT8, LIST, LIBRARY, MACRO, MACROFILE, MLIST, POLYNOMIAL, STRING, SPARSE, STRUCT, TLIST, UNKNOWN, UINT16, UINT32, UINT64, UINT8, COUNT
+    };
     Type type;
     SymbolicDimension rows;
     SymbolicDimension cols;
@@ -40,7 +42,7 @@ struct TIType
     TIType(GVN & gvn, const Type _type) : type(_type), rows(gvn, _type == EMPTY ? 0 : 1), cols(gvn, _type == EMPTY ? 0 : 1), scalar(_type != EMPTY) { }
     TIType(GVN & gvn, const Type _type, const int _rows, const int _cols) : type(_type), rows(gvn, _rows), cols(gvn, _cols), scalar(_rows == 1 && _cols == 1) { }
     TIType(GVN & gvn, Type _type, const SymbolicDimension & _rows, const SymbolicDimension & _cols) : type(_type), rows(_rows), cols(_cols), scalar(_rows == 1 && _cols == 1) { }
-    TIType(GVN & gvn, const Type _type, const bool _scalar) : type(_type), rows(gvn, _scalar ? 1. : -1.), cols(gvn, _scalar ? 1. : -1.), scalar(_scalar) { }
+    TIType(GVN & gvn, const Type _type, const bool _scalar) : type(_type), rows(gvn, _scalar ? 1 : -1), cols(gvn, _scalar ? 1 : -1), scalar(_scalar) { }
 
     inline bool hasValidDims() const
     {
@@ -183,57 +185,57 @@ struct TIType
         const bool kd = isKnownDims();
         switch (type)
         {
-            case EMPTY :
+            case EMPTY:
                 return "E";
-            case BOOLEAN :
-                return kd ? (scalar ? "Sb" : "Mb") : "Ub";
-            case COMPLEX :
-                return kd ? (scalar ? "Sc" : "Mc") : "Uc";
-            case CELL :
-                return kd ? (scalar ? "Sce" : "Mce") : "Uce";
-            case DOUBLE :
-                return kd ? (scalar ? "Sd" : "Md") : "Ud";
-            case FUNCTION :
-                return kd ? (scalar ? "Sfn" : "Mfn") : "Ufn";
-            case INT16 :
-                return kd ? (scalar ? "Si16" : "Mi16") : "Ui16";
-            case INT32 :
-                return kd ? (scalar ? "Si32" : "Mi32") : "Ui32";
-            case INT64 :
-                return kd ? (scalar ? "Si64" : "Mi64") : "Ui64";
-            case INT8 :
-                return kd ? (scalar ? "Si8" : "Mi8") : "Ui8";
-            case LIST :
-                return kd ? (scalar ? "Sl" : "Ml") : "Ul";
-            case LIBRARY :
-                return kd ? (scalar ? "Slb" : "Mlb") : "Ulb";
-            case MACRO :
-                return kd ? (scalar ? "Sm" : "Mm") : "Um";
-            case MACROFILE :
-                return kd ? (scalar ? "Smf" : "Mmf") : "Umf";
-            case MLIST :
-                return kd ? (scalar ? "Sml" : "Mml") : "Uml";
-            case POLYNOMIAL :
-                return kd ? (scalar ? "Sp" : "Mp") : "Up";
-            case STRING :
-                return kd ? (scalar ? "Ss" : "Ms") : "Us";
-            case SPARSE :
-                return kd ? (scalar ? "Ssp" : "Msp") : "Usp";
-            case STRUCT :
-                return kd ? (scalar ? "Sst" : "Mst") : "Ust";
-            case TLIST :
-                return kd ? (scalar ? "Stl" : "Mtl") : "Utl";
-            case UNKNOWN :
-                return kd ? (scalar ? "Su" : "Mu") : "Uu";
-            case UINT16 :
-                return kd ? (scalar ? "Sui16" : "Mui16") : "Uui16";
-            case UINT32 :
-                return kd ? (scalar ? "Sui32" : "Mui32") : "Uui32";
-            case UINT64 :
-                return kd ? (scalar ? "Sui64" : "Mui64") : "Uui64";
-            case UINT8 :
-                return kd ? (scalar ? "Sui8" : "Mui8") : "Uui8";
-            default :
+            case BOOLEAN:
+                return kd ? (scalar ? "S_b" : "M_b") : "U_b";
+            case COMPLEX:
+                return kd ? (scalar ? "S_c" : "M_c") : "U_c";
+            case CELL:
+                return kd ? (scalar ? "S_ce" : "M_ce") : "U_ce";
+            case DOUBLE:
+                return kd ? (scalar ? "S_d" : "M_d") : "U_d";
+            case FUNCTION:
+                return kd ? (scalar ? "S_fn" : "M_fn") : "U_fn";
+            case INT16:
+                return kd ? (scalar ? "S_i16" : "M_i16") : "U_i16";
+            case INT32:
+                return kd ? (scalar ? "S_i32" : "M_i32") : "U_i32";
+            case INT64:
+                return kd ? (scalar ? "S_i64" : "M_i64") : "U_i64";
+            case INT8:
+                return kd ? (scalar ? "S_i8" : "M_i8") : "U_i8";
+            case LIST:
+                return kd ? (scalar ? "S_l" : "M_l") : "U_l";
+            case LIBRARY:
+                return kd ? (scalar ? "S_lb" : "M_lb") : "U_lb";
+            case MACRO:
+                return kd ? (scalar ? "S_m" : "M_m") : "U_m";
+            case MACROFILE:
+                return kd ? (scalar ? "S_mf" : "M_mf") : "U_mf";
+            case MLIST:
+                return kd ? (scalar ? "S_ml" : "M_ml") : "U_ml";
+            case POLYNOMIAL:
+                return kd ? (scalar ? "S_p" : "M_p") : "U_p";
+            case STRING:
+                return kd ? (scalar ? "S_s" : "M_s") : "U_s";
+            case SPARSE:
+                return kd ? (scalar ? "S_sp" : "M_sp") : "U_sp";
+            case STRUCT:
+                return kd ? (scalar ? "S_st" : "M_st") : "U_st";
+            case TLIST:
+                return kd ? (scalar ? "S_tl" : "M_tl") : "U_tl";
+            case UNKNOWN:
+                return kd ? (scalar ? "S_u" : "M_u") : "U_u";
+            case UINT16:
+                return kd ? (scalar ? "S_ui16" : "M_ui16") : "U_ui16";
+            case UINT32:
+                return kd ? (scalar ? "S_ui32" : "M_ui32") : "U_ui32";
+            case UINT64:
+                return kd ? (scalar ? "S_ui64" : "M_ui64") : "U_ui64";
+            case UINT8:
+                return kd ? (scalar ? "S_ui8" : "M_ui8") : "U_ui8";
+            default:
                 return "??";
         }
     }
@@ -242,57 +244,57 @@ struct TIType
     {
         switch (ty)
         {
-            case EMPTY :
+            case EMPTY:
                 return "E";
-            case BOOLEAN :
-                return scalar ? "Sb" : "Mb";
-            case COMPLEX :
-                return scalar ? "Sc" : "Mc";
-            case CELL :
-                return scalar ? "Sce" : "Mce";
-            case DOUBLE :
-                return scalar ? "Sd" : "Md";
-            case FUNCTION :
-                return scalar ? "Sfn" : "Mfn";
-            case INT16 :
-                return scalar ? "Si16" : "Mi16";
-            case INT32 :
-                return scalar ? "Si32" : "Mi32";
-            case INT64 :
-                return scalar ? "Si64" : "Mi64";
-            case INT8 :
-                return scalar ? "Si8" : "Mi8";
-            case LIST :
-                return scalar ? "Sl" : "Ml";
-            case LIBRARY :
-                return scalar ? "Slb" : "Mlb";
-            case MACRO :
-                return scalar ? "Sm" : "Mm";
-            case MACROFILE :
-                return scalar ? "Smf" : "Mmf";
-            case MLIST :
-                return scalar ? "Sml" : "Mml";
-            case POLYNOMIAL :
-                return scalar ? "Sp" : "Mp";
-            case STRING :
-                return scalar ? "Ss" : "Ms";
-            case SPARSE :
-                return scalar ? "Ssp" : "Msp";
-            case STRUCT :
-                return scalar ? "Sst" : "Mst";
-            case TLIST :
-                return scalar ? "Stl" : "Mtl";
-            case UNKNOWN :
-                return scalar ? "Su" : "Mu";
-            case UINT16 :
-                return scalar ? "Sui16" : "Mui16";
-            case UINT32 :
-                return scalar ? "Sui32" : "Mui32";
-            case UINT64 :
-                return scalar ? "Sui64" : "Mui64";
-            case UINT8 :
-                return scalar ? "Sui8" : "Mui8";
-            default :
+            case BOOLEAN:
+                return scalar ? "S_b" : "M_b";
+            case COMPLEX:
+                return scalar ? "S_c" : "M_c";
+            case CELL:
+                return scalar ? "S_ce" : "M_ce";
+            case DOUBLE:
+                return scalar ? "S_d" : "M_d";
+            case FUNCTION:
+                return scalar ? "S_fn" : "M_fn";
+            case INT16:
+                return scalar ? "S_i16" : "M_i16";
+            case INT32:
+                return scalar ? "S_i32" : "M_i32";
+            case INT64:
+                return scalar ? "S_i64" : "M_i64";
+            case INT8:
+                return scalar ? "S_i8" : "M_i8";
+            case LIST:
+                return scalar ? "S_l" : "M_l";
+            case LIBRARY:
+                return scalar ? "S_lb" : "M_lb";
+            case MACRO:
+                return scalar ? "S_m" : "M_m";
+            case MACROFILE:
+                return scalar ? "S_mf" : "M_mf";
+            case MLIST:
+                return scalar ? "S_ml" : "M_ml";
+            case POLYNOMIAL:
+                return scalar ? "S_p" : "M_p";
+            case STRING:
+                return scalar ? "S_s" : "M_s";
+            case SPARSE:
+                return scalar ? "S_sp" : "M_sp";
+            case STRUCT:
+                return scalar ? "S_st" : "M_st";
+            case TLIST:
+                return scalar ? "S_tl" : "M_tl";
+            case UNKNOWN:
+                return scalar ? "S_u" : "M_u";
+            case UINT16:
+                return scalar ? "S_ui16" : "M_ui16";
+            case UINT32:
+                return scalar ? "S_ui32" : "M_ui32";
+            case UINT64:
+                return scalar ? "S_ui64" : "M_ui64";
+            case UINT8:
+                return scalar ? "S_ui8" : "M_ui8";
+            default:
                 return "??";
         }
     }
@@ -304,16 +306,15 @@ struct TIType
 
     inline static std::string get_binary_mangling(const std::string & pre, const TIType & l, const TIType & r)
     {
-        return pre + "_" + l.get_mangling() + r.get_mangling();
+        return pre + "_" + l.get_mangling() + "_" + r.get_mangling();
     }
 
     inline static std::string get_mangling(const std::string & pre, const std::vector<TIType> & types)
     {
         std::string s(pre);
-        s += "_";
         for (std::vector<TIType>::const_iterator i = types.begin(), end = types.end(); i != end; ++i)
         {
-            s += i->get_mangling();
+            s += "_" + i->get_mangling();
         }
         return s;
     }
@@ -322,29 +323,29 @@ struct TIType
     {
         switch (type)
         {
-            case EMPTY :
+            case EMPTY:
                 return sizeof(double);
-            case BOOLEAN :
+            case BOOLEAN:
                 return sizeof(int);
-            case DOUBLE :
+            case DOUBLE:
                 return sizeof(double);
-            case INT8 :
+            case INT8:
                 return sizeof(int8_t);
-            case INT16 :
+            case INT16:
                 return sizeof(int16_t);
-            case INT32 :
+            case INT32:
                 return sizeof(int32_t);
-            case INT64 :
+            case INT64:
                 return sizeof(int64_t);
-            case UINT8 :
+            case UINT8:
                 return sizeof(uint8_t);
-            case UINT16 :
+            case UINT16:
                 return sizeof(uint16_t);
-            case UINT32 :
+            case UINT32:
                 return sizeof(uint32_t);
-            case UINT64 :
+            case UINT64:
                 return sizeof(uint64_t);
-            default :
+            default:
                 return 0;
         }
     }
@@ -353,57 +354,57 @@ struct TIType
     {
         switch (t)
         {
-            case EMPTY :
+            case EMPTY:
                 return L"[]";
-            case BOOLEAN :
+            case BOOLEAN:
                 return L"boolean";
-            case COMPLEX :
+            case COMPLEX:
                 return L"complex";
-            case CELL :
+            case CELL:
                 return L"cell";
-            case DOUBLE :
+            case DOUBLE:
                 return L"double";
-            case FUNCTION :
+            case FUNCTION:
                 return L"function";
-            case INT16 :
+            case INT16:
                 return L"int16";
-            case INT32 :
+            case INT32:
                 return L"int32";
-            case INT64 :
+            case INT64:
                 return L"int64";
-            case INT8 :
+            case INT8:
                 return L"int8";
-            case LIST :
+            case LIST:
                 return L"list";
-            case LIBRARY :
+            case LIBRARY:
                 return L"library";
-            case MACRO :
+            case MACRO:
                 return L"macro";
-            case MACROFILE :
+            case MACROFILE:
                 return L"macrofile";
-            case MLIST :
+            case MLIST:
                 return L"mlist";
-            case POLYNOMIAL :
+            case POLYNOMIAL:
                 return L"polynomial";
-            case STRING :
+            case STRING:
                 return L"string";
-            case SPARSE :
+            case SPARSE:
                 return L"sparse";
-            case STRUCT :
+            case STRUCT:
                 return L"struct";
-            case TLIST :
+            case TLIST:
                 return L"tlist";
-            case UNKNOWN :
+            case UNKNOWN:
                 return L"unknown";
-            case UINT16 :
+            case UINT16:
                 return L"uint16";
-            case UINT32 :
+            case UINT32:
                 return L"uint32";
-            case UINT64 :
+            case UINT64:
                 return L"uint64";
-            case UINT8 :
+            case UINT8:
                 return L"uint8";
-            default :
+            default:
                 return L"unknown";
         }
     }
@@ -417,57 +418,57 @@ struct TIType
     {
         switch (t)
         {
-            case EMPTY :
+            case EMPTY:
                 return _constant_;
-            case BOOLEAN :
+            case BOOLEAN:
                 return _boolean_;
-            case COMPLEX :
+            case COMPLEX:
                 return _constant_;
-            case CELL :
+            case CELL:
                 return _ce_;
-            case DOUBLE :
+            case DOUBLE:
                 return _constant_;
-            case FUNCTION :
+            case FUNCTION:
                 return _fptr_;
-            case INT16 :
+            case INT16:
                 return _int16_;
-            case INT32 :
+            case INT32:
                 return _int32_;
-            case INT64 :
+            case INT64:
                 return _int64_;
-            case INT8 :
+            case INT8:
                 return _int8_;
-            case LIST :
+            case LIST:
                 return _list_;
-            case LIBRARY :
+            case LIBRARY:
                 return _library_;
-            case MACRO :
+            case MACRO:
                 return _function_;
-            case MACROFILE :
+            case MACROFILE:
                 return _function_;
-            case MLIST :
+            case MLIST:
                 return _mlist_;
-            case POLYNOMIAL :
+            case POLYNOMIAL:
                 return _polynomial_;
-            case STRING :
+            case STRING:
                 return _string_;
-            case SPARSE :
+            case SPARSE:
                 return _sparse_;
-            case STRUCT :
+            case STRUCT:
                 return _st_;
-            case TLIST :
+            case TLIST:
                 return _tlist_;
-            case UNKNOWN :
+            case UNKNOWN:
                 return _unknown_;
-            case UINT16 :
+            case UINT16:
                 return _uint16_;
-            case UINT32 :
+            case UINT32:
                 return _uint32_;
-            case UINT64 :
+            case UINT64:
                 return _uint64_;
-            case UINT8 :
+            case UINT8:
                 return _uint8_;
-            default :
+            default:
                 return _unknown_;
         }
     }
@@ -481,57 +482,57 @@ struct TIType
     {
         switch (t)
         {
-            case EMPTY :
+            case EMPTY:
                 return 1;
-            case BOOLEAN :
+            case BOOLEAN:
                 return 4;
-            case COMPLEX :
+            case COMPLEX:
                 return 1;
-            case CELL :
+            case CELL:
                 return 17;
-            case DOUBLE :
+            case DOUBLE:
                 return 1;
-            case FUNCTION :
+            case FUNCTION:
                 return 130;
-            case INT16 :
+            case INT16:
                 return 8;
-            case INT32 :
+            case INT32:
                 return 8;
-            case INT64 :
+            case INT64:
                 return 8;
-            case INT8 :
+            case INT8:
                 return 8;
-            case LIST :
+            case LIST:
                 return 15;
-            case LIBRARY :
+            case LIBRARY:
                 return 14;
-            case MACRO :
+            case MACRO:
                 return 11;
-            case MACROFILE :
+            case MACROFILE:
                 return 13;
-            case MLIST :
+            case MLIST:
                 return 17;
-            case POLYNOMIAL :
+            case POLYNOMIAL:
                 return 2;
-            case STRING :
+            case STRING:
                 return 10;
-            case SPARSE :
+            case SPARSE:
                 return 5;
-            case STRUCT :
+            case STRUCT:
                 return 17;
-            case TLIST :
+            case TLIST:
                 return 16;
-            case UNKNOWN :
+            case UNKNOWN:
                 return -1;
-            case UINT16 :
+            case UINT16:
                 return 8;
-            case UINT32 :
+            case UINT32:
                 return 8;
-            case UINT64 :
+            case UINT64:
                 return 8;
-            case UINT8 :
+            case UINT8:
                 return 8;
-            default :
+            default:
                 return -1;
         }
     }
@@ -540,82 +541,82 @@ struct TIType
     {
         switch (type.type)
         {
-            case EMPTY :
+            case EMPTY:
                 out << L"[]";
                 break;
-            case BOOLEAN :
+            case BOOLEAN:
                 out << L"boolean";
                 break;
-            case COMPLEX :
+            case COMPLEX:
                 out << L"complex";
                 break;
-            case CELL :
+            case CELL:
                 out << L"cell";
                 break;
-            case DOUBLE :
+            case DOUBLE:
                 out << L"double";
                 break;
-            case FUNCTION :
+            case FUNCTION:
                 out << L"function";
                 break;
-            case INT16 :
+            case INT16:
                 out << L"int16";
                 break;
-            case INT32 :
+            case INT32:
                 out << L"int32";
                 break;
-            case INT64 :
+            case INT64:
                 out << L"int64";
                 break;
-            case INT8 :
+            case INT8:
                 out << L"int8";
                 break;
-            case LIST :
+            case LIST:
                 out << L"list";
                 break;
-            case LIBRARY :
+            case LIBRARY:
                 out << L"library";
                 break;
-            case MACRO :
+            case MACRO:
                 out << L"macro";
                 break;
-            case MACROFILE :
+            case MACROFILE:
                 out << L"macrofile";
                 break;
-            case MLIST :
+            case MLIST:
                 out << L"mlist";
                 break;
-            case POLYNOMIAL :
+            case POLYNOMIAL:
                 out << L"polynomial";
                 break;
-            case STRING :
+            case STRING:
                 out << L"string";
                 break;
-            case SPARSE :
+            case SPARSE:
                 out << L"sparse";
                 break;
-            case STRUCT :
+            case STRUCT:
                 out << L"struct";
                 break;
-            case TLIST :
+            case TLIST:
                 out << L"tlist";
                 break;
-            case UNKNOWN :
+            case UNKNOWN:
                 out << L"unknown";
                 break;
-            case UINT16 :
+            case UINT16:
                 out << L"uint16";
                 break;
-            case UINT32 :
+            case UINT32:
                 out << L"uint32";
                 break;
-            case UINT64 :
+            case UINT64:
                 out << L"uint64";
                 break;
-            case UINT8 :
+            case UINT8:
                 out << L"uint8";
                 break;
-            default :
+            default:
                 break;
         }
 

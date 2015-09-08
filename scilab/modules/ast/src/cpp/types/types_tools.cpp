@@ -10,14 +10,18 @@
 *
 */
 
+#include <list>
+#include <vector>
+
 #include "alltypes.hxx"
 #include "types_tools.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+
 extern "C"
 {
 #include "elem_common.h"
 #include "os_string.h"
+#include "more.h"
 }
 
 namespace types
@@ -57,7 +61,7 @@ double getIndex(InternalType* val)
 {
     switch (val->getType())
     {
-            //scalar
+        //scalar
         case InternalType::ScilabDouble:
         {
             return getIndex(val->getAs<Double>());
@@ -236,7 +240,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         }
         else if (in->isColon())
         {
-            vector<int> idx(2);
+            std::vector<int> idx(2);
             idx[0] = -1;
             idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
             lstIdx.push_back(idx);
@@ -258,7 +262,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     SinglePoly* end = piEnd->getAs<Polynom>()->get()[0];
                     if (end->getRank() == 1 && end->get()[0] == 0 && end->get()[1] == 1)
                     {
-                        vector<int> idx(2);
+                        std::vector<int> idx(2);
                         idx[0] = -1;
                         idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
                         lstIdx.push_back(idx);
@@ -286,7 +290,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     return true;
                 }
 
-                vector<int> idx(size);
+                std::vector<int> idx(size);
                 int* pi = idx.data();
                 pi[0] = start - 1; //0-indexed
                 for (int j = 1; j < size; ++j)
@@ -787,14 +791,13 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
         //call overload %type_p
         types::typed_list in;
         types::typed_list out;
-        ast::ExecVisitor exec;
 
         pIT->IncreaseRef();
         in.push_back(pIT);
 
         try
         {
-            ret = Overload::generateNameAndCall(L"p", in, 1, out, &exec);
+            ret = Overload::generateNameAndCall(L"p", in, 1, out);
             pIT->DecreaseRef();
             return ret;
         }

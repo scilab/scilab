@@ -15,7 +15,6 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "library.hxx"
 #include "loadlib.hxx"
 
@@ -58,9 +57,8 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 
             //call overload
             std::wstring wstFuncName = L"%_sodload";
-            ast::ExecVisitor exec;
             Callable::ReturnValue Ret = Callable::Error;
-            Ret = Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            Ret = Overload::call(wstFuncName, in, _iRetCount, out);
             return Ret;
         }
         else

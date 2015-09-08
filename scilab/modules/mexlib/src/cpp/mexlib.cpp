@@ -56,7 +56,6 @@
 #include "parser.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "printvisitor.hxx"
 
 #include "types.hxx"
@@ -1607,8 +1606,7 @@ int mexEvalString(const char *name)
     types::typed_list in;
     types::typed_list out;
     in.push_back(new types::String(name));
-    ast::ExecVisitor execMe;
-    types::Callable::ReturnValue ret = Overload::call(L"execstr", in, 1, out, &execMe);
+    types::Callable::ReturnValue ret = Overload::call(L"execstr", in, 1, out);
     in.back()->killMe();
     if (ret != types::Callable::OK)
     {

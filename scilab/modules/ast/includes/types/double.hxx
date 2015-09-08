@@ -25,7 +25,6 @@
 #include "arrayof.hxx"
 #include "bool.hxx"
 #include "types_transposition.hxx"
-#include "doubleexp.hxx"
 
 namespace types
 {

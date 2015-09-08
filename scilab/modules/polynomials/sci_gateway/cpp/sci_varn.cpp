@@ -16,7 +16,6 @@
 #include "string.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -50,9 +49,8 @@ types::Function::ReturnValue sci_varn(types::typed_list &in, int _iRetCount, typ
             return types::Function::OK;
         }
 
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_varn";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pPolyIn = in[0]->getAs<types::Polynom>();

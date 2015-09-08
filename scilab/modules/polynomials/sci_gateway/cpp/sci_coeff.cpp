@@ -16,7 +16,6 @@
 #include "string.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -100,7 +99,7 @@ types::Function::ReturnValue sci_coeff(types::typed_list &in, int _iRetCount, ty
         }
 
         pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = new Double(pDblIn->getRows(), pDblIn->getCols() * iVSize, pDblIn->isComplex());
+        pDblOut = new types::Double(pDblIn->getRows(), pDblIn->getCols() * iVSize, pDblIn->isComplex());
         int iSize = pDblIn->getSize();
         for (int i = 0; i < iVSize; i++)
         {
@@ -211,9 +210,8 @@ types::Function::ReturnValue sci_coeff(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_coeff";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     out.push_back(pDblOut);

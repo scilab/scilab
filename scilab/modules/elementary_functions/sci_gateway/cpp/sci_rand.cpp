@@ -14,7 +14,6 @@
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "double.hxx"
 #include "string.hxx"
 
@@ -134,7 +133,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             iSizeIn--;
         }
 
-        typed_list args;
+        types::typed_list args;
         std::copy(in.begin(), in.begin() + iSizeIn, back_inserter(args));
 
         int iDims = 0;
@@ -152,8 +151,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                 case 1:
                 {
                     //call overload
-                    ast::ExecVisitor exec;
-                    return Overload::generateNameAndCall(L"rand", in, _iRetCount, out, &exec);
+                    return Overload::generateNameAndCall(L"rand", in, _iRetCount, out);
                 }
             }
 
@@ -164,10 +162,10 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         bool complex = false;
         if (in.size() == 1 && in[0]->isGenericType())
         {
-            complex = in[0]->getAs<GenericType>()->isComplex();
+            complex = in[0]->getAs<types::GenericType>()->isComplex();
         }
 
-        pOut = new Double(iDims, piDims, complex);
+        pOut = new types::Double(iDims, piDims, complex);
         if (alloc)
         {
             delete[] piDims;

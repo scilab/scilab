@@ -14,8 +14,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
 
 extern "C"
 {
@@ -44,17 +42,15 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_expm";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%hm_expm", in, _iRetCount, out, &exec);
+        return Overload::call(L"%hm_expm", in, _iRetCount, out);
     }
 
     if (pDblIn->getSize() == 0)

@@ -390,46 +390,11 @@ public :
     InternalType* extract(typed_list* _pArgs);
     bool resize(int* _piDims, int _iDims);
 
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
-    {
-        if (in.size() == 0)
-        {
-            out.push_back(this);
-        }
-        else
-        {
-            InternalType * _out = extract(&in);
-            if (!_out)
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::InternalError(os.str(), 999, e.getLocation());
-            }
-            out.push_back(_out);
-        }
-
-        return true;
-    }
-
-    virtual bool isInvokable() const
-    {
-        return true;
-    }
-
-    virtual bool hasInvokeOption() const
-    {
-        return false;
-    }
-
-    virtual int getInvokeNbIn()
-    {
-        return -1;
-    }
-
-    virtual int getInvokeNbOut()
-    {
-        return 1;
-    }
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e);
+    virtual bool isInvokable() const;
+    virtual bool hasInvokeOption() const;
+    virtual int getInvokeNbIn();
+    virtual int getInvokeNbOut();
 
     bool reshape(int _iNewRows, int _iNewCols)
     {

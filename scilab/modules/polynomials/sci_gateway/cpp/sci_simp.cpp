@@ -10,12 +10,14 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <algorithm>
+
 #include "polynomials_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "configvariable.hxx"
 
 extern "C"
@@ -59,10 +61,9 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 1)
     {
-        ast::ExecVisitor exec;
         // rational case
         std::wstring wstFuncName = L"%r_simp";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
     else // simp(num, den)
     {
@@ -95,14 +96,12 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
         if (bComplex)
         {
-            ast::ExecVisitor exec;
-            return Overload::call(L"%p_simp", in, _iRetCount, out, &exec);
+            return Overload::call(L"%p_simp", in, _iRetCount, out);
         }
 
         if (iDouble == 3) // simp(double, double)
         {
-            ast::ExecVisitor exec;
-            return Overload::call(L"%s_simp", in, _iRetCount, out, &exec);
+            return Overload::call(L"%s_simp", in, _iRetCount, out);
         }
 
         switch (iDouble)
@@ -126,9 +125,9 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 iMaxDegrNum = pNum->getMaxRank();
                 iMaxDegrDen = pDen->getMaxRank();
 
-                int iMax = max(iMaxDegrNum, iMaxDegrDen) + 1;
+                int iMax = std::max(iMaxDegrNum, iMaxDegrDen) + 1;
                 int iSizeWork = 2 * (iMaxDegrNum + iMaxDegrDen) +
-                                min(iMaxDegrNum, iMaxDegrDen) +
+                                std::min(iMaxDegrNum, iMaxDegrDen) +
                                 10 * iMax + 3 * iMax * iMax + 4;
                 double* pdblWork = new double[iSizeWork];
 

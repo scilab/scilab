@@ -16,9 +16,9 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "types.hxx"
 #include "bool.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -51,15 +51,13 @@ types::Function::ReturnValue sci_or(types::typed_list &in, int _iRetCount, types
     if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
         //hypermatrix are manage in external macro
-        ast::ExecVisitor exec;
-        return Overload::call(L"%hm_or", in, _iRetCount, out, &exec);
+        return Overload::call(L"%hm_or", in, _iRetCount, out);
     }
 
     if (in[0]->isBool() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_or";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
@@ -108,7 +106,7 @@ types::Function::ReturnValue sci_or(types::typed_list &in, int _iRetCount, types
         }
         else if (in[1]->isDouble())
         {
-            Double *pdblIn = in[1]->getAs<types::Double>();
+            types::Double *pdblIn = in[1]->getAs<types::Double>();
 
             if (pdblIn->isComplex())
             {

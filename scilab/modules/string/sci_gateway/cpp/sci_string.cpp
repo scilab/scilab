@@ -25,9 +25,9 @@
 #include "symbol.hxx"
 #include "tlist.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "sparse.hxx"
 #include "int.hxx"
+#include "implicitlist.hxx"
 
 extern "C"
 {
@@ -482,9 +482,8 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         case GenericType::ScilabMList :
         case GenericType::ScilabPolynom :
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_string";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
         case GenericType::ScilabBool:
         {

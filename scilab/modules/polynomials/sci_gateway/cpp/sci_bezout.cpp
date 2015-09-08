@@ -15,7 +15,6 @@
 #include "double.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -51,9 +50,8 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isPoly() == false && in[i]->isDouble() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bezout";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         types::GenericType* pGT = in[i]->getAs<types::GenericType>();

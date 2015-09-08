@@ -26,6 +26,7 @@
 #include "macrofile.hxx"
 #include "overload.hxx"
 #include "user.hxx"
+#include "opexp.hxx"
 
 using namespace types;
 

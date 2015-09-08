@@ -16,7 +16,7 @@
 #include "string.hxx"
 #include "graphichandle.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -59,8 +59,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
 
     if (p1->isMList() || p1->isTList())
     {
-        ast::ExecVisitor exec;
-        Overload::generateNameAndCall(L"get", in, _iRetCount, out, &exec);
+        Overload::generateNameAndCall(L"get", in, _iRetCount, out);
         return types::Function::OK;
     }
 
@@ -76,8 +75,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         double pdbll1 = pDbll1->get(0);
         if (pdbll1 != 0)
         {
-            ast::ExecVisitor exec;
-            Overload::generateNameAndCall(L"get", in, _iRetCount, out, &exec);
+            Overload::generateNameAndCall(L"get", in, _iRetCount, out);
             return types::Function::OK;
         }
 
@@ -127,8 +125,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
         types::GraphicHandle* pH = p1->getAs<types::GraphicHandle>();
         if (pH->isScalar() == false)
         {
-            ast::ExecVisitor exec;
-            return Overload::call(L"%h_get", in, _iRetCount, out, &exec);
+            return Overload::call(L"%h_get", in, _iRetCount, out);
         }
 
         if (in.size() == 1)
@@ -225,8 +222,7 @@ types::Function::ReturnValue sci_get(types::typed_list &in, int _iRetCount, type
     else
     {
         // Overload
-        ast::ExecVisitor exec;
-        return Overload::call(L"%" + p1->getShortTypeStr() + L"_get", in, _iRetCount, out, &exec);
+        return Overload::call(L"%" + p1->getShortTypeStr() + L"_get", in, _iRetCount, out);
     }
 
     char* pstProperty = wide_string_to_UTF8(pS->get(0));

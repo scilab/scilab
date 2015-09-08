@@ -16,6 +16,7 @@
 #include <string>
 #include <iterator>
 #include <set>
+#include <cmath>
 
 #include "BrowseVar.hxx"
 #ifdef _MSC_VER
@@ -439,7 +440,7 @@ std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblI
             {
                 formated += MINUS_STR;
             }
-            formated += addDouble(std::abs(img));
+            formated += addDouble(std::fabs(img));
             formated += I_STR;
         }
         return formated;
@@ -465,7 +466,7 @@ std::string formatMatrix(int nbRows, int nbCols, double *pdblReal, double *pdblI
                     formated += MINUS_STR;
                 }
 
-                formated += addDouble(std::abs(img));
+                formated += addDouble(std::fabs(img));
                 formated += I_STR;
             }
 

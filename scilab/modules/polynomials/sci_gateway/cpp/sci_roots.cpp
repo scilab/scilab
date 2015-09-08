@@ -10,14 +10,17 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
+
 #include "polynomials_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "context.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -126,9 +129,8 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_roots";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     // If "fast" algo was chosen and polynomial is complex,
@@ -149,10 +151,10 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
             return types::Function::OK;
         }
 
-        t = std::abs(pdblInReal[iSize]);
+        t = std::fabs(pdblInReal[iSize]);
         if (bComplex)
         {
-            t += std::abs(pdblInImg[iSize]);
+            t += std::fabs(pdblInImg[iSize]);
         }
     }
 

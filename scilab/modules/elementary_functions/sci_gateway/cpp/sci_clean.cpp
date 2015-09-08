@@ -10,13 +10,16 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "clean.hxx"
 #include "sparse.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -93,9 +96,8 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_clean";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
 
@@ -167,7 +169,7 @@ types::Function::ReturnValue sci_clean(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0 ; i < iSize ; i++)
             {
-                std::complex<double> cplx = complex<double>(pdReal[i], pdImg[i]);
+                std::complex<double> cplx = std::complex<double>(pdReal[i], pdImg[i]);
                 pSparseOut->set(pRows[i] - 1, pCols[i] - 1, cplx, false);
             }
 

@@ -15,7 +15,6 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -82,7 +81,5 @@ types::Function::ReturnValue sci_hdf5_listvar(types::typed_list &in, int _iRetCo
         }
     }
 
-
-    ast::ExecVisitor exec;
-    return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+    return Overload::call(wstFuncName, in, _iRetCount, out);
 }

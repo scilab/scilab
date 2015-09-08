@@ -10,7 +10,9 @@
  *
  */
 
+#include <algorithm>
 #include <iostream>
+
 #include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"

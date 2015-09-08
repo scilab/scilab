@@ -10,12 +10,14 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -54,9 +56,8 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_atan";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDblX = in[0]->getAs<types::Double>();

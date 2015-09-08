@@ -14,10 +14,11 @@
 #include "polynomials_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "string.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "context.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -53,9 +54,8 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_poly";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();

@@ -34,7 +34,6 @@
 #include "string_gw.hxx"
 #include "context.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -77,8 +76,7 @@ Function::ReturnValue sci_length(typed_list &in, int _iRetCount, typed_list &out
         if (pFunc && pFunc->isCallable())
         {
             //call overload
-            ast::ExecVisitor exec;
-            Overload::generateNameAndCall(L"length", in, _iRetCount, out, &exec);
+            Overload::generateNameAndCall(L"length", in, _iRetCount, out);
             return Function::OK;
         }
 

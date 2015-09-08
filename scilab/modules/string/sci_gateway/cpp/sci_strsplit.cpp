@@ -16,7 +16,6 @@
 #include "double.hxx"
 #include "bool.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -193,7 +192,6 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
         }
     }
 
-    ast::ExecVisitor exec;
-    return Overload::call(L"%_strsplit", in, _iRetCount, out, &exec);
+    return Overload::call(L"%_strsplit", in, _iRetCount, out);
 }
 /*-------------------------------------------------------------------------------------*/

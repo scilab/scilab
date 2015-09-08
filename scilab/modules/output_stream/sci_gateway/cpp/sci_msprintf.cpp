@@ -17,7 +17,6 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -45,9 +44,8 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_msprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 

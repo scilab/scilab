@@ -22,7 +22,6 @@
 #include "string.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -60,20 +59,17 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in[0]->isString() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_part";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     String* pS = in[0]->getAs<types::String>();
 
     if (in[1]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%"  + in[1]->getShortTypeStr() + L"_part";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
-
 
     Double* pD = in[1]->getAs<Double>();
     if (pD->isVector() == false && pD->isEmpty() == false)

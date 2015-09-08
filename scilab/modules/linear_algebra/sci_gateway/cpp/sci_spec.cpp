@@ -16,7 +16,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -52,9 +51,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_spec";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::Double* in0 = in[0]->getAs<types::Double>();
@@ -281,9 +279,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if (in[1]->isDouble() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_spec";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         types::Double* in1 = in[1]->getAs<types::Double>();

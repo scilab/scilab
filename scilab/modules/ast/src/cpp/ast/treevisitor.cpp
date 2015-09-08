@@ -10,7 +10,6 @@
 *
 */
 
-#include <wchar.h>
 #include "treevisitor.hxx"
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
@@ -281,7 +280,7 @@ void TreeVisitor::visit(const OpExp &e)
 
     switch (e.getOper())
     {
-            // Arithmetics.
+        // Arithmetics.
         case OpExp::plus:
             tmp = new types::String(SCI_PLUS);
             break;
@@ -301,7 +300,7 @@ void TreeVisitor::visit(const OpExp &e)
         case OpExp::power:
             tmp = new types::String(SCI_POWER);
             break;
-            // Element wise.
+        // Element wise.
         case OpExp::dottimes:
             tmp = new types::String(SCI_DOTTIMES);
             break;
@@ -314,7 +313,7 @@ void TreeVisitor::visit(const OpExp &e)
         case OpExp::dotpower:
             tmp = new types::String(SCI_DOTPOWER);
             break;
-            // Kroneckers
+        // Kroneckers
         case OpExp::krontimes:
             tmp = new types::String(SCI_KRONTIMES);
             break;
@@ -324,7 +323,7 @@ void TreeVisitor::visit(const OpExp &e)
         case OpExp::kronldivide:
             tmp = new types::String(SCI_KRONLDIVIDE);
             break;
-            // Control
+        // Control
         case OpExp::controltimes:
             tmp = new types::String(SCI_CONTROLTIMES);
             break;
@@ -334,7 +333,7 @@ void TreeVisitor::visit(const OpExp &e)
         case OpExp::controlldivide:
             tmp = new types::String(SCI_CONTROLLDIVIDE);
             break;
-            // Comparisons
+        // Comparisons
         case OpExp::eq:
             tmp = new types::String(SCI_EQ);
             break;

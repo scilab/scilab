@@ -20,7 +20,6 @@
 #include "polynom.hxx"
 #include "sparse.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -93,9 +92,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         {
             if (in[i]->isDouble() == false)
             {
-                ast::ExecVisitor exec;
                 std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
-                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+                return Overload::call(wstFuncName, in, _iRetCount, out);
             }
         }
 

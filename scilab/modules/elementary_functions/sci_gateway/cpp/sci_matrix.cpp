@@ -16,8 +16,6 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
 
 extern "C"
 {
@@ -52,9 +50,8 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
             in[0]->isSparse()       == false &&
             in[0]->isSparseBool()   == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_matrix";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pGTIn = in[0]->getAs<types::GenericType>();

@@ -13,7 +13,6 @@
 #include "integer_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -38,12 +37,10 @@ types::Function::ReturnValue sci_iconvert(types::typed_list &in, int _iRetCount,
     if (in[0]->isInt() == false && in[0]->isDouble() == false && in[0]->isBool() == false)
     {
         // call overload
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_iconvert";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     // perfom operation
-    ast::ExecVisitor exec;
-    return Overload::call(L"%_iconvert", in, _iRetCount, out, &exec);
+    return Overload::call(L"%_iconvert", in, _iRetCount, out);
 }

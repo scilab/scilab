@@ -18,13 +18,10 @@
 
 extern "C"
 {
-#include <stdio.h>
 #include "localization.h"
 #include "os_string.h"
 #include "sci_malloc.h"
 }
-
-using namespace std;
 
 namespace types
 {

@@ -1500,5 +1500,8 @@
     <ClCompile Include="src\cpp\analysis\check_sign.cpp">
       <Filter>Source Files\analysis</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\types\internal.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

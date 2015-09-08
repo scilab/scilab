@@ -10,6 +10,8 @@
  *
  */
 
+#include <algorithm>
+
 #include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
@@ -22,7 +24,6 @@ extern "C"
 }
 
 using namespace types;
-using namespace std;
 
 namespace
 {
@@ -43,7 +44,7 @@ size_t nonZeros(types::Double SPARSE_CONST& d)
     }
     else
     {
-        res = count(d.getReal(), d.getReal() + n, 0);
+        res = std::count(d.getReal(), d.getReal() + n, 0);
     }
     return d.getSize() - res;
 }
