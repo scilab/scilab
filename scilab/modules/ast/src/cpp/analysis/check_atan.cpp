@@ -16,10 +16,10 @@
 
 namespace analysis
 {
-    TIType Checkers::check_atan(GVN & gvn, const TIType & in0)
+TIType Checkers::check_atan(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             return in0;
@@ -30,11 +30,11 @@ namespace analysis
         }
         case TIType::DOUBLE :
         {
-            return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
+            return in0;
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis

@@ -17,6 +17,7 @@
 #include <limits>
 #include <map>
 #include <memory>
+#include <stack>
 #include <vector>
 
 #include "visitor.hxx"
@@ -64,6 +65,7 @@ private:
     std::vector<Result> multipleLHS;
     logging::Logger logger;
     std::vector<FBlockEmittedListener *> fblockListeners;
+    std::stack<ast::Exp *> loops;
 
     static MapSymCall symscall;
     static MapSymCall initCalls();
@@ -188,6 +190,16 @@ public:
         {
             return cm;
         }
+    }
+
+    inline ast::Exp * getCurrentLoop() const
+    {
+        if (!loops.empty())
+        {
+            return loops.top();
+        }
+
+        return nullptr;
     }
 
     inline void registerFBlockEmittedListener(FBlockEmittedListener * listener)
@@ -413,9 +425,18 @@ private:
             cv.getExec().setResult(nullptr);
         }
         types::Double * pDbl = static_cast<types::Double *>(e.getConstant());
-        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::DOUBLE, pDbl->getRows(), pDbl->getCols()));
-        res.getConstant() = e.getConstant();
-        setResult(res);
+        if (pDbl->isComplex())
+        {
+            Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::COMPLEX, pDbl->getRows(), pDbl->getCols()));
+            res.getConstant() = e.getConstant();
+            setResult(res);
+        }
+        else
+        {
+            Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::DOUBLE, pDbl->getRows(), pDbl->getCols()));
+            res.getConstant() = e.getConstant();
+            setResult(res);
+        }
     }
 
     void visit(ast::BoolExp & e)
@@ -510,32 +531,41 @@ private:
     void visit(ast::WhileExp & e)
     {
         logger.log(L"WhileExp", e.getLocation());
+        loops.push(&e);
         e.getTest().accept(*this);
+        dm.releaseTmp(getResult().getTempId());
         e.getBody().accept(*this);
+        loops.pop();
     }
 
     void visit(ast::ForExp & e)
     {
-        // TODO: pb de propagation de constante ds le corps du loop
-        // b = 0; for....; b=b+..; end => le 2nd "b" est replaced by 0
-
         logger.log(L"ForExp", e.getLocation());
+        loops.push(&e);
+
         dm.addBlock(Block::LOOP, &e);
         e.getVardec().accept(*this);
         dm.addBlock(Block::NORMAL, &e.getBody());
         e.getBody().accept(*this);
 
-        if (false && dm.requiresAnotherTrip())
+        if (dm.requiresAnotherTrip())
         {
             std::wcerr << "Invalid forexp: types or refcount are not the same before and after the loop" << std::endl;
 
             dm.finalizeBlock();
             dm.addBlock(Block::NORMAL, &e.getBody());
             e.getBody().accept(*this);
+
+            if (dm.requiresAnotherTrip())
+            {
+                std::wcerr << "Invalid forexp: types or refcount are not the same before and after the loop" << std::endl;
+            }
         }
 
         dm.finalizeBlock();
         dm.finalizeBlock();
+
+        loops.pop();
     }
 
     void visit(ast::BreakExp & e)
@@ -591,20 +621,42 @@ private:
     void visit(ast::SeqExp & e)
     {
         logger.log(L"SeqExp", e.getLocation());
-        for (const auto exp : e.getExps())
+        ast::exps_t::const_iterator i = e.getExps().begin();
+        ast::exps_t::const_iterator end = e.getExps().end();
+        for (; i != end; ++i)
         {
+            ast::Exp * exp = *i;
             if (exp->isCallExp())
             {
                 visit(*static_cast<ast::CallExp *>(exp), /* LHS */ 0);
+            }
+            else if (exp->isBreakExp() || exp->isContinueExp())
+            {
+                exp->accept(*this);
+                if (loops.empty())
+                {
+                    // We are not in a loop so this break is useless.
+                    exp->replace(new ast::CommentExp(exp->getLocation(), new std::wstring(L"useless break or continue")));
+                }
+                else
+                {
+                    // We are in a loop: all the code after the break in this SeqExp is useless
+                    break;
+                }
             }
             else
             {
                 exp->accept(*this);
             }
         }
-        if (!e.getParent())
+
+        if (i != end)
         {
-            //e.accept(dv);
+            ++i;
+            if (i != end)
+            {
+                e.getExps().erase(i, end);
+            }
         }
     }
 

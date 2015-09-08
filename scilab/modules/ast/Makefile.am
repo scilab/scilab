@@ -213,6 +213,7 @@ src/cpp/analysis/check_____sub____.cpp\
 src/cpp/analysis/check_sinh.cpp\
 src/cpp/analysis/check_toc.cpp\
 src/cpp/analysis/check_isscalar.cpp\
+src/cpp/analysis/check_sign.cpp\
 src/cpp/analysis/check_int8.cpp\
 src/cpp/analysis/check_____rdivide____.cpp\
 src/cpp/analysis/check_matrix.cpp\

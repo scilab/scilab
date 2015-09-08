@@ -23,6 +23,7 @@
 #include "allvar.hxx"
 #include "alltypes.hxx"
 #include "symbol.hxx"
+#include "tools.hxx"
 
 namespace analysis
 {
@@ -31,12 +32,12 @@ class MacroDef
 {
 
 protected:
-    
+
     const unsigned int lhs;
     const unsigned int rhs;
     ast::Exp * const original;
 
-    std::set<symbol::Symbol> globals;
+    tools::SymbolOrdSet globals;
 
 public:
 
@@ -60,16 +61,16 @@ public:
     }
 
     inline ast::Exp * getOriginal() const
-	{
-	    return original;
-	}
-    
-    inline std::set<symbol::Symbol> & getGlobals()
+    {
+        return original;
+    }
+
+    inline tools::SymbolOrdSet & getGlobals()
     {
         return globals;
     }
 
-    inline const std::set<symbol::Symbol> & getGlobals() const
+    inline const tools::SymbolOrdSet & getGlobals() const
     {
         return globals;
     }
@@ -103,17 +104,17 @@ class ExistingMacroDef : public MacroDef
     ast::SeqExp * se;
     std::vector<symbol::Symbol> inputs;
     std::vector<symbol::Symbol> outputs;
-    
+
 public:
 
     ExistingMacroDef(types::Macro & _macro);
     ExistingMacroDef(const ExistingMacroDef & emd);
 
     ~ExistingMacroDef()
-	{
-	    delete se;
-	}
-    
+    {
+        delete se;
+    }
+
     ast::SeqExp & getBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
@@ -130,9 +131,9 @@ public:
     DeclaredMacroDef(ast::FunctionDec * const _dec);
 
     ~DeclaredMacroDef()
-	{
-	    delete dec;
-	}
+    {
+        delete dec;
+    }
 
     ast::SeqExp & getBody();
     const std::wstring & getName();

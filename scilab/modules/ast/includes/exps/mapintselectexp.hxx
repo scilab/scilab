@@ -96,6 +96,11 @@ public:
         return MAPINTSELECTEXP;
     }
 
+    inline const std::unordered_map<int64_t, Exp *> & getTable() const
+    {
+        return map;
+    }
+
 private:
 
     std::unordered_map<int64_t, Exp *> map;

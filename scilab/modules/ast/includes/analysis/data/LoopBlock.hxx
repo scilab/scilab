@@ -13,10 +13,15 @@
 #ifndef __LOOPBLOCK_HXX__
 #define __LOOPBLOCK_HXX__
 
+#include <unordered_map>
+
 #include "Block.hxx"
+#include "tools.hxx"
 
 namespace analysis
 {
+
+class LoopAnalyzer;
 
 class LoopBlockHead : public Block
 {
@@ -40,7 +45,7 @@ class LoopBlockHead : public Block
 
       The problem is that in the most of the cases loops should have a lot of iterations so we can suppose with a
       good probability that inferred types after the loop should be ones guessed after two iterations.
-      */
+    */
 
 public:
 
@@ -51,13 +56,22 @@ public:
         return blocks.front();
     }
 
+    inline Block * getSecondBlock()
+    {
+        return blocks.back();
+    }
+
     Block * addBlock(const unsigned int id, BlockKind kind, ast::Exp * exp) override;
     void finalize() override;
 };
 
 class LoopBlock : public Block
 {
+
+    friend class LoopBlockHead;
+
     const bool first;
+    std::unordered_map<ast::Exp *, symbol::Symbol> clonedSym;
 
 public:
     LoopBlock(const unsigned int id, Block * parent, ast::Exp * exp, const bool _first) : Block(id, parent, exp), first(_first) { }
@@ -68,8 +82,9 @@ public:
     }
 
     bool requiresAnotherTrip() override;
-    Block * getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global) override;
+    Block * getDefBlock(const symbol::Symbol & sym, tools::SymbolMap<Info>::iterator & it, const bool global) override;
     Info & getInfo(const symbol::Symbol & sym) override;
+    void clone(const symbol::Symbol & sym, ast::Exp * exp) override;
     void finalize() override;
 };
 

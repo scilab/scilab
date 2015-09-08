@@ -284,12 +284,14 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\ConstantValue.hxx" />
     <ClInclude Include="includes\analysis\ConstantVisitor.hxx" />
     <ClInclude Include="includes\analysis\data\Block.hxx" />
+    <ClInclude Include="includes\analysis\data\Clone.hxx" />
     <ClInclude Include="includes\analysis\data\CompleteMacroSignature.hxx" />
     <ClInclude Include="includes\analysis\data\Data.hxx" />
     <ClInclude Include="includes\analysis\data\DataManager.hxx" />
     <ClInclude Include="includes\analysis\data\FunctionBlock.hxx" />
     <ClInclude Include="includes\analysis\data\GlobalsCollector.hxx" />
     <ClInclude Include="includes\analysis\data\Info.hxx" />
+    <ClInclude Include="includes\analysis\data\LoopAnalyzer.hxx" />
     <ClInclude Include="includes\analysis\data\LoopBlock.hxx" />
     <ClInclude Include="includes\analysis\data\MacroDef.hxx" />
     <ClInclude Include="includes\analysis\data\MacroInfo.hxx" />
@@ -316,6 +318,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\gvn\TestGVNVisitor.hxx" />
     <ClInclude Include="includes\analysis\gvn\VarExp.hxx" />
     <ClInclude Include="includes\analysis\logging\Logger.hxx" />
+    <ClInclude Include="includes\analysis\OptionalDecoration.hxx" />
     <ClInclude Include="includes\analysis\positivity\PositivityVisitor.hxx" />
     <ClInclude Include="includes\analysis\Result.hxx" />
     <ClInclude Include="includes\analysis\TIType.hxx" />
@@ -540,6 +543,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\analysis\check_prod.cpp" />
     <ClCompile Include="src\cpp\analysis\check_rand.cpp" />
     <ClCompile Include="src\cpp\analysis\check_round.cpp" />
+    <ClCompile Include="src\cpp\analysis\check_sign.cpp" />
     <ClCompile Include="src\cpp\analysis\check_sin.cpp" />
     <ClCompile Include="src\cpp\analysis\check_sinh.cpp" />
     <ClCompile Include="src\cpp\analysis\check_sinm.cpp" />

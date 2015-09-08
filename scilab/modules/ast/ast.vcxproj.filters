@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
@@ -823,6 +823,15 @@
     <ClInclude Include="includes\analysis\tools.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
+    <ClInclude Include="includes\analysis\OptionalDecoration.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\Clone.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\LoopAnalyzer.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -1486,6 +1495,9 @@
       <Filter>Source Files\analysis</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\analysis\VarExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\check_sign.cpp">
       <Filter>Source Files\analysis</Filter>
     </ClCompile>
   </ItemGroup>

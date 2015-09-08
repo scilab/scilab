@@ -27,7 +27,10 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
         {
             // We have A = B (so the data associated to b is shared with a)
             const symbol::Symbol & symR = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
-            getDM().share(sym, symR, getSymInfo(symR).getType(), &e);
+            const TIType & Rtype = getSymInfo(symR).getType();
+            getDM().share(sym, symR, Rtype, &e);
+            static_cast<ast::SimpleVar &>(e.getRightExp()).getDecorator().setResult(Rtype);
+            static_cast<ast::SimpleVar &>(e.getLeftExp()).getDecorator().setResult(Rtype);
         }
         else
         {
@@ -57,6 +60,7 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             var.getDecorator().res = RR;
             Info & info = getDM().define(sym, RR.getType(), RR.isAnInt(), &e);
             info.getConstant() = RR.getConstant();
+            e.getDecorator().safe = true;
             getDM().releaseTmp(RR.getTempId());
         }
     }
@@ -69,7 +73,7 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             e.getRightExp().accept(*this);
             Result & RR = e.getRightExp().getDecorator().getResult();
             ce.getDecorator().res = RR;
-            Info & info = getDM().write(symL, RR.getType(), &e);
+            Info & info = getDM().write(symL, RR.getType(), &ce.getName());
             ce.getName().getDecorator().setResult(info.type);
             if (analyzeIndices(info.type, ce))
             {

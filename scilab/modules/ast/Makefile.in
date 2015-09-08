@@ -333,6 +333,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/check_____sub____.cpp \
 	src/cpp/analysis/check_sinh.cpp src/cpp/analysis/check_toc.cpp \
 	src/cpp/analysis/check_isscalar.cpp \
+	src/cpp/analysis/check_sign.cpp \
 	src/cpp/analysis/check_int8.cpp \
 	src/cpp/analysis/check_____rdivide____.cpp \
 	src/cpp/analysis/check_matrix.cpp \
@@ -556,6 +557,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/analysis/libsciast_la-check_sinh.lo \
 	src/cpp/analysis/libsciast_la-check_toc.lo \
 	src/cpp/analysis/libsciast_la-check_isscalar.lo \
+	src/cpp/analysis/libsciast_la-check_sign.lo \
 	src/cpp/analysis/libsciast_la-check_int8.lo \
 	src/cpp/analysis/libsciast_la-check_____rdivide____.lo \
 	src/cpp/analysis/libsciast_la-check_matrix.lo \
@@ -946,6 +948,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -1115,6 +1118,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/check_____sub____.cpp \
 	src/cpp/analysis/check_sinh.cpp src/cpp/analysis/check_toc.cpp \
 	src/cpp/analysis/check_isscalar.cpp \
+	src/cpp/analysis/check_sign.cpp \
 	src/cpp/analysis/check_int8.cpp \
 	src/cpp/analysis/check_____rdivide____.cpp \
 	src/cpp/analysis/check_matrix.cpp \
@@ -2142,6 +2146,9 @@ src/cpp/analysis/libsciast_la-check_toc.lo:  \
 src/cpp/analysis/libsciast_la-check_isscalar.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-check_sign.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-check_int8.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
@@ -2360,6 +2367,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_prod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_rand.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_round.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_sin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_sinh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_sinm.Plo@am__quote@
@@ -3900,6 +3908,13 @@ src/cpp/analysis/libsciast_la-check_isscalar.lo: src/cpp/analysis/check_isscalar
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/check_isscalar.cpp' object='src/cpp/analysis/libsciast_la-check_isscalar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-check_isscalar.lo `test -f 'src/cpp/analysis/check_isscalar.cpp' || echo '$(srcdir)/'`src/cpp/analysis/check_isscalar.cpp
+
+src/cpp/analysis/libsciast_la-check_sign.lo: src/cpp/analysis/check_sign.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-check_sign.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-check_sign.Tpo -c -o src/cpp/analysis/libsciast_la-check_sign.lo `test -f 'src/cpp/analysis/check_sign.cpp' || echo '$(srcdir)/'`src/cpp/analysis/check_sign.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-check_sign.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-check_sign.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/check_sign.cpp' object='src/cpp/analysis/libsciast_la-check_sign.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-check_sign.lo `test -f 'src/cpp/analysis/check_sign.cpp' || echo '$(srcdir)/'`src/cpp/analysis/check_sign.cpp
 
 src/cpp/analysis/libsciast_la-check_int8.lo: src/cpp/analysis/check_int8.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-check_int8.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-check_int8.Tpo -c -o src/cpp/analysis/libsciast_la-check_int8.lo `test -f 'src/cpp/analysis/check_int8.cpp' || echo '$(srcdir)/'`src/cpp/analysis/check_int8.cpp

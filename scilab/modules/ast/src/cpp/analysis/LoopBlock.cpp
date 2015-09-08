@@ -11,6 +11,7 @@
  */
 
 #include "data/LoopBlock.hxx"
+#include "data/LoopAnalyzer.hxx"
 
 namespace analysis
 {
@@ -20,12 +21,28 @@ bool LoopBlock::requiresAnotherTrip()
     {
         for (auto & p : symMap)
         {
-            std::map<symbol::Symbol, Info>::iterator it;
+            tools::SymbolMap<Info>::iterator it;
             Block * block = getParent()->getDefBlock(p.first, it, false);
             if (block)
             {
-                Info & info = it->second;
+                const Info & info = it->second;
                 if (info.type != p.second.type || !info.data->same(p.second.data))
+                {
+                    return true;
+                }
+            }
+        }
+    }
+    else
+    {
+        tools::SymbolMap<Info> & map = getParent()->getFirstBlock()->getMap();
+        for (auto & p : symMap)
+        {
+            auto i = map.find(p.first);
+            if (i != map.end())
+            {
+                Info & info = i->second;
+                if (info.type != p.second.type)
                 {
                     return true;
                 }
@@ -36,7 +53,7 @@ bool LoopBlock::requiresAnotherTrip()
     return false;
 }
 
-    Block * LoopBlock::getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global)
+Block * LoopBlock::getDefBlock(const symbol::Symbol & sym, tools::SymbolMap<Info>::iterator & it, const bool global)
 {
     if (first)
     {
@@ -75,14 +92,76 @@ Block * LoopBlockHead::addBlock(const unsigned int id, BlockKind kind, ast::Exp 
     return b;
 }
 
+void LoopBlock::clone(const symbol::Symbol & sym, ast::Exp * exp)
+{
+    clonedSym.emplace(exp, sym);
+}
+
 void LoopBlockHead::finalize()
 {
-    if (false && blocks.size() == 2)
+    if (blocks.size() == 2)
     {
-        // TODO
+        LoopBlock * fb = static_cast<LoopBlock *>(getFirstBlock());
+        LoopBlock * sb = static_cast<LoopBlock *>(getSecondBlock());
+        std::unordered_map<ast::Exp *, symbol::Symbol> onlyInFirst;
+        std::unordered_map<ast::Exp *, symbol::Symbol> inBoth;
+
+        for (const auto & p : fb->clonedSym)
+        {
+            const auto i = sb->clonedSym.find(p.first);
+            if (i == sb->clonedSym.end())
+            {
+                // In first and not in second
+                onlyInFirst.emplace(p);
+            }
+            else
+            {
+                // In first and in second
+                inBoth.emplace(p);
+                sb->clonedSym.erase(i);
+            }
+        }
+
+        // Since we removed common elements from sb->clonedSym
+        // the remainder is the elements which are only in second
+
+        // Now we merge
+        // i) clone is only in the first loop so we can move it in the loop header
+        if (parent && !onlyInFirst.empty())
+        {
+            for (auto & p : onlyInFirst)
+            {
+                parent->clone(p.second, exp);
+            }
+        }
+
+        // ii) clone is in first and in second so we clone the data at each iteration
+        // iii) clone is only in second so we clone the daat at each iteration except for the first one
+        //      => for now, we clone at each iteration (TODO: improve that in removing clone at the first iteration)
+        for (auto & p : inBoth)
+        {
+            p.first->getDecorator().addClone(p.second);
+        }
+
+        for (auto & p : sb->clonedSym)
+        {
+            p.first->getDecorator().addClone(p.second);
+        }
+
+        pullup(symMap);
+        pullup(getSecondBlock()->getMap());
     }
     else
     {
+        LoopBlock * fb = static_cast<LoopBlock *>(getFirstBlock());
+        if (parent && !fb->clonedSym.empty())
+        {
+            for (auto & p : fb->clonedSym)
+            {
+                parent->clone(p.second, p.first);
+            }
+        }
+
         pullup(symMap);
         pullup(getFirstBlock()->getMap());
     }
