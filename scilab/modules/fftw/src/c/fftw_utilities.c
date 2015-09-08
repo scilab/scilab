@@ -1331,7 +1331,10 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
 
 int withMKL(void)
 {
-    return (call_fftw_export_wisdom_to_string() == NULL);
+    char* str = call_fftw_export_wisdom_to_string();
+    int iWithMKL = (int)(str == NULL);
+    FREE(str);
+    return iWithMKL;
 }
 /*--------------------------------------------------------------------------*/
 
