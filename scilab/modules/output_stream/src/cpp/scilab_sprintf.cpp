@@ -577,9 +577,9 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 case InternalType::ScilabString:
                 {
                     wchar_t* pwstStr = nullptr;
-		    std::wstring NaN = NanString;
-		    std::wstring nInf = NegInfString;
-		    std::wstring pInf = InfString;
+                    std::wstring NaN = NanString;
+                    std::wstring nInf = NegInfString;
+                    std::wstring pInf = InfString;
 
                     InternalType* it = in[tok->pos];
                     if (it->isDouble() && std::isnan(it->getAs<types::Double>()->get(0)))
@@ -672,7 +672,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
     pwstFirstOutput = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
 
-    for (auto& tok : token)
+    for (auto & tok : token)
     {
         delete[] tok->pwstToken;
         delete tok;
@@ -757,6 +757,11 @@ static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, i
                 default:
                     break;
             }
+        }
+        else if (_pwstInput[i] == 0x0A) // ascii(10) == "\n"
+        {
+            pwstFirstOutput[iPos++] = L'\n';
+            (*_piLines)++;
         }
         else
         {
