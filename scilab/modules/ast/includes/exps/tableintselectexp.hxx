@@ -92,6 +92,21 @@ public:
         return TABLEINTSELECTEXP;
     }
 
+    inline int64_t getMin() const
+    {
+        return min;
+    }
+
+    inline int64_t getMax() const
+    {
+        return max;
+    }
+
+    inline const std::vector<Exp *> & getTable() const
+    {
+        return table;
+    }
+
 private:
 
     int64_t min, max;
