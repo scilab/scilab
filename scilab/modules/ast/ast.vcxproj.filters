@@ -90,6 +90,15 @@
     <Filter Include="Source Files\analysis">
       <UniqueIdentifier>{cc737210-ca11-42b1-99f7-444901ee9add}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\jit\base">
+      <UniqueIdentifier>{fb01d053-2490-47e4-b699-c35332175ea1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\jit\blocks">
+      <UniqueIdentifier>{315909c5-eddf-4e1c-b4d3-c1ebc985542d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\jit\calls">
+      <UniqueIdentifier>{c82b9718-5c92-4bf0-9feb-5d7492dabe31}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -595,18 +604,6 @@
     <ClInclude Include="includes\types\overload.hxx">
       <Filter>Header Files\types</Filter>
     </ClInclude>
-    <ClInclude Include="includes\jit\ScilabJITTraits.hxx">
-      <Filter>Header Files\jit</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\jit\JITVisitor.hxx">
-      <Filter>Header Files\jit</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\jit\JITValues.hxx">
-      <Filter>Header Files\jit</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\jit\jit_operations.hxx">
-      <Filter>Header Files\jit</Filter>
-    </ClInclude>
     <ClInclude Include="includes\analysis\AnalysisVisitor.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
@@ -856,6 +853,198 @@
     <ClInclude Include="includes\exps\tableintselectexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
+    <ClInclude Include="includes\jit\BaseFunctions.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\BaseFunctionsAgain.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\BaseFunctionsMacros.h">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\BaseFunctionsMacros2.h">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\BaseFunctionsMacros3.h">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\Cast.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\Disassembler.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\funs_interf.h">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITArrayof.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITArrayofs.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITScalar.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITScalars.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITScilabVal.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITVal.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITVisitor.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\MemoryManager.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\ScilabJITEventListener.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\ScilabJITTraits.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\addition.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\and.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\binary.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\binary_functors.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\elem_functions.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\equal.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\exponentiation.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\functors.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\greater_or_eq.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\greater_than.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\ldivision.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\lower_or_eq.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\lower_than.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\not_equal.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\or.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\product.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\rdivision.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\subtraction.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\tools.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\vectorization.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\blocks\ShortcutEval.hxx">
+      <Filter>Header Files\jit\blocks</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\FunCallInitializer.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\FunctionSignature.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITAbs.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITAngle.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITBinOp.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITBinOpCall.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITCall.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITCall1.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITCeil.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITConj.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITFloor.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITGatewayCall.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITImag.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITImult.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITLog.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITOptimizedCall1.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITReal.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITRound.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITShortcutBinOpCall.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITSign.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITSize.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITSize1.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITSqrt.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITUnaryOpCall.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITZeros.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -1092,18 +1281,6 @@
     <ClCompile Include="src\cpp\types\callable.cpp">
       <Filter>Source Files\types</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\jit\JITValues.cpp">
-      <Filter>Source Files\jit</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\jit\JITVisitor.cpp">
-      <Filter>Source Files\jit</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\jit\GlobalCFunctions.cpp">
-      <Filter>Source Files\jit</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\jit\jit_operations.cpp">
-      <Filter>Source Files\jit</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\operations\types_opposite.cpp">
       <Filter>Source Files\operations</Filter>
     </ClCompile>
@@ -1118,9 +1295,6 @@
     </ClCompile>
     <ClCompile Include="src\cpp\operations\types_or.cpp">
       <Filter>Source Files\operations</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\jit\jit_windows.cpp">
-      <Filter>Source Files\jit</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\operations\types_dotdivide.cpp">
       <Filter>Source Files\operations</Filter>
@@ -1562,6 +1736,147 @@
     </ClCompile>
     <ClCompile Include="src\cpp\analysis\VisitVarDec.cpp">
       <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\BaseFunctions1.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\BaseFunctions2.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\FunctionSignature.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\jit_windows.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITAbs.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITAddition.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITAngle.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITBinOpCall.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITBreakContinueExps.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITCall.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITCallExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITCeil.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITComparisons.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITComplexVal.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITConj.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITEquality.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITFloor.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITForExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITIfExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITImag.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITImult.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITIntSelectExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITLog.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITMultiplication.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITNegation.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITNotEquality.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITOpExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITOpposite.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITOptimizedCall1.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITPower.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITRDivision.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITReal.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITRound.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITSelectExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITShortcutBinOpCall.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITShortcutOps.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITSign.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITSize.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITSqrt.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITSubtraction.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITUnaryOpCall.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITVisitor.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITWhileExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITZeros.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\MemoryManager.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\ScilabJITEventListener.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\ShortcutEval.cpp">
+      <Filter>Source Files\jit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

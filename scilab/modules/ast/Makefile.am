@@ -163,10 +163,6 @@ src/cpp/analysis/VisitSimpleVar.cpp \
 src/cpp/analysis/VisitDollarVar.cpp \
 src/cpp/analysis/VisitVarDec.cpp \
 src/cpp/analysis/XBlock.cpp \
-src/cpp/jit/JITVisitor.cpp \
-src/cpp/jit/JITValues.cpp \
-src/cpp/jit/jit_operations.cpp \
-src/cpp/jit/GlobalCFunctions.cpp \
 src/cpp/analysis/check_____dotpower____.cpp \
 src/cpp/analysis/check_rand.cpp \
 src/cpp/analysis/check_____ge____.cpp \
@@ -247,7 +243,53 @@ src/cpp/analysis/check_min.cpp \
 src/cpp/analysis/check_sum.cpp \
 src/cpp/analysis/check_____ldivide____.cpp \
 src/cpp/analysis/check_acos.cpp \
-src/cpp/analysis/check_____dottimes____.cpp
+src/cpp/analysis/check_____dottimes____.cpp \
+src/cpp/jit/JITVisitor.cpp \
+src/cpp/jit/JITComplexVal.cpp \
+src/cpp/jit/MemoryManager.cpp \
+src/cpp/jit/JITCallExp.cpp \
+src/cpp/jit/JITForExp.cpp \
+src/cpp/jit/JITCall.cpp \
+src/cpp/jit/JITSize.cpp \
+src/cpp/jit/JITZeros.cpp \
+src/cpp/jit/JITBinOpCall.cpp \
+src/cpp/jit/JITUnaryOpCall.cpp \
+src/cpp/jit/JITOpExp.cpp \
+src/cpp/jit/JITShortcutBinOpCall.cpp \
+src/cpp/jit/ShortcutEval.cpp \
+src/cpp/jit/JITIfExp.cpp \
+src/cpp/jit/JITWhileExp.cpp \
+src/cpp/jit/JITBreakContinueExps.cpp \
+src/cpp/jit/JITSelectExp.cpp \
+src/cpp/jit/JITIntSelectExp.cpp \
+src/cpp/jit/JITOptimizedCall1.cpp \
+src/cpp/jit/JITSign.cpp \
+src/cpp/jit/JITSqrt.cpp \
+src/cpp/jit/JITLog.cpp \
+src/cpp/jit/JITAbs.cpp \
+src/cpp/jit/JITAngle.cpp \
+src/cpp/jit/JITReal.cpp \
+src/cpp/jit/JITImag.cpp \
+src/cpp/jit/JITImult.cpp \
+src/cpp/jit/JITConj.cpp \
+src/cpp/jit/JITFloor.cpp \
+src/cpp/jit/JITCeil.cpp \
+src/cpp/jit/JITRound.cpp \
+src/cpp/jit/JITAddition.cpp \
+src/cpp/jit/JITSubtraction.cpp \
+src/cpp/jit/JITOpposite.cpp \
+src/cpp/jit/JITMultiplication.cpp \
+src/cpp/jit/JITEquality.cpp \
+src/cpp/jit/JITShortcutOps.cpp \
+src/cpp/jit/JITNotEquality.cpp \
+src/cpp/jit/JITComparisons.cpp \
+src/cpp/jit/JITNegation.cpp \
+src/cpp/jit/JITRDivision.cpp \
+src/cpp/jit/JITPower.cpp \
+src/cpp/jit/FunctionSignature.cpp \
+src/cpp/jit/ScilabJITEventListener.cpp \
+src/cpp/jit/BaseFunctions1.cpp \
+src/cpp/jit/BaseFunctions2.cpp
 
 
 if ENABLE_DEBUG
@@ -277,10 +319,11 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/special_functions/src/cpp \
 	$(LLVM_INCLUDE) \
 	$(LLVM_CPPFLAGS) \
 	$(LLVM_LDFLAGS) \
-    $(LLVM_LIBS) \
+        $(LLVM_LIBS) \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 

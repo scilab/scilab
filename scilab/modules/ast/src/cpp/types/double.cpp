@@ -265,6 +265,23 @@ Double::Double(int _iDims, int* _piDims, bool _bComplex, bool _bZComplex)
 #endif
 }
 
+Double::Double(int _iRows, int _iCols, double * _pdblReal)
+{
+    m_pRealData = _pdblReal;
+    m_pImgData = nullptr;
+    m_iRows = _iRows;
+    m_iCols = _iCols;
+    m_iSize = m_iRows * m_iCols;
+    m_iDims = 2;
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
+    m_bViewAsZComplex = false;
+    
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+
 double*    Double::getReal() const
 {
     return get();

@@ -96,7 +96,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -134,7 +134,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -170,7 +170,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -208,7 +208,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -392,9 +392,69 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\exps\var.hxx" />
     <ClInclude Include="includes\exps\vardec.hxx" />
     <ClInclude Include="includes\exps\whileexp.hxx" />
-    <ClInclude Include="includes\jit\JITValues.hxx" />
+    <ClInclude Include="includes\jit\BaseFunctions.hxx" />
+    <ClInclude Include="includes\jit\BaseFunctionsAgain.hxx" />
+    <ClInclude Include="includes\jit\BaseFunctionsMacros.h" />
+    <ClInclude Include="includes\jit\BaseFunctionsMacros2.h" />
+    <ClInclude Include="includes\jit\BaseFunctionsMacros3.h" />
+    <ClInclude Include="includes\jit\base\addition.hxx" />
+    <ClInclude Include="includes\jit\base\and.hxx" />
+    <ClInclude Include="includes\jit\base\binary.hxx" />
+    <ClInclude Include="includes\jit\base\binary_functors.hxx" />
+    <ClInclude Include="includes\jit\base\elem_functions.hxx" />
+    <ClInclude Include="includes\jit\base\equal.hxx" />
+    <ClInclude Include="includes\jit\base\exponentiation.hxx" />
+    <ClInclude Include="includes\jit\base\functors.hxx" />
+    <ClInclude Include="includes\jit\base\greater_or_eq.hxx" />
+    <ClInclude Include="includes\jit\base\greater_than.hxx" />
+    <ClInclude Include="includes\jit\base\ldivision.hxx" />
+    <ClInclude Include="includes\jit\base\lower_or_eq.hxx" />
+    <ClInclude Include="includes\jit\base\lower_than.hxx" />
+    <ClInclude Include="includes\jit\base\not_equal.hxx" />
+    <ClInclude Include="includes\jit\base\or.hxx" />
+    <ClInclude Include="includes\jit\base\product.hxx" />
+    <ClInclude Include="includes\jit\base\rdivision.hxx" />
+    <ClInclude Include="includes\jit\base\subtraction.hxx" />
+    <ClInclude Include="includes\jit\base\tools.hxx" />
+    <ClInclude Include="includes\jit\base\vectorization.hxx" />
+    <ClInclude Include="includes\jit\blocks\ShortcutEval.hxx" />
+    <ClInclude Include="includes\jit\calls\FunCallInitializer.hxx" />
+    <ClInclude Include="includes\jit\calls\FunctionSignature.hxx" />
+    <ClInclude Include="includes\jit\calls\JITAbs.hxx" />
+    <ClInclude Include="includes\jit\calls\JITAngle.hxx" />
+    <ClInclude Include="includes\jit\calls\JITBinOp.hxx" />
+    <ClInclude Include="includes\jit\calls\JITBinOpCall.hxx" />
+    <ClInclude Include="includes\jit\calls\JITCall.hxx" />
+    <ClInclude Include="includes\jit\calls\JITCall1.hxx" />
+    <ClInclude Include="includes\jit\calls\JITCeil.hxx" />
+    <ClInclude Include="includes\jit\calls\JITConj.hxx" />
+    <ClInclude Include="includes\jit\calls\JITFloor.hxx" />
+    <ClInclude Include="includes\jit\calls\JITGatewayCall.hxx" />
+    <ClInclude Include="includes\jit\calls\JITImag.hxx" />
+    <ClInclude Include="includes\jit\calls\JITImult.hxx" />
+    <ClInclude Include="includes\jit\calls\JITLog.hxx" />
+    <ClInclude Include="includes\jit\calls\JITOptimizedCall1.hxx" />
+    <ClInclude Include="includes\jit\calls\JITReal.hxx" />
+    <ClInclude Include="includes\jit\calls\JITRound.hxx" />
+    <ClInclude Include="includes\jit\calls\JITShortcutBinOpCall.hxx" />
+    <ClInclude Include="includes\jit\calls\JITSign.hxx" />
+    <ClInclude Include="includes\jit\calls\JITSize.hxx" />
+    <ClInclude Include="includes\jit\calls\JITSize1.hxx" />
+    <ClInclude Include="includes\jit\calls\JITSqrt.hxx" />
+    <ClInclude Include="includes\jit\calls\JITUnaryOpCall.hxx" />
+    <ClInclude Include="includes\jit\calls\JITZeros.hxx" />
+    <ClInclude Include="includes\jit\Cast.hxx" />
+    <ClInclude Include="includes\jit\Disassembler.hxx" />
+    <ClInclude Include="includes\jit\funs_interf.h" />
+    <ClInclude Include="includes\jit\JITArrayof.hxx" />
+    <ClInclude Include="includes\jit\JITArrayofs.hxx" />
+    <ClInclude Include="includes\jit\JITScalar.hxx" />
+    <ClInclude Include="includes\jit\JITScalars.hxx" />
+    <ClInclude Include="includes\jit\JITScilabVal.hxx" />
+    <ClInclude Include="includes\jit\JITVal.hxx" />
     <ClInclude Include="includes\jit\JITVisitor.hxx" />
-    <ClInclude Include="includes\jit\jit_operations.hxx" />
+    <ClInclude Include="includes\jit\MemoryManager.hxx" />
+    <ClInclude Include="includes\jit\ScilabJITEventListener.hxx" />
     <ClInclude Include="includes\jit\ScilabJITTraits.hxx" />
     <ClInclude Include="includes\operations\doublecomplex.h" />
     <ClInclude Include="includes\operations\generic_operations.hxx" />
@@ -648,11 +708,53 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\ast\runvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\shortcutvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\visitor_common.cpp" />
-    <ClCompile Include="src\cpp\jit\GlobalCFunctions.cpp" />
-    <ClCompile Include="src\cpp\jit\JITValues.cpp" />
+    <ClCompile Include="src\cpp\jit\BaseFunctions1.cpp" />
+    <ClCompile Include="src\cpp\jit\BaseFunctions2.cpp" />
+    <ClCompile Include="src\cpp\jit\FunctionSignature.cpp" />
+    <ClCompile Include="src\cpp\jit\JITAbs.cpp" />
+    <ClCompile Include="src\cpp\jit\JITAddition.cpp" />
+    <ClCompile Include="src\cpp\jit\JITAngle.cpp" />
+    <ClCompile Include="src\cpp\jit\JITBinOpCall.cpp" />
+    <ClCompile Include="src\cpp\jit\JITBreakContinueExps.cpp" />
+    <ClCompile Include="src\cpp\jit\JITCall.cpp" />
+    <ClCompile Include="src\cpp\jit\JITCallExp.cpp" />
+    <ClCompile Include="src\cpp\jit\JITCeil.cpp" />
+    <ClCompile Include="src\cpp\jit\JITComparisons.cpp" />
+    <ClCompile Include="src\cpp\jit\JITComplexVal.cpp" />
+    <ClCompile Include="src\cpp\jit\JITConj.cpp" />
+    <ClCompile Include="src\cpp\jit\JITEquality.cpp" />
+    <ClCompile Include="src\cpp\jit\JITFloor.cpp" />
+    <ClCompile Include="src\cpp\jit\JITForExp.cpp" />
+    <ClCompile Include="src\cpp\jit\JITIfExp.cpp" />
+    <ClCompile Include="src\cpp\jit\JITImag.cpp" />
+    <ClCompile Include="src\cpp\jit\JITImult.cpp" />
+    <ClCompile Include="src\cpp\jit\JITIntSelectExp.cpp" />
+    <ClCompile Include="src\cpp\jit\JITLog.cpp" />
+    <ClCompile Include="src\cpp\jit\JITMultiplication.cpp" />
+    <ClCompile Include="src\cpp\jit\JITNegation.cpp" />
+    <ClCompile Include="src\cpp\jit\JITNotEquality.cpp" />
+    <ClCompile Include="src\cpp\jit\JITOpExp.cpp" />
+    <ClCompile Include="src\cpp\jit\JITOpposite.cpp" />
+    <ClCompile Include="src\cpp\jit\JITOptimizedCall1.cpp" />
+    <ClCompile Include="src\cpp\jit\JITPower.cpp" />
+    <ClCompile Include="src\cpp\jit\JITRDivision.cpp" />
+    <ClCompile Include="src\cpp\jit\JITReal.cpp" />
+    <ClCompile Include="src\cpp\jit\JITRound.cpp" />
+    <ClCompile Include="src\cpp\jit\JITSelectExp.cpp" />
+    <ClCompile Include="src\cpp\jit\JITShortcutBinOpCall.cpp" />
+    <ClCompile Include="src\cpp\jit\JITShortcutOps.cpp" />
+    <ClCompile Include="src\cpp\jit\JITSign.cpp" />
+    <ClCompile Include="src\cpp\jit\JITSize.cpp" />
+    <ClCompile Include="src\cpp\jit\JITSqrt.cpp" />
+    <ClCompile Include="src\cpp\jit\JITSubtraction.cpp" />
+    <ClCompile Include="src\cpp\jit\JITUnaryOpCall.cpp" />
     <ClCompile Include="src\cpp\jit\JITVisitor.cpp" />
-    <ClCompile Include="src\cpp\jit\jit_operations.cpp" />
+    <ClCompile Include="src\cpp\jit\JITWhileExp.cpp" />
+    <ClCompile Include="src\cpp\jit\JITZeros.cpp" />
     <ClCompile Include="src\cpp\jit\jit_windows.cpp" />
+    <ClCompile Include="src\cpp\jit\MemoryManager.cpp" />
+    <ClCompile Include="src\cpp\jit\ScilabJITEventListener.cpp" />
+    <ClCompile Include="src\cpp\jit\ShortcutEval.cpp" />
     <ClCompile Include="src\cpp\operations\interface_addition.cpp" />
     <ClCompile Include="src\cpp\operations\operations.cpp" />
     <ClCompile Include="src\cpp\operations\types_addition.cpp" />

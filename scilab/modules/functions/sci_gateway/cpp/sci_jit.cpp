@@ -37,65 +37,61 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace std;
-using namespace types;
-using namespace ast;
-
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    ast::Exp * pExp = 0;
-
-    if (in.size() != 1)
+    if (in.size() == 0)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "jit" , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "testJIT", 1);
         return Function::Error;
     }
 
-    if (!in[0]->isString() || in[0]->getAs<types::String>()->getSize() != 1)
+    // check that arguments are a string
+    unsigned int i = 1;
+    Location loc;
+    ast::exps_t * args = new ast::exps_t();
+    args->reserve(in.size() - 1);
+    for (const auto arg : in)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "jit" , 1);
-        return Function::Error;
+        if (!arg->isString() || arg->getAs<types::String>()->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "testJIT", i);
+            return Function::Error;
+        }
+        if (i > 1)
+        {
+            symbol::Symbol sym(arg->getAs<types::String>()->get(0));
+            args->emplace_back(new ast::SimpleVar(loc, sym));
+        }
+        ++i;
     }
 
-    Parser parser;
-    parser.parse(in[0]->getAs<types::String>()->get(0));
-    if (parser.getExitStatus() != Parser::Succeded)
+    std::vector<types::InternalType *> _out;
+    std::vector<types::InternalType *> _in;
+    _in.reserve(args->size());
+    for (ast::Exp * arg : *args)
     {
-        char* pst = wide_string_to_UTF8(parser.getErrorMessage());
-        Scierror(999, "%s", pst);
-        FREE(pst);
-        return Function::Error;
+	types::InternalType * pIT = symbol::Context::getInstance()->get(static_cast<ast::SimpleVar *>(arg)->getSymbol());
+	_in.push_back(pIT);
     }
 
-    pExp = parser.getTree();
-
-    if (!pExp)
-    {
-        return Function::Error;
-    }
-
+    const std::wstring name = in[0]->getAs<types::String>()->get(0);
+    symbol::Symbol sym(name);
+    ast::SimpleVar * var = new ast::SimpleVar(loc, sym);
+    ast::CallExp ce(loc, *var, *args);
+    
     analysis::AnalysisVisitor analysis;
-    pExp->accept(analysis);
-    analysis.print_info();
-
-    ast::DebugVisitor debugMe;
-    pExp->accept(debugMe);
-
     jit::JITVisitor jit(analysis);
-    try
+
+    analysis.registerFBlockEmittedListener(&jit);
+
+    ce.accept(analysis);
+
+    jit.makeCall(name, _in, _out);
+    for (auto pIT : _out)
     {
-        pExp->accept(jit);
-    }
-    catch (ast::InternalError & /*se*/)
-    {
-        jit.dump();
-        throw;
+	out.push_back(pIT);
     }
 
-    jit.run();
-
-    delete pExp;
-
-    return Function::OK;//a=[1 2;3 4];b=[5 6; 7 8];jit("for i=1:21;c=a+b;a=b;b=c;end;"),a,b
+    return Function::OK;
 }

@@ -290,9 +290,6 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitSimpleVar.cpp \
 	src/cpp/analysis/VisitDollarVar.cpp \
 	src/cpp/analysis/VisitVarDec.cpp src/cpp/analysis/XBlock.cpp \
-	src/cpp/jit/JITVisitor.cpp src/cpp/jit/JITValues.cpp \
-	src/cpp/jit/jit_operations.cpp \
-	src/cpp/jit/GlobalCFunctions.cpp \
 	src/cpp/analysis/check_____dotpower____.cpp \
 	src/cpp/analysis/check_rand.cpp \
 	src/cpp/analysis/check_____ge____.cpp \
@@ -365,6 +362,31 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/check_____ldivide____.cpp \
 	src/cpp/analysis/check_acos.cpp \
 	src/cpp/analysis/check_____dottimes____.cpp \
+	src/cpp/jit/JITVisitor.cpp src/cpp/jit/JITComplexVal.cpp \
+	src/cpp/jit/MemoryManager.cpp src/cpp/jit/JITCallExp.cpp \
+	src/cpp/jit/JITForExp.cpp src/cpp/jit/JITCall.cpp \
+	src/cpp/jit/JITSize.cpp src/cpp/jit/JITZeros.cpp \
+	src/cpp/jit/JITBinOpCall.cpp src/cpp/jit/JITUnaryOpCall.cpp \
+	src/cpp/jit/JITOpExp.cpp src/cpp/jit/JITShortcutBinOpCall.cpp \
+	src/cpp/jit/ShortcutEval.cpp src/cpp/jit/JITIfExp.cpp \
+	src/cpp/jit/JITWhileExp.cpp \
+	src/cpp/jit/JITBreakContinueExps.cpp \
+	src/cpp/jit/JITSelectExp.cpp src/cpp/jit/JITIntSelectExp.cpp \
+	src/cpp/jit/JITOptimizedCall1.cpp src/cpp/jit/JITSign.cpp \
+	src/cpp/jit/JITSqrt.cpp src/cpp/jit/JITLog.cpp \
+	src/cpp/jit/JITAbs.cpp src/cpp/jit/JITAngle.cpp \
+	src/cpp/jit/JITReal.cpp src/cpp/jit/JITImag.cpp \
+	src/cpp/jit/JITImult.cpp src/cpp/jit/JITConj.cpp \
+	src/cpp/jit/JITFloor.cpp src/cpp/jit/JITCeil.cpp \
+	src/cpp/jit/JITRound.cpp src/cpp/jit/JITAddition.cpp \
+	src/cpp/jit/JITSubtraction.cpp src/cpp/jit/JITOpposite.cpp \
+	src/cpp/jit/JITMultiplication.cpp src/cpp/jit/JITEquality.cpp \
+	src/cpp/jit/JITShortcutOps.cpp src/cpp/jit/JITNotEquality.cpp \
+	src/cpp/jit/JITComparisons.cpp src/cpp/jit/JITNegation.cpp \
+	src/cpp/jit/JITRDivision.cpp src/cpp/jit/JITPower.cpp \
+	src/cpp/jit/FunctionSignature.cpp \
+	src/cpp/jit/ScilabJITEventListener.cpp \
+	src/cpp/jit/BaseFunctions1.cpp src/cpp/jit/BaseFunctions2.cpp \
 	src/cpp/types/inspector.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @ENABLE_DEBUG_TRUE@am__objects_1 =  \
@@ -519,10 +541,6 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/analysis/libsciast_la-VisitDollarVar.lo \
 	src/cpp/analysis/libsciast_la-VisitVarDec.lo \
 	src/cpp/analysis/libsciast_la-XBlock.lo \
-	src/cpp/jit/libsciast_la-JITVisitor.lo \
-	src/cpp/jit/libsciast_la-JITValues.lo \
-	src/cpp/jit/libsciast_la-jit_operations.lo \
-	src/cpp/jit/libsciast_la-GlobalCFunctions.lo \
 	src/cpp/analysis/libsciast_la-check_____dotpower____.lo \
 	src/cpp/analysis/libsciast_la-check_rand.lo \
 	src/cpp/analysis/libsciast_la-check_____ge____.lo \
@@ -604,7 +622,52 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/analysis/libsciast_la-check_____ldivide____.lo \
 	src/cpp/analysis/libsciast_la-check_acos.lo \
 	src/cpp/analysis/libsciast_la-check_____dottimes____.lo \
-	$(am__objects_1)
+	src/cpp/jit/libsciast_la-JITVisitor.lo \
+	src/cpp/jit/libsciast_la-JITComplexVal.lo \
+	src/cpp/jit/libsciast_la-MemoryManager.lo \
+	src/cpp/jit/libsciast_la-JITCallExp.lo \
+	src/cpp/jit/libsciast_la-JITForExp.lo \
+	src/cpp/jit/libsciast_la-JITCall.lo \
+	src/cpp/jit/libsciast_la-JITSize.lo \
+	src/cpp/jit/libsciast_la-JITZeros.lo \
+	src/cpp/jit/libsciast_la-JITBinOpCall.lo \
+	src/cpp/jit/libsciast_la-JITUnaryOpCall.lo \
+	src/cpp/jit/libsciast_la-JITOpExp.lo \
+	src/cpp/jit/libsciast_la-JITShortcutBinOpCall.lo \
+	src/cpp/jit/libsciast_la-ShortcutEval.lo \
+	src/cpp/jit/libsciast_la-JITIfExp.lo \
+	src/cpp/jit/libsciast_la-JITWhileExp.lo \
+	src/cpp/jit/libsciast_la-JITBreakContinueExps.lo \
+	src/cpp/jit/libsciast_la-JITSelectExp.lo \
+	src/cpp/jit/libsciast_la-JITIntSelectExp.lo \
+	src/cpp/jit/libsciast_la-JITOptimizedCall1.lo \
+	src/cpp/jit/libsciast_la-JITSign.lo \
+	src/cpp/jit/libsciast_la-JITSqrt.lo \
+	src/cpp/jit/libsciast_la-JITLog.lo \
+	src/cpp/jit/libsciast_la-JITAbs.lo \
+	src/cpp/jit/libsciast_la-JITAngle.lo \
+	src/cpp/jit/libsciast_la-JITReal.lo \
+	src/cpp/jit/libsciast_la-JITImag.lo \
+	src/cpp/jit/libsciast_la-JITImult.lo \
+	src/cpp/jit/libsciast_la-JITConj.lo \
+	src/cpp/jit/libsciast_la-JITFloor.lo \
+	src/cpp/jit/libsciast_la-JITCeil.lo \
+	src/cpp/jit/libsciast_la-JITRound.lo \
+	src/cpp/jit/libsciast_la-JITAddition.lo \
+	src/cpp/jit/libsciast_la-JITSubtraction.lo \
+	src/cpp/jit/libsciast_la-JITOpposite.lo \
+	src/cpp/jit/libsciast_la-JITMultiplication.lo \
+	src/cpp/jit/libsciast_la-JITEquality.lo \
+	src/cpp/jit/libsciast_la-JITShortcutOps.lo \
+	src/cpp/jit/libsciast_la-JITNotEquality.lo \
+	src/cpp/jit/libsciast_la-JITComparisons.lo \
+	src/cpp/jit/libsciast_la-JITNegation.lo \
+	src/cpp/jit/libsciast_la-JITRDivision.lo \
+	src/cpp/jit/libsciast_la-JITPower.lo \
+	src/cpp/jit/libsciast_la-FunctionSignature.lo \
+	src/cpp/jit/libsciast_la-ScilabJITEventListener.lo \
+	src/cpp/jit/libsciast_la-BaseFunctions1.lo \
+	src/cpp/jit/libsciast_la-BaseFunctions2.lo $(am__objects_1)
 libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -979,6 +1042,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -1104,9 +1168,6 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitSimpleVar.cpp \
 	src/cpp/analysis/VisitDollarVar.cpp \
 	src/cpp/analysis/VisitVarDec.cpp src/cpp/analysis/XBlock.cpp \
-	src/cpp/jit/JITVisitor.cpp src/cpp/jit/JITValues.cpp \
-	src/cpp/jit/jit_operations.cpp \
-	src/cpp/jit/GlobalCFunctions.cpp \
 	src/cpp/analysis/check_____dotpower____.cpp \
 	src/cpp/analysis/check_rand.cpp \
 	src/cpp/analysis/check_____ge____.cpp \
@@ -1178,7 +1239,33 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/check_sum.cpp \
 	src/cpp/analysis/check_____ldivide____.cpp \
 	src/cpp/analysis/check_acos.cpp \
-	src/cpp/analysis/check_____dottimes____.cpp $(am__append_1)
+	src/cpp/analysis/check_____dottimes____.cpp \
+	src/cpp/jit/JITVisitor.cpp src/cpp/jit/JITComplexVal.cpp \
+	src/cpp/jit/MemoryManager.cpp src/cpp/jit/JITCallExp.cpp \
+	src/cpp/jit/JITForExp.cpp src/cpp/jit/JITCall.cpp \
+	src/cpp/jit/JITSize.cpp src/cpp/jit/JITZeros.cpp \
+	src/cpp/jit/JITBinOpCall.cpp src/cpp/jit/JITUnaryOpCall.cpp \
+	src/cpp/jit/JITOpExp.cpp src/cpp/jit/JITShortcutBinOpCall.cpp \
+	src/cpp/jit/ShortcutEval.cpp src/cpp/jit/JITIfExp.cpp \
+	src/cpp/jit/JITWhileExp.cpp \
+	src/cpp/jit/JITBreakContinueExps.cpp \
+	src/cpp/jit/JITSelectExp.cpp src/cpp/jit/JITIntSelectExp.cpp \
+	src/cpp/jit/JITOptimizedCall1.cpp src/cpp/jit/JITSign.cpp \
+	src/cpp/jit/JITSqrt.cpp src/cpp/jit/JITLog.cpp \
+	src/cpp/jit/JITAbs.cpp src/cpp/jit/JITAngle.cpp \
+	src/cpp/jit/JITReal.cpp src/cpp/jit/JITImag.cpp \
+	src/cpp/jit/JITImult.cpp src/cpp/jit/JITConj.cpp \
+	src/cpp/jit/JITFloor.cpp src/cpp/jit/JITCeil.cpp \
+	src/cpp/jit/JITRound.cpp src/cpp/jit/JITAddition.cpp \
+	src/cpp/jit/JITSubtraction.cpp src/cpp/jit/JITOpposite.cpp \
+	src/cpp/jit/JITMultiplication.cpp src/cpp/jit/JITEquality.cpp \
+	src/cpp/jit/JITShortcutOps.cpp src/cpp/jit/JITNotEquality.cpp \
+	src/cpp/jit/JITComparisons.cpp src/cpp/jit/JITNegation.cpp \
+	src/cpp/jit/JITRDivision.cpp src/cpp/jit/JITPower.cpp \
+	src/cpp/jit/FunctionSignature.cpp \
+	src/cpp/jit/ScilabJITEventListener.cpp \
+	src/cpp/jit/BaseFunctions1.cpp src/cpp/jit/BaseFunctions2.cpp \
+	$(am__append_1)
 libsciast_la_CPPFLAGS = \
 	-I$(srcdir)/src/cpp \
 	-I$(srcdir)/includes/ast \
@@ -1201,10 +1288,11 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
+	-I$(top_srcdir)/modules/special_functions/src/cpp \
 	$(LLVM_INCLUDE) \
 	$(LLVM_CPPFLAGS) \
 	$(LLVM_LDFLAGS) \
-    $(LLVM_LIBS) \
+        $(LLVM_LIBS) \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
@@ -2043,22 +2131,6 @@ src/cpp/analysis/libsciast_la-VisitVarDec.lo:  \
 src/cpp/analysis/libsciast_la-XBlock.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
-src/cpp/jit/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp/jit
-	@: > src/cpp/jit/$(am__dirstamp)
-src/cpp/jit/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp/jit/$(DEPDIR)
-	@: > src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
-src/cpp/jit/libsciast_la-JITVisitor.lo: src/cpp/jit/$(am__dirstamp) \
-	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
-src/cpp/jit/libsciast_la-JITValues.lo: src/cpp/jit/$(am__dirstamp) \
-	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
-src/cpp/jit/libsciast_la-jit_operations.lo:  \
-	src/cpp/jit/$(am__dirstamp) \
-	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
-src/cpp/jit/libsciast_la-GlobalCFunctions.lo:  \
-	src/cpp/jit/$(am__dirstamp) \
-	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-check_____dotpower____.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
@@ -2302,6 +2374,120 @@ src/cpp/analysis/libsciast_la-check_acos.lo:  \
 src/cpp/analysis/libsciast_la-check_____dottimes____.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/jit
+	@: > src/cpp/jit/$(am__dirstamp)
+src/cpp/jit/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/jit/$(DEPDIR)
+	@: > src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITVisitor.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITComplexVal.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-MemoryManager.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITCallExp.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITForExp.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITCall.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITSize.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITZeros.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITBinOpCall.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITUnaryOpCall.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITOpExp.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITShortcutBinOpCall.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-ShortcutEval.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITIfExp.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITWhileExp.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITBreakContinueExps.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITSelectExp.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITIntSelectExp.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITOptimizedCall1.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITSign.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITSqrt.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITLog.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITAbs.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITAngle.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITReal.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITImag.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITImult.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITConj.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITFloor.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITCeil.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITRound.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITAddition.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITSubtraction.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITOpposite.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITMultiplication.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITEquality.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITShortcutOps.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITNotEquality.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITComparisons.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITNegation.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITRDivision.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITPower.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-FunctionSignature.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-ScilabJITEventListener.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-BaseFunctions1.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-BaseFunctions2.lo:  \
+	src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-inspector.lo:  \
 	src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
@@ -2489,10 +2675,52 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-treevisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions1.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-FunctionSignature.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITAbs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITAddition.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITAngle.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITBinOpCall.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITBreakContinueExps.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITCall.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITCallExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITCeil.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITComparisons.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITComplexVal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITConj.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITEquality.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITFloor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITForExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITIfExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITImag.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITImult.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITIntSelectExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITLog.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITMultiplication.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITNegation.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITNotEquality.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpposite.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITOptimizedCall1.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITPower.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITRDivision.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITReal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITRound.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSelectExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutBinOpCall.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutOps.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSign.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSize.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSqrt.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSubtraction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITUnaryOpCall.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-jit_operations.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITWhileExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITZeros.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-MemoryManager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-ScilabJITEventListener.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-ShortcutEval.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-operations.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-types_addition.Plo@am__quote@
@@ -3660,34 +3888,6 @@ src/cpp/analysis/libsciast_la-XBlock.lo: src/cpp/analysis/XBlock.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-XBlock.lo `test -f 'src/cpp/analysis/XBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/XBlock.cpp
 
-src/cpp/jit/libsciast_la-JITVisitor.lo: src/cpp/jit/JITVisitor.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITVisitor.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Tpo -c -o src/cpp/jit/libsciast_la-JITVisitor.lo `test -f 'src/cpp/jit/JITVisitor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITVisitor.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITVisitor.cpp' object='src/cpp/jit/libsciast_la-JITVisitor.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITVisitor.lo `test -f 'src/cpp/jit/JITVisitor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITVisitor.cpp
-
-src/cpp/jit/libsciast_la-JITValues.lo: src/cpp/jit/JITValues.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITValues.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Tpo -c -o src/cpp/jit/libsciast_la-JITValues.lo `test -f 'src/cpp/jit/JITValues.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITValues.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITValues.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITValues.cpp' object='src/cpp/jit/libsciast_la-JITValues.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITValues.lo `test -f 'src/cpp/jit/JITValues.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITValues.cpp
-
-src/cpp/jit/libsciast_la-jit_operations.lo: src/cpp/jit/jit_operations.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-jit_operations.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-jit_operations.Tpo -c -o src/cpp/jit/libsciast_la-jit_operations.lo `test -f 'src/cpp/jit/jit_operations.cpp' || echo '$(srcdir)/'`src/cpp/jit/jit_operations.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-jit_operations.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-jit_operations.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/jit_operations.cpp' object='src/cpp/jit/libsciast_la-jit_operations.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-jit_operations.lo `test -f 'src/cpp/jit/jit_operations.cpp' || echo '$(srcdir)/'`src/cpp/jit/jit_operations.cpp
-
-src/cpp/jit/libsciast_la-GlobalCFunctions.lo: src/cpp/jit/GlobalCFunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-GlobalCFunctions.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Tpo -c -o src/cpp/jit/libsciast_la-GlobalCFunctions.lo `test -f 'src/cpp/jit/GlobalCFunctions.cpp' || echo '$(srcdir)/'`src/cpp/jit/GlobalCFunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-GlobalCFunctions.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/GlobalCFunctions.cpp' object='src/cpp/jit/libsciast_la-GlobalCFunctions.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-GlobalCFunctions.lo `test -f 'src/cpp/jit/GlobalCFunctions.cpp' || echo '$(srcdir)/'`src/cpp/jit/GlobalCFunctions.cpp
-
 src/cpp/analysis/libsciast_la-check_____dotpower____.lo: src/cpp/analysis/check_____dotpower____.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-check_____dotpower____.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____dotpower____.Tpo -c -o src/cpp/analysis/libsciast_la-check_____dotpower____.lo `test -f 'src/cpp/analysis/check_____dotpower____.cpp' || echo '$(srcdir)/'`src/cpp/analysis/check_____dotpower____.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____dotpower____.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____dotpower____.Plo
@@ -4254,6 +4454,328 @@ src/cpp/analysis/libsciast_la-check_____dottimes____.lo: src/cpp/analysis/check_
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/check_____dottimes____.cpp' object='src/cpp/analysis/libsciast_la-check_____dottimes____.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-check_____dottimes____.lo `test -f 'src/cpp/analysis/check_____dottimes____.cpp' || echo '$(srcdir)/'`src/cpp/analysis/check_____dottimes____.cpp
+
+src/cpp/jit/libsciast_la-JITVisitor.lo: src/cpp/jit/JITVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITVisitor.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Tpo -c -o src/cpp/jit/libsciast_la-JITVisitor.lo `test -f 'src/cpp/jit/JITVisitor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITVisitor.cpp' object='src/cpp/jit/libsciast_la-JITVisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITVisitor.lo `test -f 'src/cpp/jit/JITVisitor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITVisitor.cpp
+
+src/cpp/jit/libsciast_la-JITComplexVal.lo: src/cpp/jit/JITComplexVal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITComplexVal.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITComplexVal.Tpo -c -o src/cpp/jit/libsciast_la-JITComplexVal.lo `test -f 'src/cpp/jit/JITComplexVal.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITComplexVal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITComplexVal.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITComplexVal.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITComplexVal.cpp' object='src/cpp/jit/libsciast_la-JITComplexVal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITComplexVal.lo `test -f 'src/cpp/jit/JITComplexVal.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITComplexVal.cpp
+
+src/cpp/jit/libsciast_la-MemoryManager.lo: src/cpp/jit/MemoryManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-MemoryManager.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-MemoryManager.Tpo -c -o src/cpp/jit/libsciast_la-MemoryManager.lo `test -f 'src/cpp/jit/MemoryManager.cpp' || echo '$(srcdir)/'`src/cpp/jit/MemoryManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-MemoryManager.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-MemoryManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/MemoryManager.cpp' object='src/cpp/jit/libsciast_la-MemoryManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-MemoryManager.lo `test -f 'src/cpp/jit/MemoryManager.cpp' || echo '$(srcdir)/'`src/cpp/jit/MemoryManager.cpp
+
+src/cpp/jit/libsciast_la-JITCallExp.lo: src/cpp/jit/JITCallExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITCallExp.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITCallExp.Tpo -c -o src/cpp/jit/libsciast_la-JITCallExp.lo `test -f 'src/cpp/jit/JITCallExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITCallExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITCallExp.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITCallExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITCallExp.cpp' object='src/cpp/jit/libsciast_la-JITCallExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITCallExp.lo `test -f 'src/cpp/jit/JITCallExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITCallExp.cpp
+
+src/cpp/jit/libsciast_la-JITForExp.lo: src/cpp/jit/JITForExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITForExp.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITForExp.Tpo -c -o src/cpp/jit/libsciast_la-JITForExp.lo `test -f 'src/cpp/jit/JITForExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITForExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITForExp.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITForExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITForExp.cpp' object='src/cpp/jit/libsciast_la-JITForExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITForExp.lo `test -f 'src/cpp/jit/JITForExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITForExp.cpp
+
+src/cpp/jit/libsciast_la-JITCall.lo: src/cpp/jit/JITCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITCall.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITCall.Tpo -c -o src/cpp/jit/libsciast_la-JITCall.lo `test -f 'src/cpp/jit/JITCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITCall.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITCall.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITCall.cpp' object='src/cpp/jit/libsciast_la-JITCall.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITCall.lo `test -f 'src/cpp/jit/JITCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITCall.cpp
+
+src/cpp/jit/libsciast_la-JITSize.lo: src/cpp/jit/JITSize.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITSize.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITSize.Tpo -c -o src/cpp/jit/libsciast_la-JITSize.lo `test -f 'src/cpp/jit/JITSize.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSize.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITSize.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITSize.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITSize.cpp' object='src/cpp/jit/libsciast_la-JITSize.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITSize.lo `test -f 'src/cpp/jit/JITSize.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSize.cpp
+
+src/cpp/jit/libsciast_la-JITZeros.lo: src/cpp/jit/JITZeros.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITZeros.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITZeros.Tpo -c -o src/cpp/jit/libsciast_la-JITZeros.lo `test -f 'src/cpp/jit/JITZeros.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITZeros.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITZeros.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITZeros.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITZeros.cpp' object='src/cpp/jit/libsciast_la-JITZeros.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITZeros.lo `test -f 'src/cpp/jit/JITZeros.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITZeros.cpp
+
+src/cpp/jit/libsciast_la-JITBinOpCall.lo: src/cpp/jit/JITBinOpCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITBinOpCall.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITBinOpCall.Tpo -c -o src/cpp/jit/libsciast_la-JITBinOpCall.lo `test -f 'src/cpp/jit/JITBinOpCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITBinOpCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITBinOpCall.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITBinOpCall.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITBinOpCall.cpp' object='src/cpp/jit/libsciast_la-JITBinOpCall.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITBinOpCall.lo `test -f 'src/cpp/jit/JITBinOpCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITBinOpCall.cpp
+
+src/cpp/jit/libsciast_la-JITUnaryOpCall.lo: src/cpp/jit/JITUnaryOpCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITUnaryOpCall.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITUnaryOpCall.Tpo -c -o src/cpp/jit/libsciast_la-JITUnaryOpCall.lo `test -f 'src/cpp/jit/JITUnaryOpCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITUnaryOpCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITUnaryOpCall.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITUnaryOpCall.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITUnaryOpCall.cpp' object='src/cpp/jit/libsciast_la-JITUnaryOpCall.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITUnaryOpCall.lo `test -f 'src/cpp/jit/JITUnaryOpCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITUnaryOpCall.cpp
+
+src/cpp/jit/libsciast_la-JITOpExp.lo: src/cpp/jit/JITOpExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITOpExp.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpExp.Tpo -c -o src/cpp/jit/libsciast_la-JITOpExp.lo `test -f 'src/cpp/jit/JITOpExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITOpExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpExp.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITOpExp.cpp' object='src/cpp/jit/libsciast_la-JITOpExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITOpExp.lo `test -f 'src/cpp/jit/JITOpExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITOpExp.cpp
+
+src/cpp/jit/libsciast_la-JITShortcutBinOpCall.lo: src/cpp/jit/JITShortcutBinOpCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITShortcutBinOpCall.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutBinOpCall.Tpo -c -o src/cpp/jit/libsciast_la-JITShortcutBinOpCall.lo `test -f 'src/cpp/jit/JITShortcutBinOpCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITShortcutBinOpCall.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutBinOpCall.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutBinOpCall.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITShortcutBinOpCall.cpp' object='src/cpp/jit/libsciast_la-JITShortcutBinOpCall.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITShortcutBinOpCall.lo `test -f 'src/cpp/jit/JITShortcutBinOpCall.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITShortcutBinOpCall.cpp
+
+src/cpp/jit/libsciast_la-ShortcutEval.lo: src/cpp/jit/ShortcutEval.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-ShortcutEval.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-ShortcutEval.Tpo -c -o src/cpp/jit/libsciast_la-ShortcutEval.lo `test -f 'src/cpp/jit/ShortcutEval.cpp' || echo '$(srcdir)/'`src/cpp/jit/ShortcutEval.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-ShortcutEval.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-ShortcutEval.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/ShortcutEval.cpp' object='src/cpp/jit/libsciast_la-ShortcutEval.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-ShortcutEval.lo `test -f 'src/cpp/jit/ShortcutEval.cpp' || echo '$(srcdir)/'`src/cpp/jit/ShortcutEval.cpp
+
+src/cpp/jit/libsciast_la-JITIfExp.lo: src/cpp/jit/JITIfExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITIfExp.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITIfExp.Tpo -c -o src/cpp/jit/libsciast_la-JITIfExp.lo `test -f 'src/cpp/jit/JITIfExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITIfExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITIfExp.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITIfExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITIfExp.cpp' object='src/cpp/jit/libsciast_la-JITIfExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITIfExp.lo `test -f 'src/cpp/jit/JITIfExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITIfExp.cpp
+
+src/cpp/jit/libsciast_la-JITWhileExp.lo: src/cpp/jit/JITWhileExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITWhileExp.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITWhileExp.Tpo -c -o src/cpp/jit/libsciast_la-JITWhileExp.lo `test -f 'src/cpp/jit/JITWhileExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITWhileExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITWhileExp.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITWhileExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITWhileExp.cpp' object='src/cpp/jit/libsciast_la-JITWhileExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITWhileExp.lo `test -f 'src/cpp/jit/JITWhileExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITWhileExp.cpp
+
+src/cpp/jit/libsciast_la-JITBreakContinueExps.lo: src/cpp/jit/JITBreakContinueExps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITBreakContinueExps.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITBreakContinueExps.Tpo -c -o src/cpp/jit/libsciast_la-JITBreakContinueExps.lo `test -f 'src/cpp/jit/JITBreakContinueExps.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITBreakContinueExps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITBreakContinueExps.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITBreakContinueExps.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITBreakContinueExps.cpp' object='src/cpp/jit/libsciast_la-JITBreakContinueExps.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITBreakContinueExps.lo `test -f 'src/cpp/jit/JITBreakContinueExps.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITBreakContinueExps.cpp
+
+src/cpp/jit/libsciast_la-JITSelectExp.lo: src/cpp/jit/JITSelectExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITSelectExp.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITSelectExp.Tpo -c -o src/cpp/jit/libsciast_la-JITSelectExp.lo `test -f 'src/cpp/jit/JITSelectExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSelectExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITSelectExp.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITSelectExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITSelectExp.cpp' object='src/cpp/jit/libsciast_la-JITSelectExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITSelectExp.lo `test -f 'src/cpp/jit/JITSelectExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSelectExp.cpp
+
+src/cpp/jit/libsciast_la-JITIntSelectExp.lo: src/cpp/jit/JITIntSelectExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITIntSelectExp.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITIntSelectExp.Tpo -c -o src/cpp/jit/libsciast_la-JITIntSelectExp.lo `test -f 'src/cpp/jit/JITIntSelectExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITIntSelectExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITIntSelectExp.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITIntSelectExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITIntSelectExp.cpp' object='src/cpp/jit/libsciast_la-JITIntSelectExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITIntSelectExp.lo `test -f 'src/cpp/jit/JITIntSelectExp.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITIntSelectExp.cpp
+
+src/cpp/jit/libsciast_la-JITOptimizedCall1.lo: src/cpp/jit/JITOptimizedCall1.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITOptimizedCall1.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITOptimizedCall1.Tpo -c -o src/cpp/jit/libsciast_la-JITOptimizedCall1.lo `test -f 'src/cpp/jit/JITOptimizedCall1.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITOptimizedCall1.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITOptimizedCall1.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITOptimizedCall1.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITOptimizedCall1.cpp' object='src/cpp/jit/libsciast_la-JITOptimizedCall1.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITOptimizedCall1.lo `test -f 'src/cpp/jit/JITOptimizedCall1.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITOptimizedCall1.cpp
+
+src/cpp/jit/libsciast_la-JITSign.lo: src/cpp/jit/JITSign.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITSign.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITSign.Tpo -c -o src/cpp/jit/libsciast_la-JITSign.lo `test -f 'src/cpp/jit/JITSign.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSign.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITSign.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITSign.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITSign.cpp' object='src/cpp/jit/libsciast_la-JITSign.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITSign.lo `test -f 'src/cpp/jit/JITSign.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSign.cpp
+
+src/cpp/jit/libsciast_la-JITSqrt.lo: src/cpp/jit/JITSqrt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITSqrt.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITSqrt.Tpo -c -o src/cpp/jit/libsciast_la-JITSqrt.lo `test -f 'src/cpp/jit/JITSqrt.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSqrt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITSqrt.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITSqrt.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITSqrt.cpp' object='src/cpp/jit/libsciast_la-JITSqrt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITSqrt.lo `test -f 'src/cpp/jit/JITSqrt.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSqrt.cpp
+
+src/cpp/jit/libsciast_la-JITLog.lo: src/cpp/jit/JITLog.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITLog.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITLog.Tpo -c -o src/cpp/jit/libsciast_la-JITLog.lo `test -f 'src/cpp/jit/JITLog.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITLog.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITLog.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITLog.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITLog.cpp' object='src/cpp/jit/libsciast_la-JITLog.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITLog.lo `test -f 'src/cpp/jit/JITLog.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITLog.cpp
+
+src/cpp/jit/libsciast_la-JITAbs.lo: src/cpp/jit/JITAbs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITAbs.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITAbs.Tpo -c -o src/cpp/jit/libsciast_la-JITAbs.lo `test -f 'src/cpp/jit/JITAbs.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITAbs.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITAbs.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITAbs.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITAbs.cpp' object='src/cpp/jit/libsciast_la-JITAbs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITAbs.lo `test -f 'src/cpp/jit/JITAbs.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITAbs.cpp
+
+src/cpp/jit/libsciast_la-JITAngle.lo: src/cpp/jit/JITAngle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITAngle.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITAngle.Tpo -c -o src/cpp/jit/libsciast_la-JITAngle.lo `test -f 'src/cpp/jit/JITAngle.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITAngle.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITAngle.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITAngle.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITAngle.cpp' object='src/cpp/jit/libsciast_la-JITAngle.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITAngle.lo `test -f 'src/cpp/jit/JITAngle.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITAngle.cpp
+
+src/cpp/jit/libsciast_la-JITReal.lo: src/cpp/jit/JITReal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITReal.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITReal.Tpo -c -o src/cpp/jit/libsciast_la-JITReal.lo `test -f 'src/cpp/jit/JITReal.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITReal.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITReal.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITReal.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITReal.cpp' object='src/cpp/jit/libsciast_la-JITReal.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITReal.lo `test -f 'src/cpp/jit/JITReal.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITReal.cpp
+
+src/cpp/jit/libsciast_la-JITImag.lo: src/cpp/jit/JITImag.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITImag.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITImag.Tpo -c -o src/cpp/jit/libsciast_la-JITImag.lo `test -f 'src/cpp/jit/JITImag.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITImag.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITImag.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITImag.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITImag.cpp' object='src/cpp/jit/libsciast_la-JITImag.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITImag.lo `test -f 'src/cpp/jit/JITImag.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITImag.cpp
+
+src/cpp/jit/libsciast_la-JITImult.lo: src/cpp/jit/JITImult.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITImult.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITImult.Tpo -c -o src/cpp/jit/libsciast_la-JITImult.lo `test -f 'src/cpp/jit/JITImult.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITImult.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITImult.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITImult.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITImult.cpp' object='src/cpp/jit/libsciast_la-JITImult.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITImult.lo `test -f 'src/cpp/jit/JITImult.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITImult.cpp
+
+src/cpp/jit/libsciast_la-JITConj.lo: src/cpp/jit/JITConj.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITConj.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITConj.Tpo -c -o src/cpp/jit/libsciast_la-JITConj.lo `test -f 'src/cpp/jit/JITConj.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITConj.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITConj.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITConj.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITConj.cpp' object='src/cpp/jit/libsciast_la-JITConj.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITConj.lo `test -f 'src/cpp/jit/JITConj.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITConj.cpp
+
+src/cpp/jit/libsciast_la-JITFloor.lo: src/cpp/jit/JITFloor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITFloor.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITFloor.Tpo -c -o src/cpp/jit/libsciast_la-JITFloor.lo `test -f 'src/cpp/jit/JITFloor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITFloor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITFloor.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITFloor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITFloor.cpp' object='src/cpp/jit/libsciast_la-JITFloor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITFloor.lo `test -f 'src/cpp/jit/JITFloor.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITFloor.cpp
+
+src/cpp/jit/libsciast_la-JITCeil.lo: src/cpp/jit/JITCeil.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITCeil.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITCeil.Tpo -c -o src/cpp/jit/libsciast_la-JITCeil.lo `test -f 'src/cpp/jit/JITCeil.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITCeil.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITCeil.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITCeil.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITCeil.cpp' object='src/cpp/jit/libsciast_la-JITCeil.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITCeil.lo `test -f 'src/cpp/jit/JITCeil.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITCeil.cpp
+
+src/cpp/jit/libsciast_la-JITRound.lo: src/cpp/jit/JITRound.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITRound.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITRound.Tpo -c -o src/cpp/jit/libsciast_la-JITRound.lo `test -f 'src/cpp/jit/JITRound.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITRound.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITRound.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITRound.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITRound.cpp' object='src/cpp/jit/libsciast_la-JITRound.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITRound.lo `test -f 'src/cpp/jit/JITRound.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITRound.cpp
+
+src/cpp/jit/libsciast_la-JITAddition.lo: src/cpp/jit/JITAddition.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITAddition.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITAddition.Tpo -c -o src/cpp/jit/libsciast_la-JITAddition.lo `test -f 'src/cpp/jit/JITAddition.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITAddition.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITAddition.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITAddition.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITAddition.cpp' object='src/cpp/jit/libsciast_la-JITAddition.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITAddition.lo `test -f 'src/cpp/jit/JITAddition.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITAddition.cpp
+
+src/cpp/jit/libsciast_la-JITSubtraction.lo: src/cpp/jit/JITSubtraction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITSubtraction.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITSubtraction.Tpo -c -o src/cpp/jit/libsciast_la-JITSubtraction.lo `test -f 'src/cpp/jit/JITSubtraction.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSubtraction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITSubtraction.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITSubtraction.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITSubtraction.cpp' object='src/cpp/jit/libsciast_la-JITSubtraction.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITSubtraction.lo `test -f 'src/cpp/jit/JITSubtraction.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITSubtraction.cpp
+
+src/cpp/jit/libsciast_la-JITOpposite.lo: src/cpp/jit/JITOpposite.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITOpposite.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpposite.Tpo -c -o src/cpp/jit/libsciast_la-JITOpposite.lo `test -f 'src/cpp/jit/JITOpposite.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITOpposite.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpposite.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITOpposite.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITOpposite.cpp' object='src/cpp/jit/libsciast_la-JITOpposite.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITOpposite.lo `test -f 'src/cpp/jit/JITOpposite.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITOpposite.cpp
+
+src/cpp/jit/libsciast_la-JITMultiplication.lo: src/cpp/jit/JITMultiplication.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITMultiplication.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITMultiplication.Tpo -c -o src/cpp/jit/libsciast_la-JITMultiplication.lo `test -f 'src/cpp/jit/JITMultiplication.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITMultiplication.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITMultiplication.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITMultiplication.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITMultiplication.cpp' object='src/cpp/jit/libsciast_la-JITMultiplication.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITMultiplication.lo `test -f 'src/cpp/jit/JITMultiplication.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITMultiplication.cpp
+
+src/cpp/jit/libsciast_la-JITEquality.lo: src/cpp/jit/JITEquality.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITEquality.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITEquality.Tpo -c -o src/cpp/jit/libsciast_la-JITEquality.lo `test -f 'src/cpp/jit/JITEquality.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITEquality.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITEquality.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITEquality.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITEquality.cpp' object='src/cpp/jit/libsciast_la-JITEquality.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITEquality.lo `test -f 'src/cpp/jit/JITEquality.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITEquality.cpp
+
+src/cpp/jit/libsciast_la-JITShortcutOps.lo: src/cpp/jit/JITShortcutOps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITShortcutOps.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutOps.Tpo -c -o src/cpp/jit/libsciast_la-JITShortcutOps.lo `test -f 'src/cpp/jit/JITShortcutOps.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITShortcutOps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutOps.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITShortcutOps.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITShortcutOps.cpp' object='src/cpp/jit/libsciast_la-JITShortcutOps.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITShortcutOps.lo `test -f 'src/cpp/jit/JITShortcutOps.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITShortcutOps.cpp
+
+src/cpp/jit/libsciast_la-JITNotEquality.lo: src/cpp/jit/JITNotEquality.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITNotEquality.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITNotEquality.Tpo -c -o src/cpp/jit/libsciast_la-JITNotEquality.lo `test -f 'src/cpp/jit/JITNotEquality.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITNotEquality.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITNotEquality.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITNotEquality.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITNotEquality.cpp' object='src/cpp/jit/libsciast_la-JITNotEquality.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITNotEquality.lo `test -f 'src/cpp/jit/JITNotEquality.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITNotEquality.cpp
+
+src/cpp/jit/libsciast_la-JITComparisons.lo: src/cpp/jit/JITComparisons.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITComparisons.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITComparisons.Tpo -c -o src/cpp/jit/libsciast_la-JITComparisons.lo `test -f 'src/cpp/jit/JITComparisons.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITComparisons.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITComparisons.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITComparisons.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITComparisons.cpp' object='src/cpp/jit/libsciast_la-JITComparisons.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITComparisons.lo `test -f 'src/cpp/jit/JITComparisons.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITComparisons.cpp
+
+src/cpp/jit/libsciast_la-JITNegation.lo: src/cpp/jit/JITNegation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITNegation.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITNegation.Tpo -c -o src/cpp/jit/libsciast_la-JITNegation.lo `test -f 'src/cpp/jit/JITNegation.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITNegation.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITNegation.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITNegation.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITNegation.cpp' object='src/cpp/jit/libsciast_la-JITNegation.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITNegation.lo `test -f 'src/cpp/jit/JITNegation.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITNegation.cpp
+
+src/cpp/jit/libsciast_la-JITRDivision.lo: src/cpp/jit/JITRDivision.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITRDivision.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITRDivision.Tpo -c -o src/cpp/jit/libsciast_la-JITRDivision.lo `test -f 'src/cpp/jit/JITRDivision.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITRDivision.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITRDivision.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITRDivision.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITRDivision.cpp' object='src/cpp/jit/libsciast_la-JITRDivision.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITRDivision.lo `test -f 'src/cpp/jit/JITRDivision.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITRDivision.cpp
+
+src/cpp/jit/libsciast_la-JITPower.lo: src/cpp/jit/JITPower.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITPower.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITPower.Tpo -c -o src/cpp/jit/libsciast_la-JITPower.lo `test -f 'src/cpp/jit/JITPower.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITPower.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITPower.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITPower.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITPower.cpp' object='src/cpp/jit/libsciast_la-JITPower.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITPower.lo `test -f 'src/cpp/jit/JITPower.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITPower.cpp
+
+src/cpp/jit/libsciast_la-FunctionSignature.lo: src/cpp/jit/FunctionSignature.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-FunctionSignature.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-FunctionSignature.Tpo -c -o src/cpp/jit/libsciast_la-FunctionSignature.lo `test -f 'src/cpp/jit/FunctionSignature.cpp' || echo '$(srcdir)/'`src/cpp/jit/FunctionSignature.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-FunctionSignature.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-FunctionSignature.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/FunctionSignature.cpp' object='src/cpp/jit/libsciast_la-FunctionSignature.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-FunctionSignature.lo `test -f 'src/cpp/jit/FunctionSignature.cpp' || echo '$(srcdir)/'`src/cpp/jit/FunctionSignature.cpp
+
+src/cpp/jit/libsciast_la-ScilabJITEventListener.lo: src/cpp/jit/ScilabJITEventListener.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-ScilabJITEventListener.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-ScilabJITEventListener.Tpo -c -o src/cpp/jit/libsciast_la-ScilabJITEventListener.lo `test -f 'src/cpp/jit/ScilabJITEventListener.cpp' || echo '$(srcdir)/'`src/cpp/jit/ScilabJITEventListener.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-ScilabJITEventListener.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-ScilabJITEventListener.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/ScilabJITEventListener.cpp' object='src/cpp/jit/libsciast_la-ScilabJITEventListener.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-ScilabJITEventListener.lo `test -f 'src/cpp/jit/ScilabJITEventListener.cpp' || echo '$(srcdir)/'`src/cpp/jit/ScilabJITEventListener.cpp
+
+src/cpp/jit/libsciast_la-BaseFunctions1.lo: src/cpp/jit/BaseFunctions1.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-BaseFunctions1.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions1.Tpo -c -o src/cpp/jit/libsciast_la-BaseFunctions1.lo `test -f 'src/cpp/jit/BaseFunctions1.cpp' || echo '$(srcdir)/'`src/cpp/jit/BaseFunctions1.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions1.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions1.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/BaseFunctions1.cpp' object='src/cpp/jit/libsciast_la-BaseFunctions1.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-BaseFunctions1.lo `test -f 'src/cpp/jit/BaseFunctions1.cpp' || echo '$(srcdir)/'`src/cpp/jit/BaseFunctions1.cpp
+
+src/cpp/jit/libsciast_la-BaseFunctions2.lo: src/cpp/jit/BaseFunctions2.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-BaseFunctions2.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions2.Tpo -c -o src/cpp/jit/libsciast_la-BaseFunctions2.lo `test -f 'src/cpp/jit/BaseFunctions2.cpp' || echo '$(srcdir)/'`src/cpp/jit/BaseFunctions2.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions2.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-BaseFunctions2.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/BaseFunctions2.cpp' object='src/cpp/jit/libsciast_la-BaseFunctions2.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-BaseFunctions2.lo `test -f 'src/cpp/jit/BaseFunctions2.cpp' || echo '$(srcdir)/'`src/cpp/jit/BaseFunctions2.cpp
 
 src/cpp/types/libsciast_la-inspector.lo: src/cpp/types/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-inspector.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Tpo -c -o src/cpp/types/libsciast_la-inspector.lo `test -f 'src/cpp/types/inspector.cpp' || echo '$(srcdir)/'`src/cpp/types/inspector.cpp

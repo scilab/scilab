@@ -82,9 +82,6 @@
 #include <ieeefp.h>
 #endif
 
-#if defined(_MSC_VER)
-#define M_PI 3.14159265358979323846
-#else
 #if defined(HAVE_VALUES_H)
 #include <values.h>
 #else
@@ -92,10 +89,13 @@
 #include <limits.h>
 #endif
 #endif
-#endif
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
+#endif
+
+#ifndef M_LN2
+#define M_LN2 0.69314718055994530942    /* log_e 2 */
 #endif
 
 #ifndef HAVE_EXP10

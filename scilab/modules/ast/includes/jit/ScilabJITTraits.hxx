@@ -63,63 +63,7 @@ inline static llvm::Type * getPtrAsIntTy(llvm::Module & module, llvm::LLVMContex
 #endif
 }
 
-inline static llvm::FunctionPassManager initFPM(llvm::Module * module, llvm::ExecutionEngine * engine)
-{
-    llvm::FunctionPassManager FPM(module);
 
-#if LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR == 4
-    FPM.add(new llvm::DataLayout(*engine->getDataLayout()));
-#else
-    FPM.add(new llvm::DataLayoutPass(*engine->getDataLayout()));
-#endif
-
-    // createBasicAliasAnalysisPass - This pass implements the stateless alias
-    // analysis.
-    FPM.add(llvm::createBasicAliasAnalysisPass());
-
-    // Promote allocas to registers.
-    // PromoteMemoryToRegister - This pass is used to promote memory references to
-    // be register references. A simple example of the transformation performed by
-    // this pass is:
-    //
-    //        FROM CODE                           TO CODE
-    //   %X = alloca i32, i32 1                 ret i32 42
-    //   store i32 42, i32 *%X
-    //   %Y = load i32* %X
-    //   ret i32 %Y
-    FPM.add(llvm::createPromoteMemoryToRegisterPass());
-
-    // Do simple "peephole" optimizations and bit-twiddling optzns.
-    // This pass combines things like:
-    //    %Y = add int 1, %X
-    //    %Z = add int 1, %Y
-    // into:
-    //    %Z = add int 2, %X
-    FPM.add(llvm::createInstructionCombiningPass());
-
-    // Reassociate expressions.
-    // Reassociate - This pass reassociates commutative expressions in an order that
-    // is designed to promote better constant propagation, GCSE, LICM, PRE...
-    //
-    // For example:  4 + (x + 5)  ->  x + (4 + 5)
-    FPM.add(llvm::createReassociatePass());
-
-    // Eliminate Common SubExpressions.
-    // GVN - This pass performs global value numbering and redundant load
-    // elimination cotemporaneously.
-    FPM.add(llvm::createGVNPass());
-
-    // Simplify the control flow graph (deleting unreachable blocks, etc).
-    FPM.add(llvm::createCFGSimplificationPass());
-
-    FPM.add(llvm::createDeadInstEliminationPass());
-    FPM.add(llvm::createDeadCodeEliminationPass());
-    FPM.add(llvm::createLoopVectorizePass());
-
-    FPM.doInitialization();
-
-    return FPM;
-}
 
 template<typename>
 inline static llvm::Type * getLLVMTy(llvm::LLVMContext & ctxt = llvm::getGlobalContext());
@@ -391,7 +335,7 @@ inline static void putInContext_M(symbol::Context * ctxt, symbol::Variable * var
 
 static void jit_throw(const char * msg)
 {
-    throw ast::InternalError(msg);
+    throw ast::ScilabError(msg);
 }
 
 inline static bool InitializeLLVM()

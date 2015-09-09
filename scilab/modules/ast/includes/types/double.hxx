@@ -39,7 +39,8 @@ public :
     Double(int _iRows, int _iCols, double **_pdblReal);
     Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
     Double(int _iDims, int* _piDims, bool _bComplex = false, bool _bZComplex = false);
-
+    Double(int _iRows, int _iCols, double * _pdblReal);
+    
     static Double*              Empty();
     static Double*              Identity(int _iRows, int _iCols);
     static Double*              Identity(int _iDims, int* _piDims);
