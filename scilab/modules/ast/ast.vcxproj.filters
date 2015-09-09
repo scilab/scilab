@@ -832,6 +832,9 @@
     <ClInclude Include="includes\analysis\data\LoopAnalyzer.hxx">
       <Filter>Header Files\analysis\data</Filter>
     </ClInclude>
+    <ClInclude Include="includes\exps\tableintselectexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">

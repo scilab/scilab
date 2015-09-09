@@ -386,6 +386,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\exps\seqexp.hxx" />
     <ClInclude Include="includes\exps\simplevar.hxx" />
     <ClInclude Include="includes\exps\stringexp.hxx" />
+    <ClInclude Include="includes\exps\tableintselectexp.hxx" />
     <ClInclude Include="includes\exps\token.hxx" />
     <ClInclude Include="includes\exps\transposeexp.hxx" />
     <ClInclude Include="includes\exps\trycatchexp.hxx" />
