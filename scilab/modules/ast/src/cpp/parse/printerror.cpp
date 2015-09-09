@@ -13,6 +13,8 @@
 #include <fstream>
 #include <string>
 #include "parser_private.hxx"
+#include "configvariable.hxx"
+
 extern "C"
 {
 #include "charEncoding.h"
@@ -20,20 +22,10 @@ extern "C"
 
 void ParserSingleInstance::PrintError(const std::wstring& msg)
 {
-    int i = 0;
-
-    // FIXME : Should work under Windows
-    // Need to have getline !!!
     std::wostringstream ostr;
     char *codeLine = (char *) malloc(4096 * sizeof(char));
-    wchar_t * str;
 
-    /** First print where in the script the error is located */
-    ostr << L"[" << ParserSingleInstance::getProgName() << L"] ";
-
-    /*
-    ** If the error is a the very beginning of a line
-    */
+    //If the error is a the very beginning of a line
     if (yylloc.first_line == yylloc.last_line
             && yylloc.first_column == 1
             && yylloc.last_column == 1)
@@ -41,19 +33,28 @@ void ParserSingleInstance::PrintError(const std::wstring& msg)
         --yylloc.first_line;
     }
 
-    str = to_wide_string(ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine));
-    ostr << str << std::endl;
+    // fill call stack
+    ConfigVariable::fillWhereError(yylloc.first_line);
+
+    /** Print where in the script the error is located */
+    wchar_t* str = to_wide_string(ParserSingleInstance::getCodeLine(yylloc.first_line, &codeLine));
+    ostr << str;
+    // add EOL only if the code line doesn't already contains it.
+    if (wcscmp(str + wcslen(str) - 1, L"\n") != 0)
+    {
+        ostr << std::endl;
+    }
     free(codeLine);
     FREE(str);
 
-    /** Then underline what causes the trouble */
-    ostr << L"[" << ParserSingleInstance::getProgName() << L"] ";
-    for ( i = 1 ; i < yylloc.first_column ; ++i)
+    /** Underline what causes the trouble */
+    int i = 0;
+    for (i = 1 ; i < yylloc.first_column ; ++i)
     {
         ostr << L" ";
     }
     ostr << L"^";
-    for ( i = i + 1 ; i < yylloc.last_column ; ++i)
+    for (i = i + 1 ; i < yylloc.last_column ; ++i)
     {
         ostr << L"~";
     }
@@ -63,17 +64,9 @@ void ParserSingleInstance::PrintError(const std::wstring& msg)
     }
     ostr << std::endl;
 
-    /** Finally display the Lexer / Parser message */
-    ostr << L"[" << ParserSingleInstance::getProgName() << L"] ";
-    ostr << ParserSingleInstance::getFileName() << L" : " <<
-         yylloc.first_line << L"." << yylloc.first_column <<
-         L" - " <<
-         yylloc.last_line << L"." << yylloc.last_column <<
-         L" : " << msg << std::endl;
-
-    //yylloc.first_line -= yylloc.last_line;
-    //yylloc.last_line = yylloc.first_line;
-    //yylloc.last_column = yylloc.first_column;
+    /** Display Parser message  */
+    std::wstring wstrError(_W("Error: "));
+    ostr << wstrError << msg << std::endl;
 
     ParserSingleInstance::appendErrorMessage(ostr.str());
 }

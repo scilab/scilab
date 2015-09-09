@@ -1266,6 +1266,8 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
 
         ostr << std::endl;
     }
+
+    ostr << std::endl;
 }
 
 void ConfigVariable::fillWhereError(int _iErrorLine)
