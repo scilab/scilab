@@ -15,7 +15,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "diag.hxx"
 #include "int.hxx"
 
@@ -48,16 +47,14 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
@@ -119,9 +116,8 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
             break;
         default :
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 

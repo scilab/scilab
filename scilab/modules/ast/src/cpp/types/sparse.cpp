@@ -31,6 +31,7 @@
 #include "types_multiplication.hxx"
 #include "configvariable.hxx"
 #include "scilabWrite.hxx"
+#include "exp.hxx"
 
 #include "sparseOp.hxx"
 
@@ -1791,6 +1792,49 @@ Sparse* Sparse::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST
     }
     return pSp;
 }
+
+bool Sparse::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+    }
+    else
+    {
+        InternalType * _out = extract(&in);
+        if (!_out)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ast::InternalError(os.str(), 999, e.getLocation());
+        }
+        out.push_back(_out);
+    }
+
+    return true;
+}
+
+
+bool Sparse::isInvokable() const
+{
+    return true;
+}
+
+bool Sparse::hasInvokeOption() const
+{
+    return false;
+}
+
+int Sparse::getInvokeNbIn()
+{
+    return -1;
+}
+
+int Sparse::getInvokeNbOut()
+{
+    return 1;
+}
+
 /*
 coords are Scilab 1-based
 extract std::make_pair(coords, asVector), rowIter
@@ -2152,7 +2196,7 @@ template<typename S> struct GetReal: std::unary_function<typename S::InnerIterat
     }
 };
 template<> struct GetReal< Eigen::SparseMatrix<std::complex<double >, Eigen::RowMajor > >
-    : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
+        : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
 {
     double operator()( Sparse::CplxSparse_t::InnerIterator it) const
     {
@@ -3673,6 +3717,47 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
     cleanIndexesArguments(_pArgs, &pArg);
 
     return pOut;
+}
+
+bool SparseBool::invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+    }
+    else
+    {
+        InternalType * _out = extract(&in);
+        if (!_out)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ast::InternalError(os.str(), 999, e.getLocation());
+        }
+        out.push_back(_out);
+    }
+
+    return true;
+}
+
+bool SparseBool::isInvokable() const
+{
+    return true;
+}
+
+bool SparseBool::hasInvokeOption() const
+{
+    return false;
+}
+
+int SparseBool::getInvokeNbIn()
+{
+    return -1;
+}
+
+int SparseBool::getInvokeNbOut()
+{
+    return 1;
 }
 
 std::size_t SparseBool::nbTrue() const

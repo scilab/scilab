@@ -17,35 +17,36 @@
 
 namespace analysis
 {
-    bool TypeofAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+bool TypeofAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+{
+    if (lhs != 1)
     {
-        if (lhs != 1)
-        {
-            return false;
-        }
-
-        const ast::exps_t args = e.getArgs();
-        if (args.size() != 1)
-        {
-            return false;
-        }
-	
-        ast::Exp * arg = args.back();
-        arg->accept(visitor);
-	const std::wstring & str = visitor.getResult().getType().getScilabString();
-
-        if (!str.empty())
-        {
-	    TIType type(visitor.getGVN(), TIType::STRING);
-	    Result & res = e.getDecorator().setResult(type);
-            res.getConstant() = new types::String(str.c_str());
-            e.getDecorator().setCall(L"typeof");
-            visitor.setResult(res);
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        return false;
     }
+
+    const ast::exps_t args = e.getArgs();
+    if (args.size() != 1)
+    {
+        return false;
+    }
+
+    ast::Exp * arg = args.back();
+    arg->accept(visitor);
+    const std::wstring & str = visitor.getResult().getType().getScilabString();
+
+    if (!str.empty())
+    {
+        TIType type(visitor.getGVN(), TIType::STRING);
+        Result & res = e.getDecorator().setResult(type);
+        res.getConstant() = new types::String(str.c_str());
+        e.getDecorator().setCall(L"typeof");
+        visitor.setResult(res);
+        return true;
+    }
+    else
+    {
+        visitor.getDM().releaseTmp(visitor.getResult().getTempId());
+        return false;
+    }
+}
 }

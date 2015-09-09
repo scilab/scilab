@@ -16,7 +16,7 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -71,9 +71,8 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_svd";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
     pDbl = in[0]->clone()->getAs<types::Double>();
 
@@ -193,7 +192,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             }
         }
         break;
-        // default: // makes at the beginning of this gateway
+            // default: // makes at the beginning of this gateway
     }
 
     if (iRet != 0)

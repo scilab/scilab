@@ -10,96 +10,324 @@
  *
  */
 
+#include "exp.hxx" // for invoke
+#include "callexp.hxx"
+
 #include "internal.hxx"
 
 namespace types
 {
-template<> InternalType::ScilabId InternalType::getScilabId<char>()
+void InternalType::whoAmI(void)
 {
-    return InternalType::IdScalarInt8;
+    std::cout << "types::Internal";
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned char>()
+
+bool InternalType::isAssignable(void)
 {
-    return InternalType::IdScalarUInt8;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<short>()
+
+bool InternalType::hasToString()
 {
-    return InternalType::IdScalarInt16;
+    return true;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned short>()
+
+std::wstring InternalType::toStringInLine()
 {
-    return InternalType::IdScalarUInt16;
+    return getTypeStr();
 }
-template<> InternalType::ScilabId InternalType::getScilabId<int>()
+
+ast::Exp * InternalType::getExp(const Location& /*loc*/)
 {
-    return InternalType::IdScalarInt32;
+    return nullptr;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned int>()
+
+bool InternalType::isTrue()
 {
-    return InternalType::IdScalarUInt32;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<long long>()
+
+bool InternalType::neg(InternalType *& /*out*/)
 {
-    return InternalType::IdScalarInt64;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned long long>()
+
+bool InternalType::transpose(InternalType *& /*out*/)
 {
-    return InternalType::IdScalarUInt64;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<bool>()
+
+bool InternalType::adjoint(InternalType *& out)
 {
-    return InternalType::IdScalarBool;
+    return transpose(out);
 }
-template<> InternalType::ScilabId InternalType::getScilabId<double>()
+
+bool InternalType::isFieldExtractionOverloadable() const
 {
-    return InternalType::IdScalarDouble;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<std::complex<double>>()
+
+bool InternalType::invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
 {
-    return InternalType::IdScalarDoubleComplex;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<char *>()
+
+bool InternalType::isInvokable() const
 {
-    return InternalType::IdInt8;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned char *>()
+
+bool InternalType::hasInvokeOption() const
 {
-    return InternalType::IdUInt8;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<short *>()
+
+int InternalType::getInvokeNbIn()
 {
-    return InternalType::IdInt16;
+    return -1;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned short *>()
+
+int InternalType::getInvokeNbOut()
 {
-    return InternalType::IdUInt16;
+    return -1;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<int *>()
+
+bool InternalType::operator==(const InternalType& it)
 {
-    return InternalType::IdInt32;
+    return (getType() == (const_cast<InternalType *>(&it))->getType());
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned int *>()
+
+bool InternalType::operator!=(const InternalType& it)
 {
-    return InternalType::IdUInt32;
+    return !(*this == it);
 }
-template<> InternalType::ScilabId InternalType::getScilabId<long long *>()
+
+bool InternalType::isGenericType(void)
 {
-    return InternalType::IdInt64;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<unsigned long long *>()
+
+bool InternalType::isArrayOf(void)
 {
-    return InternalType::IdUInt64;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<bool *>()
+
+bool InternalType::isString(void)
 {
-    return InternalType::IdBool;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<double *>()
+
+bool InternalType::isDouble(void)
 {
-    return InternalType::IdDouble;
+    return false;
 }
-template<> InternalType::ScilabId InternalType::getScilabId<std::complex<double> *>()
+
+bool InternalType::isSparse(void)
 {
-    return InternalType::IdDoubleComplex;
+    return false;
+}
+
+bool InternalType::isSparseBool(void)
+{
+    return false;
+}
+
+bool InternalType::isFloat(void)
+{
+    return false;
+}
+
+bool InternalType::isInt(void)
+{
+    return false;
+}
+bool InternalType::isInt8(void)
+{
+    return false;
+}
+
+bool InternalType::isUInt8(void)
+{
+    return false;
+}
+
+bool InternalType::isInt16(void)
+{
+    return false;
+}
+
+bool InternalType::isUInt16(void)
+{
+    return false;
+}
+
+bool InternalType::isInt32(void)
+{
+    return false;
+}
+
+bool InternalType::isUInt32(void)
+{
+    return false;
+}
+
+bool InternalType::isInt64(void)
+{
+    return false;
+}
+
+bool InternalType::isUInt64(void)
+{
+    return false;
+}
+
+bool InternalType::isBool(void)
+{
+    return false;
+}
+
+bool InternalType::isPoly(void)
+{
+    return false;
+}
+
+bool InternalType::isSinglePoly(void)
+{
+    return false;
+}
+
+bool InternalType::isCallable(void)
+{
+    return false;
+}
+
+bool InternalType::isFunction(void)
+{
+    return false;
+}
+
+bool InternalType::isMacro(void)
+{
+    return false;
+}
+
+bool InternalType::isMacroFile(void)
+{
+    return false;
+}
+
+bool InternalType::isContainer(void)
+{
+    return false;
+}
+
+bool InternalType::isList(void)
+{
+    return false;
+}
+
+bool InternalType::isStruct(void)
+{
+    return false;
+}
+
+bool InternalType::isSingleStruct(void)
+{
+    return false;
+}
+
+bool InternalType::isCell(void)
+{
+    return false;
+}
+
+bool InternalType::isTList(void)
+{
+    return false;
+}
+
+bool InternalType::isMList(void)
+{
+    return false;
+}
+
+bool InternalType::isImplicitList(void)
+{
+    return false;
+}
+
+bool InternalType::isColon(void)
+{
+    return false;
+}
+
+bool InternalType::isDollar(void)
+{
+    return false;
+}
+
+bool InternalType::isFile(void)
+{
+    return false;
+}
+
+bool InternalType::isHandle(void)
+{
+    return false;
+}
+
+bool InternalType::isSingleHandle(void)
+{
+    return false;
+}
+
+bool InternalType::isThreadId(void)
+{
+    return false;
+}
+
+bool InternalType::isListOperation(void)
+{
+    return false;
+}
+
+bool InternalType::isListDelete(void)
+{
+    return false;
+}
+
+bool InternalType::isListInsert(void)
+{
+    return false;
+}
+
+bool InternalType::isListUndefined(void)
+{
+    return false;
+}
+
+bool InternalType::isPointer(void)
+{
+    return false;
+}
+
+bool InternalType::isLibrary(void)
+{
+    return false;
+}
+
+bool InternalType::isUserType(void)
+{
+    return false;
+}
+
+void InternalType::clearPrintState()
+{
+    m_bPrintFromStart = true;
+    m_iSavePrintState = 0;
+    m_iRows1PrintState = 0;
+    m_iCols1PrintState = 0;
+    m_iRows2PrintState = 0;
+    m_iCols2PrintState = 0;
 }
 }

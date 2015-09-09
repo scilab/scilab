@@ -15,7 +15,6 @@
 #include "cell.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -31,8 +30,7 @@ types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, typ
     {
         if (in[i]->isDouble() == false)
         {
-            ast::ExecVisitor exec;
-            return Overload::call(L"%_cell", in, _iRetCount, out, &exec);
+            return Overload::call(L"%_cell", in, _iRetCount, out);
         }
     }
 

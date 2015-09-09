@@ -15,7 +15,6 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "gsort.hxx"
 #include "context.hxx"
 
@@ -86,17 +85,15 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     // get data and perform operation for each types::
     if (in[0]->isGenericType() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::GenericType* pGTOut = in[0]->getAs<types::GenericType>();
 
     if (pGTOut->getDims() > 2)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%hm_gsort", in, _iRetCount, out, &exec);
+        return Overload::call(L"%hm_gsort", in, _iRetCount, out);
     }
 
     if (_iRetCount == 2)
@@ -118,8 +115,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                 delete pDblInd;
             }
 
-            ast::ExecVisitor exec;
-            return Overload::call(L"%_gsort", in, _iRetCount, out, &exec);
+            return Overload::call(L"%_gsort", in, _iRetCount, out);
         }
 
         types::Double* pDblOut = gsort(pDblIn, pDblInd, wstrWay, wstrProcess);
@@ -132,9 +128,8 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
             delete pDblInd;
         }
 
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
     else if (in[0]->isString()) // string
     {
@@ -192,9 +187,8 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     /***** set result *****/

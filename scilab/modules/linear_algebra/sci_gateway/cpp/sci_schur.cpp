@@ -16,9 +16,9 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "configvariable.hxx"
 #include "callable.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -54,9 +54,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     // *** check type of input args and get it. ***
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_schur";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDbl[0] = in[0]->getAs<types::Double>();
@@ -130,9 +129,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 
@@ -140,9 +138,8 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false && in[2]->isCallable() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[2]->getShortTypeStr() + L"_schur";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         if (in[2]->isString())

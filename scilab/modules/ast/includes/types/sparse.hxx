@@ -203,49 +203,12 @@ struct EXTERN_AST Sparse : GenericType
 
      */
     InternalType* extract(typed_list* _pArgs);
-
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
-    {
-        if (in.size() == 0)
-        {
-            out.push_back(this);
-        }
-        else
-        {
-            InternalType * _out = extract(&in);
-            if (!_out)
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::InternalError(os.str(), 999, e.getLocation());
-            }
-            out.push_back(_out);
-        }
-
-        return true;
-    }
-
-    virtual bool isInvokable() const
-    {
-        return true;
-    }
-
-    virtual bool hasInvokeOption() const
-    {
-        return false;
-    }
-
-    virtual int getInvokeNbIn()
-    {
-        return -1;
-    }
-
-    virtual int getInvokeNbOut()
-    {
-        return 1;
-    }
-
     Sparse* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e);
+    virtual bool isInvokable() const;
+    virtual bool hasInvokeOption() const;
+    virtual int getInvokeNbIn();
+    virtual int getInvokeNbOut();
 
     /*
        change the sign (inplace).
@@ -577,46 +540,11 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
     InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
-    {
-        if (in.size() == 0)
-        {
-            out.push_back(this);
-        }
-        else
-        {
-            InternalType * _out = extract(&in);
-            if (!_out)
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::InternalError(os.str(), 999, e.getLocation());
-            }
-            out.push_back(_out);
-        }
-
-        return true;
-    }
-
-    virtual bool isInvokable() const
-    {
-        return true;
-    }
-
-    virtual bool hasInvokeOption() const
-    {
-        return false;
-    }
-
-    virtual int getInvokeNbIn()
-    {
-        return -1;
-    }
-
-    virtual int getInvokeNbOut()
-    {
-        return 1;
-    }
+    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e);
+    virtual bool isInvokable() const;
+    virtual bool hasInvokeOption() const;
+    virtual int getInvokeNbIn();
+    virtual int getInvokeNbOut();
 
     bool transpose(InternalType *& out);
 

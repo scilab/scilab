@@ -16,9 +16,7 @@
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "double.hxx"
-#include "context.hxx"
 
 extern "C"
 {
@@ -47,15 +45,14 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
             case 1:
             {
                 //call overload
-                ast::ExecVisitor exec;
-                return Overload::generateNameAndCall(L"ones", in, _iRetCount, out, &exec);
+                return Overload::generateNameAndCall(L"ones", in, _iRetCount, out);
             }
         }
 
         return types::Function::Error;
     }
 
-    pOut = new Double(iDims, piDims);
+    pOut = new types::Double(iDims, piDims);
     if (alloc)
     {
         delete[] piDims;
@@ -64,6 +61,6 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
     pOut->setOnes();
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

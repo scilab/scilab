@@ -599,11 +599,9 @@ InternalType* callOverload(const ast::Exp& e, std::wstring _strType, typed_list*
     // For insertion in TList, call normal insertion if overload doesn't exits
     if ((_dest  && _dest->isTList() && pFunc == NULL) == false || _source->isListDelete())
     {
-        ast::ExecVisitor exec;
-
         try
         {
-            ret = Overload::call(function_name, in, 1, out, &exec);
+            ret = Overload::call(function_name, in, 1, out);
         }
         catch (const ast::InternalError& error)
         {

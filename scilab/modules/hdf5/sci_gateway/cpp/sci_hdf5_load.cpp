@@ -16,8 +16,8 @@
 #include "string.hxx"
 #include "list.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "loadlib.hxx"
+#include "context.hxx"
 
 extern "C"
 {
@@ -32,22 +32,22 @@ extern "C"
 
 static const std::string fname("load");
 
-Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& out)
+types::Function::ReturnValue sci_hdf5_load(types::typed_list &in, int _iRetCount, types::typed_list& out)
 {
     int rhs = static_cast<int>(in.size());
     if (rhs < 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): at least %d expected.\n"), fname.data(), 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    if (in[0]->getId() != InternalType::IdScalarString)
+    if (in[0]->getId() != types::InternalType::IdScalarString)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname.data(), 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    wchar_t* wcfilename = expandPathVariableW(in[0]->getAs<String>()->get()[0]);
+    wchar_t* wcfilename = expandPathVariableW(in[0]->getAs<types::String>()->get()[0]);
     char* cfilename = wide_string_to_UTF8(wcfilename);
     std::string filename(cfilename);
     std::wstring wfilename(wcfilename);
@@ -57,7 +57,7 @@ Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& 
     if (FileExistW(wfilename.data()) == FALSE)
     {
         Scierror(999, _("%s: Unable to open file: '%s'.\n"), fname.data(), filename.data());
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //library ?
@@ -65,29 +65,29 @@ Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& 
     {
         //lib file
         int err = 0;
-        Library* lib = loadlib(in[0]->getAs<String>()->get()[0], &err);
+        types::Library* lib = loadlib(in[0]->getAs<types::String>()->get()[0], &err);
 
         switch (err)
         {
             case 1:
                 Scierror(999, _("%s: %s is not a valid lib file.\n"), fname.data(), filename.data());
-                return Function::Error;
+                return types::Function::Error;
             case 2:
                 Scierror(999, "%s: %s", fname.data(), _("Redefining permanent variable.\n"));
-                return Function::Error;
+                return types::Function::Error;
             default:
                 break;
         }
 
         lib->killMe();
-        return Function::OK;
+        return types::Function::OK;
     }
 
     int iFile = openHDF5File(filename.data(), 0);
     if (iFile < 0)
     {
         Scierror(999, _("%s: Unable to open file: %s\n"), fname.data(), filename.data());
-        return Function::Error;
+        return types::Function::Error;
     }
 
     std::wstring wstFuncName;
@@ -119,31 +119,29 @@ Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& 
         default :
         {
             Scierror(999, _("%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"), fname.data(), SOD_FILE_VERSION, version);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
+    types::typed_list out1;
+    types::Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out1);
 
-    ast::ExecVisitor exec;
-    typed_list out1;
-    Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out1, &exec);
-
-    if (ret != Function::OK)
+    if (ret != types::Function::OK)
     {
         Scierror(999, _("%s: Unable to load '%s'\n"), fname.data(), filename.data());
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (needReprocess)
     {
         //call %sodload
-        String* vars = out1[0]->getAs<String>();
+        types::String* vars = out1[0]->getAs<types::String>();
         vars->IncreaseRef();
         int size = vars->getSize();
-        typed_list in2(1, vars);
-        typed_list out2;
+        types::typed_list in2(1, vars);
+        types::typed_list out2;
         std::wstring wstFuncName = L"%_sodload";
-        ret = Overload::call(wstFuncName, in2, size, out2, &exec);
+        ret = Overload::call(wstFuncName, in2, size, out2);
         vars->DecreaseRef();
 
         symbol::Context* ctx = symbol::Context::getInstance();

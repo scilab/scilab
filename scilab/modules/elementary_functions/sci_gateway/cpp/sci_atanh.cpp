@@ -10,11 +10,13 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "configvariable.hxx"
 
 extern "C"
@@ -113,16 +115,15 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < iSize; i++)
             {
-                pOutR[i] = atanh(pInR[i]);
+                pOutR[i] = std::atanh(pInR[i]);
             }
         }
         out.push_back(pDblOut);
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_atanh";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

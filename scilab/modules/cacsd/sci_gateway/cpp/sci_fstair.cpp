@@ -13,7 +13,7 @@
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -55,9 +55,8 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isDouble() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_fstair";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
 
         pDblOut[i] = in[i]->clone()->getAs<types::Double>();

@@ -23,8 +23,7 @@
 #include "double.hxx"
 #include "configgraphicvariable.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-#include "internal.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -51,8 +50,7 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        ast::ExecVisitor exec;
-        return Overload::call(L"%_xget", in, _iRetCount, out, &exec);
+        return Overload::call(L"%_xget", in, _iRetCount, out);
     }
 
     if (in.size() > 2)

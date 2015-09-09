@@ -11,13 +11,16 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <algorithm>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "int.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -47,16 +50,14 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_triu";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_triu";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in.size() == 2)
@@ -129,7 +130,7 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
 
         for (int i = 0 ; i < iCols ; i++)
         {
-            int iSize = min(max(i + 1 - iOffset, 0), iRows);
+            int iSize = std::min(std::max(i + 1 - iOffset, 0), iRows);
             for (int j = 0; j < iSize; j++)
             {
                 int iPos = i * iRows + j;
@@ -141,9 +142,8 @@ types::Function::ReturnValue sci_triu(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_triu";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;
@@ -168,7 +168,7 @@ template<class T> types::InternalType* triu_const(T *_pL, int iOffset)
         memset(pOutImg, 0x00, iRows * iCols * sizeof(typename T::type));
         for (int i = 0; i < iCols; i++)
         {
-            int iSize = min(max(i + 1 - iOffset, 0), iRows);
+            int iSize = std::min(std::max(i + 1 - iOffset, 0), iRows);
             memcpy(&pOutReal[i * iRows], &pInReal[i * iRows], iSize * sizeof(typename T::type));
             memcpy(&pOutImg[i * iRows], &pInImg[i * iRows], iSize * sizeof(typename T::type));
         }
@@ -177,7 +177,7 @@ template<class T> types::InternalType* triu_const(T *_pL, int iOffset)
     {
         for (int i = 0; i < iCols; i++)
         {
-            int iSize = min(max(i + 1 - iOffset, 0), iRows);
+            int iSize = std::min(std::max(i + 1 - iOffset, 0), iRows);
             memcpy(&pOutReal[i * iRows], &pInReal[i * iRows], iSize * sizeof(typename T::type));
         }
     }

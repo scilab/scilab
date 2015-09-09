@@ -23,6 +23,8 @@ extern "C"
 #include "callable.hxx"
 #include "overload.hxx"
 #include "context.hxx"
+#include "opexp.hxx"
+#include "execvisitor.hxx"
 
 std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
 {
@@ -112,7 +114,16 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
         // add line and function name in where
         ConfigVariable::where_begin(0, 0, pCall);
 
-        types::Function::ReturnValue ret = pCall->call(in, opt, _iRetCount, out, _execMe);
+        types::Function::ReturnValue ret;
+        if (_execMe)
+        {
+            ret = pCall->call(in, opt, _iRetCount, out, _execMe);
+        }
+        else
+        {
+            ast::ExecVisitor exec;
+            ret = pCall->call(in, opt, _iRetCount, out, &exec);
+        }
 
         // remove function name in where
         ConfigVariable::where_end();
@@ -138,7 +149,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
     }
 }
 
-std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
+std::wstring Overload::getNameFromOper(const int _oper)
 {
     switch (_oper)
     {

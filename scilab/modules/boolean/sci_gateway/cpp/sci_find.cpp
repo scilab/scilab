@@ -18,7 +18,6 @@
 #include "bool.hxx"
 #include "sparse.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -54,9 +53,8 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isGenericType() == false)
     {
         //call overload for other types
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::GenericType* pGT = in[0]->getAs<types::GenericType>();
@@ -126,16 +124,15 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         delete[] piIndex;
 
         //call overload for other types
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_find";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (iValues == 0)
     {
         for (int i = 0 ; i < _iRetCount ; i++)
         {
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
     }
     else
@@ -192,7 +189,7 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
 
         for (int i = 0 ; i < _iRetCount ; i++)
         {
-            types::Double* pOut = new Double(1, iValues);
+            types::Double* pOut = new types::Double(1, iValues);
             for (int j = 0 ; j < iValues ; j++)
             {
                 pOut->set(j, piCoord[j][i] + 1);

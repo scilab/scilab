@@ -15,7 +15,6 @@
 #include "double.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -50,9 +49,8 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isPoly() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sfact";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pPolyIn = in[0]->getAs<types::Polynom>();

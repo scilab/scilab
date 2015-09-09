@@ -18,7 +18,7 @@
 #include "function.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+
 #include <iterator>
 
 extern "C"
@@ -29,7 +29,7 @@ extern "C"
 #include "os_wtoi.h"
 }
 
-int new_sprintf(const std::string& funcname, const wchar_t* _pwstInput, typed_list &in, int* _piOutputRows, int* _piNewLine, wchar_t*** output);
+int new_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine, wchar_t*** output);
 
 /*--------------------------------------------------------------------------*/
 types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -50,9 +50,8 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_mprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 

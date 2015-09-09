@@ -133,7 +133,6 @@ public:
 
     inline types::InternalType::ScilabId get_scilab_id() const
     {
-        //return types::InternalType::getScilabId<T>();
         return types::InternalType::IdScalarDouble;
     }
 
@@ -218,7 +217,6 @@ public:
 
     inline types::InternalType::ScilabId get_scilab_id() const
     {
-        //return types::InternalType::getScilabId<T*>();
         return types::InternalType::IdDouble;
     }
 

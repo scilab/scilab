@@ -10,7 +10,8 @@
 *
 */
 #include <list>
-#include <map>
+#include <unordered_map>
+
 #include <hdf5.h>
 #include "hdf5_gw.hxx"
 #include "context.hxx"
@@ -31,7 +32,7 @@
 #include "context.hxx"
 #include "handle_properties.hxx"
 #include "deserializervisitor.hxx"
-#include "execvisitor.hxx"
+#include "overload.hxx"
 
 std::unordered_map<int, Links::PathList> Links::paths;
 
@@ -1091,10 +1092,9 @@ static types::InternalType* import_usertype(int dataset)
 
     types::typed_list out;
     //overload
-    ast::ExecVisitor exec;
     // rational case
     std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_load";
-    types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
+    types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
 
     //clean temporary variables
     delete it; //included type and data

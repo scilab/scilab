@@ -18,38 +18,39 @@
 
 namespace analysis
 {
-    bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+{
+    if (lhs > 2)
     {
-        if (lhs > 2)
-        {
-            return false;
-        }
+        return false;
+    }
 
-        const ast::exps_t args = e.getArgs();
-        enum Kind
-        {
-            ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH
-        } kind;
-        const std::size_t size = args.size();
-        if (size == 0 || size >= 3)
-        {
-            return false;
-        }
+    const ast::exps_t args = e.getArgs();
+    enum Kind
+    {
+        ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH
+    } kind;
+    const std::size_t size = args.size();
+    if (size == 0 || size >= 3)
+    {
+        return false;
+    }
 
-        ast::Exp * first = *args.begin();
-        if (!first)
-        {
-            return false;
-        }
-        first->accept(visitor);
-        Result & res = visitor.getResult();
-        if (!res.getType().ismatrix())
-        {
-            return false;
-        }
+    ast::Exp * first = *args.begin();
+    if (!first)
+    {
+        return false;
+    }
+    first->accept(visitor);
+    Result & res = visitor.getResult();
+    if (!res.getType().ismatrix())
+    {
+        visitor.getDM().releaseTmp(res.getTempId());
+        return false;
+    }
 
-        switch (size)
-        {
+    switch (size)
+    {
         case 1:
             if (lhs == 1)
             {
@@ -82,6 +83,7 @@ namespace analysis
                     }
                     else
                     {
+                        visitor.getDM().releaseTmp(res.getTempId());
                         return false;
                     }
                 }
@@ -103,24 +105,27 @@ namespace analysis
                     }
                     else
                     {
+                        visitor.getDM().releaseTmp(res.getTempId());
                         return false;
                     }
                 }
             }
             else
             {
+                visitor.getDM().releaseTmp(res.getTempId());
                 return false;
             }
             break;
         }
         default:
+            visitor.getDM().releaseTmp(res.getTempId());
             return false;
-        }
+    }
 
-        TIType type(visitor.getGVN(), TIType::DOUBLE);
+    TIType type(visitor.getGVN(), TIType::DOUBLE);
 
-        switch (kind)
-        {
+    switch (kind)
+    {
         case ROWS:
         {
             SymbolicDimension & rows = res.getType().rows;
@@ -173,16 +178,16 @@ namespace analysis
             visitor.setResult(_res);
             break;
         }
-	case BOTH:
+        case BOTH:
         {
-	    TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
+            TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
             Result & _res = e.getDecorator().setResult(_type);
             e.getDecorator().setCall(new SizeCall(SizeCall::BOTH));
             visitor.setResult(_res);
             break;
         }
-        }
-
-        return true;
     }
+
+    return true;
+}
 }

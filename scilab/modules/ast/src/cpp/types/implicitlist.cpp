@@ -19,6 +19,7 @@
 #include "scilabWrite.hxx"
 #include "type_traits.hxx"
 #include "numericconstants.hxx"
+#include "doubleexp.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"

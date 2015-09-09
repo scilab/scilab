@@ -73,6 +73,7 @@ src/cpp/system_env/threadmanagement.cpp \
 src/cpp/system_env/numericconstants.cpp \
 src/cpp/system_env/numericconstants_interface.cpp \
 src/cpp/types/addfunction.cpp \
+src/cpp/types/internal.cpp \
 src/cpp/types/arrayof.cpp \
 src/cpp/types/bool.cpp \
 src/cpp/types/callable.cpp \
@@ -154,6 +155,13 @@ src/cpp/analysis/VisitOpExp.cpp \
 src/cpp/analysis/VisitSelectExp.cpp \
 src/cpp/analysis/VisitAssignExp.cpp \
 src/cpp/analysis/VisitIfExp.cpp \
+src/cpp/analysis/VisitForExp.cpp \
+src/cpp/analysis/VisitCallExp.cpp \
+src/cpp/analysis/VisitSeqExp.cpp \
+src/cpp/analysis/VisitTypeExps.cpp \
+src/cpp/analysis/VisitSimpleVar.cpp \
+src/cpp/analysis/VisitDollarVar.cpp \
+src/cpp/analysis/VisitVarDec.cpp \
 src/cpp/analysis/XBlock.cpp \
 src/cpp/jit/JITVisitor.cpp \
 src/cpp/jit/JITValues.cpp \

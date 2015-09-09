@@ -10,13 +10,15 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
+
 #include "polynomials_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -104,9 +106,8 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         }
         else
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_pppdiv";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 
@@ -177,7 +178,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         for (int i = iSizeCoeff - 1; i >= 0; i--)
         {
             iSizeCoeff--;
-            if (std::abs(pdblCoeffR[i]) + std::abs(pdblCoeffI[i]))
+            if (std::fabs(pdblCoeffR[i]) + std::fabs(pdblCoeffI[i]))
             {
                 break;
             }
@@ -186,7 +187,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         for (int i = iSizeRest - 1; i >= 0; i--)
         {
             iSizeRest--;
-            if (std::abs(pdblRestR[i]) + std::abs(pdblRestI[i]))
+            if (std::fabs(pdblRestR[i]) + std::fabs(pdblRestI[i]))
             {
                 break;
             }

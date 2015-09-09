@@ -16,7 +16,6 @@
 #include "sparse.hxx"
 #include "pointer.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -85,9 +84,8 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isSparse() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lufact";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pSpIn = in[0]->getAs<types::Sparse>();

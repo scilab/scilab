@@ -14,8 +14,6 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
 
 extern "C"
 {
@@ -44,18 +42,16 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_frexp";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::Double* pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%hm_frexp";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (pDblIn->isComplex())

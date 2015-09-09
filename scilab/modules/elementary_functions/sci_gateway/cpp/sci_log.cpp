@@ -14,8 +14,7 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -51,9 +50,8 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_log";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::Double* pDblIn = in[0]->getAs<types::Double>();

@@ -26,7 +26,6 @@
 #include "graphichandle.hxx"
 #include "user.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "handle_properties.hxx"
 #include "context.hxx"
 #include "serializervisitor.hxx"
@@ -907,13 +906,12 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
 
         types::typed_list out;
         //overload
-        ast::ExecVisitor exec;
         // rational case
         std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
 
         try
         {
-            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
+            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out);
 
             if (ret != types::Callable::OK)
             {

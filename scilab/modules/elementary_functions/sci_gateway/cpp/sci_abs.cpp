@@ -11,12 +11,14 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <cmath>
+
 #include "elem_func_gw.hxx"
 #include "api_scilab.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -31,8 +33,8 @@ T* absInt(T* _pIn)
     T* pIntOut = new T(_pIn->getDims(), _pIn->getDimsArray());
     int size = _pIn->getSize();
 
-    auto* pI = _pIn->get();
-    auto* pO = pIntOut->get();
+    typename T::type* pI = _pIn->get();
+    typename T::type* pO = pIntOut->get();
     for (int i = 0; i < size; i++)
     {
         pO[i] = std::abs(pI[i]);
@@ -61,7 +63,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
 
     switch (in[0]->getType())
     {
-        case InternalType::ScilabDouble:
+        case types::InternalType::ScilabDouble:
         {
             api_scilab::Double* pDblIn = api_scilab::getAsDouble(in[0]);
             api_scilab::Double* pDblOut = new api_scilab::Double(pDblIn->getDims(), pDblIn->getDimsArray());
@@ -98,7 +100,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
                     }
                     else
                     {
-                        pdblOut[i] = std::abs(pdblInR[i]);
+                        pdblOut[i] = std::fabs(pdblInR[i]);
                     }
                 }
             }
@@ -108,7 +110,7 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             delete pDblIn;
             break;
         }
-        case InternalType::ScilabPolynom:
+        case types::InternalType::ScilabPolynom:
         {
             types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
             types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
@@ -152,39 +154,38 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             out.push_back(pPolyOut);
             break;
         }
-        case InternalType::ScilabInt8:
+        case types::InternalType::ScilabInt8:
         {
             out.push_back(absInt(in[0]->getAs<types::Int8>()));
             break;
         }
-        case InternalType::ScilabInt16:
+        case types::InternalType::ScilabInt16:
         {
             out.push_back(absInt(in[0]->getAs<types::Int16>()));
             break;
         }
-        case InternalType::ScilabInt32:
+        case types::InternalType::ScilabInt32:
         {
             out.push_back(absInt(in[0]->getAs<types::Int32>()));
             break;
         }
-        case InternalType::ScilabInt64:
+        case types::InternalType::ScilabInt64:
         {
             out.push_back(absInt(in[0]->getAs<types::Int64>()));
             break;
         }
-        case InternalType::ScilabUInt8:
-        case InternalType::ScilabUInt16:
-        case InternalType::ScilabUInt32:
-        case InternalType::ScilabUInt64:
+        case types::InternalType::ScilabUInt8:
+        case types::InternalType::ScilabUInt16:
+        case types::InternalType::ScilabUInt32:
+        case types::InternalType::ScilabUInt64:
         {
             out.push_back(in[0]);
             break;
         }
         default:
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_abs";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 

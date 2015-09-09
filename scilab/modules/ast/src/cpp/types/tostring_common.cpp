@@ -10,10 +10,10 @@
 *
 */
 
-#include <wchar.h>
-#include <stdio.h>
+#include <cmath>
+#include <algorithm>
 #include <iostream>
-#include <math.h>
+
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
 
@@ -26,8 +26,6 @@ extern "C"
 #define BLANK_SIZE 1
 #define POINT_SIZE 1
 #define EXPOSANT_SIZE 2         //exposant symbol + exposant sign
-
-using namespace std;
 
 //template <typename T>
 //void GetIntFormat(T _TVal, int *_piWidth)
@@ -55,7 +53,7 @@ using namespace std;
 // }
 //}
 
-void addSign(wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
+void addSign(std::wostringstream * _postr, double _dblVal, bool _bPrintPlusSign, bool _bPaddSign)
 {
     if (_bPrintPlusSign == true)
     {
@@ -79,7 +77,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
 {
     double dblDec = 0;
     double dblEnt = 0;
-    double dblAbs = fabs(_dblVal);
+    double dblAbs = std::fabs(_dblVal);
     int iNbDigit = 0;
     int iNbDec = 0;
     int iBlankSize = _pDF->bPrintBlank ? BLANK_SIZE : 0;
@@ -96,13 +94,13 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         return;
     }
     //get integer part and fractionnal part
-    dblDec = modf(dblAbs, &dblEnt);
+    dblDec = std::modf(dblAbs, &dblEnt);
 
     //compute len of entire part
     if (dblEnt == 0)
     {
         //[-1, 1]
-        iNbDigit = (int)fabs(floor(log10(dblAbs)));
+        iNbDigit = (int)std::fabs(std::floor(std::log10(dblAbs)));
 
         if (iNbDigit >= (iPrecNeeded - 2) || _pDF->bExp)
         {
@@ -264,18 +262,18 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
         double dblEnt = 0;
         double dblTemp = 0;
 
-        dblDec = modf(dblAbs, &dblEnt);
+        dblDec = std::modf(dblAbs, &dblEnt);
         if (dblEnt == 0)
         {
-            dblTemp = floor(log10(dblDec));
+            dblTemp = std::floor(std::log10(dblDec));
         }
         else
         {
-            dblTemp = log10(dblEnt);
+            dblTemp = std::log10(dblEnt);
         }
 
-        dblDec = dblAbs / pow(10., (double)(int)dblTemp);
-        dblDec = modf(dblDec, &dblEnt) * pow(10., _pDF->iPrec);
+        dblDec = dblAbs / std::pow(10., (double)(int)dblTemp);
+        dblDec = std::modf(dblDec, &dblEnt) * pow(10., _pDF->iPrec);
 
         if (_pDF->bPrintPoint)
         {
@@ -286,10 +284,10 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             os_swprintf(pwstFormat, 32, L"%ls%%d%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
         }
 
-        if ((int)round(dblDec) != (int)dblDec)
+        if ((int)std::round(dblDec) != (int)dblDec)
         {
-            double d1 = (int)round(dblDec);
-            d1 = fmod(d1, pow(10., _pDF->iPrec));
+            double d1 = (int)std::round(dblDec);
+            d1 = fmod(d1, std::pow(10., _pDF->iPrec));
             if (d1 < dblDec)
             {
                 //inc integer part
@@ -324,7 +322,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 }
 
 /*
-void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
+void addDoubleValue(std::wostringstream *_postr, double _dblVal, int _iWidth, int _iPrec, bool bPrintPlusSign, bool bPrintOne, bool bPaddSign)
 {
     addSign(_postr, _dblVal, bPrintPlusSign, bPaddSign);
     configureStream(_postr, _iWidth, _iPrec, ' ');
@@ -335,9 +333,9 @@ void addDoubleValue(wostringstream *_postr, double _dblVal, int _iWidth, int _iP
     }
 }
 */
-void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
+void addDoubleComplexValue(std::wostringstream * _postr, double _dblR, double _dblI, int _iTotalWidth, DoubleFormat * _pDFR, DoubleFormat * _pDFI)
 {
-    wostringstream ostemp;
+    std::wostringstream ostemp;
 
     /*
      * if R && !C -> R
@@ -372,7 +370,7 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             df.bPrintPlusSign = false;
             df.bPrintOne = false;
             addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << left << SYMBOL_I;
+            ostemp << std::left << SYMBOL_I;
             if (_dblI == 1)
             {
                 addSpaces(&ostemp, 1);
@@ -414,7 +412,7 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             df.bPrintOne = false;
 
             addDoubleValue(&ostemp, _dblI, &df);
-            ostemp << left << SYMBOL_I;
+            ostemp << std::left << SYMBOL_I;
             if (_dblI == 1)
             {
                 addSpaces(&ostemp, 2);
@@ -423,10 +421,10 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
     }
 
     configureStream(_postr, _iTotalWidth - 3, 0, ' ');
-    *_postr << left << ostemp.str();
+    *_postr << std::left << ostemp.str();
 }
 
-void addSpaces(wostringstream * _postr, int _iSpace)
+void addSpaces(std::wostringstream * _postr, int _iSpace)
 {
     for (int i = 0; i < _iSpace; i++)
     {
@@ -434,9 +432,9 @@ void addSpaces(wostringstream * _postr, int _iSpace)
     }
 }
 
-void configureStream(wostringstream * _postr, int _iWidth, int _iPrec, char _cFill)
+void configureStream(std::wostringstream * _postr, int _iWidth, int _iPrec, char _cFill)
 {
-    _postr->setf(ios::showpoint);
+    _postr->setf(std::ios::showpoint);
     _postr->width(_iWidth);
     _postr->precision(_iPrec);
     _postr->fill(_cFill);

@@ -11,13 +11,15 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <algorithm>
+
 #include "elem_func_gw.hxx"
 #include "types.hxx"
 #include "string.hxx"
 #include "container.hxx"
 #include "getmode.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "context.hxx"
 
 extern "C"
@@ -42,9 +44,8 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
         // Dedicated case for lists.
         case InternalType::ScilabMList:
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
-            Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            Overload::call(wstFuncName, in, _iRetCount, out);
             break;
         }
         case InternalType::ScilabTList:
@@ -54,8 +55,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
             if (pIT)
             {
-                ast::ExecVisitor exec;
-                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+                return Overload::call(wstFuncName, in, _iRetCount, out);
             }
         }
         case InternalType::ScilabList:
@@ -75,9 +75,8 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
         {
             if (in[0]->isGenericType() == false)
             {
-                ast::ExecVisitor exec;
                 std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
-                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+                return Overload::call(wstFuncName, in, _iRetCount, out);
             }
             int iMode = -1;
 

@@ -10,19 +10,19 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
-
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
 #include "tan.h"
-    int C2F(wtan)(double*, double*, double*, double*);
 }
 
 /*
@@ -49,13 +49,12 @@ types::Function::ReturnValue sci_tan(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tan";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
-    pDblOut = trigo(pDblIn, tan, tan);
+    pDblOut = trigo(pDblIn, std::tan, std::tan);
     out.push_back(pDblOut);
     return types::Function::OK;
 }

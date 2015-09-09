@@ -25,6 +25,8 @@ Scilab Bug Fixes
 
 * Bug #13872 fixed - Non regression test added for unique function (the indices returned were wrong)
 
+* Bug #13890 fixed - getd did not return loaded symbols in previous scope.
+
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
 
 * Bug #13944 fixed - The menu "Toolboxes" was missing.

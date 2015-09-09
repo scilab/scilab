@@ -30,6 +30,7 @@
 #include "callable.hxx"
 #include "overload.hxx"
 #include "configvariable.hxx"
+#include "exp.hxx"
 
 #include "utilities.hxx"
 #include "Controller.hxx"

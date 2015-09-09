@@ -16,6 +16,7 @@
 #include "singlepoly.hxx"
 #include "singlestruct.hxx"
 #include "type_traits.hxx"
+#include "exp.hxx"
 
 extern "C"
 {
@@ -1613,6 +1614,52 @@ bool ArrayOf<T>::neg(InternalType *& out)
     type_traits::neg<T, int>(this->m_iSize, this->m_pRealData, static_cast<Bool *>(out)->get());
 
     return true;
+}
+
+template<typename T>
+bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+{
+    if (in.size() == 0)
+    {
+        out.push_back(this);
+    }
+    else
+    {
+        InternalType * _out = extract(&in);
+        if (!_out)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ast::InternalError(os.str(), 999, e.getLocation());
+        }
+        out.push_back(_out);
+    }
+
+    return true;
+}
+
+template<typename T>
+bool ArrayOf<T>::isInvokable() const
+{
+    return true;
+}
+
+template<typename T>
+bool ArrayOf<T>::hasInvokeOption() const
+{
+    return false;
+}
+
+template<typename T>
+int ArrayOf<T>::getInvokeNbIn()
+{
+    return -1;
+}
+
+template<typename T>
+int ArrayOf<T>::getInvokeNbOut()
+{
+    return 1;
 }
 
 

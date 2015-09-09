@@ -13,7 +13,6 @@
 #ifndef __COS_H__
 #define __COS_H__
 
-#include <math.h>
 #include "dynlib_elementary_functions.h"
 
 ELEMENTARY_FUNCTIONS_IMPEXP double dcoss(double _dblVal);

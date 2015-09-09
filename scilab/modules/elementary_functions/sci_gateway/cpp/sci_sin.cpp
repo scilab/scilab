@@ -10,11 +10,13 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <complex>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "sparse.hxx"
 
 extern "C"
@@ -50,7 +52,7 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
     if (in[0]->isDouble())
     {
         pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = trigo(pDblIn, sin, sin);
+        pDblOut = trigo(pDblIn, (double (*)(double))std::sin, (std::complex<double> (*)(const std::complex<double> &))std::sin);
         out.push_back(pDblOut);
     }
     else if (in[0]->isSparse())
@@ -96,9 +98,8 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sin";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;

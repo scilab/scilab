@@ -136,20 +136,6 @@ public:
         return cv.getExec();
     }
 
-    // Only for debug use
-    inline void print_info()
-    {
-        stop_chrono();
-
-        //std::wcout << getGVN() << std::endl << std::endl; function z=foo(x,y);z=argn(2);endfunction;jit("x=123;y=456;t=foo(x,y)")
-        std::wcerr << L"Analysis: " << *static_cast<Chrono *>(this) << std::endl;
-        //std::wcout << temp << std::endl;
-
-        std::wcerr << dm << std::endl;
-
-        std::wcerr << std::endl;
-    }
-
     inline void finalize()
     {
         //dm.finalize(nullptr);
@@ -223,12 +209,11 @@ public:
         return dm.getInfo(sym);
     }
 
-    inline logging::Logger & getLogger()
-    {
-        return logger;
-    }
-
     bool analyzeIndices(TIType & type, ast::CallExp & ce);
+
+    // Only for debug use
+    void print_info();
+    logging::Logger & getLogger();
 
 private:
 
@@ -353,7 +338,6 @@ private:
         return resT;
     }
 
-
     bool operGVNValues(ast::OpExp & oe);
     bool operSymbolicRange(ast::OpExp & oe);
 
@@ -361,8 +345,6 @@ private:
     // A + (B + 1) => B+1 is a temp, A is not and we can reuse the temp to put the result of A + (B+1)
     int getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR);
     void visitArguments(const std::wstring & name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, const ast::exps_t & args);
-
-
 
     void visit(ast::SelectExp & e);
     void visit(ast::ListExp & e);
@@ -372,6 +354,16 @@ private:
     void visit(ast::TransposeExp & e);
     void visit(ast::AssignExp & e);
     void visit(ast::IfExp & e);
+    void visit(ast::ForExp & e);
+    void visit(ast::CallExp & e);
+    void visit(ast::CallExp & e, const unsigned int lhs);
+    void visit(ast::SeqExp & e);
+    void visit(ast::DoubleExp & e);
+    void visit(ast::BoolExp & e);
+    void visit(ast::StringExp & e);
+    void visit(ast::SimpleVar & e);
+    void visit(ast::DollarVar & e);
+    void visit(ast::VarDec & e);
 
     void visit(ast::MatrixLineExp & e)
     {
@@ -386,26 +378,6 @@ private:
     void visit(ast::NilExp & e) { }
     void visit(ast::ColonVar & e) { }
 
-    void visit(ast::SimpleVar & e)
-    {
-        logger.log(L"SimpleVar", e.getSymbol().getName(), e.getLocation());
-        symbol::Symbol & sym = e.getSymbol();
-        Info & info = dm.read(sym, &e);
-        Result & res = e.getDecorator().setResult(info.type);
-        res.setConstant(info.getConstant());
-        res.setRange(info.getRange());
-        res.setMaxIndex(info.getMaxIndex());
-        setResult(res);
-    }
-
-    void visit(ast::DollarVar & e)
-    {
-        logger.log(L"DollarVar", e.getLocation());
-        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::POLYNOMIAL, 1, 1));
-        res.getConstant() = getGVN().getValue(symbol::Symbol(L"$"));
-        setResult(res);
-    }
-
     void visit(ast::ArrayListVar & e)
     {
         logger.log(L"ArrayListVar", e.getLocation());
@@ -414,106 +386,6 @@ private:
         {
             var->accept(*this);
         }
-    }
-
-    void visit(ast::DoubleExp & e)
-    {
-        logger.log(L"DoubleExp", e.getLocation());
-        if (!e.getConstant())
-        {
-            e.accept(cv.getExec());
-            cv.getExec().setResult(nullptr);
-        }
-        types::Double * pDbl = static_cast<types::Double *>(e.getConstant());
-        if (pDbl->isComplex())
-        {
-            Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::COMPLEX, pDbl->getRows(), pDbl->getCols()));
-            res.getConstant() = e.getConstant();
-            setResult(res);
-        }
-        else
-        {
-            Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::DOUBLE, pDbl->getRows(), pDbl->getCols()));
-            res.getConstant() = e.getConstant();
-            setResult(res);
-        }
-    }
-
-    void visit(ast::BoolExp & e)
-    {
-        logger.log(L"BoolExp", e.getLocation());
-        if (!e.getConstant())
-        {
-            e.accept(cv.getExec());
-            cv.getExec().setResult(nullptr);
-        }
-        types::Bool * pBool = static_cast<types::Bool *>(e.getConstant());
-        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::BOOLEAN, pBool->getRows(), pBool->getCols()));
-        res.getConstant() = e.getConstant();
-        setResult(res);
-    }
-
-    void visit(ast::StringExp & e)
-    {
-        logger.log(L"StringExp", e.getLocation());
-        if (!e.getConstant())
-        {
-            e.accept(cv.getExec());
-            cv.getExec().setResult(nullptr);
-        }
-        types::String * pStr = static_cast<types::String *>(e.getConstant());
-        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::STRING, pStr->getRows(), pStr->getCols()));
-        res.getConstant() = e.getConstant();
-        setResult(res);
-    }
-
-    void visit(ast::CallExp & e, const unsigned int lhs)
-    {
-        // TODO: e.getName() is not always a simple var: foo(a)(b)
-        if (e.getName().isSimpleVar())
-        {
-            const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
-            const symbol::Symbol & sym = var.getSymbol();
-            const std::wstring & name = sym.getName();
-            Info & info = getSymInfo(sym); // that put the sym in the current block !
-            Result & res = e.getName().getDecorator().setResult(info.type);
-            res.setConstant(info.getConstant());
-            res.setRange(info.getRange());
-            res.setMaxIndex(info.getMaxIndex());
-
-            logger.log(L"CallExp", e.getLocation(), name);
-
-            if (info.type.type == TIType::MACRO || info.type.type == TIType::MACROFILE || info.type.type == TIType::FUNCTION)
-            {
-                if (name == L"error")
-                {
-                    getDM().getCurrent()->setReturn(true);
-                }
-
-                // Special analysis cases: size, zeros, ones, ...
-                MapSymCall::iterator it = symscall.find(name);
-                if (it != symscall.end())
-                {
-                    if (getCM().checkGlobalConstant(sym) && it->second.get()->analyze(*this, lhs, e))
-                    {
-                        pushCall(e.getDecorator().getCall());
-                        return;
-                    }
-                }
-
-                visitArguments(name, lhs, info.type, e, e.getArgs());
-                pushCall(e.getDecorator().getCall());
-            }
-            else
-            {
-                analyzeIndices(info.type, e);
-            }
-        }
-    }
-
-    void visit(ast::CallExp & e)
-    {
-        visit(e, 1);
     }
 
     void visit(ast::CellCallExp & e)
@@ -535,36 +407,6 @@ private:
         e.getTest().accept(*this);
         dm.releaseTmp(getResult().getTempId());
         e.getBody().accept(*this);
-        loops.pop();
-    }
-
-    void visit(ast::ForExp & e)
-    {
-        logger.log(L"ForExp", e.getLocation());
-        loops.push(&e);
-
-        dm.addBlock(Block::LOOP, &e);
-        e.getVardec().accept(*this);
-        dm.addBlock(Block::NORMAL, &e.getBody());
-        e.getBody().accept(*this);
-
-        if (dm.requiresAnotherTrip())
-        {
-            std::wcerr << "Invalid forexp: types or refcount are not the same before and after the loop" << std::endl;
-
-            dm.finalizeBlock();
-            dm.addBlock(Block::NORMAL, &e.getBody());
-            e.getBody().accept(*this);
-
-            if (dm.requiresAnotherTrip())
-            {
-                std::wcerr << "Invalid forexp: types or refcount are not the same before and after the loop" << std::endl;
-            }
-        }
-
-        dm.finalizeBlock();
-        dm.finalizeBlock();
-
         loops.pop();
     }
 
@@ -618,48 +460,6 @@ private:
         visit(static_cast<ast::MatrixExp &>(e));
     }
 
-    void visit(ast::SeqExp & e)
-    {
-        logger.log(L"SeqExp", e.getLocation());
-        ast::exps_t::const_iterator i = e.getExps().begin();
-        ast::exps_t::const_iterator end = e.getExps().end();
-        for (; i != end; ++i)
-        {
-            ast::Exp * exp = *i;
-            if (exp->isCallExp())
-            {
-                visit(*static_cast<ast::CallExp *>(exp), /* LHS */ 0);
-            }
-            else if (exp->isBreakExp() || exp->isContinueExp())
-            {
-                exp->accept(*this);
-                if (loops.empty())
-                {
-                    // We are not in a loop so this break is useless.
-                    exp->replace(new ast::CommentExp(exp->getLocation(), new std::wstring(L"useless break or continue")));
-                }
-                else
-                {
-                    // We are in a loop: all the code after the break in this SeqExp is useless
-                    break;
-                }
-            }
-            else
-            {
-                exp->accept(*this);
-            }
-        }
-
-        if (i != end)
-        {
-            ++i;
-            if (i != end)
-            {
-                e.getExps().erase(i, end);
-            }
-        }
-    }
-
     void visit(ast::ArrayListExp & e)
     {
         logger.log(L"ArrayListExp", e.getLocation());
@@ -674,22 +474,6 @@ private:
     {
         logger.log(L"AssignListExp", e.getLocation());
         visit(static_cast<ast::ArrayListExp &>(e));
-    }
-
-    void visit(ast::VarDec & e)
-    {
-        // VarDec is only used in For loop for iterator declaration
-        logger.log(L"VarDec", e.getLocation());
-        const symbol::Symbol & sym = e.getSymbol();
-        if (e.getInit().isListExp())
-        {
-            ast::ListExp & le = static_cast<ast::ListExp &>(e.getInit());
-            //e.setListInfo(ForList64());
-            le.accept(*this);
-            Result & res = getResult();
-            Info & info = dm.define(sym, res.getType(), res.isAnInt(), &e);
-            info.setRange(res.getRange());
-        }
     }
 
     void visit(ast::FunctionDec & e)

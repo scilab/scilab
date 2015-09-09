@@ -17,7 +17,6 @@
 #include "sparse.hxx"
 #include "pointer.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -104,16 +103,14 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lusolve";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if ((in[1]->isSparse() == false) && (in[1]->isDouble() == false))
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lusolve";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in[1]->isSparse() )
@@ -136,7 +133,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
         }
 
         double *dbl  = pDblIn->getReal();
-        types::Double *pDblOut = new Double(m2, n2, pDblIn->isComplex());
+        types::Double *pDblOut = new types::Double(m2, n2, pDblIn->isComplex());
         double *oReal = pDblOut->get();
 
         if (pDblIn->isComplex())

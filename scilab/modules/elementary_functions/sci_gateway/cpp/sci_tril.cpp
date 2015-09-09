@@ -10,13 +10,16 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <algorithm>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "int.hxx"
+#include "polynom.hxx"
 
 extern "C"
 {
@@ -45,16 +48,14 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     // get offset
@@ -125,7 +126,7 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
         {
             for (int i = 0; i < iCols; i++)
             {
-                int iSize = min(max(i - iOffset, 0), iRows);
+                int iSize = std::min(std::max(i - iOffset, 0), iRows);
                 for (int j = 0; j < iSize; j++)
                 {
                     types::SinglePoly* pSP = new types::SinglePoly();
@@ -139,7 +140,7 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
         {
             for (int i = 0; i < iCols; i++)
             {
-                int iSize = min(max(i - iOffset, 0), iRows);
+                int iSize = std::min(std::max(i - iOffset, 0), iRows);
                 for (int j = 0; j < iSize; j++)
                 {
                     types::SinglePoly* pSP = new types::SinglePoly();
@@ -153,9 +154,8 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     return types::Function::OK;
@@ -174,7 +174,7 @@ template<class T> types::InternalType* tril_const(T* _pL, int iOffset)
         typename T::type* pOutImg = pOut->getImg();
         for (int i = 0; i < iCols; i++)
         {
-            int iSize = min(max(i - iOffset, 0), iRows);
+            int iSize = std::min(std::max(i - iOffset, 0), iRows);
             memset(&pOutReal[i * iRows], 0x00, iSize * sizeof(typename T::type));
             memset(&pOutImg[i * iRows], 0x00, iSize * sizeof(typename T::type));
         }
@@ -183,7 +183,7 @@ template<class T> types::InternalType* tril_const(T* _pL, int iOffset)
     {
         for (int i = 0; i < iCols; i++)
         {
-            int iSize = min(max(i - iOffset, 0), iRows);
+            int iSize = std::min(std::max(i - iOffset, 0), iRows);
             memset(&pOutReal[i * iRows], 0x00, iSize * sizeof(typename T::type));
         }
     }

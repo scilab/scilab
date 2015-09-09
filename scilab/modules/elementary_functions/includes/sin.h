@@ -13,7 +13,6 @@
 #ifndef __SIN_H__
 #define __SIN_H__
 
-#include <math.h>
 #include "dynlib_elementary_functions.h"
 
 ELEMENTARY_FUNCTIONS_IMPEXP double dsins(double _dblVal);

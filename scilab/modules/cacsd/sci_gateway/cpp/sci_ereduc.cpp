@@ -13,7 +13,7 @@
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -47,9 +47,8 @@ types::Function::ReturnValue sci_ereduc(types::typed_list &in, int _iRetCount, t
     // get X
     if (in[0]->isDouble() == false)
     {
-        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_ereduc";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::Double* pDblX = in[0]->clone()->getAs<types::Double>();

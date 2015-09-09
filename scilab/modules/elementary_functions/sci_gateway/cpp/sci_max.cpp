@@ -10,12 +10,14 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <algorithm>
+
 #include "elem_func_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "max.hxx"
 #include "min.hxx"
 #include "int.hxx"
@@ -97,8 +99,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         wchar_t* wcsMinMax = to_wide_string(fname);
         std::wstring wstFuncName = L"%" + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
         FREE(wcsMinMax);
-        ast::ExecVisitor exec;
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
     types::GenericType* pGT = NULL;
@@ -195,7 +196,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         types::Double* pDbl = NULL;
         switch (inputs[i]->getType())
         {
-            case InternalType::ScilabDouble:
+            case types::InternalType::ScilabDouble:
             {
                 pDbl = inputs[i]->getAs<types::Double>();
                 if (pDbl->isComplex())
@@ -208,56 +209,56 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
                 cloned[i] = false;
                 break;
             }
-            case InternalType::ScilabInt8:
+            case types::InternalType::ScilabInt8:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int8>());
-                iLargerInput = max(iLargerInput, 8);
+                iLargerInput = std::max(iLargerInput, 8);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabInt16:
+            case types::InternalType::ScilabInt16:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int16>());
-                iLargerInput = max(iLargerInput, 16);
+                iLargerInput = std::max(iLargerInput, 16);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabInt32:
+            case types::InternalType::ScilabInt32:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int32>());
-                iLargerInput = max(iLargerInput, 32);
+                iLargerInput = std::max(iLargerInput, 32);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabInt64:
+            case types::InternalType::ScilabInt64:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::Int64>());
-                iLargerInput = max(iLargerInput, 64);
+                iLargerInput = std::max(iLargerInput, 64);
                 iSigned = 1;
                 break;
             }
-            case InternalType::ScilabUInt8:
+            case types::InternalType::ScilabUInt8:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt8>());
-                iLargerInput = max(iLargerInput, 8);
+                iLargerInput = std::max(iLargerInput, 8);
                 break;
             }
-            case InternalType::ScilabUInt16:
+            case types::InternalType::ScilabUInt16:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt16>());
-                iLargerInput = max(iLargerInput, 16);
+                iLargerInput = std::max(iLargerInput, 16);
                 break;
             }
-            case InternalType::ScilabUInt32:
+            case types::InternalType::ScilabUInt32:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt32>());
-                iLargerInput = max(iLargerInput, 32);
+                iLargerInput = std::max(iLargerInput, 32);
                 break;
             }
-            case InternalType::ScilabUInt64:
+            case types::InternalType::ScilabUInt64:
             {
                 pDbl = getAsDouble(inputs[i]->getAs<types::UInt64>());
-                iLargerInput = max(iLargerInput, 64);
+                iLargerInput = std::max(iLargerInput, 64);
                 break;
             }
             default:

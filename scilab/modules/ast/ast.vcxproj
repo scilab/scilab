@@ -625,11 +625,18 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\analysis\TypeofAnalyzer.cpp" />
     <ClCompile Include="src\cpp\analysis\VarExp.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitAssignExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitCallExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitDollarVar.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitForExp.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitIfExp.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitListExp.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitMatrixExp.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitOpExp.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitSelectExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitSeqExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitSimpleVar.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitTypeExps.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitVarDec.cpp" />
     <ClCompile Include="src\cpp\analysis\XBlock.cpp" />
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\expHistory.cpp" />
@@ -696,6 +703,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\types\implicitlist.cpp" />
     <ClCompile Include="src\cpp\types\inspector.cpp" />
     <ClCompile Include="src\cpp\types\int.cpp" />
+    <ClCompile Include="src\cpp\types\internal.cpp" />
     <ClCompile Include="src\cpp\types\library.cpp" />
     <ClCompile Include="src\cpp\types\list.cpp" />
     <ClCompile Include="src\cpp\types\listdelete.cpp" />

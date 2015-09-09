@@ -10,8 +10,6 @@
  *
  */
 
-#include <stdlib.h>
-
 #include "configvariable.hxx"
 #include "string.hxx"
 #include "context.hxx"

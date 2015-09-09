@@ -20,7 +20,6 @@
 #include "string.hxx"
 #include "scilab_sprintf.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -88,9 +87,8 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_mfprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            return Overload::call(wstFuncName, in, _iRetCount, out);
         }
     }
 

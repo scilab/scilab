@@ -10,8 +10,7 @@
  *
  */
 
-#include <stdlib.h>
-
+#include <algorithm>
 #include "configvariable.hxx"
 extern "C"
 {
