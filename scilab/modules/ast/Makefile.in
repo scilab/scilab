@@ -281,7 +281,14 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitOpExp.cpp \
 	src/cpp/analysis/VisitSelectExp.cpp \
 	src/cpp/analysis/VisitAssignExp.cpp \
-	src/cpp/analysis/VisitIfExp.cpp src/cpp/analysis/XBlock.cpp \
+	src/cpp/analysis/VisitIfExp.cpp \
+	src/cpp/analysis/VisitForExp.cpp \
+	src/cpp/analysis/VisitCallExp.cpp \
+	src/cpp/analysis/VisitSeqExp.cpp \
+	src/cpp/analysis/VisitTypeExps.cpp \
+	src/cpp/analysis/VisitSimpleVar.cpp \
+	src/cpp/analysis/VisitDollarVar.cpp \
+	src/cpp/analysis/VisitVarDec.cpp src/cpp/analysis/XBlock.cpp \
 	src/cpp/analysis/check_____dotpower____.cpp \
 	src/cpp/analysis/check_rand.cpp \
 	src/cpp/analysis/check_____ge____.cpp \
@@ -500,6 +507,13 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/analysis/libsciast_la-VisitSelectExp.lo \
 	src/cpp/analysis/libsciast_la-VisitAssignExp.lo \
 	src/cpp/analysis/libsciast_la-VisitIfExp.lo \
+	src/cpp/analysis/libsciast_la-VisitForExp.lo \
+	src/cpp/analysis/libsciast_la-VisitCallExp.lo \
+	src/cpp/analysis/libsciast_la-VisitSeqExp.lo \
+	src/cpp/analysis/libsciast_la-VisitTypeExps.lo \
+	src/cpp/analysis/libsciast_la-VisitSimpleVar.lo \
+	src/cpp/analysis/libsciast_la-VisitDollarVar.lo \
+	src/cpp/analysis/libsciast_la-VisitVarDec.lo \
 	src/cpp/analysis/libsciast_la-XBlock.lo \
 	src/cpp/analysis/libsciast_la-check_____dotpower____.lo \
 	src/cpp/analysis/libsciast_la-check_rand.lo \
@@ -1068,7 +1082,14 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitOpExp.cpp \
 	src/cpp/analysis/VisitSelectExp.cpp \
 	src/cpp/analysis/VisitAssignExp.cpp \
-	src/cpp/analysis/VisitIfExp.cpp src/cpp/analysis/XBlock.cpp \
+	src/cpp/analysis/VisitIfExp.cpp \
+	src/cpp/analysis/VisitForExp.cpp \
+	src/cpp/analysis/VisitCallExp.cpp \
+	src/cpp/analysis/VisitSeqExp.cpp \
+	src/cpp/analysis/VisitTypeExps.cpp \
+	src/cpp/analysis/VisitSimpleVar.cpp \
+	src/cpp/analysis/VisitDollarVar.cpp \
+	src/cpp/analysis/VisitVarDec.cpp src/cpp/analysis/XBlock.cpp \
 	src/cpp/analysis/check_____dotpower____.cpp \
 	src/cpp/analysis/check_rand.cpp \
 	src/cpp/analysis/check_____ge____.cpp \
@@ -1974,6 +1995,27 @@ src/cpp/analysis/libsciast_la-VisitAssignExp.lo:  \
 src/cpp/analysis/libsciast_la-VisitIfExp.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitForExp.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitCallExp.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitSeqExp.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitTypeExps.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitSimpleVar.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitDollarVar.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitVarDec.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-XBlock.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
@@ -2302,11 +2344,18 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-TypeofAnalyzer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VarExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitAssignExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitCallExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitDollarVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitForExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitIfExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitListExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitMatrixExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitOpExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSelectExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSeqExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSimpleVar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitTypeExps.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitVarDec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-XBlock.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____add____.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____and____.Plo@am__quote@
@@ -3508,6 +3557,55 @@ src/cpp/analysis/libsciast_la-VisitIfExp.lo: src/cpp/analysis/VisitIfExp.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitIfExp.cpp' object='src/cpp/analysis/libsciast_la-VisitIfExp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitIfExp.lo `test -f 'src/cpp/analysis/VisitIfExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitIfExp.cpp
+
+src/cpp/analysis/libsciast_la-VisitForExp.lo: src/cpp/analysis/VisitForExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitForExp.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitForExp.Tpo -c -o src/cpp/analysis/libsciast_la-VisitForExp.lo `test -f 'src/cpp/analysis/VisitForExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitForExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitForExp.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitForExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitForExp.cpp' object='src/cpp/analysis/libsciast_la-VisitForExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitForExp.lo `test -f 'src/cpp/analysis/VisitForExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitForExp.cpp
+
+src/cpp/analysis/libsciast_la-VisitCallExp.lo: src/cpp/analysis/VisitCallExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitCallExp.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitCallExp.Tpo -c -o src/cpp/analysis/libsciast_la-VisitCallExp.lo `test -f 'src/cpp/analysis/VisitCallExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitCallExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitCallExp.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitCallExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitCallExp.cpp' object='src/cpp/analysis/libsciast_la-VisitCallExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitCallExp.lo `test -f 'src/cpp/analysis/VisitCallExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitCallExp.cpp
+
+src/cpp/analysis/libsciast_la-VisitSeqExp.lo: src/cpp/analysis/VisitSeqExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitSeqExp.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSeqExp.Tpo -c -o src/cpp/analysis/libsciast_la-VisitSeqExp.lo `test -f 'src/cpp/analysis/VisitSeqExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitSeqExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSeqExp.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSeqExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitSeqExp.cpp' object='src/cpp/analysis/libsciast_la-VisitSeqExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitSeqExp.lo `test -f 'src/cpp/analysis/VisitSeqExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitSeqExp.cpp
+
+src/cpp/analysis/libsciast_la-VisitTypeExps.lo: src/cpp/analysis/VisitTypeExps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitTypeExps.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitTypeExps.Tpo -c -o src/cpp/analysis/libsciast_la-VisitTypeExps.lo `test -f 'src/cpp/analysis/VisitTypeExps.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitTypeExps.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitTypeExps.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitTypeExps.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitTypeExps.cpp' object='src/cpp/analysis/libsciast_la-VisitTypeExps.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitTypeExps.lo `test -f 'src/cpp/analysis/VisitTypeExps.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitTypeExps.cpp
+
+src/cpp/analysis/libsciast_la-VisitSimpleVar.lo: src/cpp/analysis/VisitSimpleVar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitSimpleVar.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSimpleVar.Tpo -c -o src/cpp/analysis/libsciast_la-VisitSimpleVar.lo `test -f 'src/cpp/analysis/VisitSimpleVar.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitSimpleVar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSimpleVar.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSimpleVar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitSimpleVar.cpp' object='src/cpp/analysis/libsciast_la-VisitSimpleVar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitSimpleVar.lo `test -f 'src/cpp/analysis/VisitSimpleVar.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitSimpleVar.cpp
+
+src/cpp/analysis/libsciast_la-VisitDollarVar.lo: src/cpp/analysis/VisitDollarVar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitDollarVar.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitDollarVar.Tpo -c -o src/cpp/analysis/libsciast_la-VisitDollarVar.lo `test -f 'src/cpp/analysis/VisitDollarVar.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitDollarVar.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitDollarVar.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitDollarVar.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitDollarVar.cpp' object='src/cpp/analysis/libsciast_la-VisitDollarVar.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitDollarVar.lo `test -f 'src/cpp/analysis/VisitDollarVar.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitDollarVar.cpp
+
+src/cpp/analysis/libsciast_la-VisitVarDec.lo: src/cpp/analysis/VisitVarDec.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitVarDec.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitVarDec.Tpo -c -o src/cpp/analysis/libsciast_la-VisitVarDec.lo `test -f 'src/cpp/analysis/VisitVarDec.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitVarDec.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitVarDec.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitVarDec.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitVarDec.cpp' object='src/cpp/analysis/libsciast_la-VisitVarDec.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitVarDec.lo `test -f 'src/cpp/analysis/VisitVarDec.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitVarDec.cpp
 
 src/cpp/analysis/libsciast_la-XBlock.lo: src/cpp/analysis/XBlock.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-XBlock.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-XBlock.Tpo -c -o src/cpp/analysis/libsciast_la-XBlock.lo `test -f 'src/cpp/analysis/XBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/XBlock.cpp

@@ -155,87 +155,94 @@ src/cpp/analysis/VisitOpExp.cpp \
 src/cpp/analysis/VisitSelectExp.cpp \
 src/cpp/analysis/VisitAssignExp.cpp \
 src/cpp/analysis/VisitIfExp.cpp \
+src/cpp/analysis/VisitForExp.cpp \
+src/cpp/analysis/VisitCallExp.cpp \
+src/cpp/analysis/VisitSeqExp.cpp \
+src/cpp/analysis/VisitTypeExps.cpp \
+src/cpp/analysis/VisitSimpleVar.cpp \
+src/cpp/analysis/VisitDollarVar.cpp \
+src/cpp/analysis/VisitVarDec.cpp \
 src/cpp/analysis/XBlock.cpp \
-src/cpp/analysis/check_____dotpower____.cpp\
-src/cpp/analysis/check_rand.cpp\
-src/cpp/analysis/check_____ge____.cpp\
-src/cpp/analysis/check_____or____.cpp\
-src/cpp/analysis/check_____power____.cpp\
-src/cpp/analysis/check_____not____.cpp\
-src/cpp/analysis/check_isreal.cpp\
-src/cpp/analysis/check_____transp____.cpp\
-src/cpp/analysis/check_abs.cpp\
-src/cpp/analysis/check_cosh.cpp\
-src/cpp/analysis/check_typeof.cpp\
-src/cpp/analysis/check_int16.cpp\
-src/cpp/analysis/check_iconvert.cpp\
-src/cpp/analysis/check_gettext.cpp\
-src/cpp/analysis/check_____neq____.cpp\
-src/cpp/analysis/check_____and____.cpp\
-src/cpp/analysis/check_tan.cpp\
-src/cpp/analysis/check_cumsum.cpp\
-src/cpp/analysis/check_size.cpp\
-src/cpp/analysis/check_____andand____.cpp\
-src/cpp/analysis/check_asin.cpp\
-src/cpp/analysis/check_____dottransp____.cpp\
-src/cpp/analysis/check_or.cpp\
-src/cpp/analysis/check_____eq____.cpp\
-src/cpp/analysis/check_log.cpp\
-src/cpp/analysis/check_floor.cpp\
-src/cpp/analysis/check_int.cpp\
-src/cpp/analysis/check_fix.cpp\
-src/cpp/analysis/check_sqrt.cpp\
-src/cpp/analysis/check_uint16.cpp\
-src/cpp/analysis/check_____le____.cpp\
-src/cpp/analysis/check_zeros.cpp\
-src/cpp/analysis/check_ls.cpp\
-src/cpp/analysis/check_max.cpp\
-src/cpp/analysis/check_uint32.cpp\
-src/cpp/analysis/check_int64.cpp\
-src/cpp/analysis/check_prod.cpp\
-src/cpp/analysis/check_type.cpp\
-src/cpp/analysis/check_sin.cpp\
-src/cpp/analysis/check_round.cpp\
-src/cpp/analysis/check_____krontimes____.cpp\
-src/cpp/analysis/check_int32.cpp\
-src/cpp/analysis/check_____gt____.cpp\
-src/cpp/analysis/check_inttype.cpp\
-src/cpp/analysis/check_exp.cpp\
-src/cpp/analysis/check_atan.cpp\
-src/cpp/analysis/check_____dotrdiv____.cpp\
-src/cpp/analysis/check_imag.cpp\
-src/cpp/analysis/check_uint8.cpp\
-src/cpp/analysis/check_ceil.cpp\
-src/cpp/analysis/check_uint64.cpp\
-src/cpp/analysis/check_____lt____.cpp\
-src/cpp/analysis/check_sinm.cpp\
-src/cpp/analysis/check_isinf.cpp\
-src/cpp/analysis/check_____sub____.cpp\
-src/cpp/analysis/check_sinh.cpp\
-src/cpp/analysis/check_toc.cpp\
-src/cpp/analysis/check_isscalar.cpp\
-src/cpp/analysis/check_sign.cpp\
-src/cpp/analysis/check_int8.cpp\
-src/cpp/analysis/check_____rdivide____.cpp\
-src/cpp/analysis/check_matrix.cpp\
-src/cpp/analysis/check_____oror____.cpp\
-src/cpp/analysis/check_cos.cpp\
-src/cpp/analysis/check_and.cpp\
-src/cpp/analysis/check_____unaryminus____.cpp\
-src/cpp/analysis/check_tanh.cpp\
-src/cpp/analysis/check_____add____.cpp\
-src/cpp/analysis/check_isnan.cpp\
-src/cpp/analysis/check_imult.cpp\
-src/cpp/analysis/check_____times____.cpp\
-src/cpp/analysis/check_argn.cpp\
-src/cpp/analysis/check_cumprod.cpp\
-src/cpp/analysis/check_erf.cpp\
-src/cpp/analysis/check_ones.cpp\
-src/cpp/analysis/check_erfc.cpp\
-src/cpp/analysis/check_min.cpp\
-src/cpp/analysis/check_sum.cpp\
-src/cpp/analysis/check_____ldivide____.cpp\
-src/cpp/analysis/check_acos.cpp\
+src/cpp/analysis/check_____dotpower____.cpp \
+src/cpp/analysis/check_rand.cpp \
+src/cpp/analysis/check_____ge____.cpp \
+src/cpp/analysis/check_____or____.cpp \
+src/cpp/analysis/check_____power____.cpp \
+src/cpp/analysis/check_____not____.cpp \
+src/cpp/analysis/check_isreal.cpp \
+src/cpp/analysis/check_____transp____.cpp \
+src/cpp/analysis/check_abs.cpp \
+src/cpp/analysis/check_cosh.cpp \
+src/cpp/analysis/check_typeof.cpp \
+src/cpp/analysis/check_int16.cpp \
+src/cpp/analysis/check_iconvert.cpp \
+src/cpp/analysis/check_gettext.cpp \
+src/cpp/analysis/check_____neq____.cpp \
+src/cpp/analysis/check_____and____.cpp \
+src/cpp/analysis/check_tan.cpp \
+src/cpp/analysis/check_cumsum.cpp \
+src/cpp/analysis/check_size.cpp \
+src/cpp/analysis/check_____andand____.cpp \
+src/cpp/analysis/check_asin.cpp \
+src/cpp/analysis/check_____dottransp____.cpp \
+src/cpp/analysis/check_or.cpp \
+src/cpp/analysis/check_____eq____.cpp \
+src/cpp/analysis/check_log.cpp \
+src/cpp/analysis/check_floor.cpp \
+src/cpp/analysis/check_int.cpp \
+src/cpp/analysis/check_fix.cpp \
+src/cpp/analysis/check_sqrt.cpp \
+src/cpp/analysis/check_uint16.cpp \
+src/cpp/analysis/check_____le____.cpp \
+src/cpp/analysis/check_zeros.cpp \
+src/cpp/analysis/check_ls.cpp \
+src/cpp/analysis/check_max.cpp \
+src/cpp/analysis/check_uint32.cpp \
+src/cpp/analysis/check_int64.cpp \
+src/cpp/analysis/check_prod.cpp \
+src/cpp/analysis/check_type.cpp \
+src/cpp/analysis/check_sin.cpp \
+src/cpp/analysis/check_round.cpp \
+src/cpp/analysis/check_____krontimes____.cpp \
+src/cpp/analysis/check_int32.cpp \
+src/cpp/analysis/check_____gt____.cpp \
+src/cpp/analysis/check_inttype.cpp \
+src/cpp/analysis/check_exp.cpp \
+src/cpp/analysis/check_atan.cpp \
+src/cpp/analysis/check_____dotrdiv____.cpp \
+src/cpp/analysis/check_imag.cpp \
+src/cpp/analysis/check_uint8.cpp \
+src/cpp/analysis/check_ceil.cpp \
+src/cpp/analysis/check_uint64.cpp \
+src/cpp/analysis/check_____lt____.cpp \
+src/cpp/analysis/check_sinm.cpp \
+src/cpp/analysis/check_isinf.cpp \
+src/cpp/analysis/check_____sub____.cpp \
+src/cpp/analysis/check_sinh.cpp \
+src/cpp/analysis/check_toc.cpp \
+src/cpp/analysis/check_isscalar.cpp \
+src/cpp/analysis/check_sign.cpp \
+src/cpp/analysis/check_int8.cpp \
+src/cpp/analysis/check_____rdivide____.cpp \
+src/cpp/analysis/check_matrix.cpp \
+src/cpp/analysis/check_____oror____.cpp \
+src/cpp/analysis/check_cos.cpp \
+src/cpp/analysis/check_and.cpp \
+src/cpp/analysis/check_____unaryminus____.cpp \
+src/cpp/analysis/check_tanh.cpp \
+src/cpp/analysis/check_____add____.cpp \
+src/cpp/analysis/check_isnan.cpp \
+src/cpp/analysis/check_imult.cpp \
+src/cpp/analysis/check_____times____.cpp \
+src/cpp/analysis/check_argn.cpp \
+src/cpp/analysis/check_cumprod.cpp \
+src/cpp/analysis/check_erf.cpp \
+src/cpp/analysis/check_ones.cpp \
+src/cpp/analysis/check_erfc.cpp \
+src/cpp/analysis/check_min.cpp \
+src/cpp/analysis/check_sum.cpp \
+src/cpp/analysis/check_____ldivide____.cpp \
+src/cpp/analysis/check_acos.cpp \
 src/cpp/analysis/check_____dottimes____.cpp
 
 if ENABLE_DEBUG

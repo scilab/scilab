@@ -1503,5 +1503,26 @@
     <ClCompile Include="src\cpp\types\internal.cpp">
       <Filter>Source Files\types</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitCallExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitDollarVar.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitForExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitSeqExp.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitSimpleVar.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitTypeExps.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitVarDec.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
