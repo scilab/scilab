@@ -79,7 +79,7 @@ public final class RecentFileAction extends DefaultAction implements PropertyCha
     @Override
     public void actionPerformed(ActionEvent e) {
         try {
-            Xcos.getInstance().open(recentFile.getCanonicalPath(), null);
+            Xcos.getInstance().open(recentFile.getCanonicalPath(), 0);
         } catch (IOException e1) {
             e1.printStackTrace();
         }

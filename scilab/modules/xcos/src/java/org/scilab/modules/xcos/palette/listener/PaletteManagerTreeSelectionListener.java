@@ -22,6 +22,8 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -88,7 +90,8 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
             nodeView = panel;
         } else if (node instanceof Custom) {
             final Custom desc = (Custom) node;
-            PaletteDiagram diagram = new PaletteDiagram();
+            JavaController controller = new JavaController();
+            PaletteDiagram diagram = new PaletteDiagram(controller.createObject(Kind.DIAGRAM));
             diagram.openDiagramAsPal(desc.getPath().getEvaluatedPath());
             nodeView = diagram.getAsComponent();
         } else {

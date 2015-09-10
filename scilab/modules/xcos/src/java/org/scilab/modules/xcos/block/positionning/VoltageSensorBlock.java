@@ -25,8 +25,8 @@ import com.mxgraph.model.mxICell;
 public class VoltageSensorBlock extends BasicBlock {
 
     /** Default constructor */
-    public VoltageSensorBlock() {
-        super();
+    public VoltageSensorBlock(long uid) {
+        super(uid);
     }
 
     /**

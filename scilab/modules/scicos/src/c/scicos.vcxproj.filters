@@ -337,9 +337,6 @@
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx">
       <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\view_scilab\Adapters.hxx">
-      <Filter>Header Files\MVC\view_scilab</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\view_scilab\BaseAdapter.hxx">
       <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
@@ -378,6 +375,9 @@
     </ClInclude>
     <ClInclude Include="..\..\includes\View.hxx">
       <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\view_scilab\Adapters.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\Model.hxx">
       <Filter>Header Files\MVC</Filter>

@@ -27,8 +27,9 @@
 #include "user.hxx"
 
 #include "Controller.hxx"
-#include "Adapters.hxx"
 #include "ModelAdapter.hxx"
+
+#include "view_scilab/Adapters.hxx"
 #include "DiagramAdapter.hxx"
 #include "ports_management.hxx"
 #include "utilities.hxx"

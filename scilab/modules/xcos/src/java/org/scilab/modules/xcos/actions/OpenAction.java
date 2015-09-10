@@ -130,13 +130,13 @@ public final class OpenAction extends DefaultAction {
 
         final File onlySelected = fc.getSelectedFile();
         if (onlySelected != null) {
-            Xcos.getInstance().open(onlySelected.getCanonicalPath(), null);
+            Xcos.getInstance().open(onlySelected.getCanonicalPath(), 0);
         }
 
         final File[] multiSelected = fc.getSelectedFiles();
         for (File file : multiSelected) {
             if (file != onlySelected) {
-                Xcos.getInstance().open(file.getCanonicalPath(), null);
+                Xcos.getInstance().open(file.getCanonicalPath(), 0);
             }
         }
     }

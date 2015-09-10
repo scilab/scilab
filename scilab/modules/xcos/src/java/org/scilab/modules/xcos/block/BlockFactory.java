@@ -12,6 +12,11 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.io.EventInBlock;
 import org.scilab.modules.xcos.block.io.EventOutBlock;
 import org.scilab.modules.xcos.block.io.ExplicitInBlock;
@@ -43,55 +48,55 @@ public final class BlockFactory {
      */
     public static enum BlockInterFunction {
         /** @see TextBlock */
-        TEXT_f(new TextBlock()),
+        TEXT_f(TextBlock.class),
         /** @see SuperBlock */
-        DSUPER(new SuperBlock(true)),
+        DSUPER(SuperBlock.class),
         /** @see SuperBlock */
-        SUPER_f(new SuperBlock()),
+        SUPER_f(SuperBlock.class),
         /** @see AfficheBlock */
-        AFFICH_m(new AfficheBlock()),
+        AFFICH_m(AfficheBlock.class),
         /** @see AfficheBlock */
-        AFFICH_f(AFFICH_m.getSharedInstance()),
+        AFFICH_f(AfficheBlock.class),
         /** @see ExplicitInBlock */
-        IN_f(new ExplicitInBlock()),
+        IN_f(ExplicitInBlock.class),
         /** @see ExplicitOutBlock */
-        OUT_f(new ExplicitOutBlock()),
+        OUT_f(ExplicitOutBlock.class),
         /** @see ImplicitInBlock */
-        INIMPL_f(new ImplicitInBlock()),
+        INIMPL_f(ImplicitInBlock.class),
         /** @see ImplicitOutBlock */
-        OUTIMPL_f(new ImplicitOutBlock()),
+        OUTIMPL_f(ImplicitOutBlock.class),
         /** @see EventInBlock */
-        CLKINV_f(new EventInBlock()),
+        CLKINV_f(EventInBlock.class),
         /** @see EventOutBlock */
-        CLKOUTV_f(new EventOutBlock()),
+        CLKOUTV_f(EventOutBlock.class),
         /** @see EventOutBlock */
-        CLKOUT_f(CLKOUTV_f.getSharedInstance()),
+        CLKOUT_f(EventOutBlock.class),
         /** @see SplitBlock */
-        SPLIT_f(new SplitBlock()),
+        SPLIT_f(SplitBlock.class),
         /** @see SplitBlock */
-        IMPSPLIT_f(SPLIT_f.getSharedInstance()),
+        IMPSPLIT_f(SplitBlock.class),
         /** @see SplitBlock */
-        CLKSPLIT_f(SPLIT_f.getSharedInstance()),
+        CLKSPLIT_f(SplitBlock.class),
         /** @see GroundBlock */
-        Ground(new GroundBlock()),
+        Ground(GroundBlock.class),
         /** @see VoltageSensorBlock */
-        VoltageSensor(new VoltageSensorBlock()),
+        VoltageSensor(VoltageSensorBlock.class),
         /** @see RoundBlock */
-        SUM_f(new RoundBlock("SUM_f")),
+        SUM_f(RoundBlock.class),
         /** @see RoundBlock */
-        PROD_f(new RoundBlock("PROD_f")),
+        PROD_f(RoundBlock.class),
         /** @see RoundBlock */
-        CLKSOM_f(new RoundBlock("CLKSOM_f")),
+        CLKSOM_f(RoundBlock.class),
         /** @see RoundBlock */
-        CLKSOMV_f(new RoundBlock("CLKSOMV_f")),
+        CLKSOMV_f(RoundBlock.class),
         /** @see BigSom */
-        BIGSOM_f(new BigSom()),
+        BIGSOM_f(BigSom.class),
         /** @see Summation */
-        SUMMATION(new Summation()),
+        SUMMATION(Summation.class),
         /** @see Product */
-        PRODUCT(new Product());
+        PRODUCT(Product.class);
 
-        private BasicBlock block;
+        private final Class<? extends BasicBlock> klass;
 
         /**
          * Default constructor
@@ -99,31 +104,15 @@ public final class BlockFactory {
          * @param block
          *            The reference instance
          */
-        private BlockInterFunction(BasicBlock block) {
-            this.block = block;
+        private BlockInterFunction(Class<? extends BasicBlock> klass) {
+            this.klass = klass;
         }
 
         /**
-         * Create a block instance
-         *
-         * @return The new block instance
+         * @return the class to instantiate
          */
-        private BasicBlock createInstance() {
-            BasicBlock clone = null;
-
-            if (block != null) {
-                clone = (BasicBlock) BlockFactory.createClone(block);
-            }
-            return clone;
-        }
-
-        /**
-         * Get the reference shared block instance for this BlockInterFunction.
-         *
-         * @return The shared block instance
-         */
-        public BasicBlock getSharedInstance() {
-            return block;
+        public Class<? extends BasicBlock> getKlass() {
+            return klass;
         }
     }
 
@@ -135,25 +124,29 @@ public final class BlockFactory {
     }
 
     /**
-     * Instantiate a new block with the specified interface function name.
+     * Instantiate a new block with the specified UID value.
      *
-     * @param label
-     *            The interface function name.
+     * @param uid
+     *            The associated UID value
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(String label) {
+    public static BasicBlock createBlock(long uid) {
         BasicBlock block = null;
 
+        JavaController controller = new JavaController();
+        String[] interfaceFunction = new String[1];
+        controller.getObjectProperty(uid, Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+
         for (BlockInterFunction func : BlockInterFunction.values()) {
-            if (label.compareTo(func.name()) == 0) {
-                block = func.createInstance();
+            if (func.name().equals(interfaceFunction)) {
+                block = createBlock(func, uid);
                 break;
             }
         }
 
         // Not specific block
         if (block == null) {
-            block = new BasicBlock(label);
+            block = new BasicBlock(uid);
         }
 
         return block;
@@ -167,7 +160,29 @@ public final class BlockFactory {
      * @return A new instance of a block.
      */
     public static BasicBlock createBlock(BlockInterFunction func) {
-        return func.createInstance();
+        JavaController controller = new JavaController();
+
+        long uid = controller.createObject(Kind.BLOCK);
+        return createBlock(func, uid);
+    }
+
+    /**
+     * Instantiate a new block with the specified interface function and uid.
+     *
+     * @param func the interface function
+     * @param uid the allocated uid
+     * @return A new instance of a block.
+     */
+    public static BasicBlock createBlock(BlockInterFunction func, long uid) {
+        BasicBlock block = null;
+        try {
+            block = func.getKlass().getConstructor(Long.TYPE).newInstance(uid);
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException	| NoSuchMethodException | SecurityException e) {
+            // Something goes wrong, print it.
+            e.printStackTrace();
+        }
+
+        return block;
     }
 
     /**
@@ -178,7 +193,12 @@ public final class BlockFactory {
      * @return the clone
      */
     public static Object createClone(BasicBlock block) {
+        JavaController controller = new JavaController();
+
         try {
+            // FIXME implement the MVC part
+            //        	long uid = controller.cloneObject(block.getUID(), true);
+
             BasicBlock clone = (BasicBlock) block.clone();
 
             /* Clone children */

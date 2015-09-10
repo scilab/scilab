@@ -25,8 +25,8 @@ import com.mxgraph.model.mxICell;
 public class GroundBlock extends BasicBlock {
 
     /** Default constructor */
-    public GroundBlock() {
-        super();
+    public GroundBlock(long uid) {
+        super(uid);
     }
 
     /**

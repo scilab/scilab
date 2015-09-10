@@ -20,7 +20,6 @@ import java.awt.event.KeyEvent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -69,8 +68,10 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
     public void actionPerformed(ActionEvent e) {
         if (((XcosDiagram) getGraph(null)).getSelectionCell() != null) {
             XcosDiagram diagram = (XcosDiagram) getGraph(null);
-            ((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram
-                    .getContext());
+
+            // FIXME implement something using the XcosView
+            //            ((BasicBlock) diagram.getSelectionCell()).openBlockSettings(diagram
+            //                    .getContext());
         }
     }
 

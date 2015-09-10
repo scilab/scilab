@@ -78,7 +78,7 @@ public final class NewDiagramAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        Xcos.getInstance().open(null, null);
+        Xcos.getInstance().open(null, 0);
     }
 
 }

@@ -16,146 +16,26 @@ package org.scilab.modules.xcos.block;
 import java.util.Map;
 
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.graph.utils.Font;
-import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.types.ScilabDouble;
-import org.scilab.modules.types.ScilabString;
-import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
-
-import static org.scilab.modules.xcos.io.scicos.AbstractElement.getIndexes;
-import static org.scilab.modules.xcos.io.scicos.AbstractElement.canGet;
-
-import com.mxgraph.util.mxConstants;
 
 /**
  * A textblock is used to annotate diagrams.
  */
 @SuppressWarnings(value = { "serial" })
 public final class TextBlock extends BasicBlock {
-    private static final String INTERFUNCTION_NAME = "TEXT_f";
-
     /**
      * Default constructor
      */
-    public TextBlock() {
-        super();
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-        setInterfaceFunctionName(INTERFUNCTION_NAME);
-        setStyle(INTERFUNCTION_NAME);
+    public TextBlock(long uid) {
+        super(uid);
 
         setValue(XcosMessages.DOTS);
-    }
-
-    /**
-     * @return the fontNumber
-     */
-    private Font getFont() {
-        final ScilabString exprs = getLocalExprs();
-        int number;
-
-        final boolean isColumnDominant = exprs.getHeight() >= exprs.getWidth();
-        final int[] indexes = getIndexes(1, isColumnDominant);
-        if (canGet(exprs, indexes)) {
-            number = Integer.parseInt(exprs.getData()[indexes[0]][indexes[1]]);
-        } else {
-            number = 0;
-        }
-        return Font.getFont(number);
-    }
-
-    /**
-     * @return the fontSize
-     */
-    private int getFontSize() {
-        final ScilabString exprs = getLocalExprs();
-        int number;
-
-        final boolean isColumnDominant = exprs.getHeight() >= exprs.getWidth();
-        final int[] indexes = getIndexes(2, isColumnDominant);
-        if (canGet(exprs, indexes)) {
-            number = Integer.parseInt(exprs.getData()[indexes[0]][indexes[1]]);
-        } else {
-            number = 0;
-        }
-        return Font.getSize(number);
-    }
-
-    /**
-     * Format exprs as a Scilab valid one
-     */
-    @Override
-    public ScilabType getExprs() {
-        final String[][] data = new String[][] { new String[] { getValue().toString(), "2", "1" } };
-        return new ScilabString(data);
-    }
-
-    /**
-     * Exprs accessor
-     */
-    private ScilabString getLocalExprs() {
-        return (ScilabString) super.getExprs();
-    }
-
-    @Override
-    public ScilabType getRealParameters() {
-        return new ScilabString(getValue().toString());
-    }
-
-    @Override
-    public ScilabType getIntegerParameters() {
-        final double[][] data = new double[][] { new double[] { 2, 1 } };
-        return new ScilabDouble(data);
-    }
-
-    /**
-     * Apply style on setExprs
-     *
-     * @param exprs
-     *            the expression to be parsed
-     */
-    @Override
-    public void setExprs(ScilabType exprs) {
-        super.setExprs(exprs);
-
-        final StyleMap map = new StyleMap(getStyle());
-        map.put(mxConstants.STYLE_FONTFAMILY, getFont().getName());
-        map.put(mxConstants.STYLE_FONTSIZE, Integer.toString(getFontSize()));
-        setStyle(map.toString());
-
-        setValue(getLocalExprs().getData()[0][0]);
-    }
-
-    /**
-     * Disabling BlockSettings action
-     *
-     * @param context
-     *            the current context
-     */
-    @Override
-    public void openBlockSettings(String[] context) {
-        // NOTHING TO BE DONE
-    }
-
-    /**
-     * Disabling BlockSettings action
-     *
-     * @param modifiedBlock
-     *            the updated block
-     */
-    @Override
-    public void updateBlockSettings(BasicBlock modifiedBlock) {
-        // NOTHING TO BE DONE
     }
 
     /**
@@ -168,5 +48,15 @@ public final class TextBlock extends BasicBlock {
     protected void customizeMenu(Map < Class <? extends DefaultAction > , Menu > menuList) {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
+    }
+
+    @Override
+    public void setValue(Object value) {
+        if (value != null) {
+            JavaController controller = new JavaController();
+            controller.setObjectProperty(getUID(), Kind.ANNOTATION, ObjectProperties.DESCRIPTION, value.toString());
+        }
+
+        super.setValue(value);
     }
 }

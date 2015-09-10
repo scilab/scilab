@@ -11,6 +11,7 @@
  */
 
 #include "Palette.hxx"
+#include "Controller.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
 #include "loadStatus.hxx"
@@ -26,6 +27,7 @@ extern "C"
 }
 
 using namespace org_scilab_modules_xcos_palette;
+using namespace org_scilab_modules_scicos;
 
 int sci_xcosPalGenerateIcon(char *fname, void* pvApiCtx)
 {
@@ -44,7 +46,8 @@ int sci_xcosPalGenerateIcon(char *fname, void* pvApiCtx)
     set_loaded_status(XCOS_CALLED);
     try
     {
-        Palette::generatePaletteIcon(getScilabJavaVM(), iconPath);
+        Controller controller;
+        Palette::generatePaletteIcon(getScilabJavaVM(), controller.createObject(DIAGRAM), iconPath);
     }
     catch (GiwsException::JniCallMethodException &exception)
     {

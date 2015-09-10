@@ -76,15 +76,11 @@ private:
 JavaVM * jvm;
 
 protected:
-jmethodID voidxcosjstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
+jmethodID voidxcosjstringjava_lang_StringjlonglongID; // cache method id
 jmethodID voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jclass stringArrayClass;
 jmethodID voidcloseXcosFromScilabID; // cache method id
-jmethodID jintxcosDiagramToScilabjstringjava_lang_StringID; // cache method id
-jmethodID voidxcosDiagramOpenjobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
-jmethodID voidxcosDiagramClosejobjectArray_java_lang_Stringjava_lang_StringID; // cache method id
 jmethodID voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID; // cache method id
-jmethodID voidupdateBlockjstringjava_lang_StringID; // cache method id
 jmethodID voidxcosSimulationStartedID; // cache method id
 
 
@@ -145,21 +141,13 @@ void synchronize();
 void endSynchronize();
 
 // Methods
-static void xcos(JavaVM * jvm_, char const* file, char const* variable);
+static void xcos(JavaVM * jvm_, char const* file, long long diagramId);
 
 static void warnCellByUID(JavaVM * jvm_, char const* const* uids, int uidsSize, char const* message);
 
 static void closeXcosFromScilab(JavaVM * jvm_);
 
-static int xcosDiagramToScilab(JavaVM * jvm_, char const* xcosFile);
-
-static void xcosDiagramOpen(JavaVM * jvm_, char const* const* UID, int UIDSize);
-
-static void xcosDiagramClose(JavaVM * jvm_, char const* const* UID, int UIDSize);
-
 static void addToolsMenu(JavaVM * jvm_, char const* label, char const* command);
-
-static void updateBlock(JavaVM * jvm_, char const* h5File);
 
 static void xcosSimulationStarted(JavaVM * jvm_);
 

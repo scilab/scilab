@@ -13,22 +13,16 @@
 package org.scilab.modules.xcos.block.positionning;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.listener.ProdPortLabelingListener;
 
 /**
  * Implement the PRODUCT_f block.
- *
- * This class just install a {@link ProdPortLabelingListener} on each instance.
  */
 @SuppressWarnings(value = { "serial" })
 public class Product extends BasicBlock {
     /**
      * Default constructor
      */
-    public Product() {
-        super();
-
-        getParametersPCS().addPropertyChangeListener("integerParameters",
-                ProdPortLabelingListener.getInstance());
+    public Product(long uid) {
+        super(uid);
     }
 }

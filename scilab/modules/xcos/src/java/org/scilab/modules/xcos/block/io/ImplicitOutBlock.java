@@ -24,17 +24,7 @@ public final class ImplicitOutBlock extends ContextUpdate {
     /**
      * Constructor
      */
-    public ImplicitOutBlock() {
-        super();
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-        setInterfaceFunctionName("OUTIMPL_f");
-        setSimulationFunctionName("outimpl");
+    public ImplicitOutBlock(long uid) {
+        super(uid);
     }
 }

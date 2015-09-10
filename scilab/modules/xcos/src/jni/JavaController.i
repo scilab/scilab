@@ -112,6 +112,7 @@
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<std::string>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<ScicosID>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<int> >;
+%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<bool> >;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<double> >;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<std::string> >;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<ScicosID> >;
@@ -122,6 +123,7 @@
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<std::string>;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<ScicosID>;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<int> >;
+%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<bool> >;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<double> >;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<std::string> >;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty< std::vector<ScicosID> >;
@@ -130,9 +132,9 @@
  * Template instanciation
  */
 
-%template(VectorOfDouble)   std::vector<double>;
 %template(VectorOfInt)      std::vector<int>;
 %template(VectorOfBool)     std::vector<bool>;
+%template(VectorOfDouble)   std::vector<double>;
 %template(VectorOfString)   std::vector<std::string>;
 %template(VectorOfScicosID) std::vector<ScicosID>;
 
@@ -149,27 +151,33 @@ static void unregister_view(org_scilab_modules_scicos::View* view) {
 %}
 
 %pragma(java) moduleimports=%{
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 %}
 
 %pragma(java) modulebase="Controller"
 
 %pragma(java) modulecode=%{
   // will contains all registered JavaViews to prevent garbage-collection 
-  private static ArrayList<View> references = new ArrayList<View>();
+  private static Map<String, View> references = new TreeMap<String, View>();
   
-  private static long add_reference(View v) {
-    references.add(v);
+  private static long add_reference(String name, View v) {
+    references.put(name, v);
     return View.getCPtr(v);
   }
 
   private static View remove_reference(View v) {
-    references.remove(v);
+    references.values().remove(v);
     return v;
+  }
+
+  public static View lookup_view(String name) {
+    return references.get(name);
   }
 %}
 
-%typemap(javain) org_scilab_modules_scicos::View* "add_reference($javainput)"
+/* Quick 'n dirty but works fine */
+%typemap(javain) org_scilab_modules_scicos::View* "add_reference(name, $javainput)"
 void register_view(const std::string& name, org_scilab_modules_scicos::View* view);
 %typemap(javaout) void "{
     JavaControllerJNI.unregister_view(View.getCPtr(view), view);

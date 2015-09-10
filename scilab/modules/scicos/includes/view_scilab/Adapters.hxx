@@ -13,9 +13,17 @@
 #ifndef ADAPTERS_HXX_
 #define ADAPTERS_HXX_
 
+#include <utility>
 #include <vector>
 #include <string>
 
+#include "internal.hxx"
+#include "model/BaseObject.hxx"
+
+extern "C"
+{
+#include "dynlib_scicos.h"
+}
 namespace org_scilab_modules_scicos
 {
 namespace view_scilab
@@ -24,7 +32,7 @@ namespace view_scilab
 /*
  * Shared data between adapters
  */
-class Adapters
+class SCICOS_IMPEXP Adapters
 {
 public:
     typedef enum
@@ -46,6 +54,8 @@ public:
     static Adapters& instance();
 
     adapters_index_t lookup_by_typename(const std::wstring& name);
+    std::wstring get_typename(adapters_index_t index);
+    const model::BaseObject* descriptor(types::InternalType* v);
 
 private:
 

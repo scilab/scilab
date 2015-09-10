@@ -21,7 +21,6 @@
 <module name="xcos">
     <gateway name="sci_warnBlockByUID"          function="warnBlockByUID"           type="0" />
     <gateway name="sci_closeXcosFromScilab"     function="closeXcos"                type="0" />
-    <gateway name="sci_xcosDiagramToScilab"     function="xcosDiagramToScilab"      type="0" />
     <gateway name="sci_xcosPalLoad"             function="xcosPalLoad"              type="0" />
     <gateway name="sci_xcosPalCategoryAdd"      function="xcosPalCategoryAdd"       type="0" />
     <gateway name="sci_xcosPalDelete"           function="xcosPalDelete"            type="0" />
@@ -31,7 +30,6 @@
     <gateway name="sci_xcosPalGenerateIcon"     function="xcosPalGenerateIcon"      type="0" />
     <gateway name="sci_xcosConfigureXmlFile"    function="xcosConfigureXmlFile"     type="0" />
     <gateway name="sci_xcosAddToolsMenu"        function="xcosAddToolsMenu"         type="0" />
-    <gateway name="sci_xcosUpdateBlock"         function="xcosUpdateBlock"          type="0" />
     <gateway name="sci_loadXcos"                function="loadXcos"                 type="0" />
     <gateway name="sci_xcosSimulationStarted"   function="xcosSimulationStarted"    type="0" />
     <gateway name="sci_xcosPalGet"              function="xcosPalGet"               type="0" />

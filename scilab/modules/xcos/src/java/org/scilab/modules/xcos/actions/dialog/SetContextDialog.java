@@ -35,14 +35,13 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -100,8 +99,10 @@ public class SetContextDialog extends JDialog {
         /*
          * Construct a text from a String array context
          */
-        for (String s : parameters.getContext()) {
-            contextArea.append(s + SHARED_NEW_LINE);
+        VectorOfString v = parameters.getContext(new JavaController());
+        final int len = (int) v.size();
+        for (int i = 0; i < len; i++) {
+            contextArea.append(v.get(i) + SHARED_NEW_LINE);
         }
 
         JScrollPane contextAreaScroll = new JScrollPane(contextArea, ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
@@ -179,22 +180,32 @@ public class SetContextDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    final String[] context = contextArea.getText().split(SHARED_NEW_LINE);
-                    parameters.setContext(context);
+                    final String context = contextArea.getText();
+                    final VectorOfString v = new VectorOfString();
 
-                    /*
-                     * Validate the context
-                     */
-                    final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-                    if (handler == null) {
-                        return;
+                    int off = 0;
+                    int next = 0;
+                    while ((next = context.indexOf('\n', off)) != -1) {
+                        v.add(context.substring(off, next));
+                        off = next + 1;
                     }
-                    try {
-                        handler.writeContext(context);
-                        ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
-                    } finally {
-                        handler.release();
-                    }
+                    parameters.setContext(new JavaController(), v);
+
+                    // FIXME : context validation is not handled yet
+                    //
+                    //                    /*
+                    //                     * Validate the context
+                    //                     */
+                    //                    final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+                    //                    if (handler == null) {
+                    //                        return;
+                    //                    }
+                    //                    try {
+                    //
+                    //                        ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
+                    //                    } finally {
+                    //                        handler.release();
+                    //                    }
 
                     dispose();
                 } catch (PropertyVetoException e2) {
@@ -204,10 +215,10 @@ public class SetContextDialog extends JDialog {
                 /*
                  * if superblock is concerned, then regenerate child diagram.
                  */
-                if (rootGraph instanceof SuperBlockDiagram) {
-                    SuperBlockDiagram superBlockDiagram = (SuperBlockDiagram) rootGraph;
-                    superBlockDiagram.getContainer().invalidateRpar();
-                }
+                //                if (rootGraph instanceof SuperBlockDiagram) {
+                //                    SuperBlockDiagram superBlockDiagram = (SuperBlockDiagram) rootGraph;
+                //                    superBlockDiagram.getContainer().invalidateRpar();
+                //                }
             }
         });
     }

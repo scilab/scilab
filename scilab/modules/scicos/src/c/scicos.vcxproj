@@ -326,6 +326,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\..\includes\Controller.hxx" />
     <ClInclude Include="..\..\includes\Model.hxx" />
     <ClInclude Include="..\..\includes\model\BaseObject.hxx" />
+    <ClInclude Include="..\..\includes\view_scilab\Adapters.hxx" />
     <ClInclude Include="..\..\includes\View.hxx" />
     <ClInclude Include="..\cpp\createblklist.hxx" />
     <ClInclude Include="..\cpp\extractblklist.hxx" />
@@ -341,7 +342,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\cpp\model\Diagram.hxx" />
     <ClInclude Include="..\cpp\model\Link.hxx" />
     <ClInclude Include="..\cpp\model\Port.hxx" />
-    <ClInclude Include="..\cpp\view_scilab\Adapters.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BaseAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BlockAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\CprAdapter.hxx" />

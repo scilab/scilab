@@ -26,37 +26,14 @@ import org.scilab.modules.xcos.port.Orientation;
  */
 public class CommandPort extends BasicPort {
 
-    private static final long serialVersionUID = 8098231554414576405L;
-    private double initialState = -1.0;
-
     /** Default constructor */
-    public CommandPort() {
-        super("CommandPort");
+    public CommandPort(long uid) {
+        super(uid);
         setOrientation(Orientation.SOUTH);
-
-        setDefaultValues();
     }
 
-    /**
-     * This port is untyped
-     *
-     * @return always null
-     */
     @Override
     public Type getType() {
         return null;
-    }
-
-    /**
-     * @param initialState
-     *            Initial state value
-     */
-    public void setInitialState(double initialState) {
-        this.initialState = initialState;
-    }
-
-    /** @return Initial state value */
-    public double getInitialState() {
-        return initialState;
     }
 }

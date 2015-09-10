@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2012-2015 - Scilab Enterprises - Clement DAVID
  * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  *
  * This file must be used under the terms of the CeCILL.
@@ -15,16 +15,15 @@
 
 #include "Xcos.hxx"
 #include "loadStatus.hxx"
+#include "view_scilab/Adapters.hxx"
 
+#include "types.hxx"
+#include "function.hxx"
+#include "string.hxx"
 #include "gw_xcos.hxx"
 
-#include "string.hxx"
-#include "mlist.hxx"
-#include "user.hxx"
-#include "function.hxx"
-#include "overload.hxx"
-
-extern "C" {
+extern "C" 
+{
 #include "sci_malloc.h"
 #include "getFullFilename.h"
 #include "getScilabJavaVM.h"
@@ -33,8 +32,9 @@ extern "C" {
 }
 
 using namespace org_scilab_modules_xcos;
+using namespace org_scilab_modules_scicos;
 
-static int callXcos(char* fname, char* file, char* var);
+static int callXcos(char* fname, char* file, long diagramId);
 
 /*--------------------------------------------------------------------------*/
 static char funname[] = "xcos";
@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, typ
      */
     if (in.empty())
     {
-        callXcos(funname, nullptr, nullptr);
+        callXcos(funname, nullptr, ScicosID());
         return types::Function::OK;
     }
 
@@ -78,7 +78,7 @@ types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, typ
             {
                 return types::Function::Error;
             }
-            if (callXcos(funname, file, nullptr))
+            if (callXcos(funname, file, ScicosID()))
             {
                 return types::Function::Error;
             }
@@ -90,95 +90,81 @@ types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, typ
     /*
      * xcos(scs_m) call
      */
-    if (in.size() == 1 && (in[0]->isUserType() || in[0]->isMList())) // Kept MList for compatibility with Scilab 5
+    if (in.size() == 1 && in[0]->isUserType())
     {
-        if (in[0]->getShortTypeStr() != L"diagram")
+        const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(in[0]);
+        if (o == nullptr || o->kind() != DIAGRAM)
         {
             Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, 1, "diagram");
             return types::Function::Error;
         }
 
-        // overloaded by %diagram_xcos.sci
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_xcos";
-        types::typed_list out;
-        types::Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out);
-
+        if (callXcos(funname, nullptr, static_cast<long>(o->id())))
+        {
+            return types::Function::Error;
+        }
         return types::Function::OK;
     }
 
-    /*
-     * xcos(scs_m, "scs_m") call (usually from the overload macro)
-     */
-    if (in.size() == 2 && in[0]->isMList()) // For compatibility with Scilab 5
+    // 	we finished the 1-argument handling ; short-cut return with a clear error message
+    if (in.size() == 1)
     {
-        if (in[1]->isString() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), funname, 2);
-            return types::Function::Error;
-        }
-
-        types::String* arg2 = in[1]->getAs<types::String>();
-        if (arg2->isScalar() == false)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d : A single string expected.\n"), funname, 2);
-            return types::Function::Error;
-        }
-
-        char* c_str = wide_string_to_UTF8(arg2->get(0));
-        int ret = callXcos(funname, nullptr, c_str);
-        FREE(c_str);
-        if (ret == 1)
-        {
-            return types::Function::Error;
-        }
-        else
-        {
-            return types::Function::OK;
-        }
-    }
-    if (in.size() == 2 && in[0]->isUserType())
-    {
-        if (in[1]->isString() == false)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), funname, 2);
-            return types::Function::Error;
-        }
-
-        types::String* arg2 = in[1]->getAs<types::String>();
-        if (arg2->isScalar() == false)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d : A single string expected.\n"), funname, 2);
-            return types::Function::Error;
-        }
-
-        char* c_str = wide_string_to_UTF8(arg2->get(0));
-        int ret = callXcos(funname, nullptr, c_str);
-        FREE(c_str);
-        if (ret == 1)
-        {
-            return types::Function::Error;
-        }
-        else
-        {
-            return types::Function::OK;
-        }
+        Scierror(999, _("%s: Wrong type for input argument #%d: string or ""%s"" expected.\n"), funname, 1, "diagram");
+        return types::Function::Error;
     }
 
+
     /*
-     * If not returned yet, display the error message.
+     * xcos("file.zcos", scs_m) call ; load the file into an existing diagram
      */
-    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), funname, 1);
+    if (in.size() == 2 &&
+            in[0]->isString() &&
+            in[1]->isUserType())
+    {
+        if (in[0]->getAs<types::String>()->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), funname, 1);
+            return types::Function::Error;
+        }
+
+        const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(in[1]);
+        if (o == nullptr || o->kind() != DIAGRAM)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, 2, "diagram");
+            return types::Function::Error;
+        }
+
+        char* c_str = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+        char* file = getFullFilename(c_str);
+        if (file == nullptr)
+        {
+            FREE(c_str);
+            return types::Function::Error;
+        }
+
+        if (callXcos(funname, c_str, static_cast<long>(o->id())))
+        {
+            FREE(c_str);
+            return types::Function::Error;
+        }
+        FREE(c_str);
+        return types::Function::OK;
+    }
+    /*
+     * If not returned yet, display a generic error message.
+     */
+    Scierror(999, _("%s: Wrong type for input argument #%d: string or ""%s"" expected.\n"), funname, 1, "diagram");
     return types::Function::Error;
 }
 /*--------------------------------------------------------------------------*/
 
-static int callXcos(char *fname, char* file, char* var)
+static int callXcos(char *fname, char* file, long diagramId)
 {
     set_loaded_status(XCOS_CALLED);
 
     try
     {
-        Xcos::xcos(getScilabJavaVM(), file, var);
+        Xcos::xcos(getScilabJavaVM(), file, diagramId);
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
@@ -192,10 +178,6 @@ static int callXcos(char *fname, char* file, char* var)
         if (file)
         {
             FREE(file);
-        }
-        if (var)
-        {
-            FREE(var);
         }
         return 1;
     }
@@ -211,10 +193,6 @@ static int callXcos(char *fname, char* file, char* var)
         {
             FREE(file);
         }
-        if (var)
-        {
-            FREE(var);
-        }
         return 1;
     }
 
@@ -222,9 +200,6 @@ static int callXcos(char *fname, char* file, char* var)
     {
         FREE(file);
     }
-    if (var)
-    {
-        FREE(var);
-    }
     return 0;
 }
+

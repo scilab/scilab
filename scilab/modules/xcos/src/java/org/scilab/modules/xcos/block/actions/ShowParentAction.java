@@ -16,15 +16,16 @@ package org.scilab.modules.xcos.block.actions;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.util.logging.Logger;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
-import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
+import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -70,20 +71,29 @@ public class ShowParentAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (getGraph(null) instanceof SuperBlockDiagram) {
-            SuperBlockDiagram diagram = (SuperBlockDiagram) getGraph(null);
-            final SuperBlock block = diagram.getContainer();
+        final XcosDiagram graph = (XcosDiagram) getGraph(e);
 
-            XcosDiagram graph = block.getParentDiagram();
-            if (graph == null) {
-                block.setParentDiagram(Xcos.findParent(block));
-                graph = block.getParentDiagram();
-                Logger.getLogger(ShowParentAction.class.getName()).severe("Parent diagram was null");
+        if (graph.getKind() == Kind.BLOCK) {
+            JavaController controller = new JavaController();
+            long[] parent = new long[1];
+            Kind kind = Kind.BLOCK;
+            controller.getObjectProperty(graph.getUId(), kind, ObjectProperties.PARENT_BLOCK, parent);
+            if (parent[0] == 0) {
+                kind = Kind.DIAGRAM;
+                controller.getObjectProperty(graph.getUId(), kind, ObjectProperties.PARENT_DIAGRAM, parent);
             }
 
-            final XcosTab tab = XcosTab.get(graph);
+            XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());
+
+            XcosDiagram diagram = (XcosDiagram) view.getVisibleObjects().get(parent[0]);
+            if (diagram == null) {
+                diagram = new XcosDiagram(parent[0], kind);
+                view.getVisibleObjects().put(parent[0], diagram);
+            }
+
+            final XcosTab tab = XcosTab.get(diagram);
             if (tab == null) {
-                XcosTab.restore(graph);
+                XcosTab.restore(diagram);
             } else {
                 tab.setCurrent();
             }

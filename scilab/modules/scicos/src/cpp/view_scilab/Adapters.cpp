@@ -10,10 +10,10 @@
  *
  */
 
+#include "../../../includes/view_scilab/Adapters.hxx"
+
 #include <string>
 #include <algorithm>
-
-#include "Adapters.hxx"
 
 #include "BlockAdapter.hxx"
 #include "CprAdapter.hxx"
@@ -22,6 +22,7 @@
 #include "LinkAdapter.hxx"
 #include "ModelAdapter.hxx"
 #include "ParamsAdapter.hxx"
+#include "ScsAdapter.hxx"
 #include "StateAdapter.hxx"
 #include "TextAdapter.hxx"
 
@@ -53,6 +54,7 @@ Adapters::Adapters()
     adapters.push_back(adapter_t(view_scilab::LinkAdapter::getSharedTypeStr(), LINK_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::ModelAdapter::getSharedTypeStr(), MODEL_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::ParamsAdapter::getSharedTypeStr(), PARAMS_ADAPTER));
+    adapters.push_back(adapter_t(view_scilab::ScsAdapter::getSharedTypeStr(), SCS_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::StateAdapter::getSharedTypeStr(), STATE_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::TextAdapter::getSharedTypeStr(), TEXT_ADAPTER));
 
@@ -72,6 +74,55 @@ Adapters::adapters_index_t Adapters::lookup_by_typename(const std::wstring& name
         return it->kind;
     }
     return INVALID_ADAPTER;
+}
+
+
+std::wstring Adapters::get_typename(Adapters::adapters_index_t kind)
+{
+    for (auto it : adapters)
+    {
+        if (it.kind == kind)
+        {
+            return it.name;
+        }
+    }
+
+    return L"";
+}
+
+
+const model::BaseObject* Adapters::descriptor(types::InternalType* v)
+{
+    const std::wstring& name = v->getShortTypeStr();
+    adapters_t::iterator it = std::lower_bound(adapters.begin(), adapters.end(), name);
+    if (v->isUserType() && it != adapters.end() && !(name < it->name))
+    {
+        switch (it->kind)
+        {
+            case BLOCK_ADAPTER:
+                return v->getAs<view_scilab::BlockAdapter>()->getAdaptee();
+            case CPR_ADAPTER:
+                return v->getAs<view_scilab::CprAdapter>()->getAdaptee();
+            case DIAGRAM_ADAPTER:
+                return v->getAs<view_scilab::DiagramAdapter>()->getAdaptee();
+            case GRAPHIC_ADAPTER:
+                return v->getAs<view_scilab::GraphicsAdapter>()->getAdaptee();
+            case LINK_ADAPTER:
+                return v->getAs<view_scilab::LinkAdapter>()->getAdaptee();
+            case MODEL_ADAPTER:
+                return v->getAs<view_scilab::ModelAdapter>()->getAdaptee();
+            case PARAMS_ADAPTER:
+                return v->getAs<view_scilab::ParamsAdapter>()->getAdaptee();
+            case SCS_ADAPTER:
+                return v->getAs<view_scilab::ScsAdapter>()->getAdaptee();
+            case STATE_ADAPTER:
+                return v->getAs<view_scilab::StateAdapter>()->getAdaptee();
+            case TEXT_ADAPTER:
+                return v->getAs<view_scilab::TextAdapter>()->getAdaptee();
+        }
+    }
+
+    return nullptr;
 }
 
 } /* namespace view_scilab */

@@ -70,17 +70,17 @@ public class BasicPortCodec extends XcosObjectCodec {
      * Register all the know codecs on the {@link mxCodecRegistry}
      */
     public static void register() {
-        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(0l), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitOutputPortCodec);
-        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(0l), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitInputPortCodec);
-        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(0l), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitOutputPortCodec);
-        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(0l), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitInputPortCodec);
-        XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(0l), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(commandPortCodec);
-        XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(0l), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(controlPortCodec);
         mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
     }
@@ -100,7 +100,8 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-        ((Element) node).setAttribute(DATA_TYPE, String.valueOf(((BasicPort) obj).getDataType()));
+        // FIXME find a valid usage of this
+        //        ((Element) node).setAttribute(DATA_TYPE, String.valueOf(((BasicPort) obj).getDataType()));
 
         /*
          * Log some information
@@ -162,13 +163,14 @@ public class BasicPortCodec extends XcosObjectCodec {
         final BasicPort port = (BasicPort) obj;
         final String attr = ((Element) node).getAttribute(DATA_TYPE);
 
-        // set default data type
-        if (attr == null || attr.equals("")) {
-            port.setDataType(BasicPort.DataType.REAL_MATRIX);
-
-        } else {
-            port.setDataType(BasicPort.DataType.valueOf(attr));
-        }
+        // FIXME find a valid usage of that
+        //        // set default data type
+        //        if (attr == null || attr.equals("")) {
+        //            port.setDataType(BasicPort.DataType.REAL_MATRIX);
+        //
+        //        } else {
+        //            port.setDataType(BasicPort.DataType.valueOf(attr));
+        //        }
 
         // update connectable flag
         port.setConnectable(true);
@@ -216,12 +218,12 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     private void updateRotationFromOrientation(StyleMap map, BasicPort obj) {
         final Orientation orientation = obj.getOrientation();
-        int rotation = 0;
+        double rotation = 0;
         boolean flipped = false;
         boolean mirrored = false;
 
         if (map.get(mxConstants.STYLE_ROTATION) != null) {
-            rotation = Integer.parseInt(map.get(mxConstants.STYLE_ROTATION));
+            rotation = Double.parseDouble(map.get(mxConstants.STYLE_ROTATION));
         } else {
             rotation = 0;
         }
@@ -237,16 +239,17 @@ public class BasicPortCodec extends XcosObjectCodec {
         flipped = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_FLIP));
         mirrored = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_MIRROR));
 
-        final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
-
-        if (rotation == baseAngle) {
-            return;
-        }
+        // FIXME handle that compatibility
+        //        final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
+        //
+        //        if (rotation == baseAngle) {
+        //            return;
+        //        }
 
         // Calculate the rotation for this kind of port.
         rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
 
-        map.put(mxConstants.STYLE_ROTATION, Integer.toString(rotation));
+        map.put(mxConstants.STYLE_ROTATION, Double.toString(rotation));
     }
 }
 // CSON: ClassDataAbstractionCoupling

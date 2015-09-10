@@ -501,6 +501,57 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
+update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& v)
+{
+    model::BaseObject* baseObject = getObject(uid);
+    if (baseObject == nullptr)
+    {
+        return FAIL;
+    }
+
+    if (k == ANNOTATION)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == BLOCK)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == DIAGRAM)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == LINK)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == PORT)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    return FAIL;
+}
+
 update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<std::string>& v)
 {
     model::BaseObject* baseObject = getObject(uid);

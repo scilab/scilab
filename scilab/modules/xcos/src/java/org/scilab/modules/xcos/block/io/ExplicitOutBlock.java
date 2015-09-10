@@ -24,17 +24,7 @@ public final class ExplicitOutBlock extends ContextUpdate {
     /**
      * Constructor
      */
-    public ExplicitOutBlock() {
-        super();
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-        setInterfaceFunctionName("OUT_f");
-        setSimulationFunctionName("output");
+    public ExplicitOutBlock(long uid) {
+        super(uid);
     }
 }

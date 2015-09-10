@@ -23,6 +23,7 @@
             <parameter name="target" type="String[]"/>
         </method>
         <method name="generatePaletteIcon" returnType="void" modifier="static">
+            <parameter name="uid" type="long"/>
             <parameter name="iconPath" type="String"/>
         </method>
         <method name="get" returnType="void" modifier="static">

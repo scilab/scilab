@@ -37,7 +37,8 @@ function result = importXcosDiagram(xcosFile)
     end
 
     // import the real file
-    convertStatus = xcosDiagramToScilab(fullPathName);
+    scs_m = scicos_diagram();
+    convertStatus = xcos(fullPathName, scs_m);
 
     //return scs_m in Scilab environment
     result = %t;

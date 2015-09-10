@@ -28,7 +28,8 @@
 #include "adapters_utilities.hxx"
 #include "Controller.hxx"
 #include "DiagramAdapter.hxx"
-#include "Adapters.hxx"
+
+#include "view_scilab/Adapters.hxx"
 #include "ParamsAdapter.hxx"
 #include "BlockAdapter.hxx"
 #include "LinkAdapter.hxx"

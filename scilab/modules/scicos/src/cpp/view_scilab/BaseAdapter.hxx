@@ -20,6 +20,7 @@
 #include <vector>
 #include <sstream>
 
+#include "../../../includes/view_scilab/Adapters.hxx"
 #include "bool.hxx"
 #include "double.hxx"
 #include "user.hxx"
@@ -34,7 +35,6 @@
 
 #include "utilities.hxx"
 #include "Controller.hxx"
-#include "Adapters.hxx"
 #include "model/BaseObject.hxx"
 
 namespace org_scilab_modules_scicos

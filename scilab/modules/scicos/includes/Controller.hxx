@@ -69,7 +69,7 @@ public:
     };
 
     template<typename T>
-    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
+    update_status_t setObjectProperty(const ScicosID& uid, kind_t k, object_properties_t p, T v)
     {
         update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
         for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
