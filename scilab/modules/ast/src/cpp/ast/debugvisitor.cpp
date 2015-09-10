@@ -56,7 +56,7 @@ void DebugVisitor::DEBUG(wstring str, const Exp &e)
     Location loc = e.getLocation();
     *ostr << L" @(" << loc.first_line << L"." << loc.first_column << L" -> ";
     *ostr << loc.last_line << L"." << loc.last_column << L")";
-    //*ostr << L" Deco(" << e.getDecorator() << L")" << endl;
+    *ostr << L" Deco(" << e.getDecorator() << L")" << endl;
 }
 
 
