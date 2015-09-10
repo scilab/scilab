@@ -95,6 +95,7 @@ function newLIB = getNewLIBx64(LIB, msvsPath, sdkPath, bIsExpress)
     newLIB = newLIB + ..
     sdkPath + "\lib\x64" + pathsep() + LIB + pathsep() + ..
     getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.1\Lib\winv6.3\um\x64\;";
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Lib\winv6.3\um\x64\;";
 endfunction
 //=============================================================================
 function newLIB = getNewLIBx86(LIB, msvsPath, sdkPath, bIsExpress)
@@ -107,6 +108,7 @@ function newLIB = getNewLIBx86(LIB, msvsPath, sdkPath, bIsExpress)
     sdkPath + filesep() + "lib" + pathsep() + ..
     LIB + pathsep() + ..
     getenv("PROGRAMFILES") + "\Windows Kits\8.1\Lib\winv6.3\um\x86\;";
+    getenv("PROGRAMFILES") + "\Windows Kits\8.0\Lib\winv6.3\um\x86\;";
 endfunction
 //=============================================================================
 function newPATH = getNewPATHx64(PATH, msvsPath, sdkPath, bIsExpress)
@@ -171,8 +173,9 @@ function newINCLUDE = getNewINCLUDEx64(INCLUDE, msvsPath, sdkPath, bIsExpress)
         msvsPath + "\VC\ATLMFC\INCLUDE" + pathsep();
     end
 
-    newINCLUDE = newINCLUDE + ..
-    sdkPath + "\include" + pathsep() + INCLUDE + ..
+    newINCLUDE = newINCLUDE + pathsep() + INCLUDE + ..
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.1\Include\um;" + ..
+    getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.1\Include\shared;" + ..
     getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Include\um;" + ..
     getenv("PROGRAMFILES(X86)") + "\Windows Kits\8.0\Include\shared;";
 
@@ -185,9 +188,10 @@ function newINCLUDE = getNewINCLUDEx86(INCLUDE, msvsPath, sdkPath, bIsExpress)
         newINCLUDE = msvsPath + "\VC\ATLMFC\INCLUDE"  + pathsep();
     end
 
-    newINCLUDE = newINCLUDE + ..
-    msvsPath + "\VC\INCLUDE"  + pathsep() + ..
-    sdkPath + "\include" + pathsep() + INCLUDE + ..
+    newINCLUDE = newINCLUDE + msvsPath + ..
+    "\VC\INCLUDE" + pathsep() + INCLUDE + ..
+    getenv("PROGRAMFILES") + "\Windows Kits\8.1\Include\um;" + ..
+    getenv("PROGRAMFILES") + "\Windows Kits\8.1\Include\shared;" +  ..
     getenv("PROGRAMFILES") + "\Windows Kits\8.0\Include\um;" + ..
     getenv("PROGRAMFILES") + "\Windows Kits\8.0\Include\shared;";
     ;
