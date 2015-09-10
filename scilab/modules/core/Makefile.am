@@ -204,7 +204,6 @@ libscicore_la_includedir=$(pkgincludedir)
 libscicore_la_include_HEADERS = \
 includes/BOOL.h \
 includes/core_math.h \
-includes/ExceptionMessage.h \
 includes/existfunction.h \
 includes/freeArrayOfString.h \
 includes/getcommandlineargs.h \

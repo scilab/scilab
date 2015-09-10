@@ -29,9 +29,6 @@
     <ClCompile Include="dynamic_tclsci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ExceptionMessage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="freeArrayOfString.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -39,9 +36,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getdynamicDebugInfo_Windows.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GetExceptionCode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getmemory.c">
@@ -198,9 +192,6 @@
     <ClInclude Include="..\..\includes\core_math.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\ExceptionMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\existfunction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -211,9 +202,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getcommandlineargs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\GetExceptionCode.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getmemory.h">

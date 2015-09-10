@@ -12,9 +12,7 @@
 #ifndef __GETMEMORY__
 #define __GETMEMORY__
 
-#ifdef _MSC_VER
-#include <windows.h>
-#else
+#ifndef _MSC_VER
 #if defined(hpux)
 #include <sys/param.h>
 #include <sys/pstat.h>
@@ -32,8 +30,6 @@
 #include <sys/sysinfo.h>
 #include <machine/hal_sysinfo.h>
 #endif
-#include <stdio.h>
-#include <string.h>
 #endif /*GETMEMORY*/
 
 /**

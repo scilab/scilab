@@ -15,6 +15,7 @@
 //avoid declaration on macro min/max
 #define NOMINMAX
 #include <Windows.h>
+#undef NOMINMAX
 #include "dynlib_dynamic_link.h"
 
 #include "BOOL.h"

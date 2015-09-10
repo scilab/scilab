@@ -24,7 +24,7 @@ extern "C"
 #include "dynlib_external_objects_java_scilab.h"
 #include <jni.h>
 #ifdef _MSC_VER
-#include <Windows.h>
+    //#include <Windows.h>
 #endif
 #include "os_string.h"
 }

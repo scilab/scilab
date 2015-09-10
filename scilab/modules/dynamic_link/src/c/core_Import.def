@@ -2,7 +2,6 @@ LIBRARY    core.dll
 
 
 EXPORTS
-ExceptionMessage
 funtab_
 iop_
 callFunctionFromGateway
