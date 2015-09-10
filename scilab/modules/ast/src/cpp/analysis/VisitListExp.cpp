@@ -68,7 +68,9 @@ void AnalysisVisitor::visit(ast::ListExp & e)
         // TODO: finish all the cases
     }
 
-    double start, step, end;
+    double start = 1;
+    double step = 1;
+    double end = 1;
     if (Rstart.getConstant().getDblValue(start) && Rstep.getConstant().getDblValue(step) && Rend.getConstant().getDblValue(end))
     {
         double out;
@@ -85,12 +87,20 @@ void AnalysisVisitor::visit(ast::ListExp & e)
             case 2:
             {
                 const uint64_t N = ForList64::size(start, end, step);
-                TIType T(dm.getGVN(), TIType::DOUBLE, 1, N);
-                if (N == 1)
+                if (e.getParent()->isVarDec())
                 {
-                    out = start;
+                    TIType T(dm.getGVN(), TIType::DOUBLE, 1, 1);
+                    e.getDecorator().setResult(Result(T));
                 }
-                e.getDecorator().setResult(Result(T, dm.getTmpId(T, false)));
+                else
+                {
+                    TIType T(dm.getGVN(), TIType::DOUBLE, 1, N);
+                    if (N == 1)
+                    {
+                        out = start;
+                    }
+                    e.getDecorator().setResult(Result(T, dm.getTmpId(T, false)));
+                }
                 break;
             }
             default:
@@ -99,6 +109,14 @@ void AnalysisVisitor::visit(ast::ListExp & e)
         e.setValues(start, step, end, out);
         setResult(e.getDecorator().res);
 
+        return;
+    }
+
+    if (step == 0 || tools::isNaN(step) || !tools::isFinite(step)
+            || tools::isNaN(start) || !tools::isFinite(start)
+            ||  tools::isNaN(end) || !tools::isFinite(end))
+    {
+        e.getDecorator().setResult(Result(TIType(dm.getGVN(), TIType::EMPTY), -1));
         return;
     }
 

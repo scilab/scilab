@@ -175,14 +175,14 @@ void DebugVisitor::visit (const SimpleVar &e)
     analysis::TIType type = e.getDecorator().getResult().getType();
     if (type.type != analysis::TIType::UNKNOWN)
     {
-       if (type.isscalar())
-       {
-           ty = L" (" + analysis::TIType::toString(type.type) + L")";
-       }
-       else
-       {
-           ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
-       }
+        if (type.isscalar())
+        {
+            ty = L" (" + analysis::TIType::toString(type.type) + L")";
+        }
+        else
+        {
+            ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
+        }
     }
 
     DEBUG_START_NODE(e);

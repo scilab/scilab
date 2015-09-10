@@ -27,8 +27,6 @@ void AnalysisVisitor::visit(ast::ForExp & e)
 
     if (dm.requiresAnotherTrip())
     {
-        std::wcerr << "Invalid forexp: types or refcount are not the same before and after the loop" << std::endl;
-
         dm.finalizeBlock();
         dm.addBlock(Block::NORMAL, &e.getBody());
         e.getBody().accept(*this);
