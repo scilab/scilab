@@ -26,19 +26,13 @@ import java.util.logging.Logger;
 
 import javax.swing.Timer;
 
-import org.scilab.modules.graph.utils.Font;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabString;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.AbstractElement;
 
 import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxRectangle;
-import com.mxgraph.view.mxCellState;
-import com.mxgraph.view.mxGraphView;
 
 /**
  * Implement the AFFICH_m block
@@ -94,20 +88,21 @@ public final class AfficheBlock extends BasicBlock {
          * Update and refresh the values
          */
         private void update(String uid, String[][] data) {
-            final Object cell = Xcos.getInstance().lookupForCell(new String[] { uid });
-            if (cell != null) {
-                final XcosDiagram diag = Xcos.findParent(cell);
-                final String value = getText(data);
-
-                diag.getModel().setValue(cell, value);
-
-                final mxCellState state = diag.getView().getState(cell);
-                if (state != null) {
-                    state.setLabel(value);
-                }
-
-                diag.getAsComponent().redraw(state);
-            }
+            // FIXME re-implement this sheet
+            //            final Object cell = Xcos.getInstance().lookupForCell(new String[] { uid });
+            //            if (cell != null) {
+            //                final XcosDiagram diag = Xcos.findParent(cell);
+            //                final String value = getText(data);
+            //
+            //                diag.getModel().setValue(cell, value);
+            //
+            //                final mxCellState state = diag.getView().getState(cell);
+            //                if (state != null) {
+            //                    state.setLabel(value);
+            //                }
+            //
+            //                diag.getAsComponent().redraw(state);
+            //            }
         }
 
         /**
@@ -223,7 +218,7 @@ public final class AfficheBlock extends BasicBlock {
             index = new int[] { PRECISION_INDEX, 0 };
             final String width = data[index[0]][index[1]];
 
-            AbstractElement.incrementIndexes(index, true);
+            //            AbstractElement.incrementIndexes(index, true);
             final String rational = data[index[0]][index[1]];
 
             final String format = "%" + width + "." + rational + "f";
@@ -253,53 +248,39 @@ public final class AfficheBlock extends BasicBlock {
              */
             int[] index = new int[] { 0, 0 };
             final String data00 = data[index[0]][index[1]];
-            if (data00.startsWith(OPENING_BRACKET)) {
-                AbstractElement.incrementIndexes(index, true);
-            }
+            //            if (data00.startsWith(OPENING_BRACKET)) {
+            //                AbstractElement.incrementIndexes(index, true);
+            //            }
 
             /*
              * Apply style
              */
             final StyleMap style = new StyleMap(src.getStyle());
 
-            try {
-                final int parsedFontInt = Integer.parseInt(data[index[0]][index[1]]);
-                style.put(mxConstants.STYLE_FONTFAMILY, Font.getFont(parsedFontInt).getName());
-
-                AbstractElement.incrementIndexes(index, true);
-                final int parsedFontSizeInt = Integer.parseInt(data[index[0]][index[1]]);
-                style.put(mxConstants.STYLE_FONTSIZE, Integer.toString(Font.getSize(parsedFontSizeInt)));
-
-                AbstractElement.incrementIndexes(index, true);
-                final int parsedFontColorInt = Integer.parseInt(data[index[0]][index[1]]);
-                String color = "#" + Integer.toHexString(Font.getColor(parsedFontColorInt).getRGB());
-                style.put(mxConstants.STYLE_FONTCOLOR, color);
-            } catch (NumberFormatException e) {
-                LOG.severe(e.toString());
-                return;
-            }
+            //            try {
+            //                final int parsedFontInt = Integer.parseInt(data[index[0]][index[1]]);
+            //                style.put(mxConstants.STYLE_FONTFAMILY, Font.getFont(parsedFontInt).getName());
+            //
+            //                AbstractElement.incrementIndexes(index, true);
+            //                final int parsedFontSizeInt = Integer.parseInt(data[index[0]][index[1]]);
+            //                style.put(mxConstants.STYLE_FONTSIZE, Integer.toString(Font.getSize(parsedFontSizeInt)));
+            //
+            //                AbstractElement.incrementIndexes(index, true);
+            //                final int parsedFontColorInt = Integer.parseInt(data[index[0]][index[1]]);
+            //                String color = "#" + Integer.toHexString(Font.getColor(parsedFontColorInt).getRGB());
+            //                style.put(mxConstants.STYLE_FONTCOLOR, color);
+            //            } catch (NumberFormatException e) {
+            //                LOG.severe(e.toString());
+            //                return;
+            //            }
 
             src.setStyle(style.toString());
         }
     }
 
     /** Default constructor */
-    public AfficheBlock() {
-        super();
-
-        getParametersPCS().addPropertyChangeListener(EXPRS, UpdateStyle.getInstance());
-    }
-
-    /**
-     * Set the default values
-     *
-     * @see org.scilab.modules.xcos.block.BasicBlock#setDefaultValues()
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-
-        setValue("0.0");
+    public AfficheBlock(long uid) {
+        super(uid);
     }
 
     /**

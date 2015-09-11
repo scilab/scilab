@@ -12,10 +12,6 @@
 
 package org.scilab.modules.xcos.palette;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
-
 import java.awt.Point;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -30,16 +26,16 @@ import java.lang.ref.WeakReference;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -60,7 +56,8 @@ public final class PaletteBlockCtrl {
      */
     public static final XcosDiagram INTERNAL_GRAPH;
     static {
-        INTERNAL_GRAPH = new XcosDiagram();
+        JavaController controller = new JavaController();
+        INTERNAL_GRAPH = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         INTERNAL_GRAPH.installListeners();
     }
 
@@ -166,31 +163,26 @@ public final class PaletteBlockCtrl {
     private BasicBlock loadBlock() throws ScicosFormatException {
         BasicBlock block;
         if (model.getName().compareTo("TEXT_f") != 0) {
-
-            // Load the block with a reference instance
-            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-            if (handler == null) {
-                return null;
-            }
-
-            try {
-                synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-                block = handler.readBlock();
-            } catch (InterpreterException e1) {
-                LOG.severe(e1.toString());
-                block = null;
-            } finally {
-                handler.release();
-            }
-
-            // invalid block case
-            if (block == null) {
-                return null;
-            }
-
-            if (block.getStyle().compareTo("") == 0) {
-                block.setStyle(block.getInterfaceFunctionName());
-            }
+            // FIXME : play with the view to allocate that
+            block = null;
+            //            try {
+            //                synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
+            //                block = handler.readBlock();
+            //            } catch (InterpreterException e1) {
+            //                LOG.severe(e1.toString());
+            //                block = null;
+            //            } finally {
+            //                handler.release();
+            //            }
+            //
+            //            // invalid block case
+            //            if (block == null) {
+            //                return null;
+            //            }
+            //
+            //            if (block.getStyle().compareTo("") == 0) {
+            //                block.setStyle(block.getInterfaceFunctionName());
+            //            }
         } else {
             block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
         }
@@ -204,44 +196,45 @@ public final class PaletteBlockCtrl {
     protected void loadBlock(final ActionListener callback) {
         if (model.getName().compareTo("TEXT_f") != 0) {
 
-            // Load the block with a reference instance
-            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-            if (handler == null) {
-                return;
-            }
-
-            final ActionListener internalCallback = new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    try {
-                        final BasicBlock block = handler.readBlock();
-
-                        // invalid block case
-                        if (block == null) {
-                            return;
-                        }
-
-                        // update style
-                        if (block.getStyle().compareTo("") == 0) {
-                            block.setStyle(block.getInterfaceFunctionName());
-                        }
-
-                        callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
-                    } catch (ScicosFormatException e1) {
-                        e1.printStackTrace();
-                    } finally {
-                        handler.release();
-                    }
-                }
-            };
-
-            try {
-                asynchronousScilabExec(internalCallback, ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-            } catch (InterpreterException e1) {
-                LOG.severe(e1.toString());
-            } finally {
-                handler.release();
-            }
+            // FIXME : play with the view
+            //            // Load the block with a reference instance
+            //            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+            //            if (handler == null) {
+            //                return;
+            //            }
+            //
+            //            final ActionListener internalCallback = new ActionListener() {
+            //                @Override
+            //                public void actionPerformed(ActionEvent e) {
+            //                    try {
+            //                        final BasicBlock block = handler.readBlock();
+            //
+            //                        // invalid block case
+            //                        if (block == null) {
+            //                            return;
+            //                        }
+            //
+            //                        // update style
+            //                        if (block.getStyle().compareTo("") == 0) {
+            //                            block.setStyle(block.getInterfaceFunctionName());
+            //                        }
+            //
+            //                        callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
+            //                    } catch (ScicosFormatException e1) {
+            //                        e1.printStackTrace();
+            //                    } finally {
+            //                        handler.release();
+            //                    }
+            //                }
+            //            };
+            //
+            //            try {
+            //                asynchronousScilabExec(internalCallback, ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
+            //            } catch (InterpreterException e1) {
+            //                LOG.severe(e1.toString());
+            //            } finally {
+            //                handler.release();
+            //            }
         } else {
             final BasicBlock block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
             callback.actionPerformed(new ActionEvent(block, 0, "loaded"));

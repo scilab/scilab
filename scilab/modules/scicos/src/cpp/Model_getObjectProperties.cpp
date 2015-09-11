@@ -549,6 +549,57 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& v) const
+{
+    model::BaseObject* baseObject = getObject(uid);
+    if (baseObject == nullptr)
+    {
+        return false;
+    }
+
+    if (k == ANNOTATION)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == BLOCK)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == DIAGRAM)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == LINK)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    else if (k == PORT)
+    {
+        switch (p)
+        {
+            default:
+                break;
+        }
+    }
+    return false;
+}
+
 bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<std::string>& v) const
 {
     model::BaseObject* baseObject = getObject(uid);

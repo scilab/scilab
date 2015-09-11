@@ -1,7 +1,8 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Allan CORNET
- * Copyright (C) 2012 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2012-2015 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,219 +13,158 @@
  */
 /*--------------------------------------------------------------------------*/
 
-#include <iostream>
-
 #include "Xcos.hxx"
 #include "loadStatus.hxx"
+#include "view_scilab/Adapters.hxx"
 
-extern "C" {
-#include "gw_xcos.h"
+#include "types.hxx"
+#include "function.hxx"
+#include "string.hxx"
+#include "gw_xcos.hxx"
+
+extern "C" 
+{
 #include "sci_malloc.h"
-#include "freeArrayOfString.h"
-#include "api_scilab.h"
-#include "localization.h"
 #include "getFullFilename.h"
-#include "Scierror.h"
 #include "getScilabJavaVM.h"
+#include "Scierror.h"
+#include "localization.h"
 }
 
 using namespace org_scilab_modules_xcos;
+using namespace org_scilab_modules_scicos;
 
-static int callXcos(char* fname, char* file, char* var);
+static int callXcos(char* fname, char* file, long diagramId);
 
 /*--------------------------------------------------------------------------*/
-int sci_Xcos(char *fname, void *pvApiCtx)
-{
-    CheckRhs(0, 2);
-    CheckLhs(0, 1);
+static char funname[] = "xcos";
 
-    int *piAddressVar = NULL;
-    int iType = 0;
-    SciErr sciErr;
+types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, types::typed_list &/*out*/)
+{
+    if (in.size() > 2)
+    {
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), funname, 0, 2);
+        return types::Function::Error;
+    }
+
+    if (_iRetCount > 1)
+    {
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), funname, 1);
+        return types::Function::Error;
+    }
 
     /*
      * xcos() call
      */
-    if (Rhs == 0)
+    if (in.empty())
     {
-        int ret = callXcos(fname, NULL, NULL);
-        LhsVar(1) = 0;
-        PutLhsVar();
-        return ret;
-    }
-
-    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVar);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
-    }
-
-    sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-        return 0;
+        callXcos(funname, nullptr, ScicosID());
+        return types::Function::OK;
     }
 
     /*
      * xcos("file.zcos") or xcos(["file.zcos" "foo.zcos"]) call
      */
-    if (Rhs == 1 && iType == sci_strings)
+    if (in.size() == 1 && in[0]->isString())
     {
-        int i;
-        int m = 0, n = 0;
-        int* len = NULL;
-        char **var = NULL;
+        types::String* arg1 = in[0]->getAs<types::String>();
 
-        sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m, &n, NULL, NULL);
-        if (sciErr.iErr)
+        for (int i = 0; i < arg1->getSize(); ++i)
         {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname,
-                     1);
-            return 0;
-        }
-
-        len = (int*) MALLOC(sizeof(int) * (m * n));
-        if (len == NULL)
-        {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
-
-        sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m, &n, len, NULL);
-        if (sciErr.iErr)
-        {
-            FREE(len);
-
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname,
-                     1);
-            return 0;
-        }
-
-        var = (char**) MALLOC(sizeof(char*) * (m * n));
-        if (var == NULL)
-        {
-            FREE(len);
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
-        }
-
-        for (i = 0; i < m * n; i++)
-        {
-            var[i] = (char*) MALLOC(sizeof(char) * (len[i] + 1));
-            if (var[i] == NULL)
+            char* c_str = wide_string_to_UTF8(arg1->get(0));
+            char* file = getFullFilename(c_str);
+            FREE(c_str);
+            if (file == nullptr)
             {
-                FREE(len);
-                freeArrayOfString(var, i);
-
-                Scierror(999, _("%s: No more memory.\n"), fname);
-                return 0;
+                return types::Function::Error;
+            }
+            if (callXcos(funname, file, ScicosID()))
+            {
+                return types::Function::Error;
             }
         }
 
-        sciErr = getMatrixOfString(pvApiCtx, piAddressVar, &m, &n, len,
-                                   var);
-        if (sciErr.iErr)
-        {
-            FREE(len);
-            freeArrayOfString(var, m * n);
-
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname,
-                     1);
-            return 0;
-        }
-
-        for (i = m * n - 1; i >= 0; i--)
-        {
-            char* file = getFullFilename(var[i]);
-            if (file == NULL)
-            {
-                FREE(len);
-                freeArrayOfString(var, m * n);
-                return 1;
-            }
-            if (callXcos(fname, file, NULL))
-            {
-                FREE(len);
-                freeArrayOfString(var, m * n);
-                return 1;
-            }
-        }
-
-        FREE(len);
-        freeArrayOfString(var, m * n);
-
-        LhsVar(1) = 0;
-        PutLhsVar();
-        return 0;
+        return types::Function::OK;
     }
 
     /*
      * xcos(scs_m) call
      */
-    if (Rhs == 1 && iType == sci_mlist)
+    if (in.size() == 1 && in[0]->isUserType())
     {
-        int lw = 1;
-
-        // FIXME
-        // overloaded by %diagram_xcos.sci
-        //C2F(overload)(&lw, fname, fname_len);
-
-        LhsVar(1) = 0;
-        PutLhsVar();
-        return 0;
-    }
-
-    /*
-     * xcos(scs_m, "scs_m") call (usually from the overload macro)
-     */
-    if (Rhs == 2 && iType == sci_mlist)
-    {
-        char* variable = NULL;
-
-        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVar);
-        if (sciErr.iErr)
+        const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(in[0]);
+        if (o == nullptr || o->kind() != DIAGRAM)
         {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname,
-                     2);
-            return 0;
+            Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, 1, "diagram");
+            return types::Function::Error;
         }
 
-        if (getAllocatedSingleString(pvApiCtx, piAddressVar, &variable))
+        if (callXcos(funname, nullptr, static_cast<long>(o->id())))
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
-            return 0;
+            return types::Function::Error;
         }
-
-        LhsVar(1) = 0;
-        PutLhsVar();
-        return callXcos(fname, NULL, variable);
+        return types::Function::OK;
     }
 
+    // 	we finished the 1-argument handling ; short-cut return with a clear error message
+    if (in.size() == 1)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: string or ""%s"" expected.\n"), funname, 1, "diagram");
+        return types::Function::Error;
+    }
+
+
     /*
-     * if not returned yet, disp the error message.
+     * xcos("file.zcos", scs_m) call ; load the file into an existing diagram
      */
-    Scierror(999,
-             _("%s: Wrong type for input argument #%d: A string expected.\n"),
-             fname, 1);
-    return 0;
+    if (in.size() == 2 &&
+            in[0]->isString() &&
+            in[1]->isUserType())
+    {
+        if (in[0]->getAs<types::String>()->getSize() != 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), funname, 1);
+            return types::Function::Error;
+        }
+
+        const model::BaseObject* o = view_scilab::Adapters::instance().descriptor(in[1]);
+        if (o == nullptr || o->kind() != DIAGRAM)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, 2, "diagram");
+            return types::Function::Error;
+        }
+
+        char* c_str = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+        char* file = getFullFilename(c_str);
+        if (file == nullptr)
+        {
+            FREE(c_str);
+            return types::Function::Error;
+        }
+
+        if (callXcos(funname, c_str, static_cast<long>(o->id())))
+        {
+            FREE(c_str);
+            return types::Function::Error;
+        }
+        FREE(c_str);
+        return types::Function::OK;
+    }
+    /*
+     * If not returned yet, display a generic error message.
+     */
+    Scierror(999, _("%s: Wrong type for input argument #%d: string or ""%s"" expected.\n"), funname, 1, "diagram");
+    return types::Function::Error;
 }
 /*--------------------------------------------------------------------------*/
 
-static int callXcos(char *fname, char* file, char* var)
+static int callXcos(char *fname, char* file, long diagramId)
 {
     set_loaded_status(XCOS_CALLED);
 
     try
     {
-        Xcos::xcos(getScilabJavaVM(), file, var);
+        Xcos::xcos(getScilabJavaVM(), file, diagramId);
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
@@ -238,10 +178,6 @@ static int callXcos(char *fname, char* file, char* var)
         if (file)
         {
             FREE(file);
-        }
-        if (var)
-        {
-            FREE(var);
         }
         return 1;
     }
@@ -257,10 +193,6 @@ static int callXcos(char *fname, char* file, char* var)
         {
             FREE(file);
         }
-        if (var)
-        {
-            FREE(var);
-        }
         return 1;
     }
 
@@ -268,9 +200,6 @@ static int callXcos(char *fname, char* file, char* var)
     {
         FREE(file);
     }
-    if (var)
-    {
-        FREE(var);
-    }
     return 0;
 }
+

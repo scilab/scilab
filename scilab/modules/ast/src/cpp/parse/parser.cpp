@@ -68,6 +68,13 @@ void Parser::parseFile(const std::wstring& fileName, const std::wstring& progNam
     {
         this->setErrorMessage(ParserSingleInstance::getErrorMessage());
     }
+
+    if (getExitStatus() != Parser::Succeded)
+    {
+        delete ParserSingleInstance::getTree();
+        ParserSingleInstance::setTree(nullptr);
+    }
+
     // FIXME : UNLOCK
 }
 

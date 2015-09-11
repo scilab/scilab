@@ -13,7 +13,6 @@
 
 #ifndef __GETWINDOWSVERSION_H__
 #define __GETWINDOWSVERSION_H__
-#include <windows.h>
 /*-----------------------------------------------------------------------------------*/
 #ifdef EXPORT_GETWINDOWSVERSION_DLL
 #define IMPORT_EXPORT_GETWINDOWSVERSION_DLL __declspec(dllexport)

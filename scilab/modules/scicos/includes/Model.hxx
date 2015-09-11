@@ -47,6 +47,7 @@ public:
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, ScicosID& v) const;
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<double>& v) const;
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<int>& v) const;
+    bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& v) const;
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector< std::string >& v) const;
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<ScicosID>& v) const;
 
@@ -57,6 +58,7 @@ public:
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::string v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<double>& v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<int>& v);
+    update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector< std::string >& v);
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v);
 

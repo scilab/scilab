@@ -19,7 +19,7 @@
 #define __JIMS__WRAPUNWRAP_H__
 
 #ifdef _MSC_VER
-#include <Windows.h>
+//#include <Windows.h>
 #endif
 
 #define __JIMS_getmethod__(Kind, Type) static const char * get##Kind##MethodName() \

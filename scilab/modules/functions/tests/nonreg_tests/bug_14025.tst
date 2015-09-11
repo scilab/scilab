@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // head_comments did not take into account compiled functions
-
+// <-- CLI SHELL MODE -->
 function test()
     // heading comment L#1
     // heading comment L#2

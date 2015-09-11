@@ -25,7 +25,6 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.TextBlock;
-import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -211,7 +210,8 @@ public class GraphHandler extends mxGraphHandler {
      *            the block
      */
     private void openBlock(MouseEvent e, BasicBlock cell) {
-        cell.openBlockSettings(((XcosDiagram) graphComponent.getGraph()).getContext());
+        // FIXME: play with the xcos view
+        //        cell.openBlockSettings(((XcosDiagram) graphComponent.getGraph()).getContext());
 
         e.consume();
     }

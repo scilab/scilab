@@ -17,7 +17,6 @@
 /*--------------------------------------------------------------------------*/
 #include "dynlib_xcos.h"
 /*--------------------------------------------------------------------------*/
-XCOS_IMPEXP int sci_Xcos(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosNotify(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_warnBlockByUID(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_closeXcosFromScilab(char *fname, void *pvApiCtx);

@@ -17,11 +17,12 @@ import java.util.logging.Logger;
 
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
-import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
@@ -70,11 +71,11 @@ public class BasicBlockCodec extends XcosObjectCodec {
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
 
         for (BlockInterFunction function : BlockFactory.BlockInterFunction.values()) {
-            XcosObjectCodec codec = new BasicBlockCodec(function.getSharedInstance(), IGNORED_FIELDS, REFS, null);
+            XcosObjectCodec codec = new BasicBlockCodec(BlockFactory.createBlock(function), IGNORED_FIELDS, REFS, null);
             mxCodecRegistry.register(codec);
         }
 
-        XcosObjectCodec basicBlockCodec = new BasicBlockCodec(new BasicBlock(), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec basicBlockCodec = new BasicBlockCodec(new BasicBlock(0l), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(basicBlockCodec);
 
         mxCellCodec cellCodec = new mxCellCodec(new mxCell(), null, REFS, null);
@@ -112,7 +113,8 @@ public class BasicBlockCodec extends XcosObjectCodec {
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-        ((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE, String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
+        // FIXME is it needed ?
+        //        ((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE, String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
 
         /*
          * Log some information
@@ -181,25 +183,7 @@ public class BasicBlockCodec extends XcosObjectCodec {
             return obj;
         }
         final BasicBlock block = (BasicBlock) obj;
-
-        block.setSimulationFunctionType(SimulationFunctionType.DEFAULT);
-
-        String functionType = (((Element) node).getAttribute(SIMULATION_FUNCTION_TYPE));
-        if (functionType != null && functionType.compareTo("") != 0) {
-            SimulationFunctionType type = BasicBlock.SimulationFunctionType.valueOf(functionType);
-            if (type != null) {
-                block.setSimulationFunctionType(type);
-            }
-        }
-
-        // Re associate the diagram container
-        if (block instanceof SuperBlock) {
-            final SuperBlock superBlock = (SuperBlock) block;
-            if (superBlock.getChild() != null) {
-                superBlock.getChild().setContainer(superBlock);
-            }
-            superBlock.invalidateRpar();
-        }
+        JavaController controller = new JavaController();
 
         // update TextBlock due to a wrong serialization of the CSS properties
         if (block instanceof TextBlock) {
@@ -209,9 +193,8 @@ public class BasicBlockCodec extends XcosObjectCodec {
         // update style to replace direction by rotation and add the
         // default style if absent
         StyleMap map = new StyleMap(((Element) node).getAttribute(STYLE));
-        formatStyle(map, (BasicBlock) obj);
+        formatStyle(map, (BasicBlock) obj, controller);
         block.setStyle(map.toString());
-        block.updateFieldsFromStyle();
 
         /*
          * Compat. to remove old specific implementations
@@ -222,19 +205,26 @@ public class BasicBlockCodec extends XcosObjectCodec {
          * default value.
          */
         if (node.getNodeName().equals("ConstBlock")) {
-            if (block.getInterfaceFunctionName().equals(BasicBlock.DEFAULT_INTERFACE_FUNCTION)) {
-                block.setInterfaceFunctionName("CONST_m");
+            String[] strData = new String[1];
+
+            controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, strData);
+            if (BasicBlock.DEFAULT_INTERFACE_FUNCTION.equals(strData[0])) {
+                controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, "CONST_m");
             }
-            if (block.getSimulationFunctionName().equals(BasicBlock.DEFAULT_SIMULATION_FUNCTION)) {
-                block.setSimulationFunctionName("cstblk4");
+            controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, strData);
+            if (BasicBlock.DEFAULT_SIMULATION_FUNCTION.equals(strData[0])) {
+                controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, "cstblk4");
             }
             if (block.getValue() == null) {
                 block.setValue("1");
             }
         }
         if (node.getNodeName().equals("GainBlock")) {
-            if (block.getInterfaceFunctionName().equals(BasicBlock.DEFAULT_INTERFACE_FUNCTION)) {
-                block.setInterfaceFunctionName("GAINBLK_f");
+            String[] strData = new String[1];
+
+            controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, strData);
+            if (BasicBlock.DEFAULT_INTERFACE_FUNCTION.equals(strData[0])) {
+                controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, "GAINBLK_f");
             }
         }
         // PrintBlock has no default values
@@ -249,11 +239,14 @@ public class BasicBlockCodec extends XcosObjectCodec {
      *            the read style value
      * @param obj
      *            the block instance
+     * @param controller the current java controller used to update the data
      */
-    private void formatStyle(StyleMap map, BasicBlock obj) {
+    private void formatStyle(StyleMap map, BasicBlock obj, JavaController controller) {
+        String[] strData = new String[1];
+        controller.getObjectProperty(obj.getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, strData);
 
         // Append the bloc style if not present.
-        String name = obj.getInterfaceFunctionName();
+        String name = strData[0];
         if (!map.containsKey(name)) {
             map.put(name, null);
         }

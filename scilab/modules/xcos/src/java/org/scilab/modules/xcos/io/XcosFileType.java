@@ -13,8 +13,6 @@
 
 package org.scilab.modules.xcos.io;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -37,8 +35,6 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.XcosCodec;
@@ -450,28 +446,29 @@ public enum XcosFileType {
         cmd.append(filename);
         cmd.append("\");");
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
-
-        ActionListener callback = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    handler.readDiagram(into);
-                } finally {
-                    handler.release();
-                }
-            }
-        };
-
-        try {
-            ScilabInterpreterManagement.asynchronousScilabExec(callback,
-                    cmd.toString());
-        } catch (InterpreterException e) {
-            e.printStackTrace();
-            handler.release();
-        }
+        // FIXME manage that
+        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        //        if (handler == null) {
+        //            return;
+        //        }
+        //
+        //        ActionListener callback = new ActionListener() {
+        //            @Override
+        //            public void actionPerformed(ActionEvent e) {
+        //                try {
+        //                    handler.readDiagram(into);
+        //                } finally {
+        //                    handler.release();
+        //                }
+        //            }
+        //        };
+        //
+        //        try {
+        //            ScilabInterpreterManagement.asynchronousScilabExec(callback,
+        //                    cmd.toString());
+        //        } catch (InterpreterException e) {
+        //            e.printStackTrace();
+        //            handler.release();
+        //        }
     }
 }

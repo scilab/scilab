@@ -25,11 +25,8 @@ public class BigSom extends BasicBlock {
     /**
      * Default constructor
      */
-    public BigSom() {
-        super();
-
-        getParametersPCS().addPropertyChangeListener("realParameters",
-                SumPortLabelingListener.getInstance());
+    public BigSom(long uid) {
+        super(uid);
     }
 
 }

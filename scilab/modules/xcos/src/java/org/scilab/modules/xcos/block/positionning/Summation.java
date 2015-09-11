@@ -25,11 +25,8 @@ public class Summation extends BasicBlock {
     /**
      * Default constructor
      */
-    public Summation() {
-        super();
-
-        getParametersPCS().addPropertyChangeListener("integerParameters",
-                SumPortLabelingListener.getInstance());
+    public Summation(long uid) {
+        super(uid);
     }
 
 }

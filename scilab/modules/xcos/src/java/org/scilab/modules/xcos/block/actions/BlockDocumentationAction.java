@@ -25,6 +25,9 @@ import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosDialogs;
@@ -96,7 +99,12 @@ public final class BlockDocumentationAction extends VertexSelectionDependantActi
         Object selected = graph.getSelectionCell();
         if (selected instanceof BasicBlock) {
             try {
-                ScilabInterpreterManagement.asynchronousScilabExec(null, "help", ((BasicBlock) selected).getInterfaceFunctionName());
+                JavaController controller = new JavaController();
+
+                String[] interfaceFunction = new String[1];
+                controller.getObjectProperty(((BasicBlock) selected).getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+
+                ScilabInterpreterManagement.asynchronousScilabExec(null, "help", interfaceFunction[0]);
             } catch (InterpreterException ex) {
                 ex.printStackTrace();
             }

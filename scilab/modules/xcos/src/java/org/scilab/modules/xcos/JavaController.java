@@ -8,25 +8,30 @@
 
 package org.scilab.modules.xcos;
 
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class JavaController extends Controller {
 
   // will contains all registered JavaViews to prevent garbage-collection 
-  private static ArrayList<View> references = new ArrayList<View>();
+  private static Map<String, View> references = new TreeMap<String, View>();
   
-  private static long add_reference(View v) {
-    references.add(v);
+  private static long add_reference(String name, View v) {
+    references.put(name, v);
     return View.getCPtr(v);
   }
 
   private static View remove_reference(View v) {
-    references.remove(v);
+    references.values().remove(v);
     return v;
   }
 
+  public static View lookup_view(String name) {
+    return references.get(name);
+  }
+
   public static void register_view(String name, View view) {
-    JavaControllerJNI.register_view(name, add_reference(view), view);
+    JavaControllerJNI.register_view(name, add_reference(name, view), view);
   }
 
   public static void unregister_view(View view) {

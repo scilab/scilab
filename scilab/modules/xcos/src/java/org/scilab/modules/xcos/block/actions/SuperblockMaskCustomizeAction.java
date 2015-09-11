@@ -45,7 +45,6 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
-import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -104,14 +103,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
         }
 
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
-        block.createChildDiagram(); // assert that diagram is an xcos one
 
         XcosDiagram parentGraph = block.getParentDiagram();
-        if (parentGraph == null) {
-            block.setParentDiagram(Xcos.findParent(block));
-            parentGraph = block.getParentDiagram();
-            Logger.getLogger(SuperblockMaskCustomizeAction.class.getName()).severe("Parent diagram was null");
-        }
         CustomizeFrame frame = new CustomizeFrame(parentGraph);
         CustomizeFrame.CustomizeFrameModel model = frame.getController().getModel();
         model.setBlock(block);
@@ -442,8 +435,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                     exprs = new ScilabList(Arrays.asList(new ScilabString(values),
                                                          new ScilabList(Arrays.asList(new ScilabString(varNames), new ScilabString(varDesc), polFields))));
                 }
-
-                getBlock().setExprs(exprs);
+                // FIXME: this exprs will be var2vec encoded on the model ; handle that from Java
+                //                getBlock().setExprs(exprs);
 
                 /*
                  * Trace the exprs update.
@@ -461,7 +454,9 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                 ScilabString varNames;
                 ScilabString varDesc;
 
-                ScilabType rawExprs = getBlock().getExprs();
+                //                FIXME: this exprs will be var2vec encoded on the model ; handle that from Java
+                //                ScilabType rawExprs = getBlock().getExprs();
+                ScilabType rawExprs = new ScilabDouble();
 
                 // Xcos from Scilab 5.2.0 version
                 // so set default values

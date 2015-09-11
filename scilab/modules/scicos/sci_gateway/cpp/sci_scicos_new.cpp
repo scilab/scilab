@@ -12,6 +12,7 @@
 
 #include <string>
 
+#include "../../includes/view_scilab/Adapters.hxx"
 #include "gw_scicos.hxx"
 
 #include "types.hxx"
@@ -21,7 +22,6 @@
 #include "list.hxx"
 #include "function.hxx"
 
-#include "view_scilab/Adapters.hxx"
 #include "view_scilab/BaseAdapter.hxx"
 #include "view_scilab/BlockAdapter.hxx"
 #include "view_scilab/CprAdapter.hxx"
@@ -129,25 +129,9 @@ types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::ty
     return mlist;
 }
 
-types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (in.size() < 1)
-    {
-        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), funame.data(), 1);
-        return types::Function::Error;
-    }
-    if (_iRetCount > 1)
-    {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), funame.data(), 1);
-        return types::Function::Error;
-    }
-
     types::InternalType* type = in[0];
-    if (type->getType() != types::InternalType::ScilabString)
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), funame.data(), 1);
-        return types::Function::Error;
-    }
 
     types::String* type_name = type->getAs<types::String>();
     if (type_name->getRows() > 1)
@@ -258,3 +242,84 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
 
     return types::Function::OK;
 }
+
+types::Function::ReturnValue get(types::Double* UIDs, int _iRetCount, types::typed_list &out)
+{
+    if (UIDs->getSize() != _iRetCount)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: %dx%d expected.\n"), funame.data(), 1, _iRetCount, 1);
+        return types::Function::Error;
+    }
+
+
+    Controller controller;
+    types::Function::ReturnValue retValue = types::Function::OK;
+    for (int i = 0; i < _iRetCount; ++i)
+    {
+        ScicosID uid = UIDs->get(i);
+
+        // create the associated object
+        model::BaseObject* o = controller.getObject(uid);
+        if (o == nullptr)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: invalid UID.\n"), funame.data(), 1);
+            retValue = types::Function::Error;
+            break;
+        }
+
+        switch (o->kind())
+        {
+            case DIAGRAM:
+                out.push_back(new view_scilab::DiagramAdapter(controller, static_cast<model::Diagram*>(controller.referenceObject(o))));
+                break;
+            case BLOCK:
+                out.push_back(new view_scilab::BlockAdapter(controller, static_cast<model::Block*>(controller.referenceObject(o))));
+                break;
+            case LINK:
+                out.push_back(new view_scilab::LinkAdapter(controller, static_cast<model::Link*>(controller.referenceObject(o))));
+                break;
+            default:
+                Scierror(999, _("%s: Wrong value for input argument #%d: not handled kind.\n"), funame.data(), 1);
+                retValue = types::Function::Error;
+                break;
+        }
+    }
+
+    if (retValue != types::Function::OK)
+    {
+        // something goes wrong, release the allocated data
+        for (types::typed_list::iterator it = out.begin(); it != out.end(); ++it)
+        {
+            delete *it;
+        }
+    }
+
+    return retValue;
+}
+
+types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    if (in.size() < 1)
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), funame.data(), 1);
+        return types::Function::Error;
+    }
+    if (_iRetCount > 1)
+    {
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), funame.data(), 1);
+        return types::Function::Error;
+    }
+
+    types::InternalType* type = in[0];
+    switch (type->getType())
+    {
+        case types::InternalType::ScilabString:
+            return allocate(in, _iRetCount, out);
+        case types::InternalType::ScilabDouble:
+            return get(type->getAs<types::Double>(), _iRetCount, out);
+        default:
+            Scierror(999, _("%s: Wrong type for input argument #%d: String or ID expected.\n"), funame.data(), 1);
+            return types::Function::Error;
+    }
+}
+

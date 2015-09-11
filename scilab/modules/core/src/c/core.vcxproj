@@ -260,12 +260,10 @@ cd ..
     <ClCompile Include="dynamic_gateways.c" />
     <ClCompile Include="dynamic_parallel.c" />
     <ClCompile Include="dynamic_tclsci.c" />
-    <ClCompile Include="ExceptionMessage.c" />
     <ClCompile Include="freeArrayOfString.c" />
     <ClCompile Include="getcommandlineargs.c" />
     <ClCompile Include="getdynamicdebuginfo.c" />
     <ClCompile Include="getdynamicDebugInfo_Windows.c" />
-    <ClCompile Include="GetExceptionCode.c" />
     <ClCompile Include="getmaxMALLOC.c" />
     <ClCompile Include="getmemory.c" />
     <ClCompile Include="getmodules.c" />
@@ -313,12 +311,10 @@ cd ..
     <ClInclude Include="..\..\includes\core_gw.hxx" />
     <ClInclude Include="..\..\includes\core_math.h" />
     <ClInclude Include="..\..\includes\dynlib_core.h" />
-    <ClInclude Include="..\..\includes\ExceptionMessage.h" />
     <ClInclude Include="..\..\includes\existfunction.h" />
     <ClInclude Include="..\..\includes\exit_status.hxx" />
     <ClInclude Include="..\..\includes\freeArrayOfString.h" />
     <ClInclude Include="..\..\includes\getcommandlineargs.h" />
-    <ClInclude Include="..\..\includes\GetExceptionCode.h" />
     <ClInclude Include="..\..\includes\getfunctionsname.h" />
     <ClInclude Include="..\..\includes\getmacrosname.h" />
     <ClInclude Include="..\..\includes\getmaxMALLOC.h" />

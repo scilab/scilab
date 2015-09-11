@@ -21,8 +21,8 @@ public class ExplicitOutputPort extends OutputPort {
     private static final long serialVersionUID = -8199491929829046860L;
 
     /** Default constructor */
-    public ExplicitOutputPort() {
-        super("ExplicitOutputPort");
+    public ExplicitOutputPort(long uid) {
+        super(uid);
     }
 
     /**

@@ -108,6 +108,7 @@ ipch
 _UpgradeReport_Files/
 UpgradeLog.XML
 
+
 # eclipse temp files
 workspace/
 .checkstyle
@@ -116,8 +117,8 @@ workspace/
 .cproject
 .settings/
 
-# VIM ctags temp files
-tags
+# vim files
+/tags
 
 # MacOS files
 .DS_Store

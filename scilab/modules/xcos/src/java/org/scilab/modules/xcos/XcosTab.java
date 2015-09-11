@@ -314,7 +314,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
 
-        Xcos.getInstance().addDiagram(graph.getSavedFile(), graph);
+        Xcos.getInstance().addDiagram(graph.getUId(), graph);
         graph.setOpened(true);
 
         if (visible) {

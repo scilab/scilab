@@ -24,10 +24,10 @@ import org.scilab.modules.graph.io.ScilabGraphCodec;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.ScicosParameters;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
@@ -94,9 +94,11 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * Register this codec into the {@link mxCodecRegistry}.
      */
     public static void register() {
-        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(), DIAGRAM_IGNORED_FIELDS, null, null);
+        JavaController controller = new JavaController();
+
+        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM), DIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(diagramCodec);
-        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new SuperBlockDiagram(), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
+        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.BLOCK), Kind.BLOCK), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(superBlockDiagramCodec);
     }
 
@@ -304,26 +306,27 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
         final mxGraphModel model = (mxGraphModel) diag.getModel();
         final Object parent = diag.getDefaultParent();
 
+        // FIXME is it really needed now ?
         // main update loop
-        final mxGraphModel.Filter filter = new mxGraphModel.Filter() {
-            @Override
-            public boolean filter(Object cell) {
-                if (cell instanceof BasicBlock) {
-                    final BasicBlock block = (BasicBlock) cell;
-
-                    // update parent diagram
-                    block.setParentDiagram(diag);
-
-                    // restore default root in case of a wrong hierarchy.
-                    return block.getParent() != parent;
-                }
-                return false;
-            }
-        };
-        final Collection<Object> blocks = mxGraphModel.filterDescendants(model, filter);
-        if (!blocks.isEmpty()) {
-            diag.addCells(blocks.toArray());
-        }
+        //        final mxGraphModel.Filter filter = new mxGraphModel.Filter() {
+        //            @Override
+        //            public boolean filter(Object cell) {
+        //                if (cell instanceof BasicBlock) {
+        //                    final BasicBlock block = (BasicBlock) cell;
+        //
+        //                    // update parent diagram
+        //                    block.setParentDiagram(diag);
+        //
+        //                    // restore default root in case of a wrong hierarchy.
+        //                    return block.getParent() != parent;
+        //                }
+        //                return false;
+        //            }
+        //        };
+        //        final Collection<Object> blocks = mxGraphModel.filterDescendants(model, filter);
+        //        if (!blocks.isEmpty()) {
+        //            diag.addCells(blocks.toArray());
+        //        }
 
         // pre-5.3 diagram may be saved in a locked state
         // unlock it

@@ -24,17 +24,7 @@ public final class EventOutBlock extends ContextUpdate {
     /**
      * Constructor
      */
-    public EventOutBlock() {
-        super();
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-        setInterfaceFunctionName("CLKOUTV_f");
-        setSimulationFunctionName("output");
+    public EventOutBlock(long uid) {
+        super(uid);
     }
 }

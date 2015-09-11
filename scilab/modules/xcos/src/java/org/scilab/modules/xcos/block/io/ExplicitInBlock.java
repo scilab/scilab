@@ -24,17 +24,7 @@ public final class ExplicitInBlock extends ContextUpdate {
     /**
      * Constructor
      */
-    public ExplicitInBlock() {
-        super();
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-        setInterfaceFunctionName("IN_f");
-        setSimulationFunctionName("input");
+    public ExplicitInBlock(long uid) {
+        super(uid);
     }
 }

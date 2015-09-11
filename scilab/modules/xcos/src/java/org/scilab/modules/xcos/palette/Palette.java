@@ -34,11 +34,12 @@ import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabTList;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
@@ -497,7 +498,7 @@ public final class Palette {
      *             on error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void generatePaletteIcon(final String iconPath) throws Exception {
+    public static void generatePaletteIcon(final long uid, final String iconPath) throws Exception {
         /*
          * If the env. is headless does nothing
          */
@@ -506,14 +507,8 @@ public final class Palette {
             return;
         }
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        try {
-            final BasicBlock block = handler.readBlock();
-
-            generateIcon(block, iconPath);
-        } finally {
-            handler.release();
-        }
+        final BasicBlock block = new BasicBlock(uid);
+        generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
             LOG.finest(iconPath + " updated.");
@@ -527,7 +522,9 @@ public final class Palette {
         block.getGeometry().setX(XcosConstants.PALETTE_BLOCK_WIDTH);
         block.getGeometry().setY(XcosConstants.PALETTE_BLOCK_HEIGHT);
 
-        final XcosDiagram graph = new XcosDiagram();
+        JavaController controller = new JavaController();
+
+        final XcosDiagram graph = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         graph.installListeners();
 
         graph.addCell(block);
@@ -557,5 +554,8 @@ public final class Palette {
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
+
+
+        controller.deleteObject(graph.getUId());
     }
 }

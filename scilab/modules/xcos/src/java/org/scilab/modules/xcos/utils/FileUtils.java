@@ -20,14 +20,8 @@ import java.io.IOException;
 import java.nio.channels.FileChannel;
 import java.util.logging.Logger;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.w3c.dom.Document;
-import org.xml.sax.SAXException;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxUtils;

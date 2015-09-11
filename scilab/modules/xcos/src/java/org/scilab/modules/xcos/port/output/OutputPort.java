@@ -24,8 +24,6 @@ import org.scilab.modules.xcos.port.Orientation;
  */
 public abstract class OutputPort extends BasicPort {
 
-    private static final long serialVersionUID = -8098437925667788997L;
-
     /**
      * Default constructor
      *
@@ -33,10 +31,8 @@ public abstract class OutputPort extends BasicPort {
      *            The string port name ("ExplicitOutputPort" or
      *            "ImplicitOutputPort")
      */
-    public OutputPort(String type) {
-        super(type);
+    public OutputPort(long uid) {
+        super(uid);
         setOrientation(Orientation.EAST);
-
-        setDefaultValues();
     }
 }

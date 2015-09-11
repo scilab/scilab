@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.io.codec;
 
+import static org.scilab.modules.xcos.io.codec.XcosCodec.LOG;
+
 import java.util.Map;
 
 import org.scilab.modules.xcos.block.BasicBlock;
@@ -24,8 +26,6 @@ import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
-
-import static org.scilab.modules.xcos.io.codec.XcosCodec.LOG;
 
 public class BasicLinkCodec extends XcosObjectCodec {
 

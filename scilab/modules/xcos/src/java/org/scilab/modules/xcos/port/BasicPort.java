@@ -16,6 +16,9 @@ import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -34,16 +37,9 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
      */
     public static final double DEFAULT_PORTSIZE = 8;
 
-    private static final long serialVersionUID = -5022701071026919015L;
-    private static final int DEFAULT_DATALINES = -1;
-    private static final int DEFAULT_DATACOLUMNS = -2;
-
+    private final long uid;
     private int ordering;
-    private int dataLines;
-    private int dataColumns;
-    private DataType dataType = DataType.REAL_MATRIX;
     private Orientation orientation;
-    private transient String typeName;
 
     /** Type of any dataport */
     public enum Type {
@@ -125,55 +121,18 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
      * @param style
      *            Value to be set as a Style and as TypeName
      */
-    public BasicPort(String style) {
+    public BasicPort(long uid) {
         super();
+        this.uid = uid;
         setVertex(true);
-        setStyle(style);
-        setTypeName(style);
         setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
     }
 
     /**
-     * @return The number of data lines that can pass trough this port.
+     * @return the port uid
      */
-    public int getDataLines() {
-        return dataLines;
-    }
-
-    /**
-     * @param dataLines
-     *            The number of data lines that can pass trough this port.
-     */
-    public void setDataLines(int dataLines) {
-        this.dataLines = dataLines;
-    }
-
-    /**
-     * @return The number of data columns that can pass trough this port.
-     */
-    public int getDataColumns() {
-        return dataColumns;
-    }
-
-    /**
-     * @param dataColumns
-     *            The number of data columns that can pass trough this port.
-     */
-    public void setDataColumns(int dataColumns) {
-        this.dataColumns = dataColumns;
-    }
-
-    /**
-     * @param dataType
-     *            the port data type
-     */
-    public void setDataType(DataType dataType) {
-        this.dataType = dataType;
-    }
-
-    /** @return the port data type */
-    public DataType getDataType() {
-        return dataType;
+    public long getUID() {
+        return uid;
     }
 
     /**
@@ -235,28 +194,9 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
     }
 
     /**
-     * @param typeName
-     *            the typeName to set
-     */
-    private void setTypeName(String typeName) {
-        this.typeName = typeName;
-    }
-
-    /**
-     * @return the typeName
-     */
-    public String getTypeName() {
-        return typeName;
-    }
-
-    /**
      * Set the default values for newly created port.
      */
     public void setDefaultValues() {
-        setDataLines(DEFAULT_DATALINES);
-        setDataColumns(DEFAULT_DATACOLUMNS);
-        setDataType(DataType.UNKNOW_TYPE);
-
         setLabelPosition(getOrientation());
     }
 
@@ -312,7 +252,10 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
         final mxICell parent = getParent();
         if (parent != null) {
             if (parent instanceof BasicBlock) {
-                str.append(((BasicBlock) parent).getInterfaceFunctionName()).append('.');
+                JavaController controller = new JavaController();
+                String[] interfaceFunctionName = new String[1];
+                controller.getObjectProperty(((BasicBlock) parent).getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunctionName);
+                str.append(interfaceFunctionName[0]).append('.');
             } else {
                 str.append(parent.getClass().getSimpleName()).append('.');
             }

@@ -18,6 +18,7 @@ import java.util.List;
 
 import javax.swing.ScrollPaneConstants;
 
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -36,15 +37,8 @@ import com.mxgraph.model.mxGeometry;
 public class PaletteDiagram extends XcosDiagram {
 
     private static final int BLOCK_MAX_WIDTH = (int) (XcosConstants.PALETTE_BLOCK_WIDTH * 0.8); // 80%
-    // of
-    // the
-    // max
-    // size
     private static final int BLOCK_MAX_HEIGHT = (int) (XcosConstants.PALETTE_BLOCK_HEIGHT * 0.8); // 80%
-    // of
-    // the
-    // max
-    // size
+
     private String name;
     private String fileName;
     private double windowWidth;
@@ -52,8 +46,8 @@ public class PaletteDiagram extends XcosDiagram {
     /**
      * Constructor
      */
-    public PaletteDiagram() {
-        super();
+    public PaletteDiagram(long uid) {
+        super(uid, Kind.DIAGRAM);
         setComponent(new PaletteComponent(this));
         installStylesheet();
 

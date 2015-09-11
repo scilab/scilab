@@ -18,7 +18,9 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
@@ -41,13 +43,15 @@ import javax.xml.validation.SchemaFactory;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.model.ObjectFactory;
 import org.scilab.modules.xcos.configuration.model.SettingType;
 import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.preferences.XcosOptions;
@@ -55,8 +59,6 @@ import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.xml.sax.SAXException;
-
-import com.mxgraph.model.mxGraphModel;
 
 /**
  * Entry point to manage the configuration
@@ -397,7 +399,9 @@ public final class ConfigurationManager {
 
         XcosDiagram graph;
         try {
-            graph = new XcosDiagram();
+            JavaController controller = new JavaController();
+
+            graph = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
             graph.installListeners();
 
             if (f != null) {
@@ -407,7 +411,7 @@ public final class ConfigurationManager {
                 filetype.load(filename, graph);
                 graph.postLoad(f);
             }
-            Xcos.getInstance().addDiagram(f, graph);
+            Xcos.getInstance().addDiagram(graph.getUId(), graph);
 
             graph = loadPath(doc, graph);
 
@@ -445,42 +449,45 @@ public final class ConfigurationManager {
             return root;
         }
 
-        XcosDiagram graph = root;
-        for (String id : path.split("/")) {
-            if (graph == null) {
-                break;
-            }
-            final Object cell = ((mxGraphModel) graph.getModel()).getCell(id);
+        String[] splitedPath = path.split("/");
+        String uid = splitedPath[splitedPath.length - 1];
+        String[] blockUID = new String[0];
 
-            if (cell instanceof SuperBlock) {
-                SuperBlock b = (SuperBlock) cell;
-
-                b.createChildDiagram(false);
-                graph = b.getChild();
+        JavaController controller = new JavaController();
+        // TODO is this algorithm fast enough ?
+        VectorOfScicosID blocks = controller.getAll(Kind.BLOCK);
+        final int len = (int) blocks.size();
+        for (int i = 0 ; i < len ; i++) {
+            controller.getObjectProperty(blocks.get(i), Kind.BLOCK, ObjectProperties.UID, blockUID);
+            if (uid.equals(blockUID[0])) {
+                return new XcosDiagram(blocks.get(i), Kind.BLOCK);
             }
         }
-        return graph;
+
+        return root;
     }
 
     private void savePath(XcosDiagram graph, final DocumentType doc) {
-        if (!(graph instanceof SuperBlockDiagram)) {
+        if (graph.getKind() != Kind.BLOCK) {
             return;
         }
 
-        SuperBlock block = ((SuperBlockDiagram) graph).getContainer();
-        XcosDiagram parent = block.getParentDiagram();
+        JavaController controller = new JavaController();
 
-        final StringBuilder str = new StringBuilder(block.getId());
-        while (parent instanceof SuperBlockDiagram) {
-            block = ((SuperBlockDiagram) parent).getContainer();
+        ArrayList<String> elements = new ArrayList<>();
+        long[] parent = new long[1];
+        String[] parentUID = new String[1];
 
-            str.insert(0, "/");
-            str.insert(0, block.getId());
+        controller.getObjectProperty(graph.getUId(), Kind.BLOCK, ObjectProperties.PARENT_BLOCK, parent);
+        while (parent[0] != 0l) {
+            controller.getObjectProperty(parent[0], Kind.BLOCK, ObjectProperties.UID, parentUID);
+            elements.add(parentUID[0]);
 
-            parent = block.getParentDiagram();
+            controller.getObjectProperty(parent[0], Kind.BLOCK, ObjectProperties.PARENT_BLOCK, parent);
         }
 
-        doc.setPath(str.toString());
+        Collections.reverse(elements);
+        doc.setPath(String.join("/", elements.toArray(new String[elements.size()])));
     }
 
     /**

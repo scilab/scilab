@@ -28,11 +28,9 @@ public class ControlPort extends BasicPort {
     private static final long serialVersionUID = -7919292589336989591L;
 
     /** Default constructor */
-    public ControlPort() {
-        super("ControlPort");
+    public ControlPort(long uid) {
+        super(uid);
         setOrientation(Orientation.NORTH);
-
-        setDefaultValues();
     }
 
     /**

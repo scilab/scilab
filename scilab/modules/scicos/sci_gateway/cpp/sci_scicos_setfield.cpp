@@ -12,6 +12,7 @@
 
 #include <string>
 
+#include "../../includes/view_scilab/Adapters.hxx"
 #include "gw_scicos.hxx"
 
 #include "types.hxx"
@@ -19,7 +20,6 @@
 #include "list.hxx"
 #include "function.hxx"
 
-#include "view_scilab/Adapters.hxx"
 #include "view_scilab/BaseAdapter.hxx"
 #include "view_scilab/BlockAdapter.hxx"
 #include "view_scilab/CprAdapter.hxx"

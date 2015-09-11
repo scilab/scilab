@@ -11,21 +11,13 @@
  */
 package org.scilab.modules.xcos.actions;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.asynchronousScilabExec;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.logging.Logger;
 
 import javax.swing.JButton;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
-import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -85,36 +77,37 @@ public final class InitModelicaAction extends SimulationNotRunningAction {
     public void actionPerformed(ActionEvent e) {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
 
-        // action disabled when the cell is edited
-        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
-        if (comp.isEditing()) {
-            return;
-        }
-
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
-
-        graph.info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
-
-        handler.writeDiagram(graph.getRootDiagram());
-
-        final String cmd = buildCall("xcosConfigureModelica");
-
-        final ActionListener action = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                graph.info(XcosMessages.EMPTY_INFO);
-                handler.release();
-            }
-        };
-
-        try {
-            asynchronousScilabExec(action, cmd);
-        } catch (InterpreterException e1) {
-            Logger.getLogger(InitModelicaAction.class.getName()).severe(e.toString());
-            handler.release();
-        }
+        // FIXME: implement the modelica init
+        //        // action disabled when the cell is edited
+        //        final ScilabComponent comp = ((ScilabComponent) graph.getAsComponent());
+        //        if (comp.isEditing()) {
+        //            return;
+        //        }
+        //
+        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        //        if (handler == null) {
+        //            return;
+        //        }
+        //
+        //        graph.info(XcosMessages.INITIALIZING_MODELICA_COMPILER);
+        //
+        //        handler.writeDiagram(graph.getRootDiagram());
+        //
+        //        final String cmd = buildCall("xcosConfigureModelica");
+        //
+        //        final ActionListener action = new ActionListener() {
+        //            @Override
+        //            public void actionPerformed(ActionEvent e) {
+        //                graph.info(XcosMessages.EMPTY_INFO);
+        //                handler.release();
+        //            }
+        //        };
+        //
+        //        try {
+        //            asynchronousScilabExec(action, cmd);
+        //        } catch (InterpreterException e1) {
+        //            Logger.getLogger(InitModelicaAction.class.getName()).severe(e.toString());
+        //            handler.release();
+        //        }
     }
 }

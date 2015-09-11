@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -39,9 +43,9 @@ public final class BlockPositioning {
      */
     public static final double DEFAULT_GRIDSIZE = Double.MIN_NORMAL;
     /** The rotation step of the clockwise and anticlockwise rotation */
-    public static final int ROTATION_STEP = 90;
+    public static final double ROTATION_STEP = 90;
     /** The max valid rotation value (always 360 degres) */
-    public static final int MAX_ROTATION = 360;
+    public static final double MAX_ROTATION = 360;
 
     /** This class is a static singleton, thus it must not be instantiated */
     private BlockPositioning() {
@@ -83,7 +87,7 @@ public final class BlockPositioning {
             gridSize = block.getParentDiagram().getGridSize();
         }
 
-        // BasicBlock.sortsort(List<?> children) takes into account different 
+        // BasicBlock.sortsort(List<?> children) takes into account different
         // parameters to order the ports list. We only need to order the ports
         // given their ordering.
         Collections.sort(ports, new PortComparator());
@@ -159,7 +163,7 @@ public final class BlockPositioning {
             gridSize = block.getParentDiagram().getGridSize();
         }
 
-        // BasicBlock.sortsort(List<?> children) takes into account different 
+        // BasicBlock.sortsort(List<?> children) takes into account different
         // parameters to order the ports list. We only need to order the ports
         // given their ordering.
         Collections.sort(ports, new PortComparator());
@@ -203,7 +207,7 @@ public final class BlockPositioning {
             gridSize = block.getParentDiagram().getGridSize();
         }
 
-        // BasicBlock.sortsort(List<?> children) takes into account different 
+        // BasicBlock.sortsort(List<?> children) takes into account different
         // parameters to order the ports list. We only need to order the ports
         // given their ordering.
         Collections.sort(ports, new PortComparator());
@@ -247,7 +251,7 @@ public final class BlockPositioning {
             gridSize = block.getParentDiagram().getGridSize();
         }
 
-        // BasicBlock.sortsort(List<?> children) takes into account different 
+        // BasicBlock.sortsort(List<?> children) takes into account different
         // parameters to order the ports list. We only need to order the ports
         // given their ordering.
         Collections.sort(ports, new PortComparator());
@@ -312,9 +316,14 @@ public final class BlockPositioning {
                 Collections.reverse(this);
             }
         };
-        final boolean mirrored = block.getMirror();
-        final boolean flipped = block.getFlip();
-        final int angle = block.getAngle();
+
+        JavaController controller = new JavaController();
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+
+        final boolean mirrored = mvcAngle.get(0) == 4d;
+        final boolean flipped = mvcAngle.get(0) == 8d;
+        final int angle = (int) Math.round(mvcAngle.get(1));
         List<BasicPort> working = ports;
 
         /* List order modification with the flip flag */
@@ -383,7 +392,7 @@ public final class BlockPositioning {
      * @param working
      *            The ordered ports we are working on.
      */
-    private static void updatePortsPosition(BasicBlock block, Orientation iter, final int angle, List<BasicPort> working) {
+    private static void updatePortsPosition(BasicBlock block, Orientation iter, final double angle, List<BasicPort> working) {
         /*
          * Ugly modification of the iter to update at the right position Works
          * only for 0 - 90 - 180 - 270 angles.
@@ -392,8 +401,8 @@ public final class BlockPositioning {
         Orientation rotated = iter;
 
         /* Angle management */
-        int rotationIndex = angle / ROTATION_STEP;
-        rotated = Orientation.values()[(rotated.ordinal() + rotationIndex) % nbOfOrientations];
+        double rotationIndex = angle / ROTATION_STEP;
+        rotated = Orientation.values()[(rotated.ordinal() + (int) rotationIndex) % nbOfOrientations];
 
         /* Call the associated function */
         switch (rotated) {
@@ -422,9 +431,13 @@ public final class BlockPositioning {
      *            The block to work on.
      */
     public static void rotateAllPorts(BasicBlock block) {
-        final int angle = block.getAngle();
-        final boolean flipped = block.getFlip();
-        final boolean mirrored = block.getMirror();
+        JavaController controller = new JavaController();
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+
+        final boolean mirrored = mvcAngle.get(0) == 4d;
+        final boolean flipped = mvcAngle.get(0) == 8d;
+        final double angle = mvcAngle.get(1);
 
         final int childrenCount = block.getChildCount();
         for (int i = 0; i < childrenCount; ++i) {
@@ -437,12 +450,12 @@ public final class BlockPositioning {
                 /* Apply angle */
                 if (block.getParentDiagram() != null) {
                     final mxIGraphModel model = block.getParentDiagram().getModel();
-                    final String rot = Integer.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+                    final String rot = Double.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
                     mxUtils.setCellStyles(model, new Object[] { port }, XcosConstants.STYLE_ROTATION, rot);
                 } else {
                     final StyleMap m = new StyleMap(port.getStyle());
-                    final int rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
-                    m.put(XcosConstants.STYLE_ROTATION, Integer.toString(rot));
+                    final double rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
+                    m.put(XcosConstants.STYLE_ROTATION, Double.toString(rot));
                     port.setStyle(m.toString());
                 }
 
@@ -479,8 +492,11 @@ public final class BlockPositioning {
      *            The block to work on
      */
     public static void toggleFlip(BasicBlock block) {
+        JavaController controller = new JavaController();
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
 
-        block.setFlip(!block.getFlip());
+        mvcAngle.set(0, mvcAngle.get(0) + 8d);
         updateBlockView(block);
     }
 
@@ -491,8 +507,11 @@ public final class BlockPositioning {
      *            The block to work on
      */
     public static void toggleMirror(BasicBlock block) {
+        JavaController controller = new JavaController();
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
 
-        block.setMirror(!block.getMirror());
+        mvcAngle.set(0, mvcAngle.get(0) + 16d);
         updateBlockView(block);
     }
 
@@ -503,7 +522,13 @@ public final class BlockPositioning {
      *            The block to work on
      */
     public static void toggleAntiClockwiseRotation(BasicBlock block) {
-        block.setAngle(getNextAntiClockwiseAngle(block));
+        JavaController controller = new JavaController();
+
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+
+        mvcAngle.set(1, getNextAntiClockwiseAngle(block));
+        controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
         updateBlockView(block);
     }
 
@@ -514,8 +539,13 @@ public final class BlockPositioning {
      *            The block to work on
      * @return The angle value
      */
-    public static int getNextAntiClockwiseAngle(BasicBlock block) {
-        int angle = (block.getAngle() - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
+    public static double getNextAntiClockwiseAngle(BasicBlock block) {
+        JavaController controller = new JavaController();
+
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+
+        double angle = (mvcAngle.get(1) - ROTATION_STEP + MAX_ROTATION) % MAX_ROTATION;
         return angle;
     }
 
@@ -526,8 +556,13 @@ public final class BlockPositioning {
      *            The block to work on
      * @return The angle value
      */
-    public static int getNextClockwiseAngle(BasicBlock block) {
-        int angle = (block.getAngle() + ROTATION_STEP) % MAX_ROTATION;
+    public static double getNextClockwiseAngle(BasicBlock block) {
+        JavaController controller = new JavaController();
+
+        VectorOfDouble mvcAngle = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+
+        double angle = (mvcAngle.get(1) + ROTATION_STEP) % MAX_ROTATION;
         return angle;
     }
 
@@ -538,15 +573,15 @@ public final class BlockPositioning {
      *            the non valid value
      * @return the nearest graph valid value
      */
-    public static int roundAngle(int angle) {
-        int ret = angle;
+    public static double roundAngle(double angle) {
+        double ret = angle;
         if (angle < 0 || angle > MAX_ROTATION) {
             ret = (angle + MAX_ROTATION) % MAX_ROTATION;
         }
 
         for (int i = 0; i < (MAX_ROTATION / ROTATION_STEP); i++) {
-            int min = i * ROTATION_STEP;
-            int max = (i + 1) * ROTATION_STEP;
+            double min = i * ROTATION_STEP;
+            double max = (i + 1) * ROTATION_STEP;
 
             if (ret < (min + max) / 2) {
                 ret = min;

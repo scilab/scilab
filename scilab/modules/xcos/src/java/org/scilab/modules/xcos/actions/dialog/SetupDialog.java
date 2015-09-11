@@ -43,6 +43,8 @@ import javax.swing.JList;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -80,7 +82,7 @@ public class SetupDialog extends JDialog {
      *
      * Also contains a field with enable modifier set.
      */
-    private static class SolverDescriptor implements Comparable<SolverDescriptor> {
+    protected static class SolverDescriptor implements Comparable<SolverDescriptor> {
         private final int number;
         private final String name;
         private final String tooltip;
@@ -231,7 +233,7 @@ public class SetupDialog extends JDialog {
     private JFormattedTextField integratorRel;
     private JFormattedTextField toleranceOnTime;
     private JFormattedTextField maxIntegrationTime;
-    private JComboBox solver;
+    private JComboBox<SolverDescriptor> solver;
     private JFormattedTextField maxStepSize;
 
     /**
@@ -268,48 +270,50 @@ public class SetupDialog extends JDialog {
      */
     // CSOFF: JavaNCSS
     private void initComponents() {
+        JavaController controller = new JavaController();
+
         JLabel integrationLabel = new JLabel(XcosMessages.FINAL_INTEGRATION_TIME);
         integration = new JFormattedTextField(CURRENT_FORMAT);
         integration.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-        integration.setValue(new BigDecimal(parameters.getFinalIntegrationTime()));
+        integration.setValue(new BigDecimal(parameters.getProperties(controller).get(ScicosParameters.FINAL_INTEGRATION_TIME)));
 
         JLabel rtsLabel = new JLabel(XcosMessages.REAL_TIME_SCALING);
         rts = new JFormattedTextField(CURRENT_FORMAT);
         rts.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-        rts.setValue(new BigDecimal(parameters.getRealTimeScaling()));
+        rts.setValue(new BigDecimal(parameters.getProperties(controller).get(ScicosParameters.REAL_TIME_SCALING)));
 
         JLabel integratorAbsLabel = new JLabel(XcosMessages.INTEGRATOR_ABSOLUTE_TOLERANCE);
         integrator = new JFormattedTextField(CURRENT_FORMAT);
         integrator.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-        integrator.setValue(new BigDecimal(parameters.getIntegratorAbsoluteTolerance()));
+        integrator.setValue(new BigDecimal(parameters.getProperties(controller).get(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE)));
 
         JLabel integratorRelLabel = new JLabel(XcosMessages.INTEGRATOR_RELATIVE_TOLERANCE);
         integratorRel = new JFormattedTextField(CURRENT_FORMAT);
         integratorRel.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-        integratorRel.setValue(new BigDecimal(parameters.getIntegratorRelativeTolerance()));
+        integratorRel.setValue(new BigDecimal(parameters.getProperties(controller).get(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE)));
 
         JLabel toleranceOnTimeLabel = new JLabel(XcosMessages.TOLERANCE_ON_TIME);
         toleranceOnTime = new JFormattedTextField(CURRENT_FORMAT);
         toleranceOnTime.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-        toleranceOnTime.setValue(new BigDecimal(parameters.getToleranceOnTime()));
+        toleranceOnTime.setValue(new BigDecimal(parameters.getProperties(controller).get(ScicosParameters.TOLERANCE_ON_TIME)));
 
         JLabel maxIntegrationTimeLabel = new JLabel(XcosMessages.MAX_INTEGRATION_TIME_INTERVAL);
         maxIntegrationTime = new JFormattedTextField(CURRENT_FORMAT);
         maxIntegrationTime.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-        maxIntegrationTime.setValue(new BigDecimal(parameters.getMaxIntegrationTimeInterval()));
+        maxIntegrationTime.setValue(new BigDecimal(parameters.getProperties(controller).get(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL)));
 
         JLabel solverLabel = new JLabel(XcosMessages.SOLVER_CHOICE);
 
 
-        solver = new JComboBox(AVAILABLE_SOLVERS);
-        double solverValue = parameters.getSolver();
+        solver = new JComboBox<SolverDescriptor>(AVAILABLE_SOLVERS);
+        double solverValue = parameters.getProperties(controller).get(ScicosParameters.SOLVER);
         final int currentIndex = Arrays.binarySearch(AVAILABLE_SOLVERS, new SolverDescriptor(solverValue));
         final SolverDescriptor current = AVAILABLE_SOLVERS[currentIndex];
         solver.setSelectedIndex(currentIndex);
 
         final class ComboboxToolTipRenderer extends DefaultListCellRenderer {
             @Override
-            public Component getListCellRendererComponent(JList list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 JComponent comp = (JComponent) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
                 if (-1 < index && null != value) {
@@ -331,7 +335,7 @@ public class SetupDialog extends JDialog {
         JLabel maxStepSizeLabel = new JLabel(XcosMessages.MAXIMUN_STEP_SIZE);
         maxStepSize = new JFormattedTextField(CURRENT_FORMAT);
         maxStepSize.setInputVerifier(VALIDATE_POSITIVE_DOUBLE);
-        maxStepSize.setValue(new BigDecimal(parameters.getMaximumStepSize()));
+        maxStepSize.setValue(new BigDecimal(parameters.getProperties(controller).get(ScicosParameters.MAXIMUM_STEP_SIZE)));
 
         JButton cancelButton = new JButton(XcosMessages.CANCEL);
         JButton okButton = new JButton(XcosMessages.OK);
@@ -458,14 +462,14 @@ public class SetupDialog extends JDialog {
         defaultButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                integration.setValue(new BigDecimal(ScicosParameters.FINAL_INTEGRATION_TIME));
-                rts.setValue(new BigDecimal(ScicosParameters.REAL_TIME_SCALING));
-                integrator.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE));
-                integratorRel.setValue(new BigDecimal(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE));
-                toleranceOnTime.setValue(new BigDecimal(ScicosParameters.TOLERANCE_ON_TIME));
-                maxIntegrationTime.setValue(new BigDecimal(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL));
-                solver.setSelectedIndex((int) ScicosParameters.SOLVER);
-                maxStepSize.setValue(new BigDecimal(ScicosParameters.MAXIMUM_STEP_SIZE));
+                integration.setValue(new BigDecimal(ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.FINAL_INTEGRATION_TIME)));
+                integrator.setValue(new BigDecimal(ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE)));
+                integratorRel.setValue(new BigDecimal(ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE)));
+                toleranceOnTime.setValue(new BigDecimal(ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.TOLERANCE_ON_TIME)));
+                maxIntegrationTime.setValue(new BigDecimal(ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL)));
+                maxStepSize.setValue(new BigDecimal(ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.MAXIMUM_STEP_SIZE)));
+                rts.setValue(new BigDecimal(ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.REAL_TIME_SCALING)));
+                solver.setSelectedIndex((int) ScicosParameters.DEFAULT_PARAMETERS.get(ScicosParameters.SOLVER));
             }
         });
 
@@ -478,15 +482,18 @@ public class SetupDialog extends JDialog {
                      * handler
                      */
                     int solverSelectedIndex = solver.getSelectedIndex();
-                    parameters.setSolver(AVAILABLE_SOLVERS[solverSelectedIndex].getNumber());
 
-                    parameters.setFinalIntegrationTime(((BigDecimal) integration.getValue()).doubleValue());
-                    parameters.setRealTimeScaling(((BigDecimal) rts.getValue()).doubleValue());
-                    parameters.setIntegratorAbsoluteTolerance(((BigDecimal) integrator.getValue()).doubleValue());
-                    parameters.setIntegratorRelativeTolerance(((BigDecimal) integratorRel.getValue()).doubleValue());
-                    parameters.setToleranceOnTime(((BigDecimal) toleranceOnTime.getValue()).doubleValue());
-                    parameters.setMaxIntegrationTimeInterval(((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
-                    parameters.setMaximumStepSize(((BigDecimal) maxStepSize.getValue()).doubleValue());
+                    VectorOfDouble v = new VectorOfDouble();
+                    v.set(ScicosParameters.FINAL_INTEGRATION_TIME, ((BigDecimal) integration.getValue()).doubleValue());
+                    v.set(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE, ((BigDecimal) integrator.getValue()).doubleValue());
+                    v.set(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE, ((BigDecimal) integratorRel.getValue()).doubleValue());
+                    v.set(ScicosParameters.TOLERANCE_ON_TIME, ((BigDecimal) toleranceOnTime.getValue()).doubleValue());
+                    v.set(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL, ((BigDecimal) maxIntegrationTime.getValue()).doubleValue());
+                    v.set(ScicosParameters.MAXIMUM_STEP_SIZE, ((BigDecimal) maxStepSize.getValue()).doubleValue());
+                    v.set(ScicosParameters.REAL_TIME_SCALING, ((BigDecimal) rts.getValue()).doubleValue());
+                    v.set(ScicosParameters.SOLVER, AVAILABLE_SOLVERS[solverSelectedIndex].getNumber());
+
+                    parameters.setProperties(new JavaController(), v);
 
                     dispose();
 

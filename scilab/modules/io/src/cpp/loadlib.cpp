@@ -21,6 +21,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "os_string.h"
 #include "expandPathVariable.h"
+#include "fullpath.h"
 #include "PATH_MAX.h"
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
@@ -36,10 +37,14 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
 
     wchar_t* pwstPathLib = expandPathVariableW((wchar_t*)_wstXML.c_str());
 
-    std::wstring wstOriginalPath(_wstXML);
-    std::wstring wstFile(pwstPathLib);
-    std::wstring wstPath(pwstPathLib);
+    wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+    get_full_pathW(pwstTemp, pwstPathLib, PATH_MAX * 2);
     FREE(pwstPathLib);
+
+    std::wstring wstOriginalPath(pwstTemp);
+    std::wstring wstFile(pwstTemp);
+    std::wstring wstPath(pwstTemp);
+    FREE(pwstTemp);
 
     if (_isFile)
     {
@@ -59,7 +64,6 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
         wstFile += L"lib";
     }
 
-
     std::wstring libname;
     MacroInfoList lst;
     *err = parseLibFile(wstFile, lst, libname);
@@ -77,7 +81,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     }
 
 
-    for (const auto& macro : lst)
+    for (const auto & macro : lst)
     {
         lib->add(macro.second.name, new types::MacroFile(macro.second.name, stFilename + macro.second.file, libname));
     }

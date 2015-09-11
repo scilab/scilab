@@ -24,17 +24,7 @@ public final class EventInBlock extends ContextUpdate {
     /**
      * Constructor
      */
-    public EventInBlock() {
-        super();
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-        setInterfaceFunctionName("CLKINV_f");
-        setSimulationFunctionName("input");
+    public EventInBlock(long uid) {
+        super(uid);
     }
 }

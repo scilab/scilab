@@ -18,6 +18,8 @@ import java.io.File;
 import javax.imageio.ImageIO;
 
 import org.scilab.modules.helptools.image.XcosImageConverter;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
 
@@ -45,7 +47,9 @@ public class XcosDelegates {
      * @see {@link XcosImageConverter}
      */
     public static final void convertToPNG(final String helpID, final String xcosFile, final File imageFile, final String imageName) throws Exception {
-        final XcosDiagram diag = new XcosDiagram();
+        JavaController controller = new JavaController();
+
+        final XcosDiagram diag = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         diag.installListeners();
 
         final XcosFileType filetype = XcosFileType.findFileType(xcosFile);
@@ -55,5 +59,8 @@ public class XcosDelegates {
 
         final BufferedImage image = mxCellRenderer.createBufferedImage(diag, null, 1, null, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
         ImageIO.write(image, "png", imageFile);
+
+
+        controller.deleteObject(diag.getUId());
     }
 }

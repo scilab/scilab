@@ -63,25 +63,6 @@ public final class BasicBlockInfo {
     }
 
     /**
-     * Get all the port data lines.
-     *
-     * @param ports
-     *            the ports
-     * @return array of ports data lines
-     */
-    protected static ScilabDouble getAllPortsDataLines(List <? extends BasicPort > ports) {
-        if (ports.isEmpty()) {
-            return new ScilabDouble();
-        }
-        double[][] data = new double[ports.size()][1];
-        for (int i = 0; i < ports.size(); ++i) {
-            data[i][0] = ((BasicPort) ports.get(i)).getDataLines();
-        }
-
-        return new ScilabDouble(data);
-    }
-
-    /**
      * Get the block' children list of the specified type.
      *
      * @param block

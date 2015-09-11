@@ -15,6 +15,8 @@ package org.scilab.modules.xcos.block.io;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
@@ -22,17 +24,15 @@ import java.util.Map;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.types.ScilabDouble;
-import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
-import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -42,12 +42,8 @@ import org.scilab.modules.xcos.port.input.InputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.scilab.modules.xcos.utils.XcosEvent;
 
-import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
-import com.mxgraph.model.mxIGraphModel;
-import com.mxgraph.util.mxEventObject;
 
 /**
  * Common class for the SuperBlock I/O blocks (represent ports)
@@ -107,11 +103,6 @@ public abstract class ContextUpdate extends BasicBlock {
                 }
 
                 ioBlock.setValue(newIndex);
-
-                if (ioBlock.getParentDiagram() != null) {
-                    ioBlock.getParentDiagram().fireEvent(
-                        new mxEventObject(XcosEvent.IO_PORT_VALUE_UPDATED, "block", ioBlock, "oldIndex", oldIndex, "newIndex", newIndex));
-                }
             }
         }
 
@@ -199,8 +190,7 @@ public abstract class ContextUpdate extends BasicBlock {
          * @param opposite
          *            the opposite port class
          */
-        private IOBlocks(Class <? extends ContextUpdate > ioBlock, Class <? extends BasicPort > port, Class <? extends BasicPort > opposite,
-        Class <? extends BasicPort > assignement) {
+        private IOBlocks(Class <? extends ContextUpdate > ioBlock, Class <? extends BasicPort > port, Class <? extends BasicPort > opposite, Class <? extends BasicPort > assignement) {
             this.ioBlock = ioBlock;
             this.port = port;
             this.opposite = opposite;
@@ -291,48 +281,6 @@ public abstract class ContextUpdate extends BasicBlock {
         }
 
         /**
-         * Get all the I/O blocks of the SuperBlock parent.
-         *
-         * @param parent
-         *            the parent
-         * @return the port list mapped by port type
-         */
-        public static Map<IOBlocks, List<BasicBlock>> getAllBlocks(SuperBlock parent) {
-            final EnumMap<IOBlocks, List<BasicBlock>> ret = new EnumMap<IOBlocks, List<BasicBlock>>(IOBlocks.class);
-
-            SuperBlockDiagram graph = parent.getChild();
-            if (graph == null) {
-                parent.createChildDiagram(true);
-                graph = parent.getChild();
-            }
-
-            /* Allocation */
-            for (IOBlocks b : IOBlocks.values()) {
-                ret.put(b, new ArrayList<BasicBlock>());
-            }
-
-            /* Loop all over the children */
-            final mxIGraphModel defaultModel = graph.getModel();
-            mxGraphModel.filterDescendants(defaultModel, new mxGraphModel.Filter() {
-                @Override
-                public boolean filter(Object cell) {
-                    if (cell instanceof BasicBlock) {
-                        final BasicBlock block = (BasicBlock) cell;
-                        /* if compatible add it to the list */
-                        for (IOBlocks b : IOBlocks.values()) {
-                            if (block.getClass().equals(b.getReferencedClass())) {
-                                ret.get(b).add(block);
-                            }
-                        }
-                    }
-                    return false;
-                }
-            });
-
-            return ret;
-        }
-
-        /**
          * Create a corresponding I/O block
          *
          * @param port
@@ -342,15 +290,39 @@ public abstract class ContextUpdate extends BasicBlock {
         public static ContextUpdate createBlock(BasicPort port) {
             for (IOBlocks io : IOBlocks.values()) {
                 if (io.getReferencedPortClass().isInstance(port)) {
+                    final XcosView disabledView = (XcosView) JavaController.look_for_view(Xcos.class.getSimpleName());
                     try {
-                        ContextUpdate block = io.getReferencedClass().newInstance();
-                        block.addPort(io.getOppositeClass().newInstance());
+                        JavaController controller = new JavaController();
+
+                        // FIXME: dunno if I should disable the view there : CHECK
+                        JavaController.unregister_view(disabledView);
+
+                        Constructor<? extends ContextUpdate> blockCstr = io.getReferencedClass().getConstructor(Long.TYPE);
+                        ContextUpdate block = blockCstr.newInstance(controller.createObject(Kind.BLOCK));
+
+                        Constructor<? extends BasicPort> portCstr = io.getOppositeClass().getConstructor(Long.TYPE);
+                        BasicPort blockPort = portCstr.newInstance(controller.createObject(Kind.BLOCK));
+
+                        disabledView.getVisibleObjects().put(block.getUID(), block);
+                        disabledView.getVisibleObjects().put(blockPort.getUID(), blockPort);
+
+                        // controller.setObjectProperty(block.getUID(), k, p, v)
 
                         return block;
                     } catch (InstantiationException e) {
                         Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
                     } catch (IllegalAccessException e) {
                         Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
+                    } catch (NoSuchMethodException e) {
+                        e.printStackTrace();
+                    } catch (SecurityException e) {
+                        e.printStackTrace();
+                    } catch (IllegalArgumentException e) {
+                        e.printStackTrace();
+                    } catch (InvocationTargetException e) {
+                        e.printStackTrace();
+                    } finally {
+                        JavaController.register_view(Xcos.class.getSimpleName(), disabledView);
                     }
                 }
             }
@@ -389,36 +361,8 @@ public abstract class ContextUpdate extends BasicBlock {
     /**
      * Constructor.
      */
-    public ContextUpdate() {
-        super();
-
-        getParametersPCS().addPropertyChangeListener(INTEGER_PARAMETERS, IndexChangeAdapter.getInstance());
-        getParametersPCS().addPropertyChangeListener(EXPRS, ExprsChangeAdapter.getInstance());
-    }
-
-    /**
-     * Initialize the block with the default values
-     */
-    @Override
-    protected void setDefaultValues() {
-        super.setDefaultValues();
-
-        /*
-         * Update the default parameters accordingly to the reference instance
-         */
-        getGeometry().setHeight(DEFAULT_HEIGHT);
-        getGeometry().setWidth(DEFAULT_WIDTH);
-
-        /*
-         * Fill parameters with non empty values.
-         */
-        setNbZerosCrossing(new ScilabDouble(0));
-        setNmode(new ScilabDouble(0));
-        setODState(new ScilabList());
-        setRealParameters(new ScilabDouble());
-        setObjectsParameters(new ScilabDouble());
-
-        setValue(1);
+    public ContextUpdate(final long uid) {
+        super(uid);
     }
 
     /**
@@ -438,32 +382,32 @@ public abstract class ContextUpdate extends BasicBlock {
 
         LOG_LOCAL.finest("Update the I/O value from the context");
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
-
-        try {
-            // Write scs_m
-            handler.writeBlock(this);
-            // Write context
-            handler.writeContext(context);
-
-            String cmd = ScilabInterpreterManagement.buildCall("blk = xcosBlockEval", getInterfaceFunctionName().toCharArray(),
-                         ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
-
-            try {
-                ScilabInterpreterManagement.synchronousScilabExec(cmd);
-            } catch (InterpreterException e) {
-                e.printStackTrace();
-            }
-            BasicBlock modifiedBlock = handler.readBlock();
-            updateBlockSettings(modifiedBlock);
-
-        } catch (ScicosFormatException e) {
-            LOG_LOCAL.severe(e.toString());
-        } finally {
-            handler.release();
-        }
+        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        //        if (handler == null) {
+        //            return;
+        //        }
+        //
+        //        try {
+        //            // Write scs_m
+        //            handler.writeBlock(this);
+        //            // Write context
+        //            handler.writeContext(context);
+        //
+        //            String cmd = ScilabInterpreterManagement.buildCall("blk = xcosBlockEval", getInterfaceFunctionName().toCharArray(),
+        //                         ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
+        //
+        //            try {
+        //                ScilabInterpreterManagement.synchronousScilabExec(cmd);
+        //            } catch (InterpreterException e) {
+        //                e.printStackTrace();
+        //            }
+        //            BasicBlock modifiedBlock = handler.readBlock();
+        //            updateBlockSettings(modifiedBlock);
+        //
+        //        } catch (ScicosFormatException e) {
+        //            LOG_LOCAL.severe(e.toString());
+        //        } finally {
+        //            handler.release();
+        //        }
     }
 }

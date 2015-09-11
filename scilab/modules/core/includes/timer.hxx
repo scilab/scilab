@@ -16,8 +16,9 @@
 #ifndef _MSC_VER
 #include <sys/time.h>
 #else
+#define NOMINMAX
 #include <windows.h>
-//#include <winbase.h>
+#undef NOMINMAX
 #endif
 #include <iostream>
 #include <iomanip>

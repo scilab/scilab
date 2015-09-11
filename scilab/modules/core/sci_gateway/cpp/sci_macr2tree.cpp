@@ -83,7 +83,7 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     {
         types::List* var = ast::TreeVisitor::createVar(p->getSymbol().getName());
         o->append(var);
-        delete var;
+        var->killMe();
     }
 
     l->append(o);
@@ -105,6 +105,7 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     ast::TreeVisitor v;
     body->accept(v);
     //add fake return
+    // is deleted with v
     types::List* statement = v.getList();
 
     types::TList* funcall = new types::TList();
@@ -115,29 +116,20 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     sf->set(3, L"lhsnb");
 
     funcall->append(sf);
-    sf->killMe();
-
-    types::InternalType* tmp = types::Double::Empty();
-    funcall->append(tmp);
-    tmp->killMe();
-
-    tmp = new types::String(L"return");
-    funcall->append(tmp);
-    tmp->killMe();
-
-    tmp = new types::Double(0);
-    funcall->append(tmp);
-    tmp->killMe();
+    funcall->append(types::Double::Empty());
+    funcall->append(new types::String(L"return"));
+    funcall->append(new types::Double(0));
 
     statement->append(funcall);
     funcall->killMe();
 
     statement->append(v.getEOL());
 
-    l->append(v.getList());
+    l->append(statement);
+
     //nb lines
     l->append(new types::Double(macro->getLastLine() - macro->getFirstLine() + 1));
     out.push_back(l);
-    statement->killMe();
+
     return types::Function::OK;
 }
