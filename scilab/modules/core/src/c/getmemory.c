@@ -40,6 +40,7 @@
 #endif
 
 
+#include <string.h>
 #include <stdio.h>
 #define kooctet 1024
 int getfreememory(void)
