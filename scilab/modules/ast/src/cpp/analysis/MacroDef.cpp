@@ -27,8 +27,16 @@ ExistingMacroDef::ExistingMacroDef(const ExistingMacroDef & emd) : MacroDef(emd.
 
 ast::SeqExp & ExistingMacroDef::getBody()
 {
-    se = static_cast<ast::SeqExp *>(original)->clone();
+    if (!se)
+    {
+        se = static_cast<ast::SeqExp *>(original)->clone();
+    }
     return *se;
+}
+
+const ast::SeqExp & ExistingMacroDef::getOriginalBody()
+{
+    return *static_cast<ast::SeqExp *>(original);
 }
 
 const std::wstring & ExistingMacroDef::getName()
@@ -58,8 +66,16 @@ DeclaredMacroDef::DeclaredMacroDef(ast::FunctionDec * const _dec) : MacroDef(_de
 
 ast::SeqExp & DeclaredMacroDef::getBody()
 {
-    dec = static_cast<ast::FunctionDec *>(original)->clone();
+    if (!dec)
+    {
+        dec = static_cast<ast::FunctionDec *>(original)->clone();
+    }
     return static_cast<ast::SeqExp &>(dec->getBody());
+}
+
+const ast::SeqExp & DeclaredMacroDef::getOriginalBody()
+{
+    return static_cast<ast::SeqExp &>(static_cast<ast::FunctionDec *>(original)->getBody());
 }
 
 const std::wstring & DeclaredMacroDef::getName()

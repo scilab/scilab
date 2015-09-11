@@ -59,7 +59,7 @@ void GlobalsCollector::collect()
         locals.emplace(arg);
     }
 
-    macrodef.getBody().accept(*this);
+    macrodef.getOriginalBody().accept(*this);
 
     for (const auto & out : macrodef.getOut())
     {
@@ -72,7 +72,7 @@ void GlobalsCollector::collect()
     stop_chrono();
 }
 
-void GlobalsCollector::visit(ast::SimpleVar & e)
+void GlobalsCollector::visit(const ast::SimpleVar & e)
 {
     if (!e.getParent()->isFieldExp() || static_cast<ast::FieldExp *>(e.getParent())->getTail() != &e)
     {
@@ -84,17 +84,17 @@ void GlobalsCollector::visit(ast::SimpleVar & e)
     }
 }
 
-void GlobalsCollector::visit(ast::DollarVar & e)
+void GlobalsCollector::visit(const ast::DollarVar & e)
 {
     // nothing to do
 }
 
-void GlobalsCollector::visit(ast::ColonVar & e)
+void GlobalsCollector::visit(const ast::ColonVar & e)
 {
     // nothing to do
 }
 
-void GlobalsCollector::visit(ast::ArrayListVar & e)
+void GlobalsCollector::visit(const ast::ArrayListVar & e)
 {
     for (auto arg : e.getVars())
     {
@@ -102,29 +102,29 @@ void GlobalsCollector::visit(ast::ArrayListVar & e)
     }
 }
 
-void GlobalsCollector::visit(ast::DoubleExp & e)
+void GlobalsCollector::visit(const ast::DoubleExp & e)
 {
 }
 
-void GlobalsCollector::visit(ast::BoolExp & e)
+void GlobalsCollector::visit(const ast::BoolExp & e)
 {
 }
 
-void GlobalsCollector::visit(ast::StringExp & e)
+void GlobalsCollector::visit(const ast::StringExp & e)
 {
 }
 
-void GlobalsCollector::visit(ast::CommentExp & e)
+void GlobalsCollector::visit(const ast::CommentExp & e)
 {
     // ignored
 }
 
-void GlobalsCollector::visit(ast::NilExp & e)
+void GlobalsCollector::visit(const ast::NilExp & e)
 {
     // nothing to do
 }
 
-void GlobalsCollector::visit(ast::CallExp & e)
+void GlobalsCollector::visit(const ast::CallExp & e)
 {
     for (auto arg : e.getArgs())
     {
@@ -133,7 +133,7 @@ void GlobalsCollector::visit(ast::CallExp & e)
     e.getName().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::CellCallExp & e)
+void GlobalsCollector::visit(const ast::CellCallExp & e)
 {
     for (auto arg : e.getArgs())
     {
@@ -142,19 +142,19 @@ void GlobalsCollector::visit(ast::CellCallExp & e)
     e.getName().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::OpExp & e)
+void GlobalsCollector::visit(const ast::OpExp & e)
 {
     e.getLeft().accept(*this);
     e.getRight().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::LogicalOpExp & e)
+void GlobalsCollector::visit(const ast::LogicalOpExp & e)
 {
     e.getLeft().accept(*this);
     e.getRight().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::AssignExp & e)
+void GlobalsCollector::visit(const ast::AssignExp & e)
 {
     if (e.getLeftExp().isSimpleVar())
     {
@@ -168,7 +168,7 @@ void GlobalsCollector::visit(ast::AssignExp & e)
         ast::CallExp & ce = static_cast<ast::CallExp &>(e.getLeftExp());
         if (ce.getName().isSimpleVar())
         {
-            const symbol::Symbol & Lsym = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol();
+            const symbol::Symbol & Lsym = static_cast<const ast::SimpleVar &>(ce.getName()).getSymbol();
             locals.emplace(Lsym);
         }
         for (auto arg : ce.getArgs())
@@ -196,7 +196,7 @@ void GlobalsCollector::visit(ast::AssignExp & e)
     e.getRightExp().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::IfExp & e)
+void GlobalsCollector::visit(const ast::IfExp & e)
 {
     e.getTest().accept(*this);
     e.getThen().accept(*this);
@@ -206,35 +206,35 @@ void GlobalsCollector::visit(ast::IfExp & e)
     }
 }
 
-void GlobalsCollector::visit(ast::WhileExp & e)
+void GlobalsCollector::visit(const ast::WhileExp & e)
 {
     e.getTest().accept(*this);
     e.getBody().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::ForExp & e)
+void GlobalsCollector::visit(const ast::ForExp & e)
 {
     e.getVardec().accept(*this);
     e.getBody().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::BreakExp & e)
+void GlobalsCollector::visit(const ast::BreakExp & e)
 {
     // nothing to do
 }
 
-void GlobalsCollector::visit(ast::ContinueExp & e)
+void GlobalsCollector::visit(const ast::ContinueExp & e)
 {
     // nothing to do
 }
 
-void GlobalsCollector::visit(ast::TryCatchExp & e)
+void GlobalsCollector::visit(const ast::TryCatchExp & e)
 {
     e.getTry().accept(*this);
     e.getCatch().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::SelectExp & e)
+void GlobalsCollector::visit(const ast::SelectExp & e)
 {
     e.getSelect()->accept(*this);
     for (auto _e : e.getCases())
@@ -247,35 +247,35 @@ void GlobalsCollector::visit(ast::SelectExp & e)
     }
 }
 
-void GlobalsCollector::visit(ast::CaseExp & e)
+void GlobalsCollector::visit(const ast::CaseExp & e)
 {
     e.getTest()->accept(*this);
     e.getBody()->accept(*this);
 }
 
-void GlobalsCollector::visit(ast::ReturnExp & e)
+void GlobalsCollector::visit(const ast::ReturnExp & e)
 {
     // Bug with return;
     //e.exp_get().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::FieldExp & e)
+void GlobalsCollector::visit(const ast::FieldExp & e)
 {
     e.getHead()->accept(*this);
     e.getTail()->accept(*this);
 }
 
-void GlobalsCollector::visit(ast::NotExp & e)
+void GlobalsCollector::visit(const ast::NotExp & e)
 {
     e.getExp().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::TransposeExp & e)
+void GlobalsCollector::visit(const ast::TransposeExp & e)
 {
     e.getExp().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::MatrixExp & e)
+void GlobalsCollector::visit(const ast::MatrixExp & e)
 {
     for (auto mle : e.getLines())
     {
@@ -283,7 +283,7 @@ void GlobalsCollector::visit(ast::MatrixExp & e)
     }
 }
 
-void GlobalsCollector::visit(ast::MatrixLineExp & e)
+void GlobalsCollector::visit(const ast::MatrixLineExp & e)
 {
     for (auto _e : e.getColumns())
     {
@@ -291,7 +291,7 @@ void GlobalsCollector::visit(ast::MatrixLineExp & e)
     }
 }
 
-void GlobalsCollector::visit(ast::CellExp & e)
+void GlobalsCollector::visit(const ast::CellExp & e)
 {
     for (auto mle : e.getLines())
     {
@@ -299,7 +299,7 @@ void GlobalsCollector::visit(ast::CellExp & e)
     }
 }
 
-void GlobalsCollector::visit(ast::SeqExp & e)
+void GlobalsCollector::visit(const ast::SeqExp & e)
 {
     for (auto _e : e.getExps())
     {
@@ -307,7 +307,7 @@ void GlobalsCollector::visit(ast::SeqExp & e)
     }
 }
 
-void GlobalsCollector::visit(ast::ArrayListExp & e)
+void GlobalsCollector::visit(const ast::ArrayListExp & e)
 {
     for (auto _e : e.getExps())
     {
@@ -315,20 +315,20 @@ void GlobalsCollector::visit(ast::ArrayListExp & e)
     }
 }
 
-void GlobalsCollector::visit(ast::AssignListExp & e)
+void GlobalsCollector::visit(const ast::AssignListExp & e)
 {
 }
 
-void GlobalsCollector::visit(ast::VarDec & e)
+void GlobalsCollector::visit(const ast::VarDec & e)
 {
     locals.emplace(e.getSymbol());
     e.getInit().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::FunctionDec & e)
+void GlobalsCollector::visit(const ast::FunctionDec & e)
 {
     locals.emplace(e.getSymbol());
-    DeclaredMacroDef dmd(&e);
+    DeclaredMacroDef dmd(const_cast<ast::FunctionDec *>(&e));
     GlobalsCollector gc(dmd);
 
     for (const auto global : gc.globals)
@@ -340,33 +340,33 @@ void GlobalsCollector::visit(ast::FunctionDec & e)
     }
 }
 
-void GlobalsCollector::visit(ast::ListExp & e)
+void GlobalsCollector::visit(const ast::ListExp & e)
 {
     e.getStart().accept(*this);
     e.getStep().accept(*this);
     e.getEnd().accept(*this);
 }
 
-void GlobalsCollector::visit(ast::OptimizedExp & e)
+void GlobalsCollector::visit(const ast::OptimizedExp & e)
 {
 }
 
-void GlobalsCollector::visit(ast::MemfillExp & e)
+void GlobalsCollector::visit(const ast::MemfillExp & e)
 {
 }
 
-void GlobalsCollector::visit(ast::DAXPYExp & e)
+void GlobalsCollector::visit(const ast::DAXPYExp & e)
 {
 }
 
-void GlobalsCollector::visit(ast::IntSelectExp & e)
+void GlobalsCollector::visit(const ast::IntSelectExp & e)
 {
-    visit(static_cast<ast::SelectExp &>(e));
+    visit(static_cast<const ast::SelectExp &>(e));
 }
 
-void GlobalsCollector::visit(ast::StringSelectExp & e)
+void GlobalsCollector::visit(const ast::StringSelectExp & e)
 {
-    visit(static_cast<ast::SelectExp &>(e));
+    visit(static_cast<const ast::SelectExp &>(e));
 }
 
 } // namespace analysis

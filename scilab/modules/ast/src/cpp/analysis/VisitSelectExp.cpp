@@ -54,14 +54,19 @@ void AnalysisVisitor::visit(ast::SelectExp & e)
                     if (pIT2)
                     {
                         types::InternalType * pIT3 = GenericComparisonEqual(pIT, pIT2);
-                        if (pIT3 && pIT3->isTrue())
+                        if (pIT3)
                         {
-                            // We found the good case
-                            e.replace(casee.getBody());
-                            *i = nullptr;
-                            casee.getBody()->accept(*this);
-                            found = true;
-                            break;
+                            if (pIT3->isTrue())
+                            {
+                                pIT3->killMe();
+                                // We found the good case
+                                e.replace(casee.getBody());
+                                *i = nullptr;
+                                casee.getBody()->accept(*this);
+                                found = true;
+                                break;
+                            }
+                            pIT3->killMe();
                         }
                     }
                 }
