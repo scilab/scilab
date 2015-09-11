@@ -19,6 +19,12 @@ namespace analysis
 void AnalysisVisitor::visit(ast::ListExp & e)
 {
     logger.log(L"ListExp", e.getLocation());
+    if (e.getParent()->isVarDec())
+    {
+        visitInVarDecCtxt(e);
+        return;
+    }
+
     e.getStart().accept(*this);
     Result & Rstart = e.getStart().getDecorator().getResult();
     e.getEnd().accept(*this);
@@ -26,53 +32,12 @@ void AnalysisVisitor::visit(ast::ListExp & e)
     e.getStep().accept(*this);
     Result & Rstep = e.getStep().getDecorator().getResult();
 
-    if (e.getParent()->isVarDec())
-    {
-        ast::VarDec & vd = *static_cast<ast::VarDec *>(e.getParent());
-        const symbol::Symbol & sym = vd.getSymbol();
-        GVN::Value * startRange = nullptr;
-        GVN::Value * endRange = nullptr;
-        if (Rstart.getConstant().getGVNValue(getGVN(), startRange) && Rend.getConstant().getGVNValue(getGVN(), endRange))
-        {
-            TIType typ(dm.getGVN(), TIType::DOUBLE);
-            Result & res = e.getDecorator().setResult(Result(typ, -1));
-            res.setRange(SymbolicRange(getGVN(), startRange, endRange));
-            setResult(res);
-            return;
-        }
-        SymbolicRange & rangeStart = Rstart.getRange();
-        if (rangeStart.isValid())
-        {
-            if (endRange || Rend.getConstant().getGVNValue(getGVN(), endRange))
-            {
-                // start is an iterator and end is not
-                TIType typ(dm.getGVN(), TIType::DOUBLE);
-                Result & res = e.getDecorator().setResult(Result(typ, -1));
-                res.setRange(SymbolicRange(getGVN(), rangeStart.getStart(), endRange));
-                setResult(res);
-                return;
-            }
-            else
-            {
-                SymbolicRange & rangeEnd = Rend.getRange();
-                if (rangeEnd.isValid())
-                {
-                    TIType typ(dm.getGVN(), TIType::DOUBLE);
-                    Result & res = e.getDecorator().setResult(Result(typ, -1));
-                    res.setRange(SymbolicRange(getGVN(), rangeStart.getStart(), rangeEnd.getEnd()));
-                    setResult(res);
-                    return;
-                }
-            }
-        }
-        // TODO: finish all the cases
-    }
-
     double start = 1;
     double step = 1;
     double end = 1;
     if (Rstart.getConstant().getDblValue(start) && Rstep.getConstant().getDblValue(step) && Rend.getConstant().getDblValue(end))
     {
+        // Start, Step & End are constant !
         double out;
         int type = ForList64::checkList(start, end, step, out);
 
@@ -87,20 +52,12 @@ void AnalysisVisitor::visit(ast::ListExp & e)
             case 2:
             {
                 const uint64_t N = ForList64::size(start, end, step);
-                if (e.getParent()->isVarDec())
+                TIType T(dm.getGVN(), TIType::DOUBLE, 1, N);
+                if (N == 1)
                 {
-                    TIType T(dm.getGVN(), TIType::DOUBLE, 1, 1);
-                    e.getDecorator().setResult(Result(T));
+                    out = start;
                 }
-                else
-                {
-                    TIType T(dm.getGVN(), TIType::DOUBLE, 1, N);
-                    if (N == 1)
-                    {
-                        out = start;
-                    }
-                    e.getDecorator().setResult(Result(T, dm.getTmpId(T, false)));
-                }
+                e.getDecorator().setResult(Result(T, dm.getTmpId(T, false)));
                 break;
             }
             default:
@@ -224,5 +181,75 @@ void AnalysisVisitor::visit(ast::ListExp & e)
     }
 
     setResult(e.getDecorator().res);
+}
+
+void AnalysisVisitor::visitInVarDecCtxt(ast::ListExp & e)
+{
+    e.getStart().accept(*this);
+    Result & Rstart = e.getStart().getDecorator().getResult();
+    e.getEnd().accept(*this);
+    Result & Rend = e.getEnd().getDecorator().getResult();
+    e.getStep().accept(*this);
+    Result & Rstep = e.getStep().getDecorator().getResult();
+
+    double start = 1;
+    double step = 1;
+    double end = 1;
+    if ((Rstart.getConstant().getDblValue(start) || Rstep.getConstant().getDblValue(step)
+            || Rend.getConstant().getDblValue(end)) &&
+            (step == 0 || tools::isNaN(step) || !tools::isFinite(step)
+             || tools::isNaN(start) || !tools::isFinite(start)
+             ||  tools::isNaN(end) || !tools::isFinite(end)))
+    {
+        // We have an invalid list
+        e.getDecorator().setResult(Result(TIType(dm.getGVN(), TIType::EMPTY), -1));
+        return;
+    }
+
+    ast::VarDec & vd = *static_cast<ast::VarDec *>(e.getParent());
+    const symbol::Symbol & sym = vd.getSymbol();
+    GVN::Value * startRange = nullptr;
+    GVN::Value * endRange = nullptr;
+    Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), TIType::DOUBLE), -1));
+
+    if (Rstart.getConstant().getGVNValue(getGVN(), startRange) && Rend.getConstant().getGVNValue(getGVN(), endRange))
+    {
+        // Start & End are GVN values
+        res.setRange(SymbolicRange(getGVN(), startRange, endRange));
+    }
+    else
+    {
+        SymbolicRange & rangeStart = Rstart.getRange();
+        if (rangeStart.isValid())
+        {
+            // Start is an iterator: for i=1:N, for j=i:N, ... in the second for "i" in "i:n" is an iterator
+            if (endRange || Rend.getConstant().getGVNValue(getGVN(), endRange))
+            {
+                // Start is an iterator and End is GVN value
+                res.setRange(SymbolicRange(getGVN(), rangeStart.getStart(), endRange));
+            }
+            else
+            {
+                SymbolicRange & rangeEnd = Rend.getRange();
+                if (rangeEnd.isValid())
+                {
+                    // Start & End are iterators
+                    res.setRange(SymbolicRange(getGVN(), rangeStart.getStart(), rangeEnd.getEnd()));
+                }
+            }
+        }
+        else if (startRange || Rstart.getConstant().getGVNValue(getGVN(), startRange))
+        {
+            // Start is a GVN value
+            SymbolicRange & rangeEnd = Rend.getRange();
+            if (rangeEnd.isValid())
+            {
+                // Start is a GVN value and End is an iterator
+                res.setRange(SymbolicRange(getGVN(), startRange, rangeEnd.getEnd()));
+            }
+        }
+    }
+
+    setResult(res);
 }
 }

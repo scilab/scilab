@@ -348,6 +348,7 @@ private:
 
     void visit(ast::SelectExp & e);
     void visit(ast::ListExp & e);
+    void visitInVarDecCtxt(ast::ListExp & e);
     void visit(ast::MatrixExp & e);
     void visit(ast::OpExp & e);
     void visit(ast::NotExp & e);
