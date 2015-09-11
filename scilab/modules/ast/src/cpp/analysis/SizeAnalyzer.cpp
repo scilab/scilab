@@ -28,8 +28,8 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     const ast::exps_t args = e.getArgs();
     enum Kind
     {
-        ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH
-    } kind;
+        ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH, DUNNO
+    } kind = DUNNO;
     const std::size_t size = args.size();
     if (size == 0 || size >= 3)
     {
@@ -186,6 +186,8 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             visitor.setResult(_res);
             break;
         }
+        default:
+            return false;
     }
 
     return true;

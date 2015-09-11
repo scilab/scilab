@@ -21,7 +21,7 @@
 namespace analysis
 {
 
-FunctionBlock::FunctionBlock(const unsigned int id, Block * parent, ast::Exp * exp) : Block(id, parent, exp), loopAnalyzer(exp), constraintManager(*this, dm->topFunction())
+FunctionBlock::FunctionBlock(const unsigned int id, Block * parent, ast::Exp * exp) : Block(id, parent, exp), loopAnalyzer(exp), constraintManager(*this, dm->topFunction()), lhs(0), rhs(0), maxVarId(0)
 {
     gvn = &fgvn;
     dm->pushFunction(this);

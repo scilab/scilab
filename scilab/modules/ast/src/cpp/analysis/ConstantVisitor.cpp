@@ -204,14 +204,14 @@ void ConstantVisitor::visit(ast::CallExp & e)
                         else
                         {
                             double val;
-                            ast::exps_t exps;
-                            exps.reserve(2);
+                            ast::exps_t * exps = new ast::exps_t();
+                            exps->reserve(2);
                             std::vector<Result> & res = parent->getLHSContainer();
                             res.front().getConstant().getDblValue(val);
-                            exps.push_back(new ast::DoubleExp(e.getLocation(), val));
+                            exps->push_back(new ast::DoubleExp(e.getLocation(), val));
                             res.back().getConstant().getDblValue(val);
-                            exps.push_back(new ast::DoubleExp(e.getLocation(), val));
-                            e.replace(new ast::ArrayListExp(e.getLocation(), exps));
+                            exps->push_back(new ast::DoubleExp(e.getLocation(), val));
+                            e.replace(new ast::ArrayListExp(e.getLocation(), *exps));
                             isConstant = true;
                         }
                     }

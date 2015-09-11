@@ -51,7 +51,7 @@ MacroDef * ExistingMacroDef::clone() const
     return new ExistingMacroDef(*this);
 }
 
-DeclaredMacroDef::DeclaredMacroDef(ast::FunctionDec * const _dec) : MacroDef(_dec->getReturns().getVars().size(), _dec->getArgs().getVars().size(), dec), dec(nullptr)
+DeclaredMacroDef::DeclaredMacroDef(ast::FunctionDec * const _dec) : MacroDef(_dec->getReturns().getVars().size(), _dec->getArgs().getVars().size(), _dec), dec(nullptr)
 {
     GlobalsCollector::collect(*this);
 }

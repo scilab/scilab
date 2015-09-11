@@ -40,10 +40,10 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     }
 
 
-    enum Kind 
+    enum Kind
     {
-        LHS, RHS, LHSRHS
-    } kind;
+        LHS, RHS, LHSRHS, DUNNO
+    } kind = DUNNO;
     const ast::exps_t args = e.getArgs();
     switch (args.size())
     {
@@ -109,6 +109,7 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             res.getConstant() = visitor.getGVN().getValue(val);
             e.getDecorator().setCall(L"argn");
             visitor.setResult(res);
+            break;
         }
         case LHSRHS:
         {
@@ -124,7 +125,10 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             mlhs.back().getConstant() = visitor.getGVN().getValue(frhs);
 
             e.getDecorator().setCall(L"argn");
+            break;
         }
+        default:
+            return false;
     }
 
     return true;

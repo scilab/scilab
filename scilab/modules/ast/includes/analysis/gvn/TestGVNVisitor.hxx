@@ -35,7 +35,7 @@ class TestGVNVisitor : public ast::Visitor /*, public Chrono */
 
 public:
 
-    TestGVNVisitor()
+    TestGVNVisitor() : _result(nullptr)
     {
         //start_chrono();
     }
@@ -124,7 +124,7 @@ private:
         const GVN::Value & LV = getResult();
         e.getRight().accept(*this);
         const GVN::Value & RV = getResult();
-	
+
         switch (e.getOper())
         {
             case ast::OpExp::plus:
@@ -317,12 +317,12 @@ private:
     }
 
     void visit(ast::IntSelectExp & e)
-	{
-	}
-    
+    {
+    }
+
     void visit(ast::StringSelectExp & e)
-	{
-	}
+    {
+    }
 };
 
 } // namespace analysis

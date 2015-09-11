@@ -57,6 +57,7 @@ Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, ty
     {
         if (!arg->isString() || arg->getAs<types::String>()->getSize() != 1)
         {
+            delete args;
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "testAnalysis", i);
             return Function::Error;
         }

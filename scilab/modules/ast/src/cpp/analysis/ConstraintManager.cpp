@@ -33,11 +33,11 @@ std::vector<std::shared_ptr<InferenceConstraint>> ConstraintManager::init()
     v.emplace_back(new GreaterConstraint());
     // Is a value strict greater than an other ?
     v.emplace_back(new StrictGreaterConstraint());
-   // Valid index
+    // Valid index
     v.emplace_back(new ValidIndexConstraint());
     // Valid range
     v.emplace_back(new ValidRangeConstraint());
- 
+
     return v;
 }
 
@@ -83,23 +83,23 @@ bool ConstraintManager::check(const MPolyConstraintSet & set, const std::vector<
 
 bool ConstraintManager::check(Kind kind, const std::vector<GVN::Value *> & values)
 {
-    const InferenceConstraint & ic = *generalConstraints[kind];
-    InferenceConstraint::Result res = ic.check(function->getGVN(), values);
-    //std::wcerr << "DEBUG2=" << res << std::endl;
-
-    switch (res)
+    if (function)
     {
-        case InferenceConstraint::Result::RESULT_TRUE:
+        const InferenceConstraint & ic = *generalConstraints[kind];
+        InferenceConstraint::Result res = ic.check(function->getGVN(), values);
+        //std::wcerr << "DEBUG2=" << res << std::endl;
+
+        switch (res)
         {
-            mpConstraints.add(ic.getMPConstraints(values));
-            ic.applyConstraints(values);
-            return true;
-        }
-        case InferenceConstraint::Result::RESULT_FALSE:
-            return false;
-        case InferenceConstraint::Result::RESULT_DUNNO:
-        {
-            if (function)
+            case InferenceConstraint::Result::RESULT_TRUE:
+            {
+                mpConstraints.add(ic.getMPConstraints(values));
+                ic.applyConstraints(values);
+                return true;
+            }
+            case InferenceConstraint::Result::RESULT_FALSE:
+                return false;
+            case InferenceConstraint::Result::RESULT_DUNNO:
             {
                 MPolyConstraintSet set = ic.getMPConstraints(values);
                 const bool ret = check(set, function->getInValues());
@@ -110,43 +110,44 @@ bool ConstraintManager::check(Kind kind, const std::vector<GVN::Value *> & value
                 }
                 return ret;
             }
-            return false;
         }
+    }
+
+    return false;
+}
+
+bool ConstraintManager::checkGlobalConstant(const symbol::Symbol & sym)
+{
+    if (constantConstraints.find(sym) == constantConstraints.end())
+    {
+        // TODO: fix that !!!
+        const bool ret = true; //symbol::Context::getInstance()->isOriginalSymbol(sym);
+        if (ret)
+        {
+            ConstraintManager * cm = this;
+            while (cm)
+            {
+                cm->constantConstraints.emplace(sym);
+                cm = cm->parent;
+            }
+        }
+        return ret;
+    }
+    else
+    {
+        return true;
     }
 }
 
-    bool ConstraintManager::checkGlobalConstant(const symbol::Symbol & sym)
+bool ConstraintManager::checkGlobalConstants(const std::set<symbol::Symbol> & gc)
+{
+    for (const auto sym : gc)
     {
-	if (constantConstraints.find(sym) == constantConstraints.end())
-	{
-	    // TODO: fix that !!!
-	    const bool ret = true; //symbol::Context::getInstance()->isOriginalSymbol(sym);
-	    if (ret)
-	    {
-		ConstraintManager * cm = this;
-		while (cm)
-		{
-		    cm->constantConstraints.emplace(sym);
-		    cm = cm->parent;
-		}
-	    }
-	    return ret;
-	}
-	else
-	{
-	    return true;
-	}
+        if (!symbol::Context::getInstance()->isOriginalSymbol(sym))
+        {
+            return false;
+        }
     }
-
-    bool ConstraintManager::checkGlobalConstants(const std::set<symbol::Symbol> & gc)
-	{
-	    for (const auto sym : gc)
-	    {
-		if (!symbol::Context::getInstance()->isOriginalSymbol(sym))
-		{
-		    return false;
-		}
-	    }
-	    return true;
-	}
+    return true;
+}
 }
