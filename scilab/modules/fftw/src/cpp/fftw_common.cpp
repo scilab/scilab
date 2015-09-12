@@ -281,7 +281,8 @@ types::Function::ReturnValue common_2args(std::string& name, types::typed_list &
         FREE(gdim.howmany_dims);
         return types::Function::OK;
     }
-
+    FREE(gdim.dims);
+    FREE(gdim.howmany_dims);
     out.push_back(D);
     return types::Function::OK;
 }

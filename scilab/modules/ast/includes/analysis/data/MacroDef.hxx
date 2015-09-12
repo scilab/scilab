@@ -45,6 +45,7 @@ public:
     virtual ~MacroDef() { }
 
     virtual ast::SeqExp & getBody() = 0;
+    virtual const ast::SeqExp & getOriginalBody() = 0;
     virtual const std::wstring & getName() = 0;
     virtual std::vector<symbol::Symbol> getIn() = 0;
     virtual std::vector<symbol::Symbol> getOut() = 0;
@@ -116,6 +117,7 @@ public:
     }
 
     ast::SeqExp & getBody();
+    const ast::SeqExp & getOriginalBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();
@@ -136,6 +138,7 @@ public:
     }
 
     ast::SeqExp & getBody();
+    const ast::SeqExp & getOriginalBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();

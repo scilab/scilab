@@ -241,8 +241,25 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
             parser.parseFile(stFullPath, ConfigVariable::getSCIPath());
             if (parser.getExitStatus() !=  Parser::Succeded)
             {
-                scilabWriteW(parser.getErrorMessage());
-                sciprint(_("%ls: Error in file %ls.\n"), L"genlib", stFullPath.data());
+                if (_iRetCount != 4)
+                {
+                    std::wstring wstrErr = parser.getErrorMessage();
+
+                    wchar_t errmsg[256];
+                    os_swprintf(errmsg, 256, _W("%ls: Error in file %ls.\n").c_str(), L"genlib", stFullPath.data());
+                    wstrErr += errmsg;
+
+                    char* str = wide_string_to_UTF8(wstrErr.c_str());
+                    Scierror(999, str);
+                    FREE(str);
+
+                    FREE(pstParsePath);
+                    freeArrayOfWideString(pstPath, iNbFile);
+                    closeXMLFile(pWriter);
+                    delete pLib;
+                    return Function::Error;
+                }
+
                 failed_files.push_back(stFullPath);
                 succes = 0;
                 continue;
@@ -296,6 +313,11 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
         else
         {
             Scierror(999, _("Redefining permanent variable.\n"));
+
+            freeArrayOfWideString(pstPath, iNbFile);
+            FREE(pstParsePath);
+            closeXMLFile(pWriter);
+            delete pLib;
             return Function::Error;
         }
     }
@@ -414,6 +436,7 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     iLen = xmlTextWriterStartDocument(pWriter, NULL, DEFAULT_ENCODING, "no");
     if (iLen < 0)
     {
+        closeXMLFile(pWriter);
         return NULL;
     }
 
@@ -421,6 +444,7 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     iLen = xmlTextWriterStartElement(pWriter, (xmlChar*)"scilablib");
     if (iLen < 0)
     {
+        closeXMLFile(pWriter);
         return NULL;
     }
 
@@ -428,6 +452,7 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     iLen = xmlTextWriterWriteAttribute(pWriter, (xmlChar*)"name", (xmlChar*)pstLibName);
     if (iLen < 0)
     {
+        closeXMLFile(pWriter);
         return NULL;
     }
 

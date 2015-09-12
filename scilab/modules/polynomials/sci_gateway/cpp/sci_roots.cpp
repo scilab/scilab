@@ -248,6 +248,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
             pdblOutImg = pDblOut->getImg();
             memset(pdblOutImg, 0x00, pDblOut->getSize() * sizeof(double));
             C2F(dcopy)(&iSize, pdblTempImg, &iOne, pdblOutImg, &iOne);
+            delete[] pdblTempImg;
         }
 
         //call spec

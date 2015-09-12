@@ -41,7 +41,7 @@ struct OpValue
      * \param _kind the operation kind
      * \param _lnum the value of the operand
      */
-    OpValue(Kind _kind, uint64_t _lnum) : kind(_kind), lnum(_lnum) { }
+    OpValue(Kind _kind, uint64_t _lnum) : kind(_kind), lnum(_lnum), rnum(0) { }
 
     /**
      * \brief constructor for binary operation

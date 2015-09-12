@@ -24,5 +24,4 @@ mputl(f,TMPDIR+"/bug_9059/macrobug.sci");
 cd("bug_9059");
 exec("macrobug.sci","errcatch");
 
-errmsg=msprintf(gettext("%s: Error in file %s.\n"), "genlib", pathconvert("TMPDIR" +"/bug_9059/macrobug.sci", %f));
-assert_checkerror("genlib(""bug_9059lib"",""TMPDIR/bug_9059"",%f,%t)",errmsg);
+assert_checkerror("genlib(""bug_9059lib"",""TMPDIR/bug_9059"",%f,%t)",[], 999);

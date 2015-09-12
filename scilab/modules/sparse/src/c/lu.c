@@ -85,6 +85,7 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
     *fmatindex = addluptr (fmat);
     if ( *fmatindex == -1)
     {
+        spDestroy(fmat);
         *ierr = 1;
         return;
     }
@@ -107,6 +108,8 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
 
         if (pelement == 0)
         {
+            removeluptr(fmat);
+            spDestroy(fmat);
             *ierr = 2;
             return;
         }
@@ -125,18 +128,21 @@ void C2F(lufact1)(double *val, int *lln, int *col, int *n, int *nel,
     {
         case spZERO_DIAG:
             Scierror(999, _("%s: A zero was encountered on the diagonal the matrix.\n"), "zero_diag");
-            break;
+            removeluptr(fmat);
+            spDestroy(fmat);
+            return;
         case spNO_MEMORY:
             *ierr = 3;
-            break;
+            removeluptr(fmat);
+            spDestroy(fmat);
+            return;
         case spSINGULAR:
             *ierr = -1; /*Singular matrix" */
-            break;
+            return;
         case spSMALL_PIVOT:
             *ierr = -2; /* matrix is singular at precision level */
-            break;
+            return;
     }
-
 }
 
 /*

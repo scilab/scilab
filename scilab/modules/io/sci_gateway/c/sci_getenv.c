@@ -72,6 +72,10 @@ int sci_getenv(char *fname, void* pvApiCtx)
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
+        if (pStVarTwo)
+        {
+            freeAllocatedSingleString(pStVarTwo);
+        }
         printError(&sciErr, 0);
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
         return 0;
@@ -79,6 +83,10 @@ int sci_getenv(char *fname, void* pvApiCtx)
 
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
+        if (pStVarTwo)
+        {
+            freeAllocatedSingleString(pStVarTwo);
+        }
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
         return 0;
     }

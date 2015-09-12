@@ -156,27 +156,21 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         pOut = new types::Polynom(pIn->getVariableName(), 1, 1, &iRankMax);
         pOut->setComplex(pIn->isComplex());
 
+        pOut->set(0, pIn->get(0));
+
         // do prod
+        int iSize = pIn->getSize();
         double* pdblRealOut = pOut->get(0)->get();
+        double* pdblTempReal = new double[iRankMax + 1];
+
         if (pIn->isComplex())
         {
             double* pdblImgOut = pOut->get(0)->getImg();
-
             // alloc temporary workspace
-            double* pdblTempReal = new double[iRankMax + 1];
             double* pdblTempImg  = new double[iRankMax + 1];
 
-            // init output to 1 + 0s + 0s²...
-            pdblRealOut[0] = 1;
-            pdblImgOut[0]  = 0;
-            for (int iRankN = 1; iRankN < iRankMax + 1; iRankN++)
-            {
-                pdblRealOut[iRankN] = 0;
-                pdblImgOut[iRankN]  = 0;
-            }
-
             // perform operations
-            for (int i = 0; i < pIn->getSize(); i++)
+            for (int i = 1; i < iSize; i++)
             {
                 double* pdblRealIn = pIn->get(i)->get();
                 double* pdblImgIn = pIn->get(i)->getImg();
@@ -187,23 +181,12 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                                                pdblRealOut, pdblImgOut, iRankMax + 1);
             }
 
-            delete pdblTempReal;
             delete pdblTempImg;
         }
         else
         {
-            // alloc temporary workspace
-            double* pdblTempReal = new double[iRankMax + 1];
-
-            // init output to 1 + 0s + 0s²...
-            pdblRealOut[0] = 1;
-            for (int iRankN = 1; iRankN < iRankMax + 1; iRankN++)
-            {
-                pdblRealOut[iRankN] = 0;
-            }
-
             // perform operations
-            for (int i = 0; i < pIn->getSize(); i++)
+            for (int i = 1; i < iSize; i++)
             {
                 double* pdblRealIn = pIn->get(i)->get();
                 memcpy(pdblTempReal, pdblRealOut, (iRankMax + 1) * sizeof(double));
@@ -211,11 +194,10 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                                                    pdblRealIn, piRanks[i] + 1,
                                                    pdblRealOut, iRankMax + 1);
             }
-
-            delete pdblTempReal;
         }
 
-        delete[]piRanks;
+        delete[] pdblTempReal;
+        delete[] piRanks;
     }
     else // sum following a dimension
     {
@@ -278,25 +260,20 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         pOut = new types::Polynom(pIn->getVariableName(), iDims, piDims, piRankMax);
         pOut->setComplex(pIn->isComplex());
 
+        // init output with first element of lead dimension
+        for (int i = 0; i < pOut->getSize(); i++)
+        {
+            pOut->getIndexes(i, piIndex);
+            int iIndex = pIn->getIndex(piIndex);
+            pOut->set(i, pIn->get(iIndex));
+        }
+
+        // alloc temporary workspace
+        double* pdblTempReal = new double[iMaxOutputRank + 1];
         if (pIn->isComplex())
         {
             // alloc temporary workspace
-            double* pdblTempReal = new double[iMaxOutputRank + 1];
             double* pdblTempImg  = new double[iMaxOutputRank + 1];
-
-            // init output to a matrix of 1 + 0s + 0s²...
-            for (int i = 0; i < pOut->getSize(); i++)
-            {
-                double* pdblRealOut = pOut->get(i)->get();
-                double* pdblImgOut = pOut->get(i)->getImg();
-                pdblRealOut[0] = 1;
-                pdblImgOut[0]  = 0;
-                for (int iRankN = 1; iRankN < piRankMax[i] + 1; iRankN++)
-                {
-                    pdblRealOut[iRankN] = 0;
-                    pdblImgOut[iRankN]  = 0;
-                }
-            }
 
             // perform operations
             for (int i = 0 ; i < pIn->getSize() ; i++)
@@ -305,6 +282,12 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 pIn->getIndexes(i, piIndex);
 
                 //convert indexes for result
+                if (piIndex[iOrientation - 1] == 0)
+                {
+                    // first element of lead dimension is already setted.
+                    continue;
+                }
+
                 piIndex[iOrientation - 1] = 0;
                 int iIndex = pOut->getIndex(piIndex);
 
@@ -320,25 +303,10 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                                                pdblRealOut, pdblImgOut, piRankMax[iIndex] + 1);
             }
 
-            delete pdblTempReal;
-            delete pdblTempImg;
+            delete[] pdblTempImg;
         }
         else
         {
-            // alloc temporary workspace
-            double* pdblTempReal = new double[iMaxOutputRank + 1];
-
-            // init output to a matrix of 1 + 0s + 0s²...
-            for (int i = 0; i < pOut->getSize(); i++)
-            {
-                double* pdblRealOut = pOut->get(i)->get();
-                pdblRealOut[0] = 1;
-                for (int iRankN = 1; iRankN < piRankMax[i] + 1; iRankN++)
-                {
-                    pdblRealOut[iRankN] = 0;
-                }
-            }
-
             // perform operations
             for (int i = 0 ; i < pIn->getSize() ; i++)
             {
@@ -346,6 +314,12 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                 pIn->getIndexes(i, piIndex);
 
                 //convert indexes for result
+                if (piIndex[iOrientation - 1] == 0)
+                {
+                    // first element of lead dimension is already setted.
+                    continue;
+                }
+
                 piIndex[iOrientation - 1] = 0;
                 int iIndex = pOut->getIndex(piIndex);
 
@@ -357,10 +331,9 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
                                                    pdblRealIn, piRanks[i] + 1,
                                                    pdblRealOut, piRankMax[iIndex] + 1);
             }
-
-            delete pdblTempReal;
         }
 
+        delete[] pdblTempReal;
         delete[] piRankMax;
         delete[] piRanks;
         delete[] piIndex;

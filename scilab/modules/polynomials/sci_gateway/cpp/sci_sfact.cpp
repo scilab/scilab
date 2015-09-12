@@ -154,11 +154,13 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
         if (iErr < 0)
         {
+            delete[] pdblOut;
             Scierror(999, _("%s: Wrong value for input argument #%d: Convergence problem.\n"), "sfact", 1);
             return types::Function::Error;
         }
         else if (iErr > 0)
         {
+            delete[] pdblOut;
             Scierror(999, _("%s: Wrong value for input argument #%d: singular or asymmetric problem.\n"), "sfact", 1);
             return types::Function::Error;
         }
@@ -172,6 +174,8 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
             pPolyOut->set(i, pSP);
             delete pSP;
         }
+
+        delete[] pdblOut;
     }
 
     out.push_back(pPolyOut);

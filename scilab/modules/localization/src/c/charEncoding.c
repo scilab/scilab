@@ -228,15 +228,15 @@ wchar_t *to_wide_string(const char *_UTFStr)
     size_t iSize = 0;
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
-
+    iconv_t cd_UTF8_to_UTF16 = NULL;
     wchar_t* pOut = NULL;
-
-    iconv_t cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
 
     if (_UTFStr == NULL)
     {
         return NULL;
     }
+
+    cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
 
     iLeftIn = strlen(_UTFStr);
     pInSave = (char*)_UTFStr;
