@@ -15,7 +15,7 @@ OUTPUT_STREAM_CPP_SOURCES = \
 	src/cpp/DiaryList.cpp \
 	src/cpp/diary_manager.cpp \
 	src/cpp/getDiaryDate.cpp \
-	src/cpp/getFullFilename.cpp \
+	src/cpp/getUniqueFilename.cpp \
 	src/cpp/scilab_sprintf.cpp \
 	src/cpp/basout.cpp
 
@@ -76,6 +76,7 @@ libscioutput_stream_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

@@ -43,13 +43,13 @@ private:
     /*
     * used on Windows to replace carriage return
     */
-    std::wstring replace(std::wstring text, std::wstring s, std::wstring replacement);
+    std::wstring replace(const std::wstring& text, const std::wstring& s, const std::wstring& replacement);
 
 public:
     /*
     * constructor
     */
-    Diary(std::wstring _wfilename, int _mode, int ID, bool autorename);
+    Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename);
 
     /*
     * destructor
@@ -70,17 +70,17 @@ public:
     /*
     * get ID of this diary
     */
-    int getID(void);
+    int getID(void) const;
 
     /*
     * write a string in this diary
     */
-    void write(std::wstring _wstr, bool bInput);
+    void write(const std::wstring& _wstr, bool bInput);
 
     /*
     * write a line in this diary
     */
-    void writeln(std::wstring _wstr, bool bInput);
+    void writeln(const std::wstring& _wstr, bool bInput);
 
     /*
     * get & set Resume mode
@@ -103,5 +103,5 @@ public:
 
 #endif /* __DIARY_HXX__ */
 /*--------------------------------------------------------------------------*/
-bool compareDiary(Diary first, Diary second);
+bool compareDiary(const Diary& first, const Diary& second);
 /*--------------------------------------------------------------------------*/

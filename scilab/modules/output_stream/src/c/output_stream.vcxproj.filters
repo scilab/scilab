@@ -50,9 +50,6 @@
     <ClCompile Include="..\cpp\getDiaryDate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\getFullFilename.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="msgout.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -80,6 +77,9 @@
     <ClCompile Include="..\cpp\basout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\getUniqueFilename.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Console_Import.def">
@@ -102,6 +102,9 @@
     <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
     <None Include="..\..\locales\output_stream.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="Fileio_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -179,10 +182,10 @@
     <ClInclude Include="..\cpp\getDiaryDate.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\getFullFilename.hxx">
+    <ClInclude Include="..\..\includes\msgs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\msgs.h">
+    <ClInclude Include="..\cpp\getUniqueFilename.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

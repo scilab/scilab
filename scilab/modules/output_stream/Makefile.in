@@ -196,7 +196,7 @@ am__objects_2 = src/cpp/libscioutput_stream_algo_la-Diary.lo \
 	src/cpp/libscioutput_stream_algo_la-DiaryList.lo \
 	src/cpp/libscioutput_stream_algo_la-diary_manager.lo \
 	src/cpp/libscioutput_stream_algo_la-getDiaryDate.lo \
-	src/cpp/libscioutput_stream_algo_la-getFullFilename.lo \
+	src/cpp/libscioutput_stream_algo_la-getUniqueFilename.lo \
 	src/cpp/libscioutput_stream_algo_la-scilab_sprintf.lo \
 	src/cpp/libscioutput_stream_algo_la-basout.lo
 am__objects_3 = src/fortran/wspdsp.lo src/fortran/wmdsp.lo \
@@ -620,7 +620,7 @@ OUTPUT_STREAM_CPP_SOURCES = \
 	src/cpp/DiaryList.cpp \
 	src/cpp/diary_manager.cpp \
 	src/cpp/getDiaryDate.cpp \
-	src/cpp/getFullFilename.cpp \
+	src/cpp/getUniqueFilename.cpp \
 	src/cpp/scilab_sprintf.cpp \
 	src/cpp/basout.cpp
 
@@ -679,6 +679,7 @@ libscioutput_stream_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
     $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscioutput_stream.la
@@ -915,7 +916,7 @@ src/cpp/libscioutput_stream_algo_la-diary_manager.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscioutput_stream_algo_la-getDiaryDate.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscioutput_stream_algo_la-getFullFilename.lo:  \
+src/cpp/libscioutput_stream_algo_la-getUniqueFilename.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscioutput_stream_algo_la-scilab_sprintf.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1017,7 +1018,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-basout.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-diary_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getDiaryDate.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getUniqueFilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-scilabWrite.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-scilab_sprintf.Plo@am__quote@
 
@@ -1174,12 +1175,12 @@ src/cpp/libscioutput_stream_algo_la-getDiaryDate.lo: src/cpp/getDiaryDate.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioutput_stream_algo_la-getDiaryDate.lo `test -f 'src/cpp/getDiaryDate.cpp' || echo '$(srcdir)/'`src/cpp/getDiaryDate.cpp
 
-src/cpp/libscioutput_stream_algo_la-getFullFilename.lo: src/cpp/getFullFilename.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioutput_stream_algo_la-getFullFilename.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Tpo -c -o src/cpp/libscioutput_stream_algo_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Tpo src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getFullFilename.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/getFullFilename.cpp' object='src/cpp/libscioutput_stream_algo_la-getFullFilename.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscioutput_stream_algo_la-getUniqueFilename.lo: src/cpp/getUniqueFilename.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioutput_stream_algo_la-getUniqueFilename.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getUniqueFilename.Tpo -c -o src/cpp/libscioutput_stream_algo_la-getUniqueFilename.lo `test -f 'src/cpp/getUniqueFilename.cpp' || echo '$(srcdir)/'`src/cpp/getUniqueFilename.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getUniqueFilename.Tpo src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-getUniqueFilename.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/getUniqueFilename.cpp' object='src/cpp/libscioutput_stream_algo_la-getUniqueFilename.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioutput_stream_algo_la-getFullFilename.lo `test -f 'src/cpp/getFullFilename.cpp' || echo '$(srcdir)/'`src/cpp/getFullFilename.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioutput_stream_algo_la-getUniqueFilename.lo `test -f 'src/cpp/getUniqueFilename.cpp' || echo '$(srcdir)/'`src/cpp/getUniqueFilename.cpp
 
 src/cpp/libscioutput_stream_algo_la-scilab_sprintf.lo: src/cpp/scilab_sprintf.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioutput_stream_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioutput_stream_algo_la-scilab_sprintf.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioutput_stream_algo_la-scilab_sprintf.Tpo -c -o src/cpp/libscioutput_stream_algo_la-scilab_sprintf.lo `test -f 'src/cpp/scilab_sprintf.cpp' || echo '$(srcdir)/'`src/cpp/scilab_sprintf.cpp

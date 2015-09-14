@@ -12,7 +12,12 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "DiaryList.hxx"
-#include "getFullFilename.hxx"
+
+extern "C"
+{
+#include "getFullFilename.h"
+#include "sci_malloc.h"
+}
 /*--------------------------------------------------------------------------*/
 DiaryList::DiaryList()
 {
@@ -151,7 +156,10 @@ bool DiaryList::exists(std::wstring _wfilename)
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        if ( i->getFilename().compare(getFullFilename(_wfilename)) == 0 )
+        wchar_t* wc = getFullFilenameW(_wfilename.data());
+        int comp = i->getFilename().compare(wc);
+        FREE(wc);
+        if (comp == 0)
         {
             return true;
         }
@@ -239,7 +247,10 @@ int DiaryList::getID(std::wstring _wfilename)
     std::list<Diary>::iterator i;
     for ( i = LSTDIARY.begin(); i != LSTDIARY.end(); i++)
     {
-        if ( i->getFilename().compare(getFullFilename(_wfilename)) == 0 )
+        wchar_t* ws = getFullFilenameW(_wfilename.data());
+        int comp = i->getFilename().compare(ws);
+        FREE(ws);
+        if (comp == 0)
         {
             return i->getID();
         }

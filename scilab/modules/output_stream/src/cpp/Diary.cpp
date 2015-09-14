@@ -14,15 +14,17 @@
 #include <fstream>
 #include <iostream>
 #include "Diary.hxx"
-#include "getFullFilename.hxx"
 #include "getDiaryDate.hxx"
+#include "getUniqueFilename.hxx"
+
 extern "C"
 {
+#include "getFullFilename.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
-Diary::Diary(std::wstring _wfilename, int _mode, int ID, bool autorename)
+Diary::Diary(const std::wstring& _wfilename, int _mode, int ID, bool autorename)
 {
     std::ios::openmode wofstream_mode;
 
@@ -30,11 +32,16 @@ Diary::Diary(std::wstring _wfilename, int _mode, int ID, bool autorename)
     if (autorename)
     {
         fullfilename = getUniqueFilename(_wfilename);
-        fullfilename = getFullFilename(fullfilename);
+
+        wchar_t* ws = getFullFilenameW(fullfilename.data());
+        fullfilename = ws;
+        FREE(ws);
     }
     else
     {
-        fullfilename = getFullFilename(_wfilename);
+        wchar_t* ws = getFullFilenameW(_wfilename.data());
+        fullfilename = ws;
+        FREE(ws);
     }
 
     suspendwrite = false;
@@ -53,7 +60,7 @@ Diary::Diary(std::wstring _wfilename, int _mode, int ID, bool autorename)
     }
 
 #ifdef _MSC_VER
-    std::wofstream fileDiary(fullfilename.c_str(), wofstream_mode);
+    std::wofstream fileDiary(fullfilename, wofstream_mode);
 #else
     wchar_t *wcfile = (wchar_t *) fullfilename.c_str();
     char *filename = wide_string_to_UTF8(wcfile);
@@ -85,7 +92,7 @@ Diary::Diary(std::wstring _wfilename, int _mode, int ID, bool autorename)
 /*--------------------------------------------------------------------------*/
 Diary::~Diary()
 {
-    wfilename = std::wstring(L"");
+    wfilename = L"";
     fileAttribMode = -1;
     setID(-1);
 }
@@ -97,7 +104,7 @@ std::wstring Diary::getFilename(void)
 }
 
 /*--------------------------------------------------------------------------*/
-void Diary::write(std::wstring _wstr, bool bInput)
+void Diary::write(const std::wstring& _wstr, bool bInput)
 {
     if (!suspendwrite)
     {
@@ -120,13 +127,13 @@ void Diary::write(std::wstring _wstr, bool bInput)
         if (fileDiary.good())
         {
             char *line = NULL;
-
+            std::wstring wst = _wstr;
 #ifdef _MSC_VER
             /* carriage return for Windows */
-            _wstr = replace(_wstr, std::wstring(L"\n"), std::wstring(L"\r\n"));
-            _wstr = replace(_wstr, std::wstring(L"\r\r"), std::wstring(L"\r"));
+            wst = replace(wst, std::wstring(L"\n"), std::wstring(L"\r\n"));
+            wst = replace(wst, std::wstring(L"\r\r"), std::wstring(L"\r"));
 #endif
-            line = wide_string_to_UTF8((wchar_t *) _wstr.c_str());
+            line = wide_string_to_UTF8(wst.data());
 
             if (bInput)         // input
             {
@@ -182,14 +189,14 @@ void Diary::write(std::wstring _wstr, bool bInput)
 }
 
 /*--------------------------------------------------------------------------*/
-void Diary::writeln(std::wstring _wstr, bool bInput)
+void Diary::writeln(const std::wstring& _wstr, bool bInput)
 {
 #define ENDLINE L"\n"
-    write(_wstr.append(ENDLINE), bInput);
+    write(_wstr + ENDLINE, bInput);
 }
 
 /*--------------------------------------------------------------------------*/
-int Diary::getID(void)
+int Diary::getID(void) const 
 {
     return ID_foutstream;
 }
@@ -216,23 +223,23 @@ bool Diary::getSuspendWrite(void)
 }
 
 /*--------------------------------------------------------------------------*/
-std::wstring Diary::replace(std::wstring text, std::wstring s, std::wstring replacement)
+std::wstring Diary::replace(const std::wstring& text, const std::wstring& s, const std::wstring& replacement)
 {
     std::wstring::size_type pos = 0;
-
+    std::wstring ret = text;
     while (pos != std::wstring::npos)
     {
-        pos = text.find(s, pos);
+        pos = ret.find(s, pos);
         if (pos == std::wstring::npos)
             // no more 's' in '*this'
         {
             break;
         }
 
-        text.replace(pos, s.length(), replacement);
+        ret.replace(pos, s.length(), replacement);
         pos += replacement.length();
     }
-    return text;
+    return ret;
 }
 
 /*--------------------------------------------------------------------------*/
@@ -272,7 +279,7 @@ diary_prefix_time_filter Diary::getPrefixIoModeFilter(void)
 }
 
 /*--------------------------------------------------------------------------*/
-bool compareDiary(Diary first, Diary second)
+bool compareDiary(const Diary& first, const Diary& second)
 {
     if (first.getID() < second.getID())
     {
