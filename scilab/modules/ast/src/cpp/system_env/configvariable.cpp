@@ -1050,7 +1050,7 @@ bool ConfigVariable::getEndProcessing()
 ** ieee
 ** \{
 */
-int ConfigVariable::m_iIeee = 0;
+int ConfigVariable::m_iIeee = 2;
 
 void ConfigVariable::setIeee(int _iIeee)
 {

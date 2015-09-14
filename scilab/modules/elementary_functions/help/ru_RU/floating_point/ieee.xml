@@ -50,7 +50,9 @@
         <para>
             <literal>ieee(mod)</literal> устанавливает текущий режим исключения с плавающей запятой.
         </para>
-        <para>Исходное значение режима равно 0.</para>
+        <warning>
+            <para>Исходное значение режима равно 2.</para>
+        </warning>
     </refsection>
     <refsection>
         <title>Примечания</title>
@@ -65,4 +67,10 @@ ieee(1);1/0
 ieee(2);1/0,log(0)
  ]]></programlisting>
     </refsection>
+    <revhistory>
+        <revision>
+            <revnumber>6.0.0</revnumber>
+            <revremark>Исходное значение режима равно 2.</revremark>
+        </revision>
+    </revhistory>
 </refentry>

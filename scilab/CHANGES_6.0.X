@@ -12,6 +12,13 @@ New Features
 * Introduction of a call stack limit. Default maximum depth is setup to 1000 and
   can be changed by new function recursionlimit or by preferences interface.
 
+
+  Modified Functions
+===================
+
+* ieee: the initial mode value is now setted to 2.
+
+
 Deprecated Behaviors
 =====================
 
