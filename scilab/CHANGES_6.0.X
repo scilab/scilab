@@ -27,6 +27,8 @@ Scilab Bug Fixes
 
 * Bug #13890 fixed - getd did not return loaded symbols in previous scope.
 
+* Bug #13894 fixed - Default working directory of the previous session did not work.
+
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
 
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
