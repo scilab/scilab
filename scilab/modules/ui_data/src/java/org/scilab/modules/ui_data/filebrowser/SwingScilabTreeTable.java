@@ -44,6 +44,7 @@ import javax.swing.border.AbstractBorder;
 import javax.swing.border.Border;
 import javax.swing.plaf.basic.BasicTreeUI;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.SwingWorker;
 import javax.swing.tree.TreePath;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
@@ -84,6 +85,9 @@ public class SwingScilabTreeTable extends JTable {
             return INSETS;
         }
     };
+
+    private SwingWorker dirRefresher;
+    private ScilabFileBrowserModel model;
 
     private Method isLocationInExpandControl;
 
@@ -295,12 +299,22 @@ public class SwingScilabTreeTable extends JTable {
      * @param baseDir the base directory
      * @param addInHistory if true the dir is add in the history
      */
-    public void setBaseDir(String baseDir, boolean addInHistory) {
-        ScilabFileBrowserModel model = (ScilabFileBrowserModel) tree.getModel();
+    public synchronized void setBaseDir(String baseDir, boolean addInHistory) {
+        boolean cancelled = false;
+        ScilabFileBrowserModel model;
+        if (dirRefresher != null) {
+            dirRefresher.cancel(true);
+            dirRefresher = null;
+            model = this.model;
+            this.model = null;
+            cancelled = true;
+        } else {
+            model = (ScilabFileBrowserModel) tree.getModel();
+        }
         combobox.setBaseDir(baseDir);
         if (model != null) {
             File f = new File(baseDir);
-            if (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead()) {
+            if (cancelled || (!baseDir.equals(model.getBaseDir()) && f.exists() && f.isDirectory() && f.canRead())) {
                 tree.setModel(null);
                 if (addInHistory) {
                     history.addPathInHistory(baseDir);
@@ -442,6 +456,12 @@ public class SwingScilabTreeTable extends JTable {
         popup.pack();
 
         return popup;
+    }
+
+
+    public synchronized void setDirRefresher(SwingWorker refresher, ScilabFileBrowserModel model) {
+        dirRefresher = refresher;
+        this.model = model;
     }
 
     /**

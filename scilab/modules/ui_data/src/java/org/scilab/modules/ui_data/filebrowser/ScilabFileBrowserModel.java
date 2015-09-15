@@ -73,9 +73,13 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
             }
 
             protected void done() {
-                stt.reload(ScilabFileBrowserModel.this);
+                if (!isCancelled()) {
+                    stt.reload(ScilabFileBrowserModel.this);
+                    stt.setDirRefresher(null, null);
+                }
             }
         };
+        stt.setDirRefresher(worker, ScilabFileBrowserModel.this);
         worker.execute();
     }
 

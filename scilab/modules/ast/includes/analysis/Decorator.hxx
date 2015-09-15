@@ -100,6 +100,12 @@ struct Decorator
         return res;
     }
 
+    inline Result & setResult(Result & _res)
+    {
+        res = _res;
+        return res;
+    }
+
     inline const Result & getResult() const
     {
         return res;
