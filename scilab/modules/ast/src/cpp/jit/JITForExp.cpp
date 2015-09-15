@@ -443,7 +443,7 @@ void JITVisitor::visit(const ast::ForExp & e)
 
             i->addIncoming(start, cur_block);
             JITScilabPtr & it = variables.find(symIterator)->second;
-            //it->storeData(*this, i);
+            it->storeData(*this, i);
 
             // Visit the loop body
             e.getBody().accept(*this);

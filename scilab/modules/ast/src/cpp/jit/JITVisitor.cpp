@@ -20,7 +20,6 @@
 
 #include "ScilabJITEventListener.hxx"
 
-
 #define TIME_LLVM 1
 
 namespace jit
@@ -642,6 +641,7 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
 
     llvm::FunctionType * ftype = llvm::FunctionType::get(retTy, llvm::ArrayRef<llvm::Type *>(args), /* isVarArgs */ false);
     //function = llvm::cast<llvm::Function>(module.getOrInsertFunction("jit_" + name, ftype));
+    std::cerr << "NAME=" << _name << std::endl;
     function = llvm::cast<llvm::Function>(module->getOrInsertFunction(_name, ftype));
 
     entryBlock = llvm::BasicBlock::Create(context, "EntryBlock", function);
@@ -1126,6 +1126,8 @@ llvm::Type * JITVisitor::getPtrAsIntTy(llvm::Module & module, llvm::LLVMContext 
 {
 #if LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR == 4
     return module.getPointerSize() == llvm::Module::Pointer32 ? llvm::Type::getInt32Ty(ctxt) : llvm::Type::getInt64Ty(ctxt);
+#elif LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 7
+    return module.getDataLayout().getPointerSize() == 32 ? llvm::Type::getInt32Ty(ctxt) : llvm::Type::getInt64Ty(ctxt);
 #else
     return module.getDataLayout()->getPointerSize() == 32 ? llvm::Type::getInt32Ty(ctxt) : llvm::Type::getInt64Ty(ctxt);
 #endif
@@ -1144,31 +1146,59 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
 {
     std::string err;
     llvm::TargetOptions opt;
+
+#if not(LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 7)
     opt.NoFramePointerElim = true;
-    llvm::EngineBuilder & eb = llvm::EngineBuilder(module).setErrorStr(&err).setUseMCJIT(true).setMCJITMemoryManager(new MemoryManager()).setRelocationModel(llvm::Reloc::PIC_/*DynamicNoPIC*//*Static*/).setCodeModel(llvm::CodeModel::Small).setTargetOptions(opt);
+#endif
+
+#if LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 6
+    llvm::EngineBuilder eb(std::move(std::unique_ptr<llvm::Module>(module)));
+    eb.setEngineKind(llvm::EngineKind::JIT).setMCJITMemoryManager(std::move(std::unique_ptr<llvm::RTDyldMemoryManager> {new MemoryManager()}));//.setRelocationModel(llvm::Reloc::Default/*PIC_*//*DynamicNoPIC*//*Static*/).setCodeModel(llvm::CodeModel::Default/*Small*/).setTargetOptions(opt).setErrorStr(&err);
+#else
+    llvm::EngineBuilder eb(module);
+    eb.setErrorStr(&err).setUseMCJIT(true).setMCJITMemoryManager(new MemoryManager()).setRelocationModel(llvm::Reloc::PIC_/*DynamicNoPIC*//*Static*/).setCodeModel(llvm::CodeModel::Small).setTargetOptions(opt);
+#endif
+
     // TODO: when reloc model is Static there is a problem with address of global variables (used with dgemm_)
 
-    *target = eb.selectTarget();
+    llvm::TargetMachine * tm = eb.selectTarget();
+    llvm::Triple triple(llvm::sys::getProcessTriple());
+    triple.setObjectFormat(llvm::Triple::ELF);
+    *target = tm->getTarget().createTargetMachine(triple.getTriple(), tm->getTargetCPU(), tm->getTargetFeatureString(), tm->Options, llvm::Reloc::Default, llvm::CodeModel::Default);
+    delete tm;
+
+
+    //(*target)->getTargetTriple().setObjectFormat(llvm::Triple::ELF);
+    //llvm::TargetMachine * tm = eb.selectTarget();
+    //std::cerr << "TARGET=" << tm << std::endl;
+    //*target = tm->getTarget().createTargetMachine(tm->getTargetTriple().str(), tm->getTargetCPU(), tm->getTargetFeatureString(), tm->Options, llvm::Reloc::Default, llvm::CodeModel::JITDefault);
+    //*target = eb.selectTarget();
+    //std::cerr << "TARGET=" << (*target)->getTargetTriple().str() << std::endl;
+
     llvm::ExecutionEngine * engine = eb.create(*target);
     engine->RegisterJITEventListener(new ScilabJITEventListener());
 
     module->setDataLayout(engine->getDataLayout()->getStringRepresentation());
     module->setTargetTriple((*target)->getTargetTriple().str());
 
+    //delete tm;
+
     return engine;
 }
-
-llvm::FunctionPassManager JITVisitor::initFPM(llvm::Module * module, llvm::ExecutionEngine * engine, llvm::TargetMachine * target)
+LLVM_FunctionPassManager JITVisitor::initFPM(llvm::Module * module, llvm::ExecutionEngine * engine, llvm::TargetMachine * target)
 {
-    llvm::FunctionPassManager FPM(module);
+    LLVM_FunctionPassManager FPM(module);
 
 #if LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR == 4
     FPM.add(new llvm::DataLayout(*engine->getDataLayout()));
+    target->addAnalysisPasses(FPM);
+#elif LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 7
+    // no more datalayoutpass
 #else
     FPM.add(new llvm::DataLayoutPass(*engine->getDataLayout()));
+    target->addAnalysisPasses(FPM);
 #endif
 
-    target->addAnalysisPasses(FPM);
 
     // TODO: mettre les bonnes passes la ou il faut
 

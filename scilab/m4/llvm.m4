@@ -41,7 +41,7 @@ LLVM_MINOR="`echo  ${LLVM_VERSION} | sed 's/\([[0-9]]*\).\([[0-9]]*\).*/\2/'`"
 LLVM_SUBMINOR="`echo  ${LLVM_VERSION} | sed 's/\([[0-9]]*\).\([[0-9]]*\).\([[0-9]]*\).*/\3/'`"
 
 CHK_LLVM_MAJOR=3
-CHK_LLVM_MINOR=4
+CHK_LLVM_MINOR=7
 
 AC_MSG_CHECKING([if LLVM is version $CHK_LLVM_MAJOR.$CHK_LLVM_MINOR or later])
 

@@ -17,18 +17,18 @@ namespace ast
 {
 static int level = -1;
 
-void DebugVisitor::DEBUG_START_NODE(const ast::Ast& e)
+void DebugVisitor::START_NODE(const ast::Ast& e)
 {
     *ostr << L"(" << e.getNodeNumber() << L") ";
     ++level;
 }
 
-void DebugVisitor::DEBUG_END_NODE(void)
+void DebugVisitor::END_NODE(void)
 {
     --level;
 }
 
-void DebugVisitor::DEBUG(wstring str)
+void DebugVisitor::print(wstring str)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -41,7 +41,7 @@ void DebugVisitor::DEBUG(wstring str)
     *ostr << str << endl;
 }
 
-void DebugVisitor::DEBUG(wstring str, const Exp &e)
+void DebugVisitor::print(wstring str, const Exp &e)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -62,43 +62,43 @@ void DebugVisitor::DEBUG(wstring str, const Exp &e)
 
 void DebugVisitor::visit (const MatrixExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec MatrixExp", e);
+    START_NODE(e);
+    print(L"Exec MatrixExp", e);
     exps_t lines = e.getLines();
     for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
     {
         (*it)->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const MatrixLineExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec MatrixLineExp", e);
+    START_NODE(e);
+    print(L"Exec MatrixLineExp", e);
     exps_t columns = e.getColumns();
     for (exps_t::const_iterator it = columns.begin(), itEnd = columns.end(); it != itEnd ; ++it)
     {
         (*it)->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const CellExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec CellExp", e);
+    START_NODE(e);
+    print(L"Exec CellExp", e);
     exps_t lines = e.getLines();
     for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
     {
         (*it)->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const StringExp &e)
 {
-    DEBUG_START_NODE(e);
+    START_NODE(e);
     wostringstream stream;
     if (e.getConstant())
     {
@@ -108,20 +108,20 @@ void DebugVisitor::visit (const StringExp &e)
     {
         stream << e.getValue();
     }
-    DEBUG(L"Exec StringExp : " + stream.str(), e);
-    DEBUG_END_NODE();
+    print(L"Exec StringExp : " + stream.str(), e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const CommentExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec CommentExp : " + e.getComment(), e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec CommentExp : " + e.getComment(), e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const DoubleExp  &e)
 {
-    DEBUG_START_NODE(e);
+    START_NODE(e);
     wostringstream stream;
     types::InternalType * pIT = e.getConstant();
     if (pIT)
@@ -142,13 +142,13 @@ void DebugVisitor::visit (const DoubleExp  &e)
     {
         stream << e.getValue();
     }
-    DEBUG(L"Exec DoubleExp : " + stream.str(), e);
-    DEBUG_END_NODE();
+    print(L"Exec DoubleExp : " + stream.str(), e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const BoolExp  &e)
 {
-    DEBUG_START_NODE(e);
+    START_NODE(e);
     wostringstream stream;
     if (e.getConstant())
     {
@@ -158,15 +158,15 @@ void DebugVisitor::visit (const BoolExp  &e)
     {
         stream << e.getValue();
     }
-    DEBUG(L"Exec BoolExp : " + stream.str(), e);
-    DEBUG_END_NODE();
+    print(L"Exec BoolExp : " + stream.str(), e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const NilExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec NilExp", e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec NilExp", e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const SimpleVar &e)
@@ -185,77 +185,77 @@ void DebugVisitor::visit (const SimpleVar &e)
         }
     }
 
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec SimpleVar : " + e.getSymbol().getName() + ty, e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec SimpleVar : " + e.getSymbol().getName() + ty, e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const ColonVar &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec ColonVar", e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec ColonVar", e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const DollarVar &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec DollarVar", e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec DollarVar", e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const ArrayListVar &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec ArrayListVar", e);
+    START_NODE(e);
+    print(L"Exec ArrayListVar", e);
     exps_t vars = e.getVars();
     for (exps_t::const_iterator it = vars.begin (), itEnd = vars.end(); it != itEnd; ++it)
     {
         (*it)->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const FieldExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec FieldExp", e);
+    START_NODE(e);
+    print(L"Exec FieldExp", e);
     e.getHead()->accept(*this);
     e.getTail()->accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit(const OpExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec OpExp", e);
+    START_NODE(e);
+    print(L"Exec OpExp", e);
     e.getLeft().accept(*this);
     e.getRight().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit(const LogicalOpExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec LogicalOpExp", e);
+    START_NODE(e);
+    print(L"Exec LogicalOpExp", e);
     e.getLeft().accept(*this);
     e.getRight().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const AssignExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec AssignExp", e);
+    START_NODE(e);
+    print(L"Exec AssignExp", e);
     e.getLeftExp().accept(*this);
     e.getRightExp().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit(const CellCallExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec CellCallExp", e);
+    START_NODE(e);
+    print(L"Exec CellCallExp", e);
     e.getName().accept(*this);
 
     exps_t args = e.getArgs();
@@ -264,15 +264,15 @@ void DebugVisitor::visit(const CellCallExp &e)
         arg->accept(*this);
     }
 
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit(const CallExp &e)
 {
     std::wstring str;
 
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec CallExp" + str, e);
+    START_NODE(e);
+    print(L"Exec CallExp" + str, e);
     e.getName().accept(*this);
 
     exps_t args = e.getArgs();
@@ -281,78 +281,78 @@ void DebugVisitor::visit(const CallExp &e)
         arg->accept(*this);
     }
 
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const IfExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec IfExp", e);
+    START_NODE(e);
+    print(L"Exec IfExp", e);
     e.getTest ().accept(*this);
     e.getThen ().accept(*this);
     if (e.hasElse())
     {
         e.getElse ().accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const TryCatchExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec TryCatchExp", e);
+    START_NODE(e);
+    print(L"Exec TryCatchExp", e);
     e.getTry ().accept(*this);
     e.getCatch ().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const WhileExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec WhileExp", e);
+    START_NODE(e);
+    print(L"Exec WhileExp", e);
     e.getTest().accept(*this);
     e.getBody().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const ForExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec ForExp", e);
+    START_NODE(e);
+    print(L"Exec ForExp", e);
     e.getVardec().accept(*this);
     e.getBody().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const ContinueExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec ContinueExp", e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec ContinueExp", e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const BreakExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec BreakExp", e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec BreakExp", e);
+    END_NODE();
 }
 
 void DebugVisitor::visit (const ReturnExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec ReturnExp", e);
+    START_NODE(e);
+    print(L"Exec ReturnExp", e);
     if (!e.isGlobal())
     {
         e.getExp().accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const SelectExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec SelectExp", e);
+    START_NODE(e);
+    print(L"Exec SelectExp", e);
     e.getSelect()->accept(*this);
 
     exps_t cases = e.getCases();
@@ -365,82 +365,82 @@ void DebugVisitor::visit (const SelectExp &e)
     {
         e.getDefaultCase()->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const CaseExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec CaseExp", e);
+    START_NODE(e);
+    print(L"Exec CaseExp", e);
     e.getTest()->accept(*this);
     e.getBody()->accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const SeqExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec SeqExp", e);
+    START_NODE(e);
+    print(L"Exec SeqExp", e);
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
         (*it)->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const ArrayListExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec ArrayListExp", e);
+    START_NODE(e);
+    print(L"Exec ArrayListExp", e);
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
         (*it)->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const AssignListExp  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec AssignListExp", e);
+    START_NODE(e);
+    print(L"Exec AssignListExp", e);
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
         (*it)->accept(*this);
     }
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const NotExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec NotExp", e);
+    START_NODE(e);
+    print(L"Exec NotExp", e);
     e.getExp().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const TransposeExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec TransposeExp", e);
+    START_NODE(e);
+    print(L"Exec TransposeExp", e);
     e.getExp().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const VarDec  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec VarDec", e);
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec Symbol : " + e.getSymbol().getName(), e);
-    DEBUG_END_NODE();
+    START_NODE(e);
+    print(L"Exec VarDec", e);
+    START_NODE(e);
+    print(L"Exec Symbol : " + e.getSymbol().getName(), e);
+    END_NODE();
     e.getInit().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit (const FunctionDec  &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec FunctionDec", e);
+    START_NODE(e);
+    print(L"Exec FunctionDec", e);
     // FIXME
 
     // First ask if there are some return values.
@@ -455,17 +455,17 @@ void DebugVisitor::visit (const FunctionDec  &e)
     // Now debug function body
     e.getBody().accept(*this);
 
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit(const ListExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec ListExp", e);
+    START_NODE(e);
+    print(L"Exec ListExp", e);
     e.getStart().accept(*this);
     e.getStep().accept(*this);
     e.getEnd().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit(const OptimizedExp &e)
@@ -475,8 +475,8 @@ void DebugVisitor::visit(const OptimizedExp &e)
 
 void DebugVisitor::visit(const MemfillExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec MemfillExp", e);
+    START_NODE(e);
+    print(L"Exec MemfillExp", e);
     e.getValue().accept(*this);
 
     exps_t args = e.getArgs();
@@ -485,17 +485,17 @@ void DebugVisitor::visit(const MemfillExp &e)
         arg->accept(*this);
     }
 
-    DEBUG_END_NODE();
+    END_NODE();
 }
 
 void DebugVisitor::visit(const DAXPYExp &e)
 {
-    DEBUG_START_NODE(e);
-    DEBUG(L"Exec DAXPYExp", e);
+    START_NODE(e);
+    print(L"Exec DAXPYExp", e);
     e.getA().accept(*this);
     e.getX().accept(*this);
     e.getY().accept(*this);
-    DEBUG_END_NODE();
+    END_NODE();
 
     //e.getOriginal()->accept(*this);
 }

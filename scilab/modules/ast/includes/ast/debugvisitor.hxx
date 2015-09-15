@@ -148,11 +148,11 @@ protected:
     std::wostream * ostr;
 
 private:
-    
-    void DEBUG_START_NODE(const ast::Ast & e);
-    void DEBUG_END_NODE(void);
-    void DEBUG(wstring str);
-    void DEBUG(wstring str, const Exp & e);
+
+    void START_NODE(const ast::Ast & e);
+    void END_NODE(void);
+    void print(wstring str);
+    void print(wstring str, const Exp & e);
 };
 }
 #endif // !AST_DEBUGVISITOR_HXX

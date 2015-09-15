@@ -15,15 +15,27 @@
 
 #include "llvm/ExecutionEngine/JITEventListener.h"
 
+namespace llvm
+{
+namespace object
+{
+class ObjectFile;
+}
+}
+
 namespace jit
 {
-    class ScilabJITEventListener : public llvm::JITEventListener
-    {
+class ScilabJITEventListener : public llvm::JITEventListener
+{
 
-    public:
-	
-        virtual void NotifyObjectEmitted(const llvm::ObjectImage & obj) override;
-    };
+public:
+
+#if defined(LLVM_VERSION_MAJOR) && LLVM_VERSION_MAJOR == 3 && LLVM_VERSION_MINOR >= 7
+    virtual void NotifyObjectEmitted(const llvm::object::ObjectFile & obj, const llvm::RuntimeDyld::LoadedObjectInfo & L) override;
+#else
+    virtual void NotifyObjectEmitted(const llvm::ObjectImage & obj) override;
+#endif
+};
 
 
 } // namespace jit

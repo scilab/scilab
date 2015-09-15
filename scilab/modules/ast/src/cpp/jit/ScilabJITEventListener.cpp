@@ -12,18 +12,28 @@
 
 #include <memory>
 #include <iostream>
-//#include <unistd.h>
-
-#include "llvm/ExecutionEngine/ObjectImage.h"
-#include "llvm/DebugInfo.h"
-#include "llvm/DebugInfo/DIContext.h"
-#include "llvm/Support/Memory.h"
 
 #include "ScilabJITEventListener.hxx"
 #include "MemoryManager.hxx"
 
+#if defined(LLVM_VERSION_MAJOR) && LLVM_VERSION_MAJOR == 3 && LLVM_VERSION_MINOR >= 7
+#include "llvm/Object/ObjectFile.h"
+#else
+#include "llvm/Object/ObjectFile.h"
+#include "llvm/DebugInfo.h"
+#include "llvm/DebugInfo/DIContext.h"
+#include "llvm/Support/Memory.h"
+#endif
+
 namespace jit
 {
+#if defined(LLVM_VERSION_MAJOR) && LLVM_VERSION_MAJOR == 3 && LLVM_VERSION_MINOR >= 7
+void ScilabJITEventListener::NotifyObjectEmitted(const llvm::object::ObjectFile & obj, const llvm::RuntimeDyld::LoadedObjectInfo & L)
+{
+
+}
+
+#else
 void ScilabJITEventListener::NotifyObjectEmitted(const llvm::ObjectImage & obj)
 {
     std::cout << "Object Emitted:" << /*obj.getImageName().data() << */std::endl;
@@ -53,5 +63,7 @@ void ScilabJITEventListener::NotifyObjectEmitted(const llvm::ObjectImage & obj)
         }
     }
 }
+#endif
+
 
 } // namespace jit

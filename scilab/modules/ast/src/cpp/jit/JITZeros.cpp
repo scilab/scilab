@@ -94,7 +94,8 @@ bool JITZeros::invoke(const ast::Exp & e, const std::vector<analysis::TIType> & 
         out.front()->storeCols(jit, c);
     }
 
-    builder.CreateCall5(__memset, alloc, jit.getConstant<int8_t>(0), size, jit.getConstant<int32_t>(sizeof(double)), jit.getBool(false));
+    llvm::Value * memset_args[] = { alloc, jit.getConstant<int8_t>(0), size, jit.getConstant<int32_t>(sizeof(double)), jit.getBool(false) };
+    builder.CreateCall(__memset, memset_args);
 
     return true;
 }
