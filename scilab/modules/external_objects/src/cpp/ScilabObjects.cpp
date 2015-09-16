@@ -160,7 +160,7 @@ void ScilabObjects::createEnvironmentObjectAtPos(int type, int pos, int id, cons
 void ScilabObjects::copyInvocationMacroToStack(int pos, const int envId, bool isNew, void * pvApiCtx)
 {
     EOType* invoke = new EOType(envId, isNew);
-    GatewayStruct* str = (GatewayStruct*)pvApiCtx;
+    types::GatewayStruct* str = (types::GatewayStruct*)pvApiCtx;
     //assign function as return value
     str->m_pOut[pos - str->m_iIn - 1 /*0*/] = invoke;
 }

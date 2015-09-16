@@ -21,32 +21,30 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_inspectorGetItem(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_inspectorGetItem(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorGetItem", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isDouble() == false)
     {
 
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "inspectorGetItem", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    Double *pD = in[0]->getAs<Double>();
+    types::Double *pD = in[0]->getAs<types::Double>();
     if (pD->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "inspectorGetItem", 1);
-        Function::Error;
+        return types::Function::Error;
     }
 
     int iPos = (int)pD->get(0) - 1;
 
-    out.push_back(Inspector::getItem(iPos));
-    return Function::OK;
+    out.push_back(types::Inspector::getItem(iPos));
+    return types::Function::OK;
 }

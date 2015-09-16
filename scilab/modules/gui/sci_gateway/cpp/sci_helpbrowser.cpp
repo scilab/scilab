@@ -26,11 +26,9 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
 static BOOL loadedDep = FALSE;
 
-Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list& out)
+types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCount, types::typed_list& out)
 {
     int iHelpAdrSize    = 0;
     char **helpAdr      = NULL;
@@ -39,39 +37,39 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
     if (_iRetCount > 1)
     {
         Scierror(78, _("%s:  Wrong number of output argument(s): %d to %d expected."), "helpbrowser", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
     switch (in.size())
     {
         case 4:
-            if ( !(in[3]->isBool() == true && in[3]->getAs<Bool>()->isScalar() == true))
+            if (!(in[3]->isBool() == true && in[3]->getAs<types::Bool>()->isScalar() == true))
             {
                 Scierror(999, _("%s:  Wrong type for input argument #%d: A boolean expected."), "helpbrowser", 4);
-                return Function::Error;
+                return types::Function::Error;
             }
-            if ( !(in[2]->isString() == true && in[2]->getAs<String>()->isScalar() == true))
+            if (!(in[2]->isString() == true && in[2]->getAs<types::String>()->isScalar() == true))
             {
                 Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 3);
-                return Function::Error;
+                return types::Function::Error;
             }
         case 2:
             // Second argument must be String or at least [].
-            if ( !(in[1]->isString() == true && in[1]->getAs<String>()->isScalar() == true))
+            if (!(in[1]->isString() == true && in[1]->getAs<types::String>()->isScalar() == true))
             {
                 Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 2);
-                return Function::Error;
+                return types::Function::Error;
             }
             // Matrix of String or [] allowed.
             if ( !( (in[0]->isString() == true)
-                    || (in[0]->isDouble() == true && in[0]->getAs<Double>()->isEmpty() == true)) )
+                || (in[0]->isDouble() == true && in[0]->getAs<types::Double>()->isEmpty() == true)))
             {
                 Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 1);
-                return Function::Error;
+                return types::Function::Error;
             }
             break;
         default:
             Scierror(77, _("%s:  Wrong number of input argument(s): %d to %d expected."), "helpbrowser", 2, 4);
-            return Function::Error;
+            return types::Function::Error;
     }
 
     /* We load SciNotes when calling javahelp because we have no way to know
@@ -84,7 +82,7 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
 
     if (in[0]->isString() == true)
     {
-        String *pInHelpAdr =  in[0]->getAs<String>();
+        types::String *pInHelpAdr = in[0]->getAs<types::String>();
         helpAdr = new char*[pInHelpAdr->getSize()];
         iHelpAdrSize = pInHelpAdr->getSize();
 
@@ -98,15 +96,15 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
     char* pstKey    = NULL;
     if (in.size() == 2)
     {
-        pstLang = wide_string_to_UTF8(in[1]->getAs<String>()->get(0));
+        pstLang = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
         launchHelpBrowser(helpAdr, iHelpAdrSize, pstLang);
     }
 
     if (in.size() == 4)
     {
-        pstLang = wide_string_to_UTF8(in[2]->getAs<String>()->get(0));
-        pstKey  = wide_string_to_UTF8(in[1]->getAs<String>()->get(0));
-        int iFullText = in[3]->getAs<Bool>()->get(0);
+        pstLang = wide_string_to_UTF8(in[2]->getAs<types::String>()->get(0));
+        pstKey = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
+        int iFullText = in[3]->getAs<types::Bool>()->get(0);
         searchKeyword(helpAdr, iHelpAdrSize, pstKey, pstLang, (BOOL) iFullText);
     }
 
@@ -129,5 +127,5 @@ Function::ReturnValue sci_helpbrowser(typed_list &in, int _iRetCount, typed_list
         delete[] helpAdr;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }

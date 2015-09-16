@@ -262,7 +262,7 @@ types::InternalType* Context::getFunction(const Symbol& _key)
     return get(_key);
 }
 
-int Context::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName)
+int Context::getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModuleName)
 {
     return variables.getFunctionList(lst, _stModuleName, m_iLevel);
 }

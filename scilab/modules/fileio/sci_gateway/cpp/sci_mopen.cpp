@@ -28,9 +28,7 @@ extern "C"
 #include "fullpath.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_mopen(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iErr                = 0;
     int iID                 = 0;
@@ -42,7 +40,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     if (_iRetCount != 1 && _iRetCount != 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "mopen", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //check input parameters
@@ -52,14 +50,14 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
         if (in[0]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mopen", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        String* pS1 = in[0]->getAs<types::String>();
+        types::String* pS1 = in[0]->getAs<types::String>();
         if (pS1->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "mopen" , 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         pstFilename = expandPathVariableW(pS1->get(0));
@@ -70,14 +68,14 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
             if (in[1]->isString() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mopen", 2);
-                return Function::Error;
+                return types::Function::Error;
             }
 
-            String* pS2 = in[1]->getAs<types::String>();
+            types::String* pS2 = in[1]->getAs<types::String>();
             if (pS2->getSize() != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "mopen" , 2);
-                return Function::Error;
+                return types::Function::Error;
             }
 
             pstMode = pS2->get(0);
@@ -88,14 +86,14 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                 if (in[2]->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), "mopen" , 3);
-                    return Function::Error;
+                    return types::Function::Error;
                 }
 
-                Double* pD3 = in[2]->getAs<Double>();
+                types::Double* pD3 = in[2]->getAs<types::Double>();
                 if (pD3->getSize() != 1 || pD3->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: An integer expected.\n"), "mopen", 3);
-                    return Function::Error;
+                    return types::Function::Error;
                 }
 
                 //if value == 0 set swap to 0 otherwise let to 1
@@ -107,7 +105,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                 if (in.size() >= 4)
                 {
                     Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen" , 1, 3);
-                    return Function::Error;
+                    return types::Function::Error;
                 }
 
             }
@@ -116,7 +114,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     else
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mopen" , 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
@@ -137,7 +135,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                     FREE(pstFilename);
                     FREE(pwstTemp);
                     pstFilename = NULL;
-                    return Function::Error;
+                    return types::Function::Error;
                 }
                 case MOPEN_INVALID_FILENAME:
                 {
@@ -145,7 +143,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                     FREE(pstFilename);
                     FREE(pwstTemp);
                     pstFilename = NULL;
-                    return Function::Error;
+                    return types::Function::Error;
                 }
                 case MOPEN_INVALID_STATUS:
                 {
@@ -153,7 +151,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
                     FREE(pstFilename);
                     FREE(pwstTemp);
                     pstFilename = NULL;
-                    return Function::Error;
+                    return types::Function::Error;
                 }
             }
         }
@@ -162,13 +160,13 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     FREE(pwstTemp);
     FREE(pstFilename);
 
-    Double* pD = new Double(static_cast<double>(iID));
+    types::Double* pD = new types::Double(static_cast<double>(iID));
     out.push_back(pD);
 
     if (_iRetCount == 2)
     {
-        Double* pD2 = new Double(iErr);
+        types::Double* pD2 = new types::Double(iErr);
         out.push_back(pD2);
     }
-    return Function::OK;
+    return types::Function::OK;
 }

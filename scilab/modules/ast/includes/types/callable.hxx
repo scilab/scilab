@@ -71,7 +71,7 @@ public :
         return getNbOutputArgument();
     }
 
-    void                  setName(std::wstring _wstName)
+    void                  setName(const std::wstring& _wstName)
     {
         m_wstName = _wstName;
     }
@@ -79,7 +79,7 @@ public :
     {
         return m_wstName;
     }
-    void                  setModule(std::wstring _wstModule)
+    void                  setModule(const std::wstring& _wstModule)
     {
         m_wstModule = _wstModule;
     }

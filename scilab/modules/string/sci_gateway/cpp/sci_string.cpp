@@ -37,9 +37,7 @@ extern "C"
 #include "sciprint.h"
 }
 
-using namespace types;
-
-static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn, InternalType** _pBody)
+static void getMacroString(types::Macro* _pM, types::InternalType** _pOut, types::InternalType** _pIn, types::InternalType** _pBody)
 {
     //get body
     ast::Exp* exp = _pM->getBody();
@@ -49,7 +47,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
 
     exp->accept(pv);
 
-    wstring wstBody = ostr.str();
+    std::wstring wstBody = ostr.str();
     const wchar_t* pwstBody = wstBody.c_str();
 
     //first loop to find number of lines
@@ -62,7 +60,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
         }
     }
 
-    String* pBody = new String(iLines, 1);
+    types::String* pBody = new types::String(iLines, 1);
     pBody->set(0, L" ");
     //second loop to assign lines to output data
     int iOffset = 0;
@@ -89,13 +87,13 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
 
     if (pIn->size() == 0)
     {
-        *_pIn = Double::Empty();
+        *_pIn = types::Double::Empty();
     }
     else
     {
-        String *pSIn = new String(1, (int)pIn->size());
+        types::String *pSIn = new types::String(1, (int)pIn->size());
 
-        list<symbol::Variable*>::iterator itIn = pIn->begin();
+        std::list<symbol::Variable*>::iterator itIn = pIn->begin();
         for (int i = 0 ; i < pIn->size() ; i++, itIn++)
         {
             pSIn->set(i, (*itIn)->getSymbol().getName().c_str());
@@ -105,16 +103,16 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     }
 
     //get outputs
-    list<symbol::Variable*>* pOut = _pM->getOutputs();
+    std::list<symbol::Variable*>* pOut = _pM->getOutputs();
     if (pOut->size() == 0)
     {
-        *_pOut = Double::Empty();
+        *_pOut = types::Double::Empty();
     }
     else
     {
-        String* pSOut = new String(1, (int)pOut->size());
+        types::String* pSOut = new types::String(1, (int)pOut->size());
 
-        list<symbol::Variable*>::iterator itOut = pOut->begin();
+        std::list<symbol::Variable*>::iterator itOut = pOut->begin();
         for (int i = 0 ; i < pOut->size() ; i++, itOut++)
         {
             pSOut->set(i, (*itOut)->getSymbol().getName().c_str());
@@ -221,11 +219,11 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
 }
 
 template <class T>
-Function::ReturnValue intString(T* pInt, typed_list &out)
+types::Function::ReturnValue intString(T* pInt, types::typed_list &out)
 {
     int iDims = pInt->getDims();
     int* piDimsArray = pInt->getDimsArray();
-    String *pstOutput = new String(iDims, piDimsArray);
+    types::String *pstOutput = new types::String(iDims, piDimsArray);
     int iSize = pInt->getSize();
     for (int i = 0 ; i < iSize ; i++)
     {
@@ -235,15 +233,15 @@ Function::ReturnValue intString(T* pInt, typed_list &out)
     }
 
     out.push_back(pstOutput);
-    return Function::OK;
+    return types::Function::OK;
 }
 
-Function::ReturnValue booleanString(types::Bool* pB, typed_list &out)
+types::Function::ReturnValue booleanString(types::Bool* pB, types::typed_list &out)
 {
     int iDims = pB->getDims();
     int* piDimsArray = pB->getDimsArray();
     int* pb = pB->get();
-    String *pstOutput = new String(iDims, piDimsArray);
+    types::String *pstOutput = new types::String(iDims, piDimsArray);
     int iSize = pB->getSize();
     for (int i = 0 ; i < iSize ; i++)
     {
@@ -251,10 +249,10 @@ Function::ReturnValue booleanString(types::Bool* pB, typed_list &out)
     }
 
     out.push_back(pstOutput);
-    return Function::OK;
+    return types::Function::OK;
 }
 
-Function::ReturnValue doubleString(types::Double* pDbl, typed_list &out)
+types::Function::ReturnValue doubleString(types::Double* pDbl, types::typed_list &out)
 {
     int iDims = pDbl->getDims();
     int* piDimsArray = pDbl->getDimsArray();
@@ -263,16 +261,16 @@ Function::ReturnValue doubleString(types::Double* pDbl, typed_list &out)
     // Special case string([]) == []
     if (pDbl->isEmpty())
     {
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
     else if (piDimsArray[0] == -1 && piDimsArray[1] == -1)
     {
-        out.push_back(new String(L""));
-        return Function::OK;
+        out.push_back(new types::String(L""));
+        return types::Function::OK;
     }
 
-    String *pstOutput = new String(iDims, piDimsArray);
+    types::String *pstOutput = new types::String(iDims, piDimsArray);
     if (pDbl->isComplex())
     {
         double* pdblImg = pDbl->getImg();
@@ -294,43 +292,42 @@ Function::ReturnValue doubleString(types::Double* pDbl, typed_list &out)
         }
     }
     out.push_back(pstOutput);
-    return Function::OK;
+    return types::Function::OK;
 }
 
-Function::ReturnValue implicitListString(types::ImplicitList* pIL, typed_list &out)
+types::Function::ReturnValue implicitListString(types::ImplicitList* pIL, types::typed_list &out)
 {
     std::wostringstream ostr;
     pIL->toString(ostr);
-    wstring str = ostr.str();
+    std::wstring str = ostr.str();
     //erase fisrt character " "
     str.erase(str.begin());
     //erase last character "\n"
     str.erase(str.end() - 1);
 
-    out.push_back(new String(str.c_str()));
-    return Function::OK;
+    out.push_back(new types::String(str.c_str()));
+    return types::Function::OK;
 }
 
-Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_string(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "string", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     switch (in[0]->getType())
     {
-        case GenericType::ScilabSparse :
+        case types::GenericType::ScilabSparse:
         {
             //C=sparse([0 0 4 0 9;0 0 5 0 0;1 3 0 7 0;0 0 6 0 10;2 0 0 8 0]);string(C)
-            types::Sparse* pS = in[0]->getAs<Sparse>();
+            types::Sparse* pS = in[0]->getAs<types::Sparse>();
             int iRows = pS->getRows();
             int iCols = pS->getCols();
             bool isComplex = pS->isComplex();
             std::wostringstream ostr;
             std::vector<std::wstring> vect;
-            string *stemp = new string();
 
 
             ostr << "(" << iRows << "," << iCols << ") sparse matrix";
@@ -382,7 +379,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
                 }
             }
 
-            types::String* pSt = new String((int)vect.size(), 1);
+            types::String* pSt = new types::String((int)vect.size(), 1);
             for (int i = 0 ; i < vect.size(); i++)
             {
                 pSt->set(i, vect[i].c_str());
@@ -392,64 +389,64 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             break;
         }
 
-        case GenericType::ScilabInt8 :
+        case types::InternalType::ScilabInt8 :
         {
             return intString(in[0]->getAs<types::Int8>(), out);
         }
-        case GenericType::ScilabUInt8 :
+        case types::InternalType::ScilabUInt8 :
         {
             return intString(in[0]->getAs<types::UInt8>(), out);
         }
-        case GenericType::ScilabInt16 :
+        case types::InternalType::ScilabInt16 :
         {
             return intString(in[0]->getAs<types::Int16>(), out);
         }
-        case GenericType::ScilabUInt16 :
+        case types::InternalType::ScilabUInt16 :
         {
             return intString(in[0]->getAs<types::UInt16>(), out);
         }
-        case GenericType::ScilabInt32 :
+        case types::InternalType::ScilabInt32 :
         {
             return intString(in[0]->getAs<types::Int32>(), out);
         }
-        case GenericType::ScilabUInt32 :
+        case types::InternalType::ScilabUInt32 :
         {
             return intString(in[0]->getAs<types::UInt32>(), out);
         }
-        case GenericType::ScilabInt64 :
+        case types::InternalType::ScilabInt64 :
         {
             return intString(in[0]->getAs<types::Int64>(), out);
         }
-        case GenericType::ScilabUInt64 :
+        case types::InternalType::ScilabUInt64 :
         {
             return intString(in[0]->getAs<types::UInt64>(), out);
         }
-        case GenericType::ScilabDouble :
+        case types::InternalType::ScilabDouble :
         {
-            return doubleString(in[0]->getAs<Double>(), out);
+            return doubleString(in[0]->getAs<types::Double>(), out);
         }
-        case GenericType::ScilabString :
+        case types::InternalType::ScilabString :
         {
             out.push_back(in[0]);
             break;
         }
-        case GenericType::ScilabFunction:
+        case types::InternalType::ScilabFunction:
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "string", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
-        case GenericType::ScilabMacroFile :
+        case types::InternalType::ScilabMacroFile :
         {
             if (_iRetCount != 3)
             {
                 Scierror(77, _("%s: Wrong number of output argument(s): %d expected.\n"), "string", 3);
-                return Function::Error;
+                return types::Function::Error;
             }
 
-            MacroFile* pMF = in[0]->getAs<MacroFile>();
-            InternalType* pOut = NULL;
-            InternalType* pIn = NULL;
-            InternalType* pBody = NULL;
+            types::MacroFile* pMF = in[0]->getAs<types::MacroFile>();
+            types::InternalType* pOut = NULL;
+            types::InternalType* pIn = NULL;
+            types::InternalType* pBody = NULL;
 
             getMacroString(pMF->getMacro(), &pOut, &pIn, &pBody);
 
@@ -458,18 +455,18 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(pBody);
             break;
         }
-        case GenericType::ScilabMacro :
+        case types::InternalType::ScilabMacro :
         {
             if (_iRetCount != 3)
             {
                 Scierror(77, _("%s: Wrong number of output argument(s): %d expected.\n"), "string", 3);
-                return Function::Error;
+                return types::Function::Error;
             }
 
-            Macro* pM = in[0]->getAs<Macro>();
-            InternalType* pOut = NULL;
-            InternalType* pIn = NULL;
-            InternalType* pBody = NULL;
+            types::Macro* pM = in[0]->getAs<types::Macro>();
+            types::InternalType* pOut = NULL;
+            types::InternalType* pIn = NULL;
+            types::InternalType* pBody = NULL;
 
             getMacroString(pM, &pOut, &pIn, &pBody);
 
@@ -478,24 +475,24 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(pBody);
             break;
         }
-        case GenericType::ScilabTList :
-        case GenericType::ScilabMList :
-        case GenericType::ScilabPolynom :
+        case types::InternalType::ScilabTList :
+        case types::InternalType::ScilabMList :
+        case types::InternalType::ScilabPolynom :
         {
             std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out);
         }
-        case GenericType::ScilabBool:
+        case types::InternalType::ScilabBool:
         {
-            return booleanString(in[0]->getAs<Bool>(), out);
+            return booleanString(in[0]->getAs<types::Bool>(), out);
         }
-        case GenericType::ScilabLibrary:
+        case types::InternalType::ScilabLibrary:
         {
-            Library* pL = in[0]->getAs<Library>();
+            types::Library* pL = in[0]->getAs<types::Library>();
             std::wstring path = pL->getPath();
             std::list<std::wstring> macros;
             int size = pL->getMacrosName(macros);
-            String* pS = new String(size + 1, 1);
+            types::String* pS = new types::String(size + 1, 1);
             pS->set(0, path.c_str());
             int i = 1;
             for (auto it : macros)
@@ -506,13 +503,13 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(pS);
             break;
         }
-        case GenericType::ScilabImplicitList:
+        case types::InternalType::ScilabImplicitList:
         {
-            return implicitListString(in[0]->getAs<ImplicitList>(), out);
+            return implicitListString(in[0]->getAs<types::ImplicitList>(), out);
         }
-        case GenericType::ScilabColon:
+        case types::InternalType::ScilabColon:
         {
-            out.push_back(new String(L""));
+            out.push_back(new types::String(L""));
             break;
         }
         default:
@@ -523,5 +520,5 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             break;
         }
     }
-    return Function::OK;
+    return types::Function::OK;
 }

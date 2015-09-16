@@ -804,8 +804,8 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             lrn += 20 + nyh * (mxordn + 1) + 3 * (*YSize);
             lrs += 20 + nyh * (mxords + 1) + 3 * (*YSize) + lmat;
 
-            rworkSize   = max(lrn, lrs);
-            iworkSize   = 20 + *YSize;
+            rworkSize = std::max(lrn, lrs);
+            iworkSize = 20 + *YSize;
 
             dStructTabSize += 241;
             iStructTabSize += 50;

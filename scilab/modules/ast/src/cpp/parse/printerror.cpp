@@ -18,7 +18,7 @@ extern "C"
 #include "charEncoding.h"
 }
 
-void ParserSingleInstance::PrintError(std::wstring msg)
+void ParserSingleInstance::PrintError(const std::wstring& msg)
 {
     int i = 0;
 

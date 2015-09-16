@@ -26,42 +26,24 @@ extern "C"
 #include "os_string.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_filesep(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_filesep(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "filesep" , 0);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1 && _iRetCount != -1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "filesep", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS = new String(DIR_SEPARATORW);
+    types::String* pS = new types::String(DIR_SEPARATORW);
     out.push_back(pS);
-    return Function::OK;
-    //static int n1,m1;
-    //char *separator = NULL;
-
-    //CheckRhs(0,0);
-    //CheckLhs(1,1);
-
-    //separator = os_strdup(DIR_SEPARATOR);
-
-    //n1 = 1;
-    //CreateVarFromPtr(Rhs+1,STRING_DATATYPE,(m1=(int)strlen(separator), &m1),&n1,&separator);
-    //LhsVar(1)=Rhs+1;
-    //C2F(putlhsvar)();
-
-    //if (separator) {FREE(separator);separator=NULL;}
-
-    //return 0;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
 

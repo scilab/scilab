@@ -30,9 +30,6 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace std;
-using namespace types;
-
 SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
     SciErr sciErr = sciErrInit();
@@ -58,7 +55,7 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
         return sciErr;
     }
 
-    SparseBool* pSpBool = ((InternalType*)_piAddress)->getAs<SparseBool>();
+    types::SparseBool* pSpBool = ((types::InternalType*)_piAddress)->getAs<types::SparseBool>();
     *_piNbItem = (int)pSpBool->nbTrue();
 
     if (_piNbItemRow == NULL)
@@ -100,7 +97,7 @@ SciErr fillBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int _iRows, int _i
         return sciErr;
     }
 
-    SparseBool* pSparse = (SparseBool*)_piAddress;
+    types::SparseBool* pSparse = (types::SparseBool*)_piAddress;
 
     for (int i = 0; i < _iRows; i++)
     {
@@ -129,10 +126,10 @@ SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::InternalType** out = pStr->m_pOut;
 
-    types::SparseBool* pSparse = new SparseBool(_iRows, _iCols);
+    types::SparseBool* pSparse = new types::SparseBool(_iRows, _iCols);
     if (pSparse == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN_SPARSE, _("%s: Unable to create variable in Scilab memory"), "createBooleanSparseMatrix");
@@ -175,7 +172,7 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _i
         return sciErr;
     }
 
-    types::SparseBool* pSparse = new SparseBool(_iRows, _iCols);
+    types::SparseBool* pSparse = new types::SparseBool(_iRows, _iCols);
     if (pSparse == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("%s: Unable to create %s named \"%s\""), "createNamedBooleanSparseMatrix", _("boolean sparse matrix"), _pstName);

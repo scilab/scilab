@@ -23,9 +23,7 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::typed_list::iterator inIterator;
     int iWrongType = 1;
@@ -33,21 +31,21 @@ Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types:
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "isglobal", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
     else
     {
         if (in[0]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "isglobal", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        String* pS = in[0]->getAs<types::String>();
+        types::String* pS = in[0]->getAs<types::String>();
         if (pS->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "isglobal", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (symbol::Context::getInstance()->isGlobalVisible(symbol::Symbol(pS->get(0))))
@@ -59,5 +57,5 @@ Function::ReturnValue sci_isglobal(types::typed_list &in, int _iRetCount, types:
             out.push_back(new types::Bool(0));
         }
     }
-    return Function::OK;
+    return types::Function::OK;
 }

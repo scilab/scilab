@@ -47,10 +47,9 @@ extern "C"
 #include "PATH_MAX.h"
 }
 
-using namespace ast;
 void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
-std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
-std::string getExpression(const std::string& _stFile, Exp* _pExp);
+std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
+std::string getExpression(const std::string& _stFile, ast::Exp* _pExp);
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -59,7 +58,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     bool bPromptMode    = false;
     int iErr            = 0;
     bool bErrCatch      = false;
-    Exp* pExp           = NULL;
+    ast::Exp* pExp      = NULL;
     int iID             = 0;
     types::Macro* pMacro = NULL;
     Parser parser;
@@ -86,7 +85,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "exec" , 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     // get mode and errcatch
@@ -96,7 +95,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         if (in[1]->isString() && in[1]->getAs<types::String>()->isScalar())
         {
             //errcatch
-            String* pS = in[1]->getAs<types::String>();
+            types::String* pS = in[1]->getAs<types::String>();
             if (os_wcsicmp(pS->get(0), L"errcatch") == 0)
             {
                 bErrCatch = true;
@@ -104,39 +103,39 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             else
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
-                return Function::Error;
+                return types::Function::Error;
             }
 
             if (in.size() > 2)
             {
 
-                if (in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
+                if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->isScalar() == false)
                 {
                     //mode
                     Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "exec", 3);
-                    return Function::Error;
+                    return types::Function::Error;
                 }
 
-                promptMode = (int)in[2]->getAs<Double>()->getReal()[0];
+                promptMode = (int)in[2]->getAs<types::Double>()->getReal()[0];
                 bPromptMode = true;
             }
         }
-        else if (in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
+        else if (in[1]->isDouble() && in[1]->getAs<types::Double>()->isScalar())
         {
             if (in.size() > 2)
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
-                return Function::Error;
+                return types::Function::Error;
             }
             //mode
-            promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
+            promptMode = (int)in[1]->getAs<types::Double>()->getReal()[0];
             bPromptMode = true;
         }
         else
         {
             //not managed
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -144,7 +143,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     {
         //1st argument is a path, parse file and execute it
         int iParsePathLen = 0;
-        String* pS = in[0]->getAs<types::String>();
+        types::String* pS = in[0]->getAs<types::String>();
 
         pwstFile = expandPathVariableW(pS->get(0));
         pstFile = wide_string_to_UTF8(pwstFile);
@@ -165,7 +164,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             delete file;
             FREE(pwstTemp);
             Scierror(999, _("%s: Cannot open file %s.\n"), "exec", stFile.data());
-            return Function::Error;
+            return types::Function::Error;
         }
 
         ThreadManagement::LockParser();
@@ -177,7 +176,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             delete file;
             if (bErrCatch)
             {
-                out.push_back(new Double(999));
+                out.push_back(new types::Double(999));
                 //to lock last error information
                 ConfigVariable::setLastErrorCall();
                 ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
@@ -189,7 +188,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     mclose(iID);
                 }
                 ThreadManagement::UnlockParser();
-                return Function::OK;
+                return types::Function::OK;
             }
 
             char* pst = wide_string_to_UTF8(parser.getErrorMessage());
@@ -203,7 +202,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 mclose(iID);
             }
             ThreadManagement::UnlockParser();
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (ConfigVariable::getSerialize())
@@ -233,26 +232,26 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isMacro() || in[0]->isMacroFile())
     {
-        typed_list input;
-        optional_list optional;
-        typed_list output;
+        types::typed_list input;
+        types::optional_list optional;
+        types::typed_list output;
         ast::ExecVisitor execFunc;
 
         if (in[0]->isMacroFile())
         {
             //1st argument is a macro name, parse and execute it in the current environnement
-            if (in[0]->getAs<MacroFile>()->parse() == false)
+            if (in[0]->getAs<types::MacroFile>()->parse() == false)
             {
-                char* pstMacro = wide_string_to_UTF8(in[0]->getAs<MacroFile>()->getName().c_str());
+                char* pstMacro = wide_string_to_UTF8(in[0]->getAs<types::MacroFile>()->getName().c_str());
                 Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
                 FREE(pstMacro);
-                return Function::Error;
+                return types::Function::Error;
             }
-            pMacro = in[0]->getAs<MacroFile>()->getMacro();
+            pMacro = in[0]->getAs<types::MacroFile>()->getMacro();
         }
         else //1st argument is a macro name, execute it in the current environnement
         {
-            pMacro = in[0]->getAs<Macro>();
+            pMacro = in[0]->getAs<types::Macro>();
         }
 
         // unable for macro with varargin or varargout
@@ -262,7 +261,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         pExp = pMacro->getBody();
@@ -277,7 +276,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (pMacro)
@@ -293,11 +292,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     // if not exp displaying, just execute the seqexp
     if (file == NULL || promptMode == 0 || promptMode == 2)
     {
-        ast::SeqExp* pSeqExp = pExp->getAs<SeqExp>();
+        ast::SeqExp* pSeqExp = pExp->getAs<ast::SeqExp>();
 
         try
         {
-            ExecVisitor execExps;
+            ast::ExecVisitor execExps;
             pSeqExp->accept(execExps);
         }
         catch (const ast::InternalAbort& ia)
@@ -333,7 +332,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        ast::exps_t& LExp = pExp->getAs<SeqExp>()->getExps();
+        ast::exps_t& LExp = pExp->getAs<ast::SeqExp>()->getExps();
 
         char pstPrompt[64];
         //get prompt
@@ -371,16 +370,18 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             ast::exps_t* someExps = new ast::exps_t();
             someExps->assign(j, k);
             k--;
-            SeqExp seqExp(Location((*j)->getLocation().first_line,      (*k)->getLocation().last_line,
-                                   (*j)->getLocation().first_column,    (*k)->getLocation().last_column),
-                          *someExps);
+            ast::SeqExp seqExp(Location((*j)->getLocation().first_line,
+                (*k)->getLocation().last_line,
+                (*j)->getLocation().first_column,
+                (*k)->getLocation().last_column),
+                *someExps);
 
             j = k;
 
             try
             {
                 // execute printed exp
-                ExecVisitor execExps;
+                ast::ExecVisitor execExps;
                 seqExp.accept(execExps);
             }
             catch (const ast::InternalAbort& ia)
@@ -472,7 +473,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     ConfigVariable::setPromptMode(oldVal);
     if (bErrCatch)
     {
-        out.push_back(new Double(iErr));
+        out.push_back(new types::Double(iErr));
         //to lock last error information
         ConfigVariable::setLastErrorCall();
     }
@@ -490,10 +491,10 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         delete file;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 
-std::string getExpression(const std::string& _stFile, Exp* _pExp)
+std::string getExpression(const std::string& _stFile, ast::Exp* _pExp)
 {
     std::string out;
     std::string stBuffer;
@@ -512,14 +513,14 @@ std::string getExpression(const std::string& _stFile, Exp* _pExp)
         int iStart = loc.first_column - 1;
         int iEnd = loc.last_column - 1;
         int iLen = iEnd - iStart;
-        out += string(stBuffer.c_str() + iStart, iLen);
+        out += std::string(stBuffer.c_str() + iStart, iLen);
     }
     else
     {
         //
 
         //first line, entire or not
-        out += string(stBuffer.c_str() + loc.first_column - 1);
+        out += std::string(stBuffer.c_str() + loc.first_column - 1);
         out += "\n";
 
         //print other full lines
@@ -533,13 +534,13 @@ std::string getExpression(const std::string& _stFile, Exp* _pExp)
 
         //last line, entire or not
         getline(file, stBuffer);
-        out += string(stBuffer.c_str(), loc.last_column - 1);
+        out += std::string(stBuffer.c_str(), loc.last_column - 1);
         out += "\n";
     }
     return out;
 }
 
-std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer)
+std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer)
 {
     //case 1, exp is on 1 line and take the entire line
 
@@ -563,7 +564,7 @@ std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPro
         {
             //reset line counter and restart reading at the start of the file.
             *_piLine = -1;
-            _File.seekg( 0, ios_base::beg );
+            _File.seekg( 0, std::ios_base::beg );
         }
 
         //bypass previous lines

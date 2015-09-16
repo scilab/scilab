@@ -41,8 +41,6 @@ extern "C"
 
 }
 
-using namespace types;
-
 template<typename T>
 bool is_of_type(const std::string & Str)
 {
@@ -53,29 +51,29 @@ bool is_of_type(const std::string & Str)
 }
 
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_read(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iID = 0;
     int iAcces = 0;
     int iRhs = static_cast<int>(in.size());
     char* pstFormat = NULL;
-    InternalType::ScilabType itTypeOfData = InternalType::ScilabDouble;
+    types::InternalType::ScilabType itTypeOfData = types::InternalType::ScilabDouble;
 
     if (iRhs < 3 || iRhs > 5)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "read", 2, 4);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //file
     if (in[0]->isString())
     {
-        String* pSPath = in[0]->getAs<String>();
+        types::String* pSPath = in[0]->getAs<types::String>();
 
         if (pSPath->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         int piMode[2] = { -1, 0};
@@ -87,7 +85,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
             closeFile(in[0], iID);
             Scierror(999, _("File \"%s\" already exists or directory write access denied.\n"), pstFilename);
             FREE(pstFilename);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (iErr == 241)
@@ -95,18 +93,18 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
             closeFile(in[0], iID);
             Scierror(999, _("File \"%s\" does not exist or read access denied.\n"), pstFilename);
             FREE(pstFilename);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         FREE(pstFilename);
     }
     else if (in[0]->isDouble())
     {
-        Double* pDId = in[0]->getAs<Double>();
+        types::Double* pDId = in[0]->getAs<types::Double>();
         if (pDId->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "read", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         iID = (int)pDId->get(0);
@@ -118,7 +116,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar or file descriptor expected.\n"), "read", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (iRhs > 3)
@@ -128,27 +126,27 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         {
             closeFile(in[0], iID);
             Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", iRhs);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        String* pSFormat = in[iPos]->getAs<String>();
+        types::String* pSFormat = in[iPos]->getAs<types::String>();
         if (pSFormat->isScalar() == false)
         {
             closeFile(in[0], iID);
             Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", iRhs);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         //checkformat
         pstFormat = wide_string_to_UTF8(pSFormat->get(0));
 
         itTypeOfData = checkformat(pstFormat);
-        if (itTypeOfData == InternalType::ScilabNull)
+        if (itTypeOfData == types::InternalType::ScilabNull)
         {
             FREE(pstFormat);
             closeFile(in[0], iID);
             Scierror(999, _("Incorrect file or format.\n"));
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -163,10 +161,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
 
         closeFile(in[0], iID);
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), "read", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    Double* pIn1 = in[1]->getAs<Double>();
+    types::Double* pIn1 = in[1]->getAs<types::Double>();
     if (pIn1->isScalar() == false)
     {
         if (pstFormat)
@@ -175,7 +173,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         }
         closeFile(in[0], iID);
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar integer value expected.\n"), "read", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[2]->isDouble() == false)
@@ -186,10 +184,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         }
         closeFile(in[0], iID);
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), "read", 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    Double* pIn2 = in[2]->getAs<Double>();
+    types::Double* pIn2 = in[2]->getAs<types::Double>();
     if (pIn2->isScalar() == false)
     {
         if (pstFormat)
@@ -198,7 +196,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         }
         closeFile(in[0], iID);
         Scierror(999, _("%s: Wrong size for input argument #%d: A scalar integer value expected.\n"), "read", 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     int iRows = (int)pIn1->get(0);
@@ -211,9 +209,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         {
             FREE(pstFormat);
         }
-        out.push_back(Double::Empty());
+        out.push_back(types::Double::Empty());
         closeFile(in[0], iID);
-        return Function::OK;
+        return types::Function::OK;
     }
 
     if (iRows < 0)
@@ -222,10 +220,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         {
             switch (itTypeOfData)
             {
-                case InternalType::ScilabDouble:
+                case types::InternalType::ScilabDouble:
                 {
                     iRows = 1;
-                    Double* pD = new Double(iRows, iCols, false);
+                    types::Double* pD = new types::Double(iRows, iCols, false);
 
                     if (pstFormat == NULL)
                     {
@@ -274,10 +272,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case InternalType::ScilabInt32:
+                case types::InternalType::ScilabInt32:
                 {
                     iRows = 1;
-                    Int32* pI = new Int32(iRows, iCols);
+                    types::Int32* pI = new types::Int32(iRows, iCols);
                     int* piData = new int[iCols];
                     while (error == 0)
                     {
@@ -305,7 +303,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case InternalType::ScilabString:
+                case types::InternalType::ScilabString:
                 {
                     if (iCols != 1)
                     {
@@ -315,12 +313,12 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         }
                         closeFile(in[0], iID);
                         Scierror(999, _("%s: Wrong input argument %d.\n"), "read", 3);
-                        return Function::Error;
+                        return types::Function::Error;
                     }
                     else
                     {
                         iRows = 1;
-                        String* pS = new String(iRows, iCols);
+                        types::String* pS = new types::String(iRows, iCols);
                         char pCt[4096];
 
                         while (error == 0)
@@ -356,7 +354,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                     closeFile(in[0], iID);
                     Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", 2);
-                    return Function::Error;
+                    return types::Function::Error;
                 }
             }
 
@@ -366,10 +364,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         {
             switch (itTypeOfData)
             {
-                case InternalType::ScilabDouble:
+                case types::InternalType::ScilabDouble:
                 {
                     iRows = 1;
-                    Double* pD = new Double(iRows, iCols, false);
+                    types::Double* pD = new types::Double(iRows, iCols, false);
 
                     char pstString[4] = "(a)";
                     char pCt[4096];
@@ -417,7 +415,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                                 FREE(pstFormat);
                             }
                             Scierror(999, _("End of file at line %d.\n"));
-                            return Function::Error;
+                            return types::Function::Error;
                         }
                         else
                         {
@@ -438,7 +436,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case InternalType::ScilabInt32:
+                case types::InternalType::ScilabInt32:
                 {
                     if (pstFormat)
                     {
@@ -446,9 +444,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
 
                     Scierror(999, _("Incorrect file or format.\n"));
-                    return Function::Error;
+                    return types::Function::Error;
                 }
-                case InternalType::ScilabString:
+                case types::InternalType::ScilabString:
                 {
                     if (iCols != 1)
                     {
@@ -458,13 +456,13 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         }
 
                         Scierror(999, _("%s: Wrong input argument %d.\n"), "read", 3);
-                        return Function::Error;
+                        return types::Function::Error;
                     }
                     else
                     {
                         bool bEndWrite = false;
                         iRows = 1;
-                        String* pS = new String(iRows, iCols);
+                        types::String* pS = new types::String(iRows, iCols);
                         char pCt[4096];
 
                         for (; bEndWrite == false; iRows++)
@@ -506,9 +504,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         {
             switch (itTypeOfData)
             {
-                case InternalType::ScilabDouble:
+                case types::InternalType::ScilabDouble:
                 {
-                    Double* pD = new Double(iRows, iCols, false);
+                    types::Double* pD = new types::Double(iRows, iCols, false);
                     double* pd = pD->get();
 
                     if (pstFormat == NULL)
@@ -530,9 +528,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case InternalType::ScilabInt32:
+                case types::InternalType::ScilabInt32:
                 {
-                    Int32* pI = new Int32(iRows, iCols);
+                    types::Int32* pI = new types::Int32(iRows, iCols);
                     int* pi = pI->get();
 
                     C2F(readintfileform)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
@@ -547,9 +545,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case InternalType::ScilabString:
+                case types::InternalType::ScilabString:
                 {
-                    String* pS = new String(iRows, iCols);
+                    types::String* pS = new types::String(iRows, iCols);
                     char pCt[4096];
                     for (int i = 0; i < iCols * iRows; ++i)
                     {
@@ -578,7 +576,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
 
                     Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", 2);
                     closeFile(in[0], iID);
-                    return Function::Error;
+                    return types::Function::Error;
                 }
             }
 
@@ -593,16 +591,16 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                 }
 
                 Scierror(999, _("Incorrect file or format.\n"));
-                return Function::Error;
+                return types::Function::Error;
             }
         }
         else//read from the console
         {
             switch (itTypeOfData)
             {
-                case InternalType::ScilabDouble:
+                case types::InternalType::ScilabDouble:
                 {
-                    Double* pD = new Double(iRows, iCols, false);
+                    types::Double* pD = new types::Double(iRows, iCols, false);
 
                     char pstString[4] = "(a)";
                     char pCt[4096];
@@ -636,7 +634,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                             FREE(pstFormat);
 
                             Scierror(999, _("End of file at line %d.\n"));
-                            return Function::Error;
+                            return types::Function::Error;
                         }
                     }
 
@@ -650,7 +648,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case InternalType::ScilabInt32:
+                case types::InternalType::ScilabInt32:
                 {
                     if (pstFormat)
                     {
@@ -658,9 +656,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
 
                     Scierror(999, _("Incorrect file or format.\n"));
-                    return Function::Error;
+                    return types::Function::Error;
                 }
-                case InternalType::ScilabString:
+                case types::InternalType::ScilabString:
                 {
                     if (iCols != 1)
                     {
@@ -670,11 +668,11 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         }
 
                         Scierror(999, _("%s: Wrong input argument %d.\n"), "read", 3);
-                        return Function::Error;
+                        return types::Function::Error;
                     }
                     else
                     {
-                        String* pS = new String(iRows, iCols);
+                        types::String* pS = new types::String(iRows, iCols);
                         char pCt[4096];
 
                         for (int i = 0; i < (iRows); i++)
@@ -709,7 +707,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
             }
             closeFile(in[0], iID);
             Scierror(999, _("Incorrect file or format.\n"));
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -718,5 +716,5 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         FREE(pstFormat);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }

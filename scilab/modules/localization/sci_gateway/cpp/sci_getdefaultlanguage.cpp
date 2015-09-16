@@ -22,23 +22,21 @@ extern "C"
 #include "defaultlanguage.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_getdefaultlanguage(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_getdefaultlanguage(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getdefaultlanguage", 0);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_piRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "getdefaultlanguage", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    out.push_back(new String(SCILABDEFAULTLANGUAGE));
+    out.push_back(new types::String(SCILABDEFAULTLANGUAGE));
 
-    return Function::OK;
+    return types::Function::OK;
 }

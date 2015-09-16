@@ -30,21 +30,18 @@ extern "C"
 #include "PATH_MAX.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_createdir(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "createdir", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "createdir", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwstPath = expandPathVariableW(in[0]->getAs<types::String>()->get(0));
@@ -63,10 +60,10 @@ Function::ReturnValue sci_createdir(typed_list &in, int _iRetCount, typed_list &
     }
 
     FREE(pwstPath);
-    Bool* pOut = new Bool(iRet);
+    types::Bool* pOut = new types::Bool(iRet);
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
     //CheckRhs(1,1);
     //CheckLhs(0,1);
 

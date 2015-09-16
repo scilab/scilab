@@ -28,7 +28,7 @@ void DebugVisitor::DEBUG_END_NODE(void)
     --level;
 }
 
-void DebugVisitor::DEBUG(wstring str)
+void DebugVisitor::DEBUG(const std::wstring& str)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -38,10 +38,10 @@ void DebugVisitor::DEBUG(wstring str)
     {
         *ostr << L"     ";
     }
-    *ostr << str << endl;
+    *ostr << str << std::endl;
 }
 
-void DebugVisitor::DEBUG(wstring str, const Exp &e)
+void DebugVisitor::DEBUG(const std::wstring& str, const Exp &e)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -99,7 +99,7 @@ void DebugVisitor::visit (const CellExp &e)
 void DebugVisitor::visit (const StringExp &e)
 {
     DEBUG_START_NODE(e);
-    wostringstream stream;
+    std::wostringstream stream;
     if (e.getConstant())
     {
         printInternalType<types::String>(stream, e.getConstant());
@@ -122,7 +122,7 @@ void DebugVisitor::visit (const CommentExp &e)
 void DebugVisitor::visit (const DoubleExp  &e)
 {
     DEBUG_START_NODE(e);
-    wostringstream stream;
+    std::wostringstream stream;
     types::InternalType * pIT = e.getConstant();
     if (pIT)
     {
@@ -149,7 +149,7 @@ void DebugVisitor::visit (const DoubleExp  &e)
 void DebugVisitor::visit (const BoolExp  &e)
 {
     DEBUG_START_NODE(e);
-    wostringstream stream;
+    std::wostringstream stream;
     if (e.getConstant())
     {
         printInternalType<types::Bool>(stream, e.getConstant());

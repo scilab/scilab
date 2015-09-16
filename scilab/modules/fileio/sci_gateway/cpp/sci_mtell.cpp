@@ -26,8 +26,6 @@ extern "C"
 #include "mtell.h"
 }
 
-using namespace types;
-
 types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile           = -1; //default file : last opened file
@@ -71,6 +69,6 @@ types::Function::ReturnValue sci_mtell(types::typed_list &in, int _iRetCount, ty
     pOut->set(0, (double)offset);
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

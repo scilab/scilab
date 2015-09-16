@@ -52,16 +52,13 @@ int ComparaisonCallback( const void *in1 , const void *in2)
     return data1->data > data2->data ? 1 : -1;
 }
 /*------------------------------------------------------------------------*/
-
-using namespace types;
-
 types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bRegExp = false;
     if (in.size() < 2 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "strindex", 2, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() > 2)
@@ -69,7 +66,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         if (in[2]->isString() == false && in[2]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strindex", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[2]->getAs<types::String>()->get(0)[0] == WCHAR_R)
@@ -83,29 +80,29 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"), "strindex", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
     if (in[1]->isString() == false || (in[1]->getAs<types::String>()->getRows() != 1 && in[1]->getAs<types::String>()->getCols() != 1))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), "strindex", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS = in[1]->getAs<types::String>();
+    types::String* pS = in[1]->getAs<types::String>();
     wchar_t** pwstSearch = pS->get();
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strindex", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwstData = in[0]->getAs<types::String>()->get()[0];
@@ -150,7 +147,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
                     {
                         pcre_error("strindex", iPcreStatus);
                         delete[] pstrResult;
-                        return Function::Error;
+                        return types::Function::Error;
                     }
                     break;
                 }
@@ -180,14 +177,14 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     qsort(pstrResult, iValues, sizeof(In), ComparaisonCallback);
 
-    Double* pIndex = NULL;
+    types::Double* pIndex = NULL;
     if (iValues == 0)
     {
-        pIndex = Double::Empty();
+        pIndex = types::Double::Empty();
     }
     else
     {
-        pIndex = new Double(1, iValues);
+        pIndex = new types::Double(1, iValues);
         for (int i = 0 ; i < iValues ; i++)
         {
             pIndex->set(0, i, pstrResult[i].data);
@@ -197,14 +194,14 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     if (_iRetCount == 2)
     {
-        Double* pPos = NULL;
+        types::Double* pPos = NULL;
         if (iValues == 0)
         {
-            pPos = Double::Empty();
+            pPos = types::Double::Empty();
         }
         else
         {
-            pPos = new Double(1, iValues);
+            pPos = new types::Double(1, iValues);
             for (int i = 0 ; i < iValues ; i++)
             {
                 pPos->set(0, i, pstrResult[i].position);
@@ -214,6 +211,6 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     }
 
     delete[] pstrResult;
-    return Function::OK;
+    return types::Function::OK;
 }
 

@@ -21,7 +21,7 @@ extern "C"
 std::vector<types::File*> FileManager::m_fileList;
 int FileManager::m_iCurrentFile = -1;
 
-int FileManager::getFileID(wstring _stFilename)
+int FileManager::getFileID(const std::wstring& _stFilename)
 {
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {
@@ -38,7 +38,7 @@ int FileManager::getFileMaxID()
     return static_cast<int>(m_fileList.size());
 }
 
-bool FileManager::isOpened(wstring _stFilename)
+bool FileManager::isOpened(const std::wstring& _stFilename)
 {
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {

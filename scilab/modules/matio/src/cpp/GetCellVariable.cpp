@@ -25,8 +25,6 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-using namespace types;
-
 matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
     types::GatewayStruct* pGS = (types::GatewayStruct*)pvApiCtx;

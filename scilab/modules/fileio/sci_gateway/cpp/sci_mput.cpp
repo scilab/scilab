@@ -29,10 +29,8 @@ extern "C"
 #include "os_string.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_mput(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char* pstType   = os_strdup("l");//default type value : long
     int iSize       = 0;
@@ -43,17 +41,17 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "mput", 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //check parameter 1
     if ((in[0]->isDouble() == false) && (in[0]->isInt() == false))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    iSize = in[0]->getAs<GenericType>()->getSize();
+    iSize = in[0]->getAs<types::GenericType>()->getSize();
 
     if (in.size() >= 2)
     {
@@ -61,7 +59,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mput", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         FREE(pstType);
@@ -71,13 +69,13 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in.size() == 3)
     {
-        if (in[2]->isDouble() == false || in[2]->getAs<Double>()->getSize() != 1)
+        if (in[2]->isDouble() == false || in[2]->getAs<types::Double>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mput", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        iFile = static_cast<int>(in[2]->getAs<Double>()->get(0));
+        iFile = static_cast<int>(in[2]->getAs<types::Double>()->get(0));
     }
 
     switch (iFile)
@@ -89,14 +87,14 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
 
     if (in[0]->isDouble())
     {
-        pData = in[0]->getAs<Double>()->get();
+        pData = in[0]->getAs<types::Double>()->get();
     }
     else
     {
         pData = (double*)malloc(iSize * sizeof(double));
         if (in[0]->isInt8())
         {
-            char* piData = in[0]->getAs<Int8>()->get();
+            char* piData = in[0]->getAs<types::Int8>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -104,7 +102,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         }
         else if (in[0]->isUInt8())
         {
-            unsigned char* piData = in[0]->getAs<UInt8>()->get();
+            unsigned char* piData = in[0]->getAs<types::UInt8>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -112,7 +110,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         }
         else if (in[0]->isInt16())
         {
-            short* piData = in[0]->getAs<Int16>()->get();
+            short* piData = in[0]->getAs<types::Int16>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -120,7 +118,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         }
         else if (in[0]->isUInt16())
         {
-            unsigned short* piData = in[0]->getAs<UInt16>()->get();
+            unsigned short* piData = in[0]->getAs<types::UInt16>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -128,7 +126,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         }
         else if (in[0]->isInt32())
         {
-            int* piData = in[0]->getAs<Int32>()->get();
+            int* piData = in[0]->getAs<types::Int32>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -136,7 +134,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         }
         else if (in[0]->isUInt32())
         {
-            unsigned int* piData = in[0]->getAs<UInt32>()->get();
+            unsigned int* piData = in[0]->getAs<types::UInt32>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -144,7 +142,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         }
         else if (in[0]->isInt64())
         {
-            long long* piData = in[0]->getAs<Int64>()->get();
+            long long* piData = in[0]->getAs<types::Int64>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -152,7 +150,7 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         }
         else if (in[0]->isUInt64())
         {
-            unsigned long long* piData = in[0]->getAs<UInt64>()->get();
+            unsigned long long* piData = in[0]->getAs<types::UInt64>()->get();
             for (int i = 0; i < iSize; i++)
             {
                 pData[i] = (double)piData[i];
@@ -174,6 +172,6 @@ Function::ReturnValue sci_mput(typed_list &in, int _iRetCount, typed_list &out)
         return types::Function::Error;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

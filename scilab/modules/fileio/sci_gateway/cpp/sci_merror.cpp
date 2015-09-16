@@ -25,10 +25,8 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRet  = 0;
     int iFile = -1; //default file : last opened file
@@ -50,7 +48,7 @@ Function::ReturnValue sci_merror(types::typed_list &in, int _iRetCount, types::t
         iFile = (int)in[0]->getAs<types::Double>()->get(0);
     }
 
-    File* pF = FileManager::getFile(iFile);
+    types::File* pF = FileManager::getFile(iFile);
     if (pF != NULL)
     {
         iRet = ferror(pF->getFiledesc());

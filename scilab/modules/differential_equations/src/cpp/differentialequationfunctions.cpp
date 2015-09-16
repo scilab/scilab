@@ -53,9 +53,6 @@ DifferentialEquationFunctions* DifferentialEquation::getDifferentialEquationFunc
 /*
 ** \}
 */
-
-
-
 /*--------------------------------------------------------------------------*/
 DifferentialEquationFunctions::DifferentialEquationFunctions(const std::wstring& callerName)
 {
@@ -1159,8 +1156,8 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1313,8 +1310,8 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
     int one         = 1;
     int iMaxSize    = (*n) * (*nrpd);
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1406,8 +1403,8 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
     int iRetCount   = 1;
     int one         = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1492,8 +1489,8 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1580,8 +1577,8 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1676,8 +1673,8 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1771,8 +1768,8 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1885,8 +1882,8 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -1982,8 +1979,8 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2078,8 +2075,8 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2174,8 +2171,8 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2271,8 +2268,8 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
     int one         = 1;
     int iRetCount   = 2;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2382,8 +2379,8 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
 
     *ires = 2;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2482,8 +2479,8 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2581,8 +2578,8 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2686,8 +2683,8 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
     int one         = 1;
     int iRetCount   = 2;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2816,8 +2813,8 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -2933,8 +2930,8 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -3029,8 +3026,8 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
     int one         = 1;
     int iRetCount   = 3;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -3252,8 +3249,8 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     int one         = 1;
     int iRetCount   = 2;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 

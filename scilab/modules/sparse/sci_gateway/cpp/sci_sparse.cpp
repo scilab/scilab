@@ -23,9 +23,7 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_sparse(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     bool isValid = true;
     types::GenericType* pRetVal = NULL;
@@ -34,20 +32,20 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "sparse", 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     for (int i = 0 ; isValid && i < in.size() ; i++)
     {
         switch (in[i]->getType())
         {
-            case InternalType::ScilabBool :
-            case InternalType::ScilabSparseBool :
+            case types::InternalType::ScilabBool :
+            case types::InternalType::ScilabSparseBool :
             {
                 isValid = (i == (in.size() > 1) ? 1 : 0);
             }
-            case InternalType::ScilabDouble :
-            case InternalType::ScilabSparse :
+            case types::InternalType::ScilabDouble :
+            case types::InternalType::ScilabSparse :
             {
                 break;
             }
@@ -60,7 +58,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
         if (!isValid)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "sparse", i + 1);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
     // if one argument is given, it will be a matrix of constant or sparse type, which will be converted into a sparse matrix
@@ -68,36 +66,36 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
     {
         switch (in[0]->getType())
         {
-            case InternalType::ScilabSparse :
+            case types::InternalType::ScilabSparse :
             {
-                pRetVal = new types::Sparse(*in[0]->getAs<Sparse>());
+                pRetVal = new types::Sparse(*in[0]->getAs<types::Sparse>());
                 break;
             }
-            case InternalType::ScilabDouble :
+            case types::InternalType::ScilabDouble :
             {
-                if (in[0]->getAs<Double>()->isEmpty())
+                if (in[0]->getAs<types::Double>()->isEmpty())
                 {
                     out.push_back(types::Double::Empty());
                     return types::Function::OK;
                 }
 
-                if (in[0]->getAs<Double>()->isIdentity())
+                if (in[0]->getAs<types::Double>()->isIdentity())
                 {
                     out.push_back(in[0]);
                     return types::Function::OK;
                 }
 
-                pRetVal = new types::Sparse(*in[0]->getAs<Double>());
+                pRetVal = new types::Sparse(*in[0]->getAs<types::Double>());
                 break;
             }
-            case InternalType::ScilabBool :
+            case types::InternalType::ScilabBool :
             {
-                pRetVal = new types::SparseBool(*in[0]->getAs<Bool>());
+                pRetVal = new types::SparseBool(*in[0]->getAs<types::Bool>());
                 break;
             }
-            case InternalType::ScilabSparseBool :
+            case types::InternalType::ScilabSparseBool :
             {
-                pRetVal = new types::SparseBool(*in[0]->getAs<SparseBool>());
+                pRetVal = new types::SparseBool(*in[0]->getAs<types::SparseBool>());
                 break;
             }
             default :
@@ -114,19 +112,19 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
             if (in[i]->isDouble() == false && !(in[i]->isBool() && i == 1))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"), "sparse", i + 1);
-                return Function::Error;
+                return types::Function::Error;
             }
         }
 
         //Double* pDims( (in.size()==3) ? in[2]->getAs<Double>() : 0);
-        Double* pDims = NULL;
+        types::Double* pDims = NULL;
         if (in.size() == 3)
         {
-            pDims = in[2]->getAs<Double>();
+            pDims = in[2]->getAs<types::Double>();
             if (pDims->getRows() != 1 || pDims->getCols() != 2)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"), "sparse", 3, 1, 2);
-                return Function::Error;
+                return types::Function::Error;
             }
 
             if (pDims->get(0) * pDims->get(1) == 0)
@@ -136,13 +134,13 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
             }
         }
 
-        Double* ij = in[0]->getAs<Double>();
+        types::Double* ij = in[0]->getAs<types::Double>();
         types::GenericType* pGT2 = in[1]->getAs<types::GenericType>();
 
         if (pGT2->getSize() != ij->getRows())
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"), "sparse", 2, ij->getRows());
-            return Function::Error;
+            return types::Function::Error;
         }
 
         bool alloc = false;
@@ -151,7 +149,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
             int size = ij->getRows();
             double* i = ij->get();
             double* j = i + ij->getRows();
-            pDims = new Double(1, 2, false);
+            pDims = new types::Double(1, 2, false);
             pDims->set(0, *std::max_element(i, i + size));
             pDims->set(1, *std::max_element(j, j + size));
             alloc = true;
@@ -159,13 +157,13 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
 
         if (in[1]->isDouble())
         {
-            Double* dbl = pGT2->getAs<Double>();
-            pRetVal = new Sparse(*dbl, *ij, *pDims);
+            types::Double* dbl = pGT2->getAs<types::Double>();
+            pRetVal = new types::Sparse(*dbl, *ij, *pDims);
         }
         else
         {
-            Bool* b = pGT2->getAs<Bool>();
-            pRetVal = new SparseBool(*b, *ij, *pDims);
+            types::Bool* b = pGT2->getAs<types::Bool>();
+            pRetVal = new types::SparseBool(*b, *ij, *pDims);
         }
 
         if (alloc)
@@ -176,9 +174,9 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
 
     if (pRetVal == NULL)
     {
-        return Function::Error;
+        return types::Function::Error;
     }
 
     out.push_back(pRetVal);
-    return Function::OK;
+    return types::Function::OK;
 }

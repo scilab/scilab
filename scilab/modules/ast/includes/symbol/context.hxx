@@ -74,7 +74,7 @@ public:
     types::InternalType* getFunction(const Symbol& key);
 
     /*return function list in the module _stModuleName*/
-    int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName);
+    int getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModuleName);
 
     int getConsoleVarsName(std::list<std::wstring>& lst);
     int getVarsName(std::list<std::wstring>& lst);

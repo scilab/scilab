@@ -29,9 +29,9 @@ extern "C"
 
 int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
-    GatewayStruct* pStr = (GatewayStruct*)pvApiCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)pvApiCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
     int  iSize = 1;
 
     int rhs = iVar - *getNbInputArgument(pvApiCtx);
@@ -47,12 +47,12 @@ int CreateStructVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
 
     if (matVariable->data == NULL)
     {
-        Struct* pStruct = new Struct();
+        types::Struct* pStruct = new types::Struct();
         out[rhs - 1] = pStruct;
         return TRUE;
     }
 
-    Struct* pStruct = new Struct(iRank, piDims);
+    types::Struct* pStruct = new types::Struct(iRank, piDims);
 
     matvar_t** allData = (matvar_t**)(matVariable->data);
 

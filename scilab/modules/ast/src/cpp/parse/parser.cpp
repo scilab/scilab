@@ -264,7 +264,7 @@ std::wstring& ParserSingleInstance::getErrorMessage(void)
     return _error_message;
 }
 
-void ParserSingleInstance::appendErrorMessage(std::wstring message)
+void ParserSingleInstance::appendErrorMessage(const std::wstring& message)
 {
     _error_message += message;
 }

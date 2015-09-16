@@ -12,7 +12,7 @@
 
 #include "types_finite.hxx"
 
-bool isDoubleFinite(Double *_pDouble)
+bool isDoubleFinite(types::Double *_pDouble)
 {
     int iSize = _pDouble->getSize();
     if (matrix_finite( _pDouble->getReal(), iSize) == 1)

@@ -109,7 +109,7 @@ public:
     /** \} */
 
     template<typename T>
-    inline void printInternalType(wostringstream & stream, types::InternalType * pIT)
+    inline void printInternalType(std::wostringstream & stream, types::InternalType * pIT)
     {
         T * pT = static_cast<T *>(pIT);
         if (pT)
@@ -151,8 +151,8 @@ private:
     
     void DEBUG_START_NODE(const ast::Ast & e);
     void DEBUG_END_NODE(void);
-    void DEBUG(wstring str);
-    void DEBUG(wstring str, const Exp & e);
+    void DEBUG(const std::wstring& str);
+    void DEBUG(const std::wstring& str, const Exp & e);
 };
 }
 #endif // !AST_DEBUGVISITOR_HXX

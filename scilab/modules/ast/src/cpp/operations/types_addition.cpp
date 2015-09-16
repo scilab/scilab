@@ -28,8 +28,6 @@ extern "C"
 }
 
 using namespace types;
-
-
 //define arrays on operation functions
 static add_function pAddfunction[types::InternalType::IdLast][types::InternalType::IdLast] = {NULL};
 

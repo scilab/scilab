@@ -23,7 +23,7 @@ private :
     PreferencesModule() {};
     ~PreferencesModule() {};
 public :
-    PREFERENCES_SCILAB_IMPEXP  static int LoadDeps(std::wstring _functionName);
+    PREFERENCES_SCILAB_IMPEXP  static int LoadDeps(const std::wstring& _functionName);
     PREFERENCES_SCILAB_IMPEXP static int Load();
     PREFERENCES_SCILAB_IMPEXP static int Unload()
     {

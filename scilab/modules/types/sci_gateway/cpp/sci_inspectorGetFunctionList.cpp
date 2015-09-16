@@ -23,14 +23,12 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_inspectorGetFunctionList(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorGetFunctionList", 0);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     symbol::Context* pC = symbol::Context::getInstance();
@@ -38,7 +36,7 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
     std::list<symbol::Symbol> funcName;
     int size = pC->getFunctionList(funcName, L"");
 
-    String* pOut = new String(size, 4);
+    types::String* pOut = new types::String(size, 4);
 
     int i = 0;
     for (auto it : funcName)
@@ -62,5 +60,5 @@ Function::ReturnValue sci_inspectorGetFunctionList(typed_list &in, int _iRetCoun
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }

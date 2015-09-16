@@ -16,11 +16,9 @@
 #include "inspector.hxx"
 #include "sciprint.h"
 
-using namespace types;
-
-Function::ReturnValue sci_inspectorGetItemCount(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_inspectorGetItemCount(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    sciprint("\n%d\tItems\n", Inspector::getItemCount());
-    sciprint("%d\tUnreferenced Items\n", Inspector::getUnreferencedItemCount());
-    return Function::OK;
+    sciprint("\n%d\tItems\n", types::Inspector::getItemCount());
+    sciprint("%d\tUnreferenced Items\n", types::Inspector::getUnreferencedItemCount());
+    return types::Function::OK;
 }

@@ -854,8 +854,8 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             lrn += 20 + nyh * (mxordn + 1) + 3 * (sizeYc);
             lrs += 20 + nyh * (mxords + 1) + 3 * (sizeYc) + lmat;
 
-            rworkSize   = max(lrn, lrs);
-            iworkSize   = 20 + sizeYc;
+            rworkSize = std::max(lrn, lrs);
+            iworkSize = 20 + sizeYc;
 
             dStructTabSize += 241;
             iStructTabSize += 50;
@@ -1084,7 +1084,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
         {
             if (bIntegrateContPart == false)
             {
-                hf = min(pDblT0->get(0) + (nhpass + delta) * pDblStdel->get(0), pDblT->get(iLastT));
+                hf = std::min(pDblT0->get(0) + (nhpass + delta) * pDblStdel->get(0), pDblT->get(iLastT));
             }
 
             if (fabs(tleft - hf) < 1.0e-12) // update discrete part

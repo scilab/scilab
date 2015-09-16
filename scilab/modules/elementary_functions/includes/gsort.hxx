@@ -19,18 +19,18 @@
 #include "string.hxx"
 #include "int.hxx"
 
-types::Double* gsort(types::Double* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
+types::Double* gsort(types::Double* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
 
-types::String* gsort(types::String* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
+types::String* gsort(types::String* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
 
-types::Int8* gsort(types::Int8* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
-types::Int16* gsort(types::Int16* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
-types::Int32* gsort(types::Int32* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
-types::Int64* gsort(types::Int64* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
+types::Int8* gsort(types::Int8* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+types::Int16* gsort(types::Int16* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+types::Int32* gsort(types::Int32* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+types::Int64* gsort(types::Int64* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
 
-types::UInt8* gsort(types::UInt8* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
-types::UInt16* gsort(types::UInt16* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
-types::UInt32* gsort(types::UInt32* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
-types::UInt64* gsort(types::UInt64* pIn, types::Double* pInd, std::wstring wstrWay, std::wstring wstrProcess);
+types::UInt8* gsort(types::UInt8* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+types::UInt16* gsort(types::UInt16* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+types::UInt32* gsort(types::UInt32* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
+types::UInt64* gsort(types::UInt64* pIn, types::Double* pInd, const std::wstring& wstrWay, const std::wstring& wstrProcess);
 
 #endif /* __GSORT_H__ */

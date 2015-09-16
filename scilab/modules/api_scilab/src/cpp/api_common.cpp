@@ -20,7 +20,6 @@
 #include "gatewaystruct.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
-#include "gatewaystruct.hxx"
 #include "overload.hxx"
 #include "context.hxx"
 #include "symbol.hxx"
@@ -45,7 +44,6 @@ extern "C"
     //StrCtx *pvApiCtx = NULL;
 }
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
 static SciErr getinternalVarAddress(void* _pvCtx, int _iVar, int** _piAddress);
 
@@ -53,7 +51,7 @@ static SciErr getinternalVarAddress(void* _pvCtx, int _iVar, int** _piAddress);
 /* Replaces Rhs */
 int* getNbInputArgument(void* _pvCtx)
 {
-    GatewayStruct *pStr =  (GatewayStruct*)_pvCtx;
+    types::GatewayStruct *pStr = (types::GatewayStruct*)_pvCtx;
 
     if (pStr == NULL)
     {
@@ -73,7 +71,7 @@ int* getNbInputArgument(void* _pvCtx)
 /* Replaces Lhs */
 int* getNbOutputArgument(void* _pvCtx)
 {
-    GatewayStruct *pStr =  (GatewayStruct*)_pvCtx;
+    types::GatewayStruct *pStr =  (types::GatewayStruct*)_pvCtx;
 
     if (pStr == NULL)
     {
@@ -96,7 +94,7 @@ int* assignOutputVariable(void* _pvCtx, int _iVal)
         return &api_fake_int;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
 
     //do nothing but don't crash
     if (_iVal > *pStr->m_piRetCount || (_iVal - 1) < 0)
@@ -117,7 +115,7 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
 {
     SciErr sciErr = sciErrInit();
 
-    GatewayStruct *pStr = (GatewayStruct*)_pvCtx;
+    types::GatewayStruct *pStr = (types::GatewayStruct*)_pvCtx;
     int iRhs            = *getNbInputArgument(_pvCtx);
 
     if (_iMin <= nbInputArgument(_pvCtx) && _iMax >= nbInputArgument(_pvCtx))
@@ -141,14 +139,14 @@ SciErr reshapeArray(void* _pvCtx, int* _piAddress, int* _iDimsArray, int _iDims)
 {
     SciErr sciErr = sciErrInit();
 
-    InternalType* pIT = ((InternalType*)_piAddress);
+    types::InternalType* pIT = (types::InternalType*)_piAddress;
     if (pIT->isGenericType() == false)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "resizeArray", _("matrix"));
         return sciErr;
     }
 
-    pIT->getAs<GenericType>()->reshape(_iDimsArray, _iDims);
+    pIT->getAs<types::GenericType>()->reshape(_iDimsArray, _iDims);
 
     return sciErr;
 }
@@ -163,7 +161,7 @@ int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
         return 1;
     }
 
-    Scierror(77, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((GatewayStruct*)_pvCtx)->m_pstName, _iMin);
+    Scierror(77, _("%s: Wrong number of input argument(s): at least %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin);
     return 0;
 }
 
@@ -177,7 +175,7 @@ int checkInputArgumentAtMost(void* _pvCtx, int _iMax)
         return 1;
     }
 
-    Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((GatewayStruct*)_pvCtx)->m_pstName, _iMax);
+    Scierror(77, _("%s: Wrong number of input argument(s): at most %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
     return 0;
 }
 
@@ -193,11 +191,11 @@ int checkOutputArgument(void* _pvCtx, int _iMin, int _iMax)
 
     if (_iMax == _iMin)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((GatewayStruct*)_pvCtx)->m_pstName, _iMax);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
     }
     else
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((GatewayStruct*)_pvCtx)->m_pstName, _iMin, _iMax);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin, _iMax);
     }
 
     return 0;
@@ -213,7 +211,7 @@ int checkOutputArgumentAtLeast(void* _pvCtx, int _iMin)
         return 1;
     }
 
-    Scierror(78, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((GatewayStruct*)_pvCtx)->m_pstName, _iMin);
+    Scierror(78, _("%s: Wrong number of output argument(s): at least %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMin);
     return 0;
 }
 
@@ -227,21 +225,21 @@ int checkOutputArgumentAtMost(void* _pvCtx, int _iMax)
         return 1;
     }
 
-    Scierror(78, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((GatewayStruct*)_pvCtx)->m_pstName, _iMax);
+    Scierror(78, _("%s: Wrong number of output argument(s): at most %d expected.\n"), ((types::GatewayStruct*)_pvCtx)->m_pstName, _iMax);
     return 0;
 }
 
 /*--------------------------------------------------------------------------*/
 int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLhs, int _iRhs)
 {
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    Function::ReturnValue callResult;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::Function::ReturnValue callResult;
 
     wchar_t* pwstName = to_wide_string(_pstName);
     std::wstring wsFunName(pwstName);
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
 
 
     for (int i = 0 ; i < _iRhs ; i++)
@@ -258,7 +256,7 @@ int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLh
         in[i]->DecreaseRef();
     }
 
-    if (callResult == Function::OK)
+    if (callResult == types::Function::OK)
     {
         int iCallerRhs = (int)pStr->m_pIn->size();
         pStr->m_pIn->resize(iCallerRhs + _iRhs + _iLhs, NULL);
@@ -275,9 +273,9 @@ int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLh
 
 int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _iNameLen)
 {
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    Function::ReturnValue callResult;
-    typed_list tlReturnedValues;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::Function::ReturnValue callResult;
+    types::typed_list tlReturnedValues;
 
     wchar_t* pwstName = NULL;
     if (_pstName == NULL || strlen(_pstName) == 0)
@@ -313,10 +311,10 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
         (*pStr->m_pIn)[i]->DecreaseRef();
     }
 
-    if (callResult == Function::OK)
+    if (callResult == types::Function::OK)
     {
         int i = 0;
-        typed_list::iterator it;
+        types::typed_list::iterator it;
         for (it = tlReturnedValues.begin() ; it != tlReturnedValues.end() ; ++it, ++i)
         {
             (pStr->m_pOut)[i] = *it;
@@ -335,8 +333,8 @@ SciErr getVarDimension(void *_pvCtx, int *_piAddress, int *_piRows, int *_piCols
 
     if (_piAddress != NULL && isVarMatrixType(_pvCtx, _piAddress))
     {
-        *_piRows = ((InternalType*)_piAddress)->getAs<GenericType>()->getRows();
-        *_piCols = ((InternalType*)_piAddress)->getAs<GenericType>()->getCols();
+        *_piRows = ((types::InternalType*)_piAddress)->getAs<types::GenericType>()->getRows();
+        *_piCols = ((types::InternalType*)_piAddress)->getAs<types::GenericType>()->getCols();
     }
     else
     {
@@ -398,9 +396,9 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pStr->m_pIn;
-    optional_list opt = *pStr->m_pOpt;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::optional_list opt = *pStr->m_pOpt;
     int* piRetCount = pStr->m_piRetCount;
     int iInputSize = static_cast<int>(in.size()) + static_cast<int>(opt.size());
 
@@ -438,8 +436,8 @@ SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pStr->m_pIn;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
 
     if (in[_iVar - 1]->isCallable())
     {
@@ -466,7 +464,7 @@ SciErr getVarAddressFromName(void *_pvCtx, const char *_pstName, int **_piAddres
 
     wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* pCtx = symbol::Context::getInstance();
-    InternalType* pVar = pCtx->get(symbol::Symbol(pwstName));
+    types::InternalType* pVar = pCtx->get(symbol::Symbol(pwstName));
     FREE(pwstName);
 
     if (pVar == NULL)
@@ -492,75 +490,75 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         return sciErr;
     }
 
-    switch (((InternalType*)_piAddress)->getType())
+    switch (((types::InternalType*)_piAddress)->getType())
     {
-        case GenericType::ScilabDouble :
+        case types::InternalType::ScilabDouble :
             *_piType = sci_matrix;
             break;
-        case GenericType::ScilabPolynom :
+        case types::InternalType::ScilabPolynom :
             *_piType = sci_poly;
             break;
-        case GenericType::ScilabBool :
+        case types::InternalType::ScilabBool :
             *_piType = sci_boolean;
             break;
-        case GenericType::ScilabSparse :
+        case types::InternalType::ScilabSparse :
             *_piType = sci_sparse;
             break;
-        case GenericType::ScilabSparseBool :
+        case types::InternalType::ScilabSparseBool :
             *_piType = sci_boolean_sparse;
             break;
-        //case GenericType::RealMatlabSparse :
+        //case types::InternalType::RealMatlabSparse :
         //    *_piType = sci_matlab_sparse;
         //    break;
-        case GenericType::ScilabInt8 :
-        case GenericType::ScilabUInt8 :
-        case GenericType::ScilabInt16 :
-        case GenericType::ScilabUInt16 :
-        case GenericType::ScilabInt32 :
-        case GenericType::ScilabUInt32 :
-        case GenericType::ScilabInt64 :
-        case GenericType::ScilabUInt64 :
+        case types::InternalType::ScilabInt8 :
+        case types::InternalType::ScilabUInt8 :
+        case types::InternalType::ScilabInt16 :
+        case types::InternalType::ScilabUInt16 :
+        case types::InternalType::ScilabInt32 :
+        case types::InternalType::ScilabUInt32 :
+        case types::InternalType::ScilabInt64 :
+        case types::InternalType::ScilabUInt64 :
             *_piType = sci_ints;
             break;
-        case GenericType::ScilabHandle :
+        case types::InternalType::ScilabHandle :
             *_piType = sci_handles;
             break;
-        case GenericType::ScilabString :
+        case types::InternalType::ScilabString :
             *_piType = sci_strings;
             break;
-        case GenericType::ScilabMacroFile :
+        case types::InternalType::ScilabMacroFile :
             *_piType = sci_u_function;
             break;
-        case GenericType::ScilabMacro :
+        case types::InternalType::ScilabMacro :
             *_piType = sci_c_function;
             break;
-        case GenericType::ScilabList :
+        case types::InternalType::ScilabList :
             *_piType = sci_list;
             break;
-        case GenericType::ScilabCell :
+        case types::InternalType::ScilabCell :
             *_piType = sci_mlist;
             break;
-        case GenericType::ScilabTList :
+        case types::InternalType::ScilabTList :
             *_piType = sci_tlist;
             break;
-        case GenericType::ScilabMList :
+        case types::InternalType::ScilabMList :
             *_piType = sci_mlist;
             break;
-        case GenericType::ScilabStruct :
+        case types::InternalType::ScilabStruct :
             // Scilab < 6 compatibility... Struct have type 17;
             *_piType = sci_mlist;
             break;
-        case GenericType::ScilabUserType :
+        case types::InternalType::ScilabUserType :
             *_piType = sci_pointer;
             break;
-        case GenericType::ScilabColon :
-        case GenericType::ScilabImplicitList :
+        case types::InternalType::ScilabColon :
+        case types::InternalType::ScilabImplicitList :
             *_piType = sci_implicit_poly;
             break;
-        case GenericType::ScilabFunction:
+        case types::InternalType::ScilabFunction:
             *_piType = sci_intrinsic_function;
             break;
-        case GenericType::ScilabLibrary:
+        case types::InternalType::ScilabLibrary:
             *_piType = sci_lib;
             break;
         default:
@@ -606,8 +604,8 @@ int isVarComplex(void *_pvCtx, int *_piAddress)
         return 0;
     }
 
-    InternalType* pIT = (InternalType*)_piAddress;
-    GenericType* pGT = dynamic_cast<GenericType*>(pIT);
+    types::InternalType* pIT = (types::InternalType*)_piAddress;
+    types::GenericType* pGT = dynamic_cast<types::GenericType*>(pIT);
     if (pGT == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "isVarComplex");
@@ -1024,8 +1022,8 @@ SciErr getDimFromNamedVar(void *_pvCtx, const char *_pstName, int *_piVal)
 int getRhsFromAddress(void *_pvCtx, int *_piAddress)
 {
     int i = 0;
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pStr->m_pIn;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
 
     for (i = 0 ; i < in.size() ; i++)
     {
@@ -1172,7 +1170,7 @@ int isNamedVector(void *_pvCtx, const char *_pstName)
 /*--------------------------------------------------------------------------*/
 int isStruct(void *_pvCtx, int *_piAddress)
 {
-    if (((InternalType*)_piAddress)->getType() == GenericType::ScilabStruct)
+    if (((types::InternalType*)_piAddress)->getType() == types::InternalType::ScilabStruct)
     {
         return 1;
     }
@@ -1181,7 +1179,7 @@ int isStruct(void *_pvCtx, int *_piAddress)
 /*--------------------------------------------------------------------------*/
 int isCell(void *_pvCtx, int *_piAddress)
 {
-    if (((InternalType*)_piAddress)->getType() == GenericType::ScilabCell)
+    if (((types::InternalType*)_piAddress)->getType() == types::InternalType::ScilabCell)
     {
         return 1;
     }

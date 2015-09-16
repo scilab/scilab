@@ -30,7 +30,6 @@ extern "C"
 #include "getshortpathname.h"
 }
 
-using namespace std;
 char *getSCI(void)
 {
     return wide_string_to_UTF8(ConfigVariable::getSCIPath().c_str());
@@ -79,7 +78,7 @@ void setSCI(const char* _sci_path)
     pwstWSCI = to_wide_string(_sci_path);
 #endif
 
-    wstring wst(pwstWSCI);
+    std::wstring wst(pwstWSCI);
     ConfigVariable::setSCIPath(wst);
 
     FREE(pwstWSCI);
@@ -218,7 +217,7 @@ char* computeSCI()
 
         if (ierr == 1)
         {
-            cerr << "SCI environment variable not defined." << endl;
+            std::cerr << "SCI environment variable not defined." << std::endl;
             exit(1);
         }
     }

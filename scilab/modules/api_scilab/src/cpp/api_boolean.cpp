@@ -30,8 +30,6 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace std;
-
 /********************************/
 /*   boolean matrix functions   */
 /********************************/

@@ -58,7 +58,7 @@ public :
         return true;
     }
 
-    bool extract(const std::wstring & name, InternalType *& out);
+    bool extract(const std::wstring& name, InternalType *& out);
 
     void add(const std::wstring& _wstName, MacroFile* _macro);
     MacroFile* get(const std::wstring& _wstName);

@@ -26,7 +26,7 @@ extern "C"
 #include "opexp.hxx"
 #include "execvisitor.hxx"
 
-std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
+std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, types::typed_list &in, int /*_iRetCount*/, bool _isOperator, bool _truncated)
 {
     std::wstring stType0 = in[0]->getShortTypeStr();
 
@@ -50,7 +50,7 @@ std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::ty
     return _stFunctionName;
 }
 
-types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
+types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
 {
     std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
@@ -78,7 +78,7 @@ types::Function::ReturnValue Overload::generateNameAndCall(std::wstring _stFunct
     return call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
 }
 
-types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
+types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
 {
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
     types::Callable *pCall = NULL;

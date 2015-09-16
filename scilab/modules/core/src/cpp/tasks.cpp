@@ -226,7 +226,7 @@ void dumpStackTask(bool timed)
 void execScilabStartTask(bool _bSerialize)
 {
     Parser parse;
-    wstring stSCI = ConfigVariable::getSCIPath();
+    std::wstring stSCI = ConfigVariable::getSCIPath();
     stSCI += SCILAB_START;
 
     ThreadManagement::LockParser();
@@ -255,7 +255,7 @@ void execScilabStartTask(bool _bSerialize)
 void execScilabQuitTask(bool _bSerialize)
 {
     Parser parse;
-    wstring stSCI = ConfigVariable::getSCIPath();
+    std::wstring stSCI = ConfigVariable::getSCIPath();
     stSCI += SCILAB_QUIT;
 
     ThreadManagement::LockParser();

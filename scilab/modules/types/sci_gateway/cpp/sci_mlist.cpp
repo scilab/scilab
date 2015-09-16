@@ -15,9 +15,7 @@
 #include "function.hxx"
 #include "sci_tlist_or_mlist.hxx"
 
-using namespace types;
-
-Function::ReturnValue sci_mlist(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_mlist(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    return sci_tlist_or_mlist<MList>(in, _piRetCount, out, L"mlist");
+    return sci_tlist_or_mlist<types::MList>(in, _piRetCount, out, L"mlist");
 }

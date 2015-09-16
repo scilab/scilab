@@ -16,8 +16,6 @@
 
 #define MODULE_NAME L"differential_equations"
 
-using namespace types;
-
 int DifferentialEquationsModule::Load()
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ode", &sci_ode, NULL, MODULE_NAME));

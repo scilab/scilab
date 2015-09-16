@@ -26,9 +26,7 @@ extern "C"
 #include "createMainScilabObject.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_exit(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_exit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
 
     BOOL shouldExit = TRUE;
@@ -37,30 +35,30 @@ Function::ReturnValue sci_exit(typed_list &in, int _iRetCount, typed_list &out)
     if (in.size() > 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected."), "exit", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() != 0)
     {
-        InternalType* pIT = in[0];
+        types::InternalType* pIT = in[0];
         if (pIT->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "exit", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        Double* pD = pIT->getAs<Double>();
+        types::Double* pD = pIT->getAs<types::Double>();
         if (pD->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "exit", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         dExit = pD->get(0);
         if (dExit != (int) dExit)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "exit", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -83,5 +81,5 @@ Function::ReturnValue sci_exit(typed_list &in, int _iRetCount, typed_list &out)
         // go out without continue any execution
         throw ast::InternalAbort();
     }
-    return Function::OK;
+    return types::Function::OK;
 }

@@ -30,31 +30,29 @@ extern "C"
 #include "isdir.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_isdir(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_isdir(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "isdir" , 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "isdir", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "isdir", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS  = in[0]->getAs<types::String>();
-    Bool* pOut  = new Bool(pS->getRows(), pS->getCols());
+    types::String* pS = in[0]->getAs<types::String>();
+    types::Bool* pOut = new types::Bool(pS->getRows(), pS->getCols());
 
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
@@ -72,6 +70,6 @@ Function::ReturnValue sci_isdir(typed_list &in, int _iRetCount, typed_list &out)
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

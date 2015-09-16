@@ -45,7 +45,7 @@ class SIGNAL_PROCESSING_IMPEXP Signalprocessingfunctions
 {
 
 public :
-    Signalprocessingfunctions(std::wstring callerName);
+    Signalprocessingfunctions(const std::wstring& callerName);
     ~Signalprocessingfunctions();
 
     void setDgetx(types::Callable*);

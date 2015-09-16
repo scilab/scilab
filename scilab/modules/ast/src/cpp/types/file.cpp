@@ -45,7 +45,7 @@ FILE* File::getFiledesc()
     return m_fileDesc;
 }
 
-void File::setFileMode(std::wstring _pstMode)
+void File::setFileMode(const std::wstring& _pstMode)
 {
     m_pstMode = _pstMode;
 }
@@ -168,7 +168,7 @@ std::wstring File::getFileTypeAsString()
     }
 }
 
-void File::setFilename(std::wstring _stFilename)
+void File::setFilename(const std::wstring& _stFilename)
 {
     m_stFilename = _stFilename;
 }

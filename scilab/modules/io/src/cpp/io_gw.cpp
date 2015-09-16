@@ -19,18 +19,16 @@ extern "C"
 }
 #define MODULE_NAME L"io"
 
-using namespace types;
-
 int IoModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"file", &sci_file, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"host", &sci_host, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"setenv", &sci_setenv, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"lib", &sci_lib, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"write", &sci_write, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"read", &sci_read, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"file", &sci_file, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"host", &sci_host, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"unix", &sci_unix, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"getenv", &sci_getenv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"setenv", &sci_setenv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lib", &sci_lib, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"write", &sci_write, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"read", &sci_read, MODULE_NAME));
     return 1;
 }

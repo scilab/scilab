@@ -24,28 +24,26 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "clearfun" , 1);
-        return Function::Error;
+        types::Function::Error;
     }
 
-    InternalType* pIT1 = in[0];
+    types::InternalType* pIT1 = in[0];
     if (pIT1->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "clearfun", 1);
-        return Function::Error;
+        types::Function::Error;
     }
 
-    String* pS1 = pIT1->getAs<String>();
+    types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "clearfun", 1);
-        return Function::Error;
+        types::Function::Error;
     }
 
     wchar_t* pwcsName = pS1->get(0);
@@ -86,6 +84,6 @@ Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount, types:
         }
     }
 
-    out.push_back(new Bool(bDeleted ? 1 : 0));
-    return Function::OK;
+    out.push_back(new types::Bool(bDeleted ? 1 : 0));
+    types::Function::OK;
 }

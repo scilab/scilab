@@ -27,20 +27,18 @@ extern "C"
 
 #define DEFAULT_ERROR_CODE 10000
 
-using namespace types;
-
-Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "error", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "error", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 1)
@@ -49,7 +47,7 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         if (in[0]->isString() == false && in[0]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[0]->isString() == true)
@@ -73,7 +71,7 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "error", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
     else
@@ -86,20 +84,20 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         if (in[0]->isDouble() == false && in[0]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[1]->isString() == false && in[1]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if ((in[0]->isDouble() == false && in[1]->isDouble() == false) ||
                 (in[0]->isString() == false && in[1]->isString() == false) )
         {
             Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "error", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[0]->isDouble())
@@ -118,19 +116,19 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         if (pDbl->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", iPosDouble);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (pStr->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "error", iPosString);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (pDbl->get(0) <= 0 || pDbl->isComplex())
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Value greater than 0 expected.\n"), "error", iPosDouble);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         char* pst = wide_string_to_UTF8(pStr->get(0));
@@ -138,5 +136,5 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         FREE(pst);
     }
 
-    return Function::Error;
+    return types::Function::Error;
 }

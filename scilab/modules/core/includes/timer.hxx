@@ -121,7 +121,7 @@ public:
     //===========================================================================
     // Print out an optional message followed by the current timer timing.
 
-    inline double check(const std::wstring _msg, bool _bRestart = false)
+    inline double check(const std::wstring& _msg, bool _bRestart = false)
     {
         // Print an optional message, something like "Checking timer t";
         double t = elapsed_time();

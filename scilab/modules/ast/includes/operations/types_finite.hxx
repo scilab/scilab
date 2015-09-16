@@ -20,9 +20,6 @@ extern "C"
 #include "matrix_finite.h"
 }
 
-// FIXME : Remove using namespace.
-using namespace types;
-
-bool isDoubleFinite(Double *_pDouble);
+bool isDoubleFinite(types::Double *_pDouble);
 
 #endif /* __TYPES_FINITE__ */

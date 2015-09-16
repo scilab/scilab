@@ -22,24 +22,20 @@ extern "C" {
 }
 
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-using namespace std;
-
-Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     /* Check the number of input argument */
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "whereis", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     /* Check the number of output argument */
     if (_iRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "whereis", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString())
@@ -49,7 +45,7 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
         if (pS->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "whereis", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         std::list<std::wstring> lst;
@@ -57,7 +53,7 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
         if (lst.empty())
         {
             out.push_back(types::Double::Empty());
-            return Function::OK;
+            return types::Function::OK;
         }
 
         types::String* pOut = new types::String(size, 1);
@@ -71,19 +67,19 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
     }
     else
     {
-        wstring stModule;
+        std::wstring stModule;
         switch (in[0]->getType())
         {
-            case InternalType::ScilabFunction:
-            case InternalType::ScilabMacro:
-            case InternalType::ScilabMacroFile:
-                out.push_back(new types::String(in[0]->getAs<Callable>()->getModule().c_str()));
+            case types::InternalType::ScilabFunction:
+            case types::InternalType::ScilabMacro:
+            case types::InternalType::ScilabMacroFile:
+                out.push_back(new types::String(in[0]->getAs<types::Callable>()->getModule().c_str()));
                 break;
             default:
                 out.push_back(types::Double::Empty());
         }
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

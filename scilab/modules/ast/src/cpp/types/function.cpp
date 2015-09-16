@@ -36,57 +36,57 @@ extern "C"
 
 namespace types
 {
-Function* Function::createFunction(std::wstring _wstName, GW_FUNC _pFunc, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, GW_FUNC _pFunc, const std::wstring& _wstModule)
 {
     return new Function(_wstName, _pFunc, NULL, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, const std::wstring& _wstModule)
 {
     return new OptFunction(_wstName, _pFunc, NULL, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, const std::wstring& _wstModule)
 {
     return new WrapFunction(_wstName, _pFunc, NULL, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, const std::wstring& _wstModule)
 {
     return new WrapMexFunction(_wstName, _pFunc, NULL, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     return new Function(_wstName, _pFunc, _pLoadDeps, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     return new OptFunction(_wstName, _pFunc, _pLoadDeps, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     return new WrapFunction(_wstName, _pFunc, _pLoadDeps, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+Function* Function::createFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     return new WrapMexFunction(_wstName, _pFunc, _pLoadDeps, _wstModule);
 }
 
-Function* Function::createFunction(std::wstring _wstFunctionName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, std::wstring _wstModule, bool _bCloseLibAfterCall)
+Function* Function::createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
     return new DynamicFunction(_wstFunctionName, _wstEntryPointName, _wstLibName, _iType, _pLoadDeps, _wstModule, _bCloseLibAfterCall);
 }
 
-Function* Function::createFunction(std::wstring _wstFunctionName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, std::wstring _wstLoadDepsName, std::wstring _wstModule, bool _bCloseLibAfterCall)
+Function* Function::createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
     return new DynamicFunction(_wstFunctionName, _wstEntryPointName, _wstLibName, _iType, _wstLoadDepsName, _wstModule, _bCloseLibAfterCall);
 }
 
-Function::Function(std::wstring _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule) : Callable(), m_pFunc(_pFunc), m_pLoadDeps(_pLoadDeps)
+Function::Function(const std::wstring& _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule) : Callable(), m_pFunc(_pFunc), m_pLoadDeps(_pLoadDeps)
 {
     setName(_wstName);
     setModule(_wstModule);
@@ -131,7 +131,7 @@ InternalType* Function::clone()
     return this;
 }
 
-OptFunction::OptFunction(std::wstring _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+OptFunction::OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     m_wstName = _wstName;
     m_pFunc = _pFunc;
@@ -168,7 +168,7 @@ Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int 
     return this->m_pFunc(in, opt, _iRetCount, out);
 }
 
-WrapFunction::WrapFunction(std::wstring _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+WrapFunction::WrapFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     m_wstName = _wstName;
     m_pOldFunc = _pFunc;
@@ -326,7 +326,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     return retVal;
 }
 
-WrapMexFunction::WrapMexFunction(std::wstring _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, std::wstring _wstModule)
+WrapMexFunction::WrapMexFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     m_wstName = _wstName;
     m_pOldFunc = _pFunc;
@@ -404,7 +404,7 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
     return retVal;
 }
 
-DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, std::wstring _wstLoadDepsName, std::wstring _wstModule, bool _bCloseLibAfterCall)
+DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
     m_wstName               = _wstName;
     m_wstLibName            = _wstLibName;
@@ -421,7 +421,7 @@ DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPo
     m_pFunction             = NULL;
 }
 
-DynamicFunction::DynamicFunction(std::wstring _wstName, std::wstring _wstEntryPointName, std::wstring _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, std::wstring _wstModule, bool _bCloseLibAfterCall)
+DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall)
 {
     m_wstName               = _wstName;
     m_wstLibName            = _wstLibName;

@@ -31,8 +31,6 @@
 #define EXTERN_FUNC_MAN
 #endif
 
-using namespace std;
-
 #define MODULE_DIR  L"/modules/"
 #define MACRO_DIR   L"/macros/"
 #define ETC_DIR     L"/etc/"
@@ -48,12 +46,12 @@ class EXTERN_FUNC_MAN FuncManager
 {
 private :
     //	map <string, FuncInfo*>	m_FuncMap;
-    typedef map<wstring, std::pair<GW_MOD, GW_MOD> >  ModuleMap;
+    typedef std::map<std::wstring, std::pair<GW_MOD, GW_MOD> >  ModuleMap;
     ModuleMap  m_ModuleMap;
-    map<wstring, GW_MOD>    m_ActivModuleMap;
-    list<wstring>           m_ModuleName;
-    wstring                 m_szXmlFile;
-    bool                    m_bNoStart;
+    std::map<std::wstring, GW_MOD> m_ActivModuleMap;
+    std::list<std::wstring> m_ModuleName;
+    std::wstring m_szXmlFile;
+    bool m_bNoStart;
 public:
     static FuncManager* getInstance();
     static void destroyInstance();
@@ -72,9 +70,9 @@ private :
 
     bool CreateModuleList(void);
 
-    bool ExecuteStartFile(wstring _stModule);
-    bool ExecuteQuitFile(wstring _stModule);
-    bool ExecuteFile(wstring _stFile);
+    bool ExecuteStartFile(const std::wstring& _stModule);
+    bool ExecuteQuitFile(const std::wstring& _stModule);
+    bool ExecuteFile(const std::wstring& _stFile);
     static FuncManager* me;
 };
 

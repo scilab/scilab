@@ -29,8 +29,6 @@ extern "C"
 #include "PATH_MAX.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -61,7 +59,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
         }
     }
 
-    File* pF = FileManager::getFile(iFile);
+    types::File* pF = FileManager::getFile(iFile);
     if (pF != NULL)
     {
         iRet = feof(pF->getFiledesc());
@@ -75,7 +73,7 @@ types::Function::ReturnValue sci_meof(types::typed_list &in, int _iRetCount, typ
         return types::Function::OK;
     }
 
-    Double* pOut = new Double(iRet);
+    types::Double* pOut = new types::Double(iRet);
     out.push_back(pOut);
     return types::Function::OK;
 }

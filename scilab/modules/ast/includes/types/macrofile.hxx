@@ -24,7 +24,7 @@ class EXTERN_AST MacroFile : public Callable
 {
 public :
     MacroFile(): Callable() {};
-    MacroFile(std::wstring _stName, std::wstring _stPath, std::wstring _stModule);
+    MacroFile(const std::wstring& _stName, const std::wstring& _stPath, const std::wstring& _stModule);
     virtual                 ~MacroFile();
 
     //FIXME : Should not return NULL

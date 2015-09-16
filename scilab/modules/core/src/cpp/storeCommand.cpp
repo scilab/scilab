@@ -24,7 +24,6 @@ extern "C"
 #include "runner.hxx"
 #include "threadmanagement.hxx"
 
-using namespace ast;
 /*--------------------------------------------------------------------------*/
 /*
  *  Command queue functions

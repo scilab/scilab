@@ -25,10 +25,8 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
 template <typename TorMList>
-Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_list &out, const wchar_t *_pstrFunName)
+types::Function::ReturnValue sci_tlist_or_mlist(types::typed_list &in, int _piRetCount, types::typed_list &out, const wchar_t *_pstrFunName)
 {
     TorMList* pRetVal = NULL;
 
@@ -39,25 +37,25 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     {
         Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), pstrFunName , 1);
         FREE(pstrFunName);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), pstrFunName, 1);
         FREE(pstrFunName);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //check uniqueness of fields name
-    String* pS = in[0]->getAs<types::String>();
+    types::String* pS = in[0]->getAs<types::String>();
 
     //check for rational type
     if (pS->getSize() > 0 && wcscmp(pS->get(0), L"r") == 0)
     {
         Scierror(999, _("%s: Can not create a %s with input argument #%d.\n"), pstrFunName, pstrFunName, 1);
         FREE(pstrFunName);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     FREE(pstrFunName);
@@ -69,7 +67,7 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     }
 
     out.push_back(pRetVal);
-    return Function::OK;
+    return types::Function::OK;
 }
 
 #endif /* !__SCI_TLIST_OR_MLIST_HXX__ */

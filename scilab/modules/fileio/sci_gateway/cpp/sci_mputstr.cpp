@@ -28,10 +28,8 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile               = -1; //default file : last opened file
     types::String* pString  = NULL;
@@ -72,8 +70,8 @@ Function::ReturnValue sci_mputstr(types::typed_list &in, int _iRetCount, types::
             iErr = mputl(iFile, pString->get(), 1, FALSE);
     }
 
-    out.push_back(new Bool(!iErr));
+    out.push_back(new types::Bool(!iErr));
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

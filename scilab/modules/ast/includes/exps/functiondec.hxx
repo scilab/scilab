@@ -25,8 +25,6 @@
 #include "arraylistvar.hxx"
 #include "seqexp.hxx"
 
-using namespace std;
-
 namespace ast
 {
 /*

@@ -24,14 +24,11 @@ extern "C"
 #include "configvariable_interface.h"
 }
 
-using namespace types;
-using namespace std;
-
-vectGateway loadGatewaysName(wstring _wstModuleName)
+vectGateway loadGatewaysName(const std::wstring& _wstModuleName)
 {
     vectGateway vect;
-    wstring wstPath = ConfigVariable::getSCIPath();
-    wstring wstModuleName = wstPath + L"/modules/" + _wstModuleName + L"/sci_gateway/" + _wstModuleName + L"_gateway.xml";
+    std::wstring wstPath = ConfigVariable::getSCIPath();
+    std::wstring wstModuleName = wstPath + L"/modules/" + _wstModuleName + L"/sci_gateway/" + _wstModuleName + L"_gateway.xml";
 
     char* pstModuleName = wide_string_to_UTF8(wstModuleName.c_str());
 
@@ -105,7 +102,7 @@ vectGateway loadGatewaysName(wstring _wstModuleName)
 //Scinotes module
 
 bool ScinotesModule::loadedDep = false;
-int ScinotesModule::LoadDeps(std::wstring _functionName)
+int ScinotesModule::LoadDeps(const std::wstring& _functionName)
 {
     if (loadedDep == false)
     {
@@ -118,7 +115,7 @@ int ScinotesModule::LoadDeps(std::wstring _functionName)
 
 int ScinotesModule::Load()
 {
-    wstring wstModuleName = L"scinotes";
+    std::wstring wstModuleName = L"scinotes";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
@@ -138,12 +135,12 @@ int ScinotesModule::Load()
 //Functions module
 int FunctionsModule::Load()
 {
-    wstring wstPath = L"functions";
+    std::wstring wstPath = L"functions";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"functions_gw";
+    std::wstring wstModuleName = L"functions_gw";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wstring wstModuleName = L"functions";
+    std::wstring wstModuleName = L"functions";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
@@ -159,12 +156,12 @@ int FunctionsModule::Load()
 
 int StatisticsModule::Load()
 {
-    wstring wstPath = L"statistics";
+    std::wstring wstPath = L"statistics";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"statistics_gw";
+    std::wstring wstModuleName = L"statistics_gw";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wstring wstModuleName = L"statistics";
+    std::wstring wstModuleName = L"statistics";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
@@ -180,12 +177,12 @@ int StatisticsModule::Load()
 
 int SignalProcessingModule::Load()
 {
-    wstring wstPath = L"signal_processing";
+    std::wstring wstPath = L"signal_processing";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"signal_processing_gw";
+    std::wstring wstModuleName = L"signal_processing_gw";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wstring wstModuleName = L"signal_processing";
+    std::wstring wstModuleName = L"signal_processing";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
@@ -199,7 +196,7 @@ int SignalProcessingModule::Load()
     return 1;
 }
 
-int HelptoolsModule::LoadDeps(std::wstring _functionName)
+int HelptoolsModule::LoadDeps(const std::wstring& _functionName)
 {
     if (loadedDep == false)
     {
@@ -213,7 +210,7 @@ int HelptoolsModule::LoadDeps(std::wstring _functionName)
 bool HelptoolsModule::loadedDep = false;
 int HelptoolsModule::Load()
 {
-    wstring wstModuleName = L"helptools";
+    std::wstring wstModuleName = L"helptools";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -233,12 +230,12 @@ int HelptoolsModule::Load()
 
 int MatioModule::Load()
 {
-    wstring wstPath = L"matio";
+    std::wstring wstPath = L"matio";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"matio_gw";
+    std::wstring wstModuleName = L"matio_gw";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wstring wstModuleName = L"matio";
+    std::wstring wstModuleName = L"matio";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
@@ -254,7 +251,7 @@ int MatioModule::Load()
 
 int Hdf5Module::Load()
 {
-    wstring wstModuleName = L"hdf5";
+    std::wstring wstModuleName = L"hdf5";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -273,12 +270,12 @@ int Hdf5Module::Load()
 
 int ActionBindingModule::Load()
 {
-    wstring wstPath = L"action_binding";
+    std::wstring wstPath = L"action_binding";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"action_binding_gw";
+    std::wstring wstModuleName = L"action_binding_gw";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
-    wstring wstModuleName = L"action_binding";
+    std::wstring wstModuleName = L"action_binding";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
@@ -294,7 +291,7 @@ int ActionBindingModule::Load()
 
 int SpreadsheetModule::Load()
 {
-    wstring wstModuleName = L"spreadsheet";
+    std::wstring wstModuleName = L"spreadsheet";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -313,12 +310,12 @@ int SpreadsheetModule::Load()
 
 int InterpolationModule::Load()
 {
-    wstring wstPath = L"interpolation";
+    std::wstring wstPath = L"interpolation";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"interpolation";
+    std::wstring wstModuleName = L"interpolation";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wstring wstModuleName = L"interpolation";
+    std::wstring wstModuleName = L"interpolation";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
@@ -334,12 +331,12 @@ int InterpolationModule::Load()
 
 int SoundModule::Load()
 {
-    wstring wstPath = L"sound";
+    std::wstring wstPath = L"sound";
 #ifdef _MSC_VER
-    wstring wstModuleName = L"sound";
+    std::wstring wstModuleName = L"sound";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
-    wstring wstModuleName = L"sound";
+    std::wstring wstModuleName = L"sound";
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_3);
 #endif
     vectGateway vect = loadGatewaysName(wstPath);
@@ -355,7 +352,7 @@ int SoundModule::Load()
 
 int RandlibModule::Load()
 {
-    wstring wstModuleName = L"randlib";
+    std::wstring wstModuleName = L"randlib";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -374,7 +371,7 @@ int RandlibModule::Load()
 
 int UmfpackModule::Load()
 {
-    wstring wstModuleName = L"umfpack";
+    std::wstring wstModuleName = L"umfpack";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -393,7 +390,7 @@ int UmfpackModule::Load()
 
 int OptimizationModule::Load()
 {
-    wstring wstModuleName = L"optimization";
+    std::wstring wstModuleName = L"optimization";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -412,7 +409,7 @@ int OptimizationModule::Load()
 
 int SpecialFunctionsModule::Load()
 {
-    wstring wstModuleName = L"special_functions";
+    std::wstring wstModuleName = L"special_functions";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -431,7 +428,7 @@ int SpecialFunctionsModule::Load()
 
 int GraphicExportModule::Load()
 {
-    wstring wstModuleName = L"graphic_export";
+    std::wstring wstModuleName = L"graphic_export";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
@@ -450,7 +447,7 @@ int GraphicExportModule::Load()
 
 int ArnoldiModule::Load()
 {
-    wstring wstModuleName = L"arnoldi";
+    std::wstring wstModuleName = L"arnoldi";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -469,7 +466,7 @@ int ArnoldiModule::Load()
 
 int CallScilabModule::Load()
 {
-    wstring wstModuleName = L"call_scilab";
+    std::wstring wstModuleName = L"call_scilab";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -488,7 +485,7 @@ int CallScilabModule::Load()
 
 int CompletionModule::Load()
 {
-    wstring wstModuleName = L"completion";
+    std::wstring wstModuleName = L"completion";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
@@ -507,7 +504,7 @@ int CompletionModule::Load()
 
 int XmlModule::Load()
 {
-    wstring wstModuleName = L"xml";
+    std::wstring wstModuleName = L"xml";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -526,7 +523,7 @@ int XmlModule::Load()
 
 int ScicosModule::Load()
 {
-    wstring wstModuleName = L"scicos";
+    std::wstring wstModuleName = L"scicos";
     const wchar_t* wstLibName = wstModuleName.c_str();
     if (getScilabMode() == SCILAB_NWNI)
     {
@@ -549,7 +546,7 @@ int ScicosModule::Load()
 }
 
 bool XcosModule::loadedDep = false;
-int XcosModule::LoadDeps(std::wstring _functionName)
+int XcosModule::LoadDeps(const std::wstring& _functionName)
 {
     if (loadedDep == false && _functionName != L"closeXcos")
     {
@@ -562,7 +559,7 @@ int XcosModule::LoadDeps(std::wstring _functionName)
 
 int XcosModule::Load()
 {
-    wstring wstModuleName = L"xcos";
+    std::wstring wstModuleName = L"xcos";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_2);
 #else
@@ -581,7 +578,7 @@ int XcosModule::Load()
 
 int MPIModule::Load()
 {
-    wstring wstModuleName = L"mpi";
+    std::wstring wstModuleName = L"mpi";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -600,7 +597,7 @@ int MPIModule::Load()
 
 int ExternalObjectsModule::Load()
 {
-    wstring wstModuleName = L"external_objects";
+    std::wstring wstModuleName = L"external_objects";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else
@@ -619,7 +616,7 @@ int ExternalObjectsModule::Load()
 
 int ExternalObjectsJavaModule::Load()
 {
-    wstring wstModuleName = L"external_objects_java";
+    std::wstring wstModuleName = L"external_objects_java";
 #ifdef _MSC_VER
     wchar_t* pwstLibName = buildModuleDynLibraryNameW(wstModuleName.c_str(), DYNLIB_NAME_FORMAT_1);
 #else

@@ -25,8 +25,6 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-using namespace std;
-
 #define SIZE_BETWEEN_TWO_STRING_VALUES  2
 #define SPACE_BETWEEN_TWO_STRING_VALUES L"  "
 
@@ -109,7 +107,7 @@ InternalType* String::clone()
 
 void String::whoAmI()
 {
-    cout << "types::String";
+    std::cout << "types::String";
 }
 
 void String::deleteString(int _iPos)
@@ -139,7 +137,7 @@ void String::deleteImg()
     return;
 }
 
-bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*/)
+bool String::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
 {
     int iPrecision = ConfigVariable::getFormatSize();
     int iLineLen = ConfigVariable::getConsoleWidth();
@@ -176,11 +174,11 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
             ostr << L" ";
             configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-            ostr << left << wcsStr + iStrPos;
+            ostr << std::left << wcsStr + iStrPos;
         }
         else
         {
-            ostr << L" " << wcsStr << endl;
+            ostr << L" " << wcsStr << std::endl;
         }
     }
     else if (getCols() == 1)
@@ -235,29 +233,29 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 }
 
                 configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
-                ostr << left << wcsStr + iStrPos;
+                ostr << std::left << wcsStr + iStrPos;
             }
             else
             {
                 configureStream(&ostr, iMaxLen, iPrecision, ' ');
-                ostr << left << wcsStr << spaces;
+                ostr << std::left << wcsStr << spaces;
             }
 
-            ostr << L"!" << endl;
+            ostr << L"!" << std::endl;
 
             if ((i + 1) < m_iSize)
             {
                 //for all but last one
                 ostr << L"!";
                 configureStream(&ostr, iEmptyLineSize, iPrecision, ' ');
-                ostr << left << L" ";
-                ostr << L"!" << endl;
+                ostr << std::left << L" ";
+                ostr << L"!" << std::endl;
             }
         }
     }
     else if (getRows() == 1)
     {
-        wostringstream ostemp;
+        std::wostringstream ostemp;
         int iLastVal = m_iCols1PrintState;
 
         for (int i = m_iCols1PrintState ; i < getCols() ; i++)
@@ -280,7 +278,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 }
 
                 addColumnString(ostr, iLastVal + 1, i);
-                ostr << L"!" << ostemp.str() << L"!" << endl;
+                ostr << L"!" << ostemp.str() << L"!" << std::endl;
                 ostemp.str(L"");
                 iLastVal = i;
             }
@@ -299,12 +297,12 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 }
 
                 configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                ostemp << left << wcsStr + iStrPos;
+                ostemp << std::left << wcsStr + iStrPos;
             }
             else
             {
                 configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
-                ostemp << left << get(iPos);
+                ostemp << std::left << get(iPos);
             }
         }
 
@@ -313,11 +311,11 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             addColumnString(ostr, iLastVal + 1, getCols());
         }
 
-        ostr << L"!" << ostemp.str() << L"!" << endl;
+        ostr << L"!" << ostemp.str() << L"!" << std::endl;
     }
     else //Matrix
     {
-        wostringstream ostemp;
+        std::wostringstream ostemp;
         int iLen = 0;
         int iLastCol = m_iCols1PrintState;
 
@@ -389,23 +387,23 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             }
 
                             configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                            ostemp << left << wcsStr + iStrPos;
+                            ostemp << std::left << wcsStr + iStrPos;
                         }
                         else
                         {
                             configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                            ostemp << left << get(iPos) << spaces;
+                            ostemp << std::left << get(iPos) << spaces;
                         }
                     }
-                    ostemp << L"!" << endl;
+                    ostemp << L"!" << std::endl;
 
                     if ((iRows2 + 1) != m_iRows)
                     {
                         ostemp << L"!";
                         // -2 because of two "!"
                         configureStream(&ostemp, iEmptyLineSize, iPrecision, ' ');
-                        ostemp << left << L" ";
-                        ostemp << L"!" << endl;
+                        ostemp << std::left << L" ";
+                        ostemp << L"!" << std::endl;
                     }
                 }
 
@@ -477,24 +475,24 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     }
 
                     configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
-                    ostemp << wcsStr + iStrPos << left;
+                    ostemp << wcsStr + iStrPos << std::left;
                     iLen = iStrMaxSize;
                 }
                 else
                 {
                     configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                    ostemp << left << get(iPos) << spaces;
+                    ostemp << std::left << get(iPos) << spaces;
                     iLen += piSize[iCols2] + static_cast<int>(spaces.size());
                 }
             }
-            ostemp << L"!" << endl;
+            ostemp << L"!" << std::endl;
 
             if ((iRows2 + 1) != m_iRows)
             {
                 ostemp << L"!";
                 configureStream(&ostemp, iLen, iPrecision, ' ');
-                ostemp << left << L" ";
-                ostemp << L"!" << endl;
+                ostemp << std::left << L" ";
+                ostemp << L"!" << std::endl;
             }
         }
 

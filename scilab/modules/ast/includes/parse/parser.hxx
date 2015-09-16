@@ -128,7 +128,7 @@ public:
     {
         return const_cast<wchar_t *>(_error_message.c_str());
     }
-    void setErrorMessage(std::wstring& errorMessage)
+    void setErrorMessage(const std::wstring& errorMessage)
     {
         _error_message = errorMessage;
     }

@@ -31,7 +31,7 @@ namespace ast {
             {
                 // x = ?
                 /*getting what to assign*/
-                InternalType *pIT = e.getRightVal();
+                types::InternalType *pIT = e.getRightVal();
                 if (pIT == NULL)
                 {
                     setExpectedSize(1);
@@ -52,9 +52,9 @@ namespace ast {
 
                 if (pIT->isImplicitList())
                 {
-                    if (pIT->getAs<ImplicitList>()->isComputable())
+                    if (pIT->getAs<types::ImplicitList>()->isComputable())
                     {
-                        InternalType *pTemp = pIT->getAs<ImplicitList>()->extractFullMatrix();
+                        types::InternalType *pTemp = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
                         delete pIT;
                         pIT = pTemp;
                     }
@@ -127,10 +127,10 @@ namespace ast {
             if (e.getLeftExp().isCellCallExp())
             {
                 CellCallExp *pCell = static_cast<CellCallExp*>(&e.getLeftExp());
-                InternalType *pOut = NULL;
+                types::InternalType *pOut = NULL;
 
                 /*getting what to assign*/
-                InternalType* pITR = e.getRightVal();
+                types::InternalType* pITR = e.getRightVal();
                 if (pITR == NULL)
                 {
                     e.getRightExp().accept(*this);
@@ -217,10 +217,10 @@ namespace ast {
             {
                 CallExp *pCall = static_cast<CallExp*>(&e.getLeftExp());
                 //x(?) = ?
-                InternalType *pOut = NULL;
+                types::InternalType *pOut = NULL;
 
                 /*getting what to assign*/
-                InternalType* pITR = e.getRightVal();
+                types::InternalType* pITR = e.getRightVal();
                 if (pITR == NULL)
                 {
                     e.getRightExp().accept(*this);
@@ -242,7 +242,7 @@ namespace ast {
                 if (pCall->getName().isSimpleVar())
                 {
                     ast::SimpleVar* var = pCall->getName().getAs<ast::SimpleVar>();
-                    InternalType* pIT = ctx->getCurrentLevel(var->getStack());
+                    types::InternalType* pIT = ctx->getCurrentLevel(var->getStack());
                     if (pIT && pIT->isArrayOf())
                     {
                         if (ctx->isprotected(var->getStack()))
@@ -256,7 +256,7 @@ namespace ast {
                         // called in insertionCall when pITR is an ImplicitList
                         pITR->IncreaseRef();
 
-                        typed_list* currentArgs = GetArgumentList(pCall->getArgs());
+                        types::typed_list* currentArgs = GetArgumentList(pCall->getArgs());
 
                         try
                         {
@@ -427,7 +427,7 @@ namespace ast {
             if (e.getLeftExp().isFieldExp())
             {
                 FieldExp *pField = static_cast<FieldExp*>(&e.getLeftExp());
-                InternalType *pIT = e.getRightVal();
+                types::InternalType *pIT = e.getRightVal();
                 if (pIT == NULL)
                 {
                     //a.b = x
@@ -441,9 +441,9 @@ namespace ast {
 
                 if (pIT->isImplicitList())
                 {
-                    if (pIT->getAs<ImplicitList>()->isComputable())
+                    if (pIT->getAs<types::ImplicitList>()->isComputable())
                     {
-                        InternalType *pTemp = pIT->getAs<ImplicitList>()->extractFullMatrix();
+                        types::InternalType *pTemp = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
                         delete pIT;
                         setResult(NULL);
                         pIT = pTemp;
@@ -492,7 +492,7 @@ namespace ast {
 
                 if (e.isVerbose() && ConfigVariable::isPromptShow())
                 {
-                    const wstring *pstName = getStructNameFromExp(pField);
+                    const std::wstring *pstName = getStructNameFromExp(pField);
 
                     types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
                     std::wostringstream ostr;

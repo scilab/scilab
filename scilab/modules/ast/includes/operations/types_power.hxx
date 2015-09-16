@@ -19,17 +19,14 @@
 #include "polynom.hxx"
 #include "sparse.hxx"
 
-// FIXME : remove using namespace.
-using namespace types;
-
 //power operations
-int PowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
-int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut);
+int PowerDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
+int PowerPolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::InternalType** _pOut);
 
 //dot power operations
-int DotPowerDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoubleOut);
-int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut);
-int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut);
+int DotPowerDoubleByDouble(types::Double* _pDouble1, types::Double* _pDouble2, types::Double** _pDoubleOut);
+int DotPowerPolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::InternalType** _pOut);
+int DotPowerSpaseByDouble(types::Sparse* _pSp, types::Double* _pDouble, types::InternalType** _pOut);
 
 extern "C"
 {

@@ -50,8 +50,8 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
     wchar_t* pwstModuleName = pStr->get(0);
 
     types::Bool* pOut = new types::Bool(0);
-    list<wstring> sModuleList = ConfigVariable::getModuleList();
-    list<wstring>::iterator it;
+    std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
+    std::list<std::wstring>::iterator it;
     for (it = sModuleList.begin() ; it != sModuleList.end() ; it++)
     {
         if (*it == pwstModuleName)
@@ -63,37 +63,6 @@ types::Function::ReturnValue sci_with_module(types::typed_list &in, int _iRetCou
 
     out.push_back(pOut);
     return types::Function::OK;
-    //static int l1,n1,m1;
-    //int *Status=NULL;
-
-    //CheckRhs(1,1);
-    //CheckLhs(1,1);
-
-    //if (GetType(1) == sci_strings)
-    //{
-    //	char *VarName=NULL;
-
-    //	GetRhsVar(1,STRING_DATATYPE,&m1,&n1,&l1);
-    //	VarName=cstk(l1);
-
-    //	Status=(int*)MALLOC(sizeof(int));
-    //	*Status=with_module(VarName);
-
-    //	m1=1;n1=1;
-    //	CreateVarFromPtr(Rhs+1,MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &Status);
-    //	LhsVar(1)=Rhs+1;
-
-    //	C2F(putlhsvar)();
-
-    //	if (Status) {FREE(Status);Status=NULL;}
-    //}
-    //else
-    //{
-    //	Scierror(999,_("%s: Wrong type for input argument #%d: String expected.\n"), fname,1);
-    //	return 0;
-    //}
-
-    //return 0;
 }
 /*--------------------------------------------------------------------------*/
 

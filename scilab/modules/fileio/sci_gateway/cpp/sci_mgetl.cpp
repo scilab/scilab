@@ -29,10 +29,8 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_mgetl(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFileID                 = 0;
     int iErr                    = 0;
@@ -44,7 +42,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
     if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "mgetl" , 1, 2);
-        return Function::OK;
+        return types::Function::OK;
     }
 
     if (in.size() == 2)
@@ -53,27 +51,27 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         if (in[1]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        if (in[1]->getAs<Double>()->isScalar() == false)
+        if (in[1]->getAs<types::Double>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        if (in[1]->getAs<Double>()->get(0) != (int)in[1]->getAs<Double>()->get(0))
+        if (in[1]->getAs<types::Double>()->get(0) != (int)in[1]->getAs<types::Double>()->get(0))
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "mgetl", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        iLinesExcepted = static_cast<int>(in[1]->getAs<Double>()->get(0));
+        iLinesExcepted = static_cast<int>(in[1]->getAs<types::Double>()->get(0));
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 1)
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 1)
     {
-        iFileID = static_cast<int>(in[0]->getAs<Double>()->get(0));
+        iFileID = static_cast<int>(in[0]->getAs<types::Double>()->get(0));
     }
     else if (in[0]->isString() && in[0]->getAs<types::String>()->getSize() == 1)
     {
@@ -104,7 +102,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
             }
 
             FREE(pst);
-            return Function::Error;
+            return types::Function::Error;
         }
         FREE(expandedFileName);
         bCloseFile = true;
@@ -113,7 +111,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
     {
         //Error
         Scierror(999, _("%s: Wrong type for input argument #%d: a String or Integer expected.\n"), "mgetl", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     switch (iFileID)
@@ -145,7 +143,7 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
 
     if (wcReadedStrings && iLinesRead > 0)
     {
-        String *pS = new String(iLinesRead, 1);
+        types::String *pS = new types::String(iLinesRead, 1);
         pS->set(wcReadedStrings);
         out.push_back(pS);
         freeArrayOfWideString(wcReadedStrings, iLinesRead);
@@ -164,6 +162,6 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         mclose(iFileID);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

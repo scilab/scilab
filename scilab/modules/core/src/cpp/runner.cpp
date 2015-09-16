@@ -22,8 +22,6 @@ extern "C"
 #include "scicurdir.h"
 }
 
-using namespace ast;
-
 std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
 std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
 

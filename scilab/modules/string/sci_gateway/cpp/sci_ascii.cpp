@@ -54,74 +54,71 @@ printf("\nDUREE 1 = %d seconds\n\n",duree);
 /* scilab 5.4.0 : 32 s */
 /* scilab 6 dev : 15 s */
 
-using namespace types;
-
 /*----------------------------------------------------------------------------*/
-Double* StringToDouble(String* _pst);
+types::Double* StringToDouble(types::String* _pst);
 template <typename Y, class T>
-String* TypeToString(T* _pI);
-
+types::String* TypeToString(T* _pI);
 /*----------------------------------------------------------------------------*/
-Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_ascii(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "ascii", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    InternalType* pOut;
+    types::InternalType* pOut;
     switch (in[0]->getType())
     {
-        case InternalType::ScilabDouble :
-            pOut = TypeToString<double>(in[0]->getAs<Double>());
+        case types::InternalType::ScilabDouble :
+            pOut = TypeToString<double>(in[0]->getAs<types::Double>());
             break;
-        case InternalType::ScilabString :
+        case types::InternalType::ScilabString :
             pOut = StringToDouble(in[0]->getAs<types::String>());
             break;
-        case InternalType::ScilabInt8 :
-            pOut = TypeToString<char>(in[0]->getAs<Int8>());
+        case types::InternalType::ScilabInt8 :
+            pOut = TypeToString<char>(in[0]->getAs<types::Int8>());
             break;
-        case InternalType::ScilabUInt8 :
-            pOut = TypeToString<unsigned char>(in[0]->getAs<UInt8>());
+        case types::InternalType::ScilabUInt8 :
+            pOut = TypeToString<unsigned char>(in[0]->getAs<types::UInt8>());
             break;
-        case InternalType::ScilabInt16 :
-            pOut = TypeToString<short>(in[0]->getAs<Int16>());
+        case types::InternalType::ScilabInt16 :
+            pOut = TypeToString<short>(in[0]->getAs<types::Int16>());
             break;
-        case InternalType::ScilabUInt16 :
-            pOut = TypeToString<unsigned short>(in[0]->getAs<UInt16>());
+        case types::InternalType::ScilabUInt16 :
+            pOut = TypeToString<unsigned short>(in[0]->getAs<types::UInt16>());
             break;
-        case InternalType::ScilabInt32 :
-            pOut = TypeToString<int>(in[0]->getAs<Int32>());
+        case types::InternalType::ScilabInt32 :
+            pOut = TypeToString<int>(in[0]->getAs<types::Int32>());
             break;
-        case InternalType::ScilabUInt32 :
-            pOut = TypeToString<unsigned int>(in[0]->getAs<UInt32>());
+        case types::InternalType::ScilabUInt32 :
+            pOut = TypeToString<unsigned int>(in[0]->getAs<types::UInt32>());
             break;
-        case InternalType::ScilabInt64 :
-            pOut = TypeToString<long long>(in[0]->getAs<Int64>());
+        case types::InternalType::ScilabInt64 :
+            pOut = TypeToString<long long>(in[0]->getAs<types::Int64>());
             break;
-        case InternalType::ScilabUInt64 :
-            pOut = TypeToString<unsigned long long>(in[0]->getAs<UInt64>());
+        case types::InternalType::ScilabUInt64 :
+            pOut = TypeToString<unsigned long long>(in[0]->getAs<types::UInt64>());
             break;
         default :
             Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings or Integer matrix expected.\n"), "ascii", 1);
-            return Function::Error;
+            return types::Function::Error;
     }
 
     if (pOut == NULL)
     {
         Scierror(999, _("%s : wrong UTF-8 sequence.\n"), "ascii");
-        return Function::Error;
+        return types::Function::Error;
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
 template <typename Y, class T>
-String* TypeToString(T* _pI)
+types::String* TypeToString(T* _pI)
 {
-    String* pOut = NULL;
+    types::String* pOut = NULL;
     wchar_t* pst = NULL;
     int len = _pI->getSize();
     char* pcText = new char[len + 1];
@@ -143,16 +140,16 @@ String* TypeToString(T* _pI)
     pcText[len] = '\0';
 
     pst = to_wide_string(pcText);
-    pOut = new String(pst);
+    pOut = new types::String(pst);
 
     delete[] pcText;
     FREE(pst);
     return pOut;
 }
 /*--------------------------------------------------------------------------*/
-Double* StringToDouble(String* _pst)
+types::Double* StringToDouble(types::String* _pst)
 {
-    Double* pOut = NULL;
+    types::Double* pOut = NULL;
     /*compute total length*/
     int iTotalLen = 0;
     int iSize = _pst->getSize();
@@ -178,10 +175,10 @@ Double* StringToDouble(String* _pst)
 
         delete[] pst;
         delete[] pstLen;
-        return Double::Empty();
+        return types::Double::Empty();
     }
 
-    pOut = new Double(1, iTotalLen);
+    pOut = new types::Double(1, iTotalLen);
     double* pdbl = pOut->get();
     int index = 0;
 

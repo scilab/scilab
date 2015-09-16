@@ -23,7 +23,7 @@ namespace ast
 class StringExp : public ConstExp
 {
 public:
-    StringExp (const Location& location, const std::wstring & value)
+    StringExp (const Location& location, const std::wstring& value)
         : ConstExp (location),
           _value (value)
     {
@@ -74,7 +74,7 @@ public:
 
 public:
     /** \brief Return the name of the type name (read only). */
-    const std::wstring & getValue() const
+    const std::wstring& getValue() const
     {
         return _value;
     }

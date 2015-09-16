@@ -16,8 +16,6 @@
 
 #include "constexp.hxx"
 
-using namespace types;
-
 namespace ast
 {
 /** \brief Abstract an Boolean Expression node.

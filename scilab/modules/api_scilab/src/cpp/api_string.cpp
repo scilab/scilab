@@ -37,7 +37,6 @@ extern "C"
 #include "os_string.h"
 }
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
 
 /*******************************/
@@ -82,7 +81,7 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
         return sciErr;
     }
 
-    String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
+    types::String *pS = ((types::InternalType*)_piAddress)->getAs<types::String>();
 
     //non cummulative length
     int iSize = pS->getSize();
@@ -119,13 +118,13 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
     SciErr sciErr = sciErrInit();
 
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::InternalType** out = pStr->m_pOut;
 
     //return empty matrix
     if (_iRows == 0 && _iCols == 0)
     {
-        Double *pDbl = new Double(_iRows, _iCols);
+        types::Double *pDbl = new types::Double(_iRows, _iCols);
         if (pDbl == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -136,7 +135,7 @@ SciErr createMatrixOfString(void* _pvCtx, int _iVar, int _iRows, int _iCols, con
         return sciErr;
     }
 
-    String* pS = new String(_iRows, _iCols);
+    types::String* pS = new types::String(_iRows, _iCols);
     if (pS == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "createMatrixOfString");
@@ -180,7 +179,7 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
         return sciErr;
     }
 
-    String* pS = new String(_iRows, _iCols);
+    types::String* pS = new types::String(_iRows, _iCols);
     if (pS == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedMatrixOfString", _pstName);
@@ -270,7 +269,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
         return sciErr;
     }
 
-    String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
+    types::String *pS = ((types::InternalType*)_piAddress)->getAs<types::String>();
 
     int iSize = pS->getSize();
     if (_pwstStrings == NULL || *_pwstStrings == NULL)
@@ -355,7 +354,7 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iR
         return sciErr;
     }
 
-    String* pS = new String(_iRows, _iCols);
+    types::String* pS = new types::String(_iRows, _iCols);
     if (pS == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedMatrixOfWideString", _pstName);
@@ -773,10 +772,10 @@ int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrin
 {
     SciErr sciErr = sciErrInit();
 
-    GatewayStruct* pGstr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pGstr->m_pIn;
-    InternalType** out = pGstr->m_pOut;
-    String *pStr = NULL;
+    types::GatewayStruct* pGstr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pGstr->m_pIn;
+    types::InternalType** out = pGstr->m_pOut;
+    types::String *pStr = NULL;
 
 
     char* pstStrings = new char[_iLen];
@@ -789,7 +788,7 @@ int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrin
         return sciErr.iErr;
     }
 
-    pStr = new String(pstStrings);
+    pStr = new types::String(pstStrings);
 
     if (pStr == NULL)
     {

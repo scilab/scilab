@@ -24,38 +24,36 @@ extern "C"
 #include "expandPathVariable.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iXMLFileLen = 0;
     if (in.size() != 1)
     {
         Scierror(78, _("%s: Wrong number of input argument(s): %d expected.\n"), "lib", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    InternalType* pIT = in[0];
+    types::InternalType* pIT = in[0];
 
     if (pIT->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "lib", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String *pS = pIT->getAs<types::String>();
+    types::String *pS = pIT->getAs<types::String>();
 
     if (pS->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "lib", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pstPath = pS->get(0);
     wchar_t* pwstPath = expandPathVariableW(pstPath);
     int err = 0;
-    Library* lib = loadlib(pwstPath, &err, false, false);
+    types::Library* lib = loadlib(pwstPath, &err, false, false);
     FREE(pwstPath);
 
     switch (err)
@@ -68,12 +66,12 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
             char* pst = wide_string_to_UTF8(pstPath);
             Scierror(999, _("%s: %s is not a valid lib path.\n"), "lib", pst);
             FREE(pst);
-            return Function::Error;
+            return types::Function::Error;
         }
         case 2:
         {
             Scierror(999, "%s: %s", "lib", _("Redefining permanent variable.\n"));
-            return Function::Error;
+            return types::Function::Error;
         }
         default:
         {
@@ -82,7 +80,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
     }
 
     out.push_back(lib);
-    return Function::OK;
+    return types::Function::OK;
 }
 
 

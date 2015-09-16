@@ -57,12 +57,12 @@ public:
     bool isAlreadyIn(std::list<std::wstring>& lst);
     bool isAlreadyUsed();
 
-    void addIn(std::wstring st)
+    void addIn(const std::wstring& st)
     {
         m_in.push_back(st);
     }
 
-    void addOut(std::wstring st)
+    void addOut(const std::wstring& st)
     {
         m_out.push_back(st);
     }

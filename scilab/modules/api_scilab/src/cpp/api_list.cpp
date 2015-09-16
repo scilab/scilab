@@ -47,8 +47,6 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
 //internal functions
 static SciErr checkListItemPosition(void* _pvCtx, int* _piParent, int _iItemPos, int _apiError, const char* _functionName);
 static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNbItem, int** _piAddress);
@@ -101,7 +99,7 @@ SciErr getListItemNumber(void* _pvCtx, int* _piAddress, int* _piNbItem)
         return sciErr;
     }
 
-    List* pL = (List*)_piAddress;
+    types::List* pL = (types::List*)_piAddress;
     switch (iType)
     {
         case sci_list :
@@ -130,9 +128,9 @@ SciErr getListItemAddress(void* _pvCtx, int* _piAddress, int _iItemNum, int** _p
         return sciErr;
     }
 
-    List* pL = (List*)_piAddress;
+    types::List* pL = (types::List*)_piAddress;
     //get offset of item array
-    InternalType* pIT = pL->get(_iItemNum - 1);
+    types::InternalType* pIT = pL->get(_iItemNum - 1);
     if (pIT->isListUndefined())
     {
         *_piItemAddress = NULL;
@@ -222,20 +220,20 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
         return sciErr;
     }
 
-    List* pL = NULL;
+    types::List* pL = NULL;
     try
     {
         if (_iListType == sci_list)
         {
-            pL = new List();
+            pL = new types::List();
         }
         else if (_iListType == sci_mlist)
         {
-            pL = new MList();
+            pL = new types::MList();
         }
         else if (_iListType == sci_tlist)
         {
-            pL = new TList();
+            pL = new types::TList();
         }
         else
         {
@@ -258,7 +256,7 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
     *_piAddress = (int*)pL;
     // create a list with the user number of items
     // it helps to check a wrong item, for example in createCommonListInList
-    pL->set(_iNbItem - 1, new ListUndefined());
+    pL->set(_iNbItem - 1, new types::ListUndefined());
 
     wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context* ctx = symbol::Context::getInstance();
@@ -285,23 +283,23 @@ static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNb
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::InternalType** out = pStr->m_pOut;
 
-    List* pL = NULL;
+    types::List* pL = NULL;
     try
     {
         if (_iListType == sci_list)
         {
-            pL = new List();
+            pL = new types::List();
         }
         else if (_iListType == sci_mlist)
         {
-            pL = new MList();
+            pL = new types::MList();
         }
         else if (_iListType == sci_tlist)
         {
-            pL = new TList();
+            pL = new types::TList();
         }
         else
         {
@@ -323,7 +321,7 @@ static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNb
 
     // create a list with the user number of items
     // it helps to check a wrong item, for example in createCommonListInList
-    pL->set(_iNbItem - 1, new ListUndefined());
+    pL->set(_iNbItem - 1, new types::ListUndefined());
 
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
     out[rhs - 1] = pL;
@@ -498,20 +496,20 @@ static SciErr createCommonListInList(void* _pvCtx, const char* _pstName, int* _p
         return sciErr;
     }
 
-    List* pChild = NULL;
+    types::List* pChild = NULL;
     try
     {
         if (_iListType == sci_list)
         {
-            pChild = new List();
+            pChild = new types::List();
         }
         else if (_iListType == sci_mlist)
         {
-            pChild = new MList();
+            pChild = new types::MList();
         }
         else if (_iListType == sci_tlist)
         {
-            pChild = new TList();
+            pChild = new types::TList();
         }
         else
         {
@@ -531,9 +529,9 @@ static SciErr createCommonListInList(void* _pvCtx, const char* _pstName, int* _p
         return sciErr;
     }
     // create a list in the list with a user number of items
-    pChild->set(_iNbItem - 1, new ListUndefined());
+    pChild->set(_iNbItem - 1, new types::ListUndefined());
 
-    List* pParent = (List*)_piParent;
+    types::List* pParent = (types::List*)_piParent;
     pParent->set(_iItemPos - 1, pChild);
     *_piAddress = (int*)pChild;
     return sciErr;
@@ -552,14 +550,14 @@ SciErr createVoidInNamedList(void* _pvCtx, const char* _pstName, int* _piParent,
         return sciErr;
     }
 
-    List* pL = (List*)_piParent;
+    types::List* pL = (types::List*)_piParent;
     if (pL == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "createVoidInNamedList");
         return sciErr;
     }
 
-    pL->set(_iItemPos - 1, new Void());
+    pL->set(_iItemPos - 1, new types::Void());
     return sciErr;
 }
 
@@ -573,14 +571,14 @@ SciErr createUndefinedInNamedList(void* _pvCtx, const char* _pstName, int* _piPa
         return sciErr;
     }
 
-    List* pL = (List*)_piParent;
+    types::List* pL = (types::List*)_piParent;
     if (pL == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "createUndefinedInNamedList");
         return sciErr;
     }
 
-    pL->set(_iItemPos - 1, new ListUndefined());
+    pL->set(_iItemPos - 1, new types::ListUndefined());
     return sciErr;
 }
 
@@ -639,10 +637,10 @@ static SciErr allocCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piP
         return sciErr;
     }
 
-    List* pParent = (List*)_piParent;
+    types::List* pParent = (types::List*)_piParent;
     if (_iRows == 0 || _iCols == 0)
     {
-        Double *pDbl = Double::Empty();
+        types::Double *pDbl = types::Double::Empty();
         if (pDbl == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -652,10 +650,10 @@ static SciErr allocCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piP
         return sciErr;
     }
 
-    Double* pDbl = NULL;
+    types::Double* pDbl = NULL;
     try
     {
-        pDbl = new Double(_iRows, _iCols, _iComplex == 1);
+        pDbl = new types::Double(_iRows, _iCols, _iComplex == 1);
     }
     catch (const ast::InternalError& ie)
     {
@@ -924,10 +922,10 @@ SciErr createCommonMatrixOfStringInList(void* _pvCtx, const char* _pstName, int*
         return sciErr;
     }
 
-    List* pParent = (List*)_piParent;
+    types::List* pParent = (types::List*)_piParent;
     if (_iRows == 0 || _iCols == 0)
     {
-        Double *pDbl = Double::Empty();
+        types::Double *pDbl = types::Double::Empty();
         if (pDbl == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -937,10 +935,10 @@ SciErr createCommonMatrixOfStringInList(void* _pvCtx, const char* _pstName, int*
         return sciErr;
     }
 
-    String* pS = NULL;
+    types::String* pS = NULL;
     try
     {
-        pS = new String(_iRows, _iCols);
+        pS = new types::String(_iRows, _iCols);
     }
     catch (const ast::InternalError& ie)
     {
@@ -1060,10 +1058,10 @@ SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _
         return sciErr;
     }
 
-    List* pParent = (List*)_piParent;
+    types::List* pParent = (types::List*)_piParent;
     if (_iRows == 0 || _iCols == 0)
     {
-        Double *pDbl = Double::Empty();
+        types::Double *pDbl = types::Double::Empty();
         if (pDbl == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -1073,10 +1071,10 @@ SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _
         return sciErr;
     }
 
-    Bool* pBool = NULL;
+    types::Bool* pBool = NULL;
     try
     {
-        pBool = new Bool(_iRows, _iCols);
+        pBool = new types::Bool(_iRows, _iCols);
     }
     catch (const ast::InternalError& ie)
     {
@@ -1247,11 +1245,11 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _
         return sciErr;
     }
 
-    List* pParent = (List*)_piParent;
+    types::List* pParent = (types::List*)_piParent;
     //return empty matrix
     if (_iRows == 0 || _iCols == 0)
     {
-        Double *pDbl = Double::Empty();
+        types::Double *pDbl = types::Double::Empty();
         if (pDbl == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -1263,7 +1261,7 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
     std::wstring wstTemp(pstTemp);
-    Polynom* pP = new Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
+    types::Polynom* pP = new types::Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if (pP == NULL)
     {
@@ -1278,7 +1276,7 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _
 
     for (int i = 0; i < pP->getSize(); i++)
     {
-        Double* pD = new Double(_piNbCoef[i], 1, _iComplex == 1);
+        types::Double* pD = new types::Double(_piNbCoef[i], 1, _iComplex == 1);
         pD->set(_pdblReal[i]);
         if (_iComplex)
         {
@@ -1355,10 +1353,10 @@ static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, const ch
         return sciErr;
     }
 
-    List* pParent = (List*)_piParent;
+    types::List* pParent = (types::List*)_piParent;
     if (_iRows == 0 || _iCols == 0)
     {
-        Double *pDbl = Double::Empty();
+        types::Double *pDbl = types::Double::Empty();
         if (pDbl == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -1368,63 +1366,63 @@ static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, const ch
         return sciErr;
     }
 
-    InternalType* pIT = NULL;
+    types::InternalType* pIT = NULL;
     try
     {
         switch (_iPrecision)
         {
             case SCI_INT8 :
             {
-                Int8* pi = new Int8(_iRows, _iCols);
+                types::Int8* pi = new types::Int8(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
             break;
             case SCI_UINT8 :
             {
-                UInt8* pi = new UInt8(_iRows, _iCols);
+                types::UInt8* pi = new types::UInt8(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
             break;
             case SCI_INT16 :
             {
-                Int16* pi = new Int16(_iRows, _iCols);
+                types::Int16* pi = new types::Int16(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
             break;
             case SCI_UINT16 :
             {
-                UInt16* pi = new UInt16(_iRows, _iCols);
+                types::UInt16* pi = new types::UInt16(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
             break;
             case SCI_INT32 :
             {
-                Int32* pi = new Int32(_iRows, _iCols);
+                types::Int32* pi = new types::Int32(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
             break;
             case SCI_UINT32 :
             {
-                UInt32* pi = new UInt32(_iRows, _iCols);
+                types::UInt32* pi = new types::UInt32(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
             break;
             case SCI_INT64 :
             {
-                Int64* pi = new Int64(_iRows, _iCols);
+                types::Int64* pi = new types::Int64(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
             break;
             case SCI_UINT64 :
             {
-                UInt64* pi = new UInt64(_iRows, _iCols);
+                types::UInt64* pi = new types::UInt64(_iRows, _iCols);
                 *_pvData = pi->get();
                 pIT = pi;
             }
@@ -1781,7 +1779,7 @@ static SciErr fillCommonSparseMatrixInList(void* _pvCtx, int _iVar, int* _piPare
 {
     SciErr sciErr = sciErrInit();
 
-    Sparse* pSparse = (Sparse*)_piParent;
+    types::Sparse* pSparse = (types::Sparse*)_piParent;
 
     if (_iComplex)
     {
@@ -1832,10 +1830,10 @@ static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, const char
         return sciErr;
     }
 
-    Sparse* pSparse = NULL;
+    types::Sparse* pSparse = NULL;
     try
     {
-        pSparse = new Sparse(_iRows, _iCols, _iComplex == 1);
+        pSparse = new types::Sparse(_iRows, _iCols, _iComplex == 1);
     }
     catch (const ast::InternalError& ie)
     {
@@ -1856,7 +1854,7 @@ static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, const char
         return sciErr;
     }
 
-    List* pParent = (List*)_piParent;
+    types::List* pParent = (types::List*)_piParent;
     pParent->set(_iItemPos - 1, pSparse);
 
     return sciErr;
@@ -1996,7 +1994,7 @@ SciErr readComplexSparseMatrixInNamedList(void* _pvCtx, const char* _pstName, in
 static SciErr fillBooleanSparseMatrixInList(void* _pvCtx, int _iVar, const char* _pstName, int* _piParent, int _iItemPos, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
     SciErr sciErr = sciErrInit();
-    SparseBool* pSparse = (SparseBool*)_piParent;
+    types::SparseBool* pSparse = (types::SparseBool*)_piParent;
 
     for (int i = 0; i < _iRows; i++)
     {
@@ -2032,10 +2030,10 @@ SciErr createCommonBooleanSparseMatrixInList(void* _pvCtx, const char* _pstName,
         return sciErr;
     }
 
-    SparseBool* pSparse = NULL;
+    types::SparseBool* pSparse = NULL;
     try
     {
-        pSparse = new SparseBool(_iRows, _iCols);
+        pSparse = new types::SparseBool(_iRows, _iCols);
     }
     catch (const ast::InternalError& ie)
     {
@@ -2056,7 +2054,7 @@ SciErr createCommonBooleanSparseMatrixInList(void* _pvCtx, const char* _pstName,
         return sciErr;
     }
 
-    List* piParent = (List*)_piParent;
+    types::List* piParent = (types::List*)_piParent;
     piParent->set(_iItemPos - 1, pSparse);
 
     return sciErr;
@@ -2202,10 +2200,10 @@ SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piPar
         return sciErr;
     }
 
-    Pointer* pP = NULL;
+    types::Pointer* pP = NULL;
     try
     {
-        pP = new Pointer(_pvPtr);
+        pP = new types::Pointer(_pvPtr);
         if (pP == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "createPointerInList");
@@ -2218,7 +2216,7 @@ SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piPar
         return sciErr;
     }
 
-    List* pParent   = (List*)_piParent;
+    types::List* pParent   = (types::List*)_piParent;
     pParent->set(_iItemPos - 1, pP);
 
     return sciErr;

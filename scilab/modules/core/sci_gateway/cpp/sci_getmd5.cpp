@@ -26,9 +26,7 @@ extern "C"
 #include "expandPathVariable.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bStringMode = false;
     char* pstPath = NULL;
@@ -36,25 +34,25 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getmd5", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "getmd5", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 2 && in[1]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type of input argument #%d: String expected.\n"), "getmd5", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 2)
@@ -66,12 +64,12 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: \"%s\" expected.\n"), "getmd5", 2, "string");
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
-    String *pIn = in[0]->getAs<types::String>();
-    String *pOutput = new String(pIn->getRows(), pIn->getCols());
+    types::String *pIn = in[0]->getAs<types::String>();
+    types::String *pOutput = new types::String(pIn->getRows(), pIn->getCols());
 
     for (int i = 0 ; i < pIn->getSize() ; ++i)
     {
@@ -99,7 +97,7 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
                 FREE(pstPath);
                 delete pOutput;
                 FREE(real_path);
-                return Function::Error;
+                return types::Function::Error;
             }
 
             wcfopen(fp, pstPath, "rb");
@@ -117,7 +115,7 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
                 FREE(pstPath);
                 delete pOutput;
                 FREE(real_path);
-                return Function::Error;
+                return types::Function::Error;
             }
 
             FREE(pstPath);
@@ -129,6 +127,6 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
     }
 
     out.push_back(pOutput);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

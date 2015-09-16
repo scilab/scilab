@@ -67,6 +67,6 @@ types::Function::ReturnValue sci_hdf5_file_version(types::typed_list &in, int _i
         version = 1;
     }
 
-    out.push_back(new Double(static_cast<double>(version)));
+    out.push_back(new types::Double(static_cast<double>(version)));
     return types::Function::OK;
 }

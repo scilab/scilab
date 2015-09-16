@@ -24,8 +24,6 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 
-using namespace types;
-
 types::Function::ReturnValue sci_getos(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char *OperatingSystem = getOSFullName();
@@ -33,18 +31,18 @@ types::Function::ReturnValue sci_getos(types::typed_list &in, int _iRetCount, ty
     if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "getos", 0);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 2 && _iRetCount != 1 && _iRetCount != -1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getos", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (OperatingSystem)
     {
-        String* pS1 = new String(OperatingSystem);
+        types::String* pS1 = new types::String(OperatingSystem);
         out.push_back(pS1);
         if (OperatingSystem)
         {
@@ -58,7 +56,7 @@ types::Function::ReturnValue sci_getos(types::typed_list &in, int _iRetCount, ty
             char *Release = getOSRelease();
             if (Release)
             {
-                String* pS2 = new String(Release);
+                types::String* pS2 = new types::String(Release);
                 out.push_back(pS2);
                 if (Release)
                 {
@@ -69,15 +67,15 @@ types::Function::ReturnValue sci_getos(types::typed_list &in, int _iRetCount, ty
             else
             {
                 Scierror(999, _("%s: No more memory.\n"), "getos");
-                return Function::Error;
+                return types::Function::Error;
             }
         }
     }
     else
     {
         Scierror(999, _("%s: No more memory.\n"), "getos");
-        return Function::Error;
+        return types::Function::Error;
     }
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

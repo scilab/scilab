@@ -38,9 +38,9 @@ int schur_dgees(double* _real, double* _img)
 
     if (pCall)
     {
-        typed_list in;
-        typed_list out;
-        optional_list opt;
+        types::typed_list in;
+        types::typed_list out;
+        types::optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 
@@ -102,9 +102,9 @@ int schur_dgges(double* _real, double* _img, double* _beta)
 
     if (pCall)
     {
-        typed_list in;
-        typed_list out;
-        optional_list opt;
+        types::typed_list in;
+        types::typed_list out;
+        types::optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 
@@ -171,9 +171,9 @@ int schur_zgees(doublecomplex* _complex)
 
     if (pCall)
     {
-        typed_list in;
-        typed_list out;
-        optional_list opt;
+        types::typed_list in;
+        types::typed_list out;
+        types::optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 
@@ -241,9 +241,9 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
 
     if (pCall)
     {
-        typed_list in;
-        typed_list out;
-        optional_list opt;
+        types::typed_list in;
+        types::typed_list out;
+        types::optional_list opt;
         int iRetCount = 1;
         ast::ExecVisitor execFunc;
 

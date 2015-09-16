@@ -33,8 +33,6 @@ extern "C"
     extern int C2F(icopy)(int *, int *, int *, int *, int *);
 }
 
-using namespace types;
-
 /*******************************/
 /*   double matrix functions   */
 /*******************************/
@@ -68,7 +66,7 @@ SciErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, in
         return sciErr;
     }
 
-    Double* pDbl = (Double*)_piAddress;
+    types::Double* pDbl = (types::Double*)_piAddress;
     pDbl->convertToZComplex();
     *_pdblZ	= (doublecomplex*)(pDbl->get());
     return sciErr;
@@ -90,7 +88,7 @@ SciErr getMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _piRows, i
     //Warning we overwrite double by int !!!!
     C2F(entier)(&iSize, pdblReal, *_piReal);
 
-    Double* pD = (Double*)_piAddress;
+    types::Double* pD = (types::Double*)_piAddress;
     pD->setViewAsInteger();
 
     return sciErr;
@@ -107,7 +105,7 @@ SciErr getComplexMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _pi
         return sciErr;
     }
 
-    Double* pD = (Double*)_piAddress;
+    types::Double* pD = (types::Double*)_piAddress;
     //convert values and view of data to int and int*
     pD->convertToInteger();
 
@@ -143,12 +141,12 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, char _cType, int _
 
     if (_pdblReal != NULL)
     {
-        *_pdblReal = ((InternalType*)_piAddress)->getAs<Double>()->getReal();
+        *_pdblReal = ((types::InternalType*)_piAddress)->getAs<types::Double>()->getReal();
     }
 
     if (_iComplex && _pdblImg != NULL)
     {
-        *_pdblImg = ((InternalType*)_piAddress)->getAs<Double>()->getImg();
+        *_pdblImg = ((types::InternalType*)_piAddress)->getAs<types::Double>()->getImg();
     }
 
     return sciErr;
@@ -229,19 +227,19 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::InternalType** out = pStr->m_pOut;
 
-    Double* pDbl = NULL;
+    types::Double* pDbl = NULL;
     try
     {
         if (_cType == 'z')
         {
-            pDbl = new Double(_iRows, _iCols, _iComplex == 1, true);
+            pDbl = new types::Double(_iRows, _iCols, _iComplex == 1, true);
         }
         else
         {
-            pDbl = new Double(_iRows, _iCols, _iComplex == 1);
+            pDbl = new types::Double(_iRows, _iCols, _iComplex == 1);
             if (_cType == 'i')
             {
                 pDbl->setViewAsInteger();
@@ -415,7 +413,7 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
         return sciErr;
     }
 
-    Double* pDbl = new Double(_iRows, _iCols, true);
+    types::Double* pDbl = new types::Double(_iRows, _iCols, true);
 
     double* pdblReal = pDbl->get();
     double* pdblImg = pDbl->getImg();
@@ -452,7 +450,7 @@ SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _
     int iOne					= 1;
     int iSize					= _iRows * _iCols;
 
-    Double* pDbl = new Double(_iRows, _iCols, _iComplex == 1);
+    types::Double* pDbl = new types::Double(_iRows, _iCols, _iComplex == 1);
 
     double* pdblReal = pDbl->get();
     C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);

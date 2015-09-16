@@ -49,7 +49,7 @@ class EXTERN_AST AnalysisVisitor : public ast::Visitor, public Chrono
 
 public:
 
-    typedef unordered_map<std::wstring, std::shared_ptr<CallAnalyzer>> MapSymCall;
+    typedef std::unordered_map<std::wstring, std::shared_ptr<CallAnalyzer>> MapSymCall;
     typedef std::vector<Call *> Calls;
 
 private:

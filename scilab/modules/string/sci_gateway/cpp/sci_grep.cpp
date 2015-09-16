@@ -32,8 +32,6 @@ extern "C"
 #include "pcre_error.h"
 }
 
-using namespace types;
-
 /*------------------------------------------------------------------------*/
 #define GREP_OK             0
 #define GREP_ERROR          1
@@ -50,8 +48,7 @@ typedef struct grep_results
 static int GREP_NEW(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
 static int GREP_OLD(GREPRESULTS *results, char **Inputs_param_one, int mn_one, char **Inputs_param_two, int mn_two);
 /*------------------------------------------------------------------------*/
-
-Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_grep(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bRegularExpression = false;
 
@@ -59,14 +56,14 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     if (in.size() < 2 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "grep", 2, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 0)
     {
-        Double *pD = Double::Empty();
+        types::Double *pD = types::Double::Empty();
         out.push_back(pD);
-        return Function::OK;
+        return types::Function::OK;
     }
 
     if (in.size() == 3)
@@ -75,14 +72,14 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         if (in[2]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        String* pS = in[2]->getAs<types::String>();
+        types::String* pS = in[2]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "grep", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (pS->get(0)[0] == 'r')
@@ -94,17 +91,17 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[1]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "grep", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS1 = in[0]->getAs<types::String>();
-    String* pS2 = in[1]->getAs<types::String>();
+    types::String* pS1 = in[0]->getAs<types::String>();
+    types::String* pS2 = in[1]->getAs<types::String>();
 
 
     for (int i = 0 ; i < pS2->getSize() ; i++)
@@ -112,7 +109,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         if (wcslen(pS2->get(i)) == 0)
         {
             Scierror(249, _("%s: Wrong values for input argument #%d: Non-empty strings expected.\n"), "grep", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -161,14 +158,14 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
     {
         case GREP_OK :
         {
-            Double* pD1 = NULL;
+            types::Double* pD1 = NULL;
             if (grepresults.currentLength == 0)
             {
-                pD1 = Double::Empty();
+                pD1 = types::Double::Empty();
             }
             else
             {
-                pD1 = new Double(1, grepresults.currentLength);
+                pD1 = new types::Double(1, grepresults.currentLength);
                 double* pDbl1 = pD1->getReal();
                 for (int i = 0 ; i < grepresults.currentLength ; i++ )
                 {
@@ -180,14 +177,14 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 
             if (_iRetCount == 2)
             {
-                Double* pD2 = NULL;
+                types::Double* pD2 = NULL;
                 if (grepresults.currentLength == 0)
                 {
-                    pD2 = Double::Empty();
+                    pD2 = types::Double::Empty();
                 }
                 else
                 {
-                    pD2 = new Double(1, grepresults.currentLength);
+                    pD2 = new types::Double(1, grepresults.currentLength);
                     double* pDbl2 = pD2->getReal();
                     for (int i = 0 ; i < grepresults.currentLength ; i++ )
                     {
@@ -226,12 +223,12 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
                 FREE(grepresults.positions);
                 grepresults.positions = NULL;
             }
-            return Function::Error;
+            return types::Function::Error;
         }
         break;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 //Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 //{

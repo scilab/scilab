@@ -21,6 +21,8 @@ extern "C"
 #include "charEncoding.h"
 }
 
+using namespace types;
+
 InternalType *GenericPower(InternalType *_pLeftOperand, InternalType *_pRightOperand)
 {
     InternalType *pResult = NULL;

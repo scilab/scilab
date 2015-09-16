@@ -28,33 +28,30 @@ extern "C"
 
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_system_setproperty(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_system_setproperty(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() != 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: at %d expected.\n"), "system_setproperty", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_piRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "system_setproperty", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "system_setproperty" , 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "system_setproperty" , 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     char* pstProperty        = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
@@ -66,16 +63,16 @@ Function::ReturnValue sci_system_setproperty(typed_list &in, int _piRetCount, ty
 
     if (pstPreviousValue)
     {
-        String* pSPreviousValue = new String(pstPreviousValue);
+        types::String* pSPreviousValue = new types::String(pstPreviousValue);
         out.push_back(pSPreviousValue);
         FREE(pstPreviousValue);
     }
     else
     {
-        Double* pDPreviousValue = Double::Empty();
+        types::Double* pDPreviousValue = types::Double::Empty();
         out.push_back(pDPreviousValue);
     }
-    return Function::OK;
+    return types::Function::OK;
 
 }
 /*--------------------------------------------------------------------------*/

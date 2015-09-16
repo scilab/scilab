@@ -324,12 +324,12 @@ bool SinglePoly::toString(std::wostringstream& ostr)
     return true;
 }
 
-void SinglePoly::toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
 {
     toStringInternal(m_pRealData, _szVar, _pListExp, _pListCoef);
 }
 
-void SinglePoly::toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
 {
     if (isComplex() == false)
     {
@@ -346,7 +346,7 @@ bool SinglePoly::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims
     return false;
 }
 
-void SinglePoly::toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef)
+void SinglePoly::toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp, std::list<std::wstring>* _pListCoef)
 {
     int iLineLen = ConfigVariable::getConsoleWidth();
 

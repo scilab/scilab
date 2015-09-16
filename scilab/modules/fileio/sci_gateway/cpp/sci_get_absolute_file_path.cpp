@@ -27,10 +27,8 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* wcsFileName = NULL;
     wchar_t** wcsFilesOpened = NULL;

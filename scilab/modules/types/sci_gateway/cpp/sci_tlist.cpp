@@ -16,7 +16,7 @@
 #include "tlist.hxx"
 #include "sci_tlist_or_mlist.hxx"
 
-Function::ReturnValue sci_tlist(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_tlist(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    return sci_tlist_or_mlist<TList>(in, _piRetCount, out, L"tlist");
+    return sci_tlist_or_mlist<types::TList>(in, _piRetCount, out, L"tlist");
 }

@@ -61,7 +61,7 @@ private:
 
     struct adapter_t
     {
-        adapter_t(std::wstring n, adapters_index_t k) : name(n), kind(k) {};
+        adapter_t(const std::wstring& n, adapters_index_t k) : name(n), kind(k) {};
 
         inline bool operator<(const adapter_t& v) const
         {

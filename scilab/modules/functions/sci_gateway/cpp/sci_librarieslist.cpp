@@ -22,20 +22,19 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_librarieslist(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_librarieslist(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "librarieslist", 0);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     std::list<std::wstring> lst;
     int size = symbol::Context::getInstance()->getLibrariesList(lst);
 
-    String* pOut = new String(size, 1);
+    types::String* pOut = new types::String(size, 1);
     int i = 0;
     for (auto l : lst)
     {
@@ -43,6 +42,6 @@ Function::ReturnValue sci_librarieslist(types::typed_list &in, int _iRetCount, t
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

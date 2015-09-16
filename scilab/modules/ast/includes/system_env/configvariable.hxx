@@ -303,9 +303,9 @@ public :
 private :
     static std::map<std::wstring, DynLibHandle> m_DynModules;
 public :
-    static void addDynModule(std::wstring _name, DynLibHandle _lib);
-    static void removeDynModule(std::wstring _name);
-    static DynLibHandle getDynModule(std::wstring _name);
+    static void addDynModule(const std::wstring& _name, DynLibHandle _lib);
+    static void removeDynModule(const std::wstring& _name);
+    static DynLibHandle getDynModule(const std::wstring& _name);
     static int getDynModuleCount();
     static DynLibHandle* getAllDynModule();
     static void cleanDynModule();

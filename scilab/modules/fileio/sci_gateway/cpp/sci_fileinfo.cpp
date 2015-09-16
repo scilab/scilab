@@ -27,32 +27,30 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_fileinfo(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "fileinfo", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false )
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fileinfo", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount > 2)
     {
         Scierror(78, _("%s: Wrong number of output arguments: %d or %d expected.\n"), "fileinfo", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS = in[0]->getAs<types::String>();
-    InternalType* iT = NULL;
-    String* pS1 = NULL;
+    types::String* pS = in[0]->getAs<types::String>();
+    types::InternalType* iT = NULL;
+    types::String* pS1 = NULL;
 
     if (pS->getCols() != 1)
     {
@@ -66,18 +64,18 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
        of Scilab < 6 */
     if (pS->getRows() == 1 && *piErr == -1)
     {
-        out.push_back(Double::Empty());
+        out.push_back(types::Double::Empty());
     }
     else
     {
-        Double *pOut = new Double(pS->getRows(), FILEINFO_ARRAY_SIZE);
+        types::Double *pOut = new types::Double(pS->getRows(), FILEINFO_ARRAY_SIZE);
         pOut->set(pData);
         out.push_back(pOut);
     }
 
     if (_iRetCount == 2)
     {
-        Double* pErr = new Double(pS->getRows(), 1);
+        types::Double* pErr = new types::Double(pS->getRows(), 1);
         pErr->setInt(piErr);
         out.push_back(pErr);
     }
@@ -91,7 +89,7 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
 
     delete[] piErr;
     FREE(pData);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
 

@@ -21,8 +21,6 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
 types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iRhs = static_cast<int>(in.size());
@@ -30,14 +28,14 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     if (iRhs > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "argn", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //check output arguments
     if (iRhs == 0 && _iRetCount > 2)
     {
         Scierror(41, _("%s: Wrong number of output arguments: %d expected.\n"), "argn", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //check input arguments types
@@ -46,21 +44,21 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
         if (in[i]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "argn", i + 1);
-            return Function::Error;
+            return types::Function::Error;
         }
         else
         {
-            if (in[i]->getAs<Double>()->getSize() != 1)
+            if (in[i]->getAs<types::Double>()->getSize() != 1)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "argn", i + 1);
-                return Function::Error;
+                return types::Function::Error;
             }
             else
             {
-                if (in[i]->getAs<Double>()->isComplex())
+                if (in[i]->getAs<types::Double>()->isComplex())
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A real expected.\n"), "argn", i + 1);
-                    return Function::Error;
+                    return types::Function::Error;
                 }
             }
         }
@@ -68,8 +66,8 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
 
     symbol::Context* pContext = symbol::Context::getInstance();
 
-    InternalType* pIn = pContext->get(symbol::Symbol(L"nargin"));
-    InternalType* pOut = pContext->get(symbol::Symbol(L"nargout"));
+    types::InternalType* pIn = pContext->get(symbol::Symbol(L"nargin"));
+    types::InternalType* pOut = pContext->get(symbol::Symbol(L"nargout"));
 
     if (pIn == NULL || pOut == NULL)
     {
@@ -95,7 +93,7 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
         else if (iRhs == 1)
         {
             //argn(x)
-            double dblVal = in[0]->getAs<Double>()->getReal(0, 0);
+            double dblVal = in[0]->getAs<types::Double>()->getReal(0, 0);
             if (dblVal == 1)
             {
                 //x == 1 returns lhs
@@ -119,7 +117,7 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
             else
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"), "argn", 1, "0", "1", "2");
-                return Function::Error;
+                return types::Function::Error;
             }
         }
     }

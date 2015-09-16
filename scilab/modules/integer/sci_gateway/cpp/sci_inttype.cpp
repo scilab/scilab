@@ -21,54 +21,52 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_inttype(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_inttype(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     /* First check if there is only 1 input of type int */
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "inttype", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    InternalType *pitValue = in[0];
+    types::InternalType *pitValue = in[0];
 
     if (pitValue->isInt() == false && pitValue->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d : int or double expected.\n"), "inttype", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    Double *pRetVal = NULL;
+    types::Double *pRetVal = NULL;
     switch (pitValue->getType())
     {
-        case InternalType::ScilabDouble :
-            pRetVal = new Double(0);
+        case types::InternalType::ScilabDouble :
+            pRetVal = new types::Double(0);
             break;
-        case InternalType::ScilabInt8 :
-            pRetVal = new Double(SCI_INT8);
+        case types::InternalType::ScilabInt8 :
+            pRetVal = new types::Double(SCI_INT8);
             break;
-        case InternalType::ScilabUInt8 :
-            pRetVal = new Double(SCI_UINT8);
+        case types::InternalType::ScilabUInt8 :
+            pRetVal = new types::Double(SCI_UINT8);
             break;
-        case InternalType::ScilabInt16 :
-            pRetVal = new Double(SCI_INT16);
+        case types::InternalType::ScilabInt16 :
+            pRetVal = new types::Double(SCI_INT16);
             break;
-        case InternalType::ScilabUInt16 :
-            pRetVal = new Double(SCI_UINT16);
+        case types::InternalType::ScilabUInt16 :
+            pRetVal = new types::Double(SCI_UINT16);
             break;
-        case InternalType::ScilabInt32 :
-            pRetVal = new Double(SCI_INT32);
+        case types::InternalType::ScilabInt32 :
+            pRetVal = new types::Double(SCI_INT32);
             break;
-        case InternalType::ScilabUInt32 :
-            pRetVal = new Double(SCI_UINT32);
+        case types::InternalType::ScilabUInt32 :
+            pRetVal = new types::Double(SCI_UINT32);
             break;
-        case InternalType::ScilabInt64 :
-            pRetVal = new Double(SCI_INT64);
+        case types::InternalType::ScilabInt64 :
+            pRetVal = new types::Double(SCI_INT64);
             break;
-        case InternalType::ScilabUInt64 :
-            pRetVal = new Double(SCI_UINT64);
+        case types::InternalType::ScilabUInt64 :
+            pRetVal = new types::Double(SCI_UINT64);
             break;
         default:
             pRetVal = NULL;
@@ -76,5 +74,5 @@ Function::ReturnValue sci_inttype(typed_list &in, int _piRetCount, typed_list &o
 
     out.push_back(pRetVal);
 
-    return Function::OK;
+    return types::Function::OK;
 }

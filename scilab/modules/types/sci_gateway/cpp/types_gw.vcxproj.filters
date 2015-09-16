@@ -66,9 +66,6 @@
     <ClCompile Include="sci_typeof.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_usertype.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="types_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

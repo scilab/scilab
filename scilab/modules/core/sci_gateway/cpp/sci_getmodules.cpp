@@ -18,18 +18,16 @@
 #include "string.hxx"
 #include "function.hxx"
 
-using namespace types;
-
-Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 0 || _iRetCount > 1)
     {
-        return Function::Error;
+        return types::Function::Error;
     }
 
 
     std::list<std::wstring> sModuleList = ConfigVariable::getModuleList();
-    String *pOut  = new String(static_cast<int>(sModuleList.size()), 1);
+    types::String *pOut = new types::String(static_cast<int>(sModuleList.size()), 1);
 
     std::list<std::wstring>::iterator it = sModuleList.begin();
     for (int i = 0; it != sModuleList.end() ; it++, i++)
@@ -38,6 +36,6 @@ Function::ReturnValue sci_getmodules(types::typed_list &in, int _iRetCount, type
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
