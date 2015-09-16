@@ -17,7 +17,7 @@
 namespace analysis
 {
 bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
-{	
+{
     const ast::exps_t args = e.getArgs();
     if (args.size() == 2)
     {
@@ -26,8 +26,10 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
 
         first->accept(visitor);
         Result R1 = visitor.getResult();
+        visitor.getDM().releaseTmp(R1.getTempId());
         second->accept(visitor);
         Result & R2 = visitor.getResult();
+        visitor.getDM().releaseTmp(R2.getTempId());
         double val;
         SymbolicDimension rows, cols;
         bool empty = false;
@@ -99,7 +101,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
                 return false;
             }
             TIType resT(visitor.getGVN(), TIType::DOUBLE, rows, cols);
-            e.getDecorator().setResult(Result(resT, -1));
+            e.getDecorator().setResult(Result(resT, visitor.getDM().getTmpId(resT, false)));
         }
         visitor.setResult(e.getDecorator().res);
 
