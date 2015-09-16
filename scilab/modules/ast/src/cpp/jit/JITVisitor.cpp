@@ -11,6 +11,7 @@
  */
 
 #include "llvm/Support/FormattedStream.h"
+#include "llvm/Transforms/IPO/PassManagerBuilder.h"
 
 #include "MemoryManager.hxx"
 #include "JITScalars.hxx"
@@ -32,7 +33,7 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     module(new llvm::Module("JIT", context)),
     target(nullptr),
     engine(InitializeEngine(module, &target)),
-    FPM(initFPM(module, engine, target)),
+    FPM(module),
     function(nullptr),
     builder(context),
     uintptrType(getPtrAsIntTy(*module, context)),
@@ -52,6 +53,7 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     _result(nullptr),
     cpx_rvalue(nullptr)
 {
+    initFunctionPassManager();
     //std::wcerr << "Map size=" << MemoryManager::getMapSize() << std::endl;
 }
 
@@ -76,10 +78,12 @@ void JITVisitor::runOptimizationPasses()
 #if TIME_LLVM == 1
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 #endif
-    for (llvm::Module::iterator it = module->begin(), end = module->end(); it != end; ++it)
+
+    for (llvm::Function & function : *module)
     {
-        FPM.run(*it);
+        FPM.run(function);
     }
+    FPM.doFinalization();
 
 #if TIME_LLVM == 1
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
@@ -271,33 +275,35 @@ void JITVisitor::visit(const ast::AssignExp & e)
 
     if (e.getLeftExp().isSimpleVar()) // A = ...
     {
+        const ast::Exp & rExp = e.getRightExp();
         const symbol::Symbol & Lsym = static_cast<ast::SimpleVar &>(e.getLeftExp()).getSymbol();
-        if (e.getRightExp().isSimpleVar())
+        if (rExp.isSimpleVar())
         {
             // A = B so we just share the data
-            const symbol::Symbol & Rsym = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
+            const symbol::Symbol & Rsym = static_cast<const ast::SimpleVar &>(rExp).getSymbol();
             JITScilabPtr & Lvalue = variables.find(Lsym)->second;
             JITScilabPtr & Rvalue = variables.find(Rsym)->second;
             Lvalue->storeRows(*this, Rvalue->loadRows(*this));
             Lvalue->storeCols(*this, Rvalue->loadCols(*this));
             Lvalue->storeData(*this, Rvalue->loadData(*this));
-            if (e.getRightExp().getDecorator().getResult().getType().type == analysis::TIType::COMPLEX)
+            if (rExp.getDecorator().getResult().getType().type == analysis::TIType::COMPLEX)
             {
                 Lvalue->storeImag(*this, Rvalue->loadImag(*this));
             }
         }
         else
         {
-            e.getRightExp().accept(*this);
+            rExp.accept(*this);
             // A = foo(...)...
-            if (!e.getRightExp().isCallExp())
+            if (!rExp.isCallExp() || !rExp.isMemfillExp())
             {
                 JITScilabPtr & Lvalue = variables.find(Lsym)->second;
                 JITScilabPtr & Rvalue = getResult();
+                module->dump();
                 Lvalue->storeRows(*this, Rvalue->loadRows(*this));
                 Lvalue->storeCols(*this, Rvalue->loadCols(*this));
                 Lvalue->storeData(*this, Rvalue->loadData(*this));
-                if (e.getRightExp().getDecorator().getResult().getType().type == analysis::TIType::COMPLEX)
+                if (rExp.getDecorator().getResult().getType().type == analysis::TIType::COMPLEX)
                 {
                     Lvalue->storeImag(*this, Rvalue->loadImag(*this));
                 }
@@ -1135,6 +1141,27 @@ llvm::Type * JITVisitor::getPtrAsIntTy(llvm::Module & module, llvm::LLVMContext 
 
 bool JITVisitor::InitializeLLVM()
 {
+    llvm::PassRegistry & Registry = *llvm::PassRegistry::getPassRegistry();
+    llvm::initializeCore(Registry);
+    llvm::initializeScalarOpts(Registry);
+    llvm::initializeObjCARCOpts(Registry);
+    llvm::initializeVectorization(Registry);
+    llvm::initializeIPO(Registry);
+    llvm::initializeAnalysis(Registry);
+    llvm::initializeIPA(Registry);
+    llvm::initializeTransformUtils(Registry);
+    llvm::initializeInstCombine(Registry);
+    llvm::initializeInstrumentation(Registry);
+    llvm::initializeTarget(Registry);
+    // For codegen passes, only passes that do IR to IR transformation are
+    // supported.
+    llvm::initializeCodeGenPreparePass(Registry);
+    llvm::initializeAtomicExpandPass(Registry);
+    llvm::initializeRewriteSymbolsPass(Registry);
+    llvm::initializeWinEHPreparePass(Registry);
+    llvm::initializeDwarfEHPreparePass(Registry);
+    //llvm::initializeSjLjEHPreparePass(Registry);
+
     llvm::InitializeNativeTarget();
     llvm::InitializeNativeTargetAsmPrinter();
     llvm::InitializeNativeTargetAsmParser();
@@ -1146,34 +1173,16 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
 {
     std::string err;
     llvm::TargetOptions opt;
-
-#if not(LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 7)
-    opt.NoFramePointerElim = true;
-#endif
-
-#if LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 6
     llvm::EngineBuilder eb(std::move(std::unique_ptr<llvm::Module>(module)));
-    eb.setEngineKind(llvm::EngineKind::JIT).setMCJITMemoryManager(std::move(std::unique_ptr<llvm::RTDyldMemoryManager> {new MemoryManager()}));//.setRelocationModel(llvm::Reloc::Default/*PIC_*//*DynamicNoPIC*//*Static*/).setCodeModel(llvm::CodeModel::Default/*Small*/).setTargetOptions(opt).setErrorStr(&err);
-#else
-    llvm::EngineBuilder eb(module);
-    eb.setErrorStr(&err).setUseMCJIT(true).setMCJITMemoryManager(new MemoryManager()).setRelocationModel(llvm::Reloc::PIC_/*DynamicNoPIC*//*Static*/).setCodeModel(llvm::CodeModel::Small).setTargetOptions(opt);
-#endif
-
-    // TODO: when reloc model is Static there is a problem with address of global variables (used with dgemm_)
+    eb.setEngineKind(llvm::EngineKind::JIT).setMCJITMemoryManager(std::move(std::unique_ptr<llvm::RTDyldMemoryManager> {new MemoryManager()})).setOptLevel(llvm::CodeGenOpt::Aggressive).setErrorStr(&err);
 
     llvm::TargetMachine * tm = eb.selectTarget();
     llvm::Triple triple(llvm::sys::getProcessTriple());
+
+    // The following line is mandatory for Windows OS
     triple.setObjectFormat(llvm::Triple::ELF);
-    *target = tm->getTarget().createTargetMachine(triple.getTriple(), tm->getTargetCPU(), tm->getTargetFeatureString(), tm->Options, llvm::Reloc::Default, llvm::CodeModel::Default);
+    *target = tm->getTarget().createTargetMachine(triple.getTriple(), tm->getTargetCPU(), tm->getTargetFeatureString(), tm->Options, llvm::Reloc::Default, llvm::CodeModel::Default, llvm::CodeGenOpt::Level::Aggressive);
     delete tm;
-
-
-    //(*target)->getTargetTriple().setObjectFormat(llvm::Triple::ELF);
-    //llvm::TargetMachine * tm = eb.selectTarget();
-    //std::cerr << "TARGET=" << tm << std::endl;
-    //*target = tm->getTarget().createTargetMachine(tm->getTargetTriple().str(), tm->getTargetCPU(), tm->getTargetFeatureString(), tm->Options, llvm::Reloc::Default, llvm::CodeModel::JITDefault);
-    //*target = eb.selectTarget();
-    //std::cerr << "TARGET=" << (*target)->getTargetTriple().str() << std::endl;
 
     llvm::ExecutionEngine * engine = eb.create(*target);
     engine->RegisterJITEventListener(new ScilabJITEventListener());
@@ -1181,115 +1190,21 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
     module->setDataLayout(engine->getDataLayout()->getStringRepresentation());
     module->setTargetTriple((*target)->getTargetTriple().str());
 
-    //delete tm;
-
     return engine;
 }
-LLVM_FunctionPassManager JITVisitor::initFPM(llvm::Module * module, llvm::ExecutionEngine * engine, llvm::TargetMachine * target)
+
+void JITVisitor::initFunctionPassManager()
 {
-    LLVM_FunctionPassManager FPM(module);
-
-#if LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR == 4
-    FPM.add(new llvm::DataLayout(*engine->getDataLayout()));
-    target->addAnalysisPasses(FPM);
-#elif LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 7
-    // no more datalayoutpass
-#else
-    FPM.add(new llvm::DataLayoutPass(*engine->getDataLayout()));
-    target->addAnalysisPasses(FPM);
-#endif
-
-
-    // TODO: mettre les bonnes passes la ou il faut
-
-    FPM.add(llvm::createBasicAliasAnalysisPass());
-    FPM.add(llvm::createTypeBasedAliasAnalysisPass());
-    FPM.add(llvm::createCFGSimplificationPass());
-    FPM.add(llvm::createAggressiveDCEPass());
-
-    FPM.add(llvm::createPromoteMemoryToRegisterPass()); // remove useless alloca
-    FPM.add(llvm::createInstructionCombiningPass()); // clean
-    //FPM.add(llvm::createScalarReplAggregatesPass());
-    //FPM.add(llvm::createInstructionCombiningPass());
-    FPM.add(llvm::createJumpThreadingPass()); // thread jumps.
-    FPM.add(llvm::createInstructionCombiningPass()); // clean
-    FPM.add(llvm::createReassociatePass()); // use associativity to simplify
-    FPM.add(llvm::createEarlyCSEPass()); // common sub-expression elimination
-    FPM.add(llvm::createLoopIdiomPass()); // replace certains for-loop by memset/memcpy
-    FPM.add(llvm::createLoopRotatePass()); // ??
-    FPM.add(llvm::createLICMPass()); // Loop Invariant Code Motion
-    FPM.add(llvm::createLoopUnswitchPass()); // For-If are permuted
-    FPM.add(llvm::createInstructionCombiningPass()); // clean
-    FPM.add(llvm::createIndVarSimplifyPass()); // Transform induction var in loops into something like (i = 0; i != A; ++i)
-    FPM.add(llvm::createLoopDeletionPass()); // remove dead loops
-    //FPM.add(llvm::createLoopStrengthReducePass());
-    //FPM.add(llvm::createLoopUnrollPass(-1, -1, -1 /* allows partial unrolling (1 for unrolling) */, -1)); // unroll small loops
-    FPM.add(llvm::createBBVectorizePass()); // vectorize loops
-    FPM.add(llvm::createInstructionCombiningPass());
-    FPM.add(llvm::createGVNPass());
-    FPM.add(llvm::createLoopUnrollPass());
-    FPM.add(llvm::createAggressiveDCEPass());
-
-    FPM.add(llvm::createLoopVectorizePass()); // vectorize loops
-    FPM.add(llvm::createInstructionCombiningPass()); //clean
-    FPM.add(llvm::createSLPVectorizerPass());
-    FPM.add(llvm::createGVNPass()); // global value numbering
-    FPM.add(llvm::createSCCPPass()); // Sparse Conditional Constant Propagation
-    FPM.add(llvm::createSinkingPass());
-    FPM.add(llvm::createInstructionSimplifierPass());
-    FPM.add(llvm::createInstructionCombiningPass());
-    FPM.add(llvm::createDeadInstEliminationPass());
-    FPM.add(llvm::createDeadStoreEliminationPass());
-    FPM.add(llvm::createAggressiveDCEPass());
-
+    llvm::PassManagerBuilder PMB;
+    PMB.OptLevel = 3;
+    PMB.SizeLevel = 0;
+    PMB.LoopVectorize = true;
+    PMB.SLPVectorize = true;
+    PMB.LoadCombine = true;
+    PMB.DisableUnrollLoops = false;
+    PMB.DisableGVNLoadPRE = false;
+    PMB.populateFunctionPassManager(FPM);
     FPM.doInitialization();
-
-    /*
-        // createBasicAliasAnalysisPass - This pass implements the stateless alias
-        // analysis.
-        FPM.add(llvm::createBasicAliasAnalysisPass());
-
-        // Promote allocas to registers.
-        // PromoteMemoryToRegister - This pass is used to promote memory references to
-        // be register references. A simple example of the transformation performed by
-        // this pass is:
-        //
-        //        FROM CODE                           TO CODE
-        //   %X = alloca i32, i32 1                 ret i32 42
-        //   store i32 42, i32 *%X
-        //   %Y = load i32* %X
-        //   ret i32 %Y
-        FPM.add(llvm::createPromoteMemoryToRegisterPass());
-
-        // Do simple "peephole" optimizations and bit-twiddling optzns.
-        // This pass combines things like:
-        //    %Y = add int 1, %X
-        //    %Z = add int 1, %Y
-        // into:
-        //    %Z = add int 2, %X
-        FPM.add(llvm::createInstructionCombiningPass());
-
-        // Reassociate expressions.
-        // Reassociate - This pass reassociates commutative expressions in an order that
-        // is designed to promote better constant propagation, GCSE, LICM, PRE...
-        //
-        // For example:  4 + (x + 5)  ->  x + (4 + 5)
-        FPM.add(llvm::createReassociatePass());
-
-        // Eliminate Common SubExpressions.
-        // GVN - This pass performs global value numbering and redundant load
-        // elimination cotemporaneously.
-        FPM.add(llvm::createGVNPass());
-
-        // Simplify the control flow graph (deleting unreachable blocks, etc).
-        FPM.add(llvm::createCFGSimplificationPass());
-
-        FPM.add(llvm::createDeadInstEliminationPass());
-        FPM.add(llvm::createDeadCodeEliminationPass());
-        FPM.add(llvm::createLoopVectorizePass());
-
-        FPM.doInitialization();*/
-
-    return FPM;
 }
+
 }

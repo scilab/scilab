@@ -730,6 +730,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\jit\JITImult.cpp" />
     <ClCompile Include="src\cpp\jit\JITIntSelectExp.cpp" />
     <ClCompile Include="src\cpp\jit\JITLog.cpp" />
+    <ClCompile Include="src\cpp\jit\JITMemfillExp.cpp" />
     <ClCompile Include="src\cpp\jit\JITMultiplication.cpp" />
     <ClCompile Include="src\cpp\jit\JITNegation.cpp" />
     <ClCompile Include="src\cpp\jit\JITNotEquality.cpp" />

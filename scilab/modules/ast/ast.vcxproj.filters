@@ -1878,5 +1878,8 @@
     <ClCompile Include="src\cpp\jit\ShortcutEval.cpp">
       <Filter>Source Files\jit</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITMemfillExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

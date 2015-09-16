@@ -85,14 +85,11 @@ bool JITZeros::invoke(const ast::Exp & e, const std::vector<analysis::TIType> & 
     JITScilabPtr res;
     if (out.empty())
     {
-        //res = new JITArrayofDouble(jit, "");
+        out.emplace_back(jit.getTemp(e.getDecorator().getResult().getTempId()));
     }
-    else
-    {
-        out.front()->storeData(jit, dbl_alloc);
-        out.front()->storeRows(jit, r);
-        out.front()->storeCols(jit, c);
-    }
+    out.front()->storeData(jit, dbl_alloc);
+    out.front()->storeRows(jit, r);
+    out.front()->storeCols(jit, c);
 
     llvm::Value * memset_args[] = { alloc, jit.getConstant<int8_t>(0), size, jit.getConstant<int32_t>(sizeof(double)), jit.getBool(false) };
     builder.CreateCall(__memset, memset_args);

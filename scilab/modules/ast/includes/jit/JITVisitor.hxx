@@ -116,7 +116,8 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
     llvm::Module * module;
     llvm::TargetMachine * target;
     llvm::ExecutionEngine * engine;
-    LLVM_FunctionPassManager FPM;
+    //LLVM_FunctionPassManager FPM;
+    llvm::legacy::FunctionPassManager FPM;
     llvm::Function * function;
     llvm::IRBuilder<> builder;
     llvm::Type * uintptrType;
@@ -452,6 +453,11 @@ public:
     JITScilabPtr getScalar(llvm::Value * const value, const analysis::TIType::Type ty, const bool alloc = false, const std::string & name = "");
     JITScilabPtr getScalar(llvm::Value * const re, llvm::Value * const im, const analysis::TIType::Type ty, const bool alloc = false, const std::string & name = "");
     JITScilabPtr & getCpxRValue();
+    JITScilabPtr getScalar(const analysis::TIType::Type ty, const bool isAnInt, const std::string & name);
+    JITScilabPtr getScalar(const analysis::TypeLocal & ty, const std::string & name);
+    JITScilabPtr getMatrix(llvm::Value * const value, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name);
+    JITScilabPtr getMatrix(const analysis::TIType::Type ty, const std::string & name, const bool init = false);
+    JITScilabPtr getMatrix(const analysis::TypeLocal & ty, const std::string & name, const bool init = false);
 
     llvm::FunctionType * getFunctionType(const analysis::TIType & out, const std::vector<const analysis::TIType *> & types);
 
@@ -523,31 +529,27 @@ private:
     void visit(const ast::VarDec & e);
     void visit(const ast::FunctionDec & e);
     void visit(const ast::ListExp & e);
+    void visit(const ast::MemfillExp & e);
 
     void visit(const ast::OptimizedExp & e) { }
     void visit(const ast::DAXPYExp & e) { }
-    void visit(const ast::MemfillExp & e) { }
     void visit(const ast::StringSelectExp & e) { }
     void visit(const ast::CommentExp & e) { }
 
     void action(analysis::FunctionBlock & fblock);
     llvm::Type * getType(const analysis::TIType::Type ty, const bool scalar);
-    JITScilabPtr getScalar(const analysis::TIType::Type ty, const bool isAnInt, const std::string & name);
-    JITScilabPtr getScalar(const analysis::TypeLocal & ty, const std::string & name);
-    JITScilabPtr getMatrix(llvm::Value * const value, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name);
-    JITScilabPtr getMatrix(const analysis::TIType::Type ty, const std::string & name, const bool init = false);
-    JITScilabPtr getMatrix(const analysis::TypeLocal & ty, const std::string & name, const bool init = false);
     llvm::Value * getPtrFromIndex(const ast::CallExp & ce);
     void runOptimizationPasses();
     void compileModule();
     void makeSwitch(const ast::IntSelectExp & e, const std::map<int64_t, ast::Exp *> & map);
     void CreateBr(llvm::BasicBlock * bb);
     void closeEntryBlock();
+    void initFunctionPassManager();
 
     static bool InitializeLLVM();
-    static LLVM_FunctionPassManager initFPM(llvm::Module * module, llvm::ExecutionEngine * engine, llvm::TargetMachine * target);
     static llvm::Type * getPtrAsIntTy(llvm::Module & module, llvm::LLVMContext & ctxt);
     static llvm::ExecutionEngine * InitializeEngine(llvm::Module * module, llvm::TargetMachine ** target);
+
 };
 
 template<>

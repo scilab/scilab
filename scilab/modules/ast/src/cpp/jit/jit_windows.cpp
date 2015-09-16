@@ -11,6 +11,7 @@
 #pragma comment(lib, "LLVMPowerPCCodeGen.lib")
 #pragma comment(lib, "LLVMPowerPCDesc.lib")
 #pragma comment(lib, "LLVMPowerPCInfo.lib")
+#pragma comment(lib, "LLVMProfileData.lib")
 #pragma comment(lib, "LLVMR600AsmPrinter.lib")
 #pragma comment(lib, "LLVMR600CodeGen.lib")
 #pragma comment(lib, "LLVMR600Desc.lib")

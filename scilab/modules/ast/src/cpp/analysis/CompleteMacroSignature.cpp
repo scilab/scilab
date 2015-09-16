@@ -50,7 +50,7 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
 
         fblock.getExp()->accept(visitor);
         dm.finalizeBlock();
-        //std::wcerr << fblock << std::endl;
+        std::wcerr << fblock << std::endl;
         visitor.emitFunctionBlock(fblock);
         outMap.emplace_back(fblock.getConstraints(), fblock.getGlobalConstants(), fblock.getOuts());
 

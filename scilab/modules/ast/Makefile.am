@@ -263,6 +263,7 @@ src/cpp/jit/JITBreakContinueExps.cpp \
 src/cpp/jit/JITSelectExp.cpp \
 src/cpp/jit/JITIntSelectExp.cpp \
 src/cpp/jit/JITOptimizedCall1.cpp \
+src/cpp/jit/JITMemfillExp.cpp \
 src/cpp/jit/JITSign.cpp \
 src/cpp/jit/JITSqrt.cpp \
 src/cpp/jit/JITLog.cpp \
