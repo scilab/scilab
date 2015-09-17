@@ -12,6 +12,10 @@
 
 #include "llvm/Support/FormattedStream.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
+#include "llvm/Analysis/TargetTransformInfo.h"
+
+//#undef NDEBUG
+//#include "llvm/Support/Debug.h"
 
 #include "MemoryManager.hxx"
 #include "JITScalars.hxx"
@@ -33,6 +37,7 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     module(new llvm::Module("JIT", context)),
     target(nullptr),
     engine(InitializeEngine(module, &target)),
+    MPM(),
     FPM(module),
     function(nullptr),
     builder(context),
@@ -53,7 +58,10 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     _result(nullptr),
     cpx_rvalue(nullptr)
 {
-    initFunctionPassManager();
+    MPM.add(llvm::createTargetTransformInfoWrapperPass(target->getTargetIRAnalysis()));
+    FPM.add(llvm::createTargetTransformInfoWrapperPass(target->getTargetIRAnalysis()));
+    initPassManagers();
+
     //std::wcerr << "Map size=" << MemoryManager::getMapSize() << std::endl;
 }
 
@@ -79,11 +87,13 @@ void JITVisitor::runOptimizationPasses()
     std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 #endif
 
-    for (llvm::Function & function : *module)
+    FPM.doInitialization();
+    for (llvm::Function & f : *module)
     {
-        FPM.run(function);
+        FPM.run(f);
     }
     FPM.doFinalization();
+    MPM.run(*module);
 
 #if TIME_LLVM == 1
     std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
@@ -272,7 +282,6 @@ void JITVisitor::visit(const ast::CellCallExp & e)
 
 void JITVisitor::visit(const ast::AssignExp & e)
 {
-
     if (e.getLeftExp().isSimpleVar()) // A = ...
     {
         const ast::Exp & rExp = e.getRightExp();
@@ -295,11 +304,10 @@ void JITVisitor::visit(const ast::AssignExp & e)
         {
             rExp.accept(*this);
             // A = foo(...)...
-            if (!rExp.isCallExp() || !rExp.isMemfillExp())
+            if (!rExp.isCallExp())// && !rExp.isMemfillExp())
             {
                 JITScilabPtr & Lvalue = variables.find(Lsym)->second;
                 JITScilabPtr & Rvalue = getResult();
-                module->dump();
                 Lvalue->storeRows(*this, Rvalue->loadRows(*this));
                 Lvalue->storeCols(*this, Rvalue->loadCols(*this));
                 Lvalue->storeData(*this, Rvalue->loadData(*this));
@@ -325,12 +333,28 @@ void JITVisitor::visit(const ast::AssignExp & e)
              *    ii) A(I) = fun(I): in the general case we should try to devectorize the expression
              *    iii) A(i) = B(i): no problem
              */
-            const symbol::Symbol & symL = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol();
+            const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(ce.getName());
+            const symbol::Symbol & symL = var.getSymbol();
             if (e.getDecorator().safe && ce.getDecorator().getResult().getType().isscalar())
             {
-                llvm::Value * ptr = getPtrFromIndex(ce);
-                e.getRightExp().accept(*this);
-                builder.CreateStore(getResult()->loadData(*this), ptr);
+                const analysis::TIType & ty = var.getDecorator().getResult().getType();
+                if (ty.isscalar())
+                {
+                    JITScilabPtr & Lvalue = variables.find(symL)->second;
+                    e.getRightExp().accept(*this);
+                    JITScilabPtr & Rvalue = getResult();
+                    Lvalue->storeData(*this, Rvalue->loadData(*this));
+                    if (ty.type == analysis::TIType::COMPLEX)
+                    {
+                        Lvalue->storeImag(*this, Rvalue->loadImag(*this));
+                    }
+                }
+                else
+                {
+                    llvm::Value * ptr = getPtrFromIndex(ce);
+                    e.getRightExp().accept(*this);
+                    builder.CreateStore(getResult()->loadData(*this), ptr);
+                }
             }
         }
     }
@@ -645,9 +669,8 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
         }
     }
 
-    llvm::FunctionType * ftype = llvm::FunctionType::get(retTy, llvm::ArrayRef<llvm::Type *>(args), /* isVarArgs */ false);
+    llvm::FunctionType * ftype = llvm::FunctionType::get(retTy, args, /* isVarArgs */ false);
     //function = llvm::cast<llvm::Function>(module.getOrInsertFunction("jit_" + name, ftype));
-    std::cerr << "NAME=" << _name << std::endl;
     function = llvm::cast<llvm::Function>(module->getOrInsertFunction(_name, ftype));
 
     entryBlock = llvm::BasicBlock::Create(context, "EntryBlock", function);
@@ -1035,8 +1058,6 @@ void JITVisitor::makeCall(const std::wstring & name, const std::vector<types::In
 
     compileModule();
 
-    std::wcerr << "main ptr: " << (void *)(intptr_t)engine->getFunctionAddress("main") << std::endl;
-
     start = std::chrono::steady_clock::now();
     reinterpret_cast<void (*)()>(engine->getFunctionAddress("main"))();
     end = std::chrono::steady_clock::now();
@@ -1048,7 +1069,6 @@ void JITVisitor::makeCall(const std::wstring & name, const std::vector<types::In
     {
         if (ty.type == analysis::TIType::COMPLEX)
         {
-            //std::wcerr << "WTF=" << llvmOuts.back().data.cpx[1] << std::endl;
             pIT = new types::Double(llvmOuts.back().data.cpx[0], llvmOuts.back().data.cpx[1]);
         }
         else if (ty.type == analysis::TIType::DOUBLE)
@@ -1125,7 +1145,7 @@ llvm::FunctionType * JITVisitor::getFunctionType(const analysis::TIType & out, c
         }
     }
 
-    return llvm::FunctionType::get(out_ty, llvm::ArrayRef<llvm::Type *>(args), false);
+    return llvm::FunctionType::get(out_ty, args, false);
 }
 
 llvm::Type * JITVisitor::getPtrAsIntTy(llvm::Module & module, llvm::LLVMContext & ctxt)
@@ -1148,19 +1168,10 @@ bool JITVisitor::InitializeLLVM()
     llvm::initializeVectorization(Registry);
     llvm::initializeIPO(Registry);
     llvm::initializeAnalysis(Registry);
-    llvm::initializeIPA(Registry);
     llvm::initializeTransformUtils(Registry);
     llvm::initializeInstCombine(Registry);
     llvm::initializeInstrumentation(Registry);
     llvm::initializeTarget(Registry);
-    // For codegen passes, only passes that do IR to IR transformation are
-    // supported.
-    llvm::initializeCodeGenPreparePass(Registry);
-    llvm::initializeAtomicExpandPass(Registry);
-    llvm::initializeRewriteSymbolsPass(Registry);
-    llvm::initializeWinEHPreparePass(Registry);
-    llvm::initializeDwarfEHPreparePass(Registry);
-    //llvm::initializeSjLjEHPreparePass(Registry);
 
     llvm::InitializeNativeTarget();
     llvm::InitializeNativeTargetAsmPrinter();
@@ -1174,7 +1185,7 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
     std::string err;
     llvm::TargetOptions opt;
     llvm::EngineBuilder eb(std::move(std::unique_ptr<llvm::Module>(module)));
-    eb.setEngineKind(llvm::EngineKind::JIT).setMCJITMemoryManager(std::move(std::unique_ptr<llvm::RTDyldMemoryManager> {new MemoryManager()})).setOptLevel(llvm::CodeGenOpt::Aggressive).setErrorStr(&err);
+    eb.setEngineKind(llvm::EngineKind::JIT).setMCJITMemoryManager(std::move(std::unique_ptr<llvm::RTDyldMemoryManager> {new MemoryManager()})).setOptLevel(llvm::CodeGenOpt::Aggressive).setErrorStr(&err).setMCPU(llvm::sys::getHostCPUName());
 
     llvm::TargetMachine * tm = eb.selectTarget();
     llvm::Triple triple(llvm::sys::getProcessTriple());
@@ -1193,18 +1204,24 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
     return engine;
 }
 
-void JITVisitor::initFunctionPassManager()
+void JITVisitor::initPassManagers()
 {
     llvm::PassManagerBuilder PMB;
-    PMB.OptLevel = 3;
+    PMB.OptLevel = 2;
     PMB.SizeLevel = 0;
+    /*PMB.BBVectorize = true;
     PMB.LoopVectorize = true;
     PMB.SLPVectorize = true;
     PMB.LoadCombine = true;
-    PMB.DisableUnrollLoops = false;
-    PMB.DisableGVNLoadPRE = false;
+    PMB.DisableUnrollLoops = false;*/
+    //PMB.RerollLoops = false;
+    //PMB.DisableGVNLoadPRE = true;
+    PMB.DisableUnitAtATime = false;
     PMB.populateFunctionPassManager(FPM);
-    FPM.doInitialization();
+    PMB.populateModulePassManager(MPM);
+
+    //llvm::setCurrentDebugType("loop-vectorize");
+    //llvm::DebugFlag = true;
 }
 
 }

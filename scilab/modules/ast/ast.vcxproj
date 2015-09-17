@@ -441,6 +441,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\jit\calls\JITSize.hxx" />
     <ClInclude Include="includes\jit\calls\JITSize1.hxx" />
     <ClInclude Include="includes\jit\calls\JITSqrt.hxx" />
+    <ClInclude Include="includes\jit\calls\JITTicToc.hxx" />
     <ClInclude Include="includes\jit\calls\JITUnaryOpCall.hxx" />
     <ClInclude Include="includes\jit\calls\JITZeros.hxx" />
     <ClInclude Include="includes\jit\Cast.hxx" />
@@ -748,6 +749,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\jit\JITSize.cpp" />
     <ClCompile Include="src\cpp\jit\JITSqrt.cpp" />
     <ClCompile Include="src\cpp\jit\JITSubtraction.cpp" />
+    <ClCompile Include="src\cpp\jit\JITTicToc.cpp" />
     <ClCompile Include="src\cpp\jit\JITUnaryOpCall.cpp" />
     <ClCompile Include="src\cpp\jit\JITVisitor.cpp" />
     <ClCompile Include="src\cpp\jit\JITWhileExp.cpp" />

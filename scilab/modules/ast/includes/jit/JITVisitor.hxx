@@ -39,11 +39,7 @@
 #include "llvm/Support/TargetRegistry.h"
 //#include "llvm/Support/raw_ostream.h"
 
-#if defined(LLVM_VERSION_MAJOR) && LLVM_VERSION_MAJOR == 3 && LLVM_VERSION_MINOR >= 7
 #include "llvm/IR/LegacyPassManager.h"
-#else
-#include "llvm/PassManager.h"
-#endif
 
 #include "llvm/Analysis/Passes.h"
 #include "llvm/Transforms/Scalar.h"
@@ -116,7 +112,7 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
     llvm::Module * module;
     llvm::TargetMachine * target;
     llvm::ExecutionEngine * engine;
-    //LLVM_FunctionPassManager FPM;
+    llvm::legacy::PassManager MPM;
     llvm::legacy::FunctionPassManager FPM;
     llvm::Function * function;
     llvm::IRBuilder<> builder;
@@ -541,10 +537,11 @@ private:
     llvm::Value * getPtrFromIndex(const ast::CallExp & ce);
     void runOptimizationPasses();
     void compileModule();
+    void cloneSyms(const ast::Exp & e);
     void makeSwitch(const ast::IntSelectExp & e, const std::map<int64_t, ast::Exp *> & map);
     void CreateBr(llvm::BasicBlock * bb);
     void closeEntryBlock();
-    void initFunctionPassManager();
+    void initPassManagers();
 
     static bool InitializeLLVM();
     static llvm::Type * getPtrAsIntTy(llvm::Module & module, llvm::LLVMContext & ctxt);

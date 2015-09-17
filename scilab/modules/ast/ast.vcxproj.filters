@@ -1045,6 +1045,9 @@
     <ClInclude Include="includes\jit\calls\JITZeros.hxx">
       <Filter>Header Files\jit\calls</Filter>
     </ClInclude>
+    <ClInclude Include="includes\jit\calls\JITTicToc.hxx">
+      <Filter>Header Files\jit\calls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -1879,6 +1882,9 @@
       <Filter>Source Files\jit</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\jit\JITMemfillExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITTicToc.cpp">
       <Filter>Source Files\jit</Filter>
     </ClCompile>
   </ItemGroup>

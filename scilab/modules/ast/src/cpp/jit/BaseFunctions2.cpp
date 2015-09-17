@@ -10,6 +10,8 @@
 *
 */
 
+#include <chrono>
+
 #include "BaseFunctions.hxx"
 #include "BaseFunctionsMacros2.h"
 #include "base/elem_functions.hxx"
@@ -69,5 +71,17 @@ extern "C"
     std::complex<double> cfloor(const std::complex<double> z)
     {
         return jit::elem::floor<const std::complex<double> &, std::complex<double>>()(z);
+    }
+
+    static std::chrono::steady_clock::time_point tictoc_start;
+    void tic()
+    {
+        tictoc_start = std::chrono::steady_clock::now();
+    }
+
+    double toc()
+    {
+        const std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+        return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - tictoc_start).count() * 1e-9;
     }
 }

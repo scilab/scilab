@@ -28,76 +28,79 @@
 #include "calls/JITFloor.hxx"
 #include "calls/JITCeil.hxx"
 #include "calls/JITRound.hxx"
+#include "calls/JITTicToc.hxx"
 
 namespace jit
 {
 
-    JITCall::FunMap JITCall::funs = init();
+JITCall::FunMap JITCall::funs = init();
 
-    bool JITCall::call(const ast::CallExp & e, const std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit)
+bool JITCall::call(const ast::CallExp & e, const std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit)
+{
+    const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e.getName());
+    const symbol::Symbol & funSym = var.getSymbol();
+    const std::wstring & funName = funSym.getName();
+    auto i = funs.find(funName);
+    if (i != funs.end())
     {
-	const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e.getName());
-	const symbol::Symbol & funSym = var.getSymbol();
-	const std::wstring & funName = funSym.getName();
-	auto i = funs.find(funName);
-	if (i != funs.end())
-	{
-	    // the function is a "special" call
-	    // such as sinus, cosinus, ...
-	    return i->second->invoke(e, typesOut, out, jit);
-	}
-	/*else if (types::InternalType * pIT = symbol::Context::getInstance()->get(sym))
-	{
-	    if (pIT->isCallable())
-	    {
-		switch (pIT->getType())
-		{
-		case types::InternalType::ScilabFunction:
-		case types::InternalType::ScilabMacro:
-		case types::InternalType::ScilabMacroFile:
-		case types::InternalType::ScilabLibrary:
-		default:
-		    return false;
-		}
-	    }
-	    }*/
-
-	return false;
+        // the function is a "special" call
+        // such as sinus, cosinus, ...
+        return i->second->invoke(e, typesOut, out, jit);
     }
-
-
-    JITCall::FunMap JITCall::init()
+    /*else if (types::InternalType * pIT = symbol::Context::getInstance()->get(sym))
     {
-	FunMap map;
+        if (pIT->isCallable())
+        {
+    	switch (pIT->getType())
+    	{
+    	case types::InternalType::ScilabFunction:
+    	case types::InternalType::ScilabMacro:
+    	case types::InternalType::ScilabMacroFile:
+    	case types::InternalType::ScilabLibrary:
+    	default:
+    	    return false;
+    	}
+        }
+        }*/
 
-	map.emplace(L"size", std::shared_ptr<JITCall>(new JITSize()));
-	map.emplace(L"zeros", std::shared_ptr<JITCall>(new JITZeros()));
-	map.emplace(L"sin", std::shared_ptr<JITCall>(new JITOptimizedCall1("sin", {{ analysis::TIType::COMPLEX, "csin" }}, llvm::Intrinsic::sin)));
-	map.emplace(L"cos", std::shared_ptr<JITCall>(new JITOptimizedCall1("cos", {{ analysis::TIType::COMPLEX, "ccos" }}, llvm::Intrinsic::cos)));
-	map.emplace(L"exp", std::shared_ptr<JITCall>(new JITOptimizedCall1("exp", {{ analysis::TIType::COMPLEX, "cexp" }}, llvm::Intrinsic::exp)));
-	map.emplace(L"floor", std::shared_ptr<JITCall>(new JITFloor()));
-	map.emplace(L"ceil", std::shared_ptr<JITCall>(new JITCeil()));
-	map.emplace(L"round", std::shared_ptr<JITCall>(new JITRound()));
-	map.emplace(L"atan", std::shared_ptr<JITCall>(new JITOptimizedCall1("atan", {{ analysis::TIType::DOUBLE, "atan" }, { analysis::TIType::COMPLEX, "catan" }})));
-	map.emplace(L"cosh", std::shared_ptr<JITCall>(new JITOptimizedCall1("cosh", {{ analysis::TIType::DOUBLE, "cosh"}, { analysis::TIType::COMPLEX, "ccosh" }})));
-	map.emplace(L"sinh", std::shared_ptr<JITCall>(new JITOptimizedCall1("sinh", {{ analysis::TIType::DOUBLE, "sinh" }, { analysis::TIType::COMPLEX, "csinh" }})));
-	map.emplace(L"erf", std::shared_ptr<JITCall>(new JITOptimizedCall1("erf", {{ analysis::TIType::DOUBLE, "erf" }})));
-	map.emplace(L"erfc", std::shared_ptr<JITCall>(new JITOptimizedCall1("erfc", {{ analysis::TIType::DOUBLE, "erfc" }})));
-	map.emplace(L"erfcx", std::shared_ptr<JITCall>(new JITOptimizedCall1("erfcx")));
-	map.emplace(L"sign", std::shared_ptr<JITCall>(new JITSign()));
-	map.emplace(L"sqrt", std::shared_ptr<JITCall>(new JITSqrt()));
-	map.emplace(L"log", std::shared_ptr<JITCall>(new JITLog(JITLog::BASE_E)));
-	map.emplace(L"log2", std::shared_ptr<JITCall>(new JITLog(JITLog::BASE_2)));
-	map.emplace(L"log10", std::shared_ptr<JITCall>(new JITLog(JITLog::BASE_10)));
-	map.emplace(L"log1p", std::shared_ptr<JITCall>(new JITOptimizedCall1("log1p", {{ analysis::TIType::DOUBLE, "log1p" }})));
-	map.emplace(L"abs", std::shared_ptr<JITCall>(new JITAbs()));
-	map.emplace(L"angle", std::shared_ptr<JITCall>(new JITAngle()));
-	map.emplace(L"real", std::shared_ptr<JITCall>(new JITReal()));
-	map.emplace(L"imag", std::shared_ptr<JITCall>(new JITImag()));
-	map.emplace(L"imult", std::shared_ptr<JITCall>(new JITImult()));
-	map.emplace(L"conj", std::shared_ptr<JITCall>(new JITConj()));
-	return map;
-    }
+    return false;
+}
+
+
+JITCall::FunMap JITCall::init()
+{
+    FunMap map;
+
+    map.emplace(L"tic", std::shared_ptr<JITCall>(new JITTic()));
+    map.emplace(L"toc", std::shared_ptr<JITCall>(new JITToc()));
+    map.emplace(L"size", std::shared_ptr<JITCall>(new JITSize()));
+    map.emplace(L"zeros", std::shared_ptr<JITCall>(new JITZeros()));
+    map.emplace(L"sin", std::shared_ptr<JITCall>(new JITOptimizedCall1("sin", {{ analysis::TIType::COMPLEX, "csin" }}, llvm::Intrinsic::sin)));
+    map.emplace(L"cos", std::shared_ptr<JITCall>(new JITOptimizedCall1("cos", {{ analysis::TIType::COMPLEX, "ccos" }}, llvm::Intrinsic::cos)));
+    map.emplace(L"exp", std::shared_ptr<JITCall>(new JITOptimizedCall1("exp", {{ analysis::TIType::COMPLEX, "cexp" }}, llvm::Intrinsic::exp)));
+    map.emplace(L"floor", std::shared_ptr<JITCall>(new JITFloor()));
+    map.emplace(L"ceil", std::shared_ptr<JITCall>(new JITCeil()));
+    map.emplace(L"round", std::shared_ptr<JITCall>(new JITRound()));
+    map.emplace(L"atan", std::shared_ptr<JITCall>(new JITOptimizedCall1("atan", {{ analysis::TIType::DOUBLE, "atan" }, { analysis::TIType::COMPLEX, "catan" }})));
+    map.emplace(L"cosh", std::shared_ptr<JITCall>(new JITOptimizedCall1("cosh", {{ analysis::TIType::DOUBLE, "cosh"}, { analysis::TIType::COMPLEX, "ccosh" }})));
+    map.emplace(L"sinh", std::shared_ptr<JITCall>(new JITOptimizedCall1("sinh", {{ analysis::TIType::DOUBLE, "sinh" }, { analysis::TIType::COMPLEX, "csinh" }})));
+    map.emplace(L"erf", std::shared_ptr<JITCall>(new JITOptimizedCall1("erf", {{ analysis::TIType::DOUBLE, "erf" }})));
+    map.emplace(L"erfc", std::shared_ptr<JITCall>(new JITOptimizedCall1("erfc", {{ analysis::TIType::DOUBLE, "erfc" }})));
+    map.emplace(L"erfcx", std::shared_ptr<JITCall>(new JITOptimizedCall1("erfcx")));
+    map.emplace(L"sign", std::shared_ptr<JITCall>(new JITSign()));
+    map.emplace(L"sqrt", std::shared_ptr<JITCall>(new JITSqrt()));
+    map.emplace(L"log", std::shared_ptr<JITCall>(new JITLog(JITLog::BASE_E)));
+    map.emplace(L"log2", std::shared_ptr<JITCall>(new JITLog(JITLog::BASE_2)));
+    map.emplace(L"log10", std::shared_ptr<JITCall>(new JITLog(JITLog::BASE_10)));
+    map.emplace(L"log1p", std::shared_ptr<JITCall>(new JITOptimizedCall1("log1p", {{ analysis::TIType::DOUBLE, "log1p" }})));
+    map.emplace(L"abs", std::shared_ptr<JITCall>(new JITAbs()));
+    map.emplace(L"angle", std::shared_ptr<JITCall>(new JITAngle()));
+    map.emplace(L"real", std::shared_ptr<JITCall>(new JITReal()));
+    map.emplace(L"imag", std::shared_ptr<JITCall>(new JITImag()));
+    map.emplace(L"imult", std::shared_ptr<JITCall>(new JITImult()));
+    map.emplace(L"conj", std::shared_ptr<JITCall>(new JITConj()));
+    return map;
+}
 }
 
 /*

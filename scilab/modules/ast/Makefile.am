@@ -276,6 +276,7 @@ src/cpp/jit/JITConj.cpp \
 src/cpp/jit/JITFloor.cpp \
 src/cpp/jit/JITCeil.cpp \
 src/cpp/jit/JITRound.cpp \
+src/cpp/jit/JITTicToc.cpp \
 src/cpp/jit/JITAddition.cpp \
 src/cpp/jit/JITSubtraction.cpp \
 src/cpp/jit/JITOpposite.cpp \

@@ -23,146 +23,6 @@ void JITVisitor::visit(const ast::VarDec & e)
 
 }
 
-/*void JITVisitor::visit(const ast::ForExp & e)
-  {
-  const ast::VarDec & vd = static_cast<const ast::VarDec &>(e.getVardec());
-  // TODO : handle for with an iterator
-  if (vd.getInit().isListExp())
-  {
-  const symbol::Symbol & symIterator = vd.getSymbol();
-  const ast::ListExp & le = static_cast<const ast::ListExp &>(vd.getInit());
-  if (le.getDecorator().getResult().getRange().isValid())
-  {
-  // for i = start:step:end...
-  // is equivalent to for (int64_t i = start; i < end + step; i += step)...
-
-  le.getStart().accept(*this);
-  llvm::Value * start = Cast::cast<int64_t>(getResult()->loadData(*this), false, *this);
-  le.getStep().accept(*this);
-  llvm::Value * step = Cast::cast<int64_t>(getResult()->loadData(*this), false, *this);
-  le.getEnd().accept(*this);
-  llvm::Value * end = Cast::cast<int64_t>(getResult()->loadData(*this), false, *this);
-  end = builder.CreateAdd(end, step);
-
-  llvm::BasicBlock * cur_block = builder.GetInsertBlock();
-  llvm::BasicBlock * condBlock = llvm::BasicBlock::Create(context, "for_cond", function);
-  llvm::BasicBlock * loopBlock = llvm::BasicBlock::Create(context, "for_loop", function);
-  llvm::BasicBlock * afterBlock = llvm::BasicBlock::Create(context, "for_after", function);
-
-  blocks.emplace(condBlock, afterBlock);
-
-  llvm::Value * cmp_i1 = builder.CreateICmpSLT(start, end);
-  builder.CreateCondBr(cmp_i1, loopBlock, afterBlock);
-
-  builder.SetInsertPoint(loopBlock);
-  llvm::PHINode * i = builder.CreatePHI(getTy<int64_t>(), 2);
-  i->addIncoming(start, cur_block);
-  JITScilabPtr & it = variables.find(symIterator)->second;
-  it->storeData(*this, i);
-
-  e.getBody().accept(*this);
-  builder.CreateBr(condBlock);
-
-  builder.SetInsertPoint(condBlock);
-  llvm::Value * ipstp_i64 = builder.CreateAdd(i, step);
-  i->addIncoming(ipstp_i64, condBlock);
-  cmp_i1 = builder.CreateICmpSLT(ipstp_i64, end);
-  builder.CreateCondBr(cmp_i1, loopBlock, afterBlock);
-
-  builder.SetInsertPoint(afterBlock);
-  }
-  else
-  {
-  const ast::Exp & startE = le.getStart();
-  const ast::Exp & stepE = le.getStep();
-  const ast::Exp & endE = le.getEnd();
-
-  // a lot of for loops are like this: for i=1:N....
-  // start is an integer and step is by default 1 so we can use a classical
-  // loop with integer counter.
-
-  if (startE.isDoubleExp() && stepE.isDoubleExp())
-  {
-  const ast::DoubleExp & startDE = static_cast<const ast::DoubleExp &>(startE);
-  const ast::DoubleExp & stepDE = static_cast<const ast::DoubleExp &>(stepE);
-  int64_t start_i;
-  int64_t step_i;
-  if (analysis::tools::asInteger(startDE.getValue(), start_i) && analysis::tools::asInteger(stepDE.getValue(), step_i))
-  {
-  llvm::Value * start = getConstant(start_i);
-  llvm::Value * step = getConstant(std::abs(step_i));
-  le.getEnd().accept(*this);
-  llvm::Value * end = Cast::cast<int64_t>(getResult()->loadData(*this), false, *this);
-
-  if (step_i > 0)
-  {
-  end = builder.CreateAdd(end, step);
-  }
-  else
-  {
-  end = builder.CreateSub(end, step);
-  }
-
-  llvm::BasicBlock * cur_block = builder.GetInsertBlock();
-  llvm::BasicBlock * condBlock = llvm::BasicBlock::Create(context, "for_cond", function);
-  llvm::BasicBlock * loopBlock = llvm::BasicBlock::Create(context, "for_loop", function);
-  llvm::BasicBlock * afterBlock = llvm::BasicBlock::Create(context, "for_after", function);
-
-  blocks.emplace(condBlock, afterBlock);
-
-  llvm::Value * cmp_i1;
-  if (step_i > 0)
-  {
-  cmp_i1 = builder.CreateICmpSLT(start, end);
-  }
-  else
-  {
-  cmp_i1 = builder.CreateICmpSGT(start, end);
-  }
-  builder.CreateCondBr(cmp_i1, loopBlock, afterBlock);
-
-  builder.SetInsertPoint(loopBlock);
-  llvm::PHINode * i = builder.CreatePHI(getTy<int64_t>(), 2);
-  i->addIncoming(start, cur_block);
-  JITScilabPtr & it = variables.find(symIterator)->second;
-  it->storeData(*this, i);
-
-  e.getBody().accept(*this);
-  builder.CreateBr(condBlock);
-
-  builder.SetInsertPoint(condBlock);
-  llvm::Value * ipstp_i64;
-  if (step_i > 0)
-  {
-  ipstp_i64 = builder.CreateAdd(i, step);
-  }
-  else
-  {
-  ipstp_i64 = builder.CreateSub(i, step);
-  }
-
-  i->addIncoming(ipstp_i64, condBlock);
-  if (step_i > 0)
-  {
-  cmp_i1 = builder.CreateICmpSLT(ipstp_i64, end);
-  }
-  else
-  {
-  cmp_i1 = builder.CreateICmpSGT(ipstp_i64, end);
-  }
-  builder.CreateCondBr(cmp_i1, loopBlock, afterBlock);
-
-  builder.SetInsertPoint(afterBlock);
-  }
-  }
-  }
-
-  }
-
-
-  // e.getBody().accept(*this);
-  }*/
-
 void JITVisitor::visit(const ast::ForExp & e)
 {
     const ast::VarDec & vd = static_cast<const ast::VarDec &>(e.getVardec());
@@ -426,7 +286,24 @@ void JITVisitor::visit(const ast::ForExp & e)
                 }
             }
 
-            builder.CreateCondBr(cmp_i1, loop, after);
+            bool hasPre = false;
+            if (const analysis::Clone * cl = e.getDecorator().getClone())
+            {
+                if (!cl->get().empty())
+                {
+                    llvm::BasicBlock * pre = llvm::BasicBlock::Create(context, "for_pre", function);
+                    builder.CreateCondBr(cmp_i1, pre, after);
+                    builder.SetInsertPoint(pre);
+                    cloneSyms(e);
+                    builder.CreateBr(loop);
+                    hasPre = true;
+                }
+            }
+
+            if (!hasPre)
+            {
+                builder.CreateCondBr(cmp_i1, loop, after);
+            }
 
             llvm::BasicBlock * cur_block = builder.GetInsertBlock();
 
@@ -506,5 +383,36 @@ void JITVisitor::visit(const ast::ForExp & e)
             builder.SetInsertPoint(after);
         }
     }
+}
+
+void JITVisitor::cloneSyms(const ast::Exp & e)
+{
+    if (const analysis::Clone * cl = e.getDecorator().getClone())
+    {
+        if (!cl->get().empty())
+        {
+            llvm::Type * types[] = { getTy<int8_t *>(), getTy<int8_t *>(), getTy<int64_t>(), getTy<int32_t>(), getTy<bool>() };
+            llvm::Value * __memcpy = llvm::Intrinsic::getDeclaration(module, llvm::Intrinsic::memcpy, types);
+            llvm::Function * __new = static_cast<llvm::Function *>(module->getOrInsertFunction("new", llvm::FunctionType::get(getTy<int8_t *>(), llvm::ArrayRef<llvm::Type *>(getTy<uint64_t>()), false)));
+            __new->addAttribute(0, llvm::Attribute::NoAlias);
+
+            for (const auto & sym : cl->get())
+            {
+                JITScilabPtr & ptr = variables.find(sym)->second;
+                llvm::Value * x = ptr->loadData(*this);
+                llvm::Value * r = ptr->loadRows(*this);
+                llvm::Value * c = ptr->loadCols(*this);
+                llvm::Value * rc = builder.CreateMul(r, c);
+                llvm::Value * size = builder.CreateMul(rc, getConstant<int64_t>(getTySizeInBytes(x)));
+                llvm::CallInst * dest = builder.CreateCall(__new, size);
+                dest->addAttribute(0, llvm::Attribute::NoAlias);
+                llvm::Value * src = builder.CreateBitCast(x, getTy<int8_t *>());
+                llvm::Value * memcpy_args[] = { dest, src, size, getConstant<int64_t>(getTySizeInBytes(x)), getBool(false) };
+                builder.CreateCall(__memcpy, memcpy_args);
+                ptr->storeData(*this, dest);
+            }
+        }
+    }
+
 }
 }

@@ -19,143 +19,143 @@
 
 namespace jit
 {
-    class JITScalar : public JITScilabVal
+class JITScalar : public JITScilabVal
+{
+
+protected:
+
+    llvm::Value * data;
+    bool allocated;
+
+public:
+
+    JITScalar() : data(nullptr) { }
+
+    JITScalar(llvm::Value * _data, const bool _allocated, const std::string & name) : data(_data), allocated(_allocated)
+    {
+        if (!name.empty())
+        {
+            data->setName(name);
+        }
+    }
+
+    bool isValid() const override
+    {
+        return data != nullptr;
+    }
+
+    llvm::Value * loadRows(JITVisitor & jit) const override
+    {
+        return jit.getConstant<int64_t>(1);
+    }
+
+    llvm::Value * loadCols(JITVisitor & jit) const override
+    {
+        return jit.getConstant<int64_t>(1);
+    }
+
+    llvm::Value * getRows(JITVisitor & jit) const override
+    {
+        return nullptr;
+    }
+
+    llvm::Value * getCols(JITVisitor & jit) const override
+    {
+        return nullptr;
+    }
+
+    void setRefCount(llvm::Value * _refCount) override
+    {
+    }
+
+    void setData(llvm::Value * _data) override
+    {
+        data = _data;
+    }
+
+    void setRows(llvm::Value * _rows) override
+    {
+    }
+
+    void setCols(llvm::Value * _cols) override
+    {
+    }
+
+    void storeRows(JITVisitor & jit, llvm::Value * rows) override
     {
 
-    protected:
-	
-        llvm::Value * data;
-        bool allocated;
+    }
 
-    public:
+    void storeCols(JITVisitor & jit, llvm::Value * cols) override
+    {
 
-	JITScalar() : data(nullptr) { }
-	
-        JITScalar(llvm::Value * _data, const bool _allocated, const std::string & name) : data(_data), allocated(_allocated)
-            {
-		if (!name.empty())
-		{
-		    data->setName(name);
-		}
-	    }
+    }
 
-	bool isValid() const override
-	    { 
-		return data != nullptr;
-	    }
-	
-        llvm::Value * loadRows(JITVisitor & jit) const override
-            {
-                return nullptr;
-            }
+    bool isScalar() const override
+    {
+        return true;
+    }
 
-        llvm::Value * loadCols(JITVisitor & jit) const override
-            {
-                return nullptr;
-            }
+    llvm::Value * loadData(JITVisitor & jit) override
+    {
+        if (allocated)
+        {
+            return jit.getBuilder().CreateAlignedLoad(data, jit.getTySizeInBytes(data));
+        }
+        else
+        {
+            return data;
+        }
+    }
 
-        llvm::Value * getRows(JITVisitor & jit) const override
-            {
-                return nullptr;
-            }
+    llvm::Value * getData(JITVisitor & jit) const override
+    {
+        return data;
+    }
 
-        llvm::Value * getCols(JITVisitor & jit) const override
-            {
-                return nullptr;
-            }
+    void storeData(JITVisitor & jit, llvm::Value * _data) override
+    {
+        if (allocated)
+        {
+            jit.getBuilder().CreateAlignedStore(_data, data, jit.getTySizeInBytes(data));
+        }
+        else
+        {
+            assert(false && "storeData mustn't be called");
+        }
+    }
 
-	void setRefCount(llvm::Value * _refCount) override
-	    {
-	    }
-	
-	void setData(llvm::Value * _data) override
-	    {
-		data = _data;
-	    }
+    /*types::InternalType::ScilabId getScilabId() const override
+      {
 
-	void setRows(llvm::Value * _rows) override
-	    {
-	    }
+      }
 
-	void setCols(llvm::Value * _cols) override
-	    {
-	    }
+      void setScilabId(const types::InternalType::ScilabId id) override
+      {
 
-        void storeRows(JITVisitor & jit, llvm::Value * rows) override
-            {
+      }
+    */
 
-            }
+    llvm::Value * loadRefCount(JITVisitor & jit) const override
+    {
+        return nullptr;
+    }
 
-        void storeCols(JITVisitor & jit, llvm::Value * cols) override
-            {
+    llvm::Value * getRefCount(JITVisitor & jit) const override
+    {
+        return nullptr;
+    }
 
-            }
+    void incRefCount(JITVisitor & jit) override
+    {
 
-        bool isScalar() const override
-            {
-                return true;
-            }
+    }
 
-        llvm::Value * loadData(JITVisitor & jit) override
-            {
-                if (allocated)
-                {
-                    return jit.getBuilder().CreateAlignedLoad(data, jit.getTySizeInBytes(data));
-                }
-                else
-                {
-                    return data;
-                }
-            }
+    void decRefCount(JITVisitor & jit) override
+    {
 
-        llvm::Value * getData(JITVisitor & jit) const override
-            {
-                return data;
-            }
-
-        void storeData(JITVisitor & jit, llvm::Value * _data) override
-            {
-                if (allocated)
-                {
-                    jit.getBuilder().CreateAlignedStore(_data, data, jit.getTySizeInBytes(data));
-                }
-                else
-                {
-                    assert(false && "storeData mustn't be called");
-                }
-            }
-
-        /*types::InternalType::ScilabId getScilabId() const override
-          {
-
-          }
-
-          void setScilabId(const types::InternalType::ScilabId id) override
-          {
-
-          }
-        */
-
-        llvm::Value * loadRefCount(JITVisitor & jit) const override
-            {
-                return nullptr;
-            }
-
-        llvm::Value * getRefCount(JITVisitor & jit) const override
-            {
-                return nullptr;
-            }
-
-        void incRefCount(JITVisitor & jit) override
-            {
-
-            }
-
-        void decRefCount(JITVisitor & jit) override
-            {
-
-            }
-    };
+    }
+};
 }
 
 #endif // __JIT_SCALAR_HXX__

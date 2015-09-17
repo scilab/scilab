@@ -379,13 +379,13 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/jit/JITReal.cpp src/cpp/jit/JITImag.cpp \
 	src/cpp/jit/JITImult.cpp src/cpp/jit/JITConj.cpp \
 	src/cpp/jit/JITFloor.cpp src/cpp/jit/JITCeil.cpp \
-	src/cpp/jit/JITRound.cpp src/cpp/jit/JITAddition.cpp \
-	src/cpp/jit/JITSubtraction.cpp src/cpp/jit/JITOpposite.cpp \
-	src/cpp/jit/JITMultiplication.cpp src/cpp/jit/JITEquality.cpp \
-	src/cpp/jit/JITShortcutOps.cpp src/cpp/jit/JITNotEquality.cpp \
-	src/cpp/jit/JITComparisons.cpp src/cpp/jit/JITNegation.cpp \
-	src/cpp/jit/JITRDivision.cpp src/cpp/jit/JITPower.cpp \
-	src/cpp/jit/FunctionSignature.cpp \
+	src/cpp/jit/JITRound.cpp src/cpp/jit/JITTicToc.cpp \
+	src/cpp/jit/JITAddition.cpp src/cpp/jit/JITSubtraction.cpp \
+	src/cpp/jit/JITOpposite.cpp src/cpp/jit/JITMultiplication.cpp \
+	src/cpp/jit/JITEquality.cpp src/cpp/jit/JITShortcutOps.cpp \
+	src/cpp/jit/JITNotEquality.cpp src/cpp/jit/JITComparisons.cpp \
+	src/cpp/jit/JITNegation.cpp src/cpp/jit/JITRDivision.cpp \
+	src/cpp/jit/JITPower.cpp src/cpp/jit/FunctionSignature.cpp \
 	src/cpp/jit/ScilabJITEventListener.cpp \
 	src/cpp/jit/BaseFunctions1.cpp src/cpp/jit/BaseFunctions2.cpp \
 	src/cpp/types/inspector.cpp
@@ -655,6 +655,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/jit/libsciast_la-JITFloor.lo \
 	src/cpp/jit/libsciast_la-JITCeil.lo \
 	src/cpp/jit/libsciast_la-JITRound.lo \
+	src/cpp/jit/libsciast_la-JITTicToc.lo \
 	src/cpp/jit/libsciast_la-JITAddition.lo \
 	src/cpp/jit/libsciast_la-JITSubtraction.lo \
 	src/cpp/jit/libsciast_la-JITOpposite.lo \
@@ -1259,13 +1260,13 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/jit/JITReal.cpp src/cpp/jit/JITImag.cpp \
 	src/cpp/jit/JITImult.cpp src/cpp/jit/JITConj.cpp \
 	src/cpp/jit/JITFloor.cpp src/cpp/jit/JITCeil.cpp \
-	src/cpp/jit/JITRound.cpp src/cpp/jit/JITAddition.cpp \
-	src/cpp/jit/JITSubtraction.cpp src/cpp/jit/JITOpposite.cpp \
-	src/cpp/jit/JITMultiplication.cpp src/cpp/jit/JITEquality.cpp \
-	src/cpp/jit/JITShortcutOps.cpp src/cpp/jit/JITNotEquality.cpp \
-	src/cpp/jit/JITComparisons.cpp src/cpp/jit/JITNegation.cpp \
-	src/cpp/jit/JITRDivision.cpp src/cpp/jit/JITPower.cpp \
-	src/cpp/jit/FunctionSignature.cpp \
+	src/cpp/jit/JITRound.cpp src/cpp/jit/JITTicToc.cpp \
+	src/cpp/jit/JITAddition.cpp src/cpp/jit/JITSubtraction.cpp \
+	src/cpp/jit/JITOpposite.cpp src/cpp/jit/JITMultiplication.cpp \
+	src/cpp/jit/JITEquality.cpp src/cpp/jit/JITShortcutOps.cpp \
+	src/cpp/jit/JITNotEquality.cpp src/cpp/jit/JITComparisons.cpp \
+	src/cpp/jit/JITNegation.cpp src/cpp/jit/JITRDivision.cpp \
+	src/cpp/jit/JITPower.cpp src/cpp/jit/FunctionSignature.cpp \
 	src/cpp/jit/ScilabJITEventListener.cpp \
 	src/cpp/jit/BaseFunctions1.cpp src/cpp/jit/BaseFunctions2.cpp \
 	$(am__append_1)
@@ -2455,6 +2456,8 @@ src/cpp/jit/libsciast_la-JITCeil.lo: src/cpp/jit/$(am__dirstamp) \
 	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/jit/libsciast_la-JITRound.lo: src/cpp/jit/$(am__dirstamp) \
 	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
+src/cpp/jit/libsciast_la-JITTicToc.lo: src/cpp/jit/$(am__dirstamp) \
+	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/jit/libsciast_la-JITAddition.lo: src/cpp/jit/$(am__dirstamp) \
 	src/cpp/jit/$(DEPDIR)/$(am__dirstamp)
 src/cpp/jit/libsciast_la-JITSubtraction.lo:  \
@@ -2721,6 +2724,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITSubtraction.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITTicToc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITUnaryOpCall.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITVisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/jit/$(DEPDIR)/libsciast_la-JITWhileExp.Plo@am__quote@
@@ -4685,6 +4689,13 @@ src/cpp/jit/libsciast_la-JITRound.lo: src/cpp/jit/JITRound.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITRound.cpp' object='src/cpp/jit/libsciast_la-JITRound.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITRound.lo `test -f 'src/cpp/jit/JITRound.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITRound.cpp
+
+src/cpp/jit/libsciast_la-JITTicToc.lo: src/cpp/jit/JITTicToc.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITTicToc.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITTicToc.Tpo -c -o src/cpp/jit/libsciast_la-JITTicToc.lo `test -f 'src/cpp/jit/JITTicToc.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITTicToc.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/jit/$(DEPDIR)/libsciast_la-JITTicToc.Tpo src/cpp/jit/$(DEPDIR)/libsciast_la-JITTicToc.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/jit/JITTicToc.cpp' object='src/cpp/jit/libsciast_la-JITTicToc.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/jit/libsciast_la-JITTicToc.lo `test -f 'src/cpp/jit/JITTicToc.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITTicToc.cpp
 
 src/cpp/jit/libsciast_la-JITAddition.lo: src/cpp/jit/JITAddition.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/jit/libsciast_la-JITAddition.lo -MD -MP -MF src/cpp/jit/$(DEPDIR)/libsciast_la-JITAddition.Tpo -c -o src/cpp/jit/libsciast_la-JITAddition.lo `test -f 'src/cpp/jit/JITAddition.cpp' || echo '$(srcdir)/'`src/cpp/jit/JITAddition.cpp
