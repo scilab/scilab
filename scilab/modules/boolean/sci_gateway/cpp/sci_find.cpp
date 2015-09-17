@@ -63,9 +63,12 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     if (in[0]->isBool())
     {
         types::Bool* pB = in[0]->getAs<types::Bool>();
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < pB->getSize() ; i++)
+        int size = pB->getSize();
+        int* p = pB->get();
+        iMax = iMax == -1 ? size : std::min(iMax, size);
+        for (int i = 0 ; i < iMax ; i++)
         {
-            if (pB->get(i))
+            if (p[i])
             {
                 piIndex[iValues] = i;
                 iValues++;
@@ -75,9 +78,12 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     else if (in[0]->isDouble())
     {
         types::Double* pD = in[0]->getAs<types::Double>();
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < pD->getSize() ; i++)
+        int size = pD->getSize();
+        double* p = pD->get();
+        iMax = iMax == -1 ? size : std::min(iMax, size);
+        for (int i = 0; i < iMax; i++)
         {
-            if (pD->get(i))
+            if (p[i])
             {
                 piIndex[iValues] = i;
                 iValues++;
@@ -92,8 +98,9 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         int* pRows = new int[iNNZ * 2];
         pSP->outputRowCol(pRows);
         int *pCols = pRows + iNNZ;
+        iMax = iMax == -1 ? iNNZ : std::min(iMax, iNNZ);
 
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < iNNZ ; i++)
+        for (int i = 0; i < iMax; i++)
         {
             piIndex[iValues] = (pCols[i] - 1) * iRows + (pRows[i] - 1);
             iValues++;
@@ -111,7 +118,8 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         pSB->outputRowCol(pRows);
         int* pCols = pRows + iNNZ;
 
-        for (int i = 0 ; (iMax == -1 || iValues < iMax) && i < iNNZ ; i++)
+        iMax = iMax == -1 ? iNNZ : std::min(iMax, iNNZ);
+        for (int i = 0; i < iMax; i++)
         {
             piIndex[iValues] = (pCols[i] - 1) * iRows + (pRows[i] - 1);
             iValues++;
@@ -137,6 +145,21 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
+        if (_iRetCount == 1)
+        {
+            types::Double* dbl = new types::Double(1, iValues);
+            double* p = dbl->get();
+
+            for (int i = 0; i < iValues; ++i)
+            {
+                p[i] = static_cast<double>(piIndex[i]) + 1;
+            }
+
+            delete[] piIndex;
+            out.push_back(dbl);
+            return types::Function::OK;
+        }
+
         int* piRefDims = pGT->getDimsArray();
         int iRefDims = pGT->getDims();
 
