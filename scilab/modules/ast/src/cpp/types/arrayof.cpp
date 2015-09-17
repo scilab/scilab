@@ -824,6 +824,7 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
         }
     }
 
+
     if (bTooMuchNotEntire == true)
     {
         //free pArg content
@@ -917,55 +918,91 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
             int piRealDim[2] = {iNewDimSize, 1};
             pOut = createEmpty(2, piRealDim, m_pImgData != NULL);
         }
+
+        {
+            int iNewPos = 0;
+            int size = getSize();
+
+            //try to sort piNotEntireIndex
+            std::sort(piNotEntireIndex, piNotEntireIndex + iNotEntireSize);
+
+            int last = 0;
+            for (int i = 0; i < iNotEntireSize; ++i)
+            {
+                int ii = piNotEntireIndex[i] - 1;
+                for (int j = last; j < ii; ++j)
+                {
+                    pOut->set(iNewPos, get(j));
+                    if (m_pImgData != NULL)
+                    {
+                        pOut->setImg(iNewPos, getImg(j));
+                    }
+                    iNewPos++;
+                }
+
+                last = ii + 1;
+            }
+
+            for (int i = last; i < size; ++i)
+            {
+                pOut->set(iNewPos, get(i));
+                if (m_pImgData != NULL)
+                {
+                    pOut->setImg(iNewPos, getImg(i));
+                }
+                iNewPos++;
+            }
+        }
     }
     else
     {
         pOut = createEmpty(iDims, piNewDims, m_pImgData != NULL);
-    }
 
-    delete[] piNewDims;
-    //find a way to copy existing data to new variable ...
-    int iNewPos = 0;
-    int* piIndexes = new int[iOrigDims];
-    int* piViewDims = new int[iOrigDims];
-    for (int i = 0; i < iOrigDims; i++)
-    {
-        piViewDims[i] = getVarMaxDim(i, iOrigDims);
-    }
-
-    for (int i = 0; i < getSize(); i++)
-    {
-        bool bByPass = false;
-        getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
-
-        //check if piIndexes use removed indexes
-        for (int j = 0; j < iNotEntireSize; j++)
+        delete[] piNewDims;
+        //find a way to copy existing data to new variable ...
+        int iNewPos = 0;
+        int* piIndexes = new int[iOrigDims];
+        int* piViewDims = new int[iOrigDims];
+        for (int i = 0; i < iOrigDims; i++)
         {
-            if ((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
+            piViewDims[i] = getVarMaxDim(i, iOrigDims);
+        }
+
+        for (int i = 0; i < getSize(); i++)
+        {
+            bool bByPass = false;
+            getIndexesWithDims(i, piIndexes, piViewDims, iOrigDims);
+
+            //check if piIndexes use removed indexes
+            for (int j = 0; j < iNotEntireSize; j++)
             {
-                //by pass this value
-                bByPass = true;
-                break;
+                if ((piNotEntireIndex[j] - 1) == piIndexes[iNotEntire])
+                {
+                    //by pass this value
+                    bByPass = true;
+                    break;
+                }
+            }
+
+            if (bByPass == false)
+            {
+                //compute new index
+                pOut->set(iNewPos, get(i));
+                if (m_pImgData != NULL)
+                {
+                    pOut->setImg(iNewPos, getImg(i));
+                }
+                iNewPos++;
             }
         }
 
-        if (bByPass == false)
-        {
-            //compute new index
-            pOut->set(iNewPos, get(i));
-            if (m_pImgData != NULL)
-            {
-                pOut->setImg(iNewPos, getImg(i));
-            }
-            iNewPos++;
-        }
+        delete[] piIndexes;
+        delete[] piViewDims;
     }
 
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 
-    delete[] piIndexes;
-    delete[] piViewDims;
     return pOut;
 }
 

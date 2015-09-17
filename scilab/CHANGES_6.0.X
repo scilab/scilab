@@ -17,6 +17,8 @@ Scilab Bug Fixes
 
 * Bug #12928 fixed - int functions with %nan and %inf return wrong values.
 
+* Bug #14059 fixed - Lack of performance on deletion of matrix elements.
+
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
 
 * Bug #13750 fixed - Calling ss2ss function with flag = 2 returned an error.
