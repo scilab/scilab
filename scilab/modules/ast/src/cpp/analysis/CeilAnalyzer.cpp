@@ -52,7 +52,7 @@ bool CeilAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             }
             else
             {
-                visitor.getDM().releaseTmp(R.getTempId());
+                visitor.getDM().releaseTmp(R.getTempId(), *first);
             }
         }
     }

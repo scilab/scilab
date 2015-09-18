@@ -25,10 +25,12 @@ void AnalysisVisitor::visit(ast::OpExp & e)
     TIType resT(getGVN());
     int tempId = -1;
     bool safe = false;
+    ast::Exp & Lexp = e.getLeft();
+    ast::Exp & Rexp = e.getRight();
 
-    e.getLeft().accept(*this);
+    Lexp.accept(*this);
     Result LR = getResult();
-    e.getRight().accept(*this);
+    Rexp.accept(*this);
     Result & RR = getResult();
     if (LR.getType().isknown() && RR.getType().isknown())
     {
@@ -41,12 +43,12 @@ void AnalysisVisitor::visit(ast::OpExp & e)
             {
                 case ast::OpExp::plus :
                 {
-                    resT = checkEWBinOp<_check_plus>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_plus>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::minus:
                 {
-                    resT = checkEWBinOp<_check_minus>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_minus>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::times:
@@ -71,8 +73,8 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                     }
 
                     tempId = dm.getTmpId(resT, false);
-                    dm.releaseTmp(LR.getTempId());
-                    dm.releaseTmp(RR.getTempId());
+                    dm.releaseTmp(LR.getTempId(), &e);
+                    dm.releaseTmp(RR.getTempId(), &e);
 
                     break;
                 }
@@ -98,8 +100,8 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                     }
 
                     tempId = dm.getTmpId(resT, false);
-                    dm.releaseTmp(LR.getTempId());
-                    dm.releaseTmp(RR.getTempId());
+                    dm.releaseTmp(LR.getTempId(), &e);
+                    dm.releaseTmp(RR.getTempId(), &e);
                     break;
                 }
                 case ast::OpExp::ldivide:
@@ -124,8 +126,8 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                     }
 
                     tempId = dm.getTmpId(resT, false);
-                    dm.releaseTmp(LR.getTempId());
-                    dm.releaseTmp(RR.getTempId());
+                    dm.releaseTmp(LR.getTempId(), &e);
+                    dm.releaseTmp(RR.getTempId(), &e);
                     break;
                 }
                 case ast::OpExp::power:
@@ -150,23 +152,23 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                     }
 
                     tempId = dm.getTmpId(resT, false);
-                    dm.releaseTmp(LR.getTempId());
-                    dm.releaseTmp(RR.getTempId());
+                    dm.releaseTmp(LR.getTempId(), &e);
+                    dm.releaseTmp(RR.getTempId(), &e);
                     break;
                 }
                 case ast::OpExp::dottimes :
                 {
-                    resT = checkEWBinOp<_check_dottimes>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_dottimes>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::dotrdivide:
                 {
-                    resT = checkEWBinOp<_check_dotrdiv>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_dotrdiv>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::dotpower:
                 {
-                    resT = checkEWBinOp<_check_dotpower>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_dotpower>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::unaryMinus :
@@ -187,58 +189,58 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                         safe = true;
                     }
                     tempId = dm.getTmpId(resT, false);
-                    dm.releaseTmp(LR.getTempId());
-                    dm.releaseTmp(RR.getTempId());
+                    dm.releaseTmp(LR.getTempId(), &e);
+                    dm.releaseTmp(RR.getTempId(), &e);
                     break;
                 }
                 case ast::OpExp::eq:
                 {
-                    resT = checkEWBinOp<_check_eq>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_eq>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::ne:
                 {
-                    resT = checkEWBinOp<_check_neq>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_neq>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::lt:
                 {
-                    resT = checkEWBinOp<_check_lt>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_lt>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::le:
                 {
-                    resT = checkEWBinOp<_check_le>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_le>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::gt:
                 {
-                    resT = checkEWBinOp<_check_gt>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_gt>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::ge:
                 {
-                    resT = checkEWBinOp<_check_ge>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_ge>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::logicalAnd:
                 {
-                    resT = checkEWBinOp<_check_and>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_and>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::logicalOr:
                 {
-                    resT = checkEWBinOp<_check_or>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_or>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::logicalShortCutAnd:
                 {
-                    resT = checkEWBinOp<_check_andand>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_andand>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
                 case ast::OpExp::logicalShortCutOr:
                 {
-                    resT = checkEWBinOp<_check_oror>(LT, RT, LR, RR, safe, tempId);
+                    resT = checkEWBinOp<_check_oror>(LT, RT, LR, RR, safe, tempId, &Lexp, &Rexp);
                     break;
                 }
             }
@@ -287,7 +289,7 @@ void AnalysisVisitor::visit(ast::TransposeExp & e)
     TIType resType(dm.getGVN(), type.type, type.cols, type.rows);
     e.getDecorator().res = Result(resType, dm.getTmpId(resType, false));
     e.getDecorator().safe = true;
-    dm.releaseTmp(res.getTempId());
+    dm.releaseTmp(res.getTempId(), &e);
 
     setResult(e.getDecorator().res);
 }

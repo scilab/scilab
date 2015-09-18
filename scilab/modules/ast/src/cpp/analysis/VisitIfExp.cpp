@@ -157,7 +157,7 @@ void AnalysisVisitor::visit(ast::IfExp & e)
     {
         dm.addBlock(Block::EXCLUSIVE, &e);
         e.getTest().accept(*this);
-        dm.releaseTmp(getResult().getTempId());
+        dm.releaseTmp(getResult().getTempId(), &e.getTest());
         dm.addBlock(Block::NORMAL, &e.getThen());
         e.getThen().accept(*this);
         dm.finalizeBlock();

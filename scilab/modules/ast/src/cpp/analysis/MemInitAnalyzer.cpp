@@ -26,10 +26,10 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
 
         first->accept(visitor);
         Result R1 = visitor.getResult();
-        visitor.getDM().releaseTmp(R1.getTempId());
+        visitor.getDM().releaseTmp(R1.getTempId(), first);
         second->accept(visitor);
         Result & R2 = visitor.getResult();
-        visitor.getDM().releaseTmp(R2.getTempId());
+        visitor.getDM().releaseTmp(R2.getTempId(), second);
         double val;
         SymbolicDimension rows, cols;
         bool empty = false;

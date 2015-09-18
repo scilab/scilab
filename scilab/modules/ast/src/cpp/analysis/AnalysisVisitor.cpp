@@ -277,9 +277,11 @@ void AnalysisVisitor::visitArguments(const std::wstring & name, const unsigned i
             multipleLHS.emplace_back(type, tempId);
         }
 
+        auto i = args.begin();
         for (const auto & resarg : resargs)
         {
-            getDM().releaseTmp(resarg.getTempId());
+            getDM().releaseTmp(resarg.getTempId(), *i);
+            ++i;
         }
     }
     else if (lhs == 1)
@@ -296,9 +298,11 @@ void AnalysisVisitor::visitArguments(const std::wstring & name, const unsigned i
         if (tempId == -1)
         {
             tempId = getDM().getTmpId(out[0], false);
+            auto i = args.begin();
             for (const auto & resarg : resargs)
             {
-                getDM().releaseTmp(resarg.getTempId());
+                getDM().releaseTmp(resarg.getTempId(), *i);
+                ++i;
             }
         }
 
@@ -308,7 +312,7 @@ void AnalysisVisitor::visitArguments(const std::wstring & name, const unsigned i
     }
 }
 
-int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR)
+int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR, ast::Exp * Lexp, ast::Exp * Rexp)
 {
     int tempId = -1;
     if (resT.isknown() && resT.ismatrix())
@@ -333,7 +337,7 @@ int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, con
                         else
                         {
                             tempId = getDM().getTmpId(resT, false);
-                            getDM().releaseTmp(Rid);
+                            getDM().releaseTmp(Rid, Rexp);
                         }
                     }
                     else
@@ -341,17 +345,17 @@ int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, con
                         if (resT == LT)
                         {
                             tempId = Lid;
-                            getDM().releaseTmp(Rid);
+                            getDM().releaseTmp(Rid, Rexp);
                         }
                         else if (Rid != -1 && resT == RT)
                         {
                             tempId = Rid;
-                            getDM().releaseTmp(Lid);
+                            getDM().releaseTmp(Lid, Lexp);
                         }
                         else
                         {
                             tempId = getDM().getTmpId(resT, false);
-                            getDM().releaseTmp(Lid);
+                            getDM().releaseTmp(Lid, Lexp);
                         }
                     }
                 }
@@ -370,15 +374,15 @@ int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, con
                         else if (Lid != -1 && resT == LT)
                         {
                             tempId = Lid;
-                            getDM().releaseTmp(Rid);
+                            getDM().releaseTmp(Rid, Rexp);
                         }
                         else
                         {
                             tempId = getDM().getTmpId(resT, false);
-                            getDM().releaseTmp(Rid);
+                            getDM().releaseTmp(Rid, Rexp);
                         }
                     }
-                    getDM().releaseTmp(Lid);
+                    getDM().releaseTmp(Lid, Lexp);
                 }
             }
             else
@@ -398,15 +402,15 @@ int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, con
                         else if (Rid != -1 && resT == RT)
                         {
                             tempId = Rid;
-                            getDM().releaseTmp(Lid);
+                            getDM().releaseTmp(Lid, Lexp);
                         }
                         else
                         {
                             tempId = getDM().getTmpId(resT, false);
-                            getDM().releaseTmp(Lid);
+                            getDM().releaseTmp(Lid, Lexp);
                         }
                     }
-                    getDM().releaseTmp(Rid);
+                    getDM().releaseTmp(Rid, Rexp);
                 }
                 else
                 {
@@ -419,7 +423,7 @@ int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, con
                         else
                         {
                             tempId = getDM().getTmpId(resT, false);
-                            getDM().releaseTmp(Lid);
+                            getDM().releaseTmp(Lid, Lexp);
                         }
                     }
                     else
@@ -431,14 +435,14 @@ int AnalysisVisitor::getTmpIdForEWOp(const TIType & resT, const Result & LR, con
                         else if (Lid != -1 && resT == LT)
                         {
                             tempId = Lid;
-                            getDM().releaseTmp(Rid);
+                            getDM().releaseTmp(Rid, Rexp);
                         }
                         else
                         {
                             tempId = getDM().getTmpId(resT, false);
-                            getDM().releaseTmp(Rid);
+                            getDM().releaseTmp(Rid, Rexp);
                         }
-                        getDM().releaseTmp(Lid);
+                        getDM().releaseTmp(Lid, Lexp);
                     }
                 }
             }

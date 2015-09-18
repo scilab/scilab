@@ -88,9 +88,9 @@ int DataManager::getTmpId(const TIType & type, const bool isAnInt)
     return current->getTmpId(type, isAnInt);
 }
 
-void DataManager::releaseTmp(const int id)
+void DataManager::releaseTmp(const int id, ast::Exp * exp)
 {
-    current->releaseTmp(id);
+    current->releaseTmp(id, exp);
 }
 
 Info & DataManager::read(const symbol::Symbol & sym, ast::Exp * exp)

@@ -61,7 +61,7 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             Info & info = getDM().define(sym, RR.getType(), RR.isAnInt(), &e);
             info.getConstant() = RR.getConstant();
             e.getDecorator().safe = true;
-            getDM().releaseTmp(RR.getTempId());
+            getDM().releaseTmp(RR.getTempId(), &e.getRightExp());
         }
     }
     else if (e.getLeftExp().isCallExp()) // A(12) = ...
@@ -79,7 +79,7 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             {
                 e.getDecorator().safe = (RR.getType() == getResult().getType());
             }
-            getDM().releaseTmp(RR.getTempId());
+            getDM().releaseTmp(RR.getTempId(), &e.getRightExp());
         }
     }
     else if (e.getLeftExp().isAssignListExp()) // [A, B] = ...

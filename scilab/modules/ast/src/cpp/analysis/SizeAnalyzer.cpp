@@ -45,7 +45,7 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     Result & res = visitor.getResult();
     if (!res.getType().ismatrix())
     {
-        visitor.getDM().releaseTmp(res.getTempId());
+        visitor.getDM().releaseTmp(res.getTempId(), first);
         return false;
     }
 
@@ -83,7 +83,7 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
                     }
                     else
                     {
-                        visitor.getDM().releaseTmp(res.getTempId());
+                        visitor.getDM().releaseTmp(res.getTempId(), first);
                         return false;
                     }
                 }
@@ -105,20 +105,20 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
                     }
                     else
                     {
-                        visitor.getDM().releaseTmp(res.getTempId());
+                        visitor.getDM().releaseTmp(res.getTempId(), first);
                         return false;
                     }
                 }
             }
             else
             {
-                visitor.getDM().releaseTmp(res.getTempId());
+                visitor.getDM().releaseTmp(res.getTempId(), first);
                 return false;
             }
             break;
         }
         default:
-            visitor.getDM().releaseTmp(res.getTempId());
+            visitor.getDM().releaseTmp(res.getTempId(), first);
             return false;
     }
 

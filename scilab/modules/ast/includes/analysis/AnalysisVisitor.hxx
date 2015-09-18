@@ -307,7 +307,7 @@ private:
     }
 
     template<TIType (F)(GVN &, const TIType &, const TIType &)>
-    inline TIType checkEWBinOp(TIType & LT, TIType & RT, const Result & LR, const Result & RR, bool & safe, int & tempId)
+    inline TIType checkEWBinOp(TIType & LT, TIType & RT, const Result & LR, const Result & RR, bool & safe, int & tempId, ast::Exp * Lexp, ast::Exp * Rexp)
     {
         TIType resT = F(getGVN(), LT, RT);
         if (resT.hasInvalidDims())
@@ -329,7 +329,7 @@ private:
             safe = true;
         }
 
-        tempId = getTmpIdForEWOp(resT, LR, RR);
+        tempId = getTmpIdForEWOp(resT, LR, RR, Lexp, Rexp);
 
         if (resT.isscalar())
         {
@@ -343,7 +343,7 @@ private:
 
     // get temp id for an element-wise operation
     // A + (B + 1) => B+1 is a temp, A is not and we can reuse the temp to put the result of A + (B+1)
-    int getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR);
+    int getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR, ast::Exp * Lexp, ast::Exp * Rexp);
     void visitArguments(const std::wstring & name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, const ast::exps_t & args);
 
     void visit(ast::SelectExp & e);
@@ -406,7 +406,7 @@ private:
         logger.log(L"WhileExp", e.getLocation());
         loops.push(&e);
         e.getTest().accept(*this);
-        dm.releaseTmp(getResult().getTempId());
+        dm.releaseTmp(getResult().getTempId(), &e.getTest());
         e.getBody().accept(*this);
         loops.pop();
     }
