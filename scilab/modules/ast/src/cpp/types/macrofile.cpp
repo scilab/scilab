@@ -57,7 +57,12 @@ void MacroFile::whoAmI()
 
 bool MacroFile::toString(std::wostringstream& ostr)
 {
-    ostr << L"FIXME : Implement MacroFile::toString" << std::endl;
+
+    parse();
+    if (m_pMacro)
+    {
+        m_pMacro->toString(ostr);
+    }
     return true;
 }
 
