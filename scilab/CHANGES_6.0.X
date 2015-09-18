@@ -22,6 +22,8 @@ Scilab Bug Fixes
 
 * Bug #14059 fixed - Lack of performance on deletion of matrix elements.
 
+* Bug #14055 fixed - overload on matrix concatenation did not called with [].
+
 * Bug #14028 fixed - force flag of genlib did not rebuild bin file.
 
 * Bug #14024 fixed - Print of macrofile display a debug message
