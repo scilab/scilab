@@ -33,8 +33,9 @@ public final class TextBlock extends BasicBlock {
      * Default constructor
      */
     public TextBlock(long uid) {
-        super(uid);
+        super(uid, Kind.ANNOTATION);
 
+        setStyle("TEXT_f");
         setValue(XcosMessages.DOTS);
     }
 
@@ -51,12 +52,7 @@ public final class TextBlock extends BasicBlock {
     }
 
     @Override
-    public void setValue(Object value) {
-        if (value != null) {
-            JavaController controller = new JavaController();
-            controller.setObjectProperty(getUID(), Kind.ANNOTATION, ObjectProperties.DESCRIPTION, value.toString());
-        }
-
-        super.setValue(value);
+    public String getToolTipText() {
+        return String.valueOf(getValue());
     }
 }

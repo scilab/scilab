@@ -77,10 +77,10 @@ public class ShowParentAction extends DefaultAction {
             JavaController controller = new JavaController();
             long[] parent = new long[1];
             Kind kind = Kind.BLOCK;
-            controller.getObjectProperty(graph.getUId(), kind, ObjectProperties.PARENT_BLOCK, parent);
+            controller.getObjectProperty(graph.getUID(), kind, ObjectProperties.PARENT_BLOCK, parent);
             if (parent[0] == 0) {
                 kind = Kind.DIAGRAM;
-                controller.getObjectProperty(graph.getUId(), kind, ObjectProperties.PARENT_DIAGRAM, parent);
+                controller.getObjectProperty(graph.getUID(), kind, ObjectProperties.PARENT_DIAGRAM, parent);
             }
 
             XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());

@@ -18,6 +18,8 @@
 %module(director="1") JavaController;
 
 %{
+#include <iterator>
+#include <algorithm>
 #include <vector>
 #include <string>
 
@@ -27,9 +29,124 @@
 %}
 
 %include <enums.swg>
+%include <std_common.i>
 %include <typemaps.i>
-%include <std_vector.i>
 %include <std_string.i>
+
+/*
+ * Inline std_vector.i and add insert and remove methods
+ */
+namespace std {
+    
+    template<class T> class vector {
+      public:
+        typedef size_t size_type;
+        typedef T value_type;
+        typedef const value_type& const_reference;
+        vector();
+        vector(size_type n);
+        %rename(ensureCapacity) reserve;
+        void reserve(size_type n);
+        int size() const;
+        %rename(isEmpty) empty;
+        bool empty() const;
+        void clear();
+        %rename(add) push_back;
+        void push_back(const value_type& x);
+        %extend {
+            bool contains(const T& o) {
+               return std::find(self->begin(), self->end(), o) != self->end();
+            }
+            int indexOf(const T& o) {
+               auto it = std::find(self->begin(), self->end(), o);
+               if (it != self->end())
+                   return std::distance(self->begin(), it);
+               else
+                   return -1;
+            }
+            const_reference get(int i) throw (std::out_of_range) {
+                int size = int(self->size());
+                if (i>=0 && i<size)
+                    return (*self)[i];
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+            void set(int i, const value_type& val) throw (std::out_of_range) {
+                int size = int(self->size());
+                if (i>=0 && i<size)
+                    (*self)[i] = val;
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+            void add(int i, const value_type& val) throw (std::out_of_range) {
+                int size = int(self->size());
+                if (i>=0 && i<=size)
+                    self->insert(self->begin() + i, val);
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+            bool remove(const value_type& val) {
+                auto it = std::find(self->begin(), self->end(), val);
+                if (it == self->end())
+                    return false;
+                else
+                    self->erase(it);
+                return true;
+            }
+        }
+    };
+
+    // bool specialization
+    template<> class vector<bool> {
+      public:
+        typedef size_t size_type;
+        typedef bool value_type;
+        typedef bool const_reference;
+        vector();
+        vector(size_type n);
+        size_type size() const;
+        size_type capacity() const;
+        void reserve(size_type n);
+        void resize(size_type n);
+        %rename(isEmpty) empty;
+        bool empty() const;
+        void clear();
+        %rename(add) push_back;
+        void push_back(const value_type& x);
+        %extend {
+            bool get(int i) throw (std::out_of_range) {
+                int size = int(self->size());
+                if (i>=0 && i<size)
+                    return (*self)[i];
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+            void set(int i, const value_type& val) throw (std::out_of_range) {
+                int size = int(self->size());
+                if (i>=0 && i<size)
+                    (*self)[i] = val;
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+            void add(int i, const value_type& val) throw (std::out_of_range) {
+                int size = int(self->size());
+                if (i>=0 && i<=size)
+                    self->insert(self->begin() + i, val);
+                else
+                    throw std::out_of_range("vector index out of range");
+            }
+            bool remove(const value_type& val) {
+                auto it = std::find(self->begin(), self->end(), val);
+                if (it == self->end())
+                    return false;
+                else
+                    self->erase(it);
+                return true;
+            }
+        }
+
+    };
+}
 
 /*
  * Map as simple Java enum, see "25.10.1 Simpler Java enums"
@@ -47,6 +164,7 @@
 %rename(Kind) kind_t;
 %rename(ObjectProperties) object_properties_t;
 %rename(UpdateStatus) update_status_t;
+%rename(PortKind) portKind;
 
 %include "../scicos/includes/utilities.hxx";
 
@@ -131,7 +249,6 @@
 /*
  * Template instanciation
  */
-
 %template(VectorOfInt)      std::vector<int>;
 %template(VectorOfBool)     std::vector<bool>;
 %template(VectorOfDouble)   std::vector<double>;

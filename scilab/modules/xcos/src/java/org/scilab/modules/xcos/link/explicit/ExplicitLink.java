@@ -27,8 +27,8 @@ public class ExplicitLink extends BasicLink {
     private static final double[][] COLOR_AND_TYPE = { { 1.0, 1.0 } };
 
     /** Default constructor */
-    public ExplicitLink() {
-        super("ExplicitLink");
+    public ExplicitLink(long uid) {
+        super(uid, "ExplicitLink");
     }
 
     /** @return A black colored explicit link identifier */

@@ -12,8 +12,8 @@ public class JavaControllerJNI {
   public final static native long new_View();
   public final static native void delete_View(long jarg1);
   public final static native void View_objectCreated(long jarg1, View jarg1_, long jarg2, int jarg3);
-  public final static native void View_objectReferenced(long jarg1, View jarg1_, long jarg2, int jarg3);
-  public final static native void View_objectUnreferenced(long jarg1, View jarg1_, long jarg2, int jarg3);
+  public final static native void View_objectReferenced(long jarg1, View jarg1_, long jarg2, int jarg3, long jarg4);
+  public final static native void View_objectUnreferenced(long jarg1, View jarg1_, long jarg2, int jarg3, long jarg4);
   public final static native void View_objectDeleted(long jarg1, View jarg1_, long jarg2, int jarg3);
   public final static native void View_propertyUpdated(long jarg1, View jarg1_, long jarg2, int jarg3, int jarg4, int jarg5);
   public final static native void View_director_connect(View obj, long cptr, boolean mem_own, boolean weak_global);
@@ -49,58 +49,73 @@ public class JavaControllerJNI {
   public final static native int Controller_setObjectProperty__SWIG_10(long jarg1, Controller jarg1_, long jarg2, int jarg3, int jarg4, long jarg5, VectorOfScicosID jarg5_);
   public final static native long new_VectorOfInt__SWIG_0();
   public final static native long new_VectorOfInt__SWIG_1(long jarg1);
-  public final static native long VectorOfInt_size(long jarg1, VectorOfInt jarg1_);
-  public final static native long VectorOfInt_capacity(long jarg1, VectorOfInt jarg1_);
-  public final static native void VectorOfInt_reserve(long jarg1, VectorOfInt jarg1_, long jarg2);
+  public final static native void VectorOfInt_ensureCapacity(long jarg1, VectorOfInt jarg1_, long jarg2);
+  public final static native int VectorOfInt_size(long jarg1, VectorOfInt jarg1_);
   public final static native boolean VectorOfInt_isEmpty(long jarg1, VectorOfInt jarg1_);
   public final static native void VectorOfInt_clear(long jarg1, VectorOfInt jarg1_);
-  public final static native void VectorOfInt_add(long jarg1, VectorOfInt jarg1_, int jarg2);
+  public final static native void VectorOfInt_add__SWIG_0(long jarg1, VectorOfInt jarg1_, int jarg2);
+  public final static native boolean VectorOfInt_contains(long jarg1, VectorOfInt jarg1_, int jarg2);
+  public final static native int VectorOfInt_indexOf(long jarg1, VectorOfInt jarg1_, int jarg2);
   public final static native int VectorOfInt_get(long jarg1, VectorOfInt jarg1_, int jarg2);
   public final static native void VectorOfInt_set(long jarg1, VectorOfInt jarg1_, int jarg2, int jarg3);
+  public final static native void VectorOfInt_add__SWIG_1(long jarg1, VectorOfInt jarg1_, int jarg2, int jarg3);
+  public final static native boolean VectorOfInt_remove(long jarg1, VectorOfInt jarg1_, int jarg2);
   public final static native void delete_VectorOfInt(long jarg1);
   public final static native long new_VectorOfBool__SWIG_0();
   public final static native long new_VectorOfBool__SWIG_1(long jarg1);
   public final static native long VectorOfBool_size(long jarg1, VectorOfBool jarg1_);
   public final static native long VectorOfBool_capacity(long jarg1, VectorOfBool jarg1_);
-  public final static native void VectorOfBool_reserve(long jarg1, VectorOfBool jarg1_, long jarg2);
+  public final static native void VectorOfBool_ensureCapacity(long jarg1, VectorOfBool jarg1_, long jarg2);
+  public final static native void VectorOfBool_resize(long jarg1, VectorOfBool jarg1_, long jarg2);
   public final static native boolean VectorOfBool_isEmpty(long jarg1, VectorOfBool jarg1_);
   public final static native void VectorOfBool_clear(long jarg1, VectorOfBool jarg1_);
-  public final static native void VectorOfBool_add(long jarg1, VectorOfBool jarg1_, boolean jarg2);
+  public final static native void VectorOfBool_add__SWIG_0(long jarg1, VectorOfBool jarg1_, boolean jarg2);
   public final static native boolean VectorOfBool_get(long jarg1, VectorOfBool jarg1_, int jarg2);
   public final static native void VectorOfBool_set(long jarg1, VectorOfBool jarg1_, int jarg2, boolean jarg3);
+  public final static native void VectorOfBool_add__SWIG_1(long jarg1, VectorOfBool jarg1_, int jarg2, boolean jarg3);
+  public final static native boolean VectorOfBool_remove(long jarg1, VectorOfBool jarg1_, boolean jarg2);
   public final static native void delete_VectorOfBool(long jarg1);
   public final static native long new_VectorOfDouble__SWIG_0();
   public final static native long new_VectorOfDouble__SWIG_1(long jarg1);
-  public final static native long VectorOfDouble_size(long jarg1, VectorOfDouble jarg1_);
-  public final static native long VectorOfDouble_capacity(long jarg1, VectorOfDouble jarg1_);
-  public final static native void VectorOfDouble_reserve(long jarg1, VectorOfDouble jarg1_, long jarg2);
+  public final static native void VectorOfDouble_ensureCapacity(long jarg1, VectorOfDouble jarg1_, long jarg2);
+  public final static native int VectorOfDouble_size(long jarg1, VectorOfDouble jarg1_);
   public final static native boolean VectorOfDouble_isEmpty(long jarg1, VectorOfDouble jarg1_);
   public final static native void VectorOfDouble_clear(long jarg1, VectorOfDouble jarg1_);
-  public final static native void VectorOfDouble_add(long jarg1, VectorOfDouble jarg1_, double jarg2);
+  public final static native void VectorOfDouble_add__SWIG_0(long jarg1, VectorOfDouble jarg1_, double jarg2);
+  public final static native boolean VectorOfDouble_contains(long jarg1, VectorOfDouble jarg1_, double jarg2);
+  public final static native int VectorOfDouble_indexOf(long jarg1, VectorOfDouble jarg1_, double jarg2);
   public final static native double VectorOfDouble_get(long jarg1, VectorOfDouble jarg1_, int jarg2);
   public final static native void VectorOfDouble_set(long jarg1, VectorOfDouble jarg1_, int jarg2, double jarg3);
+  public final static native void VectorOfDouble_add__SWIG_1(long jarg1, VectorOfDouble jarg1_, int jarg2, double jarg3);
+  public final static native boolean VectorOfDouble_remove(long jarg1, VectorOfDouble jarg1_, double jarg2);
   public final static native void delete_VectorOfDouble(long jarg1);
   public final static native long new_VectorOfString__SWIG_0();
   public final static native long new_VectorOfString__SWIG_1(long jarg1);
-  public final static native long VectorOfString_size(long jarg1, VectorOfString jarg1_);
-  public final static native long VectorOfString_capacity(long jarg1, VectorOfString jarg1_);
-  public final static native void VectorOfString_reserve(long jarg1, VectorOfString jarg1_, long jarg2);
+  public final static native void VectorOfString_ensureCapacity(long jarg1, VectorOfString jarg1_, long jarg2);
+  public final static native int VectorOfString_size(long jarg1, VectorOfString jarg1_);
   public final static native boolean VectorOfString_isEmpty(long jarg1, VectorOfString jarg1_);
   public final static native void VectorOfString_clear(long jarg1, VectorOfString jarg1_);
-  public final static native void VectorOfString_add(long jarg1, VectorOfString jarg1_, String jarg2);
+  public final static native void VectorOfString_add__SWIG_0(long jarg1, VectorOfString jarg1_, String jarg2);
+  public final static native boolean VectorOfString_contains(long jarg1, VectorOfString jarg1_, String jarg2);
+  public final static native int VectorOfString_indexOf(long jarg1, VectorOfString jarg1_, String jarg2);
   public final static native String VectorOfString_get(long jarg1, VectorOfString jarg1_, int jarg2);
   public final static native void VectorOfString_set(long jarg1, VectorOfString jarg1_, int jarg2, String jarg3);
+  public final static native void VectorOfString_add__SWIG_1(long jarg1, VectorOfString jarg1_, int jarg2, String jarg3);
+  public final static native boolean VectorOfString_remove(long jarg1, VectorOfString jarg1_, String jarg2);
   public final static native void delete_VectorOfString(long jarg1);
   public final static native long new_VectorOfScicosID__SWIG_0();
   public final static native long new_VectorOfScicosID__SWIG_1(long jarg1);
-  public final static native long VectorOfScicosID_size(long jarg1, VectorOfScicosID jarg1_);
-  public final static native long VectorOfScicosID_capacity(long jarg1, VectorOfScicosID jarg1_);
-  public final static native void VectorOfScicosID_reserve(long jarg1, VectorOfScicosID jarg1_, long jarg2);
+  public final static native void VectorOfScicosID_ensureCapacity(long jarg1, VectorOfScicosID jarg1_, long jarg2);
+  public final static native int VectorOfScicosID_size(long jarg1, VectorOfScicosID jarg1_);
   public final static native boolean VectorOfScicosID_isEmpty(long jarg1, VectorOfScicosID jarg1_);
   public final static native void VectorOfScicosID_clear(long jarg1, VectorOfScicosID jarg1_);
-  public final static native void VectorOfScicosID_add(long jarg1, VectorOfScicosID jarg1_, long jarg2);
+  public final static native void VectorOfScicosID_add__SWIG_0(long jarg1, VectorOfScicosID jarg1_, long jarg2);
+  public final static native boolean VectorOfScicosID_contains(long jarg1, VectorOfScicosID jarg1_, long jarg2);
+  public final static native int VectorOfScicosID_indexOf(long jarg1, VectorOfScicosID jarg1_, long jarg2);
   public final static native long VectorOfScicosID_get(long jarg1, VectorOfScicosID jarg1_, int jarg2);
   public final static native void VectorOfScicosID_set(long jarg1, VectorOfScicosID jarg1_, int jarg2, long jarg3);
+  public final static native void VectorOfScicosID_add__SWIG_1(long jarg1, VectorOfScicosID jarg1_, int jarg2, long jarg3);
+  public final static native boolean VectorOfScicosID_remove(long jarg1, VectorOfScicosID jarg1_, long jarg2);
   public final static native void delete_VectorOfScicosID(long jarg1);
   public final static native void register_view(String jarg1, long jarg2, View jarg2_);
   public final static native void unregister_view(long jarg1, View jarg1_);
@@ -128,11 +143,11 @@ public class JavaControllerJNI {
   public static void SwigDirector_View_objectCreated(View jself, long uid, int kind) {
     jself.objectCreated(uid, Kind.class.getEnumConstants()[kind]);
   }
-  public static void SwigDirector_View_objectReferenced(View jself, long uid, int kind) {
-    jself.objectReferenced(uid, Kind.class.getEnumConstants()[kind]);
+  public static void SwigDirector_View_objectReferenced(View jself, long uid, int kind, long refCount) {
+    jself.objectReferenced(uid, Kind.class.getEnumConstants()[kind], refCount);
   }
-  public static void SwigDirector_View_objectUnreferenced(View jself, long uid, int kind) {
-    jself.objectUnreferenced(uid, Kind.class.getEnumConstants()[kind]);
+  public static void SwigDirector_View_objectUnreferenced(View jself, long uid, int kind, long refCount) {
+    jself.objectUnreferenced(uid, Kind.class.getEnumConstants()[kind], refCount);
   }
   public static void SwigDirector_View_objectDeleted(View jself, long uid, int kind) {
     jself.objectDeleted(uid, Kind.class.getEnumConstants()[kind]);

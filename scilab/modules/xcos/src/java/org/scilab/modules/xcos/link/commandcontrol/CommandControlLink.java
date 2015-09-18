@@ -27,8 +27,8 @@ public class CommandControlLink extends BasicLink {
     private static final double[][] COLOR_AND_TYPE = { { 5.0, -1.0 } };
 
     /** Default constructor */
-    public CommandControlLink() {
-        super("CommandControlLink");
+    public CommandControlLink(long uid) {
+        super(uid, "CommandControlLink");
     }
 
     /** @return A red colored activation link identifier */

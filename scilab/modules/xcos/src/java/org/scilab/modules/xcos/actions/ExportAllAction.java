@@ -152,10 +152,10 @@ public final class ExportAllAction extends DefaultAction {
             diagrams.add(graph);
 
             // append the already allocated diagram
-            diagrams.addAll(Xcos.getInstance().getDiagrams(graph.getUId()));
+            diagrams.addAll(Xcos.getInstance().getDiagrams(graph.getUID()));
 
             ArrayList<Long> stash = new ArrayList<>();
-            allocateDiagrams(controller, diagrams, stash, graph.getUId(), Kind.DIAGRAM);
+            allocateDiagrams(controller, diagrams, stash, graph.getUID(), Kind.DIAGRAM);
             while (!stash.isEmpty()) {
                 final long uid = stash.remove(stash.size() - 1);
                 allocateDiagrams(controller, diagrams, stash, uid, Kind.BLOCK);
@@ -193,7 +193,7 @@ public final class ExportAllAction extends DefaultAction {
                 }
 
 
-                if (diagrams.stream().noneMatch(d -> d.getUId() == currentUID)) {
+                if (diagrams.stream().noneMatch(d -> d.getUID() == currentUID)) {
                     final XcosDiagram child = new XcosDiagram(currentUID, Kind.BLOCK);
                     diagrams.add(child);
                     stash.add(currentUID);

@@ -43,16 +43,12 @@ public class VectorOfInt {
     this(JavaControllerJNI.new_VectorOfInt__SWIG_1(n), true);
   }
 
-  public long size() {
+  public void ensureCapacity(long n) {
+    JavaControllerJNI.VectorOfInt_ensureCapacity(swigCPtr, this, n);
+  }
+
+  public int size() {
     return JavaControllerJNI.VectorOfInt_size(swigCPtr, this);
-  }
-
-  public long capacity() {
-    return JavaControllerJNI.VectorOfInt_capacity(swigCPtr, this);
-  }
-
-  public void reserve(long n) {
-    JavaControllerJNI.VectorOfInt_reserve(swigCPtr, this, n);
   }
 
   public boolean isEmpty() {
@@ -64,7 +60,15 @@ public class VectorOfInt {
   }
 
   public void add(int x) {
-    JavaControllerJNI.VectorOfInt_add(swigCPtr, this, x);
+    JavaControllerJNI.VectorOfInt_add__SWIG_0(swigCPtr, this, x);
+  }
+
+  public boolean contains(int o) {
+    return JavaControllerJNI.VectorOfInt_contains(swigCPtr, this, o);
+  }
+
+  public int indexOf(int o) {
+    return JavaControllerJNI.VectorOfInt_indexOf(swigCPtr, this, o);
   }
 
   public int get(int i) {
@@ -73,6 +77,14 @@ public class VectorOfInt {
 
   public void set(int i, int val) {
     JavaControllerJNI.VectorOfInt_set(swigCPtr, this, i, val);
+  }
+
+  public void add(int i, int val) {
+    JavaControllerJNI.VectorOfInt_add__SWIG_1(swigCPtr, this, i, val);
+  }
+
+  public boolean remove(int val) {
+    return JavaControllerJNI.VectorOfInt_remove(swigCPtr, this, val);
   }
 
 }

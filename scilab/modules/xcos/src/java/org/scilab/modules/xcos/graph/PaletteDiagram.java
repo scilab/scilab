@@ -49,7 +49,8 @@ public class PaletteDiagram extends XcosDiagram {
     public PaletteDiagram(long uid) {
         super(uid, Kind.DIAGRAM);
         setComponent(new PaletteComponent(this));
-        installStylesheet();
+
+        setTitle(PaletteDiagram.class.getName());
 
         setCellsLocked(true);
         setGridVisible(false);

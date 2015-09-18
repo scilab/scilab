@@ -27,8 +27,8 @@ public class ImplicitLink extends BasicLink {
     private static final double[][] COLOR_AND_TYPE = { { 1.0, 2.0 } };
 
     /** Default constructor */
-    public ImplicitLink() {
-        super("ImplicitLink");
+    public ImplicitLink(long uid) {
+        super(uid, "ImplicitLink");
     }
 
     /** @return A red colored implicit link identifier */

@@ -51,8 +51,12 @@ public class VectorOfBool {
     return JavaControllerJNI.VectorOfBool_capacity(swigCPtr, this);
   }
 
-  public void reserve(long n) {
-    JavaControllerJNI.VectorOfBool_reserve(swigCPtr, this, n);
+  public void ensureCapacity(long n) {
+    JavaControllerJNI.VectorOfBool_ensureCapacity(swigCPtr, this, n);
+  }
+
+  public void resize(long n) {
+    JavaControllerJNI.VectorOfBool_resize(swigCPtr, this, n);
   }
 
   public boolean isEmpty() {
@@ -64,7 +68,7 @@ public class VectorOfBool {
   }
 
   public void add(boolean x) {
-    JavaControllerJNI.VectorOfBool_add(swigCPtr, this, x);
+    JavaControllerJNI.VectorOfBool_add__SWIG_0(swigCPtr, this, x);
   }
 
   public boolean get(int i) {
@@ -73,6 +77,14 @@ public class VectorOfBool {
 
   public void set(int i, boolean val) {
     JavaControllerJNI.VectorOfBool_set(swigCPtr, this, i, val);
+  }
+
+  public void add(int i, boolean val) {
+    JavaControllerJNI.VectorOfBool_add__SWIG_1(swigCPtr, this, i, val);
+  }
+
+  public boolean remove(boolean val) {
+    return JavaControllerJNI.VectorOfBool_remove(swigCPtr, this, val);
   }
 
 }

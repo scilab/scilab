@@ -31,13 +31,13 @@ public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
         BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(
-            new ExplicitLink(), null, REFS, null);
+            new ExplicitLink(0l), null, REFS, null);
         mxCodecRegistry.register(explicitlinkCodec);
         BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(
-            new ImplicitLink(), null, REFS, null);
+            new ImplicitLink(0l), null, REFS, null);
         mxCodecRegistry.register(implicitlinkCodec);
         BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(
-            new CommandControlLink(), null, REFS, null);
+            new CommandControlLink(0l), null, REFS, null);
         mxCodecRegistry.register(commandControllinkCodec);
     }
 

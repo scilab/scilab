@@ -117,7 +117,7 @@ public class BrowserView extends View {
     }
 
     @Override
-    public void objectReferenced(final long uid, final Kind kind) {
+    public void objectReferenced(final long uid, final Kind kind, long refCount) {
         if (model == null) {
             return;
         }
@@ -128,12 +128,12 @@ public class BrowserView extends View {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                objectReferencedOnEDT(uid, kind);
+                objectReferencedOnEDT(uid, kind, refCount);
             }
         });
     }
 
-    public void objectUnreferenced(final long uid, final Kind kind) {
+    public void objectUnreferenced(final long uid, final Kind kind, long refCount) {
         if (model == null) {
             return;
         }
@@ -144,7 +144,7 @@ public class BrowserView extends View {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                objectUnreferencedOnEDT(uid, kind);
+                objectUnreferencedOnEDT(uid, kind, refCount);
             }
         });
     };
@@ -178,14 +178,14 @@ public class BrowserView extends View {
         model.insertNodeInto(node, root, position);
     }
 
-    public void objectReferencedOnEDT(final long uid, final Kind kind) {
+    public void objectReferencedOnEDT(final long uid, final Kind kind, long refCount) {
         DefaultMutableTreeNode node = lookupForUID(uid);
         BrowserTreeNodeData data = (BrowserTreeNodeData) node.getUserObject();
 
         data.incRefCount();
     }
 
-    public void objectUnreferencedOnEDT(final long uid, final Kind kind) {
+    public void objectUnreferencedOnEDT(final long uid, final Kind kind, long refCount) {
         DefaultMutableTreeNode node = lookupForUID(uid);
         if (node == null) {
             return;

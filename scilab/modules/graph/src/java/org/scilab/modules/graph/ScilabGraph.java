@@ -35,6 +35,7 @@ import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxGraphModel.mxTerminalChange;
 import com.mxgraph.model.mxGraphModel.mxValueChange;
 import com.mxgraph.model.mxGraphModel.mxVisibleChange;
+import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxRubberband;
 import com.mxgraph.swing.util.mxGraphActions;
@@ -45,6 +46,7 @@ import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraph;
 import com.mxgraph.view.mxGraphView;
+import com.mxgraph.view.mxStylesheet;
 
 /**
  * Represent the base diagram of Xcos.
@@ -130,11 +132,22 @@ public class ScilabGraph extends mxGraph {
     };
 
     /**
-     * /** Default constructor: - disable unused actions - install listeners -
-     * Replace JGraphX components by specialized components if needed.
+     * Default constructor:
+     * <UL>
+     *   <LI> disable unused actions
+     *   <LI> install listeners
+     *   <LI> Replace JGraphX components by specialized components if needed.
      */
     public ScilabGraph() {
-        super();
+        this(null, null);
+    }
+
+    /**
+     * Constructor using a specific model
+     * @param model the model to use
+     */
+    public ScilabGraph(mxIGraphModel model, mxStylesheet stylesheet) {
+        super(model, stylesheet);
 
         // Disabling the default connected action and event listeners.
         mxGraphActions.getSelectNextAction().setEnabled(false);
@@ -156,6 +169,8 @@ public class ScilabGraph extends mxGraph {
         // Modified property change
         getModel().addListener(mxEvent.CHANGE, changeTracker);
     }
+
+
 
     /**
      * @return The previously saved file or null.

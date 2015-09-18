@@ -411,7 +411,7 @@ public final class ConfigurationManager {
                 filetype.load(filename, graph);
                 graph.postLoad(f);
             }
-            Xcos.getInstance().addDiagram(graph.getUId(), graph);
+            Xcos.getInstance().addDiagram(graph.getUID(), graph);
 
             graph = loadPath(doc, graph);
 
@@ -478,7 +478,7 @@ public final class ConfigurationManager {
         long[] parent = new long[1];
         String[] parentUID = new String[1];
 
-        controller.getObjectProperty(graph.getUId(), Kind.BLOCK, ObjectProperties.PARENT_BLOCK, parent);
+        controller.getObjectProperty(graph.getUID(), Kind.BLOCK, ObjectProperties.PARENT_BLOCK, parent);
         while (parent[0] != 0l) {
             controller.getObjectProperty(parent[0], Kind.BLOCK, ObjectProperties.UID, parentUID);
             elements.add(parentUID[0]);

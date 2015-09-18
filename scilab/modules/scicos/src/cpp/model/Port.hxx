@@ -25,11 +25,6 @@ namespace org_scilab_modules_scicos
 namespace model
 {
 
-enum portKind
-{
-    PORT_UNDEF, PORT_IN, PORT_OUT, PORT_EIN, PORT_EOUT
-};
-
 class Port: public BaseObject
 {
 public:

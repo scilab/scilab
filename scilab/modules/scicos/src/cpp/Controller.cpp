@@ -147,7 +147,7 @@ unsigned Controller::referenceObject(const ScicosID uid) const
     auto o = getObject(uid);
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
-        (*iter)->objectReferenced(uid, o->kind());
+        (*iter)->objectReferenced(uid, o->kind(), refCount);
     }
 
     return refCount;
@@ -173,7 +173,7 @@ void Controller::deleteObject(ScicosID uid)
 
         for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
         {
-            (*iter)->objectUnreferenced(uid, k);
+            (*iter)->objectUnreferenced(uid, k, refCount);
         }
         return;
     }

@@ -556,6 +556,6 @@ public final class Palette {
         ImageIO.write(image, extension, new File(iconPath));
 
 
-        controller.deleteObject(graph.getUId());
+        controller.deleteObject(graph.getUID());
     }
 }

@@ -26,6 +26,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
+import org.apache.batik.css.engine.StyleMap;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
@@ -66,6 +67,7 @@ import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionMiddle;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionRight;
 import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
@@ -83,7 +85,7 @@ import com.mxgraph.model.mxICell;
  * A block on the diagram
  */
 @SuppressWarnings(value = { "serial" })
-public class BasicBlock extends ScilabGraphUniqueObject implements Serializable {
+public class BasicBlock extends XcosCell implements Serializable {
     /**
      * Sorted kind of input, useful to sort them by kind
      */
@@ -183,7 +185,6 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
     }
 
     private boolean locked;
-    private final long uid;
 
     /**
      * Represent a simulation function type compatible with Scilab/Scicos
@@ -263,11 +264,15 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         }
     };
 
+    public BasicBlock(long uid) {
+        this(uid, Kind.BLOCK);
+    }
+
     /**
      * Default constructor.
      */
-    public BasicBlock(long uid) {
-        super();
+    public BasicBlock(long uid, Kind kind) {
+        super(uid, kind);
 
         /*
          * Default parameters for blocks
@@ -276,15 +281,6 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         this.vertex = true;
         this.connectable = false;
         this.geometry = new mxGeometry(DEFAULT_POSITION_X, DEFAULT_POSITION_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-
-        this.uid = uid;
-    }
-
-    /**
-     * @return associated MVC ID
-     */
-    public long getUID() {
-        return uid;
     }
 
     /**
@@ -315,7 +311,7 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
          */
         XcosDiagram diagram;
         Collection<XcosDiagram> diagrams = Xcos.getInstance().getDiagrams(parentDiagram[0]);
-        Optional<XcosDiagram> optDiagram = diagrams.stream().filter(d -> d.getUId() == parent).findFirst();
+        Optional<XcosDiagram> optDiagram = diagrams.stream().filter(d -> d.getUID() == parent).findFirst();
         if (optDiagram.isPresent()) {
             diagram = optDiagram.get();
         } else {
@@ -879,24 +875,5 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         }
 
         return super.insert(child, index);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder str = new StringBuilder();
-
-        JavaController controller = new JavaController();
-
-        String[] interfaceFunction = new String[1];
-        controller.getObjectProperty(uid, Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
-
-        str.append(interfaceFunction[0]);
-        str.append("\n");
-        for (Object c : children) {
-            str.append(c);
-            str.append("\n");
-        }
-
-        return str.toString();
     }
 }

@@ -18,8 +18,8 @@ public:
     SwigDirector_View(JNIEnv *jenv);
     virtual ~SwigDirector_View();
     virtual void objectCreated(ScicosID const &uid, kind_t kind);
-    virtual void objectReferenced(ScicosID const &uid, kind_t kind);
-    virtual void objectUnreferenced(ScicosID const &uid, kind_t kind);
+    virtual void objectReferenced(ScicosID const &uid, kind_t kind, unsigned int refCount);
+    virtual void objectUnreferenced(ScicosID const &uid, kind_t kind, unsigned int refCount);
     virtual void objectDeleted(ScicosID const &uid, kind_t kind);
     virtual void propertyUpdated(ScicosID const &uid, kind_t kind, object_properties_t property, update_status_t status);
 public:
