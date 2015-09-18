@@ -29,21 +29,21 @@ types::Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount,
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "clearfun" , 1);
-        types::Function::Error;
+        return types::Function::Error;
     }
 
     types::InternalType* pIT1 = in[0];
     if (pIT1->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "clearfun", 1);
-        types::Function::Error;
+        return types::Function::Error;
     }
 
     types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "clearfun", 1);
-        types::Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwcsName = pS1->get(0);
@@ -85,5 +85,5 @@ types::Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount,
     }
 
     out.push_back(new types::Bool(bDeleted ? 1 : 0));
-    types::Function::OK;
+    return types::Function::OK;
 }
