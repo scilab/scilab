@@ -151,10 +151,10 @@ protected:
 
 private:
 
-    void DEBUG_START_NODE(const ast::Ast & e);
-    void DEBUG_END_NODE(void);
-    void DEBUG(const std::wstring& str);
-    void DEBUG(const std::wstring& str, const Exp & e);
+    void START_NODE(const ast::Ast & e);
+    void END_NODE(void);
+    void print(const std::wstring& str);
+    void print(const std::wstring& str, const Exp & e);
 };
 }
 #endif // !AST_DEBUGVISITOR_HXX
