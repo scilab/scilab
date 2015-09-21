@@ -20,8 +20,6 @@
 #include "string.hxx"
 #include "scilab_sprintf.hxx"
 
-using namespace types;
-
 extern "C"
 {
 #include "Scierror.h"
@@ -41,7 +39,7 @@ static void updatel(TokenDef* token);
 #define InfString L"Inf"
 #define NegInfString L"-Inf"
 
-wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput, typed_list &in, int* _piOutputRows, int* _piNewLine)
+wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine)
 {
     /* Force Windows display to have two-digit exponent. */
 #ifdef _MSC_VER
@@ -63,7 +61,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     std::list<std::pair<int, int> > inPos;
     for (int i = first; i < in.size(); ++i)
     {
-        GenericType* gt = in[i]->getAs<GenericType>();
+        types::GenericType* gt = in[i]->getAs<types::GenericType>();
         int col = gt->getCols();
         for (int j = 0; j < col; ++j)
         {
@@ -156,7 +154,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                 int p = (*itPos).first;
                 //input data use to set width
-                if (in[p]->getId() != InternalType::IdScalarDouble)
+                if (in[p]->getId() != types::InternalType::IdScalarDouble)
                 {
                     Scierror(999, _("%s: Wrong type of input arguments #%d: A real scalar expected.\n"), funcname.data(), p);
                     *_piOutputRows = 0;
@@ -164,7 +162,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 }
 
 
-                Double* dbl = in[p]->getAs<Double>();
+                types::Double* dbl = in[p]->getAs<types::Double>();
                 tok->width = static_cast<int>(dbl->get()[0]);
                 tok->widthStar = true;
                 ++itPos;
@@ -207,14 +205,14 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                     int p = (*itPos).first;
                     //input data use to set prec
-                    if (in[p]->getId() != InternalType::IdScalarDouble)
+                    if (in[p]->getId() != types::InternalType::IdScalarDouble)
                     {
                         Scierror(999, _("%s: Wrong type of input arguments #%d: A real scalar expected.\n"), funcname.data(), p + 1);
                         *_piOutputRows = 0;
                         return nullptr;
                     }
 
-                    Double* dbl = in[p]->getAs<Double>();
+                    types::Double* dbl = in[p]->getAs<types::Double>();
                     tok->prec = static_cast<int>(dbl->get()[0]);
                     tok->precStar = true;
                     ++itPos;
@@ -249,7 +247,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                     int p = (*itPos).first;
                     int c = (*itPos).second;
-                    if (in[p]->getType() != InternalType::ScilabDouble)
+                    if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
@@ -257,7 +255,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    tok->outputType = InternalType::ScilabInt32;
+                    tok->outputType = types::InternalType::ScilabInt32;
                     tok->pos = p;
                     tok->col = c;
                     ++itPos;
@@ -278,7 +276,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                     int p = (*itPos).first;
                     int c = (*itPos).second;
-                    if (in[p]->getType() != InternalType::ScilabDouble)
+                    if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
@@ -286,7 +284,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    tok->outputType = InternalType::ScilabUInt32;
+                    tok->outputType = types::InternalType::ScilabUInt32;
                     tok->pos = p;
                     tok->col = c;
                     ++itPos;
@@ -308,7 +306,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                     int p = (*itPos).first;
                     int c = (*itPos).second;
-                    if (in[p]->getType() != InternalType::ScilabDouble)
+                    if (in[p]->getType() != types::InternalType::ScilabDouble)
                     {
                         FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
@@ -316,7 +314,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         return nullptr;
                     }
 
-                    tok->outputType = InternalType::ScilabDouble;
+                    tok->outputType = types::InternalType::ScilabDouble;
                     tok->pos = p;
                     tok->col = c;
                     ++itPos;
@@ -335,7 +333,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
 
                     int p = (*itPos).first;
                     int c = (*itPos).second;
-                    if (in[p]->getType() != InternalType::ScilabString)
+                    if (in[p]->getType() != types::InternalType::ScilabString)
                     {
                         FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
@@ -348,7 +346,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                         updatel(tok);
                     }
 
-                    tok->outputType = InternalType::ScilabString;
+                    tok->outputType = types::InternalType::ScilabString;
                     tok->pos = p;
                     tok->col = c;
                     ++itPos;
@@ -374,10 +372,10 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     if (token.size() > 1)
     {
         std::list<TokenDef*>::iterator it = std::next(token.begin());
-        iLoop = in[(*it)->pos]->getAs<GenericType>()->getRows();
+        iLoop = in[(*it)->pos]->getAs<types::GenericType>()->getRows();
         for (; it != token.end(); ++it)
         {
-            iLoop = std::min(iLoop, in[(*it)->pos]->getAs<GenericType>()->getRows());
+            iLoop = std::min(iLoop, in[(*it)->pos]->getAs<types::GenericType>()->getRows());
         }
 
         if (*_piNewLine || (*_piOutputRows) > 1)
@@ -408,10 +406,10 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
             TokenDef* tok = *it;
             switch (tok->outputType)
             {
-                case InternalType::ScilabDouble:
+                case types::InternalType::ScilabDouble:
                 {
                     wchar_t pwstTemp[bsiz];
-                    double dblVal = in[tok->pos]->getAs<Double>()->get(j, tok->col);
+                    double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
 
                     if (std::isfinite(dblVal))
                     {
@@ -461,10 +459,10 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     oFirstOutput << pwstTemp;
                     break;
                 }
-                case InternalType::ScilabInt32:
+                case types::InternalType::ScilabInt32:
                 {
                     wchar_t pwstTemp[bsiz];
-                    double dblVal = in[tok->pos]->getAs<Double>()->get(j, tok->col);
+                    double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
                     int iVal = (int)dblVal;
                     if (std::isfinite(dblVal))
                     {
@@ -517,10 +515,10 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     oFirstOutput << pwstTemp;
                     break;
                 }
-                case InternalType::ScilabUInt32:
+                case types::InternalType::ScilabUInt32:
                 {
                     wchar_t pwstTemp[bsiz];
-                    double dblVal = in[tok->pos]->getAs<Double>()->get(j, tok->col);
+                    double dblVal = in[tok->pos]->getAs<types::Double>()->get(j, tok->col);
                     unsigned int iVal = (unsigned int)dblVal;
 
                     if (std::isfinite(dblVal))
@@ -574,14 +572,14 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     oFirstOutput << pwstTemp;
                     break;
                 }
-                case InternalType::ScilabString:
+                case types::InternalType::ScilabString:
                 {
                     wchar_t* pwstStr = nullptr;
                     std::wstring NaN = NanString;
                     std::wstring nInf = NegInfString;
                     std::wstring pInf = InfString;
 
-                    InternalType* it = in[tok->pos];
+                    types::InternalType* it = in[tok->pos];
                     if (it->isDouble() && std::isnan(it->getAs<types::Double>()->get(0)))
                     {
                         pwstStr = const_cast<wchar_t*>(NaN.c_str());

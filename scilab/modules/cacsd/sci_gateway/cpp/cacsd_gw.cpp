@@ -16,8 +16,6 @@
 
 #define MODULE_NAME L"cacsd"
 
-using namespace types;
-
 int CacsdModule::Load()
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"contr", &sci_contr, NULL, MODULE_NAME));

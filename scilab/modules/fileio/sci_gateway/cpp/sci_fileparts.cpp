@@ -36,9 +36,8 @@ enum PartialPart
 #define FILEPARTS_FNAME_SELECTOR L"fname"
 #define FILEPARTS_EXTENSION_SELECTOR L"extension"
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_fileparts(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     PartialPart iPartialPart = AllPart;
 
@@ -50,25 +49,25 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
     if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "fileparts", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 2 && _iRetCount != 1 && _iRetCount != -1)
     {
         Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), "fileparts", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 1 && _iRetCount > 3)
     {
         Scierror(78, _("%s: Wrong number of output arguments: %d to %d expected.\n"), "fileparts", 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     pStrPath = in[0]->getAs<types::String>();
@@ -78,13 +77,13 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         if (in[1]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fileparts", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "fileparts", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         wchar_t* pParts = in[1]->getAs<types::String>()->get(0);
@@ -103,7 +102,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "fileparts", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         pStrOut = new types::String(pStrPath->getDims(), pStrPath->getDimsArray());
@@ -200,6 +199,6 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         }
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

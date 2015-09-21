@@ -322,10 +322,10 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 21 - outptr */
             if (Blocks->nout > 0)
             {
-                InternalType* pIT = t->getField(L"outptr");
+                types::InternalType* pIT = t->getField(L"outptr");
                 if (pIT && pIT->isList())
                 {
-                    types::List* lout = pIT->getAs<List>();
+                    types::List* lout = pIT->getAs<types::List>();
                     if (Blocks->nout == lout->getSize())
                     {
                         for (int i = 0; i < Blocks->nout; ++i)
@@ -499,10 +499,10 @@ void sciblk4(scicos_block* Blocks, const int flag)
             /* 21 - outptr */
             if (Blocks->nout > 0)
             {
-                InternalType* pIT = t->getField(L"outptr");
+                types::InternalType* pIT = t->getField(L"outptr");
                 if (pIT && pIT->isList())
                 {
-                    types::List* lout = pIT->getAs<List>();
+                    types::List* lout = pIT->getAs<types::List>();
                     if (Blocks->nout == lout->getSize())
                     {
                         for (int i = 0; i < Blocks->nout; ++i)

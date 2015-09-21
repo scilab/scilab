@@ -30,7 +30,6 @@ extern "C"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
-using namespace types;
 
 static int getCommonAllocatedSinglePoly(void* _pvCtx, int* _piAddress, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
 static int getCommonAllocatedNamedSinglePoly(void* _pvCtx, const char* _pstName, int _iComplex, int* _piNbCoef, double** _pdblReal, double** _pdblImg);
@@ -48,7 +47,7 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
         return sciErr;
     }
 
-    if (!((InternalType*)_piAddress)->isPoly())
+    if (!((types::InternalType*)_piAddress)->isPoly())
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "getPolyVariableName", _("polynomial matrix"));
         return sciErr;
@@ -56,7 +55,7 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
 
     if (*_piVarNameLen == 0)
     {
-        *_piVarNameLen = (int)((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().size();
+        *_piVarNameLen = (int)((types::InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().size();
         //No error
     }
 
@@ -65,7 +64,7 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
         return sciErr;
     }
 
-    char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
+    char* pstTemp = wide_string_to_UTF8(((types::InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
     strcpy(_pstVarName, pstTemp);
     FREE(pstTemp);
     *_piVarNameLen = static_cast<int>(strlen(_pstVarName));
@@ -130,7 +129,7 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
         return sciErr;
     }
 
-    Polynom *pMP = ((InternalType*)_piAddress)->getAs<types::Polynom>();
+    types::Polynom *pMP = ((types::InternalType*)_piAddress)->getAs<types::Polynom>();
     pMP->getSizes(_piNbCoef);
 
     if (_pdblReal == NULL)
@@ -138,7 +137,7 @@ SciErr getCommonMatrixOfPoly(void* _pvCtx, int* _piAddress, int _iComplex, int* 
         return sciErr;
     }
 
-    SinglePoly** pSP = pMP->get();
+    types::SinglePoly** pSP = pMP->get();
     if (_iComplex == 1)
     {
         for (int i = 0 ; i < iSize ; i++)
@@ -177,14 +176,14 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::InternalType** out = pStr->m_pOut;
     int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
     //return empty matrix
     if (_iRows == 0 && _iCols == 0)
     {
-        Double *pDbl = new Double(_iRows, _iCols);
+        types::Double *pDbl = new types::Double(_iRows, _iCols);
         if (pDbl == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -197,7 +196,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
     std::wstring wstTemp(pstTemp);
-    Polynom* pP = new Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
+    types::Polynom* pP = new types::Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if (pP == NULL)
     {
@@ -214,7 +213,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
 
     for (int i = 0 ; i < pP->getSize() ; i++)
     {
-        Double* pD = new Double(_piNbCoef[i], 1, _iComplex == 1);
+        types::Double* pD = new types::Double(_piNbCoef[i], 1, _iComplex == 1);
         pD->set(_pdblReal[i]);
         if (_iComplex)
         {
@@ -262,7 +261,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
     std::wstring wstTemp(pstTemp);
-    Polynom* pP = new Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
+    types::Polynom* pP = new types::Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if (pP == NULL)
     {
@@ -277,7 +276,7 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
 
     for (int i = 0 ; i < pP->getSize() ; i++)
     {
-        Double* pD = new Double(_piNbCoef[i], 1, _iComplex == 1);
+        types::Double* pD = new types::Double(_piNbCoef[i], 1, _iComplex == 1);
         pD->set(_pdblReal[i]);
         if (_iComplex)
         {

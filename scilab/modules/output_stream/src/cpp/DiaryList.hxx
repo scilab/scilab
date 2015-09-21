@@ -29,8 +29,8 @@ public:
     ~DiaryList();
 
     /* open a diary */
-    int openDiary(std::wstring _wfilename, int _mode, bool autorename);
-    int openDiary(std::wstring _wfilename, bool autorename);
+    int openDiary(const std::wstring& _wfilename, int _mode, bool autorename);
+    int openDiary(const std::wstring& _wfilename, bool autorename);
 
     /* close a diary by ID */
     bool closeDiary(int ID_diary);
@@ -48,14 +48,14 @@ public:
     std::wstring getFilename(int ID_diary);
 
     /* write string in diaries */
-    void write(std::wstring _wstr, bool bInput);
-    void writeln(std::wstring _wstr, bool bInput);
+    void write(const std::wstring& _wstr, bool bInput);
+    void writeln(const std::wstring& _wstr, bool bInput);
 
     /* test if exists a diary by ID */
     bool exists(int ID_diary);
 
     /* test if exists a diary by filename */
-    bool exists(std::wstring _wfilename);
+    bool exists(const std::wstring& _wfilename);
 
     /* set & get Resume mode */
     void setSuspendWrite(bool bWith);
@@ -65,7 +65,7 @@ public:
     bool getSuspendWrite(int ID_diary);
 
     /* get ID by filename */
-    int getID(std::wstring _wfilename);
+    int getID(const std::wstring& _wfilename);
 
     /* set & get mode */
     void setFilterMode(int ID_diary, diary_filter mode);

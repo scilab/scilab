@@ -75,7 +75,7 @@ public :
 
     void                    whoAmI(void);
     std::wstring&           getVariableName();
-    void                    setVariableName(std::wstring);
+    void                    setVariableName(const std::wstring&);
     bool                    getSizes(int *_piSizes);
     bool                    getRank(int *_piRank);
     int                     getMaxRank(void);

@@ -13,9 +13,6 @@
 #include "macrovarvisitor.hxx"
 #include "context.hxx"
 
-using namespace std;
-using namespace ast;
-using namespace symbol;
 namespace ast
 {
 
@@ -169,7 +166,7 @@ void MacrovarVisitor::add(std::list<std::wstring>& lst)
 
 void MacrovarVisitor::add()
 {
-    InternalType* pVar = Context::getInstance()->get(Symbol(m_current));
+    types::InternalType* pVar = symbol::Context::getInstance()->get(symbol::Symbol(m_current));
     if (pVar)
     {
         if (pVar->isCallable())

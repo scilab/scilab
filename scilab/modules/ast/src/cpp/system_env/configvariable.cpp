@@ -816,17 +816,17 @@ std::list<ConfigVariable::EntryPointStr*>* ConfigVariable::getEntryPointList()
 //dynamic modules
 std::map<std::wstring, DynLibHandle> ConfigVariable::m_DynModules;
 
-void ConfigVariable::addDynModule(std::wstring _name, DynLibHandle _lib)
+void ConfigVariable::addDynModule(const std::wstring& _name, DynLibHandle _lib)
 {
     m_DynModules[_name] = _lib;
 }
 
-void ConfigVariable::removeDynModule(std::wstring _name)
+void ConfigVariable::removeDynModule(const std::wstring& _name)
 {
     m_DynModules.erase(_name);
 }
 
-DynLibHandle ConfigVariable::getDynModule(std::wstring _name)
+DynLibHandle ConfigVariable::getDynModule(const std::wstring& _name)
 {
     std::map<std::wstring, DynLibHandle>::iterator it;
     it = m_DynModules.find(_name);

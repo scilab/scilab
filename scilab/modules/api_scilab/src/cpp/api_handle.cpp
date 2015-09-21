@@ -27,10 +27,6 @@ extern "C"
 #include "call_scilab.h"
 }
 
-using namespace std;
-using namespace types;
-
-
 SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, long long** _pllHandle)
 {
     SciErr sciErr = sciErrInit();
@@ -58,7 +54,7 @@ SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 
     if (_pllHandle)
     {
-        *_pllHandle = ((InternalType*)_piAddress)->getAs<types::GraphicHandle>()->get();
+        *_pllHandle = ((types::InternalType*)_piAddress)->getAs<types::GraphicHandle>()->get();
     }
     return sciErr;
 }
@@ -73,11 +69,11 @@ SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
 
-    GraphicHandle *pHandle = new GraphicHandle(_iRows, _iCols);
+    types::GraphicHandle *pHandle = new types::GraphicHandle(_iRows, _iCols);
     if (pHandle == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfHandle");

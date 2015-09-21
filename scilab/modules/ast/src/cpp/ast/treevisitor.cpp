@@ -140,7 +140,7 @@ void TreeVisitor::visit(const MatrixExp &e)
 
     if (lines.size() == 0)
     {
-        l = createConst(Double::Empty());
+        l = createConst(types::Double::Empty());
         return;
     }
 
@@ -949,7 +949,7 @@ void TreeVisitor::visit(const TransposeExp  &e)
 void TreeVisitor::visit(const FunctionDec  &e)
 {
     wchar_t* pwstState;
-    wostringstream wostr;
+    std::wostringstream wostr;
     PrintVisitor pv(wostr, false, false);
 
     types::TList* function = new types::TList();
@@ -992,7 +992,7 @@ void TreeVisitor::visit(const FunctionDec  &e)
     FREE(pwstFun);
 
     // Now print function body
-    wostringstream wostrBody;
+    std::wostringstream wostrBody;
     PrintVisitor pvBody(wostrBody, false, true);
     std::vector<wchar_t*> allTokens;
     e.getBody().getOriginal()->accept(pvBody);

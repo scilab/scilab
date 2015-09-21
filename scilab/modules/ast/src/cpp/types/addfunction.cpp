@@ -20,12 +20,12 @@ extern "C"
 #include "addfunction.h"
 }
 
-void addCFunction(wchar_t* _wstName, OLDGW_FUNC _pFunc, wchar_t* _wstModule)
+void addCFunction(const wchar_t* _wstName, OLDGW_FUNC _pFunc, const wchar_t* _wstModule)
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
 }
 
-void addMexFunction(wchar_t* _wstName, MEXGW_FUNC _pFunc, wchar_t* _wstModule)
+void addMexFunction(const wchar_t* _wstName, MEXGW_FUNC _pFunc, const wchar_t* _wstModule)
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
 }

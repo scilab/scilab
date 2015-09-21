@@ -45,7 +45,7 @@ bool TypeofAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
     }
     else
     {
-        visitor.getDM().releaseTmp(visitor.getResult().getTempId());
+        visitor.getDM().releaseTmp(visitor.getResult().getTempId(), arg);
         return false;
     }
 }

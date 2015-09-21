@@ -59,14 +59,14 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     SimpleVar* pVar = pL->getAs<SimpleVar>();
                     Exp* pR = &pAssign->getRightExp();
                     pR->accept(*this);
-                    InternalType* pITR = getResult();
+                    types::InternalType* pITR = getResult();
                     // IncreaseRef to protect opt argument of scope_end delete
                     // It will be deleted by clear_opt
                     pITR->IncreaseRef();
 
                     if (pIT->hasInvokeOption())
                     {
-                        opt.push_back(std::pair<std::wstring, InternalType*>(pVar->getSymbol().getName(), pITR));
+                        opt.push_back(std::pair<std::wstring, types::InternalType*>(pVar->getSymbol().getName(), pITR));
                         //in case of macro/macrofile, we have to shift input param
                         //so add NULL item in in list to keep initial order
                         if (pIT->isMacro() || pIT->isMacroFile())
@@ -97,7 +97,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 //extract implicit list for call()
                 if (pIT->isCallable() || pIT->isUserType())
                 {
-                    InternalType * pITArg = getResult();
+                    types::InternalType * pITArg = getResult();
                     if (pITArg->isImplicitList())
                     {
                         types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
@@ -119,7 +119,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     for (int i = 0 ; i < getResultSize() ; i++)
                     {
-                        InternalType * pITArg = getResult(i);
+                        types::InternalType * pITArg = getResult(i);
                         pITArg->IncreaseRef();
                         in.push_back(pITArg);
                     }
@@ -212,7 +212,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                         char szError[bsiz];
                         if(pIT->isCallable())
                         {
-                            char* strFName = wide_string_to_UTF8(pIT->getAs<Callable>()->getName().c_str());
+                            char* strFName = wide_string_to_UTF8(pIT->getAs<types::Callable>()->getName().c_str());
                             os_sprintf(szError,  _("%s: Wrong number of output argument(s): %d expected.\n"), strFName, out.size());
                             FREE(strFName);
                         }
@@ -351,7 +351,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 
             if (pList->getSize() == 1)
             {
-                InternalType* ret = pList->get(0);
+                types::InternalType* ret = pList->get(0);
                 setResult(ret);
 
                 ret->IncreaseRef();

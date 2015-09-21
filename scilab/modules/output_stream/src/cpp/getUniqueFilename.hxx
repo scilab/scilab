@@ -16,15 +16,7 @@
 
 #include <string>
 
-/**
-* get full filename with path of a file
-* @param[in] std::wstring input filename
-* @return std::wstring full filename
-*/
-std::wstring getFullFilename(std::wstring _wfilename);
-
-
-std::wstring getUniqueFilename(std::wstring _wfilename);
+std::wstring getUniqueFilename(const std::wstring& _wfilename);
 
 #endif /* __GETFULLFILENAME_HXX__ */
 /*--------------------------------------------------------------------------*/

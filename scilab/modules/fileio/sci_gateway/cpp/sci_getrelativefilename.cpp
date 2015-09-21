@@ -31,10 +31,8 @@ extern "C"
 #include "getrelativefilename.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     wchar_t* wcsAbsDir  = NULL;
     wchar_t* wcsAbsFile = NULL;

@@ -29,10 +29,8 @@ extern "C"
 #define _UNIX_TYPE      "u"
 #define _WINDOWS_TYPE   "w"
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_pathconvert(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     PathConvertType PType   = AUTO_STYLE;
     int iPathExpand         = 1;
@@ -41,13 +39,13 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
     if (in.size() < 1 && in.size() > 4)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "pathconvert" , 1, 4);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "pathconvert", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //get type
@@ -56,7 +54,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
         if (in[3]->isString() == false || in[3]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "pathconvert", 4);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         wchar_t* pwstType = in[3]->getAs<types::String>()->get(0);
@@ -71,7 +69,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "pathconvert", 4, _UNIX_TYPE, _WINDOWS_TYPE);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -80,7 +78,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
         if (in[2]->isBool() == false || in[2]->getAs<types::Bool>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "pathconvert", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         iPathExpand = in[2]->getAs<types::Bool>()->get()[0];
@@ -91,27 +89,27 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
         if (in[1]->isBool() == false || in[1]->getAs<types::Bool>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "pathconvert", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         iPathTrail = in[1]->getAs<types::Bool>()->get()[0];
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "pathconvert", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS      = in[0]->getAs<types::String>();
-    String* pOut    = new String(pS->getRows(), pS->getCols());
-    wchar_t** pStr  = pOut->get();
+    types::String* pS = in[0]->getAs<types::String>();
+    types::String* pOut = new types::String(pS->getRows(), pS->getCols());
+    wchar_t** pStr = pOut->get();
 
 
     for (int i = 0 ; i < pS->getSize() ; i++)
@@ -120,7 +118,7 @@ Function::ReturnValue sci_pathconvert(typed_list &in, int _iRetCount, typed_list
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
     //SciErr sciErr;
     //int *piAddressVarOne = NULL;
     //wchar_t **pStVarOne = NULL;

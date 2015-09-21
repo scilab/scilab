@@ -55,8 +55,8 @@ public :
     bool                    evaluate(double _dblInR, double _dblInI, double *_pdblOutR, double *_pdblOutI);
     void                    updateRank(void);
 
-    void                    toStringReal(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
-    void                    toStringImg(std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringReal(const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringImg(const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
     bool                    toString(std::wostringstream& ostr);
 
@@ -84,7 +84,7 @@ protected :
     }
 
 private :
-    void                    toStringInternal(double *_pdblVal, std::wstring _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
+    void                    toStringInternal(double *_pdblVal, const std::wstring& _szVar, std::list<std::wstring>* _pListExp , std::list<std::wstring>* _pListCoef);
 
 };
 

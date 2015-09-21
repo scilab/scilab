@@ -23,10 +23,8 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_basename(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iExpand     = 1;
     int iConvert    = 1;
@@ -34,13 +32,13 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "basename", 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "basename", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() > 2)
@@ -48,13 +46,13 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
         if (in[2]->isBool() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "basename", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[2]->getAs<types::Bool>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar boolean expected.\n"), "basename", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         iExpand = in[2]->getAs<types::Bool>()->get()[0];
@@ -65,31 +63,31 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
         if (in[1]->isBool() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A boolean expected.\n"), "basename", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[1]->getAs<types::Bool>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar boolean expected.\n"), "basename", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         iConvert = in[1]->getAs<types::Bool>()->get()[0];
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), "basename", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS      = in[0]->getAs<types::String>();
-    String* pOut    = new String(pS->getRows(), pS->getCols());
+    types::String* pS = in[0]->getAs<types::String>();
+    types::String* pOut = new types::String(pS->getRows(), pS->getCols());
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
         wchar_t* base = basenameW(pS->get(i), (BOOL)iExpand);
@@ -99,7 +97,7 @@ Function::ReturnValue sci_basename(typed_list &in, int _iRetCount, typed_list &o
 
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
     //SciErr sciErr;
     //BOOL flag = TRUE; /* default */
     //BOOL flagexpand = TRUE; /* default */

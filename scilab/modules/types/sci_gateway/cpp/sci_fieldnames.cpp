@@ -25,14 +25,12 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_fieldnames(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "fieldnames", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
 
@@ -40,14 +38,14 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
     // Works on other types except userType, {m,t}list and struct
     if (in[0]->isStruct() == false && in[0]->isMList() == false && in[0]->isTList() == false && in[0]->isUserType() == false)
     {
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
 
     // STRUCT
     if (in[0]->isStruct() == true)
     {
-        String* pFields = in[0]->getAs<Struct>()->getFieldNames();
+        types::String* pFields = in[0]->getAs<types::Struct>()->getFieldNames();
         if (pFields)
         {
             out.push_back(pFields);
@@ -55,26 +53,26 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
         }
         else
         {
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
-        return Function::OK;
+        return types::Function::OK;
     }
 
-    InternalType* pIT;
+    types::InternalType* pIT;
 
     // TLIST or MLIST
     if (in[0]->isList() == true)
     {
         // We only need list capabilities to retrieve first argument as List.
-        List *pInList = in[0]->getAs<List>();
+        types::List *pInList = in[0]->getAs<types::List>();
         pIT = pInList->get(0);
 
         if (pIT == nullptr || pIT->isString() == false)
         {
             // FIXME : iso-functionnal to Scilab < 6
             // Works on other types except userType, {m,t}list and struct
-            out.push_back(Double::Empty());
-            return Function::OK;
+            out.push_back(types::Double::Empty());
+            return types::Function::OK;
         }
     }
 
@@ -82,40 +80,40 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
     if (in[0]->isUserType() == true)
     {
         // We only need userType capabilities to retrieve first argument as UserType.
-        UserType *pInUser = in[0]->getAs<UserType>();
+        types::UserType *pInUser = in[0]->getAs<types::UserType>();
 
         // Extract the sub-type
         std::wstring subType (pInUser->getShortTypeStr());
 
         // Extract the properties
-        typed_list one (1, new Double(1));
-        InternalType* pProperties = pInUser->extract(&one);
+        types::typed_list one(1, new types::Double(1));
+        types::InternalType* pProperties = pInUser->extract(&one);
         if (pProperties == nullptr || pProperties->isString() == false)
         {
             // FIXME : iso-functionnal to Scilab < 6
             // Works on other types except userType, {m,t}list and struct
-            out.push_back(Double::Empty());
-            return Function::OK;
+            out.push_back(types::Double::Empty());
+            return types::Function::OK;
         }
-        int nProp = ((String*) pProperties)->getSize();
+        int nProp = ((types::String*) pProperties)->getSize();
 
-        pIT = new String(nProp + 1, 1);
-        ((String*) pIT)->set(0, subType.data());
+        pIT = new types::String(nProp + 1, 1);
+        ((types::String*) pIT)->set(0, subType.data());
         for (int i = 0; i < nProp; ++i)
         {
-            ((String*) pIT)->set(i + 1, ((String*) pProperties)->get(i));
+            ((types::String*) pIT)->set(i + 1, ((types::String*)pProperties)->get(i));
         }
     }
 
-    String *pAllFields = pIT->getAs<String>();
+    types::String *pAllFields = pIT->getAs<types::String>();
     wchar_t **pwcsAllStrings =  pAllFields->get();
     // shift to forget first value corresponding to type.
     //    ++pwcsAllStrings;
 
 
-    String *pNewString = new String(pAllFields->getSize() - 1, 1, pwcsAllStrings + 1);
+    types::String *pNewString = new types::String(pAllFields->getSize() - 1, 1, pwcsAllStrings + 1);
 
     out.push_back(pNewString);
 
-    return Function::OK;
+    return types::Function::OK;
 }

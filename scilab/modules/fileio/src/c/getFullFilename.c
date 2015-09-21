@@ -19,7 +19,7 @@
 #include "isdir.h"
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
-wchar_t *getFullFilenameW(wchar_t* FilenameInput)
+wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
 {
     wchar_t *pStwcFullFilename = NULL;
 
@@ -118,7 +118,7 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 
 }
 /*--------------------------------------------------------------------------*/
-char *getFullFilename(char* Filename)
+char *getFullFilename(const char* Filename)
 {
     char *pStFullFilename = NULL;
     if (Filename)

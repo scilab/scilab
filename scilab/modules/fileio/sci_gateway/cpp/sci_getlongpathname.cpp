@@ -22,33 +22,30 @@ extern "C"
 #include "localization.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_getlongpathname(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_getlongpathname(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "getlongpathname" , 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1 && _iRetCount != 2)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "getlongpathname", 1, 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "getlongpathname", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS  = in[0]->getAs<types::String>();
+    types::String* pS = in[0]->getAs<types::String>();
 
-    String* pOut1 = new String(pS->getRows() , pS->getCols());
-    Bool* pOut2 = new Bool(pS->getRows() , pS->getCols());
+    types::String* pOut1 = new types::String(pS->getRows(), pS->getCols());
+    types::Bool* pOut2 = new types::Bool(pS->getRows(), pS->getCols());
     int* pBool = pOut2->get();
     int size = pS->getSize();
     wchar_t** p = pS->get();
@@ -69,6 +66,6 @@ Function::ReturnValue sci_getlongpathname(typed_list &in, int _iRetCount, typed_
         delete pOut2;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

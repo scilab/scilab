@@ -38,12 +38,12 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() == 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "testJIT", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     // check that arguments are a string
@@ -56,7 +56,7 @@ Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::type
         if (!arg->isString() || arg->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "testJIT", i);
-            return Function::Error;
+            return types::Function::Error;
         }
         if (i > 1)
         {
@@ -93,5 +93,5 @@ Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, types::type
 	out.push_back(pIT);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }

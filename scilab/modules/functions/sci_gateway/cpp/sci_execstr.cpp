@@ -40,24 +40,21 @@ extern "C"
 #define MUTE_FLAG       L"n"
 #define NO_MUTE_FLAG    L"m"
 
-using namespace std;
-using namespace types;
-using namespace ast;
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iErr            = 0;
     bool bErrCatch		= false;
     bool bMute          = false;
     wchar_t* pstMsg     = NULL;
-    Exp* pExp           = NULL;
+    ast::Exp* pExp      = NULL;
     wchar_t *pstCommand = NULL;
     Parser parser;
 
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "execstr" , 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //2nd parameter
@@ -67,10 +64,10 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        String* pS = in[1]->getAs<types::String>();
+        types::String* pS = in[1]->getAs<types::String>();
         if (os_wcsicmp(pS->get(0), L"errcatch") == 0)
         {
             bErrCatch = true;
@@ -78,7 +75,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "execstr", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         bMute = true;
@@ -90,7 +87,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 3);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (os_wcsicmp(in[2]->getAs<types::String>()->get(0), MUTE_FLAG) == 0)
@@ -104,25 +101,25 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "execstr", 3, MUTE_FLAG, NO_MUTE_FLAG);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
     //1st argument
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 0)
     {
         // execstr([])
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
 
     if (in[0]->isString() == false || (in[0]->getAs<types::String>()->getRows() != 1 && in[0]->getAs<types::String>()->getCols() != 1))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: Vector of strings expected.\n"), "execstr", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS = in[0]->getAs<types::String>();
+    types::String* pS = in[0]->getAs<types::String>();
     int iTotalLen = pS->getSize(); //add \n after each string
     for (int i = 0 ; i < pS->getSize() ; i++)
     {
@@ -146,13 +143,13 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     {
         if (bErrCatch)
         {
-            out.push_back(new Double(999));
+            out.push_back(new types::Double(999));
             //to lock last error information
             ConfigVariable::setLastErrorCall();
             ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
             ConfigVariable::setLastErrorNumber(999);
             ThreadManagement::UnlockParser();
-            return Function::OK;
+            return types::Function::OK;
         }
         else
         {
@@ -160,7 +157,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             Scierror(999, "%s", pst);
             FREE(pst);
             ThreadManagement::UnlockParser();
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -187,7 +184,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     if (pExp == NULL)
     {
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //save current prompt mode
@@ -202,7 +199,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         //pExp->accept(debugMe);
     }
 
-    ast::SeqExp* pSeqExp = pExp->getAs<SeqExp>();
+    ast::SeqExp* pSeqExp = pExp->getAs<ast::SeqExp>();
 
     // add execstr in list of macro called
     // to manage line displayed when error occured.
@@ -210,7 +207,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     try
     {
-        ExecVisitor execExps;
+        ast::ExecVisitor execExps;
         pSeqExp->accept(execExps);
     }
     catch (const ast::InternalError& ie)
@@ -234,7 +231,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     if (bErrCatch)
     {
-        out.push_back(new Double(iErr));
+        out.push_back(new types::Double(iErr));
         //to lock last error information
         ConfigVariable::setLastErrorCall();
         // allow print
@@ -245,6 +242,6 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     ConfigVariable::setPromptMode(iPromptMode);
 
     delete pExp;
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -25,38 +25,35 @@ extern "C"
 #include "configvariable_interface.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_system_getproperty(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_system_getproperty(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "system_getproperty", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_piRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "system_getproperty", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "system_getproperty" , 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    char* pstProperty   = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
-    char* pstValue      = system_getproperty(pstProperty, "unknown");
-    String* pS          = new String(pstValue);
+    char* pstProperty = wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0));
+    char* pstValue = system_getproperty(pstProperty, "unknown");
+    types::String* pS = new types::String(pstValue);
     out.push_back(pS);
 
     FREE(pstProperty);
     FREE(pstValue);
 
-    return Function::OK;
+    return types::Function::OK;
 }
 
 /*--------------------------------------------------------------------------*/

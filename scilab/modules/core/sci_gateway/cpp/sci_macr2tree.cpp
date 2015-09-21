@@ -109,7 +109,7 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     types::List* statement = v.getList();
 
     types::TList* funcall = new types::TList();
-    types::String* sf = new String(1, 4);
+    types::String* sf = new types::String(1, 4);
     sf->set(0, L"funcall");
     sf->set(1, L"rhs");
     sf->set(2, L"name");

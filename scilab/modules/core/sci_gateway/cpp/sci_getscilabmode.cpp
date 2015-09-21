@@ -23,10 +23,7 @@ extern "C"
 #include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int n1 = 0, m1 = 0;
     char *output = NULL ;
@@ -34,13 +31,13 @@ Function::ReturnValue sci_getscilabmode(types::typed_list &in, int _iRetCount, t
     if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "getscilabmode", 0);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     const char* pst = getScilabModeString();
-    String* pS = new String(pst);
+    types::String* pS = new types::String(pst);
     out.push_back(pS);
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -41,7 +41,7 @@ Signalprocessingfunctions* Signalprocessing::getSignalprocessingfunctions()
     return m_Signalprocessingfunctions;
 }
 
-Signalprocessingfunctions::Signalprocessingfunctions(std::wstring callerName)
+Signalprocessingfunctions::Signalprocessingfunctions(const std::wstring& callerName)
 {
 
     m_wstrCaller = callerName;
@@ -58,8 +58,8 @@ Signalprocessingfunctions::Signalprocessingfunctions(std::wstring callerName)
     // init static functions
     if (callerName == L"corr")
     {
-        m_staticFunctionMap[L"corexx"]   = (void*) C2F(corexx);
-        m_staticFunctionMap[L"corexy"]     = (void*) C2F(corexy);
+        m_staticFunctionMap[L"corexx"] = (void*)C2F(corexx);
+        m_staticFunctionMap[L"corexy"] = (void*)C2F(corexy);
 
     }
 }
@@ -173,8 +173,8 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -267,8 +267,8 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
     int one         = 1;
     int iRetCount   = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 

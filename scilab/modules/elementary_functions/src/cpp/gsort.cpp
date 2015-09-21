@@ -165,7 +165,7 @@ bool increasingStr (std::pair<int, wchar_t*> left, std::pair<int, wchar_t*> righ
 }
 
 /*--------------------------- Double ---------------------------------------*/
-types::Double* gsort(types::Double* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::Double* gsort(types::Double* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::Double* pOut = NULL;
 
@@ -439,7 +439,7 @@ types::Double* gsort(types::Double* pIn, types::Double* pDblInd, std::wstring ws
 }
 
 /*--------------------------- String ---------------------------------------*/
-types::String* gsort(types::String* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::String* gsort(types::String* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::String* pOut = nullptr;
 
@@ -667,7 +667,7 @@ types::String* gsort(types::String* pIn, types::Double* pDblInd, std::wstring ws
 }
 
 /*--------------------------- Int8 -----------------------------------------*/
-types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::Int8* pOut = NULL;
 
@@ -888,7 +888,7 @@ types::Int8* gsort(types::Int8* pIn, types::Double* pDblInd, std::wstring wstrWa
 }
 
 /*--------------------------- Int16 -----------------------------------------*/
-types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::Int16* pOut = NULL;
 
@@ -1109,7 +1109,7 @@ types::Int16* gsort(types::Int16* pIn, types::Double* pDblInd, std::wstring wstr
 }
 
 /*--------------------------- Int32 -----------------------------------------*/
-types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::Int32* pOut = NULL;
 
@@ -1330,7 +1330,7 @@ types::Int32* gsort(types::Int32* pIn, types::Double* pDblInd, std::wstring wstr
 }
 
 /*--------------------------- Int64 -----------------------------------------*/
-types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::Int64* pOut = NULL;
 
@@ -1551,7 +1551,7 @@ types::Int64* gsort(types::Int64* pIn, types::Double* pDblInd, std::wstring wstr
 }
 
 /*--------------------------- UInt8 -----------------------------------------*/
-types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::UInt8* pOut = NULL;
 
@@ -1772,7 +1772,7 @@ types::UInt8* gsort(types::UInt8* pIn, types::Double* pDblInd, std::wstring wstr
 }
 
 /*--------------------------- UInt16 -----------------------------------------*/
-types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::UInt16* pOut = NULL;
 
@@ -1993,7 +1993,7 @@ types::UInt16* gsort(types::UInt16* pIn, types::Double* pDblInd, std::wstring ws
 }
 
 /*--------------------------- UInt32 -----------------------------------------*/
-types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::UInt32* pOut = NULL;
 
@@ -2214,7 +2214,7 @@ types::UInt32* gsort(types::UInt32* pIn, types::Double* pDblInd, std::wstring ws
 }
 
 /*--------------------------- UInt64 -----------------------------------------*/
-types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, std::wstring wstrWay, std::wstring wstrProcess)
+types::UInt64* gsort(types::UInt64* pIn, types::Double* pDblInd, const std::wstring& wstrWay, const std::wstring& wstrProcess)
 {
     types::UInt64* pOut = NULL;
 

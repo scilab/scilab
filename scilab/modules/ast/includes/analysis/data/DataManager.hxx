@@ -64,7 +64,7 @@ public:
     void addGlobal(const symbol::Symbol & sym);
     void registerData(Data * _data, int line = 0, char * file = nullptr);
     int getTmpId(const TIType & type, const bool isAnInt);
-    void releaseTmp(const int id);
+    void releaseTmp(const int id, ast::Exp * exp);
     Info & read(const symbol::Symbol & sym, ast::Exp * exp);
     Info & write(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp);
     Info & define(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);

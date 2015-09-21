@@ -14,20 +14,15 @@
 #include "list.hxx"
 #include "function.hxx"
 
-using namespace types;
-
-Function::ReturnValue sci_list(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_list(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    List *pRetVal = new List();
-    typed_list::iterator itInput;
+    types::List *pRetVal = new types::List();
 
-    for (itInput = in.begin() ; itInput != in.end() ; ++itInput)
+    for (const auto& it : in)
     {
-        pRetVal->append((*itInput));
+        pRetVal->append((it));
     }
 
-
     out.push_back(pRetVal);
-
-    return Function::OK;
+    return types::Function::OK;
 }

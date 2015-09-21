@@ -19,15 +19,14 @@
 
 #include "file.hxx"
 
-using namespace std;
 class FILEIO_IMPEXP FileManager
 {
     //static attributs instantiation
 public :
     /*commom attributs and function for all File*/
     static int                  getFileMaxID();
-    static bool                 isOpened(wstring _stFilename);
-    static int                  getFileID(wstring _stFilename);
+    static bool                 isOpened(const std::wstring& _stFilename);
+    static int                  getFileID(const std::wstring& _stFilename);
     static types::File*         getFile(int _iID);
     static int                  getCurrentFile();
     static int                  addFile(types::File* _file);

@@ -18,9 +18,7 @@
 
 #define MODULE_NAME L"preferences"
 
-using namespace types;
-
-int PreferencesModule::LoadDeps(std::wstring _functionName)
+int PreferencesModule::LoadDeps(const std::wstring& _functionName)
 {
     if (ConfigVariable::getScilabMode() == SCILAB_NWNI)
     {

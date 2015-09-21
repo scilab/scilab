@@ -27,7 +27,7 @@ namespace ast
 class EXTERN_AST DebugVisitor : public GenVisitor<const_kind>
 {
 public:
-    DebugVisitor(std::wostream & my_ostr = std::wcerr) : ostr(&my_ostr) { }
+    DebugVisitor(std::wostream & my_ostr = std::wcerr, const bool _printDecoration = false) : ostr(&my_ostr), printDecoration(_printDecoration) { }
 
     /** \name Visit Matrix Expressions nodes.
      ** \{ */
@@ -109,7 +109,7 @@ public:
     /** \} */
 
     template<typename T>
-    inline void printInternalType(wostringstream & stream, types::InternalType * pIT)
+    inline void printInternalType(std::wostringstream & stream, types::InternalType * pIT)
     {
         T * pT = static_cast<T *>(pIT);
         if (pT)
@@ -145,14 +145,16 @@ public:
     }
 
 protected:
+
     std::wostream * ostr;
+    const bool printDecoration;
 
 private:
 
     void START_NODE(const ast::Ast & e);
     void END_NODE(void);
-    void print(wstring str);
-    void print(wstring str, const Exp & e);
+    void print(const std::wstring& str);
+    void print(const std::wstring& str, const Exp & e);
 };
 }
 #endif // !AST_DEBUGVISITOR_HXX

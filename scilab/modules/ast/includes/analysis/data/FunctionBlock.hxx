@@ -148,7 +148,7 @@ public:
     Block * getDefBlock(const symbol::Symbol & sym, tools::SymbolMap<Info>::iterator & it, const bool global) override;
     void addLocal(const symbol::Symbol & sym, const TIType & type, const bool isAnInt) override;
     int getTmpId(const TIType & type, const bool isAnInt) override;
-    void releaseTmp(const int id) override;
+    void releaseTmp(const int id, ast::Exp * exp) override;
 
     bool addIn(const TITypeSignatureTuple & tuple, const std::vector<GVN::Value *> & values);
     void setGlobals(const tools::SymbolOrdSet & v);

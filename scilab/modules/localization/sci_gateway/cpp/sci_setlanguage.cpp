@@ -26,26 +26,24 @@ extern "C"
 #include "setgetlanguage.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_setlanguage(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "setlanguage", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_piRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "setlanguage", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "setlanguage", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t *param = in[0]->getAs<types::String>()->get(0);
@@ -65,8 +63,8 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
             }
         }
 
-        out.push_back(new Bool(FALSE));
-        return Function::OK;
+        out.push_back(new types::Bool(FALSE));
+        return types::Function::OK;
     }
 
 
@@ -77,16 +75,16 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
         {
             if (!setlanguage(newlanguage))
             {
-                out.push_back(new Bool(FALSE));
+                out.push_back(new types::Bool(FALSE));
             }
             else
             {
-                out.push_back(new Bool(TRUE));
+                out.push_back(new types::Bool(TRUE));
             }
         }
         else
         {
-            out.push_back(new Bool(TRUE));
+            out.push_back(new types::Bool(TRUE));
         }
     }
     else
@@ -97,8 +95,8 @@ Function::ReturnValue sci_setlanguage(typed_list &in, int _piRetCount, typed_lis
             sciprint(_("Switching to default language : '%ls'.\n"), SCILABDEFAULTLANGUAGE);
         }
         setlanguage(SCILABDEFAULTLANGUAGE);
-        out.push_back(new Bool(FALSE));
+        out.push_back(new types::Bool(FALSE));
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }

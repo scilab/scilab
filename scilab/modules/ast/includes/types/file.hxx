@@ -23,7 +23,7 @@ public :
     File();
     ~File();
 
-    void                        setFileMode(std::wstring _pstMode);
+    void                        setFileMode(const std::wstring& _pstMode);
     std::wstring&               getFileMode();
     void                        setFileModeAsInt(int _iMode);
     int                         getFileModeAsInt();
@@ -40,7 +40,7 @@ public :
     int                         getFileType();
     std::wstring                getFileTypeAsString();
 
-    void                        setFilename(std::wstring _stFilename);
+    void                        setFilename(const std::wstring& _stFilename);
     std::wstring&               getFilename();
 
     int                         getCountLines();

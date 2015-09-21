@@ -31,56 +31,52 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-using namespace ast;
-using namespace std;
+types::InternalType* createString(std::list<std::wstring>& lst);
+void addIn(ast::MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
+void addOut(ast::MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
 
-InternalType* createString(std::list<std::wstring>& lst);
-void addIn(MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
-void addOut(MacrovarVisitor& pVisit, std::list<symbol::Variable*>* pSym);
-
-Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "macrovar" , 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "macrovar" , 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    Macro* pM = NULL;
+    types::Macro* pM = NULL;
     switch (in[0]->getType())
     {
-        case InternalType::ScilabMacro :
+        case types::InternalType::ScilabMacro:
         {
-            pM = in[0]->getAs<Macro>();
+            pM = in[0]->getAs<types::Macro>();
             break;
         }
-        case InternalType::ScilabMacroFile :
+        case types::InternalType::ScilabMacroFile:
         {
-            MacroFile* pMF = in[0]->getAs<MacroFile>();
+            types::MacroFile* pMF = in[0]->getAs<types::MacroFile>();
             pM = pMF->getMacro();
             break;
         }
         default :
             Scierror(999, _("%s: Wrong type for input arguments: macro expected.\n"), "macrovar");
-            return Function::Error;
+            return types::Function::Error;
     }
 
 
-    MacrovarVisitor visit;
+    ast::MacrovarVisitor visit;
 
     addIn(visit, pM->getInputs());
     addOut(visit, pM->getOutputs());
 
     pM->getBody()->accept(visit);
 
-    List* pL = new List();
+    types::List* pL = new types::List();
 
     pL->append(createString(visit.getIn()));
     pL->append(createString(visit.getOut()));
@@ -89,18 +85,18 @@ Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount, types:
     pL->append(createString(visit.getLocal()));
 
     out.push_back(pL);
-    return Function::OK;
+    return types::Function::OK;
 }
 
 
-InternalType* createString(std::list<std::wstring>& lst)
+types::InternalType* createString(std::list<std::wstring>& lst)
 {
     if (lst.size() == 0)
     {
-        return Double::Empty();
+        return types::Double::Empty();
     }
 
-    String* pS = new String((int)lst.size(), 1);
+    types::String* pS = new types::String((int)lst.size(), 1);
     std::list<std::wstring>::iterator it = lst.begin();
     for (int i = 0 ; it != lst.end() ; it++, i++)
     {
@@ -110,7 +106,7 @@ InternalType* createString(std::list<std::wstring>& lst)
     return pS;
 }
 
-void addOut(MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
+void addOut(ast::MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
 {
     if (pSym == 0 || pSym->size() == 0)
     {
@@ -124,7 +120,7 @@ void addOut(MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
     }
 }
 
-void addIn(MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
+void addIn(ast::MacrovarVisitor& visit, std::list<symbol::Variable*>* pSym)
 {
     if (pSym == 0 || pSym->size() == 0)
     {

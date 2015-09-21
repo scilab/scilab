@@ -59,7 +59,7 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
         return NULL;
     }
 
-    String* pFieldNames = pStruct->getFieldNames();
+    types::String* pFieldNames = pStruct->getFieldNames();
     wchar_t** ppwchFieldNames = pFieldNames->get();
     int isizeFieldNames = pFieldNames->getSize();
 
@@ -81,7 +81,7 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
         structEntries[K] = NULL;
     }
 
-    SingleStruct** ppSingleStruct = pStruct->get();
+    types::SingleStruct** ppSingleStruct = pStruct->get();
 
     for (int i = 0; i < prodDims; i++)
     {

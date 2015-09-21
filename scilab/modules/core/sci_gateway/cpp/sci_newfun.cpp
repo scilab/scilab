@@ -23,7 +23,6 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
 bool isValidName(wchar_t* _pwstName)
 {
@@ -50,28 +49,28 @@ bool isValidName(wchar_t* _pwstName)
     return true;
 }
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "newfun" , 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    InternalType* pIT1 = in[0];
-    InternalType* pIT2 = in[1];
+    types::InternalType* pIT1 = in[0];
+    types::InternalType* pIT2 = in[1];
 
     if (pIT1->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "newfun", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS1 = pIT1->getAs<String>();
+    types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwcsNewName = pS1->get(0);
@@ -80,25 +79,25 @@ Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::t
     if (isValidName(pwcsNewName) == false)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: Valid function name expected.\n"), "newfun", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (pIT2->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "newfun", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS2 = pIT2->getAs<String>();
+    types::String* pS2 = pIT2->getAs<types::String>();
     if (pS2->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwcsName = pS2->get(0);
 
-    Function* pFunc = NULL;
+    types::Function* pFunc = NULL;
     symbol::Context* pCtx = symbol::Context::getInstance();
 
     symbol::Variable* pVar = pCtx->getOrCreate(symbol::Symbol(pwcsName));
@@ -118,7 +117,7 @@ Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::t
         symbol::ScopedVariable* pSV = stack.top();
         if (pSV->m_iLevel == 0 && pSV->m_pIT->isFunction())
         {
-            pFunc = pSV->m_pIT->getAs<Function>();
+            pFunc = pSV->m_pIT->getAs<types::Function>();
         }
 
         //move all elements at orginal place and order
@@ -134,7 +133,7 @@ Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::t
     if (pFunc == NULL)
     {
         Scierror(999, _("%s: function-name is incorrect.\n"), "newfun");
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //new function
@@ -157,7 +156,7 @@ Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::t
         {
             stack.pop();
             //clear current var and insert new one
-            InternalType* pIT = pSV->m_pIT;
+            types::InternalType* pIT = pSV->m_pIT;
             pIT->DecreaseRef();
             pIT->killMe();
         }
@@ -174,6 +173,6 @@ Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, types::t
         }
     }
     
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

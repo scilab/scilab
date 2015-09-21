@@ -46,7 +46,7 @@ class OPTIMIZATION_IMPEXP OptimizationFunctions
 
 public :
 
-    OptimizationFunctions(std::wstring callerName);
+    OptimizationFunctions(const std::wstring& callerName);
     ~OptimizationFunctions();
 
     void setXRows(int);

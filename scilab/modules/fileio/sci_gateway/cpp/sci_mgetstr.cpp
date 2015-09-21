@@ -28,10 +28,8 @@ extern "C"
 #include "mgetstr.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iDims                   = 2;
     int iDimsArray[2]           = {1, 1};
@@ -82,6 +80,6 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
 
     out.push_back(new types::String(pwstOut));
     FREE(pwstOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

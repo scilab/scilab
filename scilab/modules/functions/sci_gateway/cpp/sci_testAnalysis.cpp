@@ -35,23 +35,19 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace std;
-using namespace types;
-using namespace ast;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() == 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "testAnalysis", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     // check that arguments are a string
     unsigned int i = 1;
     Location loc;
-    ast::exps_t * args = new exps_t();
+    ast::exps_t * args = new ast::exps_t();
     args->reserve(in.size() - 1);
     for (const auto arg : in)
     {
@@ -59,7 +55,7 @@ Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, ty
         {
             delete args;
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "testAnalysis", i);
-            return Function::Error;
+            return types::Function::Error;
         }
         if (i > 1)
         {
@@ -79,28 +75,28 @@ Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, ty
     //analysis.print_info();
 
     analysis::TIType & t = analysis.getResult().getType();
-    Struct * pOut = new Struct(1, 1);
+    types::Struct * pOut = new types::Struct(1, 1);
     pOut->addField(L"type");
-    pOut->get(0)->set(L"type", new String(analysis::TIType::toString(t.type).c_str()));
+    pOut->get(0)->set(L"type", new types::String(analysis::TIType::toString(t.type).c_str()));
 
     pOut->addField(L"rows");
     if (t.rows.isConstant())
     {
-        pOut->get(0)->set(L"rows", new Double(t.rows.getConstant()));
+        pOut->get(0)->set(L"rows", new types::Double(t.rows.getConstant()));
     }
     else
     {
-        pOut->get(0)->set(L"rows", new Double(analysis::tools::NaN()));
+        pOut->get(0)->set(L"rows", new types::Double(analysis::tools::NaN()));
     }
 
     pOut->addField(L"cols");
     if (t.cols.isConstant())
     {
-        pOut->get(0)->set(L"cols", new Double(t.cols.getConstant()));
+        pOut->get(0)->set(L"cols", new types::Double(t.cols.getConstant()));
     }
     else
     {
-        pOut->get(0)->set(L"cols", new Double(analysis::tools::NaN()));
+        pOut->get(0)->set(L"cols", new types::Double(analysis::tools::NaN()));
     }
     out.push_back(pOut);
 
@@ -110,5 +106,5 @@ Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, ty
     //ast::PrintVisitor printMe(std::wcout);
     //pExp->accept(printMe);
 
-    return Function::OK;
+    return types::Function::OK;
 }

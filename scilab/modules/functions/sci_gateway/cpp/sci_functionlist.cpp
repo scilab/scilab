@@ -16,32 +16,31 @@
 #include "functions_gw.hxx"
 #include "string.hxx"
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     symbol::Context* pContext = symbol::Context::getInstance();
     ;
     if (in.size() > 1)
     {
-        return Function::Error;
+        return types::Function::Error;
     }
 
     std::wstring pstLibName;
     if (in.size() == 1)
     {
-        InternalType* pIT = in[0];
+        types::InternalType* pIT = in[0];
 
         if (pIT->isString() == false)
         {
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        String *pS = pIT->getAs<types::String>();
+        types::String *pS = pIT->getAs<types::String>();
 
         if (pS->getSize() != 1)
         {
-            return Function::Error;
+            return types::Function::Error;
         }
 
         pstLibName = pS->get(0);
@@ -54,7 +53,7 @@ Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types:
     std::list<symbol::Symbol> funcList;
     int size = pContext->getFunctionList(funcList, pstLibName);
 
-    String *pS = new String(size, 1);
+    types::String *pS = new types::String(size, 1);
 
     std::list<symbol::Symbol>::iterator it;
     int i = 0;
@@ -64,6 +63,6 @@ Function::ReturnValue sci_funclist(types::typed_list &in, int _iRetCount, types:
     }
 
     out.push_back(pS);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

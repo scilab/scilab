@@ -90,10 +90,10 @@ void RunVisitorT<T>::visitprivate(const CellExp &e)
         for (j = 0, col = cols.begin() ; col != cols.end() ; ++col, ++j)
         {
             (*col)->accept(*this);
-            InternalType *pIT = getResult();
+            types::InternalType *pIT = getResult();
             if (pIT->isImplicitList())
             {
-                InternalType * _pIT = pIT->getAs<ImplicitList>()->extractFullMatrix();
+                types::InternalType * _pIT = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
                 pC->set(i, j, _pIT);
                 _pIT->killMe();
             }
@@ -152,15 +152,15 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     SimpleVar * psvRightMember = static_cast<SimpleVar *>(const_cast<Exp *>(e.getTail()));
     std::wstring wstField = psvRightMember->getSymbol().getName();
-    InternalType * pValue = getResult();
-    InternalType * pReturn = NULL;
+    types::InternalType * pValue = getResult();
+    types::InternalType * pReturn = NULL;
     bool ok = false;
 
     try
     {
         if (pValue->isGenericType() || pValue->isUserType())
         {
-            ok = pValue->getAs<GenericType>()->extract(wstField, pReturn);
+            ok = pValue->getAs<types::GenericType>()->extract(wstField, pReturn);
         }
     }
     catch (std::wstring & err)
@@ -200,7 +200,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         types::typed_list in;
         types::typed_list out;
 
-        String* pS = new String(wstField.c_str());
+        types::String* pS = new types::String(wstField.c_str());
 
         //TODO: in the case where overload is a macro there is no need to incref in
         // because args will be put in context, removed and killed if required.
@@ -211,7 +211,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
         in.push_back(pS);
         in.push_back(pValue);
-        Callable::ReturnValue Ret = Callable::Error;
+        types::Callable::ReturnValue Ret = types::Callable::Error;
         std::wstring stType = pValue->getShortTypeStr();
 
         try
@@ -247,7 +247,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
             }
         }
 
-        if (Ret != Callable::OK)
+        if (Ret != types::Callable::OK)
         {
             cleanInOut(in, out);
             setResult(NULL);
@@ -328,7 +328,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
     //condition
     e.getTest().accept(*this);
 
-    InternalType* pIT = getResult();
+    types::InternalType* pIT = getResult();
 
     while (pIT->isTrue())
     {
@@ -374,14 +374,14 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     symbol::Context* ctx = symbol::Context::getInstance();
     //vardec visit increase its result reference
     e.getVardec().accept(*this);
-    InternalType* pIT = getResult();
+    types::InternalType* pIT = getResult();
 
     if (pIT->isImplicitList())
     {
         //get IL
-        ImplicitList* pVar = pIT->getAs<ImplicitList>();
+        types::ImplicitList* pVar = pIT->getAs<types::ImplicitList>();
         //get IL initial Type
-        InternalType * pIL = pVar->getInitalType();
+        types::InternalType * pIL = pVar->getInitalType();
         //std::cout << "for IL: " << pIL << std::endl;
         //std::cout << "  for IV: " << pIT << std::endl;
         //get index stack
@@ -480,12 +480,12 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     }
     else if (pIT->isList())
     {
-        List* pL = pIT->getAs<List>();
+        types::List* pL = pIT->getAs<types::List>();
         const int size = pL->getSize();
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
         for (int i = 0; i < size; ++i)
         {
-            InternalType* pNew = pL->get(i);
+            types::InternalType* pNew = pL->get(i);
 
             if (ctx->isprotected(var))
             {
@@ -531,7 +531,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     else if (pIT->isGenericType())
     {
         //Matrix i = [1,3,2,6] or other type
-        GenericType* pVar = pIT->getAs<GenericType>();
+        types::GenericType* pVar = pIT->getAs<types::GenericType>();
         if (pVar->getDims() > 2)
         {
             pIT->DecreaseRef();
@@ -542,7 +542,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
         for (int i = 0; i < pVar->getCols(); i++)
         {
-            GenericType* pNew = pVar->getColumnValues(i);
+            types::GenericType* pNew = pVar->getColumnValues(i);
             if (pNew == NULL)
             {
                 pIT->DecreaseRef();
@@ -714,12 +714,12 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const StringSelectExp &e)
 {
     e.getSelect()->accept(*this);
-    InternalType* pIT = getResult();
+    types::InternalType* pIT = getResult();
     setResult(nullptr);
     bool found = false;
     if (pIT && pIT->isString())
     {
-        String * pStr = static_cast<String *>(pIT);
+        types::String * pStr = static_cast<types::String *>(pIT);
         if (pStr->getSize() == 1)
         {
             if (wchar_t * s = pStr->get(0))
@@ -794,7 +794,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
     e.getSelect()->accept(*this);
     bool bCase = false;
 
-    InternalType* pIT = getResult();
+    types::InternalType* pIT = getResult();
     setResult(NULL);
     if (pIT)
     {
@@ -808,7 +808,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
         {
             CaseExp* pCase = exp->getAs<CaseExp>();
             pCase->getTest()->accept(*this);
-            InternalType *pITCase = getResult();
+            types::InternalType *pITCase = getResult();
             setResult(NULL);
             if (pITCase)
             {
@@ -928,13 +928,13 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             setExpectedSize(-1);
             exp->accept(*this);
             setExpectedSize(iExpectedSize);
-            InternalType * pIT = getResult();
+            types::InternalType * pIT = getResult();
 
             // In case of exec file, set the file name in the Macro to store where it is defined.
             int iFileID = ConfigVariable::getExecutedFileID();
             if (iFileID && exp->isFunctionDec())
             {
-                InternalType* pITMacro = symbol::Context::getInstance()->get(exp->getAs<FunctionDec>()->getSymbol());
+                types::InternalType* pITMacro = symbol::Context::getInstance()->get(exp->getAs<FunctionDec>()->getSymbol());
                 if (pITMacro)
                 {
                     types::Macro* pMacro = pITMacro->getAs<types::Macro>();
@@ -953,10 +953,10 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 bool bImplicitCall = false;
                 if (pIT->isCallable()) //to manage call without ()
                 {
-                    Callable *pCall = pIT->getAs<Callable>();
-                    typed_list out;
-                    typed_list in;
-                    optional_list opt;
+                    types::Callable *pCall = pIT->getAs<types::Callable>();
+                    types::typed_list out;
+                    types::typed_list in;
+                    types::optional_list opt;
 
                     try
                     {
@@ -994,7 +994,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 if (getResult() != NULL && (!exp->isSimpleVar() || bImplicitCall))
                 {
                     //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.getResult());
-                    InternalType* pITAns = getResult();
+                    types::InternalType* pITAns = getResult();
                     symbol::Context::getInstance()->put(m_pAns, pITAns);
                     if (exp->isVerbose() && ConfigVariable::isPromptShow())
                     {
@@ -1050,8 +1050,8 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
     */
     e.getExp().accept(*this);
 
-    InternalType * pValue = getResult();
-    InternalType * pReturn = NULL;
+    types::InternalType * pValue = getResult();
+    types::InternalType * pReturn = NULL;
     if (pValue->neg(pReturn))
     {
         if (pValue != pReturn)
@@ -1070,9 +1070,9 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, this);
+        types::Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_5", in, 1, out, this);
 
-        if (Ret != Callable::OK)
+        if (Ret != types::Callable::OK)
         {
             cleanInOut(in, out);
             throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
@@ -1096,8 +1096,8 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         throw InternalError(szError, 999, e.getLocation());
     }
 
-    InternalType * pValue = getResult();
-    InternalType * pReturn = NULL;
+    types::InternalType * pValue = getResult();
+    types::InternalType * pReturn = NULL;
     const bool bConjug = e.getConjugate() == TransposeExp::_Conjugate_;
 
     if ((bConjug && pValue->adjoint(pReturn)) || (!bConjug && pValue->transpose(pReturn)))
@@ -1120,7 +1120,7 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         pValue->IncreaseRef();
         in.push_back(pValue);
 
-        Callable::ReturnValue Ret;
+        types::Callable::ReturnValue Ret;
         if (bConjug)
         {
             Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_t", in, 1, out, this);
@@ -1130,7 +1130,7 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
             Ret = Overload::call(L"%" + getResult()->getShortTypeStr() + L"_0", in, 1, out, this);
         }
 
-        if (Ret != Callable::OK)
+        if (Ret != types::Callable::OK)
         {
             cleanInOut(in, out);
             throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
@@ -1237,8 +1237,8 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const ListExp &e)
 {
     e.getStart().accept(*this);
-    GenericType* pITStart = static_cast<GenericType*>(getResult());
-    if ((pITStart->getSize() != 1 || (pITStart->isDouble() && pITStart->getAs<Double>()->isComplex())) &&
+    types::GenericType* pITStart = static_cast<types::GenericType*>(getResult());
+    if ((pITStart->getSize() != 1 || (pITStart->isDouble() && pITStart->getAs<types::Double>()->isComplex())) &&
             pITStart->isList() == false) // list case => call overload
     {
         pITStart->killMe();
@@ -1246,11 +1246,11 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
         throw InternalError(szError, 999, e.getLocation());
     }
-    InternalType * piStart = pITStart;
+    types::InternalType * piStart = pITStart;
 
     e.getStep().accept(*this);
-    GenericType* pITStep = static_cast<GenericType*>(getResult());
-    if ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<Double>()->isComplex())) &&
+    types::GenericType* pITStep = static_cast<types::GenericType*>(getResult());
+    if ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<types::Double>()->isComplex())) &&
             pITStep->isList() == false) // list case => call overload
     {
         pITStart->killMe();
@@ -1259,11 +1259,11 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
         throw InternalError(szError, 999, e.getLocation());
     }
-    InternalType* piStep = pITStep;
+    types::InternalType* piStep = pITStep;
 
     e.getEnd().accept(*this);
-    GenericType* pITEnd = static_cast<GenericType*>(getResult());
-    if ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<Double>()->isComplex())) &&
+    types::GenericType* pITEnd = static_cast<types::GenericType*>(getResult());
+    if ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<types::Double>()->isComplex())) &&
             pITEnd->isList() == false) // list case => call overload
     {
         pITStart->killMe();
@@ -1273,7 +1273,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 3);
         throw InternalError(szError, 999, e.getLocation());
     }
-    InternalType* piEnd = pITEnd;
+    types::InternalType* piEnd = pITEnd;
 
     ////check if implicitlist is 1:$ to replace by ':'
     //if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
@@ -1296,7 +1296,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             (piEnd->isPoly()   || piEnd->isDouble()))
     {
         // No need to kill piStart, ... because Implicit list ctor will incref them
-        setResult(new ImplicitList(piStart, piStep, piEnd));
+        setResult(new types::ImplicitList(piStart, piStep, piEnd));
         return;
     }
 
@@ -1311,13 +1311,13 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
                  piStep->isDouble()))
         {
             // No need to kill piStart, ... because Implicit list ctor will incref them
-            setResult(new ImplicitList(piStart, piStep, piEnd));
+            setResult(new types::ImplicitList(piStart, piStep, piEnd));
             return;
         }
     }
 
     // Call Overload
-    Callable::ReturnValue Ret;
+    types::Callable::ReturnValue Ret;
     types::typed_list in;
     types::typed_list out;
 
@@ -1352,7 +1352,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         throw error;
     }
 
-    if (Ret != Callable::OK)
+    if (Ret != types::Callable::OK)
     {
         cleanInOut(in, out);
         throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
@@ -1376,16 +1376,16 @@ void RunVisitorT<T>::visitprivate(const MemfillExp &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
 {
-    InternalType* pIT = NULL;
-    Double* ad = NULL;
+    types::InternalType* pIT = NULL;
+    types::Double* ad = NULL;
     int ar = 0;
     int ac = 0;
 
-    Double* xd = NULL;
+    types::Double* xd = NULL;
     int xr = 0;
     int xc = 0;
 
-    Double* yd = NULL;
+    types::Double* yd = NULL;
     int yr = 0;
     int yc = 0;
 
@@ -1397,7 +1397,7 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
     pIT = getResult();
     if (pIT->isDouble())
     {
-        yd = pIT->getAs<Double>();
+        yd = pIT->getAs<types::Double>();
         if (yd->getDims() == 2 && yd->isComplex() == false)
         {
             yr = yd->getRows();
@@ -1424,7 +1424,7 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
 
     if (pIT->isDouble())
     {
-        xd = pIT->getAs<Double>();
+        xd = pIT->getAs<types::Double>();
         if (xd->isScalar() && xd->isComplex() == false)
         {
             // x become a
@@ -1461,7 +1461,7 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
     {
         if (ad)
         {
-            xd = pIT->getAs<Double>();
+            xd = pIT->getAs<types::Double>();
             //X is scalar it become A
             //now use A as X
             if (xd->getDims() == 2 && xd->isComplex() == false)
@@ -1481,7 +1481,7 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
         else
         {
             //a is a and it must be scalar
-            ad = pIT->getAs<Double>();
+            ad = pIT->getAs<types::Double>();
             if (/*ad->isScalar() && */ad->isComplex() == false)
             {
                 ar = ad->getRows(); //1;

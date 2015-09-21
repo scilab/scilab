@@ -138,7 +138,7 @@ public :
     ** Error Message management
     */
     static std::wstring& getErrorMessage(void);
-    static void appendErrorMessage(std::wstring ostr);
+    static void appendErrorMessage(const std::wstring& ostr);
     static void resetErrorMessage(void)
     {
         _error_message.clear();
@@ -153,7 +153,7 @@ public :
     */
     static char* getCodeLine(int line, char **codeLine);
 
-    static void PrintError(std::wstring msg);
+    static void PrintError(const std::wstring& msg);
 
 private :
     static std::wstring _file_name;

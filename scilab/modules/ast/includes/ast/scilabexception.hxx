@@ -125,7 +125,7 @@ protected :
 class InternalError : public ScilabException
 {
 public :
-    InternalError(std::wstring _wstErrorMesssage) : ScilabException(_wstErrorMesssage)
+    InternalError(const std::wstring& _wstErrorMesssage) : ScilabException(_wstErrorMesssage)
     {
         m_type = TYPE_ERROR;
         setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
@@ -137,7 +137,7 @@ public :
         setLastError(999, m_wstErrorMessage.c_str(), 0, NULL);
     }
 
-    InternalError(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation)
+    InternalError(const std::wstring& _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation) : ScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation)
     {
         m_type = TYPE_ERROR;
         setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), _ErrorLocation.first_line, NULL);

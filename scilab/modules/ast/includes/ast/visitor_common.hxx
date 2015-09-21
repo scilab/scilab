@@ -50,12 +50,12 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields);
 types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, types::InternalType* pIT);
 
 types::InternalType* callOverload(const ast::Exp& e,
-                                  std::wstring _strType,
+                                  const std::wstring& _strType,
                                   types::typed_list* _pArgs,
                                   types::InternalType* _source,
                                   types::InternalType* _dest);
 
-types::InternalType* callOverload(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR);
+types::InternalType* callOverload(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR);
 
 types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
 

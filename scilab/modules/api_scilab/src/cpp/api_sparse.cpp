@@ -28,8 +28,6 @@ extern "C"
 #include "call_scilab.h"
 }
 
-using namespace types;
-
 static int getCommonAllocatedSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 static int getCommonNamedAllocatedSparseMatrix(void* _pvCtx, const char* _pstName, int _iComplex, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg);
 
@@ -84,7 +82,7 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
         return sciErr;
     }
 
-    Sparse* pS = ((InternalType*)_piAddress)->getAs<Sparse>();
+    types::Sparse* pS = ((types::InternalType*)_piAddress)->getAs<types::Sparse>();
 
     *_piNbItem = (int)pS->nonZeros();
 
@@ -163,12 +161,12 @@ SciErr fillCommonSparseMatrix(void* _pvCtx, int **_piAddress, int _iComplex, int
     //convert to ij, val, dims format to call sparse constructor
 
     //dims
-    Double* dims = new Double(1, 2, false);
+    types::Double* dims = new types::Double(1, 2, false);
     dims->get()[0] = (double)_iRows;
     dims->get()[1] = (double)_iCols;
 
     //ij
-    Double* ij = new Double(_iNbItem, 2);
+    types::Double* ij = new types::Double(_iNbItem, 2);
     double* pI = ij->get();
     double* pJ = ij->get() + _iNbItem;
 
@@ -183,7 +181,7 @@ SciErr fillCommonSparseMatrix(void* _pvCtx, int **_piAddress, int _iComplex, int
         }
     }
 
-    Double* val = new Double(_iNbItem, 1, _iComplex == 1);
+    types::Double* val = new types::Double(_iNbItem, 1, _iComplex == 1);
     double* pR = val->get();
     if (_iComplex)
     {
@@ -202,7 +200,7 @@ SciErr fillCommonSparseMatrix(void* _pvCtx, int **_piAddress, int _iComplex, int
         }
     }
 
-    Sparse* pSparse = new Sparse(*val, *ij, *dims);
+    types::Sparse* pSparse = new types::Sparse(*val, *ij, *dims);
     delete dims;
     delete val;
     delete ij;
@@ -238,8 +236,8 @@ SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRo
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::InternalType** out = pStr->m_pOut;
 
     int iTotalSize = 0;
     types::Sparse* pSparse = NULL;

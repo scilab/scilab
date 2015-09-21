@@ -24,36 +24,34 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_deletefile(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_deletefile(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "deletefile", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "deletefile", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
 
-    Bool *pOut = NULL;
+    types::Bool *pOut = NULL;
     if (deleteafileW(in[0]->getAs<types::String>()->get(0)))
     {
-        pOut = new Bool(1);
+        pOut = new types::Bool(1);
     }
     else
     {
-        pOut = new Bool(0);
+        pOut = new types::Bool(0);
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
     //CheckRhs(1,1);
     //CheckLhs(1,1);
 

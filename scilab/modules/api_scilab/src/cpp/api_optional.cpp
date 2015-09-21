@@ -25,8 +25,6 @@ extern "C"
 }
 
 
-using namespace types;
-
 static int findOptional(void* _pvCtx, char *fname, rhs_opts opts[]);
 static void printOptionalNames(void* _pvCtx, rhs_opts opts[]);
 
@@ -35,7 +33,7 @@ static void printOptionalNames(void* _pvCtx, rhs_opts opts[]);
 /**************************/
 int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
 {
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
     types::optional_list opt = *pStr->m_pOpt;
     int i = 0;
 
@@ -62,16 +60,16 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
         }
 
         opts[index].iPos = i + 1;
-        GenericType* pGT = (GenericType*)opt[i].second;
+        types::GenericType* pGT = (types::GenericType*)opt[i].second;
         getVarType(_pvCtx, (int*)pGT, &typeOfOpt);
         opts[index].iType = typeOfOpt;
 
         if (typeOfOpt == sci_implicit_poly)
         {
-            InternalType* pIT = NULL;
-            ImplicitList* pIL = pGT->getAs<ImplicitList>();
+            types::InternalType* pIT = NULL;
+            types::ImplicitList* pIL = pGT->getAs<types::ImplicitList>();
             pIT = pIL->extractFullMatrix();
-            Double* impResult = (Double*)pIT;
+            types::Double* impResult = (types::Double*)pIT;
             opts[index].iRows = impResult->getRows();
             opts[index].iCols = impResult->getCols();
             opts[index].piAddr = (int*)impResult;
@@ -106,13 +104,13 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
 
 int FirstOpt(void* _pvCtx)
 {
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
     return (int)pStr->m_pIn->size() + 1;
 }
 
 int NumOpt(void* _pvCtx)
 {
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
     return (int)pStr->m_pOpt->size();
 }
 

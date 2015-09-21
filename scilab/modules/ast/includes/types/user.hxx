@@ -90,7 +90,7 @@ public :
     // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool          extract(const std::wstring & /*name*/, InternalType *& /*out*/)
+    virtual bool          extract(const std::wstring& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }

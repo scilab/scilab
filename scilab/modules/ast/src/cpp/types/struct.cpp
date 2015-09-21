@@ -502,7 +502,7 @@ bool Struct::toString(std::wostringstream& ostr)
     return true;
 }
 
-List* Struct::extractFieldWithoutClone(std::wstring _wstField)
+List* Struct::extractFieldWithoutClone(const std::wstring& _wstField)
 {
     List* pL = new List();
     for (int j = 0 ; j < getSize() ; j++)

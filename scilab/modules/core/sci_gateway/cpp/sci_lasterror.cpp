@@ -23,22 +23,19 @@ extern "C"
 #include "Scierror.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
 types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bClearError = true;
     if (in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected."), "lasterror", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount > 4)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lasterror", 1, 4);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 1)
@@ -46,7 +43,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
         if (in[0]->isBool() == false || in[0]->getAs<types::Bool>()->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Boolean vector expected.\n"), "lasterror", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
         bClearError = in[0]->getAs<types::Bool>()->get()[0] == 1; //convert int to bool
     }
@@ -54,7 +51,7 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     // check on error number because error message can be empty.
     if (ConfigVariable::getLastErrorNumber() == 0)
     {
-        out.push_back(Double::Empty());
+        out.push_back(types::Double::Empty());
     }
     else
     {
@@ -87,12 +84,12 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
 
     if (_iRetCount > 1)
     {
-        Double* pErrorNumber = new Double(ConfigVariable::getLastErrorNumber());
+        types::Double* pErrorNumber = new types::Double(ConfigVariable::getLastErrorNumber());
         out.push_back(pErrorNumber);
 
         if (_iRetCount > 2)
         {
-            Double* pErrorLine = new Double(ConfigVariable::getLastErrorLine());
+            types::Double* pErrorLine = new types::Double(ConfigVariable::getLastErrorLine());
             out.push_back(pErrorLine);
 
             if (_iRetCount > 3)
@@ -100,11 +97,11 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
                 std::wstring wstLastErrorFunction = ConfigVariable::getLastErrorFunction();
                 if (wstLastErrorFunction.size() == 0)
                 {
-                    out.push_back(new String(L""));
+                    out.push_back(new types::String(L""));
                 }
                 else
                 {
-                    out.push_back(new String(wstLastErrorFunction.c_str()));
+                    out.push_back(new types::String(wstLastErrorFunction.c_str()));
                 }
             }
         }
@@ -116,6 +113,6 @@ types::Function::ReturnValue sci_lasterror(types::typed_list &in, int _iRetCount
     }
 
     ConfigVariable::setLastErrorCall();
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

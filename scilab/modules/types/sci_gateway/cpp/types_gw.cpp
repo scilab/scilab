@@ -22,7 +22,6 @@ int TypesModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"usertype", &sci_usertype, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tlist", &sci_tlist, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mlist", &sci_mlist, MODULE_NAME));

@@ -30,7 +30,7 @@ private :
     static std::wstring m_wstFPF;
 
 public :
-    static void setFPF(std::wstring _wstFPF);
+    static void setFPF(const std::wstring& _wstFPF);
     static std::wstring getFPF();
 
     //KeyTab_, graphic properties

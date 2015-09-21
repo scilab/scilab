@@ -61,7 +61,6 @@ void Block::clone(Info & info, const symbol::Symbol & sym, ast::Exp * exp)
         info.data = new Data(info.isknown(), sym);
         dm->registerData(info.data);//, __LINE__, __FILE__);
         clone(sym, exp);
-        exp->getDecorator().cloneData = true;
     }
 }
 
@@ -204,7 +203,10 @@ Info & Block::addWrite(const symbol::Symbol & sym, const TIType & Rtype, ast::Ex
         info.exists = true;
     }
 
-    clone(info, sym, exp);
+    if (!info.type.isscalar())
+    {
+        clone(info, sym, exp);
+    }
     info.W = true;
 
     return info;
@@ -228,11 +230,11 @@ int Block::getTmpId(const TIType & type, const bool isAnInt)
     return -1;
 }
 
-void Block::releaseTmp(const int id)
+void Block::releaseTmp(const int id, ast::Exp * exp)
 {
     if (parent)
     {
-        parent->releaseTmp(id);
+        parent->releaseTmp(id, exp);
     }
 }
 
@@ -363,6 +365,7 @@ Info & Block::putAndClear(const symbol::Symbol & sym, ast::Exp * exp)
             if (info.data->hasOneOwner())
             {
                 info.cleared = true;
+                exp->getDecorator().deleteData = true;
                 info.local = Info::Local::INFO_TRUE;
                 return info;
             }
@@ -384,6 +387,7 @@ Info & Block::putAndClear(const symbol::Symbol & sym, ast::Exp * exp)
                 Info & i = addSym(sym, info);
                 info.data = old;
                 i.cleared = true;
+                exp->getDecorator().deleteData = true;
                 i.local = Info::Local::INFO_TRUE;
                 return i;
             }

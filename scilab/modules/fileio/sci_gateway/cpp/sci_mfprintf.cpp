@@ -35,11 +35,8 @@ extern "C"
 static BOOL forceSTDERRredirect = TRUE;
 #endif
 
-using namespace types;
-using namespace ast;
 /*--------------------------------------------------------------------------*/
-
-Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     BOOL isSTD                      = FALSE;
     BOOL isSTDErr                   = FALSE;

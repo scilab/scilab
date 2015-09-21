@@ -14,7 +14,6 @@
 #define __BLOCK_HXX__
 
 #include <iostream>
-#include <map>
 #include <vector>
 
 #include "allexp.hxx"
@@ -114,7 +113,7 @@ public:
 
     virtual void addLocal(const symbol::Symbol & sym, const TIType & type, const bool isIntIterator);
     virtual int getTmpId(const TIType & type, const bool isIntIterator);
-    virtual void releaseTmp(const int id);
+    virtual void releaseTmp(const int id, ast::Exp * exp);
     virtual Info & addRead(const symbol::Symbol & sym, ast::Exp * exp);
     virtual Info & addWrite(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp);
     virtual Info & addDefine(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);

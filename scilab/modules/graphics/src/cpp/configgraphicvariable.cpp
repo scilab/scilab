@@ -19,7 +19,7 @@
 
 std::wstring ConfigGraphicVariable::m_wstFPF;
 
-void ConfigGraphicVariable::setFPF(std::wstring _wstFPF)
+void ConfigGraphicVariable::setFPF(const std::wstring& _wstFPF)
 {
     m_wstFPF = _wstFPF;
 }

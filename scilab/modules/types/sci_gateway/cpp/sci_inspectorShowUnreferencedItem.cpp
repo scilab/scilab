@@ -24,23 +24,21 @@ extern "C"
 #include "os_string.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_inspectorShowUnreferencedItem(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_inspectorShowUnreferencedItem(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() > 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "inspectorShowUnreferencedItem", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 0)
     {
-        int iCount = Inspector::getUnreferencedItemCount();
-        String* pS = new String(iCount, 1);
+        int iCount = types::Inspector::getUnreferencedItemCount();
+        types::String* pS = new types::String(iCount, 1);
         for (int i = 0 ; i < iCount ; i++)
         {
-            pS->set(i, Inspector::showUnreferencedItem(i).c_str());
+            pS->set(i, types::Inspector::showUnreferencedItem(i).c_str());
         }
         out.push_back(pS);
     }
@@ -49,18 +47,18 @@ Function::ReturnValue sci_inspectorShowUnreferencedItem(typed_list &in, int _iRe
         if (in[0]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        Double *pD = in[0]->getAs<Double>();
+        types::Double *pD = in[0]->getAs<types::Double>();
         if (pD->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
-            Function::Error;
+            return types::Function::Error;
         }
 
         int iPos = (int)pD->get(0) - 1;
-        out.push_back(new String(Inspector::showUnreferencedItem(iPos).c_str()));
+        out.push_back(new types::String(types::Inspector::showUnreferencedItem(iPos).c_str()));
     }
-    return Function::OK;
+    return types::Function::OK;
 }

@@ -23,8 +23,6 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
 namespace
 {
 size_t nonZeros(types::Double SPARSE_CONST& d)
@@ -50,24 +48,24 @@ size_t nonZeros(types::Double SPARSE_CONST& d)
 }
 }
 
-Function::ReturnValue sci_nnz(typed_list &in, int nbRes, typed_list &out)
+types::Function::ReturnValue sci_nnz(types::typed_list &in, int nbRes, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "nnz", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isSparse() == false && in[0]->isSparseBool() == false && in[0]->isDouble() == false)
     {
         Scierror(999, _("%s: Wrong type argument %d: Sparse or matrix expected.\n"), "nnz", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (nbRes > 1)
     {
         Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), "nnz", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     double dblVal = 0;
@@ -76,17 +74,17 @@ Function::ReturnValue sci_nnz(typed_list &in, int nbRes, typed_list &out)
 
     if (in[0]->isSparse())
     {
-        dblVal = static_cast<double>(in[0]->getAs<Sparse>()->nonZeros());
+        dblVal = static_cast<double>(in[0]->getAs<types::Sparse>()->nonZeros());
     }
     else if (in[0]->isSparseBool())
     {
-        dblVal = static_cast<double>(in[0]->getAs<SparseBool>()->nbTrue());
+        dblVal = static_cast<double>(in[0]->getAs<types::SparseBool>()->nbTrue());
     }
     else
     {
-        dblVal = static_cast<double>(nonZeros(*in[0]->getAs<Double>()));
+        dblVal = static_cast<double>(nonZeros(*in[0]->getAs<types::Double>()));
     }
 
-    out.push_back(new Double(dblVal));
-    return Function::OK;
+    out.push_back(new types::Double(dblVal));
+    return types::Function::OK;
 }

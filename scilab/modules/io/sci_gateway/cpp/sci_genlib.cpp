@@ -26,7 +26,7 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlwriter.h>
 
-#include <string.h>
+#include <cstring>
 #include "string.hxx"
 #include "parser.hxx"
 #include "context.hxx"
@@ -61,12 +61,11 @@ extern "C"
 
 xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLibName);
 void closeXMLFile(xmlTextWriterPtr _pWriter);
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, const wstring& name, const wstring& file, const wstring& md5);
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5);
 
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
-Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int succes = 1;
     std::vector<std::wstring> failed_files;
@@ -85,22 +84,22 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
     if (in.size() < 1 || in.size() > 4)
     {
         Scierror(78, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "genlib", 1, 4);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //param 1, library name
-    InternalType* pIT = in[0];
+    types::InternalType* pIT = in[0];
     if (pIT->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "genlib", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String *pS = pIT->getAs<String>();
+    types::String *pS = pIT->getAs<types::String>();
     if (pS->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "genlib", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
     pstLibName = pS->get(0);
 
@@ -111,22 +110,22 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
         if (pIT->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "genlib", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
     else
     {
         int ierr = 0;
         char* pstr = scigetcwd(&ierr);
-        pIT = new String(pstr);
+        pIT = new types::String(pstr);
         FREE(pstr);
     }
 
-    pS = pIT->getAs<String>();
+    pS = pIT->getAs<types::String>();
     if (pS->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "genlib", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() > 2)
@@ -140,10 +139,10 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
         pIT = in[3];
         if (pIT->isBool() == false)
         {
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        bVerbose = pIT->getAs<Bool>()->get()[0] == 1;
+        bVerbose = pIT->getAs<types::Bool>()->get()[0] == 1;
     }
 
     wchar_t* pstFile = pS->get(0);
@@ -185,9 +184,9 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
         os_swprintf(pstVerbose, 65535, _W("%ls: Cannot open file ''%ls''.\n").c_str(), L"genlib", pstParseFile);
         scilabWriteW(pstVerbose);
 
-        out.push_back(new Bool(0));
+        out.push_back(new types::Bool(0));
         FREE(pstParsePath);
-        return Function::OK;
+        return types::Function::OK;
     }
 
 
@@ -195,15 +194,15 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
 
     if (pstPath)
     {
-        Library* pLib = new Library(pstParsePath);
+        types::Library* pLib = new types::Library(pstParsePath);
         for (int k = 0 ; k < iNbFile ; k++)
         {
             //version with direct parsing
             //parse the file to find all functions
-            wstring stFullPath = wstring(pstParsePath) + wstring(FILE_SEPARATOR) + wstring(pstPath[k]);
-            wstring stFullPathBin(stFullPath);
+            std::wstring stFullPath = std::wstring(pstParsePath) + std::wstring(FILE_SEPARATOR) + std::wstring(pstPath[k]);
+            std::wstring stFullPathBin(stFullPath);
             stFullPathBin.replace(stFullPathBin.end() - 3, stFullPathBin.end(), L"bin");
-            wstring pstPathBin(pstPath[k]);
+            std::wstring pstPathBin(pstPath[k]);
             pstPathBin.replace(pstPathBin.end() - 3, pstPathBin.end(), L"bin");
 
             //compute file md5
@@ -225,7 +224,7 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
                 {
                     //file not change, we can skip it
                     AddMacroToXML(pWriter, (*it).second.name, pstPathBin, wide_md5);
-                    pLib->add((*it).second.name, new MacroFile((*it).second.name, stFullPathBin, pstLibName));
+                    pLib->add((*it).second.name, new types::MacroFile((*it).second.name, stFullPathBin, pstLibName));
                     success_files.push_back(stFullPath);
                     funcs.push_back((*it).second.name);
                     continue;
@@ -257,7 +256,7 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
                     freeArrayOfWideString(pstPath, iNbFile);
                     closeXMLFile(pWriter);
                     delete pLib;
-                    return Function::Error;
+                    return types::Function::Error;
                 }
 
                 failed_files.push_back(stFullPath);
@@ -282,7 +281,7 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
                 if ((*j)->isFunctionDec())
                 {
                     ast::FunctionDec* pFD = (*j)->getAs<ast::FunctionDec>();
-                    const wstring& name = pFD->getSymbol().getName();
+                    const std::wstring& name = pFD->getSymbol().getName();
                     if (name + L".sci" == pstPath[k])
                     {
                         if (AddMacroToXML(pWriter, name, pstPathBin, wide_md5) == false)
@@ -291,7 +290,7 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
                             scilabWriteW(pstVerbose);
                         }
 
-                        pLib->add(name, new MacroFile(name, stFullPathBin, pstLibName));
+                        pLib->add(name, new types::MacroFile(name, stFullPathBin, pstLibName));
                         success_files.push_back(stFullPath);
                         funcs.push_back(name);
                         break;
@@ -318,24 +317,24 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
             FREE(pstParsePath);
             closeXMLFile(pWriter);
             delete pLib;
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
     freeArrayOfWideString(pstPath, iNbFile);
 
-    out.push_back(new Bool(succes));
+    out.push_back(new types::Bool(succes));
 
     if (_iRetCount > 1)
     {
         int size = static_cast<int>(funcs.size());
         if (size == 0)
         {
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
         else
         {
-            String* s = new String(size, 1);
+            types::String* s = new types::String(size, 1);
 
             for (int i = 0; i < size; ++i)
             {
@@ -351,11 +350,11 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
         int size = static_cast<int>(success_files.size());
         if (size == 0)
         {
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
         else
         {
-            String* s = new String(size, 1);
+            types::String* s = new types::String(size, 1);
 
             for (int i = 0; i < size; ++i)
             {
@@ -371,11 +370,11 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
         int size = static_cast<int>(failed_files.size());
         if (size == 0)
         {
-            out.push_back(Double::Empty());
+            out.push_back(types::Double::Empty());
         }
         else
         {
-            String* s = new String(size, 1);
+            types::String* s = new types::String(size, 1);
 
             for (int i = 0; i < size; ++i)
             {
@@ -388,7 +387,7 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
 
     FREE(pstParsePath);
     closeXMLFile(pWriter);
-    return Function::OK;
+    return types::Function::OK;
 }
 
 void closeXMLFile(xmlTextWriterPtr _pWriter)
@@ -462,7 +461,7 @@ xmlTextWriterPtr openXMLFile(const wchar_t *_pstFilename, const wchar_t* _pstLib
     return pWriter;
 }
 
-bool AddMacroToXML(xmlTextWriterPtr _pWriter, const wstring& name, const wstring& file, const wstring& md5)
+bool AddMacroToXML(xmlTextWriterPtr _pWriter, const std::wstring& name, const std::wstring& file, const std::wstring& md5)
 {
     int iLen;
 

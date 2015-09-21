@@ -23,13 +23,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
     {
         exps_t::const_iterator row;
         exps_t::const_iterator col;
-        InternalType *poResult = NULL;
-        list<InternalType*> rowList;
+        types::InternalType *poResult = NULL;
+        std::list<types::InternalType*> rowList;
 
         exps_t lines = e.getLines();
         if (lines.size() == 0)
         {
-            setResult(Double::Empty());
+            setResult(types::Double::Empty());
             return;
         }
 
@@ -45,7 +45,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 //manage evstr('//xxx') for example
                 if (getResult() == NULL)
                 {
-                    setResult(Double::Empty());
+                    setResult(types::Double::Empty());
                 }
                 return;
             }
@@ -54,7 +54,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
         //do all [x,x]
         for (row = lines.begin() ; row != lines.end() ; row++)
         {
-            InternalType* poRow = NULL;
+            types::InternalType* poRow = NULL;
             exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
             for (col = cols.begin() ; col != cols.end() ; col++)
             {
@@ -78,7 +78,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     throw error;
                 }
 
-                InternalType *pIT = getResult();
+                types::InternalType *pIT = getResult();
                 if (pIT == NULL)
                 {
                     continue;
@@ -89,10 +89,10 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 if (pIT->isImplicitList())
                 {
-                    ImplicitList *pIL = pIT->getAs<ImplicitList>();
+                    types::ImplicitList *pIL = pIT->getAs<types::ImplicitList>();
                     if (pIL->isComputable())
                     {
-                        InternalType* pIT2 = pIL->extractFullMatrix();
+                        types::InternalType* pIT2 = pIL->extractFullMatrix();
                         pIT->killMe();
                         pIT = pIT2;
                     }
@@ -131,8 +131,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     throw ast::InternalError(os.str(), 999, (*col)->getLocation());
                 }
 
-                GenericType* pGT = pIT->getAs<GenericType>();
-                if (pGT->isDouble() && pGT->getAs<Double>()->isEmpty())
+                types::GenericType* pGT = pIT->getAs<types::GenericType>();
+                if (pGT->isDouble() && pGT->getAs<types::Double>()->isEmpty())
                 {
                     pGT->killMe();
                     continue;
@@ -166,7 +166,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     continue;
                 }
 
-                GenericType* pGTResult = poRow->getAs<GenericType>();
+                types::GenericType* pGTResult = poRow->getAs<types::GenericType>();
 
                 //check dimension
                 if (pGT->getDims() != 2 || pGT->getRows() != pGTResult->getRows())
@@ -202,8 +202,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     int* piRank = new int[_iRows * _iCols];
                     memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
                     poRow = new types::Polynom(pGT->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
-                    Polynom* pP = poRow->getAs<types::Polynom>();
-                    SinglePoly** pSS = pP->get();
+                    types::Polynom* pP = poRow->getAs<types::Polynom>();
+                    types::SinglePoly** pSS = pP->get();
                     types::Double* pDb = pGTResult->getAs<types::Double>();
                     double* pdblR = pDb->get();
                     if (pDb->isComplex())
@@ -228,8 +228,8 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                     delete[] piRank;
                 }
 
-                InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
-                InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
+                types::InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
+                types::InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
                 if (p != pNewSize)
                 {
                     pNewSize->killMe();
@@ -289,10 +289,10 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 continue;
             }
 
-            GenericType* pGT = poRow->getAs<GenericType>();
+            types::GenericType* pGT = poRow->getAs<types::GenericType>();
 
             //check dimension
-            GenericType* pGTResult = poResult->getAs<GenericType>();
+            types::GenericType* pGTResult = poResult->getAs<types::GenericType>();
 
             if (pGT->isList() || pGTResult->isList() ||
                     pGT->isStruct() || pGTResult->isStruct())
@@ -342,17 +342,17 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 poResult = new types::Sparse(*pGTResult->getAs<types::Double>());
                 pGTResult->killMe();
-                pGTResult = poResult->getAs<GenericType>();
+                pGTResult = poResult->getAs<types::GenericType>();
             }
             else if (pGT->isSparseBool() && pGTResult->isBool()) // [Bool SparseBool] => [SparseBool SparseBool]
             {
                 poResult = new types::SparseBool(*pGTResult->getAs<types::Bool>());
                 pGTResult->killMe();
-                pGTResult = poResult->getAs<GenericType>();
+                pGTResult = poResult->getAs<types::GenericType>();
             }
 
-            InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), pGT->getCols());
-            InternalType* p = AddElementToVariable(pNewSize, pGT, pGTResult->getRows(), 0);
+            types::InternalType* pNewSize = AddElementToVariable(NULL, poResult, pGTResult->getRows() + pGT->getRows(), pGT->getCols());
+            types::InternalType* p = AddElementToVariable(pNewSize, pGT, pGTResult->getRows(), 0);
             if (p != pNewSize)
             {
                 pNewSize->killMe();
@@ -390,7 +390,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
         }
         else
         {
-            setResult(Double::Empty());
+            setResult(types::Double::Empty());
         }
     }
     catch (const InternalError& error)
@@ -401,11 +401,11 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 }
 
 template<class T>
-types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR)
+types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR)
 {
     types::typed_list in;
     types::typed_list out;
-    Callable::ReturnValue Ret;
+    types::Callable::ReturnValue Ret;
 
     _paramL->IncreaseRef();
     _paramR->IncreaseRef();
@@ -421,7 +421,7 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
         }
         else
         {
-            Ret = Overload::call(L"%" + _paramL->getAs<List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<List>()->getShortTypeStr(), in, 1, out, this, true);
+            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, this, true);
         }
     }
     catch (const InternalError& error)
@@ -430,7 +430,7 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
         throw error;
     }
 
-    if (Ret != Callable::OK)
+    if (Ret != types::Callable::OK)
     {
         cleanInOut(in, out);
         throw InternalError(ConfigVariable::getLastErrorMessage());

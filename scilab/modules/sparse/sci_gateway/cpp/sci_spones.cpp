@@ -21,30 +21,28 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_spones(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_spones(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "spones", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isSparse() == false && in[0]->isSparseBool() == false)
     {
         Scierror(999, _("%s: Wrong type for argument %d: Sparse matrix expected.\n"), "spones", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isSparse())
     {
-        out.push_back(in[0]->getAs<Sparse>()->newOnes());
+        out.push_back(in[0]->getAs<types::Sparse>()->newOnes());
     }
     else
     {
-        out.push_back(in[0]->getAs<SparseBool>()->newOnes());
+        out.push_back(in[0]->getAs<types::SparseBool>()->newOnes());
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }

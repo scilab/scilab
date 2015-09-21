@@ -20,20 +20,18 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_inspectorDeleteUnreferencedItems(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_inspectorDeleteUnreferencedItems(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 0)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "inspectorDeleteUnreferencedItems", 0);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    while (Inspector::getUnreferencedItemCount() != 0)
+    while (types::Inspector::getUnreferencedItemCount() != 0)
     {
-        delete Inspector::getUnreferencedItem(0);
+        delete types::Inspector::getUnreferencedItem(0);
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }

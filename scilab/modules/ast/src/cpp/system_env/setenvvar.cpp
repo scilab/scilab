@@ -49,7 +49,6 @@ extern "C"
 #include "getshortpathname.h"
 }
 
-using namespace std;
 
 
 /*--------------------------------------------------------------------------*/
@@ -88,7 +87,7 @@ void SciEnvForWindows(void)
     {
         if ( (!Set_Shell()) || (!IsTheGoodShell()))
         {
-            cout << "Please modify ""ComSpec"" environment variable." << endl << "cmd.exe on W2K and more." << endl;
+            std::cout << "Please modify ""ComSpec"" environment variable." << std::endl << "cmd.exe on W2K and more." << std::endl;
         }
     }
 

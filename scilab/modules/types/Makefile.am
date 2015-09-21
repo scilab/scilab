@@ -52,7 +52,6 @@ TYPES_GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_null.cpp \
 	sci_gateway/cpp/sci_cell.cpp \
 	sci_gateway/cpp/sci_makecell.cpp \
-	sci_gateway/cpp/sci_usertype.cpp \
 	sci_gateway/cpp/sci_typeof.cpp \
 	sci_gateway/cpp/sci_tlist.cpp \
 	sci_gateway/cpp/sci_mlist.cpp \

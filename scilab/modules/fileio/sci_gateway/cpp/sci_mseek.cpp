@@ -37,10 +37,8 @@ char *strerror (int errcode);
 #define SEEK_END 2
 #endif
 
-using namespace types;
 /*--------------------------------------------------------------------------*/
-
-Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iFile           = -1; //default file : last opened file
     int iRet            = 0;
@@ -132,7 +130,7 @@ Function::ReturnValue sci_mseek(types::typed_list &in, int _iRetCount, types::ty
 
     int iErr = mseek(iFile, iWhere, iFlag);
 
-    out.push_back(new Bool(!iErr));
-    return Function::OK;
+    out.push_back(new types::Bool(!iErr));
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

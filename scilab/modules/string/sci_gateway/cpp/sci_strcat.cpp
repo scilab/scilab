@@ -44,10 +44,7 @@ static int sci_strcat_rhs_one_is_a_matrix(char *fname);
 static int sumlengthstring(int rhspos);
 static int *lengthEachString(int rhspos, int *sizeArrayReturned);
 /*-------------------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_strcat(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iMode               = 0;
     wchar_t* pwstToInsert   = NULL;
@@ -56,7 +53,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "strcat", 1, 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     for (int i = 1 ; i < in.size() ; i++)
@@ -64,21 +61,21 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
         if (in[i]->isString() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "strcat", i + 1);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->getSize() == 0)
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->getSize() == 0)
     {
-        String *pOut = new String(1, 1);
+        types::String *pOut = new types::String(1, 1);
         pOut->set(0, L"");
         out.push_back(pOut);
-        return Function::OK;
+        return types::Function::OK;
     }
     else if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcat", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 3)
@@ -94,7 +91,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
                 break;
             default :
                 Scierror(999, _("%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"), "strcat", 3, "c", "r");
-                return Function::Error;
+                return types::Function::Error;
         }
     }
 
@@ -103,20 +100,20 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
         if (in[1]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "strcat", 2);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         pwstToInsert = in[1]->getAs<types::String>()->get(0);
     }
 
-    String* pS = in[0]->getAs<types::String>();
+    types::String* pS = in[0]->getAs<types::String>();
 
-    String* pOut = NULL;
+    types::String* pOut = NULL;
     switch (iMode)
     {
         case 0 : //"*"
         {
-            pOut = new String(1, 1);
+            pOut = new types::String(1, 1);
             /*compute final size*/
             int iLen = 1; //L'\0'
             for (int i = 0 ; i < pS->getSize() ; i++)
@@ -147,7 +144,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
         break;
         case 1 : //"r"
         {
-            pOut = new String(1, pS->getCols());
+            pOut = new types::String(1, pS->getCols());
             /*compute final size*/
             for (int i = 0 ; i < pS->getCols() ; i++)
             {
@@ -181,7 +178,7 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
         }
         case 2 : //"c"
         {
-            pOut = new String(pS->getRows(), 1);
+            pOut = new types::String(pS->getRows(), 1);
             /*compute final size*/
             for (int i = 0 ; i < pS->getRows() ; i++)
             {
@@ -216,6 +213,6 @@ Function::ReturnValue sci_strcat(typed_list &in, int _iRetCount, typed_list &out
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*-------------------------------------------------------------------------------------*/

@@ -784,7 +784,7 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
         for (const auto & p : temporaries)
         {
             const analysis::TypeLocal & ty = p.first;
-            stack<int> stack(p.second);
+            std::stack<int> stack(p.second);
             while (!stack.empty())
             {
                 const std::string name = std::to_string(id++) + "_tmp";

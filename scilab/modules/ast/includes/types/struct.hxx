@@ -107,10 +107,10 @@ public :
     bool                        addFieldFront(const std::wstring& _sKey);
     bool                        removeField(const std::wstring& _sKey);
     bool                        toString(std::wostringstream& ostr);
-    List*                       extractFieldWithoutClone(std::wstring _wstField);
+    List*                       extractFieldWithoutClone(const std::wstring& _wstField);
     std::vector<InternalType*>  extractFields(std::vector<std::wstring> _wstFields);
     std::vector<InternalType*>  extractFields(typed_list* _pArgs);
-    inline InternalType *       extractField(const std::wstring & wstField);
+    inline InternalType *       extractField(const std::wstring& wstField);
 
     bool                        resize(int* _piDims, int _iDims);
     bool                        resize(int _iNewRows, int _iNewCols);
@@ -121,7 +121,7 @@ public :
     void                        setCloneInCopyValue(bool _val);
 
     using ArrayOf<SingleStruct *>::extract;
-    bool extract(const std::wstring & name, InternalType *& out);
+    bool extract(const std::wstring& name, InternalType *& out);
 
     virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e);
 

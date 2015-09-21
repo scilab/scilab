@@ -15,16 +15,9 @@
 #define __CREATEMATLABTREEVARIABLE_HXX__
 
 #include "gatewaystruct.hxx"
-#include "double.hxx"
-#include "int.hxx"
-#include "cell.hxx"
-#include "struct.hxx"
-#include "string.hxx"
-#include "sparse.hxx"
+#include "internal.hxx"
 #include "CreateMatlabVariable.h"
 
-using namespace types;
-
-InternalType* CreateMatlabTreeVariable(matvar_t *matVariable);
+types::InternalType* CreateMatlabTreeVariable(matvar_t *matVariable);
 
 #endif /* !__CREATEMATLABTREEVARIABLE_HXX__ */

@@ -32,8 +32,6 @@ extern "C" {
 #include "sci_malloc.h"
 }
 
-using namespace types;
-
 namespace ast
 {
 class EXTERN_AST RunVisitor : public ConstVisitor
@@ -57,7 +55,7 @@ public:
     {
         if (!isSingleResult() && _resultVect.size() > 1)
         {
-            for (vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
+            for (std::vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
             {
                 if (*rv != nullptr)
                 {
@@ -81,7 +79,7 @@ public:
         }
         else
         {
-            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(); rv != _resultVect.end(); rv++)
+            for (std::vector<types::InternalType*>::iterator rv = _resultVect.begin(); rv != _resultVect.end(); rv++)
             {
                 if (*rv != nullptr)
                 {
@@ -150,13 +148,13 @@ public:
         return _resultVect[_iPos];
     }
 
-    vector<types::InternalType*>* getResultList()
+    std::vector<types::InternalType*>* getResultList()
     {
         // TODO: this function is not used but it could lead to a memleak
         // (in the first case the vector is allocated and so must be freed)
         if (getResultSize() == 1)
         {
-            vector<types::InternalType*>* pList = new vector<types::InternalType*>;
+            std::vector<types::InternalType*>* pList = new std::vector<types::InternalType*>;
             pList->push_back(_result);
             return pList;
         }
@@ -282,7 +280,7 @@ public:
     | Attributes.  |
     `-------------*/
 protected:
-    vector<types::InternalType*>    _resultVect;
+    std::vector<types::InternalType*>    _resultVect;
     types::InternalType*    _result;
     bool m_bSingleResult;
     int _excepted_result;
@@ -369,7 +367,7 @@ public :
     {
         if (e.getConstant() == nullptr)
         {
-            Double *pdbl = new Double(e.getValue());
+            types::Double *pdbl = new types::Double(e.getValue());
             (const_cast<DoubleExp *>(&e))->setConstant(pdbl);
 
         }
@@ -381,7 +379,7 @@ public :
     {
         if (e.getConstant() == nullptr)
         {
-            Bool *pB = new Bool(e.getValue());
+            types::Bool *pB = new types::Bool(e.getValue());
             (const_cast<BoolExp *>(&e))->setConstant(pB);
 
         }
@@ -399,7 +397,7 @@ public :
     {
         symbol::Context* ctx = symbol::Context::getInstance();
         symbol::Variable* var = ((SimpleVar&)e).getStack();
-        InternalType *pI = ctx->get(var);
+        types::InternalType *pI = ctx->get(var);
         setResult(pI);
         if (pI != nullptr)
         {
@@ -452,14 +450,14 @@ public :
 
     void visitprivate(const ColonVar &/*e*/)
     {
-        Colon *pC = new Colon();
+        types::Colon *pC = new types::Colon();
         setResult(pC);
     }
 
 
     void visitprivate(const DollarVar &/*e*/)
     {
-        setResult(Polynom::Dollar());
+        setResult(types::Polynom::Dollar());
     }
 
     void visitprivate(const TryCatchExp  &e)
@@ -502,7 +500,7 @@ public :
         int iNbExpSize = this->getExpectedSize();
         this->setExpectedSize(1);
 
-        typed_list lstIT;
+        types::typed_list lstIT;
         for (it = e.getExps().begin() ; it != e.getExps().end() ; it++)
         {
             (*it)->accept(*this);
@@ -532,7 +530,7 @@ public :
     }
 
     types::InternalType* callOverloadOpExp(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR);
-    types::InternalType* callOverloadMatrixExp(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR);
+    types::InternalType* callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR);
 };
 }
 

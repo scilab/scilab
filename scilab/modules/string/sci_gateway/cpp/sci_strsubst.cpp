@@ -30,16 +30,13 @@ extern "C"
 #define WCHAR_R L'r'
 #define WCHAR_S L's'
 /*-------------------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_strsubst(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bRegExp = false;
     if (in.size() < 3 || in.size() > 4)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "strsubst", 3, 4);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() > 3)
@@ -47,7 +44,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
         if (in[3]->isString() == false && in[3]->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strsubst", 4);
-            return Function::Error;
+            return types::Function::Error;
         }
 
         if (in[3]->getAs<types::String>()->get(0)[0] == WCHAR_R)
@@ -61,14 +58,14 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
         else
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"), "strsubst", 4);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
     if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strsubst", 3);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwstReplace = in[2]->getAs<types::String>()->get()[0];
@@ -76,26 +73,26 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strsubst", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pwstSearch = in[1]->getAs<types::String>()->get()[0];
 
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string matrix expected.\n"), "strsubst", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS = in[0]->getAs<types::String>();
+    types::String* pS = in[0]->getAs<types::String>();
 
-    String* pOut = new String(pS->getRows(), pS->getCols());
+    types::String* pOut = new types::String(pS->getRows(), pS->getCols());
     wchar_t** pwstOutput = NULL;
 
     if (bRegExp)
@@ -107,7 +104,7 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
             freeArrayOfWideString(pwstOutput, pOut->getSize());
             pcre_error("strsubst", iErr);
             delete pOut;
-            return Function::Error;
+            return types::Function::Error;
         }
     }
     else
@@ -118,6 +115,6 @@ Function::ReturnValue sci_strsubst(typed_list &in, int _iRetCount, typed_list &o
     pOut->set(pwstOutput);
     freeArrayOfWideString(pwstOutput, pOut->getSize());
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*-------------------------------------------------------------------------------------*/

@@ -23,11 +23,9 @@ extern "C"
 #include "loadOnUseClassPath.h"
 }
 
-using namespace types;
-
 bool GraphicsModule::loadedDep = false;
 
-int GraphicsModule::LoadDeps(std::wstring _functionName)
+int GraphicsModule::LoadDeps(const std::wstring& _functionName)
 {
     if (loadedDep == false)
     {

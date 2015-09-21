@@ -26,13 +26,11 @@ extern "C"
 #include "sciprint.h"
 }
 
-using namespace types;
-
 int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * parent, int item_position)
 {
-    GatewayStruct* pStr = (GatewayStruct*)pvApiCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)pvApiCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
     int  iSize = 1;
 
     int rhs = iVar - *getNbInputArgument(pvApiCtx);
@@ -48,15 +46,15 @@ int CreateCellVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
 
     if ((iRank == 2) && ((piDims[0] * piDims[1]) <= 0))
     {
-        Cell* pCell = new Cell();
+        types::Cell* pCell = new types::Cell();
         out[rhs - 1] = pCell;
         return TRUE;
     }
 
-    Cell* pCell = new Cell(iRank, piDims);
+    types::Cell* pCell = new types::Cell(iRank, piDims);
 
     matvar_t** allData = (matvar_t**)(matVariable->data);
-    InternalType** ppIT = new InternalType*[matVariable->data_size];
+    types::InternalType** ppIT = new types::InternalType*[matVariable->data_size];
     for (int i = 0; i < iSize; i++)
     {
         ppIT[i] = CreateMatlabTreeVariable(allData[i]);

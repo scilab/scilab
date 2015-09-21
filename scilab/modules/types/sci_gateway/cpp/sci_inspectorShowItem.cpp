@@ -24,26 +24,24 @@ extern "C"
 #include "os_string.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_inspectorShowItem(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_inspectorShowItem(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() > 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d or %d expected.\n"), "inspectorShowItem", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in.size() == 0)
     {
-        int iCount = Inspector::getItemCount();
-        String* pS = new String(iCount, 2);
+        int iCount = types::Inspector::getItemCount();
+        types::String* pS = new types::String(iCount, 2);
         for (int i = 0 ; i < iCount ; i++)
         {
             wchar_t pstRef[10];
-            pS->set(i, 0, Inspector::showItem(i).c_str());
+            pS->set(i, 0, types::Inspector::showItem(i).c_str());
 
-            os_swprintf(pstRef, 10, L"%d", Inspector::getItem(i)->getRef());
+            os_swprintf(pstRef, 10, L"%d", types::Inspector::getItem(i)->getRef());
             pS->set(i, 1, pstRef);
         }
         out.push_back(pS);
@@ -53,18 +51,18 @@ Function::ReturnValue sci_inspectorShowItem(typed_list &in, int _iRetCount, type
         if (in[0]->isDouble() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
-            return Function::Error;
+            return types::Function::Error;
         }
 
-        Double *pD = in[0]->getAs<Double>();
+        types::Double *pD = in[0]->getAs<types::Double>();
         if (pD->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), "inspectorShowItem", 1);
-            Function::Error;
+            return types::Function::Error;
         }
 
         int iPos = (int)pD->get(0) - 1;
-        out.push_back(new String(Inspector::showItem(iPos).c_str()));
+        out.push_back(new types::String(types::Inspector::showItem(iPos).c_str()));
     }
-    return Function::OK;
+    return types::Function::OK;
 }

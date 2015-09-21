@@ -24,9 +24,7 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     symbol::Context* ctx = symbol::Context::getInstance();
     int iWrongType = 1;
@@ -35,7 +33,7 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
     {
         //clear();
         ctx->removeAll();
-        return Function::OK;
+        return types::Function::OK;
     }
 
     // First check if all arguments are Single Strings.
@@ -46,7 +44,7 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
         if (pIT->isString() == false)
         {
             Scierror(207, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "clear", var);
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
@@ -74,8 +72,8 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
 
     if (bShow)
     {
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }

@@ -23,9 +23,7 @@ extern "C"
 #include "charEncoding.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &out)
+types::Function::ReturnValue sci_struct(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     int* piDimsRef  = NULL;
     int iDimsRef    = 0;
@@ -34,33 +32,33 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     if (in.size() % 2 != 0)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): An even number is expected.\n"), "struct");
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //no input parameter
     if (in.size() == 0)
     {
-        out.push_back(new Struct());
-        return Function::OK;
+        out.push_back(new types::Struct());
+        return types::Function::OK;
     }
 
     /* First check if all fields are Strings */
-    typed_list::iterator itInput;
+    types::typed_list::iterator itInput;
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
     {
-        if ((*itInput)->isString() == false || (*itInput)->getAs<String>()->getSize() != 1)
+        if ((*itInput)->isString() == false || (*itInput)->getAs<types::String>()->getSize() != 1)
         {
             Scierror(999, _("%s: Field names must be strings.\n"), "struct");
-            return Function::Error;
+            return types::Function::Error;
         }
     }
 
     /* Second check if dimensions of data are good*/
     for (itInput = in.begin() + 1; itInput != in.end() ; ((itInput + 1) != in.end()) ? itInput += 2 : itInput += 1)
     {
-        if ((*itInput)->isCell() && (*itInput)->getAs<Cell>()->isScalar() == false)
+        if ((*itInput)->isCell() && (*itInput)->getAs<types::Cell>()->isScalar() == false)
         {
-            Cell* pCell = (*itInput)->getAs<Cell>();
+            types::Cell* pCell = (*itInput)->getAs<types::Cell>();
             if (piDimsRef == NULL)
             {
                 iDimsRef    = pCell->getDims();
@@ -76,36 +74,36 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
                         if (piDims[i] != piDimsRef[i])
                         {
                             Scierror(999, _("%s: Arguments must be scalar or must have same dimensions.\n"), "struct");
-                            return Function::Error;
+                            return types::Function::Error;
                         }
                     }
                 }
                 else
                 {
                     Scierror(999, _("%s: Arguments must be scalar or must have same dimensions.\n"), "struct");
-                    return Function::Error;
+                    return types::Function::Error;
                 }
             }
         }
     }
 
-    Struct *pOut = NULL;
+    types::Struct *pOut = NULL;
 
     if (piDimsRef)
     {
-        pOut = new Struct(iDimsRef, piDimsRef);
+        pOut = new types::Struct(iDimsRef, piDimsRef);
     }
     else
     {
-        pOut = new Struct(1, 1);
+        pOut = new types::Struct(1, 1);
     }
 
-    InternalType *pFieldValue = NULL;
+    types::InternalType *pFieldValue = NULL;
     for (itInput = in.begin() ; itInput != in.end() ; itInput += 2)
     {
         //for each field
-        std::wstring wstField((*itInput)->getAs<String>()->get(0));
-        InternalType* pData = (*(itInput + 1));
+        std::wstring wstField((*itInput)->getAs<types::String>()->get(0));
+        types::InternalType* pData = (*(itInput + 1));
 
         //add field in struct
         pOut->addField(wstField);
@@ -113,7 +111,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
         if (pData->isCell())
         {
             //non scalar cell dispatch cell data in each SingleStruct
-            Cell* pCell = pData->getAs<Cell>();
+            types::Cell* pCell = pData->getAs<types::Cell>();
             if (pCell->isScalar())
             {
                 for (int i = 0 ; i < pOut->getSize() ; i++)
@@ -141,5 +139,5 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
 
     out.push_back(pOut);
 
-    return Function::OK;
+    return types::Function::OK;
 }

@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
 
     std::wstring wstrName = pStrName->get(0);
     size_t badpos = wstrName.find_first_not_of(L"$abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ");
-    if (badpos != wstring::npos)
+    if (badpos != std::wstring::npos)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d : Valid variable name expected.\n"), "poly", 2);
         return types::Function::Error;

@@ -27,30 +27,27 @@ extern "C"
 #include "os_string.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
 types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "warning", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "warning", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "warning", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String *psInput = in[0]->getAs<types::String>();
+    types::String *psInput = in[0]->getAs<types::String>();
 
     if (psInput->getSize() == 1)
     {
@@ -58,26 +55,26 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         if (wcscmp(psInput->get(0), L"on") == 0)
         {
             setWarningMode(TRUE);
-            return Function::OK;
+            return types::Function::OK;
         }
 
         if (wcscmp(psInput->get(0), L"off") == 0)
         {
             setWarningMode(FALSE);
-            return Function::OK;
+            return types::Function::OK;
         }
 
         if (wcscmp(psInput->get(0), L"query") == 0)
         {
             if (getWarningMode())
             {
-                out.push_back(new String(L"on"));
+                out.push_back(new types::String(L"on"));
             }
             else
             {
-                out.push_back(new String(L"off"));
+                out.push_back(new types::String(L"off"));
             }
-            return Function::OK;
+            return types::Function::OK;
         }
     }
 
@@ -95,6 +92,6 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
     }
 
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

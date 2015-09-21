@@ -31,7 +31,6 @@ extern "C"
 #include "getshortpathname.h"
 }
 
-using namespace std;
 /*--------------------------------------------------------------------------*/
 wchar_t* getSCIHOMEW(void)
 {
@@ -40,7 +39,7 @@ wchar_t* getSCIHOMEW(void)
 /*--------------------------------------------------------------------------*/
 char* getSCIHOME(void)
 {
-    wstring tmpSCIHOME = ConfigVariable::getSCIHOME();
+    std::wstring tmpSCIHOME = ConfigVariable::getSCIHOME();
     if (tmpSCIHOME == L"")
     {
         tmpSCIHOME = L"empty_SCIHOME";

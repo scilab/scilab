@@ -28,7 +28,7 @@ void DebugVisitor::END_NODE(void)
     --level;
 }
 
-void DebugVisitor::print(wstring str)
+void DebugVisitor::print(const std::wstring& str)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -38,10 +38,10 @@ void DebugVisitor::print(wstring str)
     {
         *ostr << L"     ";
     }
-    *ostr << str << endl;
+    *ostr << str << std::endl;
 }
 
-void DebugVisitor::print(wstring str, const Exp &e)
+void DebugVisitor::print(const std::wstring& str, const Exp &e)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -56,7 +56,10 @@ void DebugVisitor::print(wstring str, const Exp &e)
     Location loc = e.getLocation();
     *ostr << L" @(" << loc.first_line << L"." << loc.first_column << L" -> ";
     *ostr << loc.last_line << L"." << loc.last_column << L")";
-    *ostr << L" Deco(" << e.getDecorator() << L")" << endl;
+    if (printDecoration)
+    {
+        *ostr << L" Deco(" << e.getDecorator() << L")";
+    }
 }
 
 
@@ -99,7 +102,7 @@ void DebugVisitor::visit (const CellExp &e)
 void DebugVisitor::visit (const StringExp &e)
 {
     START_NODE(e);
-    wostringstream stream;
+    std::wostringstream stream;
     if (e.getConstant())
     {
         printInternalType<types::String>(stream, e.getConstant());
@@ -122,7 +125,7 @@ void DebugVisitor::visit (const CommentExp &e)
 void DebugVisitor::visit (const DoubleExp  &e)
 {
     START_NODE(e);
-    wostringstream stream;
+    std::wostringstream stream;
     types::InternalType * pIT = e.getConstant();
     if (pIT)
     {
@@ -149,7 +152,7 @@ void DebugVisitor::visit (const DoubleExp  &e)
 void DebugVisitor::visit (const BoolExp  &e)
 {
     START_NODE(e);
-    wostringstream stream;
+    std::wostringstream stream;
     if (e.getConstant())
     {
         printInternalType<types::Bool>(stream, e.getConstant());

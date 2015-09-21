@@ -50,7 +50,7 @@ OptimizationFunctions* Optimization::getOptimizationFunctions()
 
 
 /*--------------------------------------------------------------------------*/
-OptimizationFunctions::OptimizationFunctions(std::wstring callerName)
+OptimizationFunctions::OptimizationFunctions(const std::wstring& callerName)
 {
     m_iXRows = 0;
     m_iXCols = 0;
@@ -356,8 +356,8 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     int iRetCount   = 3;
     int one         = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -511,8 +511,8 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
     int iRetCount   = 1;
     int one         = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -601,8 +601,8 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
     int iRetCount   = 1;
     int one         = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -693,8 +693,8 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
     int iRetCount   = 1;
     int one         = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 
@@ -791,8 +791,8 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
     int iRetCount   = 1;
     int one         = 1;
 
-    typed_list in;
-    typed_list out;
+    types::typed_list in;
+    types::typed_list out;
     types::optional_list opt;
     ast::ExecVisitor execFunc;
 

@@ -33,28 +33,25 @@ extern "C"
 #include "partfunction.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_part(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 2)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), "part", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != -1 && _iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "part", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     //part([], ...
-    if (in[0]->isDouble() && in[0]->getAs<Double>()->isEmpty())
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
     {
-        out.push_back(Double::Empty());
-        return Function::OK;
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
     }
 
     if (in[0]->isString() == false)
@@ -63,7 +60,7 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    String* pS = in[0]->getAs<types::String>();
+    types::String* pS = in[0]->getAs<types::String>();
 
     if (in[1]->isDouble() == false)
     {
@@ -71,12 +68,12 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
         return Overload::call(wstFuncName, in, _iRetCount, out);
     }
 
-    Double* pD = in[1]->getAs<Double>();
+    types::Double* pD = in[1]->getAs<types::Double>();
     if (pD->isVector() == false && pD->isEmpty() == false)
     {
         //non vector
         Scierror(999, _("%s: Wrong size for input argument #%d: A vector expected.\n"), "part", 2);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     int* piIndex = new int[pD->getSize()];
@@ -87,10 +84,10 @@ Function::ReturnValue sci_part(typed_list &in, int _iRetCount, typed_list &out)
 
     wchar_t** pwstOut = partfunctionW(pS->get(), pS->getRows(), pS->getCols(), piIndex, pD->getSize());
     delete[] piIndex;
-    String* pOut = new String(pS->getRows(), pS->getCols());
+    types::String* pOut = new types::String(pS->getRows(), pS->getCols());
     pOut->set(pwstOut);
     freeArrayOfWideString(pwstOut, pOut->getSize());
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

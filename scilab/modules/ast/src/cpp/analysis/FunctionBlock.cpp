@@ -177,9 +177,18 @@ int FunctionBlock::getTmpId(const TIType & type, const bool isAnInt)
     return tempManager.getTmp(type, isAnInt);
 }
 
-void FunctionBlock::releaseTmp(const int id)
+void FunctionBlock::releaseTmp(const int id, ast::Exp * exp)
 {
     tempManager.releaseTmp(id);
+    if (id != -1 && exp)
+    {
+        const TIType & ty = exp->getDecorator().getResult().getType();
+        // TODO: handle other complex types like mlist, struct, ...
+        if (!ty.isscalar() || ty.type == TIType::STRING || ty.type == TIType::POLYNOMIAL)
+        {
+            exp->getDecorator().deleteData = true;
+        }
+    }
 }
 
 void FunctionBlock::setInOut(MacroDef * macrodef, const unsigned int rhs, const std::vector<TIType> & _in)
@@ -274,7 +283,7 @@ std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
     //ast::PrintVisitor pv(out, true, false);
     //fblock.exp->accept(pv);
 
-    ast::DebugVisitor dv(out);
+    ast::DebugVisitor dv(out, true);
     fblock.exp->accept(dv);
 
     return out;

@@ -152,7 +152,7 @@ public :
         return NULL;
     }
 
-    virtual bool                extract(const std::wstring & /*name*/, InternalType *& /*out*/)
+    virtual bool                extract(const std::wstring& /*name*/, InternalType *& /*out*/)
     {
         return false;
     }

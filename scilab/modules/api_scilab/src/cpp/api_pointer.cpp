@@ -24,8 +24,6 @@ extern "C"
 #include "localization.h"
 }
 
-using namespace types;
-
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
     SciErr sciErr = sciErrInit();
@@ -50,7 +48,7 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
         return sciErr;
     }
 
-    *_pvPtr = ((InternalType*)_piAddress)->getAs<Pointer>()->get();
+    *_pvPtr = ((types::InternalType*)_piAddress)->getAs<types::Pointer>()->get();
     return sciErr;
 }
 
@@ -64,14 +62,14 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::InternalType** out = pStr->m_pOut;
 
-    Pointer* pP = NULL;
+    types::Pointer* pP = NULL;
 
     try
     {
-        pP = new Pointer(_pvPtr);
+        pP = new types::Pointer(_pvPtr);
         if (pP == NULL)
         {
             addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "createPointer");
@@ -103,7 +101,7 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
 
     wchar_t* pwstName = to_wide_string(_pstName);
 
-    Pointer* pP = new Pointer(_pvPtr);
+    types::Pointer* pP = new types::Pointer(_pvPtr);
     symbol::Context* ctx = symbol::Context::getInstance();
     symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);

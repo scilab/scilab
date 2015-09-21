@@ -24,14 +24,12 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
 types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "host", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     types::InternalType* pIT = in[0];
@@ -39,7 +37,7 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
     if (pIT->isString() == false || pIT->getAs<types::String>()->getSize() != 1)
     {
         Scierror(89, _("%s: Wrong size for input argument #%d: A string expected.\n"), "host", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     wchar_t* pstCommand = pIT->getAs<types::String>()->get(0);
@@ -48,5 +46,5 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
     systemcW(pstCommand, &stat);
 
     out.push_back(new types::Double(stat));
-    return Function::OK;
+    return types::Function::OK;
 }

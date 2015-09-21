@@ -37,16 +37,11 @@ extern "C"
 #include "os_string.h"
 }
 
-
-
-using namespace std;
-using namespace ast;
-
 #define BASENAMEMODULESFILE L"etc/modules.xml"
 
 bool FileExist(std::string _szFile);
 bool FileExist(std::wstring _szFile);
-char *GetXmlFileEncoding(string _filename);
+char *GetXmlFileEncoding(const std::string& _filename);
 
 FuncManager* FuncManager::me = NULL;
 
@@ -95,9 +90,9 @@ FuncManager::~FuncManager(void)
 
 bool FuncManager::GetModules()
 {
-    wstring szModulesFilename;
+    std::wstring szModulesFilename;
 
-    wstring szPath = ConfigVariable::getSCIPath();
+    std::wstring szPath = ConfigVariable::getSCIPath();
     if (szPath == L"")
     {
         std::wcout << L"The SCI environment variable is not set." << std::endl;
@@ -233,14 +228,14 @@ bool FuncManager::AppendModules()
 
 bool FuncManager::VerifyModule(wchar_t* _pszModuleName)
 {
-    wstring SciPath = ConfigVariable::getSCIPath();
+    std::wstring SciPath = ConfigVariable::getSCIPath();
     if (SciPath == L"")
     {
         std::wcout << L"The SCI environment variable is not set." << std::endl;
         return false;
     }
 
-    wstring FullPathModuleName = SciPath + L"/modules/" + _pszModuleName + L"/etc/" + _pszModuleName + START_EXT;
+    std::wstring FullPathModuleName = SciPath + L"/modules/" + _pszModuleName + L"/etc/" + _pszModuleName + START_EXT;
 
     /* ajouter d'autres tests d'existences */
 
@@ -255,7 +250,7 @@ bool FuncManager::VerifyModule(wchar_t* _pszModuleName)
 bool FileExist(std::string _szFile)
 {
     bool bReturn = false;
-    fstream filestr(_szFile.c_str(), fstream::in);
+    std::fstream filestr(_szFile.c_str(), std::fstream::in);
     bReturn = !filestr.fail();
     filestr.close();
     return bReturn;
@@ -265,14 +260,14 @@ bool FileExist(std::wstring _szFile)
 {
     bool bReturn = false;
     char *pstFile = wide_string_to_UTF8(_szFile.c_str());
-    wfstream filestr(pstFile, wfstream::in);
+    std::wfstream filestr(pstFile, std::wfstream::in);
     bReturn = !filestr.fail();
     filestr.close();
     FREE(pstFile);
     return bReturn;
 }
 
-char *GetXmlFileEncoding(string _filename)
+char *GetXmlFileEncoding(const std::string& _filename)
 {
 #define DEFAULT_ENCODING "UTF-8"
 
@@ -302,68 +297,68 @@ char *GetXmlFileEncoding(string _filename)
 
 bool FuncManager::CreateModuleList(void)
 {
-    m_ModuleMap[L"elementary_functions"] = pair<GW_MOD, GW_MOD>(&ElemFuncModule::Load, &ElemFuncModule::Unload);
-    m_ModuleMap[L"types"] = pair<GW_MOD, GW_MOD>(&TypesModule::Load, &TypesModule::Unload);
-    m_ModuleMap[L"sparse"] = pair<GW_MOD, GW_MOD>(&SparseModule::Load, &SparseModule::Unload);
-    m_ModuleMap[L"boolean"] = pair<GW_MOD, GW_MOD>(&BooleanModule::Load, &BooleanModule::Unload);
-    m_ModuleMap[L"integer"] = pair<GW_MOD, GW_MOD>(&IntegerModule::Load, &IntegerModule::Unload);
-    m_ModuleMap[L"core"] = pair<GW_MOD, GW_MOD>(&CoreModule::Load, &CoreModule::Unload);
-    m_ModuleMap[L"io"] = pair<GW_MOD, GW_MOD>(&IoModule::Load, &IoModule::Unload);
-    m_ModuleMap[L"functions"] = pair<GW_MOD, GW_MOD>(&FunctionsModule::Load, &FunctionsModule::Unload);
-    m_ModuleMap[L"output_stream"] = pair<GW_MOD, GW_MOD>(&OutputStreamModule::Load, &OutputStreamModule::Unload);
-    m_ModuleMap[L"matio"] = pair<GW_MOD, GW_MOD>(&MatioModule::Load, &MatioModule::Unload);
-    m_ModuleMap[L"fileio"] = pair<GW_MOD, GW_MOD>(&FileioModule::Load, &FileioModule::Unload);
-    m_ModuleMap[L"gui"] = pair<GW_MOD, GW_MOD>(&GuiModule::Load, &GuiModule::Unload);
-    m_ModuleMap[L"time"] = pair<GW_MOD, GW_MOD>(&TimeModule::Load, &TimeModule::Unload);
-    m_ModuleMap[L"string"] = pair<GW_MOD, GW_MOD>(&StringModule::Load, &StringModule::Unload);
-    m_ModuleMap[L"scinotes"] = pair<GW_MOD, GW_MOD>(&ScinotesModule::Load, &ScinotesModule::Unload);
-    m_ModuleMap[L"localization"] = pair<GW_MOD, GW_MOD>(&LocalizationModule::Load, &LocalizationModule::Unload);
-    m_ModuleMap[L"helptools"] = pair<GW_MOD, GW_MOD>(&HelptoolsModule::Load, &HelptoolsModule::Unload);
-    m_ModuleMap[L"hdf5"] = pair<GW_MOD, GW_MOD>(&Hdf5Module::Load, &Hdf5Module::Unload);
-    m_ModuleMap[L"dynamic_link"] = pair<GW_MOD, GW_MOD>(&DynamicLinkModule::Load, &DynamicLinkModule::Unload);
-    m_ModuleMap[L"action_binding"] = pair<GW_MOD, GW_MOD>(&ActionBindingModule::Load, &ActionBindingModule::Unload);
-    m_ModuleMap[L"history_manager"] = pair<GW_MOD, GW_MOD>(&HistoryManagerModule::Load, &HistoryManagerModule::Unload);
-    m_ModuleMap[L"console"] = pair<GW_MOD, GW_MOD>(&ConsoleModule::Load, &ConsoleModule::Unload);
-    m_ModuleMap[L"signal_processing"] = pair<GW_MOD, GW_MOD>(&SignalProcessingModule::Load, &SignalProcessingModule::Unload);
-    m_ModuleMap[L"linear_algebra"] = pair<GW_MOD, GW_MOD>(&LinearAlgebraModule::Load, &LinearAlgebraModule::Unload);
-    m_ModuleMap[L"statistics"] = pair<GW_MOD, GW_MOD>(&StatisticsModule::Load, &StatisticsModule::Unload);
-    m_ModuleMap[L"differential_equations"] = pair<GW_MOD, GW_MOD>(&DifferentialEquationsModule::Load, &DifferentialEquationsModule::Unload);
-    m_ModuleMap[L"cacsd"] = pair<GW_MOD, GW_MOD>(&CacsdModule::Load, &CacsdModule::Unload);
-    m_ModuleMap[L"spreadsheet"] = pair<GW_MOD, GW_MOD>(&SpreadsheetModule::Load, &SpreadsheetModule::Unload);
-    m_ModuleMap[L"randlib"] = pair<GW_MOD, GW_MOD>(&RandlibModule::Load, &RandlibModule::Unload);
-    m_ModuleMap[L"graphics"] = pair<GW_MOD, GW_MOD>(&GraphicsModule::Load, &GraphicsModule::Unload);
-    m_ModuleMap[L"interpolation"] = pair<GW_MOD, GW_MOD>(&InterpolationModule::Load, &InterpolationModule::Unload);
-    m_ModuleMap[L"sound"] = pair<GW_MOD, GW_MOD>(&SoundModule::Load, &SoundModule::Unload);
-    m_ModuleMap[L"umfpack"] = pair<GW_MOD, GW_MOD>(&UmfpackModule::Load, &UmfpackModule::Unload);
-    m_ModuleMap[L"optimization"] = pair<GW_MOD, GW_MOD>(&OptimizationModule::Load, &OptimizationModule::Unload);
-    m_ModuleMap[L"special_functions"] = pair<GW_MOD, GW_MOD>(&SpecialFunctionsModule::Load, &SpecialFunctionsModule::Unload);
-    m_ModuleMap[L"graphic_export"] = pair<GW_MOD, GW_MOD>(&GraphicExportModule::Load, &GraphicExportModule::Unload);
-    m_ModuleMap[L"polynomials"] = pair<GW_MOD, GW_MOD>(&PolynomialsModule::Load, &PolynomialsModule::Unload);
-    m_ModuleMap[L"arnoldi"] = pair<GW_MOD, GW_MOD>(&ArnoldiModule::Load, &ArnoldiModule::Unload);
-    m_ModuleMap[L"data_structures"] = pair<GW_MOD, GW_MOD>(&DataStructuresModule::Load, &DataStructuresModule::Unload);
-    m_ModuleMap[L"call_scilab"] = pair<GW_MOD, GW_MOD>(&CallScilabModule::Load, &CallScilabModule::Unload);
-    m_ModuleMap[L"completion"] = pair<GW_MOD, GW_MOD>(&CompletionModule::Load, &CompletionModule::Unload);
-    m_ModuleMap[L"xml"] = pair<GW_MOD, GW_MOD>(&XmlModule::Load, &XmlModule::Unload);
-    m_ModuleMap[L"scicos"] = pair<GW_MOD, GW_MOD>(&ScicosModule::Load, &ScicosModule::Unload);
-    m_ModuleMap[L"xcos"] = pair<GW_MOD, GW_MOD>(&XcosModule::Load, &XcosModule::Unload);
-    m_ModuleMap[L"fftw"] = pair<GW_MOD, GW_MOD>(&FFTWModule::Load, &FFTWModule::Unload);
-    m_ModuleMap[L"mpi"] = pair<GW_MOD, GW_MOD>(&MPIModule::Load, &MPIModule::Unload);
-    m_ModuleMap[L"external_objects"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsModule::Load, &ExternalObjectsModule::Unload);
-    m_ModuleMap[L"external_objects_java"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsJavaModule::Load, &ExternalObjectsJavaModule::Unload);
-    m_ModuleMap[L"preferences"] = pair<GW_MOD, GW_MOD>(&PreferencesModule::Load, &PreferencesModule::Unload);
+    m_ModuleMap[L"elementary_functions"] = std::pair<GW_MOD, GW_MOD>(&ElemFuncModule::Load, &ElemFuncModule::Unload);
+    m_ModuleMap[L"types"] = std::pair<GW_MOD, GW_MOD>(&TypesModule::Load, &TypesModule::Unload);
+    m_ModuleMap[L"sparse"] = std::pair<GW_MOD, GW_MOD>(&SparseModule::Load, &SparseModule::Unload);
+    m_ModuleMap[L"boolean"] = std::pair<GW_MOD, GW_MOD>(&BooleanModule::Load, &BooleanModule::Unload);
+    m_ModuleMap[L"integer"] = std::pair<GW_MOD, GW_MOD>(&IntegerModule::Load, &IntegerModule::Unload);
+    m_ModuleMap[L"core"] = std::pair<GW_MOD, GW_MOD>(&CoreModule::Load, &CoreModule::Unload);
+    m_ModuleMap[L"io"] = std::pair<GW_MOD, GW_MOD>(&IoModule::Load, &IoModule::Unload);
+    m_ModuleMap[L"functions"] = std::pair<GW_MOD, GW_MOD>(&FunctionsModule::Load, &FunctionsModule::Unload);
+    m_ModuleMap[L"output_stream"] = std::pair<GW_MOD, GW_MOD>(&OutputStreamModule::Load, &OutputStreamModule::Unload);
+    m_ModuleMap[L"matio"] = std::pair<GW_MOD, GW_MOD>(&MatioModule::Load, &MatioModule::Unload);
+    m_ModuleMap[L"fileio"] = std::pair<GW_MOD, GW_MOD>(&FileioModule::Load, &FileioModule::Unload);
+    m_ModuleMap[L"gui"] = std::pair<GW_MOD, GW_MOD>(&GuiModule::Load, &GuiModule::Unload);
+    m_ModuleMap[L"time"] = std::pair<GW_MOD, GW_MOD>(&TimeModule::Load, &TimeModule::Unload);
+    m_ModuleMap[L"string"] = std::pair<GW_MOD, GW_MOD>(&StringModule::Load, &StringModule::Unload);
+    m_ModuleMap[L"scinotes"] = std::pair<GW_MOD, GW_MOD>(&ScinotesModule::Load, &ScinotesModule::Unload);
+    m_ModuleMap[L"localization"] = std::pair<GW_MOD, GW_MOD>(&LocalizationModule::Load, &LocalizationModule::Unload);
+    m_ModuleMap[L"helptools"] = std::pair<GW_MOD, GW_MOD>(&HelptoolsModule::Load, &HelptoolsModule::Unload);
+    m_ModuleMap[L"hdf5"] = std::pair<GW_MOD, GW_MOD>(&Hdf5Module::Load, &Hdf5Module::Unload);
+    m_ModuleMap[L"dynamic_link"] = std::pair<GW_MOD, GW_MOD>(&DynamicLinkModule::Load, &DynamicLinkModule::Unload);
+    m_ModuleMap[L"action_binding"] = std::pair<GW_MOD, GW_MOD>(&ActionBindingModule::Load, &ActionBindingModule::Unload);
+    m_ModuleMap[L"history_manager"] = std::pair<GW_MOD, GW_MOD>(&HistoryManagerModule::Load, &HistoryManagerModule::Unload);
+    m_ModuleMap[L"console"] = std::pair<GW_MOD, GW_MOD>(&ConsoleModule::Load, &ConsoleModule::Unload);
+    m_ModuleMap[L"signal_processing"] = std::pair<GW_MOD, GW_MOD>(&SignalProcessingModule::Load, &SignalProcessingModule::Unload);
+    m_ModuleMap[L"linear_algebra"] = std::pair<GW_MOD, GW_MOD>(&LinearAlgebraModule::Load, &LinearAlgebraModule::Unload);
+    m_ModuleMap[L"statistics"] = std::pair<GW_MOD, GW_MOD>(&StatisticsModule::Load, &StatisticsModule::Unload);
+    m_ModuleMap[L"differential_equations"] = std::pair<GW_MOD, GW_MOD>(&DifferentialEquationsModule::Load, &DifferentialEquationsModule::Unload);
+    m_ModuleMap[L"cacsd"] = std::pair<GW_MOD, GW_MOD>(&CacsdModule::Load, &CacsdModule::Unload);
+    m_ModuleMap[L"spreadsheet"] = std::pair<GW_MOD, GW_MOD>(&SpreadsheetModule::Load, &SpreadsheetModule::Unload);
+    m_ModuleMap[L"randlib"] = std::pair<GW_MOD, GW_MOD>(&RandlibModule::Load, &RandlibModule::Unload);
+    m_ModuleMap[L"graphics"] = std::pair<GW_MOD, GW_MOD>(&GraphicsModule::Load, &GraphicsModule::Unload);
+    m_ModuleMap[L"interpolation"] = std::pair<GW_MOD, GW_MOD>(&InterpolationModule::Load, &InterpolationModule::Unload);
+    m_ModuleMap[L"sound"] = std::pair<GW_MOD, GW_MOD>(&SoundModule::Load, &SoundModule::Unload);
+    m_ModuleMap[L"umfpack"] = std::pair<GW_MOD, GW_MOD>(&UmfpackModule::Load, &UmfpackModule::Unload);
+    m_ModuleMap[L"optimization"] = std::pair<GW_MOD, GW_MOD>(&OptimizationModule::Load, &OptimizationModule::Unload);
+    m_ModuleMap[L"special_functions"] = std::pair<GW_MOD, GW_MOD>(&SpecialFunctionsModule::Load, &SpecialFunctionsModule::Unload);
+    m_ModuleMap[L"graphic_export"] = std::pair<GW_MOD, GW_MOD>(&GraphicExportModule::Load, &GraphicExportModule::Unload);
+    m_ModuleMap[L"polynomials"] = std::pair<GW_MOD, GW_MOD>(&PolynomialsModule::Load, &PolynomialsModule::Unload);
+    m_ModuleMap[L"arnoldi"] = std::pair<GW_MOD, GW_MOD>(&ArnoldiModule::Load, &ArnoldiModule::Unload);
+    m_ModuleMap[L"data_structures"] = std::pair<GW_MOD, GW_MOD>(&DataStructuresModule::Load, &DataStructuresModule::Unload);
+    m_ModuleMap[L"call_scilab"] = std::pair<GW_MOD, GW_MOD>(&CallScilabModule::Load, &CallScilabModule::Unload);
+    m_ModuleMap[L"completion"] = std::pair<GW_MOD, GW_MOD>(&CompletionModule::Load, &CompletionModule::Unload);
+    m_ModuleMap[L"xml"] = std::pair<GW_MOD, GW_MOD>(&XmlModule::Load, &XmlModule::Unload);
+    m_ModuleMap[L"scicos"] = std::pair<GW_MOD, GW_MOD>(&ScicosModule::Load, &ScicosModule::Unload);
+    m_ModuleMap[L"xcos"] = std::pair<GW_MOD, GW_MOD>(&XcosModule::Load, &XcosModule::Unload);
+    m_ModuleMap[L"fftw"] = std::pair<GW_MOD, GW_MOD>(&FFTWModule::Load, &FFTWModule::Unload);
+    m_ModuleMap[L"mpi"] = std::pair<GW_MOD, GW_MOD>(&MPIModule::Load, &MPIModule::Unload);
+    m_ModuleMap[L"external_objects"] = std::pair<GW_MOD, GW_MOD>(&ExternalObjectsModule::Load, &ExternalObjectsModule::Unload);
+    m_ModuleMap[L"external_objects_java"] = std::pair<GW_MOD, GW_MOD>(&ExternalObjectsJavaModule::Load, &ExternalObjectsJavaModule::Unload);
+    m_ModuleMap[L"preferences"] = std::pair<GW_MOD, GW_MOD>(&PreferencesModule::Load, &PreferencesModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
-        m_ModuleMap[L"jvm"] = pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
-        m_ModuleMap[L"ui_data"] = pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
+        m_ModuleMap[L"jvm"] = std::pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
+        m_ModuleMap[L"ui_data"] = std::pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
     }
 #ifdef _MSC_VER
-    m_ModuleMap[L"windows_tools"] = pair<GW_MOD, GW_MOD>(&WindowsToolsModule::Load, &WindowsToolsModule::Unload);
+    m_ModuleMap[L"windows_tools"] = std::pair<GW_MOD, GW_MOD>(&WindowsToolsModule::Load, &WindowsToolsModule::Unload);
 #endif
     return true;
 }
 
-bool FuncManager::ExecuteFile(wstring _stFile)
+bool FuncManager::ExecuteFile(const std::wstring& _stFile)
 {
     Parser parser;
 
@@ -372,13 +367,13 @@ bool FuncManager::ExecuteFile(wstring _stFile)
     if (parser.getExitStatus() == Parser::Failed)
     {
         std::wostringstream ostr;
-        ostr << _W("Unable to execute : ") << _stFile << endl;
+        ostr << _W("Unable to execute : ") << _stFile << std::endl;
         scilabWriteW(ostr.str().c_str());
         delete parser.getTree();
         return false;
     }
 
-    ExecVisitor exec;
+    ast::ExecVisitor exec;
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
@@ -401,12 +396,10 @@ bool FuncManager::ExecuteFile(wstring _stFile)
 
 bool FuncManager::LoadModules()
 {
-    list<wstring>::const_iterator it = m_ModuleName.begin();
-    list<wstring>::const_iterator itEnd = m_ModuleName.end();
     //load gateways
-    for (; it != itEnd; ++it)
+    for (const auto& it : m_ModuleName)
     {
-        ModuleMap::iterator itModule = m_ModuleMap.find(*it);
+        ModuleMap::iterator itModule = m_ModuleMap.find(it);
         if (itModule != m_ModuleMap.end())
         {
             //call ::Load function
@@ -419,12 +412,10 @@ bool FuncManager::LoadModules()
 
 bool FuncManager::EndModules()
 {
-    list<wstring>::const_iterator it = m_ModuleName.begin();
-    list<wstring>::const_iterator itEnd = m_ModuleName.end();
     //excute .start file
-    for (; it != itEnd; ++it)
+    for (const auto& it : m_ModuleName)
     {
-        ExecuteQuitFile(*it);
+        ExecuteQuitFile(it);
     }
 
     return true;
@@ -433,12 +424,10 @@ bool FuncManager::EndModules()
 
 bool FuncManager::UnloadModules()
 {
-    list<wstring>::const_iterator it = m_ModuleName.begin();
-    list<wstring>::const_iterator itEnd = m_ModuleName.end();
     //load gateways
-    for (; it != itEnd; ++it)
+    for (const auto& it : m_ModuleName)
     {
-        ModuleMap::iterator itModule = m_ModuleMap.find(*it);
+        ModuleMap::iterator itModule = m_ModuleMap.find(it);
         if (itModule != m_ModuleMap.end())
         {
             //call ::Unload function
@@ -459,10 +448,10 @@ bool FuncManager::UnloadModules()
     return true;
 }
 
-bool FuncManager::ExecuteStartFile(wstring _stModule)
+bool FuncManager::ExecuteStartFile(const std::wstring& _stModule)
 {
     //build .start filename
-    wstring stPath = ConfigVariable::getSCIPath();
+    std::wstring stPath = ConfigVariable::getSCIPath();
     stPath += MODULE_DIR;
     stPath += _stModule;
     stPath += ETC_DIR;
@@ -472,10 +461,10 @@ bool FuncManager::ExecuteStartFile(wstring _stModule)
     return ExecuteFile(stPath);
 }
 
-bool FuncManager::ExecuteQuitFile(wstring _stModule)
+bool FuncManager::ExecuteQuitFile(const std::wstring& _stModule)
 {
     //build .quit filename
-    wstring stPath = ConfigVariable::getSCIPath();
+    std::wstring stPath = ConfigVariable::getSCIPath();
     stPath += MODULE_DIR;
     stPath += _stModule;
     stPath += ETC_DIR;

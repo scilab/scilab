@@ -628,7 +628,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (pDblTemp->getSize() == 0)
                 {
                     // maxl and kmp need default values
-                    maxl = min(5, pDblX0->getRows());
+                    maxl = std::min(5, pDblX0->getRows());
                     kmp = maxl;
                 }
                 else
@@ -827,7 +827,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     rworksize = 60;
     if (info[11] == 0)
     {
-        rworksize += max(maxord + 4, 7) * pDblX0->getRows() + 3 * ng;
+        rworksize += std::max(maxord + 4, 7) * pDblX0->getRows() + 3 * ng;
         if (info[5] == 0)
         {
             // For the full (dense) JACOBIAN case
@@ -851,8 +851,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
         LENWP = pDblX0->getRows() * pDblX0->getRows();
         rworksize += (maxord + 5) * pDblX0->getRows() + 3 * ng
-                     + (maxl + 3 + min(1, maxl - kmp)) * pDblX0->getRows()
-                     + (maxl + 3) * maxl + 1 + LENWP;
+            + (maxl + 3 + std::min(1, maxl - kmp)) * pDblX0->getRows()
+            + (maxl + 3) * maxl + 1 + LENWP;
     }
 
     if (info[15] == 1)

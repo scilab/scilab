@@ -16,7 +16,7 @@ namespace ast {
 template<class T>
 void RunVisitorT<T>::visitprivate(const OpExp &e)
 {
-    InternalType * pITL = NULL, * pITR = NULL, * pResult = NULL;
+    types::InternalType * pITL = NULL, *pITR = NULL, *pResult = NULL;
     try
     {
         /*getting what to assign*/
@@ -43,9 +43,9 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         }
         pITR = getResult();
 
-        if (pITL->getType() == GenericType::ScilabImplicitList)
+        if (pITL->getType() == types::InternalType::ScilabImplicitList)
         {
-            ImplicitList* pIL = pITL->getAs<ImplicitList>();
+            types::ImplicitList* pIL = pITL->getAs<types::ImplicitList>();
             if (pIL->isComputable())
             {
                 pITL = pIL->extractFullMatrix();
@@ -53,9 +53,9 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
             }
         }
 
-        if (pITR->getType() == GenericType::ScilabImplicitList)
+        if (pITR->getType() == types::InternalType::ScilabImplicitList)
         {
-            ImplicitList* pIR = pITR->getAs<ImplicitList>();
+            types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
             if (pIR->isComputable())
             {
                 pITR = pIR->extractFullMatrix();
@@ -220,11 +220,11 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 {
     try
     {
-        InternalType *pITR = NULL; //assign only in non shortcut operations.
+        types::InternalType *pITR = NULL; //assign only in non shortcut operations.
 
         /*getting what to assign*/
         e.getLeft().accept(*this);
-        InternalType *pITL = getResult();
+        types::InternalType *pITL = getResult();
         if (isSingleResult() == false)
         {
             std::wostringstream os;
@@ -235,9 +235,9 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
         setResult(NULL);
 
-        if (pITL->getType() == GenericType::ScilabImplicitList)
+        if (pITL->getType() == types::InternalType::ScilabImplicitList)
         {
-            ImplicitList* pIL = pITL->getAs<ImplicitList>();
+            types::ImplicitList* pIL = pITL->getAs<types::ImplicitList>();
             if (pIL->isComputable())
             {
                 pITL = pIL->extractFullMatrix();
@@ -245,7 +245,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
             }
         }
 
-        InternalType *pResult   = NULL;
+        types::InternalType *pResult = NULL;
 
         switch (e.getOper())
         {
@@ -272,9 +272,9 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }
 
-                if (pITR->getType() == GenericType::ScilabImplicitList)
+                if (pITR->getType() == types::InternalType::ScilabImplicitList)
                 {
-                    ImplicitList* pIR = pITR->getAs<ImplicitList>();
+                    types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
                     if (pIR->isComputable())
                     {
                         pITR = pIR->extractFullMatrix();
@@ -307,9 +307,9 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                     throw ast::InternalError(os.str(), 999, e.getRight().getLocation());
                 }
 
-                if (pITR->getType() == GenericType::ScilabImplicitList)
+                if (pITR->getType() == types::InternalType::ScilabImplicitList)
                 {
-                    ImplicitList* pIR = pITR->getAs<ImplicitList>();
+                    types::ImplicitList* pIR = pITR->getAs<types::ImplicitList>();
                     if (pIR->isComputable())
                     {
                         pITR = pIR->extractFullMatrix();

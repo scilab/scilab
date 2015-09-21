@@ -19,54 +19,52 @@ extern "C"
 #include "Scierror.h"
 }
 
-using namespace types;
-
-matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name, int matfile_version)
+matvar_t *ConvertSciVarToMatVar(types::InternalType* pIT, const char *name, int matfile_version)
 {
     switch (pIT->getType())
     {
-        case GenericType::ScilabDouble:
+        case types::GenericType::ScilabDouble:
         {
-            return GetDoubleMatVar(pIT->getAs<Double>(), name, matfile_version);
+            return GetDoubleMatVar(pIT->getAs<types::Double>(), name, matfile_version);
         }
         break;
-        case GenericType::ScilabInt8:
-        case GenericType::ScilabUInt8:
-        case GenericType::ScilabInt16:
-        case GenericType::ScilabUInt16:
-        case GenericType::ScilabInt32:
-        case GenericType::ScilabUInt32:
+        case types::InternalType::ScilabInt8:
+        case types::InternalType::ScilabUInt8:
+        case types::InternalType::ScilabInt16:
+        case types::InternalType::ScilabUInt16:
+        case types::InternalType::ScilabInt32:
+        case types::InternalType::ScilabUInt32:
 #ifdef __SCILAB_INT64__
-        case GenericType::ScilabInt64:
-        case GenericType::ScilabUInt64:
+        case types::InternalType::ScilabInt64:
+        case types::InternalType::ScilabUInt64:
 #endif
         {
             return GetIntegerMatVar(pIT, name);
         }
         break;
-        case GenericType::ScilabString:
+        case types::InternalType::ScilabString:
         {
-            return GetCharMatVar(pIT->getAs<String>(), name);
+            return GetCharMatVar(pIT->getAs<types::String>(), name);
         }
         break;
-        case GenericType::ScilabSparse:
+        case types::InternalType::ScilabSparse:
         {
-            return GetSparseMatVar(pIT->getAs<Sparse>(), name);
+            return GetSparseMatVar(pIT->getAs<types::Sparse>(), name);
         }
         break;
-        case GenericType::ScilabCell:
+        case types::InternalType::ScilabCell:
         {
-            return GetCellMatVar(pIT->getAs<Cell>(), name, matfile_version);
+            return GetCellMatVar(pIT->getAs<types::Cell>(), name, matfile_version);
         }
         break;
-        case GenericType::ScilabStruct:
+        case types::InternalType::ScilabStruct:
         {
-            return GetStructMatVar(pIT->getAs<Struct>(), name, matfile_version);
+            return GetStructMatVar(pIT->getAs<types::Struct>(), name, matfile_version);
         }
         break;
-        case GenericType::ScilabMList:
+        case types::InternalType::ScilabMList:
         {
-            return GetMListMatVar(pIT->getAs<MList>(), name, matfile_version);
+            return GetMListMatVar(pIT->getAs<types::MList>(), name, matfile_version);
         }
         break;
         default:
