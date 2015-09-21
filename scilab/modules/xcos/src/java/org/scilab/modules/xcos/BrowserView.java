@@ -49,7 +49,7 @@ public class BrowserView extends View {
 
         // first create all the diagrams
         VectorOfScicosID o = controller.getAll(Kind.DIAGRAM);
-        int length = (int) o.size();
+        int length = o.size();
         for (int i = 0; i < length; i++) {
             long uid = o.get(i);
 

@@ -23,6 +23,7 @@ import org.scilab.modules.xcos.port.Orientation;
  * connected to an {@link org.scilab.modules.xcos.port.input.InputPort} .
  */
 public abstract class OutputPort extends BasicPort {
+    private static final long serialVersionUID = 0L;
 
     /**
      * Default constructor

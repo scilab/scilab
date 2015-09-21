@@ -104,8 +104,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
 
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
 
-        XcosDiagram parentGraph = block.getParentDiagram();
-        CustomizeFrame frame = new CustomizeFrame(parentGraph);
+        CustomizeFrame frame = new CustomizeFrame(graph);
         CustomizeFrame.CustomizeFrameModel model = frame.getController().getModel();
         model.setBlock(block);
         model.importFromBlock();

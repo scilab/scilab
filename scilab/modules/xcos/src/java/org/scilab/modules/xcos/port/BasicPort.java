@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.port;
 
-import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
@@ -20,8 +19,6 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.model.XcosCell;
-import org.scilab.modules.xcos.utils.XcosConstants;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
@@ -31,13 +28,13 @@ import com.mxgraph.util.mxConstants;
  * Common implementation of any Port.
  */
 public abstract class BasicPort extends XcosCell {
+    private static final long serialVersionUID = 0L;
 
     /**
      * The side-size of any port. All ports must have the same size.
      */
     public static final double DEFAULT_PORTSIZE = 8;
 
-    private int ordering;
     private Orientation orientation;
 
     /** Type of any dataport */
@@ -127,21 +124,6 @@ public abstract class BasicPort extends XcosCell {
     }
 
     /**
-     * @param ordering
-     *            a unique order number per instance
-     */
-    public void setOrdering(int ordering) {
-        this.ordering = ordering;
-    }
-
-    /**
-     * @return the unique order number per instance
-     */
-    public int getOrdering() {
-        return ordering;
-    }
-
-    /**
      * @return the type of the port (Explicit or Implicit)
      */
     public abstract Type getType();
@@ -160,28 +142,6 @@ public abstract class BasicPort extends XcosCell {
             orientation = defaultOrientation;
             setLabelPosition(orientation);
         }
-    }
-
-    /**
-     * @return An html formatted documentation string
-     */
-    public String getToolTipText() {
-        StringBuilder result = new StringBuilder();
-        result.append(ScilabGraphConstants.HTML_BEGIN);
-        result.append("Port number : " + getOrdering() + ScilabGraphConstants.HTML_NEWLINE);
-
-        final int length = getStyle().length();
-        result.append("Style : ");
-        if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
-            result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
-            result.append(XcosMessages.DOTS);
-        } else {
-            result.append(getStyle());
-        }
-        result.append(ScilabGraphConstants.HTML_NEWLINE);
-
-        result.append(ScilabGraphConstants.HTML_END);
-        return result.toString();
     }
 
     /**

@@ -25,10 +25,13 @@ import org.scilab.modules.xcos.port.Orientation;
  * port default orientation is the SOUTH.
  */
 public class CommandPort extends BasicPort {
+    private static final long serialVersionUID = 0L;
 
     /** Default constructor */
     public CommandPort(long uid) {
         super(uid);
+
+        setStyle("CommandPort");
         setOrientation(Orientation.SOUTH);
     }
 

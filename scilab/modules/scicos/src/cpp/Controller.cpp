@@ -162,6 +162,11 @@ void Controller::deleteObject(ScicosID uid)
     }
 
     auto initial = getObject(uid);
+    if (initial == nullptr)
+    {
+        // defensive programming
+        return;
+    }
     const kind_t k = initial->kind();
 
     // if this object has been referenced somewhere else do not delete it but decrement the reference counter

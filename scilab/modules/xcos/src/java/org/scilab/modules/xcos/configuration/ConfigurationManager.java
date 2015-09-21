@@ -456,7 +456,7 @@ public final class ConfigurationManager {
         JavaController controller = new JavaController();
         // TODO is this algorithm fast enough ?
         VectorOfScicosID blocks = controller.getAll(Kind.BLOCK);
-        final int len = (int) blocks.size();
+        final int len = blocks.size();
         for (int i = 0 ; i < len ; i++) {
             controller.getObjectProperty(blocks.get(i), Kind.BLOCK, ObjectProperties.UID, blockUID);
             if (uid.equals(blockUID[0])) {

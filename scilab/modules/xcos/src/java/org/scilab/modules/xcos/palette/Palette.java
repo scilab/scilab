@@ -530,7 +530,7 @@ public final class Palette {
         graph.addCell(block);
         graph.selectAll();
 
-        BlockPositioning.updateBlockView(block);
+        BlockPositioning.updateBlockView(graph, block);
 
         /*
          * Render

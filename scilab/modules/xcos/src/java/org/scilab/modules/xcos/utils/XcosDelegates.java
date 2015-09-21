@@ -23,9 +23,6 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
 
-import com.mxgraph.swing.mxGraphComponent;
-import com.mxgraph.util.mxCellRenderer;
-
 /**
  * Class which contains all Xcos dependant function used by other modules.
  */

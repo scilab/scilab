@@ -274,7 +274,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
             //            getChildBlock().setExprs(new ScilabString(Integer.toString(ordering)));
 
             // update the port value
-            getParentPort().setOrdering(ordering);
+            //            getParentPort().setOrdering(ordering);
         }
 
         /**
@@ -511,7 +511,7 @@ public class RegionToSuperblockAction extends VertexSelectionDependantAction {
                 /*
                  * Update the view
                  */
-                BlockPositioning.updateBlockView(broken.getChildBlock());
+                BlockPositioning.updateBlockView(parentGraph, broken.getChildBlock());
             }
         } finally {
             parentModel.endUpdate();

@@ -44,7 +44,7 @@ public class VoltageSensorBlock extends BasicBlock {
             final OutputPort port = (OutputPort) child;
 
             // Only orientate the first output port
-            if (port.getOrdering() == 1) {
+            if (index == 0) {
                 port.setOrientation(Orientation.SOUTH);
             }
         }

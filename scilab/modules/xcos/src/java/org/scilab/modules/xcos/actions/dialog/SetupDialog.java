@@ -108,7 +108,7 @@ public class SetupDialog extends JDialog {
             return number;
         }
 
-        public String getTooltip() {
+        public String getToolTip() {
             return tooltip;
         }
 
@@ -317,7 +317,7 @@ public class SetupDialog extends JDialog {
                 JComponent comp = (JComponent) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
 
                 if (-1 < index && null != value) {
-                    list.setToolTipText(AVAILABLE_SOLVERS[index].getTooltip());
+                    list.setToolTipText(AVAILABLE_SOLVERS[index].getToolTip());
                 }
                 return comp;
             }

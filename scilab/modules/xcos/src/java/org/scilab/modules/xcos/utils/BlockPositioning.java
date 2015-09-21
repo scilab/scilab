@@ -14,23 +14,22 @@ package org.scilab.modules.xcos.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
-import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
-import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxStyleUtils;
 
 /**
  * Helpers to place port on a block.
@@ -52,25 +51,6 @@ public final class BlockPositioning {
     }
 
     /**
-     *
-     */
-    public static class PortComparator implements Comparator<BasicPort> {
-        @Override
-        public int compare(BasicPort arg0, BasicPort arg1) {
-            int order_0 = arg0.getOrdering();
-            int order_1 = arg1.getOrdering();
-
-            if (order_0 < order_1) {
-                return -1;
-            } else if (order_0 > order_1) {
-                return 1;
-            } else {
-                return 0;
-            }
-        }
-    }
-
-    /**
      * Dispatch ports on Block's _WEST_ side.
      *
      * @param block
@@ -78,19 +58,9 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateWestPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
+    public static void updateWestPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
 
-        double gridSize;
-        if (block.getParentDiagram() == null) {
-            gridSize = DEFAULT_GRIDSIZE;
-        } else {
-            gridSize = block.getParentDiagram().getGridSize();
-        }
-
-        // BasicBlock.sortsort(List<?> children) takes into account different
-        // parameters to order the ports list. We only need to order the ports
-        // given their ordering.
-        Collections.sort(ports, new PortComparator());
+        double gridSize = diag.getGridSize();
 
         final mxGeometry blockGeom = block.getGeometry();
         assert blockGeom != null;
@@ -98,7 +68,7 @@ public final class BlockPositioning {
         final double blockLength = blockGeom.getHeight();
         final double segLength = blockLength / (portsSize + 1);
 
-        beginUpdate(block);
+        diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
             final mxGeometry portGeom = port.getGeometry();
@@ -112,7 +82,7 @@ public final class BlockPositioning {
 
             port.setLabelPosition(Orientation.WEST);
         }
-        endUpdate(block);
+        diag.getModel().endUpdate();
     }
 
     /**
@@ -155,18 +125,8 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateNorthPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
-        double gridSize;
-        if (block.getParentDiagram() == null) {
-            gridSize = DEFAULT_GRIDSIZE;
-        } else {
-            gridSize = block.getParentDiagram().getGridSize();
-        }
-
-        // BasicBlock.sortsort(List<?> children) takes into account different
-        // parameters to order the ports list. We only need to order the ports
-        // given their ordering.
-        Collections.sort(ports, new PortComparator());
+    public static void updateNorthPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
+        double gridSize = diag.getGridSize();
 
         final mxGeometry blockGeom = block.getGeometry();
         assert blockGeom != null;
@@ -174,7 +134,7 @@ public final class BlockPositioning {
         final double blockLength = blockGeom.getWidth();
         final double segLength = blockLength / (portsSize + 1);
 
-        beginUpdate(block);
+        diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
             final mxGeometry portGeom = port.getGeometry();
@@ -188,7 +148,7 @@ public final class BlockPositioning {
 
             port.setLabelPosition(Orientation.NORTH);
         }
-        endUpdate(block);
+        diag.getModel().endUpdate();
     }
 
     /**
@@ -199,18 +159,8 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateEastPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
-        double gridSize;
-        if (block.getParentDiagram() == null) {
-            gridSize = DEFAULT_GRIDSIZE;
-        } else {
-            gridSize = block.getParentDiagram().getGridSize();
-        }
-
-        // BasicBlock.sortsort(List<?> children) takes into account different
-        // parameters to order the ports list. We only need to order the ports
-        // given their ordering.
-        Collections.sort(ports, new PortComparator());
+    public static void updateEastPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
+        double gridSize = diag.getGridSize();
 
         final mxGeometry blockGeom = block.getGeometry();
         assert blockGeom != null;
@@ -218,7 +168,7 @@ public final class BlockPositioning {
         final double blockLength = blockGeom.getHeight();
         final double segLength = blockLength / (portsSize + 1);
 
-        beginUpdate(block);
+        diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
             final mxGeometry portGeom = port.getGeometry();
@@ -232,7 +182,7 @@ public final class BlockPositioning {
 
             port.setLabelPosition(Orientation.EAST);
         }
-        endUpdate(block);
+        diag.getModel().endUpdate();
     }
 
     /**
@@ -243,18 +193,8 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateSouthPortsPosition(BasicBlock block, List <? extends BasicPort > ports) {
-        double gridSize;
-        if (block.getParentDiagram() == null) {
-            gridSize = DEFAULT_GRIDSIZE;
-        } else {
-            gridSize = block.getParentDiagram().getGridSize();
-        }
-
-        // BasicBlock.sortsort(List<?> children) takes into account different
-        // parameters to order the ports list. We only need to order the ports
-        // given their ordering.
-        Collections.sort(ports, new PortComparator());
+    public static void updateSouthPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
+        double gridSize = diag.getGridSize();
 
         final mxGeometry blockGeom = block.getGeometry();
         assert blockGeom != null;
@@ -262,7 +202,7 @@ public final class BlockPositioning {
         final double blockLength = blockGeom.getWidth();
         final double segLength = blockLength / (portsSize + 1);
 
-        beginUpdate(block);
+        diag.getModel().beginUpdate();
         for (int i = 0; i < portsSize; ++i) {
             final BasicPort port = (ports.get(i));
             final mxGeometry portGeom = port.getGeometry();
@@ -276,7 +216,7 @@ public final class BlockPositioning {
 
             port.setLabelPosition(Orientation.SOUTH);
         }
-        endUpdate(block);
+        diag.getModel().endUpdate();
     }
 
     /**
@@ -285,17 +225,17 @@ public final class BlockPositioning {
      * @param block
      *            The block we have to work on.
      */
-    public static void updatePortsPosition(BasicBlock block) {
+    public static void updatePortsPosition(final XcosDiagram diag, BasicBlock block) {
         final Map<Orientation, List<BasicPort>> ports = BasicBlockInfo.getAllOrientedPorts(block);
 
-        beginUpdate(block);
+        diag.getModel().beginUpdate();
         for (Orientation iter : Orientation.values()) {
             List<BasicPort> orientedPorts = ports.get(iter);
             if (orientedPorts != null && !orientedPorts.isEmpty()) {
-                updatePortsPositions(block, orientedPorts, iter);
+                updatePortsPositions(diag, block, orientedPorts, iter);
             }
         }
-        endUpdate(block);
+        diag.getModel().endUpdate();
     }
 
     /**
@@ -309,7 +249,7 @@ public final class BlockPositioning {
      * @param iter
      *            The orientation.
      */
-    private static void updatePortsPositions(BasicBlock block, List<BasicPort> ports, Orientation iter) {
+    private static void updatePortsPositions(final XcosDiagram diag, BasicBlock block, List<BasicPort> ports, Orientation iter) {
         @SuppressWarnings("serial")
         final List<BasicPort> invertedPorts = new ArrayList<BasicPort>(ports) {
             {
@@ -346,7 +286,7 @@ public final class BlockPositioning {
          */
         Orientation rotated = rotateOrientation(iter, mirrored, flipped);
 
-        updatePortsPosition(block, rotated, angle, working);
+        updatePortsPosition(diag, block, rotated, angle, working);
     }
 
     /**
@@ -392,7 +332,7 @@ public final class BlockPositioning {
      * @param working
      *            The ordered ports we are working on.
      */
-    private static void updatePortsPosition(BasicBlock block, Orientation iter, final double angle, List<BasicPort> working) {
+    private static void updatePortsPosition(final XcosDiagram diag, BasicBlock block, Orientation iter, final double angle, List<BasicPort> working) {
         /*
          * Ugly modification of the iter to update at the right position Works
          * only for 0 - 90 - 180 - 270 angles.
@@ -407,16 +347,16 @@ public final class BlockPositioning {
         /* Call the associated function */
         switch (rotated) {
             case NORTH:
-                updateNorthPortsPosition(block, working);
+                updateNorthPortsPosition(diag, block, working);
                 break;
             case SOUTH:
-                updateSouthPortsPosition(block, working);
+                updateSouthPortsPosition(diag, block, working);
                 break;
             case EAST:
-                updateEastPortsPosition(block, working);
+                updateEastPortsPosition(diag, block, working);
                 break;
             case WEST:
-                updateWestPortsPosition(block, working);
+                updateWestPortsPosition(diag, block, working);
                 break;
 
             default:
@@ -430,7 +370,7 @@ public final class BlockPositioning {
      * @param block
      *            The block to work on.
      */
-    public static void rotateAllPorts(BasicBlock block) {
+    public static void rotateAllPorts(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
         VectorOfDouble mvcAngle = new VectorOfDouble();
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
@@ -445,21 +385,15 @@ public final class BlockPositioning {
                 final BasicPort port = (BasicPort) block.getChildAt(i);
                 final Orientation orientation = port.getOrientation();
 
-                beginUpdate(block);
+                diag.getModel().beginUpdate();
 
                 /* Apply angle */
-                if (block.getParentDiagram() != null) {
-                    final mxIGraphModel model = block.getParentDiagram().getModel();
-                    final String rot = Double.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
-                    mxUtils.setCellStyles(model, new Object[] { port }, XcosConstants.STYLE_ROTATION, rot);
-                } else {
-                    final StyleMap m = new StyleMap(port.getStyle());
-                    final double rot = orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored);
-                    m.put(XcosConstants.STYLE_ROTATION, Double.toString(rot));
-                    port.setStyle(m.toString());
-                }
+                final mxIGraphModel model = diag.getModel();
+                final String rot = Double.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
+                mxStyleUtils.setCellStyles(model, new Object[] { port }, XcosConstants.STYLE_ROTATION, rot);
 
-                endUpdate(block);
+
+                diag.getModel().endUpdate();
             }
         }
     }
@@ -470,15 +404,15 @@ public final class BlockPositioning {
      * @param block
      *            The block to work on
      */
-    public static void updateBlockView(BasicBlock block) {
+    public static void updateBlockView(final XcosDiagram diag, BasicBlock block) {
         if (block.getKind() != Kind.BLOCK) {
             return;
         }
 
-        beginUpdate(block);
-        updatePortsPosition(block);
-        rotateAllPorts(block);
-        endUpdate(block);
+        diag.getModel().beginUpdate();
+        updatePortsPosition(diag, block);
+        rotateAllPorts(diag, block);
+        diag.getModel().endUpdate();
 
         /*
          * FIXME: #6705; This placement trick doesn't work on the first block
@@ -495,13 +429,13 @@ public final class BlockPositioning {
      * @param block
      *            The block to work on
      */
-    public static void toggleFlip(BasicBlock block) {
+    public static void toggleFlip(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
         VectorOfDouble mvcAngle = new VectorOfDouble();
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
 
         mvcAngle.set(0, mvcAngle.get(0) + 8d);
-        updateBlockView(block);
+        updateBlockView(diag, block);
     }
 
     /**
@@ -510,13 +444,13 @@ public final class BlockPositioning {
      * @param block
      *            The block to work on
      */
-    public static void toggleMirror(BasicBlock block) {
+    public static void toggleMirror(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
         VectorOfDouble mvcAngle = new VectorOfDouble();
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
 
         mvcAngle.set(0, mvcAngle.get(0) + 16d);
-        updateBlockView(block);
+        updateBlockView(diag, block);
     }
 
     /**
@@ -525,7 +459,7 @@ public final class BlockPositioning {
      * @param block
      *            The block to work on
      */
-    public static void toggleAntiClockwiseRotation(BasicBlock block) {
+    public static void toggleAntiClockwiseRotation(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
 
         VectorOfDouble mvcAngle = new VectorOfDouble();
@@ -533,7 +467,7 @@ public final class BlockPositioning {
 
         mvcAngle.set(1, getNextAntiClockwiseAngle(block));
         controller.setObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
-        updateBlockView(block);
+        updateBlockView(diag, block);
     }
 
     /**
@@ -593,29 +527,5 @@ public final class BlockPositioning {
             }
         }
         return ret;
-    }
-
-    /**
-     * Helper function that protect the block model.
-     *
-     * @param block
-     *            The block to protect
-     */
-    private static void beginUpdate(BasicBlock block) {
-        if (block != null && block.getParentDiagram() != null) {
-            block.getParentDiagram().getModel().beginUpdate();
-        }
-    }
-
-    /**
-     * Helper function that end the protection of the block model.
-     *
-     * @param block
-     *            The block previously protected
-     */
-    private static void endUpdate(BasicBlock block) {
-        if (block != null && block.getParentDiagram() != null) {
-            block.getParentDiagram().getModel().endUpdate();
-        }
     }
 }

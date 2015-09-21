@@ -73,6 +73,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
                               + XcosTab.get(allDiagrams.get(0)).getName());
                 final XcosDiagram theDiagram = allDiagrams.get(0);
                 addTo.setCallback(new CommonCallBack(e.toString()) {
+                    private static final long serialVersionUID = 0L;
+
                     @Override
                     public void callBack() {
                         BasicBlock current = control.getBlock();
@@ -93,6 +95,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
                     final XcosDiagram theDiagram = allDiagrams.get(i);
                     diagram.setText(XcosTab.get(allDiagrams.get(i)).getName());
                     diagram.setCallback(new CommonCallBack(e.toString()) {
+                        private static final long serialVersionUID = 0L;
+
                         @Override
                         public void callBack() {
                             BasicBlock current = control.getBlock();
@@ -110,6 +114,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
             MenuItem help = ScilabMenuItem.createMenuItem();
             help.setText("Block help");
             help.setCallback(new CommonCallBack(e.toString()) {
+                private static final long serialVersionUID = 0L;
+
                 @Override
                 public void callBack() {
                     try {

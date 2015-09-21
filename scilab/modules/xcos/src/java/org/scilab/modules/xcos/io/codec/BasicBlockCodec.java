@@ -21,9 +21,9 @@ import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory.BlockInterFunction;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -70,8 +70,8 @@ public class BasicBlockCodec extends XcosObjectCodec {
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.io");
         mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
 
-        for (BlockInterFunction function : BlockFactory.BlockInterFunction.values()) {
-            XcosObjectCodec codec = new BasicBlockCodec(BlockFactory.createBlock(function), IGNORED_FIELDS, REFS, null);
+        for (BlockInterFunction function : XcosCellFactory.BlockInterFunction.values()) {
+            XcosObjectCodec codec = new BasicBlockCodec(XcosCellFactory.createBlock(function), IGNORED_FIELDS, REFS, null);
             mxCodecRegistry.register(codec);
         }
 

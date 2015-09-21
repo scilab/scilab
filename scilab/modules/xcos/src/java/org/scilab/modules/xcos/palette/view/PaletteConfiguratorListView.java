@@ -44,7 +44,6 @@ public class PaletteConfiguratorListView extends JTable {
     /**
      * The default model
      */
-    @SuppressWarnings(value = { "serial" })
     public static class PaletteListModel extends AbstractTableModel {
         private final Category category;
 

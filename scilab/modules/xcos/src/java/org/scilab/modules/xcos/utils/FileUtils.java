@@ -25,6 +25,7 @@ import org.w3c.dom.Document;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxXmlUtils;
 import com.mxgraph.view.mxStylesheet;
 
 /**
@@ -53,20 +54,22 @@ public final class FileUtils {
      *             when an errors has occurred
      */
     public static void copy(File in, File out) throws IOException {
-        FileChannel inChannel = new FileInputStream(in).getChannel();
-        FileChannel outChannel = new FileOutputStream(out).getChannel();
+        FileInputStream fis = new FileInputStream(in);
+        FileOutputStream fos = new FileOutputStream(out);
+        FileChannel inChannel = fis.getChannel();
+        FileChannel outChannel = fos.getChannel();
+
         try {
             inChannel.transferTo(0, inChannel.size(), outChannel);
         } catch (IOException e) {
             Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
             throw e;
         } finally {
-            if (inChannel != null) {
-                inChannel.close();
-            }
-            if (outChannel != null) {
-                outChannel.close();
-            }
+            inChannel.close();
+            fis.close();
+
+            outChannel.close();
+            fos.close();
         }
     }
 
@@ -90,10 +93,15 @@ public final class FileUtils {
             }
         }
 
+
         try {
-            inChannel = new FileInputStream(in).getChannel();
-            outChannel = new FileOutputStream(out).getChannel();
+            FileInputStream fis = new FileInputStream(in);
+            FileOutputStream fos = new FileOutputStream(out);
+            inChannel = fis.getChannel();
+            outChannel = fos.getChannel();
             inChannel.transferTo(0, inChannel.size(), outChannel);
+            fis.close();
+            fos.close();
         } catch (IOException e) {
             Logger.getLogger(FileUtils.class.getName()).warning(e.toString());
         } finally {
@@ -179,7 +187,7 @@ public final class FileUtils {
         xml = mxUtils.readFile(baseStyleSheet.getAbsolutePath());
         xml = xml.replaceAll("\\$SCILAB", sciURL);
         xml = xml.replaceAll("\\$SCIHOME", homeURL);
-        document = mxUtils.parseXml(xml);
+        document = mxXmlUtils.parseXml(xml);
         new mxCodec().decode(document.getDocumentElement(), styleSheet);
 
         /*
@@ -189,7 +197,7 @@ public final class FileUtils {
             xml = mxUtils.readFile(userStyleSheet.getAbsolutePath());
             xml = xml.replaceAll("\\$SCILAB", sciURL);
             xml = xml.replaceAll("\\$SCIHOME", homeURL);
-            document = mxUtils.parseXml(xml);
+            document = mxXmlUtils.parseXml(xml);
             new mxCodec().decode(document.getDocumentElement(), styleSheet);
         }
     }

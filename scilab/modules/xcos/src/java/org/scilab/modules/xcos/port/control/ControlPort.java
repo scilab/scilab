@@ -30,6 +30,8 @@ public class ControlPort extends BasicPort {
     /** Default constructor */
     public ControlPort(long uid) {
         super(uid);
+
+        setStyle("ControlPort");
         setOrientation(Orientation.NORTH);
     }
 

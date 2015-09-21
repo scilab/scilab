@@ -52,6 +52,7 @@ import org.w3c.dom.Document;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxXmlUtils;
 
 /**
  * Diagram export management
@@ -182,7 +183,7 @@ public final class ExportAllAction extends DefaultAction {
         final VectorOfScicosID children = new VectorOfScicosID();
         controller.getObjectProperty(uid, kind, ObjectProperties.CHILDREN, children);
 
-        final int len = (int) children.size();
+        final int len = children.size();
         for (int i = 0; i < len ; i++) {
             String[] interfaceFunction = new String[1];
             long currentUID = children.get(i);
@@ -228,14 +229,14 @@ public final class ExportAllAction extends DefaultAction {
             Document doc = mxCellRenderer.createVmlDocument(graph, null, 1,
                            null, null);
             if (doc != null) {
-                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()),
+                mxUtils.writeFile(mxXmlUtils.getXml(doc.getDocumentElement()),
                                   filename.getCanonicalPath());
             }
         } else if (fileFormat.equalsIgnoreCase(HTML)) {
             Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1,
                            null, null);
             if (doc != null) {
-                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()),
+                mxUtils.writeFile(mxXmlUtils.getXml(doc.getDocumentElement()),
                                   filename.getCanonicalPath());
             }
         } else {

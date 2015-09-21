@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.io.scicos;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -97,44 +98,12 @@ public final class BasicBlockInfo {
                 // There we are sure that the cell is an instance of the type
                 // class. Thus we can safely cast it and add it to the result
                 // vector.
-                if (revert) {
-                    data.add(0, (T) cell);
-                } else {
-                    data.add((T) cell);
-                }
+                data.add((T) cell);
             }
         }
 
-        return data;
-    }
-
-    /**
-     * Get the n-th port for a n position.
-     *
-     * This method assume that the port are sorted and that the
-     * {@link BasicPort#getOrdering()} is filled with the right value.
-     *
-     * @param block
-     *            the block
-     * @param position
-     *            the position to look for
-     * @return a list of applicable ports
-     */
-    public static List<BasicPort> getAllPortsAtPosition(final BasicBlock block, final int position) {
-        final List<BasicPort> data = new ArrayList<BasicPort>();
-        if (block == null) {
-            return data;
-        }
-
-        final int childrenCount = block.getChildCount();
-        for (int i = 0; i < childrenCount; ++i) {
-            final mxICell cell = block.getChildAt(i);
-            if (cell instanceof BasicPort) {
-                final BasicPort p = ((BasicPort) cell);
-                if (p.getOrdering() == position) {
-                    data.add(p);
-                }
-            }
+        if (revert) {
+            Collections.reverse(data);
         }
 
         return data;
