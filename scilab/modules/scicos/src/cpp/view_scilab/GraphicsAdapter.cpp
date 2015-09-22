@@ -84,7 +84,7 @@ struct orig
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 2)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "orig", 1, 2);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "graphics", "orig", 1, 2);
             return false;
         }
 
@@ -128,7 +128,7 @@ struct sz
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 2)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "sz", 1, 2);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "graphics", "sz", 1, 2);
             return false;
         }
 
@@ -171,7 +171,7 @@ struct flip
         types::Bool* current = v->getAs<types::Bool>();
         if (current->isScalar() != true)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "flip", 1, 1);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "graphics", "flip", 1, 1);
             return false;
         }
 
@@ -213,7 +213,7 @@ struct theta
         types::Double* current = v->getAs<types::Double>();
         if (current->isScalar() != true)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "graphics", "theta", 1, 1);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "graphics", "theta", 1, 1);
             return false;
         }
 

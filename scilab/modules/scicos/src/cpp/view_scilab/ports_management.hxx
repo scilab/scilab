@@ -633,7 +633,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     {
         std::string adapter = adapterName<p>(port_kind);
         std::string field = adapterFieldName<p>(port_kind);
-        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real matrix expected.\n"), adapter.data(), field.data());
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), adapter.data(), field.data());
         return false;
     }
     types::Double* value = v->getAs<types::Double>();
@@ -665,7 +665,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     {
         std::string adapter = adapterName<p>(port_kind);
         std::string field = adapterFieldName<p>(port_kind);
-        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Must be in the interval [%d, %d].\n"), adapter.data(), field.data(), 1, children.size());
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"), adapter.data(), field.data(), 1, children.size());
         return false;
     }
 
@@ -683,7 +683,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
         {
             std::string adapter = adapterName<p>(port_kind);
             std::string field = adapterFieldName<p>(port_kind);
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : FIXME port has not been updated.\n"), adapter.data(), field.data(), 1, children.size());
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: FIXME port has not been updated.\n"), adapter.data(), field.data(), 1, children.size());
             return false;
         }
     }

@@ -106,7 +106,7 @@ struct title
     {
         if (v->getType() != types::InternalType::ScilabString)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : String expected.\n"), "params", "title");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String expected.\n"), "params", "title");
             return false;
         }
 
@@ -127,7 +127,7 @@ struct title
         }
         else
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : String expected.\n"), "params", "title");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: String expected.\n"), "params", "title");
             return false;
         }
 
@@ -167,14 +167,14 @@ struct tol
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real matrix expected.\n"), "params", "tol");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "params", "tol");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 6 && current->getSize() != 7)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : %d-by-%d expected.\n"), "params", "tol", 7, 1);
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "params", "tol", 7, 1);
             return false;
         }
 
@@ -214,14 +214,14 @@ struct tf
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real expected.\n"), "params", "tf");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real expected.\n"), "params", "tf");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 1)
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : Real expected.\n"), "params", "tf");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: Real expected.\n"), "params", "tf");
             return false;
         }
 
@@ -270,7 +270,7 @@ struct context
             // Only allow vectors and empty matrices
             if (!current->isVector() && current->getSize() != 0)
             {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s : m-by-1 expected.\n"), "params", "context");
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: m-by-1 expected.\n"), "params", "context");
                 return false;
             }
 
@@ -292,7 +292,7 @@ struct context
             types::Double* current = v->getAs<types::Double>();
             if (!current->isEmpty())
             {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : String matrix expected.\n"), "params", "context");
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "params", "context");
                 return false;
             }
 
@@ -303,7 +303,7 @@ struct context
             return true;
         }
 
-        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : String matrix expected.\n"), "params", "context");
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "params", "context");
         return false;
     }
 };

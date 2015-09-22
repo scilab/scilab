@@ -28,6 +28,7 @@
 #include "adapters_utilities.hxx"
 #include "Controller.hxx"
 #include "DiagramAdapter.hxx"
+#include "controller_helpers.hxx"
 
 #include "view_scilab/Adapters.hxx"
 #include "ParamsAdapter.hxx"
@@ -39,6 +40,7 @@
 extern "C" {
 #include "sci_malloc.h"
 #include "charEncoding.h"
+#include "localization.h"
 }
 
 namespace org_scilab_modules_scicos
@@ -121,6 +123,7 @@ struct objs
         // Decode the list and set all children of the Diagram
         if (v->getType() != types::InternalType::ScilabList)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: list expected.\n"), "objs");
             return false;
         }
 
@@ -137,7 +140,7 @@ struct objs
         controller.getObjectProperty(adaptee->id(), DIAGRAM, CHILDREN, oldDiagramChildren);
 
         /*
-         * First pass on objects :
+         * First pass on objects:
          *  - store IDs if they exists and are valid ; 0ll otherwise
          *  - store all the links to update link connections later
          *  - store all the valid mlist content ('Text' content)
@@ -192,6 +195,7 @@ struct objs
                         break;
                     }
                     default:
+                        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for element %d of field %s: unknown Scicos object.\n"), i + 1, "objs");
                         list->killMe();
                         return false;
                 }
@@ -247,6 +251,7 @@ struct objs
                 }
                 else
                 {
+                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for element %d of field %s: unknown Scicos object.\n"), i + 1, "objs");
                     list->killMe();
                     return false;
                 }
@@ -257,6 +262,7 @@ struct objs
                 types::List* modelElement = argumentList->get(i)->getAs<types::List>();
                 if (modelElement->getSize() != 0)
                 {
+                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for element %d of field %s: unknown Scicos object.\n"), i + 1, "objs");
                     list->killMe();
                     return false;
                 }
@@ -268,6 +274,7 @@ struct objs
             }
             else
             {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for element %d of field %s: unknown Scicos object.\n"), i + 1, "objs");
                 list->killMe();
                 return false;
             }
@@ -379,6 +386,7 @@ struct version
             types::String* current = v->getAs<types::String>();
             if (current->getSize() != 1)
             {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s: %d-by-%d expected.\n"), "version", 1, 1);
                 return false;
             }
 
@@ -396,6 +404,7 @@ struct version
             types::Double* current = v->getAs<types::Double>();
             if (current->getSize() != 0)
             {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong size for field %s: at least %d-by-%d expected.\n"), "version", 1, 1);
                 return false;
             }
 
@@ -406,6 +415,7 @@ struct version
             return true;
         }
 
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "graphics", "orig");
         return false;
     }
 };
