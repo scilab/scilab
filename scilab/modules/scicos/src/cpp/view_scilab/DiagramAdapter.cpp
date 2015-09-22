@@ -141,7 +141,7 @@ struct objs
 
         /*
          * First pass on objects:
-         *  - store IDs if they exists and are valid ; 0ll otherwise
+         *  - store IDs if they exists and are valid ; ScicosID() otherwise
          *  - store all the links to update link connections later
          *  - store all the valid mlist content ('Text' content)
          *  - store all the deleted mlist content ('Deleted' content)
@@ -213,14 +213,14 @@ struct objs
                 if (header->get(0) == Deleted)
                 {
                     deletedAsMListIndices.push_back(i);
-                    diagramChildren.push_back(0ll);
+                    diagramChildren.push_back(ScicosID());
                     diagramChildrenKind.push_back(ANNOTATION);
                 }
                 else if (header->get(0) == TextSharedTypeStr)
                 {
                     textAsMListIndices.push_back(i);
                     // will be filled later
-                    diagramChildren.push_back(0ll);
+                    diagramChildren.push_back(ScicosID());
                     diagramChildrenKind.push_back(ANNOTATION);
                 }
                 else if (header->get(0) == BlockSharedTypeStr)
@@ -269,7 +269,7 @@ struct objs
 
                 deletedAsMListIndices.push_back(i);
                 // Mark deleted objects with value '0'
-                diagramChildren.push_back(0ll);
+                diagramChildren.push_back(ScicosID());
                 diagramChildrenKind.push_back(ANNOTATION);
             }
             else

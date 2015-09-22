@@ -750,7 +750,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
-        if (*it == 0ll)
+        if (*it == ScicosID())
         {
             continue; // Rule out mlists (Deleted or Annotations)
         }
@@ -939,7 +939,7 @@ struct rpar
             if (diagramChildren.empty())
             {
                 // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
-                diagramChildren.push_back(0ll);
+                diagramChildren.push_back(ScicosID());
             }
             std::vector<ScicosID> oldDiagramChildren;
             controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
@@ -992,7 +992,7 @@ struct rpar
             if (diagramChildren.empty())
             {
                 // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
-                diagramChildren.push_back(0ll);
+                diagramChildren.push_back(ScicosID());
             }
             std::vector<ScicosID> oldDiagramChildren;
             controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);

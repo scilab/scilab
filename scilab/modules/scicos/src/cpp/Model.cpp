@@ -29,7 +29,7 @@ namespace org_scilab_modules_scicos
 {
 
 Model::Model() :
-    lastId(0), has_looped(false), allObjects()
+    lastId(ScicosID()), has_looped(false), allObjects()
 {
     std::vector<int> datatypeDefault (3, 1);
     datatypeDefault[0] = -1;
@@ -74,7 +74,7 @@ ScicosID Model::createObject(kind_t k)
      * Found the next unused id
      */
     lastId++;
-    if (lastId == 0)
+    if (lastId == ScicosID())
     {
         lastId++;
         has_looped = true;
@@ -91,7 +91,7 @@ ScicosID Model::createObject(kind_t k)
         {
             // try a valid ID
             lastId++;
-            if (lastId == 0)
+            if (lastId == ScicosID())
             {
                 lastId++;
 

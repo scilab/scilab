@@ -413,12 +413,12 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
                 }
                 else
                 {
-                    cloned.push_back(0);
+                    cloned.push_back(ScicosID());
                 }
             }
             else
             {
-                cloned.push_back(0);
+                cloned.push_back(ScicosID());
             }
         }
     }
