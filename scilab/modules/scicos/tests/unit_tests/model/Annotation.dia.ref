@@ -29,17 +29,20 @@ Xcos trace: propertyUpdated( 1 , ANNOTATION , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
-o  = 
+Xcos trace: propertyUpdated( 1 , ANNOTATION , STYLE ) : NO_CHANGES
+ o  = 
 GUI     : 
 Graphics: 
           orig = [0,0]
           sz = [2,1]
           exprs = ["Text";"2";"1"]
+          style = ""
 o.graphics
  ans  =
 orig = [0,0]
 sz = [2,1]
 exprs = ["Text";"2";"1"]
+style = ""
 o.model
  ans  =
     []
@@ -55,6 +58,7 @@ Xcos debug: objectCreated( 2 , ANNOTATION )
 Xcos trace: propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , PARENT_BLOCK ) : NO_CHANGES
@@ -64,19 +68,22 @@ Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , ANNOTATION , STYLE ) : NO_CHANGES
 Xcos debug: objectDeleted( 1 , ANNOTATION )
-o  = 
+ o  = 
 GUI     : 
 Graphics: 
           orig = [0,0]
           sz = [3,4]
           exprs = ["newText";"3";"4"]
+          style = ""
 close;
 o.graphics
  ans  =
 orig = [0,0]
 sz = [3,4]
 exprs = ["newText";"3";"4"]
+style = ""
 o.model
  ans  =
     []
