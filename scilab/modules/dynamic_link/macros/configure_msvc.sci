@@ -27,20 +27,11 @@ function bOK = configure_msvc()
     end
 
     msvc = findmsvccompiler();
-    if win64() & detectmsvc64tools() then
-        bOK = dlwConfigureVcx64();
-    else
-        bOK = dlwConfigureVcx86();
-        if ~bOK then
-            warning(msprintf(gettext("Microsoft Visual Studio C x86 Compiler not found.")));
-        end
-    end
-
-    if bOK then
+    if ~isempty(msvc) then
         val = setenv("SCILAB_MSVC", "1");
     end
 
-
+    bOK = %T;
 endfunction
 //=============================================================================
 
