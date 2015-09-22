@@ -16,8 +16,11 @@ function MSCompiler = dlwFindMsVcCompiler()
 
     val = getenv("SCILAB_PREFERED_MSVC", "");
     if val <> "" then
-        funcs = list(dlwIsVc12Express,dlwIsVc12Pro,dlwIsVc11Express,dlwIsVc11Pro,dlwIsVc10Express,dlwIsVc10Pro);
-        compilers = ["msvc120express";
+        funcs = list(dlwIsVc14Express,dlwIsVc12Pro,dlwIsVc14Express,dlwIsVc12Pro,dlwIsVc11Express,dlwIsVc11Pro,dlwIsVc10Express,dlwIsVc10Pro);
+        compilers = [ ...
+        "msvc140express";
+        "msvc140pro";
+        "msvc120express";
         "msvc120pro";
         "msvc110express";
         "msvc110pro";
@@ -31,6 +34,16 @@ function MSCompiler = dlwFindMsVcCompiler()
                 return;
             end
         end
+    end
+
+    if dlwIsVc14Express() then
+        MSCompiler = "msvc140express";     // Microsoft Visual 2015 Express
+        return;
+    end
+
+    if dlwIsVc14Pro() then
+        MSCompiler = "msvc140pro";       // Microsoft Visual 2015 Professional / Community (or more)
+        return;
     end
 
     if dlwIsVc12Express() then

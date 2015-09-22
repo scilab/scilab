@@ -13,6 +13,12 @@ function VSPath = dlwGetVisualStudioPath()
 
     VSPath = "";
     select msvc
+        // Microsoft Visual 2015 Studio Professional
+    case  "msvc140pro" then
+        VSPath = dlwGetVc14ProPath();
+        // Microsoft Visual 2015 Express
+    case  "msvc140express" then
+        VSPath = dlwGetVc14ExpressPath();
         // Microsoft Visual 2013 Studio Professional
     case  "msvc120pro" then
         VSPath = dlwGetVc12ProPath();

@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2011  - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2015  - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -62,7 +63,11 @@ function filename = writeBatchFile(cmd)
     end
 
     if win64() then
-        arch = "x64";
+        if dlwIsExpress() then
+            arch = "x86_amd64";
+        else
+            arch = "x64";
+        end
     else
         arch = "x86";
     end
