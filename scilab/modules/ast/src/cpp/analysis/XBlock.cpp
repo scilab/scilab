@@ -21,10 +21,10 @@ Block * XBlockHead::addBlock(const unsigned int id, BlockKind kind, ast::Exp * e
 {
     if (kind == MACRO)
     {
-	Block * b = new FunctionBlock(id, this, exp);
-	testBlocks.push_back(b);
+        Block * b = new FunctionBlock(id, this, exp);
+        testBlocks.push_back(b);
 
-	return b;
+        return b;
     }
 
     Block * b = new XBlock(id, this, exp);
@@ -40,22 +40,23 @@ void XBlockHead::finalize()
     std::vector<Block *>::iterator end = blocks.end();
     for (first = blocks.begin(); first != end; ++first)
     {
-	if (!(*first)->getReturn())
-	{
-	    break;
-	}
+        if (!(*first)->getReturn())
+        {
+            break;
+        }
     }
 
     if (first != end)
     {
-	for (std::vector<Block *>::iterator i = std::next(first); i != end; ++i)
-	{
-	    if (!(*i)->getReturn())
-	    {
-		merge((*first)->getMap(), (*i)->getMap());
-	    }
-	}
-	pullup((*first)->getMap());
+        tools::SymbolMap<Info> & map = (*first)->getMap();
+        for (std::vector<Block *>::iterator i = std::next(first); i != end; ++i)
+        {
+            if (!(*i)->getReturn())
+            {
+                merge(map, (*i)->getMap());
+            }
+        }
+        pullup((*first)->getMap());
     }
 }
 }

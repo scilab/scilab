@@ -137,23 +137,24 @@ void FunctionBlock::finalize()
             const TIType & type = it->second.type;
             if (type.isscalar())
             {
-                types_out.emplace_back(out[i], TypeLocal(type.type, 1, 1, false));
+                types_out.emplace_back(out[i], false, TypeLocal(type.type, 1, 1, false));
             }
             else
             {
-                types_out.emplace_back(out[i], TypeLocal(type.type, -1, -1, false));
+                types_out.emplace_back(out[i], false, TypeLocal(type.type, -1, -1, false));
             }
         }
         else
         {
-            types_out.emplace_back(out[i], TypeLocal(TIType::UNKNOWN, -1, -1, false));
+            types_out.emplace_back(out[i], false, TypeLocal(TIType::UNKNOWN, -1, -1, false));
         }
 
         auto jt = locals.find(out[i]);
         if (jt != locals.end())
         {
-            jt->second.erase(types_out.back().second);
-            if (jt->second.empty())
+            types_out.back().refcount = jt->second.refcount;
+            jt->second.set.erase(types_out.back().tl);
+            if (jt->second.set.empty())
             {
                 locals.erase(jt);
             }
@@ -166,10 +167,10 @@ void FunctionBlock::addLocal(const symbol::Symbol & sym, const TIType & type, co
     auto i = locals.find(sym);
     if (i == locals.end())
     {
-        i = locals.emplace(sym, std::set<TypeLocal>()).first;
+        i = locals.emplace(sym, LocalInfo()).first;
     }
 
-    i->second.emplace(TypeLocal::get(type, isAnInt));
+    i->second.set.emplace(TypeLocal::get(type, isAnInt));
 }
 
 int FunctionBlock::getTmpId(const TIType & type, const bool isAnInt)
@@ -191,6 +192,18 @@ void FunctionBlock::releaseTmp(const int id, ast::Exp * exp)
     }
 }
 
+void FunctionBlock::needRefCount(const tools::SymbolSet & set)
+{
+    for (const auto & sym : set)
+    {
+        auto i = locals.find(sym);
+        if (i != locals.end())
+        {
+            i->second.refcount = true;
+        }
+    }
+}
+
 void FunctionBlock::setInOut(MacroDef * macrodef, const unsigned int rhs, const std::vector<TIType> & _in)
 {
     in = macrodef->getIn();
@@ -200,11 +213,11 @@ void FunctionBlock::setInOut(MacroDef * macrodef, const unsigned int rhs, const 
     {
         if (_in[i].isscalar())
         {
-            types_in.emplace_back(in[i], TypeLocal(_in[i].type, 1, 1, false));
+            types_in.emplace_back(in[i], true, TypeLocal(_in[i].type, 1, 1, false));
         }
         else
         {
-            types_in.emplace_back(in[i], TypeLocal(_in[i].type, -1, -1, false));
+            types_in.emplace_back(in[i], true, TypeLocal(_in[i].type, -1, -1, false));
         }
     }
 }
@@ -238,16 +251,21 @@ std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
         << L" -LHS: " << fblock.lhs << L'\n'
         << L" -RHS: " << fblock.rhs << L'\n'
         << L" -in:" << L'\n';
-    for (const auto & p : fblock.types_in)
+    for (const auto & i : fblock.types_in)
     {
-        out << L"   -" << p.first << L" -> " << p.second << L'\n';
+        out << L"   -" << i.sym << L" -> " << i.tl << L'\n';
     }
 
     out << L'\n'
         << L" -out:" << L'\n';
-    for (const auto & p : fblock.types_out)
+    for (const auto & i : fblock.types_out)
     {
-        out << L"   -" << p.first << L" -> " << p.second << L'\n';
+        out << L"   -" << i.sym;
+        if (i.refcount)
+        {
+            out << L" (refcount)";
+        }
+        out << L" -> " << i.tl << L'\n';
     }
     out << L'\n';
     if (fblock.locals.empty())
@@ -259,8 +277,13 @@ std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
         out << L" -locals:" << L'\n';
         for (const auto & p : fblock.locals)
         {
-            out << L"   -" << p.first << L" -> ";
-            tools::printSet(p.second, out);
+            out << L"   -" << p.first;
+            if (p.second.refcount)
+            {
+                out << L" (refcount)";
+            }
+            out << L" -> ";
+            tools::printSet(p.second.set, out);
             out << L'\n';
         }
     }
@@ -283,7 +306,7 @@ std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
     //ast::PrintVisitor pv(out, true, false);
     //fblock.exp->accept(pv);
 
-    ast::DebugVisitor dv(out, true);
+    ast::DebugVisitor dv(out, true, true);
     fblock.exp->accept(dv);
 
     return out;

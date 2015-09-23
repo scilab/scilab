@@ -54,7 +54,7 @@ Info & Block::setDefaultData(const symbol::Symbol & sym)
 
 void Block::clone(Info & info, const symbol::Symbol & sym, ast::Exp * exp)
 {
-    if (!info.data->hasOneOwner())
+    if (info.data->valid && !info.data->hasOneOwner())
     {
         // data is shared between several symbols => we need to clone it
         info.data->rem(sym);
@@ -203,10 +203,7 @@ Info & Block::addWrite(const symbol::Symbol & sym, const TIType & Rtype, ast::Ex
         info.exists = true;
     }
 
-    if (!info.type.isscalar())
-    {
-        clone(info, sym, exp);
-    }
+    clone(info, sym, exp);
     info.W = true;
 
     return info;
@@ -444,31 +441,73 @@ bool Block::requiresAnotherTrip()
     return false;
 }
 
+void Block::needRefCount(const tools::SymbolSet & set)
+{
+    if (parent)
+    {
+        parent->needRefCount(set);
+    }
+}
+
+void Block::needRefCount(const tools::SymbolSet & set1, const tools::SymbolSet & set2)
+{
+    tools::SymbolSet res;
+    for (const auto & sym : set1)
+    {
+        res.emplace(sym);
+    }
+    for (const auto & sym : set2)
+    {
+        res.emplace(sym);
+    }
+    needRefCount(res);
+}
+
 void Block::merge(tools::SymbolMap<Info> & M, tools::SymbolMap<Info> & N)
 {
     // TODO: when we merge double and double* we should mark the sym to convert the double into a double*
     // and in the LLVM side, make a phi node to set the correct value !
     for (auto & p : M)
     {
+        bool isSameData;
         tools::SymbolMap<Info>::iterator i = N.find(p.first);
         if (i != N.end())
         {
             // sym is common to the two maps
-            p.second.merge(i->second);
+            p.second.merge(i->second, isSameData);
+            if (!isSameData)
+            {
+                // the variable requires a reference counter
+                needRefCount(p.second.data->sharedSyms, i->second.data->sharedSyms);
+            }
+
             N.erase(i);
         }
         else
         {
             // sym is in M and not in N
-            Info & i = getInfo(p.first);
-            p.second.merge(i);
+            const Info & i = getInfo(p.first);
+            p.second.merge(i, isSameData);
+            if (!isSameData)
+            {
+                // the variable requires a reference counter
+                needRefCount(p.second.data->sharedSyms, i.data->sharedSyms);
+            }
         }
     }
 
     // We erased common syms in N, so the remainder is the syms which are in N and not in M
     for (auto & p : N)
     {
-        Block::addSym(M, p.first, p.second).merge(getInfo(p.first));
+        bool isSameData;
+        Info & i1 = Block::addSym(M, p.first, p.second);
+        Info & i2 = getInfo(p.first);
+        i1.merge(i2, isSameData);
+        if (!isSameData)
+        {
+            // the variable requires a reference counter
+            needRefCount(i1.data->sharedSyms, i2.data->sharedSyms);
+        }
     }
 }
 

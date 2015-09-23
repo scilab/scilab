@@ -77,14 +77,14 @@ public:
     }
 
     inline bool isTemp() const
-	{
-	    return tempId != -1;
-	}
+    {
+        return tempId != -1;
+    }
 
     inline bool hasGVNValue() const
-	{
-	    return constant.getGVNValue() != nullptr;
-	}
+    {
+        return constant.getGVNValue() != nullptr;
+    }
 
     inline ConstantValue & getConstant()
     {
@@ -125,19 +125,19 @@ public:
     }
 
     inline bool isAnInt() const
-	{
-	    return hasGVNValue() || getRange().isValid();
-	}
+    {
+        return hasGVNValue() || getRange().isValid();
+    }
 
     inline SymbolicDimension & getMaxIndex()
-	{
-	    return maxIndex;
-	}
-    
+    {
+        return maxIndex;
+    }
+
     inline const SymbolicDimension & getMaxIndex() const
-	{
-	    return maxIndex;
-	}
+    {
+        return maxIndex;
+    }
 
     inline SymbolicDimension & setMaxIndex(SymbolicDimension & _maxIndex)
     {
@@ -150,13 +150,24 @@ public:
         maxIndex = _maxIndex;
         return maxIndex;
     }
-    
+
     friend std::wostream & operator<<(std::wostream & out, const Result & res)
     {
-        out << L"Result {" << res.type
-	    << L", temp id:" << res.tempId
-	    << L", constant:" << res.constant
-	    << L", isAnInt:" << (res.isAnInt() ? L"T" : L"F") << L"}";
+        out << L"Result {" << res.type;
+        if (res.tempId != -1)
+        {
+            out << L", temp id:" << res.tempId;
+        }
+        if (res.constant.isKnown())
+        {
+            out << L", constant:" << res.constant;
+        }
+        if (res.isAnInt())
+        {
+            out << L", isAnInt: T";
+        }
+        out << L'}';
+
         return out;
     }
 };

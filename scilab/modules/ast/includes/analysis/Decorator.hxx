@@ -25,12 +25,10 @@ struct Decorator
 {
     Result res;
     OptionalDecoration opt;
-    bool cloneData;
     bool deleteData;
-    bool hasRefCount;
     bool safe;
 
-    Decorator() : res(), opt(), cloneData(false), deleteData(false), hasRefCount(false), safe(false) { }
+    Decorator() : res(), opt(), deleteData(false), safe(false) { }
 
     ~Decorator()
     {
@@ -123,10 +121,14 @@ struct Decorator
         {
             out << L", " << deco.opt;
         }
-        out << L", Cl:" << (deco.cloneData ? L"T" : L"F")
-            << L", Del:" << (deco.deleteData ? L"T" : L"F")
-            << L", RefC:" << (deco.hasRefCount ? L"T" : L"F")
-            << L", Safe:" << (deco.safe ? L"T" : L"F");
+        if (deco.deleteData)
+        {
+            out << L", Del: T";
+        }
+        if (deco.safe)
+        {
+            out << L", Safe: T";
+        }
 
         return out;
     }

@@ -14,10 +14,9 @@
 #define __DATA_HXX__
 
 #include <iostream>
-#include <set>
 
-#include "tools.hxx"
 #include "symbol.hxx"
+#include "tools.hxx"
 
 namespace analysis
 {
@@ -37,6 +36,7 @@ struct Data
     bool hasOneOwner() const;
     bool isDeletable() const;
     bool same(Data * data);
+    void setValidity(const bool v);
     friend std::wostream & operator<<(std::wostream & out, const Data & data);
 };
 

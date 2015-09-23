@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2008-2008 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -27,7 +28,14 @@ namespace ast
 class EXTERN_AST DebugVisitor : public GenVisitor<const_kind>
 {
 public:
-    DebugVisitor(std::wostream & my_ostr = std::wcerr, const bool _printDecoration = false) : ostr(&my_ostr), printDecoration(_printDecoration) { }
+    DebugVisitor(std::wostream & my_ostr = std::wcerr, const bool _printDecoration = false, const bool _colored = false) : ostr(&my_ostr),
+        printDecoration(_printDecoration),
+#ifdef _MSC_VER
+        colored(false)
+#else
+        colored(_colored)
+#endif
+    { }
 
     /** \name Visit Matrix Expressions nodes.
      ** \{ */
@@ -91,8 +99,8 @@ public :
     /** \name Visit Declaration nodes.
      ** \{ */
     /** \brief Visit Var declarations. */
-    virtual void visit (const VarDec  &e);
-    virtual void visit (const FunctionDec  &e);
+    virtual void visit (const VarDec &e);
+    virtual void visit (const FunctionDec &e);
     /** \} */
 
     /** \name Visit Type dedicated Expressions related node.
@@ -148,13 +156,27 @@ protected:
 
     std::wostream * ostr;
     const bool printDecoration;
+    const bool colored;
 
 private:
 
     void START_NODE(const ast::Ast & e);
     void END_NODE(void);
-    void print(const std::wstring& str);
-    void print(const std::wstring& str, const Exp & e);
+    void print(const std::wstring & pre, const Location & loc, const std::wstring & post, const std::wstring & deco);
+    void print(const std::wstring & str);
+    void print(const std::wstring & str, const Exp & e);
+    void print(const Exp & e);
+    void print(const Location & loc);
+
+    static const std::wstring NORMAL;
+    static const std::wstring BOLD;
+    static const std::wstring RED;
+    static const std::wstring GREEN;
+    static const std::wstring YELLOW;
+    static const std::wstring BLUE;
+    static const std::wstring MAGENTA;
+    static const std::wstring CYAN;
+    static const std::wstring WHITE;
 };
 }
 #endif // !AST_DEBUGVISITOR_HXX

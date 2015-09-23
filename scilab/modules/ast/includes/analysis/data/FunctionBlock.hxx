@@ -23,6 +23,8 @@
 #include "Block.hxx"
 #include "MacroDef.hxx"
 #include "TypeLocal.hxx"
+#include "LocalInfo.hxx"
+#include "ArgIOInfo.hxx"
 #include "TemporaryManager.hxx"
 #include "TITypeSignatureTuple.hxx"
 #include "gvn/ConstraintManager.hxx"
@@ -40,9 +42,9 @@ class FunctionBlock : public Block
     std::vector<symbol::Symbol> in;
     std::vector<symbol::Symbol> out;
     tools::SymbolOrdSet globals;
-    std::vector<std::pair<symbol::Symbol, TypeLocal>> types_in;
-    std::vector<std::pair<symbol::Symbol, TypeLocal>> types_out;
-    tools::SymbolMap<std::set<TypeLocal>> locals;
+    std::vector<ArgIOInfo> types_in;
+    std::vector<ArgIOInfo> types_out;
+    tools::SymbolMap<LocalInfo> locals;
     std::vector<GVN::Value *> inValues;
     unsigned int lhs;
     unsigned int rhs;
@@ -82,17 +84,17 @@ public:
         return rhs;
     }
 
-    inline const std::vector<std::pair<symbol::Symbol, TypeLocal>> & getTypesIn() const
+    inline const std::vector<ArgIOInfo> & getTypesIn() const
     {
         return types_in;
     }
 
-    inline const std::vector<std::pair<symbol::Symbol, TypeLocal>> & getTypesOut() const
+    inline const std::vector<ArgIOInfo> & getTypesOut() const
     {
         return types_out;
     }
 
-    inline const tools::SymbolMap<std::set<TypeLocal>> & getTypesLocals() const
+    inline const tools::SymbolMap<LocalInfo> & getTypesLocals() const
     {
         return locals;
     }
@@ -149,6 +151,7 @@ public:
     void addLocal(const symbol::Symbol & sym, const TIType & type, const bool isAnInt) override;
     int getTmpId(const TIType & type, const bool isAnInt) override;
     void releaseTmp(const int id, ast::Exp * exp) override;
+    void needRefCount(const tools::SymbolSet & set) override;
 
     bool addIn(const TITypeSignatureTuple & tuple, const std::vector<GVN::Value *> & values);
     void setGlobals(const tools::SymbolOrdSet & v);
