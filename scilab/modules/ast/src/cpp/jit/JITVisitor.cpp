@@ -614,8 +614,8 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
 
     //fblocks.emplace(&fblock);
     std::string name(fblock.getName().begin(), fblock.getName().end());
-    const std::vector<std::pair<symbol::Symbol, analysis::TypeLocal>> ins = fblock.getTypesIn();
-    const std::vector<std::pair<symbol::Symbol, analysis::TypeLocal>> outs = fblock.getTypesOut();
+    const std::vector<analysis::ArgIOInfo> ins = fblock.getTypesIn();
+    const std::vector<analysis::ArgIOInfo> outs = fblock.getTypesOut();
     mapNameFBlock.emplace(name, &fblock);
     std::string _name(name);
 
@@ -625,8 +625,8 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     args.reserve(4 * (ins.size() + outs.size()));
     for (const auto & in : ins)
     {
-        const analysis::TIType::Type ty = in.second.type;
-        const bool scalar = in.second.isScalar();
+        const analysis::TIType::Type ty = in.tl.type;
+        const bool scalar = in.tl.isScalar();
         if (ty == analysis::TIType::COMPLEX)
         {
             llvm::Type * _ty = scalar ? dblTy : dblPtrTy;
@@ -647,8 +647,8 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     }
     for (const auto & out : outs)
     {
-        const analysis::TIType::Type ty = out.second.type;
-        const bool scalar = out.second.isScalar();
+        const analysis::TIType::Type ty = out.tl.type;
+        const bool scalar = out.tl.isScalar();
 
         // Output arguments are passed by reference
         if (ty == analysis::TIType::COMPLEX)
@@ -682,9 +682,9 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     llvm::Function::arg_iterator ai = function->arg_begin();
     for (const auto & in : ins)
     {
-        const analysis::TIType::Type ty = in.second.type;
-        const bool scalar = in.second.isScalar();
-        const std::string name(in.first.getName().begin(), in.first.getName().end());
+        const analysis::TIType::Type ty = in.tl.type;
+        const bool scalar = in.tl.isScalar();
+        const std::string name(in.sym.getName().begin(), in.sym.getName().end());
         if (scalar)
         {
             if (ty == analysis::TIType::COMPLEX)
@@ -692,11 +692,11 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
                 llvm::Value * re = ai++;
                 llvm::Value * im = ai++;
 
-                variables.emplace(in.first, getScalar(re, im, ty, true, name));
+                variables.emplace(in.sym, getScalar(re, im, ty, true, name));
             }
             else
             {
-                variables.emplace(in.first, getScalar(ai++, ty, true, name));
+                variables.emplace(in.sym, getScalar(ai++, ty, true, name));
             }
         }
         else
@@ -705,18 +705,18 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
             llvm::Value * R = ai++;
             llvm::Value * C = ai++;
             llvm::Value * RC = ai++;
-            variables.emplace(in.first, getMatrix(M, R, C, RC, ty, true, name));
+            variables.emplace(in.sym, getMatrix(M, R, C, RC, ty, true, name));
         }
     }
 
     for (const auto & out : outs)
     {
-        const analysis::TIType::Type ty = out.second.type;
-        const bool scalar = out.second.isScalar();
-        const std::string name(out.first.getName().begin(), out.first.getName().end());
+        const analysis::TIType::Type ty = out.tl.type;
+        const bool scalar = out.tl.isScalar();
+        const std::string name(out.sym.getName().begin(), out.sym.getName().end());
         if (scalar)
         {
-            JITScilabPtr & ptr = variables.emplace(out.first, getScalar(ty, /* isAnInt */ false, name)).first->second;
+            JITScilabPtr & ptr = variables.emplace(out.sym, getScalar(ty, /* isAnInt */ false, name)).first->second;
 
             builder.SetInsertPoint(returnBlock);
             if (ty == analysis::TIType::COMPLEX)
@@ -740,7 +740,7 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
             llvm::Value * C = ai++;
             llvm::Value * RC = ai++;
 
-            JITScilabPtr & ptr = variables.emplace(out.first, getMatrix(ty, name)).first->second;
+            JITScilabPtr & ptr = variables.emplace(out.sym, getMatrix(ty, name)).first->second;
 
             builder.SetInsertPoint(returnBlock);
             builder.CreateAlignedStore(ptr->loadData(*this), M, sizeof(void *));
@@ -753,11 +753,11 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     }
 
     // Secondly, we need to create the variables used in the function.
-    const analysis::tools::SymbolMap<std::set<analysis::TypeLocal>> & locals = fblock.getTypesLocals();
+    const analysis::tools::SymbolMap<analysis::LocalInfo> & locals = fblock.getTypesLocals();
     for (const auto & local : locals)
     {
         const std::string name(local.first.getName().begin(), local.first.getName().end());
-        for (const auto & ty : local.second)
+        for (const auto & ty : local.second.set)
         {
             if (ty.isScalar())
             {
