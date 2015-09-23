@@ -13,6 +13,10 @@
  */
 /*--------------------------------------------------------------------------*/
 
+#include <iostream>
+#include <string>
+#include <cwchar>
+
 #include "Xcos.hxx"
 #include "loadStatus.hxx"
 #include "view_scilab/Adapters.hxx"
@@ -20,10 +24,11 @@
 #include "types.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "user.hxx"
+
 #include "gw_xcos.hxx"
 
-extern "C" 
-{
+extern "C" {
 #include "sci_malloc.h"
 #include "getFullFilename.h"
 #include "getScilabJavaVM.h"
@@ -149,10 +154,10 @@ types::Function::ReturnValue sci_Xcos(types::typed_list &in, int _iRetCount, typ
             FREE(file);
             return types::Function::Error;
         }
-
         FREE(file);
         return types::Function::OK;
     }
+
     /*
      * If not returned yet, display a generic error message.
      */

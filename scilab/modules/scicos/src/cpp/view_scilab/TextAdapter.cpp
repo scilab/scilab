@@ -38,6 +38,7 @@ const std::wstring Graphics(L"graphics");
 const std::wstring orig(L"orig");
 const std::wstring sz(L"sz");
 const std::wstring exprs(L"exprs");
+const std::wstring style(L"style");
 
 struct graphics
 {
@@ -46,11 +47,12 @@ struct graphics
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         types::MList* o = new types::MList();
-        types::String* MListFields = new types::String(1, 4);
+        types::String* MListFields = new types::String(1, 5);
         MListFields->set(0, Graphics.c_str());
         MListFields->set(1, orig.c_str());
         MListFields->set(2, sz.c_str());
         MListFields->set(3, exprs.c_str());
+        MListFields->set(4, style.c_str());
         o->append(MListFields);
 
         // orig and sz
@@ -81,6 +83,12 @@ struct graphics
         }
         o->append(exprsField);
 
+        // style
+        std::string Style;
+        controller.getObjectProperty(adaptee, ANNOTATION, STYLE, Style);
+        types::String* styleField = new types::String(Style.data());
+        o->append(styleField);
+
         return o;
     }
 
@@ -88,12 +96,14 @@ struct graphics
     {
         if (v->getType() != types::InternalType::ScilabMList)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Mlist expected.\n"), "graphics");
             return false;
         }
 
         types::MList* current = v->getAs<types::MList>();
         if (current->getSize() < 4)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong size for field %s: at least %d elements expected.\n"), "graphics", 4);
             return false;
         }
 
@@ -104,17 +114,20 @@ struct graphics
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
         // orig
-        if ((currentField = current->getField(orig.c_str())) == NULL)
+        if ((currentField = current->getField(orig.c_str())) == nullptr)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field %s: field %s expected.\n"), "graphics", "orig");
             return false;
         }
         if (currentField->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "graphics", "orig");
             return false;
         }
         currentFieldDouble = currentField->getAs<types::Double>();
         if (currentFieldDouble->getSize() != 2)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimensions for field %s.%s: %d-by-%d expected.\n"), "graphics", "orig", 1, 2);
             return false;
         }
         std::vector<double> origField;
@@ -124,17 +137,20 @@ struct graphics
         controller.setObjectProperty(adaptee, ANNOTATION, GEOMETRY, origField);
 
         // sz
-        if ((currentField = current->getField(sz.c_str())) == NULL)
+        if ((currentField = current->getField(sz.c_str())) == nullptr)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field %s: field %s expected.\n"), "graphics", "sz");
             return false;
         }
         if (currentField->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), "graphics", "sz");
             return false;
         }
         currentFieldDouble = currentField->getAs<types::Double>();
         if (currentFieldDouble->getSize() != 2)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimensions for field %s.%s: %d-by-%d expected.\n"), "graphics", "sz", 1, 2);
             return false;
         }
         std::vector<double> szField;
@@ -144,8 +160,9 @@ struct graphics
         controller.setObjectProperty(adaptee, ANNOTATION, GEOMETRY, szField);
 
         // exprs
-        if ((currentField = current->getField(exprs.c_str())) == NULL)
+        if ((currentField = current->getField(exprs.c_str())) == nullptr)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field %s: field %s expected.\n"), "graphics", "exprs");
             return false;
         }
         if (currentField->getType() == types::InternalType::ScilabString)
@@ -153,6 +170,7 @@ struct graphics
             currentFieldString = currentField->getAs<types::String>();
             if (currentFieldString->getSize() != 3)
             {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimensions for field %s.%s: %d-by-%d expected.\n"), "graphics", "exprs", 1, 3);
                 return false;
             }
 
@@ -166,13 +184,13 @@ struct graphics
             controller.setObjectProperty(adaptee, ANNOTATION, DESCRIPTION, exprsField[0]);
             controller.setObjectProperty(adaptee, ANNOTATION, FONT, exprsField[1]);
             controller.setObjectProperty(adaptee, ANNOTATION, FONT_SIZE, exprsField[2]);
-            return true;
         }
         else if (currentField->getType() == types::InternalType::ScilabDouble)
         {
             currentFieldDouble = currentField->getAs<types::Double>();
             if (currentFieldDouble->getSize() != 0)
             {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "graphics", "exprs");
                 return false;
             }
 
@@ -180,10 +198,34 @@ struct graphics
             controller.setObjectProperty(adaptee, ANNOTATION, DESCRIPTION, exprsField[0]);
             controller.setObjectProperty(adaptee, ANNOTATION, FONT, exprsField[1]);
             controller.setObjectProperty(adaptee, ANNOTATION, FONT_SIZE, exprsField[2]);
-            return true;
+        }
+        else
+        {
+            return false;
         }
 
-        return false;
+        // style, if it is present
+        if ((current->getSize() >= 5) && ((currentField = current->getField(style.c_str())) != nullptr))
+        {
+            if (currentField->getType() != types::InternalType::ScilabString)
+            {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "graphics", "style");
+                return false;
+            }
+            currentFieldString = currentField->getAs<types::String>();
+            if (currentFieldString->getSize() != 1)
+            {
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimensions for field %s.%s: %d-by-%d expected.\n"), "graphics", "style", 1, 1);
+                return false;
+            }
+
+            char* c_str = wide_string_to_UTF8(currentFieldString->get(0));
+            std::string styleField (c_str);
+            FREE(c_str);
+            controller.setObjectProperty(adaptee, ANNOTATION, STYLE, styleField);
+        }
+
+        return true;
     }
 };
 

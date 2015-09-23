@@ -28,8 +28,8 @@ namespace model
 class Annotation: public BaseObject
 {
 public:
-    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(0), m_parentBlock(0),
-        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), m_relatedTo(0)
+    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(ScicosID()), m_parentBlock(ScicosID()),
+        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), m_style(""), m_relatedTo(ScicosID())
     {
         std::vector<double> geom (4, 0);
         geom[2] = 2;
@@ -37,7 +37,7 @@ public:
         m_geometry = Geometry(geom);
     };
     Annotation(const Annotation& o) : BaseObject(ANNOTATION), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_geometry(o.m_geometry),
-        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_relatedTo(o.m_relatedTo) {};
+        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_style(o.m_style), m_relatedTo(o.m_relatedTo) {};
     ~Annotation() = default;
 
 private:
@@ -88,6 +88,22 @@ private:
         }
 
         m_font_size = data;
+        return SUCCESS;
+    }
+
+    void getStyle(std::string& data) const
+    {
+        data = m_style;
+    }
+
+    update_status_t setStyle(const std::string& data)
+    {
+        if (data == m_style)
+        {
+            return NO_CHANGES;
+        }
+
+        m_style = data;
         return SUCCESS;
     }
 
@@ -169,6 +185,7 @@ private:
     std::string m_description;
     std::string m_font;
     std::string m_font_size;
+    std::string m_style;
     ScicosID m_relatedTo;
 };
 

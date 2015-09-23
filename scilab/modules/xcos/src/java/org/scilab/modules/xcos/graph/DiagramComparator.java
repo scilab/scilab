@@ -45,8 +45,8 @@ public final class DiagramComparator implements Comparator<XcosDiagram> {
 
     @Override
     public int compare(final XcosDiagram o1, final XcosDiagram o2) {
-        long[] o1Parent = new long[] { o1.getUId() };
-        long[] o2Parent = new long[] { o2.getUId() };
+        long[] o1Parent = new long[] { o1.getUID() };
+        long[] o2Parent = new long[] { o2.getUID() };
         JavaController controller = new JavaController();
 
         int o1Relative = 0;

@@ -15,7 +15,7 @@ Deprecated Behaviors
 Scilab Bug Fixes
 ================
 
-* Bug #14150 fixed - The Windows SDK was not found on Windows 8.1.
+* Bug #12928 fixed - int functions with %nan and %inf return wrong values.
 
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
 
@@ -60,6 +60,10 @@ Scilab Bug Fixes
 * Bug #14095 fixed - Scilab crashed when a .fig file was loaded with loadmatfile function.
 
 * Bug #14107 fixed - lstcat of a string and a list did not produce consistent results.
+
+* Bug #14144 fixed - Scilab crashed with int64(2^63).
+
+* Bug #14150 fixed - The Windows SDK was not found on Windows 8.1.
 
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab

@@ -292,6 +292,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setFont(v);
             case FONT_SIZE:
                 return o->setFontSize(v);
+            case STYLE:
+                return o->setStyle(v);
             default:
                 break;
         }

@@ -21,6 +21,8 @@ import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.BlockFactory;
 import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
@@ -136,7 +138,8 @@ public class GraphHandler extends mxGraphHandler {
      */
     private void createTextBlock(MouseEvent e) {
         // allocate
-        final TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f);
+        JavaController controller = new JavaController();
+        final TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f, controller.createObject(Kind.ANNOTATION));
 
         // set the position of the block
         final mxPoint pt = graphComponent.getPointForEvent(e);

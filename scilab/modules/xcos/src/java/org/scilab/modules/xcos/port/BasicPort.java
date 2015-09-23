@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.port;
 
-import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabType;
@@ -20,6 +19,7 @@ import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -30,14 +30,13 @@ import com.mxgraph.util.mxConstants;
 /**
  * Common implementation of any Port.
  */
-public abstract class BasicPort extends ScilabGraphUniqueObject {
+public abstract class BasicPort extends XcosCell {
 
     /**
      * The side-size of any port. All ports must have the same size.
      */
     public static final double DEFAULT_PORTSIZE = 8;
 
-    private final long uid;
     private int ordering;
     private Orientation orientation;
 
@@ -122,17 +121,9 @@ public abstract class BasicPort extends ScilabGraphUniqueObject {
      *            Value to be set as a Style and as TypeName
      */
     public BasicPort(long uid) {
-        super();
-        this.uid = uid;
+        super(uid, Kind.PORT);
         setVertex(true);
         setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
-    }
-
-    /**
-     * @return the port uid
-     */
-    public long getUID() {
-        return uid;
     }
 
     /**

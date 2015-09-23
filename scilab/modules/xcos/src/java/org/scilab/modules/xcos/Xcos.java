@@ -83,7 +83,7 @@ public final class Xcos {
     /**
      * The current Xcos tradename
      */
-    public static final String TRADENAME = "Xcos";
+    public static final String TRADENAME = Xcos.class.getSimpleName();
     public static final ImageIcon ICON = new ImageIcon(FindIconHelper.findIcon("utilities-system-monitor", "256x256"));
 
     private static final String LOAD_XCOS_LIBS_LOAD_SCICOS = "prot=funcprot(); funcprot(0); loadXcosLibs(); loadScicos(); funcprot(prot); clear prot";
@@ -462,7 +462,7 @@ public final class Xcos {
                     }
 
                     // return now, to avoid tab creation
-                    controller.deleteObject(diag.getUId());
+                    controller.deleteObject(diag.getUID());
                     return;
                 }
             }
@@ -480,7 +480,7 @@ public final class Xcos {
             diag.transformAndLoadFile(controller, file);
 
             if (diag != null) {
-                addDiagram(diag.getUId(), diag);
+                addDiagram(diag.getUID(), diag);
             }
         }
 
@@ -595,9 +595,9 @@ public final class Xcos {
 
         JavaController controller = new JavaController();
         long[] rootDiagram = new long[1];
-        controller.getObjectProperty(graph.getUId(), graph.getKind(), ObjectProperties.PARENT_DIAGRAM, rootDiagram);
+        controller.getObjectProperty(graph.getUID(), graph.getKind(), ObjectProperties.PARENT_DIAGRAM, rootDiagram);
         if (rootDiagram[0] == 0l) {
-            rootDiagram[0] = graph.getUId();
+            rootDiagram[0] = graph.getUID();
         }
 
         final boolean wasLastOpened = openedDiagrams(rootDiagram[0]).size() <= 1;
@@ -644,9 +644,9 @@ public final class Xcos {
     public void destroy(XcosDiagram graph) {
         JavaController controller = new JavaController();
         long[] rootDiagram = new long[1];
-        controller.getObjectProperty(graph.getUId(), graph.getKind(), ObjectProperties.PARENT_DIAGRAM, rootDiagram);
+        controller.getObjectProperty(graph.getUID(), graph.getKind(), ObjectProperties.PARENT_DIAGRAM, rootDiagram);
         if (rootDiagram[0] == 0l) {
-            rootDiagram[0] = graph.getUId();
+            rootDiagram[0] = graph.getUID();
         }
 
         final boolean wasLastOpenedForFile = openedDiagrams(rootDiagram[0]).size() <= 1;

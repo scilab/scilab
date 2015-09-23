@@ -27,8 +27,8 @@ public:
     virtual ~View() {};
 
     virtual void objectCreated(const ScicosID& uid, kind_t kind) = 0;
-    virtual void objectReferenced(const ScicosID& uid, kind_t kind) = 0;
-    virtual void objectUnreferenced(const ScicosID& uid, kind_t kind) = 0;
+    virtual void objectReferenced(const ScicosID& uid, kind_t kind, unsigned refCount) = 0;
+    virtual void objectUnreferenced(const ScicosID& uid, kind_t kind, unsigned refCount) = 0;
     virtual void objectDeleted(const ScicosID& uid, kind_t kind) = 0;
     virtual void propertyUpdated(const ScicosID& uid, kind_t kind, object_properties_t property, update_status_t status) = 0;
 };

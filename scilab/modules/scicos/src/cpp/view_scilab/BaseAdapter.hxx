@@ -20,7 +20,6 @@
 #include <vector>
 #include <sstream>
 
-#include "../../../includes/view_scilab/Adapters.hxx"
 #include "bool.hxx"
 #include "double.hxx"
 #include "user.hxx"
@@ -33,9 +32,15 @@
 #include "configvariable.hxx"
 #include "exp.hxx"
 
+#include "view_scilab/Adapters.hxx"
+#include "controller_helpers.hxx"
 #include "utilities.hxx"
 #include "Controller.hxx"
 #include "model/BaseObject.hxx"
+
+extern "C" {
+#include "localization.h"
+}
 
 namespace org_scilab_modules_scicos
 {
@@ -187,12 +192,14 @@ public:
     {
         if (v->getType() != types::InternalType::ScilabTList && v->getType() != types::InternalType::ScilabMList)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Tlist or Mlist expected.\n"), Adaptor::getSharedTypeStr().c_str());
             return false;
         }
         types::TList* current = v->getAs<types::TList>();
         // The input TList cannot be empty
         if (current->getSize() < 1)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for field %s: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
             return false;
         }
 
@@ -200,11 +207,13 @@ public:
         types::String* header = current->getFieldNames();
         if (header->getSize() < 1)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong length for header of field %s: at least %d element expected.\n"), Adaptor::getSharedTypeStr().c_str(), 1);
             return false;
         }
         // Make sure it is the same type as the Adapter
         if (header->get(0) != Adaptor::getSharedTypeStr())
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for header of field %s: %s expected.\n"), Adaptor::getSharedTypeStr().c_str(), Adaptor::getSharedTypeStr().c_str());
             return false;
         }
 

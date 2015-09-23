@@ -174,10 +174,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 return new types::Double(1);
             }
             datatypeIndex++;
-            // no break
+        // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-            // no break
+        // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
@@ -380,10 +380,10 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -549,10 +549,10 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -599,10 +599,10 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-                // no break
+            // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -633,7 +633,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     {
         std::string adapter = adapterName<p>(port_kind);
         std::string field = adapterFieldName<p>(port_kind);
-        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Real matrix expected.\n"), adapter.data(), field.data());
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: Real matrix expected.\n"), adapter.data(), field.data());
         return false;
     }
     types::Double* value = v->getAs<types::Double>();
@@ -665,7 +665,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     {
         std::string adapter = adapterName<p>(port_kind);
         std::string field = adapterFieldName<p>(port_kind);
-        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : Must be in the interval [%d, %d].\n"), adapter.data(), field.data(), 1, children.size());
+        get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"), adapter.data(), field.data(), 1, children.size());
         return false;
     }
 
@@ -683,7 +683,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
         {
             std::string adapter = adapterName<p>(port_kind);
             std::string field = adapterFieldName<p>(port_kind);
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s : FIXME port has not been updated.\n"), adapter.data(), field.data(), 1, children.size());
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong value for field %s.%s: FIXME port has not been updated.\n"), adapter.data(), field.data(), 1, children.size());
             return false;
         }
     }
@@ -741,16 +741,16 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             switch (port_kind)
             {
                 case INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_IN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_IN);
                     break;
                 case OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_OUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_OUT);
                     break;
                 case EVENT_INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_EIN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_EIN);
                     break;
                 case EVENT_OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_EOUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, PORT_EOUT);
                     break;
                 default:
                     // should never happen

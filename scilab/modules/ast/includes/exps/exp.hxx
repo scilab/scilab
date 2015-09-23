@@ -250,13 +250,108 @@ public:
         FUNCTIONDEC,
         LISTEXP,
         OPTIMIZEDEXP,
-	MEMFILLEXP,
+        MEMFILLEXP,
         DAXPYEXP,
         STRINGSELECTEXP,
         TABLEINTSELECTEXP,
         MAPINTSELECTEXP,
         SMALLINTSELECTEXP,
     };
+
+    const std::wstring getTypeString() const
+    {
+        switch (getType())
+        {
+            case SIMPLEVAR:
+                return L"SimpleVar";
+            case DOLLARVAR:
+                return L"DollarVar";
+            case COLONVAR:
+                return L"ColonVar";
+            case ARRAYLISTVAR:
+                return L"ArrayListVar";
+            case DOUBLEEXP:
+                return L"DoubleExp";
+            case BOOLEXP:
+                return L"BoolExp";
+            case STRINGEXP:
+                return L"StringExp";
+            case COMMENTEXP:
+                return L"CommentExp";
+            case CONSTEXP:
+                return L"ConstExp";
+            case NILEXP:
+                return L"NilExp";
+            case CALLEXP:
+                return L"CallExp";
+            case CELLCALLEXP:
+                return L"CellCallExp";
+            case OPEXP:
+                return L"OpExp";
+            case LOGICALOPEXP:
+                return L"LogicalOpExp";
+            case ASSIGNEXP:
+                return L"AssignExp";
+            case IFEXP:
+                return L"IfExp";
+            case WHILEEXP:
+                return L"WhileExp";
+            case FOREXP:
+                return L"ForExp";
+            case BREAKEXP:
+                return L"BreakExp";
+            case CONTINUEEXP:
+                return L"ContinueExp";
+            case TRYCATCHEXP:
+                return L"TryCatchExp";
+            case SELECTEXP:
+                return L"SelectExp";
+            case CASEEXP:
+                return L"CaseExp";
+            case RETURNEXP:
+                return L"ReturnExp";
+            case FIELDEXP:
+                return L"FieldExp";
+            case NOTEXP:
+                return L"NotExp";
+            case TRANSPOSEEXP:
+                return L"TransposeExp";
+            case MATRIXEXP:
+                return L"MatrixExp";
+            case MATRIXLINEEXP:
+                return L"MatrixLineExp";
+            case CELLEXP:
+                return L"CellExp";
+            case SEQEXP:
+                return L"SeqExp";
+            case ARRAYLISTEXP:
+                return L"ArrayListExp";
+            case ASSIGNLISTEXP:
+                return L"AssignListExp";
+            case VARDEC:
+                return L"VarDec";
+            case FUNCTIONDEC:
+                return L"FunctionDec";
+            case LISTEXP:
+                return L"ListExp";
+            case OPTIMIZEDEXP:
+                return L"OptimizedExp";
+            case MEMFILLEXP:
+                return L"MemfillExp";
+            case DAXPYEXP:
+                return L"DAXPYExp";
+            case STRINGSELECTEXP:
+                return L"StringSelectExp";
+            case TABLEINTSELECTEXP:
+                return L"TableIntSelectExp";
+            case MAPINTSELECTEXP:
+                return L"MapIntSelectExp";
+            case SMALLINTSELECTEXP:
+                return L"SmallIntSelectExp";
+            default:
+                return L"????Exp";
+        }
+    }
 
     virtual ExpType getType() const = 0;
 

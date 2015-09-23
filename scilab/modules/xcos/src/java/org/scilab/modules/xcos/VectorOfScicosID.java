@@ -43,16 +43,12 @@ public class VectorOfScicosID {
     this(JavaControllerJNI.new_VectorOfScicosID__SWIG_1(n), true);
   }
 
-  public long size() {
+  public void ensureCapacity(long n) {
+    JavaControllerJNI.VectorOfScicosID_ensureCapacity(swigCPtr, this, n);
+  }
+
+  public int size() {
     return JavaControllerJNI.VectorOfScicosID_size(swigCPtr, this);
-  }
-
-  public long capacity() {
-    return JavaControllerJNI.VectorOfScicosID_capacity(swigCPtr, this);
-  }
-
-  public void reserve(long n) {
-    JavaControllerJNI.VectorOfScicosID_reserve(swigCPtr, this, n);
   }
 
   public boolean isEmpty() {
@@ -64,7 +60,15 @@ public class VectorOfScicosID {
   }
 
   public void add(long x) {
-    JavaControllerJNI.VectorOfScicosID_add(swigCPtr, this, x);
+    JavaControllerJNI.VectorOfScicosID_add__SWIG_0(swigCPtr, this, x);
+  }
+
+  public boolean contains(long o) {
+    return JavaControllerJNI.VectorOfScicosID_contains(swigCPtr, this, o);
+  }
+
+  public int indexOf(long o) {
+    return JavaControllerJNI.VectorOfScicosID_indexOf(swigCPtr, this, o);
   }
 
   public long get(int i) {
@@ -73,6 +77,14 @@ public class VectorOfScicosID {
 
   public void set(int i, long val) {
     JavaControllerJNI.VectorOfScicosID_set(swigCPtr, this, i, val);
+  }
+
+  public void add(int i, long val) {
+    JavaControllerJNI.VectorOfScicosID_add__SWIG_1(swigCPtr, this, i, val);
+  }
+
+  public boolean remove(long val) {
+    return JavaControllerJNI.VectorOfScicosID_remove(swigCPtr, this, val);
   }
 
 }

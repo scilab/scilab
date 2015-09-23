@@ -110,4 +110,17 @@ enum object_properties_t
     MAX_OBJECT_PROPERTIES //!< last valid value of the object_properties_t enum
 };
 
+/**
+ * PORT_KIND valid values
+ */
+enum portKind
+{
+    PORT_UNDEF,
+    PORT_IN,
+    PORT_OUT,
+    PORT_EIN,
+    PORT_EOUT
+};
+
+
 #endif /* UTILITIES_HXX_ */

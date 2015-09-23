@@ -402,14 +402,18 @@ void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
     log(LOG_DEBUG, ss);
 }
 
-void LoggerView::objectReferenced(const ScicosID& uid, kind_t k)
+void LoggerView::objectReferenced(const ScicosID& uid, kind_t k, unsigned refCount)
 {
-    // NOT LOGGED YET
+    std::stringstream ss;
+    ss << __FUNCTION__ << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
+    log(LOG_DEBUG, ss);
 }
 
-void LoggerView::objectUnreferenced(const ScicosID& uid, kind_t k)
+void LoggerView::objectUnreferenced(const ScicosID& uid, kind_t k, unsigned refCount)
 {
-    // NOT LOGGED YET
+    std::stringstream ss;
+    ss << __FUNCTION__ << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
+    log(LOG_DEBUG, ss);
 }
 
 void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)

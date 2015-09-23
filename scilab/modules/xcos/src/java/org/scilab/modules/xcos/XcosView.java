@@ -80,7 +80,7 @@ public class XcosView extends View {
     }
 
     @Override
-    public final void objectReferenced(long uid, Kind kind) {
+    public final void objectReferenced(long uid, Kind kind, long refCount) {
         List<Entry> listeners = registeredListeners.get(kind);
         if (listeners == null) {
             return;
@@ -88,12 +88,12 @@ public class XcosView extends View {
 
         for (Entry e : listeners) {
             if (e.onCallerThread) {
-                e.listener.objectReferenced(uid, kind);
+                e.listener.objectReferenced(uid, kind, refCount);
             } else {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        e.listener.objectReferenced(uid, kind);
+                        e.listener.objectReferenced(uid, kind, refCount);
                     }
                 });
             }
@@ -101,7 +101,7 @@ public class XcosView extends View {
     }
 
     @Override
-    public final void objectUnreferenced(long uid, Kind kind) {
+    public final void objectUnreferenced(long uid, Kind kind, long refCount) {
         List<Entry> listeners = registeredListeners.get(kind);
         if (listeners == null) {
             return;
@@ -109,12 +109,12 @@ public class XcosView extends View {
 
         for (Entry e : listeners) {
             if (e.onCallerThread) {
-                e.listener.objectUnreferenced(uid, kind);
+                e.listener.objectUnreferenced(uid, kind, refCount);
             } else {
                 SwingUtilities.invokeLater(new Runnable() {
                     @Override
                     public void run() {
-                        e.listener.objectUnreferenced(uid, kind);
+                        e.listener.objectUnreferenced(uid, kind, refCount);
                     }
                 });
             }
@@ -172,44 +172,39 @@ public class XcosView extends View {
      */
 
     public void addXcosViewListener(final XcosViewListener listener) {
-        for (Kind kind : EnumSet.allOf(Kind.class)) {
+        addXcosViewListener(listener, EnumSet.allOf(Kind.class), false, EnumSet.allOf(ObjectProperties.class));
+    }
+
+    public void addXcosViewListener(final XcosViewListener listener, final Kind kind) {
+        addXcosViewListener(listener, EnumSet.of(kind), false, EnumSet.allOf(ObjectProperties.class));
+    }
+
+    public void addXcosViewListener(final XcosViewListener listener, final Kind kind, final ObjectProperties property) {
+        addXcosViewListener(listener, EnumSet.of(kind), false, EnumSet.of(property));
+    }
+
+    public void addXcosViewListener(final XcosViewListener listener, boolean onCallerThread) {
+        addXcosViewListener(listener, EnumSet.allOf(Kind.class), onCallerThread, EnumSet.allOf(ObjectProperties.class));
+    }
+
+    public void addXcosViewListener(final XcosViewListener listener, EnumSet<Kind> kinds, boolean onCallerThread, EnumSet<ObjectProperties> properties) {
+        for (Kind kind : kinds) {
             ArrayList<Entry> l = registeredListeners.get(kind);
             if (l == null) {
                 l = new ArrayList<>();
                 registeredListeners.put(kind, l);
             }
 
-            l.add(new Entry(false, EnumSet.allOf(ObjectProperties.class), listener));
+            l.add(new Entry(onCallerThread, properties, listener));
         }
     }
 
-    public void addXcosViewListener(final Kind kind, final XcosViewListener listener) {
-        ArrayList<Entry> l = registeredListeners.get(kind);
-        if (l == null) {
-            l = new ArrayList<>();
-            registeredListeners.put(kind, l);
+    public void removeXcosViewListener(final XcosViewListener listener) {
+        for (Kind kind : EnumSet.allOf(Kind.class)) {
+            ArrayList<Entry> l = registeredListeners.get(kind);
+            if (l != null) {
+                l.removeIf(e -> e.listener == listener);
+            }
         }
-
-        l.add(new Entry(false, EnumSet.allOf(ObjectProperties.class), listener));
-    }
-
-    public void addXcosViewListener(final Kind kind, final ObjectProperties property, final XcosViewListener listener) {
-        ArrayList<Entry> l = registeredListeners.get(kind);
-        if (l == null) {
-            l = new ArrayList<>();
-            registeredListeners.put(kind, l);
-        }
-
-        l.add(new Entry(false, EnumSet.of(property), listener));
-    }
-
-    public void addXcosViewListener(final Kind kind, boolean onCallerThread, final EnumSet<ObjectProperties> properties, final XcosViewListener listener) {
-        ArrayList<Entry> l = registeredListeners.get(kind);
-        if (l == null) {
-            l = new ArrayList<>();
-            registeredListeners.put(kind, l);
-        }
-
-        l.add(new Entry(onCallerThread, properties, listener));
     }
 }

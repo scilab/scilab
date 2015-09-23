@@ -130,8 +130,14 @@ public:
     virtual void addGlobal(const symbol::Symbol & sym);
     virtual GVN & getGVN();
     virtual void clone(const symbol::Symbol & sym, ast::Exp * exp);
+    virtual void needRefCount(const tools::SymbolSet & set);
 
     friend std::wostream & operator<<(std::wostream & out, const Block & block);
+
+private:
+
+    void needRefCount(const tools::SymbolSet & set1, const tools::SymbolSet & set2);
+
 };
 
 } // namespace analysis

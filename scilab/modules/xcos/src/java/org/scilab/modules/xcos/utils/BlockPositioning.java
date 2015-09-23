@@ -471,6 +471,10 @@ public final class BlockPositioning {
      *            The block to work on
      */
     public static void updateBlockView(BasicBlock block) {
+        if (block.getKind() != Kind.BLOCK) {
+            return;
+        }
+
         beginUpdate(block);
         updatePortsPosition(block);
         rotateAllPorts(block);

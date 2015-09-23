@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) DIGITEO - 2011  - Allan CORNET
+// Copyright (C) Scilab Enterprises - 2015  - Antoine ELIAS
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -30,20 +31,17 @@ function dlwCompile(files, make_command, makename)
         target_build = "all";
     end
 
-    //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode
-    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
-    if val <> "YES" & val <> "NO" & isDebug()then
-        setenv("DEBUG_SCILAB_DYNAMIC_LINK", "YES");
-    end
-
-    [msg, stat] = unix_g(make_command + makename + " " + target_build + " 2>&0");
-
-    //restore DEBUG_SCILAB_DYNAMIC_LINK
-    setenv("DEBUG_SCILAB_DYNAMIC_LINK", val);
+    cmd = make_command + makename + " " + target_build + " 2>&0"
+    scibuildfile = writeBatchFile(cmd);
+    [msg, stat] = unix_g(scibuildfile);
+    deletefile(scibuildfile);
 
     if stat <> 0 then
         // more feedback when compilation fails
-        [msg, stat, stderr] = unix_g(make_command + makename  + " " + target_build + " 1>&2");
+        cmd = make_command + makename + " " + target_build + " 1>&2"
+        scibuildfile = writeBatchFile(cmd);
+        [msg, stat, stderr] = unix_g(scibuildfile);
+        deletefile(scibuildfile);
         disp(stderr);
         error(msprintf(gettext("%s: Error while executing %s.\n"), "ilib_compile", makename));
     else
@@ -51,5 +49,38 @@ function dlwCompile(files, make_command, makename)
             disp(msg);
         end
     end
+
+
 endfunction
 //=============================================================================
+function filename = writeBatchFile(cmd)
+
+    //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    debugVal = "NO";
+    if val <> "YES" & val <> "NO" & isDebug() then
+        debugVal = "YES";
+    end
+
+    if win64() then
+        if dlwIsExpress() then
+            arch = "x86_amd64";
+        else
+            arch = "x64";
+        end
+    else
+        arch = "x86";
+    end
+
+    path = dlwGetVisualStudioPath();
+
+    scibuild = [ ...
+    "@call """ + path + "\VC\vcvarsall.bat"" " + arch;
+    "set DEBUG_SCILAB_DYNAMIC_LINK=" + debugVal;
+    cmd
+    ];
+
+    filename = TMPDIR + "/scibuild.bat";
+    mputl(scibuild, filename);
+    //filename = "call " + filename;
+endfunction

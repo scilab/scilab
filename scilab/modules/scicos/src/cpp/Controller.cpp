@@ -147,7 +147,7 @@ unsigned Controller::referenceObject(const ScicosID uid) const
     auto o = getObject(uid);
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
-        (*iter)->objectReferenced(uid, o->kind());
+        (*iter)->objectReferenced(uid, o->kind(), refCount);
     }
 
     return refCount;
@@ -173,7 +173,7 @@ void Controller::deleteObject(ScicosID uid)
 
         for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
         {
-            (*iter)->objectUnreferenced(uid, k);
+            (*iter)->objectUnreferenced(uid, k, refCount);
         }
         return;
     }
@@ -241,6 +241,10 @@ void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_pr
     if (v != 0)
     {
         auto o = getObject(v);
+        if (o == nullptr)
+        {
+            return;
+        }
 
         std::vector<ScicosID> children;
         getObjectProperty(o->id(), o->kind(), ref_prop, children);
@@ -264,6 +268,11 @@ void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, ob
         if (id != 0)
         {
             auto o = getObject(id);
+            if (o == nullptr)
+            {
+                continue;
+            }
+
             // Find which end of the link is connected to the port
             ScicosID oppositeRef;
             getObjectProperty(o->id(), o->kind(), ref_prop, oppositeRef);
@@ -413,12 +422,12 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
                 }
                 else
                 {
-                    cloned.push_back(0);
+                    cloned.push_back(ScicosID());
                 }
             }
             else
             {
-                cloned.push_back(0);
+                cloned.push_back(ScicosID());
             }
         }
     }

@@ -9,13 +9,13 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  */
 /*--------------------------------------------------------------------------*/
+#include <limits>
 
 #include "int.hxx"
 #include "double.hxx"
 #include "bool.hxx"
 #include "function.hxx"
 #include "integer_gw.hxx"
-
 extern "C"
 {
 #include "Scierror.h"
@@ -24,9 +24,30 @@ extern "C"
 template <class T, class U>
 void convert_int(U* _pIn, int _iSize, T* _pOut)
 {
+    static T minval = std::numeric_limits<T>::min();
+    static T maxval = std::numeric_limits<T>::max();
+
     for (int i = 0 ; i < _iSize ; i++)
     {
-        _pOut[i] = (T)_pIn[i];
+        if (std::isnan((double)_pIn[i]))
+        {
+            _pOut[i] = 0;
+        }
+        else if (std::isinf((double)_pIn[i]))
+        {
+            if ((double)_pIn[i] > 0)
+            {
+                _pOut[i] = maxval;
+            }
+            else
+            {
+                _pOut[i] = minval;
+            }
+        }
+        else
+        {
+            _pOut[i] = (T)_pIn[i];
+        }
     }
 }
 

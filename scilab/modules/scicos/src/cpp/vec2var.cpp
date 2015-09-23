@@ -103,6 +103,7 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
     if (tabSize < iElements + 3 + iDims)
     {
         // Error case: the input doesn't have enough elements
+        delete[] pDims;
         Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, iElements + 3 + iDims + offset, 1);
         return -1;
     }

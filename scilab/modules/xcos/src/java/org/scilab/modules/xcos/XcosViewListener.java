@@ -17,7 +17,7 @@ package org.scilab.modules.xcos;
 public abstract class XcosViewListener {
     public void objectCreated(long uid, Kind kind) {};
     public void objectDeleted(long uid, Kind kind) {};
-    public void objectReferenced(long uid, Kind kind) {};
-    public void objectUnreferenced(long uid, Kind kind) {};
+    public void objectReferenced(long uid, Kind kind, long refCount) {};
+    public void objectUnreferenced(long uid, Kind kind, long refCount) {};
     public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {};
 }

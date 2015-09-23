@@ -117,9 +117,9 @@ struct Angle
 class Block: public BaseObject
 {
 public:
-    Block() : BaseObject(BLOCK), m_parentDiagram(0), m_interfaceFunction(), m_geometry(), m_angle(),
+    Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(), m_angle(),
         m_exprs(std::vector<double> (5, 0)), m_label(), m_style(), m_nzcross(std::vector<int> (1, 0)), m_nmode(std::vector<int> (1, 0)), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
-        m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0)
+        m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_portReference(ScicosID())
     {
         // By default, 'm_exprs' takes the value of vec2var([]), which is {12, 2, 0, 0, 0}
         m_exprs[0] = 12;

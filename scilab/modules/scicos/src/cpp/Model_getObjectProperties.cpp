@@ -224,6 +224,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case FONT_SIZE:
                 o->getFontSize(v);
                 return true;
+            case STYLE:
+                o->getStyle(v);
+                return true;
             default:
                 break;
         }

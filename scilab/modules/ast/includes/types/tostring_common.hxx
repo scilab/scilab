@@ -92,7 +92,11 @@ void getSignedIntFormat(T _TVal, int *_piWidth)
     }
     else
     {
-        *_piWidth = static_cast<int>(log10(static_cast<long double>(_abs64(_TVal))) + 1);
+        unsigned long long a = _abs64(_TVal);
+        long double b = static_cast<long double>(a);
+        long double c = log10(b + 1);
+        *_piWidth = static_cast<int>(c);
+        //*_piWidth = static_cast<int>(log10(static_cast<unsigned long double>(_abs64(_TVal))) + 1);
     }
     *_piWidth += 1;
 }
@@ -137,7 +141,8 @@ void addSignedIntValue(std::wostringstream *_postr, T _TVal, int _iWidth, bool b
 
     if (bPrintOne == true || _TVal != 1)
     {
-        os_swprintf(pwstFormat, 32, L" %ls%lld", pwstSign, (long long)_abs64(_TVal));
+        unsigned long long a = _abs64(_TVal);
+        os_swprintf(pwstFormat, 32, L" %ls%llu", pwstSign, a);
         os_swprintf(pwstOutput, 32, L"%*ls", _iWidth + 1, pwstFormat);//+1 for blank
         *_postr << pwstOutput;
     }

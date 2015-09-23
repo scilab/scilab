@@ -8,32 +8,21 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
-function bOK = dlwSetEnvVc12(msCompiler, bWin64)
-  bOK = %F;
-  MSVSDir = '';
-  select msCompiler
-    case 'msvc120pro'
-      MSVSDir = dlwGetVc12ProPath();
-    case 'msvc120express'
-      MSVSDir = dlwGetVc12ExpressPath();
-  else
-    return
-  end
+function vcPath = dlwGetVc14ExpressPath()
+    vcPath = [];
+    try
+        vcPath = winqueryreg("HKEY_LOCAL_MACHINE", ..
+        "Software\Microsoft\VisualStudio\14.0\Setup\VS", ..
+        "ProductDir");
+    catch
+        // remove last error on 'winqueryreg' fails
+        lasterror();
+        return;
+    end
 
-  // MS compiler path is wrong
-  if MSVSDir == [] then
-    return
-  end
-
-  IsExpress = (msCompiler == 'msvc120express');
-
-  VS110COMNTOOLS = MSVSDir + '\Common7\Tools\'
-  if ~setenv('VS120COMNTOOLS', VS110COMNTOOLS) then
-    bOK = %F;
-    return
-  end
-
-  bOK = dlwSetEnvCommonVc12(MSVSDir, IsExpress, bWin64);
-
+    // remove last file separator if it exists
+    if vcPath <> [] then
+        vcPath = pathconvert(vcPath, %f, %t);
+    end
 endfunction
 //=============================================================================

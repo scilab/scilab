@@ -25,12 +25,14 @@
 #include "adapters_utilities.hxx"
 #include "Controller.hxx"
 #include "LinkAdapter.hxx"
+#include "controller_helpers.hxx"
 #include "model/Link.hxx"
 #include "model/Port.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
 #include "charEncoding.h"
+#include "localization.h"
 }
 
 namespace org_scilab_modules_scicos
@@ -72,6 +74,7 @@ struct xx
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Real matrix object.\n"), "xx");
             return false;
         }
 
@@ -129,6 +132,7 @@ struct yy
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Real matrix object.\n"), "yy");
             return false;
         }
 
@@ -181,12 +185,14 @@ struct id
     {
         if (v->getType() != types::InternalType::ScilabString)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: String matrix expected.\n"), "id");
             return false;
         }
 
         types::String* current = v->getAs<types::String>();
         if (current->getSize() != 1)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s: %d-by-%d expected.\n"), "id", 1, 1);
             return false;
         }
 
@@ -225,12 +231,14 @@ struct thick
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s: Real matrix expected.\n"), "thick");
             return false;
         }
 
         types::Double* current = v->getAs<types::Double>();
         if (current->getSize() != 2)
         {
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s: %d-by-%d expected.\n"), "thick", 2, 1);
             return false;
         }
 
@@ -351,7 +359,7 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
         {
             int kind;
             controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
-            if (kind == model::PORT_IN || kind == model::PORT_EIN)
+            if (kind == PORT_IN || kind == PORT_EIN)
             {
                 ret.kind = End;
             }
@@ -471,7 +479,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
 
     std::vector<ScicosID> sourceBlockPorts;
     bool newPortIsImplicit = false;
-    enum model::portKind newPortKind = model::PORT_UNDEF;
+    enum portKind newPortKind = PORT_UNDEF;
     int linkType;
     controller.getObjectProperty(id, LINK, KIND, linkType);
     if (linkType == model::activation)
@@ -485,24 +493,24 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         {
             if (otherPort != 0)
             {
-                if (!checkConnectivity(model::PORT_EIN, otherPort, blkID, controller))
+                if (!checkConnectivity(PORT_EIN, otherPort, blkID, controller))
                 {
                     return;
                 }
             }
-            newPortKind = model::PORT_EOUT;
+            newPortKind = PORT_EOUT;
             sourceBlockPorts = evtout;
         }
         else
         {
             if (otherPort != 0)
             {
-                if (!checkConnectivity(model::PORT_EOUT, otherPort, blkID, controller))
+                if (!checkConnectivity(PORT_EOUT, otherPort, blkID, controller))
                 {
                     return;
                 }
             }
-            newPortKind = model::PORT_EIN;
+            newPortKind = PORT_EIN;
             sourceBlockPorts = evtin;
         }
 
@@ -520,24 +528,24 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
             {
                 if (otherPort != 0)
                 {
-                    if (!checkConnectivity(model::PORT_IN, otherPort, blkID, controller))
+                    if (!checkConnectivity(PORT_IN, otherPort, blkID, controller))
                     {
                         return;
                     }
                 }
-                newPortKind = model::PORT_OUT;
+                newPortKind = PORT_OUT;
                 sourceBlockPorts = out;
             }
             else
             {
                 if (otherPort != 0)
                 {
-                    if (!checkConnectivity(model::PORT_OUT, otherPort, blkID, controller))
+                    if (!checkConnectivity(PORT_OUT, otherPort, blkID, controller))
                     {
                         return;
                     }
                 }
-                newPortKind = model::PORT_IN;
+                newPortKind = PORT_IN;
                 sourceBlockPorts = in;
             }
 

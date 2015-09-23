@@ -20,7 +20,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
-import java.rmi.server.UID;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -55,6 +54,7 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.SaveAsAction;
@@ -71,6 +71,7 @@ import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
 import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -105,7 +106,6 @@ import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
-import com.mxgraph.view.mxStylesheet;
 
 /**
  * The base class for a diagram. This class contains jgraphx + Scicos data.
@@ -149,7 +149,7 @@ public class XcosDiagram extends ScilabGraph {
      * @param withVisibleFeatures true if the visible features should be activated, false otherwise. Disable it on encode/decode leads to a huge performance gain.
      */
     public XcosDiagram(final long diagramId, final Kind kind) {
-        super();
+        super(new mxGraphModel(), Xcos.getInstance().getStyleSheet());
 
         this.uid = diagramId;
         this.kind = kind;
@@ -162,9 +162,11 @@ public class XcosDiagram extends ScilabGraph {
             scicosParameters = null;
         }
 
+        XcosCell parent = new XcosCell(this.uid, this.kind);
+        getModel().add(getModel().getRoot(), parent, 0);
+        setDefaultParent(parent);
         setComponent(new GraphComponent(this));
         initComponent();
-        installStylesheet();
 
         // Forbid disconnecting cells once it is connected.
         setCellsDisconnectable(false);
@@ -201,9 +203,6 @@ public class XcosDiagram extends ScilabGraph {
         setMultiplicities();
 
         setAutoOrigin(true);
-
-        ((mxCell) getDefaultParent()).setId((new UID()).toString());
-        ((mxCell) getModel().getRoot()).setId((new UID()).toString());
     }
 
     /*
@@ -643,12 +642,14 @@ public class XcosDiagram extends ScilabGraph {
             BasicPort src = (BasicPort) source;
             BasicLink link = null;
 
+            JavaController controller = new JavaController();
+            long uid = controller.createObject(Kind.LINK);
             if (src.getType() == Type.EXPLICIT) {
-                link = new ExplicitLink();
+                link = new ExplicitLink(uid);
             } else if (src.getType() == Type.IMPLICIT) {
-                link = new ImplicitLink();
+                link = new ImplicitLink(uid);
             } else {
-                link = new CommandControlLink();
+                link = new CommandControlLink(uid);
             }
 
             // allocate the associated geometry
@@ -991,14 +992,6 @@ public class XcosDiagram extends ScilabGraph {
         };
         getAsComponent().removePropertyChangeListener(MODIFIED, p);
         getAsComponent().addPropertyChangeListener(MODIFIED, p);
-    }
-
-    /**
-     * Install the default style sheet and the user stylesheet on the diagram.
-     */
-    public void installStylesheet() {
-        final mxStylesheet styleSheet = Xcos.getInstance().getStyleSheet();
-        setStylesheet(styleSheet);
     }
 
     /**
@@ -1634,7 +1627,7 @@ public class XcosDiagram extends ScilabGraph {
     /**
      * @return the model ID
      */
-    public long getUId() {
+    public long getUID() {
         return uid;
     }
 
@@ -1814,6 +1807,9 @@ public class XcosDiagram extends ScilabGraph {
     public void setTitle(final String title) {
         super.setTitle(title);
         updateTabTitle();
+
+        JavaController controller = new JavaController();
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.TITLE, title);
     }
 
     /**
@@ -1949,7 +1945,7 @@ public class XcosDiagram extends ScilabGraph {
         controller.getObjectProperty(uid, kind, ObjectProperties.PARENT_DIAGRAM, parent);
 
         Collection<XcosDiagram> diagrams = Xcos.getInstance().getDiagrams(parent[0]);
-        return diagrams.stream().filter(d -> d.getUId() == parent[0])
+        return diagrams.stream().filter(d -> d.getUID() == parent[0])
                .findFirst().get();
     }
 

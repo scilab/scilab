@@ -62,6 +62,6 @@ public class XcosDelegates {
         final BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
         ImageIO.write(image, "png", imageFile);
 
-        controller.deleteObject(diag.getUId());
+        controller.deleteObject(diag.getUID());
     }
 }

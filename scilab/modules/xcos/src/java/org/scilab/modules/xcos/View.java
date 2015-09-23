@@ -59,12 +59,12 @@ public class View {
     JavaControllerJNI.View_objectCreated(swigCPtr, this, uid, kind.ordinal());
   }
 
-  public void objectReferenced(long uid, Kind kind) {
-    JavaControllerJNI.View_objectReferenced(swigCPtr, this, uid, kind.ordinal());
+  public void objectReferenced(long uid, Kind kind, long refCount) {
+    JavaControllerJNI.View_objectReferenced(swigCPtr, this, uid, kind.ordinal(), refCount);
   }
 
-  public void objectUnreferenced(long uid, Kind kind) {
-    JavaControllerJNI.View_objectUnreferenced(swigCPtr, this, uid, kind.ordinal());
+  public void objectUnreferenced(long uid, Kind kind, long refCount) {
+    JavaControllerJNI.View_objectUnreferenced(swigCPtr, this, uid, kind.ordinal(), refCount);
   }
 
   public void objectDeleted(long uid, Kind kind) {
