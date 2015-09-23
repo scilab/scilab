@@ -61,6 +61,8 @@ Scilab Bug Fixes
 
 * Bug #14040 fixed - graphic property setting fails when using array of handles
 
+* Bug #14047 fixed - wrong behaviour of break ( continue ) in if outside of loop.
+
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.
 
 * Bug #14057 fixed - grand(m,n) returned a wrong error and grand(m,n,p) called an overloading function instead of returning an error.
