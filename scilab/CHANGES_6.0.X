@@ -61,6 +61,8 @@ Scilab Bug Fixes
 
 * Bug #14107 fixed - lstcat of a string and a list did not produce consistent results.
 
+* Bug #14109 fixed - lsq function crashed Scilab when Scilab version depended on mkl library.
+
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
 
 * Bug #14149 fixed - hdf5 could not restore hypermatrix with good dimensions.
