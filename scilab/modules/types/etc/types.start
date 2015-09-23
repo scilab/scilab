@@ -11,4 +11,4 @@
 
 //Load  functions libraries
 // =============================================================================
-load('SCI/modules/types/macros/lib');
+//load('SCI/modules/types/macros/lib');

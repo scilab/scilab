@@ -103,6 +103,7 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_funcprot.cpp \
 	sci_gateway/cpp/sci_mode.cpp \
 	sci_gateway/cpp/sci_typename.cpp \
+	sci_gateway/cpp/sci_what.cpp \
 	sci_gateway/cpp/sci_where.cpp \
 	sci_gateway/cpp/sci_getmemory.cpp \
 	sci_gateway/cpp/sci_errclear.cpp \
