@@ -91,6 +91,8 @@ Scilab Bug Fixes
 
 * Bug #14156 fixed - mfscanf returned an empty matrix when datafile contained a header.
 
+* Bug #14159 fixed - Matplot crashed Scilab on boolean input.
+
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================

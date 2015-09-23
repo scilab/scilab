@@ -211,6 +211,11 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
         n1 = pIn->getCols();
         plottype = buildMatplotType(MATPLOT_UInt, MATPLOT_FORTRAN, MATPLOT_RGBA);
     }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A real or integer expected.\n"), "Matplot", 1);
+        return types::Function::Error;
+    }
 
     if (in.size() > 1)
     {
