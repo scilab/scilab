@@ -63,6 +63,8 @@ Scilab Bug Fixes
 
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
 
+* Bug #14149 fixed - hdf5 could not restore hypermatrix with good dimensions.
+
 * Bug #14150 fixed - The Windows SDK was not found on Windows 8.1.
 
 
