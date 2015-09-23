@@ -37,6 +37,8 @@ Scilab Bug Fixes
 
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
 
+* Bug #13983 fixed - who_user returned wrong values.
+
 * Bug #14020 fixed - Incorrect carriage return ascii code.
 
 * Bug #14023 fixed - It was not possible to concatenate cells.

@@ -68,6 +68,12 @@ void SetScilabEnvironment(void)
     //windows check
     SciEnvForWindows();
 #endif
+
+    SetScilabVariables();
+}
+
+void SetScilabVariables(void)
+{
     //create SCI
     defineSCI();
     //create SCIHOME

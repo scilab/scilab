@@ -55,10 +55,10 @@ for i=1:size(modules,"*")
      exit(2);
    end
 end
-clear modules i load ierr startFile;
+clear modules i ierr startFile;
 
 // Create some configuration variables ================================
-home = getenv("HOME", SCI);
+//home = getenv("HOME", SCI);
 if getos() <> "Windows" then
   if getenv("PRINTERS", "ndef") == "ndef" then
     setenv("PRINTERS", "lp");

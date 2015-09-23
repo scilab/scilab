@@ -13,10 +13,15 @@
 function ret = who_user(%__bPrint__)
     //get user variables
     [nams,mem]=who("get"); //get all variables
-    p=predef(); //number of system variable
-    nams=nams(1:$-p+1);mem=mem(1:$-p+1);
+    p=predef("names");
+
+    //remove predef vars
+    ke=grep(nams,p);
+    nams(ke) = [];
+    mem(ke) = [];
+
     //modifiable system variables
-    excluded=["demolist","%helps","%helps_modules","home","who_user", "%__bPrint__"];
+    excluded=["nargin","nargout","demolist","%helps","%helps_modules","home","who_user", "%__bPrint__"];
     ke=grep(nams,excluded)
     nams(ke)=[];mem(ke)=[];
     ret = nams
