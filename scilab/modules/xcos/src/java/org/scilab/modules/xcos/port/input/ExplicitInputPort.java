@@ -22,9 +22,7 @@ public class ExplicitInputPort extends InputPort {
 
     /** Default constructor */
     public ExplicitInputPort(long uid) {
-        super(uid);
-
-        setStyle("ExplicitInputPort");
+        super(uid, "ExplicitInputPort");
     }
 
     /** @return always Type.EXPLICIT */

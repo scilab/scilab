@@ -183,43 +183,30 @@ public class XcosCell extends ScilabGraphUniqueObject {
         }
     }
 
-    /* (non-Javadoc)
-     * @see com.mxgraph.model.mxCell#setSource(com.mxgraph.model.mxICell)
-     */
     @Override
-    public void setSource(mxICell source) {
-        super.setSource(source);
+    public mxICell setTerminal(mxICell terminal, boolean isSource) {
+        mxICell cell = super.setTerminal(terminal, isSource);
 
-        // a source of an XcosCell is always another XcosCell
-        XcosCell s = (XcosCell) source;
+        if (cell == null) {
+            return cell;
+        }
+
+        // a terminal of an XcosCell is always another XcosCell
+        XcosCell t = (XcosCell) cell;
         JavaController controller = new JavaController();
         switch (getKind()) {
             case LINK:
-                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_PORT, s.getUID());
+                if (isSource) {
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_PORT, t.getUID());
+                } else {
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, t.getUID());
+                }
                 break;
             default:
                 break;
         }
 
-    }
-
-    /* (non-Javadoc)
-     * @see com.mxgraph.model.mxCell#setTarget(com.mxgraph.model.mxICell)
-     */
-    @Override
-    public void setTarget(mxICell target) {
-        super.setTarget(target);
-
-        // a target of an XcosCell is always another XcosCell
-        XcosCell t = (XcosCell) target;
-        JavaController controller = new JavaController();
-        switch (getKind()) {
-            case LINK:
-                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, t.getUID());
-                break;
-            default:
-                break;
-        }
+        return cell;
     }
 
     /* (non-Javadoc)

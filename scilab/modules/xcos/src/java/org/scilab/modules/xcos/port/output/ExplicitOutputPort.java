@@ -22,9 +22,7 @@ public class ExplicitOutputPort extends OutputPort {
 
     /** Default constructor */
     public ExplicitOutputPort(long uid) {
-        super(uid);
-
-        setStyle("ExplicitOutputPort");
+        super(uid, "ExplicitOutputPort");
     }
 
     /**

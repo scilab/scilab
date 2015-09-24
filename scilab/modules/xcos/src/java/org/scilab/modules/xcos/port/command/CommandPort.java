@@ -29,10 +29,7 @@ public class CommandPort extends BasicPort {
 
     /** Default constructor */
     public CommandPort(long uid) {
-        super(uid);
-
-        setStyle("CommandPort");
-        setOrientation(Orientation.SOUTH);
+        super(uid, "CommandPort", Orientation.SOUTH);
     }
 
     @Override

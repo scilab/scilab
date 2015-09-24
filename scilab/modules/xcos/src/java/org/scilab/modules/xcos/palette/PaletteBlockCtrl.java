@@ -12,9 +12,6 @@
 
 package org.scilab.modules.xcos.palette;
 
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
-import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
-
 import java.awt.Point;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -24,26 +21,18 @@ import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
-import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
-import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.UpdateStatus;
-import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosView;
-import org.scilab.modules.xcos.XcosViewListener;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -128,13 +117,7 @@ public final class PaletteBlockCtrl {
     public synchronized Transferable getTransferable() throws ScicosFormatException {
         Transferable transfer = transferable.get();
         if (transfer == null) {
-            BasicBlock block;
-            try {
-                block = loadBlock();
-            } catch (ScicosFormatException ex) {
-                getView().setEnabled(false);
-                throw ex;
-            }
+            BasicBlock block = XcosCellFactory.createBlock(model.getName());
             if (block == null) {
                 if (LOG.isLoggable(Level.FINEST)) {
                     LOG.finest(String.format(UNABLE_TO_LOAD_BLOCK, getModel().getData().getEvaluatedPath()));
@@ -161,71 +144,6 @@ public final class PaletteBlockCtrl {
             INTERNAL_GRAPH.removeCells();
         }
         return transfer;
-    }
-
-    private static class BlockLoadedListener extends XcosViewListener {
-        private long uid;
-
-        public BlockLoadedListener() {
-            uid = 0;
-        }
-
-        public long getUID() {
-            return uid;
-        }
-
-        /**
-         * When a unique block is created then store it for later use.
-         */
-        @Override
-        public void objectCreated(long uid, Kind kind) {
-            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
-                return;
-            }
-
-            this.uid = uid;
-        }
-
-        /**
-         * When a composite block is created we track the PARENT_BLOCK / CHILDREN association to store the parent.
-         */
-        @Override
-        public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
-            if (status != UpdateStatus.SUCCESS || property != ObjectProperties.CHILDREN) {
-                return;
-            }
-            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
-                return;
-            }
-
-            this.uid = uid;
-        }
-    }
-
-
-    /**
-     * @return the loaded block.
-     * @throws ScicosFormatException
-     *             on error
-     */
-    private BasicBlock loadBlock() throws ScicosFormatException {
-        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());
-
-        BlockLoadedListener blockLoaded = new BlockLoadedListener();
-        view.addXcosViewListener(blockLoaded, EnumSet.allOf(Kind.class), true, EnumSet.of(ObjectProperties.CHILDREN));
-
-        BasicBlock block;
-        try {
-            synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-            block = XcosCellFactory.createBlock(blockLoaded.getUID());
-        } catch (InterpreterException e1) {
-            LOG.severe(e1.toString());
-            block = null;
-        } finally {
-            view.removeXcosViewListener(blockLoaded);
-        }
-
-        return block;
     }
 
     /**

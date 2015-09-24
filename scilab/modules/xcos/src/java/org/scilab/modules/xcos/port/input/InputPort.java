@@ -32,8 +32,7 @@ public abstract class InputPort extends BasicPort {
      *            The string port name ("ExplicitInputPort" or
      *            "ImplicitInputPort")
      */
-    protected InputPort(long uid) {
-        super(uid);
-        setOrientation(Orientation.WEST);
+    protected InputPort(long uid, String style) {
+        super(uid, style, Orientation.WEST);
     }
 }

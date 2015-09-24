@@ -117,10 +117,13 @@ public abstract class BasicPort extends XcosCell {
      * @param style
      *            Value to be set as a Style and as TypeName
      */
-    public BasicPort(long uid) {
+    public BasicPort(long uid, String style, Orientation orientation) {
         super(uid, Kind.PORT);
+
         setVertex(true);
+        setStyle(style);
         setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
+        setOrientation(orientation);
     }
 
     /**

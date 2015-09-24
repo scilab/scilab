@@ -138,8 +138,7 @@ public class GraphHandler extends mxGraphHandler {
      */
     private void createTextBlock(MouseEvent e) {
         // allocate
-        JavaController controller = new JavaController();
-        final TextBlock textBlock = (TextBlock) XcosCellFactory.createBlock(controller, BlockInterFunction.TEXT_f, controller.createObject(Kind.ANNOTATION));
+        final TextBlock textBlock = (TextBlock) XcosCellFactory.createBlock(BlockInterFunction.TEXT_f);
 
         // set the position of the block
         final mxPoint pt = graphComponent.getPointForEvent(e);
