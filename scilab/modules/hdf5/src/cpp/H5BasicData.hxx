@@ -204,11 +204,20 @@ public:
                     getVarAddressFromPosition(pvApiCtx, lhsPosition, &pNewDataVar);
                 }
 
-                for (i = 0; i < indims; i++)
+                if (flip)
                 {
-                    piDimsArray[i] = (int)_dims[i];
+                    for (i = 0; i < indims; i++)
+                    {
+                        piDimsArray[indims - 1 - i] = (int)_dims[i];
+                    }
                 }
-
+                else
+                {
+                    for (i = 0; i < indims; i++)
+                    {
+                        piDimsArray[i] = (int)_dims[i];
+                    }
+                }
                 reshapeArray(pvApiCtx, pNewDataVar, piDimsArray, indims);
                 delete[] piDimsArray;
 

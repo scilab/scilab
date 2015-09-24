@@ -61,8 +61,10 @@ static double* allocDgelsyWorkspace(int rows, int cols, int nRhs, int* allocated
     double optim;
     int query = -1;
     int const maxRowsCols = Max(rows, cols);
+    double dblfake = 0;
+    int ifake = 0;
 
-    C2F(dgelsy)( &rows, &cols, &nRhs, NULL, &rows, NULL, &maxRowsCols, NULL, NULL, NULL, &optim, &query, &info);
+    C2F(dgelsy)(&rows, &cols, &nRhs, &dblfake, &rows, &dblfake, &maxRowsCols, &ifake, &dblfake, &ifake, &optim, &query, &info);
     *allocated = (int)optim;
     if ( !(ret = (double*)MALLOC(*allocated * sizeof(double))))
     {
@@ -82,8 +84,11 @@ static doublecomplex* allocZgelsyWorkspace(int rows, int cols, int nRhs, int* al
     doublecomplex optim;
     int query = -1;
     int const maxRowsCols = Max(rows, cols);
+    double dblfake = 0;
+    int ifake = 0;
+    doublecomplex cfake;
 
-    C2F(zgelsy)( &rows, &cols, &nRhs, NULL, &rows, NULL, &maxRowsCols, NULL, NULL, NULL, &optim, &query, NULL, &info);
+    C2F(zgelsy)(&rows, &cols, &nRhs, &cfake, &rows, &cfake, &maxRowsCols, &ifake, &dblfake, &ifake, &optim, &query, &dblfake, &info);
     *allocated = (int)optim.r;
     if ( !(ret = (doublecomplex*)MALLOC(*allocated * sizeof(doublecomplex))))
     {

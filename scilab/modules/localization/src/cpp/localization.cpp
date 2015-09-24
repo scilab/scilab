@@ -12,6 +12,12 @@
 
 #include "localization.hxx"
 
+extern "C"
+{
+#include "charEncoding.h"
+#include "sci_malloc.h"
+}
+
 std::wstring gettextW(const char* s)
 {
     wchar_t* pwst = to_wide_string(s);

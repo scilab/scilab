@@ -28,7 +28,8 @@ LOCALIZATION_C_SOURCES += \
 endif
 
 LOCALIZATION_CPP_SOURCES = \
-    src/cpp/localization.cpp
+    src/cpp/localization.cpp \
+    src/cpp/UTF8.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_addlocalizationdomain.c \
