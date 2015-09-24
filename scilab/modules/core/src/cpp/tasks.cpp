@@ -93,7 +93,7 @@ void dumpAstTask(ast::Exp *tree, bool timed)
         _timer.start();
     }
 
-    ast::DebugVisitor debugMe;
+    ast::DebugVisitor debugMe(std::wcerr, false, true);
     if (tree)
     {
         tree->accept(debugMe);
