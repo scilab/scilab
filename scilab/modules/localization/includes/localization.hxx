@@ -18,6 +18,7 @@
 extern "C"
 {
 #include "dynlib_localization.h"
+#include "localization.h"
 }
 
 #define _W(String)  gettextW(_(String))
