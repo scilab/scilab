@@ -48,9 +48,17 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
     int retval      = 0;
     int retval_s    = 0;
     int rowcount    = 0;
-    rec_entry buf[MAXSCAN];
+    rec_entry buf[MAXSCAN] = {0};
     entry *data;
-    sfdir type[MAXSCAN], type_s[MAXSCAN];
+    sfdir type[MAXSCAN] = {NONE};
+    sfdir type_s[MAXSCAN] = {NONE};
+
+    for (int i = 0; i < MAXSCAN; ++i)
+    {
+        memset(&buf[i], 0x00, sizeof(rec_entry));
+        type[i] = NONE;
+        type_s[i] = NONE;
+    }
 
     if (size < 2 || size > 3)
     {
@@ -138,7 +146,19 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 mseek(iFile, iCurrentPos, SEEK_SET);
             }
 
-            FREE(buf->c);
+            for (int i = 0; i < MAXSCAN; ++i)
+            {
+                if (type[i] == NONE)
+                {
+                    break;
+                }
+
+                if (type[i] == SF_S || type[i] == SF_C)
+                {
+                    FREE(buf[i].c);
+                    buf[i].c = NULL;
+                }
+            }
             break;
         }
 
@@ -165,7 +185,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 {
                     ps->set(j, data[i + ncol * j].s);
                 }
-                
+
                 IT.push_back(ps);
                 uiFormatUsed |= (1 << 1);
                 break;
@@ -184,7 +204,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                 {
                     p->set(j, data[i + ncol * j].d);
                 }
-                
+
                 IT.push_back(p);
                 uiFormatUsed |= (1 << 2);
                 break;
@@ -299,7 +319,7 @@ types::Function::ReturnValue sci_mfscanf(types::typed_list &in, int _iRetCount, 
                                 {
                                     pType->set(iRows * iCols + k, IT[i]->getAs<types::Double>()->get(k));
                                 }
-  
+
                                 IT[i]->killMe();
                                 ITTemp.pop_back();
                                 ITTemp.push_back(pType);

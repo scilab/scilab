@@ -41,7 +41,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
     unsigned long long ullNan = 0x7ff8000000000000;
     double dblNan = *( double* )&ullNan;
 
-    if (in.size() > 2)
+    if (in.size() < 1 || in.size() > 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "strtod", 1, 2);
         return types::Function::Error;
