@@ -1765,7 +1765,7 @@ fi
 AM_CONDITIONAL(DOXYGEN, test $DOXYGEN_ENABLE = yes)
 
 ## Valgrind specific code
-PKG_CHECK_MODULES(VALGRIND, valgrind, [ AC_DEFINE(VALGRIND_ENABLE, [], [Enable valgrind specific tweaks]) ] )
+PKG_CHECK_EXISTS([valgrind], [PKG_CHECK_MODULES([VALGRIND], [valgrind], [AC_DEFINE([VALGRIND_ENABLE], [], [Enable valgrind specific tweaks])])], [])
 
 ##############################################################
 ## Javasci module

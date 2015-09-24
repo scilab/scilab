@@ -29512,6 +29512,12 @@ fi
 
 
 ## Valgrind specific code
+if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"valgrind\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "valgrind") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
 
 pkg_failed=no
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for VALGRIND" >&5
@@ -29603,6 +29609,7 @@ $as_echo "yes" >&6; }
 
 $as_echo "#define VALGRIND_ENABLE /**/" >>confdefs.h
 
+fi
 fi
 
 ##############################################################
