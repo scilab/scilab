@@ -196,7 +196,8 @@ am__libscilocalization_algo_la_SOURCES_DIST =  \
 	src/c/getLcidString.c src/c/charEncoding.c \
 	src/c/setdefaultlanguage.c src/jni/Messages_wrap.c \
 	src/jni/LocaleToLCID_wrap.c src/jni/setdefaultlanguage_wrap.c \
-	src/c/getLocaleInfo_Apple.c src/cpp/localization.cpp
+	src/c/getLocaleInfo_Apple.c src/cpp/localization.cpp \
+	src/cpp/UTF8.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @NEED_JAVA_TRUE@am__objects_1 = src/jni/libscilocalization_algo_la-Messages_wrap.lo \
 @NEED_JAVA_TRUE@	src/jni/libscilocalization_algo_la-LocaleToLCID_wrap.lo \
@@ -209,7 +210,8 @@ am__objects_3 =  \
 	src/c/libscilocalization_algo_la-charEncoding.lo \
 	src/c/libscilocalization_algo_la-setdefaultlanguage.lo \
 	$(am__objects_1) $(am__objects_2)
-am__objects_4 = src/cpp/libscilocalization_algo_la-localization.lo
+am__objects_4 = src/cpp/libscilocalization_algo_la-localization.lo \
+	src/cpp/libscilocalization_algo_la-UTF8.lo
 am_libscilocalization_algo_la_OBJECTS = $(am__objects_3) \
 	$(am__objects_4)
 libscilocalization_algo_la_OBJECTS =  \
@@ -598,6 +600,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -612,7 +615,8 @@ LOCALIZATION_C_SOURCES = src/c/InitializeLocalization.c \
 	src/c/charEncoding.c src/c/setdefaultlanguage.c \
 	$(am__append_1) $(am__append_2)
 LOCALIZATION_CPP_SOURCES = \
-    src/cpp/localization.cpp
+    src/cpp/localization.cpp \
+    src/cpp/UTF8.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_addlocalizationdomain.c \
@@ -883,6 +887,8 @@ src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscilocalization_algo_la-localization.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscilocalization_algo_la-UTF8.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscilocalization-algo.la: $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_DEPENDENCIES) $(EXTRA_libscilocalization_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libscilocalization_algo_la_OBJECTS) $(libscilocalization_algo_la_LIBADD) $(LIBS)
@@ -952,6 +958,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilocalization_algo_la-getLocaleInfo_Apple.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilocalization_algo_la-setdefaultlanguage.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscilocalization_algo_la-setgetlanguage.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscilocalization_algo_la-UTF8.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscilocalization_algo_la-localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscilocalization_algo_la-LocaleToLCID_wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscilocalization_algo_la-Messages_wrap.Plo@am__quote@
@@ -1088,6 +1095,13 @@ src/cpp/libscilocalization_algo_la-localization.lo: src/cpp/localization.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/localization.cpp' object='src/cpp/libscilocalization_algo_la-localization.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscilocalization_algo_la-localization.lo `test -f 'src/cpp/localization.cpp' || echo '$(srcdir)/'`src/cpp/localization.cpp
+
+src/cpp/libscilocalization_algo_la-UTF8.lo: src/cpp/UTF8.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscilocalization_algo_la-UTF8.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscilocalization_algo_la-UTF8.Tpo -c -o src/cpp/libscilocalization_algo_la-UTF8.lo `test -f 'src/cpp/UTF8.cpp' || echo '$(srcdir)/'`src/cpp/UTF8.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscilocalization_algo_la-UTF8.Tpo src/cpp/$(DEPDIR)/libscilocalization_algo_la-UTF8.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/UTF8.cpp' object='src/cpp/libscilocalization_algo_la-UTF8.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscilocalization_algo_la-UTF8.lo `test -f 'src/cpp/UTF8.cpp' || echo '$(srcdir)/'`src/cpp/UTF8.cpp
 
 sci_gateway/cpp/libscilocalization_la-localization_gw.lo: sci_gateway/cpp/localization_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscilocalization_la-localization_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscilocalization_la-localization_gw.Tpo -c -o sci_gateway/cpp/libscilocalization_la-localization_gw.lo `test -f 'sci_gateway/cpp/localization_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/localization_gw.cpp

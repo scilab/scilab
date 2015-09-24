@@ -18,9 +18,6 @@
 extern "C"
 {
 #include "dynlib_localization.h"
-#include "charEncoding.h"
-#include "localization.h"
-#include "sci_malloc.h"
 }
 
 #define _W(String)  gettextW(_(String))

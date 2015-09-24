@@ -88,15 +88,15 @@
     <ClCompile Include="cpp\localization.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cpp\UTF8.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\includes\charEncoding.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\includes\defaultlanguage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\dynlib_localization_gw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\includes\gw_localization.h">
@@ -109,9 +109,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\includes\localization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\localization_gw.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\includes\localizationJava.h">
@@ -148,6 +145,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\includes\localization.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\UTF8.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\dynlib_localization.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
