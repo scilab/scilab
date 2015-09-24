@@ -100,7 +100,7 @@ public class SetContextDialog extends JDialog {
          * Construct a text from a String array context
          */
         VectorOfString v = parameters.getContext(new JavaController());
-        final int len = (int) v.size();
+        final int len = v.size();
         for (int i = 0; i < len; i++) {
             contextArea.append(v.get(i) + SHARED_NEW_LINE);
         }
@@ -180,9 +180,13 @@ public class SetContextDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    final String context = contextArea.getText();
+                    String context = contextArea.getText();
                     final VectorOfString v = new VectorOfString();
 
+                    // Force a carriage return if needed so the last line is not ignored
+                    if (context.length() > 0 && !context.endsWith("\n")) {
+                        context += '\n';
+                    }
                     int off = 0;
                     int next = 0;
                     while ((next = context.indexOf('\n', off)) != -1) {
