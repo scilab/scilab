@@ -4,7 +4,7 @@
 New Features
 =============
 
-* SSE2, Streaming SIMD Extensions 2 support is now mandatory to run Scilab on 
+* SSE2, Streaming SIMD Extensions 2 support is now mandatory to run Scilab on
   Linux i686.
 
 * valgrind error detection added to test_run (Linux Only)
@@ -101,6 +101,8 @@ Scilab Bug Fixes
 * Bug #14093 fixed - atanh returns NaN for values with an absolute value greater than 1
 
 * Bug #14095 fixed - Scilab crashed when a .fig file was loaded with loadmatfile function.
+
+* Bug #14097 fixed - genlib no more adds a separator at the end of the lib path if it is not given in the directory path.
 
 * Bug #14105 fixed - New block comments /*...*/ feature was not documented.
 

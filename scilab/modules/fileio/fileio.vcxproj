@@ -326,6 +326,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\mtell.h" />
     <ClInclude Include="includes\newest.h" />
     <ClInclude Include="includes\os_wfopen.h" />
+    <ClInclude Include="includes\pathconvert.h" />
     <ClInclude Include="includes\readline.h" />
     <ClInclude Include="includes\removedir.h" />
     <ClInclude Include="includes\scanf_functions.h" />
@@ -346,7 +347,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="src\c\getrelativefilename.h" />
     <ClInclude Include="src\c\isDrive.h" />
     <ClInclude Include="src\c\movefile.h" />
-    <ClInclude Include="src\c\pathconvert.h" />
     <ClInclude Include="src\c\Status2Mode.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -32,7 +32,6 @@
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "scilabWrite.hxx"
-#include "expandPathVariable.h"
 #include "configvariable.hxx"
 #include "library.hxx"
 #include "macrofile.hxx"
@@ -56,6 +55,7 @@ extern "C"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "md5.h"
+#include "pathconvert.h"
 }
 
 
@@ -170,14 +170,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
     }
 
     wchar_t* pstFile = pS->get(0);
-    pstParsePath = expandPathVariableW(pstFile);
+    pstParsePath = pathconvertW(pstFile, TRUE, TRUE, AUTO_STYLE);
 
     if (in.size() == 1)
     {
         delete pS;
     }
 
-    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);
+    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%lslib", pstParsePath);
 
     if (bVerbose)
     {

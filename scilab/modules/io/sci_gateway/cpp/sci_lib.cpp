@@ -21,7 +21,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "sci_malloc.h"
-#include "expandPathVariable.h"
+#include "pathconvert.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -51,7 +51,7 @@ types::Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, type
     }
 
     wchar_t* pstPath = pS->get(0);
-    wchar_t* pwstPath = expandPathVariableW(pstPath);
+    wchar_t* pwstPath = pathconvertW(pstPath, TRUE, TRUE, AUTO_STYLE);
     int err = 0;
     types::Library* lib = loadlib(pwstPath, &err, false, false);
     FREE(pwstPath);
