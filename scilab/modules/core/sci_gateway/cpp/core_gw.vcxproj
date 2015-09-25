@@ -186,6 +186,7 @@
     <ClCompile Include="sci_mode.cpp" />
     <ClCompile Include="sci_newfun.cpp" />
     <ClCompile Include="sci_predef.cpp" />
+    <ClCompile Include="sci_recursionlimit.cpp" />
     <ClCompile Include="sci_sciargs.cpp" />
     <ClCompile Include="..\c\sci_getdebuginfo.c" />
     <ClCompile Include="..\c\sci_type.c" />

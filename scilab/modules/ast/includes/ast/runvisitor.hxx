@@ -350,6 +350,7 @@ public :
     void visitprivate(const DAXPYExp &e);
     void visitprivate(const IntSelectExp &e);
     void visitprivate(const StringSelectExp &e);
+    void visitprivate(const TryCatchExp  &e);
 
     void visitprivate(const StringExp &e)
     {
@@ -458,30 +459,6 @@ public :
     void visitprivate(const DollarVar &/*e*/)
     {
         setResult(types::Polynom::Dollar());
-    }
-
-    void visitprivate(const TryCatchExp  &e)
-    {
-        //save current prompt mode
-        int oldVal = ConfigVariable::getSilentError();
-        //set mode silent for errors
-        ConfigVariable::setSilentError(1);
-        try
-        {
-            e.getTry().accept(*this);
-            //restore previous prompt mode
-            ConfigVariable::setSilentError(oldVal);
-        }
-        catch (const InternalError& /* ie */)
-        {
-            //restore previous prompt mode
-            ConfigVariable::setSilentError(oldVal);
-            //to lock lasterror
-            ConfigVariable::setLastErrorCall();
-            // reset call stack filled when error occured
-            ConfigVariable::resetWhereError();
-            e.getCatch().accept(*this);
-        }
     }
 
     void visitprivate(const BreakExp &e)

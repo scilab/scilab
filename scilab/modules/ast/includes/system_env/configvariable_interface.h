@@ -83,4 +83,5 @@ EXTERN_AST int isExecutionBreak();
 EXTERN_AST void setExecutionBreak();
 EXTERN_AST void resetExecutionBreak();
 
+EXTERN_AST int setRecursionLimit(int);
 #endif /* !__CONFIGVARIABLE_INTERFACE_H__ */

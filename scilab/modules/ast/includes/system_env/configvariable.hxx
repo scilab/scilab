@@ -482,6 +482,19 @@ public :
     static bool isExecutionBreak();
     static void setExecutionBreak();
     static void resetExecutionBreak();
+    private:
+    static int recursionLimit;
+    static int recursionLevel;
+
+    // manage recursion stack
+public :
+    static int getRecursionLimit();
+    static int setRecursionLimit(int val);
+
+    static int getRecursionLevel();
+    static void resetRecursionLevel();
+    static bool increaseRecursion();
+    static void decreaseRecursion();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

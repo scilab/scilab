@@ -6,6 +6,9 @@ New Features
 
 * valgrind error detection added to test_run (Linux Only)
 
+* Introduction of a call stack limit. Default maximum depth is setup to 1000 and
+  can be changed by new function recursionlimit or by preferences interface.
+
 Deprecated Behaviors
 =====================
 
@@ -66,6 +69,8 @@ Scilab Bug Fixes
 * Bug #14107 fixed - lstcat of a string and a list did not produce consistent results.
 
 * Bug #14109 fixed - lsq function crashed Scilab when Scilab version depended on mkl library.
+
+* Bug #14113 fixed - Scilab 6 did not detect infinite loop.
 
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
 

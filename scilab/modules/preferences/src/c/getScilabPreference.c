@@ -58,6 +58,7 @@ void initPrefs()
     scilabPref.startup_dir_use = NULL;
     scilabPref.startup_dir_default = NULL;
     scilabPref.startup_dir_previous = NULL;
+    scilabPref.recursionlimit = NULL;
 }
 /*--------------------------------------------------------------------------*/
 void reloadScilabPreferences()
@@ -130,6 +131,10 @@ void clearScilabPreferences()
         {
             FREE((void*)scilabPref.startup_dir_previous);
         }
+        if (scilabPref.recursionlimit)
+        {
+            FREE((void*)scilabPref.recursionlimit);
+        }
         initPrefs();
     }
     isInit = 0;
@@ -165,6 +170,7 @@ void getPrefs()
         scilabPref.startup_dir_use = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_USE_XPATH));
         scilabPref.startup_dir_default = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_DEFAULT_XPATH));
         scilabPref.startup_dir_previous = os_strdup(getAttribute(doc, xpathCtxt, (char*)STARTUP_DIR_PREVIOUS_XPATH));
+        scilabPref.recursionlimit = os_strdup(getAttribute(doc, xpathCtxt, (char*)RECURSIONLIMIT_XPATH));
 
         xmlXPathFreeContext(xpathCtxt);
         xmlFreeDoc(doc);

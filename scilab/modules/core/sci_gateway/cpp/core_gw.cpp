@@ -62,5 +62,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"macr2tree", &sci_macr2tree, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"predef", &sci_predef, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"debug", &sci_debug, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"recursionlimit", &sci_recursionlimit, MODULE_NAME));
     return 1;
 }

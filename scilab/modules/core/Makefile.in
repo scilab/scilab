@@ -285,7 +285,8 @@ am__objects_5 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_analyzeroptions.lo \
 	sci_gateway/cpp/libscicore_la-sci_macr2tree.lo \
 	sci_gateway/cpp/libscicore_la-sci_predef.lo \
-	sci_gateway/cpp/libscicore_la-sci_debug.lo
+	sci_gateway/cpp/libscicore_la-sci_debug.lo \
+	sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo
 am_libscicore_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
@@ -782,7 +783,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_analyzeroptions.cpp \
 	sci_gateway/cpp/sci_macr2tree.cpp \
 	sci_gateway/cpp/sci_predef.cpp \
-	sci_gateway/cpp/sci_debug.cpp
+	sci_gateway/cpp/sci_debug.cpp \
+	sci_gateway/cpp/sci_recursionlimit.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ -I$(top_srcdir)/modules/ast/includes/ast/ \
@@ -1303,6 +1305,9 @@ sci_gateway/cpp/libscicore_la-sci_predef.lo:  \
 sci_gateway/cpp/libscicore_la-sci_debug.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscicore.la: $(libscicore_la_OBJECTS) $(libscicore_la_DEPENDENCIES) $(EXTRA_libscicore_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscicore_la_LINK) $(am_libscicore_la_rpath) $(libscicore_la_OBJECTS) $(libscicore_la_LIBADD) $(LIBS)
@@ -1360,6 +1365,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_pause.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_predef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_quit.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_recursionlimit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_sciargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_typename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_warning.Plo@am__quote@
@@ -2053,6 +2059,13 @@ sci_gateway/cpp/libscicore_la-sci_debug.lo: sci_gateway/cpp/sci_debug.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_debug.cpp' object='sci_gateway/cpp/libscicore_la-sci_debug.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_debug.lo `test -f 'sci_gateway/cpp/sci_debug.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_debug.cpp
+
+sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo: sci_gateway/cpp/sci_recursionlimit.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_recursionlimit.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo `test -f 'sci_gateway/cpp/sci_recursionlimit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_recursionlimit.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_recursionlimit.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_recursionlimit.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_recursionlimit.cpp' object='sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo `test -f 'sci_gateway/cpp/sci_recursionlimit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_recursionlimit.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

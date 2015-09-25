@@ -144,10 +144,17 @@ public :
     }
 };
 
+
 class InternalAbort : public ScilabException
 {
-public :
+public:
     InternalAbort() {}
+};
+
+class RecursionException : public ScilabException
+{
+public:
+    RecursionException() {}
 };
 }
 #endif // !AST_SCILABEXCEPTION_HXX

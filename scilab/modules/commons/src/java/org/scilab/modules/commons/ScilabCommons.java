@@ -122,4 +122,8 @@ public static String getScilabVersionAsString() {
     return ScilabCommonsJNI.getScilabVersionAsString();
   }
 
+  public static int setRecursionLimit(int arg0) {
+    return ScilabCommonsJNI.setRecursionLimit(arg0);
+  }
+
 }

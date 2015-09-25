@@ -32,6 +32,7 @@ typedef struct
     const char * startup_dir_use;
     const char * startup_dir_default;
     const char * startup_dir_previous;
+    const char * recursionlimit;
 } ScilabPreferences;
 
 #define HEAPSIZE_XPATH (const xmlChar*)"//general/body/java-heap-memory/@heap-size"
@@ -45,6 +46,7 @@ typedef struct
 #define IEEE_XPATH (const xmlChar*)"//general/body/environment/@fpe"
 #define FORMAT_XPATH (const xmlChar*)"//general/body/environment/@printing-format"
 #define FORMATWIDTH_XPATH (const xmlChar*)"//general/body/environment/@width"
+#define RECURSIONLIMIT_XPATH (const xmlChar*)"//general/body/environment/@recursion-limit"
 #define LANGUAGE_XPATH (const xmlChar*)"//general/body/languages/@lang"
 #define STARTUP_DIR_USE_XPATH (const xmlChar*)"//general/body/startup/@use"
 #define STARTUP_DIR_DEFAULT_XPATH (const xmlChar*)"//general/body/startup/@default"

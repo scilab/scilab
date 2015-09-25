@@ -934,8 +934,6 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             StaticRunner_setInterruptibleCommand(1);
         }
 
-
-
         try
         {
             //reset default values
@@ -1569,6 +1567,63 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
     e.getOriginal()->accept(*this);
     return;
 }
+
+template <class T>
+void RunVisitorT<T>::visitprivate(const TryCatchExp  &e)
+{
+    //save current prompt mode
+    int oldVal = ConfigVariable::getSilentError();
+    int oldMode = ConfigVariable::getPromptMode();
+    //set mode silent for errors
+    ConfigVariable::setSilentError(1);
+
+    symbol::Context* pCtx = symbol::Context::getInstance();
+    try
+    {
+        int scope = pCtx->getScopeLevel();
+        int level = ConfigVariable::getRecursionLevel();
+        try
+        {
+            e.getTry().accept(*this);
+            //restore previous prompt mode
+            ConfigVariable::setSilentError(oldVal);
+        }
+        catch (const RecursionException& /* re */)
+        {
+            ConfigVariable::setPromptMode(oldMode);
+
+            //close opened scope during try
+            while (pCtx->getScopeLevel() > scope)
+            {
+                pCtx->scope_end();
+            }
+
+            //decrease recursion to init value and close where
+            while (ConfigVariable::getRecursionLevel() > level)
+            {
+                ConfigVariable::where_end();
+                ConfigVariable::decreaseRecursion();
+            }
+
+            //print msg about recursion limit and trigger an error
+            wchar_t sz[1024];
+            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+            throw ast::InternalError(sz);
+        }
+
+    }
+    catch (const InternalError& /* ie */)
+    {
+        //restore previous prompt mode
+        ConfigVariable::setSilentError(oldVal);
+        //to lock lasterror
+        ConfigVariable::setLastErrorCall();
+        // reset call stack filled when error occured
+        ConfigVariable::resetWhereError();
+        e.getCatch().accept(*this);
+    }
+}
+
 
 } /* namespace ast */
 
