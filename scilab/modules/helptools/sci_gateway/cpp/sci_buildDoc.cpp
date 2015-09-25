@@ -105,7 +105,9 @@ extern "C"
 
         if (Rhs < 3)            /* Language not provided */
         {
-            language = wide_string_to_UTF8(getlanguage());
+            wchar_t* l = getlanguage();
+            language = wide_string_to_UTF8(l);
+            free(l);
         }
         else
         {
@@ -128,7 +130,9 @@ extern "C"
 
             if (!isScalar(pvApiCtx, piAddr))
             {
-                language = wide_string_to_UTF8(getlanguage());
+                wchar_t* pwstLang = getlanguage();
+                language = wide_string_to_UTF8(pwstLang);
+                free(pwstLang);
             }
             else
             {
