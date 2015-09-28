@@ -1336,7 +1336,6 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
 int withMKL(void)
 {
     static int iWithMKL = -1;
-
     if (iWithMKL == -1)
     {
         char* str = NULL;
