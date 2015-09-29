@@ -196,3 +196,19 @@ int isDebugInterrupted()
 {
     return debugger::DebuggerMagager::getInstance()->isInterrupted() ? 1 : 0;
 }
+
+int isExecutionBreak()
+{
+    return ConfigVariable::isExecutionBreak() ? 1 : 0;
+}
+
+void setExecutionBreak()
+{
+    ConfigVariable::setExecutionBreak();
+}
+
+void resetExecutionBreak()
+{
+    ConfigVariable::resetExecutionBreak();
+}
+

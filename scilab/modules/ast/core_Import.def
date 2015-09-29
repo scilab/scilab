@@ -9,4 +9,5 @@ StaticRunner_isRunnerAvailable
 StaticRunner_isInterruptibleCommand
 StaticRunner_setInterruptibleCommand
 StoreConsoleCommand
+StorePrioritaryCommand
 parseCommand

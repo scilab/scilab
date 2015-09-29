@@ -1480,3 +1480,22 @@ ast::ConstVisitor* ConfigVariable::getDefaultVisitor()
     }
     return m_defaultvisitor->clone();
 }
+
+bool ConfigVariable::executionbreak = false;
+
+bool ConfigVariable::isExecutionBreak()
+{
+    return executionbreak;
+}
+
+void ConfigVariable::setExecutionBreak()
+{
+    executionbreak = true;
+}
+
+void ConfigVariable::resetExecutionBreak()
+{
+    executionbreak = false;
+}
+
+

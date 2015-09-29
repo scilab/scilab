@@ -396,7 +396,7 @@ public :
             m_line(line), m_absolute_line(absolute_line), m_name(name), m_macro_first_line(first_line), m_file_name(file_name) {}
     };
     typedef std::vector<WhereEntry> WhereVector;
-        
+
     static void where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall);
     static void where_end();
     static const WhereVector& getWhere();
@@ -474,6 +474,14 @@ public:
 
     static void setDefaultVisitor(ast::ConstVisitor* _default);
     static ast::ConstVisitor* getDefaultVisitor();
+
+    //manage CTRL C in console
+private :
+    static bool executionbreak;
+public :
+    static bool isExecutionBreak();
+    static void setExecutionBreak();
+    static void resetExecutionBreak();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

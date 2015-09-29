@@ -34,6 +34,7 @@ void StaticRunner::launch()
     setInterruptibleCommand(runMe->isInterruptible());
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
 
+    ConfigVariable::resetExecutionBreak();
     try
     {
         runMe->getProgram()->accept(*(runMe->getVisitor()));

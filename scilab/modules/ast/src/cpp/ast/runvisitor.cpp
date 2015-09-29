@@ -48,6 +48,7 @@ extern "C"
 #include "sciprint.h"
 #include "os_string.h"
 #include "elem_common.h"
+#include "storeCommand.h"
 }
 
 namespace ast
@@ -920,12 +921,20 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             continue;
         }
 
+        if (ConfigVariable::isExecutionBreak())
+        {
+            ConfigVariable::resetExecutionBreak();
+            StorePrioritaryCommand("pause");
+        }
+
         // interrupt me to execute a prioritary command
         while (StaticRunner_isInterruptibleCommand() == 1 && StaticRunner_isRunnerAvailable() == 1)
         {
             StaticRunner_launch();
             StaticRunner_setInterruptibleCommand(1);
         }
+
+
 
         try
         {

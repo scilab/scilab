@@ -13,16 +13,14 @@
 /*--------------------------------------------------------------------------*/
 #include "TermCommand.h"
 #include "machine.h" /* C2F */
-#include "sigbas.h" /* C2F (sigbas) */
 #include "storeCommand.h" /* StoreCommand */
 #include "clrscr_nw.h"
 #include "TermLine.h"
-#include "sci_malloc.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 void ControlC_Command(void)
 {
-    int j = 2;
-    //C2F (sigbas) (&j);
+    setExecutionBreak();
 }
 /*--------------------------------------------------------------------------*/
 void ControlX_Command(void)
