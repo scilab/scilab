@@ -14,6 +14,7 @@
 #define __INFERENCE_CONSTRAINT_HXX__
 
 #include <cmath>
+#include <iostream>
 #include <unordered_set>
 #include <vector>
 
@@ -85,7 +86,7 @@ struct PositiveConstraint : public InferenceConstraint
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
-    struct StrictPositiveConstraint : public InferenceConstraint
+struct StrictPositiveConstraint : public InferenceConstraint
 {
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
@@ -146,6 +147,11 @@ struct MPolyConstraint : public InferenceConstraint
         }
     }
 
+    inline bool isConstant() const
+	{
+	    return poly.isConstant();
+	}
+
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const override;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
@@ -158,13 +164,20 @@ struct MPolyConstraint : public InferenceConstraint
         }
     };
 
+    inline bool operator==(const MPolyConstraint & R) const
+	{
+	    return kind == R.kind && poly == R.poly;
+	}
+    
     struct Eq
     {
         inline bool operator()(const MPolyConstraint & L, const MPolyConstraint & R) const
         {
-            return L.kind == R.kind && L.poly == R.poly;
+            return L == R;
         }
     };
+
+    friend std::wostream & operator<<(std::wostream & out, const MPolyConstraint & mpc);
 };
 
 struct MPolyConstraintSet : public InferenceConstraint
@@ -179,17 +192,26 @@ struct MPolyConstraintSet : public InferenceConstraint
 
     inline void add(MPolyConstraint && mpc)
     {
-        constraints.emplace(std::move(mpc));
+	if (!mpc.isConstant())
+	{
+	    constraints.emplace(std::move(mpc));
+	}
     }
 
     inline void add(MultivariatePolynomial && poly, MPolyConstraint::Kind kind)
     {
-        constraints.emplace(std::move(poly), kind);
+	if (!poly.isConstant())
+	{
+	    constraints.emplace(std::move(poly), kind);
+	}
     }
 
     inline void add(const MultivariatePolynomial & poly, MPolyConstraint::Kind kind)
     {
-        constraints.emplace(poly, kind);
+	if (!poly.isConstant())
+	{
+	    constraints.emplace(poly, kind);
+	}
     }
 
     inline void add(const MPolyConstraintSet & set)
@@ -197,9 +219,42 @@ struct MPolyConstraintSet : public InferenceConstraint
         constraints.insert(set.constraints.begin(), set.constraints.end());
     }
 
+    inline bool empty() const
+	{
+	    return constraints.empty();
+	}
+
+    inline std::size_t size() const
+	{
+	    return constraints.size();
+	}
+
     virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const override;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
+
+    friend std::wostream & operator<<(std::wostream & out, const MPolyConstraintSet & mpcs);
+
+    struct Hash
+    {
+	inline std::size_t operator()(const MPolyConstraintSet & mpcs) const
+	    {
+		std::size_t seed = 0;
+		for (const auto & c : mpcs.constraints)
+		{
+		    seed = tools::hash_combine(seed, MPolyConstraint::Hash()(c));
+		}
+		return seed;
+	    }
+    };
+
+    struct Eq
+    {
+        inline bool operator()(const MPolyConstraintSet & L, const MPolyConstraintSet & R) const
+        {
+            return L.constraints == R.constraints;
+        }
+    };
 };
 
 

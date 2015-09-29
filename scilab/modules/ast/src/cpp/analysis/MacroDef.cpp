@@ -15,23 +15,19 @@
 
 namespace analysis
 {
-ExistingMacroDef::ExistingMacroDef(types::Macro & _macro) : MacroDef(_macro.getOutputs()->size(), _macro.getInputs()->size(), _macro.getBody()), name(_macro.getName()), se(nullptr), inputs(MacroDef::asVector(_macro.getInputs())), outputs(MacroDef::asVector(_macro.getOutputs()))
+ExistingMacroDef::ExistingMacroDef(types::Macro & _macro) : MacroDef(_macro.getOutputs()->size(), _macro.getInputs()->size(), _macro.getBody()), name(_macro.getName()), inputs(MacroDef::asVector(_macro.getInputs())), outputs(MacroDef::asVector(_macro.getOutputs()))
 {
     GlobalsCollector::collect(*this);
 }
 
-ExistingMacroDef::ExistingMacroDef(const ExistingMacroDef & emd) : MacroDef(emd.inputs.size(), emd.outputs.size(), emd.original), name(emd.name), se(emd.se->clone()), inputs(emd.inputs), outputs(emd.outputs)
+ExistingMacroDef::ExistingMacroDef(const ExistingMacroDef & emd) : MacroDef(emd.inputs.size(), emd.outputs.size(), emd.original), name(emd.name), inputs(emd.inputs), outputs(emd.outputs)
 {
     GlobalsCollector::collect(*this);
 }
 
 ast::SeqExp & ExistingMacroDef::getBody()
 {
-    if (!se)
-    {
-        se = static_cast<ast::SeqExp *>(original)->clone();
-    }
-    return *se;
+    return *static_cast<ast::SeqExp *>(original)->clone();
 }
 
 const ast::SeqExp & ExistingMacroDef::getOriginalBody()
@@ -59,18 +55,14 @@ MacroDef * ExistingMacroDef::clone() const
     return new ExistingMacroDef(*this);
 }
 
-DeclaredMacroDef::DeclaredMacroDef(ast::FunctionDec * const _dec) : MacroDef(_dec->getReturns().getVars().size(), _dec->getArgs().getVars().size(), _dec), dec(nullptr)
+DeclaredMacroDef::DeclaredMacroDef(ast::FunctionDec * const _dec) : MacroDef(_dec->getReturns().getVars().size(), _dec->getArgs().getVars().size(), _dec)
 {
     GlobalsCollector::collect(*this);
 }
 
 ast::SeqExp & DeclaredMacroDef::getBody()
 {
-    if (!dec)
-    {
-        dec = static_cast<ast::FunctionDec *>(original)->clone();
-    }
-    return static_cast<ast::SeqExp &>(dec->getBody());
+    return *static_cast<ast::SeqExp *>(static_cast<ast::FunctionDec *>(original)->getBody().clone());
 }
 
 const ast::SeqExp & DeclaredMacroDef::getOriginalBody()
@@ -95,7 +87,7 @@ std::vector<symbol::Symbol> DeclaredMacroDef::getOut()
 
 MacroDef * DeclaredMacroDef::clone() const
 {
-    return new DeclaredMacroDef(dec ? dec : static_cast<ast::FunctionDec *>(original));
+    return new DeclaredMacroDef(static_cast<ast::FunctionDec *>(original));
 }
 
 } // namespace analysis

@@ -86,10 +86,11 @@ namespace analysis
         }
         else
         {
-            GVN::Value * val = getValue();
-            insertValue(mp, *val);
+	    list.emplace_back(current++);
+	    Value & val = list.back();
+            insertValue(mp, val);
 
-            return val;
+            return &val;
         }
     }
 

@@ -280,7 +280,7 @@ Info & Block::addMacroDef(ast::FunctionDec * dec)
     return i;
 }
 
-std::vector<TIType> Block::addCall(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp)
+    std::vector<TIType> Block::addCall(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId)
 {
     tools::SymbolMap<Info>::iterator it;
     Block * block = getDefBlock(sym, it, false);
@@ -319,19 +319,19 @@ std::vector<TIType> Block::addCall(AnalysisVisitor & visitor, const unsigned int
         {
             if (pIT)
             {
-                visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::Macro *>(pIT)), in, out);
+                visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::Macro *>(pIT)), in, out, functionId);
             }
             else
             {
                 if (it->second.exp && it->second.exp->isFunctionDec())
                 {
                     DeclaredMacroDef macrodef(static_cast<ast::FunctionDec *>(it->second.exp));
-                    visitor.getPMC().getOutTypes(visitor, &macrodef, in, out);
+                    visitor.getPMC().getOutTypes(visitor, &macrodef, in, out, functionId);
                 }
                 else
                 {
                     DataManager::getSymInScilabContext(getGVN(), sym, pIT);
-                    visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::Macro *>(pIT)), in, out);
+                    visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::Macro *>(pIT)), in, out, functionId);
                 }
             }
             break;
@@ -339,7 +339,7 @@ std::vector<TIType> Block::addCall(AnalysisVisitor & visitor, const unsigned int
         case TIType::MACROFILE:
         {
             DataManager::getSymInScilabContext(getGVN(), sym, pIT);
-            visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::MacroFile *>(pIT)->getMacro()), in, out);
+            visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::MacroFile *>(pIT)->getMacro()), in, out, functionId);
             break;
         }
         default:

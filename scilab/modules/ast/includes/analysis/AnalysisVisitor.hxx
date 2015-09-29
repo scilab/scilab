@@ -50,12 +50,10 @@ class EXTERN_AST AnalysisVisitor : public ast::Visitor, public Chrono
 public:
 
     typedef std::unordered_map<std::wstring, std::shared_ptr<CallAnalyzer>> MapSymCall;
-    typedef std::vector<Call *> Calls;
 
 private:
 
     Result _result;
-    Calls allCalls;
     DataManager dm;
     PolymorphicMacroCache pmc;
     ConstraintManager cm;
@@ -78,15 +76,8 @@ public:
     static bool asDoubleMatrix(ast::Exp & e, types::Double *& data);
     static void analyze(ast::SelectExp & e);
 
-    AnalysisVisitor() : cv(*this), pv(std::wcerr, true, false), logger("/tmp/analysis.log")
-    {
-        start_chrono();
-    }
-
-    virtual ~AnalysisVisitor()
-    {
-        //std::cerr << "delete AnalysisVisitor" << std::endl;
-    }
+    AnalysisVisitor();
+    virtual ~AnalysisVisitor();
 
     virtual AnalysisVisitor* clone()
     {
@@ -161,11 +152,6 @@ public:
         return _result;
     }
 
-    inline const Calls & getCalls() const
-    {
-        return allCalls;
-    }
-
     inline std::vector<Result> & getLHSContainer()
     {
         return multipleLHS;
@@ -214,23 +200,16 @@ public:
         return dm.getInfo(sym);
     }
 
+    void reset();
     bool analyzeIndices(TIType & type, ast::CallExp & ce);
 
     // Only for debug use
     void print_info();
     logging::Logger & getLogger();
-
+    
 private:
 
     bool getDimension(SymbolicDimension & dim, ast::Exp & arg, bool & safe, SymbolicDimension & out);
-
-    inline void pushCall(Call * c)
-    {
-        if (c)
-        {
-            allCalls.push_back(c);
-        }
-    }
 
     /*
        Workaround for a C++11 bug with Intel compiler

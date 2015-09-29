@@ -253,7 +253,7 @@ static void printSet(const T & set, std::wostream & out)
 }
 
 template<typename T>
-static void printMap(const T & map, std::wostream & out)
+static void printMap(const T & map, std::wostream & out, const bool newLine = false )
 {
     if (map.empty())
     {
@@ -272,6 +272,10 @@ static void printMap(const T & map, std::wostream & out)
             else
             {
                 out << L",";
+		if (newLine)
+		{
+		    out << L"\n";
+		}
             }
         }
     }

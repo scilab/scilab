@@ -35,6 +35,7 @@ private:
 
     TIType type;
     int tempId;
+    uint64_t functionId;
     FnName fnname;
     ConstantValue constant;
     SymbolicRange range;
@@ -42,9 +43,9 @@ private:
 
 public:
 
-    Result() : type(), tempId(-1) { }
-    Result(const TIType & _type, const int _tempId = -1) : type(_type), tempId(_tempId) { }
-    Result(TIType && _type, const int _tempId = -1) : type(_type), tempId(_tempId) { }
+    Result() : type(), tempId(-1), functionId(0) { }
+    Result(const TIType & _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId) { }
+    Result(TIType && _type, const int _tempId = -1, const uint64_t _functionId = 0) : type(_type), tempId(_tempId), functionId(_functionId) { }
 
     inline bool istemp() const
     {
@@ -79,6 +80,16 @@ public:
     inline bool isTemp() const
     {
         return tempId != -1;
+    }
+
+    inline void setFunctionId(const uint64_t id)
+    {
+        functionId = id;
+    }
+    
+    inline uint64_t getFunctionId() const
+    {
+        return functionId;
     }
 
     inline bool hasGVNValue() const
@@ -157,6 +168,10 @@ public:
         if (res.tempId != -1)
         {
             out << L", temp id:" << res.tempId;
+        }
+	if (res.functionId)
+        {
+            out << L", function id:" << res.functionId;
         }
         if (res.constant.isKnown())
         {

@@ -49,13 +49,11 @@ void AnalysisVisitor::visit(ast::CallExp & e, const unsigned int lhs)
             {
                 if (getCM().checkGlobalConstant(sym) && it->second.get()->analyze(*this, lhs, e))
                 {
-                    pushCall(e.getDecorator().getCall());
                     return;
                 }
             }
 
             visitArguments(name, lhs, info.type, e, e.getArgs());
-            pushCall(e.getDecorator().getCall());
         }
         else
         {

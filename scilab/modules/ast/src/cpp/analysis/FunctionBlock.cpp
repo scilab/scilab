@@ -21,7 +21,7 @@
 namespace analysis
 {
 
-FunctionBlock::FunctionBlock(const unsigned int id, Block * parent, ast::Exp * exp) : Block(id, parent, exp), loopAnalyzer(exp), constraintManager(*this, dm->topFunction()), lhs(0), rhs(0), maxVarId(0)
+FunctionBlock::FunctionBlock(const unsigned int id, Block * parent, ast::Exp * exp) : Block(id, parent, exp), functionId(0), loopAnalyzer(exp), constraintManager(*this, dm->topFunction()), lhs(0), rhs(0), maxVarId(0)
 {
     gvn = &fgvn;
     dm->pushFunction(this);
@@ -91,33 +91,40 @@ void FunctionBlock::setGlobals(const tools::SymbolOrdSet & v)
         return tuple;
     }
 */
-MacroOut FunctionBlock::getOuts()
+MacroOut FunctionBlock::getOuts(CompleteMacroSignature & cms)
 {
     MacroOut mo;
     mo.maxVarId = maxVarId;
     std::vector<TIType> & v = mo.tuple.types;
     v.reserve(lhs);
     unsigned int i = 0;
+    GVN & cmsGVN = cms.getGVN();
     for (std::vector<symbol::Symbol>::const_iterator s = out.begin(); i < lhs; ++i, ++s)
     {
         tools::SymbolMap<Info>::iterator it;
         Block * block = getDefBlock(*s, it, false);
         if (block == this)
         {
-            v.emplace_back(it->second.type);
+	    const TIType & ty = it->second.type;
+	    const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
+	    const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
+            v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
         }
         else
         {
             addGlobal(*s);
             if (block)
             {
-                v.emplace_back(it->second.type);
+		const TIType & ty = it->second.type;
+		const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
+		const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
+		v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
             }
             else
             {
                 // TODO: if exists is false then it is an error
                 bool exists;
-                v.emplace_back(DataManager::getSymInScilabContext(fgvn, *s, exists));
+                v.emplace_back(DataManager::getSymInScilabContext(cmsGVN, *s, exists));
             }
         }
     }

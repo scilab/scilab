@@ -30,12 +30,13 @@ bool CeilAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(e.getName()).getSymbol();
             const std::wstring & name = sym.getName();
             std::vector<TIType> vargs({ Rtype });
-            std::vector<TIType> out = visitor.getDM().call(visitor, lhs, sym, vargs, &e);
+	    uint64_t functionId = 0;
+            std::vector<TIType> out = visitor.getDM().call(visitor, lhs, sym, vargs, &e, functionId);
             if (Rtype.isintegral())
             {
                 const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
 
-                e.getDecorator().res = Result(Rtype, R.getTempId());
+                e.getDecorator().res = Result(Rtype, R.getTempId(), functionId);
                 e.getDecorator().setCall(name, vargs);
                 visitor.setResult(e.getDecorator().res);
 
@@ -44,7 +45,7 @@ bool CeilAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
 
             if (out[0].type != TIType::UNKNOWN)
             {
-                e.getDecorator().res = Result(Rtype, R.getTempId());
+                e.getDecorator().res = Result(Rtype, R.getTempId(), functionId);
                 e.getDecorator().setCall(name, vargs);
                 visitor.setResult(e.getDecorator().res);
 

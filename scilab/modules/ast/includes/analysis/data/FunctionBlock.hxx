@@ -34,10 +34,12 @@ namespace analysis
 {
 
 struct MacroOut;
+class CompleteMacroSignature;
 
 class FunctionBlock : public Block
 {
 
+    uint64_t functionId;
     std::wstring name;
     std::vector<symbol::Symbol> in;
     std::vector<symbol::Symbol> out;
@@ -57,7 +59,12 @@ class FunctionBlock : public Block
 public:
 
     FunctionBlock(const unsigned int id, Block * parent, ast::Exp * exp);
-    virtual ~FunctionBlock() { }
+
+    virtual ~FunctionBlock()
+	{
+	    // we got a clone
+	    delete exp;
+	}
 
     inline ConstraintManager & getConstraintManager()
     {
@@ -110,9 +117,24 @@ public:
         rhs = _rhs;
     }
 
-    inline const MPolyConstraintSet & getConstraints() const
+    inline void setFunctionId(const uint64_t id)
+	{
+	    functionId = id;
+	}
+
+    inline uint64_t getFunctionId() const
+	{
+	    return functionId;
+	}
+
+    inline const MPolyConstraintSet & getVerifiedConstraints() const
     {
-        return constraintManager.getSet();
+        return constraintManager.getVerifiedConstraints();
+    }
+
+    inline const ConstraintManager::UnverifiedSet & getUnverifiedConstraints() const
+    {
+        return constraintManager.getUnverifiedConstraints();
     }
 
     inline const std::set<symbol::Symbol> & getGlobalConstants() const
@@ -156,7 +178,7 @@ public:
     bool addIn(const TITypeSignatureTuple & tuple, const std::vector<GVN::Value *> & values);
     void setGlobals(const tools::SymbolOrdSet & v);
     //TITypeSignatureTuple getGlobals(std::vector<symbol::Symbol> & v);
-    MacroOut getOuts();
+    MacroOut getOuts(CompleteMacroSignature & cms);
     void setInOut(MacroDef * macrodef, const unsigned int rhs, const std::vector<TIType> & _in);
 
     friend std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock);

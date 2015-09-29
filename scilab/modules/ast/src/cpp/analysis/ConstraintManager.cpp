@@ -53,24 +53,38 @@ bool ConstraintManager::check(const MPolyConstraintSet & set, const std::vector<
     InferenceConstraint::Result res = set.check((parent && parent->function) ? parent->function->getGVN() : function->getGVN(), values);
     switch (res)
     {
-        case InferenceConstraint::Result::RESULT_TRUE:
+        case InferenceConstraint::RESULT_TRUE:
         {
-            mpConstraints.add(set);
-            set.applyConstraints(values);
+	    if (!set.empty())
+	    {
+		verified.add(set);
+		set.applyConstraints(values);
+	    }
             return true;
         }
-        case InferenceConstraint::Result::RESULT_FALSE:
+        case InferenceConstraint::RESULT_FALSE:
+	    if (!set.empty())
+	    {
+		unverified.emplace(set);
+	    }
             return false;
-        case InferenceConstraint::Result::RESULT_DUNNO:
+        case InferenceConstraint::RESULT_DUNNO:
         {
             if (parent && parent->function)
             {
                 const bool ret = parent->check(set.getMPConstraints(values), parent->function->getInValues());
-                if (ret)
-                {
-                    mpConstraints.add(set);
-                    set.applyConstraints(values);
-                }
+		if (!set.empty())
+		{
+		    if (ret)
+		    {
+			verified.add(set);
+			set.applyConstraints(values);
+		    }
+		    else
+		    {
+			unverified.emplace(set);
+		    }
+		}
                 return ret;
             }
             else
@@ -87,27 +101,43 @@ bool ConstraintManager::check(Kind kind, const std::vector<GVN::Value *> & value
     {
         const InferenceConstraint & ic = *generalConstraints[kind];
         InferenceConstraint::Result res = ic.check(function->getGVN(), values);
+	const MPolyConstraintSet set = ic.getMPConstraints(values); 
         //std::wcerr << "DEBUG2=" << res << std::endl;
 
         switch (res)
         {
-            case InferenceConstraint::Result::RESULT_TRUE:
+            case InferenceConstraint::RESULT_TRUE:
             {
-                mpConstraints.add(ic.getMPConstraints(values));
-                ic.applyConstraints(values);
+		if (!set.empty())
+		{
+		    verified.add(set);
+		    ic.applyConstraints(values);
+		}
                 return true;
             }
-            case InferenceConstraint::Result::RESULT_FALSE:
+            case InferenceConstraint::RESULT_FALSE:
+		if (!set.empty())
+		{
+		    unverified.emplace(set);
+		}
                 return false;
-            case InferenceConstraint::Result::RESULT_DUNNO:
+            case InferenceConstraint::RESULT_DUNNO:
             {
                 MPolyConstraintSet set = ic.getMPConstraints(values);
                 const bool ret = check(set, function->getInValues());
-                if (ret)
-                {
-                    mpConstraints.add(set);
-                    ic.applyConstraints(values);
-                }
+
+		if (!set.empty())
+		{
+		    if (ret)
+		    {
+			verified.add(set);
+			ic.applyConstraints(values);
+		    }
+		    else
+		    {
+			unverified.emplace(set);
+		    }
+		}
                 return ret;
             }
         }
