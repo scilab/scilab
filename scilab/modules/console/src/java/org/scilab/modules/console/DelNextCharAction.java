@@ -17,6 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.text.BadLocationException;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
+import org.scilab.modules.action_binding.InterpreterManagement;
 
 /**
  * Delete character following the caret when an event occurs (equivalent of a SUPPR key press)
@@ -40,10 +41,16 @@ public class DelNextCharAction extends AbstractConsoleAction {
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent e) {
+        int len = configuration.getInputCommandViewStyledDocument().getLength();
+        /*CTRL + D on empty line, send exit command to Scilab*/
+        if (len == 0) {
+            InterpreterManagement.requestScilabExec("exit");
+            return;
+        }
         int currentPosition = configuration.getInputCommandView().getCaretPosition();
 
         /* Do not try to remove an non-existing item */
-        if (currentPosition < configuration.getInputCommandViewStyledDocument().getLength()) {
+        if (currentPosition < len) {
             try {
                 configuration.getInputCommandViewStyledDocument().remove(currentPosition, 1);
             } catch (BadLocationException e1) {

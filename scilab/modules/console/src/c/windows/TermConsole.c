@@ -22,7 +22,6 @@
 #include "TermLine.h"
 #include "scilines.h"
 #include "HistoryManager.h"
-#include "storeCommand.h" /* ismenu */
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 #ifdef CR_1

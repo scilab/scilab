@@ -10,6 +10,7 @@ createvar_
 vartype_
 with_module
 StoreCommand
+StorePrioritaryCommand
 ismenu
 iop_
 freeArrayOfString
