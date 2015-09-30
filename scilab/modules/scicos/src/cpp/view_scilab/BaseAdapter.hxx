@@ -119,7 +119,7 @@ public:
     BaseAdapter(const BaseAdapter& adapter, bool cloneChildren) : m_adaptee(nullptr)
     {
         Controller controller;
-        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id(), cloneChildren);
+        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id(), cloneChildren, true);
         m_adaptee = controller.getObject< Adaptee >(id);
     };
     ~BaseAdapter()

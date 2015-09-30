@@ -300,7 +300,7 @@ void Controller::deleteVector(ScicosID uid, kind_t k, object_properties_t uid_pr
     }
 }
 
-ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren)
+ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren, bool clonePorts)
 {
     auto initial = getObject(uid);
     const kind_t k = initial->kind();
@@ -326,10 +326,14 @@ ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID 
     else if (k == BLOCK)
     {
         deepClone(mapped, uid, o, k, PARENT_DIAGRAM, false);
-        deepCloneVector(mapped, uid, o, k, INPUTS, true);
-        deepCloneVector(mapped, uid, o, k, OUTPUTS, true);
-        deepCloneVector(mapped, uid, o, k, EVENT_INPUTS, true);
-        deepCloneVector(mapped, uid, o, k, EVENT_OUTPUTS, true);
+        if (clonePorts)
+        {
+            // Only copy the block, without any port
+            deepCloneVector(mapped, uid, o, k, INPUTS, true);
+            deepCloneVector(mapped, uid, o, k, OUTPUTS, true);
+            deepCloneVector(mapped, uid, o, k, EVENT_INPUTS, true);
+            deepCloneVector(mapped, uid, o, k, EVENT_OUTPUTS, true);
+        }
 
         deepClone(mapped, uid, o, k, PARENT_BLOCK, false);
         if (cloneChildren)
@@ -379,7 +383,7 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
         {
             if (v != 0)
             {
-                cloned = cloneObject(mapped, v, true);
+                cloned = cloneObject(mapped, v, true, true);
             }
             else
             {
@@ -423,7 +427,7 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
             {
                 if (id != 0)
                 {
-                    cloned.push_back(cloneObject(mapped, id, true));
+                    cloned.push_back(cloneObject(mapped, id, true, true));
                 }
                 else
                 {
@@ -440,10 +444,10 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
     setObjectProperty(clone, k, p, cloned);
 }
 
-ScicosID Controller::cloneObject(ScicosID uid, bool cloneChildren)
+ScicosID Controller::cloneObject(ScicosID uid, bool cloneChildren, bool clonePorts)
 {
     std::map<ScicosID, ScicosID> mapped;
-    ScicosID clone = cloneObject(mapped, uid, cloneChildren);
+    ScicosID clone = cloneObject(mapped, uid, cloneChildren, clonePorts);
     CLONE_PRINT(uid, clone);
     return clone;
 }

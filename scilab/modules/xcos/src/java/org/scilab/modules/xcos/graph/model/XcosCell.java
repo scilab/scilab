@@ -449,7 +449,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
     public Object clone() throws CloneNotSupportedException {
         JavaController controller = new JavaController();
         XcosCell c = (XcosCell) super.clone();
-        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false), getKind());
+        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
         return c;
     }
 
