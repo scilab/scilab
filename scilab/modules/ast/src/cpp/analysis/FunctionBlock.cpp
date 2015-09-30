@@ -303,7 +303,7 @@ std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
         }
     }
 
-    ast::PrettyPrintVisitor dv(out);
+    ast::PrettyPrintVisitor dv(out, true, true);
     fblock.exp->accept(dv);
 
     return out;

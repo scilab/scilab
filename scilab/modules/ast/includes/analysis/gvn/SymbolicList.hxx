@@ -30,14 +30,14 @@ class SymbolicList
 
     union Value
     {
-	GVN::Value * gvnVal;
-	double dval;
+        GVN::Value * gvnVal;
+        double dval;
 
-	Value() { }
-	Value(GVN::Value * val) : gvnVal(val) { }
-	Value(double val) : dval(val) { }
+        Value() { }
+        Value(GVN::Value * val) : gvnVal(val) { }
+        Value(double val) : dval(val) { }
     };
-    
+
     Value start;
     Value step;
     Value end;
@@ -73,99 +73,97 @@ public:
     SymbolicList(SymbolicList && sl) : symbolic(sl.symbolic), start(sl.start), step(sl.step), end(sl.end) { }
 
     inline SymbolicList & operator=(SymbolicList && sl)
-	{
-	    symbolic = sl.symbolic;
-	    start = sl.start;
-	    step = sl.step;
-	    end = sl.end;
+    {
+        symbolic = sl.symbolic;
+        start = sl.start;
+        step = sl.step;
+        end = sl.end;
 
-	    return *this;
-	}
+        return *this;
+    }
 
     inline bool isSymbolic() const
-	{
-	    return symbolic;
-	}
+    {
+        return symbolic;
+    }
 
     inline void setStart(GVN::Value * val)
-	{
-	    start.gvnVal = val;
-	}
+    {
+        start.gvnVal = val;
+    }
 
     inline void setStep(GVN::Value * val)
-	{
-	    step.gvnVal = val;
-	}
+    {
+        step.gvnVal = val;
+    }
 
     inline void setEnd(GVN::Value * val)
-	{
-	    end.gvnVal = val;
-	}
-    
+    {
+        end.gvnVal = val;
+    }
+
     inline GVN::Value * getStart() const
-	{
-	    return start.gvnVal;
-	}
+    {
+        return start.gvnVal;
+    }
 
     inline GVN::Value * getStep() const
-	{
-	    return step.gvnVal;
-	}
+    {
+        return step.gvnVal;
+    }
 
     inline GVN::Value * getEnd() const
-	{
-	    return end.gvnVal;
-	}
+    {
+        return end.gvnVal;
+    }
 
     inline double getStart(double) const
-	{
-	    return start.dval;
-	}
-    
+    {
+        return start.dval;
+    }
+
     inline double getStep(double) const
-	{
-	    return step.dval;
-	}
+    {
+        return step.dval;
+    }
 
     inline double getEnd(double) const
-	{
-	    return end.dval;
-	}
-    
+    {
+        return end.dval;
+    }
+
     bool getType(GVN & gvn, TIType & type) const;
     void evalDollar(GVN & gvn, const GVN::Value * dollarVal);
     bool checkAsIndex(const GVN::Value * dim);
-   
+
     static bool get(AnalysisVisitor & visitor, ast::ListExp & le, SymbolicList & sl);
-    
+
     /**
      * \brief Overload of the << operator
      */
     friend inline std::wostream & operator<<(std::wostream & out, const SymbolicList & sl)
     {
-	if (sl.symbolic)
-	{
-	    out << *sl.start.gvnVal->poly << L" : " << *sl.step.gvnVal->poly << L" : " << *sl.end.gvnVal->poly;
-	}
-	else
-	{
-	    out << sl.start.dval << L" : " << sl.step.dval << L" : " << sl.end.dval;
-	}
+        if (sl.symbolic)
+        {
+            out << *sl.start.gvnVal->poly << L" : " << *sl.step.gvnVal->poly << L" : " << *sl.end.gvnVal->poly;
+        }
+        else
+        {
+            out << sl.start.dval << L" : " << sl.step.dval << L" : " << sl.end.dval;
+        }
         return out;
     }
 
-private:
-
     inline static GVN::Value * evalDollar(GVN & gvn, const GVN::Value * value, const GVN::Value * dollar, const GVN::Value * dollarVal)
-	{
-	    if (value->poly->contains(dollar->value))
-	    {
-		const MultivariatePolynomial & mp = value->poly->eval(std::pair<unsigned long long, const MultivariatePolynomial *>(dollar->value, dollarVal->poly));
-		return gvn.getValue(mp);
-	    }
+    {
+        if (value->poly->contains(dollar->value))
+        {
+            const MultivariatePolynomial & mp = value->poly->eval(std::pair<unsigned long long, const MultivariatePolynomial *>(dollar->value, dollarVal->poly));
+            return gvn.getValue(mp);
+        }
 
-	    return nullptr;
-	}
+        return nullptr;
+    }
 };
 
 } // namespace analysis
