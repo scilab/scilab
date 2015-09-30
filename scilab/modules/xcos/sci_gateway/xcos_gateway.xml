@@ -35,5 +35,6 @@
     <gateway name="sci_xcosPalGet"              function="xcosPalGet"               type="0" />
     <!-- Scilab 6 Gateways (C++) -->
     <gateway name="sci_Xcos"                    function="xcos"                     type="1" />
+    <gateway name="sci_xcosCellCreated"         function="xcosCellCreated"          type="1" />
 </module>
 

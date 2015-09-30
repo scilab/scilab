@@ -94,6 +94,8 @@ public class ContentEntry implements Entry {
         } catch (TransformerException e) {
             e.printStackTrace();
             Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

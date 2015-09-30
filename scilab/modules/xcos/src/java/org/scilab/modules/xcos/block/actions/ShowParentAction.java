@@ -83,7 +83,7 @@ public class ShowParentAction extends DefaultAction {
                 controller.getObjectProperty(graph.getUID(), kind, ObjectProperties.PARENT_DIAGRAM, parent);
             }
 
-            XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());
+            XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getName());
 
             XcosDiagram diagram = (XcosDiagram) view.getVisibleObjects().get(parent[0]);
             if (diagram == null) {

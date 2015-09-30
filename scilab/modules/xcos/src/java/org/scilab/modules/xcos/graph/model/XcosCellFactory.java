@@ -16,19 +16,22 @@ import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManag
 import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.Optional;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
+import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.UpdateStatus;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosView;
-import org.scilab.modules.xcos.XcosViewListener;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -47,7 +50,10 @@ import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.Summation;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
+import org.scilab.modules.xcos.link.BasicLink;
+import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
+import org.scilab.modules.xcos.link.explicit.ExplicitLink;
+import org.scilab.modules.xcos.link.implicit.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -55,8 +61,12 @@ import org.scilab.modules.xcos.port.input.ExplicitInputPort;
 import org.scilab.modules.xcos.port.input.ImplicitInputPort;
 import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
+import org.scilab.modules.xcos.utils.BlockPositioning;
+
 import com.mxgraph.model.mxCell;
+import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxPoint;
 
 /**
  * Ease the creation of any {@link Kind} of graphical object
@@ -144,6 +154,33 @@ public final class XcosCellFactory {
         }
     }
 
+    private static class ScicosObjectOwner {
+        final long uid;
+        final Kind kind;
+
+        public ScicosObjectOwner(long uid, Kind kind) {
+            this.uid = uid;
+            this.kind = kind;
+
+            JavaController controller = new JavaController();
+            controller.referenceObject(uid);
+        }
+
+        public long getUID() {
+            return uid;
+        }
+
+        public Kind getKind() {
+            return kind;
+        }
+
+        @Override
+        protected void finalize() throws Throwable {
+            JavaController controller = new JavaController();
+            controller.deleteObject(uid);
+        }
+    }
+
     // CSON: ClassDataAbstractionCoupling
 
     /** Default singleton constructor */
@@ -151,11 +188,146 @@ public final class XcosCellFactory {
         // This class is a static singleton
     }
 
+    /**
+     * This is a notify method mapped as a Scilab gateway used to alert with the loaded UID
+     * @param uid the loaded UID
+     * @param kind the kind of the created object (as an int)
+     */
+    @ScilabExported(module = "xcos", filename = "XcosCellFactory.giws.xml")
+    public static void created(long uid, int kind) {
+        lastCreated = new ScicosObjectOwner(uid, Kind.values()[kind]);
+
+    }
+    private static ScicosObjectOwner lastCreated = null;
+
+    /*
+     * Diagram management
+     */
+
+    /**
+     * Allocate a Java XcosDiagram from a COSF file.
+     *
+     * This method execute the file and register a
+     *
+     * @param controller the controller
+     * @param filename the file to execute
+     * @return an allocated XcosDiagram
+     */
+    public static XcosDiagram createDiagramFromCOSF(final JavaController controller, String filename) {
+        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getName());
+        JavaController.unregister_view(view);
+
+        XcosDiagram diagram;
+        try {
+            synchronousScilabExec(
+                "function f(), " +
+                buildCall("exec", filename, -1) +
+                buildCall("xcosCellCreated", "scs_m".toCharArray()) +
+                "endfunction; f();");
+
+            if (lastCreated.getKind() == Kind.DIAGRAM) {
+                diagram = new XcosDiagram(lastCreated.getUID(), lastCreated.getKind());
+                insertChildren(controller, diagram);
+                lastCreated = null;
+            } else {
+                diagram = null;
+            }
+        } catch (InterpreterException e) {
+            diagram = null;
+        } finally {
+            JavaController.register_view(Xcos.class.getName(), view);
+        }
+
+        return diagram;
+    }
+
+    /**
+     * Insert the diagram MVC children into the JGraphX model
+     * @param controller the shared controller
+     * @param diagram the current diagram instance
+     */
+    public static void insertChildren(JavaController controller, XcosDiagram diagram) {
+        VectorOfScicosID children = new VectorOfScicosID();
+        controller.getObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, children);
+        final int childrenLen = children.size();
+
+        /*
+         * Allocation some pre-sized stash data
+         */
+        final ArrayList<BasicLink> links = new ArrayList<>(childrenLen / 2);
+        final ArrayList<BasicPort> ports = new ArrayList<>(childrenLen);
+
+        /*
+         * Create the XcosCell objects and store some of them for later use
+         */
+        XcosCell[] cells = new XcosCell[childrenLen];
+        for (int i = 0; i < childrenLen; i++) {
+            final long uid = children.get(i);
+            final Kind kind = controller.getKind(uid);
+
+            switch (kind) {
+                case ANNOTATION:
+                case BLOCK:
+                    BasicBlock b = createBlock(controller, uid, kind);
+                    cells[i] = b;
+                    BlockPositioning.updatePortsPosition(diagram, b);
+                    b.getTypedChildrenIndexes(BasicPort.class).stream()
+                    .map(index -> b.getChildAt(index))
+                    .filter(c -> c instanceof BasicPort)
+                    .forEach( c -> ports.add((BasicPort) c));
+                    break;
+                case LINK:
+                    BasicLink l = createLink(controller, uid, kind);
+                    cells[i] = l;
+                    links.add(l);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        /*
+         * Relink the links on the XcosCell part
+         */
+        Comparator<XcosCell> compare = (c1, c2) -> (int) (c1.getUID() - c2.getUID());
+        Collections.sort(ports, compare);
+        for (BasicLink l : links) {
+            long[] src = new long[1];
+            controller.getObjectProperty(l.getUID(), l.getKind(), ObjectProperties.SOURCE_PORT, src);
+
+            long[] dest = new long[1];
+            controller.getObjectProperty(l.getUID(), l.getKind(), ObjectProperties.DESTINATION_PORT, dest);
+
+            int srcIndex = Collections.binarySearch(ports, new XcosCell(src[0], Kind.PORT), compare);
+            if (srcIndex > 0) {
+                l.setSource(ports.get(srcIndex));
+            }
+
+            int destIndex = Collections.binarySearch(ports, new XcosCell(dest[0], Kind.PORT), compare);
+            if (destIndex > 0) {
+                l.setTarget(ports.get(destIndex));
+            }
+        }
+
+        diagram.addCells(cells);
+    }
+
+
+
     /*
      * Block and Annotation management
      */
 
-
+    /**
+     * Instantiate a new block with the specified interface function.
+     *
+     * @param func
+     *            the interface function
+     * @return A new instance of a block.
+     */
+    public static BasicBlock createBlock(BlockInterFunction func) {
+        return createBlock(func, func.name());
+    }
 
     /**
      * Instantiate a new block with the specified UID value and interface function
@@ -174,100 +346,67 @@ public final class XcosCellFactory {
         if (func.isPresent()) {
             block = createBlock(func.get());
         } else {
-            block = createBlock(BlockInterFunction.BASIC_BLOCK);
+            block = createBlock(BlockInterFunction.BASIC_BLOCK, interfaceFunction);
         }
         block.setStyle(interfaceFunction);
 
         return block;
     }
 
-
-
-    private static class BlockLoadedListener extends XcosViewListener {
-        private long uid;
-
-        public BlockLoadedListener() {
-            uid = 0;
-        }
-
-        public long getUID() {
-            return uid;
-        }
-
-        /**
-         * When a unique block is created then store it for later use.
-         */
-        @Override
-        public void objectCreated(long uid, Kind kind) {
-            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
-                return;
-            }
-
-            this.uid = uid;
-        }
-
-        /**
-         * When a composite block is created we track the PARENT_BLOCK / CHILDREN association to store the parent.
-         */
-        @Override
-        public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
-            if (status != UpdateStatus.SUCCESS || property != ObjectProperties.CHILDREN) {
-                return;
-            }
-            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
-                return;
-            }
-
-            this.uid = uid;
-        }
+    private static BasicBlock createBlock(BlockInterFunction func, String interfaceFunction) {
+        return createBlock(new JavaController(), func, interfaceFunction);
     }
 
-    /**
-     * Instantiate a new block with the specified interface function.
-     *
-     * @param func
-     *            the interface function
-     * @return A new instance of a block.
-     */
-    public static BasicBlock createBlock(BlockInterFunction func) {
-        return createBlock(new JavaController(), func);
-    }
-
-    /**
-     * Instantiate a new block with the specified interface function.
-     *
-     * @param func
-     *            the interface function
-     * @return A new instance of a block.
-     */
-    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func) {
-        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());
-
-        BlockLoadedListener blockLoaded = new BlockLoadedListener();
-        view.addXcosViewListener(blockLoaded, EnumSet.allOf(Kind.class), true, EnumSet.of(ObjectProperties.CHILDREN));
-
+    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) {
         BasicBlock block;
         try {
-            synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(func.name(), "define"));
-            block = XcosCellFactory.createBlock(controller, func, blockLoaded.getUID());
-        } catch (InterpreterException e1) {
+            synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
+
+            if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(lastCreated.getKind())) {
+                block = createBlock(controller, func, interfaceFunction, lastCreated.getUID());
+                lastCreated = null;
+            } else {
+                block = null;
+            }
+        } catch (InterpreterException e) {
             block = null;
-        } finally {
-            view.removeXcosViewListener(blockLoaded);
         }
 
         return block;
+    }
+
+    private static BasicBlock createBlock(final JavaController controller, long uid, Kind kind) {
+        String[] interfaceFunction = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+
+        return createBlock(controller, interfaceFunction[0], uid);
+    }
+
+    private static BasicBlock createBlock(final JavaController controller, String interfaceFunction, long uid) {
+        Optional<BlockInterFunction> optFunc = EnumSet.allOf(BlockInterFunction.class).stream()
+                                               .filter(f -> f.name().equals(interfaceFunction))
+                                               .findFirst();
+
+        final BlockInterFunction func;
+        if (optFunc.isPresent()) {
+            func = optFunc.get();
+        } else {
+            func = BlockInterFunction.BASIC_BLOCK;
+        }
+
+        return createBlock(controller, func, interfaceFunction, uid);
     }
 
     /**
      * Instantiate a new block with the specified interface function and uid.
      *
      * @param controller the Java controller to use
-     * @param func the interface function
+     * @param func the interface function as an enum
+     * @param interfaceFunction the interface function name
      * @param uid the allocated uid
      * @return A new instance of a block.
      */
-    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, long uid) {
+    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction, long uid) {
         BasicBlock block = null;
         try {
             block = func.getKlass().getConstructor(Long.TYPE).newInstance(uid);
@@ -277,14 +416,25 @@ public final class XcosCellFactory {
             return block;
         }
 
+        /*
+         * Synchronize model information back to the JGraphX data
+         */
         insertPortChildren(controller, block);
+
+        block.setStyle(interfaceFunction);
+
+        VectorOfDouble geom = new VectorOfDouble(4);
+        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.GEOMETRY, geom);
+        block.setGeometry(new mxGeometry(geom.get(0), geom.get(1), geom.get(2), geom.get(3)));
+
+        // FIXME find a way to reuse the Scicos compat handler from org.scilab.modules.xcos.io.scicos
+
         return block;
     }
 
     /*
      * Port management
      */
-
 
     /**
      * Helper used to create port children on a parent block.
@@ -294,7 +444,7 @@ public final class XcosCellFactory {
      * @param controller is the shared controller instance
      * @param parent is the parent {@link mxCell} to modify
      */
-    public static void insertPortChildren(final JavaController controller, final XcosCell parent) {
+    private static void insertPortChildren(final JavaController controller, final XcosCell parent) {
         final EnumSet<ObjectProperties> properties = EnumSet.of(ObjectProperties.INPUTS, ObjectProperties.OUTPUTS, ObjectProperties.EVENT_INPUTS, ObjectProperties.EVENT_OUTPUTS);
         insertPortChildren(controller, properties, parent);
     }
@@ -313,7 +463,7 @@ public final class XcosCellFactory {
      *        <LI>{@link ObjectProperties#EVENT_OUTPUTS}
      * @param parent is the parent {@link mxCell} to modify
      */
-    public static void insertPortChildren(final JavaController controller, final EnumSet<ObjectProperties> properties, final XcosCell parent) {
+    private static void insertPortChildren(final JavaController controller, final EnumSet<ObjectProperties> properties, final XcosCell parent) {
         for (ObjectProperties property : properties) {
             insertPortChildren(controller, property, parent);
         }
@@ -332,7 +482,7 @@ public final class XcosCellFactory {
      *        <LI>{@link ObjectProperties#EVENT_OUTPUTS}
      * @param parent is the parent {@link mxCell} to modify
      */
-    public static void insertPortChildren(final JavaController controller, final ObjectProperties property, final XcosCell parent) {
+    private static void insertPortChildren(final JavaController controller, final ObjectProperties property, final XcosCell parent) {
         if (parent.getKind() != Kind.BLOCK) {
             return;
         }
@@ -385,4 +535,47 @@ public final class XcosCellFactory {
                 return null;
         }
     }
+
+    /*
+     * Link management
+     */
+
+    private static BasicLink createLink(JavaController controller, long uid, Kind kind) {
+        int[] type = new int[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.KIND, type);
+
+        BasicLink link;
+        switch (type[0]) {
+            case -1:
+                link = new CommandControlLink(uid);
+                break;
+            case 1:
+                link = new ExplicitLink(uid);
+                break;
+            case 2:
+                link = new ImplicitLink(uid);
+                break;
+            default:
+                return null;
+        }
+
+        /*
+         * Synchronize model information back to the JGraphX data
+         */
+        VectorOfDouble controlPoints = new VectorOfDouble();
+        controller.getObjectProperty(uid, kind, ObjectProperties.CONTROL_POINTS, controlPoints);
+        final int controlPointsLen = controlPoints.size() / 2;
+
+        ArrayList<mxPoint> points = new ArrayList<>(controlPointsLen);
+        for (int i = 0 ; i < controlPointsLen; i++) {
+            points.add(new mxPoint(controlPoints.get(i), controlPoints.get(i + controlPointsLen)));
+        }
+
+        mxGeometry geom = new mxGeometry();
+        geom.setPoints(points);
+
+        link.setGeometry(geom);
+        return link;
+    }
+
 }

@@ -37,6 +37,8 @@ libscixcos_la_etc_DATA = \
 XCOS_CXX_SOURCES =	\
     src/jni/Xcos.cpp \
     src/jni/Xcos.hxx \
+    src/jni/XcosCellFactory.cpp \
+    src/jni/XcosCellFactory.hxx \
     src/jni/Palette.cpp \
     src/jni/Palette.hxx \
     src/jni/Modelica.cpp \
@@ -48,6 +50,7 @@ XCOS_CXX_SOURCES =	\
 
 GIWS_WRAPPERS = \
     src/jni/Xcos.giws.xml \
+    src/jni/XcosCellFactory.giws.xml \
     src/jni/Palette.giws.xml \
     src/jni/Modelica.giws.xml
 SWIG_WRAPPERS = \
@@ -69,6 +72,7 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_Xcos.cpp \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
+	sci_gateway/cpp/sci_xcosCellCreated.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \

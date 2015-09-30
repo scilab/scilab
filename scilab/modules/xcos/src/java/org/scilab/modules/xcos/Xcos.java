@@ -98,7 +98,7 @@ public final class Xcos {
     private static final String UNABLE_TO_LOAD_BATIK = Messages.gettext("Unable to load the Batik library. \nExpecting version %s ; Getting version %s .");
 
     private static final String CALLED_OUTSIDE_THE_EDT_THREAD = "Called outside the EDT thread.";
-    private static final Logger LOG = Logger.getLogger(Xcos.class.getSimpleName());
+    private static final Logger LOG = Logger.getLogger(Xcos.class.getName());
 
     /** common shared instance */
     private static volatile Xcos sharedInstance;
@@ -161,7 +161,7 @@ public final class Xcos {
         diagrams = new HashMap<>();
 
         view = new XcosView();
-        JavaController.register_view(Xcos.class.getSimpleName(), view);
+        JavaController.register_view(Xcos.class.getName(), view);
         // allocate and install the browser view on demand to avoid any cost
         browser = null;
 
@@ -943,7 +943,7 @@ public final class Xcos {
 
     public mxCell[] lookupForCells(final String[] uid) {
         mxCell[] found = new mxCell[uid.length];
-        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());
+        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getName());
 
         final String[] sortedUIDs = Arrays.copyOf(uid,  uid.length);
         Arrays.sort(sortedUIDs);

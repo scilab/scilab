@@ -16,6 +16,7 @@
 #include "gw_scicos.hxx"
 
 #include "types.hxx"
+#include "int.hxx"
 #include "string.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
@@ -243,7 +244,7 @@ types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCount, typ
     return types::Function::OK;
 }
 
-types::Function::ReturnValue get(types::Double* UIDs, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue get(types::Int64* UIDs, int _iRetCount, types::typed_list &out)
 {
     if (UIDs->getSize() != _iRetCount)
     {
@@ -315,8 +316,8 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
     {
         case types::InternalType::ScilabString:
             return allocate(in, _iRetCount, out);
-        case types::InternalType::ScilabDouble:
-            return get(type->getAs<types::Double>(), _iRetCount, out);
+        case types::InternalType::ScilabInt64:
+            return get(type->getAs<types::Int64>(), _iRetCount, out);
         default:
             Scierror(999, _("%s: Wrong type for input argument #%d: String or ID expected.\n"), funame.data(), 1);
             return types::Function::Error;

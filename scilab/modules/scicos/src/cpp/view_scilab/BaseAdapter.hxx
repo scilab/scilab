@@ -23,6 +23,7 @@
 #include "bool.hxx"
 #include "double.hxx"
 #include "user.hxx"
+#include "int.hxx"
 #include "internal.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
@@ -325,7 +326,7 @@ private:
         // specific case : to ease debugging let the user retrieve the model ID
         if (name == L"modelID")
         {
-            out = new types::Double(m_adaptee->id());
+            out = new types::Int64(m_adaptee->id());
             return true;
         }
 
