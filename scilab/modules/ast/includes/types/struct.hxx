@@ -123,7 +123,7 @@ public :
     using ArrayOf<SingleStruct *>::extract;
     bool extract(const std::wstring& name, InternalType *& out);
 
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e);
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override;
 
     virtual int getInvokeNbOut()
     {

@@ -84,6 +84,10 @@ public:
     }
     /** \} */
 
+    //force devrived class to implement clone method
+    virtual GenVisitor* clone() = 0;
+
+
     /** \name Visit Variable related nodes.
      ** \{ */
 public:

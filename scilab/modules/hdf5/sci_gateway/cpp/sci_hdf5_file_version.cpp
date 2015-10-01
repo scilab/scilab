@@ -13,9 +13,9 @@
 #include <hdf5.h>
 #include "hdf5_gw.hxx"
 #include "function.hxx"
+#include "double.hxx"
 #include "string.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {

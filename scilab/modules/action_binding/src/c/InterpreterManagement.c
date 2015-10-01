@@ -10,12 +10,9 @@
  *
  */
 
-#include <signal.h> /* for SIGINT */
 #include "InterpreterManagement.h"
 #include "storeCommand.h"
-#include "sigbas.h"
-#include "sci_malloc.h"
-#include "charEncoding.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
@@ -35,8 +32,7 @@ int requestScilabExec(char *command)
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)
 {
-    int scilabSignal = SIGINT;
-    //C2F(sigbas)(&scilabSignal);
+    setExecutionBreak();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

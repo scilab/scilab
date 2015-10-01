@@ -130,7 +130,7 @@ public :
     InternalType* extractFullMatrix();
 
     virtual InternalType* extract(typed_list* _pArgs);
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e);
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e) override ;
 
 
     /* return type as string ( double, int, cell, list, ... )*/

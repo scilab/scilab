@@ -118,7 +118,8 @@ public final class Xcos {
     /*
      * Instance data
      */
-    private final Map<Long, Collection<XcosDiagram>> diagrams;
+    private final Map<Long, List<XcosDiagram>> diagrams;
+    private XcosView view;
     private BrowserView browser;
     private boolean onDiagramIteration = false;
     private String lastError = null;
@@ -157,9 +158,11 @@ public final class Xcos {
         /*
          * Allocate data
          */
-        diagrams = new HashMap<Long, Collection<XcosDiagram>>();
+        diagrams = new HashMap<>();
 
-        // allocate and install the view on demand to avoid any cost
+        view = new XcosView();
+        JavaController.register_view(Xcos.class.getSimpleName(), view);
+        // allocate and install the browser view on demand to avoid any cost
         browser = null;
 
         /*
@@ -185,13 +188,17 @@ public final class Xcos {
             this.factory = factory;
         }
         ScilabTabFactory.getInstance().addTabFactory(this.factory);
+
+
     }
 
     protected void finalize() throws Throwable {
         if (browser != null) {
             JavaController.unregister_view(browser);
         }
-    };
+
+        JavaController.unregister_view(view);
+    }
 
     /**
      * Check the dependencies and the version dependencies.
@@ -324,6 +331,25 @@ public final class Xcos {
         return opened;
     }
 
+
+    public Long openedDiagramUID(File f) {
+        Long opened = Long.valueOf(0);
+        if (f == null) {
+            return opened;
+        }
+
+        for (Long diagUID : diagrams.keySet()) {
+            List<XcosDiagram> diags = diagrams.getOrDefault(diagUID, Collections.emptyList());
+
+            if (!diags.isEmpty() && f.equals(diags.get(0).getSavedFile())) {
+                opened = diagUID;
+                break;
+            }
+        }
+
+        return opened;
+    }
+
     /**
      * Check if the in memory file representation is modified
      *
@@ -391,7 +417,7 @@ public final class Xcos {
         /*
          * If it is the first window opened, then open the palette first.
          */
-        if (file == null && diagramId == 0 && openedDiagrams().isEmpty()) {
+        if (openedDiagrams().isEmpty()) {
             PaletteManager.setVisible(true);
         }
 
@@ -411,9 +437,9 @@ public final class Xcos {
         /*
          * looking for an already opened diagram
          */
-        final Collection<XcosDiagram> diags = diagrams.get(f);
-        if (diags != null && !diags.isEmpty()) {
-            diag = diags.iterator().next();
+        final Long rootUID = openedDiagramUID(f);
+        if (rootUID != 0l) {
+            diag = diagrams.get(rootUID).iterator().next();
         }
         // if unsaved and empty, reuse it. Allocate otherwise.
         if (f == null && diag != null && diag.getModel().getChildCount(diag.getDefaultParent()) > 0) {
@@ -500,6 +526,13 @@ public final class Xcos {
     }
 
     /**
+     * @return the Xcos view
+     */
+    public XcosView getXcosView() {
+        return view;
+    }
+
+    /**
      * @return the Browser view
      */
     public BrowserView getBrowser() {
@@ -548,15 +581,21 @@ public final class Xcos {
         if (onDiagramIteration) {
             throw new RuntimeException();
         }
+        if (l == 0l) {
+            throw new IllegalArgumentException();
+        }
 
         /*
          * Create the collection if it does not exist
          */
-        Collection<XcosDiagram> diags = diagrams.get(l);
+        List<XcosDiagram> diags = diagrams.get(l);
         if (diags == null) {
             diags = createDiagramCollection();
             diagrams.put(l, diags);
         }
+
+        // insert the diagram
+        diags.add(diag);
     }
 
     /**
@@ -565,7 +604,7 @@ public final class Xcos {
      * @return the diagram collection
      */
     @SuppressWarnings("serial")
-    public Collection<XcosDiagram> createDiagramCollection() {
+    public List<XcosDiagram> createDiagramCollection() {
         return new ArrayList<XcosDiagram>() {
             @Override
             public boolean add(XcosDiagram element) {
@@ -1084,15 +1123,18 @@ public final class Xcos {
         }
 
         private XcosDiagram getDiagram(boolean isTab, boolean isViewport) {
+            final Xcos instance = getInstance();
             XcosDiagram graph = null;
+
             if (isTab) {
                 // load a new diagram
                 graph = getInstance().configuration.loadDiagram(cachedDocumentType);
             } else if (isViewport) {
                 // get the cached diagram
-                final File f = getInstance().configuration.getFile(cachedDocumentType);
-                final Collection<XcosDiagram> diags = getInstance().diagrams.get(f);
+                final File f = instance.configuration.getFile(cachedDocumentType);
+                final Long rootUID = getInstance().openedDiagramUID(f);
 
+                Collection<XcosDiagram> diags = instance.diagrams.getOrDefault(rootUID, Collections.emptyList());
                 for (XcosDiagram d : diags) {
                     final String id = d.getGraphTab();
                     if (id != null && id.equals(cachedDocumentType.getUuid())) {

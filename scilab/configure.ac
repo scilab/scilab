@@ -1770,6 +1770,9 @@ else
 fi
 AM_CONDITIONAL(DOXYGEN, test $DOXYGEN_ENABLE = yes)
 
+## Valgrind specific code
+PKG_CHECK_EXISTS([valgrind], [PKG_CHECK_MODULES([VALGRIND], [valgrind], [AC_DEFINE([VALGRIND_ENABLE], [], [Enable valgrind specific tweaks])])], [])
+
 ##############################################################
 ## Javasci module
 ##############################################################
@@ -2387,6 +2390,11 @@ echo "  LLVM_INCLUDE ....... = $LLVM_INCLUDE"
 echo "  LLVM_CPPFLAGS ...... = $LLVM_CPPFLAGS"
 echo "  LLVM_LDFLAGS ....... = $LLVM_LDFLAGS"
 echo "  LLVM_LIBS .......... = $LLVM_LIBS"
+
+echo "Valgrind configuration:"
+echo "  VALGRIND_CFLAGS .... = $VALGRIND_CFLAGS"
+echo "  VALGRIND_LIBS ...... = $VALGRIND_LIBS"
+echo ""
 
 echo ""
 echo "Libtool config:"

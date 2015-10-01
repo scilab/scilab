@@ -53,7 +53,6 @@ public final class SplitBlock extends BasicBlock {
      * @return input port
      */
     public BasicPort getIn() {
-        sortChildren();
         return (BasicPort) getChildAt(0);
     }
 
@@ -61,7 +60,6 @@ public final class SplitBlock extends BasicBlock {
      * @return first output port
      */
     public BasicPort getOut1() {
-        sortChildren();
         return (BasicPort) getChildAt(1);
     }
 
@@ -69,7 +67,6 @@ public final class SplitBlock extends BasicBlock {
      * @return second output port
      */
     public BasicPort getOut2() {
-        sortChildren();
         return (BasicPort) getChildAt(2);
     }
 
@@ -88,13 +85,14 @@ public final class SplitBlock extends BasicBlock {
             /*
              * Align the geometry on the grid
              */
-            if (getParentDiagram() != null && getParentDiagram().isGridEnabled()) {
-                final double cx = getParentDiagram().snap(geometry.getCenterX());
-                final double cy = getParentDiagram().snap(geometry.getCenterY());
-
-                geometry.setX(cx - (DEFAULT_SIZE / 2));
-                geometry.setY(cy - (DEFAULT_SIZE / 2));
-            }
+            // FIXME
+            //            if (getParentDiagram() != null && getParentDiagram().isGridEnabled()) {
+            //                final double cx = getParentDiagram().snap(geometry.getCenterX());
+            //                final double cy = getParentDiagram().snap(geometry.getCenterY());
+            //
+            //                geometry.setX(cx - (DEFAULT_SIZE / 2));
+            //                geometry.setY(cy - (DEFAULT_SIZE / 2));
+            //            }
         }
 
         super.setGeometry(geometry);

@@ -18,7 +18,7 @@ import org.scilab.modules.graph.utils.StyleMap;
  * Update the source block when the interface function change.
  */
 public final class UpdateStyleFromInterfunctionAdapter extends XcosViewListener {
-    private UpdateStyleFromInterfunctionAdapter() { }
+    public UpdateStyleFromInterfunctionAdapter() { }
 
     /**
      * Put the interfunction at the start of the style map to preserve
@@ -30,6 +30,9 @@ public final class UpdateStyleFromInterfunctionAdapter extends XcosViewListener 
      */
     @Override
     public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
+        if (status != UpdateStatus.SUCCESS) {
+            return;
+        }
 
         // prevent any unrelated property change, safety code
         if (property != ObjectProperties.INTERFACE_FUNCTION && property != ObjectProperties.STYLE) {
@@ -38,10 +41,10 @@ public final class UpdateStyleFromInterfunctionAdapter extends XcosViewListener 
 
         JavaController controller = new JavaController();
 
-        String[] interfaceFunction = new String[0];
+        String[] interfaceFunction = new String[1];
         controller.getObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
 
-        String[] style = new String[0];
+        String[] style = new String[1];
         controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
 
 

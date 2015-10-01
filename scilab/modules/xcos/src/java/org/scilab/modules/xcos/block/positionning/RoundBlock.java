@@ -46,7 +46,7 @@ public class RoundBlock extends BasicBlock {
          */
         if (child instanceof InputPort) {
             final InputPort port = (InputPort) child;
-            port.setOrientation(getPortOrientation(port.getOrdering()));
+            port.setOrientation(getPortOrientation(index));
 
         }
 

@@ -50,19 +50,19 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
     return _stFunctionName;
 }
 
-types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
+types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
     std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
-        return call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
+        return call(stFunc, in, _iRetCount, out, _isOperator);
     }
 
     // if overload doesn't existe try with short name
     std::wstring stFunc2 = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator, true);
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
-        types::Function::ReturnValue ret = call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
+        types::Function::ReturnValue ret = call(stFunc, in, _iRetCount, out, _isOperator);
         if (ret == types::Function::OK && ConfigVariable::getWarningMode())
         {
             char* pstFunc2 = wide_string_to_UTF8(stFunc2.c_str());
@@ -75,10 +75,10 @@ types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _
     }
 
     // get exeception with overloading error
-    return call(stFunc, in, _iRetCount, out, _execMe, _isOperator);
+    return call(stFunc, in, _iRetCount, out, _isOperator);
 }
 
-types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, ast::ConstVisitor *_execMe, bool _isOperator)
+types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
     types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(_stOverloadingFunctionName));
     types::Callable *pCall = NULL;
@@ -115,15 +115,7 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
         ConfigVariable::where_begin(0, 0, pCall);
 
         types::Function::ReturnValue ret;
-        if (_execMe)
-        {
-            ret = pCall->call(in, opt, _iRetCount, out, _execMe);
-        }
-        else
-        {
-            ast::ExecVisitor exec;
-            ret = pCall->call(in, opt, _iRetCount, out, &exec);
-        }
+        ret = pCall->call(in, opt, _iRetCount, out);
 
         // remove function name in where
         ConfigVariable::where_end();

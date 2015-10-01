@@ -509,6 +509,9 @@
 /* If it is UMFPACK/Suitesparse or UMFPACK standalone */
 #undef UMFPACK_SUITESPARSE
 
+/* Enable valgrind specific tweaks */
+#undef VALGRIND_ENABLE
+
 /* Version number of package */
 #undef VERSION
 

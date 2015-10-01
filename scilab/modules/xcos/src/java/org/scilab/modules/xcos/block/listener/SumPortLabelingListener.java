@@ -80,18 +80,19 @@ public class SumPortLabelingListener implements PropertyChangeListener,
         /**
          * Set the ports labels
          */
-        for (InputPort port : ports) {
-            final double gain;
-
-            if (data.isEmpty()
-                    || data.getRealPart().length < port.getOrdering()) {
-                gain = 1;
-            } else {
-                gain = data.getRealPart()[port.getOrdering() - 1][0];
-            }
-
-            port.setValue(getLabel(gain));
-        }
+        // FIXME
+        //        for (InputPort port : ports) {
+        //            final double gain;
+        //
+        //            if (data.isEmpty()
+        //                    || data.getRealPart().length < port.getOrdering()) {
+        //                gain = 1;
+        //            } else {
+        //                gain = data.getRealPart()[port.getOrdering() - 1][0];
+        //            }
+        //
+        //            port.setValue(getLabel(gain));
+        //        }
 
         /**
          * Check if all the values are equal to the default one.

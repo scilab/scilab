@@ -13,7 +13,6 @@
 #include "types_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "string.hxx"
 #include "context.hxx"
 

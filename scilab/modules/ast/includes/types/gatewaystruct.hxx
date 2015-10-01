@@ -29,7 +29,6 @@ public :
     int*                    m_piRetCount;
     char*                   m_pstName;
     int*                    m_pOutOrder;
-    ast::ConstVisitor*      m_pVisitor;
 
     GatewayStruct() {};
     ~GatewayStruct() {};

@@ -603,7 +603,7 @@ bool ImplicitList::neg(InternalType *& out)
     return false;
 }
 
-bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {

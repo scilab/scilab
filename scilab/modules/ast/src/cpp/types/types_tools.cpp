@@ -831,6 +831,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
             {
                 ConfigVariable::resetError();
                 ostr.str(L"");
+                ConfigVariable::resetExecutionBreak();
                 return types::Function::Error;
             }
 
@@ -843,8 +844,12 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
             scilabForcedWriteW(ostr.str().c_str());
             ostr.str(L"");
         }
-        while (bFinish == false);
+        while (bFinish == false && ConfigVariable::isExecutionBreak() == false);
 
+        if (bFinish == false)
+        {
+            ConfigVariable::resetExecutionBreak();
+        }
         pIT->clearPrintState();
         return types::Function::OK;
     }

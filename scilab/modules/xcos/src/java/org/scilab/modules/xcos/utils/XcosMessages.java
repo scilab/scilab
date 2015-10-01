@@ -120,7 +120,8 @@ public final class XcosMessages {
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
     public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demonstrations");
-    public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
+    // For the moment, "About Xcos" points to "About Scilab", we may update this when we get a nice splash image
+    public static final String ABOUT_XCOS = Messages.gettext("About Scilab") + DOTS;
 
     /* PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");

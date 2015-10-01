@@ -54,14 +54,11 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
-import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.SaveAsAction;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.block.io.EventInBlock;
@@ -72,6 +69,8 @@ import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.link.BasicLink;
@@ -162,9 +161,11 @@ public class XcosDiagram extends ScilabGraph {
             scicosParameters = null;
         }
 
+        // add the default parent (the JGraphX layer)
         XcosCell parent = new XcosCell(this.uid, this.kind);
-        getModel().add(getModel().getRoot(), parent, 0);
+        ((mxICell) getModel().getRoot()).insert(parent);
         setDefaultParent(parent);
+
         setComponent(new GraphComponent(this));
         initComponent();
 
@@ -249,14 +250,14 @@ public class XcosDiagram extends ScilabGraph {
 
                 final int value1;
                 if (data1.size() >= 1) {
-                    value1 = (int) data1.get(0);
+                    value1 = data1.get(0);
                 } else {
                     value1 = 0;
                 }
 
                 final int value2;
                 if (data2.size() >= 1) {
-                    value2 = (int) data2.get(0);
+                    value2 = data2.get(0);
                 } else {
                     value2 = 0;
                 }
@@ -459,7 +460,7 @@ public class XcosDiagram extends ScilabGraph {
             try {
                 for (int i = 0; i < cells.length; ++i) {
                     if (cells[i] instanceof BasicBlock) {
-                        BlockPositioning.updateBlockView((BasicBlock) cells[i]);
+                        BlockPositioning.updateBlockView(diagram, (BasicBlock) cells[i]);
                     }
                 }
             } finally {
@@ -597,7 +598,7 @@ public class XcosDiagram extends ScilabGraph {
             diagram.getModel().beginUpdate();
             try {
                 final BasicBlock updatedBlock = (BasicBlock) evt.getProperty(XcosConstants.EVENT_BLOCK_UPDATED);
-                BlockPositioning.updateBlockView(updatedBlock);
+                BlockPositioning.updateBlockView(diagram, updatedBlock);
 
                 diagram.getView().clear(updatedBlock, true, true);
 
@@ -851,7 +852,7 @@ public class XcosDiagram extends ScilabGraph {
         final BasicPort linkSource = (BasicPort) link.getSource();
         final BasicPort linkTarget = (BasicPort) link.getTarget();
 
-        final SplitBlock splitBlock = (SplitBlock) BlockFactory.createBlock(BlockInterFunction.SPLIT_f);
+        final SplitBlock splitBlock = (SplitBlock) XcosCellFactory.createBlock(BlockInterFunction.SPLIT_f);
 
         getModel().beginUpdate();
         try {
@@ -1958,10 +1959,8 @@ public class XcosDiagram extends ScilabGraph {
      */
     @Override
     public String getToolTipForCell(final Object cell) {
-        if (cell instanceof BasicBlock) {
-            return ((BasicBlock) cell).getToolTipText();
-        } else if (cell instanceof BasicPort) {
-            return ((BasicPort) cell).getToolTipText();
+        if (cell instanceof XcosCell) {
+            return String.valueOf(((XcosCell) cell).getUID());
         }
         return "";
     }
@@ -2121,5 +2120,11 @@ public class XcosDiagram extends ScilabGraph {
                 super.setCell(current);
             }
         };
+    }
+
+    @Override
+    protected void finalize() throws Throwable {
+        JavaController controller = new JavaController();
+        controller.deleteObject(uid);
     }
 }

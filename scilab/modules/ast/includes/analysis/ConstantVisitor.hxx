@@ -56,6 +56,19 @@ public:
     {
     }
 
+
+    virtual ConstantVisitor* clone()
+    {
+        if (parent)
+        {
+            return new ConstantVisitor(parent);
+        }
+        else
+        {
+            return new ConstantVisitor(evalSymbols);
+        }
+    }
+
     inline void print_info()
     {
         stop_chrono();

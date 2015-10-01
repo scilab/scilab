@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -85,7 +85,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK32)/include/win32;$(SCILAB_JDK32)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK32)/include/win32;$(SCILAB_JDK32)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;../../../ast/includes/system_env;../../../ast/includes/ast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -125,7 +125,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK64)/include/win32;$(SCILAB_JDK64)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK64)/include/win32;$(SCILAB_JDK64)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;../../../ast/includes/system_env;../../../ast/includes/ast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -166,7 +166,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK32)/include/win32;$(SCILAB_JDK32)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK32)/include/win32;$(SCILAB_JDK32)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;../../../ast/includes/system_env;../../../ast/includes/ast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -214,7 +214,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK64)/include/win32;$(SCILAB_JDK64)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;$(SCILAB_JDK64)/include/win32;$(SCILAB_JDK64)/include;../../../../libs/intl;../../../output_stream/includes;../../../core/includes;../../../jvm/includes;../../../api_scilab/includes;../../../localization/includes;../../../commons/src/jni;../../../ast/includes/system_env;../../../ast/includes/ast;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -283,6 +283,9 @@
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>

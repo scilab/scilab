@@ -25,10 +25,10 @@
 
 #include "sci_malloc.h"
 #include "funcmanager.hxx"
+#include "execvisitor.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
 #include "parser.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -373,14 +373,13 @@ bool FuncManager::ExecuteFile(const std::wstring& _stFile)
         return false;
     }
 
-    ast::ExecVisitor exec;
-
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
     //set mode silent for errors
     ConfigVariable::setPromptMode(-1);
     try
     {
+        ast::ExecVisitor exec;
         parser.getTree()->accept(exec);
     }
     catch (const ast::InternalError& ie)

@@ -150,7 +150,7 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
     return true;
 }
 
-bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -196,7 +196,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
         }
     }
 
-    return ArrayOf<SingleStruct*>::invoke(in, opt, _iRetCount, out, execFunc, e);
+    return ArrayOf<SingleStruct*>::invoke(in, opt, _iRetCount, out, e);
 }
 
 bool Struct::set(int _iRows, int _iCols, SingleStruct* _pIT)

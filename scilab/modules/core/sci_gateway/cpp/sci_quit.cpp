@@ -14,7 +14,7 @@
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "configvariable.hxx"
-#include "threadId.hxx"
+#include "scilabexception.hxx"
 
 types::Function::ReturnValue sci_quit(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

@@ -11,6 +11,7 @@
  *
  */
 
+#include <algorithm>
 #include <sstream>
 #include <vector>
 #include "function.hxx"
@@ -98,7 +99,7 @@ Function::~Function()
 }
 
 
-Function::ReturnValue Function::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
+Function::ReturnValue Function::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out)
 {
     int ret = 1;
     if (m_pLoadDeps != NULL)
@@ -152,7 +153,7 @@ InternalType* OptFunction::clone()
     return new OptFunction(this);
 }
 
-Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
+Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
     int ret = 1;
     if (m_pLoadDeps != NULL)
@@ -189,7 +190,7 @@ InternalType* WrapFunction::clone()
     return new WrapFunction(this);
 }
 
-Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
     int ret = 1;
     if (m_pLoadDeps != NULL)
@@ -232,7 +233,6 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     gStr.m_pOut = tmpOut;
     gStr.m_piRetCount = &_iRetCount;
     gStr.m_pstName = wide_string_to_UTF8(m_wstName.c_str());
-    gStr.m_pVisitor = execFunc;
     // we should use a stack array of the max size to avoid dynamic alloc.
     std::vector<int> outOrder(_iRetCount < 1 ? 1 : _iRetCount, -1);
     gStr.m_pOutOrder = &outOrder[0];
@@ -347,7 +347,7 @@ InternalType* WrapMexFunction::clone()
     return new WrapMexFunction(this);
 }
 
-Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
+Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out)
 {
     int ret = 1;
     if (m_pLoadDeps != NULL)
@@ -438,7 +438,7 @@ DynamicFunction::DynamicFunction(const std::wstring& _wstName, const std::wstrin
     m_pFunction             = NULL;
 }
 
-Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
     if (m_pFunction == NULL)
     {
@@ -449,7 +449,7 @@ Function::ReturnValue DynamicFunction::call(typed_list &in, optional_list &opt, 
     }
 
     /*call function*/
-    if (m_pFunction->call(in, opt, _iRetCount, out, execFunc) != OK)
+    if (m_pFunction->call(in, opt, _iRetCount, out) != OK)
     {
         return Error;
     }

@@ -47,9 +47,9 @@ public :
         return true;
     }
 
-    virtual ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
+    virtual ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) = 0;
 
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e);
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)  override;
 
     virtual bool isInvokable() const
     {

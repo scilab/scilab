@@ -21,7 +21,7 @@
 #include <vector>
 
 #include "visitor.hxx"
-#include "debugvisitor.hxx"
+#include "prettyprintvisitor.hxx"
 #include "execvisitor.hxx"
 #include "printvisitor.hxx"
 #include "allexp.hxx"
@@ -60,7 +60,7 @@ private:
     PolymorphicMacroCache pmc;
     ConstraintManager cm;
     ConstantVisitor cv;
-    ast::DebugVisitor dv;
+    ast::PrettyPrintVisitor dv;
     ast::PrintVisitor pv;
     std::vector<Result> multipleLHS;
     logging::Logger logger;
@@ -86,6 +86,11 @@ public:
     virtual ~AnalysisVisitor()
     {
         //std::cerr << "delete AnalysisVisitor" << std::endl;
+    }
+
+    virtual AnalysisVisitor* clone()
+    {
+        return new AnalysisVisitor();
     }
 
     inline CallAnalyzer * getAnalyzer(const symbol::Symbol & sym)
@@ -126,7 +131,7 @@ public:
         return pv;
     }
 
-    inline ast::DebugVisitor & getDV()
+    inline ast::PrettyPrintVisitor & getDV()
     {
         return dv;
     }

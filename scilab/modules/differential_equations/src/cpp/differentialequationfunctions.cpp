@@ -10,10 +10,11 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "execvisitor.hxx"
 #include "string.hxx"
 #include "double.hxx"
 #include "differentialequationfunctions.hxx"
+#include "configvariable.hxx"
+#include "commentexp.hxx"
 
 extern "C"
 {
@@ -34,6 +35,7 @@ extern "C"
 
 DifferentialEquationFunctions* DifferentialEquation::m_DifferentialEquationFunctions;
 
+using namespace types;
 void DifferentialEquation::addDifferentialEquationFunctions(DifferentialEquationFunctions* _deFunction)
 {
     m_DifferentialEquationFunctions = _deFunction;
@@ -1159,7 +1161,6 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblY    = NULL;
     types::Double* pDblYC   = NULL;
@@ -1210,7 +1211,7 @@ void DifferentialEquationFunctions::callOdeMacroF(int* n, double* t, double* y, 
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1313,7 +1314,6 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
     pDblY->set(y);
@@ -1334,7 +1334,7 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1406,7 +1406,6 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblY = new types::Double(m_odeYRows, m_odeYCols);
     pDblY->set(y);
@@ -1427,7 +1426,7 @@ void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallGFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallGFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1492,7 +1491,6 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // create input args
     types::Double* pDblT = new types::Double(*t);
@@ -1510,7 +1508,7 @@ double DifferentialEquationFunctions::callIntgMacroF(double* t)
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1580,7 +1578,6 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // create input args
     types::Double* pDblX = new types::Double(*x);
@@ -1601,7 +1598,7 @@ double DifferentialEquationFunctions::callInt2dMacroF(double* x, double* y)
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1676,7 +1673,6 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // create input args
     types::Double* pDblXYZ = new types::Double(3, 1);
@@ -1698,7 +1694,7 @@ void DifferentialEquationFunctions::callInt3dMacroF(double* xyz, int* numfun, do
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1771,7 +1767,6 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblX = NULL;
     types::Double* pDblY = NULL;
@@ -1797,7 +1792,7 @@ void DifferentialEquationFunctions::callFevalMacroF(int* nn, double* x1, double*
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1885,7 +1880,6 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblI = NULL;
     types::Double* pDblZ = NULL;
@@ -1909,7 +1903,7 @@ void DifferentialEquationFunctions::callBvodeMacroGsub(int* i, double* z, double
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallGsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallGsubFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -1982,7 +1976,6 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblI = NULL;
     types::Double* pDblZ = NULL;
@@ -2005,7 +1998,7 @@ void DifferentialEquationFunctions::callBvodeMacroDgsub(int* i, double* z, doubl
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallDgsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallDgsubFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2078,7 +2071,6 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblX = NULL;
     types::Double* pDblZ = NULL;
@@ -2101,7 +2093,7 @@ void DifferentialEquationFunctions::callBvodeMacroFsub(double* x, double* z, dou
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsubFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2174,7 +2166,6 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblX = NULL;
     types::Double* pDblZ = NULL;
@@ -2197,7 +2188,7 @@ void DifferentialEquationFunctions::callBvodeMacroDfsub(double* x, double* z, do
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallDfsubFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallDfsubFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2271,7 +2262,6 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblX = NULL;
 
@@ -2288,7 +2278,7 @@ void DifferentialEquationFunctions::callBvodeMacroGuess(double* x, double* z, do
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallGuessFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallGuessFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2382,7 +2372,6 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblT = new types::Double(*t);
     pDblT->IncreaseRef();
@@ -2407,7 +2396,7 @@ void DifferentialEquationFunctions::callImplMacroF(int* neq, double* t, double* 
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2482,7 +2471,6 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblT = new types::Double(*t);
     pDblT->IncreaseRef();
@@ -2507,7 +2495,7 @@ void DifferentialEquationFunctions::callImplMacroG(int* neq, double* t, double* 
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallGFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallGFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2581,7 +2569,6 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblT = new types::Double(*t);
     pDblT->IncreaseRef();
@@ -2606,7 +2593,7 @@ void DifferentialEquationFunctions::callImplMacroJac(int* neq, double* t, double
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2686,7 +2673,6 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblT = new types::Double(*t);
     pDblT->IncreaseRef();
@@ -2711,7 +2697,7 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2816,7 +2802,6 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblT = new types::Double(*t);
     pDblT->IncreaseRef();
@@ -2845,7 +2830,7 @@ void DifferentialEquationFunctions::callDasslMacroJac(double* t, double* y, doub
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -2933,7 +2918,6 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblT = new types::Double(*t);
     pDblT->IncreaseRef();
@@ -2953,7 +2937,7 @@ void DifferentialEquationFunctions::callDasrtMacroG(int* ny, double* t, double* 
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallGFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallGFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -3029,7 +3013,6 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblNeq = new types::Double((double)(*neq));
     pDblNeq->IncreaseRef();
@@ -3076,7 +3059,7 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallPjacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallPjacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -3252,7 +3235,6 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // input arguments psol(R, iR, b)
     types::Double* pDblR = new types::Double(*neq **neq, 1);
@@ -3284,7 +3266,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallPsolFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallPsolFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {

@@ -87,7 +87,7 @@ public :
 
     bool                    toString(std::wostringstream& ostr);
 
-    virtual ReturnValue     call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    virtual ReturnValue     call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring    getTypeStr()
@@ -124,7 +124,7 @@ private :
 public :
     OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
-    Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     InternalType*           clone();
 
     GW_FUNC_OPT             getFunc()
@@ -132,7 +132,7 @@ public :
         return m_pFunc;
     }
 
-private :
+private:
     GW_FUNC_OPT             m_pFunc;
 };
 
@@ -144,7 +144,7 @@ private :
 public :
     WrapFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
-    Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     InternalType*           clone();
 
     OLDGW_FUNC              getFunc()
@@ -163,7 +163,7 @@ private :
 public :
     WrapMexFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
-    Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    Callable::ReturnValue call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     InternalType*           clone();
 
     MEXGW_FUNC              getFunc()
@@ -185,7 +185,8 @@ public :
     virtual ~DynamicFunction();
 
     DynamicFunction(const std::wstring& _wstName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, const std::wstring& _wstLoadDepsName, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
-    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
+
 private :
     Callable::ReturnValue   Init();
     void                    Clear();

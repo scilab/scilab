@@ -10,6 +10,7 @@
 *
 */
 
+#include <algorithm>
 #include "libraries.hxx"
 
 namespace symbol

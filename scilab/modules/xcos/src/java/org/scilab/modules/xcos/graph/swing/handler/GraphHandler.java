@@ -24,9 +24,9 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.port.BasicPort;
@@ -139,7 +139,7 @@ public class GraphHandler extends mxGraphHandler {
     private void createTextBlock(MouseEvent e) {
         // allocate
         JavaController controller = new JavaController();
-        final TextBlock textBlock = (TextBlock) BlockFactory.createBlock(BlockInterFunction.TEXT_f, controller.createObject(Kind.ANNOTATION));
+        final TextBlock textBlock = (TextBlock) XcosCellFactory.createBlock(controller, BlockInterFunction.TEXT_f, controller.createObject(Kind.ANNOTATION));
 
         // set the position of the block
         final mxPoint pt = graphComponent.getPointForEvent(e);

@@ -225,9 +225,9 @@ BOOL setlanguage(const wchar_t *lang)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-const wchar_t *getlanguage(void)
+wchar_t *getlanguage(void)
 {
-    return CURRENTLANGUAGESTRING;
+    return os_wcsdup(CURRENTLANGUAGESTRING);
 }
 /*--------------------------------------------------------------------------*/
 int getcurrentlanguagecode(void)
@@ -334,13 +334,14 @@ const wchar_t *getlanguagealias(void)
 /*--------------------------------------------------------------------------*/
 BOOL needtochangelanguage(const wchar_t *language)
 {
-    const wchar_t *currentlanguage = getlanguage();
-
+    wchar_t *currentlanguage = getlanguage();
     if (wcscmp(language, currentlanguage))
     {
+        free(currentlanguage);
         return TRUE;
     }
 
+    free(currentlanguage);
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/

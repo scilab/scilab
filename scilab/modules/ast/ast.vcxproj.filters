@@ -283,9 +283,6 @@
     <ClInclude Include="includes\exps\whileexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
-    <ClInclude Include="includes\ast\debugvisitor.hxx">
-      <Filter>Header Files\ast</Filter>
-    </ClInclude>
     <ClInclude Include="includes\ast\deserializervisitor.hxx">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
@@ -302,9 +299,6 @@
       <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="includes\ast\macrovarvisitor.hxx">
-      <Filter>Header Files\ast</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\ast\mutevisitor.hxx">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
     <ClInclude Include="includes\ast\printvisitor.hxx">
@@ -1048,18 +1042,30 @@
     <ClInclude Include="includes\jit\calls\JITTicToc.hxx">
       <Filter>Header Files\jit\calls</Filter>
     </ClInclude>
+    <ClInclude Include="includes\ast\breakpoint.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\consoledebugger.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\debuggervisitor.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\debugmanager.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\abstractdebugger.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\ast\prettyprintvisitor.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
-      <Filter>Source Files\ast</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ast\macrovarvisitor.cpp">
-      <Filter>Source Files\ast</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\ast\mutevisitor.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ast\printvisitor.cpp">
@@ -1886,6 +1892,18 @@
     </ClCompile>
     <ClCompile Include="src\cpp\jit\JITTicToc.cpp">
       <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\consoledebugger.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\debuggervisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\debugmanager.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\prettyprintvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

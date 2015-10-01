@@ -171,6 +171,11 @@ public:
     JITVisitor(const analysis::AnalysisVisitor & _analysis);
     virtual ~JITVisitor();
 
+    JITVisitor* clone()
+    {
+        return new JITVisitor(analysis);
+    }
+
     void run();
 
     void dump() const;

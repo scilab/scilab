@@ -17,6 +17,7 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "list.hxx"
 #include "overload.hxx"
 #include "max.hxx"
 #include "min.hxx"

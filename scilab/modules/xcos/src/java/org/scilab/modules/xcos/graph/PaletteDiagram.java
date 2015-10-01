@@ -125,7 +125,7 @@ public class PaletteDiagram extends XcosDiagram {
             if (obj instanceof BasicBlock) {
                 BasicBlock block = (BasicBlock) obj;
                 block.setGeometry(getNewBlockPosition(block.getGeometry(), blockCount));
-                BlockPositioning.updateBlockView(block);
+                BlockPositioning.updateBlockView(this, block);
                 blockCount++;
             }
         }

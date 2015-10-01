@@ -17,9 +17,7 @@ import java.util.Map;
 
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menu.Menu;
-import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
-import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -49,10 +47,5 @@ public final class TextBlock extends BasicBlock {
     protected void customizeMenu(Map < Class <? extends DefaultAction > , Menu > menuList) {
         menuList.get(BlockParametersAction.class).setEnabled(false);
         menuList.get(RegionToSuperblockAction.class).setEnabled(false);
-    }
-
-    @Override
-    public String getToolTipText() {
-        return String.valueOf(getValue());
     }
 }

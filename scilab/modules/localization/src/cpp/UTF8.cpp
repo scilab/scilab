@@ -15,6 +15,7 @@
 #ifndef _MSC_VER
 #include <iconv.h>
 #include <errno.h>
+#include <string.h>
 #endif
 
 #include <cstdlib>
@@ -101,10 +102,6 @@ std::wstring UTF8::toWide(const std::string & str)
 
 std::string UTF8::toUTF8(const std::wstring & wstr)
 {
-    size_t iCharLen = 0;
-    wchar_t *pwstr = _wide;
-    char* pchar = NULL;
-
     if (wstr.empty())
     {
         return std::string();
@@ -112,7 +109,7 @@ std::string UTF8::toUTF8(const std::wstring & wstr)
 
     const int iMaxLen = (int)wstr.size() * MB_CUR_MAX ;
 
-    char * pchar = new char[iMaxLen];
+    char* pchar = new char[iMaxLen];
     size_t iCharLen = wcstombs(pchar, wstr.c_str(), iMaxLen);
     if (iCharLen == (size_t)(-1) )
     {

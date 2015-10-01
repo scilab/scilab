@@ -16,13 +16,17 @@
 #include <iostream>
 
 #include "runvisitor.hxx"
-#include "execvisitor.hxx"
 #include "printvisitor.hxx"
 
 namespace ast
 {
 class EXTERN_AST StepVisitor : public RunVisitorT<StepVisitor>
 {
+    StepVisitor* clone()
+    {
+        return new StepVisitor();
+    }
+
     void visit(const SeqExp &e)
     {
         for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)

@@ -23,6 +23,7 @@
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
 #include "os_string.h"
+#include "storeCommand.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */
@@ -200,7 +201,7 @@ void deleteCurrentChar(void)
     reallocLineBuffer();
     if (max_pos == 0)
     {
-        TerminalBeep();
+        StorePrioritaryCommand("exit");
     }
     else
     {

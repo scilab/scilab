@@ -12,13 +12,15 @@
 
 #include <cstring>
 #include <sstream>
+#include "exp.hxx"
 #include "string.hxx"
 #include "list.hxx"
 #include "tlist.hxx"
 #include "listundefined.hxx"
 #include "callable.hxx"
+#include "polynom.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
+#include "configvariable.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -77,7 +79,7 @@ bool TList::exists(const std::wstring& _sKey)
     return false;
 }
 
-bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -162,7 +164,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     std::wstring stType = getShortTypeStr();
     try
     {
-        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out, &execFunc);
+        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out);
     }
     catch (const ast::InternalError &ie)
     {
@@ -173,7 +175,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             if (stType.size() > 8)
             {
                 std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
-                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, &execFunc);
+                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out);
             }
             else
             {
@@ -182,7 +184,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
         }
         catch (ast::InternalError & /*se*/)
         {
-            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+            ret = Overload::call(L"%l_e", in, 1, out);
         }
     }
 
@@ -299,14 +301,13 @@ bool TList::toString(std::wostringstream& ostr)
     //call overload %type_p if exists
     types::typed_list in;
     types::typed_list out;
-    ast::ExecVisitor exec;
 
     IncreaseRef();
     in.push_back(this);
 
     try
     {
-        if (Overload::generateNameAndCall(L"p", in, 1, out, &exec) == Function::Error)
+        if (Overload::generateNameAndCall(L"p", in, 1, out) == Function::Error)
         {
             ConfigVariable::setError();
         }

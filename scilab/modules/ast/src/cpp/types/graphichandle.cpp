@@ -139,9 +139,8 @@ bool GraphicHandle::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piD
     //InternalType* pIT = (InternalType*)context_get(L"%h_p");
     //if(pIT->isFunction())
     //{
-    //    ast::ExecVisitor execCall;
     //    Function* pCall = (Function*)pIT;
-    //    pCall->call(in, 1, out, &execCall);
+    //    pCall->call(in, 1, out);
     //}
 
     return true;
@@ -178,7 +177,7 @@ long long* GraphicHandle::allocData(int _iSize)
     return new long long[_iSize];
 }
 
-bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -189,11 +188,11 @@ bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount,
         this->IncreaseRef();
         in.push_back(this);
 
-        Overload::call(L"%h_e", in, 1, out, &execFunc);
+        Overload::call(L"%h_e", in, 1, out);
     }
     else
     {
-        return ArrayOf<long long>::invoke(in, opt, _iRetCount, out, execFunc, e);
+        return ArrayOf<long long>::invoke(in, opt, _iRetCount, out, e);
     }
 
     return true;

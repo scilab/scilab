@@ -111,6 +111,8 @@ public class PaletteManagerMouseListener implements MouseListener {
         }
 
         create.setCallback(new CommonCallBack(XcosMessages.CREATE) {
+            private static final long serialVersionUID = 0L;
+
             @Override
             public void callBack() {
                 String name = JOptionPane.showInputDialog(XcosMessages.ASK_FOR_A_NAME, XcosMessages.DEFAULT_CATEGORY_NAME);
@@ -158,6 +160,8 @@ public class PaletteManagerMouseListener implements MouseListener {
     private void setupRename(final JTree paletteTree, final TreePath path, final MenuItem rename) {
         rename.setText(XcosMessages.RENAME);
         rename.setCallback(new CommonCallBack(XcosMessages.RENAME) {
+            private static final long serialVersionUID = 0L;
+
             @Override
             public void callBack() {
                 if (path == null) {
@@ -194,6 +198,8 @@ public class PaletteManagerMouseListener implements MouseListener {
     private void setupRemove(final JTree paletteTree, final TreePath path, final MenuItem remove) {
         remove.setText(XcosMessages.REMOVE);
         remove.setCallback(new CommonCallBack(XcosMessages.REMOVE) {
+            private static final long serialVersionUID = 0L;
+
             @Override
             public void callBack() {
                 if (path == null) {

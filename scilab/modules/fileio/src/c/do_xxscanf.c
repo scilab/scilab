@@ -26,24 +26,30 @@
 #include "core_math.h"
 #include "os_string.h"
 /*--------------------------------------------------------------------------*/
-typedef int (*XXSCANF) (FILE *, wchar_t *, ...);
-typedef int (*FLUSH) (FILE *);
+typedef int (*XXSCANF) (FILE* , char* , ...);
+typedef int (*FLUSH) (FILE*);
 
 /*--------------------------------------------------------------------------*/
-static void set_xxscanf(FILE * fp, XXSCANF * xxscanf, wchar_t **target, wchar_t **strv)
+static void set_xxscanf(FILE* fp, XXSCANF* xxscanf, char** target, wchar_t* strv)
 {
     if (fp == (FILE *) 0)
     {
-        *target = *strv;
-        *xxscanf = (XXSCANF) swscanf;
+        *target = wide_string_to_UTF8(strv);
+        *xxscanf = (XXSCANF) sscanf;
     }
     else
     {
-        *target = (wchar_t *)fp;
-        *xxscanf = (XXSCANF) fwscanf;
+        *target = (char*)fp;
+        *xxscanf = (XXSCANF) fscanf;
     }
 }
-
+static void delete_target(FILE* fp, char* target)
+{
+    if (target && fp == (FILE *) 0)
+    {
+        FREE(target);
+    }
+}
 /*--------------------------------------------------------------------------*/
 int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *nargs, wchar_t *strv, int *retval, rec_entry *buf, sfdir *type)
 {
@@ -62,13 +68,14 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
     wchar_t backupcurrrentchar;
     wchar_t directive;
     wchar_t *p1 = NULL;
-    wchar_t *target = NULL;
+    char* target = NULL;
     wchar_t *sval = NULL;
     register wchar_t *currentchar = NULL;
+    char* strFormat = NULL;
 
     XXSCANF xxscanf;
 
-    set_xxscanf(fp, &xxscanf, &target, &strv);
+    set_xxscanf(fp, &xxscanf, &target, strv);
     currentchar = format;
     *retval = 0;
 
@@ -147,6 +154,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
             if (*currentchar1 == L'\0')
             {
+                delete_target(fp, target);
                 Scierror(998, _("%s: An error occurred: %s\n"), fname, _("unclosed [ directive."));
                 return DO_XXPRINTF_RET_BUG;
             }
@@ -161,6 +169,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
                 if (*currentchar1 == L'\0')
                 {
+                    delete_target(fp, target);
                     Scierror(998, _("%s: An error occurred: %s\n"), fname, _("unclosed [ directive."));
                     return DO_XXPRINTF_RET_BUG;
                 }
@@ -178,6 +187,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
             if (num_conversion >= MAXSCAN)
             {
+                delete_target(fp, target);
                 Scierror(998, _("%s: An error occurred: too many (> %d) conversion required.\n"), fname, MAXSCAN);
                 return DO_XXPRINTF_RET_BUG;
             }
@@ -189,12 +199,14 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
                     if (width_flag == 1 && width_val > MAX_STR - 1)
                     {
+                        delete_target(fp, target);
                         Scierror(998, _("%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"), fname, width_val, MAX_STR - 1);
                         return DO_XXPRINTF_RET_BUG;
                     }
 
                     if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
                     {
+                        delete_target(fp, target);
                         return DO_XXPRINTF_MEM_LACK;
                     }
                     ptrtab[num_conversion] = buf[num_conversion].c;
@@ -204,6 +216,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                 case L's':
                     if (l_flag + h_flag)
                     {
+                        delete_target(fp, target);
                         Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
                         return DO_XXPRINTF_RET_BUG;
                     }
@@ -211,12 +224,14 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     str_flag = 1;
                     if (width_flag == 1 && width_val > MAX_STR - 1)
                     {
+                        delete_target(fp, target);
                         Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"), fname, width_val, MAX_STR - 1);
                         return DO_XXPRINTF_RET_BUG;
                     }
 
                     if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
                     {
+                        delete_target(fp, target);
                         return DO_XXPRINTF_MEM_LACK;
                     }
 
@@ -228,6 +243,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     str_flag = 1;
                     if (l_flag + h_flag)
                     {
+                        delete_target(fp, target);
                         Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
                         return DO_XXPRINTF_RET_BUG;
                     }
@@ -243,12 +259,14 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
                     if (width_flag == 1 && width_val > MAX_STR - 1)
                     {
+                        delete_target(fp, target);
                         Scierror(998, _("%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"), fname, width_val, MAX_STR - 1);
                         return DO_XXPRINTF_RET_BUG;
                     }
 
                     if ((buf[num_conversion].c = (wchar_t*)MALLOC(MAX_STR * sizeof(wchar_t))) == NULL)
                     {
+                        delete_target(fp, target);
                         return DO_XXPRINTF_MEM_LACK;
                     }
 
@@ -312,6 +330,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                 case L'G':
                     if (h_flag)
                     {
+                        delete_target(fp, target);
                         Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
                         return DO_XXPRINTF_RET_BUG;
                     }
@@ -328,8 +347,11 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                     break;
 
                 default:
+                {
+                    delete_target(fp, target);
                     Scierror(998, _("%s: An error occurred: %s\n"), fname, _("Bad conversion."));
                     return DO_XXPRINTF_RET_BUG;
+                }
             }
             *currentchar = backupcurrrentchar;
         }
@@ -380,6 +402,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
 
             if (f2 == slast)
             {
+                delete_target(fp, target);
                 Scierror(998, _("%s: An error occurred: format is too long (> %d).\n"), fname, MAX_STR - 1);
                 return DO_XXPRINTF_RET_BUG;
             }
@@ -389,7 +412,8 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
         format = sformat;
     }
 
-    *retval = (*xxscanf) ((VPTR) target, format,
+    strFormat = wide_string_to_UTF8(format);
+    *retval = (*xxscanf) ((VPTR) target, strFormat,
                           ptrtab[0], ptrtab[1], ptrtab[2], ptrtab[3], ptrtab[4], ptrtab[5], ptrtab[6], ptrtab[7], ptrtab[8], ptrtab[9],
                           ptrtab[10], ptrtab[11], ptrtab[12], ptrtab[13], ptrtab[14], ptrtab[15], ptrtab[16], ptrtab[17], ptrtab[18], ptrtab[19],
                           ptrtab[20], ptrtab[21], ptrtab[22], ptrtab[23], ptrtab[24], ptrtab[25], ptrtab[26], ptrtab[27], ptrtab[28], ptrtab[29],
@@ -401,6 +425,8 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                           ptrtab[80], ptrtab[81], ptrtab[82], ptrtab[83], ptrtab[84], ptrtab[85], ptrtab[86], ptrtab[87], ptrtab[88], ptrtab[89],
                           ptrtab[90], ptrtab[91], ptrtab[92], ptrtab[93], ptrtab[94], ptrtab[95], ptrtab[96], ptrtab[97], ptrtab[98],
                           ptrtab[MAXSCAN - 1]);
+    FREE(strFormat);
+    delete_target(fp, target);
 
     *nargs = Min(num_conversion + 1, Max(*retval + n_directive_count, 0));
 

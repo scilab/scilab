@@ -68,5 +68,6 @@ CPP_GATEWAY_PROTOTYPE(sci_funptr);
 CPP_GATEWAY_PROTOTYPE(sci_analyzeroptions);
 CPP_GATEWAY_PROTOTYPE(sci_macr2tree);
 CPP_GATEWAY_PROTOTYPE(sci_predef);
+CPP_GATEWAY_PROTOTYPE(sci_debug);
 
 #endif /* __CORE_GW_HXX__ */

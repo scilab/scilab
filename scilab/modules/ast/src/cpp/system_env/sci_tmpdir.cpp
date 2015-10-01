@@ -1,18 +1,19 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2010 - DIGITEO - Antoine ELIAS
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 #include "configvariable.hxx"
 #include "string.hxx"
 #include "context.hxx"
+#include "parser.hxx"
 
 extern "C"
 {
@@ -147,7 +148,7 @@ char* computeTMPDIR()
         static wchar_t bufenv[PATH_MAX + 16];
         char *TmpDir = NULL;
         os_swprintf(wctmp_dir, PATH_MAX + FILENAME_MAX + 1, L"%lsSCI_TMP_%d_", wcTmpDirDefault, _getpid());
-        if ( CreateDirectoryW(wctmp_dir, NULL) == FALSE)
+        if (CreateDirectoryW(wctmp_dir, NULL) == FALSE)
         {
             DWORD attribs = GetFileAttributesW(wctmp_dir);
             if (attribs & FILE_ATTRIBUTE_DIRECTORY)
@@ -204,7 +205,7 @@ char* computeTMPDIR()
 
     /* XXXXXX will be randomized by mkdtemp */
     char *env_dir_strdup = os_strdup(env_dir); /* Copy to avoid to have the same buffer as input and output for sprintf */
-    sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir_strdup, (int) getpid());
+    sprintf(env_dir, "%s/SCI_TMP_%d_XXXXXX", env_dir_strdup, (int)getpid());
     free(env_dir_strdup);
 
     if (mkdtemp(env_dir) == NULL)
@@ -228,6 +229,9 @@ void defineTMPDIR()
 void clearTMPDIR()
 {
     char * tmpdir = getTMPDIR();
+    Parser parser;
+    parser.releaseTmpFile();
     removedir(tmpdir);
     FREE(tmpdir);
 }
+

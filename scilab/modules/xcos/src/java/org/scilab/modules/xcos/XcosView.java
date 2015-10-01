@@ -45,6 +45,9 @@ public class XcosView extends View {
     public XcosView() {
         registeredListeners = new EnumMap<>(Kind.class);
         visibleObjects = new HashMap<Long, Object>();
+
+
+        addXcosViewListener(new UpdateStyleFromInterfunctionAdapter());
     }
 
     /**

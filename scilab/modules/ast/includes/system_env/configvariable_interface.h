@@ -76,4 +76,11 @@ EXTERN_AST int getEntryPointPosition(wchar_t* _pwstEntryPointName);
 typedef void(*dynlib_ptr)();
 EXTERN_AST dynlib_ptr getEntryPointFromPosition(int position);
 
+EXTERN_AST int isEnableDebug();
+EXTERN_AST int isDebugInterrupted();
+
+EXTERN_AST int isExecutionBreak();
+EXTERN_AST void setExecutionBreak();
+EXTERN_AST void resetExecutionBreak();
+
 #endif /* !__CONFIGVARIABLE_INTERFACE_H__ */

@@ -39,5 +39,6 @@ EXTERN_AST bool isdir(const char * path);
 EXTERN_AST bool createdirectory(const char *path);
 EXTERN_AST bool isDrive(const char *strname);
 EXTERN_AST void SetScilabEnvironment(void);
+EXTERN_AST void SetScilabVariables(void);
 EXTERN_AST int SciEnvForOthers(void);
 

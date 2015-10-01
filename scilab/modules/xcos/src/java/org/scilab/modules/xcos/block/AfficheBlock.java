@@ -29,10 +29,6 @@ import javax.swing.Timer;
 import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabString;
-import org.scilab.modules.xcos.graph.XcosDiagram;
-
-import com.mxgraph.model.mxGeometry;
-import com.mxgraph.util.mxRectangle;
 
 /**
  * Implement the AFFICH_m block
@@ -180,12 +176,13 @@ public final class AfficheBlock extends BasicBlock {
             /*
              * Refresh
              */
-            if (src.getParentDiagram() != null) {
-                final XcosDiagram parent = src.getParentDiagram();
-                final mxRectangle rect = parent.getPreferredSizeForCell(src);
-
-                parent.getModel().setGeometry(src, new mxGeometry(src.getGeometry().getX(), src.getGeometry().getY(), rect.getWidth(), rect.getHeight()));
-            }
+            // FIXME
+            //            if (src.getParentDiagram() != null) {
+            //                final XcosDiagram parent = src.getParentDiagram();
+            //                final mxRectangle rect = parent.getPreferredSizeForCell(src);
+            //
+            //                parent.getModel().setGeometry(src, new mxGeometry(src.getGeometry().getX(), src.getGeometry().getY(), rect.getWidth(), rect.getHeight()));
+            //            }
         }
 
         /**

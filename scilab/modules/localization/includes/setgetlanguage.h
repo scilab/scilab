@@ -29,7 +29,7 @@ BOOL setlanguage(const wchar_t *lang);
  * returns current language
  * @return
  */
-const wchar_t *getlanguage(void);
+wchar_t *getlanguage(void);
 
 /**
  * returns current alias

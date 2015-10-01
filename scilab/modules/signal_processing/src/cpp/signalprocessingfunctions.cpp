@@ -10,10 +10,9 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-
-#include "execvisitor.hxx"
 #include "double.hxx"
 #include "signalprocessingfunctions.hxx"
+#include "configvariable.hxx"
 
 extern "C"
 {
@@ -176,7 +175,6 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblY    = new types::Double(*siz);
 
@@ -197,7 +195,7 @@ void Signalprocessingfunctions::callDgety(double* y, int* siz, int* iss)
         in.push_back(m_FArgs[i]);
     }
 
-    bool bOk = m_pCallDgety->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+    bool bOk = m_pCallDgety->call(in, opt, iRetCount, out) == types::Function::OK;
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
     {
@@ -270,7 +268,6 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     types::Double* pDblX    = new types::Double(*siz);
 
@@ -291,7 +288,7 @@ void Signalprocessingfunctions::callDgetx(double* x, int* siz, int* iss)
         in.push_back(m_FArgs[i]);
     }
 
-    bool bOk = m_pCallDgetx->call(in, opt, iRetCount, out, &execFunc) == types::Function::OK;
+    bool bOk = m_pCallDgetx->call(in, opt, iRetCount, out) == types::Function::OK;
 
     for (int i = 0; i < (int)m_FArgs.size(); i++)
     {

@@ -19,7 +19,6 @@
 #include "symbol.hxx"
 #include "scilabWrite.hxx"
 #include "configvariable.hxx"
-#include "mutevisitor.hxx"
 #include "serializervisitor.hxx"
 
 extern "C"
@@ -166,7 +165,7 @@ bool Macro::toString(std::wostringstream& ostr)
     return true;
 }
 
-Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
+Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out)
 {
     bool bVarargout = false;
     ReturnValue RetVal = Callable::OK;
@@ -310,12 +309,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     int oldVal = ConfigVariable::getPromptMode();
     try
     {
-        //m_body->mute();
-        //MuteVisitor mute;
-        //m_body->accept(mute);
-
         ConfigVariable::setPromptMode(-1);
-        m_body->accept(*execFunc);
+        m_body->accept(*ConfigVariable::getDefaultVisitor());
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }

@@ -16,10 +16,6 @@
 
 #include "parser.hxx"
 #include "functions_gw.hxx"
-#include "execvisitor.hxx"
-#include "mutevisitor.hxx"
-#include "debugvisitor.hxx"
-#include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
 #include "configvariable.hxx"
@@ -100,7 +96,7 @@ types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCo
     }
     out.push_back(pOut);
 
-    //ast::DebugVisitor debugMe;
+    //ast::PrettyPrintVisitor debugMe;
     //pExp->accept(debugMe);
 
     //ast::PrintVisitor printMe(std::wcout);

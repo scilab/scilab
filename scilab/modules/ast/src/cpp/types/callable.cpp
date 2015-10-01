@@ -15,11 +15,12 @@
 #include "callable.hxx"
 #include "configvariable.hxx"
 #include "exp.hxx"
+#include "scilabexception.hxx"
 
 namespace types
 {
 
-bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
     //reset previous error before call function
     ConfigVariable::resetError();
@@ -32,7 +33,7 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
 
     try
     {
-        Ret = call(in, opt, _iRetCount, out, &execFunc);
+        Ret = call(in, opt, _iRetCount, out);
         ConfigVariable::where_end();
     }
     catch (ast::InternalError & ie)

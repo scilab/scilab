@@ -17,6 +17,8 @@ Scilab Bug Fixes
 
 * Bug #12928 fixed - int functions with %nan and %inf return wrong values.
 
+* Bug #14059 fixed - Lack of performance on deletion of matrix elements.
+
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
 
 * Bug #13750 fixed - Calling ss2ss function with flag = 2 returned an error.
@@ -34,6 +36,8 @@ Scilab Bug Fixes
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
 
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
+
+* Bug #13983 fixed - who_user returned wrong values.
 
 * Bug #14020 fixed - Incorrect carriage return ascii code.
 
@@ -68,6 +72,8 @@ Scilab Bug Fixes
 * Bug #14149 fixed - hdf5 could not restore hypermatrix with good dimensions.
 
 * Bug #14150 fixed - The Windows SDK was not found on Windows 8.1.
+
+* Bug #14156 fixed - mfscanf returned an empty matrix when datafile contained a header.
 
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab

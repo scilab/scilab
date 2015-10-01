@@ -57,6 +57,11 @@ namespace jit
 
         ShortcutEval(JITVisitor & _jit, llvm::BasicBlock * t, llvm::BasicBlock * f) : jit(_jit), trueBlock(t), falseBlock(f) { }
 
+        ShortcutEval* clone()
+        {
+            return new ShortcutEval(jit, trueBlock, falseBlock);
+        }
+
 	inline JITScilabPtr & getResult()
         {
             return  _result;

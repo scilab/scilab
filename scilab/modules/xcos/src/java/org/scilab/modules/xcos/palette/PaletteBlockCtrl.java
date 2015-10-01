@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos.palette;
 
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
+
 import java.awt.Point;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.DnDConstants;
@@ -19,23 +22,28 @@ import java.awt.dnd.DragGestureEvent;
 import java.awt.dnd.DragGestureListener;
 import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
+import java.util.EnumSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.UpdateStatus;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosView;
+import org.scilab.modules.xcos.XcosViewListener;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.BlockFactory;
-import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -120,7 +128,6 @@ public final class PaletteBlockCtrl {
     public synchronized Transferable getTransferable() throws ScicosFormatException {
         Transferable transfer = transferable.get();
         if (transfer == null) {
-            /* Load the block from the H5 file */
             BasicBlock block;
             try {
                 block = loadBlock();
@@ -144,10 +151,11 @@ public final class PaletteBlockCtrl {
             INTERNAL_GRAPH.addCell(block);
             INTERNAL_GRAPH.selectAll();
 
-            BlockPositioning.updateBlockView(block);
+            BlockPositioning.updateBlockView(INTERNAL_GRAPH, block);
 
             mxGraphTransferHandler handler = ((mxGraphTransferHandler) INTERNAL_GRAPH.getAsComponent().getTransferHandler());
-            transfer = handler.createTransferable(INTERNAL_GRAPH.getAsComponent());
+            Object[] cells = new Object[] {block};
+            transfer = new mxGraphTransferable(cells, INTERNAL_GRAPH.getPaintBounds(cells), handler.createTransferableImage(INTERNAL_GRAPH.getAsComponent(), cells));
             transferable = new WeakReference<Transferable>(transfer);
 
             INTERNAL_GRAPH.removeCells();
@@ -155,90 +163,69 @@ public final class PaletteBlockCtrl {
         return transfer;
     }
 
+    private static class BlockLoadedListener extends XcosViewListener {
+        private long uid;
+
+        public BlockLoadedListener() {
+            uid = 0;
+        }
+
+        public long getUID() {
+            return uid;
+        }
+
+        /**
+         * When a unique block is created then store it for later use.
+         */
+        @Override
+        public void objectCreated(long uid, Kind kind) {
+            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
+                return;
+            }
+
+            this.uid = uid;
+        }
+
+        /**
+         * When a composite block is created we track the PARENT_BLOCK / CHILDREN association to store the parent.
+         */
+        @Override
+        public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
+            if (status != UpdateStatus.SUCCESS || property != ObjectProperties.CHILDREN) {
+                return;
+            }
+            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
+                return;
+            }
+
+            this.uid = uid;
+        }
+    }
+
+
     /**
      * @return the loaded block.
      * @throws ScicosFormatException
      *             on error
      */
     private BasicBlock loadBlock() throws ScicosFormatException {
+        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());
+
+        BlockLoadedListener blockLoaded = new BlockLoadedListener();
+        view.addXcosViewListener(blockLoaded, EnumSet.allOf(Kind.class), true, EnumSet.of(ObjectProperties.CHILDREN));
+
         BasicBlock block;
-        if (model.getName().compareTo("TEXT_f") != 0) {
-            // FIXME : play with the view to allocate that
+        try {
+            synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
+            block = XcosCellFactory.createBlock(blockLoaded.getUID());
+        } catch (InterpreterException e1) {
+            LOG.severe(e1.toString());
             block = null;
-            //            try {
-            //                synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-            //                block = handler.readBlock();
-            //            } catch (InterpreterException e1) {
-            //                LOG.severe(e1.toString());
-            //                block = null;
-            //            } finally {
-            //                handler.release();
-            //            }
-            //
-            //            // invalid block case
-            //            if (block == null) {
-            //                return null;
-            //            }
-            //
-            //            if (block.getStyle().compareTo("") == 0) {
-            //                block.setStyle(block.getInterfaceFunctionName());
-            //            }
-        } else {
-            block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
+        } finally {
+            view.removeXcosViewListener(blockLoaded);
         }
+
         return block;
-    }
-
-    /**
-     * @param callback
-     *            called after the block loading
-     */
-    protected void loadBlock(final ActionListener callback) {
-        if (model.getName().compareTo("TEXT_f") != 0) {
-
-            // FIXME : play with the view
-            //            // Load the block with a reference instance
-            //            final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-            //            if (handler == null) {
-            //                return;
-            //            }
-            //
-            //            final ActionListener internalCallback = new ActionListener() {
-            //                @Override
-            //                public void actionPerformed(ActionEvent e) {
-            //                    try {
-            //                        final BasicBlock block = handler.readBlock();
-            //
-            //                        // invalid block case
-            //                        if (block == null) {
-            //                            return;
-            //                        }
-            //
-            //                        // update style
-            //                        if (block.getStyle().compareTo("") == 0) {
-            //                            block.setStyle(block.getInterfaceFunctionName());
-            //                        }
-            //
-            //                        callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
-            //                    } catch (ScicosFormatException e1) {
-            //                        e1.printStackTrace();
-            //                    } finally {
-            //                        handler.release();
-            //                    }
-            //                }
-            //            };
-            //
-            //            try {
-            //                asynchronousScilabExec(internalCallback, ScilabDirectHandler.BLK + " = " + buildCall(model.getName(), "define"));
-            //            } catch (InterpreterException e1) {
-            //                LOG.severe(e1.toString());
-            //            } finally {
-            //                handler.release();
-            //            }
-        } else {
-            final BasicBlock block = BlockFactory.createBlock(BlockInterFunction.TEXT_f);
-            callback.actionPerformed(new ActionEvent(block, 0, "loaded"));
-        }
     }
 
     /**

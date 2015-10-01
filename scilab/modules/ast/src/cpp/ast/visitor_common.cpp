@@ -1832,14 +1832,13 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                     types::typed_list in;
                     types::typed_list out;
                     types::optional_list opt;
-                    ast::ExecVisitor exec;
 
                     in.push_back(pH);
                     in.push_back(pS);
                     in.push_back(_pInsert);
 
                     types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
-                    types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out, &exec);
+                    types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
                     if (ret == types::Callable::OK)
                     {
                         pOut = _pVar;
@@ -2358,7 +2357,6 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 types::typed_list in;
                 types::typed_list out;
                 types::optional_list opt;
-                ast::ExecVisitor exec;
 
                 in.push_back(pH);
                 in.push_back(pS);
@@ -2367,7 +2365,7 @@ types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs,
                 types::Function* pCall = (types::Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
                 if (pCall)
                 {
-                    types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out, &exec);
+                    types::Callable::ReturnValue ret = pCall->call(in, opt, 1, out);
                     if (ret == types::Callable::OK)
                     {
                         pRet = _pVar;

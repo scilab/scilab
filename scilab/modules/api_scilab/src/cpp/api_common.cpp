@@ -248,7 +248,7 @@ int callScilabFunction(void* _pvCtx, char const* _pstName, int _iStart, int _iLh
         in[i]->IncreaseRef();
     }
 
-    callResult = Overload::call(wsFunName, in, _iLhs, out, pStr->m_pVisitor);
+    callResult = Overload::call(wsFunName, in, _iLhs, out);
 
     //unprotect input arguments
     for (int i = 0 ; i < _iRhs ; i++)
@@ -303,7 +303,7 @@ int callOverloadFunction(void* _pvCtx, int _iVar, char* _pstName, unsigned int _
         (*pStr->m_pIn)[i]->IncreaseRef();
     }
 
-    callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount), tlReturnedValues, pStr->m_pVisitor);
+    callResult = Overload::call(wsFunName, *(pStr->m_pIn), *(pStr->m_piRetCount), tlReturnedValues);
 
     //unprotect input arguments
     for (int i = 0 ; i < pStr->m_pIn->size() ; i++)

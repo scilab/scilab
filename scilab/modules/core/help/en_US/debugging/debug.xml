@@ -2,47 +2,137 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="debug">
     <refnamediv>
         <refname>debug</refname>
-        <refpurpose>Debugging level of Scilab internals</refpurpose>
+        <refpurpose>Debugging environment in Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>debug(level_int)
-            level_int = debug()
+        <synopsis>
+            debug()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Arguments</title>
-        <variablelist>
-            <varlistentry>
-                <term>level_int</term>
-                <listitem>
-                    <para>integer (-1 to 4)</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
         <title>Description</title>
         <para>
-            For the values 0,1,2,3,4 of <varname>level_int</varname>, <code>debug</code>
-            defines various levels of debugging. This is targeted to the parser, not
-            to Scilab scripts, and is for Scilab experts only.
+        Use to debug Scilab script.
+        After call of <literal>debug()</literal>, you enter in debug mode.
+        This mode allows you to manage <literal>breakpoints</literal>,
+        launch execution with stop en error, execute script step by step, ...
+
+        When debug mode is active, prompt change to <literal>debug> </literal>.
         </para>
-        <para>
-            <note>
-                The output of this function will change with Scilab 6.0.0.
-            </note>
-        </para>
+        <term>Commands: </term>
+        <listitem>
+            <variablelist>
+                <varlistentry>
+                    <term>(h)elp: </term>
+                    <para>Show help on console</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(q)uit: </term>
+                    <para>Leave debug mode to return to normal mode of Scilab.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(w)here or bt: </term>
+                    <para>Display callstack.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(e)xec: </term>
+                    <term>(r)un: </term>
+                    <para>Execute command.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(c)ontinue: </term>
+                    <para>Continue execution.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(a)bort: </term>
+                    <para>Abort execution.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>step(n)ext or (n)ext: </term>
+                    <para>Continue execution to next expression.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>step(i)n or (i)n: </term>
+                    <para>Continue execution to next expression in sub function.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>step(o)ut or (o)ut: </term>
+                    <para>Continue execution to next expression in previous function.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(b)reakpoint or (b)reak: </term>
+                    <synopsis>breakpoint function [line [condition]]</synopsis>
+                    <para>Add a breakpoint in a function at line <literal>line</literal></para>
+                    <para>If a condition is specified, a breakpoint become enable only if condition is <literal>%t</literal></para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(del)ete: </term>
+                    <synopsis>delete [n]</synopsis>
+                    <para>Remove all breakpoints.</para>
+                    <para>If n is specified, remove breakpoint #n</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>enable: </term>
+                    <synopsis>enable [n]</synopsis>
+                    <para>Enable all breakpoints.</para>
+                    <para>If n is specified, enable breakpoint #n</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>disable: </term>
+                    <synopsis>disable [n]</synopsis>
+                    <para>Disable all breakpoints.</para>
+                    <para>If n is specified, disable breakpoint #n</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(s)how: </term>
+                    <synopsis>show [n]</synopsis>
+                    <para>Show all breakpoints information.</para>
+                    <para>If n is specified, show breakpoint #n</para>
+                </varlistentry>
+            </variablelist>
+        </listitem>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-debug(3);
-2+2
-//  0.200E+01
-//+
-//  0.200E+01
-// eol
+        <programlisting role="example"><![CDATA[
+//function to overload cosinus on string
+function v = %c_cos(val)
+    printf("val : %s\n", val);
+    v = cos(evstr(val));
+endfunction
+
+//caller
+function a = test_debug()
+    b = cos("%pi");
+    a = b * 3;
+endfunction
+
+debug
+break test_debug
+exec test_debug
+where
+stepin
+disp val
+continue
+quit
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function v = compute(val)
+    v = 1;
+    for i=1:val
+        v = v * i;
+    end
+endfunction
+
+debug
+break compute 4 "i == 5"
+exec compute(10)
+disp val
+disp i
+disp v
+continue
+quit
  ]]></programlisting>
     </refsection>
     
@@ -50,8 +140,8 @@ debug(3);
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>Previous value is returned as output argument when setting a new value.</revremark>
+                <revnumber>6.0.0</revnumber>
+                <revremark>New version: console interface to Scilab 6 debugger.</revremark>
             </revision>
         </revhistory>
     </refsection>

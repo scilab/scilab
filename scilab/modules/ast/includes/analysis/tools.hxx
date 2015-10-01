@@ -115,12 +115,12 @@ inline static IntType getIntType(const double x)
     {
         if (x >= 0)
         {
-            if (x <= (double)std::numeric_limits<uint64_t>::max())
+            if (x <= (double)(std::numeric_limits<uint64_t>::max)())
             {
                 return UNSIGNED;
             }
         }
-        else if (x >= (double)std::numeric_limits<int64_t>::min())
+        else if (x >= (double)(std::numeric_limits<int64_t>::min)())
         {
             return SIGNED;
         }

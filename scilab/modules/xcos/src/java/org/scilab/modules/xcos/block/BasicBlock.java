@@ -15,21 +15,14 @@ package org.scilab.modules.xcos.block;
 import java.awt.MouseInfo;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.Deque;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 
-import org.apache.batik.css.engine.StyleMap;
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.CopyAction;
 import org.scilab.modules.graph.actions.CutAction;
 import org.scilab.modules.graph.actions.DeleteAction;
@@ -69,7 +62,6 @@ import org.scilab.modules.xcos.block.actions.alignement.AlignBlockActionTop;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.io.scicos.BasicBlockInfo;
-import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
 import org.scilab.modules.xcos.port.input.InputPort;
@@ -112,44 +104,6 @@ public class BasicBlock extends XcosCell implements Serializable {
     private static final double DEFAULT_POSITION_Y = 10.0;
     private static final double DEFAULT_WIDTH = 40.0;
     private static final double DEFAULT_HEIGHT = 40.0;
-
-    /**
-     * Sort the children list in place.
-     *
-     * The sort put inputs then outputs the control then command ports. The
-     * local port order is preserved.The sort is performed in place and do not
-     * emit any event.
-     *
-     *
-     * @param children
-     *            the children to sort
-     */
-    public static final void sort(List<?> children) {
-        final List<Object> reference = new ArrayList<Object>(children);
-
-        Collections.sort(children, new Comparator<Object>() {
-            @Override
-            public int compare(Object o1, Object o2) {
-                // diff is the major sorting by kind
-                int diff = compareByChildClass(o1, o2);
-                if (o1 instanceof BasicPort && o2 instanceof BasicPort) {
-                    // first sort with the port list index
-                    final int diffIndexOf = Integer.signum(reference.indexOf(o1) - reference.indexOf(o2));
-                    // then sort with the ordering value
-                    final int diffOrdering = Integer.signum(((BasicPort) o1).getOrdering() - ((BasicPort) o2).getOrdering());
-                    // then sort with the port position value
-                    final mxGeometry o1Geom = ((BasicPort) o1).getGeometry();
-                    final mxGeometry o2Geom = ((BasicPort) o2).getGeometry();
-                    final int diffPosition = Integer.signum((int) (o2Geom.getX() - o1Geom.getX() - o2Geom.getY() + o1Geom.getY()));
-
-                    // voting is performed with these equivalent 3 selector
-                    diff = diff + diffIndexOf + diffOrdering + diffPosition;
-                }
-
-                return diff;
-            }
-        });
-    }
 
     /**
      * Internal method to get a base index to compare with depending on the cell
@@ -284,45 +238,6 @@ public class BasicBlock extends XcosCell implements Serializable {
     }
 
     /**
-     * @return the parent diagram of this graphical object
-     */
-    public XcosDiagram getParentDiagram() {
-        /*
-         * Retrieve the parent
-         */
-        long[] parentBlock = new long[0];
-        long[] parentDiagram = new long[0];
-        JavaController controller = new JavaController();
-        controller.getObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.PARENT_BLOCK, parentBlock);
-        controller.getObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.PARENT_DIAGRAM, parentDiagram);
-
-        final long parent;
-        final Kind kind;
-        if (parentBlock[0] == 0l) {
-            parent = parentDiagram[0];
-            kind = Kind.DIAGRAM;
-        } else {
-            parent = parentBlock[0];
-            kind = Kind.BLOCK;
-        }
-
-        /*
-         * Retrieve and create on demand the corresponding Diagram
-         */
-        XcosDiagram diagram;
-        Collection<XcosDiagram> diagrams = Xcos.getInstance().getDiagrams(parentDiagram[0]);
-        Optional<XcosDiagram> optDiagram = diagrams.stream().filter(d -> d.getUID() == parent).findFirst();
-        if (optDiagram.isPresent()) {
-            diagram = optDiagram.get();
-        } else {
-            diagram = new XcosDiagram(parent, kind);
-            Xcos.getInstance().addDiagram(parentDiagram[0], diagram);
-        }
-
-        return diagram;
-    }
-
-    /**
      * @return locked status
      */
     public synchronized boolean isLocked() {
@@ -410,30 +325,27 @@ public class BasicBlock extends XcosCell implements Serializable {
     }
 
     /**
-     * Format the children as a typed map for the given class set.
+     * Format the children as a typed map index for the given class set.
      *
      * @param types
      *            the classes to search for.
-     * @return a map which linked foreach type the corresponding cell list.
+     * @return a map which linked foreach type the corresponding cell index in the children.
      */
-    private Map < Class <? extends mxICell > , Deque<mxICell >> getTypedChildren(Set < Class <? extends mxICell >> types) {
-        Map < Class <? extends mxICell > , Deque<mxICell >> oldPorts = new HashMap < Class <? extends mxICell > , Deque<mxICell >> ();
+    public Map < Class<? extends mxICell> , ArrayList<Integer> > getTypedChildrenIndexes(Set< Class<? extends mxICell> > types) {
+        Map < Class<? extends mxICell> , ArrayList<Integer> > oldPorts = new HashMap < Class<? extends mxICell> , ArrayList<Integer> > ();
 
         // Allocate all types set
         for (Class <? extends mxICell > type : types) {
-            oldPorts.put(type, new LinkedList<mxICell>());
+            oldPorts.put(type, new ArrayList<>());
         }
 
         if (getChildCount() <= 0) {
             return oldPorts;
         }
 
-        // sort children according to the ordering parameter (useful on
-        // scilab-5.2.x diagrams)
-        sort(children);
-
         // children lookup
-        for (Object cell : children) {
+        for (int i = 0; i < children.size(); i++) {
+            final Object cell = children.get(i);
 
             Class <? extends Object > klass = cell.getClass();
             while (klass != null) {
@@ -443,28 +355,56 @@ public class BasicBlock extends XcosCell implements Serializable {
                 klass = klass.getSuperclass();
             }
 
-            final Deque<mxICell> current = oldPorts.get(klass);
+            final ArrayList<Integer> current = oldPorts.get(klass);
             if (current != null) {
-                current.add((mxICell) cell);
+                current.add(i);
             }
         }
 
         return oldPorts;
     }
 
-    /**
-     * Sort the children list in place.
-     *
-     * The sort put inputs then outputs the control then command ports. The
-     * local port order is preserved.The sort is performed in place and do not
-     * emit any event.
-     */
-    public void sortChildren() {
+    public ArrayList<Integer> getTypedChildrenIndexes(Class<? extends mxICell> type) {
+        return getTypedChildrenIndexes(Collections.singleton(type)).get(type);
+    }
+
+    public Map < Class<? extends mxICell> , ArrayList<Long> > getTypedChildrenUIDs(Set< Class<? extends mxICell> > types) {
+        Map < Class<? extends mxICell> , ArrayList<Long> > ports = new HashMap<> ();
+
+        // Allocate all types set
+        types.stream().forEach(t -> ports.put(t, new ArrayList<>()));
+
         if (getChildCount() <= 0) {
-            return;
+            return ports;
         }
 
-        sort(children);
+        // children lookup
+        for (int i = 0; i < children.size(); i++) {
+            final Object cell = children.get(i);
+
+            Class <? extends Object > klass = cell.getClass();
+            while (klass != null) {
+                if (types.contains(klass)) {
+                    break;
+                }
+                klass = klass.getSuperclass();
+            }
+
+            final ArrayList<Long> current = ports.get(klass);
+            if (current != null) {
+                if (cell instanceof XcosCell) {
+                    current.add(((XcosCell) cell).getUID());
+                } else {
+                    current.add(0l);
+                }
+            }
+        }
+
+        return ports;
+    }
+
+    public ArrayList<Long> getTypedChildrenUIDs(Class<? extends mxICell> type) {
+        return getTypedChildrenUIDs(Collections.singleton(type)).get(type);
     }
 
     /**
@@ -555,60 +495,6 @@ public class BasicBlock extends XcosCell implements Serializable {
     }
 
     /**
-     * @return tooltip text
-     */
-    public String getToolTipText() {
-        StringBuilder result = new StringBuilder();
-        result.append(ScilabGraphConstants.HTML_BEGIN);
-
-        JavaController controller = new JavaController();
-
-        String[] interfaceFunctionName = new String[1];
-        controller.getObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunctionName);
-        String[] simulationFunctionName = new String[1];
-        controller.getObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, simulationFunctionName);
-
-        result.append("Block Name : " + interfaceFunctionName[0] + ScilabGraphConstants.HTML_NEWLINE);
-        result.append("Simulation : " + simulationFunctionName[1] + ScilabGraphConstants.HTML_NEWLINE);
-
-        //        if (getParentDiagram() instanceof PaletteDiagram) {
-        //            if (getIntegerParameters() != null) {
-        //                result.append("Integer parameters : " + getIntegerParameters() + ScilabGraphConstants.HTML_NEWLINE);
-        //            }
-        //
-        //            if (getRealParameters() != null && getRealParameters().getHeight() != 0 && getRealParameters().getWidth() != 0) {
-        //                result.append("Real parameters : " + getRealParameters() + ScilabGraphConstants.HTML_NEWLINE);
-        //            }
-        //
-        //            if (getObjectsParameters() != null) {
-        //                result.append("Object parameters : " + getObjectsParameters() + ScilabGraphConstants.HTML_NEWLINE);
-        //            }
-        //        } else {
-        result.append("UID : " + getId() + ScilabGraphConstants.HTML_NEWLINE);
-        final int length = getStyle().length();
-        result.append("Style : ");
-        if (length > XcosConstants.MAX_CHAR_IN_STYLE) {
-            result.append(getStyle().substring(0, XcosConstants.MAX_CHAR_IN_STYLE));
-            result.append(XcosMessages.DOTS);
-        } else {
-            result.append(getStyle());
-        }
-        result.append(ScilabGraphConstants.HTML_NEWLINE);
-        result.append("Input ports : " + BasicBlockInfo.getAllTypedPorts(this, false, InputPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
-        result.append("Output ports : " + BasicBlockInfo.getAllTypedPorts(this, false, OutputPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
-        result.append("Control ports : " + BasicBlockInfo.getAllTypedPorts(this, false, ControlPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
-        result.append("Command ports : " + BasicBlockInfo.getAllTypedPorts(this, false, CommandPort.class).size() + ScilabGraphConstants.HTML_NEWLINE);
-        //        }
-
-        result.append("x : " + getGeometry().getX() + ScilabGraphConstants.HTML_NEWLINE);
-        result.append("y : " + getGeometry().getY() + ScilabGraphConstants.HTML_NEWLINE);
-        result.append("w : " + getGeometry().getWidth() + ScilabGraphConstants.HTML_NEWLINE);
-        result.append("h : " + getGeometry().getHeight() + ScilabGraphConstants.HTML_NEWLINE);
-        result.append(ScilabGraphConstants.HTML_END);
-        return result.toString();
-    }
-
-    /**
      * @param graph
      *            parent graph
      */
@@ -644,14 +530,19 @@ public class BasicBlock extends XcosCell implements Serializable {
                 public void callBack() {
                     JavaController controller = new JavaController();
                     XcosDiagram theDiagram = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
-                    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
+                    BasicBlock block = null;
+                    try {
+                        block = (BasicBlock) BasicBlock.this.clone();
+                    } catch (CloneNotSupportedException e) {
+                        e.printStackTrace();
+                    }
                     theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
                     mxGeometry geom = BasicBlock.this.getGeometry();
                     setDefaultPosition(geom);
                     theDiagram.getModel().setGeometry(block, geom);
 
                     XcosTab.get(theDiagram).setVisible(true);
-                    BlockPositioning.updateBlockView(block);
+                    BlockPositioning.updateBlockView(theDiagram, block);
                 }
             });
 
@@ -668,12 +559,17 @@ public class BasicBlock extends XcosCell implements Serializable {
 
                 @Override
                 public void callBack() {
-                    BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
+                    BasicBlock block = null;
+                    try {
+                        block = (BasicBlock) BasicBlock.this.clone();
+                    } catch (CloneNotSupportedException e) {
+                        e.printStackTrace();
+                    }
                     theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
                     mxGeometry geom = BasicBlock.this.getGeometry();
                     setDefaultPosition(geom);
                     theDiagram.getModel().setGeometry(block, geom);
-                    BlockPositioning.updateBlockView(block);
+                    BlockPositioning.updateBlockView(theDiagram, block);
                 }
             });
 
@@ -694,12 +590,17 @@ public class BasicBlock extends XcosCell implements Serializable {
 
                     @Override
                     public void callBack() {
-                        BasicBlock block = (BasicBlock) BlockFactory.createClone(BasicBlock.this);
+                        BasicBlock block = null;
+                        try {
+                            block = (BasicBlock) BasicBlock.this.clone();
+                        } catch (CloneNotSupportedException e) {
+                            e.printStackTrace();
+                        }
                         theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
                         mxGeometry geom = BasicBlock.this.getGeometry();
                         setDefaultPosition(geom);
                         theDiagram.getModel().setGeometry(block, geom);
-                        BlockPositioning.updateBlockView(block);
+                        BlockPositioning.updateBlockView(theDiagram, block);
                     }
                 });
                 addTo.add(diagram);

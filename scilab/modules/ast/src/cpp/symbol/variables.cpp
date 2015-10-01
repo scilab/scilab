@@ -10,6 +10,7 @@
 *
 */
 
+#include <algorithm>
 #include "variables.hxx"
 
 namespace symbol

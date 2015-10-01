@@ -311,6 +311,27 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
                 return true;
             }
 
+            if (GVN::Value * const v = _res.getConstant().getGVNValue())
+            {
+                if (GVN::Value * const dollar = getGVN().getExistingValue(symbol::Symbol(L"$")))
+                {
+                    if (GVN::Value * const w = SymbolicList::evalDollar(getGVN(), v, dollar, dim.getValue()))
+                    {
+                        bool b = getCM().check(ConstraintManager::GREATER, dim.getValue(), w);
+                        if (b)
+                        {
+                            safe = getCM().check(ConstraintManager::STRICT_POSITIVE, w);
+                        }
+                        else
+                        {
+                            safe = false;
+                        }
+                        out = SymbolicDimension(getGVN(), 1);
+                        return true;
+                    }
+                }
+            }
+
             // To use with find
             // e.g. a(find(a > 0)): find(a > 0) return a matrix where the max index is rc(a) so the extraction is safe
             if (_res.getType().ismatrix() && _res.getType().type != TIType::BOOLEAN)

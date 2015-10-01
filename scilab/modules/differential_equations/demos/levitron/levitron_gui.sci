@@ -151,17 +151,20 @@ endfunction
 
 
 function levitron_start()
-    global Stop;Stop=%f;
+    set("Stop", "userdata", %f);
+    set("Reinit", "userdata", %f);
     show();
 endfunction
 
 function levitron_stop()
-    global Stop;Stop=%t
+    set("Stop", "userdata", %t);
+    set("Reinit", "userdata", %f);
 endfunction
 
 function levitron_reinit()
-    global y0 y1  Stop
-    Stop=%t
+    global y0 y1
+    set("Stop", "userdata", %t);
+    set("Reinit", "userdata", %t);
     y1=y0
     update_height(1.72)
     update_theta(0.28)
@@ -173,12 +176,12 @@ endfunction
 // Callbacks subsidiary functions
 //-------------------------------
 function update_state(k, value)
-    global y1 state_changed init  Stop changed
-    if ~changed then
+    global y1 state_changed
+    if get("Stop", "userdata") then
         if or(k==(4:6)) then value=value*%pi/180;end
         y1(k)=value;
-        if init then
-            set_levitron(H, y1),
+        if get("Reinit", "userdata") then
+            set_levitron(H, y1)
         else
             state_changed=%t;
         end
@@ -208,39 +211,38 @@ function set_levitron(H, q)
 endfunction
 
 function show()
-    global y1 state_changed init Stop changed
+    global y1 state_changed
     //y1 is a copy of that can be updated by the gui (state_changed is true
     //if the GUI has modified its value).
     y=y1;
-    init=%f;changed=%f
     dt=0.05
-    if state_changed then y=y1;end
     [y, w, iw]=ode(y, 0, dt, list(levitron_dyn, a, c, Mc)); y1=y;
     realtimeinit(dt)
     t0=dt
     k=1
-    while %t
+    while ~get("Stop", "userdata")
         if state_changed then
-            [y, w, iw]=ode(y1, t0, t0+dt, list(levitron_dyn, a, c, Mc));y1=y;
+            [y, w, iw]=ode(y1, t0, t0+dt, list(levitron_dyn, a, c, Mc));
         else
-            [y, w, iw]=ode(y, t0, t0+dt, list(levitron_dyn, a, c, Mc), w, iw);y1=y;
+            [y, w, iw]=ode(y, t0, t0+dt, list(levitron_dyn, a, c, Mc), w, iw);
         end
-        if y(3)<=0 then Stop=%t, end
-        if Stop then init=%t, break, end
+        y1=y;
+        if y(3)<=0 then set("Stop", "userdata", %t), break; end
+        if get("Stop", "userdata")
+            break
+        end
         if ~is_handle_valid(H) then break; end
         set_levitron(H, y(1:6));
-
-        if %t then
-            changed=%t
-            update_height(y(3))
-            update_theta(y(4)*180/%pi)
-            update_phi(modulo(y(5)*180/%pi, 360))
-            update_psi(modulo(y(6)*180/%pi, 360))
-            changed=%f
-        end
+        update_height(y(3))
+        update_theta(y(4)*180/%pi)
+        update_phi(modulo(y(5)*180/%pi, 360))
+        update_psi(modulo(y(6)*180/%pi, 360))
 
         k=k+1;t0=t0+dt;
         realtime(k);
+    end
+    if get("Reinit", "userdata") then
+        levitron_reinit()
     end
 endfunction
 

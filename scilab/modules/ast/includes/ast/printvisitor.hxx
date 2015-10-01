@@ -27,11 +27,17 @@ class EXTERN_AST PrintVisitor : public GenVisitor<const_kind>
 {
 public:
 
-    PrintVisitor(std::wostream& my_ostr, bool parenthesis_display = true, bool _displayOriginal = true) :
+    PrintVisitor(std::wostream& my_ostr, bool parenthesis_display = true, bool _displayOriginal = true, bool _headerOnly = false) :
         ostr (&my_ostr),
         force_parenthesis (parenthesis_display),
         displayOriginal(_displayOriginal),
+        headerOnly(_headerOnly),
         indent(0) { }
+
+    PrintVisitor* clone()
+    {
+        return new PrintVisitor(*ostr, force_parenthesis, displayOriginal, headerOnly);
+    }
 
     /** \name Visit Matrix Expressions nodes.
     ** \{ */
@@ -121,6 +127,7 @@ protected:
     int             indent;
     bool            force_parenthesis;
     const bool      displayOriginal;
+    const bool      headerOnly;
     bool            is_last_matrix_line;
     bool            is_last_column_comment;
 

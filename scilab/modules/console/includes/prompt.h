@@ -21,6 +21,8 @@
 #undef SCIPROMPT
 #endif
 #define SCIPROMPT "--> "
+#define SCIPROMPTDEBUG "debug> "
+#define SCIPROMPTBREAK "break> "
 
 #ifdef SCIPROMPT_PAUSE
 #undef SCIPROMPT_PAUSE

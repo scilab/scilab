@@ -29,7 +29,13 @@ namespace ast
 class EXTERN_AST TimedVisitor : public RunVisitorT<TimedVisitor>
 {
 public :
-    void visit (const SeqExp &e)
+
+    TimedVisitor* clone()
+    {
+        return new TimedVisitor();
+    }
+
+    void visit(const SeqExp &e)
     {
         Timer timer;
         timer.start();

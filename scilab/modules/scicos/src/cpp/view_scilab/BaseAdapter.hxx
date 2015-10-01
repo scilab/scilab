@@ -439,7 +439,7 @@ private:
         return true;
     }
 
-    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, const ast::Exp & e) override
     {
         if (in.size() == 0)
         {
@@ -476,11 +476,11 @@ private:
 
         try
         {
-            ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out, &execFunc);
+            ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out);
         }
         catch (ast::InternalError & /*se*/)
         {
-            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+            ret = Overload::call(L"%l_e", in, 1, out);
         }
 
         // Remove this from "in" to keep "in" unchanged.

@@ -16,7 +16,6 @@ extern "C"
 }
 
 #include "parser.hxx"
-#include "execvisitor.hxx"
 #include "tasks.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"

@@ -18,7 +18,8 @@
 #include "printvisitor.hxx"
 #include "execvisitor.hxx"
 #include "timedvisitor.hxx"
-#include "debugvisitor.hxx"
+#include "prettyprintvisitor.hxx"
+#include "debuggervisitor.hxx"
 #include "stepvisitor.hxx"
 #include "visitor_common.hxx"
 #include "threadmanagement.hxx"
@@ -93,7 +94,7 @@ void dumpAstTask(ast::Exp *tree, bool timed)
         _timer.start();
     }
 
-    ast::DebugVisitor debugMe(std::wcerr, false, true);
+    ast::PrettyPrintVisitor debugMe;
     if (tree)
     {
         tree->accept(debugMe);
@@ -162,7 +163,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         newTree = tree;
     }
 
-    ast::ExecVisitor *exec;
+    ast::RunVisitor *exec;
     if (timed)
     {
         _timer.start();
@@ -170,12 +171,12 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
 
     if (ASTtimed)
     {
-        exec = (ast::ExecVisitor*)new ast::TimedVisitor();
+        exec = new ast::TimedVisitor();
     }
 
     if (execVerbose)
     {
-        exec = (ast::ExecVisitor*)new ast::StepVisitor();
+        exec = new ast::StepVisitor();
     }
 
     if (!execVerbose && !ASTtimed)
@@ -187,7 +188,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
             //newTree->accept(analysis);
         }
 
-        exec = new ast::ExecVisitor();
+        exec = (ast::RunVisitor*)ConfigVariable::getDefaultVisitor();
     }
 
     StaticRunner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, isConsoleCommand);
@@ -278,3 +279,19 @@ void execScilabQuitTask(bool _bSerialize)
 }
 
 
+ast::Exp* parseCommand(std::wstring _command)
+{
+    if (_command.empty())
+    {
+        return NULL;
+    }
+
+    Parser parse;
+    parse.parse((wchar_t*)_command.c_str());
+    if (parse.getExitStatus() != Parser::Succeded)
+    {
+        return NULL;
+    }
+
+    return parse.getTree();
+}

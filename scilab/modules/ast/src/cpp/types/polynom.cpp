@@ -11,6 +11,7 @@
 */
 
 #include <sstream>
+#include <algorithm>
 #include "core_math.h"
 #include "tostring_common.hxx"
 #include "singlepoly.hxx"

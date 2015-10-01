@@ -31,8 +31,10 @@
 #include "operations.hxx"
 #include "threadmanagement.hxx"
 #include "numericconstants.hxx"
-
 #include "expandPathVariable.h"
+#include "execvisitor.hxx"
+#include "debugmanager.hxx"
+#include "consoledebugger.hxx"
 
 extern "C"
 {
@@ -64,7 +66,6 @@ extern "C"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
 #include "InitializePreferences.h"
-
 #ifdef _MSC_VER
 #include "InitializeWindows_tools.h"
 #include "TerminateWindows_tools.h"
@@ -268,8 +269,21 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     //load gateways
     LoadModules();
 
+    //variables are needed by loadModules but must be in SCOPE_CONSOLE under protection
+    //remove (W)SCI/SCIHOME/HOME/TMPDIR
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"SCI"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"WSCI"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"SCIHOME"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"home"));
+    symbol::Context::getInstance()->remove(symbol::Symbol(L"TMPDIR"));
+
     //open a scope for macros
     symbol::Context::getInstance()->scope_begin();
+
+    Add_All_Variables();
+    SetScilabVariables();
+
+    symbol::Context::getInstance()->protect();
     //execute scilab.start
     if (_pSEI->iNoStart == 0)
     {
@@ -277,7 +291,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     }
 
     //open console scope
-    symbol::Context::getInstance()->scope_begin();
+    //symbol::Context::getInstance()->scope_begin();
 
     ConfigVariable::setStartProcessing(false);
 
@@ -328,6 +342,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     InitializePreferences(iScript);
 
+
+    //register console debugger as debugger
+    debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
     return iMainRet;
 }
 
@@ -370,7 +387,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     clearScilabPreferences();
 
     //close console scope
-    symbol::Context::getInstance()->scope_end();
+    //symbol::Context::getInstance()->scope_end();
 
     //execute scilab.quit
     if (_pSEI->pstFile)
@@ -651,6 +668,65 @@ void* scilabReadAndStore(void* param)
                 command = pstNewCommand;
             }
 
+            if (ConfigVariable::getEnableDebug())
+            {
+                char* tmpCommand = NULL;
+
+                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("someting")
+                if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
+                {
+                    tmpCommand = os_strdup(command + 2);
+                }
+                else if (strncmp(command, "exec ", 5) == 0)
+                {
+                    tmpCommand = os_strdup(command + 5);
+                }
+                else if (strncmp(command, "run ", 4) == 0)
+                {
+                    tmpCommand = os_strdup(command + 5);
+                }
+
+                if (tmpCommand)
+                {
+                    if (debugger::DebuggerMagager::getInstance()->isInterrupted())
+                    {
+                        sciprint(_("Debugger is on a breakpoint\n"));
+                        sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
+                        continue;
+                    }
+                }
+                else if ((command[0] == 'p') && command[1] == ' ')
+                {
+                    std::string s("disp(");
+                    s += command + 2;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                }
+                else if (strncmp(command, "disp ", 5) == 0)
+                {
+                    std::string s("disp(");
+                    s += command + 5;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                }
+                else
+                {
+                    int iLen = (int)strlen(command) + (int)strlen("debug ") + 1;
+                    tmpCommand = (char*)MALLOC(sizeof(char) * iLen);
+#ifdef _MSC_VER
+                    os_sprintf(tmpCommand, iLen, "%s %s", "debug", command);
+#else
+                    os_sprintf(tmpCommand, "%s %s", "debug", command);
+#endif
+                    //disable debugger time to exec debug command
+                    //it will be enable in debuggervisitor, after execution
+                    ConfigVariable::setEnableDebug(false);
+                }
+
+                FREE(command);
+                command = tmpCommand;
+            }
+
             ThreadManagement::LockParser();
             parseCommandTask(&parser, _pSEI->iTimed != 0, command);
             controlStatus = parser.getControlStatus();
@@ -900,7 +976,7 @@ static int InitializeEnvironnement(void)
     ConfigVariable::setConsoleWidth(75);
     ConfigVariable::setFormatSize(10);
     ConfigVariable::setFormatMode(1);
-    Add_All_Variables();
+    //Add_All_Variables();
     FileManager::initialize();
     initOperationArray();
     return 0;
