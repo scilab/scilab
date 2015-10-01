@@ -13,6 +13,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <unordered_set>
 
 #include "inspector.hxx"
 #include "types.hxx"
@@ -21,7 +22,7 @@
 namespace types
 {
 #ifndef NDEBUG
-std::list<InternalType*> Inspector::m_vIT;
+std::unordered_set<InternalType*> Inspector::m_vIT;
 
 size_t Inspector::getItemCount()
 {
@@ -45,12 +46,12 @@ size_t Inspector::getUnreferencedItemCount()
 void Inspector::addItem(InternalType* _pIT)
 {
     types::GenericType* pGT = _pIT->getAs<types::GenericType>();
-    m_vIT.push_back(_pIT);
+    m_vIT.insert(_pIT);
 }
 
 void Inspector::removeItem(InternalType* _pIT)
 {
-    m_vIT.remove(_pIT);
+    m_vIT.erase(_pIT);
 }
 
 InternalType* Inspector::getItem(size_t _iPos)

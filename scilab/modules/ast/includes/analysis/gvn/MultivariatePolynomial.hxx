@@ -62,12 +62,12 @@ struct EXTERN_AST MultivariatePolynomial
      * \param _size the size of the polynomial (used to reserve the unordered_set)
      * \param _constant to init polynomial
      */
-    MultivariatePolynomial(const unsigned int _size, const int64_t _constant) : constant(_constant), polynomial(_size), valid(true) { }
+    MultivariatePolynomial(const unsigned int _size, const int64_t _constant) : constant(_constant), valid(true), polynomial(_size) { }
 
     /**
      * \brief copy constructor
      */
-    MultivariatePolynomial(const MultivariatePolynomial & mp) : constant(mp.constant), polynomial(mp.polynomial), valid(mp.valid) { }
+    MultivariatePolynomial(const MultivariatePolynomial & mp) : constant(mp.constant), valid(mp.valid), polynomial(mp.polynomial) { }
 
     /**
      * \brief Get an invalid polynomial (i.e. constant == NaN)
