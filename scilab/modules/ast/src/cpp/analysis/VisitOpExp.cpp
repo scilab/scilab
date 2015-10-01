@@ -17,8 +17,6 @@
 namespace analysis
 {
 
-
-
 void AnalysisVisitor::visit(ast::OpExp & e)
 {
     logger.log(L"OpExp", e.getLocation());

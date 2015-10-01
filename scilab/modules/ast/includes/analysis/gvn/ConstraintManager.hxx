@@ -17,6 +17,7 @@
 #include <string>
 #include <set>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include "InferenceConstraint.hxx"
@@ -30,10 +31,17 @@ namespace analysis
     class EXTERN_AST ConstraintManager
     {
 
+    public:
+
+	typedef std::unordered_set<MPolyConstraintSet, MPolyConstraintSet::Hash, MPolyConstraintSet::Eq> UnverifiedSet;
+
+    private:
+	
         ConstraintManager * parent;
         FunctionBlock * function;
-        MPolyConstraintSet mpConstraints;
+        MPolyConstraintSet verified;
 	std::set<symbol::Symbol> constantConstraints;
+	UnverifiedSet unverified;
 	
         static std::vector<std::shared_ptr<InferenceConstraint>> generalConstraints;
 
@@ -50,10 +58,15 @@ namespace analysis
             return parent == nullptr;
         }
 
-        inline const MPolyConstraintSet & getSet() const
+        inline const MPolyConstraintSet & getVerifiedConstraints() const
         {
-            return mpConstraints;
+            return verified;
         }
+
+	inline const UnverifiedSet & getUnverifiedConstraints() const
+        {
+            return unverified;
+	}
 
 	inline const std::set<symbol::Symbol> & getGlobalConstants() const
 	{

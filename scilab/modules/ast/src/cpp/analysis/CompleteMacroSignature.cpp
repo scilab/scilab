@@ -18,20 +18,28 @@
 
 namespace analysis
 {
-const MacroOut * CompleteMacroSignature::getOutTypes(AnalysisVisitor & visitor, const MacroSignature & signature, MacroDef * macrodef, DataManager & dm, const unsigned int rhs, std::vector<TIType> & in, const std::vector<GVN::Value *> values)
+    const MacroOut * CompleteMacroSignature::getOutTypes(AnalysisVisitor & visitor, const MacroSignature & signature, MacroDef * macrodef, DataManager & dm, const unsigned int rhs, std::vector<TIType> & in, const std::vector<GVN::Value *> values, uint64_t & functionId)
 {
     for (const auto & mpcmo : outMap)
     {
-        if (mpcmo.mpConstraints.check(visitor.getGVN(), values) == InferenceConstraint::Result::RESULT_TRUE && ConstraintManager::checkGlobalConstants(mpcmo.globalConstants))
+        if (mpcmo.verified.check(visitor.getGVN(), values) == InferenceConstraint::RESULT_TRUE && ConstraintManager::checkGlobalConstants(mpcmo.globalConstants))
         {
+	    for (const auto & set : mpcmo.unverified)
+	    {
+		if (set.check(visitor.getGVN(), values) != InferenceConstraint::RESULT_FALSE)
+		{
+		    return analyze(visitor, signature, macrodef, dm, rhs, in, values, functionId);
+		}
+	    }
+	    functionId = mpcmo.id;
             return &mpcmo.out;
         }
     }
 
-    return analyze(visitor, signature, macrodef, dm, rhs, in, values);
+    return analyze(visitor, signature, macrodef, dm, rhs, in, values, functionId);
 }
 
-const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, const MacroSignature & signature, MacroDef * macrodef, DataManager & dm, const unsigned int rhs, std::vector<TIType> & in, const std::vector<GVN::Value *> values)
+const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, const MacroSignature & signature, MacroDef * macrodef, DataManager & dm, const unsigned int rhs, std::vector<TIType> & in, const std::vector<GVN::Value *> values, uint64_t & functionId)
 {
     if (signature.lhs <= macrodef->getLhs())
     {
@@ -50,14 +58,35 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
 
         fblock.getExp()->accept(visitor);
         dm.finalizeBlock();
-        std::wcerr << fblock << std::endl;
+        //std::wcerr << fblock << std::endl;
         visitor.emitFunctionBlock(fblock);
-        outMap.emplace_back(fblock.getConstraints(), fblock.getGlobalConstants(), fblock.getOuts());
+        const auto p = outMap.emplace(id++, fblock.getVerifiedConstraints(), fblock.getUnverifiedConstraints(), fblock.getGlobalConstants(), fblock.getOuts(*this));
+	fblock.setFunctionId(p.first->id);
+	functionId = p.first->id;
 
-        return &outMap.back().out;
+	//std::wcerr << *this << std::endl;
+	
+        return &p.first->out;
     }
 
     return nullptr;
 }
+
+    std::wostream & operator<<(std::wostream & out, const CompleteMacroSignature & cms)
+    {
+	out << L"Complete Macro Cache:\n";
+	for (const auto & mpcmo : cms.outMap)
+	{
+	    out << L" * Verified constraints: " << mpcmo.verified << L"\n"
+		<< L" * Unverified constraints: ";
+	    tools::printSet(mpcmo.unverified, out);
+	    out << L"\n"
+		<< L" * Globals: ";
+	    tools::printSet(mpcmo.globalConstants, out);
+	    out << L"\n"
+		<< L"   => " << mpcmo.out.tuple << L"\n";
+	}
+	return out;
+    }
 
 } // namespace analysis

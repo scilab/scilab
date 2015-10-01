@@ -28,25 +28,32 @@
 namespace analysis
 {
 
-class AnalysisVisitor;
+    class GVN;
+    class AnalysisVisitor;
 
-class PolymorphicMacroCache
-{
-    typedef std::unordered_map<MacroSignature, CompleteMacroSignature, MacroSignature::Hash, MacroSignature::Eq> MacroSignMap;
-    MacroSignMap signatures;
+    class PolymorphicMacroCache
+    {
+        typedef std::unordered_map<MacroSignature, CompleteMacroSignature, MacroSignature::Hash, MacroSignature::Eq> MacroSignMap;
+	uint64_t id;
+        MacroSignMap signatures;
+        GVN gvn;
 
-public:
+    public:
 
-    PolymorphicMacroCache() { }
+        PolymorphicMacroCache();
+	~PolymorphicMacroCache();
 
-    const bool getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out);
+        const bool getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out, uint64_t & functionId);
 
-    static bool getCompleteIn(MacroDef & macrodef, AnalysisVisitor & visitor, const std::vector<TIType> & in, std::vector<TIType> & completeIn);
+        friend std::wostream & operator<<(std::wostream & out, const PolymorphicMacroCache & pmc);
 
-private:
+    private:
 
-    GVN::Value * getValue(const GVN::Value * value, AnalysisVisitor & visitor, const std::vector<const MultivariatePolynomial *> & polys, const int maxVarId) const;
-};
+        GVN::Value * getValue(const GVN::Value * value, AnalysisVisitor & visitor, const std::vector<const MultivariatePolynomial *> & polys, const int maxVarId) const;
+
+	static bool getCompleteIn(MacroDef & macrodef, AnalysisVisitor & visitor, const std::vector<TIType> & in, std::vector<TIType> & completeIn);
+
+    };
 
 } // namespace analysis
 

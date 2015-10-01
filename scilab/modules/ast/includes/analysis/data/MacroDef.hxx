@@ -102,7 +102,6 @@ public:
 class ExistingMacroDef : public MacroDef
 {
     const std::wstring name;
-    ast::SeqExp * se;
     std::vector<symbol::Symbol> inputs;
     std::vector<symbol::Symbol> outputs;
 
@@ -111,10 +110,7 @@ public:
     ExistingMacroDef(types::Macro & _macro);
     ExistingMacroDef(const ExistingMacroDef & emd);
 
-    ~ExistingMacroDef()
-    {
-        delete se;
-    }
+    ~ExistingMacroDef() { }
 
     ast::SeqExp & getBody();
     const ast::SeqExp & getOriginalBody();
@@ -126,16 +122,12 @@ public:
 
 class DeclaredMacroDef : public MacroDef
 {
-    ast::FunctionDec * dec;
 
 public:
 
     DeclaredMacroDef(ast::FunctionDec * const _dec);
 
-    ~DeclaredMacroDef()
-    {
-        delete dec;
-    }
+    ~DeclaredMacroDef() { }
 
     ast::SeqExp & getBody();
     const ast::SeqExp & getOriginalBody();

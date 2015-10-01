@@ -71,7 +71,7 @@ public:
     Info & share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp);
     Info & clear(const symbol::Symbol & sym, ast::Exp * exp);
     Info & macrodef(ast::Exp * exp);
-    std::vector<TIType> call(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp);
+    std::vector<TIType> call(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId);
     void addBlock(Block::BlockKind kind, ast::Exp * exp);
     Block * getCurrent();
     void finalizeBlock();
@@ -82,6 +82,7 @@ public:
     void popFunction();
     TIType getType(const symbol::Symbol & sym, const bool global = false);
     Info & getInfo(const symbol::Symbol & sym);
+    void reset();
     friend std::wostream & operator<<(std::wostream & out, const DataManager & dm);
 
     template<typename T>

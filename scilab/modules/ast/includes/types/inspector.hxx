@@ -18,7 +18,7 @@
 #pragma warning (disable : 4251)
 #endif
 
-#include <list>
+#include <unordered_set>
 #include <string>
 #include "dynlib_ast.h"
 
@@ -30,7 +30,7 @@ class InternalType;
 class EXTERN_AST Inspector
 {
 protected :
-    static std::list<InternalType*> m_vIT;
+    static std::unordered_set<InternalType*> m_vIT;
 
 public :
     static size_t getItemCount();

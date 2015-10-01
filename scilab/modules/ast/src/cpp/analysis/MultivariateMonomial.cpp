@@ -140,21 +140,49 @@ namespace analysis
     const std::wstring MultivariateMonomial::print(const std::map<uint64_t, std::wstring> & vars) const
     {
         std::wostringstream wos;
-        wos << coeff;
-        for (const auto & ve : monomial)
-        {
-            wos << L"*" << ve.print(vars);
-        }
+	if (coeff == 1)
+	{
+	    if (!monomial.empty())
+	    {
+		wos << monomial.begin()->print(vars);
+		for (auto i = std::next(monomial.begin()), e = monomial.end(); i != e; ++i)
+		{
+		    wos << L"*" << i->print(vars);
+		}
+	    }
+	}
+	else
+	{
+	    wos << coeff;
+	    for (const auto & ve : monomial)
+	    {
+		wos << L"*" << ve.print(vars);
+	    }
+	}
         return wos.str();
     }
 
     std::wostream & operator<<(std::wostream & out, const MultivariateMonomial & m)
     {
-        out << m.coeff;
-        for (const auto & ve : m.monomial)
-        {
-            out << L"*" << ve;
-        }
+	if (m.coeff == 1)
+	{
+	    if (!m.monomial.empty())
+	    {
+		out << *m.monomial.begin();
+		for (auto i = std::next(m.monomial.begin()), e = m.monomial.end(); i != e; ++i)
+		{
+		    out << L"*" << *i;
+		}
+	    }
+	}
+	else
+	{
+	    out << m.coeff;
+	    for (const auto & ve : m.monomial)
+	    {
+		out << L"*" << ve;
+	    }
+	}
         return out;
     }
 

@@ -393,7 +393,7 @@ public :
         std::wstring m_name;
         std::wstring m_file_name;
         WhereEntry(int line, int absolute_line, const std::wstring& name, int first_line, const std::wstring& file_name) :
-            m_line(line), m_absolute_line(absolute_line), m_name(name), m_macro_first_line(first_line), m_file_name(file_name) {}
+            m_line(line), m_absolute_line(absolute_line), m_macro_first_line(first_line), m_name(name), m_file_name(file_name) {}
     };
     typedef std::vector<WhereEntry> WhereVector;
 
