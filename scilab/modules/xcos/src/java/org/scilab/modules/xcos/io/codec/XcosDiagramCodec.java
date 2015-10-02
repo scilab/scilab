@@ -29,6 +29,7 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.w3c.dom.Element;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -36,7 +37,9 @@ import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGraphModel;
+import com.mxgraph.model.mxICell;
 
 /**
  * Codec for an {@link org.scilab.modules.xcos.graph.XcosDiagram} instance.
@@ -191,6 +194,30 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
             field = null;
         }
 
+        // pre 6.0.0 Xcos have an mxCell defaultParent whereas it should be an XcosCell
+        if (field == null && "defaultParent".equals(fieldname) && !(value instanceof XcosCell)) {
+            XcosDiagram diag = (XcosDiagram) obj;
+            XcosCell defaultParent = (XcosCell) diag.getDefaultParent();
+            mxICell root = (mxICell) diag.getModel().getRoot();
+
+            /*
+             * Restore the initial hierarchy
+             *  mxCell -> root
+             *   XcosCell -> default parent with diagram uid / kind
+             *    BasicBlock
+             *    BasicLink
+             *    .
+             *    .
+             *    .
+             */
+
+            Object[] cells = diag.getChildCells(value);
+            root.remove(0);
+            diag.addCells(cells, defaultParent);
+
+            return;
+        }
+
         if (field == null) {
             super.setFieldValue(obj, fieldname, value);
         }
@@ -305,28 +332,6 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
         final mxGraphModel model = (mxGraphModel) diag.getModel();
         final Object parent = diag.getDefaultParent();
-
-        // FIXME is it really needed now ?
-        // main update loop
-        //        final mxGraphModel.Filter filter = new mxGraphModel.Filter() {
-        //            @Override
-        //            public boolean filter(Object cell) {
-        //                if (cell instanceof BasicBlock) {
-        //                    final BasicBlock block = (BasicBlock) cell;
-        //
-        //                    // update parent diagram
-        //                    block.setParentDiagram(diag);
-        //
-        //                    // restore default root in case of a wrong hierarchy.
-        //                    return block.getParent() != parent;
-        //                }
-        //                return false;
-        //            }
-        //        };
-        //        final Collection<Object> blocks = mxGraphModel.filterDescendants(model, filter);
-        //        if (!blocks.isEmpty()) {
-        //            diag.addCells(blocks.toArray());
-        //        }
 
         // pre-5.3 diagram may be saved in a locked state
         // unlock it

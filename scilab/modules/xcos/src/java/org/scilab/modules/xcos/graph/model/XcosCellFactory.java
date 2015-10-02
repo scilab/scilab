@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -32,23 +32,7 @@ import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosView;
-import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.SplitBlock;
-import org.scilab.modules.xcos.block.SuperBlock;
-import org.scilab.modules.xcos.block.TextBlock;
-import org.scilab.modules.xcos.block.io.EventInBlock;
-import org.scilab.modules.xcos.block.io.EventOutBlock;
-import org.scilab.modules.xcos.block.io.ExplicitInBlock;
-import org.scilab.modules.xcos.block.io.ExplicitOutBlock;
-import org.scilab.modules.xcos.block.io.ImplicitInBlock;
-import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
-import org.scilab.modules.xcos.block.positionning.BigSom;
-import org.scilab.modules.xcos.block.positionning.GroundBlock;
-import org.scilab.modules.xcos.block.positionning.Product;
-import org.scilab.modules.xcos.block.positionning.RoundBlock;
-import org.scilab.modules.xcos.block.positionning.Summation;
-import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
@@ -72,116 +56,6 @@ import com.mxgraph.util.mxPoint;
  * Ease the creation of any {@link Kind} of graphical object
  */
 public final class XcosCellFactory {
-
-    // DAC: As this is the constructor for all the block classes, this class is
-    // very coupled with *Block classes
-    // CSOFF: ClassDataAbstractionCoupling
-    /**
-     * List the specific block interface function name. <BR>
-     * <BR>
-     * <EM>Specific instance must be registered before generic ones in order
-     * to serialized all the non-default values.</EM>
-     */
-    public static enum BlockInterFunction {
-        /** @see TextBlock */
-        TEXT_f(TextBlock.class),
-        /** @see SuperBlock */
-        DSUPER(SuperBlock.class),
-        /** @see SuperBlock */
-        SUPER_f(SuperBlock.class),
-        /** @see AfficheBlock */
-        AFFICH_m(AfficheBlock.class),
-        /** @see AfficheBlock */
-        AFFICH_f(AfficheBlock.class),
-        /** @see ExplicitInBlock */
-        IN_f(ExplicitInBlock.class),
-        /** @see ExplicitOutBlock */
-        OUT_f(ExplicitOutBlock.class),
-        /** @see ImplicitInBlock */
-        INIMPL_f(ImplicitInBlock.class),
-        /** @see ImplicitOutBlock */
-        OUTIMPL_f(ImplicitOutBlock.class),
-        /** @see EventInBlock */
-        CLKINV_f(EventInBlock.class),
-        /** @see EventOutBlock */
-        CLKOUTV_f(EventOutBlock.class),
-        /** @see EventOutBlock */
-        CLKOUT_f(EventOutBlock.class),
-        /** @see SplitBlock */
-        SPLIT_f(SplitBlock.class),
-        /** @see SplitBlock */
-        IMPSPLIT_f(SplitBlock.class),
-        /** @see SplitBlock */
-        CLKSPLIT_f(SplitBlock.class),
-        /** @see GroundBlock */
-        Ground(GroundBlock.class),
-        /** @see VoltageSensorBlock */
-        VoltageSensor(VoltageSensorBlock.class),
-        /** @see RoundBlock */
-        SUM_f(RoundBlock.class),
-        /** @see RoundBlock */
-        PROD_f(RoundBlock.class),
-        /** @see RoundBlock */
-        CLKSOM_f(RoundBlock.class),
-        /** @see RoundBlock */
-        CLKSOMV_f(RoundBlock.class),
-        /** @see BigSom */
-        BIGSOM_f(BigSom.class),
-        /** @see Summation */
-        SUMMATION(Summation.class),
-        /** @see Product */
-        PRODUCT(Product.class),
-        /** @see BasicBlock */
-        BASIC_BLOCK(BasicBlock.class);
-
-        private final Class<? extends BasicBlock> klass;
-
-        /**
-         * Default constructor
-         *
-         * @param block
-         *            The reference instance
-         */
-        private BlockInterFunction(Class<? extends BasicBlock> klass) {
-            this.klass = klass;
-        }
-
-        /**
-         * @return the class to instantiate
-         */
-        public Class<? extends BasicBlock> getKlass() {
-            return klass;
-        }
-    }
-
-    private static class ScicosObjectOwner {
-        final long uid;
-        final Kind kind;
-
-        public ScicosObjectOwner(long uid, Kind kind) {
-            this.uid = uid;
-            this.kind = kind;
-
-            JavaController controller = new JavaController();
-            controller.referenceObject(uid);
-        }
-
-        public long getUID() {
-            return uid;
-        }
-
-        public Kind getKind() {
-            return kind;
-        }
-
-        @Override
-        protected void finalize() throws Throwable {
-            JavaController controller = new JavaController();
-            controller.deleteObject(uid);
-        }
-    }
-
-    // CSON: ClassDataAbstractionCoupling
 
     /** Default singleton constructor */
     private XcosCellFactory() {
@@ -299,13 +173,17 @@ public final class XcosCellFactory {
             controller.getObjectProperty(l.getUID(), l.getKind(), ObjectProperties.DESTINATION_PORT, dest);
 
             int srcIndex = Collections.binarySearch(ports, new XcosCell(src[0], Kind.PORT), compare);
-            if (srcIndex > 0) {
+            if (srcIndex >= 0) {
                 l.setSource(ports.get(srcIndex));
+            } else {
+                throw new IllegalStateException();
             }
 
             int destIndex = Collections.binarySearch(ports, new XcosCell(dest[0], Kind.PORT), compare);
             if (destIndex > 0) {
                 l.setTarget(ports.get(destIndex));
+            } else {
+                throw new IllegalStateException();
             }
         }
 
@@ -360,7 +238,19 @@ public final class XcosCellFactory {
     private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) {
         BasicBlock block;
         try {
-            synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
+            if (BlockInterFunction.BASIC_BLOCK.name().equals(interfaceFunction)) {
+                // deliver all the MVC speed for the casual case
+                lastCreated = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
+            } else {
+                // allocate an empty block that will be filled later
+                synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
+            }
+
+            // defensive programming
+            if (lastCreated == null) {
+                System.err.println("XcosCellFactory#createBlock : unable to allocate " + interfaceFunction);
+                return null;
+            }
 
             if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(lastCreated.getKind())) {
                 block = createBlock(controller, func, interfaceFunction, lastCreated.getUID());
@@ -421,13 +311,22 @@ public final class XcosCellFactory {
          */
         insertPortChildren(controller, block);
 
-        block.setStyle(interfaceFunction);
+        String[] style = new String[1];
+        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.STYLE, style);
+        if (style[0].isEmpty()) {
+            block.setStyle(interfaceFunction);
+        } else {
+            block.setStyle(style[0]);
+        }
 
         VectorOfDouble geom = new VectorOfDouble(4);
         controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.GEOMETRY, geom);
         block.setGeometry(new mxGeometry(geom.get(0), geom.get(1), geom.get(2), geom.get(3)));
 
         // FIXME find a way to reuse the Scicos compat handler from org.scilab.modules.xcos.io.scicos
+
+
+
 
         return block;
     }
@@ -566,14 +465,21 @@ public final class XcosCellFactory {
         controller.getObjectProperty(uid, kind, ObjectProperties.CONTROL_POINTS, controlPoints);
         final int pointsLen = controlPoints.size() / 2;
 
-        ArrayList<mxPoint> points = new ArrayList<>(pointsLen);
-        for (int i = 0 ; i < pointsLen; i++) {
+        mxGeometry geom = new mxGeometry();
+
+        // as the link is supposed to be connected and accordingly to the JGraphX rules : do not add the origin and destination point
+        ArrayList<mxPoint> points = new ArrayList<>();
+        int i = 0;
+        // ignore origin
+        i++;
+        // loop for points
+        for (; i < pointsLen - 1; i++) {
             points.add(new mxPoint(controlPoints.get(2 * i), controlPoints.get(2 * i + 1)));
         }
+        // ignore destination
+        i++;
 
-        mxGeometry geom = new mxGeometry();
         geom.setPoints(points);
-
         link.setGeometry(geom);
         return link;
     }

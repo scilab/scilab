@@ -13,13 +13,20 @@
 
 package org.scilab.modules.xcos.io.codec;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Collection;
+import java.util.Hashtable;
 import java.util.Map;
 import java.util.WeakHashMap;
 
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.graph.utils.StyleMap;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCellCodec;
@@ -38,9 +45,9 @@ public class XcosObjectCodec extends mxCellCodec {
     /*
      * Cache fields and accessors
      */
-    protected Map<Class, Map<String, Field>> fields = new WeakHashMap<Class, Map<String, Field>>();
-    protected Map<Class, Map<Field, Method>> getters = new WeakHashMap<Class, Map<Field, Method>>();
-    protected Map<Class, Map<Field, Method>> setters = new WeakHashMap<Class, Map<Field, Method>>();
+    protected Map<Class<?>, Map<String, Field>> fields = new WeakHashMap<>();
+    protected Map<Class<?>, Map<Field, Method>> getters = new WeakHashMap<>();
+    protected Map<Class<?>, Map<Field, Method>> setters = new WeakHashMap<>();
 
     /**
      * Attribute name containing {@link com.mxgraph.model.mxCell} style.
@@ -147,6 +154,43 @@ public class XcosObjectCodec extends mxCellCodec {
         }
 
         return f;
+    }
+
+    /**
+     * {@inheritDoc}
+     *
+     * Clone the object while preserving UID / Kind allocation
+     *
+     */
+    @Override
+    protected Object cloneTemplate(Node node) {
+        Object obj = null;
+
+        try {
+            if (template.getClass().isEnum()) {
+                obj = template.getClass().getEnumConstants()[0];
+            } else {
+                if (XcosCell.class.isAssignableFrom(template.getClass())) {
+                    JavaController controller = new JavaController();
+                    Kind kind = ((XcosCell) template).getKind();
+
+                    Constructor<? extends Object> cstrs = template.getClass().getConstructor(Long.TYPE);
+                    obj = cstrs.newInstance(controller.createObject(kind));
+                } else {
+                    obj = template.getClass().newInstance();
+                }
+            }
+
+        } catch (ReflectiveOperationException e) {
+            // ignore
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            // ignore
+            e.printStackTrace();
+        }
+
+        return obj;
+
     }
 
     /**

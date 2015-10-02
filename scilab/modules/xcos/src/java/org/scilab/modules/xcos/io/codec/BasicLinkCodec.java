@@ -16,7 +16,10 @@ import static org.scilab.modules.xcos.io.codec.XcosCodec.LOG;
 
 import java.util.Map;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -30,14 +33,13 @@ import com.mxgraph.io.mxCodecRegistry;
 public class BasicLinkCodec extends XcosObjectCodec {
 
     public static void register() {
-        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(
-            new ExplicitLink(0l), null, REFS, null);
+        JavaController controller = new JavaController();
+
+        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(new ExplicitLink(controller.createObject(Kind.LINK)), null, REFS, null);
         mxCodecRegistry.register(explicitlinkCodec);
-        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(
-            new ImplicitLink(0l), null, REFS, null);
+        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(new ImplicitLink(controller.createObject(Kind.LINK)), null, REFS, null);
         mxCodecRegistry.register(implicitlinkCodec);
-        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(
-            new CommandControlLink(0l), null, REFS, null);
+        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(new CommandControlLink(controller.createObject(Kind.LINK)), null, REFS, null);
         mxCodecRegistry.register(commandControllinkCodec);
     }
 

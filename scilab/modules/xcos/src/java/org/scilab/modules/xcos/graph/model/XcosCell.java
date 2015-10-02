@@ -1,4 +1,19 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015-2015 - Scilab Enterprises - Clement DAVID
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ */
+
 package org.scilab.modules.xcos.graph.model;
+
+import java.util.Collections;
+import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.xcos.JavaController;
@@ -10,13 +25,13 @@ import org.scilab.modules.xcos.VectorOfScicosID;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import com.mxgraph.util.mxPoint;
 
 
 public class XcosCell extends ScilabGraphUniqueObject {
     private static final long serialVersionUID = 1L;
 
-    private long uid;
-    private Kind kind;
+    private transient ScicosObjectOwner owner;
 
     /**
      * Construct an Xcos graphical object.
@@ -27,8 +42,12 @@ public class XcosCell extends ScilabGraphUniqueObject {
      * @param kind the associated MVC kind
      */
     public XcosCell(long uid, Kind kind) {
-        this.uid = uid;
-        this.kind = kind;
+        owner = new ScicosObjectOwner(uid, kind);
+
+        // defensive programming
+        if (uid == 0l) {
+            throw new IllegalArgumentException();
+        }
 
         JavaController controller = new JavaController();
         controller.referenceObject(uid);
@@ -38,14 +57,14 @@ public class XcosCell extends ScilabGraphUniqueObject {
      * @return the MVC unique identifier
      */
     public long getUID() {
-        return uid;
+        return owner.getUID();
     }
 
     /**
      * @return the MVC kind of object
      */
     public Kind getKind() {
-        return kind;
+        return owner.getKind();
     }
 
     /*
@@ -58,7 +77,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
     @Override
     public void setValue(Object value) {
         super.setValue(value);
-        if (getKind() == null) {
+        if (owner == null) {
             return;
         }
 
@@ -86,7 +105,16 @@ public class XcosCell extends ScilabGraphUniqueObject {
 
         JavaController controller = new JavaController();
         switch (getKind()) {
+            case ANNOTATION:
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.UID, id);
+                break;
             case BLOCK:
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.UID, id);
+                break;
+            case LINK:
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.UID, id);
+                break;
+            case PORT:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.UID, id);
                 break;
             default:
@@ -100,7 +128,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
     @Override
     public void setGeometry(mxGeometry geometry) {
         super.setGeometry(geometry);
-        if (getKind() == null) {
+        if (owner == null) {
             return;
         }
 
@@ -117,12 +145,68 @@ public class XcosCell extends ScilabGraphUniqueObject {
                 break;
             }
             case LINK: {
-                VectorOfDouble v = new VectorOfDouble(4);
-                v.set(0, geometry.getX());
-                v.set(1, geometry.getY());
-                v.set(2, geometry.getWidth());
-                v.set(3, geometry.getHeight());
-                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.GEOMETRY, v);
+                /*
+                 * try to find the origin of the source and target accordingly to the JGraphX implementation
+                 */
+                mxPoint sourcePoint = null;
+                mxPoint targetPoint = null;
+
+                mxICell sourceCell = getSource();
+                mxICell targetCell = getTarget();
+                if (sourceCell != null && sourceCell.getGeometry() != null) {
+                    sourcePoint = new mxPoint(sourceCell.getGeometry().getCenterX(), sourceCell.getGeometry().getCenterY());
+                }
+                if (targetCell != null && targetCell.getGeometry() != null) {
+                    targetPoint = new mxPoint(targetCell.getGeometry().getCenterX(), targetCell.getGeometry().getCenterY());
+                }
+
+                if (sourcePoint == null) {
+                    sourcePoint = geometry.getSourcePoint();
+                }
+                if (targetPoint == null) {
+                    targetPoint = geometry.getTargetPoint();
+                }
+
+                if (sourcePoint == null) {
+                    sourcePoint = new mxPoint();
+                }
+                if (targetPoint == null) {
+                    targetPoint = new mxPoint();
+                }
+
+                List<mxPoint> points = geometry.getPoints();
+                if (points == null) {
+                    points = Collections.emptyList();
+                }
+
+                /*
+                 * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown)
+                 * encode them to the the CONTROL_POINTS
+                 */
+
+                // Allocate some space to contains them all
+                int nbOfPoints = 2 + points.size();
+                VectorOfDouble v = new VectorOfDouble(2 * nbOfPoints);
+                int i = 0;
+
+                // then fill the allocation space
+                v.set(2 * i, sourcePoint.getX());
+                v.set(2 * i + 1, sourcePoint.getY());
+                i++;
+
+                for (; i < nbOfPoints - 1 ; i++) {
+                    v.set(2 * i, points.get(i - 1).getX());
+                    v.set(2 * i + 1, points.get(i - 1).getY());
+                }
+
+                v.set(2 * i, targetPoint.getX());
+                v.set(2 * i + 1, targetPoint.getY());
+                i++;
+
+                /*
+                 * Finally push the values to the model
+                 */
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CONTROL_POINTS, v);
                 break;
             }
             default:
@@ -136,7 +220,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
     @Override
     public void setStyle(String style) {
         super.setStyle(style);
-        if (getKind() == null) {
+        if (owner == null) {
             return;
         }
 
@@ -365,8 +449,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
     public Object clone() throws CloneNotSupportedException {
         JavaController controller = new JavaController();
         XcosCell c = (XcosCell) super.clone();
-        c.uid = controller.cloneObject(getUID(), false);
-        c.kind = getKind();
+        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false), getKind());
         return c;
     }
 

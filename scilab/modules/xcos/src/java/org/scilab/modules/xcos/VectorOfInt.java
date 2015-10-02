@@ -9,82 +9,86 @@
 package org.scilab.modules.xcos;
 
 public class VectorOfInt {
-  private transient long swigCPtr;
-  protected transient boolean swigCMemOwn;
+    private transient long swigCPtr;
+    protected transient boolean swigCMemOwn;
 
-  protected VectorOfInt(long cPtr, boolean cMemoryOwn) {
-    swigCMemOwn = cMemoryOwn;
-    swigCPtr = cPtr;
-  }
-
-  protected static long getCPtr(VectorOfInt obj) {
-    return (obj == null) ? 0 : obj.swigCPtr;
-  }
-
-  protected void finalize() {
-    delete();
-  }
-
-  public synchronized void delete() {
-    if (swigCPtr != 0) {
-      if (swigCMemOwn) {
-        swigCMemOwn = false;
-        JavaControllerJNI.delete_VectorOfInt(swigCPtr);
-      }
-      swigCPtr = 0;
+    protected VectorOfInt(long cPtr, boolean cMemoryOwn) {
+        swigCMemOwn = cMemoryOwn;
+        swigCPtr = cPtr;
     }
-  }
 
-  public VectorOfInt() {
-    this(JavaControllerJNI.new_VectorOfInt__SWIG_0(), true);
-  }
+    protected static long getCPtr(VectorOfInt obj) {
+        return (obj == null) ? 0 : obj.swigCPtr;
+    }
 
-  public VectorOfInt(long n) {
-    this(JavaControllerJNI.new_VectorOfInt__SWIG_1(n), true);
-  }
+    protected void finalize() {
+        delete();
+    }
 
-  public void ensureCapacity(long n) {
-    JavaControllerJNI.VectorOfInt_ensureCapacity(swigCPtr, this, n);
-  }
+    public synchronized void delete() {
+        if (swigCPtr != 0) {
+            if (swigCMemOwn) {
+                swigCMemOwn = false;
+                JavaControllerJNI.delete_VectorOfInt(swigCPtr);
+            }
+            swigCPtr = 0;
+        }
+    }
 
-  public int size() {
-    return JavaControllerJNI.VectorOfInt_size(swigCPtr, this);
-  }
+    public VectorOfInt() {
+        this(JavaControllerJNI.new_VectorOfInt__SWIG_0(), true);
+    }
 
-  public boolean isEmpty() {
-    return JavaControllerJNI.VectorOfInt_isEmpty(swigCPtr, this);
-  }
+    public VectorOfInt(long n) {
+        this(JavaControllerJNI.new_VectorOfInt__SWIG_1(n), true);
+    }
 
-  public void clear() {
-    JavaControllerJNI.VectorOfInt_clear(swigCPtr, this);
-  }
+    public void ensureCapacity(long n) {
+        JavaControllerJNI.VectorOfInt_ensureCapacity(swigCPtr, this, n);
+    }
 
-  public void add(int x) {
-    JavaControllerJNI.VectorOfInt_add__SWIG_0(swigCPtr, this, x);
-  }
+    public int size() {
+        return JavaControllerJNI.VectorOfInt_size(swigCPtr, this);
+    }
 
-  public boolean contains(int o) {
-    return JavaControllerJNI.VectorOfInt_contains(swigCPtr, this, o);
-  }
+    public boolean isEmpty() {
+        return JavaControllerJNI.VectorOfInt_isEmpty(swigCPtr, this);
+    }
 
-  public int indexOf(int o) {
-    return JavaControllerJNI.VectorOfInt_indexOf(swigCPtr, this, o);
-  }
+    public void clear() {
+        JavaControllerJNI.VectorOfInt_clear(swigCPtr, this);
+    }
 
-  public int get(int i) {
-    return JavaControllerJNI.VectorOfInt_get(swigCPtr, this, i);
-  }
+    public void add(int x) {
+        JavaControllerJNI.VectorOfInt_add__SWIG_0(swigCPtr, this, x);
+    }
 
-  public void set(int i, int val) {
-    JavaControllerJNI.VectorOfInt_set(swigCPtr, this, i, val);
-  }
+    public boolean contains(int o) {
+        return JavaControllerJNI.VectorOfInt_contains(swigCPtr, this, o);
+    }
 
-  public void add(int i, int val) {
-    JavaControllerJNI.VectorOfInt_add__SWIG_1(swigCPtr, this, i, val);
-  }
+    public int indexOf(int o) {
+        return JavaControllerJNI.VectorOfInt_indexOf(swigCPtr, this, o);
+    }
 
-  public boolean remove(int val) {
-    return JavaControllerJNI.VectorOfInt_remove(swigCPtr, this, val);
-  }
+    public int get(int i) {
+        return JavaControllerJNI.VectorOfInt_get(swigCPtr, this, i);
+    }
+
+    public void set(int i, int val) {
+        JavaControllerJNI.VectorOfInt_set(swigCPtr, this, i, val);
+    }
+
+    public void add(int i, int val) {
+        JavaControllerJNI.VectorOfInt_add__SWIG_1(swigCPtr, this, i, val);
+    }
+
+    public boolean remove(int val) {
+        return JavaControllerJNI.VectorOfInt_remove(swigCPtr, this, val);
+    }
+
+    public String toString() {
+        return JavaControllerJNI.VectorOfInt_toString(swigCPtr, this);
+    }
 
 }

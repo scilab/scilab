@@ -22,8 +22,8 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
@@ -31,6 +31,7 @@ import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.codec.XcosCodec;
+import org.scilab.modules.xcos.io.sax.SAXHandler;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -67,27 +68,15 @@ public class ContentEntry implements Entry {
     @Override
     public void load(ZipEntry entry, InputStream stream) throws IOException {
         try {
-            final XcosCodec codec = new XcosCodec();
             final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
             final Transformer aTransformer = tranFactory.newTransformer();
 
             final StreamSource src = new StreamSource(stream);
-            final DOMResult result = new DOMResult(codec.getDocument());
+            final SAXResult result = new SAXResult(new SAXHandler(content, dictionary));
 
             LOG.entering("Transformer", "transform");
             aTransformer.transform(src, result);
             LOG.exiting("Transformer", "transform");
-
-            LOG.entering("XcosCodec", "decode");
-            codec.setElementIdAttributes();
-            if (dictionary == null) {
-                codec.decode(result.getNode().getFirstChild(), content);
-            } else {
-                XcosCodec.enableBinarySerialization(dictionary);
-                codec.decode(result.getNode().getFirstChild(), content);
-                XcosCodec.disableBinarySerialization();
-            }
-            LOG.exiting("XcosCodec", "decode");
 
         } catch (TransformerConfigurationException e) {
             Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
