@@ -18665,7 +18665,7 @@ EOF
 
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
-    cmd="$JAVA conftestSharedChecker batik-all org.apache.batik.Version $jar_resolved getVersion 1.7 "
+    cmd="$JAVA conftestSharedChecker batik-all org.apache.batik.Version $jar_resolved getVersion 1.8 "
     if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
         PACKAGE_JAR_FILE=$(tail -n 1 conftestSharedChecker.java.output);
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PACKAGE_JAR_FILE" >&5
@@ -18884,7 +18884,7 @@ EOF
 
     CLASSPATH=$ac_java_classpath
     export CLASSPATH
-    cmd="$JAVA conftestSharedChecker batik org.apache.batik.Version $jar_resolved getVersion 1.7 "
+    cmd="$JAVA conftestSharedChecker batik org.apache.batik.Version $jar_resolved getVersion 1.8 "
     if (echo $cmd >&5 ; eval $cmd >conftestSharedChecker.java.output 2>&5); then
         PACKAGE_JAR_FILE=$(tail -n 1 conftestSharedChecker.java.output);
         { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PACKAGE_JAR_FILE" >&5

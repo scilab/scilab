@@ -31,6 +31,15 @@ For a high-level overview of the changes in this release, please consult the "Wh
 
 * Bug #14257 fixed - English spelling in messages and in comments.
 
+* Bug #14257 fixed - English spelling in messages and in comments.
+
+Dependencies
+=============
+
+* Apache xmlgraphics stack upgraded to the latest versions :
+  - xmlgraphics-commons 2.0.1
+  - Batik 1.8
+  - FOP 2.0
 
         Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2
         =======================================================

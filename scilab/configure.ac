@@ -1054,12 +1054,14 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 fi
 
                 # xml.apache.org SVG Library (under mandriva for example)
-                AC_JAVA_CHECK_JAR([batik-all],[org.apache.batik.Version],[Apache SVG Library],"yes",[getVersion],[1.7])
+                AC_JAVA_CHECK_JAR([batik-all],[org.apache.batik.Version],
+                                  [Apache SVG Library],"yes",[getVersion],[1.8])
                 BATIK=$PACKAGE_JAR_FILE
 
                 if test -z "$BATIK"; then
                    # Other other distribs
-                   AC_JAVA_CHECK_JAR([batik],[org.apache.batik.Version],[Apache SVG Library],[],[getVersion],[1.7])
+                   AC_JAVA_CHECK_JAR([batik],[org.apache.batik.Version],
+                                     [Apache SVG Library],[],[getVersion],[1.8])
                    BATIK=$PACKAGE_JAR_FILE
                 fi
                 AC_SUBST(BATIK)
