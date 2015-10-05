@@ -1302,7 +1302,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
             {
                 if (_pR->get(i) != 0)
                 {
-                    pTemp->set(i, stComplex);
+                    pTemp->set(i, stComplex, false);
                 }
             }
         }
@@ -1399,8 +1399,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 int iRow = static_cast<int>(pRows[i]) - 1;
                 int iCol = static_cast<int>(pCols[i]) - 1;
                 int index = iCol * iRows + iRow;
-
-                pOut->set(iRow, iCol,  pdblR[index] / pValR[i], false);
+               pOut->set(iRow, iCol, pdblR[index] / pValR[i], false);
             }
         }
         else
@@ -1416,7 +1415,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 dDenum = ( pValR[index] * pValR[index] + pValI[index] * pValI[index]);
                 c.real((pdblR[index] * pValR[i]) / dDenum);
                 c.imag(-(pdblR[index] * pValI[i]) / dDenum);
-                pOut->set(iRow, iCol,  c, false);
+                pOut->set(iRow, iCol, c, false);
             }
         }
     }
@@ -1434,7 +1433,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 std::complex<double> c;
                 c.real(pdblR[index] / pValR[i]);
                 c.imag(pdblI[index] / pValR[i]);
-                pOut->set(iRow, iCol,  c, false);
+                pOut->set(iRow, iCol, c, false);
             }
         }
         else
@@ -1450,7 +1449,7 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
                 dDenum = ( pValR[index] * pValR[index] + pValI[index] * pValI[index]);
                 c.real((pdblR[index] * pValR[i] + pdblI[index] * pValI[i]) / dDenum);
                 c.imag((pdblI[index] * pValR[i] - pdblR[index] * pValI[i]) / dDenum);
-                pOut->set(iRow, iCol,  c, false);
+                pOut->set(iRow, iCol, c, false);
             }
         }
     }
@@ -1612,7 +1611,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
                 dDenum = ( pdblR[index] * pdblR[index] + pdblI[index] * pdblI[index]);
                 c.real((pValR[i]*pdblR[index]) / dDenum );
                 c.imag(-(pdblI[index]*pValR[i]) / dDenum );
-                pOut->set(iRow, iCol,  c, false);
+                pOut->set(iRow, iCol, c, false);
             }
         }
         else
@@ -1627,7 +1626,7 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
                 dDenum = ( pdblR[index] * pdblR[index] + pdblI[index] * pdblI[index]);
                 c.real((pdblR[index] * pValR[i] + pdblI[index] * pValI[i]) / dDenum);
                 c.imag((pdblR[index] * pValI[i] - pdblI[index] * pValR[i]) / dDenum);
-                pOut->set(iRow, iCol,  c, false);
+                pOut->set(iRow, iCol, c, false);
             }
         }
     }

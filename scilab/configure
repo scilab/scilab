@@ -27897,8 +27897,8 @@ fi
 CPPFLAGS="$save_CPPFLAGS"
 
 CHK_EIGEN_WORLD=3
-CHK_EIGEN_MAJOR=1
-CHK_EIGEN_MINOR=0
+CHK_EIGEN_MAJOR=3
+CHK_EIGEN_MINOR=2
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later" >&5
 $as_echo_n "checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later... " >&6; }
@@ -27907,7 +27907,7 @@ cat > conftest.$ac_ext <<EOF
 #include "confdefs.h"
 
 #include "$PATH_TO_EIGEN/Eigen/Sparse"
-#if EIGEN_VERSION_AT_LEAST(3,1,0)
+#if EIGEN_VERSION_AT_LEAST(3,3,2)
 EIGEN_VERSION_OK
 #endif
 

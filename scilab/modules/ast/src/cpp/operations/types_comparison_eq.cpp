@@ -2837,7 +2837,7 @@ InternalType* compequal_SP_M(T* _pL, U* _pR)
             for (int i = 0; i < iSizeOut; i++)
             {
                 std::complex<double> stComplex((double)_pR->get(i), (double)_pR->getImg(i));
-                pspConvert->set(i, stComplex);
+                pspConvert->set(i, stComplex, false);
             }
         }
         else
@@ -2846,7 +2846,6 @@ InternalType* compequal_SP_M(T* _pL, U* _pR)
             for (int i = 0; i < iSizeOut; i++)
             {
                 pspConvert->set(i, (double)_pR->get(i), false);
-
             }
         }
     }
