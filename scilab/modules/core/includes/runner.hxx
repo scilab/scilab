@@ -15,6 +15,7 @@
 #define __RUNNER_HXX__
 
 #include <atomic>
+#include <memory>
 
 #include "exp.hxx"
 #include "runvisitor.hxx"
@@ -27,31 +28,20 @@ extern "C"
 class CORE_IMPEXP Runner
 {
 public :
-    Runner(ast::Exp* _theProgram, ast::RunVisitor *_visitor)
-    {
-        m_theProgram = _theProgram;
-        m_visitor = _visitor;
-        m_isConsoleCommand = false;
-        m_isInterruptible = true;
-    }
+    Runner(ast::Exp* _theProgram, ast::RunVisitor *_visitor) : m_theProgram(_theProgram), m_visitor(_visitor), m_isConsoleCommand(false), m_isInterruptible(true)
+    { }
 
-    Runner(ast::Exp* _theProgram, ast::RunVisitor *_visitor, bool _isConsoleCommand, bool _isInterruptible)
-    {
-        m_theProgram = _theProgram;
-        m_visitor = _visitor;
-        m_isConsoleCommand = _isConsoleCommand;
-        m_isInterruptible = _isInterruptible;
-    }
+    Runner(ast::Exp* _theProgram, ast::RunVisitor *_visitor, bool _isConsoleCommand, bool _isInterruptible) : m_theProgram(_theProgram), m_visitor(_visitor), m_isConsoleCommand(_isConsoleCommand), m_isInterruptible(_isInterruptible)
+    { }
 
     ~Runner()
     {
         delete m_theProgram;
-        delete m_visitor;
     }
 
     ast::RunVisitor *getVisitor()
     {
-        return m_visitor;
+        return m_visitor.get();
     }
 
     ast::Exp* getProgram()
@@ -71,7 +61,7 @@ public :
 
 private :
     ast::Exp* m_theProgram;
-    ast::RunVisitor* m_visitor;
+    std::unique_ptr<ast::RunVisitor> m_visitor;
     bool m_isConsoleCommand;
     bool m_isInterruptible;
 

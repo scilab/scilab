@@ -10,7 +10,6 @@
 *
 */
 
-#include <string.h>
 //#include "AnalysisVisitor.hxx"
 #include "parser.hxx"
 #include "functions_gw.hxx"
@@ -19,6 +18,7 @@
 #include "configvariable.hxx"
 #include "threadmanagement.hxx"
 
+#include <memory>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -201,7 +201,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     // to manage line displayed when error occured.
     ConfigVariable::macroFirstLine_begin(1);
 
-    ast::ConstVisitor* run = ConfigVariable::getDefaultVisitor();
+    std::unique_ptr<ast::ConstVisitor> run(ConfigVariable::getDefaultVisitor());
 
     try
     {
@@ -211,7 +211,6 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         try
         {
             pSeqExp->accept(*run);
-            delete run;
         }
         catch (const ast::RecursionException& /* re */)
         {

@@ -30,7 +30,7 @@ std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
 void StaticRunner::launch()
 {
     // get the runner to execute
-    Runner* runMe = getRunner();
+    std::unique_ptr<Runner> runMe(getRunner());
     // set if the current comment is interruptible
     setInterruptibleCommand(runMe->isInterruptible());
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
@@ -53,7 +53,6 @@ void StaticRunner::launch()
             if (ConfigVariable::getPauseLevel())
             {
                 ConfigVariable::DecreasePauseLevel();
-                delete runMe;
                 throw re;
             }
 
@@ -94,7 +93,6 @@ void StaticRunner::launch()
         if (ConfigVariable::getPauseLevel())
         {
             ConfigVariable::DecreasePauseLevel();
-            delete runMe;
             throw ia;
         }
 
@@ -112,7 +110,6 @@ void StaticRunner::launch()
 
         //clean debugger step flag if debugger is not interrupted ( end of debug )
         manager->resetStep();
-        delete runMe;
         throw ia;
     }
 
@@ -140,7 +137,6 @@ void StaticRunner::launch()
 
     //clean debugger step flag if debugger is not interrupted ( end of debug )
     manager->resetStep();
-    delete runMe;
 }
 
 void StaticRunner::setRunner(Runner* _RunMe)

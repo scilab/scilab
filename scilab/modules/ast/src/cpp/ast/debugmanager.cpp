@@ -10,6 +10,8 @@
  *
  */
 
+#include <memory>
+
 #include "debugmanager.hxx"
 #include "configvariable.hxx"
 #include "threadmanagement.hxx"
@@ -24,17 +26,17 @@ extern "C"
 
 namespace debugger
 {
-DebuggerMagager* DebuggerMagager::me = NULL;
+std::unique_ptr<DebuggerMagager> DebuggerMagager::me(nullptr);
 
 //singleton
 DebuggerMagager* DebuggerMagager::getInstance()
 {
-    if (me == NULL)
+    if (me.get() == nullptr)
     {
-        me = new DebuggerMagager();
+        me.reset(new DebuggerMagager());
     }
 
-    return me;
+    return me.get();
 }
 
 void DebuggerMagager::addDebugger(AbstractDebugger* _debug)

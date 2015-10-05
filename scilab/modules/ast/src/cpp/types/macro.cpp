@@ -10,6 +10,7 @@
 *
 */
 
+#include <memory>
 #include <sstream>
 #include <cstdio>
 
@@ -307,10 +308,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
+    std::unique_ptr<ast::ConstVisitor> exec (ConfigVariable::getDefaultVisitor());
     try
     {
         ConfigVariable::setPromptMode(-1);
-        m_body->accept(*ConfigVariable::getDefaultVisitor());
+        m_body->accept(*exec);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
     }

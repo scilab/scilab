@@ -10,7 +10,6 @@
 *
 */
 
-#include <string.h>
 #include "functions_gw.hxx"
 
 #include "parser.hxx"
@@ -27,6 +26,7 @@
 #include "macrofile.hxx"
 #include "filemanager.hxx"
 
+#include <memory>
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -286,7 +286,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     if (file == NULL || promptMode == 0 || promptMode == 2)
     {
         ast::SeqExp* pSeqExp = pExp->getAs<ast::SeqExp>();
-        ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
+        std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
 
         try
         {
@@ -296,7 +296,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             try
             {
                 pSeqExp->accept(*exec);
-                delete exec;
             }
             catch (const ast::RecursionException& /* re */)
             {
@@ -398,7 +397,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
             j = k;
 
-            ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
+            std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
 
             try
             {
@@ -409,7 +408,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 {
                     // execute printed exp
                     seqExp.accept(*exec);
-                    delete exec;
                 }
                 catch (const ast::RecursionException& /* re */)
                 {
