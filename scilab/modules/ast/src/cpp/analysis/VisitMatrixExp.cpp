@@ -28,6 +28,7 @@ void AnalysisVisitor::visit(ast::MatrixExp & e)
         return;
     }
 
+    std::vector<std::pair<int, ast::Exp *>> tempIds;
     GVN::Value * totalColsRef = nullptr;
     GVN::Value * totalRows = getGVN().getValue(0.);
     TIType::Type baseType = TIType::UNKNOWN;
@@ -46,6 +47,11 @@ void AnalysisVisitor::visit(ast::MatrixExp & e)
                 e->accept(*this);
                 Result & res = getResult();
                 TIType & type = res.getType();
+                const int tempId = res.getTempId();
+                if (tempId != -1)
+                {
+                    tempIds.emplace_back(tempId, e);
+                }
                 if (type.type != TIType::EMPTY && type.rows != 0 && type.cols != 0)
                 {
                     if (!baseTypeSet)
@@ -147,6 +153,11 @@ void AnalysisVisitor::visit(ast::MatrixExp & e)
                 }
             }
         }
+    }
+
+    for (const auto & p : tempIds)
+    {
+        getDM().releaseTmp(p.first, p.second);
     }
 
     if (checkDims)

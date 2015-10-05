@@ -55,13 +55,13 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             }
 
             Result & RR = getResult();
-            // Don't remove tmp... temp.remove(RR); WHY THIS COMMENT ?????
-
             var.getDecorator().res = RR;
             Info & info = getDM().define(sym, RR.getType(), RR.isAnInt(), &e);
             info.getConstant() = RR.getConstant();
             e.getDecorator().safe = true;
-            getDM().releaseTmp(RR.getTempId(), &e.getRightExp());
+
+            // Don't remove temp: because the value is transfered to LHS
+            //getDM().releaseTmp(RR.getTempId(), &e.getRightExp());
         }
     }
     else if (e.getLeftExp().isCallExp()) // A(12) = ...

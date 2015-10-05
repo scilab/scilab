@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+ *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -31,10 +31,20 @@ namespace analysis
 
 class LoopAnalyzer : public ast::Visitor, public Chrono
 {
-    std::unordered_map<ast::Exp *, tools::SymbolSet> assigned;
-    std::unordered_map<ast::Exp *, tools::SymbolSet> inserted;
-    std::unordered_map<ast::Exp *, tools::SymbolSet> shared;
-    std::stack<ast::Exp *> loops;
+
+    struct __Info
+    {
+        tools::SymbolSet assigned;
+        tools::SymbolSet inserted;
+        tools::SymbolSet shared;
+        tools::SymbolSet used;
+
+        __Info() { }
+    };
+
+    std::unordered_map<ast::Exp *, __Info> info;
+
+    std::stack<std::pair<ast::Exp *, __Info *>> loops;
     ast::Exp * seq;
 
 public:
@@ -60,10 +70,10 @@ public:
     {
         if (e)
         {
-            const auto i = assigned.find(e);
-            if (i != assigned.end())
+            const auto i = info.find(e);
+            if (i != info.end())
             {
-                return i->second.find(sym) != i->second.end();
+                return i->second.assigned.find(sym) != i->second.assigned.end();
             }
         }
         return false;
@@ -73,10 +83,10 @@ public:
     {
         if (e)
         {
-            const auto i = inserted.find(e);
-            if (i != inserted.end())
+            const auto i = info.find(e);
+            if (i != info.end())
             {
-                return &i->second;
+                return &i->second.inserted;
             }
         }
         return nullptr;
@@ -86,10 +96,10 @@ public:
     {
         if (e)
         {
-            const auto i = shared.find(e);
-            if (i != shared.end())
+            const auto i = info.find(e);
+            if (i != info.end())
             {
-                return &i->second;
+                return &i->second.shared;
             }
         }
         return nullptr;
@@ -97,36 +107,51 @@ public:
 
     friend std::wostream & operator<<(std::wostream & out, const LoopAnalyzer & la)
     {
-        if (!la.assigned.empty())
+        if (!la.info.empty())
         {
-            out << L" Assigned:\n";
-            for (const auto & p : la.assigned)
+            std::wostringstream wos_ass, wos_ins, wos_sh, wos_used;
+            for (const auto & p : la.info)
             {
-                out << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
-                tools::printSet(p.second, out);
-                out << L"\n";
-            }
-        }
+                wos_ass << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
+                tools::printSet(p.second.assigned, wos_ass);
+                wos_ass << L"\n";
 
-        if (!la.inserted.empty())
-        {
-            out << L" Inserted:\n";
-            for (const auto & p : la.inserted)
-            {
-                out << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
-                tools::printSet(p.second, out);
-                out << L"\n";
-            }
-        }
+                wos_ins << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
+                tools::printSet(p.second.inserted, wos_ins);
+                wos_ins << L"\n";
 
-        if (!la.shared.empty())
-        {
-            out << L" Shared:\n";
-            for (const auto & p : la.shared)
+                wos_sh << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
+                tools::printSet(p.second.inserted, wos_sh);
+                wos_sh << L"\n";
+
+                wos_used << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
+                tools::printSet(p.second.inserted, wos_used);
+                wos_used << L"\n";
+            }
+
+            std::wstring str = wos_ass.str();
+            if (!str.empty())
             {
-                out << L"  -Loop at " << p.first->getLocation().getLocationString() << L": ";
-                tools::printSet(p.second, out);
-                out << L"\n";
+                out << L" Assigned:\n";
+                out << str;
+            }
+            str = wos_ins.str();
+            if (!str.empty())
+            {
+                out << L" Inserted:\n";
+                out << str;
+            }
+            str = wos_sh.str();
+            if (!str.empty())
+            {
+                out << L" Shared:\n";
+                out << str;
+            }
+            str = wos_used.str();
+            if (!str.empty())
+            {
+                out << L" Used:\n";
+                out << str;
             }
         }
 
@@ -141,38 +166,41 @@ public:
 
 private:
 
-    inline void emplace(std::unordered_map<ast::Exp *, tools::SymbolSet> & map, const symbol::Symbol & sym)
+    inline void emplaceAssigned(const symbol::Symbol & sym)
     {
-        ast::Exp * loop = loops.top();
-        auto i = map.find(loop);
-        if (i == map.end())
-        {
-            i = map.emplace(loop, tools::SymbolSet()).first;
-        }
-        i->second.emplace(sym);
+        loops.top().second->assigned.emplace(sym);
+    }
+
+    inline void emplaceInserted(const symbol::Symbol & sym)
+    {
+        loops.top().second->inserted.emplace(sym);
+    }
+
+    inline void emplaceShared(const symbol::Symbol & sym)
+    {
+        loops.top().second->shared.emplace(sym);
+    }
+
+    inline void emplaceUsed(const symbol::Symbol & sym)
+    {
+        loops.top().second->used.emplace(sym);
+    }
+
+    inline void push(ast::Exp & e)
+    {
+        __Info * i = &(info.emplace(&e, __Info()).first->second);
+        loops.push({ &e, i });
     }
 
     inline void pushAssigned()
     {
-        ast::Exp * last = loops.top();
+        std::pair<ast::Exp *, __Info *> last = loops.top();
         loops.pop();
 
-        if (!loops.empty())
+        if (!loops.empty() && !last.second->assigned.empty())
         {
-            ast::Exp * penult = loops.top();
-            const auto i = assigned.find(last);
-            if (i != assigned.end())
-            {
-                const auto j = assigned.find(penult);
-                if (j == assigned.end())
-                {
-                    assigned.emplace(penult, i->second);
-                }
-                else
-                {
-                    j->second.insert(i->second.begin(), i->second.end());
-                }
-            }
+            std::pair<ast::Exp *, __Info *> & penult = loops.top();
+            penult.second->assigned.insert(last.second->assigned.begin(), last.second->assigned.end());
         }
     }
 
@@ -234,12 +262,13 @@ private:
         {
             // A = ....
             const symbol::Symbol & Lsym = static_cast<ast::SimpleVar &>(e.getLeftExp()).getSymbol();
-            emplace(assigned, Lsym);
+            emplaceAssigned(Lsym);
             if (e.getRightExp().isSimpleVar())
             {
                 const symbol::Symbol & Rsym = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
-                emplace(shared, Lsym);
-                emplace(shared, Rsym);
+                emplaceShared(Lsym);
+                emplaceShared(Rsym);
+                emplaceUsed(Rsym);
             }
         }
         else if (e.getLeftExp().isCallExp())
@@ -249,8 +278,8 @@ private:
             if (ce.getName().isSimpleVar())
             {
                 const symbol::Symbol & Lsym = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol();
-                emplace(inserted, Lsym);
-                emplace(assigned, Lsym);
+                emplaceInserted(Lsym);
+                emplaceAssigned(Lsym);
             }
         }
         else if (e.getLeftExp().isAssignListExp())
@@ -262,7 +291,7 @@ private:
                 if (re->isSimpleVar())
                 {
                     const symbol::Symbol & Lsym = static_cast<const ast::SimpleVar *>(re)->getSymbol();
-                    emplace(assigned, Lsym);
+                    emplaceAssigned(Lsym);
                 }
             }
         }
@@ -279,7 +308,7 @@ private:
 
     void visit(ast::WhileExp & e)
     {
-        loops.push(&e);
+        push(e);
         e.getBody().accept(*this);
 
         // pushAssigned pops loops
@@ -288,7 +317,7 @@ private:
 
     void visit(ast::ForExp & e)
     {
-        loops.push(&e);
+        push(e);
         e.getVardec().accept(*this);
         e.getBody().accept(*this);
         pushAssigned();
@@ -385,7 +414,7 @@ private:
 
     void visit(ast::VarDec & e)
     {
-        emplace(assigned, e.getSymbol());
+        emplaceAssigned(e.getSymbol());
     }
 
     void visit(ast::FunctionDec & e)

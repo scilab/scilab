@@ -20,6 +20,13 @@ void AnalysisVisitor::visit(ast::DollarVar & e)
     logger.log(L"DollarVar", e.getLocation());
     Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::POLYNOMIAL, 1, 1));
     res.getConstant() = getGVN().getValue(symbol::Symbol(L"$"));
+
+    if (!argIndices.empty())
+    {
+        // we have something like A(1, $ - 1)
+        e.getDecorator().setDollarInfo(argIndices.top());
+    }
+
     setResult(res);
 }
 

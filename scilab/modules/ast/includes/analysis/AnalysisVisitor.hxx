@@ -29,6 +29,7 @@
 #include "analyzers/CallAnalyzer.hxx"
 #include "checkers/Checkers.hxx"
 #include "Chrono.hxx"
+#include "DollarInfo.hxx"
 #include "ForList.hxx"
 #include "Result.hxx"
 #include "TIType.hxx"
@@ -64,6 +65,7 @@ private:
     logging::Logger logger;
     std::vector<FBlockEmittedListener *> fblockListeners;
     std::stack<ast::Exp *> loops;
+    std::stack<DollarInfo> argIndices;
 
     static MapSymCall symscall;
     static MapSymCall initCalls();
@@ -206,7 +208,7 @@ public:
     // Only for debug use
     void print_info();
     logging::Logger & getLogger();
-    
+
 private:
 
     bool getDimension(SymbolicDimension & dim, ast::Exp & arg, bool & safe, SymbolicDimension & out);
@@ -317,6 +319,7 @@ private:
 
         if (resT.isscalar())
         {
+            // TODO
         }
 
         return resT;

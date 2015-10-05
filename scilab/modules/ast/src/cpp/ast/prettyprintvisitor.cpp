@@ -424,7 +424,7 @@ void PrettyPrintVisitor::visit(const FieldExp & e)
 void PrettyPrintVisitor::visit(const OpExp & e)
 {
     START_NODE(e);
-    print(e);
+    print(RED, e.getString(), e);
     e.getLeft().accept(*this);
     e.getRight().accept(*this);
     END_NODE();

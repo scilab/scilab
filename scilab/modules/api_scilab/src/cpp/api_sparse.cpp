@@ -141,7 +141,7 @@ SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 SciErr allocCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
     SciErr sciErr = sciErrInit();
-    // We cant rewrite this function in YaSp
+    // We cant rewrite this function in Scilab 6
     // because sparses are not stored like scilab 5.
     // We cant return pointer to _piNbItemRow and
     // _piColPos and let user fill it.
