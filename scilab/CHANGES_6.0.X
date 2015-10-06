@@ -6,6 +6,9 @@ New Features
 
 * valgrind error detection added to test_run (Linux Only)
 
+* Introduction of a call stack limit. Default maximum depth is setup to 1000 and
+  can be changed by new function recursionlimit or by preferences interface.
+
 Deprecated Behaviors
 =====================
 
@@ -19,6 +22,13 @@ Scilab Bug Fixes
 
 * Bug #14059 fixed - Lack of performance on deletion of matrix elements.
 
+* Bug #14055 fixed - overload on matrix concatenation did not called with [].
+
+* Bug #14028 fixed - force flag of genlib did not rebuild bin file.
+
+* Bug #14024 fixed - Print of macrofile display a debug message
+                     instead of macro prototype.
+
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
 
 * Bug #13750 fixed - Calling ss2ss function with flag = 2 returned an error.
@@ -26,6 +36,8 @@ Scilab Bug Fixes
 * Bug #13780 fixed - size with two input and output arguments did not return an error.
 
 * Bug #13843 fixed - Scilab crashed when polarplot and plot2d were called with wrong strf value.
+
+* Bug #13853 fixed - plzr() returned wrong results for discrete-time systems with a numeric time step.
 
 * Bug #13872 fixed - Non regression test added for unique function (the indices returned were wrong)
 
@@ -51,6 +63,8 @@ Scilab Bug Fixes
 
 * Bug #14040 fixed - graphic property setting fails when using array of handles
 
+* Bug #14047 fixed - wrong behaviour of break ( continue ) in if outside of loop.
+
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.
 
 * Bug #14057 fixed - grand(m,n) returned a wrong error and grand(m,n,p) called an overloading function instead of returning an error.
@@ -63,9 +77,13 @@ Scilab Bug Fixes
 
 * Bug #14095 fixed - Scilab crashed when a .fig file was loaded with loadmatfile function.
 
+* Bug #14105 fixed - New block comments /*...*/ feature was not documented.
+
 * Bug #14107 fixed - lstcat of a string and a list did not produce consistent results.
 
 * Bug #14109 fixed - lsq function crashed Scilab when Scilab version depended on mkl library.
+
+* Bug #14113 fixed - Scilab 6 did not detect infinite loop.
 
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
 
@@ -74,6 +92,8 @@ Scilab Bug Fixes
 * Bug #14150 fixed - The Windows SDK was not found on Windows 8.1.
 
 * Bug #14156 fixed - mfscanf returned an empty matrix when datafile contained a header.
+
+* Bug #14159 fixed - Matplot crashed Scilab on boolean input.
 
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab

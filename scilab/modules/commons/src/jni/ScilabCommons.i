@@ -223,3 +223,11 @@ int getScilabVersionTimestamp();
    */
 public";
 char* getScilabVersionAsString();
+/* JavaDoc */
+%javamethodmodifiers setRecursionLimit() "
+ /**
+   * returns the Scilab version as string
+   * @return version Scilab version as a string
+   */
+public";
+int setRecursionLimit(int);

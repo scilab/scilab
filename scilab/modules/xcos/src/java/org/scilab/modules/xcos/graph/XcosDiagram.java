@@ -852,7 +852,19 @@ public class XcosDiagram extends ScilabGraph {
         final BasicPort linkSource = (BasicPort) link.getSource();
         final BasicPort linkTarget = (BasicPort) link.getTarget();
 
-        final SplitBlock splitBlock = (SplitBlock) XcosCellFactory.createBlock(BlockInterFunction.SPLIT_f);
+        /*
+         * Select the right split accordingly to the link klass
+         */
+        BlockInterFunction f;
+        if (link instanceof CommandControlLink) {
+            f = BlockInterFunction.CLKSPLIT_f;
+        } else if (link instanceof ImplicitLink) {
+            f = BlockInterFunction.IMPSPLIT_f;
+        } else {
+            f = BlockInterFunction.SPLIT_f;
+        }
+
+        final SplitBlock splitBlock = (SplitBlock) XcosCellFactory.createBlock(f);
 
         getModel().beginUpdate();
         try {
@@ -862,8 +874,6 @@ public class XcosDiagram extends ScilabGraph {
                 orig = new mxPoint();
             }
 
-            // FIXME create the port is needed
-            // splitBlock.addConnection(linkSource);
 
             addCell(splitBlock);
             // force resize and align on the grid

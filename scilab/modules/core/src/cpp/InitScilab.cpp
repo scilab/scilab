@@ -48,7 +48,6 @@ extern "C"
 #include "TerminateGraphics.h"
 #include "loadBackGroundClassPath.h"
 #include "sci_tmpdir.h"
-#include "configvariable_interface.h"
 #include "setgetlanguage.h"
 #include "InitializeConsole.h"
 #include "InitializeHistoryManager.h"
@@ -843,6 +842,10 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
             StaticRunner::launch();
         }
         catch (const ast::InternalAbort& /*ia*/)
+        {
+            // go out when exit/quit is called
+        }
+        catch (const ast::RecursionException& /*ia*/)
         {
             // go out when exit/quit is called
         }

@@ -110,7 +110,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_analyzeroptions.cpp \
 	sci_gateway/cpp/sci_macr2tree.cpp \
 	sci_gateway/cpp/sci_predef.cpp \
-	sci_gateway/cpp/sci_debug.cpp
+	sci_gateway/cpp/sci_debug.cpp \
+	sci_gateway/cpp/sci_recursionlimit.cpp
 
 libscicore_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

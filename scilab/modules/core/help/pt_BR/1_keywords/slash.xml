@@ -43,6 +43,29 @@
             Comentário. <literal>//</literal> comenta uma linha, i.e. linhas que
             começam por <literal>//</literal> são ignoradas pelo interpretador.
         </para>
+        <para>
+            It is the same with <code>/*</code> which start to comment a
+            block of code and with <code>*/</code> which end to comment this block.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+a=[3.,-24.,30.];
+B=[
+   9.   -36.    30.
+  -36.   192.  -180.
+   30.  -180.   180.
+];
+x=a/B
+x*B-a // proche de zéro
+
+a=4 / 2; // Doit renvoyer 2
+a=2 ./ [2,4]; //     1.    0.5
+// Un commentaire aide à comprendre le code.
+/* Even long, that is to say on many lines,
+comments are useful */
+ ]]></programlisting>
     </refsection>
     <refsection>
         <title> Ver Também </title>

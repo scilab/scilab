@@ -32,8 +32,7 @@ public abstract class OutputPort extends BasicPort {
      *            The string port name ("ExplicitOutputPort" or
      *            "ImplicitOutputPort")
      */
-    public OutputPort(long uid) {
-        super(uid);
-        setOrientation(Orientation.EAST);
+    public OutputPort(long uid, String style) {
+        super(uid, style, Orientation.EAST);
     }
 }

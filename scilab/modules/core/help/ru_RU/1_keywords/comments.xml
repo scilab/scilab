@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="comments">
     <refnamediv>
         <refname>комментарии</refname>
-        <refpurpose>(//) комментарии</refpurpose>
+        <refpurpose>(// or /*...*/) comments</refpurpose>
     </refnamediv>
     <refsection>
         <title>Описание</title>
@@ -10,6 +10,11 @@
             Два последовательных слэша <literal>//</literal> за пределами определения 
             строкового значения обозначают начало комментария. Слэши, как и все последующие
             символы вплоть до конца строки, не интерпретируются.
+        </para>
+        <para>
+            Another way to comment a block of code is to use /* at the beginning
+            and */ at the end. It is more useful than // which must be positioned at the
+            beginning of each line to comment.
         </para>
         <para>
             Внутри функции первые строки, вплоть до первой инструкции или пустой строки
@@ -20,15 +25,19 @@
         <title>Примеры</title>
         <programlisting role="example"><![CDATA[ 
 g=9.81// ускорение свободного падения
- 
+
 text='a//b'
- 
+
+/* As this comment is quite long to be on many lines,
+the symbols slash and star to start the comment
+and star and slash to end the comment are used */
+
 function y=myfunction(x)
   // myfunction вычисляет y=x^2+1
   // x должен быть вектором или матрицей
   y=x^2+1
 endfunction
- 
+
 help myfunction
  ]]></programlisting>
     </refsection>

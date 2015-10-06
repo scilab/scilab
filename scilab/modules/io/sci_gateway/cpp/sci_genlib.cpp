@@ -75,11 +75,12 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
     wchar_t pstParseFile[PATH_MAX + FILENAME_MAX];
     wchar_t pstVerbose[65535];
 
-    int iNbFile	            = 0;
-    wchar_t *pstParsePath      = NULL;
-    int iParsePathLen		= 0;
-    wchar_t* pstLibName		= NULL;
-    bool bVerbose           = false;
+    int iNbFile = 0;
+    wchar_t *pstParsePath = NULL;
+    int iParsePathLen = 0;
+    wchar_t* pstLibName = NULL;
+    bool bVerbose = false;
+    bool bForce = false;
 
     if (in.size() < 1 || in.size() > 4)
     {
@@ -128,9 +129,24 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
+    //param 3, force flag
     if (in.size() > 2)
     {
-        //force flag, do nothing but keep for compatibility
+        pIT = in[2];
+        if (pIT->isBool() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            return types::Function::Error;
+        }
+
+        types::Bool* p = pIT->getAs<types::Bool>();
+        if (p->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            return types::Function::Error;
+        }
+
+        bForce = p->get()[0] == 1;
     }
 
     if (in.size() > 3)
@@ -139,10 +155,18 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[3];
         if (pIT->isBool() == false)
         {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
-        bVerbose = pIT->getAs<types::Bool>()->get()[0] == 1;
+        types::Bool* p = pIT->getAs<types::Bool>();
+        if (p->isScalar() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            return types::Function::Error;
+        }
+
+        bVerbose = p->get()[0] == 1;
     }
 
     wchar_t* pstFile = pS->get(0);
@@ -215,19 +239,21 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
             std::wstring wide_md5(wmd5);
             FREE(wmd5);
 
-            //check if is exist in old file
-
-            MacroInfoList::iterator it = lstOld.find(pstPathBin);
-            if (it != lstOld.end())
+            if (bForce == false)
             {
-                if (wide_md5 == (*it).second.md5)
+                //check if is exist in old file
+                MacroInfoList::iterator it = lstOld.find(pstPathBin);
+                if (it != lstOld.end())
                 {
-                    //file not change, we can skip it
-                    AddMacroToXML(pWriter, (*it).second.name, pstPathBin, wide_md5);
-                    pLib->add((*it).second.name, new types::MacroFile((*it).second.name, stFullPathBin, pstLibName));
-                    success_files.push_back(stFullPath);
-                    funcs.push_back((*it).second.name);
-                    continue;
+                    if (wide_md5 == (*it).second.md5)
+                    {
+                        //file not change, we can skip it
+                        AddMacroToXML(pWriter, (*it).second.name, pstPathBin, wide_md5);
+                        pLib->add((*it).second.name, new types::MacroFile((*it).second.name, stFullPathBin, pstLibName));
+                        success_files.push_back(stFullPath);
+                        funcs.push_back((*it).second.name);
+                        continue;
+                    }
                 }
             }
 

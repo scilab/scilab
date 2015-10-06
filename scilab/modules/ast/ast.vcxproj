@@ -293,7 +293,6 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\data\LoopAnalyzer.hxx" />
     <ClInclude Include="includes\analysis\data\LoopBlock.hxx" />
     <ClInclude Include="includes\analysis\data\MacroDef.hxx" />
-    <ClInclude Include="includes\analysis\data\MacroInfo.hxx" />
     <ClInclude Include="includes\analysis\data\MacroSignature.hxx" />
     <ClInclude Include="includes\analysis\data\PolymorphicMacroCache.hxx" />
     <ClInclude Include="includes\analysis\data\TemporaryManager.hxx" />
@@ -302,6 +301,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\data\TypeLocal.hxx" />
     <ClInclude Include="includes\analysis\data\XBlock.hxx" />
     <ClInclude Include="includes\analysis\Decorator.hxx" />
+    <ClInclude Include="includes\analysis\DollarInfo.hxx" />
     <ClInclude Include="includes\analysis\FBlockEmittedListener.hxx" />
     <ClInclude Include="includes\analysis\ForList.hxx" />
     <ClInclude Include="includes\analysis\gvn\ConstraintManager.hxx" />

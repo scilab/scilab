@@ -37,6 +37,7 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
     SymbolicDimension first, second;
     bool safe, ret;
 
+    argIndices.emplace(static_cast<ast::SimpleVar &>(ce.getName()).getSymbol(), 1);
     if (size == 1)
     {
         // when there is one argument, a(?) is equivalent to A(?,1)
@@ -57,6 +58,7 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
         ret = getDimension(type.rows, *args.front(), _safe, first);
         if (ret)
         {
+            argIndices.top().getIndex() = 2;
             ret = getDimension(type.cols, *args.back(), safe, second);
             safe = safe && _safe;
         }
@@ -65,6 +67,7 @@ bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
             safe = _safe;
         }
     }
+    argIndices.pop();
 
     if (ret)
     {
@@ -86,12 +89,14 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
         {
             out = dim;
             safe = true;
+            arg.getDecorator().setDollarInfo(argIndices.top());
             return true;
         }
         case ast::Exp::DOLLARVAR : // a($)
         {
             out = SymbolicDimension(getGVN(), 1.);
             safe = true;
+            arg.getDecorator().setDollarInfo(argIndices.top());
             return true;
         }
         case ast::Exp::DOUBLEEXP : // a(12) or a([1 2])
@@ -313,23 +318,25 @@ bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool
 
             if (GVN::Value * const v = _res.getConstant().getGVNValue())
             {
+                GVN::Value * w = v;
                 if (GVN::Value * const dollar = getGVN().getExistingValue(symbol::Symbol(L"$")))
                 {
-                    if (GVN::Value * const w = SymbolicList::evalDollar(getGVN(), v, dollar, dim.getValue()))
+                    if (GVN::Value * const x = SymbolicList::evalDollar(getGVN(), v, dollar, dim.getValue()))
                     {
-                        bool b = getCM().check(ConstraintManager::GREATER, dim.getValue(), w);
-                        if (b)
-                        {
-                            safe = getCM().check(ConstraintManager::STRICT_POSITIVE, w);
-                        }
-                        else
-                        {
-                            safe = false;
-                        }
-                        out = SymbolicDimension(getGVN(), 1);
-                        return true;
+                        w = x;
                     }
                 }
+                bool b = getCM().check(ConstraintManager::GREATER, dim.getValue(), w);
+                if (b)
+                {
+                    safe = getCM().check(ConstraintManager::STRICT_POSITIVE, w);
+                }
+                else
+                {
+                    safe = false;
+                }
+                out = SymbolicDimension(getGVN(), 1);
+                return true;
             }
 
             // To use with find

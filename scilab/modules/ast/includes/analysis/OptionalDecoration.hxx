@@ -17,13 +17,14 @@
 
 #include "call/Call.hxx"
 #include "data/Clone.hxx"
+#include "DollarInfo.hxx"
 
 namespace analysis
 {
 
 class OptionalDecoration
 {
-    enum Type { NONE, CALL, CLONE };
+    enum Type { NONE, CALL, CLONE, DOLLAR };
 
     Type ty;
     void * ptr;
@@ -33,6 +34,7 @@ public:
     OptionalDecoration() : ty(NONE), ptr(nullptr) { }
     OptionalDecoration(Call * _ptr) : ty(CALL), ptr(_ptr) { }
     OptionalDecoration(Clone * _ptr) : ty(CLONE), ptr(_ptr) { }
+    OptionalDecoration(DollarInfo * _ptr) : ty(DOLLAR), ptr(_ptr) { }
     OptionalDecoration(OptionalDecoration && od) : ty(od.ty), ptr(od.ptr)
     {
         od.ty = NONE;
@@ -71,6 +73,13 @@ public:
         ptr = _ptr;
     }
 
+    inline void set(DollarInfo * _ptr)
+    {
+        clean();
+        ty = DOLLAR;
+        ptr = _ptr;
+    }
+
     friend std::wostream & operator<<(std::wostream & out, const OptionalDecoration & od)
     {
         switch (od.ty)
@@ -80,6 +89,9 @@ public:
                 break;
             case CLONE:
                 out << *od.get<Clone>();
+                break;
+            case DOLLAR:
+                out << *od.get<DollarInfo>();
                 break;
             default:
                 break;
@@ -100,6 +112,9 @@ private:
             case CLONE:
                 delete get<Clone>();
                 break;
+            case DOLLAR:
+                delete get<DollarInfo>();
+                break;
             default:
                 break;
         }
@@ -108,6 +123,5 @@ private:
 };
 
 } // namespace analysis
-
 
 #endif // __OPTIONAL_DECORATION_HXX__

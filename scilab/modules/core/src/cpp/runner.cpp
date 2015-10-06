@@ -21,6 +21,7 @@ extern "C"
 #include "BrowseVarManager.h"
 #include "FileBrowserChDir.h"
 #include "scicurdir.h"
+#include "Scierror.h"
 }
 
 std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
@@ -35,9 +36,48 @@ void StaticRunner::launch()
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
 
     ConfigVariable::resetExecutionBreak();
+    int oldMode = ConfigVariable::getPromptMode();
+    symbol::Context* pCtx = symbol::Context::getInstance();
+    int scope = pCtx->getScopeLevel();
+
     try
     {
-        runMe->getProgram()->accept(*(runMe->getVisitor()));
+        int level = ConfigVariable::getRecursionLevel();
+        try
+        {
+            runMe->getProgram()->accept(*(runMe->getVisitor()));
+        }
+        catch (const ast::RecursionException& re)
+        {
+            // management of pause
+            if (ConfigVariable::getPauseLevel())
+            {
+                ConfigVariable::DecreasePauseLevel();
+                delete runMe;
+                throw re;
+            }
+
+            //close opened scope during try
+            while (pCtx->getScopeLevel() > scope)
+            {
+                pCtx->scope_end();
+            }
+
+            //decrease recursion to init value and close where
+            while (ConfigVariable::getRecursionLevel() > level)
+            {
+                ConfigVariable::where_end();
+                ConfigVariable::decreaseRecursion();
+            }
+
+            ConfigVariable::resetWhereError();
+            ConfigVariable::setPromptMode(oldMode);
+
+            //print msg about recursion limit and trigger an error
+            wchar_t sz[1024];
+            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+            throw ast::InternalError(sz);
+        }
     }
     catch (const ast::InternalError& se)
     {
@@ -60,7 +100,7 @@ void StaticRunner::launch()
 
         // close all scope before return to console scope
         symbol::Context* pCtx = symbol::Context::getInstance();
-        while (pCtx->getScopeLevel() != SCOPE_CONSOLE)
+        while (pCtx->getScopeLevel() > scope)
         {
             pCtx->scope_end();
         }

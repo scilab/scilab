@@ -739,9 +739,6 @@
     <ClInclude Include="includes\analysis\data\MacroDef.hxx">
       <Filter>Header Files\analysis\data</Filter>
     </ClInclude>
-    <ClInclude Include="includes\analysis\data\MacroInfo.hxx">
-      <Filter>Header Files\analysis\data</Filter>
-    </ClInclude>
     <ClInclude Include="includes\analysis\data\MacroSignature.hxx">
       <Filter>Header Files\analysis\data</Filter>
     </ClInclude>
@@ -1059,6 +1056,9 @@
     </ClInclude>
     <ClInclude Include="includes\ast\prettyprintvisitor.hxx">
       <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\DollarInfo.hxx">
+      <Filter>Header Files\analysis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

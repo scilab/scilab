@@ -12,14 +12,23 @@
 
 package org.scilab.modules.xcos.graph.model;
 
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.buildCall;
+import static org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.synchronousScilabExec;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.Optional;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.UpdateStatus;
 import org.scilab.modules.xcos.VectorOfScicosID;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosView;
+import org.scilab.modules.xcos.XcosViewListener;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SplitBlock;
@@ -38,6 +47,7 @@ import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.Summation;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -145,33 +155,71 @@ public final class XcosCellFactory {
      * Block and Annotation management
      */
 
+
+
     /**
-     * Instantiate a new block with the specified UID value.
+     * Instantiate a new block with the specified UID value and interface function
      *
      * @param uid
      *            The associated UID value
+     * @param interfaceFunction the interface function
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(long uid) {
-        BasicBlock block = null;
+    public static BasicBlock createBlock(String interfaceFunction) {
+        Optional<BlockInterFunction> func = EnumSet.allOf(BlockInterFunction.class).stream()
+                                            .filter(f -> f.name().equals(interfaceFunction))
+                                            .findFirst();
 
-        JavaController controller = new JavaController();
-        String[] interfaceFunction = new String[1];
-        controller.getObjectProperty(uid, Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
-
-        for (BlockInterFunction func : BlockInterFunction.values()) {
-            if (func.name().equals(interfaceFunction)) {
-                block = createBlock(controller, func, uid);
-                break;
-            }
+        final BasicBlock block;
+        if (func.isPresent()) {
+            block = createBlock(func.get());
+        } else {
+            block = createBlock(BlockInterFunction.BASIC_BLOCK);
         }
-
-        if (block == null) {
-            block = createBlock(controller, BlockInterFunction.BASIC_BLOCK, uid);
-            block.setStyle(interfaceFunction[0]);
-        }
+        block.setStyle(interfaceFunction);
 
         return block;
+    }
+
+
+
+    private static class BlockLoadedListener extends XcosViewListener {
+        private long uid;
+
+        public BlockLoadedListener() {
+            uid = 0;
+        }
+
+        public long getUID() {
+            return uid;
+        }
+
+        /**
+         * When a unique block is created then store it for later use.
+         */
+        @Override
+        public void objectCreated(long uid, Kind kind) {
+            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
+                return;
+            }
+
+            this.uid = uid;
+        }
+
+        /**
+         * When a composite block is created we track the PARENT_BLOCK / CHILDREN association to store the parent.
+         */
+        @Override
+        public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
+            if (status != UpdateStatus.SUCCESS || property != ObjectProperties.CHILDREN) {
+                return;
+            }
+            if (!EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(kind)) {
+                return;
+            }
+
+            this.uid = uid;
+        }
     }
 
     /**
@@ -182,10 +230,33 @@ public final class XcosCellFactory {
      * @return A new instance of a block.
      */
     public static BasicBlock createBlock(BlockInterFunction func) {
-        JavaController controller = new JavaController();
+        return createBlock(new JavaController(), func);
+    }
 
-        long uid = controller.createObject(Kind.BLOCK);
-        return createBlock(controller, func, uid);
+    /**
+     * Instantiate a new block with the specified interface function.
+     *
+     * @param func
+     *            the interface function
+     * @return A new instance of a block.
+     */
+    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func) {
+        XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getSimpleName());
+
+        BlockLoadedListener blockLoaded = new BlockLoadedListener();
+        view.addXcosViewListener(blockLoaded, EnumSet.allOf(Kind.class), true, EnumSet.of(ObjectProperties.CHILDREN));
+
+        BasicBlock block;
+        try {
+            synchronousScilabExec(ScilabDirectHandler.BLK + " = " + buildCall(func.name(), "define"));
+            block = XcosCellFactory.createBlock(controller, func, blockLoaded.getUID());
+        } catch (InterpreterException e1) {
+            block = null;
+        } finally {
+            view.removeXcosViewListener(blockLoaded);
+        }
+
+        return block;
     }
 
     /**
@@ -196,7 +267,7 @@ public final class XcosCellFactory {
      * @param uid the allocated uid
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, long uid) {
+    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, long uid) {
         BasicBlock block = null;
         try {
             block = func.getKlass().getConstructor(Long.TYPE).newInstance(uid);

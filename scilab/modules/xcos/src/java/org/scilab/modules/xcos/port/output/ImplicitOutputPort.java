@@ -27,9 +27,7 @@ public class ImplicitOutputPort extends OutputPort {
 
     /** Default constructor */
     public ImplicitOutputPort(long uid) {
-        super(uid);
-
-        setStyle("ExplicitOutputPort");
+        super(uid, "ImplicitOutputPort");
     }
 
     /** @return always Type.IMPLICIT */

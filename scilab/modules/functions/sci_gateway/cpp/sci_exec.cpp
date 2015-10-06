@@ -286,12 +286,38 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     if (file == NULL || promptMode == 0 || promptMode == 2)
     {
         ast::SeqExp* pSeqExp = pExp->getAs<ast::SeqExp>();
+        ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
 
         try
         {
-            ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
-            pSeqExp->accept(*exec);
-            delete exec;
+            symbol::Context* pCtx = symbol::Context::getInstance();
+            int scope = pCtx->getScopeLevel();
+            int level = ConfigVariable::getRecursionLevel();
+            try
+            {
+                pSeqExp->accept(*exec);
+                delete exec;
+            }
+            catch (const ast::RecursionException& /* re */)
+            {
+                //close opened scope during try
+                while (pCtx->getScopeLevel() > scope)
+                {
+                    pCtx->scope_end();
+                }
+
+                //decrease recursion to init value
+                while (ConfigVariable::getRecursionLevel() > level)
+                {
+                    ConfigVariable::where_end();
+                    ConfigVariable::decreaseRecursion();
+                }
+
+                //print msg about recursion limit and trigger an error
+                wchar_t sz[1024];
+                os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+                throw ast::InternalError(sz);
+            }
         }
         catch (const ast::InternalAbort& ia)
         {
@@ -365,19 +391,46 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             someExps->assign(j, k);
             k--;
             ast::SeqExp seqExp(Location((*j)->getLocation().first_line,
-                (*k)->getLocation().last_line,
-                (*j)->getLocation().first_column,
-                (*k)->getLocation().last_column),
-                *someExps);
+                                        (*k)->getLocation().last_line,
+                                        (*j)->getLocation().first_column,
+                                        (*k)->getLocation().last_column),
+                               *someExps);
 
             j = k;
 
+            ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
+
             try
             {
-                // execute printed exp
-                ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
-                seqExp.accept(*exec);
-                delete exec;
+                symbol::Context* pCtx = symbol::Context::getInstance();
+                int scope = pCtx->getScopeLevel();
+                int level = ConfigVariable::getRecursionLevel();
+                try
+                {
+                    // execute printed exp
+                    seqExp.accept(*exec);
+                    delete exec;
+                }
+                catch (const ast::RecursionException& /* re */)
+                {
+                    //close opened scope during try
+                    while (pCtx->getScopeLevel() > scope)
+                    {
+                        pCtx->scope_end();
+                    }
+
+                    //decrease recursion to init value
+                    while (ConfigVariable::getRecursionLevel() > level)
+                    {
+                        ConfigVariable::where_end();
+                        ConfigVariable::decreaseRecursion();
+                    }
+
+                    //print msg about recursion limit and trigger an error
+                    wchar_t sz[1024];
+                    os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+                    throw ast::InternalError(sz);
+                }
             }
             catch (const ast::InternalAbort& ia)
             {

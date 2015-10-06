@@ -52,6 +52,10 @@
             コメント <code>//</code> は, 特定の行をコメントにします.
             すなわち, <code>//</code> で始まる行はインタプリタから無視されます.
         </para>
+        <para>
+            It is the same with <code>/*</code> which start to comment a
+            block of code and with <code>*/</code> which end to comment this block.
+        </para>
     </refsection>
     <refsection>
         <title>例</title>
@@ -68,6 +72,8 @@ x*B-a // ゼロに近い
 a=4 / 2; // 2となります
 a=2 ./ [2,4]; //     1.    0.5
 // コメントは有用です. コードを理解しやすくします.
+/* Even long, that is to say on many lines,
+comments are useful */
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

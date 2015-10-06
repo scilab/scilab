@@ -185,8 +185,70 @@ public:
 
     inline bool isBooleanOp() const
     {
-	return _oper == eq || _oper == ne || _oper == lt || _oper == le || _oper == gt || _oper == ge || _oper == logicalAnd || _oper == logicalOr || _oper == logicalShortCutAnd || _oper == logicalShortCutOr; 
+        return _oper == eq || _oper == ne || _oper == lt || _oper == le || _oper == gt || _oper == ge || _oper == logicalAnd || _oper == logicalOr || _oper == logicalShortCutAnd || _oper == logicalShortCutOr;
     }
+
+    inline std::wstring getString() const
+    {
+        switch (_oper)
+        {
+            case plus:
+                return L"+";
+            case minus:
+                return L"-";
+            case times:
+                return L"*";
+            case rdivide:
+                return L"/";
+            case ldivide:
+                return L"\\";
+            case power:
+                return L"^";
+            case dottimes:
+                return L".*";
+            case dotrdivide:
+                return L"./";
+            case dotldivide:
+                return L".\\";
+            case dotpower:
+                return L".^";
+            case krontimes:
+                return L".*.";
+            case kronrdivide:
+                return L"./.";
+            case kronldivide:
+                return L".\\.";
+            case controltimes:
+                return L"*.";
+            case controlrdivide:
+                return L"/.";
+            case controlldivide:
+                return L"\\.";
+            case eq:
+                return L"==";
+            case ne:
+                return L"~=";
+            case lt:
+                return L"<";
+            case le:
+                return L"<=";
+            case gt:
+                return L">";
+            case ge:
+                return L">=";
+            case logicalAnd:
+                return L"&";
+            case logicalOr:
+                return L"|";
+            case logicalShortCutAnd:
+                return L"&&";
+            case logicalShortCutOr:
+                return L"||";
+            case unaryMinus:
+                return L"-";
+        }
+    }
+
 
 protected:
     /** \brief Operator. */

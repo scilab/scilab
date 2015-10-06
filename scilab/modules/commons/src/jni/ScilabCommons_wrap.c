@@ -418,6 +418,20 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getS
 }
 
 
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_setRecursionLimit(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  jint jresult = 0 ;
+  int arg1 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  result = (int)setRecursionLimit(arg1);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
 #ifdef __cplusplus
 }
 #endif

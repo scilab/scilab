@@ -92,6 +92,18 @@ struct Decorator
         return *clone;
     }
 
+    inline DollarInfo & setDollarInfo(const DollarInfo & di)
+    {
+        DollarInfo * _di = new DollarInfo(di);
+        opt.set(_di);
+        return *_di;
+    }
+
+    inline DollarInfo * getDollarInfo() const
+    {
+        return opt.get<DollarInfo>();
+    }
+
     inline Result & setResult(Result && _res)
     {
         res = _res;

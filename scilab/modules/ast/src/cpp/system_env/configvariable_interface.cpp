@@ -212,3 +212,7 @@ void resetExecutionBreak()
     ConfigVariable::resetExecutionBreak();
 }
 
+int setRecursionLimit(int val)
+{
+    return ConfigVariable::setRecursionLimit(val);
+}

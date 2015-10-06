@@ -201,11 +201,38 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     // to manage line displayed when error occured.
     ConfigVariable::macroFirstLine_begin(1);
 
+    ast::ConstVisitor* run = ConfigVariable::getDefaultVisitor();
+
     try
     {
-        ast::ConstVisitor* run = ConfigVariable::getDefaultVisitor();
-        pSeqExp->accept(*run);
-        delete run;
+        symbol::Context* pCtx = symbol::Context::getInstance();
+        int scope = pCtx->getScopeLevel();
+        int level = ConfigVariable::getRecursionLevel();
+        try
+        {
+            pSeqExp->accept(*run);
+            delete run;
+        }
+        catch (const ast::RecursionException& /* re */)
+        {
+            //close opened scope during try
+            while (pCtx->getScopeLevel() > scope)
+            {
+                pCtx->scope_end();
+            }
+
+            //decrease recursion to init value
+            while (ConfigVariable::getRecursionLevel() > level)
+            {
+                ConfigVariable::where_end();
+                ConfigVariable::decreaseRecursion();
+            }
+
+            //print msg about recursion limit and trigger an error
+            wchar_t sz[1024];
+            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+            throw ast::InternalError(sz);
+        }
     }
     catch (const ast::InternalError& ie)
     {

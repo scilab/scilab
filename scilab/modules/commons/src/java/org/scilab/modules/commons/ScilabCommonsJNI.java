@@ -58,4 +58,5 @@ public class ScilabCommonsJNI {
   public final static native int getScilabVersionMaintenance();
   public final static native int getScilabVersionTimestamp();
   public final static native String getScilabVersionAsString();
+  public final static native int setRecursionLimit(int jarg1);
 }

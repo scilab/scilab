@@ -33,7 +33,6 @@ public final class TextBlock extends BasicBlock {
     public TextBlock(long uid) {
         super(uid, Kind.ANNOTATION);
 
-        setStyle("TEXT_f");
         setValue(XcosMessages.DOTS);
     }
 

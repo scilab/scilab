@@ -22,42 +22,50 @@ namespace types
 
 bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, const ast::Exp & e)
 {
-    //reset previous error before call function
-    ConfigVariable::resetError();
-    //update verbose";" flag
-    ConfigVariable::setVerbose(e.isVerbose());
-    // add line and function name in where
-    int iFirstLine = e.getLocation().first_line;
-    ConfigVariable::where_begin(iFirstLine + 1 - ConfigVariable::getMacroFirstLines(), iFirstLine, this);
-    Callable::ReturnValue Ret;
-
-    try
+    //check recursion before try catch, to make difference with  errors
+    if (ConfigVariable::increaseRecursion())
     {
-        Ret = call(in, opt, _iRetCount, out);
-        ConfigVariable::where_end();
+        //reset previous error before call function
+        ConfigVariable::resetError();
+        //update verbose";" flag
+        ConfigVariable::setVerbose(e.isVerbose());
+        // add line and function name in where
+        int iFirstLine = e.getLocation().first_line;
+        ConfigVariable::where_begin(iFirstLine + 1 - ConfigVariable::getMacroFirstLines(), iFirstLine, this);
+        Callable::ReturnValue Ret;
+
+        try
+        {
+            Ret = call(in, opt, _iRetCount, out);
+            ConfigVariable::where_end();
+            ConfigVariable::decreaseRecursion();
+        }
+        catch (ast::InternalError & ie)
+        {
+            ConfigVariable::where_end();
+            ConfigVariable::setLastErrorFunction(getName());
+            ConfigVariable::decreaseRecursion();
+            throw ie;
+        }
+        catch (ast::InternalAbort & ia)
+        {
+            ConfigVariable::where_end();
+            ConfigVariable::setLastErrorFunction(getName());
+            ConfigVariable::decreaseRecursion();
+            throw ia;
+        }
+
+        if (Ret == Callable::Error)
+        {
+            ConfigVariable::setLastErrorFunction(getName());
+            ConfigVariable::setLastErrorLine(e.getLocation().first_line);
+            throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+        }
     }
-    catch (ast::InternalError & ie)
+    else
     {
-        ConfigVariable::where_end();
-        ConfigVariable::setLastErrorFunction(getName());
-
-        throw ie;
+        throw ast::RecursionException();
     }
-    catch (ast::InternalAbort & ia)
-    {
-        ConfigVariable::where_end();
-        ConfigVariable::setLastErrorFunction(getName());
-
-        throw ia;
-    }
-
-    if (Ret == Callable::Error)
-    {
-        ConfigVariable::setLastErrorFunction(getName());
-        ConfigVariable::setLastErrorLine(e.getLocation().first_line);
-        throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
-    }
-
     return true;
 }
 }

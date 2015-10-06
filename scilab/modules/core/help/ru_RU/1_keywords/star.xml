@@ -20,6 +20,12 @@
         <para>
             <literal>A*.B</literal>  оператор без предопределённого значения. Можно использовать для определения нового оператора (см. <link linkend="overloading">перегрузку</link>) с тем же самым приоритетом, что и у <literal>*</literal> или <literal>/</literal>.
         </para>
+        <para>
+            <note>
+                Remark that <code>/*</code> start to comment a block of code and
+                <code>*/</code> end to comment this block.
+            </note>
+        </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -72,6 +78,9 @@ W' * W
             </member>
             <member>
                 <link linkend="overloading">перегрузка</link>
+            </member>
+            <member>
+                <link linkend="comments">comments</link>
             </member>
         </simplelist>
     </refsection>

@@ -57,6 +57,10 @@
             Comment <code>//</code> comments a line i.e. lines which 
             begin by <code>//</code> are ignored by the interpreter.
         </para>
+        <para>
+            It is the same with <code>/*</code> which start to comment a
+            block of code and with <code>*/</code> which end to comment this block.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -73,6 +77,8 @@ x*B-a // close to zero
 a=4 / 2; // Should be 2
 a=2 ./ [2,4]; //     1.    0.5
 // Comments are good. They help to understand code
+/* Even long, that is to say on many lines,
+comments are useful */
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

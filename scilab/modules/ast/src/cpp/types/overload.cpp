@@ -107,20 +107,27 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
             throw ie;
         }
 
-        pCall = pIT->getAs<types::Callable>();
+        if (ConfigVariable::increaseRecursion())
+        {
+            pCall = pIT->getAs<types::Callable>();
 
-        types::optional_list opt;
+            types::optional_list opt;
 
-        // add line and function name in where
-        ConfigVariable::where_begin(0, 0, pCall);
+            // add line and function name in where
+            ConfigVariable::where_begin(0, 0, pCall);
 
-        types::Function::ReturnValue ret;
-        ret = pCall->call(in, opt, _iRetCount, out);
+            types::Function::ReturnValue ret;
+            ret = pCall->call(in, opt, _iRetCount, out);
 
-        // remove function name in where
-        ConfigVariable::where_end();
-
-        return ret;
+            // remove function name in where
+            ConfigVariable::where_end();
+            ConfigVariable::decreaseRecursion();
+            return ret;
+        }
+        else
+        {
+            throw ast::RecursionException();
+        }
     }
     catch (ast::InternalError ie)
     {
@@ -135,6 +142,7 @@ types::Function::ReturnValue Overload::call(const std::wstring& _stOverloadingFu
 
             // remove function name in where
             ConfigVariable::where_end();
+            ConfigVariable::decreaseRecursion();
         }
 
         throw ie;

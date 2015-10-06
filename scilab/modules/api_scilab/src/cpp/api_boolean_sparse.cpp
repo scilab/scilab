@@ -80,7 +80,7 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 SciErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
     SciErr sciErr = sciErrInit();
-    // We cant rewrite this function in YaSp
+    // We cant rewrite this function in Scilab 6
     // because sparses are not stored like scilab 5.
     // We cant return pointer to _piNbItemRow and
     // _piColPos and let user fill it.

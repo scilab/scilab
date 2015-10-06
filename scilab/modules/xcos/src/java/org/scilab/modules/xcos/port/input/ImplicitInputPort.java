@@ -27,9 +27,7 @@ public class ImplicitInputPort extends InputPort {
 
     /** Default constructor */
     public ImplicitInputPort(long uid) {
-        super(uid);
-
-        setStyle("ImplicitInputPort");
+        super(uid, "ImplicitInputPort");
     }
 
     /** @return always Type.IMPLICIT */

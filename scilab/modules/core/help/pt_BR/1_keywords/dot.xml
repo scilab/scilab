@@ -6,10 +6,17 @@
     </refnamediv>
     <refsynopsisdiv>
         <title> Seqüência de Chamamento </title>
-        <synopsis>123.33
+        <synopsis>
+            123.33
+
             a.*b
-            [123,..
-            456]
+            a .*. b
+
+            %pi * (%e + ..
+            %i)
+
+            cd ..
+            dir ..
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -48,6 +55,46 @@
                         continuação. Então, marcas de continuação podem ser usadas para
                         cortar uma linha em qualquer ponto.
                     </para>
+                    <para>
+                        The following function <literal>foo</literal>:
+                    </para>
+                    <programlisting role=""><![CDATA[
+function foo()
+    plot2d()
+    xtitle(["General title"; "It can be multiline, so quite long"], ..
+            "This is the X-axis title", "Y title")
+endfunction
+ ]]></programlisting>
+                    <para>is equivalent to:</para>
+                    <programlisting role=""><![CDATA[
+function foo()
+    plot2d()
+
+    xtitle(["General title"; "It can be multiline, so quite long"], "This is the X-axis title", "Y title")
+endfunction
+ ]]></programlisting>
+                    <para>The logical line formed by physical line 3 and physical line 4
+                        is built as if it was entirely written in the physical line 4 while
+                        physical line 3 would be empty. This is done this way because
+                        continuation marks can be put anywhere even inside an
+                        expression.
+                        <note>The difference between logical and physical
+                        lines is of importance when dealing with edition (scinotes, edit), with
+                        profiling (profile, showprofile, plotprofile), and within error messages
+                        (whereami), when the line number is provided or displayed.
+                        </note>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>".." parameter</term>
+                <listitem>
+                    <para>When functions are used in a console-oriented way, <literal>..</literal>
+                        is not considered as a continuation mark but as a simple argument. The most
+                        common usage is with <literal>cd ..</literal>, <literal>dir ..</literal>
+                        or <literal>ls ..</literal> actually standing for <literal>cd("..")</literal>,
+                        etc.
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -61,13 +108,48 @@
 //usado como parte de um operador
 x=[1 2 3];x.^2 .*x // um espaço é requerido entre 2 e o ponto
 
-// usado como marcas de continuação
-T=[123,..//primeiro elemento
-   456] //segundo elemento
+// When writing rows of a matrix on different lines, ".." can be used but are not mandatory.
+N = [   ..
+    63.    89.    3.   ..
+    91.    56.    22.  ..
+    15.    64.    40.  ..
+    ]
+// It can be more simply entered as (or copied/pasted from/to console or script), without appending ".."
+N = [
+    63.    89.    3.
+    91.    56.    22.
+    15.    64.    40.
+    ]
 
-a=  "aqui, eu começo um  grande string... //mas não quero continuar aqui
-     - e aqui eu continuo."
-y=12..
+// Within very long instructions like when creating uicontrol where many properties must be set,
+// continuation marks are almost mandatory and allow to write and set one property per line
+// in a readable way. A single huge line would not comply with Scilab coding style:
+fig = figure("figure_name", "FIGURE", ..
+             "dockable",    "off", ..
+             "axes_size",   [990,670], ..
+             "infobar_visible", "off", ..
+             "toolbar",     "none", ..
+             "menubar_visible", "on", ..
+             "menubar",     "none", ..
+             "default_axes","off", ..
+             "layout",      "border", ..
+             "background",  color(244,244,244), ..
+             "tag",         "figure_1", ..
+             "visible",     "on");
+
+// Console-oriented calls with some ".." argument
+d = pwd(); cd SCI/contrib
+cd ..   // stands for cd("..") and expects nothing on the next line
+cd(d)   // Go back to your working directory
+
+// This expression does not work anymore in Scilab 6
+a = "here I start a very long string...  //but I'm not in the mood of continuing
+     - and here I go on"
+// This one is the correct expression now
+a = "here I start a very long string"+...  //but I'm not in the mood of continuing
+    "    - and here I go on"
+// This expression is not allowed anymore in Scilab 6: scalar number must be written on one line
+y = 12..
 45
  ]]></programlisting>
     </refsection>
@@ -86,6 +168,34 @@ y=12..
             <member>
                 <link linkend="backslash">backslash</link>
             </member>
+            <member>
+                <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="showprofile">showprofile</link>
+            </member>
+            <member>
+                <link linkend="edit">edit</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        It is not possible anymore to cut a scalar number.
+                    </para>
+                    <para>
+                        To cut a single string, "+.." operators must be used.
+                    </para>
+                    <para>In console-oriented calls, <literal>myfun ..</literal> no longer expects
+                        a continuation on the next line.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
