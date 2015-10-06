@@ -87,6 +87,8 @@ Scilab Bug Fixes
 
 * Bug #14113 fixed - Scilab 6 did not detect infinite loop.
 
+* Bug #14135 fixed - crash when running "Graphics -> Matplot -> Java Image" demonstration.
+
 * Bug #14141 fixed - recursive insertion: gcf().attribute=value => "Wrong insertion : function or macro are not expected".
 
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
