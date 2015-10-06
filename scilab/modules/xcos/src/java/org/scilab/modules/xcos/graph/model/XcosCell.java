@@ -370,6 +370,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
         return c;
     }
 
+    @Override
     protected void finalize() throws Throwable {
         JavaController controller = new JavaController();
         controller.deleteObject(getUID());

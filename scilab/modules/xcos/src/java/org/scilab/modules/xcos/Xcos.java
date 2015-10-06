@@ -192,6 +192,7 @@ public final class Xcos {
 
     }
 
+    @Override
     protected void finalize() throws Throwable {
         if (browser != null) {
             JavaController.unregister_view(browser);

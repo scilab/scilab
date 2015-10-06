@@ -21,8 +21,6 @@ import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.xcos.JavaController;
-import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
