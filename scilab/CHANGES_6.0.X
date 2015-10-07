@@ -4,6 +4,9 @@
 New Features
 =============
 
+* SSE2, Streaming SIMD Extensions 2 support is now mandatory to run Scilab on 
+  Linux i686.
+
 * valgrind error detection added to test_run (Linux Only)
 
 * Introduction of a call stack limit. Default maximum depth is setup to 1000 and

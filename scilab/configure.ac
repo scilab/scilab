@@ -729,16 +729,16 @@ CXXFLAGS="$saved_cppflags"
 
 ################
 ## SSE
-## By default, for x86 CPU, enable the SSE.
+## By default, for x86 CPU, enable the SSE2.
 ## Note that it is already the case with 64 bits CPU
 ## (these extensions are enabled by default by gcc)
 ################
 
 case "$host" in
      i*86-linux-gnu|i*86-*-linux-gnu)
-        SSE_CFLAGS="-msse"
-        SSE_FFLAGS="-msse"
-        SSE_CXXFLAGS="-msse"
+        SSE_CFLAGS="-msse2"
+        SSE_FFLAGS="-msse2"
+        SSE_CXXFLAGS="-msse2"
      ;;
 esac
 
