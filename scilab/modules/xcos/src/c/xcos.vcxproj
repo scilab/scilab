@@ -252,6 +252,7 @@
   <ItemGroup>
     <ClCompile Include="..\cpp\loadStatus.cpp" />
     <ClCompile Include="..\jni\JavaController_wrap.cxx" />
+    <ClCompile Include="..\jni\XcosCellFactory.cpp" />
     <ClCompile Include="DllmainXCOS.c" />
     <ClCompile Include="..\jni\Modelica.cpp" />
     <ClCompile Include="..\jni\Palette.cpp" />
@@ -283,6 +284,7 @@
     <ClInclude Include="..\jni\Modelica.hxx" />
     <ClInclude Include="..\jni\Palette.hxx" />
     <ClInclude Include="..\jni\Xcos.hxx" />
+    <ClInclude Include="..\jni\XcosCellFactory.hxx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\xcos.pot" />

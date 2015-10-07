@@ -225,7 +225,7 @@ private :
                 {
                     getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                 }
-                iWidthMax = std::max(iWidthMax, iWidth);
+                iWidthMax = (std::max)(iWidthMax, iWidth);
             }
 
             for (int i = this->m_iRows1PrintState ; i < this->getRows() ; i++)
@@ -338,7 +338,7 @@ private :
                     {
                         getUnsignedIntFormat(ArrayOf<T>::get(iPos), &iWidth);
                     }
-                    piSize[iCols1] = std::max(piSize[iCols1], iWidth);
+                    piSize[iCols1] = (std::max)(piSize[iCols1], iWidth);
                 }
 
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
