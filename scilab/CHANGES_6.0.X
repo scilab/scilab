@@ -85,6 +85,8 @@ Scilab Bug Fixes
 
 * Bug #14113 fixed - Scilab 6 did not detect infinite loop.
 
+* Bug #14141 fixed - recursive insertion: gcf().attribute=value => "Wrong insertion : function or macro are not expected".
+
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
 
 * Bug #14149 fixed - hdf5 could not restore hypermatrix with good dimensions.
