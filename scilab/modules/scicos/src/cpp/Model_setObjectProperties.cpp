@@ -469,14 +469,19 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setNMode(v);
             case IPAR:
                 return o->setIpar(v);
+            case COLOR:
+                return o->setChildrenColor(v);
             default:
                 break;
         }
     }
     else if (k == DIAGRAM)
     {
+        model::Diagram* o = static_cast<model::Diagram*>(baseObject);
         switch (p)
         {
+            case COLOR:
+                return o->setColor(v);
             default:
                 break;
         }
@@ -503,7 +508,7 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     return FAIL;
 }
 
-update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& v)
+update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<bool>& /*v*/)
 {
     model::BaseObject* baseObject = getObject(uid);
     if (baseObject == nullptr)

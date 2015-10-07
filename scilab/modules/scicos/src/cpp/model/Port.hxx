@@ -29,7 +29,7 @@ class Port: public BaseObject
 {
 public:
     Port() : BaseObject(PORT), m_dataType(0), m_sourceBlock(ScicosID()), m_kind(PORT_UNDEF), m_implicit(false),
-        m_style(), m_label(), m_firing(0), m_connectedSignals(std::vector<ScicosID> (1, ScicosID())) {};
+        m_style(), m_label(), m_firing(0), m_connectedSignals{ScicosID()} {};
     Port(const Port& o) : BaseObject(PORT), m_dataType(o.m_dataType), m_sourceBlock(o.m_sourceBlock), m_kind(o.m_kind), m_implicit(o.m_implicit),
         m_style(o.m_style), m_label(o.m_label), m_firing(0), m_connectedSignals(o.m_connectedSignals) {};
     ~Port() = default;

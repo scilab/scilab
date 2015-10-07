@@ -690,9 +690,9 @@ struct exprs
             }
             types::List* list = current->get(6)->getAs<types::List>();
 
-            for (size_t i = 0; i < list->getSize(); ++i)
+            for (int i = 0; i < list->getSize(); ++i)
             {
-                if (list->get(static_cast<int>(i))->getType() != types::InternalType::ScilabString)
+                if (list->get(i)->getType() != types::InternalType::ScilabString)
                 {
                     return false;
                 }

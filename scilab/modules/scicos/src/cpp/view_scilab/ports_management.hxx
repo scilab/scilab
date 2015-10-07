@@ -48,7 +48,7 @@ namespace view_scilab
  * Utilities function to emit the error messages
  */
 template<object_properties_t p>
-std::string adapterName(const object_properties_t port_kind)
+std::string adapterName(const object_properties_t /*port_kind*/)
 {
     switch (p)
     {

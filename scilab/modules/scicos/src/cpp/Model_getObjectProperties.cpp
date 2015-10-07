@@ -517,14 +517,21 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case IPAR:
                 o->getIpar(v);
                 return true;
+            case COLOR:
+                o->getChildrenColor(v);
+                return true;
             default:
                 break;
         }
     }
     else if (k == DIAGRAM)
     {
+        model::Diagram* o = static_cast<model::Diagram*>(baseObject);
         switch (p)
         {
+            case COLOR:
+                o->getColor(v);
+                return true;
             default:
                 break;
         }
@@ -552,7 +559,7 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
     return false;
 }
 
-bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& v) const
+bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std::vector<bool>& /*v*/) const
 {
     model::BaseObject* baseObject = getObject(uid);
     if (baseObject == nullptr)

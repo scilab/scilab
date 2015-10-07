@@ -28,14 +28,8 @@ namespace model
 class Annotation: public BaseObject
 {
 public:
-    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(ScicosID()), m_parentBlock(ScicosID()),
-        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), m_style(""), m_relatedTo(ScicosID())
-    {
-        std::vector<double> geom (4, 0);
-        geom[2] = 2;
-        geom[3] = 1;
-        m_geometry = Geometry(geom);
-    };
+    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(ScicosID()), m_parentBlock(ScicosID()), m_geometry{0, 0, 2, 1},
+        m_description("Text"), m_font("2"), m_font_size("1"), m_style(""), m_relatedTo(ScicosID()) {};
     Annotation(const Annotation& o) : BaseObject(ANNOTATION), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_geometry(o.m_geometry),
         m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_style(o.m_style), m_relatedTo(o.m_relatedTo) {};
     ~Annotation() = default;
