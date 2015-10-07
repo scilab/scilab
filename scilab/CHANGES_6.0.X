@@ -47,6 +47,8 @@ Scilab Bug Fixes
 
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
 
+* Bug #13908 fixed - part(text, n:$) was very slow.
+
 * Bug #13919 fixed - Scilab parsed "hidden" as a reserved keyword but it is not used.
 
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
