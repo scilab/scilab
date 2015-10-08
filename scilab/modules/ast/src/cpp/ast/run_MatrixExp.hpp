@@ -141,7 +141,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                         pGT->killMe();
                         continue;
                     }
-                    
+
+                    if (pGT->isDouble() && pGT->getAs<types::Double>()->isEmpty())
+                    {
+                        pGT->killMe();
+                        continue;
+                    }
+
                     poRow = pGT;
                     continue;
                 }
