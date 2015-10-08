@@ -43,6 +43,8 @@ Scilab Bug Fixes
 
 * Bug #13890 fixed - getd did not return loaded symbols in previous scope.
 
+* Bug #13893 fixed - simp() function did not set a rational denominator at 1 when numerator was equal to zero.
+
 * Bug #13894 fixed - Default working directory of the previous session did not work.
 
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
