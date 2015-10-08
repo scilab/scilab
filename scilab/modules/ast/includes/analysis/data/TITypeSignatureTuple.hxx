@@ -68,6 +68,11 @@ struct TITypeSignatureTuple
         types.emplace_back(t.type, t.isscalar());
     }
 
+    inline void emplace(const bool scalar, const analysis::TIType::Type type)
+    {
+        types.emplace_back(type, scalar);
+    }
+
     inline std::size_t size() const
     {
         return types.size();

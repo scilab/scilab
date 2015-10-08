@@ -40,7 +40,7 @@ struct TIType
     TIType(GVN & gvn, const Type _type) : type(_type), rows(gvn, _type == EMPTY ? 0 : 1), cols(gvn, _type == EMPTY ? 0 : 1), scalar(_type != EMPTY) { }
     TIType(GVN & gvn, const Type _type, const int _rows, const int _cols) : type(_type), rows(gvn, _rows), cols(gvn, _cols), scalar(_rows == 1 && _cols == 1) { }
     TIType(GVN & gvn, Type _type, const SymbolicDimension & _rows, const SymbolicDimension & _cols) : type(_type), rows(_rows), cols(_cols), scalar(_rows == 1 && _cols == 1) { }
-    TIType(GVN & gvn, const Type _type, const bool _scalar) : type(_type), rows(gvn, _scalar ? 1. : -1.), cols(gvn, _scalar ? 1. : -1.), scalar(_scalar) { }
+    TIType(GVN & gvn, const Type _type, const bool _scalar) : type(_type), rows(gvn, _scalar ? 1 : -1), cols(gvn, _scalar ? 1 : -1), scalar(_scalar) { }
 
     inline bool hasValidDims() const
     {
