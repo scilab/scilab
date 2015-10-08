@@ -611,14 +611,14 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 {
     if (e.isGlobal())
     {
-        if (ConfigVariable::getEnableDebug() == true)
-        {
-            sciprint(_("%s: function is disable in debug mode.\n"), "resume");
-            return;
-        }
-
         if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == ConfigVariable::getActivePauseLevel())
         {
+            if (ConfigVariable::getEnableDebug() == true)
+            {
+                sciprint(_("%s: function is disable in debug mode.\n"), "resume");
+                return;
+            }
+
             //return or resume
             ConfigVariable::DecreasePauseLevel();
             return;
