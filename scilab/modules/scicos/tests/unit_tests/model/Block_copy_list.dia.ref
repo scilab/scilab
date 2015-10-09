@@ -10,6 +10,7 @@ scicos_log("TRACE");
 // Create one block and make a list out of it (duplicate it)
 Sum = BIGSOM_f("define");
 Xcos debug: objectCreated( 1 , BLOCK )
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
@@ -37,6 +38,8 @@ Xcos trace: propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , PORT , DATATYPE ) : SUCCESS
@@ -54,6 +57,7 @@ Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 l = list(Sum);
 // Copy the list content (no duplicate)
@@ -61,6 +65,8 @@ Sum2 = l(1)
  Sum2  = 
 GUI     : BIGSOM_f
 Graphics: 
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
           orig = [0,0]
           sz = [2,3]
           flip = %t
@@ -80,6 +86,8 @@ Graphics:
           out_label = ""
           style = ""
 Model   : 
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
           sum type: 2
           in = [-1;-1]
           in2 = [1;1]
@@ -110,6 +118,8 @@ Sum2
 Sum2  = 
 GUI     : BIGSOM_f
 Graphics: 
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
           orig = [0,0]
           sz = [2,3]
           flip = %t
@@ -129,6 +139,8 @@ Graphics:
           out_label = ""
           style = ""
 Model   : 
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
           sum type: 2
           in = [-1;-1]
           in2 = [1;1]
