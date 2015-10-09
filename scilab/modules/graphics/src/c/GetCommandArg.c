@@ -210,7 +210,14 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
         char* pstData = NULL;
         getVarAddressFromPosition(_pvCtx, pos, &piAddr);
         getVarType(_pvCtx, piAddr, &iType);
-        if (iType != 10)
+        if (iType == 0)
+        {
+            // For example: grayplot(x,y,m,);
+            reinitDefStrfN();
+            *strf = getDefStrf();
+            return 1;
+        }
+        else if (iType != 10)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, pos);
             return 0;
