@@ -47,6 +47,8 @@ Scilab Bug Fixes
 
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
 
+* Bug #13919 fixed - Scilab parsed "hidden" as a reserved keyword but it is not used.
+
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
 
 * Bug #13983 fixed - who_user returned wrong values.

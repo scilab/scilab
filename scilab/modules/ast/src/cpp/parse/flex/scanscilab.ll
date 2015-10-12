@@ -285,22 +285,6 @@ assign			"="
 	return scan_throw(ENDFUNCTION);
 }
 
-<INITIAL,BEGINID>"#function"	{
-	if (last_token != DOT)
-    {
-        ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
-    }
-    DEBUG("BEGIN(INITIAL)");
-    BEGIN(INITIAL);
-	return scan_throw(HIDDENFUNCTION);
-}
-
-<INITIAL,BEGINID>"hidden"	{
-    DEBUG("BEGIN(INITIAL)");
- 	BEGIN(INITIAL);
-    return scan_throw(HIDDEN);
-}
-
 <INITIAL,BEGINID>"for" {
 	if (last_token != DOT)
     {
