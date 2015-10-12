@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "error", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "error", 1);
             return types::Function::Error;
         }
     }

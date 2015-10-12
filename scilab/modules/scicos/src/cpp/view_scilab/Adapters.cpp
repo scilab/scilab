@@ -119,6 +119,8 @@ const model::BaseObject* Adapters::descriptor(types::InternalType* v)
                 return v->getAs<view_scilab::StateAdapter>()->getAdaptee();
             case TEXT_ADAPTER:
                 return v->getAs<view_scilab::TextAdapter>()->getAdaptee();
+            default:
+                return nullptr;
         }
     }
 

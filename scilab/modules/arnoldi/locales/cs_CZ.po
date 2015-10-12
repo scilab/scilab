@@ -36,7 +36,7 @@ msgstr ""
 "%s: Chybná velikost vstupního argumentu %s: Očekávána matice typu %dx%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -45,8 +45,7 @@ msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
 msgid ""
@@ -68,8 +67,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu  #%d: k musí být kladné celé číslo.\n"
 
@@ -107,8 +105,7 @@ msgstr "%s: Neplatná sigma pro reálnou nesymetrickou úlohu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Sigma musí být reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
@@ -127,8 +124,7 @@ msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: %s musí být reálný skalár.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 "%s: Špatný typ vstupního rozměru #%d: %s musí být celočíselný skalár.\n"
 
@@ -145,8 +141,7 @@ msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr "%s: Špatná hodnota argumentu #%d: %s musí být %s nebo %s.\n"
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B není pozitivně definitivní. Zkuste použít sigma='SM' nebo "
 "sigma=scalar.\n"
@@ -276,7 +271,7 @@ msgstr ""
 "maxiter, ncv, resid, cholB"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -335,8 +330,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: Chyba s %s: info = %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: n musí být kladné celé číslo.\n"
 

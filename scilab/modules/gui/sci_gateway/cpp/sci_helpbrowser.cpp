@@ -49,21 +49,21 @@ types::Function::ReturnValue sci_helpbrowser(types::typed_list &in, int _iRetCou
             }
             if (!(in[2]->isString() == true && in[2]->getAs<types::String>()->isScalar() == true))
             {
-                Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 3);
+                Scierror(999, _("%s:  Wrong type for input argument #%d: string expected."), "helpbrowser", 3);
                 return types::Function::Error;
             }
         case 2:
             // Second argument must be String or at least [].
             if (!(in[1]->isString() == true && in[1]->getAs<types::String>()->isScalar() == true))
             {
-                Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 2);
+                Scierror(999, _("%s:  Wrong type for input argument #%d: string expected."), "helpbrowser", 2);
                 return types::Function::Error;
             }
             // Matrix of String or [] allowed.
             if ( !( (in[0]->isString() == true)
                 || (in[0]->isDouble() == true && in[0]->getAs<types::Double>()->isEmpty() == true)))
             {
-                Scierror(999, _("%s:  Wrong type for input argument #%d: A string expected."), "helpbrowser", 1);
+                Scierror(999, _("%s:  Wrong type for input argument #%d: string expected."), "helpbrowser", 1);
                 return types::Function::Error;
             }
             break;

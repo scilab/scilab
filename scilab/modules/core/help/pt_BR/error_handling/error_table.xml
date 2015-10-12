@@ -455,7 +455,7 @@
             (operandos de / e \\ não devem conter NaN ou Inf)
         </para>
         <para>230 "semidef fails" (semidef falhou)</para>
-        <para>231 "Wrong type for first input argument: Single string expected."
+        <para>231 "Wrong type for first input argument: string expected."
             (tipo errado para o primeiro argumento de entrada: esperava string
             único)
         </para>

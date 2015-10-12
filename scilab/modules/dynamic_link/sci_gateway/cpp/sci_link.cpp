@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         //flag
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->isScalar() == false)
         {
-            Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "link", 3);
+            Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "link", 3);
             return types::Function::Error;
         }
 
@@ -97,7 +97,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
         //sub names
         if (in[1]->isString() == false || ( in[1]->getAs<types::String>()->isVector() == false && in[1]->getAs<types::String>()->isScalar() == false))
         {
-            Scierror(999, _("%s Wrong type for input argument #%d: A string or a string vector expected.\n"), "link", 2);
+            Scierror(999, _("%s Wrong type for input argument #%d: string or string vector expected.\n"), "link", 2);
             return types::Function::Error;
         }
 
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_link(types::typed_list &in, int _iRetCount, typ
             types::String* pS = in[0]->getAs<types::String>();
             if (pS->isScalar() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "link", 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "link", 1);
                 return types::Function::Error;
             }
 

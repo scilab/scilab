@@ -170,7 +170,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
         {
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             freeArrayOfString(description, nbRow);
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -201,7 +201,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
     {
         if (checkInputArgumentType(pvApiCtx, 3, sci_strings) == FALSE)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             freeAllocatedMatrixOfString(nbRow, nbCol, mask);
             freeArrayOfString(description, nbRow);
             return 1;
@@ -250,7 +250,7 @@ int sci_uigetfile(char *fname, void* pvApiCtx)
             {
                 if (checkInputArgumentType(pvApiCtx, 4, sci_boolean) == FALSE)
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 4);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 4);
                     freeArrayOfString(description, nbRow);
                     freeAllocatedMatrixOfString(nbRow, nbCol, mask);
                     freeAllocatedSingleString(initialDirectory);

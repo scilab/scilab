@@ -19,8 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
+msgstr "Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -31,7 +30,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Brak pamięci.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
@@ -581,8 +580,7 @@ msgstr "Włącz"
 msgid "Palette name"
 msgstr "Nazwa palety"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "Schemat został zmieniony od ostatniego zapisu.<br/> Czy chcesz go zapisać?"
 
@@ -659,26 +657,22 @@ msgstr "Dodaj do"
 msgid "Add to new diagram"
 msgstr "Dodaj do nowego diagramu"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Otwarty port danych wejściowych musi  być połączony z otwartym portem danych "
 "wyjściowych"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Bezwarunkowy port danych wejściowych musi być połączony z bezwarunkowym "
 "portem danych wyjściowych"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Otwarty port danych wyjściowych musi  być połączony z otwartym portem danych "
 "wejściowych"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Bezwarunkowy port danych wyjściowych musi być połączony z bezwarunkowym "
 "portem danych wejściowych"
@@ -768,8 +762,7 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Kliknij na wykres, aby dodać punkt połączeniowy lub na zgodny obiekt aby "
 "zakończyć"
@@ -865,8 +858,8 @@ msgid "Expecting '%d'."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 
 #, c-format
@@ -1025,12 +1018,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: Block type expected.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu block.\n"
+msgstr "%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu block.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: Niepoprawny typ parametru wejściowego %s: oczekiwano łańcuch zawierający "
 "ścieżkę dostępu.\n"
@@ -1125,16 +1116,14 @@ msgstr ""
 "%s: Nieprawidłowa liczba parametrów wyjściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 "%s: Niepoprawny typ parametru wejściowego %s: oczekiwano typu paleta "
 "(palette) lub ścieżki dostępu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"
-msgstr ""
-"%s: Niepoprawny typ parametru wejściowego %s: Nie znaleziono pliku.\n"
+msgstr "%s: Niepoprawny typ parametru wejściowego %s: Nie znaleziono pliku.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string vector expected.\n"

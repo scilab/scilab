@@ -69,7 +69,7 @@ msgid "A single String expected"
 msgstr "文字列を指定してください"
 
 #, c-format
-msgid "Wrong type for argument #%d: A string expected."
+msgid "Wrong type for argument #%d: string expected."
 msgstr "引数 #%d の型が間違っています:  文字列を指定してください"
 
 #, c-format
@@ -119,7 +119,7 @@ msgid "Incompatible External Object"
 msgstr "外部オブジェクトの互換性がありません"
 
 #, c-format
-msgid "Wrong type for input argument #%d: A string expected."
+msgid "Wrong type for input argument #%d: string expected."
 msgstr "入力引数 #%d の型が間違っています: 文字列を指定してください."
 
 #, c-format
@@ -184,4 +184,5 @@ msgstr "変数が無効です: データ型を取得できませんでした"
 
 #, c-format
 msgid "%s: Wrong argument type at position %i: Double expected\n"
-msgstr "%s: 位置 %i にある引数の型が間違っています:] double を指定してください\n"
+msgstr ""
+"%s: 位置 %i にある引数の型が間違っています:] double を指定してください\n"

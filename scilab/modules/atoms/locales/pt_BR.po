@@ -41,7 +41,7 @@ msgstr ""
 "matriz de textos mx1, mx2 ou mx3.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o %dº argumento de entrada: esperava-se um único "
 "texto.\n"
@@ -107,7 +107,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se um único "
 "texto.\n"
@@ -304,17 +304,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o %dº argumento de entrada: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se um "
-"texto.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -606,8 +595,7 @@ msgstr "Instalando"
 msgid "Installation failed!"
 msgstr "Falha na instalação!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Instalação concluída! Por favor, reinicie o Scilab para que as alterações "
 "tenham efeito."
@@ -693,8 +681,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Valor incorreto para o %dº argumento de entrada: esperava-se "
-"'filter:all', 'filter:main' ou uma categoria principal válida.\n"
+"%s: Valor incorreto para o %dº argumento de entrada: esperava-se 'filter:"
+"all', 'filter:main' ou uma categoria principal válida.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -843,8 +831,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr ""
-"%s: Nem Wget nem Curl foram localizados: por favor, instale um deles\n"
+msgstr "%s: Nem Wget nem Curl foram localizados: por favor, instale um deles\n"
 
 msgid "Download in progress... Please be patient."
 msgstr ""
@@ -926,16 +913,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM calculado  : '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o %dº argumento de entrada: esperava-se 'error' "
-"(erro) ou 'warning' (aviso).\n"
+"%s: Valor incorreto para o %dº argumento de entrada: esperava-se "
+"'error' (erro) ou 'warning' (aviso).\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: esperava-se um único "
 "texto terminado com .tar.gz, .tgz ou .zip.\n"
@@ -1065,16 +1051,15 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: A árvore de dependência não pode ser resolvida.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: esperava-se a letra 'A' "
 "ou 'I'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: não é uma versão ou "
 "dependência válida.\n"
@@ -1136,8 +1121,7 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) não está instalado.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Valor incorreto para o %dº argumento de entrada: não é uma versão "
 "válida.\n"

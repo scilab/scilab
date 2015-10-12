@@ -31,11 +31,11 @@ function elements = atomsGetLeftListboxElts(category)
     // =========================================================================
 
     if category<>[] & type(category) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: Single string expected.\n"),"getLeftListboxElements",1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"getLeftListboxElements",1));
     end
 
     if category<>[] & type(category) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: Single string expected.\n"),"getLeftListboxElements",1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"getLeftListboxElements",1));
     end
 
     if size(category(1,:),"*") > 2 then

@@ -48,8 +48,8 @@ msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' with the %s "
 "generator.\n"
 msgstr ""
-"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d para "
-"\"%s\" com o gerador %s.\n"
+"%s: Quantidade incorreta de argumentos de entrada: esperava-se %d para \"%s"
+"\" com o gerador %s.\n"
 
 #, c-format
 msgid ""

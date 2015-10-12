@@ -45,7 +45,7 @@ function libn = ilib_compile(lib_name, ..
     end
 
     if typeof(lib_name)<>"string" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"ilib_compile",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"ilib_compile",1));
         return ;
     end
 

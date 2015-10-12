@@ -98,7 +98,7 @@ int sci_light(char *fname, void* pvApiCtx)
                     freeAllocatedSingleString(pStr);
                 }
 
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 7);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 7);
                 return 0;
             }
 
@@ -123,7 +123,7 @@ int sci_light(char *fname, void* pvApiCtx)
                     freeAllocatedSingleString(pStr);
                 }
 
-                Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 6);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 6);
                 return 0;
             }
 

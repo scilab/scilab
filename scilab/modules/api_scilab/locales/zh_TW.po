@@ -146,8 +146,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: 參數 %d 長度錯誤: 應為 (%d,%d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr "%s: 第 %d 的輸入參數型態錯誤: 應該是字串或是純量.\n"
 
 #, c-format

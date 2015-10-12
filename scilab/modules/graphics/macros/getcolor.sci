@@ -15,18 +15,18 @@ function [c] = getcolor(Title,cini)
         cini = 1;
     elseif rhs==1 then
         if type(Title)~=10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         if size(Title, "*")~=1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         cini = 1;
     elseif rhs==2 then
         if type(Title)~=10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         if size(Title, "*")~=1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "getcolor", 1));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "getcolor", 1));
         end
         if type(cini)~=1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: A real expected.\n"), "getcolor", 2));

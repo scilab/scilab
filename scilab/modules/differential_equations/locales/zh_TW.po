@@ -176,8 +176,7 @@ msgstr "5 : 在內部格狀點和返回值的動作"
 msgid "Meaning of jactype:"
 msgstr "jactype的意思:"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr "0 : 函數的疊代 (沒有使用 jacobian (僅支援 'adams' 或 'stiff'))"
 
 msgid "1 : user-supplied full jacobian"

@@ -32,7 +32,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -48,8 +48,7 @@ msgstr ""
 "au format.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Les données ne "
 "correspondent pas au format.\n"
@@ -93,11 +92,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -121,8 +119,7 @@ msgstr ""
 "fermer le journal.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Erreur, impossible de "
 "fermer le journal %d.\n"
@@ -134,8 +131,7 @@ msgstr ""
 "d'interrompre le journal.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Erreur, impossible "
 "d'interrompre le journal %d.\n"
@@ -278,8 +274,7 @@ msgid "Bad call to primitive: %s\n"
 msgstr "Appel erroné de la primitive : %s\n"
 
 msgid "Too complex recursion! (recursion tables are full)\n"
-msgstr ""
-"Récursivité trop complexe ! (Les tables de récurrence sont pleines)\n"
+msgstr "Récursivité trop complexe ! (Les tables de récurrence sont pleines)\n"
 
 msgid "Division by zero...\n"
 msgstr "Division par zéro...\n"
@@ -392,8 +387,7 @@ msgstr "Type erroné de l'argument %d : Une liste attendue.\n"
 msgid "Problem with comparison symbol...\n"
 msgstr "Problème avec le symbole de comparaison...\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Nombre erroné d'arguments d'entrée : Cette fonction n'a pas d'argument "
 "d'entrée.\n"
@@ -764,8 +758,7 @@ msgstr "Vérifier ou définir la fonction %s pour la surcharge.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
+msgstr "%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
@@ -789,8 +782,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
+msgstr "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
@@ -891,7 +883,7 @@ msgstr "Les opérandes /et \\  ne doivent pas contenir NaN & Inf.\n"
 msgid "semi def fails.\n"
 msgstr "Échec de semi def.\n"
 
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr ""
 "Type erroné du premier argument d'entrée : Une chaîne de caractères "
 "attendue.\n"
@@ -964,8 +956,7 @@ msgstr "Valeur erronée de l'argument %d : Le handle lu n'est plus valide.\n"
 
 #, c-format
 msgid "Wrong value for argument #%d: Valid variable name expected.\n"
-msgstr ""
-"Valeur erronée de l'argument %d : Un nom de variable valide attendu.\n"
+msgstr "Valeur erronée de l'argument %d : Un nom de variable valide attendu.\n"
 
 #, c-format
 msgid "Wrong value for argument #%d: Empty string expected.\n"
@@ -1065,8 +1056,7 @@ msgstr ""
 msgid "endfunction is missing.\n"
 msgstr "endfunction est manquant.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Partie gauche de l'instruction : en attente d'un point ou d'une parenthèse "
 "ouvrante.\n"
@@ -1191,8 +1181,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Fin de l'optimisation (échec de la recherche linéaire).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : convergence incomplète. Précision relative atteinte : 10**(%s).\n"
 
@@ -1337,8 +1326,7 @@ msgstr "Attention : Singularité de la fonction 'log' ou 'tan'.\n"
 
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
-msgstr ""
-"Au temps : %s. Trop d'itération pour réaliser la précision requise.\n"
+msgstr "Au temps : %s. Trop d'itération pour réaliser la précision requise.\n"
 
 msgid "stepsize not significant in rkqc.\n"
 msgstr "stepsize n'est pas suffisamment important dans rkqc.\n"
@@ -1403,8 +1391,7 @@ msgstr "%s : Fin pour cause d'erreur relative < (5.0*%eps).\n"
 
 #, c-format
 msgid "%s: termination: function evaluations > MEVALS.\n"
-msgstr ""
-"%s : Fin pour cause de nombre d'évaluation de la fonction > MEVALS.\n"
+msgstr "%s : Fin pour cause de nombre d'évaluation de la fonction > MEVALS.\n"
 
 #, c-format
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
@@ -1447,12 +1434,10 @@ msgstr "La clef inconnue <%s> est ignorée.\n"
 
 #, c-format
 msgid "%s: window dimensions have been set less than 2^16.\n"
-msgstr ""
-"%s : Les dimensions de la fenêtre ont été réduites à moins de 2^16.\n"
+msgstr "%s : Les dimensions de la fenêtre ont été réduites à moins de 2^16.\n"
 
 msgid "Some data have not been computed they are replaced by NaN.\n"
-msgstr ""
-"Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
+msgstr "Des données n'ont pas été calculées, elles sont remplacées par NaN.\n"
 
 #, c-format
 msgid ""
@@ -1568,8 +1553,7 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un modèle d'espace d'état "
 "attendu.\n"

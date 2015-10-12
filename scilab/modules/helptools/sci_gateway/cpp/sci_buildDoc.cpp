@@ -86,7 +86,7 @@ extern "C"
 
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
                 return 0;
                 // Wrong type string
             }
@@ -123,7 +123,7 @@ extern "C"
 
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 3);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
                 return 0;
                 // Wrong type string
             }
@@ -168,7 +168,7 @@ extern "C"
             }
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                 return 0;
                 // Wrong type string
             }
@@ -197,7 +197,7 @@ extern "C"
             }
             if (!isStringType(pvApiCtx, piAddr))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), fname, 4);
+                Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 4);
                 return 0;
                 // Wrong type string
             }

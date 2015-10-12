@@ -22,7 +22,7 @@ function a=sprand(m,n,density,typ)
     end
 
     if type(typ)<>10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"sprand",4));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"sprand",4));
     end
 
     if and(typ<>["u";"n";"uniform";"normal";"def";"nor"]) then

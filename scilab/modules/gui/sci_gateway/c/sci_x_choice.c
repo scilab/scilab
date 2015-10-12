@@ -94,7 +94,7 @@ int sci_x_choice(char *fname, void* pvApiCtx)
         // Retrieve a matrix of string at position 2.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             return 1;
         }
 
@@ -129,7 +129,7 @@ int sci_x_choice(char *fname, void* pvApiCtx)
         // Retrieve a matrix of string at position 3.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlineLabelsAdr, &nbRowLineLabels, &nbColLineLabels, &lineLabelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
 

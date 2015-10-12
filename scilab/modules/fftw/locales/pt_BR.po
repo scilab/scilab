@@ -54,8 +54,7 @@ msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #, c-format
@@ -126,7 +125,7 @@ msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
@@ -163,8 +162,7 @@ msgstr "Você escolheu instalar o Scilab com o módulo fftw."
 msgid "This module requires: "
 msgstr "Este módulo exige: "
 
-msgid ""
-"Scilab will use standard fft by default until you install this library."
+msgid "Scilab will use standard fft by default until you install this library."
 msgstr "O Scilab usará o fft padrão até que você instale essa biblioteca."
 
 msgid "See help fftw for more information."

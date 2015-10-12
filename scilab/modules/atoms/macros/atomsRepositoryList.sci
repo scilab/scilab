@@ -33,14 +33,14 @@ function repositories = atomsRepositoryList(section)
     // =========================================================================
 
     if (rhs==1) & (type(section) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsRepositoryList",1));
     end
 
     // Check input argument dimension (if any)
     // =========================================================================
 
     if (rhs==1) & (size(section,"*")<>1) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsRepositoryList",1));
     end
 
     // Check input argument values (if any)

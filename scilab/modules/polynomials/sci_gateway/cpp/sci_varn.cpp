@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_varn(types::typed_list &in, int _iRetCount, typ
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "varn", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "varn", 2);
             return types::Function::Error;
         }
 

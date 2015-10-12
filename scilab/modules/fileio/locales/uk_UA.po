@@ -38,7 +38,7 @@ msgstr ""
 "значень типу «string».\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -72,7 +72,7 @@ msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s: попередження: каталог з назвою «%s» вже існує.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
+msgid "%s: Wrong type for input argument: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра: слід використовувати тип «string».\n"
 
@@ -104,8 +104,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: помилкове значення вхідного параметра №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s: помилка під час спроби отримання назви поточного каталогу.\n"
 
 #, c-format
@@ -135,7 +134,7 @@ msgstr ""
 "значень з плаваючою комою.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -162,7 +161,7 @@ msgstr ""
 "шляху.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
 "символу.\n"
@@ -186,8 +185,7 @@ msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: файл з назвою %s не відкрито у Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
@@ -234,8 +232,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Matrix expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра: слід використовувати матрицю.\n"
+msgstr "%s: помилковий тип вхідного параметра: слід використовувати матрицю.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -251,8 +248,7 @@ msgid "%s: No such file %s.\n"
 msgstr "%s: не виявлено файла з назвою %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мав бути рядок або ціле число.\n"
 
@@ -275,8 +271,7 @@ msgstr "%s: помилковий режим доступу до файла: мо
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -359,8 +354,7 @@ msgstr "%s: некоректний запис стану.\n"
 
 #, c-format
 msgid "%s: No input file associated to logical unit %d.\n"
-msgstr ""
-"%s: не виявлено вхідного файла, пов’язаного з логічною одиницею %d.\n"
+msgstr "%s: не виявлено вхідного файла, пов’язаного з логічною одиницею %d.\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
@@ -377,8 +371,7 @@ msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати рядок або "
 "ціле число.\n"
@@ -485,8 +478,7 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s: сталася помилка: потрібно забагато (> %d) перетворень.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
 "%s: сталася помилка: значення поля %d занадто довге (> %d) у вказівці %%[.\n"
 
@@ -494,14 +486,12 @@ msgid "Bad conversion."
 msgstr "Помилкове перетворення."
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s: сталася помилка: значення поля %d занадто довге (< %d) у вказівці %%s.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s: сталася помилка: значення поля %d занадто довге (< %d) у вказівці %%c.\n"
 
@@ -538,8 +528,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: формат не розпізнано.\n"
+msgstr "%s: помилкове значення вхідного параметра №%d: формат не розпізнано.\n"
 
 #, c-format
 msgid "%s: No input file.\n"
@@ -572,8 +561,7 @@ msgid "%s: No File opened in Scilab.\n"
 msgstr "%s: у Scilab не відкрито жодного файла.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d («%s»): формат не розпізнано.\n"
 
@@ -586,8 +574,7 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: помилка під час спроби відкриття, читання або запису.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"

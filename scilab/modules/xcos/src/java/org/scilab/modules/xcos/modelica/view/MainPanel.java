@@ -148,6 +148,7 @@ public final class MainPanel extends JPanel {
     private TreeModel createTreeModel() {
         final DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
         controller.getRoot()) {
+            @Override
             public String toString() {
                 return ((Model) getUserObject()).getName();
             };
@@ -170,6 +171,7 @@ public final class MainPanel extends JPanel {
      */
     private MutableTreeNode createNodes(Struct struct) {
         DefaultMutableTreeNode structNode = new DefaultMutableTreeNode(struct) {
+            @Override
             public String toString() {
                 return ((Struct) getUserObject()).getName();
             };

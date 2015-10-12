@@ -51,7 +51,7 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' .\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
@@ -149,8 +149,7 @@ msgstr ""
 "matrice m*3 o m*6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:%s deve essere tra %d "
 "e %d.\n"
@@ -198,8 +197,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

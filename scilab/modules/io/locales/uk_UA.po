@@ -23,7 +23,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -52,7 +52,7 @@ msgstr ""
 "значення.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -150,8 +150,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: variable '%s' does not exist in '%s'.\n"

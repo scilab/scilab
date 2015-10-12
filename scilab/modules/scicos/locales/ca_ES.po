@@ -55,8 +55,7 @@ msgstr "%s : El primer argument ha de ser una llista de scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
-msgstr ""
-"%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
+msgstr "%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -252,8 +251,7 @@ msgstr ""
 "per a outtb.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : error. El tipus %d de la matriu d'enters no està suportat per a outtb.\n"
 

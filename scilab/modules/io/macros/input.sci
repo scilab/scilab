@@ -22,7 +22,7 @@ function [x] = input(msg, flag)
     end
 
     if size(msg, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"input",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"input",1));
     end
 
     // a tricky way to get all ascii codes  sequences
@@ -36,7 +36,7 @@ function [x] = input(msg, flag)
         end
 
         if size(flag, "*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"input",2));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"input",2));
         end
 
         if (flag <> "s" & flag <> "string") then

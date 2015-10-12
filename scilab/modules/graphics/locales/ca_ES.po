@@ -26,8 +26,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: La seva "
 "longitud és incompatible.\n"
@@ -37,11 +36,7 @@ msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -107,8 +102,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un vector "
 "2D de cadenes de text.\n"
@@ -122,8 +116,7 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -148,8 +141,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
+msgstr "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -191,8 +183,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 msgid "This object cannot be deleted.\n"
 msgstr "No es pot eliminar aquest objecte.\n"
@@ -214,10 +205,6 @@ msgstr "%: Valor incorrecte de %s '%c': Ha de ser '%s', '%s' i '%s'.\n"
 #, c-format
 msgid ""
 "%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Single string expected.\n"
 msgstr ""
 
 #, c-format
@@ -251,7 +238,7 @@ msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
@@ -293,10 +280,6 @@ msgstr ""
 "%s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
@@ -312,8 +295,7 @@ msgstr ""
 "longitud %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments obligatoris d'entrada és incorrecte. Com a mínim "
 "han de ser %d.\n"
@@ -388,8 +370,7 @@ msgstr ""
 "seva longitud és incompatible.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen un valor incorrecte: La seva "
 "longitud és incompatible.\n"
@@ -470,8 +451,7 @@ msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -590,8 +570,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
-msgstr ""
-"%s: Els arguments d'entrada #%d i #%d tenen longituds incompatibles.\n"
+msgstr "%s: Els arguments d'entrada #%d i #%d tenen longituds incompatibles.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d, %d or %d expected.\n"
@@ -608,8 +587,7 @@ msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d o %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -779,8 +757,7 @@ msgstr ""
 
 #, c-format
 msgid "Number of columns must be %d (%d if %s coordinate).\n"
-msgstr ""
-"El nombre de columnes ha de ser %d (%d en cas de la coordenada %s).\n"
+msgstr "El nombre de columnes ha de ser %d (%d en cas de la coordenada %s).\n"
 
 #, c-format
 msgid "Number of elements must be %d (%d if %s coordinate).\n"
@@ -870,7 +847,7 @@ msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser un nombre real.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: String matrix expected.\n"
+msgid "Wrong type for '%s' property: string expected.\n"
 msgstr ""
 "La propietat '%s' és d'un tipus incorrecte: Ha de ser una matriu de cadenes "
 "de caràcters.\n"
@@ -898,7 +875,7 @@ msgstr ""
 "A la propietat '%s': '%s' és obsolet. Utilitzeu '%s'.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A string expected.\n"
+msgid "Wrong size for '%s' property: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -910,7 +887,7 @@ msgid "Wrong size for '%s' property: A real expected.\n"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for '%s' property: A string or a 2-item list expected.\n"
+msgid "Wrong type for '%s' property: string or 2-item list expected.\n"
 msgstr ""
 
 #, c-format
@@ -950,8 +927,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Handle expected.\n"
-msgstr ""
-"La propietat '%s' és d'un tipus incorrecte: Ha de ser un tractament.\n"
+msgstr "La propietat '%s' és d'un tipus incorrecte: Ha de ser un tractament.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be a valid handle.\n"
@@ -989,8 +965,7 @@ msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
 #, c-format
@@ -1063,8 +1038,7 @@ msgstr ""
 "set.\n"
 
 #, c-format
-msgid ""
-"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
 "La propietat '%s' té un valor incorrecte: Ha de ser un enter entre %d i %d.\n"
 
@@ -1171,10 +1145,6 @@ msgstr ""
 "La propietat '%s' té una mida incorrecta: Ha de tenir %d o %d elements.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A string expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "Wrong size for '%s' property: At most %d columns and %d rows expected.\n"
 msgstr ""
@@ -1198,8 +1168,7 @@ msgstr "La propietat '%s' és d'un tipus incorrecte: Ha de ser una llista.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: Row vector expected.\n"
-msgstr ""
-"La propietat '%s' té una mida incorrecta: Ha de ser un vector fila.\n"
+msgstr "La propietat '%s' té una mida incorrecta: Ha de ser un vector fila.\n"
 
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
@@ -1502,7 +1471,7 @@ msgid "%s: Wrong type for input argument #%d: Axes handle expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size or type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size or type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -1523,7 +1492,7 @@ msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Han de ser entre %d i %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments #%d: A string expected.\n"
+msgid "%s: Wrong type for input arguments #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -1542,8 +1511,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1563,8 +1531,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -1700,7 +1667,7 @@ msgid "%s: Wrong type for input argument #%d:  Real matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -1741,8 +1708,7 @@ msgid ""
 "Datatip manager cannot be enabled, user data figure field is already used"
 msgstr ""
 
-msgid ""
-"Left click on a curve to create a datatip, right opens contextual menu"
+msgid "Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 "Feu clic amb el botó esquerra en una corba per crear un datatip, el botó "
 "dret obre el menú contextual"
@@ -1891,8 +1857,7 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un nombre "
 "real.\n"
 
-msgid ""
-"Entity picker cannot be enabled, user data figure field is already used"
+msgid "Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 
 msgid "Left click on a graphic entity to open its property editor"
@@ -2087,8 +2052,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
+msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -2157,8 +2121,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected."
-msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser %d o %d."
+msgstr "%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser %d o %d."
 
 #, c-format
 msgid ""
@@ -2205,8 +2168,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 
 #, c-format

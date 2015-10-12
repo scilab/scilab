@@ -47,7 +47,7 @@ msgstr ""
 "compartida.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
@@ -287,14 +287,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "de cadenes de caràcters.\n"
@@ -548,12 +547,6 @@ msgstr "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d.\n"
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
 "%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser %d,%d o %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
-"de text.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

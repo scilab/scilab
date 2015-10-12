@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,157 +10,157 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 42
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 56
-# File: sci_gateway/c/sci_mpi_comm_size.c, line: 41
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 46
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 61
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 77
-# File: sci_gateway/c/sci_mpi_isend.c, line: 46
-# File: sci_gateway/c/sci_mpi_isend.c, line: 60
-# File: sci_gateway/c/sci_mpi_isend.c, line: 81
-# File: sci_gateway/c/sci_mpi_recv.c, line: 42
-# File: sci_gateway/c/sci_mpi_recv.c, line: 57
-# File: sci_gateway/c/sci_mpi_send.c, line: 41
-# File: sci_gateway/c/sci_mpi_send.c, line: 55
-# File: sci_gateway/c/sci_mpi_wait.c, line: 41
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 42
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 56
+# File: modules/mpi/sci_gateway/c/sci_mpi_comm_size.c, line: 40
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 46
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 61
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 77
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 46
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 60
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 81
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 42
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 57
+# File: modules/mpi/sci_gateway/c/sci_mpi_send.c, line: 41
+# File: modules/mpi/sci_gateway/c/sci_mpi_send.c, line: 55
+# File: modules/mpi/sci_gateway/c/sci_mpi_wait.c, line: 41
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 48
-# File: sci_gateway/c/sci_mpi_comm_size.c, line: 47
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 52
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 67
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 83
-# File: sci_gateway/c/sci_mpi_isend.c, line: 52
-# File: sci_gateway/c/sci_mpi_isend.c, line: 66
-# File: sci_gateway/c/sci_mpi_recv.c, line: 48
-# File: sci_gateway/c/sci_mpi_recv.c, line: 63
-# File: sci_gateway/c/sci_mpi_send.c, line: 47
-# File: sci_gateway/c/sci_mpi_wait.c, line: 47
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 48
+# File: modules/mpi/sci_gateway/c/sci_mpi_comm_size.c, line: 46
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 52
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 67
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 83
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 52
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 66
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 48
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 63
+# File: modules/mpi/sci_gateway/c/sci_mpi_send.c, line: 47
+# File: modules/mpi/sci_gateway/c/sci_mpi_wait.c, line: 47
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 66
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 66
 #, c-format
 msgid "%s: Could not get communicator rank of the node %d: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 75
-# File: sci_gateway/c/sci_mpi_isend.c, line: 89
-# File: sci_gateway/c/sci_mpi_send.c, line: 63
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 75
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 89
+# File: modules/mpi/sci_gateway/c/sci_mpi_send.c, line: 63
 msgid "Unable to serialize data\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 87
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 103
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 87
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 103
 #, c-format
 msgid "%s: Could not broadcast the variable to the node %d: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_bcast.c, line: 111
-# File: sci_gateway/c/sci_mpi_wait.c, line: 86
+# File: modules/mpi/sci_gateway/c/sci_mpi_bcast.c, line: 111
+# File: modules/mpi/sci_gateway/c/sci_mpi_wait.c, line: 86
 #, c-format
 msgid "%s: Unable to deserialize data.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_comm_rank.c, line: 33
+# File: modules/mpi/sci_gateway/c/sci_mpi_comm_rank.c, line: 33
 #, c-format
 msgid "%s: Unable to create variable.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_comm_size.c, line: 57
-# File: sci_gateway/c/sci_mpi_get_processor_name.c, line: 44
-# File: sci_gateway/c/sci_mpi_isend.c, line: 105
-# File: sci_gateway/c/sci_mpi_send.c, line: 81
+# File: modules/mpi/sci_gateway/c/sci_mpi_comm_size.c, line: 56
+# File: modules/mpi/sci_gateway/c/sci_mpi_get_processor_name.c, line: 43
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 105
+# File: modules/mpi/sci_gateway/c/sci_mpi_send.c, line: 81
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_finalize.c, line: 40
+# File: modules/mpi/sci_gateway/c/sci_mpi_finalize.c, line: 40
 #, c-format
 msgid "%s: Could not finalize the MPI instance: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_get_processor_name.c, line: 38
+# File: modules/mpi/sci_gateway/c/sci_mpi_get_processor_name.c, line: 37
 #, c-format
 msgid "%s: Could not get processor name: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 90
-# File: sci_gateway/c/sci_mpi_isend.c, line: 73
-# File: sci_gateway/c/sci_mpi_wait.c, line: 55
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 90
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 73
+# File: modules/mpi/sci_gateway/c/sci_mpi_wait.c, line: 55
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 100
-# File: sci_gateway/c/sci_mpi_recv.c, line: 74
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 100
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 74
 #, c-format
 msgid "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 110
-# File: sci_gateway/c/sci_mpi_recv.c, line: 85
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 110
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 85
 #, c-format
 msgid "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_irecv.c, line: 127
+# File: modules/mpi/sci_gateway/c/sci_mpi_irecv.c, line: 127
 #, c-format
 msgid "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_isend.c, line: 99
-# File: sci_gateway/c/sci_mpi_send.c, line: 75
+# File: modules/mpi/sci_gateway/c/sci_mpi_isend.c, line: 99
+# File: modules/mpi/sci_gateway/c/sci_mpi_send.c, line: 75
 #, c-format
 msgid "%s: Could not send the variable to the node %d: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_recv.c, line: 93
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 93
 #, c-format
 msgid "%s: Could not create the received variable.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_recv.c, line: 104
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 104
 #, c-format
 msgid "%s: MPI_Recv failed. Rank %d / Tag %d: %s\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_recv.c, line: 113
+# File: modules/mpi/sci_gateway/c/sci_mpi_recv.c, line: 113
 #, c-format
 msgid "%s: Unable to deserialize data !\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mpi_wait.c, line: 66
+# File: modules/mpi/sci_gateway/c/sci_mpi_wait.c, line: 66
 #, c-format
 msgid "%s: MPI_Wait failed while waiting %d: %s\n"
 msgstr ""

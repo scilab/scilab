@@ -53,6 +53,8 @@ Scilab Bug Fixes
 
 * Bug #14020 fixed - Incorrect carriage return ascii code.
 
+* Bug #14022 fixed - getscilabkeywords() was KO (+gateway what() added).
+
 * Bug #14023 fixed - It was not possible to concatenate cells.
 
 * Bug #14025 fixed - head_comments did not take into account compiled functions.
@@ -84,6 +86,8 @@ Scilab Bug Fixes
 * Bug #14109 fixed - lsq function crashed Scilab when Scilab version depended on mkl library.
 
 * Bug #14113 fixed - Scilab 6 did not detect infinite loop.
+
+* Bug #14141 fixed - recursive insertion: gcf().attribute=value => "Wrong insertion : function or macro are not expected".
 
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
 

@@ -129,8 +129,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -196,7 +196,7 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -274,8 +274,7 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un sistema "
 "dinàmic lineal.\n"
@@ -387,8 +386,7 @@ msgstr "%s: %s ha de tenir dimensió (%s, %s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
 msgid ""
@@ -484,8 +482,7 @@ msgid "Frequency (rad/s)"
 msgstr ""
 
 #, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -505,7 +502,7 @@ msgstr ""
 "de cadenes de text.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -602,8 +599,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un sistema "
 "estabilitzable.\n"
@@ -831,10 +827,8 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s no s'ha definit.\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
-msgstr ""
-"%s: Modes controlables i observables de %s prop de l'eix imaginari.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgstr "%s: Modes controlables i observables de %s prop de l'eix imaginari.\n"
 
 #, c-format
 msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
@@ -996,8 +990,7 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s no és simètric.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 
 #, c-format
@@ -1006,12 +999,10 @@ msgstr "%s: AVÍS: La matriu A té valors propis prop de l'eix imaginari.\n"
 
 #, c-format
 msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
-msgstr ""
-"%s: Els modes controlable i observable d'A són prop de l'eix imaginari"
+msgstr "%s: Els modes controlable i observable d'A són prop de l'eix imaginari"
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Tots els modes d'A són gairebé no-mínims, de manera que || G || és "
 "gairebé 0.\n"
@@ -1243,8 +1234,7 @@ msgid "Numerator :"
 msgstr "Numerador:"
 
 msgid "Irreducible Factors of transfer function (click below)"
-msgstr ""
-"Factors irreductibles de la funció de transferència (feu clic a sota)"
+msgstr "Factors irreductibles de la funció de transferència (feu clic a sota)"
 
 msgid ""
 "Irreducible Factors of transfer function natural frequency and damping "

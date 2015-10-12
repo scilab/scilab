@@ -36,9 +36,10 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.codec.XcosCodec;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.io.spec.XcosPackage;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Node;
@@ -132,22 +133,8 @@ public enum XcosFileType {
     COSF("cosf", XcosMessages.FILE_COSF) {
         @Override
         public void load(String file, XcosDiagram into) throws Exception {
-            loadScicosDiagram(file, into);
-        }
-
-        @Override
-        public void save(String file, XcosDiagram from) throws Exception {
-            throw new UnsupportedOperationException();
-        }
-    },
-    /**
-     * Represent the old Scicos binary format.
-     */
-    COS("cos", XcosMessages.FILE_COS) {
-
-        @Override
-        public void load(String file, XcosDiagram into) throws Exception {
-            loadScicosDiagram(file, into);
+            XcosDiagram diagram = XcosCellFactory.createDiagramFromCOSF(new JavaController(), file);
+            into.addCell(diagram.getDefaultParent(), into.getDefaultParent());
         }
 
         @Override
@@ -433,42 +420,5 @@ public enum XcosFileType {
         values.add(XcosFileType.XCOS);
         values.add(XcosFileType.ZCOS);
         return values;
-    }
-
-    /**
-     * Load a Scicos diagram file int a diagram
-     */
-    private static void loadScicosDiagram(final String filename,
-                                          final XcosDiagram into) {
-        final StringBuilder cmd = new StringBuilder();
-        cmd.append(ScilabDirectHandler.SCS_M);
-        cmd.append(" = importScicosDiagram(\"");
-        cmd.append(filename);
-        cmd.append("\");");
-
-        // FIXME manage that
-        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        //        if (handler == null) {
-        //            return;
-        //        }
-        //
-        //        ActionListener callback = new ActionListener() {
-        //            @Override
-        //            public void actionPerformed(ActionEvent e) {
-        //                try {
-        //                    handler.readDiagram(into);
-        //                } finally {
-        //                    handler.release();
-        //                }
-        //            }
-        //        };
-        //
-        //        try {
-        //            ScilabInterpreterManagement.asynchronousScilabExec(callback,
-        //                    cmd.toString());
-        //        } catch (InterpreterException e) {
-        //            e.printStackTrace();
-        //            handler.release();
-        //        }
     }
 }

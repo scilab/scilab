@@ -130,8 +130,7 @@ msgstr ""
 "Tcl Initialisierung fehlgeschlagen!\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr ""
-"Tcl Fehler: kann Tcl Interpreter nicht erzeugen (Tcl_CreateInterp).\n"
+msgstr "Tcl Fehler: kann Tcl Interpreter nicht erzeugen (Tcl_CreateInterp).\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
@@ -192,8 +191,7 @@ msgstr "Rückschreiben endet\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
-"%s: falsche Anzahl an Eingangsargumenten: mindestene eine erwartet.\n"
+msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestene eine erwartet.\n"
 
 #, c-format
 msgid "Tcl Error : %s\n"

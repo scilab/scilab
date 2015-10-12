@@ -298,8 +298,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -345,8 +344,7 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -413,8 +411,7 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：应该为有理分数数组。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个有%d个元素的数组。\n"
 
 #, c-format

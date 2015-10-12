@@ -22,6 +22,8 @@
 #include <list>
 #include <map>
 #include <string>
+#include <memory>
+
 #include "visitor.hxx"
 
 extern "C"
@@ -467,7 +469,7 @@ public:
 
     //debugger information
     static bool m_bEnabledebug;
-    static ast::ConstVisitor* m_defaultvisitor;
+    static std::unique_ptr<ast::ConstVisitor> m_defaultvisitor;
 
     static bool getEnableDebug();
     static void setEnableDebug(bool _enable);
@@ -482,7 +484,7 @@ public :
     static bool isExecutionBreak();
     static void setExecutionBreak();
     static void resetExecutionBreak();
-    private:
+private:
     static int recursionLimit;
     static int recursionLevel;
 

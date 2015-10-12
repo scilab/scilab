@@ -21,7 +21,9 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -48,12 +50,13 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: ’%s’ を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
@@ -61,12 +64,14 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 実数を指定し�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 整数または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Non-negative integers expected.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 非負の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Must be scalars.\n"
@@ -74,7 +79,9 @@ msgstr "%s: 入力引数の型が間違っています： スカラー指定し�
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between %d and %d.\n"
-msgstr "%s: 入力引数の値が間違っています:  %d  および %d の間の値を指定してください.\n"
+msgstr ""
+"%s: 入力引数の値が間違っています:  %d  および %d の間の値を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments.\n"
@@ -165,12 +172,15 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指�
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: m*3 matrix or a m*6 matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: m*3 行列または m*6 行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: m*3 行列または m*6 行列を指定して"
+"ください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています： %s は %d から %d の範囲で指定してください.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています： %s は %d から %d の範囲で指定してくだ"
+"さい.\n"
 
 #
 # File: macros/datenum.sci, line: 50
@@ -222,21 +232,26 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してください.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
+"ださい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d および %d の間としてください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d および %d の間としてください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
-msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさで指定してく"
+"ださい.\n"
 
 #, c-format
 msgid "%s: You must call tic() before calling toc().\n"
@@ -244,7 +259,8 @@ msgstr "%s: toc()をコールする前に tic()をコールする必要があり
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -253,7 +269,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実定数行列を�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #
 # File: macros/weekday.sci, line: 41

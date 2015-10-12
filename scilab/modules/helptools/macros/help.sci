@@ -29,7 +29,7 @@ function help(varargin)
             end
 
             if type(key) <> 10 then
-                error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"help",1));
+                error(999,msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"help",1));
             end
 
             // Search a function name

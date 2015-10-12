@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_consolebox(types::typed_list &in, int _iRetCoun
     types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "consolebox", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "consolebox", 1);
         return types::Function::Error;
     }
 

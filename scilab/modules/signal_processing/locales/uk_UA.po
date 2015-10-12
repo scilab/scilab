@@ -290,8 +290,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
@@ -336,8 +335,7 @@ msgstr ""
 "матрицю 1х1 або два поліноми.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: першим елементом не може бути "
 "%s.\n"
@@ -396,8 +394,7 @@ msgstr ""
 "число.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути використано додатне "
 "ціле число.\n"
@@ -409,8 +406,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr ""
-"%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
+msgstr "%s: помилкові розмірності вхідних параметрів: несумісні розмірності.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An odd integer expected.\n"
@@ -488,8 +484,7 @@ msgstr ""
 "раціональних дробів.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: слід використовувати масив "
 "з %d елементами.\n"

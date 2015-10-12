@@ -290,7 +290,7 @@ public abstract class ContextUpdate extends BasicBlock {
         public static ContextUpdate createBlock(BasicPort port) {
             for (IOBlocks io : IOBlocks.values()) {
                 if (io.getReferencedPortClass().isInstance(port)) {
-                    final XcosView disabledView = (XcosView) JavaController.look_for_view(Xcos.class.getSimpleName());
+                    final XcosView disabledView = (XcosView) JavaController.look_for_view(Xcos.class.getName());
                     try {
                         JavaController controller = new JavaController();
 
@@ -322,7 +322,7 @@ public abstract class ContextUpdate extends BasicBlock {
                     } catch (InvocationTargetException e) {
                         e.printStackTrace();
                     } finally {
-                        JavaController.register_view(Xcos.class.getSimpleName(), disabledView);
+                        JavaController.register_view(Xcos.class.getName(), disabledView);
                     }
                 }
             }

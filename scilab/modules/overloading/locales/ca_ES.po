@@ -48,8 +48,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 
 #, c-format
@@ -67,8 +66,7 @@ msgid "%s: Invalid field name.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 
 #, c-format
@@ -80,8 +78,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 
 #, c-format
@@ -116,7 +113,7 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: el paràmetre d'entrada #%d té una mida incorrecta: s'esperava una "
 "cadena.\n"
@@ -128,11 +125,11 @@ msgstr ""
 "conjunt {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -188,8 +185,7 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -241,8 +237,8 @@ msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
 
 msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
-"6.\n"
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
+"scilab-6.\n"
 "           Use vector .^ scalar instead.\n"
 msgstr ""
 
@@ -288,8 +284,7 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: les matrius d'entrada i de sortida han de tenir el mateix nombre "
 "d'elements.\n"

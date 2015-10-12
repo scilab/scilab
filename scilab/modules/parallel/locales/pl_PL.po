@@ -24,7 +24,7 @@ msgstr ""
 "zgodne "
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwana jest wartość "
 "typu string.\n"

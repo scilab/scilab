@@ -11,7 +11,7 @@
 function ret = ilib_include_flag(path_strings)
 
     if type(path_strings) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_include_flag", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_include_flag", 1));
     end
 
     ret = "";

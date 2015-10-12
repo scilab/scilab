@@ -25,12 +25,12 @@ int SetUicontrolFontName(void* _pvCtx, int iObjUID, void* _pvData, int valueType
 
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontName");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string expected.\n")), "FontName");
         return SET_PROPERTY_ERROR;
     }
     if (nbCol != 1 || nbRow == 0)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontName");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "FontName");
         return SET_PROPERTY_ERROR;
     }
 

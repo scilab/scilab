@@ -25,11 +25,11 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno nejvíce %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -63,8 +63,7 @@ msgstr ""
 "zápis do tohoto souboru.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format

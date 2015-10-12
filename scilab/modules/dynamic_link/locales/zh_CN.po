@@ -38,7 +38,7 @@ msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr "%s：第二个参数必须为一个共享库的唯一 id。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
@@ -263,12 +263,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个矩阵或字符串。\n"
 
 #, c-format
@@ -387,7 +386,8 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s：警告：Scilab不能找到Scilab源代码的位置。请提交一份Bug报告到 http://bugzilla.scilab.org/\n"
+"%s：警告：Scilab不能找到Scilab源代码的位置。请提交一份Bug报告到 http://"
+"bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
@@ -509,10 +509,6 @@ msgstr "%s：输入参数#%d的大小错误：应该为%d。\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为 %d，%d 或 %d 个。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

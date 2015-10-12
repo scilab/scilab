@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "gsort", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "gsort", 3);
             return types::Function::Error;
         }
 
@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "gsort", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "gsort", 2);
             return types::Function::Error;
         }
 

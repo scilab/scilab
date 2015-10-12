@@ -36,12 +36,13 @@ msgstr ""
 "\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: 引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の配列を指定してください.\n"
 
 #, c-format
 msgid "Invalid dimension for argument #%d: A row or a column expected."

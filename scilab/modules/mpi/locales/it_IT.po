@@ -29,8 +29,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not get communicator rank of the node %d: %s\n"
-msgstr ""
-"%s: Impossibile ottenere il rango del comunicatore del nodo %d: %s.\n"
+msgstr "%s: Impossibile ottenere il rango del comunicatore del nodo %d: %s.\n"
 
 msgid "Unable to serialize data\n"
 msgstr "Impossibile serializzare i dati.\n"

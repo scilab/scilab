@@ -23,7 +23,8 @@ msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -34,7 +35,7 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format

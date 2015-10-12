@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "who", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "who", 2);
             return types::Function::Error;
         }
 
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     {
         if (in[0]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "who", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "who", 1);
             return types::Function::Error;
         }
 

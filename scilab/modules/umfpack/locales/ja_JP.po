@@ -27,7 +27,9 @@ msgstr "%s: 入力引数の大きさが間違っています: 同じ大きさで
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
 "factors.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありま"
+"せん.\n"
 
 #, c-format
 msgid ""
@@ -52,7 +54,9 @@ msgstr "因数分解"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
 "Cholesky factorization"
-msgstr "%s: 入力引数 #%d の値が間違っています: コレスキー分解への有効な参照を指定してください"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: コレスキー分解への有効な参照を指定して"
+"ください"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -62,7 +66,9 @@ msgstr "%s: メモリ確保エラー.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: not a valid reference to Cholesky "
 "factors"
-msgstr "%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありません"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:コレスキー分解への有効な参照ではありま"
+"せん"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
@@ -72,13 +78,16 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: not compatible with the Cholesky "
 "factorization.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: コレスキー分解と互換性がありません.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: コレスキー分解と互換性がありません.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
 "factorization.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: コレスキー分解と互換性がありません.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: コレスキー分解と互換性がありませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: not enough memory.\n"
@@ -92,7 +101,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています: ポインタを指�
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to (umf) "
 "LU factors.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: (umf) LU分解への有効な参照を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: (umf) LU分解への有効な参照を指定してく"
+"ださい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
@@ -145,7 +156,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 疎行列を指定�
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %s.\n"
@@ -155,7 +167,7 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "この行列は指定したLU分解と互換性がありません."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -243,7 +255,9 @@ msgstr "%s: 現在, 集約されていない(要素の)疎行列を読み込む�
 
 #, c-format
 msgid "%s: No values for this matrix (only non zero pattern) : put some 1."
-msgstr "%s: この行列に値がありません(ゼロでない要素のパターンのみ): 1をいくつか代入してください."
+msgstr ""
+"%s: この行列に値がありません(ゼロでない要素のパターンのみ): 1をいくつか代入し"
+"てください."
 
 msgid ""
 "\n"
@@ -267,7 +281,9 @@ msgstr " 警告: rtol = %e におけるIM の収束 \n"
 
 #, c-format
 msgid "           don't reached after %d iterations (got only %e) \n"
-msgstr "           %d 回の反復では収束しませんでした (%e までしか到達しませんでした) \n"
+msgstr ""
+"           %d 回の反復では収束しませんでした (%e までしか到達しませんでし"
+"た) \n"
 
 msgid ""
 "\n"
@@ -291,17 +307,17 @@ msgstr " 警告: rtol = %e におけるIm の収束 \n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 正方疎行列を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 正方疎行列を指定してください.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 正方疎行列を指定してください.\n"
 
 #
 # File: macros/condestsp.sci, line: 103

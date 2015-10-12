@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -34,8 +34,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hay más memoria.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -48,10 +47,6 @@ msgid ""
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d and #%d: Se los esperaba "
 "del mismo tamaño.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
 
 msgid "File"
 msgstr "Archivo"

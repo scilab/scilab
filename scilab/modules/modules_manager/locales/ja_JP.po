@@ -19,18 +19,19 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -50,7 +51,8 @@ msgstr "%s: %s は %s にエクスポートできません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 msgid "Generating cleaner.sce...\n"
 msgstr "cleaner.sceを生成中...\n"
@@ -59,22 +61,27 @@ msgstr "cleaner.sceを生成中...\n"
 msgid ""
 "%s: The file %s cannot been created, please check if you have write access "
 "on this file.\n"
-msgstr "%s: ファイル %s を作成できませんでした,このファイルに書込みアクセス許可を有するかどうか確認してください.\n"
+msgstr ""
+"%s: ファイル %s を作成できませんでした,このファイルに書込みアクセス許可を有す"
+"るかどうか確認してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At most %d rows expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行以下で指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d 行以下で指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The directory '%s' doesn't exist or "
 "is not read accessible.\n"
-msgstr "%s: 入力引数#%d の値が間違っています: ディレクトリ '%s' が存在しないか, 読込権限がありません.\n"
+msgstr ""
+"%s: 入力引数#%d の値が間違っています: ディレクトリ '%s' が存在しないか, 読込"
+"権限がありません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Can't go to '%s'.\n"
@@ -110,7 +117,8 @@ msgstr "unloader.sce を生成中 ...\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
 
 msgid "Generating localization\n"
 msgstr "ローカル化を生成中\n"
@@ -125,7 +133,8 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: This module required a C compiler and it has not been found.\n"
-msgstr "%s: このモジュールはCコンパイラを必要としますが,見つかりませんでした.\n"
+msgstr ""
+"%s: このモジュールはCコンパイラを必要としますが,見つかりませんでした.\n"
 
 msgid "Building gateway...\n"
 msgstr "ゲートウェイを構築中...\n"
@@ -139,11 +148,14 @@ msgstr "マクロを構築中...\n"
 #, c-format
 msgid ""
 "%s: This module requires a C or Fortran compiler and it has not been found.\n"
-msgstr "%s: このモジュールはCまたはFortranコンパイラを必要としますが,見つかりませんでした.\n"
+msgstr ""
+"%s: このモジュールはCまたはFortranコンパイラを必要としますが,見つかりませんで"
+"した.\n"
 
 msgid "Building sources...\n"
 msgstr "ソースを構築中...\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"

@@ -17,11 +17,13 @@ Xcos trace: propertyUpdated( 1 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , LINK , KIND ) : NO_CHANGES
 subDiag = scicos_diagram( objs=list(link) );
 Xcos debug: objectCreated( 2 , DIAGRAM )
+Xcos debug: objectReferenced( 2 , DIAGRAM ) : 1
 Xcos trace: propertyUpdated( 2 , DIAGRAM , TITLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , DIAGRAM , PATH ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 2 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 3 , LINK )
 Xcos trace: propertyUpdated( 3 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , LINK , KIND ) : NO_CHANGES
@@ -34,6 +36,7 @@ Xcos trace: propertyUpdated( 3 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 3 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 3 , LINK ) : 1
 Xcos trace: propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Super1 = scicos_block(,..
 model=scicos_model(sim="super",in=[],in2=[],intyp=1,out=[],out2=[],outtyp=[],evtin=[],evtout=[],state=[],dstate=[],odstate=list(),..
@@ -41,6 +44,7 @@ rpar=subDiag,..
 ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[%f,%f],label="Quat_Conj",nzcross=0,nmode=0,equations=list())..
 );
 Xcos debug: objectCreated( 4 , BLOCK )
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
@@ -48,6 +52,8 @@ Xcos trace: propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , STATE ) : NO_CHANGES
@@ -71,8 +77,10 @@ Xcos trace: propertyUpdated( 6 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 6 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 6 , LINK ) : 1
 Xcos trace: propertyUpdated( 4 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 6 , LINK , PARENT_BLOCK ) : SUCCESS
+Xcos debug: objectReferenced( 6 , LINK ) : 2
 Xcos trace: propertyUpdated( 4 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -81,14 +89,17 @@ Xcos trace: propertyUpdated( 4 , BLOCK , LABEL ) : SUCCESS
 Xcos trace: propertyUpdated( 4 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 diag = scicos_diagram();
 Xcos debug: objectCreated( 7 , DIAGRAM )
+Xcos debug: objectReferenced( 7 , DIAGRAM ) : 1
 Xcos trace: propertyUpdated( 7 , DIAGRAM , TITLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , DIAGRAM , PATH ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , DIAGRAM , CONTEXT ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 7 , DIAGRAM ) : 0
 Xcos trace: propertyUpdated( 7 , DIAGRAM , CHILDREN ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 diag.objs(1) = Super1;
@@ -119,6 +130,9 @@ Xcos trace: propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
+Xcos debug: objectReferenced( 8 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 8 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , STATE ) : NO_CHANGES
@@ -142,8 +156,10 @@ Xcos trace: propertyUpdated( 10 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 10 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 10 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 10 , LINK ) : 1
 Xcos trace: propertyUpdated( 8 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 10 , LINK , PARENT_BLOCK ) : SUCCESS
+Xcos debug: objectReferenced( 10 , LINK ) : 2
 Xcos trace: propertyUpdated( 8 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -152,12 +168,16 @@ Xcos trace: propertyUpdated( 8 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 7 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 8 , BLOCK ) : 1
 diag.objs(1)
  ans  =
 GUI     : 
 Graphics: 
+Xcos debug: objectReferenced( 8 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 1
           orig = [0,0]
           sz = [20,20]
           flip = %t
@@ -177,6 +197,8 @@ Graphics:
           out_label = ""
           style = ""
 Model   : 
+Xcos debug: objectReferenced( 8 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 1
           super type: 0
           in = []
           in2 = []
@@ -201,8 +223,12 @@ Model   :
           equations = list()
           uid = ""
 diag.objs(1).model
+Xcos debug: objectReferenced( 8 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 1
  ans  =
 super type: 0
+Xcos debug: objectReferenced( 9 , DIAGRAM ) : 1
+Xcos debug: objectUnreferenced( 9 , DIAGRAM ) : 0
 in = []
 in2 = []
 intyp = 1
@@ -226,6 +252,8 @@ nmode = 0
 equations = list()
 uid = ""
 diag.objs(1).model.rpar.objs(1)
+Xcos debug: objectReferenced( 8 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 1
  ans  =
 Link    :
           xx: []
@@ -241,6 +269,7 @@ rpar=diag,..
 ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[%f,%f],label="Quat_Conj",nzcross=0,nmode=0,equations=list())..
 );
 Xcos debug: objectCreated( 11 , BLOCK )
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 11 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , ANGLE ) : NO_CHANGES
@@ -248,6 +277,8 @@ Xcos trace: propertyUpdated( 11 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , STYLE ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 11 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 11 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , STATE ) : NO_CHANGES
@@ -286,6 +317,9 @@ Xcos trace: propertyUpdated( 13 , BLOCK , OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+Xcos debug: objectReferenced( 8 , BLOCK ) : 2
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 1
+Xcos debug: objectReferenced( 13 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
@@ -309,8 +343,10 @@ Xcos trace: propertyUpdated( 15 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 14 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 15 , LINK ) : 1
 Xcos trace: propertyUpdated( 13 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , LINK , PARENT_BLOCK ) : SUCCESS
+Xcos debug: objectReferenced( 15 , LINK ) : 2
 Xcos trace: propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -319,10 +355,13 @@ Xcos trace: propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 12 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectReferenced( 13 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 11 , BLOCK , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_BLOCK ) : SUCCESS
+Xcos debug: objectReferenced( 13 , BLOCK ) : 2
 Xcos trace: propertyUpdated( 11 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -331,10 +370,21 @@ Xcos trace: propertyUpdated( 11 , BLOCK , LABEL ) : SUCCESS
 Xcos trace: propertyUpdated( 11 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , UID ) : NO_CHANGES
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 11 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Super2.model
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
  ans  =
 super type: 0
+Xcos debug: objectReferenced( 12 , DIAGRAM ) : 1
+Xcos debug: objectUnreferenced( 12 , DIAGRAM ) : 0
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
+Xcos debug: objectReferenced( 14 , DIAGRAM ) : 1
+Xcos debug: objectUnreferenced( 14 , DIAGRAM ) : 0
 in = []
 in2 = []
 intyp = 1
@@ -358,7 +408,11 @@ nmode = 0
 equations = list()
 uid = ""
 Super2.model.rpar
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
  ans  =
+Xcos debug: objectReferenced( 12 , DIAGRAM ) : 1
+Xcos debug: objectUnreferenced( 12 , DIAGRAM ) : 0
 wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
@@ -371,9 +425,13 @@ void3 = []
 doc = list()
 1     
 Super2.model.rpar.objs(1)
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
  ans  =
 GUI     : 
 Graphics: 
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
           orig = [0,0]
           sz = [20,20]
           flip = %t
@@ -393,6 +451,8 @@ Graphics:
           out_label = ""
           style = ""
 Model   : 
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
           super type: 0
           in = []
           in2 = []
@@ -417,8 +477,14 @@ Model   :
           equations = list()
           uid = ""
 Super2.model.rpar.objs(1).model
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
  ans  =
 super type: 0
+Xcos debug: objectReferenced( 14 , DIAGRAM ) : 1
+Xcos debug: objectUnreferenced( 14 , DIAGRAM ) : 0
 in = []
 in2 = []
 intyp = 1
@@ -442,7 +508,13 @@ nmode = 0
 equations = list()
 uid = ""
 Super2.model.rpar.objs(1).model.rpar
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
  ans  =
+Xcos debug: objectReferenced( 14 , DIAGRAM ) : 1
+Xcos debug: objectUnreferenced( 14 , DIAGRAM ) : 0
 wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
@@ -454,6 +526,10 @@ void2 = []
 void3 = []
 doc = list()
 Super2.model.rpar.objs(1).model.rpar.objs(1)
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
  ans  =
 Link    :
           xx: []
@@ -464,31 +540,49 @@ Link    :
           from: 2 1 0
           to: 3 1 1
 assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).from, [2 1 0]);
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).to,   [3 1 1]);
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
+Xcos debug: objectReferenced( 13 , BLOCK ) : 3
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 2
 // Check that all the model items are freed
 clear
+Xcos debug: objectUnreferenced( 6 , LINK ) : 1
 Xcos trace: propertyUpdated( 6 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 6 , LINK ) : 0
 Xcos debug: objectDeleted( 5 , DIAGRAM )
 Xcos trace: propertyUpdated( 6 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos debug: objectDeleted( 6 , LINK )
 Xcos debug: objectDeleted( 4 , BLOCK )
+Xcos debug: objectUnreferenced( 15 , LINK ) : 1
 Xcos trace: propertyUpdated( 15 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 15 , LINK ) : 0
 Xcos debug: objectDeleted( 14 , DIAGRAM )
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 13 , BLOCK ) : 0
 Xcos debug: objectDeleted( 12 , DIAGRAM )
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_BLOCK ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos debug: objectDeleted( 15 , LINK )
 Xcos debug: objectDeleted( 13 , BLOCK )
 Xcos debug: objectDeleted( 11 , BLOCK )
+Xcos debug: objectUnreferenced( 10 , LINK ) : 1
 Xcos trace: propertyUpdated( 10 , LINK , PARENT_DIAGRAM ) : SUCCESS
+Xcos debug: objectUnreferenced( 10 , LINK ) : 0
 Xcos debug: objectDeleted( 9 , DIAGRAM )
+Xcos debug: objectUnreferenced( 8 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 Xcos trace: propertyUpdated( 10 , LINK , PARENT_BLOCK ) : SUCCESS
 Xcos debug: objectDeleted( 10 , LINK )
 Xcos debug: objectDeleted( 8 , BLOCK )
 Xcos debug: objectDeleted( 7 , DIAGRAM )
 Xcos debug: objectDeleted( 1 , LINK )
+Xcos debug: objectUnreferenced( 3 , LINK ) : 0
 Xcos trace: propertyUpdated( 3 , LINK , PARENT_DIAGRAM ) : SUCCESS
 Xcos debug: objectDeleted( 3 , LINK )
 Xcos debug: objectDeleted( 2 , DIAGRAM )

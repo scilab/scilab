@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,205 +10,193 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/sci_matfile_close.c, line: 63
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 63
-# File: sci_gateway/c/sci_matfile_varreadnext.c, line: 61
+# File: modules/matio/sci_gateway/c/sci_matfile_close.c, line: 63
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 61
+# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 61
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_close.c, line: 70
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 70
-# File: sci_gateway/c/sci_matfile_varreadnext.c, line: 68
+# File: modules/matio/sci_gateway/c/sci_matfile_close.c, line: 70
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 68
+# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 68
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 79
-# File: sci_gateway/c/sci_matfile_varreadnext.c, line: 77
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 77
+# File: modules/matio/sci_gateway/c/sci_matfile_varreadnext.c, line: 77
 #, c-format
 msgid "%s: Invalid file identifier.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 86
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 84
 #, c-format
 msgid "%s: Could not rewind the file %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 97
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 104
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 111
-# File: src/c/CreateBooleanVariable.c, line: 39
-# File: src/c/CreateBooleanVariable.c, line: 73
-# File: src/c/CreateBooleanVariable.c, line: 109
-# File: src/c/CreateCharVariable.c, line: 42
-# File: src/c/CreateCharVariable.c, line: 52
-# File: src/c/CreateHyperMatrixVariable.c, line: 95
-# File: src/c/CreateHyperMatrixVariable.c, line: 115
-# File: src/c/CreateHyperMatrixVariable.c, line: 136
-# File: src/c/CreateHyperMatrixVariable.c, line: 157
-# File: src/c/CreateHyperMatrixVariable.c, line: 178
-# File: src/c/CreateHyperMatrixVariable.c, line: 198
-# File: src/c/CreateHyperMatrixVariable.c, line: 218
-# File: src/c/CreateHyperMatrixVariable.c, line: 239
-# File: src/c/CreateIntegerVariable.c, line: 49
-# File: src/c/CreateIntegerVariable.c, line: 78
-# File: src/c/CreateIntegerVariable.c, line: 107
-# File: src/c/CreateIntegerVariable.c, line: 137
-# File: src/c/CreateIntegerVariable.c, line: 167
-# File: src/c/CreateIntegerVariable.c, line: 196
-# File: src/c/CreateIntegerVariable.c, line: 225
-# File: src/c/CreateIntegerVariable.c, line: 255
-# File: src/c/CreateIntegerVariable.c, line: 288
-# File: src/c/CreateSparseVariable.c, line: 44
-# File: src/c/CreateSparseVariable.c, line: 54
-# File: src/c/CreateSparseVariable.c, line: 68
-# File: src/c/CreateSparseVariable.c, line: 101
-# File: src/c/CreateSparseVariable.c, line: 121
-# File: src/c/CreateSparseVariable.c, line: 130
-# File: src/c/CreateSparseVariable.c, line: 140
-# File: src/c/CreateSparseVariable.c, line: 150
-# File: src/c/CreateSparseVariable.c, line: 160
-# File: src/c/CreateStructVariable.c, line: 50
-# File: src/c/CreateStructVariable.c, line: 57
-# File: src/c/CreateStructVariable.c, line: 63
-# File: src/c/CreateStructVariable.c, line: 73
-# File: src/c/GetCellVariable.c, line: 85
-# File: src/c/GetCellVariable.c, line: 99
-# File: src/c/GetCharVariable.c, line: 77
-# File: src/c/GetCharVariable.c, line: 145
-# File: src/c/GetDoubleVariable.c, line: 71
-# File: src/c/GetDoubleVariable.c, line: 76
-# File: src/c/GetIntegerVariable.c, line: 77
-# File: src/c/GetIntegerVariable.c, line: 82
-# File: src/c/GetSparseVariable.c, line: 70
-# File: src/c/GetSparseVariable.c, line: 77
-# File: src/c/GetSparseVariable.c, line: 102
-# File: src/c/GetSparseVariable.c, line: 111
-# File: src/c/GetSparseVariable.c, line: 121
-# File: src/c/GetSparseVariable.c, line: 132
-# File: src/c/GetSparseVariable.c, line: 174
-# File: src/c/GetSparseVariable.c, line: 183
-# File: src/c/GetSparseVariable.c, line: 193
-# File: src/c/GetSparseVariable.c, line: 221
-# File: src/c/GetSparseVariable.c, line: 245
-# File: src/c/GetSparseVariable.c, line: 268
-# File: src/c/GetSparseVariable.c, line: 292
-# File: src/c/GetSparseVariable.c, line: 331
-# File: src/c/GetStructVariable.c, line: 55
-# File: src/c/GetStructVariable.c, line: 71
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 95
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 102
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 109
+# File: modules/matio/src/c/CreateBooleanVariable.c, line: 39
+# File: modules/matio/src/c/CreateBooleanVariable.c, line: 73
+# File: modules/matio/src/c/CreateBooleanVariable.c, line: 109
+# File: modules/matio/src/c/CreateCharVariable.c, line: 40
+# File: modules/matio/src/c/CreateCharVariable.c, line: 50
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 67
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 99
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 134
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 169
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 203
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 236
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 267
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 300
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 335
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 44
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 54
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 68
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 101
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 121
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 130
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 140
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 150
+# File: modules/matio/src/c/CreateSparseVariable.c, line: 160
+# File: modules/matio/src/cpp/CreateMatlabTreeVariable.cpp, line: 142
+# File: modules/matio/src/cpp/CreateMatlabTreeVariable.cpp, line: 156
+# File: modules/matio/src/cpp/GetCellVariable.cpp, line: 61
+# File: modules/matio/src/cpp/GetCellVariable.cpp, line: 74
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 90
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 102
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 110
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 125
+# File: modules/matio/src/cpp/GetIntegerVariable.cpp, line: 48
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 48
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 56
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 69
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 85
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 123
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 143
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 154
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 166
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 195
+# File: modules/matio/src/cpp/GetStructVariable.cpp, line: 58
+# File: modules/matio/src/cpp/GetStructVariable.cpp, line: 75
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 131
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 142
-# File: sci_gateway/c/sci_matfile_listvar.c, line: 154
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 129
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 140
+# File: modules/matio/sci_gateway/c/sci_matfile_listvar.c, line: 152
+# File: modules/matio/src/c/CreateIntegerVariable.c, line: 50
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 67
+# File: modules/matio/sci_gateway/c/sci_matfile_open.c, line: 68
 #, c-format
-msgid "%s: Wrong size for first input argument: A string expected.\n"
+msgid "%s: Wrong size for first input argument: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 74
+# File: modules/matio/sci_gateway/c/sci_matfile_open.c, line: 75
+# File: modules/matio/src/cpp/GetCellVariable.cpp, line: 37
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 36
+# File: modules/matio/src/cpp/GetStructVariable.cpp, line: 35
 #, c-format
-msgid "%s: Wrong type for first input argument: A string expected.\n"
+msgid "%s: Wrong type for first input argument: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 107
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 105
+# File: modules/matio/sci_gateway/c/sci_matfile_open.c, line: 108
+# File: modules/matio/sci_gateway/c/sci_matfile_varwrite.c, line: 101
 #, c-format
-msgid "%s: Wrong size for second input argument: A string expected.\n"
+msgid "%s: Wrong size for second input argument: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 124
+# File: modules/matio/sci_gateway/c/sci_matfile_open.c, line: 125
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 133
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 114
+# File: modules/matio/sci_gateway/c/sci_matfile_open.c, line: 134
+# File: modules/matio/sci_gateway/c/sci_matfile_varwrite.c, line: 110
 #, c-format
-msgid "%s: Wrong type for second input argument: A string expected.\n"
+msgid "%s: Wrong type for second input argument: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 173
+# File: modules/matio/sci_gateway/c/sci_matfile_open.c, line: 174
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_open.c, line: 192
+# File: modules/matio/sci_gateway/c/sci_matfile_open.c, line: 193
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 65
+# File: modules/matio/sci_gateway/c/sci_matfile_varwrite.c, line: 61
 #, c-format
 msgid "%s: Wrong size for first input argument: An integer value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 72
+# File: modules/matio/sci_gateway/c/sci_matfile_varwrite.c, line: 68
 #, c-format
 msgid "%s: Wrong type for first input argument: An integer value expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 145
+# File: modules/matio/sci_gateway/c/sci_matfile_varwrite.c, line: 141
 #, c-format
 msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_matfile_varwrite.c, line: 154
+# File: modules/matio/sci_gateway/c/sci_matfile_varwrite.c, line: 150
 #, c-format
 msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
 msgstr ""
 
 #
-# File: src/c/CreateCharVariable.c, line: 112
+# File: modules/matio/src/c/CreateCharVariable.c, line: 110
 #, c-format
 msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr ""
 
 #
-# File: src/c/GetCellVariable.c, line: 64
-# File: src/c/GetMlistVariable.c, line: 119
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 54
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 62
 #, c-format
-msgid "%s: Wrong type for first input argument: Mlist expected.\n"
+msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr ""
 
 #
-# File: src/c/GetCharVariable.c, line: 169
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 66
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
 msgstr ""
 
 #
-# File: src/c/GetCharVariable.c, line: 184
+# File: modules/matio/src/cpp/GetCharVariable.cpp, line: 80
 #, c-format
 msgid ""
 "%s: Column array of strings with different lengths saving is not "
@@ -216,130 +204,124 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/GetCharVariable.c, line: 218
-#, c-format
-msgid "%s: 2D array of strings saving is not implemented.\n"
-msgstr ""
-
-#
-# File: src/c/GetCharVariable.c, line: 229
-#, c-format
-msgid "%s: Wrong type for first input argument: String matrix expected.\n"
-msgstr ""
-
-#
-# File: src/c/GetDoubleVariable.c, line: 150
+# File: modules/matio/src/cpp/GetDoubleVariable.cpp, line: 29
 #, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/GetIntegerVariable.c, line: 206
+# File: modules/matio/src/cpp/GetIntegerVariable.cpp, line: 30
 #, c-format
 msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
 msgstr ""
 
 #
-# File: src/c/GetMlistVariable.c, line: 106
-# File: src/c/GetMlistVariable.c, line: 112
+# File: modules/matio/src/cpp/GetIntegerVariable.cpp, line: 110
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/matio/src/cpp/GetMlistVariable.cpp, line: 35
+#, c-format
+msgid "%s: Wrong type for argument %d: MList expected.\n"
+msgstr ""
+
+#
+# File: modules/matio/src/cpp/GetMlistVariable.cpp, line: 48
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
 msgstr ""
 
 #
-# File: src/c/GetSparseVariable.c, line: 376
+# File: modules/matio/src/cpp/GetSparseVariable.cpp, line: 29
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
 msgstr ""
 
-#
-# File: src/nomatio/nomatio.c, line: 20
-msgid "Scilab matio module not installed.\n"
-msgstr ""
-
-# File: macros/loadmatfile.sci, line: 19
+# File: modules/matio/macros/loadmatfile.sci, line: 19
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/loadmatfile.sci, line: 54
+# File: modules/matio/macros/loadmatfile.sci, line: 54
 #, c-format
 msgid "%s: This feature has not been implemented: %s."
 msgstr ""
 
 #
-# File: macros/loadmatfile.sci, line: 91
+# File: modules/matio/macros/loadmatfile.sci, line: 91
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: macros/loadmatfile.sci, line: 114
+# File: modules/matio/macros/loadmatfile.sci, line: 114
 #, c-format
 msgid ""
 "%s: No variable read in file '%s'. Check if your file is not corrupted.\n"
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 21
+# File: modules/matio/macros/savematfile.sci, line: 21
 msgid "All inputs must be character strings."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 48
-# File: macros/savematfile.sci, line: 102
+# File: modules/matio/macros/savematfile.sci, line: 48
+# File: modules/matio/macros/savematfile.sci, line: 102
 #, c-format
 msgid "Option %s not implemented: IGNORED."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 122
+# File: modules/matio/macros/savematfile.sci, line: 122
 msgid "Option -v7 added."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 151
+# File: modules/matio/macros/savematfile.sci, line: 153
 #, c-format
 msgid "Variable %s can not be saved in level 4 MAT-file: IGNORED."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 162
-# File: macros/savematfile.sci, line: 271
-# File: macros/savematfile.sci, line: 300
-# File: macros/savematfile.sci, line: 329
-# File: macros/savematfile.sci, line: 379
+# File: modules/matio/macros/savematfile.sci, line: 164
+# File: modules/matio/macros/savematfile.sci, line: 274
+# File: modules/matio/macros/savematfile.sci, line: 303
+# File: modules/matio/macros/savematfile.sci, line: 332
+# File: modules/matio/macros/savematfile.sci, line: 382
 #, c-format
 msgid "Name conflict: it is not possible to save variable with name %s."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 218
+# File: modules/matio/macros/savematfile.sci, line: 220
 msgid "Attempt to write an unsupported data type to an ASCII file."
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 266
-# File: macros/savematfile.sci, line: 295
-# File: macros/savematfile.sci, line: 324
+# File: modules/matio/macros/savematfile.sci, line: 269
+# File: modules/matio/macros/savematfile.sci, line: 298
+# File: modules/matio/macros/savematfile.sci, line: 327
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 283
-# File: macros/savematfile.sci, line: 286
-# File: macros/savematfile.sci, line: 312
-# File: macros/savematfile.sci, line: 315
-# File: macros/savematfile.sci, line: 341
-# File: macros/savematfile.sci, line: 344
+# File: modules/matio/macros/savematfile.sci, line: 286
+# File: modules/matio/macros/savematfile.sci, line: 289
+# File: modules/matio/macros/savematfile.sci, line: 315
+# File: modules/matio/macros/savematfile.sci, line: 318
+# File: modules/matio/macros/savematfile.sci, line: 344
+# File: modules/matio/macros/savematfile.sci, line: 347
 #, c-format
 msgid "savematfile: could not save variable named %s.\n"
 msgstr ""
 
 #
-# File: macros/savematfile.sci, line: 359
+# File: modules/matio/macros/savematfile.sci, line: 362
 #, c-format
 msgid "Variable %s can not be saved in ASCII file: IGNORED."
 msgstr ""

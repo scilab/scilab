@@ -40,7 +40,7 @@ msgstr ""
 "розмірності %dx%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
 "символу.\n"
@@ -77,8 +77,7 @@ msgstr ""
 "тип.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: k має бути додатним цілим "
 "числом.\n"
@@ -111,8 +110,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
-msgstr ""
-"%s: некоректне значення σ для комплексної або несиметричної задачі.\n"
+msgstr "%s: некоректне значення σ для комплексної або несиметричної задачі.\n"
 
 #, c-format
 msgid "%s: Invalid sigma value for real symmetric problem.\n"
@@ -140,10 +138,8 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: %s має бути дійсним числом.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: %s має бути цілим числом.\n"
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: %s має бути цілим числом.\n"
 
 #, c-format
 msgid ""
@@ -160,8 +156,7 @@ msgstr ""
 "%s або %s.\n"
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B не є додатньовизначеною. Спробуйте з sigma='SM' або sigma=скаляр.\n"
 
@@ -233,8 +228,8 @@ msgid ""
 "problems, k must be an integer in the range 1 to N - 2.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: у дійсних несиметричних або "
-"комплексних задачах k має бути цілим числом і належати діапазону від 1 до N -"
-" 2.\n"
+"комплексних задачах k має бути цілим числом і належати діапазону від 1 до N "
+"- 2.\n"
 
 #, c-format
 msgid ""
@@ -293,7 +288,7 @@ msgstr ""
 "tol, maxiter, ncv, resid, cholB"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -357,8 +352,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: помилка у %s: інформація = %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: n має бути додатним цілим "
 "числом.\n"
@@ -418,8 +412,8 @@ msgid ""
 "%s: Wrong dimension for input argument #%d: Start vector opts.resid must be "
 "N by 1.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: початковий вектор "
-"opts.resid повинен мати розмірність N на 1.\n"
+"%s: помилкова розмірність вхідного параметра №%d: початковий вектор opts."
+"resid повинен мати розмірність N на 1.\n"
 
 #, c-format
 msgid ""

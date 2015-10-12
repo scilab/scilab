@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,39 +10,39 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/cpp/sci_parallel_run.cpp, line: 547
+# File: modules/parallel/sci_gateway/cpp/sci_parallel_run.cpp, line: 544
 #, c-format
 msgid ""
 "%s: Wrong size of input argument #%d: Number of columns are incompatible "
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_parallel_run.cpp, line: 733
+# File: modules/parallel/sci_gateway/cpp/sci_parallel_run.cpp, line: 730
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_parallel_run.cpp, line: 922
+# File: modules/parallel/sci_gateway/cpp/sci_parallel_run.cpp, line: 919
 #, c-format
 msgid "%s: This function is forbidden in a concurrent execution context.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_parallel_run.cpp, line: 955
+# File: modules/parallel/sci_gateway/cpp/sci_parallel_run.cpp, line: 952
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: src/noparallel/noparallel.c, line: 22
+# File: modules/parallel/src/noparallel/noparallel.c, line: 22
 #, c-format
 msgid "%s: %s module is not installed.\n"
 msgstr ""

@@ -45,15 +45,16 @@ msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for first input argument: A string expected.\n"
+msgid "%s: Wrong size for first input argument: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for first input argument: A string expected.\n"
+msgid "%s: Wrong type for first input argument: string expected.\n"
 msgstr ""
+"%s: Špatný typ prvního vstupního argumentu: Očekávána řetězcová matice.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: A string expected.\n"
+msgid "%s: Wrong size for second input argument: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -62,15 +63,15 @@ msgstr ""
 "¨%s: Špatná hodnota druhého vstupního argumentu: Očekáváno 'r' nebo 'w'.\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: A string expected.\n"
+msgid "%s: Wrong type for second input argument: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -113,11 +114,6 @@ msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr "%s: Ukládání řetězců 2D pole není zavedeno.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: String matrix expected.\n"
-msgstr ""
-"%s: Špatný typ prvního vstupního argumentu: Očekávána řetězcová matice.\n"
-
-#, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
 "%s: Špatný typ prvního vstupního argumentu: Očekávána matice s dvojitou "
@@ -130,13 +126,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
-msgstr ""
-"%s: Mlisty typu %s nemůžou být zapsány do binárních souborů Matlab.\n"
+msgstr "%s: Mlisty typu %s nemůžou být zapsány do binárních souborů Matlab.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
-msgstr ""
-"%s: Špatný typ prvního vstupního argumentu: Očekávána řídká matice.\n"
+msgstr "%s: Špatný typ prvního vstupního argumentu: Očekávána řídká matice.\n"
 
 msgid "Scilab matio module not installed.\n"
 msgstr "Modul Scilab matio není nainstalován.\n"

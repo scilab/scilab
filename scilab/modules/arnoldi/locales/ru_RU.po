@@ -37,7 +37,7 @@ msgstr ""
 "%s: Неверный размер входного параметра %s: ожидалась (%d x %d)-матрица.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
@@ -69,8 +69,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: k должна быть положительным целым "
 "числом.\n"
@@ -136,8 +135,7 @@ msgstr ""
 "скаляром.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: %s должно быть целочисленным "
 "скаляром.\n"
@@ -156,16 +154,14 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d: %s должен быть %s или %s.\n"
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B не является положительно определённой. Попробуйте sigma='SM' или "
 "sigma=scalar.\n"
 
 #, c-format
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
-msgstr ""
-"%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
+msgstr "%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
 
 #, c-format
 msgid ""
@@ -256,8 +252,7 @@ msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
-msgstr ""
-"%s : Неверное количество входных аргументов: ожидалось от %d до %d.\n"
+msgstr "%s : Неверное количество входных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid ""
@@ -288,7 +283,7 @@ msgstr ""
 "используйте opts с tol, maxiter, ncv, resid, cholB"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
@@ -349,8 +344,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: Ошибка в %s: info = %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: n должно быть положительным целым "
 "числом.\n"

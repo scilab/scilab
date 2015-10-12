@@ -132,8 +132,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
@@ -203,8 +203,7 @@ msgstr "5 : un passaggio, senza passare tcrit, e ritorno"
 msgid "Meaning of jactype:"
 msgstr "Significato di jactype:"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iterazioni pratiche (nessun jacobiano usato ('adams' o 'stiff' soltanto))"
 

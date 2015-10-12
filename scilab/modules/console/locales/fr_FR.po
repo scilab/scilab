@@ -43,8 +43,7 @@ msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -64,13 +63,13 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -728,8 +727,7 @@ msgid "Select a layout"
 msgstr "Sélectionner un agencement"
 
 msgid "(Modify the layout requires to restart Scilab)"
-msgstr ""
-"(Modifier la disposition des fenêtres nécessite de redémarrer Scilab)"
+msgstr "(Modifier la disposition des fenêtres nécessite de redémarrer Scilab)"
 
 msgid "Save layout on exiting"
 msgstr "Enregistrer la disposition en quittant"

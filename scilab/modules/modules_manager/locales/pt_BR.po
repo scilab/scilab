@@ -30,12 +30,12 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "texto.\n"
@@ -72,8 +72,7 @@ msgstr ""
 "permissão de escrita para este arquivo.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
@@ -121,8 +120,7 @@ msgstr "Gerando loader_gateway.sce...\n"
 
 #, c-format
 msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
-msgstr ""
-"%s: a documentação não pode ser construída neste modo do Scilab: %s.\n"
+msgstr "%s: a documentação não pode ser construída neste modo do Scilab: %s.\n"
 
 msgid "Generating loader.sce...\n"
 msgstr "Gerando loader.sce...\n"

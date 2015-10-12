@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
@@ -34,7 +34,7 @@ msgid "Cannot play file."
 msgstr "Kann Datei nicht wiedergeben."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
@@ -198,15 +198,13 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s wird nicht unterstützt.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: ein Fehler ist aufgetreten: ungültiges Dateiformat: Fehler beim Lesen "
 "des <%s> Stücks.\n"
 
 msgid "Invalid .wav file: found data before format information."
-msgstr ""
-"Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
+msgstr "Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Inkorrekte Information der Blockgröße in RIFF Datei,"

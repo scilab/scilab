@@ -22,7 +22,7 @@ msgstr ""
 "Il modulo \"%s\" di Scilab è disabilitato in modalità -nogui o -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%i è di tipo sbagliato: era attesa una "
 "stringa.\n"

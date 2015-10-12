@@ -37,7 +37,7 @@ function varargout = unix_g(cmd)
     end
 
     if size(cmd,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_g",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"unix_g",1));
     end
 
     if lhs > 3 then

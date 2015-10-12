@@ -37,7 +37,7 @@ msgstr ""
 "string.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -70,9 +70,8 @@ msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s: Advertencia: El directorio '%s' ya existe.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
-msgstr ""
-"%s: Tipo incorrecto de argumento de entrada: Se esperaba un string.\n"
+msgid "%s: Wrong type for input argument: string expected.\n"
+msgstr "%s: Tipo incorrecto de argumento de entrada: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -99,8 +98,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Valor incorrecto del argumento de entrada #%d.\n"
 
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr ""
 "%s: Error mientras se intentaba obtener el nombre del directorio actual.\n"
 
@@ -111,8 +109,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr ""
-"%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
+msgstr "%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
 
 #, c-format
 msgid ""
@@ -130,7 +127,7 @@ msgstr ""
 "números flotantes.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -157,7 +154,7 @@ msgstr ""
 "válida.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -180,8 +177,7 @@ msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: El archivo %s no está abierto en scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -225,8 +221,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Matrix expected.\n"
-msgstr ""
-"%s: Tipo incorrecto de argumento de entrada: Se esperaba una matriz.\n"
+msgstr "%s: Tipo incorrecto de argumento de entrada: Se esperaba una matriz.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -243,8 +238,7 @@ msgid "%s: No such file %s.\n"
 msgstr "%s: El archivo %s no existe.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un entero o "
 "una cadena.\n"
@@ -357,8 +351,7 @@ msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: se esperaba un entero o un "
 "string.\n"
@@ -462,25 +455,22 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s: Ocurrió un error: demasiados (> %d) se requiere conversión.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
-"%s: Ocurrió un error: El campo %d es muy largo (> %d) para la directiva %%[ "
-".\n"
+"%s: Ocurrió un error: El campo %d es muy largo (> %d) para la directiva "
+"%%[ .\n"
 
 msgid "Bad conversion."
 msgstr "Mala conversión."
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s: Ocurrió un error: El campo %d es muy largo (< %d) para la directiva "
 "%%s.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s: Ocurrió un error: El campo %d es muy largo (< %d) para la directiva "
 "%%c.\n"
@@ -554,8 +544,7 @@ msgid "%s: No File opened in Scilab.\n"
 msgstr "%s: Ningún archivo abierto en Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d ('%s'): Formato "
 "desconocido.\n"
@@ -569,8 +558,7 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: Error durante la carga, lectura o escritura.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s', '%s' o "
 "'%s'.\n"
@@ -640,8 +628,7 @@ msgstr "%s: Opciones ignoradas.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
-msgstr ""
-"%s: Tipo incorrecto de argumento de entrada: Se esperaba un string.\n"
+msgstr "%s: Tipo incorrecto de argumento de entrada: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"

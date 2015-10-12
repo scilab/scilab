@@ -60,11 +60,10 @@ struct xx
         int size = (int)controlPoints.size() / 2;
         types::Double* o = new types::Double(size, 1, &data);
 
-#ifdef _MSC_VER
-        std::copy(controlPoints.begin(), controlPoints.begin() + size, stdext::checked_array_iterator<double*>(data, size));
-#else
-        std::copy(controlPoints.begin(), controlPoints.begin() + size, data);
-#endif
+        for (int i = 0; i < size; ++i)
+        {
+            data[i] = controlPoints[2 * i];
+        }
         return o;
     }
 
@@ -89,14 +88,19 @@ struct xx
 
         if (newXSize == oldXSize)
         {
-            std::copy(current->getReal(), current->getReal() + newXSize, newControlPoints.begin());
+            for (int i = 0; i < newXSize; ++i)
+            {
+                newControlPoints[2 * i] = current->getReal()[i];
+            }
         }
         else
         {
             newControlPoints.resize(2 * current->getSize(), 0);
 
-            std::copy(current->getReal(), current->getReal() + newXSize, newControlPoints.begin());
-            std::copy(controlPoints.begin() + oldXSize, controlPoints.begin() + oldXSize + std::min(newXSize, oldXSize), newControlPoints.begin() + newXSize);
+            for (int i = 0; i < newXSize; ++i)
+            {
+                newControlPoints[2 * i] = current->getReal()[i];
+            }
         }
 
         controller.setObjectProperty(adaptee, LINK, CONTROL_POINTS, newControlPoints);
@@ -118,11 +122,10 @@ struct yy
         int size = (int)controlPoints.size() / 2;
         types::Double* o = new types::Double(size, 1, &data);
 
-#ifdef _MSC_VER
-        std::copy(controlPoints.begin() + size, controlPoints.end(), stdext::checked_array_iterator<double*>(data, size));
-#else
-        std::copy(controlPoints.begin() + size, controlPoints.end(), data);
-#endif
+        for (int i = 0; i < size; ++i)
+        {
+            data[i] = controlPoints[2 * i + 1];
+        }
         return o;
     }
 
@@ -147,16 +150,18 @@ struct yy
 
         if (newYSize == oldYSize)
         {
-            std::copy(current->getReal(), current->getReal() + newYSize, newControlPoints.begin() + newYSize);
+            for (int i = 0; i < newYSize; ++i)
+            {
+                newControlPoints[2 * i + 1] = current->getReal()[i];
+            }
         }
         else
         {
             newControlPoints.resize(2 * current->getSize());
 
-            std::copy(current->getReal(), current->getReal() + newYSize, newControlPoints.begin() + newYSize);
-            if (newYSize > oldYSize)
+            for (int i = 0; i < newYSize; ++i)
             {
-                std::fill(newControlPoints.begin() + oldYSize, newControlPoints.begin() + oldYSize + newYSize, 0);
+                newControlPoints[2 * i + 1] = current->getReal()[i];
             }
         }
 

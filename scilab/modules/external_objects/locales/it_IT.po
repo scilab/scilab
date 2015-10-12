@@ -69,7 +69,7 @@ msgid "A single String expected"
 msgstr "Era attesa una singola stringa"
 
 #, c-format
-msgid "Wrong type for argument #%d: A string expected."
+msgid "Wrong type for argument #%d: string expected."
 msgstr "L'argomento #%d è di tipo sbagliato: era attesa una stringa."
 
 #, c-format
@@ -125,7 +125,7 @@ msgid "Incompatible External Object"
 msgstr "Oggetto esterno non compatibile"
 
 #, c-format
-msgid "Wrong type for input argument #%d: A string expected."
+msgid "Wrong type for input argument #%d: string expected."
 msgstr ""
 "L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa."
 
@@ -169,8 +169,7 @@ msgstr "Impossibile invocare su oggetti nulli"
 
 #, c-format
 msgid "Wrong type for input argument #%d: A List expected."
-msgstr ""
-"L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista."
+msgstr "L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista."
 
 #, c-format
 msgid "Wrong type for input argument #%d: An Integer32 expected."

@@ -54,8 +54,7 @@ msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #, c-format
@@ -124,7 +123,7 @@ msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
@@ -160,8 +159,7 @@ msgstr "你选择要安装带FFTW模块的Scilab"
 msgid "This module requires: "
 msgstr "此模块需要： "
 
-msgid ""
-"Scilab will use standard fft by default until you install this library."
+msgid "Scilab will use standard fft by default until you install this library."
 msgstr "Scilab将使用FFT直到你安装FFTW库。"
 
 msgid "See help fftw for more information."

@@ -129,8 +129,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -196,7 +196,7 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -275,8 +275,7 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Zły typ parametru wejściowego: Oczekiwano dynamicznego układu "
 "liniowego.\n"
@@ -482,8 +481,7 @@ msgid "Frequency (rad/s)"
 msgstr ""
 
 #, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -502,7 +500,7 @@ msgstr ""
 "%s: Zły typ parametru wejściowego nr %d: Oczekiwano tablicy ciągów znaków.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano ciągu "
 "znaków.\n"
@@ -604,8 +602,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Nieprawidłowy rozmiar argumentu %d: oczekiwano %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: Oczekiwano układu dającego się "
 "stabilizować.\n"
@@ -809,8 +806,7 @@ msgstr "%s: Wymiary %s są nieodpowiednie.\n"
 
 #, c-format
 msgid "%s: %s is not full rank at the machine precision.\n"
-msgstr ""
-"%s: Rząd %s nie jest pełny w ramach dokładności obliczeń komputera.\n"
+msgstr "%s: Rząd %s nie jest pełny w ramach dokładności obliczeń komputera.\n"
 
 #, c-format
 msgid "%s: %s is nearly unstabilizable.\n"
@@ -829,8 +825,7 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s jest nieokreślony.\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s: Tryb(-y) Sterowalny i Obserwowalny %s bliski(-e) osi urojonej.\n"
 
 #, c-format
@@ -990,8 +985,7 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s nie symetryczny.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 
 #, c-format
@@ -1003,8 +997,7 @@ msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
 msgstr "%s: Tryb(-y) Sterowalny i Obserwowalny A bliski(-e) osi urojonej."
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Wszystkie stany A są prawie nie minimalne, więc || G || jest prawie 0.\n"
 

@@ -66,8 +66,7 @@ msgid "P,Q and X"
 msgstr "P,Q et X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"
@@ -217,8 +216,7 @@ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -296,13 +294,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : %dx%d attendu.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %dx%d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
@@ -310,8 +306,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -323,8 +318,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
@@ -450,7 +444,7 @@ msgstr ""
 "complexe, de booléens ou de polynômes attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un scalaire attendu.\n"
@@ -471,8 +465,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
-msgstr ""
-"%s : Type erroné des arguments d'entrée n°%d : Un numérique attendu.\n"
+msgstr "%s : Type erroné des arguments d'entrée n°%d : Un numérique attendu.\n"
 
 #, c-format
 msgid ""
@@ -488,8 +481,7 @@ msgstr "%s : Aucun NaN détecté, veuillez utiliser %s() à la place.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un numérique attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un numérique attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -504,8 +496,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s : NaNs détectés, veuillez utiliser %s() à la place.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Des valeurs non-négatives "
 "attendues.\n"
@@ -569,8 +560,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', %d ou %d "
 "attendu.\n"

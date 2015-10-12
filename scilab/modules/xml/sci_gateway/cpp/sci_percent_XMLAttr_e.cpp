@@ -67,7 +67,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
     {
         if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 
@@ -91,7 +91,7 @@ int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
             if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
             {
                 freeAllocatedSingleString(prefix);
-                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                 return 0;
             }
 

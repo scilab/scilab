@@ -19,15 +19,14 @@ msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+msgstr "Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
 "stringa.\n"
@@ -112,12 +111,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Eliminazione dei file di aiuto in corso --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: Il browser di aiuto è disabilitato in modalità %s.\n"
 
@@ -162,7 +155,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: Il file %s è stato saltato."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
@@ -232,8 +225,7 @@ msgid "Used Functions"
 msgstr "Funzioni usate"
 
 msgid "         Add here the Scilab, C,... used code references"
-msgstr ""
-"         Aggiungere qui i riferimenti al codice usato di Scilab, C,..."
+msgstr "         Aggiungere qui i riferimenti al codice usato di Scilab, C,..."
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -310,12 +302,6 @@ msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"singola stringa.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
@@ -342,8 +328,8 @@ msgstr "%s: Il file CHAPTER non è formattato bene alla riga %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa che finisce con .last_successful_build.\n"

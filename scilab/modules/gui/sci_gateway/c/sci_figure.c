@@ -363,7 +363,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     freeAllocatedSingleString(pstVal);
                     if (iVal != 4)
                     {
-                        Scierror(999, _("Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n"), "position", 4);
+                        Scierror(999, _("Wrong value for '%s' property: string or 1 x %d real row vector expected.\n"), "position", 4);
                         return 1;
                     }
 
@@ -372,7 +372,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                 }
                 else
                 {
-                    Scierror(999, _("Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n"), "position", 4);
+                    Scierror(999, _("Wrong value for '%s' property: string or 1 x %d real row vector expected.\n"), "position", 4);
                     return 1;
                 }
             }

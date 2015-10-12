@@ -41,13 +41,12 @@ msgstr ""
 "библиотеки.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -170,8 +169,7 @@ msgstr "Точка входа %s в разделяемой библиотеке 
 
 #, c-format
 msgid "Cannot open shared files max entry %d reached.\n"
-msgstr ""
-"Не удалось открыть разделяемые файлы, достигнут предел в %d входов.\n"
+msgstr "Не удалось открыть разделяемые файлы, достигнут предел в %d входов.\n"
 
 #, c-format
 msgid "Entry name %s.\n"
@@ -277,12 +275,11 @@ msgstr ""
 "'haveacompiler' поддерживается только в Windows."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
@@ -543,12 +540,7 @@ msgstr "%s: Неверный размер входного параметра �
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных параметров: ожидалось %d,%d или %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось %d,%d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

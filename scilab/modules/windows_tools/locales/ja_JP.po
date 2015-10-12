@@ -54,7 +54,7 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
 # File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 # File: sci_gateway/c/sci_chartooem.c, line: 48
@@ -65,7 +65,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 # File: sci_gateway/c/sci_mcisendstring.c, line: 106
 # File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
 
 #
@@ -115,7 +115,8 @@ msgstr "%s: ファイル '%s' をオープンできません。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_winqueryreg.c, line: 89
@@ -134,7 +135,8 @@ msgid "Scilab %s Console"
 msgstr "Scilab %s コンソール"
 
 msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr "Scilab 5.5.X ファミリーは Windows XP で動作する最後のバージョンとなります."
+msgstr ""
+"Scilab 5.5.X ファミリーは Windows XP で動作する最後のバージョンとなります."
 
 msgid "Error(s) : see help powershell"
 msgstr "エラー(s): パワーシェル・ヘルプを見てください"

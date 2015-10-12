@@ -51,8 +51,7 @@ msgstr "%s: Входной аргумент № #%d должен быть кор
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: Ожидался дескриптор ''%s''.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидался дескриптор ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -62,7 +61,7 @@ msgstr ""
 "графического окна.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица строк.\n"
 
 #, c-format
@@ -100,7 +99,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
@@ -136,11 +135,11 @@ msgstr ""
 "элементов или размера фигуры должно исправить эту ошибку."
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
 msgstr ""
-"Невозможно создать экспортный файл, пожалуйста, сообщите об ошибке на "
-"http://bugzilla.scilab.org."
+"Невозможно создать экспортный файл, пожалуйста, сообщите об ошибке на http://"
+"bugzilla.scilab.org."
 
 msgid ""
 "Unable to create export file, the file cannot be created or is locked by an "

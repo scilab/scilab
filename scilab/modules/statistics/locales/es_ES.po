@@ -64,8 +64,7 @@ msgid "P,Q and X"
 msgstr "P,Q y X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s', '%s' o "
 "'%s'.\n"
@@ -197,8 +196,7 @@ msgstr ""
 
 #, c-format
 msgid "Answer appears to be lower than lowest search bound %f\n"
-msgstr ""
-"La respuesta parece ser menor que el límite inferior de búsqueda %f\n"
+msgstr "La respuesta parece ser menor que el límite inferior de búsqueda %f\n"
 
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %s\n"
@@ -206,8 +204,7 @@ msgstr "La respuesta parece ser mayor que la cota superior de búsqueda %s\n"
 
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
-msgstr ""
-"La respuesta parece ser mayor que el límite superior de búsqueda %f\n"
+msgstr "La respuesta parece ser mayor que el límite superior de búsqueda %f\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -425,7 +422,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -476,8 +473,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 
 #, c-format
@@ -535,8 +531,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Valor incorrecto para el argumento de entrada %d: Se esperaba '%s', "
 "'%s', %d ó %d.\n"

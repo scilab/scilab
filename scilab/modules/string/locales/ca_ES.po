@@ -68,7 +68,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Error de memòria.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -78,8 +78,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser 'u' "
-"(superior) or 'l' (inferior) expected.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser "
+"'u' (superior) or 'l' (inferior) expected.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -103,8 +103,7 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una matriu de "
 "cadenes de text.\n"
@@ -122,16 +121,11 @@ msgstr ""
 "de nombres reals o de cadenes de text.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text simple.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
@@ -150,14 +144,7 @@ msgstr "%s: L'argument d'entrada #%d té una mida incorrecta.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser >= 1.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de text simple.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser >= 1.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
@@ -355,8 +342,7 @@ msgstr "%s: El recompte retornat és massa gran per a la mida indicada.\n"
 
 #, c-format
 msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
-msgstr ""
-"%s: El límit no és relevant per a la comprovació DFA: Serà ignorat.\n"
+msgstr "%s: El límit no és relevant per a la comprovació DFA: Serà ignorat.\n"
 
 #, c-format
 msgid "%s: Can not compile pattern.\n"

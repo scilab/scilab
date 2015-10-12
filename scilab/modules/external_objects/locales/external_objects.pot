@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,462 +10,453 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
-msgid "Exception thrown in file"
+# File: modules/external_objects/sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 32
+# File: modules/external_objects/sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 37
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 186
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 194
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 207
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 221
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 230
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 403
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 418
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 434
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 456
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 467
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 487
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 496
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 502
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 510
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 520
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 528
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 541
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 551
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 562
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 573
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 584
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 595
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 606
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 619
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 630
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 641
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 649
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 666
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 682
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 703
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 730
+# File: modules/external_objects/src/cpp/addNamedVariable.cpp, line: 41
+# File: modules/external_objects/src/cpp/addToClasspath.cpp, line: 46
+# File: modules/external_objects/src/cpp/addToClasspath.cpp, line: 56
+# File: modules/external_objects/src/cpp/array.cpp, line: 48
+# File: modules/external_objects/src/cpp/cast.cpp, line: 40
+# File: modules/external_objects/src/cpp/cast.cpp, line: 48
+# File: modules/external_objects/src/cpp/cast.cpp, line: 61
+# File: modules/external_objects/src/cpp/classExtract.cpp, line: 35
+# File: modules/external_objects/src/cpp/compile.cpp, line: 53
+# File: modules/external_objects/src/cpp/compile.cpp, line: 60
+# File: modules/external_objects/src/cpp/compile.cpp, line: 73
+# File: modules/external_objects/src/cpp/compile.cpp, line: 85
+# File: modules/external_objects/src/cpp/convMatrixMethod.cpp, line: 46
+# File: modules/external_objects/src/cpp/deff.cpp, line: 65
+# File: modules/external_objects/src/cpp/deff.cpp, line: 74
+# File: modules/external_objects/src/cpp/deff.cpp, line: 85
+# File: modules/external_objects/src/cpp/deff.cpp, line: 107
+# File: modules/external_objects/src/cpp/display.cpp, line: 37
+# File: modules/external_objects/src/cpp/display.cpp, line: 54
+# File: modules/external_objects/src/cpp/doubleExclam_invoke.cpp, line: 66
+# File: modules/external_objects/src/cpp/doubleExclam_invoke.cpp, line: 87
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 39
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 50
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 60
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 70
+# File: modules/external_objects/src/cpp/exists.cpp, line: 39
+# File: modules/external_objects/src/cpp/exists.cpp, line: 51
+# File: modules/external_objects/src/cpp/getClassName.cpp, line: 47
+# File: modules/external_objects/src/cpp/getEnvironmentName.cpp, line: 34
+# File: modules/external_objects/src/cpp/getField.cpp, line: 40
+# File: modules/external_objects/src/cpp/getField.cpp, line: 62
+# File: modules/external_objects/src/cpp/getField.cpp, line: 69
+# File: modules/external_objects/src/cpp/getFields.cpp, line: 37
+# File: modules/external_objects/src/cpp/getMethods.cpp, line: 36
+# File: modules/external_objects/src/cpp/getRepresentation.cpp, line: 36
+# File: modules/external_objects/src/cpp/getsetOptions.cpp, line: 46
+# File: modules/external_objects/src/cpp/import.cpp, line: 47
+# File: modules/external_objects/src/cpp/import.cpp, line: 55
+# File: modules/external_objects/src/cpp/import.cpp, line: 64
+# File: modules/external_objects/src/cpp/import.cpp, line: 74
+# File: modules/external_objects/src/cpp/import.cpp, line: 86
+# File: modules/external_objects/src/cpp/import.cpp, line: 98
+# File: modules/external_objects/src/cpp/invoke.cpp, line: 45
+# File: modules/external_objects/src/cpp/invoke.cpp, line: 77
+# File: modules/external_objects/src/cpp/invoke_asref.cpp, line: 44
+# File: modules/external_objects/src/cpp/invoke_asref.cpp, line: 78
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 41
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 47
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 58
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 65
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 71
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 85
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 96
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 110
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 116
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 131
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 142
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 167
+# File: modules/external_objects/src/cpp/invoker.cpp, line: 48
+# File: modules/external_objects/src/cpp/newInstance.cpp, line: 50
+# File: modules/external_objects/src/cpp/newInstance.cpp, line: 99
+# File: modules/external_objects/src/cpp/objectExtract.cpp, line: 33
+# File: modules/external_objects/src/cpp/objectExtract.cpp, line: 59
+# File: modules/external_objects/src/cpp/objectExtract.cpp, line: 91
+# File: modules/external_objects/src/cpp/objectExtract.cpp, line: 133
+# File: modules/external_objects/src/cpp/objectInsert.cpp, line: 33
+# File: modules/external_objects/src/cpp/objectInsert.cpp, line: 51
+# File: modules/external_objects/src/cpp/objectInsert.cpp, line: 69
+# File: modules/external_objects/src/cpp/objectInsert.cpp, line: 115
+# File: modules/external_objects/src/cpp/objectInsert.cpp, line: 175
+# File: modules/external_objects/src/cpp/objectPrint.cpp, line: 32
+# File: modules/external_objects/src/cpp/operation.cpp, line: 34
+# File: modules/external_objects/src/cpp/operation.cpp, line: 46
+# File: modules/external_objects/src/cpp/operation.cpp, line: 65
+# File: modules/external_objects/src/cpp/remove.cpp, line: 44
+# File: modules/external_objects/src/cpp/setField.cpp, line: 38
+# File: modules/external_objects/src/cpp/setField.cpp, line: 58
+# File: modules/external_objects/src/cpp/trace.cpp, line: 44
+# File: modules/external_objects/src/cpp/unwrap.cpp, line: 43
+# File: modules/external_objects/src/cpp/unwrap.cpp, line: 55
+# File: modules/external_objects/src/cpp/unwrapremove.cpp, line: 43
+# File: modules/external_objects/src/cpp/unwrapremove.cpp, line: 55
+# File: modules/external_objects/src/cpp/wrap.cpp, line: 48
+# File: modules/external_objects/src/cpp/wrapAsRef.cpp, line: 49
+# File: modules/external_objects/src/cpp/wrapAsRef.cpp, line: 63
+# File: modules/external_objects/src/cpp/wrapAsRef.cpp, line: 72
+# File: modules/external_objects/src/cpp/wrapInFloat.cpp, line: 46
+# File: modules/external_objects/src/cpp/wrapInFloat.cpp, line: 63
+msgid "Invalid variable: cannot retrieve the data"
 msgstr ""
 
 #
-# File: includes/ScilabAbstractEnvironmentException.hxx, line: 108
-msgid "at line"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 30
-# File: sci_gateway/cpp/sci_invoke_lu.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EClass_e.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_0.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_1_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_2_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_3_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_4_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_5.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_a_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_d_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_disp.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_e.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_g_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_h_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_j_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_k_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_l_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_m_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_n_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_o_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_p.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_p_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_q_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_r_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_s_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_t.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_x_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_y_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_EObj_z_foo.cpp, line: 30
-# File: sci_gateway/cpp/sci_percent_foo_i_EObj.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 44
+# File: modules/external_objects/sci_gateway/cpp/sci_invoke_lu.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EClass_e.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_0.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_1_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_2_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_3_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_4_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_5.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_a_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_d_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_disp.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_e.cpp, line: 31
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_g_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_h_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_j_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_k_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_l_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_m_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_n_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_o_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_p.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_p_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_q_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_r_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_s_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_t.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_x_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_y_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_EObj_z_foo.cpp, line: 30
+# File: modules/external_objects/sci_gateway/cpp/sci_percent_foo_i_EObj.cpp, line: 30
 #, c-format
 msgid "%s: An error occurred: %s"
 msgstr ""
 
 #
-# File: src/cpp/ScilabEnvironments.cpp, line: 56
+# File: modules/external_objects/src/cpp/ScilabEnvironments.cpp, line: 56
 #, c-format
 msgid "Invalid environment: identifier %d is invalid"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 47
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 57
 msgid "Invalid environment"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 71
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 81
 #, c-format
 msgid "Invalid variable name: %s"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 74
-# File: src/cpp/ScilabObjects.cpp, line: 80
-# File: src/cpp/ScilabObjects.cpp, line: 86
-# File: src/cpp/ScilabObjects.cpp, line: 92
-# File: src/cpp/ScilabObjects.cpp, line: 128
-# File: src/cpp/ScilabObjects.cpp, line: 134
-# File: src/cpp/ScilabObjects.cpp, line: 140
-# File: src/cpp/ScilabObjects.cpp, line: 146
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 84
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 90
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 96
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 102
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 138
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 144
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 150
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 156
 msgid "Cannot allocate memory"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 202
-# File: src/cpp/ScilabObjects.cpp, line: 210
-# File: src/cpp/ScilabObjects.cpp, line: 223
-# File: src/cpp/ScilabObjects.cpp, line: 237
-# File: src/cpp/ScilabObjects.cpp, line: 246
-# File: src/cpp/ScilabObjects.cpp, line: 419
-# File: src/cpp/ScilabObjects.cpp, line: 434
-# File: src/cpp/ScilabObjects.cpp, line: 450
-# File: src/cpp/ScilabObjects.cpp, line: 472
-# File: src/cpp/ScilabObjects.cpp, line: 483
-# File: src/cpp/ScilabObjects.cpp, line: 503
-# File: src/cpp/ScilabObjects.cpp, line: 512
-# File: src/cpp/ScilabObjects.cpp, line: 518
-# File: src/cpp/ScilabObjects.cpp, line: 526
-# File: src/cpp/ScilabObjects.cpp, line: 536
-# File: src/cpp/ScilabObjects.cpp, line: 544
-# File: src/cpp/ScilabObjects.cpp, line: 557
-# File: src/cpp/ScilabObjects.cpp, line: 567
-# File: src/cpp/ScilabObjects.cpp, line: 578
-# File: src/cpp/ScilabObjects.cpp, line: 589
-# File: src/cpp/ScilabObjects.cpp, line: 600
-# File: src/cpp/ScilabObjects.cpp, line: 611
-# File: src/cpp/ScilabObjects.cpp, line: 622
-# File: src/cpp/ScilabObjects.cpp, line: 635
-# File: src/cpp/ScilabObjects.cpp, line: 646
-# File: src/cpp/ScilabObjects.cpp, line: 657
-# File: src/cpp/ScilabObjects.cpp, line: 665
-# File: src/cpp/ScilabObjects.cpp, line: 682
-# File: src/cpp/ScilabObjects.cpp, line: 698
-# File: src/cpp/ScilabObjects.cpp, line: 719
-# File: src/cpp/ScilabObjects.cpp, line: 746
-# File: src/cpp/addNamedVariable.cpp, line: 41
-# File: src/cpp/addToClasspath.cpp, line: 46
-# File: src/cpp/addToClasspath.cpp, line: 56
-# File: src/cpp/array.cpp, line: 48
-# File: src/cpp/cast.cpp, line: 40
-# File: src/cpp/cast.cpp, line: 48
-# File: src/cpp/cast.cpp, line: 61
-# File: src/cpp/classExtract.cpp, line: 35
-# File: src/cpp/compile.cpp, line: 50
-# File: src/cpp/compile.cpp, line: 57
-# File: src/cpp/compile.cpp, line: 70
-# File: src/cpp/compile.cpp, line: 82
-# File: src/cpp/convMatrixMethod.cpp, line: 46
-# File: src/cpp/deff.cpp, line: 53
-# File: src/cpp/deff.cpp, line: 64
-# File: src/cpp/deff.cpp, line: 86
-# File: src/cpp/display.cpp, line: 37
-# File: src/cpp/display.cpp, line: 54
-# File: src/cpp/doubleExclam_invoke.cpp, line: 68
-# File: src/cpp/doubleExclam_invoke.cpp, line: 89
-# File: src/cpp/evalString.cpp, line: 39
-# File: src/cpp/evalString.cpp, line: 50
-# File: src/cpp/evalString.cpp, line: 60
-# File: src/cpp/evalString.cpp, line: 70
-# File: src/cpp/exists.cpp, line: 39
-# File: src/cpp/exists.cpp, line: 51
-# File: src/cpp/getClassName.cpp, line: 47
-# File: src/cpp/getEnvironmentName.cpp, line: 31
-# File: src/cpp/getField.cpp, line: 40
-# File: src/cpp/getField.cpp, line: 62
-# File: src/cpp/getField.cpp, line: 69
-# File: src/cpp/getFields.cpp, line: 37
-# File: src/cpp/getMethods.cpp, line: 36
-# File: src/cpp/getRepresentation.cpp, line: 36
-# File: src/cpp/getsetOptions.cpp, line: 46
-# File: src/cpp/import.cpp, line: 47
-# File: src/cpp/import.cpp, line: 55
-# File: src/cpp/import.cpp, line: 64
-# File: src/cpp/import.cpp, line: 74
-# File: src/cpp/import.cpp, line: 86
-# File: src/cpp/import.cpp, line: 98
-# File: src/cpp/invoke.cpp, line: 45
-# File: src/cpp/invoke.cpp, line: 77
-# File: src/cpp/invoke_asref.cpp, line: 44
-# File: src/cpp/invoke_asref.cpp, line: 78
-# File: src/cpp/invoke_lu.cpp, line: 41
-# File: src/cpp/invoke_lu.cpp, line: 47
-# File: src/cpp/invoke_lu.cpp, line: 58
-# File: src/cpp/invoke_lu.cpp, line: 65
-# File: src/cpp/invoke_lu.cpp, line: 71
-# File: src/cpp/invoke_lu.cpp, line: 85
-# File: src/cpp/invoke_lu.cpp, line: 96
-# File: src/cpp/invoke_lu.cpp, line: 110
-# File: src/cpp/invoke_lu.cpp, line: 116
-# File: src/cpp/invoke_lu.cpp, line: 131
-# File: src/cpp/invoke_lu.cpp, line: 142
-# File: src/cpp/invoke_lu.cpp, line: 167
-# File: src/cpp/invoker.cpp, line: 48
-# File: src/cpp/newInstance.cpp, line: 50
-# File: src/cpp/newInstance.cpp, line: 99
-# File: src/cpp/objectExtract.cpp, line: 33
-# File: src/cpp/objectExtract.cpp, line: 59
-# File: src/cpp/objectExtract.cpp, line: 89
-# File: src/cpp/objectExtract.cpp, line: 131
-# File: src/cpp/objectInsert.cpp, line: 33
-# File: src/cpp/objectInsert.cpp, line: 51
-# File: src/cpp/objectInsert.cpp, line: 69
-# File: src/cpp/objectInsert.cpp, line: 115
-# File: src/cpp/objectInsert.cpp, line: 175
-# File: src/cpp/objectPrint.cpp, line: 32
-# File: src/cpp/operation.cpp, line: 34
-# File: src/cpp/operation.cpp, line: 46
-# File: src/cpp/operation.cpp, line: 65
-# File: src/cpp/remove.cpp, line: 44
-# File: src/cpp/setField.cpp, line: 38
-# File: src/cpp/setField.cpp, line: 58
-# File: src/cpp/trace.cpp, line: 44
-# File: src/cpp/unwrap.cpp, line: 43
-# File: src/cpp/unwrap.cpp, line: 55
-# File: src/cpp/unwrapremove.cpp, line: 43
-# File: src/cpp/unwrapremove.cpp, line: 55
-# File: src/cpp/wrap.cpp, line: 48
-# File: src/cpp/wrapAsRef.cpp, line: 49
-# File: src/cpp/wrapAsRef.cpp, line: 63
-# File: src/cpp/wrapAsRef.cpp, line: 72
-# File: src/cpp/wrapInFloat.cpp, line: 46
-# File: src/cpp/wrapInFloat.cpp, line: 63
-msgid "Invalid variable: cannot retrieve the data"
-msgstr ""
-
-#
-# File: src/cpp/ScilabObjects.cpp, line: 266
-# File: src/cpp/ScilabObjects.cpp, line: 283
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 250
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 267
 msgid "Invalid variable: cannot create data"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 456
-# File: src/cpp/ScilabObjects.cpp, line: 764
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 440
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 748
 msgid "External Class expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 739
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 723
 msgid "External object expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 752
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 736
 msgid "Incompatible External object"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 782
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 766
 #, c-format
 msgid "Unable to wrap. Unmanaged datatype (%d) ?"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 869
-# File: src/cpp/ScilabObjects.cpp, line: 884
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 855
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 870
 msgid "Invalid String"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 874
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 860
 msgid "A single string expected"
 msgstr ""
 
 #
-# File: src/cpp/ScilabObjects.cpp, line: 879
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 865
 msgid "A single String expected"
 msgstr ""
 
 #
-# File: src/cpp/addToClasspath.cpp, line: 51
+# File: modules/external_objects/src/cpp/addToClasspath.cpp, line: 51
 #, c-format
-msgid "Wrong type for argument #%d: A string expected."
+msgid "Wrong type for argument #%d: string expected."
 msgstr ""
 
 #
-# File: src/cpp/addToClasspath.cpp, line: 80
-# File: src/cpp/trace.cpp, line: 79
+# File: modules/external_objects/src/cpp/addToClasspath.cpp, line: 80
+# File: modules/external_objects/src/cpp/trace.cpp, line: 79
 #, c-format
 msgid "Cannot open the given file %s."
 msgstr ""
 
 #
-# File: src/cpp/array.cpp, line: 30
+# File: modules/external_objects/src/cpp/array.cpp, line: 30
 #, c-format
 msgid "Wrong number of arguments : more than %d expected."
 msgstr ""
 
 #
-# File: src/cpp/array.cpp, line: 57
+# File: modules/external_objects/src/cpp/array.cpp, line: 57
 #, c-format
 msgid "A strictly positive integer is expected at position %d."
 msgstr ""
 
 #
-# File: src/cpp/cast.cpp, line: 55
+# File: modules/external_objects/src/cpp/cast.cpp, line: 55
 msgid "Incompatible External Objects"
 msgstr ""
 
 #
-# File: src/cpp/classExtract.cpp, line: 144
+# File: modules/external_objects/src/cpp/classExtract.cpp, line: 145
 msgid "Invalid name"
 msgstr ""
 
 #
-# File: src/cpp/compile.cpp, line: 63
-# File: src/cpp/deff.cpp, line: 58
-# File: src/cpp/import.cpp, line: 69
-# File: src/cpp/import.cpp, line: 92
-# File: src/cpp/objectExtract.cpp, line: 94
-# File: src/cpp/objectInsert.cpp, line: 121
+# File: modules/external_objects/src/cpp/compile.cpp, line: 66
+# File: modules/external_objects/src/cpp/deff.cpp, line: 79
+# File: modules/external_objects/src/cpp/import.cpp, line: 69
+# File: modules/external_objects/src/cpp/import.cpp, line: 92
+# File: modules/external_objects/src/cpp/objectExtract.cpp, line: 96
+# File: modules/external_objects/src/cpp/objectInsert.cpp, line: 121
 #, c-format
 msgid "Wrong type for input argument #%d: A String expected."
 msgstr ""
 
 #
-# File: src/cpp/compile.cpp, line: 76
-# File: src/cpp/evalString.cpp, line: 55
+# File: modules/external_objects/src/cpp/compile.cpp, line: 79
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 55
 #, c-format
 msgid "Invalid dimension for argument #%d: A row or a column expected."
 msgstr ""
 
 #
-# File: src/cpp/convMatrixMethod.cpp, line: 64
+# File: modules/external_objects/src/cpp/convMatrixMethod.cpp, line: 64
 msgid "The argument must be 'rc' or 'cr'."
 msgstr ""
 
 #
-# File: src/cpp/deff.cpp, line: 70
+# File: modules/external_objects/src/cpp/deff.cpp, line: 91
 #, c-format
 msgid "Invalid dimensions for input argument #%d: A single string expected."
 msgstr ""
 
 #
-# File: src/cpp/deff.cpp, line: 75
+# File: modules/external_objects/src/cpp/deff.cpp, line: 96
 msgid "Invalid dimensions: arguments #2 and #3 must have the same."
 msgstr ""
 
 #
-# File: src/cpp/deff.cpp, line: 122
-# File: src/cpp/deff.cpp, line: 138
-# File: src/cpp/deff.cpp, line: 154
+# File: modules/external_objects/src/cpp/deff.cpp, line: 156
 msgid "Invalid variable: cannot create the data"
 msgstr ""
 
 #
-# File: src/cpp/display.cpp, line: 42
+# File: modules/external_objects/src/cpp/display.cpp, line: 42
 #, c-format
 msgid "Wrong type for input argument #%d: External Object expected."
 msgstr ""
 
 #
-# File: src/cpp/display.cpp, line: 48
+# File: modules/external_objects/src/cpp/display.cpp, line: 48
 msgid "Incompatible External Object"
 msgstr ""
 
 #
-# File: src/cpp/evalString.cpp, line: 44
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 44
 #, c-format
-msgid "Wrong type for input argument #%d: A string expected."
+msgid "Wrong type for input argument #%d: string expected."
 msgstr ""
 
 #
-# File: src/cpp/evalString.cpp, line: 75
-# File: src/cpp/getsetOptions.cpp, line: 51
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 75
+# File: modules/external_objects/src/cpp/getsetOptions.cpp, line: 51
 #, c-format
 msgid "Wrong type for input argument #%d: A boolean expected."
 msgstr ""
 
 #
-# File: src/cpp/evalString.cpp, line: 80
-# File: src/cpp/getsetOptions.cpp, line: 56
+# File: modules/external_objects/src/cpp/evalString.cpp, line: 80
+# File: modules/external_objects/src/cpp/getsetOptions.cpp, line: 56
 #, c-format
 msgid "Wrong type for input argument #%d: A single boolean expected."
 msgstr ""
 
 #
-# File: src/cpp/exists.cpp, line: 44
-# File: src/cpp/getEnvironmentName.cpp, line: 36
-# File: src/cpp/getFields.cpp, line: 42
-# File: src/cpp/getMethods.cpp, line: 41
-# File: src/cpp/getRepresentation.cpp, line: 41
-# File: src/cpp/unwrap.cpp, line: 48
-# File: src/cpp/unwrapremove.cpp, line: 48
+# File: modules/external_objects/src/cpp/exists.cpp, line: 44
+# File: modules/external_objects/src/cpp/getEnvironmentName.cpp, line: 39
+# File: modules/external_objects/src/cpp/getFields.cpp, line: 42
+# File: modules/external_objects/src/cpp/getMethods.cpp, line: 41
+# File: modules/external_objects/src/cpp/getRepresentation.cpp, line: 41
+# File: modules/external_objects/src/cpp/unwrap.cpp, line: 48
+# File: modules/external_objects/src/cpp/unwrapremove.cpp, line: 48
 #, c-format
 msgid "Wrong type for input argument #%d: An External Object expected."
 msgstr ""
 
 #
-# File: src/cpp/getEnvId.cpp, line: 34
+# File: modules/external_objects/src/cpp/getEnvId.cpp, line: 34
 msgid "Cannot create the identifier"
 msgstr ""
 
 #
-# File: src/cpp/import.cpp, line: 122
+# File: modules/external_objects/src/cpp/import.cpp, line: 122
 msgid "The class name cannot end with a dot."
 msgstr ""
 
 #
-# File: src/cpp/import.cpp, line: 136
+# File: modules/external_objects/src/cpp/import.cpp, line: 136
 msgid "The class name cannot start with a dot."
 msgstr ""
 
 #
-# File: src/cpp/import.cpp, line: 150
+# File: modules/external_objects/src/cpp/import.cpp, line: 150
 msgid "A variable with this name is already existing"
 msgstr ""
 
 #
-# File: src/cpp/import.cpp, line: 159
+# File: modules/external_objects/src/cpp/import.cpp, line: 159
 msgid "Bad number of output arguments"
 msgstr ""
 
 #
-# File: src/cpp/invoke.cpp, line: 32
-# File: src/cpp/invoke_asref.cpp, line: 31
+# File: modules/external_objects/src/cpp/invoke.cpp, line: 32
+# File: modules/external_objects/src/cpp/invoke_asref.cpp, line: 31
 msgid "Wrong number of arguments : more than 2 arguments expected"
 msgstr ""
 
 #
-# File: src/cpp/invoke.cpp, line: 64
-# File: src/cpp/invoke_asref.cpp, line: 63
+# File: modules/external_objects/src/cpp/invoke.cpp, line: 64
+# File: modules/external_objects/src/cpp/invoke_asref.cpp, line: 63
 msgid "Cannot invoke on null object"
 msgstr ""
 
 #
-# File: src/cpp/invoke_lu.cpp, line: 52
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 52
 #, c-format
 msgid "Wrong type for input argument #%d: A List expected."
 msgstr ""
 
 #
-# File: src/cpp/invoke_lu.cpp, line: 76
-# File: src/cpp/invoke_lu.cpp, line: 90
-# File: src/cpp/invoke_lu.cpp, line: 121
-# File: src/cpp/invoke_lu.cpp, line: 136
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 76
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 90
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 121
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 136
 #, c-format
 msgid "Wrong type for input argument #%d: An Integer32 expected."
 msgstr ""
 
 #
-# File: src/cpp/invoke_lu.cpp, line: 150
+# File: modules/external_objects/src/cpp/invoke_lu.cpp, line: 150
 msgid "Cannot invoke on null object."
 msgstr ""
 
 #
-# File: src/cpp/newInstance.cpp, line: 37
-# File: src/cpp/unwrap.cpp, line: 27
-# File: src/cpp/unwrapremove.cpp, line: 27
+# File: modules/external_objects/src/cpp/newInstance.cpp, line: 37
+# File: modules/external_objects/src/cpp/unwrap.cpp, line: 27
+# File: modules/external_objects/src/cpp/unwrapremove.cpp, line: 27
 msgid "Wrong number of arguments : more than 1 argument expected"
 msgstr ""
 
 #
-# File: src/cpp/wrap.cpp, line: 27
-# File: src/cpp/wrapAsRef.cpp, line: 28
-# File: src/cpp/wrapInFloat.cpp, line: 29
+# File: modules/external_objects/src/cpp/wrap.cpp, line: 27
+# File: modules/external_objects/src/cpp/wrapAsRef.cpp, line: 28
+# File: modules/external_objects/src/cpp/wrapInFloat.cpp, line: 29
 msgid "Wrong number of arguments : more than 1 argument expected."
 msgstr ""
 
 #
-# File: src/cpp/wrap.cpp, line: 58
-# File: src/cpp/wrapAsRef.cpp, line: 82
+# File: modules/external_objects/src/cpp/wrap.cpp, line: 58
+# File: modules/external_objects/src/cpp/wrapAsRef.cpp, line: 82
 #, c-format
 msgid "Cannot wrap argument %d."
 msgstr ""
 
 #
-# File: src/cpp/wrapAsRef.cpp, line: 56
+# File: modules/external_objects/src/cpp/wrapAsRef.cpp, line: 56
 msgid "Can only wrap as a reference to a named variable"
 msgstr ""
 
 #
-# File: src/cpp/wrapInFloat.cpp, line: 52
+# File: modules/external_objects/src/cpp/wrapInFloat.cpp, line: 52
 msgid "Invalid variable: cannot retrieve the data type"
 msgstr ""
 
 #
-# File: src/cpp/wrapInFloat.cpp, line: 57
+# File: modules/external_objects/src/cpp/wrapInFloat.cpp, line: 57
 #, c-format
 msgid "%s: Wrong argument type at position %i: Double expected\n"
 msgstr ""

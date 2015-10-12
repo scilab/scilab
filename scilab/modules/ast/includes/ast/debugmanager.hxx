@@ -13,6 +13,8 @@
 #ifndef __DEBUGGER_MANAGER_HXX__
 #define __DEBUGGER_MANAGER_HXX__
 
+#include <memory>
+
 #include "abstractdebugger.hxx"
 #include "breakpoint.hxx"
 #include "dynlib_ast.h"
@@ -31,7 +33,7 @@ public :
     };
 
 private:
-    static DebuggerMagager* me;
+    static std::unique_ptr<DebuggerMagager> me;
     DebuggerMagager() :
         breakpoints(),
         debuggers(), pExp(nullptr), interrupted(false), currentBreakPoint(-1), action(Continue), level(0) {}
@@ -47,6 +49,17 @@ private:
 
     void internal_stop();
 public:
+    ~DebuggerMagager()
+    {
+        for (auto d : debuggers)
+        {
+            delete d;
+        }
+        for (auto b : breakpoints)
+        {
+            delete b;
+        }
+    }
 
     static DebuggerMagager* getInstance();
 

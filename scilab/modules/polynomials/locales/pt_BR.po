@@ -48,8 +48,7 @@ msgstr ""
 "polinômio.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
 "fração racional.\n"
@@ -106,8 +105,7 @@ msgstr ""
 "conjunto {%s}.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 
 #, c-format

@@ -81,7 +81,9 @@ msgstr ""
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列または文字列のベクトルを指定して"
+"ください.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -125,7 +127,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定し�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -188,13 +191,17 @@ msgstr "TCLエラー: TK初期化(Tk_Init)でエラーです : %s\n"
 msgid ""
 "Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
 "%s\n"
-msgstr "Tclエラー: Scilab/TKの初期化時にエラーが発生しました. SciPathを設定できませんでした: %s\n"
+msgstr ""
+"Tclエラー: Scilab/TKの初期化時にエラーが発生しました. SciPathを設定できません"
+"でした: %s\n"
 
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
 "%s\n"
-msgstr "Tclエラー: Scilab/TKの初期化時にエラーが発生しました. %s のロードでエラー: %s\n"
+msgstr ""
+"Tclエラー: Scilab/TKの初期化時にエラーが発生しました. %s のロードでエラー: "
+"%s\n"
 
 #
 # File: src/c/ScilabEval.c, line: 50
@@ -245,7 +252,8 @@ msgstr "フラッシュ終了\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr "%s: 入力引数の数が間違っています:　少なくとも1個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています:　少なくとも1個の引数を指定してください.\n"
 
 #
 # File: src/c/TCL_ArrayDim.c, line: 63
@@ -295,7 +303,8 @@ msgstr "拡大・縮小"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"

@@ -53,8 +53,7 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s: Tutti i nodi sono doppioni o collineari (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d hanno una grandezza sbagliata: erano "
 "attese le stesse dimensioni.\n"
@@ -66,8 +65,7 @@ msgstr ""
 "sconosciuto.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d hanno un valore sbagliato: erano "
 "attese le stesse dimensioni.\n"
@@ -173,8 +171,7 @@ msgstr ""
 "%s: L'argomento in ingresso #%d, #%d o #%d ha una grandezza sbagliata.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s: x e/o y non sono in ordine strettamente crescente (o è stato trovato +-"
 "inf)\n"

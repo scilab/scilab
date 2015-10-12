@@ -49,8 +49,7 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s: doppelte Knoten oder alle Knoten kolinear (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
 
@@ -59,8 +58,7 @@ msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: unbekannter '%s' Typ.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d und #%d: gleiche Größe erwartet.\n"
 
@@ -155,8 +153,7 @@ msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d, #%d oder #%d.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s: x und/oder y sind nicht stetig steigend (oder +- unendlich erkannt)\n"
 
@@ -189,8 +186,7 @@ msgstr "%s: Problem mit Kennzeichen = %d.\n"
 
 #, c-format
 msgid "Wrong type for input argument #%d: Real hypermatrix expected.\n"
-msgstr ""
-"Falscher Typ für Eingangsargument #%d: reelle Hypermatrix erwartet.\n"
+msgstr "Falscher Typ für Eingangsargument #%d: reelle Hypermatrix erwartet.\n"
 
 #, c-format
 msgid "Wrong type for input argument #%d: String expected.\n"

@@ -1,8 +1,8 @@
-# Localization of the module development_tools-macros
+# Localization of the module development_tools
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,189 +10,189 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: macros/assert/assert_checkalmostequal.sci, line: 16
-# File: macros/assert/assert_checkfilesequal.sci, line: 15
-# File: macros/assert/assert_comparecomplex.sci, line: 15
-# File: macros/assert/assert_cond2reltol.sci, line: 115
-# File: macros/assert/assert_cond2reqdigits.sci, line: 120
-# File: macros/assert/assert_generror.sci, line: 14
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 92
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 15
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 72
+# File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 115
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 120
+# File: modules/development_tools/macros/assert/assert_generror.sci, line: 14
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 29
-# File: macros/assert/assert_checkalmostequal.sci, line: 33
-# File: macros/assert/assert_checkalmostequal.sci, line: 37
-# File: macros/assert/assert_checkalmostequal.sci, line: 41
-# File: macros/assert/assert_checkerror.sci, line: 36
-# File: macros/assert/assert_comparecomplex.sci, line: 27
-# File: macros/assert/assert_comparecomplex.sci, line: 31
-# File: macros/assert/assert_comparecomplex.sci, line: 35
-# File: macros/assert/assert_comparecomplex.sci, line: 39
-# File: macros/assert/assert_computedigits.sci, line: 24
-# File: macros/assert/assert_computedigits.sci, line: 28
-# File: macros/assert/assert_cond2reltol.sci, line: 125
-# File: macros/assert/assert_cond2reltol.sci, line: 129
-# File: macros/assert/assert_cond2reqdigits.sci, line: 131
-# File: macros/assert/assert_cond2reqdigits.sci, line: 135
-# File: macros/assert/assert_cond2reqdigits.sci, line: 139
-# File: macros/assert/assert_generror.sci, line: 38
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 105
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 109
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 113
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 117
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 50
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 84
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 88
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 92
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 96
+# File: modules/development_tools/macros/assert/assert_computedigits.sci, line: 74
+# File: modules/development_tools/macros/assert/assert_computedigits.sci, line: 78
+# File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 125
+# File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 129
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 131
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 135
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 139
+# File: modules/development_tools/macros/assert/assert_generror.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 45
-# File: macros/assert/assert_checkerror.sci, line: 26
-# File: macros/assert/assert_checkerror.sci, line: 31
-# File: macros/assert/assert_checkfilesequal.sci, line: 30
-# File: macros/assert/assert_checkfilesequal.sci, line: 34
-# File: macros/assert/assert_generror.sci, line: 21
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 121
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 40
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 45
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 30
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 34
+# File: modules/development_tools/macros/assert/assert_generror.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 51
-# File: macros/assert/assert_checkalmostequal.sci, line: 55
-# File: macros/assert/assert_checkalmostequal.sci, line: 59
-# File: macros/assert/assert_checkerror.sci, line: 42
-# File: macros/assert/assert_checkerror.sci, line: 53
-# File: macros/assert/assert_checkfilesequal.sci, line: 46
-# File: macros/assert/assert_checkfilesequal.sci, line: 50
-# File: macros/assert/assert_comparecomplex.sci, line: 45
-# File: macros/assert/assert_comparecomplex.sci, line: 49
-# File: macros/assert/assert_comparecomplex.sci, line: 53
-# File: macros/assert/assert_comparecomplex.sci, line: 57
-# File: macros/assert/assert_computedigits.sci, line: 38
-# File: macros/assert/assert_cond2reltol.sci, line: 80
-# File: macros/assert/assert_generror.sci, line: 25
-# File: macros/assert/assert_generror.sci, line: 34
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 127
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 131
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 135
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 56
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 67
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 46
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 50
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 102
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 106
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 110
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 114
+# File: modules/development_tools/macros/assert/assert_computedigits.sci, line: 88
+# File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 80
+# File: modules/development_tools/macros/assert/assert_generror.sci, line: 25
+# File: modules/development_tools/macros/assert/assert_generror.sci, line: 34
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 65
-# File: macros/assert/assert_checkalmostequal.sci, line: 69
-# File: macros/assert/assert_comparecomplex.sci, line: 63
-# File: macros/assert/assert_comparecomplex.sci, line: 67
-# File: macros/assert/assert_cond2reltol.sci, line: 138
-# File: macros/assert/assert_cond2reqdigits.sci, line: 148
-# File: macros/assert/assert_cond2reqdigits.sci, line: 152
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 141
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 145
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 120
+# File: modules/development_tools/macros/assert/assert_comparecomplex.sci, line: 124
+# File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 138
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 148
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 152
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 73
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 149
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 81
-# File: macros/assert/assert_checkequal.sci, line: 81
-# File: macros/assert/assert_computedigits.sci, line: 34
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 157
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 81
+# File: modules/development_tools/macros/assert/assert_computedigits.sci, line: 84
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkalmostequal.sci, line: 110
-# File: macros/assert/assert_checkequal.sci, line: 155
+# File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 186
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 155
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 40
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 40
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 48
-# File: macros/assert/assert_checkfalse.sci, line: 15
-# File: macros/assert/assert_checktrue.sci, line: 15
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 48
+# File: modules/development_tools/macros/assert/assert_checkfalse.sci, line: 15
+# File: modules/development_tools/macros/assert/assert_checktrue.sci, line: 15
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 54
-# File: macros/assert/assert_checkequal.sci, line: 62
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 54
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 62
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 90
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 90
 #, c-format
 msgid "%s: Computed is real, but expected is complex."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 94
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 94
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkequal.sci, line: 153
+# File: modules/development_tools/macros/assert/assert_checkequal.sci, line: 153
 #, c-format
 msgid ""
 "%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 15
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 29
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 47
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 61
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 62
-# File: macros/assert/assert_generror.sci, line: 42
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 76
+# File: modules/development_tools/macros/assert/assert_generror.sci, line: 42
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 70
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 84
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 80
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 94
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 99
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 113
 #, c-format
 msgid "%s: Error while formatting the error message: %s"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 117
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 131
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error message = %s while computed error "
@@ -200,7 +200,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/assert/assert_checkerror.sci, line: 132
+# File: modules/development_tools/macros/assert/assert_checkerror.sci, line: 146
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error number = %d while computed error number "
@@ -208,42 +208,42 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/assert/assert_checkfalse.sci, line: 21
-# File: macros/assert/assert_checktrue.sci, line: 21
+# File: modules/development_tools/macros/assert/assert_checkfalse.sci, line: 21
+# File: modules/development_tools/macros/assert/assert_checktrue.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkfalse.sci, line: 35
-# File: macros/assert/assert_checktrue.sci, line: 35
+# File: modules/development_tools/macros/assert/assert_checkfalse.sci, line: 35
+# File: modules/development_tools/macros/assert/assert_checktrue.sci, line: 35
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkfilesequal.sci, line: 39
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 39
 #, c-format
 msgid ""
 "%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
 msgstr ""
 
 #
-# File: macros/assert/assert_checkfilesequal.sci, line: 57
-# File: macros/assert/assert_checkfilesequal.sci, line: 66
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 57
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 66
 #, c-format
 msgid "%s: The file %s does not exist.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkfilesequal.sci, line: 78
-# File: macros/assert/assert_checkfilesequal.sci, line: 88
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 78
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 88
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_checkfilesequal.sci, line: 117
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 117
 #, c-format
 msgid ""
 "%s: The content of computed file %s is different from the content of "
@@ -251,21 +251,21 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/assert/assert_checkfilesequal.sci, line: 126
-# File: macros/assert/assert_checkfilesequal.sci, line: 133
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 126
+# File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 133
 #, c-format
 msgid "%s: Cannot close file %s.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_computedigits.sci, line: 15
+# File: modules/development_tools/macros/assert/assert_computedigits.sci, line: 65
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/assert/assert_cond2reltol.sci, line: 47
-# File: macros/assert/assert_cond2reqdigits.sci, line: 48
+# File: modules/development_tools/macros/assert/assert_cond2reltol.sci, line: 47
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 48
 #, c-format
 msgid ""
 "%s: The number of output arguments %d do not match the number of input "
@@ -273,60 +273,60 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/assert/assert_cond2reqdigits.sci, line: 81
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 81
 #, c-format
 msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 
 #
-# File: macros/assert/assert_cond2reqdigits.sci, line: 85
+# File: modules/development_tools/macros/assert/assert_cond2reqdigits.sci, line: 85
 #, c-format
 msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
 msgstr ""
 
 #
-# File: macros/bench_run.sci, line: 74
-# File: macros/test_clean.sci, line: 97
+# File: modules/development_tools/macros/bench_run.sci, line: 73
+# File: modules/development_tools/macros/test_clean.sci, line: 97
 #, c-format
 msgid "%s is not an installed module"
 msgstr ""
 
 #
-# File: macros/bench_run.sci, line: 93
+# File: modules/development_tools/macros/bench_run.sci, line: 92
 msgid "error : Input argument sizes are not valid"
 msgstr ""
 
 #
-# File: macros/bench_run.sci, line: 106
-# File: macros/test_clean.sci, line: 135
-# File: macros/test_run.sci, line: 379
+# File: modules/development_tools/macros/bench_run.sci, line: 105
+# File: modules/development_tools/macros/test_clean.sci, line: 135
+# File: modules/development_tools/macros/test_run.sci, line: 379
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr ""
 
 #
-# File: macros/bench_run.sci, line: 112
+# File: modules/development_tools/macros/bench_run.sci, line: 111
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 26
+# File: modules/development_tools/macros/example_run.sci, line: 26
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A row array of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 29
+# File: modules/development_tools/macros/example_run.sci, line: 29
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row array of strings expected.\n"
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 33
+# File: modules/development_tools/macros/example_run.sci, line: 33
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A row array of strings or empty "
@@ -334,7 +334,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 36
+# File: modules/development_tools/macros/example_run.sci, line: 36
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row array of strings or empty "
@@ -342,32 +342,32 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 40
+# File: modules/development_tools/macros/example_run.sci, line: 40
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 43
+# File: modules/development_tools/macros/example_run.sci, line: 43
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 55
+# File: modules/development_tools/macros/example_run.sci, line: 55
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 62
+# File: modules/development_tools/macros/example_run.sci, line: 62
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
 msgstr ""
 
 #
-# File: macros/example_run.sci, line: 84
+# File: modules/development_tools/macros/example_run.sci, line: 84
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A '%s' module function name "
@@ -375,63 +375,63 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/scitest.sci, line: 32
+# File: modules/development_tools/macros/scitest.sci, line: 32
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
 msgstr ""
 
 #
-# File: macros/scitest.sci, line: 124
-# File: macros/scitest.sci, line: 130
+# File: modules/development_tools/macros/scitest.sci, line: 124
+# File: modules/development_tools/macros/scitest.sci, line: 130
 #, c-format
 msgid "Test failed ERROR DETECTED while executing %s"
 msgstr ""
 
 #
-# File: macros/scitest.sci, line: 145
+# File: modules/development_tools/macros/scitest.sci, line: 145
 #, c-format
 msgid "Test Failed. See : fc /L /N  %s"
 msgstr ""
 
 #
-# File: macros/scitest.sci, line: 147
+# File: modules/development_tools/macros/scitest.sci, line: 147
 #, c-format
 msgid "Test Failed. See : diff -wu  %s"
 msgstr ""
 
 #
-# File: macros/scitest.sci, line: 150
+# File: modules/development_tools/macros/scitest.sci, line: 150
 msgid "Test passed"
 msgstr ""
 
 #
-# File: macros/test_clean.sci, line: 116
-# File: macros/test_run.sci, line: 233
+# File: modules/development_tools/macros/test_clean.sci, line: 116
+# File: modules/development_tools/macros/test_run.sci, line: 233
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr ""
 
 #
-# File: macros/test_clean.sci, line: 141
-# File: macros/test_run.sci, line: 255
+# File: modules/development_tools/macros/test_clean.sci, line: 141
+# File: modules/development_tools/macros/test_run.sci, line: 255
 #, c-format
 msgid "%s: Wrong number of input arguments."
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 333
+# File: modules/development_tools/macros/test_run.sci, line: 333
 #, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 1093
+# File: modules/development_tools/macros/test_run.sci, line: 1109
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 1239
+# File: modules/development_tools/macros/test_run.sci, line: 1256
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
@@ -439,8 +439,8 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/testexamples.sci, line: 17
-# File: macros/testexamples.sci, line: 32
+# File: modules/development_tools/macros/testexamples.sce, line: 17
+# File: modules/development_tools/macros/testexamples.sce, line: 32
 #, c-format
 msgid "No variable %s_ref in reference file"
 msgstr ""

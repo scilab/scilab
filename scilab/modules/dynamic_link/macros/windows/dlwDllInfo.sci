@@ -98,7 +98,7 @@ function dllinfolist = dlwDllInfo(dllname, options)
     end
 
     if type(dllname) <> 10 | size(dllname) <> 1  then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "dllinfo", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "dllinfo", 1));
     end
 
     if fileinfo(dllname) == [] then
@@ -111,7 +111,7 @@ function dllinfolist = dlwDllInfo(dllname, options)
     end
 
     if type(options) <> 10 | size(options) <> 1 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "dllinfo", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "dllinfo", 2));
     end
 
     if ~(strcmpi(options, "imports")== 0 | strcmpi(options, "exports")== 0 | strcmpi(options, "machine")== 0) then

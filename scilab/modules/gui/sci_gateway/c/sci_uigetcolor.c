@@ -86,7 +86,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
         }
@@ -113,13 +113,13 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return FALSE;
         }
 
@@ -179,7 +179,7 @@ int sci_uigetcolor(char *fname, void* pvApiCtx)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
         }

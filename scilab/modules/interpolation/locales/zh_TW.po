@@ -48,8 +48,7 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s:重覆的節點是所有節點colinears (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 輸入參數長度錯誤 #%d and #%d: 應為相同長度.\n"
 
 #, c-format
@@ -57,8 +56,7 @@ msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤:未知的 '%s'  型別.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s: 輸入參數數值錯誤#%d and #%d: 相同大小才對.\n"
 
 #, c-format
@@ -152,8 +150,7 @@ msgstr "%s: 輸入參數長度錯誤#%d, #%d or #%d.\n"
 #
 # File: sci_gateway/c/sci_splin2d.c, line: 60
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr "%s: x 及/或 y 不是嚴格漸增排序 (或發現 +-inf ,+-無限大)\n"
 
 #, c-format

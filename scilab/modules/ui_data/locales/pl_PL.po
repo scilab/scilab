@@ -36,7 +36,7 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano ciągu znaków.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Niewłaściwy rozmiar parametru wejściowego nr %d: Oczekiwano ciągu "
 "znaków.\n"

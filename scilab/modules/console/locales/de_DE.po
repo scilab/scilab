@@ -27,8 +27,7 @@ msgstr "%s: diese Funktion wurde nicht implementiert.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
-"%s: diese Funktionalität wurde in diesem Modus nicht implementiert.\n"
+msgstr "%s: diese Funktionalität wurde in diesem Modus nicht implementiert.\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
@@ -63,12 +62,12 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falsche Größe des Eingangsarguments #%d: Eine Zeichenkette wird "
 "erwartet.\n"

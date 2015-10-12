@@ -33,7 +33,7 @@ matvar_t *GetCharVariable(void *pvApiCtx, int iVar, const char *name, int * pare
 
     if (in[iVar - 1]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "GetCharVariable");
+        Scierror(999, _("%s: Wrong type for first input argument: string expected.\n"), "GetCharVariable");
         return NULL;
     }
 

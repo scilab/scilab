@@ -49,7 +49,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -57,14 +58,15 @@ msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています : スカラー (>= 0) を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています : スカラー (>= 0) を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -786,7 +788,8 @@ msgstr "グラフィックハンドルのフィールド"
 msgid ""
 "Command is too long (more than %d characters long): could not send it to "
 "Scilab\n"
-msgstr "コマンドが長過ぎます (文字長が %d  を超えています); Scilabに送信できません\n"
+msgstr ""
+"コマンドが長過ぎます (文字長が %d  を超えています); Scilabに送信できません\n"
 
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr "[表示を続けますか? n(no) で中止、任意のキーで続けます]"

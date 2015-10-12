@@ -24,7 +24,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -35,7 +35,7 @@ msgid "Cannot play file."
 msgstr "ファイルを再生できません."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -44,7 +44,8 @@ msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d が間違っています: '%s' または '%s' を指定してください.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab sound モジュールがインストールされていません.\n"
@@ -66,7 +67,8 @@ msgstr "'mapsound' 関数参照"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #
 # File: macros/auread.sci, line: 43
@@ -104,7 +106,8 @@ msgstr "データファイルが切れています."
 
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
-msgstr "%s: 入力引数の値が間違っています: ファイル名には文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数の値が間違っています: ファイル名には文字列を指定してください.\n"
 
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr "データ配列の次元は 1または2次元としてください."
@@ -118,7 +121,9 @@ msgid "Error while writing sound file."
 msgstr "サウンド・ファイルの書き込み中にエラー。"
 
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
-msgstr "Mu-law は 8ビットデータでのみ使用可能です. method='linear' を代わりに使用してください."
+msgstr ""
+"Mu-law は 8ビットデータでのみ使用可能です. method='linear' を代わりに使用して"
+"ください."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -161,7 +166,9 @@ msgstr "2次元の値のみとする必要があります."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -169,19 +176,24 @@ msgstr "%s: 引数 %d の型が間違っています:　実数行列を指定し
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d.\n"
-msgstr "%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の値が間違っています:　%d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %s または %s , 整数または %d 整数のベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s または %s , 整数または %d 整数のベ"
+"クトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
 "scalar or %d-element vector.\n"
-msgstr "%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素ベクトルで指定してください.\n"
+msgstr ""
+"%s: 入力引数の値が間違っています: インデックスの範囲はスカラーまたは %d-要素"
+"ベクトルで指定してください.\n"
 
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ".wavファイルにRIFF識別子が含まれていません."
@@ -208,9 +220,10 @@ msgstr "%s: エラーが発生しました : %s はサポートされません.\
 #
 # File: macros/wavread.sci, line: 236
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
-msgstr "%s: エラーが起きました: ファイルフォーマットが不正です、 <%s>　チャンク読み取りエラー。\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgstr ""
+"%s: エラーが起きました: ファイルフォーマットが不正です、 <%s>　チャンク読み取"
+"りエラー。\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr "不正な .wav ファイル: フォーマット情報の前にデータが見つかりました."
@@ -233,7 +246,8 @@ msgstr "wavファイルの読み込みエラーです。"
 # File: macros/wavread.sci, line: 236
 #, c-format
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
-msgstr "%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
+msgstr ""
+"%s: エラーが起きました: データ圧縮フォーマット %s サポートされません。\n"
 
 msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr "16ビット/サンプルを超える .wav ファイルを読み込むことはできません."

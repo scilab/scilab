@@ -27,7 +27,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de text simple.\n"
@@ -106,12 +106,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- S'està eliminant els fitxers d'ajuda --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: El navegador de l'ajuda està deshabilitat en el mode %s.\n"
 
@@ -156,7 +150,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: S'ha ignorat el fitxer %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -297,11 +291,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argument #%d és d'un tipus incorrecte: Ha de ser un text simple.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un enter.\n"
@@ -327,8 +316,8 @@ msgstr "%s: El fitxer de CHAPTER té un format incorrecte a la línia %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser una cadena de "
 "caràcters que acabi amb .last_successful_build.\n"

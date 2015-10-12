@@ -1404,7 +1404,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for element #%d of input argument #%d : A string or macro expected.\n"), funname.data(), i + 1, 4);
+            Scierror(999, _("%s: Wrong type for element #%d of input argument #%d : string or macro expected.\n"), funname.data(), i + 1, 4);
             il_state->DecreaseRef();
             il_state->killMe();
             il_tcur->DecreaseRef();

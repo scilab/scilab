@@ -110,7 +110,7 @@ int readSingleString(void* pvApiCtx, int rhsPosition, char** out, const char* fn
 
     if (rowsArgument != 1 || colsArgument != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, rhsPosition);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, rhsPosition);
         return -1;
     }
 

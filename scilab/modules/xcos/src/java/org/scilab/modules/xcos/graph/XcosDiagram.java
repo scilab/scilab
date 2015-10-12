@@ -137,11 +137,6 @@ public class XcosDiagram extends ScilabGraph {
     // the associated parameters
     private final ScicosParameters scicosParameters;
 
-    // the associated object uid
-    private final long uid;
-    // the kind of the diagram : can be either a DIAGRAM or a BLOCK (eg. for superblocks)
-    private final Kind kind;
-
     /**
      * Constructor
      *
@@ -149,10 +144,6 @@ public class XcosDiagram extends ScilabGraph {
      */
     public XcosDiagram(final long diagramId, final Kind kind) {
         super(new mxGraphModel(), Xcos.getInstance().getStyleSheet());
-
-        this.uid = diagramId;
-        this.kind = kind;
-        new JavaController().referenceObject(uid);
 
         // Scicos related setup
         if (kind == Kind.DIAGRAM) {
@@ -162,7 +153,8 @@ public class XcosDiagram extends ScilabGraph {
         }
 
         // add the default parent (the JGraphX layer)
-        XcosCell parent = new XcosCell(this.uid, this.kind);
+        XcosCell parent = new XcosCell(diagramId, kind);
+        new JavaController().referenceObject(diagramId);
         ((mxICell) getModel().getRoot()).insert(parent);
         setDefaultParent(parent);
 
@@ -332,7 +324,7 @@ public class XcosDiagram extends ScilabGraph {
 
     @Override
     public String validateCell(final Object cell, final Hashtable<Object, Object> context) {
-        if (kind == Kind.BLOCK) {
+        if (getKind() == Kind.BLOCK) {
             return validateChildDiagram(cell, context);
         } else {
             // does not perform any validation on a root diagram
@@ -1639,14 +1631,14 @@ public class XcosDiagram extends ScilabGraph {
      * @return the model ID
      */
     public long getUID() {
-        return uid;
+        return ((XcosCell) getDefaultParent()).getUID();
     }
 
     /**
      * @return Kind.DIAGRAM or Kind.BLOCK
      */
     public Kind getKind() {
-        return kind;
+        return ((XcosCell) getDefaultParent()).getKind();
     }
 
     /**
@@ -1908,12 +1900,13 @@ public class XcosDiagram extends ScilabGraph {
                         if (f != null && filetype != null) {
                             filetype.load(file, XcosDiagram.this);
                         } else {
-                            //                        	FIXME: implement the model decoding
-                            //                        	controller.getObjectProperty(uid, k, p, v)
+                            XcosCellFactory.insertChildren(controller, XcosDiagram.this);
                         }
 
                         instance.setLastError("");
                     } catch (Exception e) {
+                        e.printStackTrace();
+
                         Throwable ex = e;
                         while (ex instanceof RuntimeException) {
                             ex = ex.getCause();
@@ -1953,7 +1946,7 @@ public class XcosDiagram extends ScilabGraph {
     public XcosDiagram getRootDiagram() {
         JavaController controller = new JavaController();
         long[] parent = new long[1];
-        controller.getObjectProperty(uid, kind, ObjectProperties.PARENT_DIAGRAM, parent);
+        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
 
         Collection<XcosDiagram> diagrams = Xcos.getInstance().getDiagrams(parent[0]);
         return diagrams.stream().filter(d -> d.getUID() == parent[0])
@@ -2033,7 +2026,7 @@ public class XcosDiagram extends ScilabGraph {
 
     @Override
     public File getSavedFile() {
-        if (kind == Kind.DIAGRAM) {
+        if (getKind() == Kind.DIAGRAM) {
             return super.getSavedFile();
         } else {
             return getRootDiagram().getSavedFile();
@@ -2130,11 +2123,5 @@ public class XcosDiagram extends ScilabGraph {
                 super.setCell(current);
             }
         };
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        JavaController controller = new JavaController();
-        controller.deleteObject(uid);
     }
 }

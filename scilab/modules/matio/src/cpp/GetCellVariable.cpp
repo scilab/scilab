@@ -32,7 +32,7 @@ matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfil
 
     if (in[iVar - 1]->isCell() == false)
     {
-        Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "GetCellVariable");
+        Scierror(999, _("%s: Wrong type for first input argument: string expected.\n"), "GetCellVariable");
         return NULL;
     }
 

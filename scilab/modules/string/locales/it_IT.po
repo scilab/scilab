@@ -68,7 +68,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
@@ -78,8 +78,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso 'u' "
-"(maiuscolo) o 'l' (minuscolo).\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
+"'u' (maiuscolo) o 'l' (minuscolo).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -105,8 +105,7 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha dei valori sbagliati: erano attese delle "
 "stringhe non-vuote.\n"
@@ -124,19 +123,13 @@ msgstr ""
 "reale o una matrice di stringhe.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"singola stringa.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
@@ -157,12 +150,6 @@ msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha dei valori sbagliati: deve essere >=1.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
-"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"

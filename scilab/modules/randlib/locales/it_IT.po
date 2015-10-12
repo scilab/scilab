@@ -64,8 +64,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
-"%dx%d.\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa %dx"
+"%d.\n"
 
 #, c-format
 msgid ""

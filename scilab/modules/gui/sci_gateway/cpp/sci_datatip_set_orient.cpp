@@ -184,13 +184,13 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                     }
                     else
                     {
-                        Scierror(999, _("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong dimension for input argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
                 }
                 else
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                     return 1;
                 }
             }

@@ -71,7 +71,7 @@ public class BrowserView extends View {
             BrowserTreeNodeData data = (BrowserTreeNodeData) node.getUserObject();
 
             controller.getObjectProperty(data.getId(), data.getKind(), ObjectProperties.CHILDREN, children);
-            int childrenLen = (int) children.size();
+            int childrenLen = children.size();
             for (int j = 0 ; j < childrenLen; j++) {
                 long childUID = children.get(j);
                 Kind childKind = controller.getKind(childUID);
@@ -133,6 +133,7 @@ public class BrowserView extends View {
         });
     }
 
+    @Override
     public void objectUnreferenced(final long uid, final Kind kind, long refCount) {
         if (model == null) {
             return;

@@ -23,7 +23,7 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%i: слід використовувати тип "
 "«string».\n"

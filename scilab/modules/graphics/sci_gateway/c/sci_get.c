@@ -121,7 +121,7 @@ int sci_get(char *fname, void *pvApiCtx)
                 // Retrieve a matrix of string at position 2.
                 if (getAllocatedSingleString(pvApiCtx, piAddrstkAdr, &stkAdr))
                 {
-                    Scierror(202, _("%s: Wrong type for argument #%d: Single string expected.\n"), fname, 2);
+                    Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                     return 1;
                 }
 
@@ -186,14 +186,14 @@ int sci_get(char *fname, void *pvApiCtx)
 
             if (isScalar(pvApiCtx, piAddrl2) == 0 || isStringType(pvApiCtx, piAddrl2) == 0)
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
             // Retrieve a matrix of double at position 2.
             if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -213,7 +213,7 @@ int sci_get(char *fname, void *pvApiCtx)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrl1, &pstFirst))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -253,13 +253,13 @@ int sci_get(char *fname, void *pvApiCtx)
 
                     if (isScalar(pvApiCtx, piAddrl2) == 0 || isStringType(pvApiCtx, piAddrl2) == 0)
                     {
-                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
 
                     if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                     {
-                        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                         return 1;
                     }
                 }

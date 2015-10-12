@@ -18,11 +18,11 @@ msgstr ""
 "Language: ca\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -90,8 +90,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #, c-format
@@ -236,8 +235,8 @@ msgstr ""
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr ""
-"LOGGER_set_logfile: Error - No s'ha pogut obrir el fitxer de traces '%s' "
-"(%s)\n"
+"LOGGER_set_logfile: Error - No s'ha pogut obrir el fitxer de traces "
+"'%s' (%s)\n"
 
 #, c-format
 msgid "LOGGER-Default: %s%s"
@@ -283,8 +282,8 @@ msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
 msgstr ""
-"%s:%d:OLE_load_FAT:Error: No s'ha pogut carregar el bloc, import sector = "
-"0x%x, fat position = 0x%x"
+"%s:%d:OLE_load_FAT:Error: No s'ha pogut carregar el bloc, import sector = 0x"
+"%x, fat position = 0x%x"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
@@ -359,8 +358,7 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:Error: No s'ha pogut obrir el fitxer %s per a "
 "obrir-lo (%s)\n"
@@ -368,8 +366,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Addició %s:%s:%s size = %d\n"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Addició %s:%s:%s size = %d\n"
 
 #, c-format
 msgid ""

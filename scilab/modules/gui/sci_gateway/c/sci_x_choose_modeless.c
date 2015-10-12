@@ -54,7 +54,7 @@ int sci_x_choose_modeless(char *fname, void* pvApiCtx)
         // Retrieve a matrix of string at position 1.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddritemsAdr, &nbRowItems, &nbColItems, &itemsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
@@ -77,7 +77,7 @@ int sci_x_choose_modeless(char *fname, void* pvApiCtx)
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRow, &nbCol, &messageAdr))
         {
             freeAllocatedMatrixOfString(nbRowItems, nbColItems, itemsAdr);
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             return 1;
         }
 
@@ -118,20 +118,20 @@ int sci_x_choose_modeless(char *fname, void* pvApiCtx)
             // Retrieve a matrix of string at position 3.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrbuttonLabelAdr, &nbRow, &nbCol, &buttonLabelAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 freeAllocatedMatrixOfString(nbRow, nbCol, buttonLabelAdr);
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 3);
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return FALSE;
         }
 

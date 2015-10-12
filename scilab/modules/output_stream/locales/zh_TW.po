@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
 #, c-format
@@ -38,8 +38,7 @@ msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr "%s: 輸入參數之數目錯誤: 資料與格式不吻合.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 
 # File: src/c/sciprint_full.c, line: 38
@@ -85,7 +84,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -101,8 +100,7 @@ msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -110,8 +108,7 @@ msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #, c-format
@@ -464,8 +461,7 @@ msgstr "輸入參數 %d 之型態錯誤: 應為串列 (list).\n"
 msgid "Problem with comparison symbol...\n"
 msgstr "與比較符號 ( comparison symbol) 相關之問題...\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 
 msgid "Wrong number of input arguments."
@@ -1122,7 +1118,7 @@ msgstr "不滿足半正定條件.\n"
 
 #
 # File: src/c/errmsg.c, line: 1260
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr "第一參數型態錯誤:  應為單一字串.\n"
 
 #
@@ -1350,8 +1346,7 @@ msgstr "缺 endfunction 指令.\n"
 
 #
 # File: src/c/errmsg.c, line: 1485
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr "左邊指示: 等待句點 (.) 或一左括弧.\n"
 
 #
@@ -1521,8 +1516,7 @@ msgstr "結束最佳化 (線性搜索失敗).\n"
 #
 # File: src/c/msgs.c, line: 647
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr "sfact : 未完全收斂,相對精度為 : 10**(%s).\n"
 
 #
@@ -1910,7 +1904,9 @@ msgstr "%s: 第 #%d 輸入參數錯誤: 應該是字串.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 '%s' .\n"
+msgstr ""
+"%s: 第 #%d 輸入參數的數值錯誤: 應該是 '%s', '%s', '%s', '%s', '%s' 或 "
+"'%s' .\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
@@ -1941,8 +1937,7 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format

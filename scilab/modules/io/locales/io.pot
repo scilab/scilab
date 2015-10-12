@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,291 +10,417 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/sci_file.c, line: 61
-# File: sci_gateway/c/sci_file.c, line: 69
-# File: sci_gateway/c/sci_file.c, line: 77
-# File: sci_gateway/c/sci_file.c, line: 123
-# File: sci_gateway/c/sci_file.c, line: 138
-# File: sci_gateway/c/sci_file.c, line: 153
-# File: sci_gateway/c/sci_file.c, line: 333
-# File: sci_gateway/c/sci_file.c, line: 345
-# File: sci_gateway/c/sci_getenv.c, line: 50
-# File: sci_gateway/c/sci_getenv.c, line: 67
-# File: sci_gateway/c/sci_getenv.c, line: 76
-# File: sci_gateway/c/sci_getenv.c, line: 98
-# File: sci_gateway/c/sci_host.c, line: 53
-# File: sci_gateway/c/sci_save.c, line: 72
-# File: sci_gateway/c/sci_setenv.c, line: 43
-# File: sci_gateway/c/sci_setenv.c, line: 57
-# File: sci_gateway/c/sci_setenv.c, line: 74
-# File: sci_gateway/c/sci_setenv.c, line: 86
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 50
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 67
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 76
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 98
+# File: modules/io/sci_gateway/c/sci_setenv.c, line: 42
+# File: modules/io/sci_gateway/c/sci_setenv.c, line: 56
+# File: modules/io/sci_gateway/c/sci_setenv.c, line: 73
+# File: modules/io/sci_gateway/c/sci_setenv.c, line: 85
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 100
-# File: sci_gateway/c/sci_file.c, line: 106
-# File: sci_gateway/c/sci_file.c, line: 112
-# File: sci_gateway/c/sci_getenv.c, line: 56
-# File: sci_gateway/c/sci_setenv.c, line: 49
-# File: sci_gateway/c/sci_setenv.c, line: 63
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 82
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 95
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 113
+# File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 43
+# File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 45
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 165
-# File: sci_gateway/c/sci_file.c, line: 171
-# File: sci_gateway/c/sci_file.c, line: 233
-# File: sci_gateway/c/sci_file.c, line: 251
-# File: sci_gateway/c/sci_file.c, line: 270
-# File: sci_gateway/c/sci_file.c, line: 289
-# File: sci_gateway/c/sci_file.c, line: 308
-# File: sci_gateway/c/sci_file.c, line: 369
-# File: sci_gateway/c/sci_file.c, line: 390
-# File: sci_gateway/c/sci_file.c, line: 421
-# File: sci_gateway/c/sci_file.c, line: 442
-# File: sci_gateway/c/sci_file.c, line: 463
-# File: sci_gateway/c/sci_getenv.c, line: 113
-# File: sci_gateway/c/sci_getenv.c, line: 149
-# File: sci_gateway/c/sci_host.c, line: 63
-# File: sci_gateway/c/sci_setenv.c, line: 97
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 111
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 150
+# File: modules/io/sci_gateway/c/sci_setenv.c, line: 96
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_file.c, line: 185
-#, c-format
-msgid "%s: The file \"%s\" does not exist.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_file.c, line: 190
-#, c-format
-msgid "%s: The file does not exist.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_file.c, line: 339
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_file.c, line: 353
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_getenv.c, line: 82
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_getenv.c, line: 125
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 125
 #, c-format
 msgid "%s: Undefined environment variable %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_getenv.c, line: 138
+# File: modules/io/sci_gateway/c/sci_getenv.c, line: 138
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_host.c, line: 45
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 48
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 87
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 66
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 60
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_load.c, line: 40
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 65
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 93
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 127
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 77
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 130
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 138
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 332
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 533
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 71
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 136
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 144
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 194
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 309
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 424
 #, c-format
-msgid "%s: Feature %s is obsolete.\n"
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_load.c, line: 40
-# File: sci_gateway/c/sci_load.c, line: 41
-# File: sci_gateway/c/sci_load.c, line: 42
-# File: sci_gateway/c/sci_save.c, line: 116
-# File: sci_gateway/c/sci_save.c, line: 117
-# File: sci_gateway/c/sci_save.c, line: 118
-msgid "Warning"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_load.c, line: 41
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 73
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 101
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 133
 #, c-format
-msgid "%s: See help('load') for the rationale.\n"
+msgid "%s: Wrong type for input argument #%d : A single string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_load.c, line: 42
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 117
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 158
+#, c-format
+msgid "%s: The file \"%s\" does not exist.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 164
+#, c-format
+msgid "%s: The file does not exist.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 197
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 213
+#, c-format
+msgid "%s: %d logical unit already used.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 216
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 219
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 302
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 322
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 353
+#, c-format
+msgid "%s: Unknown file format.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 222
+#, c-format
+msgid "%s: File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 225
+#, c-format
+msgid "%s: File \"%s\" does not exist or read access denied.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 228
+#, c-format
+msgid "%s: Can not open File \"%s\"\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 256
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 268
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 282
+#, c-format
+msgid "%s: Cannot close file %d.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 313
+#, c-format
+msgid "%s: Wrong input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 345
+#, c-format
+msgid "%s: \n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 360
 #, c-format
 msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
+"%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
+"\" \n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_save.c, line: 116
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 451
+# File: modules/io/sci_gateway/cpp/sci_file.cpp, line: 461
 #, c-format
-msgid "%s: Scilab 6 will not support the file format used.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_save.c, line: 117
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 230
+#, c-format
+msgid "%ls: Processing file: %ls\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 238
+#, c-format
+msgid "%ls: Error in file %ls.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_genlib.cpp, line: 291
+# File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 75
+# File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 86
+msgid "Redefining permanent variable.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_lib.cpp, line: 69
+#, c-format
+msgid "%s: %s is not a valid lib path.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 38
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 80
+#, c-format
+msgid "%s: %s is not a valid module file.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_load.cpp, line: 101
+#, c-format
+msgid "%s: Unable to open file: \"%ls\".\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 88
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 82
+#, c-format
+msgid "File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 96
+#, c-format
+msgid "File \"%s\" does not exist or read access denied.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 108
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 93
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 120
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 105
 #, c-format
 msgid ""
-"%s: Please quote the variable declaration. Example, save('myData.sod',a) "
-"becomes save('myData.sod','a').\n"
+"%s: Wrong type for input argument #%d : A real scalar or file descriptor "
+"expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_save.c, line: 118
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 149
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 413
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 544
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 605
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 646
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 155
+# File: modules/io/sci_gateway/cpp/sci_write.cpp, line: 438
+msgid "Incorrect file or format.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 159
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 174
 #, c-format
-msgid "%s: See help('save') for the rational.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
 
 #
-# File: src/c/getenvc.c, line: 48
-# File: src/c/getenvc.c, line: 61
-# File: src/c/getenvc.c, line: 84
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 167
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 182
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 295
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 419
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 611
+#, c-format
+msgid "%s: Wrong input argument %d.\n"
+msgstr ""
+
+#
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 390
+# File: modules/io/sci_gateway/cpp/sci_read.cpp, line: 587
+#, c-format
+msgid "End of file at line %d.\n"
+msgstr ""
+
+#
+# File: modules/io/src/c/getenvc.c, line: 48
+# File: modules/io/src/c/getenvc.c, line: 62
+# File: modules/io/src/c/getenvc.c, line: 89
 #, c-format
 msgid "Undefined environment variable %s.\n"
 msgstr ""
 
 #
-# File: src/c/v2cuniterror.c, line: 26
+# File: modules/io/src/c/v2cuniterror.c, line: 26
 msgid "Too many files opened!\n"
 msgstr ""
 
 #
-# File: src/c/v2cuniterror.c, line: 34
+# File: modules/io/src/c/v2cuniterror.c, line: 34
 #, c-format
 msgid "File \"%s\" already exists.\n"
 msgstr ""
 
 #
-# File: src/c/v2cuniterror.c, line: 38
+# File: modules/io/src/c/v2cuniterror.c, line: 38
 #, c-format
 msgid "\"%s\" directory write access denied.\n"
 msgstr ""
 
 #
-# File: src/c/v2cuniterror.c, line: 47
+# File: modules/io/src/c/v2cuniterror.c, line: 47
 #, c-format
 msgid "File \"%s\" does not exist.\n"
 msgstr ""
 
 #
-# File: src/c/v2cuniterror.c, line: 51
+# File: modules/io/src/c/v2cuniterror.c, line: 51
 #, c-format
 msgid "File \"%s\" read access denied.\n"
 msgstr ""
 
 #
-# File: src/c/v2cuniterror.c, line: 59
+# File: modules/io/src/c/v2cuniterror.c, line: 59
 msgid "unmanaged error by v2cunit.\n"
 msgstr ""
 
-# File: macros/%_save.sci, line: 53
-# File: macros/%_save.sci, line: 1025
-#, c-format
-msgid "%s: handle no more valid ignored.\n"
-msgstr ""
-
-#
-# File: macros/%_save.sci, line: 932
-#, c-format
-msgid "%s : Invalid entity %s\n"
-msgstr ""
-
-#
-# File: macros/%_sodload.sci, line: 355
+# File: modules/io/macros/%_sodload.sci, line: 376
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
 
 #
-# File: macros/%_sodload.sci, line: 942
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-
-#
-# File: macros/%_sodload.sci, line: 974
-#, c-format
-msgid "%s: variable '%s' does not exist in '%s'.\n"
-msgstr ""
-
-#
-# File: macros/halt.sci, line: 22
+# File: modules/io/macros/halt.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
 msgstr ""
 
 #
-# File: macros/input.sci, line: 17
+# File: modules/io/macros/halt.sci, line: 26
+# File: modules/io/macros/input.sci, line: 21
+# File: modules/io/macros/input.sci, line: 35
+# File: modules/io/macros/unix_g.sci, line: 36
+# File: modules/io/macros/unix_s.sci, line: 33
+# File: modules/io/macros/unix_w.sci, line: 34
+# File: modules/io/macros/unix_x.sci, line: 34
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: modules/io/macros/input.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/input.sci, line: 43
+# File: modules/io/macros/input.sci, line: 43
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
 msgstr ""
 
 #
-# File: macros/unix_g.sci, line: 32
-# File: macros/unix_s.sci, line: 29
-# File: macros/unix_w.sci, line: 30
-# File: macros/unix_x.sci, line: 30
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#
-# File: macros/unix_g.sci, line: 44
+# File: modules/io/macros/unix_g.sci, line: 44
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
 
 #
-# File: macros/unix_g.sci, line: 85
-# File: macros/unix_g.sci, line: 87
-# File: macros/unix_s.sci, line: 52
-# File: macros/unix_w.sci, line: 55
-# File: macros/unix_x.sci, line: 61
+# File: modules/io/macros/unix_g.sci, line: 85
+# File: modules/io/macros/unix_g.sci, line: 87
+# File: modules/io/macros/unix_s.sci, line: 52
+# File: modules/io/macros/unix_w.sci, line: 55
+# File: modules/io/macros/unix_x.sci, line: 61
 #, c-format
 msgid "%s: The system interpreter does not answer..."
 msgstr ""
 
 #
-# File: macros/unix_s.sci, line: 44
-# File: macros/unix_s.sci, line: 56
-# File: macros/unix_w.sci, line: 44
-# File: macros/unix_x.sci, line: 47
+# File: modules/io/macros/unix_s.sci, line: 44
+# File: modules/io/macros/unix_s.sci, line: 56
+# File: modules/io/macros/unix_w.sci, line: 44
+# File: modules/io/macros/unix_x.sci, line: 47
 #, c-format
 msgid "%s: error during %s execution"
 msgstr ""
 
 #
-# File: macros/unix_w.sci, line: 61
+# File: modules/io/macros/unix_w.sci, line: 61
 #, c-format
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"

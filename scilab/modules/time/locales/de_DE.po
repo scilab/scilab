@@ -47,7 +47,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falsche Größe des Eingangsarguments #%d: Eine Zeichenkette wird "
 "erwartet.\n"
@@ -137,8 +137,7 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: %s muß zwischen %d und %d "
 "liegen.\n"
@@ -183,14 +182,12 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument '%d: reeller Vektor erwartet.\n"
+msgstr "%s: falscher Typ für Eingangsargument '%d: reeller Vektor erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -207,8 +204,7 @@ msgstr "%s: Sie müssen tic() vor toc() aufrufen.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
+msgstr "%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
 
 #, c-format
 msgid ""
@@ -219,8 +215,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 msgid "Sat"
 msgstr "Samstag"

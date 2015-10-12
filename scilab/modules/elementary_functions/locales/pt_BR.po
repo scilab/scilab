@@ -128,8 +128,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
-"\"%s\", \"%s\", \"%s\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", \"%s"
+"\", \"%s\", \"%s\" ou \"%s\".\n"
 
 msgid "This usage of the second argument of gsort is obsolete."
 msgstr ""
@@ -162,11 +162,10 @@ msgstr ""
 "inteiro positivo.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
-"\"%s\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", \"%s"
+"\" ou \"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
@@ -174,12 +173,12 @@ msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "texto.\n"
@@ -415,8 +414,7 @@ msgstr ""
 "matriz quadrada.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: a matriz não é "
 "diagonalizável.\n"
@@ -619,8 +617,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento #%d: esperava-se um número real.\n"
+msgstr "%s: Tipo incorreto para o argumento #%d: esperava-se um número real.\n"
 
 #, c-format
 msgid ""
@@ -628,8 +625,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -657,8 +653,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se pelo "
 "menos o tamanho do argumento de entrada #%d.\n"
@@ -802,8 +798,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format

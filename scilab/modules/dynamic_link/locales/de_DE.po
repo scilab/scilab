@@ -43,7 +43,7 @@ msgstr ""
 "sein.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
@@ -170,8 +170,7 @@ msgstr "Eingangspunkt %s in der gemeisamen Bibliothek %d.\n"
 
 #, c-format
 msgid "Cannot open shared files max entry %d reached.\n"
-msgstr ""
-"Kann gemeinsame Dateien nicht öffnen; maximale Einträge %d erreicht.\n"
+msgstr "Kann gemeinsame Dateien nicht öffnen; maximale Einträge %d erreicht.\n"
 
 #, c-format
 msgid "Entry name %s.\n"
@@ -273,13 +272,12 @@ msgstr ""
 "der Unix-Welt von Natur aus viele verschiedene Anbieter gibt."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: eine Matrix mit Zeichenketten "
 "erwartet.\n"
@@ -536,12 +534,6 @@ msgstr "%s: falsche Größe für Eingangsargument #%d: %d erwartet.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr "%s: falsche Anzahl an Eingangsargumenten: %d, %d oder %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr ""
-"%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkettenmatrix "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

@@ -105,15 +105,18 @@ msgstr "メイプルによって生成された微分方程式コード"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
@@ -129,7 +132,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: (%d,%d) expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: (%d,%d)  を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: (%d,%d)  を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
@@ -141,7 +145,8 @@ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 実数を1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -150,7 +155,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: syntax error in given expression\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 指定された式に構文エラーがあります\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 指定された式に構文エラーがあります\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
@@ -188,8 +194,7 @@ msgstr "5: trcit を超過せずに1ステップ実行し,戻る"
 msgid "Meaning of jactype:"
 msgstr "jactype の意味:"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr "0 : 反復法 (ヤコビアンは使われません('adams' または 'stiff' のみ))"
 
 msgid "1 : user-supplied full jacobian"
@@ -213,7 +218,9 @@ msgid "Meaning of ml,mu:"
 msgstr "ml,mu の意味:"
 
 msgid "If jactype = 4 or 5 ml and mu are the lower and upper half-bandwidths"
-msgstr "jactype = 4 または 5 の場合, ml および mu は帯行列の下半分および上半分の幅となります."
+msgstr ""
+"jactype = 4 または 5 の場合, ml および mu は帯行列の下半分および上半分の幅と"
+"なります."
 
 msgid "of the banded jacobian: the band is the i,j's with i-ml <= j <= ny-1"
 msgstr "帯行列ヤコビアン: 帯は i-ml <= j <= ny-1 の範囲の i,j の要素です."
@@ -228,7 +235,8 @@ msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "Jの1列目では mu 個のゼロの後に以下の要素が続いています"
 
 msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
-msgstr "df1/dy1, df2/dy1, df3/dy1,... (1+ml 個の非ゼロとなる可能性があるエントリ)"
+msgstr ""
+"df1/dy1, df2/dy1, df3/dy1,... (1+ml 個の非ゼロとなる可能性があるエントリ)"
 
 msgid "column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc"
 msgstr "列2 は, mu-1 個のゼロの後に df1/dx2, df2/dx2,などが続く構成です."

@@ -32,7 +32,7 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -43,11 +43,11 @@ msgstr ""
 "{%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -67,13 +67,11 @@ msgstr "%s: Esta función aun no ha sido implementada.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Cell expected.\n"
-msgstr ""
-"%s: Tipo incorrecto del argumento de entrada: Se esperaba una celda.\n"
+msgstr "%s: Tipo incorrecto del argumento de entrada: Se esperaba una celda.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr ""
-"%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
+msgstr "%s: Tipo incorrecto de argumentos de entrada: Se esperaban strings.\n"
 
 #, c-format
 msgid ""
@@ -92,8 +90,7 @@ msgstr ""
 "argumento no coinciden con el contenido de la celda.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Esta función no a sido implementada: Soporte para hiper-matrices.\n"
 
@@ -141,8 +138,7 @@ msgstr ""
 "cuadrada.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba %s, %s,'%s' o "
 "'%s'.\n"
@@ -231,8 +227,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: No hay grilla de segundo orden en Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s', '%s' o "
 "'%s'.\n"

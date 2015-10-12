@@ -27,7 +27,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -35,8 +35,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -49,10 +48,6 @@ msgid ""
 msgstr ""
 "%s: Gli argomenti in ingresso #%d e #%d hanno una dimensione sbagliata: "
 "erano attese le stesse dimensioni.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
 
 msgid "File"
 msgstr "_File"
@@ -556,8 +551,7 @@ msgid "You do not have the permissions to read this file"
 msgstr "Non si dispone dei permessi per leggere questo file"
 
 msgid "An error occurred when exporting the code using FOP"
-msgstr ""
-"Si è verificato un errore durante l'esportazione del codice usando FOP"
+msgstr "Si è verificato un errore durante l'esportazione del codice usando FOP"
 
 msgid "An error occurred when printing"
 msgstr "Si è verificato un errore durante la stampa"

@@ -34,7 +34,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -48,8 +48,7 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: дані не відповідають формату.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: формат даних є "
 "невідповідним.\n"
@@ -99,7 +98,7 @@ msgstr ""
 "тип.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -121,8 +120,7 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не вдалося закрити журнал.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не вдалося закрити журнал "
 "%d.\n"
@@ -134,8 +132,7 @@ msgstr ""
 "до журналу.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: не вдалося призупинити запис "
 "до журналу %d.\n"
@@ -394,8 +391,7 @@ msgstr "Помилковий тип параметра №%d: слід вико�
 msgid "Problem with comparison symbol...\n"
 msgstr "Проблема з символом порівняння…\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Помилкова кількість вхідних параметрів: для функції не передбачено вхідних "
 "параметрів\n"
@@ -534,8 +530,7 @@ msgstr "Помилкова розмірність параметра %d.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Transfer matrix expected.\n"
-msgstr ""
-"Помилковий тип параметра %d: слід використовувати матрицю переходів.\n"
+msgstr "Помилковий тип параметра %d: слід використовувати матрицю переходів.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: In state space form expected.\n"
@@ -580,8 +575,7 @@ msgid "Elements of %dth argument must be in increasing order.\n"
 msgstr "Елементи параметра %d слід вказувати за зростанням.\n"
 
 msgid "Elements of first argument are not (strictly) increasing.\n"
-msgstr ""
-"Елементи першого параметра вказано не у порядку строгого зростання.\n"
+msgstr "Елементи першого параметра вказано не у порядку строгого зростання.\n"
 
 #, c-format
 msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
@@ -892,7 +886,7 @@ msgstr "Операнди операцій / і \\ не повинні місти
 msgid "semi def fails.\n"
 msgstr "помилка часткового визначення.\n"
 
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr ""
 "Помилковий тип першого вхідного параметра: слід використовувати одинарне "
 "значення типу «string».\n"
@@ -1016,8 +1010,7 @@ msgstr "Таблицю властивостей інтерфейсу переп�
 
 #, c-format
 msgid "Too many global variables! Max number is %d.\n"
-msgstr ""
-"Занадто багато загальних змінних! Максимальна кількість дорівнює %d.\n"
+msgstr "Занадто багато загальних змінних! Максимальна кількість дорівнює %d.\n"
 
 msgid "Error while writing in file: disk full or deleted file.\n"
 msgstr ""
@@ -1069,8 +1062,7 @@ msgstr ""
 msgid "endfunction is missing.\n"
 msgstr "Не вистачає endfunction.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr "Ліва частина команди: слід було вказати крапку або ліву дужку.\n"
 
 msgid "Instruction left hand side: waiting for a name.\n"
@@ -1118,8 +1110,7 @@ msgstr "Розбіжність під час виконання кроків QR.
 
 #, c-format
 msgid "The top %d x %d block may not be in Schur form.\n"
-msgstr ""
-"Верхню частину, %d  x %d блоків, можливо, записано не у формі Шура.\n"
+msgstr "Верхню частину, %d  x %d блоків, можливо, записано не у формі Шура.\n"
 
 #, c-format
 msgid "The first %d singular values may be incorrect.\n"
@@ -1189,8 +1180,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Завершення оптимізації (невдала спроба лінійного пошуку).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr "sfact: перевищено відносну точність неповної збіжності: 10**(%s).\n"
 
 msgid "Help file inconsistent...\n"
@@ -1333,8 +1323,7 @@ msgstr "Попередження: особлива точка функції «l
 
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
-msgstr ""
-"На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
+msgstr "На час %s: занадто багато ітерацій для досягнення бажаної точності.\n"
 
 msgid "stepsize not significant in rkqc.\n"
 msgstr "stepsize не має значення у rkqc.\n"
@@ -1417,8 +1406,7 @@ msgstr "Невизначений спосіб показу для цього т�
 
 #, c-format
 msgid "Warning: primitive function %s has moved.\n"
-msgstr ""
-"Попередження: функцію-примітив %s було пересунуто до іншого модуля.\n"
+msgstr "Попередження: функцію-примітив %s було пересунуто до іншого модуля.\n"
 
 msgid "Rebuild your function libraries.\n"
 msgstr "Повторно зберіть бібліотеки ваших функцій.\n"
@@ -1480,8 +1468,7 @@ msgstr "Попередження"
 #, c-format
 msgid ""
 "%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
-msgstr ""
-"%s: %s: %s є надто малим. Подальше спрощення за критерієм неможливе.\n"
+msgstr "%s: %s: %s є надто малим. Подальше спрощення за критерієм неможливе.\n"
 
 #, c-format
 msgid ""
@@ -1564,8 +1551,7 @@ msgstr ""
 "символів.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано модель простору "
 "станів.\n"

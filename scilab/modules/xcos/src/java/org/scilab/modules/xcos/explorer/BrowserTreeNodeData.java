@@ -239,7 +239,7 @@ public class BrowserTreeNodeData {
     }
 
     private static CharSequence escapeVector(char sep, VectorOfString v) {
-        final int length = (int) v.size();
+        final int length = v.size();
 
         StringBuilder str = new StringBuilder();
         if (length > 1) {

@@ -43,11 +43,11 @@ function packages = atomsGetDepParents(package,section)
     else
 
         if type(section) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsGetDepParents",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsGetDepParents",2));
         end
 
         if size(section,"*")<>1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsGetDepParents",2));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsGetDepParents",2));
         end
 
         if and(section<>["user","allusers","all"]) then

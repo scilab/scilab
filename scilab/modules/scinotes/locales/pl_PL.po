@@ -19,15 +19,14 @@ msgstr ""
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
+msgstr "Moduł '%s' programu Scilab jest wyłączony w trybie -nogui lub -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Brak możliwości odczytu argumentu wejściowego nr %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -35,8 +34,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Brak pamięci.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -49,10 +47,6 @@ msgid ""
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d i nr %d: Oczekuje "
 "takich samych wymiarów.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
 
 msgid "File"
 msgstr "Plik"

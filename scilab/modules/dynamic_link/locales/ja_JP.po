@@ -21,15 +21,20 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d より短い文字列ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d より短い文字列ベクトルを指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Strings expected.\n"
@@ -40,7 +45,7 @@ msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr "%s: 第2引数には, 共有ライブラリのユニークなIDを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -49,7 +54,9 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定し�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A int expected.\n"
@@ -83,7 +90,8 @@ msgstr "%s: 入力引数の型が間違っています: 文字列を指定して
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
@@ -249,14 +257,18 @@ msgid "Microsoft Visual Studio C x86 Compiler not found."
 msgstr "Microsoft Visual Studio C x86 コンパイラが見つかりません."
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
-msgstr "Intel Fortran コンパイラ 9, 10, 11 または 12 コンパイラが見つかりません."
+msgstr ""
+"Intel Fortran コンパイラ 9, 10, 11 または 12 コンパイラが見つかりません."
 
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
-msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) x64 コンパイラがインストールされていません."
+msgstr ""
+"Microsoft Visual Studio C 2008 (またはそれ以降) x64 コンパイラがインストール"
+"されていません."
 
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
-msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) コンパイラが見つかりません."
+msgstr ""
+"Microsoft Visual Studio C 2008 (またはそれ以降) コンパイラが見つかりません."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -284,21 +296,25 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
-msgstr "Unix業界には複数のベンダが存在するため,'haveacompiler'関数がサポートされているのはWindows環境のみです."
+msgstr ""
+"Unix業界には複数のベンダが存在するため,'haveacompiler'関数がサポートされてい"
+"るのはWindows環境のみです."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列 < 999 を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 文字列の行列 < 999 を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
@@ -310,7 +326,8 @@ msgstr "%s: 入力引数 #%d の値が間違っています: または [] を指
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 既存のファイルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 既存のファイルを指定してください.\n"
 
 #, c-format
 msgid "%s: %s already loaded in scilab."
@@ -424,8 +441,8 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s: 警告: Scilabは, Scilabソースコードの場所を見つけることができませんでした. "
-"http://bugzilla.scilab.org/ でバグ・レポートを提出してください.\n"
+"%s: 警告: Scilabは, Scilabソースコードの場所を見つけることができませんでし"
+"た. http://bugzilla.scilab.org/ でバグ・レポートを提出してください.\n"
 
 #
 # File: macros/ilib_compile.sci, line: 120
@@ -453,7 +470,9 @@ msgstr "%s: コマンド:\n"
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
 "is not empty:\n"
-msgstr "%s: 警告: コンパイル時にエラーコードは返されませんでしたが, エラー出力が空ではありません.\n"
+msgstr ""
+"%s: 警告: コンパイル時にエラーコードは返されませんでしたが, エラー出力が空で"
+"はありません.\n"
 
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
@@ -477,7 +496,8 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 # File: macros/ilib_gen_Make_unix.sci, line: 58
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr "   %s: コンパイルファイル (Makefile*, libtool...) を TMPDIRにコピーしました\n"
+msgstr ""
+"   %s: コンパイルファイル (Makefile*, libtool...) を TMPDIRにコピーしました\n"
 
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 102
@@ -489,13 +509,17 @@ msgstr "   %s: TMPDIRに %s をコピーしました\n"
 #, c-format
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
-msgstr "   %s: %s をコピーできません: コピー元とコピー先のディレクトリが同じ (%s) です.\n"
+msgstr ""
+"   %s: %s をコピーできません: コピー元とコピー先のディレクトリが同じ (%s) で"
+"す.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
 "%s\n"
-msgstr "%s: 引数 #%d の値が間違っています: 既存のファイルを指定してください. 以下が指定されています: %s\n"
+msgstr ""
+"%s: 引数 #%d の値が間違っています: 既存のファイルを指定してください. 以下が指"
+"定されています: %s\n"
 
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 123
@@ -553,7 +577,9 @@ msgstr "   標準エラー: %s\n"
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
 "ilib_verbose(2) for more information.\n"
-msgstr "%s: コンパイラ検出時にエラーが発生しました. 詳細は, ilib_verbose(2) を参照ください.\n"
+msgstr ""
+"%s: コンパイラ検出時にエラーが発生しました. 詳細は, ilib_verbose(2) を参照く"
+"ださい.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
@@ -561,15 +587,14 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr "%s: 入力引数の数が不間違っています: %d,%d または %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が不間違っています: %d,%d または %d 個の引数を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Failed to add include path : %s"

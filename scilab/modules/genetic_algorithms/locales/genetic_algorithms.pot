@@ -1,8 +1,8 @@
-# Localization of the module genetic_algorithms-macros
+# Localization of the module genetic_algorithms
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,105 +10,69 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: demos/GAIsing2ddemo.sce, line: 63
-# File: demos/GAdemo.sce, line: 86
-# File: demos/GAdemo.sce, line: 132
-# File: demos/MOGAdemo.sce, line: 83
-# File: demos/NSGA2demo.sce, line: 83
-# File: demos/NSGAdemo.sce, line: 85
-#, c-format
-msgid "%s: optimization starting, please wait ...\n"
-msgstr ""
-
-#
-# File: demos/genetic_algorithms.dem.gateway.sce, line: 12
-msgid "Genetic algorithms"
-msgstr ""
-
-#
-# File: demos/genetic_algorithms.dem.gateway.sce, line: 13
-msgid "Genetic algorithms and Ising problem"
-msgstr ""
-
-#
-# File: demos/genetic_algorithms.dem.gateway.sce, line: 14
-msgid "MultiObjective Genetic Algorithm"
-msgstr ""
-
-#
-# File: demos/genetic_algorithms.dem.gateway.sce, line: 15
-msgid "Niched Sharing Genetic Algorithm"
-msgstr ""
-
-#
-# File: demos/genetic_algorithms.dem.gateway.sce, line: 16
-msgid "Niched Sharing Genetic Algorithm II"
-msgstr ""
-
-#
-# File: macros/coding_ga_binary.sci, line: 46
-# File: macros/coding_ga_identity.sci, line: 18
+# File: modules/genetic_algorithms/macros/coding_ga_binary.sci, line: 46
+# File: modules/genetic_algorithms/macros/coding_ga_identity.sci, line: 18
 #, c-format
 msgid "%s: wrong direction"
 msgstr ""
 
 #
-# File: macros/optim_ga.sci, line: 29
+# File: modules/genetic_algorithms/macros/optim_ga.sci, line: 29
 #, c-format
 msgid "%s: ga_f is mandatory"
 msgstr ""
 
 #
-# File: macros/optim_moga.sci, line: 29
-# File: macros/optim_nsga.sci, line: 28
+# File: modules/genetic_algorithms/macros/optim_moga.sci, line: 29
+# File: modules/genetic_algorithms/macros/optim_nsga.sci, line: 28
 msgid "optim_moga: ga_f is mandatory"
 msgstr ""
 
 #
-# File: macros/optim_moga.sci, line: 56
-# File: macros/optim_nsga.sci, line: 61
-# File: macros/optim_nsga2.sci, line: 53
+# File: modules/genetic_algorithms/macros/optim_moga.sci, line: 56
+# File: modules/genetic_algorithms/macros/optim_nsga.sci, line: 61
+# File: modules/genetic_algorithms/macros/optim_nsga2.sci, line: 53
 #, c-format
 msgid "%s: Initialization of the population\n"
 msgstr ""
 
 #
-# File: macros/optim_nsga2.sci, line: 26
+# File: modules/genetic_algorithms/macros/optim_nsga2.sci, line: 26
 msgid "optim_nsga2: ga_f is mandatory"
 msgstr ""
 
 #
-# File: macros/output_ga_default.sci, line: 13
-# File: macros/output_moga_default.sci, line: 13
-# File: macros/output_nsga_default.sci, line: 13
+# File: modules/genetic_algorithms/macros/output_ga_default.sci, line: 13
+# File: modules/genetic_algorithms/macros/output_moga_default.sci, line: 13
+# File: modules/genetic_algorithms/macros/output_nsga_default.sci, line: 13
 #, c-format
 msgid "%s: iteration %d / %d \n"
 msgstr ""
 
 #
-# File: macros/output_ga_default.sci, line: 14
-# File: macros/output_moga_default.sci, line: 14
-# File: macros/output_nsga2_default.sci, line: 14
-# File: macros/output_nsga_default.sci, line: 14
+# File: modules/genetic_algorithms/macros/output_ga_default.sci, line: 14
+# File: modules/genetic_algorithms/macros/output_moga_default.sci, line: 14
+# File: modules/genetic_algorithms/macros/output_nsga2_default.sci, line: 14
+# File: modules/genetic_algorithms/macros/output_nsga_default.sci, line: 14
 #, c-format
 msgid "    min / max value found = %f / %f\n"
 msgstr ""
 
 #
-# File: macros/output_nsga2_default.sci, line: 13
+# File: modules/genetic_algorithms/macros/output_nsga2_default.sci, line: 13
 #, c-format
 msgid "%s: iteration %d / %d\n"
 msgstr ""
 
 #
-# File: macros/pareto_filter.sci, line: 14
+# File: modules/genetic_algorithms/macros/pareto_filter.sci, line: 14
 #, c-format
 msgid "%s: F_in is mandatory"
 msgstr ""

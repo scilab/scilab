@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
 
     if (pStrSomechars->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "completion", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "completion", 1);
         return types::Function::Error;
     }
 
@@ -103,7 +103,7 @@ types::Function::ReturnValue sci_completion(types::typed_list &in, int _iRetCoun
 
         if (pStrDictionary->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "completion", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "completion", 2);
             return types::Function::Error;
         }
 

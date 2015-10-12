@@ -141,8 +141,7 @@ msgstr ""
 "enter positiu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -152,13 +151,13 @@ msgstr ""
 "matriu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -390,8 +389,7 @@ msgstr ""
 "quadrada.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: La matriu no es pot "
 "diagonalitzar.\n"
@@ -420,16 +418,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
+msgstr "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un "
-"escalar/matriu/hipermatriu de nombres enters positius.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un escalar/"
+"matriu/hipermatriu de nombres enters positius.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -448,8 +445,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un "
-"escalar/vector/matriu/hipermatriu de nombres enters positius.\n"
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un escalar/"
+"vector/matriu/hipermatriu de nombres enters positius.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -491,8 +488,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
@@ -601,8 +597,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -611,8 +606,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong argument #%d: Positive integer expected.\n"
-msgstr ""
-"%s: L'argument #%d és incorrecte: Ha de ser un nombre enter positiu.\n"
+msgstr "%s: L'argument #%d és incorrecte: Ha de ser un nombre enter positiu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
@@ -631,8 +625,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de tenir com a mínim "
 "la de l'argument #%d.\n"
@@ -768,8 +762,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format

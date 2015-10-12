@@ -25,7 +25,7 @@ msgstr ""
 "colonne non è compatibile "
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"

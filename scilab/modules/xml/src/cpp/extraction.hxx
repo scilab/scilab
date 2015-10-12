@@ -256,7 +256,7 @@ int sci_extraction(char * fname, void* pvApiCtx)
 
     if (!isStringType(pvApiCtx, fieldaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: string expected.\n"), fname, 1);
         return 0;
     }
 

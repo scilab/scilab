@@ -33,7 +33,7 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: el paràmetre d'entrada #%d té una mida incorrecta: s'esperava una "
 "cadena.\n"
@@ -45,11 +45,11 @@ msgstr ""
 "conjunt {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -95,8 +95,7 @@ msgstr ""
 "primer argument no concorda amb el contingut especificat per a les cel·les.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Aquesta característica no està implementada: Suport per hipermatrius.\n"
 
@@ -145,8 +144,7 @@ msgstr ""
 "quadrada.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s, %s,'%s' o "
 "'%s'.\n"
@@ -235,8 +233,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: No hi ha reixa menor a Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s', '%s' o "
 "'%s'.\n"

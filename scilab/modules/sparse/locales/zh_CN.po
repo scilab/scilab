@@ -353,7 +353,8 @@ msgstr "%s：输入参数的数目错误：至少应该输入%d个。\n"
 msgid ""
 "%s: Wrong type for input argument #%d : A real or complex matrix or a sparse "
 "matrix or a function expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为实数或复数矩阵，或稀疏矩阵，或函数。\n"
+msgstr ""
+"%s：第%d个输入参数的类型错误：应该为实数或复数矩阵，或稀疏矩阵，或函数。\n"
 
 #, c-format
 msgid ""
@@ -424,7 +425,7 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s：输入参数的数目错误：应该为%d个或%d个。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format

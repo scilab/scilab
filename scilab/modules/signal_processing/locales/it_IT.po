@@ -334,8 +334,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -390,8 +389,7 @@ msgstr ""
 "intero positivo.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un intero "
 "positivo.\n"
@@ -481,8 +479,7 @@ msgstr ""
 "tipo frazionario razionale.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
 "aray con %d elementi.\n"

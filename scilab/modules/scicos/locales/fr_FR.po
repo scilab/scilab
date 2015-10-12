@@ -47,8 +47,7 @@ msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
@@ -266,16 +265,14 @@ msgstr ""
 "pris en charge pour outtb.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : Erreur. Le type %d de la matrice d'entier scalaire n'est pas encore "
 "pris en charge pour outtb.\n"
 
 #, c-format
 msgid "%s : error. Type %d not yet supported for outtb.\n"
-msgstr ""
-"%s : Erreur. Le type %d n'est pas encore pris en charge pour outtb.\n"
+msgstr "%s : Erreur. Le type %d n'est pas encore pris en charge pour outtb.\n"
 
 msgid "scheduling problem"
 msgstr "problème d'ordonnancement"
@@ -720,8 +717,7 @@ msgstr ""
 "caractères attendue.\n"
 
 msgid "Can't convert old diagram (problem in version)"
-msgstr ""
-"Impossible de convertir l'ancien diagramme (problème dans la version)"
+msgstr "Impossible de convertir l'ancien diagramme (problème dans la version)"
 
 #, c-format
 msgid ""
@@ -797,8 +793,7 @@ msgid "Input port %s size is: %s"
 msgstr "La dimension du port d'entrée %s est : %s"
 
 msgid "Block has connected output port<br />with incompatible type."
-msgstr ""
-"Le bloc a un port de sortie connecté<br />avec un type incompatible :"
+msgstr "Le bloc a un port de sortie connecté<br />avec un type incompatible :"
 
 #, c-format
 msgid "Output port %s type is: %s"
@@ -868,8 +863,7 @@ msgstr ""
 "Le nombre de traversées de zéro dans le bloc %d ne peut pas être déterminé."
 
 msgid "Not enough information to find port sizes.\n"
-msgstr ""
-"Il n'y a pas assez d'informations pour trouver la taille des ports.\n"
+msgstr "Il n'y a pas assez d'informations pour trouver la taille des ports.\n"
 
 msgid "I cannot find a link with undetermined size.\n"
 msgstr "Impossible de trouver un lien avec une taille indéterminée.\n"
@@ -891,16 +885,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined size:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet "
-"avertissement.</em><br />Le  port de sortie du bloc a une dimension "
-"indéterminée :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port de sortie du bloc a une dimension indéterminée :"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block output "
 "port has a non-determined type:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet "
-"avertissement.</em><br />Le  port de sortie du bloc a un type indéterminé :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port de sortie du bloc a un type indéterminé :"
 
 #, c-format
 msgid "Output port %s type."
@@ -914,16 +907,15 @@ msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined size:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet "
-"avertissement.</em><br />Le  port d'entrée du bloc a une dimension "
-"indéterminée :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port d'entrée du bloc a une dimension indéterminée :"
 
 msgid ""
 "<em>Please update the diagram to avoid this warning.</em><br />Block input "
 "port has a non-determined type:"
 msgstr ""
-"<em>Veuillez mettre à jour le diagramme pour éviter cet "
-"avertissement.</em><br />Le  port d'entrée du bloc a un type indéterminé :"
+"<em>Veuillez mettre à jour le diagramme pour éviter cet avertissement.</"
+"em><br />Le  port d'entrée du bloc a un type indéterminé :"
 
 msgid ""
 "Highlighted block(s) have connected ports \n"
@@ -1098,8 +1090,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for block parameter '%s': %s(%s) expected, getting %s"
-msgstr ""
-"%s : Type erroné du paramètre '%s' du bloc : %s(%s) attendu, %s obtenu"
+msgstr "%s : Type erroné du paramètre '%s' du bloc : %s(%s) attendu, %s obtenu"
 
 msgid "There are too many Modelica files.\n"
 msgstr "Il y a trop de fichiers Modelica.\n"

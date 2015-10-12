@@ -24,7 +24,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -35,7 +35,7 @@ msgid "Cannot play file."
 msgstr "Не удалось воспроизвести файл."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -200,8 +200,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Произошла ошибка: %s не подерживается.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Произошла ошибка: неверный формат файла. Ошибка чтения блока <%s>.\n"
 
@@ -225,8 +224,7 @@ msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr "Не удалось прочитать .wav файл с более чем 16-ю битами на сэмпл."
 
 msgid "Sample limit vector must have 2 entries."
-msgstr ""
-"Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
+msgstr "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Неверные границы сэмплов (нужно указывать их по возрастанию)."

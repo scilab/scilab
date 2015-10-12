@@ -53,7 +53,7 @@ int sci_addModulePreferences(char * fname, void *pvApiCtx)
 
         if (!isStringType(pvApiCtx, addr))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, i + 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%i: string expected.\n"), fname, i + 1);
             for (int j = 0; j < i; j++)
             {
                 if (array[j])

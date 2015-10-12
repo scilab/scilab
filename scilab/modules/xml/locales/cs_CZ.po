@@ -33,7 +33,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -61,13 +61,12 @@ msgid "%s: XML Document does not exist.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean nebo řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgid "%s: Wrong dimension for input argument #%d: string expected.\n"
 msgstr "%s: Špatný rozměr vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -76,8 +75,7 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván neprázdný řetězec.\n"
 
 #, c-format
-msgid ""
-"%s: The XML Document has not an URI and there is no second argument.\n"
+msgid "%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr "%s: Dokument XML nemá URI a neexistuje druhý argument.\n"
 
 #, c-format
@@ -105,14 +103,13 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLList neexistuje.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong dimension for input argument #%d: A string or a double expected.\n"
+"%s: Wrong dimension for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: Špatný rozměr vstupního argumentu #%d: Očekáván řetězec nebo číslo s "
 "dvojitou přesností.\n"
@@ -143,16 +140,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a single integer "
-"expected\n"
+"%s: Wrong type for input argument #%d: string or single integer expected\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo jedno celé "
 "číslo\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a single integer "
-"expected.\n"
+"%s: Wrong type for input argument #%d: string or single integer expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo jedno celé "
 "číslo.\n"
@@ -363,7 +358,7 @@ msgid "%s: No root element.\n"
 msgstr "%s: Žádný kořenový prvek.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%i: Očekáván řetězec.\n"
 
 #, c-format

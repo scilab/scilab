@@ -50,7 +50,7 @@ int sci_setmenu(char *fname, void* pvApiCtx)
         // Unset a Menu of Scilab Main Window
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return FALSE;
         }
 
@@ -63,14 +63,14 @@ int sci_setmenu(char *fname, void* pvApiCtx)
 
         if (isScalar(pvApiCtx, piAddrmenuNameAdr) == FALSE)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
             return FALSE;
         }
 
         // Retrieve a matrix of double at position 1.
         if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
 
@@ -116,7 +116,7 @@ int sci_setmenu(char *fname, void* pvApiCtx)
             // Retrieve a matrix of double at position 2.
             if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -136,7 +136,7 @@ int sci_setmenu(char *fname, void* pvApiCtx)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -218,14 +218,14 @@ int sci_setmenu(char *fname, void* pvApiCtx)
             // Retrieve a matrix of double at position 2.
             if (getAllocatedSingleString(pvApiCtx, piAddrmenuNameAdr, &menuNameAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return FALSE;
         }
 

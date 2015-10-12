@@ -277,7 +277,10 @@ int Libraries::librarieslist(std::list<std::wstring>& lst)
 {
     for (auto lib : libs)
     {
-        lst.push_back(lib.first.getName());
+        if (lib.second->empty() == false)
+        {
+            lst.push_back(lib.first.getName());
+        }
     }
 
     return static_cast<int>(lst.size());

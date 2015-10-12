@@ -311,6 +311,8 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
             uuid = UUID.randomUUID().toString();
         }
 
+        // FIXME: fix a crash on DnD and Tab restore
+
         final XcosTab tab = new XcosTab(graph, uuid);
         ScilabTabFactory.getInstance().addToCache(tab);
 

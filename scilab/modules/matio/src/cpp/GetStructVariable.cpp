@@ -32,7 +32,7 @@ matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matf
 
     if (in[iVar - 1]->isStruct() == false)
     {
-        Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "GetStructVariable");
+        Scierror(999, _("%s: Wrong type for first input argument: string expected.\n"), "GetStructVariable");
         return NULL;
     }
 

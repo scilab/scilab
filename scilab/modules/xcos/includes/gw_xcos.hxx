@@ -17,6 +17,7 @@
 #include "dynlib_xcos.h"
 
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_Xcos, XCOS_IMPEXP);
+CPP_GATEWAY_PROTOTYPE_EXPORT(sci_xcosCellCreated, XCOS_IMPEXP);
 
 #endif /* GW_XCOS_HXX_ */
 

@@ -157,8 +157,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Tamanho incorreto para o argumento %d: esperava-se (%d,%d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
 "uma grandeza escalar.\n"

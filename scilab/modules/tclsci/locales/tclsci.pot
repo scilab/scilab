@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,192 +10,45 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/gw_tclsci.c, line: 72
-msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/gw_tclsci.c, line: 77
-msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_DeleteInterp.c, line: 32
-# File: sci_gateway/c/sci_TCL_EvalFile.c, line: 47
-# File: sci_gateway/c/sci_TCL_EvalStr.c, line: 49
-# File: sci_gateway/c/sci_TCL_ExistArray.c, line: 42
-# File: sci_gateway/c/sci_TCL_ExistInterp.c, line: 35
-# File: sci_gateway/c/sci_TCL_ExistVar.c, line: 39
-# File: sci_gateway/c/sci_TCL_GetVar.c, line: 49
-# File: sci_gateway/c/sci_TCL_SetVar.c, line: 35
-# File: sci_gateway/c/sci_TCL_UnsetVar.c, line: 41
-# File: sci_gateway/c/sci_TCL_UpVar.c, line: 44
-#, c-format
-msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_DeleteInterp.c, line: 46
-# File: sci_gateway/c/sci_TCL_EvalFile.c, line: 68
-# File: sci_gateway/c/sci_TCL_EvalStr.c, line: 62
-# File: sci_gateway/c/sci_TCL_ExistArray.c, line: 55
-# File: sci_gateway/c/sci_TCL_ExistVar.c, line: 53
-# File: sci_gateway/c/sci_TCL_GetVar.c, line: 62
-# File: sci_gateway/c/sci_TCL_SetVar.c, line: 50
-# File: sci_gateway/c/sci_TCL_UnsetVar.c, line: 55
-# File: sci_gateway/c/sci_TCL_UpVar.c, line: 60
-#, c-format
-msgid "%s: No such slave interpreter.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_DeleteInterp.c, line: 57
-# File: sci_gateway/c/sci_TCL_EvalFile.c, line: 82
-# File: sci_gateway/c/sci_TCL_EvalFile.c, line: 111
-# File: sci_gateway/c/sci_TCL_EvalStr.c, line: 70
-# File: sci_gateway/c/sci_TCL_ExistArray.c, line: 61
-# File: sci_gateway/c/sci_TCL_ExistArray.c, line: 91
-# File: sci_gateway/c/sci_TCL_ExistInterp.c, line: 49
-# File: sci_gateway/c/sci_TCL_ExistVar.c, line: 59
-# File: sci_gateway/c/sci_TCL_ExistVar.c, line: 87
-# File: sci_gateway/c/sci_TCL_GetVar.c, line: 68
-# File: sci_gateway/c/sci_TCL_GetVar.c, line: 144
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 107
-# File: sci_gateway/c/sci_TCL_SetVar.c, line: 56
-# File: sci_gateway/c/sci_TCL_SetVar.c, line: 135
-# File: sci_gateway/c/sci_TCL_UnsetVar.c, line: 61
-# File: sci_gateway/c/sci_TCL_UnsetVar.c, line: 93
-# File: sci_gateway/c/sci_TCL_UpVar.c, line: 66
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_EvalFile.c, line: 54
-#, c-format
-msgid "%s: File %s not found.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_EvalFile.c, line: 100
-# File: sci_gateway/c/sci_TCL_EvalFile.c, line: 104
-#, c-format
-msgid ""
-"%s, at line %i of file %s\n"
-"\t%s.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_EvalStr.c, line: 149
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or vector of strings "
-"expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_GetVar.c, line: 104
-# File: sci_gateway/c/sci_TCL_GetVar.c, line: 110
-# File: src/c/ScilabEval.c, line: 65
-# File: src/c/ScilabEval.c, line: 121
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_GetVar.c, line: 136
-#, c-format
-msgid "%s: Could not read Tcl Variable.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 42
-msgid "Alpha Release"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 45
-msgid "Beta Release"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 48
-msgid "Final Release"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 51
-msgid "Unknown Release"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_GetVersion.c, line: 102
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_SetVar.c, line: 101
-msgid "This function doesn't work with Complex.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_SetVar.c, line: 113
-msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_SetVar.c, line: 139
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_TCL_UpVar.c, line: 105
-#, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr ""
-
-#
-# File: src/c/EnvTclTk.c, line: 103
-# File: src/c/EnvTclTk.c, line: 112
-# File: src/c/EnvTclTk.c, line: 121
-# File: src/c/EnvTclTk.c, line: 135
-# File: src/c/EnvTclTk.c, line: 149
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 103
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 112
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 121
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 135
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 149
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
 
 #
-# File: src/c/EnvTclTk.c, line: 104
-# File: src/c/EnvTclTk.c, line: 113
-# File: src/c/EnvTclTk.c, line: 122
-# File: src/c/EnvTclTk.c, line: 136
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 104
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 113
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 122
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 136
 msgid "Impossible to set environment variable."
 msgstr ""
 
 #
-# File: src/c/EnvTclTk.c, line: 150
+# File: modules/tclsci/src/c/EnvTclTk.c, line: 150
 msgid "Impossible to set system encoding."
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 67
+# File: modules/tclsci/src/c/InitTclTk.c, line: 67
 msgid ""
 "The SCI environment variable is not set.\n"
 "TCL initialisation failed !\n"
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 92
-# File: src/c/InitTclTk.c, line: 114
+# File: modules/tclsci/src/c/InitTclTk.c, line: 92
+# File: modules/tclsci/src/c/InitTclTk.c, line: 114
 msgid ""
 "Unable to find Tcl initialisation scripts.\n"
 "Check your SCI environment variable.\n"
@@ -203,31 +56,31 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 102
+# File: modules/tclsci/src/c/InitTclTk.c, line: 102
 msgid ""
 "The SCI environment variable is not set.\n"
 "Tcl initialisation failed !\n"
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 135
+# File: modules/tclsci/src/c/InitTclTk.c, line: 135
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 142
+# File: modules/tclsci/src/c/InitTclTk.c, line: 142
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 153
+# File: modules/tclsci/src/c/InitTclTk.c, line: 153
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 168
+# File: modules/tclsci/src/c/InitTclTk.c, line: 168
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/Tcl init process. Could not set SciPath: "
@@ -235,7 +88,7 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/InitTclTk.c, line: 185
+# File: modules/tclsci/src/c/InitTclTk.c, line: 185
 #, c-format
 msgid ""
 "Tcl Error: Error during the Scilab/TK init process. Error while loading %s: "
@@ -243,151 +96,69 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/ScilabEval.c, line: 48
-#, c-format
-msgid "TCL_EvalScilabCmd %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 81
-#, c-format
-msgid "Execution starts for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 97
-#, c-format
-msgid "Execution ends for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 113
-msgid " Flushing starts for queued commands.\n"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 129
-msgid "Warning: Too many callbacks in queue!\n"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 139
-#, c-format
-msgid "Flushed execution starts for %s - No option"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 145
-#, c-format
-msgid "Flushed execution starts for %s - seq"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 158
-#, c-format
-msgid "Flushed execution ends for %s"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 172
-msgid "Flushing ends\n"
-msgstr ""
-
-#
-# File: src/c/ScilabEval.c, line: 195
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
-
-#
-# File: src/c/TCL_ArrayDim.c, line: 66
-# File: src/c/TCL_ArrayDim.c, line: 77
-# File: src/c/TCL_ArrayExist.c, line: 33
+# File: modules/tclsci/src/c/TCL_ArrayDim.c, line: 64
+# File: modules/tclsci/src/c/TCL_ArrayDim.c, line: 75
+# File: modules/tclsci/src/c/TCL_ArrayExist.c, line: 33
 #, c-format
 msgid "Tcl Error : %s\n"
 msgstr ""
 
 #
-# File: src/c/TCL_ArraySize.c, line: 34
+# File: modules/tclsci/src/c/TCL_ArraySize.c, line: 34
 #, c-format
 msgid "Tcl Error: %s\n"
 msgstr ""
 
 #
-# File: src/c/setvar.c, line: 49
+# File: modules/tclsci/src/c/setvar.c, line: 49
 msgid "Variable too long.\n"
 msgstr ""
 
 #
-# File: src/c/setvar.c, line: 55
-# File: src/c/setvar.c, line: 83
-# File: src/c/setvar.c, line: 109
-# File: src/c/setvar.c, line: 141
+# File: modules/tclsci/src/c/setvar.c, line: 55
+# File: modules/tclsci/src/c/setvar.c, line: 83
+# File: modules/tclsci/src/c/setvar.c, line: 109
+# File: modules/tclsci/src/c/setvar.c, line: 141
 #, c-format
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr ""
 
 #
-# File: src/notclsci/notclsci.c, line: 39
+# File: modules/tclsci/src/notclsci/notclsci.c, line: 39
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr ""
 
-# File: demos/tclsci.dem.gateway.sce, line: 10
-msgid "Tcl/Tk"
-msgstr ""
-
-#
-# File: demos/tclsci.dem.gateway.sce, line: 12
-msgid "Color"
-msgstr ""
-
-#
-# File: demos/tclsci.dem.gateway.sce, line: 13
-msgid "Puzzle"
-msgstr ""
-
-#
-# File: demos/tclsci.dem.gateway.sce, line: 14
-msgid "Scroll"
-msgstr ""
-
-#
-# File: demos/tclsci.dem.gateway.sce, line: 15
-msgid "Scale"
-msgstr ""
-
-#
-# File: macros/TCL_CreateSlave.sci, line: 18
+# File: modules/tclsci/macros/TCL_CreateSlave.sci, line: 18
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/TCL_CreateSlave.sci, line: 22
+# File: modules/tclsci/macros/TCL_CreateSlave.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: macros/TCL_CreateSlave.sci, line: 26
+# File: modules/tclsci/macros/TCL_CreateSlave.sci, line: 26
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: macros/TCL_CreateSlave.sci, line: 34
+# File: modules/tclsci/macros/TCL_CreateSlave.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Boolean expected.\n"
 msgstr ""
 
 #
-# File: macros/TCL_CreateSlave.sci, line: 38
+# File: modules/tclsci/macros/TCL_CreateSlave.sci, line: 38
 #, c-format
 msgid "%s: Slave interpreter already exists.\n"
 msgstr ""
 
 #
-# File: macros/gettklib.sci, line: 43
+# File: modules/tclsci/macros/gettklib.sci, line: 43
 #, c-format
 msgid "Error %s while loading library %s"
 msgstr ""

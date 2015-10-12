@@ -50,7 +50,7 @@ types::Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCo
         if (!arg->isString() || arg->getAs<types::String>()->getSize() != 1)
         {
             delete args;
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "testAnalysis", i);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "testAnalysis", i);
             return types::Function::Error;
         }
         if (i > 1)

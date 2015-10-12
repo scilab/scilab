@@ -34,8 +34,7 @@ msgstr "%s: не вдалося відкрити файл %s.\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
-"%s: помилкова версія формату файлів SOD. Мало бути: %d Виявлено: %d\n"
+msgstr "%s: помилкова версія формату файлів SOD. Мало бути: %d Виявлено: %d\n"
 
 #, c-format
 msgid "%s: Unable to delete existing variable \"%s\"."
@@ -59,7 +58,7 @@ msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr "%s: не вдалося оновити запис версії форматування HDF5 у «%s»."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -73,8 +72,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s: некоректний H5Object.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або H5Object.\n"
@@ -84,7 +82,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -142,7 +140,7 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано H5Object.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок.\n"
 
@@ -180,8 +178,7 @@ msgstr ""
 "рядок або вектор-стовпчик з дійсних значень.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано масив-рядок з "
 "рядків.\n"
@@ -198,8 +195,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s: не вдалося використати H5Object: некоректний об’єкт.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або «boolean».\n"
@@ -252,8 +248,7 @@ msgstr "%s: некоректна кількість параметрів: пар
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -271,12 +266,10 @@ msgstr "%s: некоректний формат Scilab HDF5\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути більше за %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути більше за %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано рядок (string) "
 "або число з подвійною точністю (double).\n"
@@ -518,8 +511,7 @@ msgstr "Не вдалося створити вказаний файл hdf5: %s.
 #, c-format
 msgid ""
 "Cannot open the file: %s, an empty file with the same name already exists."
-msgstr ""
-"Не вдалося відкрити файл: %s, вже існує порожній файл з такою назвою."
+msgstr "Не вдалося відкрити файл: %s, вже існує порожній файл з такою назвою."
 
 #, c-format
 msgid "Cannot append the file (not HDF5): %s."
@@ -775,8 +767,7 @@ msgid "Invalid rank, must be in the interval [0, %d]."
 msgstr "Некоректний ранг. Ранг має належати інтервалу [0, %d]."
 
 msgid "No converter found for the specified target datatype."
-msgstr ""
-"Для вказаного типу даних призначення не виявлено засобу перетворення."
+msgstr "Для вказаного типу даних призначення не виявлено засобу перетворення."
 
 msgid "Cannot create a new dataspace."
 msgstr "Не вдалося створити новий простір даних."

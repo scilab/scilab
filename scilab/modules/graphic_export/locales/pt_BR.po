@@ -66,7 +66,7 @@ msgstr ""
 "manipulador de figura ou um escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para  argumento de entrada #%d: esperava-se uma matriz de "
 "textos.\n"
@@ -107,7 +107,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
@@ -144,11 +144,11 @@ msgstr ""
 "quantidade de elementos ou o tamanho da figura pode corrigir este erro."
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
 msgstr ""
-"Impossível criar arquivo de exportação; por favor, relate o erro em "
-"http://bugzilla.scilab.org."
+"Impossível criar arquivo de exportação; por favor, relate o erro em http://"
+"bugzilla.scilab.org."
 
 msgid ""
 "Unable to create export file, the file cannot be created or is locked by an "

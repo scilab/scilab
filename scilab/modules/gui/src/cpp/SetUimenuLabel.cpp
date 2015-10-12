@@ -23,13 +23,13 @@ int SetUimenuLabel(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int 
 
     if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: A string expected.\n"), "Label");
+        Scierror(999, _("Wrong type for '%s' property: string expected.\n"), "Label");
         return SET_PROPERTY_ERROR;
     }
 
     if (nbCol != 1)
     {
-        Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Label");
+        Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Label");
         return SET_PROPERTY_ERROR;
     }
 

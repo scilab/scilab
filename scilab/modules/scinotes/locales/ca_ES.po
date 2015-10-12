@@ -27,7 +27,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -35,8 +35,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -49,10 +48,6 @@ msgid ""
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
 "tenir les mateixes dimensions.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
 
 msgid "File"
 msgstr "Fitxer"
@@ -800,15 +795,14 @@ msgstr "Pestanya anterior"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"Heu de desar les modificacions per executar aquest fitxer a l'Scilab."
+msgstr "Heu de desar les modificacions per executar aquest fitxer a l'Scilab."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"
 "Are you sure to continue ?"
 msgstr ""
-"Aquest fitxer és molt gran. És millor l'opció \"Executa el fitxer al "
-"Scilab\".\n"
+"Aquest fitxer és molt gran. És millor l'opció \"Executa el fitxer al Scilab"
+"\".\n"
 "Esteu segur que voleu continuar?"
 
 msgid "Enter line number"

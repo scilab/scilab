@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
 
         if (in[i]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "global", i + 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "global", i + 1);
             return types::Function::Error;
         }
     }

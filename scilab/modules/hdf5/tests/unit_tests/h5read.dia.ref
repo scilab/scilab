@@ -11,7 +11,7 @@ assert_checkerror("h5read()",msgerr,77);
 msgerr = msprintf(gettext("%s: Invalid number of input argument.\n"), "h5read");
 assert_checkerror("h5read(42)",msgerr,999);
 assert_checkerror("h5read(""42"")",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5read", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5read", 1);
 assert_checkerror("h5read(42,42)",msgerr,999);
 msgerr = msprintf(gettext("%s: Second argument must be a dataset name.\n"), "h5read");
 assert_checkerror("h5read(""42"",42)",msgerr,999);

@@ -54,13 +54,11 @@ msgstr "%s: Não foi possível ler argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento %d: esperava-se um escalar real.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se um escalar real.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: Tamanho errado para o argumento %d: esperava-se um escalar real.\n"
+msgstr "%s: Tamanho errado para o argumento %d: esperava-se um escalar real.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -131,7 +129,7 @@ msgstr "%s: Valor incorreto para o argumento de entrada #%d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto ou "
@@ -239,12 +237,12 @@ msgstr ""
 "inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "texto.\n"
@@ -258,8 +256,7 @@ msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr "%s: Valor incorreto para o argumento de entrada #%d: deve ser %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um escalar "
 "ou um texto.\n"
@@ -289,8 +286,7 @@ msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr "%s: o tamanho requisitado é menor do que o tamanho mínimo.\n"
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
 "%s: incapaz de criar (ou redimensionar) a pilha (provavelmente um erro "
 "malloc).\n"
@@ -616,8 +612,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: argument %d should be a list of size at least %d.\n"
-msgstr ""
-"%s: O argumento %d deveria ser uma lista com tamanho a partir de %d.\n"
+msgstr "%s: O argumento %d deveria ser uma lista com tamanho a partir de %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -737,8 +732,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento %d: esperava-se um vetor linha.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se um vetor linha.\n"
 
 #, c-format
 msgid "%s: argument %d >(%d) should be a column vector.\n"
@@ -746,8 +740,7 @@ msgstr "%s: O argumento %d >(%d) deveria ser um vetor coluna.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento %d: esperava-se um vetor coluna.\n"
+msgstr "%s: Tipo incorreto para o argumento %d: esperava-se um vetor coluna.\n"
 
 #, c-format
 msgid "%s: Wrong type for element %d of argument #%d: Pointer expected.\n"
@@ -851,8 +844,7 @@ msgstr "%s: (%s) o terceiro argumento é inválido!\n"
 
 #, c-format
 msgid "%s: Wrong type for argument: Complex expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento: esperava-se um número complexo.\n"
+msgstr "%s: Tipo incorreto para o argumento: esperava-se um número complexo.\n"
 
 #, c-format
 msgid "%s: bad call to %s!\n"
@@ -1035,8 +1027,7 @@ msgid ""
 msgstr ""
 
 msgid "Cannot find Windows temporary directory (1)."
-msgstr ""
-"Não foi possível localizar o diretório de temporários do WIndows (1)."
+msgstr "Não foi possível localizar o diretório de temporários do WIndows (1)."
 
 msgid "Error"
 msgstr "Erro"

@@ -113,8 +113,7 @@ msgid "delayed time=%f but last stored time=%f\n"
 msgstr "zpožděný čas=%f ale poslední uložený čas=%f\n"
 
 msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
-"Zvažte zvýšení délky vyrovnávací paměti v bloku proměnného zpoždění\n"
+msgstr "Zvažte zvýšení délky vyrovnávací paměti v bloku proměnného zpoždění\n"
 
 msgid "Could not open /dev/audio!\n"
 msgstr "Nelze otevřít /dev/audio!\n"
@@ -623,8 +622,8 @@ msgstr "Špatný typ parametru '%s'"
 
 msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
 msgstr ""
-"Typ hodnoty musí být číselný (dvojitá přesnost, komplexní, celoč, celoč.8, "
-"...)."
+"Typ hodnoty musí být číselný (dvojitá přesnost, komplexní, celoč, "
+"celoč.8, ...)."
 
 msgid "Integer counter generator"
 msgstr "Generátor počítadla celých čísel"

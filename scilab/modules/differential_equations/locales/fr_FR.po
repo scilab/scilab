@@ -113,8 +113,7 @@ msgstr "%s : Option %s invalide : Une matrice réelle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"
@@ -133,8 +132,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -187,8 +185,7 @@ msgstr "5 : Un pas, sans dépasser tcrit, et retourne"
 msgid "Meaning of jactype:"
 msgstr "Signification de jactype :"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : Itérations fonctionnelles (pas de Jacobien utilisé ('adams' ou 'stiff' "
 "uniquement))"
@@ -235,8 +232,7 @@ msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
 msgstr "df1/dy1, df2/dy1, df3/dy1,... (si possible 1+ml entrées non-nulles)"
 
 msgid "column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc"
-msgstr ""
-"La colonne 2 est composée de mu-1 zéros suivis de df1/dx2, df2/dx2,etc"
+msgstr "La colonne 2 est composée de mu-1 zéros suivis de df1/dx2, df2/dx2,etc"
 
 msgid "Default values are given in square brackets"
 msgstr "Les valeurs par défaut sont données entre parenthèses carrées"

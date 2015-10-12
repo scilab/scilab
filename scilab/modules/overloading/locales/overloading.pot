@@ -1,8 +1,8 @@
-# Localization of the module overloading-macros
+# Localization of the module overloading
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,87 +10,85 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: macros/%0_i_st.sci, line: 19
+# File: modules/overloading/macros/%0_i_st.sci, line: 19
 #, c-format
 msgid "%s: Invalid index.\n"
 msgstr ""
 
 #
-# File: macros/%0_i_st.sci, line: 22
-# File: macros/%c_a_c.sci, line: 17
-# File: macros/%c_a_c.sci, line: 21
+# File: modules/overloading/macros/%0_i_st.sci, line: 22
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: macros/%3d_i_h.sci, line: 31
-# File: macros/%3d_i_h.sci, line: 41
-# File: macros/%c_i_lss.sci, line: 16
-# File: macros/%c_i_r.sci, line: 16
-# File: macros/%ce_size.sci, line: 24
-# File: macros/%champdat_i_h.sci, line: 41
-# File: macros/%grayplot_i_h.sci, line: 41
-# File: macros/%p_i_lss.sci, line: 18
-# File: macros/%p_i_lss.sci, line: 22
-# File: macros/%ticks_i_h.sci, line: 42
-# File: macros/generic_i_h.sci, line: 14
-# File: macros/generic_i_h.sci, line: 69
-# File: macros/generic_i_s.sci, line: 31
+# File: modules/overloading/macros/%3d_i_h.sci, line: 31
+# File: modules/overloading/macros/%3d_i_h.sci, line: 41
+# File: modules/overloading/macros/%c_i_lss.sci, line: 16
+# File: modules/overloading/macros/%c_i_r.sci, line: 16
+# File: modules/overloading/macros/%ce_size.sci, line: 24
+# File: modules/overloading/macros/%champdat_i_h.sci, line: 41
+# File: modules/overloading/macros/%grayplot_i_h.sci, line: 41
+# File: modules/overloading/macros/%p_i_lss.sci, line: 18
+# File: modules/overloading/macros/%p_i_lss.sci, line: 22
+# File: modules/overloading/macros/%ticks_i_h.sci, line: 42
+# File: modules/overloading/macros/generic_i_h.sci, line: 14
+# File: modules/overloading/macros/generic_i_h.sci, line: 70
+# File: modules/overloading/macros/generic_i_s.sci, line: 31
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/%b_i_sp.sci, line: 21
+# File: modules/overloading/macros/%b_i_sp.sci, line: 21
 #, c-format
 msgid "%s: Multidimensional sparse matrices are not handled.\n"
 msgstr ""
 
 #
-# File: macros/%c_dsearch.sci, line: 16
+# File: modules/overloading/macros/%c_dsearch.sci, line: 16
 #, c-format
 msgid "%c: input argument #%d has duplicates\n"
 msgstr ""
 
 #
-# File: macros/%c_dsearch.sci, line: 35
+# File: modules/overloading/macros/%c_dsearch.sci, line: 35
 #, c-format
 msgid "%c: input argument #%d must be sorted in lexicographic order\n"
 msgstr ""
 
 #
-# File: macros/%c_i_lss.sci, line: 20
-# File: macros/%c_i_r.sci, line: 20
+# File: modules/overloading/macros/%c_i_lss.sci, line: 20
+# File: modules/overloading/macros/%c_i_r.sci, line: 20
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/%c_i_s.sci, line: 16
+# File: modules/overloading/macros/%c_i_s.sci, line: 16
 #, c-format
 msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 
 #
-# File: macros/%cblock_e.sci, line: 31
+# File: modules/overloading/macros/%cblock_e.sci, line: 31
 #, c-format
 msgid "%s: Syntax x(j) only allowed for row cblock's.\n"
 msgstr ""
 
 #
-# File: macros/%ce_c_ce.sci, line: 15
-# File: macros/%hm_c_hm.sci, line: 15
-# File: macros/%hm_f_hm.sci, line: 15
-# File: macros/%st_c_st.sci, line: 15
+# File: modules/overloading/macros/%ce_c_ce.sci, line: 15
+# File: modules/overloading/macros/%hm_c_hm.sci, line: 15
+# File: modules/overloading/macros/%hm_f_hm.sci, line: 15
+# File: modules/overloading/macros/%st_c_st.sci, line: 15
 #, c-format
 msgid ""
 "%s: In concatenation the number of dimensions for each component must "
@@ -98,364 +96,261 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/%ce_e.sci, line: 21
-# File: macros/%st_e.sci, line: 25
+# File: modules/overloading/macros/%ce_e.sci, line: 21
+# File: modules/overloading/macros/%st_e.sci, line: 25
 #, c-format
 msgid "%s: Invalid field name.\n"
 msgstr ""
 
 #
-# File: macros/%ce_e.sci, line: 44
+# File: modules/overloading/macros/%ce_e.sci, line: 44
 #, c-format
 msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 
 #
-# File: macros/%ce_size.sci, line: 18
-# File: macros/%ce_size.sci, line: 20
-# File: macros/%ip_string.sci, line: 19
-# File: macros/%s_q_hm.sci, line: 13
-# File: macros/%s_x_hm.sci, line: 13
-# File: macros/%st_size.sci, line: 20
+# File: modules/overloading/macros/%ce_size.sci, line: 18
+# File: modules/overloading/macros/%ce_size.sci, line: 20
+# File: modules/overloading/macros/%ip_string.sci, line: 19
+# File: modules/overloading/macros/%s_q_hm.sci, line: 13
+# File: modules/overloading/macros/%s_x_hm.sci, line: 13
+# File: modules/overloading/macros/%st_size.sci, line: 20
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/%ce_size.sci, line: 31
-# File: macros/%st_size.sci, line: 33
+# File: modules/overloading/macros/%ce_size.sci, line: 31
+# File: modules/overloading/macros/%st_size.sci, line: 33
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #
-# File: macros/%ce_t.sci, line: 13
-# File: macros/%st_t.sci, line: 14
+# File: modules/overloading/macros/%ce_t.sci, line: 13
+# File: modules/overloading/macros/%st_t.sci, line: 14
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 
 #
-# File: macros/%champdat_i_h.sci, line: 31
-# File: macros/%grayplot_i_h.sci, line: 31
-# File: macros/%ticks_i_h.sci, line: 32
+# File: modules/overloading/macros/%champdat_i_h.sci, line: 31
+# File: modules/overloading/macros/%grayplot_i_h.sci, line: 31
+# File: modules/overloading/macros/%ticks_i_h.sci, line: 32
 #, c-format
 msgid "%s: Invalid path.\n"
 msgstr ""
 
 #
-# File: macros/%hm_1_hm.sci, line: 11
-# File: macros/%hm_2_hm.sci, line: 12
-# File: macros/%hm_3_hm.sci, line: 11
-# File: macros/%hm_4_hm.sci, line: 11
+# File: modules/overloading/macros/%hm_1_hm.sci, line: 11
+# File: modules/overloading/macros/%hm_2_hm.sci, line: 12
+# File: modules/overloading/macros/%hm_3_hm.sci, line: 11
+# File: modules/overloading/macros/%hm_4_hm.sci, line: 11
 #, c-format
 msgid ""
 "%s: Input argument #%d and input argument #%d have incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: macros/%hm_1_s.sci, line: 13
-# File: macros/%hm_2_s.sci, line: 12
-# File: macros/%hm_3_s.sci, line: 12
-# File: macros/%hm_4_s.sci, line: 13
-# File: macros/%s_1_hm.sci, line: 13
-# File: macros/%s_2_hm.sci, line: 13
-# File: macros/%s_3_hm.sci, line: 13
-# File: macros/%s_4_hm.sci, line: 13
-# File: macros/%sp_p_s.sci, line: 14
+# File: modules/overloading/macros/%hm_1_s.sci, line: 13
+# File: modules/overloading/macros/%hm_2_s.sci, line: 12
+# File: modules/overloading/macros/%hm_3_s.sci, line: 12
+# File: modules/overloading/macros/%hm_4_s.sci, line: 13
+# File: modules/overloading/macros/%s_1_hm.sci, line: 13
+# File: modules/overloading/macros/%s_2_hm.sci, line: 13
+# File: modules/overloading/macros/%s_3_hm.sci, line: 13
+# File: modules/overloading/macros/%s_4_hm.sci, line: 13
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_c_hm.sci, line: 21
-# File: macros/%hm_f_hm.sci, line: 21
-# File: macros/%st_c_st.sci, line: 26
+# File: modules/overloading/macros/%hm_c_hm.sci, line: 21
+# File: modules/overloading/macros/%hm_f_hm.sci, line: 20
+# File: modules/overloading/macros/%st_c_st.sci, line: 27
 #, c-format
 msgid "%s: Inconsistent dimensions.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 40
-# File: macros/%hm_cumsum.sci, line: 40
-# File: macros/%hm_prod.sci, line: 41
-# File: macros/%hm_sum.sci, line: 41
-# File: macros/%p_cumprod.sci, line: 28
-# File: macros/%p_cumsum.sci, line: 27
-# File: macros/%p_prod.sci, line: 28
-# File: macros/%p_sum.sci, line: 30
-# File: macros/%r_cumprod.sci, line: 29
-# File: macros/%r_cumsum.sci, line: 29
-# File: macros/%r_prod.sci, line: 29
-# File: macros/%r_sum.sci, line: 30
-# File: macros/%sp_cumprod.sci, line: 27
-# File: macros/%sp_cumsum.sci, line: 27
-# File: macros/%sp_prod.sci, line: 27
-# File: macros/%sp_sum.sci, line: 27
-# File: macros/%spb_cumprod.sci, line: 31
-# File: macros/%spb_cumsum.sci, line: 31
-# File: macros/%spb_prod.sci, line: 31
-# File: macros/%spb_sum.sci, line: 31
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 40
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 40
+# File: modules/overloading/macros/%r_cumprod.sci, line: 29
+# File: modules/overloading/macros/%r_cumsum.sci, line: 29
+# File: modules/overloading/macros/%r_prod.sci, line: 29
+# File: modules/overloading/macros/%r_sum.sci, line: 30
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 47
-# File: macros/%hm_cumsum.sci, line: 47
-# File: macros/%hm_prod.sci, line: 48
-# File: macros/%hm_sum.sci, line: 48
-# File: macros/%p_cumprod.sci, line: 35
-# File: macros/%p_cumsum.sci, line: 34
-# File: macros/%p_prod.sci, line: 35
-# File: macros/%p_sum.sci, line: 37
-# File: macros/%r_cumprod.sci, line: 36
-# File: macros/%r_cumsum.sci, line: 36
-# File: macros/%r_prod.sci, line: 36
-# File: macros/%r_sum.sci, line: 37
-# File: macros/%sp_cumprod.sci, line: 34
-# File: macros/%sp_cumsum.sci, line: 34
-# File: macros/%sp_prod.sci, line: 34
-# File: macros/%sp_sum.sci, line: 34
-# File: macros/%spb_cumprod.sci, line: 38
-# File: macros/%spb_cumsum.sci, line: 38
-# File: macros/%spb_prod.sci, line: 38
-# File: macros/%spb_sum.sci, line: 38
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 47
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 47
+# File: modules/overloading/macros/%r_cumprod.sci, line: 36
+# File: modules/overloading/macros/%r_cumsum.sci, line: 36
+# File: modules/overloading/macros/%r_prod.sci, line: 36
+# File: modules/overloading/macros/%r_sum.sci, line: 37
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 50
-# File: macros/%hm_cumsum.sci, line: 50
-# File: macros/%hm_prod.sci, line: 51
-# File: macros/%hm_sum.sci, line: 51
-# File: macros/%p_cumprod.sci, line: 38
-# File: macros/%p_cumsum.sci, line: 37
-# File: macros/%p_prod.sci, line: 38
-# File: macros/%p_sum.sci, line: 40
-# File: macros/%r_cumprod.sci, line: 39
-# File: macros/%r_cumsum.sci, line: 39
-# File: macros/%r_prod.sci, line: 39
-# File: macros/%r_sum.sci, line: 40
-# File: macros/%sp_cumprod.sci, line: 37
-# File: macros/%sp_cumsum.sci, line: 37
-# File: macros/%sp_prod.sci, line: 37
-# File: macros/%sp_sum.sci, line: 37
-# File: macros/%spb_cumprod.sci, line: 41
-# File: macros/%spb_cumsum.sci, line: 41
-# File: macros/%spb_prod.sci, line: 41
-# File: macros/%spb_sum.sci, line: 41
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 50
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 50
+# File: modules/overloading/macros/%r_cumprod.sci, line: 39
+# File: modules/overloading/macros/%r_cumsum.sci, line: 39
+# File: modules/overloading/macros/%r_prod.sci, line: 39
+# File: modules/overloading/macros/%r_sum.sci, line: 40
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 54
-# File: macros/%hm_cumprod.sci, line: 72
-# File: macros/%hm_cumsum.sci, line: 54
-# File: macros/%hm_cumsum.sci, line: 72
-# File: macros/%hm_prod.sci, line: 55
-# File: macros/%hm_prod.sci, line: 73
-# File: macros/%hm_sum.sci, line: 55
-# File: macros/%hm_sum.sci, line: 73
-# File: macros/%p_cumprod.sci, line: 42
-# File: macros/%p_cumsum.sci, line: 41
-# File: macros/%p_prod.sci, line: 42
-# File: macros/%p_sum.sci, line: 44
-# File: macros/%r_cumprod.sci, line: 43
-# File: macros/%r_cumsum.sci, line: 43
-# File: macros/%r_prod.sci, line: 43
-# File: macros/%r_sum.sci, line: 44
-# File: macros/%sp_cumprod.sci, line: 41
-# File: macros/%sp_cumsum.sci, line: 41
-# File: macros/%sp_prod.sci, line: 41
-# File: macros/%sp_sum.sci, line: 41
-# File: macros/%spb_cumprod.sci, line: 45
-# File: macros/%spb_cumprod.sci, line: 63
-# File: macros/%spb_cumsum.sci, line: 45
-# File: macros/%spb_cumsum.sci, line: 63
-# File: macros/%spb_prod.sci, line: 45
-# File: macros/%spb_prod.sci, line: 63
-# File: macros/%spb_sum.sci, line: 45
-# File: macros/%spb_sum.sci, line: 63
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 54
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 72
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 54
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 72
+# File: modules/overloading/macros/%r_cumprod.sci, line: 43
+# File: modules/overloading/macros/%r_cumsum.sci, line: 43
+# File: modules/overloading/macros/%r_prod.sci, line: 43
+# File: modules/overloading/macros/%r_sum.sci, line: 44
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 57
-# File: macros/%hm_cumsum.sci, line: 57
-# File: macros/%hm_prod.sci, line: 58
-# File: macros/%hm_sum.sci, line: 58
-# File: macros/%p_cumprod.sci, line: 45
-# File: macros/%p_cumsum.sci, line: 44
-# File: macros/%p_prod.sci, line: 45
-# File: macros/%p_sum.sci, line: 47
-# File: macros/%r_cumprod.sci, line: 46
-# File: macros/%r_cumsum.sci, line: 46
-# File: macros/%r_prod.sci, line: 46
-# File: macros/%r_sum.sci, line: 47
-# File: macros/%sp_cumprod.sci, line: 44
-# File: macros/%sp_cumsum.sci, line: 44
-# File: macros/%sp_prod.sci, line: 44
-# File: macros/%sp_sum.sci, line: 44
-# File: macros/%spb_cumprod.sci, line: 48
-# File: macros/%spb_cumsum.sci, line: 48
-# File: macros/%spb_prod.sci, line: 48
-# File: macros/%spb_sum.sci, line: 48
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 57
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 57
+# File: modules/overloading/macros/%r_cumprod.sci, line: 46
+# File: modules/overloading/macros/%r_cumsum.sci, line: 46
+# File: modules/overloading/macros/%r_prod.sci, line: 46
+# File: modules/overloading/macros/%r_sum.sci, line: 47
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 63
-# File: macros/%hm_cumsum.sci, line: 63
-# File: macros/%hm_prod.sci, line: 64
-# File: macros/%hm_sum.sci, line: 64
-# File: macros/%p_cumprod.sci, line: 52
-# File: macros/%p_cumsum.sci, line: 52
-# File: macros/%p_prod.sci, line: 52
-# File: macros/%p_sum.sci, line: 54
-# File: macros/%r_cumprod.sci, line: 53
-# File: macros/%r_cumsum.sci, line: 54
-# File: macros/%r_prod.sci, line: 53
-# File: macros/%r_sum.sci, line: 54
-# File: macros/%sp_cumprod.sci, line: 51
-# File: macros/%sp_cumsum.sci, line: 52
-# File: macros/%sp_prod.sci, line: 51
-# File: macros/%sp_sum.sci, line: 51
-# File: macros/%spb_cumprod.sci, line: 54
-# File: macros/%spb_cumsum.sci, line: 54
-# File: macros/%spb_prod.sci, line: 54
-# File: macros/%spb_sum.sci, line: 54
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 63
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 63
+# File: modules/overloading/macros/%r_cumprod.sci, line: 53
+# File: modules/overloading/macros/%r_cumsum.sci, line: 54
+# File: modules/overloading/macros/%r_prod.sci, line: 53
+# File: modules/overloading/macros/%r_sum.sci, line: 54
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 68
-# File: macros/%hm_cumsum.sci, line: 68
-# File: macros/%hm_prod.sci, line: 69
-# File: macros/%hm_sum.sci, line: 69
-# File: macros/%spb_cumprod.sci, line: 59
-# File: macros/%spb_cumsum.sci, line: 59
-# File: macros/%spb_prod.sci, line: 59
-# File: macros/%spb_sum.sci, line: 59
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 68
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 68
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_cumprod.sci, line: 76
-# File: macros/%hm_cumsum.sci, line: 76
-# File: macros/%hm_prod.sci, line: 77
-# File: macros/%hm_sum.sci, line: 77
-# File: macros/%spb_cumprod.sci, line: 67
-# File: macros/%spb_cumsum.sci, line: 67
-# File: macros/%spb_prod.sci, line: 67
-# File: macros/%spb_sum.sci, line: 67
+# File: modules/overloading/macros/%hm_cumprod.sci, line: 76
+# File: modules/overloading/macros/%hm_cumsum.sci, line: 76
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_d_hm.sci, line: 15
-# File: macros/%hm_d_s.sci, line: 13
-# File: macros/%hm_j_hm.sci, line: 15
-# File: macros/%hm_j_s.sci, line: 13
-# File: macros/%hm_q_hm.sci, line: 15
-# File: macros/%hm_x_hm.sci, line: 15
-# File: macros/%hm_x_p.sci, line: 13
-# File: macros/%hm_x_s.sci, line: 13
+# File: modules/overloading/macros/%hm_d_hm.sci, line: 15
+# File: modules/overloading/macros/%hm_d_s.sci, line: 13
+# File: modules/overloading/macros/%hm_j_hm.sci, line: 15
+# File: modules/overloading/macros/%hm_j_s.sci, line: 13
+# File: modules/overloading/macros/%hm_q_hm.sci, line: 15
+# File: modules/overloading/macros/%hm_x_hm.sci, line: 15
+# File: modules/overloading/macros/%hm_x_p.sci, line: 13
+# File: modules/overloading/macros/%hm_x_s.sci, line: 13
 #, c-format
 msgid "%s: Inconsistent element-wise operation.\n"
 msgstr ""
 
 #
-# File: macros/%hm_e.sci, line: 21
+# File: modules/overloading/macros/%hm_e.sci, line: 21
 #, c-format
 msgid "%s: Too many subscripts.\n"
 msgstr ""
 
 #
-# File: macros/%hm_eye.sci, line: 13
+# File: modules/overloading/macros/%hm_eye.sci, line: 13
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_eye.sci, line: 16
+# File: modules/overloading/macros/%hm_eye.sci, line: 16
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Hypermatrix expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_g_hm.sci, line: 16
+# File: modules/overloading/macros/%hm_g_hm.sci, line: 16
 #, c-format
 msgid "%s: Operand is not a boolean hypermatrix.\n"
 msgstr ""
 
 #
-# File: macros/%hm_g_hm.sci, line: 25
-# File: macros/%hm_h_hm.sci, line: 26
+# File: modules/overloading/macros/%hm_g_hm.sci, line: 25
+# File: modules/overloading/macros/%hm_h_hm.sci, line: 26
 #, c-format
 msgid "%s: Incompatible operand dimensions.\n"
 msgstr ""
 
 #
-# File: macros/%hm_h_hm.sci, line: 17
+# File: modules/overloading/macros/%hm_h_hm.sci, line: 17
 #, c-format
 msgid "%s: Wrong type for input argument(s): hypermatrix expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_m_s.sci, line: 17
-# File: macros/%s_m_hm.sci, line: 17
+# File: modules/overloading/macros/%hm_m_s.sci, line: 17
+# File: modules/overloading/macros/%s_m_hm.sci, line: 17
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 3D maximum expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_m_s.sci, line: 20
-# File: macros/%s_m_hm.sci, line: 20
+# File: modules/overloading/macros/%hm_m_s.sci, line: 20
+# File: modules/overloading/macros/%s_m_hm.sci, line: 20
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: macros/%hm_matrix.sci, line: 17
+# File: modules/overloading/macros/%hm_matrix.sci, line: 17
 #, c-format
 msgid "%s: Wrong size for input argument(s): integer scalars expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_matrix.sci, line: 36
+# File: modules/overloading/macros/%hm_matrix.sci, line: 36
 #, c-format
 msgid "%s: Only one -1 value admitted.\n"
 msgstr ""
 
 #
-# File: macros/%hm_matrix.sci, line: 42
+# File: modules/overloading/macros/%hm_matrix.sci, line: 42
 #, c-format
 msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 
 #
-# File: macros/%hm_size.sci, line: 27
+# File: modules/overloading/macros/%hm_size.sci, line: 27
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_size.sci, line: 32
+# File: modules/overloading/macros/%hm_size.sci, line: 32
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
 msgstr ""
 
 #
-# File: macros/%hm_size.sci, line: 40
+# File: modules/overloading/macros/%hm_size.sci, line: 40
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Scalar positive integer or character "
@@ -463,185 +358,163 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/%hm_stdev.sci, line: 16
+# File: modules/overloading/macros/%hm_stdev.sci, line: 16
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/%i_b_s.sci, line: 14
-# File: macros/%s_b_i.sci, line: 13
+# File: modules/overloading/macros/%i_b_s.sci, line: 14
+# File: modules/overloading/macros/%s_b_i.sci, line: 13
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
 msgstr ""
 
 #
-# File: macros/%l_isequal.sci, line: 12
+# File: modules/overloading/macros/%l_isequal.sci, line: 12
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/%lss_i_p.sci, line: 28
-# File: macros/%lss_i_s.sci, line: 38
+# File: modules/overloading/macros/%lss_i_p.sci, line: 28
+# File: modules/overloading/macros/%lss_i_s.sci, line: 38
 #, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
 msgstr ""
 
 #
-# File: macros/%lss_norm.sci, line: 17
-# File: macros/%r_norm.sci, line: 17
+# File: modules/overloading/macros/%lss_norm.sci, line: 17
+# File: modules/overloading/macros/%r_norm.sci, line: 17
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %s expected.\n"
 msgstr ""
 
 #
-# File: macros/%msp_i_s.sci, line: 31
-# File: macros/%sp_i_s.sci, line: 31
+# File: modules/overloading/macros/%msp_i_s.sci, line: 31
+# File: modules/overloading/macros/%sp_i_s.sci, line: 31
 #, c-format
 msgid ""
 "%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
 msgstr ""
 
 #
-# File: macros/%p_j_s.sci, line: 15
-# File: macros/%p_p_s.sci, line: 15
+# File: modules/overloading/macros/%p_j_s.sci, line: 15
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/%p_v_p.sci, line: 16
+# File: modules/overloading/macros/%p_v_p.sci, line: 16
 #, c-format
 msgid "%s: Wrong size for input arguments.\n"
 msgstr ""
 
 #
-# File: macros/%p_v_r.sci, line: 18
-# File: macros/%r_v_p.sci, line: 17
-# File: macros/%r_v_r.sci, line: 17
-# File: macros/%r_v_s.sci, line: 17
-# File: macros/%s_v_r.sci, line: 16
-# File: macros/%s_v_s.sci, line: 15
+# File: modules/overloading/macros/%p_v_r.sci, line: 18
+# File: modules/overloading/macros/%r_v_p.sci, line: 17
+# File: modules/overloading/macros/%r_v_r.sci, line: 17
+# File: modules/overloading/macros/%r_v_s.sci, line: 17
+# File: modules/overloading/macros/%s_v_r.sci, line: 16
+# File: modules/overloading/macros/%s_v_s.sci, line: 15
 #, c-format
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
 
 #
-# File: macros/%r_p_s.sci, line: 23
-msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
-"scilab-6.\n"
-"           Use vector .^ scalar instead.\n"
-msgstr ""
-
-#
-# File: macros/%s_b_s.sci, line: 12
+# File: modules/overloading/macros/%s_b_s.sci, line: 12
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
 msgstr ""
 
 #
-# File: macros/%s_b_s.sci, line: 19
-# File: macros/%s_i_st.sci, line: 93
+# File: modules/overloading/macros/%s_b_s.sci, line: 19
+# File: modules/overloading/macros/%s_i_st.sci, line: 93
 #, c-format
 msgid "%s: Not yet implemented.\n"
 msgstr ""
 
 #
-# File: macros/%s_i_s.sci, line: 148
-# File: macros/%s_i_st.sci, line: 33
-# File: macros/%s_i_st.sci, line: 66
-# File: macros/generic_i_hm.sci, line: 51
+# File: modules/overloading/macros/%s_i_s.sci, line: 148
+# File: modules/overloading/macros/%s_i_st.sci, line: 33
+# File: modules/overloading/macros/%s_i_st.sci, line: 66
+# File: modules/overloading/macros/generic_i_hm.sci, line: 52
 #, c-format
 msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr ""
 
 #
-# File: macros/%s_pow.sci, line: 39
-# File: macros/%s_pow.sci, line: 62
-#, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr ""
-
-#
-# File: macros/%sp_i_sp.sci, line: 33
+# File: modules/overloading/macros/%sp_i_sp.sci, line: 33
 #, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
 
 #
-# File: macros/%sp_p_s.sci, line: 17
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr ""
-
-#
-# File: macros/%st_c_st.sci, line: 19
+# File: modules/overloading/macros/%st_c_st.sci, line: 21
 #, c-format
 msgid "%s: Field names mismatch.\n"
 msgstr ""
 
 #
-# File: macros/%st_e.sci, line: 48
+# File: modules/overloading/macros/%st_e.sci, line: 48
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
 msgstr ""
 
 #
-# File: macros/%st_matrix.sci, line: 15
+# File: modules/overloading/macros/%st_matrix.sci, line: 15
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: macros/%st_matrix.sci, line: 21
+# File: modules/overloading/macros/%st_matrix.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/%st_matrix.sci, line: 30
+# File: modules/overloading/macros/%st_matrix.sci, line: 30
 #, c-format
 msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 
 #
-# File: macros/%st_size.sci, line: 22
+# File: modules/overloading/macros/%st_size.sci, line: 22
 #, c-format
 msgid "%s: Wrong size or value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/%st_size.sci, line: 26
+# File: modules/overloading/macros/%st_size.sci, line: 26
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/createstruct.sci, line: 162
-# File: macros/createstruct.sci, line: 174
+# File: modules/overloading/macros/createstruct.sci, line: 162
+# File: modules/overloading/macros/createstruct.sci, line: 174
 #, c-format
 msgid "%s: Not implemented.\n"
 msgstr ""
 
 #
-# File: macros/generic_i_ce.sci, line: 12
+# File: modules/overloading/macros/generic_i_ce.sci, line: 12
 #, c-format
 msgid ""
 "%s: Wrong assignment: for insertion in cell, use e.g. x(i,j).entries=y.\n"
 msgstr ""
 
 #
-# File: macros/generic_i_h.sci, line: 52
+# File: modules/overloading/macros/generic_i_h.sci, line: 53
 #, c-format
 msgid ""
 "%s: Incompatible sizes for properties '%s' and '%s': Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/generic_i_s.sci, line: 33
+# File: modules/overloading/macros/generic_i_s.sci, line: 33
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""

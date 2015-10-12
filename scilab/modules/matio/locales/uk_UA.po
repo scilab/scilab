@@ -47,18 +47,18 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
 #, c-format
-msgid "%s: Wrong size for first input argument: A string expected.\n"
+msgid "%s: Wrong size for first input argument: string expected.\n"
 msgstr ""
 "%s: помилкова розмірність першого вхідного параметра: мало бути використано "
 "рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: A string expected.\n"
+msgid "%s: Wrong type for first input argument: string expected.\n"
 msgstr ""
 "%s: помилковий тип першого вхідного параметра: мало бути використано рядок.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: A string expected.\n"
+msgid "%s: Wrong size for second input argument: string expected.\n"
 msgstr ""
 "%s: помилкова розмірність другого вхідного параметра: мало бути використано "
 "рядок.\n"
@@ -70,18 +70,18 @@ msgstr ""
 "або «w».\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: A string expected.\n"
+msgid "%s: Wrong type for second input argument: string expected.\n"
 msgstr ""
 "%s: помилковий тип другого вхідного параметра: мало бути використано "
 "рядковий тип.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -139,12 +139,6 @@ msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr "%s: збереження двовимірного масиву рядків ще не реалізовано.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: String matrix expected.\n"
-msgstr ""
-"%s: помилковий тип першого вхідного параметра: слід використовувати матрицю "
-"з рядків.\n"
-
-#, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
 "%s: помилковий тип першого вхідного параметра: слід використовувати матрицю "
@@ -158,8 +152,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
-msgstr ""
-"%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
+msgstr "%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"

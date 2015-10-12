@@ -81,8 +81,7 @@ msgid "Allocation problem in spline.\n"
 msgstr "Problème d'allocation dans spline.\n"
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr ""
-"Type de variable invalide : Erreur dans le code hypermat de Scilab.\n"
+msgstr "Type de variable invalide : Erreur dans le code hypermat de Scilab.\n"
 
 #, c-format
 msgid ""
@@ -315,8 +314,7 @@ msgid "Shift/Rotates bits"
 msgstr "Décalage/Rotation de bits"
 
 msgid "Number of Bits to Shift Left (Negative number to shift right)"
-msgstr ""
-"Nombre de Bits à décaler à gauche (Signe moins pour décaler à droite)"
+msgstr "Nombre de Bits à décaler à gauche (Signe moins pour décaler à droite)"
 
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "Type Shift (0:Arithmétique, 1:Circulaire)"
@@ -633,8 +631,8 @@ msgstr "Type erroné du paramètre '%s'"
 
 msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
 msgstr ""
-"Le type de valeur doit être un type numérique (double, complex, int, int8, "
-"...)."
+"Le type de valeur doit être un type numérique (double, complex, int, "
+"int8, ...)."
 
 msgid "Integer counter generator"
 msgstr "Générateur de compteur entier"
@@ -691,8 +689,7 @@ msgid "Port number must be a positive integer"
 msgstr "Le numéro du port doit être un nombre entier positif"
 
 msgid "Outport Size must be a 2 elements vector"
-msgstr ""
-"La dimension du port de sortie doit être un vecteur de deux éléments."
+msgstr "La dimension du port de sortie doit être un vecteur de deux éléments."
 
 msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
 msgstr ""

@@ -51,11 +51,14 @@ msgstr "%s: 引数 #%d の型が間違っています: 行列を指定してく�
 msgid ""
 "%s: Wrong type for input argument #%d: Integer or vector of integers "
 "expected.\n"
-msgstr "%s:入力引数 #%d の型が間違っています:  整数または整数ベクトルを指定してください.\n"
+msgstr ""
+"%s:入力引数 #%d の型が間違っています:  整数または整数ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer >= %d expected.\n"
-msgstr "%s:入力引数 #%d の型が間違っています:  整数 <= %d を指定してください.\n"
+msgstr ""
+"%s:入力引数 #%d の型が間違っています:  整数 <= %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"
@@ -65,11 +68,14 @@ msgstr "%s: arg1 および arg2 のどちらかのみをベクトルとするこ
 msgid ""
 "%s: Wrong value for input argument #%d: Matrix with elements in [%d,%d] "
 "expected.\n"
-msgstr "%s:入力引数 #%d の値が間違っています:  [%d, %d] の範囲の要素を有する行列を指定してください.\n"
+msgstr ""
+"%s:入力引数 #%d の値が間違っています:  [%d, %d] の範囲の要素を有する行列を指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
-msgstr "%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"
+msgstr ""
+"%s: 拡張された範囲においてオーバーフローまたはアンダーフローを発生しました\n"
 
 #
 # File: sci_gateway/c/sci_legendre.c, line: 129
@@ -79,7 +85,9 @@ msgstr "%s: エラー番号 %d\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -87,7 +95,9 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"
-msgstr "%s: 引数 #%d の値が間違っています:  0, 1 または2 個の引数を指定してください.\n"
+msgstr ""
+"%s: 引数 #%d の値が間違っています:  0, 1 または2 個の引数を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real expected.\n"

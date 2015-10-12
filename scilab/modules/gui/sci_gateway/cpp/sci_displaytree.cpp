@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     // Get first element as a string
     if (pIn->get(0)->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for element #%d of input argument #%d : A string expected.\n"), funname.data(), 1, 1);
+        Scierror(999, _("%s: Wrong type for element #%d of input argument #%d : string expected.\n"), funname.data(), 1, 1);
         return types::Function::Error;
     }
 
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     temp = node->get(0)->get(Label);
     if (temp->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : A string expected.\n"), funname.data(), 1, 2, 1);
+        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 1, 2, 1);
         return types::Function::Error;
     }
 
@@ -143,7 +143,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     temp = node->get(0)->get(Icon);
     if (temp->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : A string expected.\n"), funname.data(), 2, 2, 1);
+        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 2, 2, 1);
         return types::Function::Error;
     }
 
@@ -162,7 +162,7 @@ types::Function::ReturnValue sci_displaytree(types::typed_list &in, int _iRetCou
     temp = node->get(0)->get(Callback);
     if (temp->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : A string expected.\n"), funname.data(), 3, 2, 1);
+        Scierror(999, _("%s: Wrong type for element #%d of element #%d of input argument #%d : string expected.\n"), funname.data(), 3, 2, 1);
         return types::Function::Error;
     }
 

@@ -71,7 +71,7 @@ msgid "A single String expected"
 msgstr "Мало бути вказано одинарний рядок"
 
 #, c-format
-msgid "Wrong type for argument #%d: A string expected."
+msgid "Wrong type for argument #%d: string expected."
 msgstr ""
 "Помилковий тип вхідного параметра №#%d: слід використовувати тип «string»."
 
@@ -129,7 +129,7 @@ msgid "Incompatible External Object"
 msgstr "Несумісний зовнішній об’єкт"
 
 #, c-format
-msgid "Wrong type for input argument #%d: A string expected."
+msgid "Wrong type for input argument #%d: string expected."
 msgstr ""
 "Помилковий тип вхідного параметра №%d: слід використовувати тип «string»."
 
@@ -178,8 +178,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for input argument #%d: An Integer32 expected."
-msgstr ""
-"Помилковий тип вхідного параметра №%d: мало бути ціле 32-бітове число."
+msgstr "Помилковий тип вхідного параметра №%d: мало бути ціле 32-бітове число."
 
 msgid "Cannot invoke on null object."
 msgstr "Викликати порожні об’єкти не можна."

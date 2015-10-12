@@ -45,7 +45,7 @@ msgstr ""
 "%s : drugi parametr musi być unikatowym id biblioteki współdzielonej.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano łańcuch.\n"
 
@@ -83,8 +83,7 @@ msgstr "Oczekiwano unikalnej nazwy dynamicznej biblioteki"
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings vector expected.\n"
-msgstr ""
-"%s: Zły typ parametru wejściowego. Oczekiwano wektora ciągów znaków.\n"
+msgstr "%s: Zły typ parametru wejściowego. Oczekiwano wektora ciągów znaków.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
@@ -285,14 +284,13 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano macierzy "
 "ciągów znaków.\n"
@@ -545,12 +543,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d,%d lub %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ parametru wejściowego nr %d: oczekiwano macierz "
-"łańcuchów\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

@@ -31,7 +31,7 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
@@ -41,11 +41,11 @@ msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß sich im Satz {%s} befinden.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -88,8 +88,7 @@ msgstr ""
 "Dimensionen stimmen nicht mit den spezifizierten Zelleninhalten überein.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s: Diese Funktionalität wurde noch nicht implementiert: Unterstützung für "
 "Hypermatrizen.\n"
@@ -137,8 +136,7 @@ msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: N x N Matrix erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: %s, %s, '%s' oder '%s' "
 "erwartet.\n"
@@ -226,8 +224,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: kein untergeordnetes Raster in Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: '%s', '%s' oder '%s' erwartet.\n"
 

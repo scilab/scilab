@@ -34,7 +34,7 @@ types::Function::ReturnValue sci_sethistoryfile(types::typed_list &in, int _iRet
     {
         if ((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "sethistoryfile", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "sethistoryfile", 1);
             return types::Function::Error;
         }
         wchar_t* pwcsFilename = in[0]->getAs<types::String>()->get(0);

@@ -221,7 +221,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "Matplot1", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "Matplot1", 2);
             return types::Function::Error;
         }
 
@@ -303,7 +303,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 {
                     delete[] axesflag;
                 }
-                Scierror(999, _("%s: Wrong type for input argument #%ls: A string expected.\n"), "Matplot1", opt[i].first.c_str());
+                Scierror(999, _("%s: Wrong type for input argument #%ls: string expected.\n"), "Matplot1", opt[i].first.c_str());
                 return types::Function::Error;
             }
 

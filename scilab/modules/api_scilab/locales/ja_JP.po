@@ -91,15 +91,18 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d から %d  個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d  個以上の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d  個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d  個以下の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d  個以下の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: matrix argument expected"
@@ -143,16 +146,19 @@ msgstr "%s: 引数データを取得できません"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
-msgstr "%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
+msgstr ""
+"%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -166,7 +172,9 @@ msgstr "%s: 引数の精度を取得できません"
 msgid ""
 "%s: Wrong type for input argument #%d: A real scalar or an integer scalar "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは整数スカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数スカラーまたは整数スカラーを指定し"
+"てください.\n"
 
 #, c-format
 msgid "%s: Unable to get dimension from variable \"%s\""

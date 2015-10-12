@@ -82,7 +82,7 @@ int sci_progressionbar(char *fname, void* pvApiCtx)
             // Retrieve a matrix of string at position 1.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRowMessage, &nbColMessage, &messageAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
         }
@@ -135,7 +135,7 @@ int sci_progressionbar(char *fname, void* pvApiCtx)
             // Retrieve a matrix of string at position 2.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRowMessage, &nbColMessage, &messageAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 

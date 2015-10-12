@@ -109,7 +109,7 @@ msgstr "%s：第%d个输入参数的值错误。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串或标量整数。\n"
 
@@ -194,11 +194,11 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
@@ -210,8 +210,7 @@ msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr "%s：第%d个输入参数的值错误：必须为%s。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为标量或字符串。\n"
 
 #, c-format
@@ -239,8 +238,7 @@ msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr "%s：需要的大小小于最小值。\n"
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr "%s：无法创建（或调整）堆栈（可能是内存分配出错）。\n"
 
 #, c-format
@@ -306,7 +304,9 @@ msgstr "%s：第%d个输入参数值错误：‘%s’、‘%s’或‘%s’。\n
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为‘%s’、‘%s’、‘%s’。第%d个输入参数必须为‘%s’。\n"
+msgstr ""
+"%s：第%d个输入参数的值错误：应该为‘%s’、‘%s’、‘%s’。第%d个输入参数必须"
+"为‘%s’。\n"
 
 #, c-format
 msgid " using %10d elements out of  %10d.\n"
@@ -459,8 +459,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"错误：不是有效的版本文件%s（应该以<MODULE_VERSION>开头，并包含<VERSION major='' minor='' "
-"maintenance='' revision='' string=''>）\n"
+"错误：不是有效的版本文件%s（应该以<MODULE_VERSION>开头，并包含<VERSION "
+"major='' minor='' maintenance='' revision='' string=''>）\n"
 
 #, c-format
 msgid ""
@@ -481,8 +481,8 @@ msgid ""
 "Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
 "<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
 msgstr ""
-"出错：gateway 文件%s不正确（应该以<GATEWAY>开始，并包含<PRIMITIVE gatewayId='' primitiveId='' "
-"primitiveName=''>）\n"
+"出错：gateway 文件%s不正确（应该以<GATEWAY>开始，并包含<PRIMITIVE "
+"gatewayId='' primitiveId='' primitiveName=''>）\n"
 
 #, c-format
 msgid ""

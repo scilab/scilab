@@ -67,7 +67,7 @@ int sci_h5attr(char *fname, int* pvApiCtx)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string or H5Object expected.\n"), fname, 1);
             return 0;
         }
 
@@ -91,7 +91,7 @@ int sci_h5attr(char *fname, int* pvApiCtx)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -114,7 +114,7 @@ int sci_h5attr(char *fname, int* pvApiCtx)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
         return 0;
     }
 
@@ -139,7 +139,7 @@ int sci_h5attr(char *fname, int* pvApiCtx)
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, nbIn);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, nbIn);
             return 0;
         }
 

@@ -17,11 +17,11 @@ function txt = help_skeleton(funname, path, language)
     end
 
     if type(funname) <> 10 then
-        error(999,msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"help_skeleton",1));
+        error(999,msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"help_skeleton",1));
     end
 
     if size(funname, "*") <> 1 then
-        error(999,msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"help_skeleton",1));
+        error(999,msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"help_skeleton",1));
     end
 
     if rhs > 1 then

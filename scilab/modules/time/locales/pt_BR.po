@@ -51,20 +51,18 @@ msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: Esperava-se '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: Esperava-se um "
 "string.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
+msgstr "%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Valor errado para argumento de entrada #%d: um real é esperado.\n"
+msgstr "%s: Valor errado para argumento de entrada #%d: um real é esperado.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
@@ -146,8 +144,7 @@ msgstr ""
 "matriz m*3 ou m*6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorretos para o argumento de entrada #%d: %s deve estar entre %d "
 "e%d.\n"
@@ -196,8 +193,7 @@ msgstr ""
 "inteiro.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada #%d e #%d: esperava-se "
 "dimensões iguais.\n"

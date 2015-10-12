@@ -318,8 +318,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -369,8 +368,7 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -451,8 +449,7 @@ msgstr ""
 "de fraccions racionals.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un vector de "
 "%d elements.\n"

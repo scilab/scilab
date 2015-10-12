@@ -28,13 +28,16 @@ msgstr "導入"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数または多項式または有理分数配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 浮動小数点数または多項式または有理分数"
+"配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -45,26 +48,31 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 多項式を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 有理分数を指定してください.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 有理分数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 1入力1出力システムを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 1入力1出力システムを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or polynomial "
 "array expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 線形動的システムまたは多項式配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 線形動的システムまたは多項式配列を指定"
+"してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 整数配列または多項式を指定してください.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています: 整数配列または多項式を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
@@ -80,7 +88,8 @@ msgstr "%s: 入力引数 #%d に想定外の型が指定されました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
 
 #
 # File: macros/inv_coeff.sci, line: 24
@@ -90,12 +99,14 @@ msgstr "%s: 入力引数 %d と %d で互換性がありません。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 実数行列または多項式を指定してください.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています: 実数行列または多項式を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String expected.\n"

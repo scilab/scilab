@@ -31,7 +31,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -580,8 +580,7 @@ msgstr "Увімкнути"
 msgid "Palette name"
 msgstr "Назва палітри"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "З часу попереднього збереження діаграму було змінено.<br/> Бажаєте зберегти "
 "її?"
@@ -663,23 +662,17 @@ msgstr "Додати до"
 msgid "Add to new diagram"
 msgstr "Додати до нової діаграми"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
-msgstr ""
-"Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
+msgid "Explicit data input port must be connected to explicit data output port"
+msgstr "Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Порт неявного вводу даних має бути з’єднано з портом неявного виводу даних"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
-msgstr ""
-"Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
+msgid "Explicit data output port must be connected to explicit data input port"
+msgstr "Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Порт неявного виводу даних має бути з’єднано з портом неявного вводу даних"
 
@@ -764,14 +757,12 @@ msgstr "Виконується моделювання"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr ""
-"Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
+msgstr "Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Створення суперблоку, зачекайте"
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Клацніть лівою кнопкою миші на діаграмі, щоб додати точку з’єднання, або на "
 "відповідному елементі, щоб завершити з’єднання"
@@ -867,8 +858,8 @@ msgid "Expecting '%d'."
 msgstr "Мало бути вказано «%d»."
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 "<html><body>Помилка під час компіляції: зв’язок проігноровано, оскільки "
 "немає з’єднання. <br/>Будь ласка, створіть з’єднання.</body></html>"
@@ -1035,8 +1026,7 @@ msgstr ""
 "тип.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
 "до каталогу.\n"
@@ -1081,8 +1071,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr ""
-"%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
+msgstr "%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
 
 #, c-format
 msgid "%s: All paths defined by %s variable must exist.\n"
@@ -1141,8 +1130,7 @@ msgstr ""
 "від %d до %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри "
 "або шлях до файла.\n"
@@ -1220,8 +1208,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"

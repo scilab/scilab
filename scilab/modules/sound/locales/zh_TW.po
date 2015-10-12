@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
 
 #, c-format
@@ -33,7 +33,7 @@ msgid "Cannot play file."
 msgstr "無法使用檔案."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
 
 #, c-format
@@ -188,8 +188,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: 一個錯誤發生 %s 並不支援.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s: 一個錯誤發生: 無效的檔案格式. 讀取大量<%s> 發生錯誤.\n"
 
 msgid "Invalid .wav file: found data before format information."

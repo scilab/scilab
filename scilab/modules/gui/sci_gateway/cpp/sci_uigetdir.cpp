@@ -70,7 +70,7 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
@@ -97,7 +97,7 @@ int sci_uigetdir(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             FREE(expandedpath);
             return 1;
         }

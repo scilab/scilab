@@ -40,8 +40,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
+msgstr "%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
@@ -185,8 +184,7 @@ msgstr ""
 "argumentos de entrada."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s: Esperada %d linhas no argumento de entrada #%d, mas %d linhas foram "
 "encontradas."
@@ -236,11 +234,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format

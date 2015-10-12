@@ -21,14 +21,13 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%i : Une chaîne de caractères "
 "attendue.\n"
 
 msgid "An error occurred while opening Preferences window:"
-msgstr ""
-"Une erreur s'est produite à l'ouverture de la fenêtre de préférences :"
+msgstr "Une erreur s'est produite à l'ouverture de la fenêtre de préférences :"
 
 #, c-format
 msgid ""

@@ -295,31 +295,35 @@ void AnalysisVisitor::visitArguments(const std::wstring & name, const unsigned i
     std::vector<TIType> out = getDM().call(*this, lhs, sym, vargs, &e, functionId);
     if (lhs > 1)
     {
-        std::vector<Result> resargs;
-        std::vector<TIType> vargs;
-        vargs.reserve(args.size());
-        resargs.reserve(args.size());
-
-        for (auto arg : args)
+        multipleLHS.clear();
+        multipleLHS.reserve(out.size());
+        for (const auto & type : out)
         {
-            arg->accept(*this);
-            resargs.push_back(getResult());
-            vargs.push_back(getResult().getType());
+            const int tempId = getDM().getTmpId(type, false);
+            multipleLHS.emplace_back(type, tempId);
         }
 
-        const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(e.getName()).getSymbol();
-        uint64_t functionId = 0;
-        std::vector<TIType> out = getDM().call(*this, lhs, sym, vargs, &e, functionId);
-        if (lhs > 1)
+        auto i = args.begin();
+        for (const auto & resarg : resargs)
         {
-            multipleLHS.clear();
-            multipleLHS.reserve(out.size());
-            for (const auto & type : out)
+            getDM().releaseTmp(resarg.getTempId(), *i);
+            ++i;
+        }
+    }
+    else if (lhs == 1)
+    {
+        int tempId = -1;
+        if (resargs.size() == 1)
+        {
+            const int id = resargs.back().getTempId();
+            if (id != -1 && Checkers::isElementWise(name) && out[0] == resargs.back().getType())
             {
-                const int tempId = getDM().getTmpId(type, false);
-                multipleLHS.emplace_back(type, tempId);
+                tempId = id;
             }
-
+        }
+        if (tempId == -1)
+        {
+            tempId = getDM().getTmpId(out[0], false);
             auto i = args.begin();
             for (const auto & resarg : resargs)
             {
@@ -327,32 +331,10 @@ void AnalysisVisitor::visitArguments(const std::wstring & name, const unsigned i
                 ++i;
             }
         }
-        else if (lhs == 1)
-        {
-            int tempId = -1;
-            if (resargs.size() == 1)
-            {
-                const int id = resargs.back().getTempId();
-                if (id != -1 && Checkers::isElementWise(name) && out[0] == resargs.back().getType())
-                {
-                    tempId = id;
-                }
-            }
-            if (tempId == -1)
-            {
-                tempId = getDM().getTmpId(out[0], false);
-                auto i = args.begin();
-                for (const auto & resarg : resargs)
-                {
-                    getDM().releaseTmp(resarg.getTempId(), *i);
-                    ++i;
-                }
-            }
 
-            e.getDecorator().res = Result(out[0], tempId, functionId);
-            e.getDecorator().setCall(name, vargs);
-            setResult(e.getDecorator().res);
-        }
+        e.getDecorator().res = Result(out[0], tempId, functionId);
+        e.getDecorator().setCall(name, vargs);
+        setResult(e.getDecorator().res);
     }
 }
 

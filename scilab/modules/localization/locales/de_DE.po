@@ -57,8 +57,7 @@ msgstr "Starten Sie Scilab, um dies auf Menüs anzuwenden.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: String expected.\n"
-msgstr ""
-"%s: Falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
+msgstr "%s: Falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Unsupported language '%s'.\n"

@@ -19,11 +19,11 @@ function path = get_function_path(name)
     end
 
     if type(name) <> 10 then
-        error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"get_function_path",1));
+        error(999,msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"get_function_path",1));
     end
 
     if size(name,"*") <> 1 then
-        error(999,msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"get_function_path",1));
+        error(999,msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"get_function_path",1));
     end
 
     libname = whereis(name);

@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     {
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "roots", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "roots", 2);
             return types::Function::Error;
         }
 

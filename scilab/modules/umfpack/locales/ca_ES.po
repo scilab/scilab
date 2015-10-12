@@ -148,7 +148,7 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "La matriu no és compatible amb els factors LU donats"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -251,8 +251,8 @@ msgstr " Avís: per a convergència lM a rtol = %e \n"
 #, c-format
 msgid "           don't reached after %d iterations (got only %e) \n"
 msgstr ""
-"           no s'ha assolit després de %d iteracions (només s'ha obtingut %e) "
-"\n"
+"           no s'ha assolit després de %d iteracions (només s'ha obtingut "
+"%e) \n"
 
 msgid ""
 "\n"
@@ -278,15 +278,13 @@ msgstr ""
 "%s: Nombre incorrecte d'arguments d'entrada: Hi ha d'haver entre %d i %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una matriu "
 "dispersa quadrada.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una matriu "
 "dispersa quadrada.\n"
@@ -297,8 +295,7 @@ msgstr "%s: La matriu i els factors LU no tenen la mateixa dimensió.\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr ""
-"%s: El tipus i/o la mida i/o el valor del segon argument és invàlid.\n"
+msgstr "%s: El tipus i/o la mida i/o el valor del segon argument és invàlid.\n"
 
 msgid " For this demo the current stack size is not enough "
 msgstr " La pila és massa petita per a aquesta demostració "

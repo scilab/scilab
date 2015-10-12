@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,299 +10,414 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/sci_contr.c, line: 72
-# File: sci_gateway/c/sci_contr.c, line: 78
+# File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 31
+# File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 58
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 276
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 284
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 307
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 315
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 338
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 346
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 376
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 384
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 408
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 416
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 438
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 446
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 525
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 533
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 277
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 285
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 315
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 322
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 355
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 373
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 339
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 347
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 365
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 423
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 431
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 573
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 581
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 40
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 91
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 97
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 74
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 112
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 189
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 416
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 432
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 447
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 462
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 82
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 136
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 68
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 86
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 104
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 128
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 80
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 97
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 83
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 99
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 114
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 164
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 229
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 63
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_contr.c, line: 86
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 112
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 173
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_contr.c, line: 102
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 123
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 136
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 156
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 78
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 100
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 122
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 145
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_contr.c, line: 112
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 163
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dhinf.c, line: 101
-# File: sci_gateway/c/sci_dhinf.c, line: 123
-# File: sci_gateway/c/sci_dhinf.c, line: 145
-# File: sci_gateway/c/sci_dhinf.c, line: 167
-# File: sci_gateway/c/sci_dhinf.c, line: 249
-# File: sci_gateway/c/sci_dhinf.c, line: 274
-# File: sci_gateway/c/sci_dhinf.c, line: 298
-# File: sci_gateway/c/sci_hinf.c, line: 98
-# File: sci_gateway/c/sci_hinf.c, line: 120
-# File: sci_gateway/c/sci_hinf.c, line: 142
-# File: sci_gateway/c/sci_hinf.c, line: 164
-# File: sci_gateway/c/sci_hinf.c, line: 247
-# File: sci_gateway/c/sci_hinf.c, line: 272
-# File: sci_gateway/c/sci_hinf.c, line: 296
-# File: sci_gateway/c/sci_linmeq.c, line: 499
-# File: sci_gateway/c/sci_mucomp.c, line: 164
-# File: sci_gateway/c/sci_mucomp.c, line: 180
-# File: sci_gateway/c/sci_ricc2.c, line: 76
-# File: sci_gateway/c/sci_ricc2.c, line: 98
-# File: sci_gateway/c/sci_ricc2.c, line: 120
-# File: sci_gateway/c/sci_rrankqr.c, line: 84
-# File: sci_gateway/c/sci_rrankqr.c, line: 128
-# File: sci_gateway/c/sci_rrankqr.c, line: 164
-# File: sci_gateway/c/sci_rrankqr.c, line: 186
-# File: sci_gateway/c/sci_zrankqr.c, line: 138
-# File: sci_gateway/c/sci_zrankqr.c, line: 174
-# File: sci_gateway/c/sci_zrankqr.c, line: 196
-#, c-format
-msgid "%s: Wrong type for argument #%d: A real expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_dhinf.c, line: 107
-# File: sci_gateway/c/sci_hinf.c, line: 104
-# File: sci_gateway/c/sci_ricc2.c, line: 82
-#, c-format
-msgid "%s: A must be a square matrix.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_dhinf.c, line: 129
-# File: sci_gateway/c/sci_hinf.c, line: 126
-#, c-format
-msgid "%s: A and B must have equal number of rows.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_dhinf.c, line: 151
-# File: sci_gateway/c/sci_hinf.c, line: 148
-#, c-format
-msgid "%s: A and C must have equal number of columns.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_dhinf.c, line: 173
-# File: sci_gateway/c/sci_hinf.c, line: 170
-#, c-format
-msgid "%s: B and D must have equal number of columns.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_dhinf.c, line: 179
-# File: sci_gateway/c/sci_hinf.c, line: 176
-#, c-format
-msgid "%s: C and D must have equal number of rows.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_dhinf.c, line: 193
-# File: sci_gateway/c/sci_dhinf.c, line: 201
-# File: sci_gateway/c/sci_dhinf.c, line: 209
-# File: sci_gateway/c/sci_dhinf.c, line: 217
-# File: sci_gateway/c/sci_dhinf.c, line: 225
-# File: sci_gateway/c/sci_dhinf.c, line: 316
-# File: sci_gateway/c/sci_dhinf.c, line: 324
-# File: sci_gateway/c/sci_dhinf.c, line: 332
-# File: sci_gateway/c/sci_dhinf.c, line: 340
-# File: sci_gateway/c/sci_dhinf.c, line: 348
-# File: sci_gateway/c/sci_dhinf.c, line: 356
-# File: sci_gateway/c/sci_dhinf.c, line: 364
-# File: sci_gateway/c/sci_dhinf.c, line: 373
-# File: sci_gateway/c/sci_dhinf.c, line: 382
-# File: sci_gateway/c/sci_dhinf.c, line: 399
-# File: sci_gateway/c/sci_hinf.c, line: 190
-# File: sci_gateway/c/sci_hinf.c, line: 198
-# File: sci_gateway/c/sci_hinf.c, line: 206
-# File: sci_gateway/c/sci_hinf.c, line: 214
-# File: sci_gateway/c/sci_hinf.c, line: 222
-# File: sci_gateway/c/sci_hinf.c, line: 314
-# File: sci_gateway/c/sci_hinf.c, line: 322
-# File: sci_gateway/c/sci_hinf.c, line: 330
-# File: sci_gateway/c/sci_hinf.c, line: 338
-# File: sci_gateway/c/sci_hinf.c, line: 346
-# File: sci_gateway/c/sci_hinf.c, line: 355
-# File: sci_gateway/c/sci_hinf.c, line: 364
-# File: sci_gateway/c/sci_hinf.c, line: 383
-# File: sci_gateway/c/sci_linmeq.c, line: 633
-# File: sci_gateway/c/sci_linmeq.c, line: 648
-# File: sci_gateway/c/sci_linmeq.c, line: 661
-# File: sci_gateway/c/sci_linmeq.c, line: 675
-# File: sci_gateway/c/sci_linmeq.c, line: 687
-# File: sci_gateway/c/sci_linmeq.c, line: 699
-# File: sci_gateway/c/sci_linmeq.c, line: 726
-# File: sci_gateway/c/sci_linmeq.c, line: 739
-# File: sci_gateway/c/sci_linmeq.c, line: 747
-# File: sci_gateway/c/sci_linmeq.c, line: 755
-# File: sci_gateway/c/sci_linmeq.c, line: 763
-# File: sci_gateway/c/sci_linmeq.c, line: 773
-# File: sci_gateway/c/sci_linmeq.c, line: 784
-# File: sci_gateway/c/sci_linmeq.c, line: 796
-# File: sci_gateway/c/sci_linmeq.c, line: 804
-# File: sci_gateway/c/sci_linmeq.c, line: 812
-# File: sci_gateway/c/sci_linmeq.c, line: 820
-# File: sci_gateway/c/sci_linmeq.c, line: 1037
-# File: sci_gateway/c/sci_linmeq.c, line: 1099
-# File: sci_gateway/c/sci_mucomp.c, line: 90
-# File: sci_gateway/c/sci_mucomp.c, line: 103
-# File: sci_gateway/c/sci_mucomp.c, line: 111
-# File: sci_gateway/c/sci_mucomp.c, line: 125
-# File: sci_gateway/c/sci_mucomp.c, line: 133
-# File: sci_gateway/c/sci_mucomp.c, line: 141
-# File: sci_gateway/c/sci_mucomp.c, line: 196
-# File: sci_gateway/c/sci_mucomp.c, line: 204
-# File: sci_gateway/c/sci_mucomp.c, line: 212
-# File: sci_gateway/c/sci_mucomp.c, line: 221
-# File: sci_gateway/c/sci_mucomp.c, line: 230
-# File: sci_gateway/c/sci_mucomp.c, line: 239
-# File: sci_gateway/c/sci_mucomp.c, line: 248
-# File: sci_gateway/c/sci_ricc2.c, line: 210
-# File: sci_gateway/c/sci_ricc2.c, line: 218
-# File: sci_gateway/c/sci_ricc2.c, line: 226
-# File: sci_gateway/c/sci_ricc2.c, line: 234
-# File: sci_gateway/c/sci_ricc2.c, line: 242
-# File: sci_gateway/c/sci_ricc2.c, line: 251
-# File: sci_gateway/c/sci_ricc2.c, line: 260
-# File: sci_gateway/c/sci_ricc2.c, line: 291
-# File: sci_gateway/c/sci_rrankqr.c, line: 97
-# File: sci_gateway/c/sci_rrankqr.c, line: 106
-# File: sci_gateway/c/sci_rrankqr.c, line: 142
-# File: sci_gateway/c/sci_rrankqr.c, line: 202
-# File: sci_gateway/c/sci_rrankqr.c, line: 211
-# File: sci_gateway/c/sci_rrankqr.c, line: 219
-# File: sci_gateway/c/sci_rrankqr.c, line: 227
-# File: sci_gateway/c/sci_rrankqr.c, line: 235
-# File: sci_gateway/c/sci_rrankqr.c, line: 244
-# File: sci_gateway/c/sci_zrankqr.c, line: 107
-# File: sci_gateway/c/sci_zrankqr.c, line: 116
-# File: sci_gateway/c/sci_zrankqr.c, line: 152
-# File: sci_gateway/c/sci_zrankqr.c, line: 212
-# File: sci_gateway/c/sci_zrankqr.c, line: 221
-# File: sci_gateway/c/sci_zrankqr.c, line: 229
-# File: sci_gateway/c/sci_zrankqr.c, line: 237
-# File: sci_gateway/c/sci_zrankqr.c, line: 245
-# File: sci_gateway/c/sci_zrankqr.c, line: 254
-# File: sci_gateway/c/sci_zrankqr.c, line: 263
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 193
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 202
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 211
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 220
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 229
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 237
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 258
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 192
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 200
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 208
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 216
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 224
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 315
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 323
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 331
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 339
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 347
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 355
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 363
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 372
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 381
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 398
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 189
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 197
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 205
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 213
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 221
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 313
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 321
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 329
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 337
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 345
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 354
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 363
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 382
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 631
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 646
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 659
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 673
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 685
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 697
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 724
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 737
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 745
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 753
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 761
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 771
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 782
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 794
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 802
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 810
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 818
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1035
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1097
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 91
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 104
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 112
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 126
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 134
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 142
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 197
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 205
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 213
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 222
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 231
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 240
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 249
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 212
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 220
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 228
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 236
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 244
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 253
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 262
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 293
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 97
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 106
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 142
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 202
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 211
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 219
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 227
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 235
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 244
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 109
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 118
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 154
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 214
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 223
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 231
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 239
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 247
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 256
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 265
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dhinf.c, line: 256
-# File: sci_gateway/c/sci_hinf.c, line: 254
+# File: modules/cacsd/sci_gateway/c/sci_contr.c, line: 247
+#, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 100
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 122
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 144
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 166
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 248
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 273
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 297
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 97
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 119
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 141
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 163
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 246
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 271
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 295
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 497
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 165
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 181
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 84
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 128
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 164
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 186
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 140
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 176
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 198
+#, c-format
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 106
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 103
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 84
+#, c-format
+msgid "%s: A must be a square matrix.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 128
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 125
+#, c-format
+msgid "%s: A and B must have equal number of rows.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 150
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 147
+#, c-format
+msgid "%s: A and C must have equal number of columns.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 172
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 169
+#, c-format
+msgid "%s: B and D must have equal number of columns.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 178
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 175
+#, c-format
+msgid "%s: C and D must have equal number of rows.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 255
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 253
 #, c-format
 msgid "%s: NCON must be a scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dhinf.c, line: 280
-# File: sci_gateway/c/sci_hinf.c, line: 278
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 279
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 277
 #, c-format
 msgid "%s: NMEAS must be a scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dhinf.c, line: 304
-# File: sci_gateway/c/sci_hinf.c, line: 302
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 303
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 301
 #, c-format
 msgid "%s: GAMMA must be a scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_dhinf.c, line: 411
+# File: modules/cacsd/sci_gateway/c/sci_dhinf.c, line: 410
 #, c-format
 msgid "%s: SB10DD exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_hinf.c, line: 395
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 290
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 321
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 390
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 364
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 587
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 352
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 422
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 452
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 358
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 268
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 354
+#, c-format
+msgid "%s: The system has no outputs\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 511
+#, c-format
+msgid "%s: The number of samples should be at least %d"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 557
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 213
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 409
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 239
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 276
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 318
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 477
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_findbd.c, line: 743
+#, c-format
+msgid "%s: INFO = %d on exit from IB01CD\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_hinf.c, line: 394
 #, c-format
 msgid "%s: SB10FD exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 227
-# File: sci_gateway/c/sci_linmeq.c, line: 273
-# File: sci_gateway/c/sci_linmeq.c, line: 316
-# File: sci_gateway/c/sci_linmeq.c, line: 347
-# File: sci_gateway/c/sci_linmeq.c, line: 379
-# File: sci_gateway/c/sci_linmeq.c, line: 407
-# File: sci_gateway/c/sci_linmeq.c, line: 440
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_linmeq.c, line: 233
-# File: sci_gateway/c/sci_linmeq.c, line: 280
-# File: sci_gateway/c/sci_linmeq.c, line: 322
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 231
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 278
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 320
 #, c-format
 msgid "%s: %s must be a scalar.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 240
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 238
 #, c-format
 msgid "%s: Wrong value for %s: %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 248
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 246
 #, c-format
 msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 289
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 287
 #, c-format
 msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 294
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 292
 #, c-format
 msgid "%s: Wrong value for %s: %d, or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 330
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 328
 #, c-format
 msgid "%s: Wrong value for %s: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 355
-# File: sci_gateway/c/sci_linmeq.c, line: 387
-# File: sci_gateway/c/sci_linmeq.c, line: 415
-# File: sci_gateway/c/sci_linmeq.c, line: 448
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 353
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 385
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 413
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 446
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 361
-# File: sci_gateway/c/sci_linmeq.c, line: 393
-# File: sci_gateway/c/sci_mucomp.c, line: 78
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_linmeq.c, line: 421
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 419
 #, c-format
 msgid ""
 "%s: Wrong column size for input argument #%d: Same column size of input "
@@ -310,8 +425,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 458
-# File: sci_gateway/c/sci_linmeq.c, line: 466
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 456
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 464
 #, c-format
 msgid ""
 "%s: Wrong row size for input argument #%d: Same row size of input argument #"
@@ -319,38 +434,38 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 507
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 505
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At most 3 elements expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 515
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 513
 #, c-format
 msgid "%s: Wrong size for input argument #%d: At most 2 elements expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1121
-# File: sci_gateway/c/sci_linmeq.c, line: 1138
-# File: sci_gateway/c/sci_linmeq.c, line: 1159
-# File: sci_gateway/c/sci_linmeq.c, line: 1195
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1119
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1136
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1157
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1193
 #, c-format
 msgid "%s: Convergence problem...\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1126
-# File: sci_gateway/c/sci_linmeq.c, line: 1143
-# File: sci_gateway/c/sci_linmeq.c, line: 1149
-# File: sci_gateway/c/sci_linmeq.c, line: 1164
-# File: sci_gateway/c/sci_linmeq.c, line: 1173
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1124
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1141
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1147
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1162
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1171
 #, c-format
 msgid "%s: Problem is singular.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1180
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1178
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: eigenvalues must have negative real "
@@ -358,8 +473,8 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1184
-# File: sci_gateway/c/sci_linmeq.c, line: 1190
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1182
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1188
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: eigenvalues modulus must be less "
@@ -367,14 +482,14 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1220
-# File: sci_gateway/c/sci_linmeq.c, line: 1225
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1218
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1223
 #, c-format
 msgid "%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_linmeq.c, line: 1230
+# File: modules/cacsd/sci_gateway/c/sci_linmeq.c, line: 1228
 #, c-format
 msgid ""
 "%s: Warning: the equation is (almost) singular. Perturbed values have been "
@@ -382,93 +497,96 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mucomp.c, line: 72
-# File: sci_gateway/c/sci_zrankqr.c, line: 95
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 73
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 97
 #, c-format
 msgid "%s: Wrong type for argument #%d: A complex expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mucomp.c, line: 186
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 187
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_mucomp.c, line: 258
+# File: modules/cacsd/sci_gateway/c/sci_mucomp.c, line: 259
 #, c-format
 msgid "%s: AB13MD exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 104
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 106
 #, c-format
 msgid "%s: D must be a square matrix.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 126
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 128
 #, c-format
 msgid "%s: C must be a square matrix.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 132
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 134
 #, c-format
 msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 148
-# File: sci_gateway/c/sci_ricc2.c, line: 176
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 150
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 178
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 158
-# File: sci_gateway/c/sci_ricc2.c, line: 187
-# File: sci_gateway/c/sci_ricc2.c, line: 197
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 160
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Type must be continuous or "
+"discrete.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 306
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 189
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 199
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 308
 #, c-format
 msgid "%s: RICCSL exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 318
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 320
 #, c-format
 msgid "%s: RICCMS exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 334
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 336
 #, c-format
 msgid "%s: RICDSL exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ricc2.c, line: 346
+# File: modules/cacsd/sci_gateway/c/sci_ricc.c, line: 348
 #, c-format
 msgid "%s: RICDMF exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rrankqr.c, line: 134
-# File: sci_gateway/c/sci_rrankqr.c, line: 170
-# File: sci_gateway/c/sci_zrankqr.c, line: 144
-# File: sci_gateway/c/sci_zrankqr.c, line: 180
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_rrankqr.c, line: 192
-# File: sci_gateway/c/sci_zrankqr.c, line: 202
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 192
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 204
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same column dimension as input "
@@ -476,103 +594,472 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rrankqr.c, line: 256
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 256
 #, c-format
 msgid "%s: MB03OD exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_rrankqr.c, line: 304
+# File: modules/cacsd/sci_gateway/c/sci_rrankqr.c, line: 304
 #, c-format
 msgid "%s: DORGQR exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zrankqr.c, line: 275
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 233
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 259
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 243
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 252
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 327
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 258
+#, c-format
+msgid "%s: The order should be at most %d.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 292
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d rows expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 299
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d columns "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 337
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 385
+#, c-format
+msgid "%s: The number of samples should be at least %d\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 382
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 388
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sident.c, line: 557
+#, c-format
+msgid "%s: INFO = %d ON EXIT FROM IB01BD\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 300
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 391
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 399
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_sorder.c, line: 643
+#, c-format
+msgid "%s: INFO = %d on exit from IB01AD\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 277
 #, c-format
 msgid "%s: ZB03OD exit with info = %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_zrankqr.c, line: 323
+# File: modules/cacsd/sci_gateway/c/sci_zrankqr.c, line: 325
 #, c-format
 msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr ""
 
-# File: demos/cacsd.dem.gateway.sce, line: 9
-msgid "CACSD"
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 57
+# File: modules/cacsd/sci_gateway/cpp/sci_ereduc.cpp, line: 36
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 40
+# File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 42
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 44
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: demos/cacsd.dem.gateway.sce, line: 11
-msgid "LQG"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 63
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 46
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
-# File: demos/cacsd.dem.gateway.sce, line: 12
-msgid "Mixed-sensitivity"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 86
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 117
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single polynom expected.\n"
 msgstr ""
 
 #
-# File: demos/cacsd.dem.gateway.sce, line: 13
-msgid "PID"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 92
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 158
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 234
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 60
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 112
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 135
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 190
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #
-# File: demos/cacsd.dem.gateway.sce, line: 14
-msgid "Inverted pendulum"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 102
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 124
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
 msgstr ""
 
 #
-# File: demos/cacsd.dem.gateway.sce, line: 15
-msgid "Flat systems"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 109
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A polynom expected.\n"
 msgstr ""
 
 #
-# File: demos/cacsd.dem.gateway.sce, line: 16
-msgid "Tracking"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 123
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
 msgstr ""
 
 #
-# File: demos/cacsd.dem.gateway.sce, line: 17
-msgid "Robust control"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 145
+#, c-format
+msgid "%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
 msgstr ""
 
 #
-# File: demos/tracking/track.dem.sce, line: 37
-msgid "Press Return to continue ... \n"
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 151
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: More than degree of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #
-# File: macros/abcd.sci, line: 21
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 163
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 218
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 169
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 224
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'all' expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 181
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 204
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive value expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 187
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or string expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 211
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 254
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 366
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 259
+#, c-format
+msgid "%s: Impossible to reach required order.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 264
+#, c-format
+msgid "%s: Failure when looking for the intersection with domains bounds.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 269
+#, c-format
+msgid "%s: Too many solutions found.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 370
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 374
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_arl2_ius.cpp, line: 378
+#, c-format
+msgid "%s: too many solutions found\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ereduc.cpp, line: 42
+# File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 48
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 50
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ereduc.cpp, line: 63
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 85
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 387
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 409
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 424
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 439
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 454
+# File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 77
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 60
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 78
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 96
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 120
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 62
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 72
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 89
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 75
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 91
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 221
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 55
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 46
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 49
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 54
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 58
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 65
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 178
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 252
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 102
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 154
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 214
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 258
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 479
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 485
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 143
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 151
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 109
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 131
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 238
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 249
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 255
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 261
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 267
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 80
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 119
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 283
+#, c-format
+msgid "%s: Division by zero...\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 524
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 297
+msgid "Warning :\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 525
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %g\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 102
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 121
+#, c-format
+msgid "%s: Incompatible input argument.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_fstair.cpp, line: 168
+#, c-format
+msgid "%s: The algorithm has failed.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 118
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 142
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A same size as input argument %d "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 158
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matix or polynom expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 179
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ltitr.cpp, line: 110
+#, c-format
+msgid "%s: Wrong size for argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 151
+# File: modules/cacsd/sci_gateway/cpp/sci_ppol.cpp, line: 177
+#, c-format
+msgid "%s: Uncontrollable system.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 153
+# File: modules/cacsd/sci_gateway/cpp/sci_residu.cpp, line: 196
+#, c-format
+msgid "%s: An error occured in '%s'.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 59
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 298
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 303
+msgid "Problem is singular.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 69
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A not empty matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 123
+#, c-format
+msgid "%s: attempt to divide by zero.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/sci_gateway/cpp/sci_tzer.cpp, line: 127
+#, c-format
+msgid "%s: ierr %d from qitz (eispack).\n"
+msgstr ""
+
+# File: modules/cacsd/macros/abcd.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 
 #
-# File: macros/abinv.sci, line: 51
-# File: macros/cont_mat.sci, line: 35
-# File: macros/ctr_gram.sci, line: 55
-# File: macros/h_norm.sci, line: 34
-# File: macros/nyquistfrequencybounds.sci, line: 22
-# File: macros/obsv_mat.sci, line: 26
-# File: macros/plzr.sci, line: 54
-# File: macros/repfreq.sci, line: 17
+# File: modules/cacsd/macros/abinv.sci, line: 51
+# File: modules/cacsd/macros/cont_mat.sci, line: 35
+# File: modules/cacsd/macros/ctr_gram.sci, line: 55
+# File: modules/cacsd/macros/h_norm.sci, line: 34
+# File: modules/cacsd/macros/nyquistfrequencybounds.sci, line: 22
+# File: modules/cacsd/macros/obsv_mat.sci, line: 26
+# File: modules/cacsd/macros/plzr.sci, line: 54
+# File: modules/cacsd/macros/repfreq.sci, line: 17
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system expected.\n"
 msgstr ""
 
 #
-# File: macros/abinv.sci, line: 60
-# File: macros/abinv.sci, line: 66
-# File: macros/abinv.sci, line: 70
-# File: macros/plzr.sci, line: 48
-# File: macros/plzr.sci, line: 60
-# File: macros/syslin.sci, line: 79
-# File: macros/syslin.sci, line: 86
-# File: macros/syslin.sci, line: 93
-# File: macros/syslin.sci, line: 103
+# File: modules/cacsd/macros/abinv.sci, line: 60
+# File: modules/cacsd/macros/abinv.sci, line: 66
+# File: modules/cacsd/macros/abinv.sci, line: 70
+# File: modules/cacsd/macros/plzr.sci, line: 48
+# File: modules/cacsd/macros/plzr.sci, line: 60
+# File: modules/cacsd/macros/syslin.sci, line: 79
+# File: modules/cacsd/macros/syslin.sci, line: 86
+# File: modules/cacsd/macros/syslin.sci, line: 93
+# File: modules/cacsd/macros/syslin.sci, line: 103
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
@@ -580,82 +1067,82 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/abinv.sci, line: 76
-# File: macros/augment.sci, line: 119
-# File: macros/augment.sci, line: 250
-# File: macros/csim.sci, line: 79
-# File: macros/ctr_gram.sci, line: 22
-# File: macros/damp.sci, line: 26
-# File: macros/gamitg.sci, line: 74
-# File: macros/gtild.sci, line: 42
-# File: macros/gtild.sci, line: 53
-# File: macros/linfn.sci, line: 103
-# File: macros/obs_gram.sci, line: 18
-# File: macros/show_margins.sci, line: 13
-# File: macros/ss2tf.sci, line: 61
-# File: macros/syslin.sci, line: 35
-# File: macros/time_id.sci, line: 25
-# File: macros/time_id.sci, line: 28
+# File: modules/cacsd/macros/abinv.sci, line: 76
+# File: modules/cacsd/macros/augment.sci, line: 119
+# File: modules/cacsd/macros/augment.sci, line: 250
+# File: modules/cacsd/macros/csim.sci, line: 79
+# File: modules/cacsd/macros/ctr_gram.sci, line: 22
+# File: modules/cacsd/macros/damp.sci, line: 26
+# File: modules/cacsd/macros/gamitg.sci, line: 74
+# File: modules/cacsd/macros/gtild.sci, line: 42
+# File: modules/cacsd/macros/gtild.sci, line: 53
+# File: modules/cacsd/macros/linfn.sci, line: 103
+# File: modules/cacsd/macros/obs_gram.sci, line: 18
+# File: modules/cacsd/macros/show_margins.sci, line: 13
+# File: modules/cacsd/macros/ss2tf.sci, line: 61
+# File: modules/cacsd/macros/syslin.sci, line: 35
+# File: modules/cacsd/macros/time_id.sci, line: 25
+# File: modules/cacsd/macros/time_id.sci, line: 28
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr ""
 
 #
-# File: macros/abinv.sci, line: 82
-# File: macros/cls2dls.sci, line: 27
-# File: macros/ctr_gram.sci, line: 34
-# File: macros/ctr_gram.sci, line: 47
-# File: macros/dscr.sci, line: 38
-# File: macros/hankelsv.sci, line: 16
-# File: macros/leqr.sci, line: 31
-# File: macros/lqg.sci, line: 42
+# File: modules/cacsd/macros/abinv.sci, line: 82
+# File: modules/cacsd/macros/cls2dls.sci, line: 27
+# File: modules/cacsd/macros/ctr_gram.sci, line: 34
+# File: modules/cacsd/macros/ctr_gram.sci, line: 47
+# File: modules/cacsd/macros/dscr.sci, line: 38
+# File: modules/cacsd/macros/hankelsv.sci, line: 16
+# File: modules/cacsd/macros/leqr.sci, line: 31
+# File: modules/cacsd/macros/lqg.sci, line: 42
 #, c-format
 msgid "%s: Input argument %d is assumed continuous time.\n"
 msgstr ""
 
 #
-# File: macros/abinv.sci, line: 156
-# File: macros/abinv.sci, line: 173
+# File: modules/cacsd/macros/abinv.sci, line: 156
+# File: modules/cacsd/macros/abinv.sci, line: 173
 #, c-format
 msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr ""
 
 #
-# File: macros/acf.sci, line: 24
+# File: modules/cacsd/macros/acf.sci, line: 24
 msgid "Autocorrelation Function"
 msgstr ""
 
 #
-# File: macros/arhnk.sci, line: 23
+# File: modules/cacsd/macros/arhnk.sci, line: 23
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Stable system expected.\n"
 msgstr ""
 
 #
-# File: macros/arma2p.sci, line: 15
-# File: macros/csim.sci, line: 48
-# File: macros/narsimul.sci, line: 141
+# File: modules/cacsd/macros/arma2p.sci, line: 15
+# File: modules/cacsd/macros/csim.sci, line: 48
+# File: modules/cacsd/macros/narsimul.sci, line: 141
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""
 
 #
-# File: macros/arma2ss.sci, line: 16
+# File: modules/cacsd/macros/arma2ss.sci, line: 16
 #, c-format
 msgid "%s : Wrong type for input argument #%d: An armax system expected.\n"
 msgstr ""
 
 #
-# File: macros/armac.sci, line: 25
-# File: macros/armac.sci, line: 31
-# File: macros/armac.sci, line: 42
+# File: modules/cacsd/macros/armac.sci, line: 25
+# File: modules/cacsd/macros/armac.sci, line: 31
+# File: modules/cacsd/macros/armac.sci, line: 42
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: row dimension must be equal to %d.\n"
 msgstr ""
 
 #
-# File: macros/armac.sci, line: 36
+# File: modules/cacsd/macros/armac.sci, line: 36
 #, c-format
 msgid ""
 "%s: Wrong size of input argument #%d: Number of columns are incompatible "
@@ -663,28 +1150,28 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 72
+# File: modules/cacsd/macros/armax.sci, line: 72
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments: If %s and %s nothing to identify.\n"
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 83
+# File: modules/cacsd/macros/armax.sci, line: 83
 #, c-format
 msgid "%s: %s is numerically singular.\n"
 msgstr ""
 
 #
-# File: macros/armax.sci, line: 119
-# File: macros/armax.sci, line: 123
+# File: modules/cacsd/macros/armax.sci, line: 119
+# File: modules/cacsd/macros/armax.sci, line: 123
 #, c-format
 msgid "%s: Standard deviation of the estimator %s:\n"
 msgstr ""
 
 #
-# File: macros/armax1.sci, line: 54
-# File: macros/frep2tf.sci, line: 105
+# File: modules/cacsd/macros/armax1.sci, line: 54
+# File: modules/cacsd/macros/frep2tf.sci, line: 105
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
@@ -692,74 +1179,74 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/arsimul.sci, line: 18
-# File: macros/black.sci, line: 69
-# File: macros/black.sci, line: 99
-# File: macros/bode.sci, line: 59
-# File: macros/bode.sci, line: 89
-# File: macros/findABCD.sci, line: 84
-# File: macros/findAC.sci, line: 60
-# File: macros/findBDK.sci, line: 90
-# File: macros/findx0BD.sci, line: 61
-# File: macros/gainplot.sci, line: 46
-# File: macros/gainplot.sci, line: 72
-# File: macros/narsimul.sci, line: 29
-# File: macros/narsimul.sci, line: 44
-# File: macros/nyquist.sci, line: 56
-# File: macros/nyquist.sci, line: 86
-# File: macros/phaseplot.sci, line: 34
-# File: macros/phaseplot.sci, line: 60
-# File: macros/repfreq.sci, line: 45
+# File: modules/cacsd/macros/arsimul.sci, line: 18
+# File: modules/cacsd/macros/black.sci, line: 69
+# File: modules/cacsd/macros/black.sci, line: 99
+# File: modules/cacsd/macros/bode.sci, line: 59
+# File: modules/cacsd/macros/bode.sci, line: 89
+# File: modules/cacsd/macros/findABCD.sci, line: 84
+# File: modules/cacsd/macros/findAC.sci, line: 60
+# File: modules/cacsd/macros/findBDK.sci, line: 90
+# File: modules/cacsd/macros/findx0BD.sci, line: 61
+# File: modules/cacsd/macros/gainplot.sci, line: 46
+# File: modules/cacsd/macros/gainplot.sci, line: 72
+# File: modules/cacsd/macros/narsimul.sci, line: 29
+# File: modules/cacsd/macros/narsimul.sci, line: 44
+# File: modules/cacsd/macros/nyquist.sci, line: 56
+# File: modules/cacsd/macros/nyquist.sci, line: 86
+# File: modules/cacsd/macros/phaseplot.sci, line: 34
+# File: modules/cacsd/macros/phaseplot.sci, line: 60
+# File: modules/cacsd/macros/repfreq.sci, line: 45
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/arsimul.sci, line: 32
+# File: modules/cacsd/macros/arsimul.sci, line: 32
 #, c-format
 msgid "%s: Number of rows of %s are incompatible with %s object.\n"
 msgstr ""
 
 #
-# File: macros/arsimul.sci, line: 71
-# File: macros/arsimul.sci, line: 90
-# File: macros/arsimul.sci, line: 109
+# File: modules/cacsd/macros/arsimul.sci, line: 71
+# File: modules/cacsd/macros/arsimul.sci, line: 90
+# File: modules/cacsd/macros/arsimul.sci, line: 109
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An empty matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/arsimul.sci, line: 77
-# File: macros/arsimul.sci, line: 96
-# File: macros/arsimul.sci, line: 115
+# File: modules/cacsd/macros/arsimul.sci, line: 77
+# File: modules/cacsd/macros/arsimul.sci, line: 96
+# File: modules/cacsd/macros/arsimul.sci, line: 115
 #, c-format
 msgid "%s: %s must be of dimension (%s, %s).\n"
 msgstr ""
 
 #
-# File: macros/augment.sci, line: 48
-# File: macros/augment.sci, line: 182
-# File: macros/sgrid.sci, line: 20
-# File: macros/sgrid.sci, line: 30
-# File: macros/ss2des.sci, line: 18
-# File: macros/tf2des.sci, line: 20
-# File: macros/zgrid.sci, line: 20
-# File: macros/zgrid.sci, line: 30
+# File: modules/cacsd/macros/augment.sci, line: 48
+# File: modules/cacsd/macros/augment.sci, line: 182
+# File: modules/cacsd/macros/sgrid.sci, line: 20
+# File: modules/cacsd/macros/sgrid.sci, line: 30
+# File: modules/cacsd/macros/ss2des.sci, line: 18
+# File: modules/cacsd/macros/tf2des.sci, line: 20
+# File: modules/cacsd/macros/zgrid.sci, line: 20
+# File: modules/cacsd/macros/zgrid.sci, line: 30
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #
-# File: macros/black.sci, line: 62
-# File: macros/black.sci, line: 80
-# File: macros/bode.sci, line: 52
-# File: macros/bode.sci, line: 70
-# File: macros/gainplot.sci, line: 39
-# File: macros/gainplot.sci, line: 56
-# File: macros/nyquist.sci, line: 50
-# File: macros/nyquist.sci, line: 69
-# File: macros/phaseplot.sci, line: 27
-# File: macros/phaseplot.sci, line: 44
+# File: modules/cacsd/macros/black.sci, line: 62
+# File: modules/cacsd/macros/black.sci, line: 80
+# File: modules/cacsd/macros/bode.sci, line: 52
+# File: modules/cacsd/macros/bode.sci, line: 70
+# File: modules/cacsd/macros/gainplot.sci, line: 39
+# File: modules/cacsd/macros/gainplot.sci, line: 56
+# File: modules/cacsd/macros/nyquist.sci, line: 50
+# File: modules/cacsd/macros/nyquist.sci, line: 69
+# File: modules/cacsd/macros/phaseplot.sci, line: 27
+# File: modules/cacsd/macros/phaseplot.sci, line: 44
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row vector with length>%d "
@@ -767,22 +1254,22 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/black.sci, line: 84
-# File: macros/black.sci, line: 91
-# File: macros/black.sci, line: 95
-# File: macros/bode.sci, line: 74
-# File: macros/bode.sci, line: 81
-# File: macros/bode.sci, line: 85
-# File: macros/csim.sci, line: 88
-# File: macros/gainplot.sci, line: 60
-# File: macros/gainplot.sci, line: 68
-# File: macros/nyquist.sci, line: 72
-# File: macros/nyquist.sci, line: 78
-# File: macros/nyquist.sci, line: 81
-# File: macros/phaseplot.sci, line: 48
-# File: macros/phaseplot.sci, line: 56
-# File: macros/syslin.sci, line: 97
-# File: macros/syslin.sci, line: 123
+# File: modules/cacsd/macros/black.sci, line: 84
+# File: modules/cacsd/macros/black.sci, line: 91
+# File: modules/cacsd/macros/black.sci, line: 95
+# File: modules/cacsd/macros/bode.sci, line: 74
+# File: modules/cacsd/macros/bode.sci, line: 81
+# File: modules/cacsd/macros/bode.sci, line: 85
+# File: modules/cacsd/macros/csim.sci, line: 88
+# File: modules/cacsd/macros/gainplot.sci, line: 60
+# File: modules/cacsd/macros/gainplot.sci, line: 68
+# File: modules/cacsd/macros/nyquist.sci, line: 72
+# File: modules/cacsd/macros/nyquist.sci, line: 78
+# File: modules/cacsd/macros/nyquist.sci, line: 81
+# File: modules/cacsd/macros/phaseplot.sci, line: 48
+# File: modules/cacsd/macros/phaseplot.sci, line: 56
+# File: modules/cacsd/macros/syslin.sci, line: 97
+# File: modules/cacsd/macros/syslin.sci, line: 123
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same column dimensions "
@@ -790,11 +1277,11 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/black.sci, line: 102
-# File: macros/bode.sci, line: 92
-# File: macros/gainplot.sci, line: 75
-# File: macros/nyquist.sci, line: 89
-# File: macros/phaseplot.sci, line: 63
+# File: modules/cacsd/macros/black.sci, line: 102
+# File: modules/cacsd/macros/bode.sci, line: 92
+# File: modules/cacsd/macros/gainplot.sci, line: 75
+# File: modules/cacsd/macros/nyquist.sci, line: 89
+# File: modules/cacsd/macros/phaseplot.sci, line: 63
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
@@ -802,11 +1289,11 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/black.sci, line: 113
-# File: macros/bode.sci, line: 103
-# File: macros/gainplot.sci, line: 82
-# File: macros/nyquist.sci, line: 99
-# File: macros/phaseplot.sci, line: 70
+# File: modules/cacsd/macros/black.sci, line: 113
+# File: modules/cacsd/macros/bode.sci, line: 103
+# File: modules/cacsd/macros/gainplot.sci, line: 82
+# File: modules/cacsd/macros/nyquist.sci, line: 99
+# File: modules/cacsd/macros/phaseplot.sci, line: 70
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of elements "
@@ -814,123 +1301,118 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/black.sci, line: 150
+# File: modules/cacsd/macros/black.sci, line: 150
 msgid "Phase (deg)"
 msgstr ""
 
 #
-# File: macros/black.sci, line: 151
-# File: macros/bode.sci, line: 142
-# File: macros/bode.sci, line: 182
-# File: macros/gainplot.sci, line: 95
+# File: modules/cacsd/macros/black.sci, line: 151
+# File: modules/cacsd/macros/bode.sci, line: 142
+# File: modules/cacsd/macros/bode.sci, line: 182
+# File: modules/cacsd/macros/gainplot.sci, line: 95
 msgid "Magnitude (dB)"
 msgstr ""
 
 #
-# File: macros/bloc2exp.sci, line: 16
-# File: macros/bloc2exp.sci, line: 19
-# File: macros/bloc2ss.sci, line: 17
-# File: macros/bloc2ss.sci, line: 21
+# File: modules/cacsd/macros/bloc2ss.sci, line: 17
+# File: modules/cacsd/macros/bloc2ss.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr ""
 
 #
-# File: macros/bloc2exp.sci, line: 130
-# File: macros/bloc2ss.sci, line: 225
-#, c-format
-msgid "%s: Undefined type '%s'.\n"
-msgstr ""
-
-#
-# File: macros/bloc2exp.sci, line: 135
-# File: macros/bloc2ss.sci, line: 236
-#, c-format
-msgid "%s: Some output(s) are undefined.\n"
-msgstr ""
-
-#
-# File: macros/bloc2exp.sci, line: 138
-# File: macros/bloc2ss.sci, line: 239
-#, c-format
-msgid "%s: Some input(s) are undefined.\n"
-msgstr ""
-
-#
-# File: macros/bloc2ss.sci, line: 48
+# File: modules/cacsd/macros/bloc2ss.sci, line: 48
 #, c-format
 msgid "%s: Hybrid system not implemented.\n"
 msgstr ""
 
 #
-# File: macros/bloc2ss.sci, line: 52
+# File: modules/cacsd/macros/bloc2ss.sci, line: 52
 #, c-format
 msgid "%s: Multi rate discrete system not implemented.\n"
 msgstr ""
 
 #
-# File: macros/bloc2ss.sci, line: 117
+# File: modules/cacsd/macros/bloc2ss.sci, line: 117
 #, c-format
 msgid "%s: Incorrect link: %s"
 msgstr ""
 
 #
-# File: macros/bloc2ss.sci, line: 181
+# File: modules/cacsd/macros/bloc2ss.sci, line: 181
 #, c-format
 msgid "%s: Wrong size for link from block %s.\n"
 msgstr ""
 
 #
-# File: macros/bloc2ss.sci, line: 188
+# File: modules/cacsd/macros/bloc2ss.sci, line: 188
 #, c-format
 msgid "%s: Invalid sizes found during the process.\n"
 msgstr ""
 
 #
-# File: macros/bloc2ss.sci, line: 230
+# File: modules/cacsd/macros/bloc2ss.sci, line: 225
+#, c-format
+msgid "%s: Undefined type '%s'.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/bloc2ss.sci, line: 230
 #, c-format
 msgid "%s: No output found.\n"
 msgstr ""
 
 #
-# File: macros/bloc2ss.sci, line: 233
+# File: modules/cacsd/macros/bloc2ss.sci, line: 233
 #, c-format
 msgid "%s: No input found.\n"
 msgstr ""
 
 #
-# File: macros/bode.sci, line: 142
-# File: macros/bode.sci, line: 168
-# File: macros/gainplot.sci, line: 94
-# File: macros/phaseplot.sci, line: 82
+# File: modules/cacsd/macros/bloc2ss.sci, line: 236
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/bloc2ss.sci, line: 239
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr ""
+
+#
+# File: modules/cacsd/macros/bode.sci, line: 142
+# File: modules/cacsd/macros/bode.sci, line: 168
+# File: modules/cacsd/macros/gainplot.sci, line: 94
+# File: modules/cacsd/macros/phaseplot.sci, line: 82
 msgid "Frequency (Hz)"
 msgstr ""
 
 #
-# File: macros/bode.sci, line: 168
-# File: macros/bode.sci, line: 182
+# File: modules/cacsd/macros/bode.sci, line: 168
+# File: modules/cacsd/macros/bode.sci, line: 182
 msgid "Phase (degree)"
 msgstr ""
 
 #
-# File: macros/bode.sci, line: 199
+# File: modules/cacsd/macros/bode.sci, line: 199
 msgid "Frequency (rad/s)"
 msgstr ""
 
 #
-# File: macros/bode_asymp.sci, line: 28
+# File: modules/cacsd/macros/bode_asymp.sci, line: 28
 #, c-format
 msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/bode_asymp.sci, line: 67
+# File: modules/cacsd/macros/bode_asymp.sci, line: 67
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Evaluation failed.\n"
 msgstr ""
 
 #
-# File: macros/bode_asymp.sci, line: 127
+# File: modules/cacsd/macros/bode_asymp.sci, line: 127
 #, c-format
 msgid ""
 "ERROR: %s: bode() or gainplot() must be called before bode_asymp() and "
@@ -938,40 +1420,40 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/cainv.sci, line: 60
+# File: modules/cacsd/macros/cainv.sci, line: 60
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr ""
 
 #
-# File: macros/cainv.sci, line: 63
-# File: macros/syslin.sci, line: 25
+# File: modules/cacsd/macros/cainv.sci, line: 63
+# File: modules/cacsd/macros/syslin.sci, line: 25
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: macros/calfrq.sci, line: 23
-# File: macros/copfac.sci, line: 35
-# File: macros/dtsi.sci, line: 29
-# File: macros/fspec.sci, line: 26
-# File: macros/fstabst.sci, line: 25
-# File: macros/gamitg.sci, line: 38
-# File: macros/h2norm.sci, line: 24
-# File: macros/h_cl.sci, line: 19
-# File: macros/h_cl.sci, line: 43
-# File: macros/h_inf.sci, line: 39
-# File: macros/kpure.sci, line: 22
-# File: macros/krac2.sci, line: 23
-# File: macros/lcf.sci, line: 21
-# File: macros/lft.sci, line: 26
-# File: macros/lft.sci, line: 39
-# File: macros/linf.sci, line: 22
-# File: macros/lqg.sci, line: 14
-# File: macros/macglov.sci, line: 23
-# File: macros/pfss.sci, line: 35
-# File: macros/syslin.sci, line: 47
-# File: macros/trfmod.sci, line: 42
+# File: modules/cacsd/macros/calfrq.sci, line: 23
+# File: modules/cacsd/macros/copfac.sci, line: 35
+# File: modules/cacsd/macros/dtsi.sci, line: 29
+# File: modules/cacsd/macros/fspec.sci, line: 26
+# File: modules/cacsd/macros/fstabst.sci, line: 25
+# File: modules/cacsd/macros/gamitg.sci, line: 38
+# File: modules/cacsd/macros/h2norm.sci, line: 24
+# File: modules/cacsd/macros/h_cl.sci, line: 19
+# File: modules/cacsd/macros/h_cl.sci, line: 43
+# File: modules/cacsd/macros/h_inf.sci, line: 39
+# File: modules/cacsd/macros/kpure.sci, line: 22
+# File: modules/cacsd/macros/krac2.sci, line: 23
+# File: modules/cacsd/macros/lcf.sci, line: 21
+# File: modules/cacsd/macros/lft.sci, line: 26
+# File: modules/cacsd/macros/lft.sci, line: 39
+# File: modules/cacsd/macros/linf.sci, line: 22
+# File: modules/cacsd/macros/lqg.sci, line: 14
+# File: modules/cacsd/macros/macglov.sci, line: 23
+# File: modules/cacsd/macros/pfss.sci, line: 35
+# File: modules/cacsd/macros/syslin.sci, line: 47
+# File: modules/cacsd/macros/trfmod.sci, line: 42
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space or a transfer "
@@ -979,123 +1461,123 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/calfrq.sci, line: 43
+# File: modules/cacsd/macros/calfrq.sci, line: 43
 #, c-format
 msgid "%s: Frequencies beyond Nyquist frequency are ignored.\n"
 msgstr ""
 
 #
-# File: macros/calfrq.sci, line: 47
+# File: modules/cacsd/macros/calfrq.sci, line: 47
 #, c-format
 msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
 msgstr ""
 
 #
-# File: macros/calfrq.sci, line: 90
-# File: macros/repfreq.sci, line: 75
+# File: modules/cacsd/macros/calfrq.sci, line: 90
+# File: modules/cacsd/macros/repfreq.sci, line: 75
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
 msgstr ""
 
 #
-# File: macros/ccontrg.sci, line: 23
-# File: macros/gfare.sci, line: 16
-# File: macros/h_inf.sci, line: 35
-# File: macros/macglov.sci, line: 18
-# File: macros/plzr.sci, line: 26
-# File: macros/plzr.sci, line: 36
+# File: modules/cacsd/macros/ccontrg.sci, line: 23
+# File: modules/cacsd/macros/gfare.sci, line: 16
+# File: modules/cacsd/macros/h_inf.sci, line: 35
+# File: modules/cacsd/macros/macglov.sci, line: 18
+# File: modules/cacsd/macros/plzr.sci, line: 26
+# File: modules/cacsd/macros/plzr.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/ccontrg.sci, line: 27
-# File: macros/cls2dls.sci, line: 24
-# File: macros/gcare.sci, line: 16
-# File: macros/gfare.sci, line: 21
-# File: macros/gfrancis.sci, line: 39
-# File: macros/gfrancis.sci, line: 45
-# File: macros/invrs.sci, line: 15
-# File: macros/invsyslin.sci, line: 13
-# File: macros/leqe.sci, line: 12
-# File: macros/leqr.sci, line: 23
-# File: macros/lqr.sci, line: 18
-# File: macros/nehari.sci, line: 24
-# File: macros/observer.sci, line: 47
-# File: macros/obsvss.sci, line: 40
-# File: macros/st_ility.sci, line: 21
+# File: modules/cacsd/macros/ccontrg.sci, line: 27
+# File: modules/cacsd/macros/cls2dls.sci, line: 24
+# File: modules/cacsd/macros/gcare.sci, line: 16
+# File: modules/cacsd/macros/gfare.sci, line: 21
+# File: modules/cacsd/macros/gfrancis.sci, line: 39
+# File: modules/cacsd/macros/gfrancis.sci, line: 45
+# File: modules/cacsd/macros/invrs.sci, line: 15
+# File: modules/cacsd/macros/invsyslin.sci, line: 13
+# File: modules/cacsd/macros/leqe.sci, line: 12
+# File: modules/cacsd/macros/leqr.sci, line: 23
+# File: modules/cacsd/macros/lqr.sci, line: 18
+# File: modules/cacsd/macros/nehari.sci, line: 24
+# File: modules/cacsd/macros/observer.sci, line: 47
+# File: modules/cacsd/macros/obsvss.sci, line: 40
+# File: modules/cacsd/macros/st_ility.sci, line: 21
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
 msgstr ""
 
 #
-# File: macros/ccontrg.sci, line: 30
-# File: macros/cls2dls.sci, line: 31
-# File: macros/gamitg.sci, line: 41
-# File: macros/gfrancis.sci, line: 42
-# File: macros/gfrancis.sci, line: 48
-# File: macros/h_inf.sci, line: 42
-# File: macros/linf.sci, line: 25
-# File: macros/nehari.sci, line: 31
+# File: modules/cacsd/macros/ccontrg.sci, line: 30
+# File: modules/cacsd/macros/cls2dls.sci, line: 31
+# File: modules/cacsd/macros/gamitg.sci, line: 41
+# File: modules/cacsd/macros/gfrancis.sci, line: 42
+# File: modules/cacsd/macros/gfrancis.sci, line: 48
+# File: modules/cacsd/macros/h_inf.sci, line: 42
+# File: modules/cacsd/macros/linf.sci, line: 25
+# File: modules/cacsd/macros/nehari.sci, line: 31
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Continuous time system expected.\n"
 msgstr ""
 
 #
-# File: macros/ccontrg.sci, line: 33
-# File: macros/gamitg.sci, line: 63
-# File: macros/h_cl.sci, line: 29
-# File: macros/h_inf.sci, line: 45
-# File: macros/h_inf.sci, line: 57
-# File: macros/h_inf.sci, line: 68
-# File: macros/h_inf.sci, line: 77
-# File: macros/lqg.sci, line: 18
+# File: modules/cacsd/macros/ccontrg.sci, line: 33
+# File: modules/cacsd/macros/gamitg.sci, line: 63
+# File: modules/cacsd/macros/h_cl.sci, line: 29
+# File: modules/cacsd/macros/h_inf.sci, line: 45
+# File: modules/cacsd/macros/h_inf.sci, line: 57
+# File: modules/cacsd/macros/h_inf.sci, line: 68
+# File: modules/cacsd/macros/h_inf.sci, line: 77
+# File: modules/cacsd/macros/lqg.sci, line: 18
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: macros/ccontrg.sci, line: 36
-# File: macros/gamitg.sci, line: 66
-# File: macros/h_cl.sci, line: 32
-# File: macros/h_inf.sci, line: 48
-# File: macros/lqg.sci, line: 21
+# File: modules/cacsd/macros/ccontrg.sci, line: 36
+# File: modules/cacsd/macros/gamitg.sci, line: 66
+# File: modules/cacsd/macros/h_cl.sci, line: 32
+# File: modules/cacsd/macros/h_inf.sci, line: 48
+# File: modules/cacsd/macros/lqg.sci, line: 21
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/ccontrg.sci, line: 40
-# File: macros/gamitg.sci, line: 70
-# File: macros/h_cl.sci, line: 36
-# File: macros/h_inf.sci, line: 52
-# File: macros/h_inf.sci, line: 63
-# File: macros/h_inf.sci, line: 74
-# File: macros/lqg.sci, line: 25
+# File: modules/cacsd/macros/ccontrg.sci, line: 40
+# File: modules/cacsd/macros/gamitg.sci, line: 70
+# File: modules/cacsd/macros/h_cl.sci, line: 36
+# File: modules/cacsd/macros/h_inf.sci, line: 52
+# File: modules/cacsd/macros/h_inf.sci, line: 63
+# File: modules/cacsd/macros/h_inf.sci, line: 74
+# File: modules/cacsd/macros/lqg.sci, line: 25
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
 
 #
-# File: macros/cont_mat.sci, line: 20
-# File: macros/cont_mat.sci, line: 29
-# File: macros/ctr_gram.sci, line: 30
-# File: macros/ctr_gram.sci, line: 42
-# File: macros/obs_gram.sci, line: 25
-# File: macros/obs_gram.sci, line: 37
-# File: macros/obsv_mat.sci, line: 16
+# File: modules/cacsd/macros/cont_mat.sci, line: 20
+# File: modules/cacsd/macros/cont_mat.sci, line: 29
+# File: modules/cacsd/macros/ctr_gram.sci, line: 30
+# File: modules/cacsd/macros/ctr_gram.sci, line: 42
+# File: modules/cacsd/macros/obs_gram.sci, line: 25
+# File: modules/cacsd/macros/obs_gram.sci, line: 37
+# File: modules/cacsd/macros/obsv_mat.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr ""
 
 #
-# File: macros/cont_mat.sci, line: 37
-# File: macros/ctr_gram.sci, line: 57
-# File: macros/obs_gram.sci, line: 52
-# File: macros/obsv_mat.sci, line: 28
-# File: macros/obsvss.sci, line: 42
-# File: macros/plzr.sci, line: 56
+# File: modules/cacsd/macros/cont_mat.sci, line: 37
+# File: modules/cacsd/macros/ctr_gram.sci, line: 57
+# File: modules/cacsd/macros/obs_gram.sci, line: 52
+# File: modules/cacsd/macros/obsv_mat.sci, line: 28
+# File: modules/cacsd/macros/obsvss.sci, line: 42
+# File: modules/cacsd/macros/plzr.sci, line: 56
 #, c-format
 msgid ""
 "%s: Wrong type of input argument #%d: Array of floating point numbers "
@@ -1103,141 +1585,141 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/contrss.sci, line: 15
-# File: macros/minss.sci, line: 15
-# File: macros/ss2tf.sci, line: 34
+# File: modules/cacsd/macros/contrss.sci, line: 15
+# File: modules/cacsd/macros/minss.sci, line: 15
+# File: modules/cacsd/macros/ss2tf.sci, line: 34
 #, c-format
 msgid "%s: Wrong type for input argument #%d: State-space form expected.\n"
 msgstr ""
 
 #
-# File: macros/copfac.sci, line: 28
-# File: macros/dtsi.sci, line: 25
-# File: macros/gamitg.sci, line: 49
-# File: macros/inistate.sci, line: 58
-# File: macros/inistate.sci, line: 108
-# File: macros/linfn.sci, line: 75
+# File: modules/cacsd/macros/copfac.sci, line: 28
+# File: modules/cacsd/macros/dtsi.sci, line: 25
+# File: modules/cacsd/macros/gamitg.sci, line: 49
+# File: modules/cacsd/macros/inistate.sci, line: 58
+# File: modules/cacsd/macros/inistate.sci, line: 108
+# File: modules/cacsd/macros/linfn.sci, line: 75
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/copfac.sci, line: 38
-# File: macros/dtsi.sci, line: 32
-# File: macros/fspec.sci, line: 29
-# File: macros/fspecg.sci, line: 23
-# File: macros/fstabst.sci, line: 28
-# File: macros/gcare.sci, line: 19
-# File: macros/gfare.sci, line: 24
-# File: macros/h2norm.sci, line: 27
-# File: macros/lcf.sci, line: 24
-# File: macros/linfn.sci, line: 99
-# File: macros/macglov.sci, line: 26
+# File: modules/cacsd/macros/copfac.sci, line: 38
+# File: modules/cacsd/macros/dtsi.sci, line: 32
+# File: modules/cacsd/macros/fspec.sci, line: 29
+# File: modules/cacsd/macros/fspecg.sci, line: 23
+# File: modules/cacsd/macros/fstabst.sci, line: 28
+# File: modules/cacsd/macros/gcare.sci, line: 19
+# File: modules/cacsd/macros/gfare.sci, line: 24
+# File: modules/cacsd/macros/h2norm.sci, line: 27
+# File: modules/cacsd/macros/lcf.sci, line: 24
+# File: modules/cacsd/macros/linfn.sci, line: 99
+# File: modules/cacsd/macros/macglov.sci, line: 26
 #, c-format
 msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
 msgstr ""
 
 #
-# File: macros/copfac.sci, line: 56
-# File: macros/dtsi.sci, line: 38
-# File: macros/gamitg.sci, line: 77
-# File: macros/linfn.sci, line: 106
-# File: macros/linfn.sci, line: 109
+# File: modules/cacsd/macros/copfac.sci, line: 56
+# File: modules/cacsd/macros/dtsi.sci, line: 38
+# File: modules/cacsd/macros/gamitg.sci, line: 77
+# File: modules/cacsd/macros/linfn.sci, line: 106
+# File: modules/cacsd/macros/linfn.sci, line: 109
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be a positive scalar.\n"
 msgstr ""
 
 #
-# File: macros/copfac.sci, line: 59
-# File: macros/copfac.sci, line: 65
+# File: modules/cacsd/macros/copfac.sci, line: 59
+# File: modules/cacsd/macros/copfac.sci, line: 65
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector of floats expected.\n"
 msgstr ""
 
 #
-# File: macros/copfac.sci, line: 62
-# File: macros/copfac.sci, line: 68
+# File: modules/cacsd/macros/copfac.sci, line: 62
+# File: modules/cacsd/macros/copfac.sci, line: 68
 #, c-format
 msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/copfac.sci, line: 77
+# File: modules/cacsd/macros/copfac.sci, line: 77
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 
 #
-# File: macros/copfac.sci, line: 85
+# File: modules/cacsd/macros/copfac.sci, line: 85
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Detectable system expected.\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 52
-# File: macros/lqg2stan.sci, line: 40
-# File: macros/nehari.sci, line: 27
-# File: macros/obs_gram.sci, line: 29
-# File: macros/obs_gram.sci, line: 42
-# File: macros/st_ility.sci, line: 26
-# File: macros/svplot.sci, line: 37
+# File: modules/cacsd/macros/csim.sci, line: 52
+# File: modules/cacsd/macros/lqg2stan.sci, line: 40
+# File: modules/cacsd/macros/nehari.sci, line: 27
+# File: modules/cacsd/macros/obs_gram.sci, line: 29
+# File: modules/cacsd/macros/obs_gram.sci, line: 42
+# File: modules/cacsd/macros/st_ility.sci, line: 26
+# File: modules/cacsd/macros/svplot.sci, line: 37
 #, c-format
 msgid "%s: Input argument #%d is assumed continuous time.\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 57
+# File: modules/cacsd/macros/csim.sci, line: 57
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A proper system expected\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 67
+# File: modules/cacsd/macros/csim.sci, line: 67
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A SIMO expected.\n"
 msgstr ""
 
 #
-# File: macros/csim.sci, line: 156
+# File: modules/cacsd/macros/csim.sci, line: 156
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
 msgstr ""
 
 #
-# File: macros/ctr_gram.sci, line: 62
-# File: macros/h2norm.sci, line: 48
-# File: macros/h2norm.sci, line: 68
-# File: macros/hankelsv.sci, line: 29
-# File: macros/obs_gram.sci, line: 58
+# File: modules/cacsd/macros/ctr_gram.sci, line: 62
+# File: modules/cacsd/macros/h2norm.sci, line: 48
+# File: modules/cacsd/macros/h2norm.sci, line: 68
+# File: modules/cacsd/macros/hankelsv.sci, line: 29
+# File: modules/cacsd/macros/obs_gram.sci, line: 58
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
 msgstr ""
 
 #
-# File: macros/damp.sci, line: 9
-# File: macros/minreal.sci, line: 26
-# File: macros/minreal.sci, line: 44
-# File: macros/obsvss.sci, line: 23
-# File: macros/obsvss.sci, line: 35
+# File: modules/cacsd/macros/damp.sci, line: 9
+# File: modules/cacsd/macros/minreal.sci, line: 26
+# File: modules/cacsd/macros/minreal.sci, line: 44
+# File: modules/cacsd/macros/obsvss.sci, line: 23
+# File: modules/cacsd/macros/obsvss.sci, line: 35
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/damp.sci, line: 17
+# File: modules/cacsd/macros/damp.sci, line: 17
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real non negative scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/damp.sci, line: 30
+# File: modules/cacsd/macros/damp.sci, line: 30
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
 msgstr ""
 
 #
-# File: macros/damp.sci, line: 62
+# File: modules/cacsd/macros/damp.sci, line: 62
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floats or Polynomial "
@@ -1245,78 +1727,67 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/damp.sci, line: 75
+# File: modules/cacsd/macros/damp.sci, line: 75
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
 msgstr ""
 
 #
-# File: macros/ddp.sci, line: 57
-# File: macros/ddp.sci, line: 60
-# File: macros/narsimul.sci, line: 81
-# File: macros/syslin.sci, line: 90
-# File: macros/syslin.sci, line: 120
-#, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
-msgstr ""
-
-#
-# File: macros/ddp.sci, line: 91
+# File: modules/cacsd/macros/ddp.sci, line: 91
 #, c-format
 msgid "%s: Bad conditioning.\n"
 msgstr ""
 
 #
-# File: macros/des2tf.sci, line: 16
+# File: modules/cacsd/macros/des2tf.sci, line: 16
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/dhnorm.sci, line: 21
-# File: macros/h_norm.sci, line: 122
+# File: modules/cacsd/macros/dhnorm.sci, line: 21
+# File: modules/cacsd/macros/h_norm.sci, line: 122
 #, c-format
 msgid "%s: More than %d iterations.\n"
 msgstr ""
 
 #
-# File: macros/dscr.sci, line: 21
+# File: modules/cacsd/macros/dscr.sci, line: 21
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
 msgstr ""
 
 #
-# File: macros/dscr.sci, line: 25
-# File: macros/h2norm.sci, line: 38
-# File: macros/h_norm.sci, line: 45
-# File: macros/nehari.sci, line: 41
+# File: modules/cacsd/macros/dscr.sci, line: 25
+# File: modules/cacsd/macros/h2norm.sci, line: 38
+# File: modules/cacsd/macros/h_norm.sci, line: 45
+# File: modules/cacsd/macros/nehari.sci, line: 41
 #, c-format
 msgid "%s: Input argument #%d must be strictly positive.\n"
 msgstr ""
 
 #
-# File: macros/dtsi.sci, line: 55
+# File: modules/cacsd/macros/dtsi.sci, line: 55
 #, c-format
 msgid "%s: Wrong values for input argument #%d: proper elements expected.\n"
 msgstr ""
 
 #
-# File: macros/dtsi.sci, line: 135
+# File: modules/cacsd/macros/dtsi.sci, line: 135
 #, c-format
 msgid "%s: Wrong type for input argument #%d: transfer function expected.\n"
 msgstr ""
 
 #
-# File: macros/dtsi.sci, line: 144
+# File: modules/cacsd/macros/dtsi.sci, line: 144
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Proper transfer function expected.\n"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 37
-# File: macros/trzeros.sci, line: 41
+# File: modules/cacsd/macros/evans.sci, line: 37
+# File: modules/cacsd/macros/trzeros.sci, line: 41
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A linear dynamical system or a "
@@ -1324,7 +1795,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 40
+# File: modules/cacsd/macros/evans.sci, line: 40
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Single input, single output system "
@@ -1332,145 +1803,137 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 43
+# File: modules/cacsd/macros/evans.sci, line: 43
 #, c-format
 msgid "%s: The given system has no poles and no zeros.\n"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 132
+# File: modules/cacsd/macros/evans.sci, line: 132
 msgid "Evans root locus"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 133
-# File: macros/hallchart.sci, line: 50
-# File: macros/plzr.sci, line: 114
-# File: macros/plzr.sci, line: 122
+# File: modules/cacsd/macros/evans.sci, line: 133
+# File: modules/cacsd/macros/hallchart.sci, line: 50
+# File: modules/cacsd/macros/plzr.sci, line: 114
+# File: modules/cacsd/macros/plzr.sci, line: 122
 msgid "Real axis"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 134
-# File: macros/hallchart.sci, line: 51
-# File: macros/plzr.sci, line: 115
-# File: macros/plzr.sci, line: 123
+# File: modules/cacsd/macros/evans.sci, line: 134
+# File: modules/cacsd/macros/hallchart.sci, line: 51
+# File: modules/cacsd/macros/plzr.sci, line: 115
+# File: modules/cacsd/macros/plzr.sci, line: 123
 msgid "Imaginary axis"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 145
+# File: modules/cacsd/macros/evans.sci, line: 145
 msgid "open loop zeroes"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 152
+# File: modules/cacsd/macros/evans.sci, line: 152
 msgid "open loop poles"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 179
+# File: modules/cacsd/macros/evans.sci, line: 179
 msgid "asymptotic directions"
 msgstr ""
 
 #
-# File: macros/evans.sci, line: 216
+# File: modules/cacsd/macros/evans.sci, line: 216
 #, c-format
 msgid "%s: Curve truncated to the first %d discretization points.\n"
 msgstr ""
 
 #
-# File: macros/findABCD.sci, line: 106
-# File: macros/findABCD.sci, line: 109
-# File: macros/findAC.sci, line: 73
-# File: macros/findBDK.sci, line: 119
+# File: modules/cacsd/macros/findABCD.sci, line: 106
+# File: modules/cacsd/macros/findABCD.sci, line: 109
+# File: modules/cacsd/macros/findAC.sci, line: 73
+# File: modules/cacsd/macros/findBDK.sci, line: 119
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/findx0BD.sci, line: 64
+# File: modules/cacsd/macros/findx0BD.sci, line: 64
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/findx0BD.sci, line: 77
+# File: modules/cacsd/macros/findx0BD.sci, line: 77
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: macros/flts.sci, line: 34
+# File: modules/cacsd/macros/flts.sci, line: 34
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/flts.sci, line: 50
+# File: modules/cacsd/macros/flts.sci, line: 50
 #, c-format
 msgid "%s: At least %s past values needed.\n"
 msgstr ""
 
 #
-# File: macros/formatBlackTip.sci, line: 18
-# File: macros/formatBodeMagTip.sci, line: 13
-# File: macros/formatBodePhaseTip.sci, line: 13
-# File: macros/formatGainplotTip.sci, line: 13
-# File: macros/formatNyquistTip.sci, line: 16
-# File: macros/formatPhaseplotTip.sci, line: 13
+# File: modules/cacsd/macros/formatBlackTip.sci, line: 18
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 13
+# File: modules/cacsd/macros/formatBodePhaseTip.sci, line: 13
+# File: modules/cacsd/macros/formatGainplotTip.sci, line: 13
+# File: modules/cacsd/macros/formatNyquistTip.sci, line: 16
+# File: modules/cacsd/macros/formatPhaseplotTip.sci, line: 13
 msgid "Hz"
 msgstr ""
 
 #
-# File: macros/formatBlackTip.sci, line: 18
-# File: macros/formatBodeMagTip.sci, line: 13
-# File: macros/formatGainplotTip.sci, line: 13
-# File: macros/formatHallModuleTip.sci, line: 12
-# File: macros/formatNicholsGainTip.sci, line: 12
-# File: macros/hallchart.sci, line: 88
+# File: modules/cacsd/macros/formatBlackTip.sci, line: 18
+# File: modules/cacsd/macros/formatBodeMagTip.sci, line: 13
+# File: modules/cacsd/macros/formatGainplotTip.sci, line: 13
+# File: modules/cacsd/macros/formatHallModuleTip.sci, line: 12
+# File: modules/cacsd/macros/formatNicholsGainTip.sci, line: 12
+# File: modules/cacsd/macros/hallchart.sci, line: 88
 msgid "dB"
 msgstr ""
 
 #
-# File: macros/formatSgridFreqTip.sci, line: 12
+# File: modules/cacsd/macros/formatSgridFreqTip.sci, line: 12
 msgid "rad/sec"
 msgstr ""
 
 #
-# File: macros/frep2tf.sci, line: 43
+# File: modules/cacsd/macros/frep2tf.sci, line: 43
 #, c-format
 msgid "%s: Iteration %s, error=%s.\n"
 msgstr ""
 
 #
-# File: macros/freson.sci, line: 17
+# File: modules/cacsd/macros/freson.sci, line: 17
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: infinite gain at zero frequency.\n"
 msgstr ""
 
 #
-# File: macros/fspecg.sci, line: 20
+# File: modules/cacsd/macros/fspecg.sci, line: 20
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
 #
-# File: macros/g_margin.sci, line: 15
-# File: macros/lyap.sci, line: 13
-# File: macros/sylv.sci, line: 13
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#
-# File: macros/g_margin.sci, line: 26
-# File: macros/krac2.sci, line: 26
-# File: macros/p_margin.sci, line: 20
-# File: macros/routh_t.sci, line: 51
-# File: macros/trfmod.sci, line: 20
-# File: macros/trfmod.sci, line: 25
+# File: modules/cacsd/macros/g_margin.sci, line: 26
+# File: modules/cacsd/macros/krac2.sci, line: 26
+# File: modules/cacsd/macros/p_margin.sci, line: 20
+# File: modules/cacsd/macros/routh_t.sci, line: 51
+# File: modules/cacsd/macros/trfmod.sci, line: 20
+# File: modules/cacsd/macros/trfmod.sci, line: 25
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Single input, single output system "
@@ -1478,209 +1941,201 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 98
-# File: macros/gamitg.sci, line: 102
+# File: modules/cacsd/macros/gamitg.sci, line: 98
+# File: modules/cacsd/macros/gamitg.sci, line: 102
 #, c-format
 msgid "%s: Dimensions of %s are inadequate.\n"
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 113
-# File: macros/gamitg.sci, line: 117
+# File: modules/cacsd/macros/gamitg.sci, line: 113
+# File: modules/cacsd/macros/gamitg.sci, line: 117
 #, c-format
 msgid "%s: %s is not full rank at the machine precision.\n"
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 126
-# File: macros/gamitg.sci, line: 131
+# File: modules/cacsd/macros/gamitg.sci, line: 126
+# File: modules/cacsd/macros/gamitg.sci, line: 131
 #, c-format
 msgid "%s: %s is nearly unstabilizable.\n"
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 141
-# File: macros/gamitg.sci, line: 149
+# File: modules/cacsd/macros/gamitg.sci, line: 141
+# File: modules/cacsd/macros/gamitg.sci, line: 149
 #, c-format
 msgid "%s: %s has zero(s) near the imaginary axis.\n"
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 255
-# File: macros/gamitg.sci, line: 269
+# File: modules/cacsd/macros/gamitg.sci, line: 255
+# File: modules/cacsd/macros/gamitg.sci, line: 269
 #, c-format
 msgid "%s: %s has pure imaginary eigenvalue(s).\n"
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 305
-# File: macros/gamitg.sci, line: 329
+# File: modules/cacsd/macros/gamitg.sci, line: 305
+# File: modules/cacsd/macros/gamitg.sci, line: 329
 #, c-format
 msgid "%s: %s is indefinite.\n"
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 364
+# File: modules/cacsd/macros/gamitg.sci, line: 364
 #, c-format
 msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 
 #
-# File: macros/gamitg.sci, line: 370
+# File: modules/cacsd/macros/gamitg.sci, line: 370
 #, c-format
 msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
 msgstr ""
 
 #
-# File: macros/gfrancis.sci, line: 75
+# File: modules/cacsd/macros/gfrancis.sci, line: 75
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
 msgstr ""
 
 #
-# File: macros/h2norm.sci, line: 18
-# File: macros/h_norm.sci, line: 28
-# File: macros/nehari.sci, line: 19
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-
-#
-# File: macros/h2norm.sci, line: 35
-# File: macros/h_norm.sci, line: 42
-# File: macros/nehari.sci, line: 38
+# File: modules/cacsd/macros/h2norm.sci, line: 35
+# File: modules/cacsd/macros/h_norm.sci, line: 42
+# File: modules/cacsd/macros/nehari.sci, line: 38
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/h2norm.sci, line: 44
-# File: macros/h2norm.sci, line: 64
+# File: modules/cacsd/macros/h2norm.sci, line: 44
+# File: modules/cacsd/macros/h2norm.sci, line: 64
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Proper system expected.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 60
-# File: macros/h_inf.sci, line: 71
+# File: modules/cacsd/macros/h_inf.sci, line: 60
+# File: modules/cacsd/macros/h_inf.sci, line: 71
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 81
+# File: modules/cacsd/macros/h_inf.sci, line: 81
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 90
+# File: modules/cacsd/macros/h_inf.sci, line: 90
 #, c-format
 msgid "%s : No feasible ro in bounds [%g  %g]\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 149
+# File: modules/cacsd/macros/h_inf.sci, line: 149
 #, c-format
 msgid "%s:  %s is not stabilizable.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 152
+# File: modules/cacsd/macros/h_inf.sci, line: 152
 #, c-format
 msgid "%s: %s is stabilizable.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 158
+# File: modules/cacsd/macros/h_inf.sci, line: 158
 #, c-format
 msgid "%s:   %s is not detectable.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 161
+# File: modules/cacsd/macros/h_inf.sci, line: 161
 #, c-format
 msgid "%s: %s is detectable.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 169
-# File: macros/h_inf.sci, line: 178
+# File: modules/cacsd/macros/h_inf.sci, line: 169
+# File: modules/cacsd/macros/h_inf.sci, line: 178
 #, c-format
 msgid "%s: %s has a zero on/close the imaginary axis.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 187
-# File: macros/h_inf.sci, line: 194
-# File: macros/h_inf.sci, line: 342
-# File: macros/h_inf.sci, line: 349
+# File: modules/cacsd/macros/h_inf.sci, line: 187
+# File: modules/cacsd/macros/h_inf.sci, line: 194
+# File: modules/cacsd/macros/h_inf.sci, line: 342
+# File: modules/cacsd/macros/h_inf.sci, line: 349
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 300
+# File: modules/cacsd/macros/h_inf.sci, line: 300
 #, c-format
 msgid "%s: gamma too small.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 390
-# File: macros/h_inf.sci, line: 517
+# File: modules/cacsd/macros/h_inf.sci, line: 390
+# File: modules/cacsd/macros/h_inf.sci, line: 517
 #, c-format
 msgid "%s: An eigenvalue of %s (controller) is close to Imaginary axis.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 397
-# File: macros/h_inf.sci, line: 422
-# File: macros/h_inf.sci, line: 522
-# File: macros/h_inf.sci, line: 539
+# File: modules/cacsd/macros/h_inf.sci, line: 397
+# File: modules/cacsd/macros/h_inf.sci, line: 422
+# File: modules/cacsd/macros/h_inf.sci, line: 522
+# File: modules/cacsd/macros/h_inf.sci, line: 539
 #, c-format
 msgid "%s: Riccati solution inaccurate: equation error = %g.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 414
-# File: macros/h_inf.sci, line: 535
+# File: modules/cacsd/macros/h_inf.sci, line: 414
+# File: modules/cacsd/macros/h_inf.sci, line: 535
 #, c-format
 msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 448
-# File: macros/h_inf.sci, line: 456
+# File: modules/cacsd/macros/h_inf.sci, line: 448
+# File: modules/cacsd/macros/h_inf.sci, line: 456
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 449
-# File: macros/h_inf.sci, line: 450
-# File: macros/h_inf.sci, line: 458
+# File: modules/cacsd/macros/h_inf.sci, line: 449
+# File: modules/cacsd/macros/h_inf.sci, line: 450
+# File: modules/cacsd/macros/h_inf.sci, line: 458
 msgid "Unfeasible (Hy hamiltonian)"
 msgstr ""
 
 #
-# File: macros/h_inf.sci, line: 460
+# File: modules/cacsd/macros/h_inf.sci, line: 460
 msgid "Unfeasible (spectral radius)"
 msgstr ""
 
 #
-# File: macros/h_inf_st.sci, line: 33
-# File: macros/h_inf_st.sci, line: 37
+# File: modules/cacsd/macros/h_inf_st.sci, line: 33
+# File: modules/cacsd/macros/h_inf_st.sci, line: 37
 #, c-format
 msgid "%s: %s not full rank.\n"
 msgstr ""
 
 #
-# File: macros/h_norm.sci, line: 57
+# File: modules/cacsd/macros/h_norm.sci, line: 57
 #, c-format
 msgid "%s: System is not stable.\n"
 msgstr ""
 
 #
-# File: macros/h_norm.sci, line: 104
+# File: modules/cacsd/macros/h_norm.sci, line: 104
 #, c-format
 msgid ""
 "%s: norm cannot be computed. Relative accuracy smaller than 1e-3\n"
@@ -1689,19 +2144,19 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/hallchart.sci, line: 52
+# File: modules/cacsd/macros/hallchart.sci, line: 52
 msgid "Hall chart"
 msgstr ""
 
 #
-# File: macros/hankelsv.sci, line: 13
+# File: modules/cacsd/macros/hankelsv.sci, line: 13
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: State-space linear system expected.\n"
 msgstr ""
 
 #
-# File: macros/hankelsv.sci, line: 19
+# File: modules/cacsd/macros/hankelsv.sci, line: 19
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Continuous-time linear system "
@@ -1709,197 +2164,197 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/hankelsv.sci, line: 26
-# File: macros/nehari.sci, line: 70
+# File: modules/cacsd/macros/hankelsv.sci, line: 26
+# File: modules/cacsd/macros/nehari.sci, line: 70
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Pure imaginary poles unexpected.\n"
 msgstr ""
 
 #
-# File: macros/inistate.sci, line: 55
+# File: modules/cacsd/macros/inistate.sci, line: 55
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Discrete time system expected.\n"
 msgstr ""
 
 #
-# File: macros/invrs.sci, line: 29
+# File: modules/cacsd/macros/invrs.sci, line: 29
 #, c-format
 msgid "%s: Square but singular system.\n"
 msgstr ""
 
 #
-# File: macros/invsyslin.sci, line: 18
-# File: macros/trzeros.sci, line: 49
-# File: macros/trzeros.sci, line: 61
+# File: modules/cacsd/macros/invsyslin.sci, line: 18
+# File: modules/cacsd/macros/trzeros.sci, line: 49
+# File: modules/cacsd/macros/trzeros.sci, line: 61
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square system expected.\n"
 msgstr ""
 
 #
-# File: macros/leqr.sci, line: 48
-# File: macros/leqr.sci, line: 77
-# File: macros/lqr.sci, line: 44
-# File: macros/lqr.sci, line: 85
+# File: modules/cacsd/macros/leqr.sci, line: 48
+# File: modules/cacsd/macros/leqr.sci, line: 77
+# File: modules/cacsd/macros/lqr.sci, line: 44
+# File: modules/cacsd/macros/lqr.sci, line: 85
 #, c-format
 msgid "%s: Stable subspace is too small.\n"
 msgstr ""
 
 #
-# File: macros/leqr.sci, line: 56
-# File: macros/leqr.sci, line: 84
-# File: macros/lqr.sci, line: 48
-# File: macros/lqr.sci, line: 89
-# File: macros/ui_observer.sci, line: 111
-# File: macros/ui_observer.sci, line: 114
+# File: modules/cacsd/macros/leqr.sci, line: 56
+# File: modules/cacsd/macros/leqr.sci, line: 84
+# File: modules/cacsd/macros/lqr.sci, line: 48
+# File: modules/cacsd/macros/lqr.sci, line: 89
+# File: modules/cacsd/macros/ui_observer.sci, line: 111
+# File: modules/cacsd/macros/ui_observer.sci, line: 114
 #, c-format
 msgid "%s: Bad conditionning.\n"
 msgstr ""
 
 #
-# File: macros/leqr.sci, line: 92
+# File: modules/cacsd/macros/leqr.sci, line: 92
 #, c-format
 msgid "%s: %s non symmetric.\n"
 msgstr ""
 
 #
-# File: macros/linfn.sci, line: 96
+# File: modules/cacsd/macros/linfn.sci, line: 96
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 
 #
-# File: macros/linfn.sci, line: 141
+# File: modules/cacsd/macros/linfn.sci, line: 141
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
 msgstr ""
 
 #
-# File: macros/linfn.sci, line: 244
+# File: modules/cacsd/macros/linfn.sci, line: 244
 #, c-format
 msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
 msgstr ""
 
 #
-# File: macros/linfn.sci, line: 250
+# File: modules/cacsd/macros/linfn.sci, line: 250
 #, c-format
 msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 
 #
-# File: macros/linfn.sci, line: 266
-# File: macros/linfn.sci, line: 275
+# File: modules/cacsd/macros/linfn.sci, line: 266
+# File: modules/cacsd/macros/linfn.sci, line: 275
 #, c-format
 msgid "%s: The computed value of || G || may be inaccurate.\n"
 msgstr ""
 
 #
-# File: macros/linfn.sci, line: 406
+# File: modules/cacsd/macros/linfn.sci, line: 406
 msgid "G is all-pass"
 msgstr ""
 
 #
-# File: macros/lqg.sci, line: 37
+# File: modules/cacsd/macros/lqg.sci, line: 37
 #, c-format
 msgid "%s: %s is not zero! (set to zero)"
 msgstr ""
 
 #
-# File: macros/lqr.sci, line: 26
+# File: modules/cacsd/macros/lqr.sci, line: 26
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Time domain must be 'c' or 'd'.\n"
 msgstr ""
 
 #
-# File: macros/lyap.sci, line: 21
-# File: macros/sylv.sci, line: 33
+# File: modules/cacsd/macros/lyap.sci, line: 21
+# File: modules/cacsd/macros/sylv.sci, line: 33
 #, c-format
 msgid "%s: Wrong value for input argument #%d: c or d expected.\n"
 msgstr ""
 
 #
-# File: macros/minreal.sci, line: 17
-# File: macros/minreal.sci, line: 38
-# File: macros/obsvss.sci, line: 16
-# File: macros/obsvss.sci, line: 27
+# File: modules/cacsd/macros/minreal.sci, line: 17
+# File: modules/cacsd/macros/minreal.sci, line: 38
+# File: modules/cacsd/macros/obsvss.sci, line: 16
+# File: modules/cacsd/macros/obsvss.sci, line: 27
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/narsimul.sci, line: 51
-# File: macros/narsimul.sci, line: 84
-# File: macros/narsimul.sci, line: 94
-# File: macros/narsimul.sci, line: 99
-# File: macros/narsimul.sci, line: 109
-# File: macros/narsimul.sci, line: 114
-# File: macros/syslin.sci, line: 107
-# File: macros/ui_observer.sci, line: 71
-# File: macros/ui_observer.sci, line: 76
+# File: modules/cacsd/macros/narsimul.sci, line: 51
+# File: modules/cacsd/macros/narsimul.sci, line: 84
+# File: modules/cacsd/macros/narsimul.sci, line: 94
+# File: modules/cacsd/macros/narsimul.sci, line: 99
+# File: modules/cacsd/macros/narsimul.sci, line: 109
+# File: modules/cacsd/macros/narsimul.sci, line: 114
+# File: modules/cacsd/macros/syslin.sci, line: 107
+# File: modules/cacsd/macros/ui_observer.sci, line: 71
+# File: modules/cacsd/macros/ui_observer.sci, line: 76
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr ""
 
 #
-# File: macros/nicholschart.sci, line: 28
+# File: modules/cacsd/macros/nicholschart.sci, line: 28
 msgid "Amplitude and phase contours of y/(1+y)"
 msgstr ""
 
 #
-# File: macros/nicholschart.sci, line: 29
+# File: modules/cacsd/macros/nicholschart.sci, line: 29
 msgid "phase(y) (degree)"
 msgstr ""
 
 #
-# File: macros/nicholschart.sci, line: 30
+# File: modules/cacsd/macros/nicholschart.sci, line: 30
 msgid "magnitude(y) (dB)"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 130
+# File: modules/cacsd/macros/nyquist.sci, line: 130
 msgid "Nyquist plot"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 132
+# File: modules/cacsd/macros/nyquist.sci, line: 132
 msgid "Re(h(2if))"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 133
+# File: modules/cacsd/macros/nyquist.sci, line: 133
 msgid "Im(h(2if))"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 135
+# File: modules/cacsd/macros/nyquist.sci, line: 135
 msgid "Re"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 136
+# File: modules/cacsd/macros/nyquist.sci, line: 136
 msgid "Im"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 138
+# File: modules/cacsd/macros/nyquist.sci, line: 138
 msgid "Re(h(exp(2if*dt)))"
 msgstr ""
 
 #
-# File: macros/nyquist.sci, line: 139
+# File: modules/cacsd/macros/nyquist.sci, line: 139
 msgid "Im(h(exp(2if*dt)))"
 msgstr ""
 
 #
-# File: macros/nyquistfrequencybounds.sci, line: 16
+# File: modules/cacsd/macros/nyquistfrequencybounds.sci, line: 16
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
 
 #
-# File: macros/nyquistfrequencybounds.sci, line: 19
+# File: modules/cacsd/macros/nyquistfrequencybounds.sci, line: 19
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: second row must be greater than "
@@ -1907,134 +2362,127 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/nyquistfrequencybounds.sci, line: 25
+# File: modules/cacsd/macros/nyquistfrequencybounds.sci, line: 25
 #, c-format
 msgid "Wrong type for argument #%d: SISO expected.\n"
 msgstr ""
 
 #
-# File: macros/obs_gram.sci, line: 50
+# File: modules/cacsd/macros/obs_gram.sci, line: 50
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system  expected.\n"
 msgstr ""
 
 #
-# File: macros/phaseplot.sci, line: 83
+# File: modules/cacsd/macros/phaseplot.sci, line: 83
 msgid "Phase (Deg)"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 32
-# File: macros/plzr.sci, line: 41
+# File: modules/cacsd/macros/plzr.sci, line: 32
+# File: modules/cacsd/macros/plzr.sci, line: 41
 #, c-format
 msgid "%s: Wrong value of input argument #%d: Proper system expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 45
+# File: modules/cacsd/macros/plzr.sci, line: 45
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 100
+# File: modules/cacsd/macros/plzr.sci, line: 100
 msgid "Zeros"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 107
+# File: modules/cacsd/macros/plzr.sci, line: 107
 msgid "Poles"
 msgstr ""
 
 #
-# File: macros/plzr.sci, line: 114
-# File: macros/plzr.sci, line: 122
+# File: modules/cacsd/macros/plzr.sci, line: 114
+# File: modules/cacsd/macros/plzr.sci, line: 122
 msgid "Transmission zeros and poles"
 msgstr ""
 
 #
-# File: macros/ric_desc.sci, line: 56
+# File: modules/cacsd/macros/ric_desc.sci, line: 56
 #, c-format
 msgid "%s: Stationary Riccati solver failed.\n"
 msgstr ""
 
 #
-# File: macros/riccati.sci, line: 34
-# File: macros/riccati.sci, line: 42
-# File: macros/riccati.sci, line: 50
+# File: modules/cacsd/macros/riccati.sci, line: 34
+# File: modules/cacsd/macros/riccati.sci, line: 42
+# File: modules/cacsd/macros/riccati.sci, line: 50
 #, c-format
 msgid "%s: Wrong dimension (%d) of stable subspace: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/routh_t.sci, line: 47
+# File: modules/cacsd/macros/routh_t.sci, line: 47
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: rational fraction array expected.\n"
 msgstr ""
 
 #
-# File: macros/routh_t.sci, line: 59
-# File: macros/sm2ss.sci, line: 16
-# File: macros/syslin.sci, line: 53
-# File: macros/syslin.sci, line: 56
-# File: macros/syslin.sci, line: 115
+# File: modules/cacsd/macros/routh_t.sci, line: 59
+# File: modules/cacsd/macros/sm2ss.sci, line: 16
+# File: modules/cacsd/macros/syslin.sci, line: 53
+# File: modules/cacsd/macros/syslin.sci, line: 56
+# File: modules/cacsd/macros/syslin.sci, line: 115
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
 msgstr ""
 
 #
-# File: macros/routh_t.sci, line: 62
+# File: modules/cacsd/macros/routh_t.sci, line: 62
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr ""
 
 #
-# File: macros/routh_t.sci, line: 83
-# File: macros/routh_t.sci, line: 118
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: macros/sgrid.sci, line: 49
-# File: macros/sgrid.sci, line: 53
-# File: macros/sgrid.sci, line: 59
-# File: macros/sgrid.sci, line: 63
-# File: macros/sgrid.sci, line: 67
-# File: macros/zgrid.sci, line: 49
-# File: macros/zgrid.sci, line: 56
-# File: macros/zgrid.sci, line: 66
-# File: macros/zgrid.sci, line: 70
-# File: macros/zgrid.sci, line: 74
+# File: modules/cacsd/macros/sgrid.sci, line: 49
+# File: modules/cacsd/macros/sgrid.sci, line: 53
+# File: modules/cacsd/macros/sgrid.sci, line: 59
+# File: modules/cacsd/macros/sgrid.sci, line: 63
+# File: modules/cacsd/macros/sgrid.sci, line: 67
+# File: modules/cacsd/macros/zgrid.sci, line: 49
+# File: modules/cacsd/macros/zgrid.sci, line: 56
+# File: modules/cacsd/macros/zgrid.sci, line: 66
+# File: modules/cacsd/macros/zgrid.sci, line: 70
+# File: modules/cacsd/macros/zgrid.sci, line: 74
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
 
 #
-# File: macros/sm2des.sci, line: 29
-# File: macros/sm2ss.sci, line: 30
+# File: modules/cacsd/macros/sm2des.sci, line: 29
+# File: modules/cacsd/macros/sm2ss.sci, line: 30
 #, c-format
 msgid "%s: Cannot find the state dimension.\n"
 msgstr ""
 
 #
-# File: macros/sm2ss.sci, line: 35
+# File: modules/cacsd/macros/sm2ss.sci, line: 35
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear state space system expected.\n"
 msgstr ""
 
 #
-# File: macros/ssrand.sci, line: 193
+# File: modules/cacsd/macros/ssrand.sci, line: 198
 #, c-format
 msgid "%s: Wrong values for input argument #%d: you must choose rk<nout.\n"
 msgstr ""
 
 #
-# File: macros/stabil.sci, line: 40
+# File: modules/cacsd/macros/stabil.sci, line: 40
 #, c-format
 msgid ""
 "%s: System not stabilizable (or detectable) => Stabilizing the stabilizable "
@@ -2042,27 +2490,27 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/statgain.sci, line: 25
+# File: modules/cacsd/macros/statgain.sci, line: 25
 #, c-format
 msgid "%s: Wrong values for input argument #%d: State matrix is singular.\n"
 msgstr ""
 
 #
-# File: macros/statgain.sci, line: 30
+# File: modules/cacsd/macros/statgain.sci, line: 30
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: State matrix - eye is singular.\n"
 msgstr ""
 
 #
-# File: macros/sylv.sci, line: 22
+# File: modules/cacsd/macros/sylv.sci, line: 22
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of rows expected.\n"
 msgstr ""
 
 #
-# File: macros/sylv.sci, line: 25
+# File: modules/cacsd/macros/sylv.sci, line: 25
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of columns "
@@ -2070,15 +2518,15 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/sysconv.sci, line: 65
-# File: macros/sysconv.sci, line: 68
-# File: macros/sysconv.sci, line: 76
+# File: modules/cacsd/macros/sysconv.sci, line: 65
+# File: modules/cacsd/macros/sysconv.sci, line: 68
+# File: modules/cacsd/macros/sysconv.sci, line: 76
 #, c-format
 msgid "%s: time domains are not compatible.\n"
 msgstr ""
 
 #
-# File: macros/syslin.sci, line: 38
+# File: modules/cacsd/macros/syslin.sci, line: 38
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
@@ -2086,13 +2534,13 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/syslin.sci, line: 60
+# File: modules/cacsd/macros/syslin.sci, line: 60
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #
-# File: macros/syslin.sci, line: 65
+# File: modules/cacsd/macros/syslin.sci, line: 65
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same formal variable names "
@@ -2100,79 +2548,79 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/syslin.sci, line: 83
-# File: macros/trzeros.sci, line: 22
+# File: modules/cacsd/macros/syslin.sci, line: 83
+# File: modules/cacsd/macros/trzeros.sci, line: 22
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/trfmod.sci, line: 99
-# File: macros/trfmod.sci, line: 109
+# File: modules/cacsd/macros/trfmod.sci, line: 99
+# File: modules/cacsd/macros/trfmod.sci, line: 109
 msgid "Denominator :"
 msgstr ""
 
 #
-# File: macros/trfmod.sci, line: 99
+# File: modules/cacsd/macros/trfmod.sci, line: 99
 msgid "Gain :"
 msgstr ""
 
 #
-# File: macros/trfmod.sci, line: 99
+# File: modules/cacsd/macros/trfmod.sci, line: 99
 msgid "Numerator :"
 msgstr ""
 
 #
-# File: macros/trfmod.sci, line: 103
+# File: modules/cacsd/macros/trfmod.sci, line: 103
 msgid "Irreducible Factors of transfer function (click below)"
 msgstr ""
 
 #
-# File: macros/trfmod.sci, line: 105
+# File: modules/cacsd/macros/trfmod.sci, line: 105
 msgid ""
 "Irreducible Factors of transfer function natural frequency and damping "
 "factor (click below)"
 msgstr ""
 
 #
-# File: macros/trfmod.sci, line: 139
-# File: macros/trfmod.sci, line: 168
+# File: modules/cacsd/macros/trfmod.sci, line: 139
+# File: modules/cacsd/macros/trfmod.sci, line: 168
 #, c-format
 msgid "%s: Incorrect answer.\n"
 msgstr ""
 
 #
-# File: macros/ui_observer.sci, line: 96
+# File: modules/cacsd/macros/ui_observer.sci, line: 96
 #, c-format
 msgid "%s: Residual norm = %g\n"
 msgstr ""
 
 #
-# File: macros/unobs.sci, line: 24
+# File: modules/cacsd/macros/unobs.sci, line: 24
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected."
 msgstr ""
 
 #
-# File: macros/unobs.sci, line: 28
-# File: macros/unobs.sci, line: 32
+# File: modules/cacsd/macros/unobs.sci, line: 28
+# File: modules/cacsd/macros/unobs.sci, line: 32
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected."
 msgstr ""
 
 #
-# File: macros/zgrid.sci, line: 93
+# File: modules/cacsd/macros/zgrid.sci, line: 93
 msgid ""
 "loci with constant damping and constant natural frequency\n"
 "in discrete plane"
 msgstr ""
 
 #
-# File: macros/zgrid.sci, line: 94
+# File: modules/cacsd/macros/zgrid.sci, line: 94
 msgid "Real Axis"
 msgstr ""
 
 #
-# File: macros/zgrid.sci, line: 95
+# File: modules/cacsd/macros/zgrid.sci, line: 95
 msgid "Imaginary Axis"
 msgstr ""

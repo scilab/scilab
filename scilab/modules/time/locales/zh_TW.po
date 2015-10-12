@@ -46,7 +46,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -127,8 +127,7 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為 m*3 matrix 或 a m*6 matrix .\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: %s 應介於 %d 及 %d 之間.\n"
 
 msgid "Month"
@@ -171,8 +170,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

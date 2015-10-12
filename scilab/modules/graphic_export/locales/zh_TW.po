@@ -56,7 +56,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -87,7 +87,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -121,8 +121,8 @@ msgid ""
 msgstr ""
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
 msgstr ""
 
 msgid ""

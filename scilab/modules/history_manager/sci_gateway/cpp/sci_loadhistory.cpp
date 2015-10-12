@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_loadhistory(types::typed_list &in, int _iRetCou
 
         if ((in[0]->isString() == false) || (in[0]->getAs<types::String>()->isScalar() == false))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "loadhistory", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "loadhistory", 1);
             return types::Function::Error;
         }
 

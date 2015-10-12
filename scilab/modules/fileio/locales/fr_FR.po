@@ -36,7 +36,7 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -71,7 +71,7 @@ msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s : Attention : Le répertoire '%s' existe déjà.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
+msgid "%s: Wrong type for input argument: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée : Une chaîne de caractères "
 "attendue.\n"
@@ -103,8 +103,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr ""
 "%s : Erreur pendant la tentative de récupération du nom du répertoire "
 "courant.\n"
@@ -137,7 +136,7 @@ msgstr ""
 "virgule flottante attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -165,7 +164,7 @@ msgstr ""
 "invalide.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
 
@@ -190,8 +189,7 @@ msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s : Le fichier %s n'est pas ouvert dans Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaînes de "
 "caractères attendue.\n"
@@ -233,8 +231,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée : Un scalaire attendu.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Matrix expected.\n"
@@ -254,8 +251,7 @@ msgid "%s: No such file %s.\n"
 msgstr "%s : Fichier %s inconnu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un entier ou une chaîne de "
 "caractères attendu.\n"
@@ -378,8 +374,7 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un entier attendu.\n"
@@ -483,8 +478,7 @@ msgstr ""
 "%s : Une erreur s'est produite : Trop de conversions demandées (> %d).\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
 "%s : Une erreur s'est produite : Le champ %d est trop long (> %d) for la "
 "directive %%[.\n"
@@ -493,15 +487,13 @@ msgid "Bad conversion."
 msgstr "Mauvaise conversion"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s : Une erreur s'est produite : Le champ %d est trop long (< %d) pour la "
 "directive %%s.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s : Une erreur s'est produite : Le champ %d est trop long (< %d) pour la "
 "directive %%c.\n"
@@ -575,8 +567,7 @@ msgid "%s: No File opened in Scilab.\n"
 msgstr "%s : Aucun fichier ouvert dans Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d ('%s') : Format non "
 "reconnu.\n"
@@ -590,8 +581,7 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s : Erreur pendant l'ouverture, la lecture ou l'écriture.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"
@@ -642,8 +632,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"

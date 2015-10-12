@@ -261,9 +261,11 @@ public final class BlockPositioning {
         VectorOfDouble mvcAngle = new VectorOfDouble();
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
 
-        final boolean mirrored = mvcAngle.get(0) == 4d;
-        final boolean flipped = mvcAngle.get(0) == 8d;
-        final int angle = (int) Math.round(mvcAngle.get(1));
+        double flags = mvcAngle.get(0);
+        final boolean mirrored = flags == 4d;
+        final boolean flipped = flags == 8d;
+        final int angle = ( ((int) Math.round(mvcAngle.get(1))) % 360 + 360) % 360;
+
         List<BasicPort> working = ports;
 
         /* List order modification with the flip flag */

@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -41,16 +41,14 @@ msgstr "%s : Le fichier n'existe pas.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -90,8 +88,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Scilab 6 will not support the file format used.\n"
-msgstr ""
-"%s : Scilab 6 ne prendra pas en charge le format de fichier utilisé.\n"
+msgstr "%s : Scilab 6 ne prendra pas en charge le format de fichier utilisé.\n"
 
 #, c-format
 msgid ""
@@ -184,5 +181,5 @@ msgstr "%s : Erreur pendant l'exécution de %s"
 msgid ""
 "%s: The command failed with the error code %s and the following message:\n"
 msgstr ""
-"%s : La commande a échoué avec pour code d'erreur %s et le message suivant "
-":\n"
+"%s : La commande a échoué avec pour code d'erreur %s et le message "
+"suivant :\n"

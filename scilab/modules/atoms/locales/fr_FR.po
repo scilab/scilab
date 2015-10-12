@@ -40,7 +40,7 @@ msgstr ""
 "de caractères de taille mx1, mx2 ou mx3 attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -105,7 +105,7 @@ msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s : Nombre erroné d'argument d'entrée : au plus %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -302,18 +302,6 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une catégorie valide "
@@ -433,8 +421,8 @@ msgid ""
 "check if you have write access on this directory : %s.\n"
 msgstr ""
 "%s : Le répertoire racine de ce package (%s-%s) ne peut pas être supprimé, "
-"veuillez vérifier que vous disposez des droits d'écriture dans ce répertoire "
-": %s.\n"
+"veuillez vérifier que vous disposez des droits d'écriture dans ce "
+"répertoire : %s.\n"
 
 #, c-format
 msgid ""
@@ -604,8 +592,7 @@ msgstr "Installation en cours"
 msgid "Installation failed!"
 msgstr "L'installation a échoué !"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Installation complète ! Veuillez redémarrer Scilab pour que les "
 "modifications soient prises en compte."
@@ -692,8 +679,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : 'filter:all', "
-"'filter:main' ou une catégorie principale valide attendu.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : 'filter:all', 'filter:"
+"main' ou une catégorie principale valide attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -933,16 +920,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM consultée : '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d :'error' ou 'warning' "
 "attendu.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
 "terminant par .tar.gz, .tgz ou .zip attendue.\n"
@@ -1071,19 +1057,18 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s : L'arbre des dépendances ne peux pas être résolu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Les lettres 'A' ou 'I' "
 "attendues.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Ce n'est pas une "
-"version/dépendance valide.\n"
+"%s : Valeur erronée de l'argument d'entrée n°%d : Ce n'est pas une version/"
+"dépendance valide.\n"
 
 msgid "Atoms:"
 msgstr "ATOMS :"
@@ -1141,8 +1126,7 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s : %s (%s) n'est pas installé.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Ce n'est pas une version "
 "valide.\n"

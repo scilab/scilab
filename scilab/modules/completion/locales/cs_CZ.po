@@ -17,7 +17,7 @@ msgstr ""
 "X-Generator: Launchpad (build 17413)\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -55,9 +55,9 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
+msgid "%s: Wrong size for input argument: string expected.\n"
 msgstr "%s: Chybná velikost vstupního argumentu: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"

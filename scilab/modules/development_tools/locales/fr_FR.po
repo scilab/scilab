@@ -23,8 +23,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : entre %d et %d attendus."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -186,8 +185,7 @@ msgstr ""
 "d'arguments d'entrée %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s : L'argument d'entrée #%d doit avoir exactement %d lignes, et non %d."
 
@@ -244,13 +242,13 @@ msgstr ""
 "chaînes de caractères ou une matrice vide attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"

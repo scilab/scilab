@@ -36,8 +36,7 @@ msgid "Warning: "
 msgstr "Warnung: "
 
 msgid "mexCallSCILAB: invalid pointer passed to called function."
-msgstr ""
-"mexCallSCILAB: ungültiger Zeiger zur aufgerufenen Funktion übergeben."
+msgstr "mexCallSCILAB: ungültiger Zeiger zur aufgerufenen Funktion übergeben."
 
 msgid "mexCallSCILAB: evaluation failed. "
 msgstr "mexCallSCILAB: Auswertung fehlgeschlagen. "

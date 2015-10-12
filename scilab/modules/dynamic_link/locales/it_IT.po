@@ -47,7 +47,7 @@ msgstr ""
 "%s: il secondo argomento deve essere un id unico di una libreria condivisa.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
@@ -228,8 +228,7 @@ msgid "Calling a Fortran subroutine from Scilab.\n"
 msgstr "Chiamata di una subroutine del Fortran da Scilab.\n"
 
 msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
-msgstr ""
-"Chiamata di ilib_for_link per costruire uan subroutine del Fortran.\n"
+msgstr "Chiamata di ilib_for_link per costruire uan subroutine del Fortran.\n"
 
 msgid "Calling Fortran subroutine. Z = X+Y"
 msgstr "Chiamata di una subroutine del Fortran. Z = X+Y"
@@ -298,14 +297,13 @@ msgstr ""
 "'haveacompiler' è supportata solo su Windows."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
 "di stringhe.\n"
@@ -575,12 +573,6 @@ msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d, "
 "%d o %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

@@ -41,7 +41,8 @@ msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An hypermatrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ハイパー行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ハイパー行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -60,13 +61,17 @@ msgid "%s: Invalid hypermatrix insertion.\n"
 msgstr "%s: ハイパー行列の挿入が無効です.\n"
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr "スタック上の引数が多すぎます. stack.h を編集し,intersiz を大きくしてください.\n"
+msgstr ""
+"スタック上の引数が多すぎます. stack.h を編集し,intersiz を大きくしてくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be non-negative "
 "integers.\n"
-msgstr "%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要があります.\n"
+msgstr ""
+"%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要がありま"
+"す.\n"
 
 #, c-format
 msgid "%s: Number of entries does not match product of dimensions"
@@ -84,10 +89,12 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 msgid ""
 "%s: Wrong type for input argument #%d: struct array or tlist or mlist "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 構造体配列またはtlistまたはmlistを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 構造体配列またはtlistまたはmlistを指定"
+"してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format

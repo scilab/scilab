@@ -23,13 +23,13 @@ function result = atomsGetConfig(field)
     // Check input parameters type
     // =========================================================================
     if (rhs > 0) & (type(field) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsGetConfig", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsGetConfig", 1));
     end
 
     // Check input parameters dimensions
     // =========================================================================
     if (rhs > 0) & (size(field, "*") <> 1) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"), "atomsGetConfig", 1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "atomsGetConfig", 1));
     end
 
 

@@ -36,14 +36,14 @@ types::Function::ReturnValue sci_addinter(types::typed_list &in, int _iRetCount,
     //1st parameter
     if (in[0]->isString() == false)
     {
-        Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "addinter", 1);
+        Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "addinter", 1);
         return types::Function::Error;
     }
 
     types::String* pSLibName = in[0]->getAs<types::String>();
     if (pSLibName->isScalar() == false)
     {
-        Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "addinter", 1);
+        Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "addinter", 1);
         return types::Function::Error;
     }
 
@@ -51,21 +51,21 @@ types::Function::ReturnValue sci_addinter(types::typed_list &in, int _iRetCount,
     //2nd parameter
     if (in[1]->isString() == false)
     {
-        Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "addinter", 2);
+        Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "addinter", 2);
         return types::Function::Error;
     }
 
     types::String* pSModuleName = in[1]->getAs<types::String>();
     if (pSModuleName->isScalar() == false)
     {
-        Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "addinter", 2);
+        Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "addinter", 2);
         return types::Function::Error;
     }
 
     //3rd parameter
     if (in[2]->isString() == false)
     {
-        Scierror(999 , _("%s : Wrong type for input argument #%d: A string expected.\n"), "addinter", 3);
+        Scierror(999 , _("%s : Wrong type for input argument #%d: string expected.\n"), "addinter", 3);
         return types::Function::Error;
     }
 

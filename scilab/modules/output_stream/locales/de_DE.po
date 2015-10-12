@@ -31,7 +31,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Eingangsargument #%d kann nicht gelesen werden.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
@@ -46,8 +46,7 @@ msgstr ""
 "überein.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 "%s: Falscher Wert des Eingangsarguments #%d: Daten passen nicht zum Format.\n"
 
@@ -92,7 +91,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Falscher Typ für Eingangsargument #%d: Skalar erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: Eine Zeichenkette wird erwartet.\n"
 
@@ -113,8 +112,7 @@ msgstr ""
 "schliessen.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "schliessen %d.\n"
@@ -126,8 +124,7 @@ msgstr ""
 "pausieren.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: Fehler, kann Tagebuch nicht "
 "pausieren %d.\n"
@@ -381,8 +378,7 @@ msgstr "Falscher Typ für Argument %d: Liste erwartet.\n"
 msgid "Problem with comparison symbol...\n"
 msgstr "Problem mit Vergleichssymbol...\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Falscher Anzahl an EIngangsargumenten: diese Funktion hat kein "
 "Eingangsargument.\n"
@@ -602,8 +598,7 @@ msgid "Too many functions are defined (maximum #:%d).\n"
 msgstr "Zu viele Funktionen sind definiert (Maximum #:%d).\n"
 
 msgid "Too complex for scilab, may be a too long control instruction.\n"
-msgstr ""
-"Zu komplex für Scilab, kann eine zu lange Kontroll Instruktion sein.\n"
+msgstr "Zu komplex für Scilab, kann eine zu lange Kontroll Instruktion sein.\n"
 
 msgid "Too large, can't be displayed.\n"
 msgstr "Zu groß, kann nicht angezeigt werden.\n"
@@ -761,8 +756,7 @@ msgstr "%s: falsche Größe für Argument %d: %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
+msgstr "%s: falscher Typ für Argument %d: Matrix mit Zeichenfolgen erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
@@ -861,7 +855,7 @@ msgstr ""
 msgid "semi def fails.\n"
 msgstr "semi Definition schlägt fehl.\n"
 
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr ""
 "Falscher Typ für erstes Eingangsargument. Einzelne Zeichenkette erwartet.\n"
 
@@ -922,8 +916,7 @@ msgstr "Es ist keine Eingangsdatei mit der logischen Einheit %d verbunden.\n"
 
 #, c-format
 msgid "  check arguments or define function %s for overloading.\n"
-msgstr ""
-"  Argumente überprüfen oder definiere Funktion %s für das Überladen.\n"
+msgstr "  Argumente überprüfen oder definiere Funktion %s für das Überladen.\n"
 
 msgid "Function not defined for given argument type(s),\n"
 msgstr "Funktion für gegebene Argumenten-Typ(en) nicht erlaubt.\n"
@@ -1034,8 +1027,7 @@ msgstr ""
 msgid "endfunction is missing.\n"
 msgstr "Endfunktion fehlt.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Instruktionen der linken Hand Seite: warte auf einen Punkt oder eine linke "
 "Klammer.\n"
@@ -1133,8 +1125,7 @@ msgid "Optimization stops because too small variations for x.\n"
 msgstr "Optimierung hält an, weil die Variationen für x zu klein sind.\n"
 
 msgid "Optim stops: maximum number of calls to f is reached.\n"
-msgstr ""
-"Optimierung stoppt: maximale Anzahl an Aufrufen von f ist erreicht.\n"
+msgstr "Optimierung stoppt: maximale Anzahl an Aufrufen von f ist erreicht.\n"
 
 msgid "Optim stops: maximum number of iterations is reached.\n"
 msgstr "Optimierung hält an: maximale Anzahl an Iterationen ist erreicht.\n"
@@ -1156,8 +1147,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Ende der Optimierung (lineare Such schlägt fehl).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : nicht komplette Konvergenz relativer Präzision erreicht: 10**(%s).\n"
 
@@ -1364,8 +1354,7 @@ msgstr "%s: Termination: Funktion Evaluierungen >MEVALS.\n"
 
 #, c-format
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
-msgstr ""
-"%s: maxpts war zu klein, um die benötigte Genauigkeit zu erreichen.\n"
+msgstr "%s: maxpts war zu klein, um die benötigte Genauigkeit zu erreichen.\n"
 
 msgid "Too many input/output ports for highlighted block.\n"
 msgstr "Zu viele Eingangs/Ausgangs Ports für hervorgehobenen Block.\n"
@@ -1516,8 +1505,7 @@ msgstr ""
 "wird erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s: Falscher Typ des Eingangsarguments #%d: Zustandsraummodell wird "
 "erwartet.\n"

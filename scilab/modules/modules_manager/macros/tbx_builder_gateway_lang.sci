@@ -45,11 +45,11 @@ function tbx_builder_gateway_lang(languages,path)
 
     else
         if type(path) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_builder_gateway_lang",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_builder_gateway_lang",2));
         end
 
         if size(path,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_builder_gateway_lang",2));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_builder_gateway_lang",2));
         end
 
         if ~isdir(path) then

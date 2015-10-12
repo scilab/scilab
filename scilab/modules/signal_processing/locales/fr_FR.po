@@ -282,8 +282,7 @@ msgstr "%s : Dimension erronée de l'argument n°%d : Un vecteur attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -291,8 +290,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
 msgid "%s: Arguments #%d and #%d must have the same sizes.\n"
-msgstr ""
-"%s : Les arguments n°%d et n°%d doivent avoir les mêmes dimensions.\n"
+msgstr "%s : Les arguments n°%d et n°%d doivent avoir les mêmes dimensions.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -328,8 +326,7 @@ msgstr ""
 "matrice 1-par-1 ou deux polynômes attendus.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Le premier élément ne doit "
 "pas être %s.\n"
@@ -387,8 +384,7 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier positif "
 "attendu.\n"
@@ -448,8 +444,8 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
 "less than argument #%d.\n"
 msgstr ""
-"%s : Les arguments d'entrée n°%d et n°%d sont incompatibles : L'argument  "
-"n°%d doit être plus petit que l'argument n°%d.\n"
+"%s : Les arguments d'entrée n°%d et n°%d sont incompatibles : L'argument  n°"
+"%d doit être plus petit que l'argument n°%d.\n"
 
 #, c-format
 msgid ""
@@ -476,8 +472,7 @@ msgstr ""
 "rationnelle attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un tableau de %d "
 "éléments attendu.\n"

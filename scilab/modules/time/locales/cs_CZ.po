@@ -45,7 +45,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -54,8 +54,7 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
@@ -131,8 +130,7 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: očekávána matice m*3 nebo m*6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: %s musí být mezi %d a %d.\n"
 
@@ -157,8 +155,7 @@ msgstr "%s: Špatný typ vstupních argumentů.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
+msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument.\n"
@@ -177,8 +174,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -187,8 +183,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván reálný vektor.\
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Musí být mezi %d a %d.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Musí být mezi %d a %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"

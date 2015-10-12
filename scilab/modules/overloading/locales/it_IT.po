@@ -49,12 +49,11 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: 'c', 'd' or a scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"c\", "
-"\"d\" o uno scalare.\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"c\", \"d"
+"\" o uno scalare.\n"
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 
 #, c-format
@@ -74,8 +73,7 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: Il nome del campo non è valido.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un nome "
 "di campo valido.\n"
@@ -89,8 +87,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: non si può "
 "definire la trasposta.\n"
@@ -134,7 +131,7 @@ msgstr ""
 ">=%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
@@ -146,13 +143,13 @@ msgstr ""
 "nell'insieme {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
 "o uno scalare.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -208,8 +205,7 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valore errato nell'input per l'argomento #%d: era atteso '%s', '%s' "
 "oppure '%s' .\n"
@@ -267,8 +263,8 @@ msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
 
 msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
-"6.\n"
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
+"scilab-6.\n"
 "           Use vector .^ scalar instead.\n"
 msgstr ""
 
@@ -318,8 +314,7 @@ msgstr ""
 "reale.\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: le matrici di ingresso e di uscita devono avere lo stesso numero di "
 "elementi.\n"

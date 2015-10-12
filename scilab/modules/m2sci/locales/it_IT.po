@@ -177,8 +177,7 @@ msgid "lhs cannot be a %s."
 msgstr "lhs non può essere un %s"
 
 #, c-format
-msgid ""
-"recursive extraction with one index of type %s is not yet implemented."
+msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
 "l'estrazione ricorsiva con un indice di tipo %s non è ancora sviluppata."
 
@@ -194,8 +193,7 @@ msgid "Matlab function %s not yet converted."
 msgstr "La funzione %s di Matlab non è ancora convertita."
 
 #, c-format
-msgid ""
-"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) può essere sostituito da %s() o da %s sia che %s è un M-file sia "
 "che non lo è."
@@ -298,8 +296,8 @@ msgid ""
 "loginfos: verb_mode 0 should not be used in this context, information "
 "ignored."
 msgstr ""
-"loginfo: verb_mode 0 non dovrebbe essere usato in questo "
-"contesto,l'informazione è ignorata."
+"loginfo: verb_mode 0 non dovrebbe essere usato in questo contesto,"
+"l'informazione è ignorata."
 
 msgid "m2sciassume is obsolete, used m2scideclare instead."
 msgstr "m2sciassume è obsoleto, viene usato invece m2scideclare."
@@ -622,8 +620,7 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Fine della sessione di mfile2sci() ******"
 
 #, c-format
-msgid ""
-"At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Almeno un operando di %s è una matrice vuota, l'equivalente in Scilab è []."
 
@@ -640,8 +637,7 @@ msgstr ""
 "Bug in M2SCI: estrazione dalla variabile %s sconosciuta nella varslist."
 
 #, c-format
-msgid ""
-"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "inserimento ricorsivo in una variabile che non è una cell né uno struct: %s."
 
@@ -816,8 +812,7 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "Classe non gestita: %s."
 
-msgid ""
-"isequal requires fields are in the same order for structs to be equal."
+msgid "isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal richiede che i campi siano nello stesso ordine affinché gli structs "
 "siano uguali."

@@ -16,7 +16,7 @@ function opt1 = getColorIndex(ColorString)
     end
 
     if type(ColorString)<>10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getColorIndex", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getColorIndex", 1));
     end
 
     opt1=-1;

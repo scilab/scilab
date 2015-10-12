@@ -27,30 +27,30 @@ function atomsDownload(url_in,file_out,md5sum)
     // Check input parameters type
     // =========================================================================
     if type(url_in) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 1));
     end
 
     if type(file_out) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 2));
     end
 
     if (rhs>2) & (type(md5sum) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 3));
     end
 
     // Check input parameters size
     // =========================================================================
 
     if size(url_in, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDownload",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDownload",1));
     end
 
     if size(file_out, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDownload",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDownload",2));
     end
 
     if (rhs>2) & (size(md5sum,"*") <> 1) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDownload",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDownload",3));
     end
 
     // Check input parameters value

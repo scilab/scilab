@@ -167,7 +167,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
         // Retrieve a matrix of string at position 2.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrfileName, &m1, &n1, &fileName))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             return 1;
         }
 
@@ -201,7 +201,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
                     if (getAllocatedMatrixOfString(pvApiCtx, piAddrsciOrientation, &nbRow, &nbCol, &sciOrientation))
                     {
                         freeAllocatedMatrixOfString(m1, n1, fileName);
-                        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                         return 1;
                     }
 

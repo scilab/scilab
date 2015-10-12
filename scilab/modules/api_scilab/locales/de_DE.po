@@ -146,15 +146,13 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Falsche Größe für Argument #%d: (%d,%d) erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingabeargument #%d: String oder Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"

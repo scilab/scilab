@@ -18,8 +18,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
+msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid ""
@@ -146,7 +145,7 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "Matice není kompatibilní se zadanými faktory LU"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -269,14 +268,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová řídká "
 "matice.\n"
@@ -287,8 +284,7 @@ msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr ""
-"%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
+msgstr "%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
 
 msgid " For this demo the current stack size is not enough "
 msgstr " Pro tuto ukázku je současná velikost zásobníku nedostatečná "

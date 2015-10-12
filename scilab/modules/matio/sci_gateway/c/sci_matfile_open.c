@@ -65,14 +65,14 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
 
         if (nbCol != 1)
         {
-            Scierror(999, _("%s: Wrong size for first input argument: A string expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for first input argument: string expected.\n"), fname);
             freeAllocatedSingleString(filename);
             return FALSE;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for first input argument: A string expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for first input argument: string expected.\n"), fname);
         freeAllocatedSingleString(filename);
         return FALSE;
     }
@@ -105,7 +105,7 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
 
             if (nbCol != 1)
             {
-                Scierror(999, _("%s: Wrong size for second input argument: A string expected.\n"), fname);
+                Scierror(999, _("%s: Wrong size for second input argument: string expected.\n"), fname);
                 freeAllocatedSingleString(filename);
                 freeAllocatedSingleString(optionStr);
 
@@ -131,7 +131,7 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for second input argument: A string expected.\n"), fname);
+            Scierror(999, _("%s: Wrong type for second input argument: string expected.\n"), fname);
             freeAllocatedSingleString(filename);
             freeAllocatedSingleString(optionStr);
 
@@ -171,7 +171,7 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
             }
             if (nbCol != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 3);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 3);
                 freeAllocatedSingleString(filename);
                 freeAllocatedSingleString(optionStr);
                 freeAllocatedSingleString(versionStr);
@@ -190,7 +190,7 @@ int sci_matfile_open(char *fname, void* pvApiCtx)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return 0;
         }
     }

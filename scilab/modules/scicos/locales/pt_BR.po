@@ -170,8 +170,7 @@ msgstr "%s: Função não encontrada\n"
 
 #, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Tamanho Indeterminado. in(%d)=%d. Por favor, ajuste seu modelo.\n"
+msgstr "%s : Tamanho Indeterminado. in(%d)=%d. Por favor, ajuste seu modelo.\n"
 
 #, c-format
 msgid "%s : Allocation error.\n"
@@ -184,8 +183,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Tipo Indeterminado. intyp(%d)=%d. Por favor, ajuste seu modelo.\n"
+msgstr "%s : Tipo Indeterminado. intyp(%d)=%d. Por favor, ajuste seu modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
@@ -252,8 +250,7 @@ msgstr ""
 "outtb.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : erro. Tipo %d de matriz de escalar int ainda não é suportada para "
 "outtb.\n"

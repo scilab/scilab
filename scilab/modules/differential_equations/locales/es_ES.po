@@ -184,8 +184,7 @@ msgstr "5 : un paso, sin pasar tcrit, y vuelve"
 msgid "Meaning of jactype:"
 msgstr "Significado de jactype"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iteraciones funcionales (no se uso jacobiano (solo 'adams' o 'stiff'))"
 
@@ -196,8 +195,7 @@ msgid "2 : internally generated full jacobian"
 msgstr "2 : jacobiano completo generado internamente"
 
 msgid "3 : internally generated diagonal jacobian ('adams' or 'stiff' only)"
-msgstr ""
-"3 : jacobiano diagonal generado internamente (solo 'adams' o 'stiff')"
+msgstr "3 : jacobiano diagonal generado internamente (solo 'adams' o 'stiff')"
 
 msgid "4 : user-supplied banded jacobian (see ml,mu)"
 msgstr "4 : jacobiano banda proporcionada por el usuario (vea ml,mu)"

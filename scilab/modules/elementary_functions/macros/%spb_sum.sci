@@ -42,7 +42,7 @@ function r=%spb_sum(varargin)
         end
     case 10 
         if size(d,'*') <> 1 then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",2))
+            error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"sum",2))
         end
         if and(d<>["r","c","*","m"]) then
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
@@ -51,16 +51,16 @@ function r=%spb_sum(varargin)
         pos = [1,2,0,find(dims>1,1)];
         d=pos(find(d==["r","c","*","m"]))
     else
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"sum",2))
+        error(msprintf(_("%s: Wrong type for input argument #%d: string or scalar expected.\n"),"sum",2))
     end
 
     // Check third argument
     if type(typ)<>10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"sum",3))
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"sum",3))
     end
 
     if size(typ,"*")<>1 then
-        error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",3))
+        error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"sum",3))
     end
 
     if and(typ <> ["native" "double"]) then
@@ -75,12 +75,12 @@ function r=%spb_sum(varargin)
 //        // call sum(a, d) or sum(a, d, typ)
 //        // d must be a string or scalar -> check type and size
 //        if and(type(d)<> [1, 10]) then
-//            error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"sum",2))
+//            error(msprintf(_("%s: Wrong type for input argument #%d: string or scalar expected.\n"),"sum",2))
 //        end
 //
 //        if size(d,"*")<>1 then
 //            if type(d)==10 then
-//                error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",2))
+//                error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"sum",2))
 //            else
 //                error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"sum",2))
 //            end
@@ -112,11 +112,11 @@ function r=%spb_sum(varargin)
 //            // check typ or size
 //            if rhs == 3  then
 //                if type(typ)<>10 then
-//                    error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"sum",3))
+//                    error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"sum",3))
 //                end
 //
 //                if size(typ,"*")<>1 then
-//                    error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",3))
+//                    error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"sum",3))
 //                end
 //
 //                if and(typ <> ["native", "double"])  then

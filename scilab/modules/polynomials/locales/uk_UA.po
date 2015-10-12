@@ -49,8 +49,7 @@ msgstr ""
 "поліном.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: помилкова розмірність тип вхідного параметра №%d: слід використовувати "
 "раціональний дріб.\n"
@@ -108,8 +107,7 @@ msgstr ""
 "з набору {%s}.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: мало бути використано тип матриці з "
 "поліномів з дійсними коефіцієнтами.\n"

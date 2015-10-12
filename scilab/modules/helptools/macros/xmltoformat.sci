@@ -895,7 +895,7 @@ function tree = x2f_dir_to_tree(directory,level)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_dir_to_tree",1));
     end
 
     if type(level) <> 1 then
@@ -906,7 +906,7 @@ function tree = x2f_dir_to_tree(directory,level)
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_dir_to_tree",1));
     end
 
     if size(level,"*") <> 1 then
@@ -1023,14 +1023,14 @@ function xmlfiles = x2f_get_xml_files(directory)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_get_xml_files",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_get_xml_files",1));
     end
 
     // Check input argument dimension
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_get_xml_files",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_get_xml_files",1));
     end
 
     // Check the directory existence
@@ -1112,14 +1112,14 @@ function directories = x2f_get_directories(directory)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_get_directories",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_get_directories",1));
     end
 
     // Check input argument dimension
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_get_directories",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_get_directories",1));
     end
 
     // Check the directory existence

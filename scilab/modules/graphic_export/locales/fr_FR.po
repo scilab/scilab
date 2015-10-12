@@ -64,7 +64,7 @@ msgstr ""
 "figure attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
 "attendue.\n"
@@ -103,7 +103,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -142,11 +142,11 @@ msgstr ""
 "cette erreur."
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
 msgstr ""
-"Impossible de créer le fichier d'export, veuillez signaler un bug sur "
-"http://bugzilla.scilab.org."
+"Impossible de créer le fichier d'export, veuillez signaler un bug sur http://"
+"bugzilla.scilab.org."
 
 msgid ""
 "Unable to create export file, the file cannot be created or is locked by an "

@@ -47,7 +47,7 @@ types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, t
 
     if (pIT->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected."), fname.data(),  1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected."), fname.data(),  1);
         return types::Function::Error;
     }
 
@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_predef(types::typed_list &in, int _iRetCount, t
 
     if (pS->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected."), fname.data(), 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected."), fname.data(), 1);
         return types::Function::Error;
     }
 

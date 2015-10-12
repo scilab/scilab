@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: no es pot llegir el paràmetre d'entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -51,7 +51,7 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser un enter.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
@@ -158,8 +158,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

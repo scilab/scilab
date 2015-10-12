@@ -23,8 +23,7 @@ msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -37,7 +36,7 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"

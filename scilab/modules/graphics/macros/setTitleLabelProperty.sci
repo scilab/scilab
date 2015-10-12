@@ -168,7 +168,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
             titlelabel.text = PropertyValue;
             return
         else
-            warning(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"setTitleLabelProperty",2));
+            warning(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"setTitleLabelProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end
@@ -207,7 +207,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
                 return;
             end
         else
-            warning(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"setTitleLabelProperty",2));
+            warning(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"setTitleLabelProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end

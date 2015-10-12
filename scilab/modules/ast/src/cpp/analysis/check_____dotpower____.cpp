@@ -79,13 +79,46 @@ TIType Checkers::check_____dotpower____(GVN & gvn, const TIType & in0, const TIT
         }
         case TIType::BOOLEAN :
         {
-            if (in1.type == TIType::EMPTY)
+            switch (in1.type)
             {
-                return in1;
-            }
-            else
-            {
-                return TIType(gvn);
+                case TIType::EMPTY :
+                {
+                    return in1;
+                }
+                case TIType::COMPLEX :
+                {
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
+                }
+                case TIType::DOUBLE :
+                {
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return in1;
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in1;
+                    }
+                    return TIType(gvn, TIType::DOUBLE, -2, -2);
+                }
+                default :
+                    return TIType(gvn);
             }
             return TIType(gvn);
         }
@@ -96,6 +129,22 @@ TIType Checkers::check_____dotpower____(GVN & gvn, const TIType & in0, const TIT
                 case TIType::EMPTY :
                 {
                     return in1;
+                }
+                case TIType::BOOLEAN :
+                {
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::COMPLEX, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
                 }
                 case TIType::COMPLEX :
                 {
@@ -142,6 +191,22 @@ TIType Checkers::check_____dotpower____(GVN & gvn, const TIType & in0, const TIT
                 {
                     return in1;
                 }
+                case TIType::BOOLEAN :
+                {
+                    if (in0.rows == 1 && in0.cols == 1)
+                    {
+                        return TIType(gvn, TIType::DOUBLE, in1.rows, in1.cols);
+                    }
+                    if (in1.rows == 1 && in1.cols == 1)
+                    {
+                        return in0;
+                    }
+                    if (in1.rows == in0.rows && in1.cols == in0.cols)
+                    {
+                        return in0;
+                    }
+                    return TIType(gvn, TIType::DOUBLE, -2, -2);
+                }
                 case TIType::COMPLEX :
                 {
                     if (in0.rows == 1 && in0.cols == 1)
@@ -162,17 +227,17 @@ TIType Checkers::check_____dotpower____(GVN & gvn, const TIType & in0, const TIT
                 {
                     if (in0.rows == 1 && in0.cols == 1)
                     {
-                        return in1;
+                        return TIType(gvn, TIType::COMPLEX, in1.rows, in1.cols);
                     }
                     if (in1.rows == 1 && in1.cols == 1)
                     {
-                        return in0;
+                        return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
                     }
                     if (in1.rows == in0.rows && in1.cols == in0.cols)
                     {
-                        return in0;
+                        return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
                     }
-                    return TIType(gvn, TIType::DOUBLE, -2, -2);
+                    return TIType(gvn, TIType::COMPLEX, -2, -2);
                 }
                 case TIType::INT16 :
                 {

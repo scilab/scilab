@@ -176,10 +176,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs no puede ser una %s."
 
 #, c-format
-msgid ""
-"recursive extraction with one index of type %s is not yet implemented."
-msgstr ""
-"Extracción recursiva con un índice de tipo %s aun no fue implementada."
+msgid "recursive extraction with one index of type %s is not yet implemented."
+msgstr "Extracción recursiva con un índice de tipo %s aun no fue implementada."
 
 #, c-format
 msgid "Error while executing : [sci_equiv]=sci_%s(mtlb_expr)."
@@ -193,8 +191,7 @@ msgid "Matlab function %s not yet converted."
 msgstr "La función %s de matlab aun no fue convertida."
 
 #, c-format
-msgid ""
-"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) puede ser reemplazada por %s() o %s si %s es un archivo M o no."
 
@@ -256,8 +253,7 @@ msgstr ""
 "de entrada)"
 
 msgid "TESTING M2SCI: creating varslist file..."
-msgstr ""
-"PROBANDO M2SCI: creando un archivo de lista de variables (varlist)..."
+msgstr "PROBANDO M2SCI: creando un archivo de lista de variables (varlist)..."
 
 #, c-format
 msgid ""
@@ -335,8 +331,8 @@ msgstr "si"
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"no hay suficientes datos, como mínimo debería proporcionarse "
-"variable_name|dimensions|datatype."
+"no hay suficientes datos, como mínimo debería proporcionarse variable_name|"
+"dimensions|datatype."
 
 msgid "too much data."
 msgstr "demasiados datos."
@@ -612,8 +608,7 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Fin de la sesión de mfile2sci() ******"
 
 #, c-format
-msgid ""
-"At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Al menos un operando de %s es una matriz vacía, el equivalente en Scilab es "
 "[]."
@@ -632,8 +627,7 @@ msgstr ""
 "variables (varlist)."
 
 #, c-format
-msgid ""
-"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "inserción recursiva en una variable que no es una Celda o una Estructura: %s."
 
@@ -739,8 +733,7 @@ msgstr ""
 "mtlb_exist() es solo una emulación parcial de la función exist() de Matlab."
 
 msgid "Unknown type for input parameter: consider fclose(fid)."
-msgstr ""
-"Tipo desconocido para el parámetro de entrada: considere fclose(fid)."
+msgstr "Tipo desconocido para el parámetro de entrada: considere fclose(fid)."
 
 #, c-format
 msgid "%s with two outputs."
@@ -778,8 +771,7 @@ msgstr "%s() llamada con parámetro de salto."
 
 #, c-format
 msgid "Not enough information on %s to set the proper flag."
-msgstr ""
-"No hay suficiente información en %s para asignar la bandera correcta."
+msgstr "No hay suficiente información en %s para asignar la bandera correcta."
 
 #, c-format
 msgid "Global variable %s added to M2SCI variable list."
@@ -794,15 +786,13 @@ msgstr "opción %s."
 
 #, c-format
 msgid "Scilab %s() does not work with Complex values: %s() call IGNORED."
-msgstr ""
-"Scilab %s() no funciona con valores Complejos: %s() llamada IGNORADA."
+msgstr "Scilab %s() no funciona con valores Complejos: %s() llamada IGNORADA."
 
 #, c-format
 msgid "Unhandled class: %s."
 msgstr "Clase no manejada: %s."
 
-msgid ""
-"isequal requires fields are in the same order for structs to be equal."
+msgid "isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal requiere campos que sean del mismo orden para que las estructuras "
 "sean iguales."

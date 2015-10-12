@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest "
 "pojedynczy łańcuch.\n"
@@ -105,11 +105,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Usuwanie plików pomocy --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: Przeglądarka pliku pomocy jest nieaktywna w trybie %s.\n"
 
@@ -154,7 +149,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: Pliki pomijane %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
@@ -296,12 +291,6 @@ msgstr ""
 "całkowitej.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
-"pojedynczego łańcuchu znaków.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s:  Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwano wartości "
@@ -328,8 +317,8 @@ msgstr "%s: Plik CHAPTER nie jest dobrze sformatowany w wierszu %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: Oczekiwano "
 "łancuchu, zakończonego .last_successful_build.\n"

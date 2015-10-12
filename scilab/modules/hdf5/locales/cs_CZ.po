@@ -55,7 +55,7 @@ msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr "%s: Nelze aktualizovat verzi formátu HDF5 v \"%s\"."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -67,8 +67,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s: Neplatný H5Object.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo H5Object.\n"
 
@@ -77,7 +76,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -124,7 +123,7 @@ msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván H5Objekt.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -156,8 +155,7 @@ msgstr ""
 "řádkový vektor.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řádku řetězců.\n"
 
@@ -173,8 +171,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s: Nelze použít objekt H5Object: Neplatný objekt.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean nebo řetězec.\n"
 
@@ -231,8 +228,7 @@ msgstr "%s: Nelze otevřít soubor: %s\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
-msgstr ""
-"%s: Špatná verze formátu souboru SOD. Očekáváno max: %d Nalezeno: %d\n"
+msgstr "%s: Špatná verze formátu souboru SOD. Očekáváno max: %d Nalezeno: %d\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
@@ -243,8 +239,7 @@ msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno více než %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo číslo s "
 "dvojitou přesností.\n"

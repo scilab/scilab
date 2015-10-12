@@ -14,18 +14,18 @@ function tbx_build_pal_loader(palettename,interfacefunctions,module_path,script_
     end
     // checking palettename argument
     if type(palettename) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",1));
     end
     if size(palettename,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_blocks",1));
     end
 
     // checking module_path argument
     if type(module_path) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",3));
     end
     if size(module_path,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_blocks",3));
     end
     if ~isdir(module_path) then
         error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_blocks",module_path));
@@ -39,10 +39,10 @@ function tbx_build_pal_loader(palettename,interfacefunctions,module_path,script_
     // checking optional script_path argument
     if argn(2)==4 then
         if type(script_path) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",4));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",4));
         end
         if size(script_path,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",4));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_blocks",4));
         end
     else
         script_path=module_path + "/macros"

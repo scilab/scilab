@@ -34,8 +34,7 @@ msgstr "%s : Impossible d'allouer plus de mémoire.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
@@ -61,8 +60,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 "%s : Valeurs erronées de l'argument d'entrée n°%d : Des entiers positifs "
 "attendus.\n"
@@ -152,7 +150,7 @@ msgstr ""
 "wisdom.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -196,8 +194,7 @@ msgstr "Vous avez choisi d'installer Scilab avec le module fftw."
 msgid "This module requires: "
 msgstr "Ce module nécessite : "
 
-msgid ""
-"Scilab will use standard fft by default until you install this library."
+msgid "Scilab will use standard fft by default until you install this library."
 msgstr ""
 "Scilab utilisera par défaut la fft standard jusqu'à l'installation de cette "
 "bibliothèque."

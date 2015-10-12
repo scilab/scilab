@@ -53,8 +53,7 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s: Hi ha nodes duplicats o tots els nodes colineals (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Han de "
 "tenir la mateixa mida.\n"
@@ -66,8 +65,7 @@ msgstr ""
 "desconegut.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen un valor incorrecte: Han de "
 "tenir la mateixa mida.\n"
@@ -168,8 +166,7 @@ msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
 msgstr "%s: L'argument d'entrada #%d, #%d o #%d té una mida incorrecta.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s: x i/o y no tenen un ordre estrictament creixent (o s'ha detectat +-inf)\n"
 

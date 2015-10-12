@@ -27,7 +27,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
@@ -39,7 +39,7 @@ msgid "Cannot play file."
 msgstr "Nie można odtworzyć pliku."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano ciągu "
 "znaków.\n"
@@ -203,11 +203,10 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Wystąpił błąd:% s błąd nie jest obsługiwany.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
-"%s: Wystąpił błąd: niewłaściwy format pliku. Błąd podczas odczytu kawałka "
-"<%s>.\n"
+"%s: Wystąpił błąd: niewłaściwy format pliku. Błąd podczas odczytu kawałka <"
+"%s>.\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr "Niewłaściwy plik .wav: znaleziono dane przed informacja o formacie."

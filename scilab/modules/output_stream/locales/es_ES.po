@@ -33,7 +33,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -48,8 +48,7 @@ msgstr ""
 "formato.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 "%s: Valor incorrecto para el argumento de entrada #%d: la información no se "
 "ajusta al formato.\n"
@@ -97,7 +96,7 @@ msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -120,8 +119,7 @@ msgstr ""
 "el diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: error no se puede cerrar "
 "el diario %d.\n"
@@ -133,8 +131,7 @@ msgstr ""
 "el diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: error no se puede pausar "
 "el diario %d.\n"
@@ -199,8 +196,7 @@ msgid "Inconsistent row/column dimensions.\n"
 msgstr "Las dimensiones de la fila/columna son inconsistentes.\n"
 
 msgid "Dot cannot be used as modifier for this operator.\n"
-msgstr ""
-"El punto no puede ser utilizado como modificador para este operador.\n"
+msgstr "El punto no puede ser utilizado como modificador para este operador.\n"
 
 msgid "Inconsistent addition.\n"
 msgstr "Adición inconsistente.\n"
@@ -391,8 +387,7 @@ msgstr "Tipo incorrecto para el argumento %d: Se esperaba una lista.\n"
 msgid "Problem with comparison symbol...\n"
 msgstr "Problema con el símbolo de comparación...\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Número incorrecto de argumentos de entrada: Esta función no tiene argumentos "
 "de entrada.\n"
@@ -595,8 +590,7 @@ msgid "Last element of %dth argument <> first.\n"
 msgstr "El último elemento del %d º argumento <> primero.\n"
 
 msgid "Last element of first argument does not match the first one.\n"
-msgstr ""
-"El último elemento del primer argumento no coincide con el primero.\n"
+msgstr "El último elemento del primer argumento no coincide con el primero.\n"
 
 #, c-format
 msgid "Variable or function %s are not in file.\n"
@@ -608,8 +602,7 @@ msgstr "Variable %s no es una función racional válida.\n"
 
 #, c-format
 msgid "Variable %s is not a valid state space representation.\n"
-msgstr ""
-"Variable %s no es una representación de un espacio de estado válido.\n"
+msgstr "Variable %s no es una representación de un espacio de estado válido.\n"
 
 msgid "Undefined function.\n"
 msgstr "Función indefinida.\n"
@@ -752,8 +745,7 @@ msgstr "Variable : %s debe ser una lista\n"
 
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
-msgstr ""
-"Reinicio rápido: dimensión de la tabla de trabajo (argumento n:%d).\n"
+msgstr "Reinicio rápido: dimensión de la tabla de trabajo (argumento n:%d).\n"
 
 #, c-format
 msgid "%s: df0 must be positive !\n"
@@ -890,7 +882,7 @@ msgstr "Operandos de operaciones / y \\ no pueden contener NaN de Inf.\n"
 msgid "semi def fails.\n"
 msgstr "falla la semi definición.\n"
 
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr ""
 "Tipo incorrecto para el primer argumento de entrada: Se esperaba un string "
 "simple.\n"
@@ -1040,8 +1032,7 @@ msgstr "%s y %s deben tener las mismas dimensiones.\n"
 
 #, c-format
 msgid "Invalid return value for function passed in arg %d.\n"
-msgstr ""
-"Valor de retorno inválido para la función pasado en el argumento %d.\n"
+msgstr "Valor de retorno inválido para la función pasado en el argumento %d.\n"
 
 #, c-format
 msgid ""
@@ -1064,8 +1055,7 @@ msgstr "Argumento de tamaño variable a*eye(), (arg %d) no permitido aquí.\n"
 msgid "endfunction is missing.\n"
 msgstr "falta final de función (endfunction).\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 "Instrucción de lado izquierdo: esperando por un punto o un paréntesis "
 "izquierdo.\n"
@@ -1171,8 +1161,7 @@ msgid "Optim stops: maximum number of iterations is reached.\n"
 msgstr "Optim para: se alcanzó el número máximo de iteraciones.\n"
 
 msgid "Optim stops: too small variations in gradient direction.\n"
-msgstr ""
-"Optim para: variaciones muy pequeñas en la dirección del gradiente.\n"
+msgstr "Optim para: variaciones muy pequeñas en la dirección del gradiente.\n"
 
 msgid "Stop during calculation of descent direction.\n"
 msgstr "Paró durante el cálculo de la dirección descendiente.\n"
@@ -1187,8 +1176,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Fin de la optimización (falló la búsqueda lineal).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 "sfact : convergencia relativa incompleta, se alcanzó el nivel de precisión : "
 "10**(%s).\n"
@@ -1421,8 +1409,7 @@ msgstr "Regenere sus bibliotecas de funciones.\n"
 
 #, c-format
 msgid "Warning: primitive function %s is now a Scilab function.\n"
-msgstr ""
-"Advertencia: la función primitiva %s es ahora una función de Scilab.\n"
+msgstr "Advertencia: la función primitiva %s es ahora una función de Scilab.\n"
 
 msgid ""
 "Roundoff errors make leading eigenvalues\n"
@@ -1558,8 +1545,7 @@ msgstr ""
 "caracteres.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un modelo "
 "estado-espacio.\n"

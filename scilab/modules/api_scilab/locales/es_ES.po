@@ -154,8 +154,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Tamaño incorrecto para el argumento %d: Se esperaba (%d,%d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
 "una cadena de caracteres.\n"
@@ -250,8 +249,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to create list item #%d in variable \"%s\""
-msgstr ""
-"%s: Imposible crear el elemento #%d de la lista en la variable \"%s\""
+msgstr "%s: Imposible crear el elemento #%d de la lista en la variable \"%s\""
 
 #, c-format
 msgid "%s: Items must be inserted in order"

@@ -99,8 +99,7 @@ msgstr "%s: помилкова кількість вихідних параме�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
@@ -159,8 +158,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути (%d,%d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
@@ -295,8 +293,7 @@ msgstr "%s: помилковий виклик для отримання неко
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
-msgstr ""
-"%s: формальна назва змінної полінома не може бути довшою за 4 символи"
+msgstr "%s: формальна назва змінної полінома не може бути довшою за 4 символи"
 
 msgid "matrix of double"
 msgstr "матриця зі значень double"

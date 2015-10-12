@@ -194,8 +194,7 @@ msgstr "%s : Le paramètre %s n'est pas défini"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Un nombre pair attendu.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Un nombre pair attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

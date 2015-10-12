@@ -814,21 +814,21 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             throw ast::InternalError(os.str(), 999, _pExp->getLocation());
         }
 
-
         ast::SimpleVar* spMainExp = pFirstField->getExp();
         pITMain = ctx->getCurrentLevel(spMainExp->getSymbol());
 
+        // looking for a callable
         if (pITMain == NULL)
         {
-            // check if we not redefined a protected variable. (ie: sin(2) = 12 without redefine sin before)
-            symbol::Variable* var = ctx->getOrCreate(spMainExp->getSymbol());
-            if (var->empty() == false && var->top()->m_iLevel == 0)
+            pITMain = ctx->get(spMainExp->getSymbol());
+            if (pITMain && pITMain->isCallable() == false)
             {
-                std::wostringstream os;
-                os << _W("Unexpected redefinition of Scilab function or variable.");
-                throw ast::InternalError(os.str(), 999, _pExp->getLocation());
+                pITMain = NULL;
             }
+        }
 
+        if (pITMain == NULL)
+        {
             if (pFirstField->isCellExp())
             {
                 // a{x}, where "a" doesn't exists
@@ -1463,9 +1463,48 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             }
             else if (pITCurrent->isCallable())
             {
-                std::wostringstream os;
-                os << _W("Wrong insertion : function or macro are not expected.");
-                throw ast::InternalError(os.str(), 999, _pExp->getLocation());
+                bool ret = false;
+                types::typed_list out;
+                types::typed_list in;
+                types::optional_list opt;
+
+                if (pEH->getArgs())
+                {
+                    in = *pEH->getArgs();
+                }
+
+                try
+                {
+                    ret = pITCurrent->invoke(in, opt, 1, out, *pEH->getExp());
+                }
+                catch (ast::InternalAbort& ia)
+                {
+                    throw ia;
+                }
+                catch (const ast::InternalError& ie)
+                {
+                    throw ie;
+                }
+
+                if (ret == false || out.size() != 1 || out[0]->isHandle() == false)
+                {
+                    char szError[bsiz];
+                    char* strFName = wide_string_to_UTF8(pITCurrent->getAs<types::Callable>()->getName().c_str());
+                    os_sprintf(szError, _("Wrong insertion: insertion in output of '%s' is not allowed.\n"), strFName);
+                    FREE(strFName);
+
+                    wchar_t* wError = to_wide_string(szError);
+                    std::wstring err(wError);
+                    FREE(wError);
+
+                    throw ast::InternalError(err, 999, pEH->getExp()->getLocation());
+                }
+
+                pEH->setCurrent(out[0]);
+                pEH->setArgs(NULL);
+                pEH->resetReinsertion();
+                workFields.push_front(pEH);
+                evalFields.pop_back();
             }
             else
             {
@@ -1514,6 +1553,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 }
 
                 pCell->insertCell(pArgs, _pAssignValue);
+            }
+            else if (pEH->getCurrent() && pEH->getCurrent()->isCallable())
+            {
+                std::wostringstream os;
+                os << _W("Unexpected redefinition of Scilab function.");
+                throw ast::InternalError(os.str(), 999, _pExp->getLocation());
             }
             else
             {

@@ -36,7 +36,7 @@ int sci_jcreatejar(char *fname, void* pvApiCtx)
     char *jarFilePath = NULL;
     if (getAllocatedSingleString(pvApiCtx, addr1, &jarFilePath))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
@@ -93,7 +93,7 @@ int sci_jcreatejar(char *fname, void* pvApiCtx)
         {
             freeAllocatedSingleString(jarFilePath);
             freeAllocatedMatrixOfString(nbRow, nbCol, filePaths);
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
     }
@@ -110,7 +110,7 @@ int sci_jcreatejar(char *fname, void* pvApiCtx)
             freeAllocatedSingleString(jarFilePath);
             freeAllocatedMatrixOfString(nbRow, nbCol, filePaths);
             freeAllocatedSingleString(filesRootPath);
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
             return 1;
         }
     }

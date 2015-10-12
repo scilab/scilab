@@ -24,15 +24,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов: ожидалось не больше %d.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось не больше %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -64,8 +63,7 @@ msgid ""
 msgstr "%s: Не удалось создать файл %s, так как он недоступен для записи.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
@@ -134,8 +132,7 @@ msgstr "%s: Неверное количество входных парамет�
 
 #, c-format
 msgid "%s: This module required a C compiler and it has not been found.\n"
-msgstr ""
-"%s: Компилятор C требуется для данного модуля, но он не был найден.\n"
+msgstr "%s: Компилятор C требуется для данного модуля, но он не был найден.\n"
 
 msgid "Building gateway...\n"
 msgstr "Сборка файлов-шлюзов...\n"

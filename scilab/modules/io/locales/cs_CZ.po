@@ -21,7 +21,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -45,7 +45,7 @@ msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -88,8 +88,8 @@ msgid ""
 "%s: Please quote the variable declaration. Example, save('myData.sod',a) "
 "becomes save('myData.sod','a').\n"
 msgstr ""
-"%s: Prosím umístěte deklaraci proměnné do uvozovek. Příklad: "
-"save('myData.sod',a) na save('myData.sod','a').\n"
+"%s: Prosím umístěte deklaraci proměnné do uvozovek. Příklad: save('myData."
+"sod',a) na save('myData.sod','a').\n"
 
 #, c-format
 msgid "%s: See help('save') for the rational.\n"
@@ -151,8 +151,7 @@ msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota '%s'.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: očekávána hodnota '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

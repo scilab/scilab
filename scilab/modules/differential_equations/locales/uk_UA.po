@@ -200,8 +200,7 @@ msgstr "5: один крок без перевищення tcrit з поверн
 msgid "Meaning of jactype:"
 msgstr "Значення елемента jactype:"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0: функціональні ітерації (без використання якобіана (лише «adams» або "
 "«stiff»))"
@@ -240,8 +239,7 @@ msgstr ""
 "матрицю J, розмірності  ml+mu+1 на ny (де ny — розмірність y у ydot=f(t,y))"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
-msgstr ""
-"так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"
+msgstr "так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"
 
 msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
 msgstr "df1/dy1, df2/dy1, df3/dy1,... (1+ml можливо ненульових елементів)"
@@ -254,8 +252,7 @@ msgid "Default values are given in square brackets"
 msgstr "Типові значення наведено у квадратних дужках"
 
 msgid "If the function is called without argument, default values are used"
-msgstr ""
-"Якщо функцію викликано без параметра, буде використано типові значення"
+msgstr "Якщо функцію викликано без параметра, буде використано типові значення"
 
 msgid "tcrit (assumes itask=4 or 5)"
 msgstr "tcrit (припускається, що itask=4 або 5)"

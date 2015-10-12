@@ -44,7 +44,7 @@
                 <term>f</term>
                 <listitem>
                     <para>
-                        a function or a list, the function to differenciate.
+                        a function or a list, the function to differentiate.
                     </para>
                 </listitem>
             </varlistentry>
@@ -96,7 +96,7 @@
                 <term>Q</term>
                 <listitem>
                     <para>
-                        a real matrix of doubles, modifies the directions of differenciation (default is <literal>Q=eye(n,n)</literal>).
+                        a real matrix of doubles, modifies the directions of differentiation (default is <literal>Q=eye(n,n)</literal>).
                         The matrix <literal>Q</literal> is expected to be orthogonal. Q provides the possibility to remove
                         the arbitrariness of using the canonical basis to approximate the derivatives of a function.
                     </para>
@@ -194,7 +194,7 @@
             The <literal>H_form</literal> option changes the dimensions of the output argument
             <literal>H</literal>.
             This manages the general case where <literal>m</literal> is different from <literal>1</literal>,
-            that is, when there are several functions to differenciate at the same time.
+            that is, when there are several functions to differentiate at the same time.
         </para>
         <para>
             The possible values of <literal>H_form</literal> are:
@@ -291,7 +291,7 @@
         <title>Examples</title>
         <programlisting role="example">
             <![CDATA[
-// The function to differenciate
+// The function to differentiate
 function y = f(x)
   f1 = sin(x(1)*x(2)) + exp(x(2)*x(3)+x(1))
   f2 = sum(x.^3)
@@ -412,7 +412,7 @@ f(x+h)\approx f(x)+J(x) h + \frac{1}{2} h^T H(x) h
         </para>
         <programlisting role="example">
             <![CDATA[
-// The function to differenciate
+// The function to differentiate
 function y = f(x)
   f1 = sin(x(1)*x(2)) + exp(x(2)*x(3)+x(1))
   f2 = sum(x.^3)

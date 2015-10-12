@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<package name="org.scilab.modules.xcos.graph.model">
+    <object name="XcosCellFactory">
+        <method name="created" returnType="void" modifier="static">
+            <parameter name="uid" type="long"/>
+            <parameter name="kind" type="int"/>
+        </method>
+    </object>
+</package>
+

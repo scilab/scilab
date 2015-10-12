@@ -66,8 +66,7 @@ msgid "P,Q and X"
 msgstr "P,Q и X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
@@ -305,8 +304,7 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -395,8 +393,7 @@ msgstr "%s: Неверный тип входного параметра №%d.\n
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или вектор.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или вектор.\n"
 
 #, c-format
 msgid ""
@@ -446,7 +443,7 @@ msgstr ""
 "комплексных, логических, полиномиальных значений.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалось строковое значение или "
 "скаляр.\n"
@@ -500,8 +497,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: Обнаружены значения NaN, вместо этого используйте %s().\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидались неотрицательные "
 "значения.\n"
@@ -563,8 +559,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного аргумента №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра %d: ожидалось «%s», «%s», %d или "
 "%d.\n"

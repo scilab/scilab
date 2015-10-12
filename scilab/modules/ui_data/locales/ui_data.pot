@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,108 +10,109 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/gw_ui_data.c, line: 40
-# File: src/noui_data/noui_data.c, line: 28
+# File: modules/ui_data/sci_gateway/cpp/sci_browsevar.cpp, line: 29
+# File: modules/ui_data/sci_gateway/cpp/sci_closeEditvar.cpp, line: 34
+# File: modules/ui_data/sci_gateway/cpp/sci_filebrowser.cpp, line: 37
+# File: modules/ui_data/sci_gateway/cpp/sci_updatebrowsevar.cpp, line: 29
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 164
+# File: modules/ui_data/sci_gateway/cpp/sci_browsevar.cpp, line: 35
+# File: modules/ui_data/sci_gateway/cpp/sci_closeEditvar.cpp, line: 40
+# File: modules/ui_data/sci_gateway/cpp/sci_filebrowser.cpp, line: 43
+# File: modules/ui_data/sci_gateway/cpp/sci_updatebrowsevar.cpp, line: 35
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 162
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 173
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 181
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 196
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 212
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 224
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 293
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 304
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 321
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 331
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 348
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 363
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 383
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 437
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 475
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 488
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 505
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 546
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 585
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 596
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 628
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 660
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 692
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 724
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 756
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 797
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 830
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 864
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 171
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 179
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 192
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 261
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 272
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 289
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 299
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 316
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 331
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 351
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 405
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 442
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 482
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 521
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 532
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 564
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 596
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 628
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 660
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 692
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 733
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 766
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 800
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 187
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 185
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 203
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 230
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 198
 #, c-format
 msgid "%s: ans cannot be edited.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 239
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 281
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 207
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 249
 #, c-format
 msgid "%s: Undefined variable: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 270
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 238
 msgid "Redefining permanent variable.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 311
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 338
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 279
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 306
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 423
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 460
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 529
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 570
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 616
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 648
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 680
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 712
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 744
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 776
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 817
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 851
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 884
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 391
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 428
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 466
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 506
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 552
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 584
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 616
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 648
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 680
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 712
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 753
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 787
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 820
 #, c-format
 msgid ""
 "%s: Java exception arisen:\n"
@@ -119,526 +120,540 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 785
-# File: sci_gateway/cpp/sci_editvar.cpp, line: 892
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 721
+# File: modules/ui_data/sci_gateway/cpp/sci_editvar.cpp, line: 828
 #, c-format
 msgid "%s: Type not handle yet"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 1
-# File: scilab_fake_localization_file.c, line: 5
-msgid "&File"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 2
-# File: scilab_fake_localization_file.c, line: 6
-msgid "&Close"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 3
-# File: scilab_fake_localization_file.c, line: 7
-msgid "&?"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 4
-# File: scilab_fake_localization_file.c, line: 8
-msgid "&About Scilab..."
-msgstr ""
-
-#
-# File: src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 43
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 104
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 43
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 104
 msgid "Name"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 44
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 44
 msgid "Value"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 45
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 106
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 45
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 106
 msgid "Type"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 46
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 46
 msgid "Visibility"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 47
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 47
 msgid "Bytes"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 48
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 48
 msgid "User"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 49
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/BrowseVar.java, line: 49
 msgid "Type int value"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/filebrowser/actions/ExecuteCommandAction.java, line: 60
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/filebrowser/actions/ExecuteCommandAction.java, line: 60
 msgid "Feature not available in this mode..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 30
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 30
 msgid "File"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 31
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 31
 msgid "Close"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 32
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 32
 msgid "Delete"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 33
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 33
 msgid "Modify"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 34
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 34
 msgid "Filter"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 36
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 36
 msgid "Hide Scilab variables"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 38
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 38
 msgid "Double"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 39
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 39
 msgid "Polynomial"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 40
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 40
 msgid "Boolean"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 41
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 41
 msgid "Sparse"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 42
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 42
 msgid "Sparse boolean"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 43
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 43
 msgid "Integer"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 44
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 44
 msgid "Graphic handles"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 45
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 45
 msgid "String"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 46
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 46
 msgid "Un-compiled function"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 47
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 47
 msgid "Compiled function"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 48
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 48
 msgid "Function library"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 49
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 49
 msgid "List"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 50
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 50
 msgid "Tlist"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 51
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 51
 msgid "Mlist"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 52
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 52
 msgid "Pointer"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 53
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 53
 msgid "Intrinsic function"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 54
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 54
 msgid "Matlab sparse"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 55
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 55
 msgid "Implicit polynomial"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 57
-# File: src/java/org/scilab/modules/ui_data/variableeditor/ScilabVariableEditor.java, line: 168
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 57
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/variableeditor/ScilabVariableEditor.java, line: 168
 msgid "Variable Editor"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 58
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 58
 msgid "Variable Browser"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 60
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 60
 msgid "Global variables can not be edited."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 62
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 62
 msgid "Edition"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 63
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 63
 msgid "Refresh the variable "
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 64
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 64
 msgid "Scilab Help"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 65
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 65
 msgid "Copy"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 66
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 66
 msgid "Paste"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 67
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 67
 msgid "Cut"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 68
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 68
 msgid "Clear"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 69
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 69
 msgid "Undo"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 70
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 70
 msgid "Redo"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 71
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 71
 msgid "Size columns to fit"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 72
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 72
 msgid "Copy as Scilab command"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 73
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 73
 msgid "Copy as Scilab matrix"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 74
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 74
 msgid "Copy as Scilab matrix with CR"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 76
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 76
 msgid "Short format"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 77
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 77
 msgid "ShortE format"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 78
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 78
 msgid "Long format"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 79
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 79
 msgid "LongE format"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 81
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 93
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 81
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 93
 msgid "Create variable from selection"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 83
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 83
 msgid "Insert a row"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 84
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 84
 msgid "Remove rows"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 85
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 85
 msgid "Insert a column"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 86
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 86
 msgid "Remove columns"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 88
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 88
 msgid "Plot the selection"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 89
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 89
 msgid "Plot the matrix"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 91
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 91
 msgid "Cancel"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 92
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 92
 msgid "Ok"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 94
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 94
 msgid "Variable name"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 95
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 95
 msgid "Create new variable"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 96
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 96
 msgid "Duplicate the variable"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 97
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 97
 msgid "Export to CSV"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 98
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 98
 msgid "Export the selection to CSV"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 99
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 99
 msgid "Rows number"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 100
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 100
 msgid "Columns number"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 101
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 101
 msgid "Fill with"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 103
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 103
 msgid "File Browser"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 105
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 105
 msgid "Size"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 107
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 107
 msgid "Last modified"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 108
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 108
 msgid "Directory"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 109
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 109
 #, c-format
 msgid "%s File"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 110
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 110
 msgid "File/directory filter"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 111
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 111
 msgid "Enter your working folder"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 112
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 112
 msgid "Case sensitive"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 113
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 113
 msgid "Regular expression"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 114
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 131
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 114
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 131
 msgid "Select a directory"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 115
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 115
 msgid "Home"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 116
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 116
 msgid "Scilab"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 118
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 118
 #, c-format
 msgid "Cannot edit the file %s"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 119
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 119
 #, c-format
 msgid "Cannot open the file %s"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 121
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 121
 msgid "Open with SciNotes"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 122
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 122
 msgid "Execute in Scilab"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 123
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 123
 msgid "Open with Xcos"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 124
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 124
 msgid "Load in Scilab"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 125
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 125
 msgid "Edit with default application"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 126
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 126
 msgid "Open with default application"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 128
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 128
 msgid "Previous directory"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 129
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 129
 msgid "Next directory"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 130
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 130
 msgid "Parent directory"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 132
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/utils/UiDataMessages.java, line: 132
 msgid "Run filter"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 171
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 171
 msgid "Scilab type:"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 181
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/variablebrowser/SwingScilabVariableBrowser.java, line: 181
 msgid "Bytes:"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/ui_data/variableeditor/actions/ExportToCsvAction.java, line: 90
+# File: modules/ui_data/src/java/org/scilab/modules/ui_data/variableeditor/actions/ExportToCsvAction.java, line: 90
 msgid "Type not supported for this operation"
 msgstr ""
 
 #
-# File: src/noui_data/noui_data.c, line: 33
+# File: modules/ui_data/src/noui_data/noui_data.c, line: 28
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+
+#
+# File: modules/ui_data/src/noui_data/noui_data.c, line: 33
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
+msgstr ""
+
+#
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 1
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 5
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 9
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 13
+msgid "&File"
+msgstr ""
+
+#
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 2
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 6
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 10
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 14
+msgid "&Close"
+msgstr ""
+
+#
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 3
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 7
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 11
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 15
+msgid "&?"
+msgstr ""
+
+#
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 4
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 8
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 12
+# File: modules/ui_data/src/ui_data_fake_xml.c, line: 16
+msgid "&About Scilab..."
 msgstr ""

@@ -20,11 +20,11 @@ function ret=tbx_generate_pofile(tbx_name, tbx_path)
     end
 
     if type(tbx_name) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "tbx_generate_pofile", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "tbx_generate_pofile", 1));
     end
 
     if type(tbx_path) <> 10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "tbx_generate_pofile", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "tbx_generate_pofile", 1));
     end
 
     if ~isdir(tbx_path) then

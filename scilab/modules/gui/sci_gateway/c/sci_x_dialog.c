@@ -53,7 +53,7 @@ int sci_x_dialog(char *fname, void* pvApiCtx)
         // Retrieve a matrix of string at position 1.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
@@ -86,7 +86,7 @@ int sci_x_dialog(char *fname, void* pvApiCtx)
             // Retrieve a matrix of string at position 2.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrinitialValueAdr, &nbRow, &nbCol, &initialValueAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
         }

@@ -28,9 +28,8 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -104,10 +103,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Удаление файлов справки --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: Справочная  система отключена в режиме %s.\n"
 
@@ -152,7 +147,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: Пропущен файл %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 msgid " * Add some comments about XML file"
@@ -294,11 +289,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалось целое число.\n"
 
@@ -323,8 +313,8 @@ msgstr "%s: Неправильный формат файла CHAPTER в стро
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась строка, которая "
 "заканчивается на .last_successful_build.\n"

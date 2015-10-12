@@ -132,8 +132,7 @@ msgstr ""
 "Inicjalizacja TCL nieudana !\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr ""
-"Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
+msgstr "Błąd Tcl: Nie można utworzyć interpretatora Tcl (Tcl_CreateInterp).\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"

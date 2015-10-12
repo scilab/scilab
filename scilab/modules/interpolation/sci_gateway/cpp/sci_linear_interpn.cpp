@@ -153,7 +153,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
     {
         if (in[2 * n + 1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "linear_interpn", 2 * n + 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "linear_interpn", 2 * n + 2);
             return types::Function::Error;
         }
 

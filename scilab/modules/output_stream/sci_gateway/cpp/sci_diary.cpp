@@ -847,7 +847,7 @@ static wchar_t **getInputArgumentOneFilenames(char *fname, void* pvApiCtx, int *
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         *ierror = 1;
     }
     return wcFilenames;
@@ -891,7 +891,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
 
         if ( (m2 != n2) && (n2 != 1) )
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             *ierror = 1;
         }
         else
@@ -924,7 +924,7 @@ static wchar_t *getInputArgumentTwo(char *fname, void* pvApiCtx, int *ierror)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         *ierror = 1;
     }
     return wcInputArgumentTwo;
@@ -1028,7 +1028,7 @@ static wchar_t** getInputArgumentThree(char *fname, void* pvApiCtx, int *sizeRet
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
         *ierror = 1;
     }
     return wcInputArgumentThree;
@@ -1462,7 +1462,7 @@ static int AppendByFilenames(char *fname, void* pvApiCtx,
     else
     {
         freeArrayOfWideString(wcFilenames, dIDs_size);
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
     }
 
     return 0;
@@ -1538,7 +1538,7 @@ static int NewByFilenames(char *fname, void* pvApiCtx,
     else
     {
         freeArrayOfWideString(wcFilenames, dIDs_size);
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
     }
 
     return 0;

@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应为字符串型变量。\n"
 
 #, c-format

@@ -18,11 +18,11 @@ msgstr ""
 "Language: ru\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -107,8 +107,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного аргумента №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось строковое значение "
 "'%s' или '%s'.\n"
@@ -123,8 +122,7 @@ msgstr "%s: разделитель и десятичная точка должн
 
 #, c-format
 msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
-msgstr ""
-"%s: Диапазон строк или/и столбцов оставляет индекс(ы) за пределами.\n"
+msgstr "%s: Диапазон строк или/и столбцов оставляет индекс(ы) за пределами.\n"
 
 #, c-format
 msgid "%s: can not convert data.\n"
@@ -260,8 +258,7 @@ msgstr "LOGGER_set_logfile: ОШИБК - Не удалось открыть фа
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
-msgstr ""
-"LOGGER_set_logfile: ОШИБКА - Не удалось открыть файл лога «%s» (%s)\n"
+msgstr "LOGGER_set_logfile: ОШИБКА - Не удалось открыть файл лога «%s» (%s)\n"
 
 #, c-format
 msgid "LOGGER-Default: %s%s"
@@ -281,8 +278,7 @@ msgstr "%s:%d:OLE_get_block:ОШИБКА: Блочный буфер равен N
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
-msgstr ""
-"%s:%d:OLE_get_block:ОШИБКА: Не удалось выделить %d байт для OLE-блока"
+msgstr "%s:%d:OLE_get_block:ОШИБКА: Не удалось выделить %d байт для OLE-блока"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
@@ -376,8 +372,7 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:ОШИБКА: Не удалось открыть %s для записи (%s)\n"
 

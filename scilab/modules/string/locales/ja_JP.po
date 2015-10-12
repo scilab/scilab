@@ -36,7 +36,8 @@ msgstr "%s: 入力引数 #%d で不正な値: %d と %d の間でなければな
 msgid ""
 "%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列、または、整数行列を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 文字列の行列、または、整数行列を想定します。\n"
 
 #, c-format
 msgid "%s: Feature %s is obsolete.\n"
@@ -98,7 +99,7 @@ msgstr "%s: メモリ確保エラー.\n"
 # File: sci_gateway/c/sci_strtok.c, line: 73
 # File: sci_gateway/c/sci_tokens.c, line: 146
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
 
 #
@@ -107,7 +108,8 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します�
 msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 'u' (Upper) または 'l' (Lower) を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 'u' (Upper) または 'l' (Lower) を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_convstr.c, line: 103
@@ -155,8 +157,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 #
 # File: sci_gateway/c/sci_grep.c, line: 203
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 空でない文字列を想定します。\n"
 
 #, c-format
@@ -169,20 +170,13 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実行列、または、文字列の行列を想定します。\n"
-
-#
-# File: sci_gateway/c/sci_isalphanum.c, line: 47
-# File: sci_gateway/c/sci_isdigit.c, line: 47
-# File: sci_gateway/c/sci_isletter.c, line: 47
-# File: sci_gateway/c/sci_regexp.c, line: 91
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 単一の文字列を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 実行列、または、文字列の行列を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_convstr.c, line: 77
@@ -194,7 +188,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列�
 # File: sci_gateway/c/sci_strtok.c, line: 80
 # File: sci_gateway/c/sci_tokens.c, line: 151
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で、不正な型: 文字列を想定します。\n"
 
 #, c-format
@@ -224,12 +218,6 @@ msgstr "%s: 入力引数 #%d で不正なサイズです。\n"
 msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
 msgstr "%s: 入力引数 #%d で不正な値: >= 1であるべきです。\n"
 
-#
-# File: sci_gateway/c/sci_strcat.c, line: 226
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: '%s' を想定します。\n"
@@ -249,7 +237,8 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列ベクトルを想定し�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: '%s'または'%s'を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: '%s'または'%s'を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_strindex.c, line: 94
@@ -281,7 +270,8 @@ msgstr "%s: 入力引数(s)で不正なサイズです。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of strings or empty real "
 "matrix expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列、または、空の実行列を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 文字列の行列、または、空の実行列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_strchr.c, line: 57
@@ -328,7 +318,8 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列、または、空行列を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 文字列の行列、または、空行列を想定します。\n"
 
 #
 # File: sci_gateway/c/sci_convstr.c, line: 71
@@ -342,7 +333,9 @@ msgstr "%s: 入力引数 #%d で不正な型: 文字列の行列、または、�
 msgid ""
 "%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
 "Encoding problem).\n"
-msgstr "%s: 入力引数 #%d で不正な値: 適当な文字列を想定します(UTF-8 エンコーディング問題)\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 適当な文字列を想定します(UTF-8 エンコーディング"
+"問題)\n"
 
 #
 # File: sci_gateway/c/sci_strindex.c, line: 152
@@ -351,7 +344,9 @@ msgstr "%s: 入力引数 #%d で不正な値: 適当な文字列を想定しま�
 msgid ""
 "%s: Wrong type for input argument #%d: Row vector of strings or column "
 "vector of strings expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列の行ベクトル、または、文字列の列ベクトルを想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 文字列の行ベクトル、または、文字列の列ベクトルを"
+"想定します。\n"
 
 #
 # File: sci_gateway/c/sci_strindex.c, line: 211
@@ -423,7 +418,9 @@ msgstr "%s: %d 番目の引数要素は、増加順序でなくてはなりま�
 msgid ""
 "%s: Wrong value for input argument #%d: a string expected, not a regexp "
 "pattern.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します、regexp パターンではありません。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正なサイズ: 文字列を想定します、regexp パターンではあり"
+"ません。\n"
 
 #
 # File: sci_gateway/c/sci_strstr.c, line: 53
@@ -431,11 +428,13 @@ msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します�
 msgid ""
 "%s: Wrong size for input argument #%d: Non-empty matrix of strings "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 空でない行列、または、文字列を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正なサイズ: 空でない行列、または、文字列を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '.' または ',' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '.' または ',' を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_tokens.c, line: 72
@@ -444,7 +443,9 @@ msgstr "%s: 入力引数 #%d の値が間違っています: '.' または ',' �
 msgid ""
 "%s: Wrong type for input argument #%d: A character or a vector of single "
 "characters expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列、または、単一文字列のベクトルを想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 文字列、または、単一文字列のベクトルを想定しま"
+"す。\n"
 
 #
 # File: src/c/pcre_error.c, line: 31
@@ -542,7 +543,9 @@ msgstr "%s: 入力引数 #%d が間違っています: 大きさが一致しま�
 msgid ""
 "%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の方が間違っています:  実数, 整数または文字列行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の方が間違っています:  実数, 整数または文字列行列を指定して"
+"ください.\n"
 
 #
 # File: macros/blanks.sci, line: 17
@@ -569,7 +572,9 @@ msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定し�
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 実、または、複素行列、文字列の行列、または、リストを想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な型: 実、または、複素行列、文字列の行列、または、リス"
+"トを想定します。\n"
 
 #
 # File: macros/evstr.sci, line: 48
@@ -587,7 +592,8 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %s, %s または %s を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s, %s または %s を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -600,4 +606,5 @@ msgstr "%s: この特徴は装備されていません: 型 %s の翻訳変数\n
 msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列、または、文字ベクトルを想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正なサイズ: 文字列、または、文字ベクトルを想定します。\n"

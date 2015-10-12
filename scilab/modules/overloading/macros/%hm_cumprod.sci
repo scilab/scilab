@@ -51,7 +51,7 @@ function a = %hm_cumprod(varargin)
         end
     case 10 
         if size(d,'*') <> 1 then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",2))
+            error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",2))
         end
         if and(d<>["r","c","*","m"]) then
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
@@ -60,16 +60,16 @@ function a = %hm_cumprod(varargin)
         pos=[1,2,0,find(dims>1,1)];
         d=pos(find(d==["r","c","*","m"]))
     else
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"cumprod",2))
+        error(msprintf(_("%s: Wrong type for input argument #%d: string or scalar expected.\n"),"cumprod",2))
     end
 
     // Check third argument
     if type(typ)<>10 then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"cumprod",3))
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"cumprod",3))
     end
 
     if size(typ,"*")<>1 then
-        error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumprod",3))
+        error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumprod",3))
     end
 
     if and(typ <> ["native" "double"]) then

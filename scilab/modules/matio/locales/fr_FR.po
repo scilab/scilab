@@ -43,19 +43,19 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
-msgid "%s: Wrong size for first input argument: A string expected.\n"
+msgid "%s: Wrong size for first input argument: string expected.\n"
 msgstr ""
 "%s : Dimension erronée du premier argument d'entrée : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: A string expected.\n"
+msgid "%s: Wrong type for first input argument: string expected.\n"
 msgstr ""
 "%s : Type erroné du premier argument d'entrée : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: A string expected.\n"
+msgid "%s: Wrong size for second input argument: string expected.\n"
 msgstr ""
 "%s : Dimension erronée du deuxième argument d'entrée : Une chaîne de "
 "caractères attendue.\n"
@@ -66,19 +66,19 @@ msgstr ""
 "%s : Valeur erronée du deuxième argument d'entrée : 'r' ou 'w' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: A string expected.\n"
+msgid "%s: Wrong type for second input argument: string expected.\n"
 msgstr ""
 "%s : Type erroné du deuxième argument d'entrée : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -132,12 +132,6 @@ msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr ""
 "%s : La sauvegarde de tableaux 2D de chaînes de caractères n'est pas "
 "implémentée.\n"
-
-#, c-format
-msgid "%s: Wrong type for first input argument: String matrix expected.\n"
-msgstr ""
-"%s : Type erroné du premier argument d'entrée : Une matrice de chaîne de "
-"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"

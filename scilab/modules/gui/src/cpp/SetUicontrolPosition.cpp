@@ -31,7 +31,7 @@ int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, in
     {
         if (nbCol != 1)
         {
-            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string or 1 x %d real row vector expected.\n")), "Position", 4);
             return SET_PROPERTY_ERROR;
         }
 
@@ -40,7 +40,7 @@ int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, in
 
         if (nbValues != 4)
         {
-            Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+            Scierror(999, const_cast<char*>(_("Wrong value for '%s' property: string or 1 x %d real row vector expected.\n")), "Position", 4);
             return SET_PROPERTY_ERROR;
         }
     }
@@ -48,7 +48,7 @@ int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, in
     {
         if (nbCol != 4 || nbRow != 1)
         {
-            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+            Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string or 1 x %d real row vector expected.\n")), "Position", 4);
             return SET_PROPERTY_ERROR;
         }
 
@@ -57,7 +57,7 @@ int SetUicontrolPosition(int iObjUID, void* pvData, int valueType, int nbRow, in
     }
     else
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string or a 1 x %d real row vector expected.\n")), "Position", 4);
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string or 1 x %d real row vector expected.\n")), "Position", 4);
         return SET_PROPERTY_ERROR;
     }
 

@@ -32,7 +32,7 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 #
 # File: macros/help.sci, line: 24
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
 
 #
@@ -55,8 +55,8 @@ msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
 msgstr ""
-"Scilabがchrootで起動された場合,ユーザが以下の2つの環境変数を設定する可能性があります :  SCI_DISABLE_TK=1, "
-"SCI_JAVA_ENABLE_HEADLESS=1\n"
+"Scilabがchrootで起動された場合,ユーザが以下の2つの環境変数を設定する可能性が"
+"あります :  SCI_DISABLE_TK=1, SCI_JAVA_ENABLE_HEADLESS=1\n"
 
 #
 # File: sci_gateway/nogui/nogui.c, line: 20
@@ -95,7 +95,8 @@ msgstr "%s: 入力引数 #%d で不正な型: 真偽値を想定します。\n"
 # File: macros/xmltoformat.sci, line: 60
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
 
 #
 # File: macros/help.sci, line: 24
@@ -131,18 +132,13 @@ msgstr "%s: 入力引数で不正な値: %d から %d を想定します。\n"
 # File: macros/xmltoformat.sci, line: 686
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
-msgstr "%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
+msgstr ""
+"%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
 
 #
 # File: macros/clean_help.sci, line: 112
 msgid "-- Deleting help files --\n"
 msgstr "-- ヘルプファイルを削除 --\n"
-
-#
-# File: macros/help.sci, line: 24
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
 #
 # File: macros/help.sci, line: 42
@@ -160,7 +156,8 @@ msgstr "%s: ヘルプファイル(.jar) がインストールされていませ�
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing directory is "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
 
 #, c-format
 msgid "%s: Reading from directory %s\n"
@@ -191,7 +188,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: ファイル %s はスキップされました 。"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 文字を想定します。\n"
 
 msgid " * Add some comments about XML file"
@@ -364,12 +361,6 @@ msgstr "%s: 入力引数 #%d で不正な型: 整数を想定します。\n"
 #
 # File: macros/help.sci, line: 24
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 単一文字列を想定します。\n"
-
-#
-# File: macros/help.sci, line: 24
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: 整数を想定します。\n"
 
@@ -396,13 +387,16 @@ msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされ�
 # File: macros/help.sci, line: 24
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定します。\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定しま"
+"す。\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr "%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
+msgstr ""
+"%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
 
 #
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80

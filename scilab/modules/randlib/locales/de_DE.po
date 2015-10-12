@@ -246,8 +246,7 @@ msgstr "%s: falscher Typ für Eingangsargument: Spaltenvektor erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Square matrix expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument: quadratische Matrix erwartet.\n"
+msgstr "%s: falscher Typ für Eingangsargument: quadratische Matrix erwartet.\n"
 
 #, c-format
 msgid ""
@@ -403,8 +402,7 @@ msgid "Bad seed for mt, must be an int in [0, 2^32-1]\n"
 msgstr "Falsche Vorgabe für mt, muß ein Integer in [0,2^32-1] sein\n"
 
 msgid "The first component of the mt state mt, must be an int in [1, 624]\n"
-msgstr ""
-"Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
+msgstr "Die erste Komponente vom Zustand mt, muß ein Integer in [1,624] sein\n"
 
 msgid ""
 "\n"

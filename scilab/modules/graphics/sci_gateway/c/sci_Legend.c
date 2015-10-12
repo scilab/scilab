@@ -108,7 +108,7 @@ int sci_Legend(char * fname, void *pvApiCtx)
     if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m2, &n2, &Str))
     {
         freeAllocatedMatrixOfString(m2, n2, Str);
-        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -126,7 +126,7 @@ int sci_Legend(char * fname, void *pvApiCtx)
         {
             freeAllocatedMatrixOfString(m2, n2, Str);
             freeAllocatedSingleString(l2);
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
 

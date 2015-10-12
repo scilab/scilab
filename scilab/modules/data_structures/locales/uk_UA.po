@@ -51,8 +51,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Invalid index #%d in hypermatrix extraction. "
-msgstr ""
-"%s: некоректне значення індексу №%d у видобуванні даних гіперматриці. "
+msgstr "%s: некоректне значення індексу №%d у видобуванні даних гіперматриці. "
 
 #, c-format
 msgid "%s: Invalid index #%d in hypermatrix insertion.\n"
@@ -95,7 +94,7 @@ msgstr ""
 "tlist або mlist.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"

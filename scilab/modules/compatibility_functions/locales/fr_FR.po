@@ -32,7 +32,7 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier >= %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -44,21 +44,20 @@ msgstr ""
 "{%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un scalaire attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid ""
@@ -98,8 +97,7 @@ msgstr ""
 "ne correspondent pas au contenu de la cellule spécifiée.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr ""
 "%s : Cette fonctionnalité n'a pas été implémentée : Support pour les "
 "hypermatrices.\n"
@@ -148,8 +146,7 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice carrée attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : %s, %s,'%s' ou '%s' "
 "attendu.\n"
@@ -227,8 +224,7 @@ msgstr "%s : Le format '%s' n'est pas encore traité.\n"
 
 #, c-format
 msgid "%s: End of file reached before all matrix is read.\n"
-msgstr ""
-"%s : Fin du fichier atteinte avant que toute la matrice ne soit lue.\n"
+msgstr "%s : Fin du fichier atteinte avant que toute la matrice ne soit lue.\n"
 
 #, c-format
 msgid "%s: No equivalent for '%s' property.\n"
@@ -239,8 +235,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s : Pas de grille mineure dans Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"

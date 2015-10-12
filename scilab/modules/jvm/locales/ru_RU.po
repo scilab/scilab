@@ -122,16 +122,16 @@ msgstr "Ошибка: %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
 msgstr ""
 "Если вы используете бинарную версию Scilab, просьба сообщить об ошибке на "
 "http://bugzilla.scilab.org/.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 "Если вы используете самостоятельно собранную версию Scilab, обновите "
 "сценарий bin/scilab для указания пути к JVM.\n"

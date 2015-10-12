@@ -30,7 +30,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -575,8 +575,7 @@ msgstr "Включить"
 msgid "Palette name"
 msgstr "Имя палитры"
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Диаграмма была изменена.<br/> Сохранить изменения?"
 
 #, c-format
@@ -656,26 +655,22 @@ msgstr "Добавить к"
 msgid "Add to new diagram"
 msgstr "Добавить к новой диаграмме"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Входной порт явных данных должен быть подключён к выходному порту явных "
 "данных"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Входной порт неявных данных должен быть подключён к выходному порту неявных "
 "данных"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Выходной порт явных данных должен быть подключён к входному порту явных "
 "данных"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Выходной порт неявных данных должен быть подключён к входному порту неявных "
 "данных"
@@ -760,14 +755,12 @@ msgstr "Выполняется моделирование"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr ""
-"Идёт компиляция, результаты будут сохранены в переменной 'scicos_cpr'"
+msgstr "Идёт компиляция, результаты будут сохранены в переменной 'scicos_cpr'"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Генерация СуперБлока, пожалуйста, подождите"
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Нажмите левую кнопку мыши на диаграмме для добавления узла связи или на "
 "совместимой цели для завершения"
@@ -863,8 +856,8 @@ msgid "Expecting '%d'."
 msgstr "Ожидается '%d'."
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 "<html><body>Ошибка компиляции: ссылка проигнорированна, поскольку она не "
 "подсоединена. <br/>Пожалуйста, подсоедините её.</body></html>"
@@ -1027,8 +1020,7 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: Неверный тип входного параметра %s: ожидался блок.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра %s: ожидалась строка пути каталога.\n"
 
@@ -1105,8 +1097,7 @@ msgstr ""
 
 #, c-format
 msgid "%s is not a valid name, please change the title of the diagram."
-msgstr ""
-"%s является недопустимым именем, пожалуйста, измените название схемы."
+msgstr "%s является недопустимым именем, пожалуйста, измените название схемы."
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: string type expected.\n"
@@ -1118,14 +1109,11 @@ msgstr "%s: Неверный тип входного параметра %s: ож
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра %s: ожидалась палитра или путь.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr "%s: Неверный тип входного параметра %s: ожидалась палитра или путь.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"
@@ -1149,8 +1137,7 @@ msgstr "%s: Не удалось загрузить блок из %s: ожида�
 
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
-msgstr ""
-"%s: Не удалось загрузить блок из %s: переменной «scs_m» не найдено.\n"
+msgstr "%s: Не удалось загрузить блок из %s: переменной «scs_m» не найдено.\n"
 
 #, c-format
 msgid ""

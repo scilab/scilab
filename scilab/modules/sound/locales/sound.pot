@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,261 +10,217 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/sci_PlaySound.c, line: 48
-# File: sci_gateway/c/sci_PlaySound.c, line: 56
-# File: sci_gateway/c/sci_PlaySound.c, line: 69
-# File: sci_gateway/c/sci_beep.c, line: 61
-# File: sci_gateway/c/sci_beep.c, line: 69
-# File: sci_gateway/c/sci_beep.c, line: 83
-# File: sci_gateway/c/sci_beep.c, line: 104
+# File: modules/sound/sci_gateway/c/sci_PlaySound.c, line: 48
+# File: modules/sound/sci_gateway/c/sci_PlaySound.c, line: 56
+# File: modules/sound/sci_gateway/c/sci_PlaySound.c, line: 69
+# File: modules/sound/sci_gateway/c/sci_beep.c, line: 62
+# File: modules/sound/sci_gateway/c/sci_beep.c, line: 70
+# File: modules/sound/sci_gateway/c/sci_beep.c, line: 84
+# File: modules/sound/sci_gateway/c/sci_beep.c, line: 105
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_PlaySound.c, line: 62
-# File: sci_gateway/c/sci_beep.c, line: 75
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_PlaySound.c, line: 128
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_PlaySound.c, line: 128
+# File: modules/sound/sci_gateway/c/sci_PlaySound.c, line: 128
 msgid "Cannot play file."
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_beep.c, line: 89
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_beep.c, line: 96
-# File: sci_gateway/c/sci_beep.c, line: 144
+# File: modules/sound/sci_gateway/c/sci_beep.c, line: 97
+# File: modules/sound/sci_gateway/c/sci_beep.c, line: 145
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_beep.c, line: 126
+# File: modules/sound/sci_gateway/c/sci_beep.c, line: 127
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/nosound/nosound.c, line: 20
+# File: modules/sound/src/nosound/nosound.c, line: 20
 msgid "Scilab sound module not installed.\n"
 msgstr ""
 
-# File: demos/sound.dem.gateway.sce, line: 9
-msgid "Sound file handling"
-msgstr ""
-
-#
-# File: demos/sound.dem.gateway.sce, line: 11
-msgid "FFT on a wav file"
-msgstr ""
-
-#
-# File: demos/sound.dem.sce, line: 21
-msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr ""
-
-#
-# File: demos/sound.dem.sce, line: 36
-msgid "A complete picture of the sound."
-msgstr ""
-
-#
-# File: demos/sound.dem.sce, line: 36
-msgid "see 'mapsound' function"
-msgstr ""
-
-#
-# File: macros/auread.sci, line: 34
-# File: macros/auwrite.sci, line: 42
-# File: macros/auwrite.sci, line: 44
-# File: macros/wavwrite.sci, line: 20
+# File: modules/sound/macros/auread.sci, line: 34
+# File: modules/sound/macros/auwrite.sci, line: 42
+# File: modules/sound/macros/auwrite.sci, line: 44
+# File: modules/sound/macros/wavwrite.sci, line: 20
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 43
-# File: macros/auwrite.sci, line: 68
-# File: macros/loadwave.sci, line: 32
-# File: macros/savewave.sci, line: 249
-# File: macros/wavread.sci, line: 49
+# File: modules/sound/macros/auread.sci, line: 43
+# File: modules/sound/macros/auwrite.sci, line: 68
+# File: modules/sound/macros/loadwave.sci, line: 32
+# File: modules/sound/macros/savewave.sci, line: 249
+# File: modules/sound/macros/wavread.sci, line: 49
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 65
+# File: modules/sound/macros/auread.sci, line: 65
 msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 107
+# File: modules/sound/macros/auread.sci, line: 107
 msgid "Sample limit vector must have 2 elements."
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 110
-# File: macros/wavread.sci, line: 297
+# File: modules/sound/macros/auread.sci, line: 110
+# File: modules/sound/macros/wavread.sci, line: 297
 msgid "Sample limits out of range."
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 113
+# File: modules/sound/macros/auread.sci, line: 113
 msgid "Sample limits must be given in ascending order."
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 121
+# File: modules/sound/macros/auread.sci, line: 121
 msgid "Error in file format."
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 177
+# File: modules/sound/macros/auread.sci, line: 177
 msgid "Error while reading sound file."
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 209
-# File: macros/auwrite.sci, line: 143
-# File: macros/auwrite.sci, line: 147
+# File: modules/sound/macros/auread.sci, line: 209
+# File: modules/sound/macros/auwrite.sci, line: 143
+# File: modules/sound/macros/auwrite.sci, line: 147
 msgid "Unrecognized data format."
 msgstr ""
 
 #
-# File: macros/auread.sci, line: 214
+# File: modules/sound/macros/auread.sci, line: 214
 msgid "Truncated data file."
 msgstr ""
 
 #
-# File: macros/auwrite.sci, line: 60
+# File: modules/sound/macros/auwrite.sci, line: 60
 #, c-format
 msgid "%s: Wrong values for input argument: Filename must be a string.\n"
 msgstr ""
 
 #
-# File: macros/auwrite.sci, line: 72
+# File: modules/sound/macros/auwrite.sci, line: 72
 msgid "Data array must have 1- or 2-dimensions only."
 msgstr ""
 
 #
-# File: macros/auwrite.sci, line: 82
+# File: modules/sound/macros/auwrite.sci, line: 82
 msgid "Data clipped during write to file."
 msgstr ""
 
 #
-# File: macros/auwrite.sci, line: 88
+# File: modules/sound/macros/auwrite.sci, line: 88
 msgid "Error while writing sound file."
 msgstr ""
 
 #
-# File: macros/auwrite.sci, line: 125
+# File: modules/sound/macros/auwrite.sci, line: 125
 msgid "Mu-law can only be used with 8 bit data. Use method='linear' instead."
 msgstr ""
 
 #
-# File: macros/loadwave.sci, line: 17
+# File: modules/sound/macros/loadwave.sci, line: 17
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/loadwave.sci, line: 22
+# File: modules/sound/macros/loadwave.sci, line: 22
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #
-# File: macros/loadwave.sci, line: 43
+# File: modules/sound/macros/loadwave.sci, line: 43
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
 msgstr ""
 
 #
-# File: macros/playsnd.sci, line: 58
+# File: modules/sound/macros/playsnd.sci, line: 58
 #, c-format
 msgid "%s: Failed to play the sound with command: %s.\n"
 msgstr ""
 
 #
-# File: macros/playsnd.sci, line: 68
+# File: modules/sound/macros/playsnd.sci, line: 68
 #, c-format
 msgid "%s: Audio capabilities not available.\n"
 msgstr ""
 
 #
-# File: macros/savewave.sci, line: 98
+# File: modules/sound/macros/savewave.sci, line: 98
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/savewave.sci, line: 146
+# File: modules/sound/macros/savewave.sci, line: 146
 msgid "only 8/16/24/32 bits for the encoding."
 msgstr ""
 
 #
-# File: macros/savewave.sci, line: 192
+# File: modules/sound/macros/savewave.sci, line: 192
 msgid "Unknown data format."
 msgstr ""
 
 #
-# File: macros/sound.sci, line: 27
+# File: modules/sound/macros/sound.sci, line: 27
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: macros/sound.sci, line: 41
+# File: modules/sound/macros/sound.sci, line: 41
 msgid "Requires 2-D values only."
 msgstr ""
 
 #
-# File: macros/soundsec.sci, line: 28
-# File: macros/soundsec.sci, line: 42
+# File: modules/sound/macros/soundsec.sci, line: 28
+# File: modules/sound/macros/soundsec.sci, line: 42
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/soundsec.sci, line: 31
-# File: macros/soundsec.sci, line: 34
-# File: macros/soundsec.sci, line: 45
-# File: macros/soundsec.sci, line: 48
+# File: modules/sound/macros/soundsec.sci, line: 31
+# File: modules/sound/macros/soundsec.sci, line: 34
+# File: modules/sound/macros/soundsec.sci, line: 45
+# File: modules/sound/macros/soundsec.sci, line: 48
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: macros/soundsec.sci, line: 53
-# File: macros/soundsec.sci, line: 57
+# File: modules/sound/macros/soundsec.sci, line: 53
+# File: modules/sound/macros/soundsec.sci, line: 57
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be >= %d.\n"
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 60
-# File: macros/wavread.sci, line: 75
+# File: modules/sound/macros/wavread.sci, line: 60
+# File: modules/sound/macros/wavread.sci, line: 75
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
@@ -272,7 +228,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 65
+# File: modules/sound/macros/wavread.sci, line: 65
 #, c-format
 msgid ""
 "%s: Wrong value for input argument: Index range must be specified as a "
@@ -280,77 +236,77 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 82
+# File: modules/sound/macros/wavread.sci, line: 82
 msgid ".wav file does not contain the RIFF identifier."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 87
+# File: modules/sound/macros/wavread.sci, line: 87
 msgid ".wav file does not contain the wave identifier."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 102
-# File: macros/wavread.sci, line: 173
-# File: macros/wavread.sci, line: 192
+# File: modules/sound/macros/wavread.sci, line: 102
+# File: modules/sound/macros/wavread.sci, line: 173
+# File: modules/sound/macros/wavread.sci, line: 192
 msgid "Error reading .wav file."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 109
+# File: modules/sound/macros/wavread.sci, line: 109
 msgid "Error reading <fact-ck> chunk."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 115
+# File: modules/sound/macros/wavread.sci, line: 115
 #, c-format
 msgid "%s: An error occurred: %s is not supported.\n"
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 120
+# File: modules/sound/macros/wavread.sci, line: 120
 #, c-format
 msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 131
+# File: modules/sound/macros/wavread.sci, line: 131
 msgid "Invalid .wav file: found data before format information."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 150
+# File: modules/sound/macros/wavread.sci, line: 150
 msgid "Incorrect chunk size information in RIFF file."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 183
+# File: modules/sound/macros/wavread.sci, line: 183
 msgid "Invalid wav format."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 203
-# File: macros/wavread.sci, line: 215
+# File: modules/sound/macros/wavread.sci, line: 203
+# File: modules/sound/macros/wavread.sci, line: 215
 msgid "Error reading wav file."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 254
+# File: modules/sound/macros/wavread.sci, line: 254
 #, c-format
 msgid "%s: An error occurred: Data compression format %s is not supported.\n"
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 277
+# File: modules/sound/macros/wavread.sci, line: 277
 msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 293
+# File: modules/sound/macros/wavread.sci, line: 293
 msgid "Sample limit vector must have 2 entries."
 msgstr ""
 
 #
-# File: macros/wavread.sci, line: 300
+# File: modules/sound/macros/wavread.sci, line: 300
 msgid "Invalid sample limits (use ascending order)."
 msgstr ""

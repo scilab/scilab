@@ -26,11 +26,11 @@ function [] = playsnd(y, rate, bits, aplay)
     if rhs > 2 then
 
         if type(aplay) <> 10 then
-            error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"playsnd",3));
+            error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"playsnd",3));
         end
 
         if size(aplay,"*") <> 1 then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"playsnd",3));
+            error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"playsnd",3));
         end
 
     else

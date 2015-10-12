@@ -140,8 +140,8 @@ template<typename T> std::wstring toString(T const& m, int precision)
     }
     ostr << L" sparse matrix\n\n";
 
-    const typename Eigen::internal::traits<T>::Index* pIColPos      = m.innerIndexPtr();
-    const typename Eigen::internal::traits<T>::Index* pINbItemByRow = m.outerIndexPtr();
+    auto * pIColPos      = m.innerIndexPtr();
+    auto * pINbItemByRow = m.outerIndexPtr();
 
     int iPos = 0;
 
@@ -189,7 +189,7 @@ utility function to set non zero values of an Eigen::Sparse matrix to a fixed va
 */
 template<typename T> bool setNonZero(T& s, typename Eigen::internal::traits<T>::Scalar v = 1.)
 {
-    for (typename Eigen::internal::traits<T>::Index j = 0; j < s.outerSize(); ++j)
+    for (auto j = 0; j < s.outerSize(); ++j)
     {
         for (typename T::InnerIterator it(s, j); it; ++it)
         {

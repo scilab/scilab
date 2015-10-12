@@ -104,8 +104,7 @@ msgstr "%s: помилкове значення %s: мало бути %d, %d а�
 
 #, c-format
 msgid "%s: TASK = 1 : LINMEQ requires at least 4 input arguments.\n"
-msgstr ""
-"%s: TASK = 1: LINMEQ потрібно вказати принаймні 4 вхідних параметри.\n"
+msgstr "%s: TASK = 1: LINMEQ потрібно вказати принаймні 4 вхідних параметри.\n"
 
 #, c-format
 msgid "%s: Wrong value for %s: %d, %d, %d or %d expected.\n"
@@ -141,8 +140,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: помилкова розмірність рядка вхідного параметра №%d: розмірність рядка "
 "має збігатися з розмірністю рядка вхідного параметра №%d.\n"
@@ -225,7 +224,7 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr "%s: матриці A, C і D мають бути одного порядку.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
 "символу.\n"
@@ -310,8 +309,7 @@ msgid "Press Return to continue ... \n"
 msgstr "Натисніть Enter, щоб продовжити… \n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра: слід використовувати лінійну "
 "динамічну систему.\n"
@@ -521,8 +519,7 @@ msgid "Frequency (rad/s)"
 msgstr "Частота (рад/с)"
 
 #, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 "Помилковий тип параметра №%d: мало бути використано матрицю з раціональних "
 "чисел або значень простору станів.\n"
@@ -547,7 +544,7 @@ msgstr ""
 "значень типу «string».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -565,8 +562,7 @@ msgstr "%s: частоти, вищі за частоту Найквіста, б�
 
 #, c-format
 msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
-msgstr ""
-"%s: від’ємні частоти, менші за частоту Найквіста буде проігноровано.\n"
+msgstr "%s: від’ємні частоти, менші за частоту Найквіста буде проігноровано.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
@@ -575,8 +571,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear state space expected.\n"
@@ -650,8 +645,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: помилкова розмірність параметра №%d: мало бути %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати придатну "
 "до стабілізації систему.\n"
@@ -680,8 +674,7 @@ msgstr "%s: помилковий тип вхідного параметра №%
 
 #, c-format
 msgid "%s: Simulation failed before final time is reached.\n"
-msgstr ""
-"%s: помилка у процесі імітації до досягнення кінцевого моменту часу.\n"
+msgstr "%s: помилка у процесі імітації до досягнення кінцевого моменту часу.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Stable system expected.\n"
@@ -817,8 +810,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вихідних параметрів: мало бути принаймні %d.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути принаймні %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
@@ -897,8 +889,7 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s є невизначеною.\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 "%s: керований та придатний до спостереження стани %s перебувають поряд з "
 "віссю уявних значень.\n"
@@ -967,8 +958,7 @@ msgstr "%s: %s має нуль на вісі уявних значень або 
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d:  %s is not full rank.\n"
-msgstr ""
-"%s: помилкові значення вхідного параметра №%d: %s має неповний ранг.\n"
+msgstr "%s: помилкові значення вхідного параметра №%d: %s має неповний ранг.\n"
 
 #, c-format
 msgid "%s: gamma too small.\n"
@@ -1070,8 +1060,7 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s не є симетричною.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати лінійний "
 "простір станів.\n"
@@ -1089,8 +1078,7 @@ msgstr ""
 "віссю уявних значень."
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: всі стани A близькі до немінімальних, отже || G || майже дорівнює 0.\n"
 
@@ -1158,8 +1146,8 @@ msgstr "Im(h(exp(2if*dt)))"
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
-"%s: помилкова розмірність параметра %d: розмірність мала бути такою: "
-"(%d,%d).\n"
+"%s: помилкова розмірність параметра %d: розмірність мала бути такою: (%d,"
+"%d).\n"
 
 #, c-format
 msgid ""

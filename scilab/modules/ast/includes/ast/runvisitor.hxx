@@ -311,7 +311,11 @@ public :
             }
             else
             {
-                pArgs->push_back(getResult());
+                if (getResult())
+                {
+                    pArgs->push_back(getResult());
+                }
+                //else optional argument skipped
             }
         }
         //to be sure, delete operation does not delete result

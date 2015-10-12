@@ -29,6 +29,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
     public XcosCell(long uid, Kind kind) {
         this.uid = uid;
         this.kind = kind;
+
+        JavaController controller = new JavaController();
+        controller.referenceObject(uid);
     }
 
     /**
@@ -236,7 +239,6 @@ public class XcosCell extends ScilabGraphUniqueObject {
 
             JavaController controller = new JavaController();
             controller.referenceObject(c.getUID());
-
         }
 
         return inserted;
@@ -368,6 +370,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
         return c;
     }
 
+    @Override
     protected void finalize() throws Throwable {
         JavaController controller = new JavaController();
         controller.deleteObject(getUID());

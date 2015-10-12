@@ -21,7 +21,7 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無効です.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr "%s: 入力引数 #%i の型が間違っています: 文字列を指定してください.\n"
 
 msgid "An error occurred while opening Preferences window:"
@@ -107,7 +107,8 @@ msgstr "Scilabモジュール '%s' はインストールされていません.\n
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -115,7 +116,8 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid XConfiguration.xml file.\n"
@@ -143,4 +145,5 @@ msgstr "%s: 属性名が無効です: %s."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 2xNの行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 2xNの行列を指定してください.\n"

@@ -97,13 +97,11 @@ msgstr "Cod d'equacions diferencials generat pel Maple"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
+msgstr "%s: Nombre d'arguments d'entrada incorrecte: Hi ha d'haver %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: Nombre d'arguments de sortida incorrecte: Hi ha d'haver %d o %d.\n"
+msgstr "%s: Nombre d'arguments de sortida incorrecte: Hi ha d'haver %d o %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -188,8 +186,7 @@ msgstr "5 : un pas, sense passar el tcrit, i tornar"
 msgid "Meaning of jactype:"
 msgstr "Significat de jactype:"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iteracions funcionals (no s'utilitza la jacobiana ('adams' or 'stiff' "
 "only))"
@@ -201,8 +198,7 @@ msgid "2 : internally generated full jacobian"
 msgstr "2 : jacobiana sencera generada internament"
 
 msgid "3 : internally generated diagonal jacobian ('adams' or 'stiff' only)"
-msgstr ""
-"3 : jacobiana diagonal generada internament (només 'adams' o 'stiff')"
+msgstr "3 : jacobiana diagonal generada internament (només 'adams' o 'stiff')"
 
 msgid "4 : user-supplied banded jacobian (see ml,mu)"
 msgstr "4 : jacobiana banda proporcionada per l'usuari (veieu ml,mu)"
@@ -234,8 +230,7 @@ msgstr ""
 "df1/dy1, df2/dy1, df3/dy1,... (1+ml són possiblement diferents de zero)"
 
 msgid "column 2 is made of mu-1 zeros followed by df1/dx2, df2/dx2,etc"
-msgstr ""
-"la columna 2 està feta de mu-1 zeros seguits per df1/dx2, df2/dx2,etc"
+msgstr "la columna 2 està feta de mu-1 zeros seguits per df1/dx2, df2/dx2,etc"
 
 msgid "Default values are given in square brackets"
 msgstr "Els valors predeterminats són donats entre claudàtors"

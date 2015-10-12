@@ -122,7 +122,7 @@ struct sim
             }
             if (current->get(0)->getType() != types::InternalType::ScilabString || current->get(1)->getType() != types::InternalType::ScilabDouble)
             {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "model", "sim");
+                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : string expected.\n"), "model", "sim");
                 return false;
             }
 
@@ -155,7 +155,7 @@ struct sim
         }
         else
         {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "model", "sim");
+            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : string expected.\n"), "model", "sim");
             return false;
         }
         return true;

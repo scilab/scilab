@@ -229,8 +229,7 @@ msgstr "%s: Неверное количество входных парамет�
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -356,8 +355,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: Неверный рамзер входного параметра №%d: ожидался вектор-столбец.\n"
+msgstr "%s: Неверный рамзер входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
@@ -460,7 +458,7 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format

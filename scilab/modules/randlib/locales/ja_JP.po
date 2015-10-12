@@ -21,11 +21,15 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
-msgstr "%1$s: 入力引数の数が間違っています:  オプション '%3$s' では %2$d 個の引数を指定してください.\n"
+msgstr ""
+"%1$s: 入力引数の数が間違っています:  オプション '%3$s' では %2$d 個の引数を指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
-msgstr "%1$s: 出力引数の数が間違っています:  '%3$s' オプションには %2$d 個の引数を指定してください.\n"
+msgstr ""
+"%1$s: 出力引数の数が間違っています:  '%3$s' オプションには %2$d 個の引数を指"
+"定してください.\n"
 
 #, c-format
 msgid "The %s option affects only the clcg4 generator\n"
@@ -33,7 +37,9 @@ msgstr "オプション %s は, clcg4 生成器専用です\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
-msgstr "%1$s: 入力引数の数が間違っています:  オプション '%3$s' では %2$d 個の引数を指定してください.\n"
+msgstr ""
+"%1$s: 入力引数の数が間違っています:  オプション '%3$s' では %2$d 個の引数を指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -43,43 +49,52 @@ msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指�
 msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' with the %s "
 "generator.\n"
-msgstr "%1$s: 入力引数の数が間違っています:  %4$s 生成器の '%3$s' には %2$d 個の引数を指定してください.\n"
+msgstr ""
+"%1$s: 入力引数の数が間違っています:  %4$s 生成器の '%3$s' には %2$d 個の引数"
+"を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument: Vector of %d or %d values for %s "
 "expected.\n"
-msgstr "%1$s: 入力引数の値が間違っています: %2$d のベクトルまたは %4$s の %3$d 値を指定してください.\n"
+msgstr ""
+"%1$s: 入力引数の値が間違っています: %2$d のベクトルまたは %4$s の %3$d 値を指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています:  %dx%d を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています:  %dx%d を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: %d or %d expected for '%s' option with "
 "the %s generator.\n"
 msgstr ""
-"%1$s: 入力引数の数が間違っています:  %5$s 生成器の '%4$s' オプションには %2$d または %3$d "
-"個の引数を指定してください.\n"
+"%1$s: 入力引数の数が間違っています:  %5$s 生成器の '%4$s' オプションには "
+"%2$d または %3$d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: expected %d for '%s' option with the %s "
 "or %s generator.\n"
 msgstr ""
-"%1$s: 入力引数の数が間違っています:  %4$s または %5$s 生成器の '%3$s' オプションには %2$d "
-"個の引数を指定してください.\n"
+"%1$s: 入力引数の数が間違っています:  %4$s または %5$s 生成器の '%3$s' オプ"
+"ションには %2$d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong number of input arguments: %d expected for '%s' option with the %s "
 "generator.\n"
-msgstr "%1$s: 入力引数の数が間違っています:  %4$s 生成器のオプション '%3$s' には%2$d 個の引数を指定してください.\n"
+msgstr ""
+"%1$s: 入力引数の数が間違っています:  %4$s 生成器のオプション '%3$s' には%2$d "
+"個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
-msgstr "%1$s: 出力引数の数が間違っています:  '%3$s' オプションには %2$d 個の引数を指定してください.\n"
+msgstr ""
+"%1$s: 出力引数の数が間違っています:  '%3$s' オプションには %2$d 個の引数を指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: The %s option affects only the %s generator\n"
@@ -87,7 +102,8 @@ msgstr "%s: %s オプションは %s 生成器のみに作用します.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d, %d または %dを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d, %d または %dを指定してください.\n"
 
 #, c-format
 msgid "The %s option affects only the %s generator\n"
@@ -95,11 +111,14 @@ msgstr "オプション %s は, %s 生成器専用です\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
 
 msgid "This information concerns only the clcg4 generator\n"
 msgstr "この情報は clcg4 生成器にのみ関係します\n"
@@ -109,7 +128,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s', '%s', '%s' または "
+"'%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' is unknown.\n"
@@ -121,14 +141,16 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 正のスカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 正のスカラーを指定してください.\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "ベータ分布でAおよびBが指定されていません\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument: Scalar expected for %s.\n"
-msgstr "%s: 入力引数の大きさが間違っています: %s にはスカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数の大きさが間違っています: %s にはスカラーを指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_grand.c, line: 510
@@ -146,7 +168,8 @@ msgstr "自由度が正ではありません\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be the number of random "
 "deviate.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 確率差異の数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 確率差異の数を指定してください.\n"
 
 msgid "Missing N and P for MULtinomial law\n"
 msgstr "多項分布でNおよびPが指定されていません\n"
@@ -209,7 +232,8 @@ msgstr "%s: 入力引数の型が間違っています: スカラーを指定し
 
 #, c-format
 msgid "%s: Wrong type for input argument. Low < High expected.\n"
-msgstr "%s: 入力引数の型が間違っています. Low < High となるように指定してください.\n"
+msgstr ""
+"%s: 入力引数の型が間違っています. Low < High となるように指定してください.\n"
 
 msgid "Missing Low and High for Uniform int law\n"
 msgstr "一様整数分布で下限(Low)および上限(High)が指定されていません\n"
@@ -234,8 +258,8 @@ msgid ""
 "%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of "
 "Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"
 msgstr ""
-"%s: 入力引数の型が間違っています: 実数, 複素数, 整数, 論理値, 文字列または多項式の行列 (通常または疎行列) "
-"またはハイパー行列を指定してください.\n"
+"%s: 入力引数の型が間違っています: 実数, 複素数, 整数, 論理値, 文字列または多"
+"項式の行列 (通常または疎行列) またはハイパー行列を指定してください.\n"
 
 msgid "Missing N and P for Negative Binomial law\n"
 msgstr "負の二項分布でNおよびPが指定されていません\n"
@@ -253,7 +277,9 @@ msgstr "二項分布でNおよびPが指定されていません\n"
 msgid ""
 "%s: Wrong value for input argument #%d: Must be the number of random "
 "simulation.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: ランダムシミュレーションの数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: ランダムシミュレーションの数を指定して"
+"ください.\n"
 
 msgid "Missing Mean and Cov for Multivariate Normal law\n"
 msgstr "多変量正規分布で平均(Mean)と分散(Cov)が指定されていません\n"
@@ -270,11 +296,15 @@ msgstr "%s: 入力引数の型が間違っています: 正方行列を指定し
 msgid ""
 "%s: Wrong type for input arguments: Mean and Cov have incompatible "
 "dimensions\n"
-msgstr "%s: 入力引数の型が間違っています: 平均(Mean)と分散(Cov)の次元が一致しません.\n"
+msgstr ""
+"%s: 入力引数の型が間違っています: 平均(Mean)と分散(Cov)の次元が一致しませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Mean and Cov are of null size.\n"
-msgstr "%s: 入力引数の大きさが間違っています: 平均(Mean)と分散(Cov)の大きさが NULL です.\n"
+msgstr ""
+"%s: 入力引数の大きさが間違っています: 平均(Mean)と分散(Cov)の大きさが NULL で"
+"す.\n"
 
 #, c-format
 msgid "%s: Missing P matrix and X0 for Markov chain\n"
@@ -284,7 +314,9 @@ msgstr "%s: P行列 および マルコフ連鎖の X0 が指定されていま�
 msgid ""
 "%s: Wrong type for input argument #%d: Square matrix or row vector "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています:  正方行列または行ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています:  正方行列または行ベクトルを指定してく"
+"ださい.\n"
 
 msgid "X0 is empty\n"
 msgstr "X0が空です\n"
@@ -348,7 +380,8 @@ msgstr "幾何学的分布でpが指定されていません\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: Must be between '%s' and %d.\n"
-msgstr "%s: 入力引数の値が間違っています: '%s' および %d の間で指定してください.\n"
+msgstr ""
+"%s: 入力引数の値が間違っています: '%s' および %d の間で指定してください.\n"
 
 msgid "Missing Av for exponential law\n"
 msgstr "指数分布で平均(Av) が指定されていません\n"
@@ -368,7 +401,8 @@ msgid ""
 "                                        and  s2 in [1, 2147483398]\n"
 msgstr ""
 "\n"
-"clcg2 のシードが間違っています. s1 には [1, 2147483562]の整数を指定してください.\n"
+"clcg2 のシードが間違っています. s1 には [1, 2147483562]の整数を指定してくださ"
+"い.\n"
 
 msgid ""
 "\n"

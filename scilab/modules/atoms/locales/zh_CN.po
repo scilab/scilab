@@ -36,7 +36,7 @@ msgid ""
 msgstr "%s：输入参数 #%d 的大小出错：应该为 mx1，mx2 或 mx3 大小的字符矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：输入参数 #%d 的类型错误：应该为一个单字符串。\n"
 
 #, c-format
@@ -60,7 +60,9 @@ msgstr "%s：模块“%s - %s”没有安装。\n"
 msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
-msgstr "%s：下一个模块不能被安装在用户部分，您不能为所有用户将其加入到自动加载列表：\n"
+msgstr ""
+"%s：下一个模块不能被安装在用户部分，您不能为所有用户将其加入到自动加载列"
+"表：\n"
 
 #, c-format
 msgid "\t - '%s - %s'\n"
@@ -90,7 +92,7 @@ msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s：输入参数的数目出错：应该至多是 %d 个。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：输入参数 #%d 的大小出错：应该为一个单字符串。\n"
 
 #, c-format
@@ -244,14 +246,6 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s：输入参数数目错误：应为%d或%d。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应为字符串型变量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s：第%d个输入参数的规格错误：应为字符串型变量。\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
 msgstr ""
 
@@ -335,7 +329,9 @@ msgstr ""
 msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
-msgstr "%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS 拒绝删除这个路径。\n"
+msgstr ""
+"%s：这个包 （%s-%s） 的路径既不在 SCI ，也不在 SCIHOME。出于安全原因，ATOMS "
+"拒绝删除这个路径。\n"
 
 #, c-format
 msgid ""
@@ -347,7 +343,8 @@ msgstr ""
 msgid ""
 "%s: The root directory of this package (%s-%s) cannot been deleted, please "
 "check if you have write access on this directory : %s.\n"
-msgstr "%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录：%s。\n"
+msgstr ""
+"%s：这个包 （%s-%s） 的根目录不能被删除，请您检查是否能读取这个目录：%s。\n"
 
 #, c-format
 msgid ""
@@ -363,7 +360,8 @@ msgstr "%s：输入参数 #%d 的值出错：This （"
 msgid ""
 "%s: Wrong value for input argument #%d: 'all','user','allusers' or "
 "'official' expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
+msgstr ""
+"%s：输入参数 #%d 的值出错：应该为“all”，“users”，“alluser”或“official”。\n"
 
 #, c-format
 msgid "File %s does not exist: could not restore previous configuration."
@@ -504,8 +502,7 @@ msgstr ""
 msgid "Installation failed!"
 msgstr "安装失败！"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr "安装完成！请重新运行Scilab，以使改动生效。"
 
 msgid "Updating"
@@ -790,14 +787,13 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM 值被查看到为：“%s”\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“error”或“warning”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 
 #, c-format
@@ -915,14 +911,13 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s：依存关系树不能被处理。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为字母“A”或“I”。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本或依存。\n"
 
 msgid "Atoms:"
@@ -937,7 +932,8 @@ msgstr "%s：输入参数 #%d 的值出错：应该为“system”或“install�
 msgid ""
 "%s: Wrong value for input argument #%d: 'all','allusers','user' or 'session' "
 "expected.\n"
-msgstr "%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
+msgstr ""
+"%s：输入参数 #%d 的值出错：应该为“all”，“allusers”，“user”或“session”。\n"
 
 #, c-format
 msgid ""
@@ -973,8 +969,7 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s：%s （%s）没有安装。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr "%s：输入参数 #%d 的值出错：这是一个无效的版本。\n"
 
 #, c-format

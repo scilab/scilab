@@ -125,8 +125,7 @@ msgstr "%s: Nieprawidłowa wartość argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
-msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Nieznany typ.\n"
+msgstr "%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Nieznany typ.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -144,8 +143,7 @@ msgstr ""
 "liczba całkowita.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s', '%s' "
 "lub '%s'.\n"
@@ -156,12 +154,12 @@ msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego nr %d: oczekiwana macierz.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwano łańcuch.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
@@ -343,8 +341,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
 msgstr ""
-"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany "
-"skalar/macierz z liczbami całkowitymi bez znaku.\n"
+"%s: Nieprawidłowy typ dla parametru wejściowego nr %d: Oczekiwany skalar/"
+"macierz z liczbami całkowitymi bez znaku.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
@@ -398,8 +396,7 @@ msgstr ""
 "kwadratowej.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr ""
 "%s: Niewłaściwa wartość argumentu wejściowego nr %d: macierz nie można "
 "zdiagonalizować.\n"
@@ -436,8 +433,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix of positive "
 "integers expected.\n"
 msgstr ""
-"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany "
-"skalar/wektor/macierz liczb całkowitych dodatnich.\n"
+"%s: Niewłaściwa wartość argumentu wejściowego nr %d: oczekiwany skalar/"
+"wektor/macierz liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -456,8 +453,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: Scalar/vector/matrix/hypermatrix of "
 "positive integers expected.\n"
 msgstr ""
-"%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany "
-"skalar/wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"
+"%s: Niepoprawna wartość argumentu wejściowego nr %d: Oczekiwany skalar/"
+"wektor/macierz/hipermacierz z liczb całkowitych dodatnich.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -606,8 +603,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -635,8 +631,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d:  oczekiwano "
 "rozmiar przynajmniej jak u argumentu wejściowego nr %d\n"
@@ -772,8 +768,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format

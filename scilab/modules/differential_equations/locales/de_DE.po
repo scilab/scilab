@@ -133,8 +133,7 @@ msgstr "%s: falsche Anzahl an Eingangsargumenten: mindestens %d erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -165,8 +164,7 @@ msgid "1 : normal computation at specified times"
 msgstr "1: normale Berechnung bei vorgegebener Zeit"
 
 msgid "2 : computation at mesh points (given in first row of output of ode)"
-msgstr ""
-"2: Berechnung zu Netzzeiten (gegeben in erster Reihe des Ausgabecodes)"
+msgstr "2: Berechnung zu Netzzeiten (gegeben in erster Reihe des Ausgabecodes)"
 
 msgid "3 : one step at one internal mesh point and return"
 msgstr "3: eine Stufe bei einem internen Netzpunkt und Rückgabe"
@@ -180,8 +178,7 @@ msgstr "5: eine Stufe, ohne durchgehendes tcrit, und Rückgabe"
 msgid "Meaning of jactype:"
 msgstr "Bedeutung von Jactype:"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0: funktionale Iterationen (keine Jacobi-Matrix verwendet (nur 'Adams' oder "
 "'stiff'))"
@@ -217,8 +214,7 @@ msgid "If jactype = 4 the jacobian function must return"
 msgstr "Wenn Jactype = 4, dann muß die Jacobi Funktion ergeben:"
 
 msgid "a matrix J which is  ml+mu+1 x ny (where ny=dim of y in ydot=f(t,y))"
-msgstr ""
-"eine Matrix J, bei der is ml+mu+1 x ny (wo ny=dim of y in ydot=f(t,y))"
+msgstr "eine Matrix J, bei der is ml+mu+1 x ny (wo ny=dim of y in ydot=f(t,y))"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
 msgstr "sodaß Spalte 1 von J gefüllt ist mit mu Nullen gefolgt von"

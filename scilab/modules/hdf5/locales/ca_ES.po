@@ -52,7 +52,7 @@ msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: el paràmetre d'entrada #%d és d'un tipus incorrecte: s'esperava una "
 "cadena.\n"
@@ -66,8 +66,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 
 #, c-format
@@ -75,7 +74,7 @@ msgid "%s: No more memory.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: el paràmetre d'entrada #%d té una mida incorrecta: s'esperava una "
 "cadena.\n"
@@ -121,7 +120,7 @@ msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -150,8 +149,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -164,8 +162,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 
 #, c-format
@@ -230,8 +227,7 @@ msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 
 #, c-format

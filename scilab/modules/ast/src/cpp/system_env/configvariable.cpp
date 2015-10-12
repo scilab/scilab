@@ -1450,7 +1450,7 @@ int ConfigVariable::isScilabCommand()
 
 //debugger information
 bool ConfigVariable::m_bEnabledebug = false;
-ast::ConstVisitor* ConfigVariable::m_defaultvisitor = NULL;
+std::unique_ptr<ast::ConstVisitor> ConfigVariable::m_defaultvisitor(nullptr);
 
 bool ConfigVariable::getEnableDebug()
 {
@@ -1464,19 +1464,14 @@ void ConfigVariable::setEnableDebug(bool _enable)
 
 void ConfigVariable::setDefaultVisitor(ast::ConstVisitor* _default)
 {
-    if (m_defaultvisitor)
-    {
-        delete m_defaultvisitor;
-    }
-
-    m_defaultvisitor = _default;
+    m_defaultvisitor.reset(_default);
 }
 
 ast::ConstVisitor* ConfigVariable::getDefaultVisitor()
 {
-    if (m_defaultvisitor == NULL)
+    if (m_defaultvisitor.get() == nullptr)
     {
-        m_defaultvisitor = new ast::ExecVisitor();
+        m_defaultvisitor.reset(new ast::ExecVisitor());
     }
     return m_defaultvisitor->clone();
 }

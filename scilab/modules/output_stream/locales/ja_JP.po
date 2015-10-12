@@ -25,15 +25,17 @@ msgstr "%s: 入力引数の数が間違っています: 最大でも%d 個とし
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data do not fit with format.\n"
-msgstr "%s: 入力引数の数が間違っています: フォーマットにデータが整合していません.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: フォーマットにデータが整合していません.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -41,12 +43,14 @@ msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
-msgstr "%s: 入力引数の数が間違っています: データがフォーマットに適合しません.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: データがフォーマットに適合しません.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: データがフォーマットに整合していません.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: データがフォーマットに整合していませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -82,41 +86,46 @@ msgstr "%s: 入力引数 #%d の値が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダーID %d が存在しません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダーID %d が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダーファイル名が存在しません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダーファイル名が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダーを閉じることができません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダーを閉じることができません.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  カレンダー %d を閉じることができません.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  カレンダー %d を閉じることができませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー を休止できません.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー %d を休止できません.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: カレンダー %d を休止できません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
@@ -125,7 +134,8 @@ msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー を
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: カレンダー %d を復帰できません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: カレンダー %d を復帰できません.\n"
 
 #, c-format
 msgid "%s: Not enough arguments.\n"
@@ -360,7 +370,9 @@ msgstr "引数 %d の型が間違っています: 実行列を指定してくだ
 
 #, c-format
 msgid "Wrong type for input argument #%d: Real or complex matrix expected.\n"
-msgstr "入力引数 #%d の型が間違っています:  実数または複素数の行列を指定してください.\n"
+msgstr ""
+"入力引数 #%d の型が間違っています:  実数または複素数の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "Wrong type for input argument #%d: Polynomial expected.\n"
@@ -377,8 +389,7 @@ msgstr "引数 %d の型が間違っています: リストを指定してくだ
 msgid "Problem with comparison symbol...\n"
 msgstr "比較記号に問題があります...\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr "入力引数の数が間違っています: この関数には入力引数がありません.\n"
 
 msgid "Wrong number of input arguments."
@@ -477,7 +488,9 @@ msgstr "関数に誤りがあります (引数n : %d).\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -542,7 +555,9 @@ msgstr "引数 #%d の時間領域が定義されていません.\n"
 msgid ""
 "Wrong type for argument #%d: A system in state space or transfer matrix form "
 "expected.\n"
-msgstr "引数 %d の型が間違っています:  状態空間表現または伝達関数行列形式でシステムを指定してください.\n"
+msgstr ""
+"引数 %d の型が間違っています:  状態空間表現または伝達関数行列形式でシステムを"
+"指定してください.\n"
 
 #
 # File: src/c/errmsg.c, line: 698
@@ -644,7 +659,8 @@ msgstr "リスト要素番号 %d が未定義です.\n"
 #, c-format
 msgid ""
 "Wrong type for argument #%d: Named variable not an expression expected.\n"
-msgstr "引数 %d の型が間違っています:  式ではない名前付きの変数を指定してください.\n"
+msgstr ""
+"引数 %d の型が間違っています:  式ではない名前付きの変数を指定してください.\n"
 
 msgid "Indices for non-zero elements must be given by a 2 column matrix.\n"
 msgstr "ゼロでない要素の添字は 2列の行列で指定する必要があります.\n"
@@ -662,7 +678,8 @@ msgstr "関数に下界がありません.\n"
 msgid ""
 "Problem may be unbounded: too high distance between two consecutive "
 "iterations.\n"
-msgstr "問題に境界がない可能性があります: 連続する反復の間の距離が遠すぎます.\n"
+msgstr ""
+"問題に境界がない可能性があります: 連続する反復の間の距離が遠すぎます.\n"
 
 msgid "Inconsistent constraints.\n"
 msgstr "拘束条件に不整合があります.\n"
@@ -740,15 +757,18 @@ msgstr "関数 %s を確認またはオーバーロード定義してくださ�
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています:　ハンドルの行列を指定してください.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています:　ハンドルの行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 実数または複素数行列を指定してください.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています: 実数または複素数行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
-msgstr "%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
+msgstr ""
+"%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: %d expected.\n"
@@ -774,7 +794,9 @@ msgstr "%s: 引数 %d の型が間違っています:　リスト(list)を指定
 msgid ""
 "%s: Wrong type for argument #%d: Function or string (external function) "
 "expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　関数または文字列(外部関数)を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　関数または文字列(外部関数)を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
@@ -797,7 +819,8 @@ msgstr "引数の型を論理値としてください.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Boolean or scalar expected.\n"
-msgstr "引数 %d の型が間違っています: 論理値またはスカラーを指定してください.\n"
+msgstr ""
+"引数 %d の型が間違っています: 論理値またはスカラーを指定してください.\n"
 
 #, c-format
 msgid "Wrong type for argument #%d: Sparse matrix of scalars expected.\n"
@@ -809,7 +832,9 @@ msgstr "引数 %d の型が間違っています: 疎行列 LU分解を指定し
 
 #, c-format
 msgid "Wrong type argument #%d: Sparse or full scalar matrix expected.\n"
-msgstr "引数 #%d の型が間違っています:  疎行列または通常のスカラー行列を指定してください.\n"
+msgstr ""
+"引数 #%d の型が間違っています:  疎行列または通常のスカラー行列を指定してくだ"
+"さい.\n"
 
 msgid "Null variable cannot be used here.\n"
 msgstr "NULL変数はここでは使用できません.\n"
@@ -848,7 +873,7 @@ msgstr "/ のオペランドと \\ の操作 で Inf の NaN を含んではい�
 msgid "semi def fails.\n"
 msgstr "半正定になりませんでした.\n"
 
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr "最初の入力引数の型が間違っています:　文字列を指定してください.\n"
 
 msgid "Entry name not found.\n"
@@ -871,7 +896,8 @@ msgstr "%s: 共有アーカイブが読み込まれていません.\n"
 
 #, c-format
 msgid "%s: Only one entry point allowed on this operating system.\n"
-msgstr "%s: このオペレーティングシステムでは単一のエントリポイントのみ許容されます.\n"
+msgstr ""
+"%s: このオペレーティングシステムでは単一のエントリポイントのみ許容されます.\n"
 
 #, c-format
 msgid "%s: First argument cannot be a number.\n"
@@ -882,14 +908,18 @@ msgstr "maxentryに達したため,これ以上関数をリンクできません
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
-msgstr "ファイル \"%s\" が既に存在するか,ディレクトリへの書き込みアクセスが拒否されました.\n"
+msgstr ""
+"ファイル \"%s\" が既に存在するか,ディレクトリへの書き込みアクセスが拒否されま"
+"した.\n"
 
 #, c-format
 msgid "File \"%s\" does not exist or read access denied.\n"
 msgstr "ファイル \"%s\" が存在しないか,読み込みアクセスが拒否されました.\n"
 
 msgid "Binary direct access files must be opened by 'file'.\n"
-msgstr "バイナリ形式でアクセスするファイルは 'file' によりオープンされる必要があります.\n"
+msgstr ""
+"バイナリ形式でアクセスするファイルは 'file' によりオープンされる必要がありま"
+"す.\n"
 
 msgid "C file logical unit not allowed here.\n"
 msgstr "C のファイル論理ユニットをここで使用することはできません.\n"
@@ -967,7 +997,8 @@ msgid "Too many global variables! Max number is %d.\n"
 msgstr "グローバル変数の数が多すぎます! 最大 %d です.\n"
 
 msgid "Error while writing in file: disk full or deleted file.\n"
-msgstr "ファイル書き込み時にエラー発生: ディスクが一杯かファイルが削除されました.\n"
+msgstr ""
+"ファイル書き込み時にエラー発生: ディスクが一杯かファイルが削除されました.\n"
 
 #, c-format
 msgid "Wrong value for argument #%d: Must not contain NaN or Inf.\n"
@@ -1001,13 +1032,13 @@ msgstr "引数 %d の値が間違っています: 固有値率を 1未満とす�
 
 #, c-format
 msgid "Size varying argument a*eye(), (arg %d) not allowed here.\n"
-msgstr "大きさが変わる引数 a*eye(), (arg %d) をここで使用することはできません.\n"
+msgstr ""
+"大きさが変わる引数 a*eye(), (arg %d) をここで使用することはできません.\n"
 
 msgid "endfunction is missing.\n"
 msgstr "endfunction が抜けています.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr "左辺の命令: ドットまたは左括弧を入力してください.\n"
 
 msgid "Instruction left hand side: waiting for a name.\n"
@@ -1071,7 +1102,8 @@ msgstr "警告: 結果が不正確となる可能性があります.\n"
 
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %s\n"
-msgstr "行列が特異に近くなっているか,スケーリングが行われていません. rcond = %s\n"
+msgstr ""
+"行列が特異に近くなっているか,スケーリングが行われていません. rcond = %s\n"
 
 msgid "computing least squares solution. (see lsq).\n"
 msgstr "最小二乗解を計算中 (lsqを参照).\n"
@@ -1129,8 +1161,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "最適化を終了 (線形探索に失敗).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr "sfact: 相対精度に完全に収束しませんでした: 10**(%s).\n"
 
 msgid "Help file inconsistent...\n"
@@ -1205,7 +1236,9 @@ msgstr "コマンド:\n"
 #, c-format
 msgid ""
 "Warning : redefining function: %s. Use funcprot(0) to avoid this message"
-msgstr "警告: 関数が再定義されています: %s. このメッセージを回避するには funcprot(0) を使用してください"
+msgstr ""
+"警告: 関数が再定義されています: %s. このメッセージを回避するには funcprot(0) "
+"を使用してください"
 
 #
 # File: src/c/msgs.c, line: 906
@@ -1267,7 +1300,9 @@ msgstr "変数 %s をロードできません.\n"
 msgid ""
 "Warning: Use of standard list to define typed structures\n"
 "          is obsolete. Use tlist.\n"
-msgstr "警告: 型付きの構造体を定義する際に標準リストを使用することは廃止されています. tlist を使用してください.\n"
+msgstr ""
+"警告: 型付きの構造体を定義する際に標準リストを使用することは廃止されていま"
+"す. tlist を使用してください.\n"
 
 #
 # File: src/c/msgs.c, line: 1037
@@ -1279,7 +1314,8 @@ msgstr "警告: 'log' または 'tan' 関数が特異となっています.\n"
 
 #, c-format
 msgid "At time: %s. Too many iteration to achieve required precision.\n"
-msgstr "発生時刻: %s. 指定した精度を実現するために規定の反復階数を超えました.\n"
+msgstr ""
+"発生時刻: %s. 指定した精度を実現するために規定の反復階数を超えました.\n"
 
 msgid "stepsize not significant in rkqc.\n"
 msgstr "rkqc でステップサイズが小さすぎます.\n"
@@ -1294,7 +1330,9 @@ msgstr "警告: tcrit まで積分.\n"
 msgid ""
 "Warning: integration not completed! Check tolerance parameters or step "
 "size.\n"
-msgstr "警告: 積分が完了しませんでした! 許容誤差パラメータまたはステップサイズを確認ください.\n"
+msgstr ""
+"警告: 積分が完了しませんでした! 許容誤差パラメータまたはステップサイズを確認"
+"ください.\n"
 
 msgid ""
 "Warning: Jacobian external is given, but\n"
@@ -1313,7 +1351,9 @@ msgstr ""
 msgid ""
 "itask=2,3 or 5: At most one value of t\n"
 " is allowed, the last element of t is used.\n"
-msgstr "itask=2,3 または 5:  t の最大一つの値が使用でき,tの最後の要素が使用されます.\n"
+msgstr ""
+"itask=2,3 または 5:  t の最大一つの値が使用でき,tの最後の要素が使用されま"
+"す.\n"
 
 msgid ""
 "Warning: odedc forces itask=4 and handles\n"
@@ -1382,7 +1422,8 @@ msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr "%s: ウインドウの次元が 2^16 より小さく設定されています.\n"
 
 msgid "Some data have not been computed they are replaced by NaN.\n"
-msgstr "いくつかのデータが計算されませんでした. これらは NaN で置換されました.\n"
+msgstr ""
+"いくつかのデータが計算されませんでした. これらは NaN で置換されました.\n"
 
 #, c-format
 msgid ""
@@ -1398,7 +1439,8 @@ msgstr "%s: 連続する2回の反復の間の相対誤差は最大 %s です.\n
 msgid ""
 "%s: the cosine of the angle between %s and any column of the jacobian is at "
 "most %s in absolute value.\n"
-msgstr "%s: %s およびヤコビアンの任意の列の間の角度の余弦の絶対値は最大 %s です.\n"
+msgstr ""
+"%s: %s およびヤコビアンの任意の列の間の角度の余弦の絶対値は最大 %s です.\n"
 
 #, c-format
 msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
@@ -1416,7 +1458,9 @@ msgstr "%s: %s: %s が小さすぎます. 閾値をこれ以上小さくする�
 msgid ""
 "%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
 "machine precision.\n"
-msgstr "%s:%s:%s が小さすぎます. %s: 機械精度に関するヤコビアンの列に直交しています.\n"
+msgstr ""
+"%s:%s:%s が小さすぎます. %s: 機械精度に関するヤコビアンの列に直交していま"
+"す.\n"
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
 msgstr "poly: 変数名は 5文字未満とする必要があります.\n"
@@ -1426,7 +1470,8 @@ msgid ""
 "Scilab 6.0.\n"
 "  Use \"vector .^ scalar\" instead.\n"
 msgstr ""
-"警告:  構文 \"vector ^ scalar\" は廃止予定です.  この構文は Scilab 6.0 で廃止されます.\n"
+"警告:  構文 \"vector ^ scalar\" は廃止予定です.  この構文は Scilab 6.0 で廃止"
+"されます.\n"
 "  代わりに \"vector .^ scalar\"を指定してください.\n"
 
 #
@@ -1447,13 +1492,16 @@ msgstr "%1$s: 入力引数の数が不正です: %3$d への %2$d を想定し�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s: 入力引数 #%d で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定します。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: '%s', '%s', '%s', '%s', '%s' または '%s' を想定"
+"します。\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean expected.\n"
@@ -1461,7 +1509,8 @@ msgstr "%s: 引数 #%d の型が不正: ブーリアンを想定します。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください."
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください."
 
 #, c-format
 msgid "%s: Wrong export format: %s"
@@ -1484,9 +1533,9 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 状態空間モデルを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 状態空間モデルを指定してください.\n"
 
 #, c-format
 msgid "%s: system cannot be displayed in this page.\n"

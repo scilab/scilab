@@ -69,7 +69,7 @@ msgid "A single String expected"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for argument #%d: A string expected."
+msgid "Wrong type for argument #%d: string expected."
 msgstr ""
 
 #, c-format
@@ -121,7 +121,7 @@ msgid "Incompatible External Object"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for input argument #%d: A string expected."
+msgid "Wrong type for input argument #%d: string expected."
 msgstr ""
 
 #, c-format
