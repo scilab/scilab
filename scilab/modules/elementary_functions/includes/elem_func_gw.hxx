@@ -85,6 +85,7 @@ CPP_GATEWAY_PROTOTYPE(sci_tanh);
 CPP_GATEWAY_PROTOTYPE(sci_acosh);
 CPP_GATEWAY_PROTOTYPE(sci_asinh);
 CPP_GATEWAY_PROTOTYPE(sci_atanh);
+CPP_GATEWAY_PROTOTYPE(sci_sqrt);
 
 bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, int* _iDims, int** _piDims, bool* _alloc);
 

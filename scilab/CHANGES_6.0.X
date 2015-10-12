@@ -107,6 +107,8 @@ Scilab Bug Fixes
 
 * Bug #14159 fixed - Matplot crashed Scilab on boolean input.
 
+* Bug #14199 fixed - sqrt returned wrong dimension results on matrix with more than dimensions.
+
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================

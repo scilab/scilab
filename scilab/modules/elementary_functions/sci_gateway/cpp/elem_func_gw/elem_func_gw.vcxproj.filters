@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -49,9 +49,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\c\sci_number_properties.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\c\sci_sqrt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\c\sci_testmatrix.c">
@@ -190,6 +187,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\sci_atanh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_sqrt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
