@@ -6,14 +6,14 @@
 //
 mode(7)
 //To quit this demo, enter CTRL+C, then type "abort"
-
+[ma,na] = size(A);
 //                  OPERATIONS
 v=1:5;W=v'*v                 //constant matrix multiplication
 W(1,:)                       //extracting first row
 W(:,$)                       //extracting last column
 Mp'*Mp+eye()                   //polynomial matrix
 Mp1=Mp(1,1)+4.5*%i           //complex
-Fi=C*(z*eye()-A)^(-1)*B;       //transfer function evaluation
+Fi=C*(z*eye(ma,na)-A)^(-1)*B;       //transfer function evaluation
 F(:,1)*Fi                    //operations with rationals
 M=[Mp -Mp; Mp' Mp+eye()]       //concatenation of polynomial matrices
 [Fi, Fi(:,1)]                // ... or rationals
