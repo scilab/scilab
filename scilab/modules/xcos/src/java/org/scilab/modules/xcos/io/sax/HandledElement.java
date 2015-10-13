@@ -65,7 +65,7 @@ enum HandledElement {
     SuperBlockDiagram(HandledElementsCategory.CUSTOM),
     TextBlock(HandledElementsCategory.BLOCK),
     VoltageSensorBlock(HandledElementsCategory.BLOCK),
-    XcosDiagram(HandledElementsCategory.CUSTOM),;
+    XcosDiagram(HandledElementsCategory.CUSTOM);
 
     static Map<String, HandledElement> getMap() {
         Map<String, HandledElement> map = new HashMap<>(HandledElement.values().length);

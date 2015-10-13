@@ -12,7 +12,9 @@
 
 package org.scilab.modules.xcos.io.sax;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -24,6 +26,7 @@ import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
+import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.xml.sax.Attributes;
@@ -162,17 +165,31 @@ class CustomHandler implements ScilabHandler {
             case Orientation:
                 break;
             case XcosDiagram:
+                resolve();
+                saxHandler.allChildren.pop();
                 XcosCellFactory.insertChildren(saxHandler.controller, saxHandler.root);
                 break;
             case SuperBlockDiagram:
+                resolve();
                 saxHandler.allChildren.pop();
                 break;
             default:
                 throw new IllegalArgumentException();
         }
+    }
 
-        // FIXME manage unresolved link source
-        // FIXME manage unresolved link target
+    private void resolve() {
+        HashMap<String, Long> allLocalChildren = saxHandler.allChildren.peek();
 
+        for (Entry<String, ArrayList<UnresolvedReference>> entry : saxHandler.unresolvedReferences.entrySet()) {
+            Long uidObject = allLocalChildren.get(entry.getKey());
+            if (uidObject != null) {
+                long uid = uidObject.longValue();
+
+                for (UnresolvedReference unresolvedReference : entry.getValue()) {
+                    unresolvedReference.resolve(saxHandler.controller, uid);
+                }
+            }
+        }
     }
 }

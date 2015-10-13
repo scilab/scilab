@@ -5,6 +5,10 @@
             <parameter name="file" type="String"/>
             <parameter name="diagramId" type="long"/>
         </method>
+        <method name="xcosDiagramToScilab" returnType="void" modifier="static">
+            <parameter name="file" type="String"/>
+            <parameter name="diagramId" type="long"/>
+        </method>
         <method name="warnCellByUID" returnType="void" modifier="static">
             <parameter name="uids" type="String[]"/>
             <parameter name="message" type="String"/>

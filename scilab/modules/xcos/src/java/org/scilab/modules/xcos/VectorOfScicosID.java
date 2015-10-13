@@ -47,6 +47,10 @@ public class VectorOfScicosID {
     JavaControllerJNI.VectorOfScicosID_ensureCapacity(swigCPtr, this, n);
   }
 
+  public void resize(long n) {
+    JavaControllerJNI.VectorOfScicosID_resize(swigCPtr, this, n);
+  }
+
   public int size() {
     return JavaControllerJNI.VectorOfScicosID_size(swigCPtr, this);
   }

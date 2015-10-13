@@ -133,7 +133,8 @@ class PortHandler implements ScilabHandler {
         VectorOfScicosID associatedPorts = new VectorOfScicosID();
         saxHandler.controller.getObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
 
-        associatedPorts.add(ordering, uid);
+        associatedPorts.resize(ordering + 1);
+        associatedPorts.set(ordering, uid);
         saxHandler.controller.referenceObject(uid);
 
         saxHandler.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);

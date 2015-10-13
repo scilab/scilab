@@ -180,7 +180,7 @@ public final class XcosCellFactory {
             }
 
             int destIndex = Collections.binarySearch(ports, new XcosCell(dest[0], Kind.PORT), compare);
-            if (destIndex > 0) {
+            if (destIndex >= 0) {
                 l.setTarget(ports.get(destIndex));
             } else {
                 throw new IllegalStateException();

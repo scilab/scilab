@@ -2038,6 +2038,19 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfI
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfInt_1resize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< int > *arg1 = (std::vector< int > *) 0 ;
+  std::vector< int >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< int > **)&jarg1; 
+  arg2 = (std::vector< int >::size_type)jarg2; 
+  (arg1)->resize(arg2);
+}
+
+
 SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfInt_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
   jint jresult = 0 ;
   std::vector< int > *arg1 = (std::vector< int > *) 0 ;
@@ -2259,36 +2272,6 @@ SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_new_1Vec
 }
 
 
-SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfBool_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  std::vector< bool > *arg1 = (std::vector< bool > *) 0 ;
-  std::vector< bool >::size_type result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::vector< bool > **)&jarg1; 
-  result = ((std::vector< bool > const *)arg1)->size();
-  jresult = (jlong)result; 
-  return jresult;
-}
-
-
-SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfBool_1capacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  jlong jresult = 0 ;
-  std::vector< bool > *arg1 = (std::vector< bool > *) 0 ;
-  std::vector< bool >::size_type result;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(std::vector< bool > **)&jarg1; 
-  result = ((std::vector< bool > const *)arg1)->capacity();
-  jresult = (jlong)result; 
-  return jresult;
-}
-
-
 SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfBool_1ensureCapacity(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
   std::vector< bool > *arg1 = (std::vector< bool > *) 0 ;
   std::vector< bool >::size_type arg2 ;
@@ -2312,6 +2295,21 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfB
   arg1 = *(std::vector< bool > **)&jarg1; 
   arg2 = (std::vector< bool >::size_type)jarg2; 
   (arg1)->resize(arg2);
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfBool_1size(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  jint jresult = 0 ;
+  std::vector< bool > *arg1 = (std::vector< bool > *) 0 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< bool > **)&jarg1; 
+  result = (int)((std::vector< bool > const *)arg1)->size();
+  jresult = (jint)result; 
+  return jresult;
 }
 
 
@@ -2493,6 +2491,19 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfD
   arg1 = *(std::vector< double > **)&jarg1; 
   arg2 = (std::vector< double >::size_type)jarg2; 
   (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfDouble_1resize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< double > *arg1 = (std::vector< double > *) 0 ;
+  std::vector< double >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< double > **)&jarg1; 
+  arg2 = (std::vector< double >::size_type)jarg2; 
+  (arg1)->resize(arg2);
 }
 
 
@@ -2727,6 +2738,19 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfS
   arg1 = *(std::vector< std::string > **)&jarg1; 
   arg2 = (std::vector< std::string >::size_type)jarg2; 
   (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfString_1resize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
+  std::vector< std::string >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::string > **)&jarg1; 
+  arg2 = (std::vector< std::string >::size_type)jarg2; 
+  (arg1)->resize(arg2);
 }
 
 
@@ -2997,6 +3021,19 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfS
   arg1 = *(std::vector< ScicosID > **)&jarg1; 
   arg2 = (std::vector< long long >::size_type)jarg2; 
   (arg1)->reserve(arg2);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfScicosID_1resize(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  std::vector< ScicosID > *arg1 = (std::vector< ScicosID > *) 0 ;
+  std::vector< long long >::size_type arg2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< ScicosID > **)&jarg1; 
+  arg2 = (std::vector< long long >::size_type)jarg2; 
+  (arg1)->resize(arg2);
 }
 
 

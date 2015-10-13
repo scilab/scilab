@@ -47,6 +47,10 @@ public class VectorOfInt {
     JavaControllerJNI.VectorOfInt_ensureCapacity(swigCPtr, this, n);
   }
 
+  public void resize(long n) {
+    JavaControllerJNI.VectorOfInt_resize(swigCPtr, this, n);
+  }
+
   public int size() {
     return JavaControllerJNI.VectorOfInt_size(swigCPtr, this);
   }

@@ -40,7 +40,7 @@ public class SAXHandler extends DefaultHandler {
     /*
      * Utilities classes and methods
      */
-    private static class UnresolvedReference {
+    protected static class UnresolvedReference {
         private ScicosObjectOwner owner;
         private ObjectProperties property;
         private ObjectProperties associatedProperty;
@@ -56,11 +56,15 @@ public class SAXHandler extends DefaultHandler {
         public void resolve(JavaController controller, long v) {
             controller.setObjectProperty(owner.getUID(), owner.getKind(), property, v);
 
-            VectorOfScicosID associated = new VectorOfScicosID();
-            controller.getObjectProperty(owner.getUID(), owner.getKind(), property, associated);
-            associated.ensureCapacity(associatedPropertyIndex + 1);
-            associated.set(associatedPropertyIndex, v);
-            controller.setObjectProperty(owner.getUID(), owner.getKind(), property, associated);
+            if (associatedProperty != null) {
+                VectorOfScicosID associated = new VectorOfScicosID();
+                controller.getObjectProperty(owner.getUID(), owner.getKind(), associatedProperty, associated);
+
+                associated.resize(associatedPropertyIndex + 1);
+                associated.set(associatedPropertyIndex, v);
+
+                controller.setObjectProperty(owner.getUID(), owner.getKind(), associatedProperty, associated);
+            }
         }
     }
 
@@ -123,9 +127,9 @@ public class SAXHandler extends DefaultHandler {
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
         // DO NOT COMMIT
         // FOR DEBUG only : printout an XML tree
-        //        char[] indent = new char[parents.size()];
-        //        Arrays.fill(indent, ' ');
-        //        System.err.println(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
+        //                char[] indent = new char[parents.size()];
+        //                Arrays.fill(indent, ' ');
+        //                System.err.println(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
         // DO NOT COMMIT
 
         HandledElement found = elementMap.get(localName);

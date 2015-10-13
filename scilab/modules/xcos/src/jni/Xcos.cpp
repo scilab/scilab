@@ -104,6 +104,7 @@ curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
 voidxcosjstringjava_lang_StringjlonglongID=NULL;
+voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID=NULL;
 voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidcloseXcosFromScilabID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
@@ -131,6 +132,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
         voidxcosjstringjava_lang_StringjlonglongID=NULL;
+voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID=NULL;
 voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidcloseXcosFromScilabID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
@@ -176,6 +178,34 @@ throw GiwsException::JniBadAllocException(curEnv);
 
 
                          curEnv->CallStaticVoidMethod(cls, voidxcosjstringjava_lang_StringjlonglongID ,file_, diagramId);
+                        curEnv->DeleteLocalRef(file_);
+if (curEnv->ExceptionCheck()) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+}
+
+void Xcos::xcosDiagramToScilab (JavaVM * jvm_, char const* file, long long diagramId){
+
+JNIEnv * curEnv = NULL;
+jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
+jclass cls = initClass(curEnv);
+if ( cls == NULL) {
+throw GiwsException::JniCallMethodException(curEnv);
+}
+
+static jmethodID voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID = curEnv->GetStaticMethodID(cls, "xcosDiagramToScilab", "(Ljava/lang/String;J)V" ) ;
+if (voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID == NULL) {
+throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramToScilab");
+}
+
+jstring file_ = curEnv->NewStringUTF( file );
+if (file != NULL && file_ == NULL)
+{
+throw GiwsException::JniBadAllocException(curEnv);
+}
+
+
+                         curEnv->CallStaticVoidMethod(cls, voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID ,file_, diagramId);
                         curEnv->DeleteLocalRef(file_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

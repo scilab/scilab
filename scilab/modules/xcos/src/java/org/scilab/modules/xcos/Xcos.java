@@ -57,6 +57,7 @@ import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.preferences.XcosConfiguration;
@@ -845,6 +846,31 @@ public final class Xcos {
         }
         if (instance.lastError != null && !instance.lastError.isEmpty()) {
             throw new RuntimeException(instance.lastError);
+        }
+    }
+
+    /**
+     * Load an xcos diagram without using Scilab at all.
+     *
+     * <P>This support a reduced number of format and should be mainly used to test the decoder
+     *
+     * @param file the file
+     * @param diagramId the diagram to load into
+     * @throws Exception on loading error
+     */
+    @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+    public static void xcosDiagramToScilab(String file, long diagramId) throws Exception {
+        XcosFileType filetype = XcosFileType.findFileType(file);
+        if (filetype == null) {
+            throw new IllegalArgumentException("not handled filetype");
+        }
+        switch (filetype) {
+            case XCOS:
+            case ZCOS:
+                filetype.load(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                break;
+            case COSF:
+                throw new IllegalArgumentException("not handled filetype");
         }
     }
 

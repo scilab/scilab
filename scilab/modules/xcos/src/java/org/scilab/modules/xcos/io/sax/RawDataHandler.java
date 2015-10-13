@@ -12,11 +12,6 @@
 
 package org.scilab.modules.xcos.io.sax;
 
-import java.beans.BeanDescriptor;
-import java.beans.IntrospectionException;
-import java.beans.PropertyDescriptor;
-import java.beans.SimpleBeanInfo;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -30,9 +25,12 @@ import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
@@ -49,7 +47,7 @@ class RawDataHandler implements ScilabHandler {
         public RawDataDescriptor(ObjectProperties as, HandledElement found, String scilabClass, Object container) {
             // defensive programming
             if (as == null) {
-                throw new IllegalAccessError();
+                throw new IllegalArgumentException();
             }
 
             this.as = as;
@@ -71,6 +69,7 @@ class RawDataHandler implements ScilabHandler {
 
         Map<String, ObjectProperties> localPropertyMap = new HashMap<>();
         localPropertyMap.put("context", ObjectProperties.DIAGRAM_CONTEXT);
+        localPropertyMap.put("dState", ObjectProperties.DSTATE);
         localPropertyMap.put("equations", ObjectProperties.EQUATIONS);
         localPropertyMap.put("exprs", ObjectProperties.EXPRS);
         localPropertyMap.put("integerParameters", ObjectProperties.IPAR);
@@ -80,9 +79,13 @@ class RawDataHandler implements ScilabHandler {
         localPropertyMap.put("oDState", ObjectProperties.ODSTATE);
         localPropertyMap.put("points", ObjectProperties.CONTROL_POINTS);
         localPropertyMap.put("realParameters", ObjectProperties.RPAR);
-        // TODO might be incomplete
+        localPropertyMap.put("state", ObjectProperties.STATE);
         propertyMap = Collections.unmodifiableMap(localPropertyMap);
     }
+
+    /*
+     * Implement the ScilabHandler interface to decode the data
+     */
 
     public Object startElement(HandledElement found, Attributes atts) {
         String v;
@@ -138,68 +141,8 @@ class RawDataHandler implements ScilabHandler {
                     scilabClass = v;
                 }
 
-                // allocate the right class
-                final Object container;
-                switch (found) {
-                    case ScilabBoolean:
-                        container = new ScilabBoolean(new boolean[height][width]);
-                        break;
-                    case ScilabDouble:
-                        container = new ScilabDouble(new double[height][width]);
-                        break;
-                    case ScilabInteger:
-                        v = atts.getValue("intPrecision");
-                        if (v != null) {
-                            boolean unsigned = true;
-                            switch (ScilabIntegerTypeEnum.valueOf(v)) {
-                                case sci_int8:
-                                    unsigned = false;
-                                // no break on purpose
-                                case sci_uint8:
-                                    container = new ScilabInteger(new byte[height][width], unsigned);
-                                    break;
-                                case sci_int16:
-                                    unsigned = false;
-                                // no break on purpose
-                                case sci_uint16:
-                                    container = new ScilabInteger(new short[height][width], unsigned);
-                                    break;
-                                case sci_int32:
-                                    unsigned = false;
-                                // no break on purpose
-                                case sci_uint32:
-                                    container = new ScilabInteger(new int[height][width], unsigned);
-                                    break;
-                                case sci_int64:
-                                    unsigned = false;
-                                // no break on purpose
-                                case sci_uint64:
-                                    container = new ScilabInteger(new long[height][width], unsigned);
-                                    break;
-                                default:
-                                    container = new ScilabInteger(new long[height][width], false);
-                                    break;
-                            }
-                        } else {
-                            container = new ScilabInteger(new long[height][width], false);
-                        }
-                        break;
-                    case ScilabString:
-                        container = new ScilabString(new String[height][width]);
-                        break;
-                    default: // case Array
-                        if (scilabClass.equalsIgnoreCase("ScilabMList")) {
-                            container = new ScilabMList();
-                        } else if (scilabClass.equalsIgnoreCase("ScilabTList")) {
-                            container = new ScilabTList();
-                        } else if (scilabClass.equalsIgnoreCase("ScilabList")) {
-                            container = new ScilabList();
-                        } else {
-                            container = new ArrayList<>();
-                        }
-                        break;
-                }
-
+                // allocate the right class and push it to a descriptor
+                final Object container = allocateDataType(found, atts, height, width, scilabClass);
                 return new RawDataDescriptor(propertyMap.get(as), found, scilabClass, container);
             }
             case add: {
@@ -211,18 +154,14 @@ class RawDataHandler implements ScilabHandler {
 
                 switch (fieldValue.as) {
                     case DIAGRAM_CONTEXT: {
+                        @SuppressWarnings("unchecked")
                         ArrayList<String> container = ((ArrayList<String>) fieldValue.value);
                         container.add(atts.getValue("value"));
-                        break;
-                    }
-                    case CONTROL_POINTS: {
-                        // FIXME not implemented yet
                         break;
                     }
                     default:
                         break;
                 }
-
                 break;
             }
             case data: {
@@ -325,6 +264,80 @@ class RawDataHandler implements ScilabHandler {
         return null;
     }
 
+    /**
+     * Allocate a {@link ScilabType} datatype accordingly to the decoded descriptors
+     * @param found the decoded element
+     * @param atts the attributes of the element
+     * @param height decoded height
+     * @param width decoded width
+     * @param scilabClass decoded scilabClass
+     * @return the container
+     */
+    private Object allocateDataType(HandledElement found, Attributes atts, int height, int width, String scilabClass) {
+        String v;
+        final Object container;
+        switch (found) {
+            case ScilabBoolean:
+                container = new ScilabBoolean(new boolean[height][width]);
+                break;
+            case ScilabDouble:
+                container = new ScilabDouble(new double[height][width]);
+                break;
+            case ScilabInteger:
+                v = atts.getValue("intPrecision");
+                if (v != null) {
+                    boolean unsigned = true;
+                    switch (ScilabIntegerTypeEnum.valueOf(v)) {
+                        case sci_int8:
+                            unsigned = false;
+                        // no break on purpose
+                        case sci_uint8:
+                            container = new ScilabInteger(new byte[height][width], unsigned);
+                            break;
+                        case sci_int16:
+                            unsigned = false;
+                        // no break on purpose
+                        case sci_uint16:
+                            container = new ScilabInteger(new short[height][width], unsigned);
+                            break;
+                        case sci_int32:
+                            unsigned = false;
+                        // no break on purpose
+                        case sci_uint32:
+                            container = new ScilabInteger(new int[height][width], unsigned);
+                            break;
+                        case sci_int64:
+                            unsigned = false;
+                        // no break on purpose
+                        case sci_uint64:
+                            container = new ScilabInteger(new long[height][width], unsigned);
+                            break;
+                        default:
+                            container = new ScilabInteger(new long[height][width], false);
+                            break;
+                    }
+                } else {
+                    container = new ScilabInteger(new long[height][width], false);
+                }
+                break;
+            case ScilabString:
+                container = new ScilabString(new String[height][width]);
+                break;
+            default: // case Array
+                if ("ScilabMList".equals(scilabClass)) {
+                    container = new ScilabMList();
+                } else if ("ScilabTList".equals(scilabClass)) {
+                    container = new ScilabTList();
+                } else if ("ScilabList".equals(scilabClass)) {
+                    container = new ScilabList();
+                } else {
+                    container = new ArrayList<>();
+                }
+                break;
+        }
+        return container;
+    }
+
     public void endElement(HandledElement found) {
         switch (found) {
             case Array:
@@ -350,6 +363,8 @@ class RawDataHandler implements ScilabHandler {
                             return;
                         }
                         mxGeometry geom = (mxGeometry) parent;
+
+                        @SuppressWarnings("unchecked")
                         ArrayList<mxPoint> value = (ArrayList<mxPoint>) fieldValue.value;
                         geom.setPoints(value);
                         break;
@@ -361,6 +376,7 @@ class RawDataHandler implements ScilabHandler {
                         }
                         ScicosObjectOwner diagram = (ScicosObjectOwner) parent;
 
+                        @SuppressWarnings("unchecked")
                         ArrayList<String> value = (ArrayList<String>) fieldValue.value;
                         VectorOfString ctx = new VectorOfString(value.size());
                         for (int i = 0; i < value.size(); i++) {
@@ -369,10 +385,47 @@ class RawDataHandler implements ScilabHandler {
                         saxHandler.controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
                         break;
                     }
+                    case DSTATE:
+                    case NZCROSS:
+                    case NMODE:
+                    case IPAR:
+                    case RPAR: {
+                        // defensive programming
+                        if (!(parent instanceof XcosCell)) {
+                            return;
+                        }
+                        XcosCell cell = (XcosCell) parent;
+                        if (!(fieldValue.value instanceof ScilabDouble)) {
+                            // FIXME decode the rpar as a subdiagram using the legacy decoders
+                            return;
+                        }
+                        ScilabDouble value = (ScilabDouble) fieldValue.value;
+
+                        VectorOfDouble vec = new VectorOfDouble(value.getHeight());
+                        for (int i = 0; i < value.getHeight(); i++) {
+                            vec.set(i, value.getRealElement(i, 0));
+                        }
+
+                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.RPAR, vec);
+                        break;
+                    }
+                    case EQUATIONS:
+                    case ODSTATE: {
+                        // defensive programming
+                        if (!(parent instanceof XcosCell)) {
+                            return;
+                        }
+                        XcosCell cell = (XcosCell) parent;
+                        ScilabList value = (ScilabList) fieldValue.value;
+
+                        if (value.size() > 0) {
+                            System.err.println("RawDataHandler value not decoded: " + fieldValue.as);
+                        }
+                        break;
+                    }
                     default:
                         System.err.println("RawDataHandler not handled: " + fieldValue.as);
                         break;
-
                 }
                 break;
             }
@@ -385,4 +438,69 @@ class RawDataHandler implements ScilabHandler {
         }
     }
 
+    /*
+     * Convert the decoded data to a var2vec encoded value
+     */
+
+    private static void addMatrixHeader(VectorOfDouble vec, ScilabType var) {
+        vec.add(var.getType().swigValue());
+        vec.add(2); // we do not manage hypermatrices yet
+        vec.add(var.getHeight());
+        vec.add(var.getWidth());
+    }
+
+    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabBoolean var) {
+        addMatrixHeader(vec, var);
+
+
+        return vec;
+    }
+
+    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabDouble var) {
+        addMatrixHeader(vec, var);
+
+        // FIXME encode the values
+
+        return vec;
+    }
+
+    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabInteger var) {
+        addMatrixHeader(vec, var);
+
+        // FIXME encode the values
+
+        return vec;
+    }
+
+    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabString var) {
+        addMatrixHeader(vec, var);
+
+        // FIXME encode the values
+
+        return vec;
+    }
+
+    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabList var) {
+
+
+        // FIXME encode the values
+
+        return vec;
+    }
+
+    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabTList var) {
+
+
+        // FIXME encode the values
+
+        return vec;
+    }
+
+    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabMList var) {
+
+
+        // FIXME encode the values
+
+        return vec;
+    }
 }

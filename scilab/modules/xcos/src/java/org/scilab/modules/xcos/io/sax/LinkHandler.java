@@ -12,8 +12,12 @@
 
 package org.scilab.modules.xcos.io.sax;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -26,32 +30,35 @@ class LinkHandler implements ScilabHandler {
 
     /**
      * Default constructor
-     * @param saxHandler the shared sax handler
+     * 
+     * @param saxHandler
+     *            the shared sax handler
      */
     LinkHandler(SAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 
+    @Override
     public BasicLink startElement(HandledElement found, Attributes atts) {
         String v;
         BasicLink link;
         final long uid = saxHandler.controller.createObject(Kind.LINK);
 
         switch (found) {
-            case CommandControlLink:
-                link = new CommandControlLink(uid);
-                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, -1);
-                break;
-            case ExplicitLink:
-                link = new ExplicitLink(uid);
-                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 1);
-                break;
-            case ImplicitLink:
-                link = new ImplicitLink(uid);
-                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 2);
-                break;
-            default:
-                throw new IllegalArgumentException();
+        case CommandControlLink:
+            link = new CommandControlLink(uid);
+            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, -1);
+            break;
+        case ExplicitLink:
+            link = new ExplicitLink(uid);
+            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 1);
+            break;
+        case ImplicitLink:
+            link = new ImplicitLink(uid);
+            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 2);
+            break;
+        default:
+            throw new IllegalArgumentException();
         }
 
         /*
@@ -65,18 +72,38 @@ class LinkHandler implements ScilabHandler {
 
         v = atts.getValue("source");
         if (v != null) {
-            // if the attribute is present then the connected port is already
-            // decoded and present in the map
-            long src = saxHandler.allChildren.peek().get(v);
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.SOURCE_PORT, src);
+            Long src = saxHandler.allChildren.peek().get(v);
+            if (src != null) {
+                // if the attribute is present then the connected port is already
+                // decoded and present in the map
+                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.SOURCE_PORT, src.longValue());
+            } else {
+                // if not present then it will be resolved later
+                ArrayList<UnresolvedReference> refList = saxHandler.unresolvedReferences.get(v);
+                if (refList == null) {
+                    refList = new ArrayList<>();
+                    saxHandler.unresolvedReferences.put(v, refList);
+                }
+                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.SOURCE_PORT, null, 0));
+            }
         }
 
         v = atts.getValue("target");
         if (v != null) {
-            // if the attribute is present then the connected port is already
-            // decoded and present in the map
-            long dst = saxHandler.allChildren.peek().get(v);
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.DESTINATION_PORT, dst);
+            Long dst = saxHandler.allChildren.peek().get(v);
+            if (dst != null) {
+                // if the attribute is present then the connected port is already
+                // decoded and present in the map
+                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.DESTINATION_PORT, dst.longValue());
+            } else {
+                // if not present then it will be resolved later
+                ArrayList<UnresolvedReference> refList = saxHandler.unresolvedReferences.get(v);
+                if (refList == null) {
+                    refList = new ArrayList<>();
+                    saxHandler.unresolvedReferences.put(v, refList);
+                }
+                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.DESTINATION_PORT, null, 0));
+            }
         }
 
         v = atts.getValue("style");
@@ -93,6 +120,7 @@ class LinkHandler implements ScilabHandler {
         return link;
     }
 
+    @Override
     public void endElement(HandledElement found) {
     }
 }

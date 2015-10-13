@@ -47,6 +47,7 @@ namespace std {
         vector(size_type n);
         %rename(ensureCapacity) reserve;
         void reserve(size_type n);
+        void resize(size_type n);
         int size() const;
         %rename(isEmpty) empty;
         bool empty() const;
@@ -104,10 +105,10 @@ namespace std {
         typedef bool const_reference;
         vector();
         vector(size_type n);
-        size_type size() const;
-        size_type capacity() const;
+        %rename(ensureCapacity) reserve;
         void reserve(size_type n);
         void resize(size_type n);
+        int size() const;
         %rename(isEmpty) empty;
         bool empty() const;
         void clear();
