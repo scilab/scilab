@@ -15,19 +15,41 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-13 13:26+0100\n"
 
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 60
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 68
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 86
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 104
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 137
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 194
-# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 50
-# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 59
-# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 65
-# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 73
-# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 83
+# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 51
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 57
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#
+# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 105
+# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 140
+# File: modules/xcos/sci_gateway/cpp/sci_xcosCellCreated.cpp, line: 38
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#
+# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 119
+# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 164
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
+msgstr ""
+
+#
+# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 133
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+
+#
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 44
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 53
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 67
@@ -41,35 +63,19 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 94
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 112
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 124
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 201
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr ""
-
-#
-# File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 214
-# File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 113
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-
-#
-# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 120
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 59
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 105
+# File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 113
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 97
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -77,7 +83,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 106
+# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 98
 #, c-format
 msgid ""
 "Unable to load the Batik library. \n"
@@ -85,22 +91,17 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 991
-msgid "parent diagram not found."
-msgstr ""
-
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 137
+# File: modules/xcos/src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 138
 msgid "Preview"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 233
+# File: modules/xcos/src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 234
 msgid "Error on export"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 233
+# File: modules/xcos/src/java/org/scilab/modules/xcos/actions/ExportAction.java, line: 234
 msgid "Please specify a valid file format"
 msgstr ""
 
@@ -329,32 +330,32 @@ msgid "Please take a look into the Scilab console"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/Palette.java, line: 64
+# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/Palette.java, line: 65
 #, c-format
 msgid "Wrong input argument \"%s\": invalid tree path.\n"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/Palette.java, line: 67
+# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/Palette.java, line: 68
 #, c-format
 msgid ""
 "Wrong input argument \"%s\": invalid node, use 'xcosPalDisable' instead.\n"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/Palette.java, line: 69
+# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/Palette.java, line: 70
 #, c-format
 msgid "Unable to import %s .\n"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 71
+# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 65
 #, c-format
 msgid "Unable to load block from %s ."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 72
+# File: modules/xcos/src/java/org/scilab/modules/xcos/palette/PaletteBlockCtrl.java, line: 66
 msgid "Loading the block"
 msgstr ""
 
@@ -713,137 +714,137 @@ msgid "Xcos Demonstrations"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 123
-msgid "About Xcos"
-msgstr ""
-
-#
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 126
-msgid "Palettes"
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 124
+msgid "About Scilab"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 127
-msgid "Sources"
+msgid "Palettes"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 128
-msgid "Continuous time systems"
+msgid "Sources"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 129
-msgid "Implicit"
+msgid "Continuous time systems"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 130
-msgid "Discontinuities"
+msgid "Implicit"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 131
-msgid "Lookup Tables"
+msgid "Discontinuities"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 132
-msgid "Signal Processing"
+msgid "Lookup Tables"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 133
-msgid "Zero crossing detection"
+msgid "Signal Processing"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 134
-msgid "Mathematical Operations"
+msgid "Zero crossing detection"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 135
-msgid "Integer"
+msgid "Mathematical Operations"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 136
-msgid "Matrix"
+msgid "Integer"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 137
-msgid "Sinks"
+msgid "Matrix"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 138
-msgid "Port & Subsystem"
+msgid "Sinks"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 139
-msgid "Annotations"
+msgid "Port & Subsystem"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 140
-msgid "Discrete time systems"
+msgid "Annotations"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 141
-msgid "Event handling"
+msgid "Discrete time systems"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 142
-msgid "Signal Routing"
+msgid "Event handling"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 143
-msgid "Commonly Used Blocks"
+msgid "Signal Routing"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 144
-msgid "User-Defined Functions"
+msgid "Commonly Used Blocks"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 145
-msgid "Demonstrations Blocks"
+msgid "User-Defined Functions"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 146
-msgid "Electrical"
+msgid "Demonstrations Blocks"
 msgstr ""
 
 #
 # File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 147
+msgid "Electrical"
+msgstr ""
+
+#
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 148
 msgid "Thermo-Hydraulics"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 149
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 150
 msgid "Enable"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 150
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 151
 msgid "Palette name"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 152
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
 msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 153
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 154
 #, c-format
 msgid ""
 "The file %s doesn't exist\n"
@@ -851,28 +852,28 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 155
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 156
 #, c-format
 msgid "Unable to decode the URI : %s ."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 157
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 158
 msgid "Ok"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 158
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 159
 msgid "Cancel"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 159
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 160
 msgid "Reset to default"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 163
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 164
 msgid ""
 "You may enter here scilab instructions to define symbolic parameters used in "
 "block definitions using Scilab instructions.<br/>These instructions are "
@@ -881,496 +882,496 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 166
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 167
 msgid "Failed to load Diagram"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 167
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 168
 msgid "Could not save diagram."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 168
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 169
 msgid "Do you want to overwrite existing file?"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 169
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 170
 msgid "Do you want a transparent background image?"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 170
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 171
 msgid "Image contains no data."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 171
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 172
 msgid "Unknown Diagram Version : "
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 172
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 173
 msgid "Will try to continue..."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 174
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 175
 msgid "Xcos error"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 175
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 176
 msgid "Unable to delete "
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 176
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 177
 msgid "No block selected"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 178
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 179
 msgid "Export to XML"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 179
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 180
 msgid "Export in progress"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 180
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 181
 msgid "Import from XML"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 182
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 183
 msgid "Add to"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 183
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 184
 msgid "Add to new diagram"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 185
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 186
 msgid "Explicit data input port must be connected to explicit data output port"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 186
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 187
 msgid "Implicit data input port must be connected to implicit data output port"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 187
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 188
 msgid "Explicit data output port must be connected to explicit data input port"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 188
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 189
 msgid "Implicit data output port must be connected to implicit data input port"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 189
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 190
 msgid "Command port must be connected to control port"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 190
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 191
 msgid "control port must be connected to command port"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 191
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 192
 msgid ""
 "Port is already connected, please select an unconnected port or a valid link."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 193
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 194
 msgid "Align Blocks"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 194
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 195
 msgid "Left"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 195
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 196
 msgid "Right"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 196
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 197
 msgid "Center"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 197
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 198
 msgid "Top"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 198
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 199
 msgid "Bottom"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 199
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 200
 msgid "Middle"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 201
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 202
 msgid "Border Color"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 202
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 203
 msgid "Fill Color"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 203
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 204
 msgid "Text Color"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 205
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 206
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1829
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1977
 msgid "Link Style"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 206
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 207
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1722
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1763
 msgid "Straight"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 207
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 208
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1723
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1764
 msgid "Horizontal"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 208
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 209
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1724
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1765
 msgid "Vertical"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 210
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 211
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 211
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 212
 msgid "Execution trace and Debug"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 214
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 215
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1865
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2013
 msgid "Final integration time"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 215
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 216
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1871
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2019
 msgid "Real time scaling"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 216
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 217
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1877
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2025
 msgid "Integrator absolute tolerance"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 217
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 218
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1883
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2031
 msgid "Integrator relative tolerance"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 218
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 219
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1889
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2037
 msgid "Tolerance on time"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 219
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 220
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1895
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2043
 msgid "Max integration time interval"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 220
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 221
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1901
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2049
 msgid "Solver kind"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 221
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 222
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1915
 # File: modules/xcos/src/xcos_fake_xml.c, line: 2063
 msgid "Maximum step size (0 means no limit)"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 222
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 223
 msgid "Default"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 223
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 224
 msgid "Set Parameters"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 227
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 228
 msgid "Based on Scicos"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 231
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 232
 msgid "Saving diagram"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 232
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 233
 msgid "Loading diagram"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 233
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 234
 msgid "Loading palettes"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 234
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 235
 msgid "Loading user defined palettes"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 235
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 236
 msgid "Generating C Code for SuperBlock"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 236
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 237
 msgid "A SuperBlock must be selected to generate code"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 237
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 238
 msgid "Simulation in progress"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 238
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 239
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 240
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 241
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 241
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 242
 msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 244
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 245
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1743
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1784
 msgid "No trace nor debug printing"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 245
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 246
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1744
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1785
 msgid "Light Simulation trace (Discrete and Continuous part switches)"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 246
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 247
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1745
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1786
 msgid "Per block execution trace and Debug block calls"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 247
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 248
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1746
 # File: modules/xcos/src/xcos_fake_xml.c, line: 1787
 msgid "Debug block calls without trace"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 250
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 251
 msgid "All supported formats"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 251
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 252
 msgid "Scicos file"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 253
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 254
 msgid "Xcos file"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 254
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 255
 msgid "Xcos (zip) file"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 255
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 256
 msgid "Scilab Open Data file"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 258
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 259
 msgid "Masked SuperBlock editor"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 259
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 260
 msgid "Insert"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 260
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 261
 msgid "Delete"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 261
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 262
 msgid "Move Up"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 262
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 263
 msgid "Move Down"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 263
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 264
 msgid "Rows"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 264
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 265
 msgid "Variable settings"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 265
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 266
 msgid "Default values"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 266
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 267
 msgid "WinTitle"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 267
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 268
 msgid "Window title"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 268
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 269
 msgid "Variable names"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 269
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 270
 msgid "Variable descriptions"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 270
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 271
 msgid "Editable"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 271
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 272
 msgid "Values"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 272
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 273
 msgid "Set block parameters"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 276
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 277
 msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 277
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 278
 msgid ""
 "The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
 "default one."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 280
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 281
 msgid "Setting up Modelica Compiler."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 281
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 282
 msgid "Modelica initialize"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 288
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 289
 msgid "Error: unable to compile this SuperBlock"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 289
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 290
 msgid "Evaluation problem: wrong port number."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 290
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 291
 #, c-format
 msgid "Expecting '%d'."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 292
+# File: modules/xcos/src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 293
 msgid ""
 "<html><body>Compilation error: link ignored because it is not connected. <br/"
 ">Please reconnect it.</body></html>"
@@ -1455,7 +1456,6 @@ msgstr ""
 #
 # File: modules/xcos/macros/generateBlockImages.sci, line: 25
 # File: modules/xcos/macros/getDiagramVersion.sci, line: 30
-# File: modules/xcos/macros/importScicosDiagram.sci, line: 24
 # File: modules/xcos/macros/importScicosPal.sci, line: 47
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1510,13 +1510,6 @@ msgstr ""
 msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
 "access on this directory.\n"
-msgstr ""
-
-#
-# File: modules/xcos/macros/importScicosDiagram.sci, line: 42
-# File: modules/xcos/macros/importScicosDiagram.sci, line: 46
-#, c-format
-msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
 msgstr ""
 
 #

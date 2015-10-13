@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-13 13:26+0100\n"
 
 # File: modules/dynamic_link/sci_gateway/cpp/sci_addinter.cpp, line: 32
 # File: modules/dynamic_link/sci_gateway/cpp/sci_getdynlibext.cpp, line: 28
@@ -236,23 +236,18 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/configure_msvc.sci, line: 35
-msgid "Microsoft Visual Studio C x86 Compiler not found."
-msgstr ""
-
-#
 # File: modules/dynamic_link/macros/detectmsifort64tools.sci, line: 40
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 70
+# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 73
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 80
+# File: modules/dynamic_link/macros/detectmsvc64tools.sci, line: 83
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
 
@@ -702,17 +697,17 @@ msgid "%s: Failed to add include path : %s"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwCompile.sci, line: 18
+# File: modules/dynamic_link/macros/windows/dlwCompile.sci, line: 19
 msgid "   Compilation of "
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwCompile.sci, line: 24
+# File: modules/dynamic_link/macros/windows/dlwCompile.sci, line: 25
 msgid "   Building shared library (be patient)\n"
 msgstr ""
 
 #
-# File: modules/dynamic_link/macros/windows/dlwCompile.sci, line: 48
+# File: modules/dynamic_link/macros/windows/dlwCompile.sci, line: 46
 #, c-format
 msgid "%s: Error while executing %s.\n"
 msgstr ""

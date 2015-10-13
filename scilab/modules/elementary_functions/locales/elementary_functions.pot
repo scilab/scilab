@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-13 13:26+0100\n"
 
 # File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 42
 # File: modules/elementary_functions/sci_gateway/c/sci_base2dec.c, line: 55
@@ -135,6 +135,20 @@ msgid ""
 msgstr ""
 
 #
+# File: modules/elementary_functions/sci_gateway/c/sci_maxi.c, line: 230
+# File: modules/elementary_functions/sci_gateway/c/sci_maxi.c, line: 475
+# File: modules/elementary_functions/sci_gateway/c/sci_maxi.c, line: 488
+#, c-format
+msgid "%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/elementary_functions/sci_gateway/c/sci_maxi.c, line: 506
+#, c-format
+msgid "%ls:  Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#
 # File: modules/elementary_functions/sci_gateway/c/sci_number_properties.c, line: 113
 #, c-format
 msgid "%s: unknown property kind.\n"
@@ -155,17 +169,19 @@ msgid "%s: variable size exceeded : less than %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 82
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 76
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 102
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log1p.cpp, line: 72
+# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 83
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 74
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 100
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log1p.cpp, line: 70
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Singularity of the function.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 89
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log1p.cpp, line: 79
+# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 90
+# File: modules/elementary_functions/sci_gateway/cpp/sci_atanh.cpp, line: 77
+# File: modules/elementary_functions/sci_gateway/cpp/sci_atanh.cpp, line: 84
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log1p.cpp, line: 77
 #, c-format
 msgid ""
 "%s: Warning: Wrong value for input argument #%d : Singularity of the "
@@ -173,99 +189,99 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 118
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 74
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 83
+# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 119
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 71
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 80
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 124
+# File: modules/elementary_functions/sci_gateway/cpp/sci_atan.cpp, line: 125
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 106
-# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 114
-# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 125
-# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 133
-# File: modules/elementary_functions/sci_gateway/cpp/sci_diag.cpp, line: 67
-# File: modules/elementary_functions/sci_gateway/cpp/sci_diag.cpp, line: 75
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 127
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 136
-# File: modules/elementary_functions/sci_gateway/cpp/sci_tril.cpp, line: 65
-# File: modules/elementary_functions/sci_gateway/cpp/sci_tril.cpp, line: 73
-# File: modules/elementary_functions/sci_gateway/cpp/sci_triu.cpp, line: 66
-# File: modules/elementary_functions/sci_gateway/cpp/sci_triu.cpp, line: 74
+# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 108
+# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 116
+# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 127
+# File: modules/elementary_functions/sci_gateway/cpp/sci_clean.cpp, line: 135
+# File: modules/elementary_functions/sci_gateway/cpp/sci_diag.cpp, line: 64
+# File: modules/elementary_functions/sci_gateway/cpp/sci_diag.cpp, line: 72
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 124
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 133
+# File: modules/elementary_functions/sci_gateway/cpp/sci_tril.cpp, line: 66
+# File: modules/elementary_functions/sci_gateway/cpp/sci_tril.cpp, line: 74
+# File: modules/elementary_functions/sci_gateway/cpp/sci_triu.cpp, line: 67
+# File: modules/elementary_functions/sci_gateway/cpp/sci_triu.cpp, line: 75
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 115
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 128
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 115
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 128
-# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 142
-# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 155
-# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 144
-# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 157
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 113
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 126
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 113
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 126
+# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 141
+# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 154
+# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 143
+# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 156
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 143
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 250
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 143
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 250
-# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 170
-# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 277
-# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 172
-# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 279
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 141
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 248
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 141
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 248
+# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 169
+# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 276
+# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 171
+# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 278
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 223
-# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 223
-# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 250
-# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 252
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumprod.cpp, line: 221
+# File: modules/elementary_functions/sci_gateway/cpp/sci_cumsum.cpp, line: 221
+# File: modules/elementary_functions/sci_gateway/cpp/sci_prod.cpp, line: 249
+# File: modules/elementary_functions/sci_gateway/cpp/sci_sum.cpp, line: 251
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 52
+# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 50
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 79
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 202
+# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 76
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 205
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 86
+# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 83
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 94
+# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 91
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 102
+# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 99
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A strictly increasing order "
@@ -273,75 +289,75 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 128
+# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 125
 #, c-format
 msgid "%s: Wrong value for input argument #%d: It must be 'c' or 'd'.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 152
+# File: modules/elementary_functions/sci_gateway/cpp/sci_dsearch.cpp, line: 149
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A vector of length > %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_expm.cpp, line: 35
+# File: modules/elementary_functions/sci_gateway/cpp/sci_expm.cpp, line: 33
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expmected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_expm.cpp, line: 41
+# File: modules/elementary_functions/sci_gateway/cpp/sci_expm.cpp, line: 39
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expmected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_expm.cpp, line: 68
+# File: modules/elementary_functions/sci_gateway/cpp/sci_expm.cpp, line: 64
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_eye.cpp, line: 47
-# File: modules/elementary_functions/sci_gateway/cpp/sci_ones.cpp, line: 45
-# File: modules/elementary_functions/sci_gateway/cpp/sci_rand.cpp, line: 150
-# File: modules/elementary_functions/sci_gateway/cpp/sci_zeros.cpp, line: 45
+# File: modules/elementary_functions/sci_gateway/cpp/sci_eye.cpp, line: 45
+# File: modules/elementary_functions/sci_gateway/cpp/sci_ones.cpp, line: 43
+# File: modules/elementary_functions/sci_gateway/cpp/sci_rand.cpp, line: 149
+# File: modules/elementary_functions/sci_gateway/cpp/sci_zeros.cpp, line: 43
 msgid "Invalid index.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 44
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 60
-# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 50
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 43
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 63
+# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 49
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 53
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 69
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 52
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 68
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 60
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 59
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 81
+# File: modules/elementary_functions/sci_gateway/cpp/sci_gsort.cpp, line: 80
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: ['g' 'r' 'c' 'lc' 'lr'] expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 83
-# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 109
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 81
+# File: modules/elementary_functions/sci_gateway/cpp/sci_log.cpp, line: 107
 #, c-format
 msgid ""
 "%ls: Warning: Wrong value for input argument #%d : Singularity of the "
@@ -349,22 +365,22 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 102
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 150
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 99
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 147
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Only one value can be equal to %d.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 109
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 157
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 106
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 154
 #, c-format
 msgid "%s: Wrong value for input argument #%d : At most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 175
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 172
 #, c-format
 msgid ""
 "%s: Wrong value for input argument(s) : Sparse matrix cannot be reshaped "
@@ -372,31 +388,31 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 184
+# File: modules/elementary_functions/sci_gateway/cpp/sci_matrix.cpp, line: 181
 #, c-format
 msgid "%s: Input and output matrices must have the same number of elements.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 81
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 84
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non empty list expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 165
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 167
 #, c-format
 msgid "%s: Wrong value for input argument #%d: r, c, m or * expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 182
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 184
 #, c-format
 msgid "%s: null matrix (argument # %d).\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 188
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 190
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: value less than or equal to the "
@@ -404,14 +420,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 263
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 267
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 274
-# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 284
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 278
+# File: modules/elementary_functions/sci_gateway/cpp/sci_max.cpp, line: 288
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: All arguments must have the same "
@@ -419,14 +435,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 81
+# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 77
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 116
-# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 136
+# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 112
+# File: modules/elementary_functions/sci_gateway/cpp/sci_rat.cpp, line: 132
 #, c-format
 msgid "%s: The tolerance is too large for the value %d.\n"
 msgstr ""

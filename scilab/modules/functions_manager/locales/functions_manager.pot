@@ -1,4 +1,4 @@
-# Localization of the module mexlib
+# Localization of the module functions_manager
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
@@ -17,6 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Revision-Date: 2015-10-13 13:26+0100\n"
 
-# File: modules/mexlib/src/cpp/mexlib.cpp, line: 1752
-msgid "Warning: "
+# File: modules/functions_manager/src/cpp/funcmanager.cpp, line: 371
+msgid "Unable to execute : "
 msgstr ""

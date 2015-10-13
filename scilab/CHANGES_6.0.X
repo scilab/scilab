@@ -59,6 +59,8 @@ Scilab Bug Fixes
 
 * Bug #13983 fixed - who_user returned wrong values.
 
+* Bug #13990 fixed - `gettext` did not manage the added '_W' macro.
+
 * Bug #14020 fixed - Incorrect carriage return ascii code.
 
 * Bug #14022 fixed - getscilabkeywords() was KO (+gateway what() added).

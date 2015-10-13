@@ -15,10 +15,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-13 13:26+0100\n"
 
 # File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 31
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 49
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 48
 # File: modules/sparse/sci_gateway/cpp/sci_sparse.cpp, line: 34
 # File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 29
 #, c-format
@@ -28,9 +28,9 @@ msgstr ""
 #
 # File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 36
 # File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 38
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 68
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 40
-# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 87
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 67
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 38
+# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 85
 # File: modules/sparse/sci_gateway/cpp/sci_spzeros.cpp, line: 35
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
@@ -44,7 +44,7 @@ msgstr ""
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_adj2sp.cpp, line: 53
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 66
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 65
 #, c-format
 msgid "%s: Wrong type for argument %d: Matrix expected.\n"
 msgstr ""
@@ -63,29 +63,29 @@ msgstr ""
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_full.cpp, line: 32
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 52
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 56
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 34
-# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 33
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 51
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 55
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 32
+# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 31
 # File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 33
-# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 71
+# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 69
 # File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 41
-# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 30
+# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 28
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 33
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 63
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 62
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d  expected.\n"
 msgstr ""
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 39
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 69
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 58
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 68
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 57
 # File: modules/sparse/sci_gateway/cpp/sci_spchol.cpp, line: 39
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
@@ -93,7 +93,7 @@ msgstr ""
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 45
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 75
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 74
 #, c-format
 msgid ""
 "%s: Wrong type for argument %d:  Handle to sparse lu factors expected.\n"
@@ -101,87 +101,87 @@ msgstr ""
 
 #
 # File: modules/sparse/sci_gateway/cpp/sci_ludel.cpp, line: 56
-# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 89
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 152
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 158
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 170
+# File: modules/sparse/sci_gateway/cpp/sci_luget.cpp, line: 88
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 149
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 155
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 167
 #, c-format
 msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 55
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 54
 #, c-format
 msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 74
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 73
 #, c-format
 msgid "%s: Wrong number of dimensions for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 106
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 84
+# File: modules/sparse/sci_gateway/cpp/sci_lufact.cpp, line: 104
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 83
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 121
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 118
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 134
+# File: modules/sparse/sci_gateway/cpp/sci_lusolve.cpp, line: 131
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 62
+# File: modules/sparse/sci_gateway/cpp/sci_nnz.cpp, line: 61
 #, c-format
 msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 48
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 59
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 46
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 57
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 70
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 68
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 78
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 76
 msgid ""
 " The provided \"n\" does not correspond to the matrix defined by xadj and "
 "iadj\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 100
+# File: modules/sparse/sci_gateway/cpp/sci_ordmmd.cpp, line: 98
 #, c-format
 msgid "%s: insufficient working storage"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 39
+# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 37
 # File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 121
 #, c-format
 msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 44
+# File: modules/sparse/sci_gateway/cpp/sci_sp2adj.cpp, line: 42
 # File: modules/sparse/sci_gateway/cpp/sci_spget.cpp, line: 127
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
@@ -252,13 +252,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 80
+# File: modules/sparse/sci_gateway/cpp/sci_spcompack.cpp, line: 78
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 36
+# File: modules/sparse/sci_gateway/cpp/sci_spones.cpp, line: 34
 #, c-format
 msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
 msgstr ""
@@ -273,7 +273,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/sparse/src/c/lu.c, line: 127
+# File: modules/sparse/src/c/lu.c, line: 130
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
 msgstr ""

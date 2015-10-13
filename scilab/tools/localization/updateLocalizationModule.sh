@@ -20,7 +20,7 @@
 
 if test $# -ne 1; then
     echo "This script goes into a module and updates the localization file "
-    echo "by checking the _(xxx) and gettext(xxx) calls in the code"
+    echo "by checking the _(xxx), _W() and gettext(xxx) calls in the code"
     echo "It creates the locales directory for C, C++ and Java and"
     echo "locales_macros for Scilab code"
     echo
@@ -52,7 +52,7 @@ TARGETDIR=locales
 HEADER_TEMPLATE=$SCI/modules/localization/data/header.pot
 TIMEZONE="+0100"
 # Gettext arg
-XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --no-wrap --sort-by-file"
+XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --keyword=_W --from-code $FROM_CODE --omit-header --no-wrap --sort-by-file"
 
 function preprocess_xml() {
 #
