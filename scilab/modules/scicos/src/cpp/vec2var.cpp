@@ -408,6 +408,7 @@ static bool readElement(const double* const input, const int iType, const int iD
                 offsetSave = offset;
                 offset = 2;
             }
+
             for (int i = 0; i < iDims; ++i)
             {
                 if (inputRows < 2 + offset)
@@ -425,7 +426,12 @@ static bool readElement(const double* const input, const int iType, const int iD
                     delete pList;
                     return false;
                 }
+
                 pList->append(element);
+                if (element->isList())
+                {
+                    element->killMe();
+                }
             }
             offset += offsetSave;
             res = pList;
@@ -446,8 +452,6 @@ static bool readElement(const double* const input, const int iType, const int iD
                 offset += 2;
                 break;
             }
-
-            types::Struct* pStruct = new types::Struct(1, 1);
 
             int offsetSave = 0;
             if (offset == 0)
@@ -473,6 +477,8 @@ static bool readElement(const double* const input, const int iType, const int iD
             {
                 return false;
             }
+
+            types::Struct* pStruct = new types::Struct(1, 1);
             types::String* header = element->getAs<types::String>();
             // ... and copy it in 'pStruct'
             for (int i = 0; i < header->getSize(); ++i)
@@ -484,6 +490,7 @@ static bool readElement(const double* const input, const int iType, const int iD
             {
                 if (inputRows < 2 + offset)
                 {
+                    delete pStruct;
                     Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
                     return false;
                 }
@@ -492,10 +499,13 @@ static bool readElement(const double* const input, const int iType, const int iD
                 elementDims = static_cast<int>(*(input + offset + 1));
                 if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
                 {
+                    delete pStruct;
                     return false;
                 }
                 pStruct->get(0)->set(header->get(i - 1), element);
             }
+
+            header->killMe();
             offset += offsetSave;
             res = pStruct;
             break;

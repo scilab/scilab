@@ -151,3 +151,11 @@ assert_checkequal(vec2var(var2vec(exprs)), exprs);
 // List containing a Struct
 lStFull = list(stFull, [], stFull, "test");
 assert_checkequal(vec2var(var2vec(lStFull)), lStFull);
+
+// corner-cases
+a = var2vec(tlist(["" ""],list()));
+vec2var(a);
+
+a = var2vec(struct("toto", list(struct("titi", 12))));
+vec2var(a);
+
