@@ -51,6 +51,8 @@ Scilab Bug Fixes
 
 * Bug #13919 fixed - Scilab parsed "hidden" as a reserved keyword but it is not used.
 
+* Bug #13920 fixed - `getscilabkeywords` help page should be in the "Scilab keywords" section.
+
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
 
 * Bug #13983 fixed - who_user returned wrong values.
