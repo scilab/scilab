@@ -120,7 +120,7 @@ function draw1()
     a1.x_label.text="time";
     a1.y_label.text="position";
     a1.box = "on";
-    p1=xpoly(1,y(1,1));p1=gce();
+    xpoly(1,y(1,1));p1=gce();
 
     a2=newaxes();sca(a2);
     a2.axes_bounds=[0.5,0,0.5,0.5];
@@ -174,7 +174,7 @@ function draw2()
     a1.x_label.text="time";
     a1.y_label.text="Control (u)";
     a1.box = "on";
-    p1=xpoly(t1(1),c(1));p1=gce();
+    xpoly(t1(1),c(1));p1=gce();
 
     a2=newaxes();sca(a2);
     a2.axes_bounds=[0.5,0,0.5,0.5];
