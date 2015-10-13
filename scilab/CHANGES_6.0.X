@@ -45,6 +45,8 @@ Scilab Bug Fixes
 
 * Bug #13894 fixed - Default working directory of the previous session did not work.
 
+* Bug #13903 fixed - get_function_path() returned a path with a missing file separator.
+
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
 
 * Bug #13908 fixed - part(text, n:$) was very slow.
