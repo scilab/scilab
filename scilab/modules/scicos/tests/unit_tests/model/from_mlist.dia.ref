@@ -260,6 +260,7 @@ Xcos trace: propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , INPUTS ) : NO_CHANGES
@@ -280,6 +281,7 @@ Xcos trace: propertyUpdated( 19 , DIAGRAM , TITLE ) : SUCCESS
 Xcos trace: propertyUpdated( 19 , DIAGRAM , PATH ) : SUCCESS
 Xcos trace: propertyUpdated( 19 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Xcos trace: propertyUpdated( 19 , DIAGRAM , PROPERTIES ) : SUCCESS
+Xcos trace: propertyUpdated( 19 , DIAGRAM , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 19 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectCreated( 20 , BLOCK )
 Xcos trace: propertyUpdated( 20 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
@@ -301,6 +303,7 @@ Xcos trace: propertyUpdated( 20 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 20 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 20 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 20 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 20 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 20 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 20 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 21 , PORT )
@@ -346,6 +349,7 @@ Xcos trace: propertyUpdated( 23 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 23 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 23 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 24 , PORT )
@@ -400,6 +404,7 @@ Xcos trace: propertyUpdated( 27 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 27 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 27 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 27 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 27 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 27 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 27 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 28 , PORT )
@@ -445,6 +450,7 @@ Xcos trace: propertyUpdated( 30 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 30 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 30 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 30 , BLOCK , IPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 30 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 30 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 30 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 31 , PORT )
