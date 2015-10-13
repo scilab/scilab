@@ -160,7 +160,9 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     types::InternalType* pITExtract = pIL->extractFullMatrix();
                     pITExtract->IncreaseRef();
                     in.push_back(pITExtract);
-                    inTmp[iterIn++]->killMe();
+                    pIL->DecreaseRef();
+                    pIL->killMe();
+                    iterIn++;
                     continue;
                 }
             }
