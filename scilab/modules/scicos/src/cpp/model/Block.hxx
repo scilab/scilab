@@ -94,21 +94,31 @@ struct Descriptor
 struct Angle
 {
     bool flip;
+    bool mirror;
     double theta;
 
-    Angle() : flip(true), theta(0) {};
-    Angle(const Angle& a) : flip(a.flip), theta(a.theta) {};
-    Angle(const std::vector<double>& a) : flip((a[0] == 0) ? false : true), theta(a[1]) {};
+    Angle() : flip(true), mirror(false), theta(0) {};
+    Angle(const Angle& a) : flip(a.flip), mirror(a.mirror), theta(a.theta) {};
+    Angle(const std::vector<double>& a) :
+        flip(  ((static_cast<int>(a[0]) & 0x0001) == 0) ? false : true),
+        mirror(((static_cast<int>(a[0]) & 0x0002) == 0) ? false : true),
+        theta(a[1])
+    {};
 
     void fill(std::vector<double>& a) const
     {
         a.resize(2);
-        a[0] = (flip == false) ? 0 : 1;
+
+        int mirrorAndFlip = static_cast<int>(a[0]);
+        (flip == false) ?   mirrorAndFlip &= ~(1 << 0) : mirrorAndFlip |= 1 << 0;
+        (mirror == false) ? mirrorAndFlip &= ~(1 << 1) : mirrorAndFlip |= 1 << 1;
+
+        a[0] = mirrorAndFlip;
         a[1] = theta;
     }
     bool operator==(const Angle& a) const
     {
-        return flip == a.flip && theta == a.theta;
+        return flip == a.flip && mirror == a.mirror && theta == a.theta;
     }
 };
 
