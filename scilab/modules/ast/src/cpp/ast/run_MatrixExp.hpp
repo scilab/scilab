@@ -144,6 +144,15 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                     if (pGT->isDouble() && pGT->getAs<types::Double>()->isEmpty())
                     {
+                        if (poResult && (poResult->isList() || poResult->isStruct()))
+                        {
+                            //in case of [list(); [], ...]
+
+                            //we don't know what to do with [], keep it as "normal" value and continue process
+                            poRow = pGT;
+                            continue;
+                        }
+
                         pGT->killMe();
                         continue;
                     }
