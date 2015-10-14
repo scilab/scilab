@@ -27,8 +27,7 @@ import org.scilab.modules.xcos.port.Orientation;
 import com.mxgraph.model.mxICell;
 
 /**
- * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the
- * scicos information)
+ * Convert BasicBlock pure objects to a mixed BasicBlock objects (update the scicos information)
  */
 public final class BasicBlockInfo {
     /**
@@ -44,7 +43,7 @@ public final class BasicBlockInfo {
      *            the ports
      * @return array of links id
      */
-    protected static ScilabDouble getAllLinkId(List <? extends BasicPort > ports) {
+    protected static ScilabDouble getAllLinkId(List<? extends BasicPort> ports) {
         if (ports.isEmpty()) {
             return new ScilabDouble();
         }
@@ -104,6 +103,38 @@ public final class BasicBlockInfo {
 
         if (revert) {
             Collections.reverse(data);
+        }
+
+        return data;
+    }
+
+    /**
+     * Get the n-th port for a n position.
+     *
+     * This method assume that the port are sorted and that the {@link BasicPort#getOrdering()} is filled with the right value.
+     *
+     * @param block
+     *            the block
+     * @param position
+     *            the position to look for
+     * @return a list of applicable ports
+     */
+    public static List<BasicPort> getAllPortsAtPosition(final BasicBlock block, final int position) {
+        final List<BasicPort> data = new ArrayList<BasicPort>();
+        if (block == null) {
+            return data;
+        }
+
+        final int childrenCount = block.getChildCount();
+        for (int i = 0; i < childrenCount; ++i) {
+            final mxICell cell = block.getChildAt(i);
+            if (cell instanceof BasicPort) {
+                final BasicPort p = ((BasicPort) cell);
+                // FIXME is it really needed
+                // if (p.getOrdering() == position) {
+                data.add(p);
+                // }
+            }
         }
 
         return data;

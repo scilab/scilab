@@ -39,8 +39,7 @@ public class MirrorAction extends VertexSelectionDependantAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_M;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor
@@ -72,8 +71,7 @@ public class MirrorAction extends VertexSelectionDependantAction {
     public void actionPerformed(ActionEvent e) {
         if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
 
-            Object[] allCells = ((XcosDiagram) getGraph(null))
-                                .getSelectionCells();
+            Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
             JavaController controller = new JavaController();
             VectorOfDouble mvcAngle = new VectorOfDouble();
@@ -83,7 +81,12 @@ public class MirrorAction extends VertexSelectionDependantAction {
                 if (allCells[i] instanceof BasicBlock) {
                     long uid = ((BasicBlock) allCells[i]).getUID();
                     controller.getObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
-                    mvcAngle.set(0, mvcAngle.get(0) + 4d);
+
+                    // retrieve then toggle a bit
+                    int mirrorAndFlip = (int) mvcAngle.get(0);
+                    mirrorAndFlip ^= 0x0002;
+
+                    mvcAngle.set(0, mirrorAndFlip);
                     controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
                 }
             }

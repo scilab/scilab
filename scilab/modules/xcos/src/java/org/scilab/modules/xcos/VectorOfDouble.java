@@ -91,4 +91,10 @@ public class VectorOfDouble {
     return JavaControllerJNI.VectorOfDouble_remove(swigCPtr, this, val);
   }
 
+  public java.nio.ByteBuffer asByteBuffer(int i, int capacity) {
+    java.nio.ByteBuffer buffer = JavaControllerJNI.VectorOfDouble_asByteBuffer(swigCPtr, this, i, capacity);
+    buffer.order(java.nio.ByteOrder.nativeOrder());
+    return buffer;
+  }
+
 }

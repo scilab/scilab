@@ -713,6 +713,17 @@ SWIGINTERN bool std_vector_Sl_int_Sg__remove(std::vector< int > *self,std::vecto
                     self->erase(it);
                 return true;
             }
+SWIGINTERN void *std_vector_Sl_int_Sg__asByteBuffer(std::vector< int > *self,int i,int capacity){
+                (void) capacity;
+                void* buffer = nullptr;
+                int size = int(self->size()) ;
+                if (i>=0 && i<size) {
+                    buffer = ((char*) self->data()) + i;
+                } else {
+                    throw std::out_of_range("vector index out of range");
+                }
+                return buffer;
+            }
 SWIGINTERN bool std_vector_Sl_bool_Sg__get(std::vector< bool > *self,int i){
                 int size = int(self->size());
                 if (i>=0 && i<size)
@@ -781,6 +792,17 @@ SWIGINTERN bool std_vector_Sl_double_Sg__remove(std::vector< double > *self,std:
                     self->erase(it);
                 return true;
             }
+SWIGINTERN void *std_vector_Sl_double_Sg__asByteBuffer(std::vector< double > *self,int i,int capacity){
+                (void) capacity;
+                void* buffer = nullptr;
+                int size = int(self->size()) ;
+                if (i>=0 && i<size) {
+                    buffer = ((char*) self->data()) + i;
+                } else {
+                    throw std::out_of_range("vector index out of range");
+                }
+                return buffer;
+            }
 SWIGINTERN bool std_vector_Sl_std_string_Sg__contains(std::vector< std::string > *self,std::string const &o){
                return std::find(self->begin(), self->end(), o) != self->end();
             }
@@ -820,6 +842,17 @@ SWIGINTERN bool std_vector_Sl_std_string_Sg__remove(std::vector< std::string > *
                     self->erase(it);
                 return true;
             }
+SWIGINTERN void *std_vector_Sl_std_string_Sg__asByteBuffer(std::vector< std::string > *self,int i,int capacity){
+                (void) capacity;
+                void* buffer = nullptr;
+                int size = int(self->size()) ;
+                if (i>=0 && i<size) {
+                    buffer = ((char*) self->data()) + i;
+                } else {
+                    throw std::out_of_range("vector index out of range");
+                }
+                return buffer;
+            }
 SWIGINTERN bool std_vector_Sl_ScicosID_Sg__contains(std::vector< ScicosID > *self,long long const &o){
                return std::find(self->begin(), self->end(), o) != self->end();
             }
@@ -858,6 +891,17 @@ SWIGINTERN bool std_vector_Sl_ScicosID_Sg__remove(std::vector< ScicosID > *self,
                 else
                     self->erase(it);
                 return true;
+            }
+SWIGINTERN void *std_vector_Sl_ScicosID_Sg__asByteBuffer(std::vector< ScicosID > *self,int i,int capacity){
+                (void) capacity;
+                void* buffer = nullptr;
+                int size = int(self->size()) ;
+                if (i>=0 && i<size) {
+                    buffer = ((char*) self->data()) + i;
+                } else {
+                    throw std::out_of_range("vector index out of range");
+                }
+                return buffer;
             }
 
 static void register_view(const std::string& name, org_scilab_modules_scicos::View* view) {
@@ -2236,6 +2280,32 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Vecto
 }
 
 
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfInt_1asByteBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  jobject jresult = 0 ;
+  std::vector< int > *arg1 = (std::vector< int > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  void *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< int > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  result = (void *)std_vector_Sl_int_Sg__asByteBuffer(arg1,arg2,arg3);
+  {
+    if (arg3 <= 0) {
+      arg3 = arg1->size() - arg2;
+    } else if (arg1->size() < arg3) {
+      throw std::out_of_range("vector index out of range");
+    }
+    jresult = jenv->NewDirectByteBuffer(result, arg3 * sizeof(decltype(arg1->back())));
+  }
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_delete_1VectorOfInt(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   std::vector< int > *arg1 = (std::vector< int > *) 0 ;
   
@@ -2692,6 +2762,32 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Vecto
 }
 
 
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfDouble_1asByteBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  jobject jresult = 0 ;
+  std::vector< double > *arg1 = (std::vector< double > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  void *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< double > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  result = (void *)std_vector_Sl_double_Sg__asByteBuffer(arg1,arg2,arg3);
+  {
+    if (arg3 <= 0) {
+      arg3 = arg1->size() - arg2;
+    } else if (arg1->size() < arg3) {
+      throw std::out_of_range("vector index out of range");
+    }
+    jresult = jenv->NewDirectByteBuffer(result, arg3 * sizeof(decltype(arg1->back())));
+  }
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_delete_1VectorOfDouble(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   std::vector< double > *arg1 = (std::vector< double > *) 0 ;
   
@@ -2975,6 +3071,32 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Vecto
 }
 
 
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfString_1asByteBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  jobject jresult = 0 ;
+  std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  void *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< std::string > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  result = (void *)std_vector_Sl_std_string_Sg__asByteBuffer(arg1,arg2,arg3);
+  {
+    if (arg3 <= 0) {
+      arg3 = arg1->size() - arg2;
+    } else if (arg1->size() < arg3) {
+      throw std::out_of_range("vector index out of range");
+    }
+    jresult = jenv->NewDirectByteBuffer(result, arg3 * sizeof(decltype(arg1->back())));
+  }
+  return jresult;
+}
+
+
 SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_delete_1VectorOfString(JNIEnv *jenv, jclass jcls, jlong jarg1) {
   std::vector< std::string > *arg1 = (std::vector< std::string > *) 0 ;
   
@@ -3218,6 +3340,32 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Vecto
   arg2 = &temp2; 
   result = (bool)std_vector_Sl_ScicosID_Sg__remove(arg1,(long long const &)*arg2);
   jresult = (jboolean)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_VectorOfScicosID_1asByteBuffer(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2, jint jarg3) {
+  jobject jresult = 0 ;
+  std::vector< ScicosID > *arg1 = (std::vector< ScicosID > *) 0 ;
+  int arg2 ;
+  int arg3 ;
+  void *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(std::vector< ScicosID > **)&jarg1; 
+  arg2 = (int)jarg2; 
+  arg3 = (int)jarg3; 
+  result = (void *)std_vector_Sl_ScicosID_Sg__asByteBuffer(arg1,arg2,arg3);
+  {
+    if (arg3 <= 0) {
+      arg3 = arg1->size() - arg2;
+    } else if (arg1->size() < arg3) {
+      throw std::out_of_range("vector index out of range");
+    }
+    jresult = jenv->NewDirectByteBuffer(result, arg3 * sizeof(decltype(arg1->back())));
+  }
   return jresult;
 }
 

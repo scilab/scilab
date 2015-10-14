@@ -64,14 +64,18 @@ public final class XcosCellFactory {
 
     /**
      * This is a notify method mapped as a Scilab gateway used to alert with the loaded UID
-     * @param uid the loaded UID
-     * @param kind the kind of the created object (as an int)
+     *
+     * @param uid
+     *            the loaded UID
+     * @param kind
+     *            the kind of the created object (as an int)
      */
     @ScilabExported(module = "xcos", filename = "XcosCellFactory.giws.xml")
     public static void created(long uid, int kind) {
         lastCreated = new ScicosObjectOwner(uid, Kind.values()[kind]);
 
     }
+
     private static ScicosObjectOwner lastCreated = null;
 
     /*
@@ -83,8 +87,10 @@ public final class XcosCellFactory {
      *
      * This method execute the file and register a
      *
-     * @param controller the controller
-     * @param filename the file to execute
+     * @param controller
+     *            the controller
+     * @param filename
+     *            the file to execute
      * @return an allocated XcosDiagram
      */
     public static XcosDiagram createDiagramFromCOSF(final JavaController controller, String filename) {
@@ -94,10 +100,7 @@ public final class XcosCellFactory {
         XcosDiagram diagram;
         try {
             synchronousScilabExec(
-                "function f(), " +
-                buildCall("exec", filename, -1) +
-                buildCall("xcosCellCreated", "scs_m".toCharArray()) +
-                "endfunction; f();");
+                "function f(), " + buildCall("exec", filename, -1) + buildCall("xcosCellCreated", "scs_m".toCharArray()) + "endfunction; f();");
 
             if (lastCreated.getKind() == Kind.DIAGRAM) {
                 diagram = new XcosDiagram(lastCreated.getUID(), lastCreated.getKind());
@@ -117,8 +120,11 @@ public final class XcosCellFactory {
 
     /**
      * Insert the diagram MVC children into the JGraphX model
-     * @param controller the shared controller
-     * @param diagram the current diagram instance
+     *
+     * @param controller
+     *            the shared controller
+     * @param diagram
+     *            the current diagram instance
      */
     public static void insertChildren(JavaController controller, XcosDiagram diagram) {
         VectorOfScicosID children = new VectorOfScicosID();
@@ -145,10 +151,8 @@ public final class XcosCellFactory {
                     BasicBlock b = createBlock(controller, uid, kind);
                     cells[i] = b;
                     BlockPositioning.updatePortsPosition(diagram, b);
-                    b.getTypedChildrenIndexes(BasicPort.class).stream()
-                    .map(index -> b.getChildAt(index))
-                    .filter(c -> c instanceof BasicPort)
-                    .forEach( c -> ports.add((BasicPort) c));
+                    b.getTypedChildrenIndexes(BasicPort.class).stream().map(index -> b.getChildAt(index)).filter(c -> c instanceof BasicPort)
+                    .forEach(c -> ports.add((BasicPort) c));
                     break;
                 case LINK:
                     BasicLink l = createLink(controller, uid, kind);
@@ -190,8 +194,6 @@ public final class XcosCellFactory {
         diagram.addCells(cells);
     }
 
-
-
     /*
      * Block and Annotation management
      */
@@ -212,13 +214,12 @@ public final class XcosCellFactory {
      *
      * @param uid
      *            The associated UID value
-     * @param interfaceFunction the interface function
+     * @param interfaceFunction
+     *            the interface function
      * @return A new instance of a block.
      */
     public static BasicBlock createBlock(String interfaceFunction) {
-        Optional<BlockInterFunction> func = EnumSet.allOf(BlockInterFunction.class).stream()
-                                            .filter(f -> f.name().equals(interfaceFunction))
-                                            .findFirst();
+        Optional<BlockInterFunction> func = EnumSet.allOf(BlockInterFunction.class).stream().filter(f -> f.name().equals(interfaceFunction)).findFirst();
 
         final BasicBlock block;
         if (func.isPresent()) {
@@ -269,13 +270,13 @@ public final class XcosCellFactory {
         String[] interfaceFunction = new String[1];
         controller.getObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
 
-        return createBlock(controller, interfaceFunction[0], uid);
+        final BlockInterFunction func = lookForInterfunction(interfaceFunction[0]);
+
+        return createBlock(controller, func, interfaceFunction[0], uid);
     }
 
-    private static BasicBlock createBlock(final JavaController controller, String interfaceFunction, long uid) {
-        Optional<BlockInterFunction> optFunc = EnumSet.allOf(BlockInterFunction.class).stream()
-                                               .filter(f -> f.name().equals(interfaceFunction))
-                                               .findFirst();
+    public static BlockInterFunction lookForInterfunction(String interfaceFunction) {
+        Optional<BlockInterFunction> optFunc = EnumSet.allOf(BlockInterFunction.class).stream().filter(f -> f.name().equals(interfaceFunction)).findFirst();
 
         final BlockInterFunction func;
         if (optFunc.isPresent()) {
@@ -283,24 +284,28 @@ public final class XcosCellFactory {
         } else {
             func = BlockInterFunction.BASIC_BLOCK;
         }
-
-        return createBlock(controller, func, interfaceFunction, uid);
+        return func;
     }
 
     /**
      * Instantiate a new block with the specified interface function and uid.
      *
-     * @param controller the Java controller to use
-     * @param func the interface function as an enum
-     * @param interfaceFunction the interface function name
-     * @param uid the allocated uid
+     * @param controller
+     *            the Java controller to use
+     * @param func
+     *            the interface function as an enum
+     * @param interfaceFunction
+     *            the interface function name
+     * @param uid
+     *            the allocated uid
      * @return A new instance of a block.
      */
-    private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction, long uid) {
+    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction, long uid) {
         BasicBlock block = null;
         try {
             block = func.getKlass().getConstructor(Long.TYPE).newInstance(uid);
-        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException	| NoSuchMethodException | SecurityException e) {
+        } catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException
+                     | SecurityException e) {
             // Something goes wrong, print it.
             e.printStackTrace();
             return block;
@@ -325,9 +330,6 @@ public final class XcosCellFactory {
 
         // FIXME find a way to reuse the Scicos compat handler from org.scilab.modules.xcos.io.scicos
 
-
-
-
         return block;
     }
 
@@ -340,27 +342,33 @@ public final class XcosCellFactory {
      *
      * This method does not manage the model transaction and should be used to preset the children of a block out of an {@link XcosDiagram}.
      *
-     * @param controller is the shared controller instance
-     * @param parent is the parent {@link mxCell} to modify
+     * @param controller
+     *            is the shared controller instance
+     * @param parent
+     *            is the parent {@link mxCell} to modify
      */
     private static void insertPortChildren(final JavaController controller, final XcosCell parent) {
-        final EnumSet<ObjectProperties> properties = EnumSet.of(ObjectProperties.INPUTS, ObjectProperties.OUTPUTS, ObjectProperties.EVENT_INPUTS, ObjectProperties.EVENT_OUTPUTS);
+        final EnumSet<ObjectProperties> properties = EnumSet.of(ObjectProperties.INPUTS, ObjectProperties.OUTPUTS, ObjectProperties.EVENT_INPUTS,
+                ObjectProperties.EVENT_OUTPUTS);
         insertPortChildren(controller, properties, parent);
     }
-
 
     /**
      * Helper used to create port children on a parent block.
      *
      * This method does not manage the model transaction and should be used to preset the children of a block out of an {@link XcosDiagram}.
      *
-     * @param controller is the shared controller instance
-     * @param properties specify the kind of port to insert and should be some of : <UL>
-     *        <LI>{@link ObjectProperties#INPUTS}
-     *        <LI>{@link ObjectProperties#OUTPUTS}
-     *        <LI>{@link ObjectProperties#EVENT_INPUTS}
-     *        <LI>{@link ObjectProperties#EVENT_OUTPUTS}
-     * @param parent is the parent {@link mxCell} to modify
+     * @param controller
+     *            is the shared controller instance
+     * @param properties
+     *            specify the kind of port to insert and should be some of :
+     *            <UL>
+     *            <LI>{@link ObjectProperties#INPUTS}
+     *            <LI>{@link ObjectProperties#OUTPUTS}
+     *            <LI>{@link ObjectProperties#EVENT_INPUTS}
+     *            <LI>{@link ObjectProperties#EVENT_OUTPUTS}
+     * @param parent
+     *            is the parent {@link mxCell} to modify
      */
     private static void insertPortChildren(final JavaController controller, final EnumSet<ObjectProperties> properties, final XcosCell parent) {
         for (ObjectProperties property : properties) {
@@ -373,13 +381,17 @@ public final class XcosCellFactory {
      *
      * This method does not manage the model transaction and should be used to preset the children of a block out of an {@link XcosDiagram}.
      *
-     * @param controller is the shared controller instance
-     * @param property specify the kind of port to insert and should be one of : <UL>
-     *        <LI>{@link ObjectProperties#INPUTS}
-     *        <LI>{@link ObjectProperties#OUTPUTS}
-     *        <LI>{@link ObjectProperties#EVENT_INPUTS}
-     *        <LI>{@link ObjectProperties#EVENT_OUTPUTS}
-     * @param parent is the parent {@link mxCell} to modify
+     * @param controller
+     *            is the shared controller instance
+     * @param property
+     *            specify the kind of port to insert and should be one of :
+     *            <UL>
+     *            <LI>{@link ObjectProperties#INPUTS}
+     *            <LI>{@link ObjectProperties#OUTPUTS}
+     *            <LI>{@link ObjectProperties#EVENT_INPUTS}
+     *            <LI>{@link ObjectProperties#EVENT_OUTPUTS}
+     * @param parent
+     *            is the parent {@link mxCell} to modify
      */
     private static void insertPortChildren(final JavaController controller, final ObjectProperties property, final XcosCell parent) {
         if (parent.getKind() != Kind.BLOCK) {
@@ -399,17 +411,21 @@ public final class XcosCellFactory {
     /**
      * Create a port for a specific uid
      *
-     * @param controller is the shared controller instance
-     * @param uid represent the allocated UID on the MVC
-     * @param property specify the kind of port to create and should be one of : <UL>
-     *        <LI>{@link ObjectProperties#INPUTS}
-     *        <LI>{@link ObjectProperties#OUTPUTS}
-     *        <LI>{@link ObjectProperties#EVENT_INPUTS}
-     *        <LI>{@link ObjectProperties#EVENT_OUTPUTS}
+     * @param controller
+     *            is the shared controller instance
+     * @param uid
+     *            represent the allocated UID on the MVC
+     * @param property
+     *            specify the kind of port to create and should be one of :
+     *            <UL>
+     *            <LI>{@link ObjectProperties#INPUTS}
+     *            <LI>{@link ObjectProperties#OUTPUTS}
+     *            <LI>{@link ObjectProperties#EVENT_INPUTS}
+     *            <LI>{@link ObjectProperties#EVENT_OUTPUTS}
      * @return a newly allocated port
      */
     private static final BasicPort createPort(final JavaController controller, long uid, final ObjectProperties property) {
-        boolean[] isImplicit = {false};
+        boolean[] isImplicit = { false };
 
         switch (property) {
             case INPUTS:

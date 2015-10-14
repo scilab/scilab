@@ -29,8 +29,12 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfString;
+import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
+import org.scilab.modules.xcos.io.scicos.DiagramElement;
+import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
@@ -62,7 +66,9 @@ class RawDataHandler implements ScilabHandler {
 
     /**
      * Default constructor
-     * @param saxHandler the shared sax handler
+     *
+     * @param saxHandler
+     *            the shared sax handler
      */
     RawDataHandler(SAXHandler saxHandler) {
         this.saxHandler = saxHandler;
@@ -87,6 +93,7 @@ class RawDataHandler implements ScilabHandler {
      * Implement the ScilabHandler interface to decode the data
      */
 
+    @Override
     public Object startElement(HandledElement found, Attributes atts) {
         String v;
 
@@ -256,6 +263,7 @@ class RawDataHandler implements ScilabHandler {
                     default:
                         break;
                 }
+                break;
             }
             default:
                 throw new IllegalArgumentException();
@@ -266,13 +274,20 @@ class RawDataHandler implements ScilabHandler {
 
     /**
      * Allocate a {@link ScilabType} datatype accordingly to the decoded descriptors
-     * @param found the decoded element
-     * @param atts the attributes of the element
-     * @param height decoded height
-     * @param width decoded width
-     * @param scilabClass decoded scilabClass
+     *
+     * @param found
+     *            the decoded element
+     * @param atts
+     *            the attributes of the element
+     * @param height
+     *            decoded height
+     * @param width
+     *            decoded width
+     * @param scilabClass
+     *            decoded scilabClass
      * @return the container
      */
+    @SuppressWarnings("fallthrough")
     private Object allocateDataType(HandledElement found, Attributes atts, int height, int width, String scilabClass) {
         String v;
         final Object container;
@@ -338,6 +353,7 @@ class RawDataHandler implements ScilabHandler {
         return container;
     }
 
+    @Override
     public void endElement(HandledElement found) {
         switch (found) {
             case Array:
@@ -385,6 +401,7 @@ class RawDataHandler implements ScilabHandler {
                         saxHandler.controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
                         break;
                     }
+                    case STATE:
                     case DSTATE:
                     case NZCROSS:
                     case NMODE:
@@ -395,8 +412,13 @@ class RawDataHandler implements ScilabHandler {
                             return;
                         }
                         XcosCell cell = (XcosCell) parent;
-                        if (!(fieldValue.value instanceof ScilabDouble)) {
-                            // FIXME decode the rpar as a subdiagram using the legacy decoders
+                        if (fieldValue.value instanceof ScilabMList) {
+                            // CORNER CASE for partially decoded sub-diagram hierarchy
+                            // decode the rpar as a subdiagram using the legacy decoders
+                            try {
+                                new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(cell.getUID(), cell.getKind()));
+                            } catch (ScicosFormatException e) {
+                            }
                             return;
                         }
                         ScilabDouble value = (ScilabDouble) fieldValue.value;
@@ -409,18 +431,18 @@ class RawDataHandler implements ScilabHandler {
                         saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.RPAR, vec);
                         break;
                     }
+                    case EXPRS:
                     case EQUATIONS:
+                    case OPAR:
                     case ODSTATE: {
                         // defensive programming
                         if (!(parent instanceof XcosCell)) {
                             return;
                         }
                         XcosCell cell = (XcosCell) parent;
-                        ScilabList value = (ScilabList) fieldValue.value;
+                        ScilabType value = (ScilabType) fieldValue.value;
 
-                        if (value.size() > 0) {
-                            System.err.println("RawDataHandler value not decoded: " + fieldValue.as);
-                        }
+                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, new ScilabTypeCoder().var2vec(value));
                         break;
                     }
                     default:
@@ -436,71 +458,5 @@ class RawDataHandler implements ScilabHandler {
             default:
                 throw new IllegalArgumentException();
         }
-    }
-
-    /*
-     * Convert the decoded data to a var2vec encoded value
-     */
-
-    private static void addMatrixHeader(VectorOfDouble vec, ScilabType var) {
-        vec.add(var.getType().swigValue());
-        vec.add(2); // we do not manage hypermatrices yet
-        vec.add(var.getHeight());
-        vec.add(var.getWidth());
-    }
-
-    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabBoolean var) {
-        addMatrixHeader(vec, var);
-
-
-        return vec;
-    }
-
-    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabDouble var) {
-        addMatrixHeader(vec, var);
-
-        // FIXME encode the values
-
-        return vec;
-    }
-
-    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabInteger var) {
-        addMatrixHeader(vec, var);
-
-        // FIXME encode the values
-
-        return vec;
-    }
-
-    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabString var) {
-        addMatrixHeader(vec, var);
-
-        // FIXME encode the values
-
-        return vec;
-    }
-
-    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabList var) {
-
-
-        // FIXME encode the values
-
-        return vec;
-    }
-
-    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabTList var) {
-
-
-        // FIXME encode the values
-
-        return vec;
-    }
-
-    public static VectorOfDouble var2vec(VectorOfDouble vec, ScilabMList var) {
-
-
-        // FIXME encode the values
-
-        return vec;
     }
 }

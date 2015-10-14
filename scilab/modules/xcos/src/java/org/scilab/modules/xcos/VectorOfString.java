@@ -91,4 +91,10 @@ public class VectorOfString {
     return JavaControllerJNI.VectorOfString_remove(swigCPtr, this, val);
   }
 
+  public java.nio.ByteBuffer asByteBuffer(int i, int capacity) {
+    java.nio.ByteBuffer buffer = JavaControllerJNI.VectorOfString_asByteBuffer(swigCPtr, this, i, capacity);
+    buffer.order(java.nio.ByteOrder.nativeOrder());
+    return buffer;
+  }
+
 }

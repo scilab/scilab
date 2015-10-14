@@ -78,7 +78,7 @@ public class BasicBlock extends XcosCell implements Serializable {
     /**
      * Sorted kind of input, useful to sort them by kind
      */
-    private static final Class<?>[] sortedChildrenClass = {InputPort.class, OutputPort.class, ControlPort.class, CommandPort.class, Object.class};
+    private static final Class<?>[] sortedChildrenClass = { InputPort.class, OutputPort.class, ControlPort.class, CommandPort.class, Object.class };
 
     /*
      * Default values
@@ -103,8 +103,7 @@ public class BasicBlock extends XcosCell implements Serializable {
     private static final double DEFAULT_HEIGHT = 40.0;
 
     /**
-     * Internal method to get a base index to compare with depending on the cell
-     * type.
+     * Internal method to get a base index to compare with depending on the cell type.
      *
      * @param cell
      *            the cell
@@ -138,46 +137,29 @@ public class BasicBlock extends XcosCell implements Serializable {
     private boolean locked;
 
     /**
-     * Represent a simulation function type compatible with Scilab/Scicos
-     * function type descriptors.
+     * Represent a simulation function type compatible with Scilab/Scicos function type descriptors.
      */
     public static enum SimulationFunctionType {
         /** event select; reduced at compilation */
-        ESELECT(-2.0),
-        /** if then else; reduced at compilation */
-        IFTHENELSE(-1.0),
-        /** first common block */
-        DEFAULT(0.0),
-        /** first native block */
-        TYPE_1(1.0),
-        /** second native block */
-        TYPE_2(2.0),
-        /** third native block */
-        TYPE_3(3.0),
-        /** forth native block */
-        C_OR_FORTRAN(4.0),
-        /** Scilab blocks */
-        SCILAB(5.0),
-        /** Debug blocks */
-        DEBUG(99),
-        /** dynamic {@link #TYPE_1} Fortran blocks (fortran_block.sci) */
-        DYNAMIC_FORTRAN_1(1001.0),
-        /** dynamic {@link #TYPE_1} C blocks (c_block.sci) */
-        DYNAMIC_C_1(2001.0),
-        /** Explicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
-        DYNAMIC_EXPLICIT_4(2004.0),
-        /** Implicit {@link #TYPE_1} Fortran blocks (DIFF_f.sci) */
-        OLDBLOCKS(10001.0),
-        /** Implicit {@link #C_OR_FORTRAN} blocks */
-        IMPLICIT_C_OR_FORTRAN(10004.0),
-        /** Implicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
-        DYNAMIC_IMPLICIT_4(12004.0),
-        /** Modelica {@link #C_OR_FORTRAN} blocks */
-        MODELICA(30004.0),
-        /** Magic types */
-        UNKNOWN(5.0);
+        ESELECT(-2), /** if then else; reduced at compilation */
+        IFTHENELSE(-1), /** first common block */
+        DEFAULT(0), /** first native block */
+        TYPE_1(1), /** second native block */
+        TYPE_2(2), /** third native block */
+        TYPE_3(3), /** forth native block */
+        C_OR_FORTRAN(4), /** Scilab blocks */
+        SCILAB(5), /** Debug blocks */
+        DEBUG(99), /** dynamic {@link #TYPE_1} Fortran blocks (fortran_block.sci) */
+        DYNAMIC_FORTRAN_1(1001), /** dynamic {@link #TYPE_1} C blocks (c_block.sci) */
+        DYNAMIC_C_1(2001), /** Explicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
+        DYNAMIC_EXPLICIT_4(2004), /** Implicit {@link #TYPE_1} Fortran blocks (DIFF_f.sci) */
+        OLDBLOCKS(10001), /** Implicit {@link #C_OR_FORTRAN} blocks */
+        IMPLICIT_C_OR_FORTRAN(10004), /** Implicit dynamic {@link #TYPE_4} blocks (CBLOCK.sci) */
+        DYNAMIC_IMPLICIT_4(12004), /** Modelica {@link #C_OR_FORTRAN} blocks */
+        MODELICA(30004), /** Magic types */
+        UNKNOWN(5);
 
-        private double value;
+        private int value;
 
         /**
          * Default constructor
@@ -185,7 +167,7 @@ public class BasicBlock extends XcosCell implements Serializable {
          * @param scilabValue
          *            Scilab/Scicos function type descriptor
          */
-        private SimulationFunctionType(double scilabValue) {
+        private SimulationFunctionType(int scilabValue) {
             value = scilabValue;
         }
 
@@ -198,7 +180,7 @@ public class BasicBlock extends XcosCell implements Serializable {
          */
         public static SimulationFunctionType convertScilabValue(int scilabValue) {
             for (SimulationFunctionType iter : SimulationFunctionType.values()) {
-                if (iter.getAsDouble() == scilabValue) {
+                if (iter.getValue() == scilabValue) {
                     return iter;
                 }
             }
@@ -210,7 +192,7 @@ public class BasicBlock extends XcosCell implements Serializable {
          *
          * @return The corresponding Scilab/Scicos descriptor
          */
-        public double getAsDouble() {
+        public int getValue() {
             return value;
         }
     };
@@ -256,69 +238,69 @@ public class BasicBlock extends XcosCell implements Serializable {
      *            the new block instance
      */
     private void updateChildren(BasicBlock modifiedBlock) {
-        //        if (modifiedBlock == null) {
-        //            return;
-        //        }
+        // if (modifiedBlock == null) {
+        // return;
+        // }
         //
-        //        XcosDiagram graph = getParentDiagram();
-        //        if (graph == null) {
-        //            setParentDiagram(Xcos.findParent(this));
-        //            graph = getParentDiagram();
-        //            LOG.finest(PARENT_DIAGRAM_WAS_NULL);
-        //        }
+        // XcosDiagram graph = getParentDiagram();
+        // if (graph == null) {
+        // setParentDiagram(Xcos.findParent(this));
+        // graph = getParentDiagram();
+        // LOG.finest(PARENT_DIAGRAM_WAS_NULL);
+        // }
         //
-        //        /*
-        //         * Checked as port classes only
-        //         */
-        //        @SuppressWarnings("unchecked")
-        //        Set < Class <? extends mxICell >> types = new HashSet < Class <? extends mxICell >> (Arrays.asList(InputPort.class, OutputPort.class, ControlPort.class,
-        //                CommandPort.class));
+        // /*
+        // * Checked as port classes only
+        // */
+        // @SuppressWarnings("unchecked")
+        // Set < Class <? extends mxICell >> types = new HashSet < Class <? extends mxICell >> (Arrays.asList(InputPort.class, OutputPort.class, ControlPort.class,
+        // CommandPort.class));
         //
-        //        Map < Class <? extends mxICell > , Deque<mxICell >> annotatedOlds = getTypedChildren(types);
-        //        Map < Class <? extends mxICell > , Deque<mxICell >> annotatedNews = modifiedBlock.getTypedChildren(types);
+        // Map < Class <? extends mxICell > , Deque<mxICell >> annotatedOlds = getTypedChildren(types);
+        // Map < Class <? extends mxICell > , Deque<mxICell >> annotatedNews = modifiedBlock.getTypedChildren(types);
         //
-        //        getParentDiagram().getModel().beginUpdate();
-        //        try {
-        //            for (Class <? extends mxICell > klass : types) {
-        //                final Deque<mxICell> olds = annotatedOlds.get(klass);
-        //                final Deque<mxICell> news = annotatedNews.get(klass);
+        // getParentDiagram().getModel().beginUpdate();
+        // try {
+        // for (Class <? extends mxICell > klass : types) {
+        // final Deque<mxICell> olds = annotatedOlds.get(klass);
+        // final Deque<mxICell> news = annotatedNews.get(klass);
         //
-        //                // updated ports
-        //                while (!olds.isEmpty() && !news.isEmpty()) {
-        //                    mxICell previous = olds.poll();
-        //                    mxICell modified = news.poll();
+        // // updated ports
+        // while (!olds.isEmpty() && !news.isEmpty()) {
+        // mxICell previous = olds.poll();
+        // mxICell modified = news.poll();
         //
-        //                    final int previousIndex = children.indexOf(previous);
+        // final int previousIndex = children.indexOf(previous);
         //
-        //                    // relink
-        //                    if (previous.getEdgeCount() != 0) {
-        //                        final mxICell edge = previous.getEdgeAt(0);
-        //                        final boolean isOutgoing = previous == edge.getTerminal(true);
-        //                        previous.removeEdge(edge, isOutgoing);
-        //                        modified.insertEdge(edge, isOutgoing);
-        //                    }
+        // // relink
+        // if (previous.getEdgeCount() != 0) {
+        // final mxICell edge = previous.getEdgeAt(0);
+        // final boolean isOutgoing = previous == edge.getTerminal(true);
+        // previous.removeEdge(edge, isOutgoing);
+        // modified.insertEdge(edge, isOutgoing);
+        // }
         //
-        //                    getParentDiagram().removeCells(new Object[] { previous }, false);
-        //                    getParentDiagram().addCells(new Object[] { modified }, this, previousIndex);
+        // getParentDiagram().removeCells(new Object[] { previous }, false);
+        // getParentDiagram().addCells(new Object[] { modified }, this, previousIndex);
         //
-        //                    // Clone the geometry to avoid empty geometry on new cells.
-        //                    getParentDiagram().getModel().setGeometry(modified, (mxGeometry) previous.getGeometry().clone());
+        // // Clone the geometry to avoid empty geometry on new cells.
+        // getParentDiagram().getModel().setGeometry(modified, (mxGeometry) previous.getGeometry().clone());
         //
-        //                }
+        // }
         //
-        //                // removed ports
-        //                if (!olds.isEmpty()) {
-        //                    getParentDiagram().removeCells(olds.toArray(), true);
-        //                }
+        // // removed ports
+        // if (!olds.isEmpty()) {
+        // getParentDiagram().removeCells(olds.toArray(), true);
+        // }
         //
-        //                // added ports
-        //                if (!news.isEmpty()) {
-        //                    getParentDiagram().addCells(news.toArray(), this);
-        //                }
-        //            }
-        //        } finally {
-        //            getParentDiagram().getModel().endUpdate();
-        //        }
+        // // added ports
+        // if (!news.isEmpty()) {
+        // getParentDiagram().addCells(news.toArray(), this);
+        // }
+        // }
+        // } finally {
+        // getParentDiagram().getModel().endUpdate();
+        // }
     }
 
     /**
@@ -328,11 +310,11 @@ public class BasicBlock extends XcosCell implements Serializable {
      *            the classes to search for.
      * @return a map which linked foreach type the corresponding cell index in the children.
      */
-    public Map < Class<? extends mxICell> , ArrayList<Integer> > getTypedChildrenIndexes(Set< Class<? extends mxICell> > types) {
-        Map < Class<? extends mxICell> , ArrayList<Integer> > oldPorts = new HashMap < Class<? extends mxICell> , ArrayList<Integer> > ();
+    public Map<Class<? extends mxICell>, ArrayList<Integer>> getTypedChildrenIndexes(Set<Class<? extends mxICell>> types) {
+        Map<Class<? extends mxICell>, ArrayList<Integer>> oldPorts = new HashMap<Class<? extends mxICell>, ArrayList<Integer>>();
 
         // Allocate all types set
-        for (Class <? extends mxICell > type : types) {
+        for (Class<? extends mxICell> type : types) {
             oldPorts.put(type, new ArrayList<>());
         }
 
@@ -344,7 +326,7 @@ public class BasicBlock extends XcosCell implements Serializable {
         for (int i = 0; i < children.size(); i++) {
             final Object cell = children.get(i);
 
-            Class <? extends Object > klass = cell.getClass();
+            Class<? extends Object> klass = cell.getClass();
             while (klass != null) {
                 if (types.contains(klass)) {
                     break;
@@ -365,8 +347,8 @@ public class BasicBlock extends XcosCell implements Serializable {
         return getTypedChildrenIndexes(Collections.singleton(type)).get(type);
     }
 
-    public Map < Class<? extends mxICell> , ArrayList<Long> > getTypedChildrenUIDs(Set< Class<? extends mxICell> > types) {
-        Map < Class<? extends mxICell> , ArrayList<Long> > ports = new HashMap<> ();
+    public Map<Class<? extends mxICell>, ArrayList<Long>> getTypedChildrenUIDs(Set<Class<? extends mxICell>> types) {
+        Map<Class<? extends mxICell>, ArrayList<Long>> ports = new HashMap<>();
 
         // Allocate all types set
         types.stream().forEach(t -> ports.put(t, new ArrayList<>()));
@@ -379,7 +361,7 @@ public class BasicBlock extends XcosCell implements Serializable {
         for (int i = 0; i < children.size(); i++) {
             final Object cell = children.get(i);
 
-            Class <? extends Object > klass = cell.getClass();
+            Class<? extends Object> klass = cell.getClass();
             while (klass != null) {
                 if (types.contains(klass)) {
                     break;
@@ -410,85 +392,85 @@ public class BasicBlock extends XcosCell implements Serializable {
      */
     public void openBlockSettings() {
         // FIXME: implement something
-        //        final XcosDiagram graph;
-        //        if (getParentDiagram() == null) {
-        //            setParentDiagram(Xcos.findParent(this));
-        //            graph = getParentDiagram();
-        //            LOG.finest(PARENT_DIAGRAM_WAS_NULL);
-        //        } else {
-        //            graph = getParentDiagram();
-        //        }
-        //        if (graph instanceof PaletteDiagram) {
-        //            return;
-        //        }
+        // final XcosDiagram graph;
+        // if (getParentDiagram() == null) {
+        // setParentDiagram(Xcos.findParent(this));
+        // graph = getParentDiagram();
+        // LOG.finest(PARENT_DIAGRAM_WAS_NULL);
+        // } else {
+        // graph = getParentDiagram();
+        // }
+        // if (graph instanceof PaletteDiagram) {
+        // return;
+        // }
         //
-        //        if (context == null) {
-        //            throw new IllegalArgumentException();
-        //        }
+        // if (context == null) {
+        // throw new IllegalArgumentException();
+        // }
         //
-        //        // prevent to open twice
-        //        if (isLocked()) {
-        //            return;
-        //        }
+        // // prevent to open twice
+        // if (isLocked()) {
+        // return;
+        // }
         //
-        //        graph.setCellsLocked(true);
-        //        graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        // graph.setCellsLocked(true);
+        // graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         //
-        //        // sort children according to the ordering parameter (useful on
-        //        // scilab-5.2.x diagrams)
-        //        sortChildren();
+        // // sort children according to the ordering parameter (useful on
+        // // scilab-5.2.x diagrams)
+        // sortChildren();
         //
-        //        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        //        if (handler == null) {
-        //            return;
-        //        }
+        // final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        // if (handler == null) {
+        // return;
+        // }
         //
-        //        try {
-        //            // Write scs_m
-        //            handler.writeBlock(this);
-        //            // Write context
-        //            handler.writeContext(context);
+        // try {
+        // // Write scs_m
+        // handler.writeBlock(this);
+        // // Write context
+        // handler.writeContext(context);
         //
-        //            final ActionListener action = new ActionListener() {
-        //                @Override
-        //                public void actionPerformed(ActionEvent e) {
-        //                    LOG.finest("Updating data.");
+        // final ActionListener action = new ActionListener() {
+        // @Override
+        // public void actionPerformed(ActionEvent e) {
+        // LOG.finest("Updating data.");
         //
-        //                    graph.getView().clear(this, true, true);
+        // graph.getView().clear(this, true, true);
         //
-        //                    // Now read new Block
-        //                    graph.getModel().beginUpdate();
-        //                    try {
-        //                        final BasicBlock modifiedBlock = handler.readBlock();
-        //                        updateBlockSettings(modifiedBlock);
+        // // Now read new Block
+        // graph.getModel().beginUpdate();
+        // try {
+        // final BasicBlock modifiedBlock = handler.readBlock();
+        // updateBlockSettings(modifiedBlock);
         //
-        //                        graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, BasicBlock.this));
-        //                    } catch (ScicosFormatException ex) {
-        //                        LOG.severe(ex.toString());
-        //                    } finally {
-        //                        graph.getModel().endUpdate();
-        //                        setLocked(false);
+        // graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, BasicBlock.this));
+        // } catch (ScicosFormatException ex) {
+        // LOG.severe(ex.toString());
+        // } finally {
+        // graph.getModel().endUpdate();
+        // setLocked(false);
         //
-        //                        handler.release();
+        // handler.release();
         //
-        //                        graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        //                        graph.setCellsLocked(false);
-        //                    }
-        //                }
-        //            };
+        // graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        // graph.setCellsLocked(false);
+        // }
+        // }
+        // };
         //
-        //            setLocked(true);
-        //            ScilabInterpreterManagement.asynchronousScilabExec(action, "blk = xcosBlockInterface", getInterfaceFunctionName().toCharArray(), "set",
-        //                    ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
-        //        } catch (InterpreterException e) {
-        //            LOG.severe(e.toString());
-        //            setLocked(false);
+        // setLocked(true);
+        // ScilabInterpreterManagement.asynchronousScilabExec(action, "blk = xcosBlockInterface", getInterfaceFunctionName().toCharArray(), "set",
+        // ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
+        // } catch (InterpreterException e) {
+        // LOG.severe(e.toString());
+        // setLocked(false);
         //
-        //            handler.release();
+        // handler.release();
         //
-        //            graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        //            graph.setCellsLocked(false);
-        //        }
+        // graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+        // graph.setCellsLocked(false);
+        // }
     }
 
     /**
@@ -497,11 +479,11 @@ public class BasicBlock extends XcosCell implements Serializable {
      */
     public void openContextMenu(ScilabGraph graph) {
         ContextMenu menu = null;
-        //        if (getParentDiagram() instanceof PaletteDiagram) {
-        //            menu = createPaletteContextMenu(graph);
-        //        } else {
+        // if (getParentDiagram() instanceof PaletteDiagram) {
+        // menu = createPaletteContextMenu(graph);
+        // } else {
         menu = createContextMenu(graph);
-        //        }
+        // }
         menu.setVisible(true);
     }
 
@@ -626,8 +608,8 @@ public class BasicBlock extends XcosCell implements Serializable {
 
         menu.setVisible(true);
 
-        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo()
-                .getLocation().y);
+        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x,
+                MouseInfo.getPointerInfo().getLocation().y);
 
         return menu;
     }
@@ -642,7 +624,7 @@ public class BasicBlock extends XcosCell implements Serializable {
     // CSOFF: JavaNCSS
     public ContextMenu createContextMenu(ScilabGraph graph) {
         ContextMenu menu = ScilabContextMenu.createContextMenu();
-        Map < Class <? extends DefaultAction > , Menu > menuList = new HashMap < Class <? extends DefaultAction > , Menu > ();
+        Map<Class<? extends DefaultAction>, Menu> menuList = new HashMap<Class<? extends DefaultAction>, Menu>();
 
         MenuItem value = BlockParametersAction.createMenu(graph);
         menuList.put(BlockParametersAction.class, value);
@@ -715,8 +697,8 @@ public class BasicBlock extends XcosCell implements Serializable {
         /*--- */
         menu.add(BlockDocumentationAction.createMenu(graph));
 
-        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x, MouseInfo.getPointerInfo()
-                .getLocation().y);
+        ((SwingScilabContextMenu) menu.getAsSimpleContextMenu()).setLocation(MouseInfo.getPointerInfo().getLocation().x,
+                MouseInfo.getPointerInfo().getLocation().y);
 
         customizeMenu(menuList);
 
@@ -729,10 +711,9 @@ public class BasicBlock extends XcosCell implements Serializable {
      * @param menuList
      *            list of menu
      */
-    protected void customizeMenu(Map < Class <? extends DefaultAction > , Menu > menuList) {
+    protected void customizeMenu(Map<Class<? extends DefaultAction>, Menu> menuList) {
         // To be overridden by sub-classes
     }
-
 
     /**
      * Set the default block position on the geom

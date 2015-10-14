@@ -27,7 +27,6 @@ import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 
-
 public class XcosCell extends ScilabGraphUniqueObject {
     private static final long serialVersionUID = 1L;
 
@@ -38,8 +37,10 @@ public class XcosCell extends ScilabGraphUniqueObject {
      *
      * This Java object owns the corresponding MVC object and thus will unrefererence it on GC.
      *
-     * @param uid the associated MVC identifier
-     * @param kind the associated MVC kind
+     * @param uid
+     *            the associated MVC identifier
+     * @param kind
+     *            the associated MVC kind
      */
     public XcosCell(long uid, Kind kind) {
         owner = new ScicosObjectOwner(uid, kind);
@@ -71,7 +72,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
      * Override setters and hierarchy modifiers to propagate changes to the model
      */
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see com.mxgraph.model.mxCell#setValue(java.lang.Object)
      */
     @Override
@@ -96,7 +99,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see com.mxgraph.model.mxCell#setId(java.lang.String)
      */
     @Override
@@ -122,7 +127,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see com.mxgraph.model.mxCell#setGeometry(com.mxgraph.model.mxGeometry)
      */
     @Override
@@ -180,8 +187,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
                 }
 
                 /*
-                 * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown)
-                 * encode them to the the CONTROL_POINTS
+                 * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
                  */
 
                 // Allocate some space to contains them all
@@ -194,7 +200,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
                 v.set(2 * i + 1, sourcePoint.getY());
                 i++;
 
-                for (; i < nbOfPoints - 1 ; i++) {
+                for (; i < nbOfPoints - 1; i++) {
                     v.set(2 * i, points.get(i - 1).getX());
                     v.set(2 * i + 1, points.get(i - 1).getY());
                 }
@@ -214,7 +220,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see com.mxgraph.model.mxCell#setStyle(java.lang.String)
      */
     @Override
@@ -237,7 +245,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
 
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see com.mxgraph.model.mxCell#setParent(com.mxgraph.model.mxICell)
      */
     @Override
@@ -296,7 +306,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
         return cell;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see com.mxgraph.model.mxCell#insert(com.mxgraph.model.mxICell, int)
      */
     @Override
@@ -353,7 +365,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
                 break;
         }
 
-        // FIXME manage the index argument
+        // FIXME manage the index argument, possibly by counting the JGraphX children by kind
         if (property != null) {
             controller.getObjectProperty(getUID(), getKind(), property, children);
             children.add(c.getUID());
@@ -370,7 +382,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
         controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see com.mxgraph.model.mxCell#remove(com.mxgraph.model.mxICell)
      */
     @Override

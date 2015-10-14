@@ -28,6 +28,7 @@ class JGraphXHandler implements ScilabHandler {
         this.saxHandler = saxHandler;
     }
 
+    @Override
     public Object startElement(HandledElement found, Attributes atts) {
         String v;
 
@@ -99,6 +100,7 @@ class JGraphXHandler implements ScilabHandler {
         }
     }
 
+    @Override
     public void endElement(HandledElement found) {
         switch (found) {
             case mxCell:
@@ -116,6 +118,7 @@ class JGraphXHandler implements ScilabHandler {
 
                 cell.setGeometry(g);
             }
+            break;
             case mxPoint:
                 break;
             default:

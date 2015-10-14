@@ -37,12 +37,16 @@ class CustomHandler implements ScilabHandler {
 
     /**
      * Default constructor
-     * @param saxHandler the shared sax handler
+     *
+     * @param saxHandler
+     *            the shared sax handler
      */
     CustomHandler(SAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 
+    @Override
+    @SuppressWarnings({ "fallthrough" })
     public Object startElement(HandledElement found, final Attributes atts) {
         long uid = 0l;
         String v;
@@ -160,6 +164,7 @@ class CustomHandler implements ScilabHandler {
         }
     }
 
+    @Override
     public void endElement(HandledElement found) {
         switch (found) {
             case Orientation:

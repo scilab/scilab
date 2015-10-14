@@ -37,7 +37,6 @@ import org.w3c.dom.NodeList;
 
 import com.mxgraph.io.mxCodec;
 import com.mxgraph.io.mxCodecRegistry;
-import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGraphModel;
 import com.mxgraph.model.mxICell;
 
@@ -84,8 +83,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param exclude
      *            Optional array of fieldnames to be ignored.
      * @param idrefs
-     *            Optional array of fieldnames to be converted to/from
-     *            references.
+     *            Optional array of fieldnames to be converted to/from references.
      * @param mapping
      *            Optional mapping from field- to attributenames.
      */
@@ -99,9 +97,11 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     public static void register() {
         JavaController controller = new JavaController();
 
-        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM), DIAGRAM_IGNORED_FIELDS, null, null);
+        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM), DIAGRAM_IGNORED_FIELDS, null,
+                null);
         mxCodecRegistry.register(diagramCodec);
-        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.BLOCK), Kind.BLOCK), SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
+        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.BLOCK), Kind.BLOCK),
+                SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(superBlockDiagramCodec);
     }
 
@@ -120,9 +120,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      *            Value of the property to be encoded.
      * @param node
      *            XML node that contains the encoded object.
-     * @see com.mxgraph.io.mxObjectCodec#encodeValue(com.mxgraph.io.mxCodec,
-     *      java.lang.Object, java.lang.String, java.lang.Object,
-     *      org.w3c.dom.Node)
+     * @see com.mxgraph.io.mxObjectCodec#encodeValue(com.mxgraph.io.mxCodec, java.lang.Object, java.lang.String, java.lang.Object, org.w3c.dom.Node)
      */
     @Override
     protected void encodeValue(mxCodec enc, Object obj, String fieldname, Object value, Node node) {
@@ -178,15 +176,14 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      *            the {@link Current} field name
      * @param value
      *            the current field value
-     * @see com.mxgraph.io.mxObjectCodec#setFieldValue(java.lang.Object,
-     *      java.lang.String, java.lang.Object)
+     * @see com.mxgraph.io.mxObjectCodec#setFieldValue(java.lang.Object, java.lang.String, java.lang.Object)
      */
     @Override
     protected void setFieldValue(Object obj, String fieldname, Object value) {
         Field field;
         try {
             field = ScicosParameters.class.getDeclaredField(fieldname);
-            ScicosParameters params = ((XcosDiagram) obj).getScicosParameters();
+            ScicosParameters params = new ScicosParameters(((XcosDiagram) obj).getUID(), ((XcosDiagram) obj).getKind());
             super.setFieldValue(params, fieldname, value);
         } catch (SecurityException e) {
             field = null;
@@ -201,14 +198,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
             mxICell root = (mxICell) diag.getModel().getRoot();
 
             /*
-             * Restore the initial hierarchy
-             *  mxCell -> root
-             *   XcosCell -> default parent with diagram uid / kind
-             *    BasicBlock
-             *    BasicLink
-             *    .
-             *    .
-             *    .
+             * Restore the initial hierarchy mxCell -> root XcosCell -> default parent with diagram uid / kind BasicBlock BasicLink . . .
              */
 
             Object[] cells = diag.getChildCells(value);
@@ -224,14 +214,12 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     }
 
     /**
-     * {@inheritDoc}
-     * <BR>
+     * {@inheritDoc} <BR>
      * <BR>
      * <B>UPDATED TO COVER</B>
      *
      * <UL>
-     * <LI>Strip out any node with an invalid parent id. (5.3.1 diagrams may
-     * contains invalid default parents, remove them.)</LI>
+     * <LI>Strip out any node with an invalid parent id. (5.3.1 diagrams may contains invalid default parents, remove them.)</LI>
      * <LI>Remove cell where id end with "#identifier#identifier"</LI>
      * </UL>
      */
@@ -300,15 +288,14 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param node
      *            the cureent node
      * @return the updated object
-     * @see org.scilab.modules.graph.io.ScilabGraphCodec#beforeEncode(com.mxgraph.io.mxCodec,
-     *      java.lang.Object, org.w3c.dom.Node)
+     * @see org.scilab.modules.graph.io.ScilabGraphCodec#beforeEncode(com.mxgraph.io.mxCodec, java.lang.Object, org.w3c.dom.Node)
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
         final Package p = Package.getPackage("org.scilab.modules.xcos");
 
-        trace(enc, node, new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP).append(p.getSpecificationVersion())
-              .append(SEP).append(p.getImplementationVersion()).toString());
+        trace(enc, node, new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP).append(p.getSpecificationVersion()).append(SEP)
+              .append(p.getImplementationVersion()).toString());
 
         return super.beforeEncode(enc, obj, node);
     }
@@ -323,8 +310,7 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      * @param obj
      *            Object decoded.
      * @return The Object transformed
-     * @see org.scilab.modules.graph.io.ScilabGraphCodec#afterDecode(com.mxgraph.io.mxCodec,
-     *      org.w3c.dom.Node, java.lang.Object)
+     * @see org.scilab.modules.graph.io.ScilabGraphCodec#afterDecode(com.mxgraph.io.mxCodec, org.w3c.dom.Node, java.lang.Object)
      */
     @Override
     public Object afterDecode(mxCodec dec, Node node, Object obj) {

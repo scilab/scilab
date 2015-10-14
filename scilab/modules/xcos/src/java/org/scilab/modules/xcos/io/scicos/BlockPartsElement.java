@@ -16,6 +16,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.block.BasicBlock;
 
 /**
@@ -37,7 +38,8 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
     /**
      * Default constructor
      */
-    protected BlockPartsElement() {
+    protected BlockPartsElement(final JavaController controller) {
+        super(controller);
     }
 
     /**

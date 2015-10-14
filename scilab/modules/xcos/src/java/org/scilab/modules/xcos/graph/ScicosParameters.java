@@ -30,9 +30,7 @@ import org.scilab.modules.xcos.preferences.XcosOptions;
  *
  * This class is a java beans and follow standard properties accessors.
  *
- * @see <a
- *      href="http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html">JavaBeans
- *      Bound Properties</a>
+ * @see <a href="http://java.sun.com/docs/books/tutorial/javabeans/properties/bound.html">JavaBeans Bound Properties</a>
  */
 @SuppressWarnings(value = { "serial" })
 public class ScicosParameters implements Serializable, Cloneable {
@@ -107,7 +105,8 @@ public class ScicosParameters implements Serializable, Cloneable {
     /**
      * Reference to the diagram
      */
-    private final long diagramId;
+    private final long uid;
+    private final Kind kind;
 
     /*
      * Beans support, used to follow instance modification and validate changes.
@@ -119,8 +118,9 @@ public class ScicosParameters implements Serializable, Cloneable {
      *
      * Initialize parameters with their default values.
      */
-    public ScicosParameters(final long diagramId) {
-        this.diagramId = diagramId;
+    public ScicosParameters(final long uid, final Kind kind) {
+        this.uid = uid;
+        this.kind = kind;
 
         /*
          * This call will update static values from the configuration.
@@ -128,27 +128,41 @@ public class ScicosParameters implements Serializable, Cloneable {
         XcosOptions.getSimulation();
     }
 
+    public long getUID() {
+        return uid;
+    }
+
+    public Kind getKind() {
+        return kind;
+    }
+
     /**
      * Returns the properties values
-     * @param controller the controller instance
+     *
+     * @param controller
+     *            the controller instance
      * @return the current properties
      */
     public VectorOfDouble getProperties(final JavaController controller) {
         VectorOfDouble v = new VectorOfDouble(7);
-        controller.getObjectProperty(diagramId, Kind.DIAGRAM, ObjectProperties.PROPERTIES, v);
+        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PROPERTIES, v);
         return v;
     }
 
     /**
      * Set the properties
-     * @param controller the controller instance
-     * @param v the values to set
-     * @throws PropertyVetoException in case of the values are not valid
+     *
+     * @param controller
+     *            the controller instance
+     * @param v
+     *            the values to set
+     * @throws PropertyVetoException
+     *             in case of the values are not valid
      */
     public void setProperties(final JavaController controller, VectorOfDouble v) throws PropertyVetoException {
         VectorOfDouble oldValue = getProperties(controller);
         vcs.fireVetoableChange(FINAL_INTEGRATION_TIME_CHANGE, oldValue, v);
-        controller.setObjectProperty(diagramId, Kind.DIAGRAM, ObjectProperties.PROPERTIES, v);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.PROPERTIES, v);
     }
 
     /**
@@ -156,14 +170,15 @@ public class ScicosParameters implements Serializable, Cloneable {
      */
     public VectorOfString getContext(final JavaController controller) {
         VectorOfString v = new VectorOfString();
-        controller.getObjectProperty(diagramId, Kind.DIAGRAM, ObjectProperties.DIAGRAM_CONTEXT, v);
+        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, v);
         return v;
     }
 
     /**
      * Set the associated context if there is noticeable changes.
      *
-     * @param controller the controller
+     * @param controller
+     *            the controller
      * @param v
      *            set context
      * @throws PropertyVetoException
@@ -172,16 +187,17 @@ public class ScicosParameters implements Serializable, Cloneable {
     public void setContext(final JavaController controller, VectorOfString v) throws PropertyVetoException {
         VectorOfString oldValue = getContext(controller);
         vcs.fireVetoableChange(CONTEXT_CHANGE, oldValue, v);
-        controller.setObjectProperty(diagramId, Kind.DIAGRAM, ObjectProperties.DIAGRAM_CONTEXT, v);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, v);
     }
 
     /**
-     * @param controller the controller instance
+     * @param controller
+     *            the controller instance
      * @return current version
      */
     public String getVersion(final JavaController controller) {
         String[] v = new String[1];
-        controller.getObjectProperty(diagramId, Kind.DIAGRAM, ObjectProperties.VERSION_NUMBER, v);
+        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.VERSION_NUMBER, v);
         return v[0];
     }
 
@@ -209,8 +225,7 @@ public class ScicosParameters implements Serializable, Cloneable {
      */
 
     /**
-     * Each setXXX method fire a vetoable change event. This method register a
-     * new listener for all events.
+     * Each setXXX method fire a vetoable change event. This method register a new listener for all events.
      *
      * @param listener
      *            A listener
@@ -220,9 +235,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     }
 
     /**
-     * Each setXXX method fire a vetoable change event. This method register a
-     * new listener for a specific event. Each event name is equal to the field
-     * name.
+     * Each setXXX method fire a vetoable change event. This method register a new listener for a specific event. Each event name is equal to the field name.
      *
      * @param propertyName
      *            the property name
@@ -234,8 +247,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     }
 
     /**
-     * Each setXXX method fire a vetoable change event. This method remove a
-     * listener for all events.
+     * Each setXXX method fire a vetoable change event. This method remove a listener for all events.
      *
      * @param listener
      *            A listener
@@ -245,9 +257,7 @@ public class ScicosParameters implements Serializable, Cloneable {
     }
 
     /**
-     * Each setXXX method fire a vetoable change event. This method remove a
-     * listener for a specific event. Each event name is equal to the field
-     * name.
+     * Each setXXX method fire a vetoable change event. This method remove a listener for a specific event. Each event name is equal to the field name.
      *
      * @param propertyName
      *            the property name

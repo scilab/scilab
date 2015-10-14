@@ -61,6 +61,7 @@ public class JavaControllerJNI {
   public final static native void VectorOfInt_set(long jarg1, VectorOfInt jarg1_, int jarg2, int jarg3);
   public final static native void VectorOfInt_add__SWIG_1(long jarg1, VectorOfInt jarg1_, int jarg2, int jarg3);
   public final static native boolean VectorOfInt_remove(long jarg1, VectorOfInt jarg1_, int jarg2);
+  public final static native java.nio.ByteBuffer VectorOfInt_asByteBuffer(long jarg1, VectorOfInt jarg1_, int jarg2, int jarg3);
   public final static native void delete_VectorOfInt(long jarg1);
   public final static native long new_VectorOfBool__SWIG_0();
   public final static native long new_VectorOfBool__SWIG_1(long jarg1);
@@ -89,6 +90,7 @@ public class JavaControllerJNI {
   public final static native void VectorOfDouble_set(long jarg1, VectorOfDouble jarg1_, int jarg2, double jarg3);
   public final static native void VectorOfDouble_add__SWIG_1(long jarg1, VectorOfDouble jarg1_, int jarg2, double jarg3);
   public final static native boolean VectorOfDouble_remove(long jarg1, VectorOfDouble jarg1_, double jarg2);
+  public final static native java.nio.ByteBuffer VectorOfDouble_asByteBuffer(long jarg1, VectorOfDouble jarg1_, int jarg2, int jarg3);
   public final static native void delete_VectorOfDouble(long jarg1);
   public final static native long new_VectorOfString__SWIG_0();
   public final static native long new_VectorOfString__SWIG_1(long jarg1);
@@ -104,6 +106,7 @@ public class JavaControllerJNI {
   public final static native void VectorOfString_set(long jarg1, VectorOfString jarg1_, int jarg2, String jarg3);
   public final static native void VectorOfString_add__SWIG_1(long jarg1, VectorOfString jarg1_, int jarg2, String jarg3);
   public final static native boolean VectorOfString_remove(long jarg1, VectorOfString jarg1_, String jarg2);
+  public final static native java.nio.ByteBuffer VectorOfString_asByteBuffer(long jarg1, VectorOfString jarg1_, int jarg2, int jarg3);
   public final static native void delete_VectorOfString(long jarg1);
   public final static native long new_VectorOfScicosID__SWIG_0();
   public final static native long new_VectorOfScicosID__SWIG_1(long jarg1);
@@ -119,6 +122,7 @@ public class JavaControllerJNI {
   public final static native void VectorOfScicosID_set(long jarg1, VectorOfScicosID jarg1_, int jarg2, long jarg3);
   public final static native void VectorOfScicosID_add__SWIG_1(long jarg1, VectorOfScicosID jarg1_, int jarg2, long jarg3);
   public final static native boolean VectorOfScicosID_remove(long jarg1, VectorOfScicosID jarg1_, long jarg2);
+  public final static native java.nio.ByteBuffer VectorOfScicosID_asByteBuffer(long jarg1, VectorOfScicosID jarg1_, int jarg2, int jarg3);
   public final static native void delete_VectorOfScicosID(long jarg1);
   public final static native void register_view(String jarg1, long jarg2, View jarg2_);
   public final static native void unregister_view(long jarg1, View jarg1_);

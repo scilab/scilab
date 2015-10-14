@@ -46,7 +46,6 @@ public class BrowserTreeNodeData {
         refCount = 0;
     }
 
-
     /*
      * Getters and Setters
      */
@@ -81,7 +80,9 @@ public class BrowserTreeNodeData {
 
     /**
      * Compute and fill in the HTML data for node's parameters
-     * @param document the currently rendered document
+     *
+     * @param document
+     *            the currently rendered document
      * @throws IOException
      * @throws BadLocationException
      */
@@ -144,7 +145,8 @@ public class BrowserTreeNodeData {
         tag(htmlTable, "caption", "Graphics");
         tag(htmlTable, "tr", tag("td", "orig").append(tag("td", escapeVector(',', geom.get(0), geom.get(1)))));
         tag(htmlTable, "tr", tag("td", "sz").append(tag("td", escapeVector(',', geom.get(2), geom.get(3)))));
-        tag(htmlTable, "tr", tag("td", "flip").append(tag("td", (angle.get(0) == 0.0) ? "%f" : "%t")));
+        tag(htmlTable, "tr", tag("td", "flip").append(tag("td", ((((int) angle.get(0)) & 0x0001) != 0) ? "%t" : "%f")));
+        tag(htmlTable, "tr", tag("td", "mirror").append(tag("td", ((((int) angle.get(0)) & 0x0002) != 0) ? "%t" : "%f")));
         tag(htmlTable, "tr", tag("td", "theta").append(tag("td", CURRENT_FORMAT.format(angle.get(1)))));
         tag(htmlTable, "tr", tag("td", "exprs").append(tag("td", escapeVector(';', exprs))));
         tag(htmlTable, "tr", tag("td", "id").append(tag("td", title[0])));
@@ -231,7 +233,6 @@ public class BrowserTreeNodeData {
             str.append('"').append(v[v.length - 1]).append('"');
         }
 
-
         if (v.length > 1) {
             str.append(']');
         }
@@ -298,7 +299,9 @@ public class BrowserTreeNodeData {
         }
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see java.lang.Object#hashCode()
      */
     @Override
@@ -309,7 +312,9 @@ public class BrowserTreeNodeData {
         return result;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     *
      * @see java.lang.Object#equals(java.lang.Object)
      */
     @Override
