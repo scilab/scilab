@@ -82,18 +82,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Console_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Localization_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="output_stream_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="String_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="output_stream_export.def">
       <Filter>Libraries Dependencies\Export</Filter>
     </None>
@@ -104,6 +92,9 @@
       <Filter>localization</Filter>
     </None>
     <None Include="Fileio_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="ast_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
@@ -213,9 +204,6 @@
     <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
     <None Include="..\..\locales\output_stream.pot">
       <Filter>localization</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

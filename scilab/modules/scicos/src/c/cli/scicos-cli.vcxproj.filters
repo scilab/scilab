@@ -41,9 +41,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\DllmainScicos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\ezxml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -257,6 +254,9 @@
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_sig2data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DllmainScicos-cli.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_scicos.h">
@@ -405,19 +405,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\Dynamic_link_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="..\nographics_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="..\Output_stream_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="..\Scicos_blocks_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\scicos_f_Import.def">
@@ -429,23 +417,20 @@
     <None Include="..\..\..\Makefile.am" />
     <None Include="..\..\..\scicos.iss" />
     <None Include="..\..\..\sci_gateway\scicos_gateway.xml" />
-    <None Include="..\Localization_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\..\locales\scicos.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="..\Core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\differential_equations_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="scicos-cli_Export.def">
       <Filter>Libraries Dependencies\Export</Filter>
+    </None>
+    <None Include="..\Scicos_blocks-cli_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

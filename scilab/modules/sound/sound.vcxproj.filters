@@ -19,9 +19,6 @@
     <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{d6efdcda-26d8-4367-87dc-2a39c3350b4b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{932f0b45-e579-413d-9ecf-5c1948ac5b59}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\c\DllmainSound.c">
@@ -48,9 +45,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Makefile.am" />
     <None Include="sound.iss" />
     <None Include="sci_gateway\sound_gateway.xml" />

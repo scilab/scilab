@@ -12,12 +12,6 @@
     <Filter Include="localization">
       <UniqueIdentifier>{79c5386b-ee41-47cd-8c79-6ded8c4b1551}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{546d9f1c-b2f7-41d7-9467-98bc6bddd3e0}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{7aaf618f-e0b0-4b3c-bc03-9331460c5e92}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{458d897a-4c4b-4f72-902a-42abfbfd394e}</UniqueIdentifier>
     </Filter>
@@ -54,9 +48,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\helptools.iss" />
     <None Include="..\..\sci_gateway\helptools_gateway.xml" />
     <None Include="..\..\Makefile.am" />

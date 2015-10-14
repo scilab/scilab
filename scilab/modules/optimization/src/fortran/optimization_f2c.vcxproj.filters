@@ -546,19 +546,7 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="io_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Optimization_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="String_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Elementary_functions_f_Import.def">
@@ -570,7 +558,7 @@
     <None Include="optimization_f.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Core_f_Import.def">
+    <None Include="Optimization_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

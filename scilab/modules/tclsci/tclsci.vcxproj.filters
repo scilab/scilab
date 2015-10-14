@@ -180,9 +180,6 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="scilab_windows_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Makefile.am" />
     <None Include="tclsci.iss" />
     <None Include="sci_gateway\tclsci_gateway.xml" />

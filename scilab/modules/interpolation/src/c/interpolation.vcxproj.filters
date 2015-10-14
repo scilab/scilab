@@ -87,9 +87,6 @@
     <None Include="..\..\interpolation.iss" />
     <None Include="..\..\sci_gateway\interpolation_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="slatec_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

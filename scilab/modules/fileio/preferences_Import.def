@@ -1,5 +1,5 @@
-	LIBRARY    preferences.dll
+LIBRARY    preferences.dll
 
 
 EXPORTS
-	getPrefAttributesValues
+getPrefAttributesValues

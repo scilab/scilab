@@ -2,17 +2,6 @@ LIBRARY    core.dll
 
 
 EXPORTS
-scirun_
-settmpdir_
-ReleaseLaunchScilabSignal
-TerminateCorePart2
-ExitScilab
-callFunctionFromGateway
-putlhsvar_
-createvarfromptr_
-checklhs_
-checkrhs_
-com_
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

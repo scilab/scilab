@@ -120,9 +120,6 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="graphics_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

@@ -27,18 +27,6 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Sparse_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="linpack_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="isort1.f">

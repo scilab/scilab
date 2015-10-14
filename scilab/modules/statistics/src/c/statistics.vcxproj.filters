@@ -54,12 +54,6 @@
     <None Include="..\..\locales\statistics.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="dcd_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="statistics.rc">

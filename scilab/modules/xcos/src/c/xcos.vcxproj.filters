@@ -15,9 +15,6 @@
     <Filter Include="Libraries Dependencies">
       <UniqueIdentifier>{97ee0208-8b7d-40b5-9b30-d57ee2e50f84}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{33fb5793-e89b-497e-86e5-6c794a65e365}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{2dda7dd9-8a5e-47a5-830c-1e6a617396a6}</UniqueIdentifier>
     </Filter>
@@ -129,9 +126,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\xcos.iss" />
     <None Include="..\..\sci_gateway\xcos_gateway.xml" />

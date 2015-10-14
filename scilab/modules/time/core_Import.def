@@ -3,15 +3,5 @@ LIBRARY    core.dll
 
 EXPORTS
 transposeMatrixDouble
-transposeMatrixInt
-callFunctionFromGateway
-com_
-putlhsvar_
-getrhsvar_
-createvarfromptr_
-checklhs_
-checkrhs_
-check_scalar
-createvar_
 MyHeapAlloc
 MyHeapFree

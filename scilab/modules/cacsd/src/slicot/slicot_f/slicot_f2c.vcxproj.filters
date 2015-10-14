@@ -670,12 +670,6 @@
     </f2c_rule>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="linear_algebra_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>

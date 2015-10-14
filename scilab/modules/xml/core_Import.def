@@ -2,8 +2,5 @@ LIBRARY    core.dll
 
 
 EXPORTS
-scistring_
-callFunctionFromGateway
-com_
 MyHeapAlloc
 MyHeapFree

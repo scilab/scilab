@@ -4,15 +4,7 @@ LIBRARY    core.dll
 EXPORTS
 
 ; core
-com_
-getrhsvar_
-putlhsvar_
-gettype_
-checkrhs_
-checklhs_
 freeArrayOfString
-callFunctionFromGateway
-getScilabMode
 MyHeapAlloc
 MyHeapFree
 

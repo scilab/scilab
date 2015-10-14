@@ -1034,7 +1034,7 @@
     <None Include="..\Slicot_Import.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="..\core_import.def">
+    <None Include="..\core_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
   </ItemGroup>

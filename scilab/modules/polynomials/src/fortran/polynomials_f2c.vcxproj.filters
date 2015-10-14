@@ -372,16 +372,7 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="linear_algebra_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="polynomials_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="cacsd_f_Import.def">
@@ -390,7 +381,7 @@
     <None Include="linpack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Core_f_Import.def">
+    <None Include="polynomials_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

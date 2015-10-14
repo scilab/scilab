@@ -421,16 +421,7 @@
     <None Include="differential_equations_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Elementary_functions_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="String_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="..\..\sci_gateway\differential_equations_gateway.xml" />
@@ -442,9 +433,6 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -375,12 +375,6 @@
   <ItemGroup>
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\signal_processing_gateway.xml" />
-    <None Include="Elementary_functions_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
@@ -388,9 +382,6 @@
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="Elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -2,17 +2,10 @@ LIBRARY    core.dll
 
 
 EXPORTS
-callFunctionFromGateway
-com_
-getrhsvar_
-gettype_
-createvar_
-vartype_
 with_module
 StoreCommand
 StorePrioritaryCommand
 ismenu
-iop_
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

@@ -688,39 +688,24 @@
     <None Include="elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="Integer_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="core_import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="String_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="linpack_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
     <None Include="cacsd_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="polynomials_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="sparse_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="eispack_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="linpack_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="slatec_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

@@ -321,12 +321,14 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\elementary_functions.pot" />
+    <None Include="cacsd_f_Import.def" />
     <None Include="eispack_f_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="core_import.def" />
     <None Include="..\..\elementary_functions.iss" />
     <None Include="..\..\sci_gateway\elementary_functions_gateway.xml" />
     <None Include="..\..\Makefile.am" />
+    <None Include="linpack_f_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="elementary_functions.rc" />

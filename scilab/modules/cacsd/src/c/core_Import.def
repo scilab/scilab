@@ -5,11 +5,6 @@ EXPORTS
 ;
 ;core
 ;
-callFunctionFromGateway
-com_
-fortran_mex_gateway
-errorinfo_
-GetData
 MyHeapAlloc
 MyHeapFree
 

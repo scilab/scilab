@@ -98,9 +98,6 @@
     <None Include="..\..\locales\sparse.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="sparse.rc">
