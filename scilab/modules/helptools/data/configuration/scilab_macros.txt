@@ -791,7 +791,6 @@ systmat
 %l_i_h
 %l_i_s
 %l_i_st
-%l_isequal
 %l_n_c
 %l_n_l
 %l_n_m
