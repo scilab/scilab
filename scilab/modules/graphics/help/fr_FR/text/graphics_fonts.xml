@@ -143,7 +143,7 @@
                         Il s'agit d'un scalaire déterminant la taille des caractères à utiliser.
                     </para>
                     <para>
-                        La taille des cractère en Scilab est différente de celle utilisée par Java.
+                        La taille des cractère en Scilab est différente du point.
                         L'équivalence entre les deux échelles est donnée ci-dessous.
                     </para>
                     <informaltable border="1">
@@ -152,7 +152,7 @@
                                 <emphasis role="bold">Taille Scilab</emphasis>
                             </td>
                             <td>
-                                <emphasis role="bold">Taille Java</emphasis>
+                                <emphasis role="bold">Taille en points</emphasis>
                             </td>
                         </tr>
                         <tr>
@@ -203,11 +203,10 @@
                     <para>
                         La taille des caractères peut prendre des valeurs non entière. Dans ce cas, le résultat dépend de la propriété <literal>fractional_font</literal> .
                         Si <literal>fractional_font</literal> a pour valeur <literal>'on'</literal>, alors la taille de caractère est interpolée
-                        entre les deux tailles entière les plus proches. Par exemple, une taille de 2.5 permet d'afficher des caractères dont la taille
-                        en Java est 13.
+                        entre les deux tailles entière les plus proches. Par exemple, une taille de 2.5 permet d'afficher des caractères de 13pt.
                         Si <literal>fractional_font</literal> a pour valeur <literal>'off'</literal>, alors la taille de caractère est tronquée
                         à sa partie entière. Par exemple, une taille de 2.5 affichera des caractères dont la taille
-                        en Java est 12.
+                        est 12pt.
                     </para>
                     <para/>
                 </listitem>

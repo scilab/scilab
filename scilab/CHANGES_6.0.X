@@ -90,6 +90,8 @@ Scilab Bug Fixes
 
 * Bug #14059 fixed - Lack of performance on deletion of matrix elements.
 
+* Bug #14065 fixed - Change "java size" in points in graphics font help page.
+
 * Bug #14082 fixed - m=1; m()=1; made Scilab crash.
 
 * Bug #14093 fixed - atanh returns NaN for values with an absolute value greater than 1

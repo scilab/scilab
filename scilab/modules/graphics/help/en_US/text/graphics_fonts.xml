@@ -139,7 +139,7 @@
                         It is a scalar specifying the displayed character size.
                     </para>
                     <para>
-                        The Scilab character size is different from the Java size. Here is the equivalence between the two scales.
+                        The Scilab character size is different from the point size. Here is the equivalence between the two scales.
                     </para>
                     <informaltable border="1">
                         <tr>
@@ -147,7 +147,7 @@
                                 <emphasis role="bold">Scilab Size</emphasis>
                             </td>
                             <td>
-                                <emphasis role="bold">Java Size</emphasis>
+                                <emphasis role="bold">Point Size</emphasis>
                             </td>
                         </tr>
                         <tr>
@@ -198,9 +198,9 @@
                     <para>
                         The character size might not be an integer. In this case, the result depends on the entities <literal>fractional_font</literal> property.
                         If <literal>fractional_font</literal> property is <literal>'on'</literal> then the displayed font size is interpolated between the two
-                        closest integer. For example, a font size of 2.5 displays characters with a Java size of 13.
+                        closest integer. For example, a font size of 2.5 displays characters of 13pt.
                         If <literal>fractional_font</literal> property is <literal>'off'</literal> then the displayed font size is truncated to
-                        its integer part. For example, a font size of 2.5 displays characters using a Java size of 12.
+                        its integer part. For example, a font size of 2.5 displays characters of 12pt.
                     </para>
                     <para/>
                 </listitem>
