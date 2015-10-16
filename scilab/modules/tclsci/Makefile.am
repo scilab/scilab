@@ -45,8 +45,8 @@ GATEWAY_C_SOURCES = \
 
 else
 
-TCLSCI_C_SOURCES = src/notclsci/notclsci.c
-TCLSCI_CPP_SOURCES =
+TCLSCI_C_SOURCES =
+TCLSCI_CPP_SOURCES = src/notclsci/notclsci.cpp
 GATEWAY_CPP_SOURCES =
 GATEWAY_C_SOURCES =
 

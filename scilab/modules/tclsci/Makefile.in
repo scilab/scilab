@@ -172,8 +172,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitclsci_la_tcldir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscitclsci_algo_la_LIBADD =
-am__libscitclsci_algo_la_SOURCES_DIST = src/cpp/ScilabEval.cpp \
-	src/notclsci/notclsci.c src/c/TCL_Global.c src/c/InitTclTk.c \
+am__libscitclsci_algo_la_SOURCES_DIST = src/notclsci/notclsci.cpp \
+	src/cpp/ScilabEval.cpp src/c/TCL_Global.c src/c/InitTclTk.c \
 	src/c/setenvtcl.c src/c/InitializeTclTk.c \
 	src/c/TerminateTclTk.c src/c/setvar.c src/c/TCL_ArrayDim.c \
 	src/c/TCL_ArrayExist.c src/c/TCL_ArrayGetVar.c \
@@ -181,10 +181,10 @@ am__libscitclsci_algo_la_SOURCES_DIST = src/cpp/ScilabEval.cpp \
 	src/c/GlobalTclInterp.c src/c/TCL_getErrorLine.c \
 	src/c/LoadUnloadTclsci.c
 am__dirstamp = $(am__leading_dot)dirstamp
+@TCLTK_FALSE@am__objects_1 =  \
+@TCLTK_FALSE@	src/notclsci/libscitclsci_algo_la-notclsci.lo
 @TCLTK_TRUE@am__objects_1 =  \
 @TCLTK_TRUE@	src/cpp/libscitclsci_algo_la-ScilabEval.lo
-@TCLTK_FALSE@am__objects_2 =  \
-@TCLTK_FALSE@	src/notclsci/libscitclsci_algo_la-notclsci.lo
 @TCLTK_TRUE@am__objects_2 = src/c/libscitclsci_algo_la-TCL_Global.lo \
 @TCLTK_TRUE@	src/c/libscitclsci_algo_la-InitTclTk.lo \
 @TCLTK_TRUE@	src/c/libscitclsci_algo_la-setenvtcl.lo \
@@ -615,7 +615,7 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-@TCLTK_FALSE@TCLSCI_C_SOURCES = src/notclsci/notclsci.c
+@TCLTK_FALSE@TCLSCI_C_SOURCES = 
 @TCLTK_TRUE@TCLSCI_C_SOURCES = \
 @TCLTK_TRUE@    src/c/TCL_Global.c \
 @TCLTK_TRUE@    src/c/InitTclTk.c \
@@ -632,7 +632,7 @@ yacc_present = @yacc_present@
 @TCLTK_TRUE@    src/c/TCL_getErrorLine.c \
 @TCLTK_TRUE@    src/c/LoadUnloadTclsci.c
 
-@TCLTK_FALSE@TCLSCI_CPP_SOURCES = 
+@TCLTK_FALSE@TCLSCI_CPP_SOURCES = src/notclsci/notclsci.cpp
 @TCLTK_TRUE@TCLSCI_CPP_SOURCES = \
 @TCLTK_TRUE@    src/cpp/ScilabEval.cpp
 
@@ -908,14 +908,6 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-src/cpp/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp
-	@: > src/cpp/$(am__dirstamp)
-src/cpp/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp/$(DEPDIR)
-	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscitclsci_algo_la-ScilabEval.lo: src/cpp/$(am__dirstamp) \
-	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/notclsci/$(am__dirstamp):
 	@$(MKDIR_P) src/notclsci
 	@: > src/notclsci/$(am__dirstamp)
@@ -925,6 +917,14 @@ src/notclsci/$(DEPDIR)/$(am__dirstamp):
 src/notclsci/libscitclsci_algo_la-notclsci.lo:  \
 	src/notclsci/$(am__dirstamp) \
 	src/notclsci/$(DEPDIR)/$(am__dirstamp)
+src/cpp/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp
+	@: > src/cpp/$(am__dirstamp)
+src/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/$(DEPDIR)
+	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscitclsci_algo_la-ScilabEval.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/c/$(am__dirstamp):
 	@$(MKDIR_P) src/c
 	@: > src/c/$(am__dirstamp)
@@ -1090,13 +1090,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-src/notclsci/libscitclsci_algo_la-notclsci.lo: src/notclsci/notclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/notclsci/libscitclsci_algo_la-notclsci.lo -MD -MP -MF src/notclsci/$(DEPDIR)/libscitclsci_algo_la-notclsci.Tpo -c -o src/notclsci/libscitclsci_algo_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/notclsci/$(DEPDIR)/libscitclsci_algo_la-notclsci.Tpo src/notclsci/$(DEPDIR)/libscitclsci_algo_la-notclsci.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/notclsci/notclsci.c' object='src/notclsci/libscitclsci_algo_la-notclsci.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/notclsci/libscitclsci_algo_la-notclsci.lo `test -f 'src/notclsci/notclsci.c' || echo '$(srcdir)/'`src/notclsci/notclsci.c
 
 src/c/libscitclsci_algo_la-TCL_Global.lo: src/c/TCL_Global.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscitclsci_algo_la-TCL_Global.lo -MD -MP -MF src/c/$(DEPDIR)/libscitclsci_algo_la-TCL_Global.Tpo -c -o src/c/libscitclsci_algo_la-TCL_Global.lo `test -f 'src/c/TCL_Global.c' || echo '$(srcdir)/'`src/c/TCL_Global.c
@@ -1310,6 +1303,13 @@ sci_gateway/c/libscitclsci_la-sci_TCL_UpVar.lo: sci_gateway/c/sci_TCL_UpVar.c
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
+
+src/notclsci/libscitclsci_algo_la-notclsci.lo: src/notclsci/notclsci.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/notclsci/libscitclsci_algo_la-notclsci.lo -MD -MP -MF src/notclsci/$(DEPDIR)/libscitclsci_algo_la-notclsci.Tpo -c -o src/notclsci/libscitclsci_algo_la-notclsci.lo `test -f 'src/notclsci/notclsci.cpp' || echo '$(srcdir)/'`src/notclsci/notclsci.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/notclsci/$(DEPDIR)/libscitclsci_algo_la-notclsci.Tpo src/notclsci/$(DEPDIR)/libscitclsci_algo_la-notclsci.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/notclsci/notclsci.cpp' object='src/notclsci/libscitclsci_algo_la-notclsci.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/notclsci/libscitclsci_algo_la-notclsci.lo `test -f 'src/notclsci/notclsci.cpp' || echo '$(srcdir)/'`src/notclsci/notclsci.cpp
 
 src/cpp/libscitclsci_algo_la-ScilabEval.lo: src/cpp/ScilabEval.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscitclsci_algo_la-ScilabEval.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscitclsci_algo_la-ScilabEval.Tpo -c -o src/cpp/libscitclsci_algo_la-ScilabEval.lo `test -f 'src/cpp/ScilabEval.cpp' || echo '$(srcdir)/'`src/cpp/ScilabEval.cpp
