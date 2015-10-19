@@ -169,11 +169,11 @@ int sci_dec2base(char *fname, void* pvApiCtx)
         switch (err)
         {
             case ERROR_CONVERTBASE_NOT_INTEGER_VALUE:
-                Scierror(999, _("%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong value(s) for input argument #%d: A matrix of positive integer values expected.\n"), fname, 1);
                 return 1;
 
             case ERROR_CONVERTBASE_NOT_IN_INTERVAL:
-                Scierror(999, _("%s: Wrong value(s) for input argument #%d: A matrix of positive integer values expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: Must be between 0 and 2^52.\n"), fname, 1);
                 return 1;
 
             case ERROR_CONVERTBASE_ALLOCATION:
@@ -187,7 +187,7 @@ int sci_dec2base(char *fname, void* pvApiCtx)
         }
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m, n, (char const* const*) convertedValues);
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m, n, (char const * const*) convertedValues);
     freeArrayOfString(convertedValues, m * n);
     convertedValues = NULL;
 

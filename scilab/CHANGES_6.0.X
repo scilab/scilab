@@ -134,6 +134,8 @@ Scilab Bug Fixes
 
 * Bug #14203 fixed - Improve some error messages, some help pages and some comments.
 
+* Bug #14204 fixed - dec2bin ( dec2base ) must show a better error message for too large values.
+
 * Bug #14205 fixed - Console crash when assigning uint32 numbers to double matrix.
 
 * Bug #14209 fixed - 1:245 created infinite loop.
