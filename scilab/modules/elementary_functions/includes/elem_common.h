@@ -60,6 +60,8 @@ extern double C2F(dlamch) (const char *_pszCommand, unsigned long int);
 extern double C2F(logp1) (double *_pdblVal);
 extern int C2F(dgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
                        double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);
+extern int C2F(zgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
+                       double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);
 extern int C2F(dswap) (int *_piSize, double *_pdblX, int *_piIncX, double *_pdblY, int *_piIncY);
 extern double C2F(dasum) (int *_iSize, double *_pdbl, int *_iInc);
 extern int C2F(dcopy) (int *_iSize, double *_pdblSrc, int *_piIncSrc, double *_pdblDest, int *_piDest);
