@@ -120,6 +120,8 @@ Scilab Bug Fixes
 
 * Bug #14199 fixed - sqrt returned wrong dimension results on matrix with more than dimensions.
 
+* Bug #14205 fixed - Console crash when assigning uint32 numbers to double matrix.
+
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================
