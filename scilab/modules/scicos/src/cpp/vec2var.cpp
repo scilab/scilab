@@ -26,7 +26,7 @@
 #include "list.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
-#include "struct.hxx"
+//#include "struct.hxx"
 
 extern "C"
 {
@@ -438,78 +438,79 @@ static bool readElement(const double* const input, const int iType, const int iD
             break;
         }
 
-        case types::InternalType::ScilabStruct :
-        {
-            if (inputRows < 2)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
-                return false;
-            }
+        // Structs are not used yet
+        //case types::InternalType::ScilabStruct :
+        //{
+        //    if (inputRows < 2)
+        //    {
+        //        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
+        //        return false;
+        //    }
 
-            if (iDims <= 0)
-            {
-                res = new types::Struct();
-                offset += 2;
-                break;
-            }
+        //    if (iDims <= 0)
+        //    {
+        //        res = new types::Struct();
+        //        offset += 2;
+        //        break;
+        //    }
 
-            int offsetSave = 0;
-            if (offset == 0)
-            {
-                offset += 2;
-            }
-            else
-            {
-                // If reading a sublist, start off with a new offset
-                offsetSave = offset;
-                offset = 2;
-            }
-            // Read the header...
-            int elementType = static_cast<int>(*(input + offset));
-            if (elementType != types::InternalType::ScilabString)
-            {
-                Scierror(999, _("%s: Wrong value for input argument #%d: %d (String) expected.\n"), vec2varName.c_str(), 1, 11);
-                return false;
-            }
-            int elementDims = static_cast<int>(*(input + offset + 1));
-            types::InternalType* element;
-            if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
-            {
-                return false;
-            }
+        //    int offsetSave = 0;
+        //    if (offset == 0)
+        //    {
+        //        offset += 2;
+        //    }
+        //    else
+        //    {
+        //        // If reading a sublist, start off with a new offset
+        //        offsetSave = offset;
+        //        offset = 2;
+        //    }
+        //    // Read the header...
+        //    int elementType = static_cast<int>(*(input + offset));
+        //    if (elementType != types::InternalType::ScilabString)
+        //    {
+        //        Scierror(999, _("%s: Wrong value for input argument #%d: %d (String) expected.\n"), vec2varName.c_str(), 1, 11);
+        //        return false;
+        //    }
+        //    int elementDims = static_cast<int>(*(input + offset + 1));
+        //    types::InternalType* element;
+        //    if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
+        //    {
+        //        return false;
+        //    }
 
-            types::Struct* pStruct = new types::Struct(1, 1);
-            types::String* header = element->getAs<types::String>();
-            // ... and copy it in 'pStruct'
-            for (int i = 0; i < header->getSize(); ++i)
-            {
-                pStruct->get(0)->addField(header->get(i));
-            }
+        //    types::Struct* pStruct = new types::Struct(1, 1);
+        //    types::String* header = element->getAs<types::String>();
+        //    // ... and copy it in 'pStruct'
+        //    for (int i = 0; i < header->getSize(); ++i)
+        //    {
+        //        pStruct->get(0)->addField(header->get(i));
+        //    }
 
-            for (int i = 1; i < iDims + 1; ++i)
-            {
-                if (inputRows < 2 + offset)
-                {
-                    delete pStruct;
-                    Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
-                    return false;
-                }
-                // Extract the fields content infos and recursively call readElement
-                elementType = static_cast<int>(*(input + offset));
-                elementDims = static_cast<int>(*(input + offset + 1));
-                if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
-                {
-                    delete pStruct;
-                    return false;
-                }
-                pStruct->get(0)->set(header->get(i - 1), element);
-            }
+        //    for (int i = 1; i < iDims + 1; ++i)
+        //    {
+        //        if (inputRows < 2 + offset)
+        //        {
+        //            delete pStruct;
+        //            Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
+        //            return false;
+        //        }
+        //        // Extract the fields content infos and recursively call readElement
+        //        elementType = static_cast<int>(*(input + offset));
+        //        elementDims = static_cast<int>(*(input + offset + 1));
+        //        if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
+        //        {
+        //            delete pStruct;
+        //            return false;
+        //        }
+        //        pStruct->get(0)->set(header->get(i - 1), element);
+        //    }
 
-            header->killMe();
-            offset += offsetSave;
-            res = pStruct;
-            break;
-        }
+        //    header->killMe();
+        //    offset += offsetSave;
+        //    res = pStruct;
+        //    break;
+        //}
 
         default :
             Scierror(999, _("%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"), vec2varName.c_str(), offset + 1, 1);

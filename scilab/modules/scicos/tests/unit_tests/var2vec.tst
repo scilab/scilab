@@ -110,10 +110,10 @@ mlMixed = mlist(["Type" "f1" "f2" "f3" "f4" "f5", "f6"], [], Mat, HyperMat, int3
 assert_checkequal(vec2var(var2vec(mlMixed)), mlMixed);
 
 // Struct
-st = struct();
-assert_checkequal(vec2var(var2vec(st)), st);
-stFull = struct("f1", [], "f2", Mat, "f3", HyperMat, "f4", int32(Mat), "f5", string(Mat), "f6", Mat>15);
-assert_checkequal(vec2var(var2vec(stFull)), stFull);
+//st = struct();
+//assert_checkequal(vec2var(var2vec(st)), st);
+//stFull = struct("f1", [], "f2", Mat, "f3", HyperMat, "f4", int32(Mat), "f5", string(Mat), "f6", Mat>15);
+//assert_checkequal(vec2var(var2vec(stFull)), stFull);
 
 // List containing a full TList, taken from PDE.sci
 params_pde = tlist(["paramspde";"a";"b";"txt_exp";"check_op1";"a1";"b1";"check_op2";"a2";"b2";..
@@ -149,13 +149,13 @@ nameF,[]);
 assert_checkequal(vec2var(var2vec(exprs)), exprs);
 
 // List containing a Struct
-lStFull = list(stFull, [], stFull, "test");
-assert_checkequal(vec2var(var2vec(lStFull)), lStFull);
+//lStFull = list(stFull, [], stFull, "test");
+//assert_checkequal(vec2var(var2vec(lStFull)), lStFull);
 
 // corner-cases
 a = var2vec(tlist(["" ""],list()));
 vec2var(a);
 
-a = var2vec(struct("toto", list(struct("titi", 12))));
-vec2var(a);
+//a = var2vec(struct("toto", list(struct("titi", 12))));
+//vec2var(a);
 
