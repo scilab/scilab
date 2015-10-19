@@ -100,4 +100,5 @@
 #include BinariesSourcePath + "\modules\ast\ast.iss"
 #include BinariesSourcePath + "\modules\functions_manager\functions_manager.iss"
 #include BinariesSourcePath + "\modules\mpi\mpi.iss"
+#include BinariesSourcePath + "\modules\slint\slint.iss"
 ;-------------------------------------------------------------------------------
