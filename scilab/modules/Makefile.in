@@ -594,7 +594,6 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
-runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -695,7 +694,8 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la $(am__append_6)
+	$(top_builddir)/modules/tclsci/libscitclsci.la \
+	$(top_builddir)/modules/slint/libscislint.la $(am__append_6)
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
@@ -1094,7 +1094,6 @@ uninstall-am: uninstall-pkglibLTLIBRARIES
 
 .PRECIOUS: Makefile
 
-	$(top_builddir)/modules/slint/libscislint.la
 
 .NOTPARALLEL: libscilab-cli.la libscilab.la
 
