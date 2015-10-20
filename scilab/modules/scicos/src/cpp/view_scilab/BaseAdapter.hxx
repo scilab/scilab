@@ -183,7 +183,12 @@ public:
         // set the tlist field value
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            tlist->append(it->get(*static_cast<Adaptor*>(this), controller));
+            types::InternalType* field = it->get(*static_cast<Adaptor*>(this), controller);
+            tlist->append(field);
+            if (field->isList())
+            {
+                field->killMe();
+            }
         }
 
         return tlist;

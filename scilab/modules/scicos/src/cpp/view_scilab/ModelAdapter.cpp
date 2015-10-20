@@ -1528,6 +1528,7 @@ struct equations
             parametersValues->set(i, parametersValue);
         }
         parametersField->set(1, parametersValues);
+        parametersValues->killMe();
 
         // 'parameters' states (optional, only check its presence if at least one parameter is present)
         if (parametersSize != 0)
@@ -1548,6 +1549,7 @@ struct equations
         }
 
         o->set(4, parametersField);
+        parametersField->killMe();
 
         return o;
     }
