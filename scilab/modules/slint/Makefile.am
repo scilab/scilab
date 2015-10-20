@@ -18,7 +18,10 @@ modulename=slint
 libscislint_la_etcdir = $(mydatadir)/etc
 libscislint_la_etc_DATA = \
     etc/slint.quit \
-    etc/slint.start
+    etc/slint.start \
+    etc/slint.xml \
+    etc/cnes_analysis_conf.xml \
+    etc/cnes_tool_conf.xml
 
 include $(top_srcdir)/Makefile.incl.am
 
