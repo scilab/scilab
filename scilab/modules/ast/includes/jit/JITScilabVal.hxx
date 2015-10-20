@@ -58,6 +58,7 @@ namespace jit
 	virtual void incRefCount(JITVisitor & jit) = 0;
 	virtual void decRefCount(JITVisitor & jit) = 0;
 	virtual bool isSigned() const = 0;
+	virtual bool isComplex() const { return false; }
     };
 
 }

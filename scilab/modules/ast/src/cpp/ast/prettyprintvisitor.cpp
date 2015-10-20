@@ -222,6 +222,7 @@ void PrettyPrintVisitor::print(const TermColor& cpre, const std::wstring & pre, 
     {
         *ostr << L' ' << cdeco << deco << NORMAL;
     }
+    *ostr << std::endl;
 }
 
 void PrettyPrintVisitor::print(const TermColor& c, const std::wstring & str, const Exp & e)

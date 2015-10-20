@@ -78,19 +78,30 @@ types::Function::ReturnValue sci_jit(types::typed_list &in, int _iRetCount, type
     symbol::Symbol sym(name);
     ast::SimpleVar * var = new ast::SimpleVar(loc, sym);
     ast::CallExp ce(loc, *var, *args);
-    
-    analysis::AnalysisVisitor analysis;
-    jit::JITVisitor jit(analysis);
 
-    analysis.registerFBlockEmittedListener(&jit);
+    static analysis::AnalysisVisitor analysis;
+    static jit::JITVisitor jit;
+    static bool init = false;
 
-    ce.accept(analysis);
-
-    jit.makeCall(name, _in, _out);
-    for (auto pIT : _out)
+    if (!init)
     {
-	out.push_back(pIT);
+	analysis.registerFBlockEmittedListener(&jit);
+	init = true;
     }
 
+    ce.accept(analysis);
+    jit.compile();
+    if (uint64_t fid = ce.getDecorator().getResult().getFunctionId())
+    {
+	jit.makeCallFromScilab(fid, _in, _out);
+	for (auto pIT : _out)
+	{
+	    out.push_back(pIT);
+	}
+    }
+    
+    jit.reset();
+    analysis.reset();
+    
     return types::Function::OK;
 }

@@ -93,26 +93,31 @@ void JITOptimizedCall1::S(const analysis::TIType & argType, JITScilabPtr & arg, 
 
 void JITOptimizedCall1::M(const analysis::TIType & argType, JITScilabPtr & arg, const analysis::TIType & OType, JITScilabPtr & out, JITVisitor & jit)
 {
-    llvm::LLVMContext & context = jit.getContext();
     llvm::IRBuilder<> & builder = jit.getBuilder();
+    llvm::Type * int64_ty = jit.getTy<int64_t>();
     llvm::Value * rows = arg->loadRows(jit);
     llvm::Value * cols = arg->loadCols(jit);
     llvm::Value * rc = builder.CreateMul(rows, cols);
-    llvm::Type * int64_ty = jit.getTy<int64_t>();
-    llvm::Type * types[] = {int64_ty, jit.getTy(argType, 1), jit.getTy(OType, 2)};
-    llvm::Value * args[] = {rc, arg->loadData(jit), out->getData(jit)};
-    llvm::FunctionType * funtype = llvm::FunctionType::get(jit.getTy<void>(), types, false);
-    llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_unary_mangling(jitName, argType), funtype));
-    llvm::AttrBuilder attrBuilder;
-    attrBuilder.addAttribute(llvm::Attribute::NoAlias).addAttribute(llvm::Attribute::NoCapture);
-    llvm::AttributeSet attrSet = llvm::AttributeSet::get(context, 2, attrBuilder).addAttributes(context, 3, llvm::AttributeSet::get(jit.getContext(), 3, attrBuilder));
-    toCall->setAttributes(attrSet);
-    builder.CreateCall(toCall, llvm::ArrayRef<llvm::Value *>(args));
-
+    const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
+										 In<llvm::Type>(int64_ty),
+										 In<analysis::TIType::Type>(argType.type, argType.isscalar() ? 0 : 1),
+										 In<analysis::TIType::Type>(OType.type, OType.isscalar() ? 1 : 2));
+    
+    const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
+									       In<llvm::Value>(rc),
+									       In<JITScilabPtr, 0>(arg),
+									       In<JITScilabPtr, 1>(out));
+    
+    llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_unary_mangling(jitName, argType), llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+    /*llvm::AttrBuilder attrBuilder;
+      attrBuilder.addAttribute(llvm::Attribute::NoAlias).addAttribute(llvm::Attribute::NoCapture);
+      llvm::AttributeSet attrSet = llvm::AttributeSet::get(context, 2, attrBuilder).addAttributes(context, 3, llvm::AttributeSet::get(context, 3, attrBuilder)).addAttributes(context, 4, llvm::AttributeSet::get(context, 4, attrBuilder));
+      toCall->setAttributes(attrSet);*/
+    builder.CreateCall(toCall, args);
     out->storeRows(jit, rows);
     out->storeCols(jit, cols);
 }
-
+    
 void JITOptimizedCall1::makeOutput(JITVisitor & jit, llvm::Value * ret, const std::vector<llvm::Value *> & outArgs, const analysis::TIType & OType, JITScilabPtr & out)
 {
     llvm::IRBuilder<> & builder = jit.getBuilder();
@@ -176,5 +181,5 @@ void JITOptimizedCall1::Sc_c(const std::string & name, JITScilabPtr & arg, JITSc
         out.reset(new JITScalComplex(jit, ret_re, ret_im, false, ""));
     }
 }
-
+    
 } // namespace jit

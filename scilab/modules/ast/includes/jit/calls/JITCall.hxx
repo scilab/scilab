@@ -47,11 +47,13 @@ namespace jit
 
 	virtual void init(const std::vector<analysis::TIType> & args, JITVisitor & jit) { }
 	
-	static bool call(const ast::CallExp & e, const std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit);
+	static bool call(const ast::CallExp & e, std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit);
 
     private:
 
 	static FunMap init();
+	static bool callCompiledMacro(const uint64_t id, const ast::CallExp & e, std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit);
+
     };
 
 } // namespace jit

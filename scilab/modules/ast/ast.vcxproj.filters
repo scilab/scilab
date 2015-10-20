@@ -904,9 +904,6 @@
     <ClInclude Include="includes\jit\base\and.hxx">
       <Filter>Header Files\jit\base</Filter>
     </ClInclude>
-    <ClInclude Include="includes\jit\base\binary.hxx">
-      <Filter>Header Files\jit\base</Filter>
-    </ClInclude>
     <ClInclude Include="includes\jit\base\binary_functors.hxx">
       <Filter>Header Files\jit\base</Filter>
     </ClInclude>
@@ -1059,6 +1056,30 @@
     </ClInclude>
     <ClInclude Include="includes\analysis\DollarInfo.hxx">
       <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\Debug.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\JITInfo.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\Jitter.hxx">
+      <Filter>Header Files\jit</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\IOArgs.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\multiplication.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\negation.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\opposite.hxx">
+      <Filter>Header Files\jit\base</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\jit\base\transposition.hxx">
+      <Filter>Header Files\jit\base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1904,6 +1925,39 @@
     </ClCompile>
     <ClCompile Include="src\cpp\ast\prettyprintvisitor.cpp">
       <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\BaseFunctions3.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\BaseFunctions4.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\BaseFunctions5.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\BaseFunctions6.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITAssignExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITMakeScilabCall.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\Jitter.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITTransposition.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITDoubleExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\JITMatrixExp.cpp">
+      <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\jit\Debug.cpp">
+      <Filter>Source Files\jit</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

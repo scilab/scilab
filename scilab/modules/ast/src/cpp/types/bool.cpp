@@ -76,6 +76,22 @@ Bool::Bool(int _iDims, int* _piDims)
 #endif
 }
 
+Bool::Bool(int _iRows, int _iCols, int * _piData)
+{
+    m_pRealData = _piData;
+    m_pImgData = nullptr;
+    m_iRows = _iRows;
+    m_iCols = _iCols;
+    m_iSize = m_iRows * m_iCols;
+    m_iDims = 2;
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
+
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
+}
+    
 InternalType* Bool::clone()
 {
     Bool *pbClone =  new Bool(getDims(), getDimsArray());

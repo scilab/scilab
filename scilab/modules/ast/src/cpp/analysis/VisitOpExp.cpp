@@ -176,7 +176,18 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                     {
                         safe = true;
                     }
-                    tempId = RR.getTempId();
+		    if (resT == RT)
+		    {
+			const int Rid = RR.getTempId();
+			if (Rid == -1)
+			{
+			    tempId = dm.getTmpId(resT, false);
+			}
+			else
+			{
+			    tempId = Rid;
+			}
+		    }
                     break;
                 }
                 case ast::OpExp::krontimes :
@@ -264,10 +275,24 @@ void AnalysisVisitor::visit(ast::NotExp & e)
     e.getExp().accept(*this);
     Result & LR = getResult();
     TIType & LT = LR.getType();
-    const int tempId = LR.getTempId();
+    int tempId = LR.getTempId();
+    
     if (LT.isknown())
     {
         TIType resT = Checkers::check_____not____(getGVN(), LT);
+	if (resT == LT)
+	{
+	    if (tempId == -1)
+	    {
+		tempId = dm.getTmpId(resT, false);
+	    }
+	}
+	else
+	{
+	    dm.releaseTmp(tempId, &e);
+	    tempId = dm.getTmpId(resT, false);
+	}
+
         e.getDecorator().res = Result(resT, tempId);
         e.getDecorator().safe = true;
     }

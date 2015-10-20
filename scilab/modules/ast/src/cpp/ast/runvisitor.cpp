@@ -43,6 +43,8 @@
 #include "runner.hxx"
 #include "threadmanagement.hxx"
 
+#include "Jitter.hxx"
+
 extern "C"
 {
 #include "sciprint.h"

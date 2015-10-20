@@ -96,6 +96,7 @@ namespace jit
 	virtual ~JITScalComplex() { }
 
 	bool isSigned() const override { return false; }
+	bool isComplex() const override { return true; }
 
 	llvm::Value * loadReal(JITVisitor & jit) override;
 	llvm::Value * loadImag(JITVisitor & jit) override;
@@ -105,6 +106,7 @@ namespace jit
 	void storeImag(JITVisitor & jit, llvm::Value * _imag) override;
 	void storeReIm(JITVisitor & jit, std::pair<llvm::Value *, llvm::Value *> reim) override;
 	void setImag(llvm::Value * imag) override;
+	
 	
 	static llvm::Type * getCpx128Ty(JITVisitor & jit);
     };

@@ -33,58 +33,58 @@ namespace jit
 {
     namespace functors
     {
-	template<typename T, typename U, typename V, typename Functor>
+	template<typename Functor>
 	struct Binary
 	{
 	    
-	    template<typename W, typename X, typename Y>
-	    inline void operator()(jit::vect::WrapVecIn<W> && x, jit::vect::WrapVecIn<X> && y, jit::vect::WrapOut<Y> && o, const int64_t i)
+	    template<typename T, typename U, typename V>
+	    inline void operator()(jit::vect::WrapVecIn<T> && x, jit::vect::WrapVecIn<U> && y, jit::vect::WrapOut<V> && o, const int64_t i)
 		{
 		    o[i] = Functor()(x[i], y[i]);
 		}
 	};
 
 	template<typename T, typename U, typename V>
-	using add = Binary<T, U, V, jit::op::Add<T, U, V>>;
+	using add = Binary<jit::op::Add<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using sub = Binary<T, U, V, jit::op::Sub<T, U, V>>;
+	using sub = Binary<jit::op::Sub<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using dottimes = Binary<T, U, V, jit::op::Prod<T, U, V>>;
+	using dottimes = Binary<jit::op::Prod<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using dotpower = Binary<T, U, V, jit::op::Pow<T, U, V>>;
+	using dotpower = Binary<jit::op::Pow<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using dotldiv = Binary<T, U, V, jit::op::Ldiv<T, U, V>>;
+	using dotldiv = Binary<jit::op::Ldiv<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using dotrdiv = Binary<T, U, V, jit::op::Rdiv<T, U, V>>;
+	using dotrdiv = Binary<jit::op::Rdiv<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using neq = Binary<T, U, V, jit::op::Neq<T, U, V>>;
+	using neq = Binary<jit::op::Neq<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using eq = Binary<T, U, V, jit::op::Eq<T, U, V>>;
+	using eq = Binary<jit::op::Eq<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using gt = Binary<T, U, V, jit::op::Gt<T, U, V>>;
+	using gt = Binary<jit::op::Gt<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using ge = Binary<T, U, V, jit::op::Ge<T, U, V>>;
+	using ge = Binary<jit::op::Ge<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using lt = Binary<T, U, V, jit::op::Lt<T, U, V>>;
+	using lt = Binary<jit::op::Lt<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using le = Binary<T, U, V, jit::op::Le<T, U, V>>;
+	using le = Binary<jit::op::Le<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using And = Binary<T, U, V, jit::op::And<T, U, V>>;
+	using And = Binary<jit::op::And<T, U, V>>;
 
 	template<typename T, typename U, typename V>
-	using Or = Binary<T, U, V, jit::op::Or<T, U, V>>;
+	using Or = Binary<jit::op::Or<T, U, V>>;
 	
     } // namespace functors
 

@@ -15,6 +15,7 @@
 #include "JITArrayofs.hxx"
 #include "JITVisitor.hxx"
 #include "calls/JITBinOpCall.hxx"
+#include "calls/FunctionSignature.hxx"
 #include "Cast.hxx"
 
 namespace jit
@@ -22,17 +23,23 @@ namespace jit
 
     void JITMultiplication::MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
     {
-	// C2F(dgemm)(&n, &n, &x_r, &y_c, &x_c, &one, x, &x_r, y, &x_c, &zero, o, &x_r);
+	//MMother(L, Ltype, R, Rtype, O, Otype, jit);return;
+	if (Ltype.type == analysis::TIType::DOUBLE && Rtype.type == analysis::TIType::DOUBLE)
+	{
+	    MdMd(L, Ltype, R, Rtype, O, Otype, jit);
+	}
+	else
+	{
+	    MMother(L, Ltype, R, Rtype, O, Otype, jit);
+	}
+    }
 
-	llvm::LLVMContext & context = jit.getContext();
-	llvm::IRBuilder<> & builder = jit.getBuilder();
-	llvm::Module & module = jit.getModule();
-
-	llvm::Value * n = jit.getSpecialVar("dgemm_n");
-	llvm::Value * zero, * one;
-	
+    llvm::Function * JITMultiplication::getDGEMM(JITVisitor & jit, llvm::Value *& zero, llvm::Value *& one, llvm::Value *& n)
+    {
+	n = jit.getSpecialVar("dgemm_n");
 	if (!n)
 	{
+	    llvm::IRBuilder<> & builder = jit.getBuilder();
 	    llvm::BasicBlock * cur = builder.GetInsertBlock();
 	    builder.SetInsertPoint(jit.getEntryBlock());
 	    n = jit.getAlloca<int8_t>((int8_t)'n', "dgemm_n");
@@ -48,17 +55,33 @@ namespace jit
 	    zero = jit.getSpecialVar("dgemm_zero");
 	    one = jit.getSpecialVar("dgemm_one");
 	}
-
+	
 	llvm::Type * int8ptr_ty = jit.getTy<int8_t *>();
 	llvm::Type * int32ptr_ty = jit.getTy<int32_t *>();
 	llvm::Type * int32_ty = jit.getTy<int32_t>();
 	llvm::Type * dblptr_ty = jit.getTy<double *>();
+	
+	llvm::Type * types[] = { int8ptr_ty, int8ptr_ty, int32ptr_ty, int32ptr_ty, int32ptr_ty, dblptr_ty, dblptr_ty, int32ptr_ty, dblptr_ty, int32ptr_ty, dblptr_ty, dblptr_ty, int32ptr_ty};
+	
+	return static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction("dgemm_", llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+    }
+    
+    void JITMultiplication::MdMd(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
+    {
+	// C2F(dgemm)(&n, &n, &x_r, &y_c, &x_c, &one, x, &x_r, y, &x_c, &zero, o, &x_r);
+
+	llvm::IRBuilder<> & builder = jit.getBuilder();
+
+	llvm::Value * zero, * one, * n;
+	llvm::Function * dgemm = getDGEMM(jit, zero, one, n);
+	
+	llvm::Type * int32_ty = jit.getTy<int32_t>();
 	llvm::Value * L_rows = L->loadRows(jit);
 	llvm::Value * L_cols = L->loadCols(jit);
 	llvm::Value * R_cols = R->loadCols(jit);
 	llvm::Value * size = builder.CreateMul(L_rows, R_cols);
 	size = builder.CreateMul(size, jit.getConstant<int64_t>(sizeof(double)));
-	llvm::Function * __new = static_cast<llvm::Function *>(module.getOrInsertFunction("new", llvm::FunctionType::get(jit.getTy<int8_t *>(), llvm::ArrayRef<llvm::Type *>(jit.getTy<uint64_t>()), false)));
+	llvm::Function * __new = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction("new", llvm::FunctionType::get(jit.getTy<int8_t *>(), llvm::ArrayRef<llvm::Type *>(jit.getTy<uint64_t>()), false)));
 	__new->addAttribute(0, llvm::Attribute::NoAlias);
 	llvm::CallInst * alloc = builder.CreateCall(__new, size);
 	alloc->addAttribute(0, llvm::Attribute::NoAlias);
@@ -68,11 +91,9 @@ namespace jit
 	llvm::Value * x_c = jit.getValue(builder.CreateTrunc(L_cols, int32_ty), true);
 	llvm::Value * y_c = jit.getValue(builder.CreateTrunc(R_cols, int32_ty), true);
 	
-        llvm::Type * types[] = { int8ptr_ty, int8ptr_ty, int32ptr_ty, int32ptr_ty, int32ptr_ty, dblptr_ty, dblptr_ty, int32ptr_ty, dblptr_ty, int32ptr_ty, dblptr_ty, dblptr_ty, int32ptr_ty};
 	llvm::Value * args[] = { n, n, x_r, y_c, x_c, one, L->loadData(jit), x_r, R->loadData(jit), x_c, zero, O->loadData(jit), x_r};
-        llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction("dgemm_", llvm::FunctionType::get(jit.getTy<void>(), llvm::ArrayRef<llvm::Type *>(types), false)));
 
-        builder.CreateCall(toCall, llvm::ArrayRef<llvm::Value *>(args));
+        builder.CreateCall(dgemm, args);
 	O->storeRows(jit, L_rows);
 	O->storeCols(jit, R_cols);
     }
@@ -176,4 +197,33 @@ namespace jit
         return jit.getScalar(ret, Otype.type);
     }
 
+    void JITMultiplication::MMother(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
+    {
+	llvm::IRBuilder<> & builder = jit.getBuilder();
+	llvm::Type * int64_ty = jit.getTy<int64_t>();
+	llvm::Value * Lr = L->loadRows(jit);
+	llvm::Value * Lc = L->loadCols(jit);
+	llvm::Value * Rc = R->loadCols(jit);
+	const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
+										     In<llvm::Type>(int64_ty),
+										     In<llvm::Type>(int64_ty),
+										     In<llvm::Type>(int64_ty),
+										     In<analysis::TIType::Type>(Ltype.type, 1),
+										     In<analysis::TIType::Type>(Rtype.type, 1),
+										     In<analysis::TIType::Type>(Otype.type, 2));
+	
+	const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
+										   In<llvm::Value>(Lr),
+										   In<llvm::Value>(Lc),
+										   In<llvm::Value>(Rc),
+										   In<JITScilabPtr, 0>(L),
+										   In<JITScilabPtr, 0>(R),
+										   In<JITScilabPtr, 1>(O));
+	
+	llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_binary_mangling("times", Ltype, Rtype), llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+	builder.CreateCall(toCall, args);
+	O->storeRows(jit, Lr);
+	O->storeCols(jit, Rc);
+    }
+    
 }

@@ -46,13 +46,13 @@ uint64_t MemoryManager::getSymbolAddress(const std::string & name)
 
 uint8_t * MemoryManager::allocateCodeSection(uintptr_t Size, unsigned Alignment, unsigned SectionID, llvm::StringRef SectionName)
 {
-    printf("Allocating code section: %s %ld %d %d\n", SectionName.data(), Size, Alignment, SectionID);
+    //printf("Allocating code section: %s %ld %d %d\n", SectionName.data(), Size, Alignment, SectionID);
     return llvm::SectionMemoryManager::allocateCodeSection(Size, Alignment, SectionID, SectionName);
 }
 
 uint8_t * MemoryManager::allocateDataSection(uintptr_t Size, unsigned Alignment, unsigned SectionID, llvm::StringRef SectionName, bool isReadOnly)
 {
-    printf("Allocating data section: %s %ld %d %d %d\n", SectionName.data(), Size, Alignment, SectionID, isReadOnly);
+    //printf("Allocating data section: %s %ld %d %d %d\n", SectionName.data(), Size, Alignment, SectionID, isReadOnly);
     return llvm::SectionMemoryManager::allocateDataSection(Size, Alignment, SectionID, SectionName, isReadOnly);
 }
 
@@ -71,8 +71,8 @@ uint8_t * MemoryManager::allocateDataSection(uintptr_t Size, unsigned Alignment,
 
 char * MYNEW(std::size_t size)
 {
+    std::cout << "NEW=" << size << std::endl;
     char * p =  new char[size];
-    std::cout << "NEW=" << size << "::" << (void *)p << std::endl;
     return p;
 }
 
@@ -117,7 +117,7 @@ MemoryManager::SymbolsAddressMap MemoryManager::init()
     //addSymbol(sam, "cos_Md", BaseFunctions::vectorize<double, double, std::cos>);
     //addSymbol(sam, "exp_Md", BaseFunctions::vectorize<double, double, std::exp>);
     //addSymbol(sam, "sign_Md", BaseFunctions::vectorize<double, double, BaseFunctions::sign>);
-    addSymbol(sam, "rdiv_MdMd", (void (*)(double*, int64_t, int64_t, double*, int64_t, int64_t, double**))BaseFunctions::rdiv);
+    //addSymbol(sam, "rdiv_MdMd", (void (*)(double*, int64_t, int64_t, double*, int64_t, int64_t, double**))BaseFunctions::rdiv);
     //addSymbol(sam, "erfcx_Sd", (double (*)(double))Faddeeva::erfcx);
     addSymbol(sam, "powMat_MdSd", BaseFunctions::powMat);
 

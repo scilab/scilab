@@ -37,6 +37,8 @@ namespace jit
 	virtual void SM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
 	virtual void MS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
 	virtual void MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
+
+	virtual void vectorize(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
     };
 
     class JITAddition : public JITBinOpCall
@@ -68,13 +70,19 @@ namespace jit
 
     public:
 	
-	JITMultiplication() : JITBinOpCall("times") { }
+	JITMultiplication() : JITBinOpCall("dottimes") { }
 
 	virtual ~JITMultiplication() { }
 
 	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, const analysis::TIType & Otype, JITVisitor & jit);
 
 	virtual void MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
+
+	virtual void MdMd(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
+
+	virtual void MMother(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
+
+	llvm::Function * getDGEMM(JITVisitor & jit, llvm::Value *& zero, llvm::Value *& one, llvm::Value *& n);
     };
 
     class JITEquality : public JITBinOpCall
@@ -185,6 +193,8 @@ namespace jit
 	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, const analysis::TIType & Otype, JITVisitor & jit);
 
 	virtual void MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
+
+	virtual void SM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
     };
 
     class JITPower : public JITBinOpCall

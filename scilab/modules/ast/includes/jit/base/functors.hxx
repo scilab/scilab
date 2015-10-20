@@ -14,6 +14,8 @@
 #define __JIT_FUNCTORS_HXX__
 
 #include "elem_functions.hxx"
+#include "opposite.hxx"
+#include "negation.hxx"
 #include "tools.hxx"
 
 namespace jit
@@ -54,6 +56,12 @@ struct Unary_cpx
     }
 };
 
+template<typename T, typename U>
+using opp = Unary<T, U, jit::op::Opposite<T, U>>;
+
+template<typename T, typename U>
+using neg = Unary<T, U, jit::op::Negation<T, U>>;
+    
 template<typename T, typename U>
 using sin = Unary<T, U, jit::elem::sin<T, U>>;
 

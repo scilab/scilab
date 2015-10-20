@@ -10,6 +10,7 @@
  *
  */
 
+#include <limits>
 
 #include "JITScalars.hxx"
 #include "JITArrayofs.hxx"
@@ -23,37 +24,100 @@ namespace jit
 
     void JITPower::MS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
     {
-	//	inline static void powM(const double * __restrict__ X, const int64_t x_r, const int64_t N, double ** __restrict__ O)
-	
 	llvm::LLVMContext & context = jit.getContext();
         llvm::IRBuilder<> & builder = jit.getBuilder();
+	llvm::Function & function = jit.getFunction();
+	llvm::Type * int64_ty = jit.getTy<int64_t>();
+	llvm::Type * dbl_ty = jit.getTy<double>();
 	llvm::Value * r = R->loadData(jit);
-        if (llvm::isa<llvm::ConstantFP>(r))
-        {
-            const double pow = static_cast<llvm::ConstantFP *>(r)->getValueAPF().convertToDouble();
-            int64_t powi;
-            if (analysis::tools::asInteger(pow, powi))
-            {
-		// void powM(const double * __restrict__ X, const int64_t x_r, const int64_t N, double ** __restrict__ O)
-		llvm::Type * int64_ty = jit.getTy<int64_t>();
-		llvm::Value * rows = L->loadRows(jit);
-		llvm::Value * cols = L->loadCols(jit);
-		llvm::Type * types[] = { jit.getTy<double *>(), int64_ty, int64_ty, jit.getTy<double **>() };
-		llvm::Value * args[] = { L->loadData(jit), rows, jit.getConstant<int64_t>(powi), O->getData(jit) };
-		llvm::FunctionType * funtype = llvm::FunctionType::get(jit.getTy<void>(), types, false);
-		llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_binary_mangling("powMat", Ltype, Rtype), funtype));
-		llvm::AttrBuilder attrBuilder;
-		attrBuilder.addAttribute(llvm::Attribute::NoAlias).addAttribute(llvm::Attribute::NoCapture);
-		llvm::AttributeSet attrSet = llvm::AttributeSet::get(context, 1, attrBuilder).addAttributes(context, 4, llvm::AttributeSet::get(jit.getContext(), 4, attrBuilder));
-		toCall->setAttributes(attrSet);
-		builder.CreateCall(toCall, args);
+	llvm::Value * Lrows = L->loadRows(jit);
+	llvm::Value * expo = nullptr;
+
+	if (Rtype.type == analysis::TIType::DOUBLE)
+	{
+	    if (llvm::isa<llvm::ConstantFP>(r))
+	    {
+		const double pow = static_cast<llvm::ConstantFP *>(r)->getValueAPF().convertToDouble();
+		int64_t powi;
+		if (analysis::tools::asInteger(pow, powi))
+		{
+		    expo = jit.getConstant(powi);
+		}
+	    }
+	    else if (r->getType() == jit.getTy<int64_t>())
+	    {
+		expo = r;
+	    }
+	    else
+	    {
+		// we check that min::int64_t <= abs(r) <= max::int64_t && floor(r)==r;
+		llvm::Value * abs = llvm::Intrinsic::getDeclaration(&jit.getModule(), llvm::Intrinsic::fabs, dbl_ty);
+		llvm::Value * abs_r = builder.CreateCall(abs, r);
+		llvm::Value * min_int64 = jit.getConstant<double>(std::numeric_limits<int64_t>::min());
+		llvm::Value * max_int64 = jit.getConstant<double>(std::numeric_limits<int64_t>::max());
+		llvm::Value * cmp1 = builder.CreateFCmpOLE(min_int64, abs_r);
+		llvm::Value * cmp2 = builder.CreateFCmpOLE(abs_r, max_int64);
+		llvm::Value * cmp3 = builder.CreateAnd(cmp1, cmp2);
+		llvm::BasicBlock * bb1 = llvm::BasicBlock::Create(context, "", &function);
+		llvm::BasicBlock * bb2 = llvm::BasicBlock::Create(context, "", &function);
+		llvm::BasicBlock * bb3 = llvm::BasicBlock::Create(context, "", &function);
+		builder.CreateCondBr(cmp3, bb1, bb3);
+		builder.SetInsertPoint(bb1);
+		llvm::Value * floor = llvm::Intrinsic::getDeclaration(&jit.getModule(), llvm::Intrinsic::floor, dbl_ty);
+		llvm::Value * floor_r = builder.CreateCall(floor, r);
+		llvm::Value * cmp4 = builder.CreateFCmpOEQ(r, floor_r);
+		builder.CreateCondBr(cmp4, bb2, bb3);
+
+		builder.SetInsertPoint(bb2);
+		// here the exponent is an integer
+		llvm::Value * r_i64 = builder.CreateFPToSI(r, int64_ty);
+		const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
+											     In<llvm::Type>(int64_ty),
+											     In<analysis::TIType::Type>(Ltype.type, 1),
+											     In<llvm::Type>(int64_ty),
+											     In<analysis::TIType::Type>(Otype.type, 2));
 		
-		O->storeRows(jit, rows);
-		O->storeCols(jit, cols);
+		const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
+											   In<llvm::Value>(Lrows),
+											   In<JITScilabPtr, 0>(L),
+											   In<llvm::Value>(r_i64),
+											   In<JITScilabPtr, 1>(O));
+		
+		llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_unary_mangling(scilabName, Ltype) + "Si64", llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+		builder.CreateCall(toCall, args);
+
+		O->storeRows(jit, Lrows);
+		O->storeCols(jit, Lrows);
+		builder.CreateBr(bb3);
+
+		builder.SetInsertPoint(bb3);
 	    }
 	}
-
-	
+	else if (Rtype.isintegral())
+	{
+	    expo = Cast::cast<int64_t>(r, Rtype.issigned(), jit);
+	}
+		
+	if (expo)
+	{
+	    const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
+											 In<llvm::Type>(int64_ty),
+											 In<analysis::TIType::Type>(Ltype.type, 1),
+											 In<llvm::Type>(int64_ty),
+											 In<analysis::TIType::Type>(Otype.type, 2));
+	    
+	    const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
+										       In<llvm::Value>(Lrows),
+										       In<JITScilabPtr, 0>(L),
+										       In<llvm::Value>(expo),
+										       In<JITScilabPtr, 1>(O));
+	    
+	    llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_unary_mangling(scilabName, Ltype) + "Si64", llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+	    builder.CreateCall(toCall, args);
+	    
+	    O->storeRows(jit, Lrows);
+	    O->storeCols(jit, Lrows);
+	}
     }
 
     JITScilabPtr JITPower::SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, const analysis::TIType & Otype, JITVisitor & jit)

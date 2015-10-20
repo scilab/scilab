@@ -61,7 +61,7 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             e.getDecorator().safe = true;
 
             // Don't remove temp: because the value is transfered to LHS
-            //getDM().releaseTmp(RR.getTempId(), &e.getRightExp());
+            getDM().releaseTmp(RR.getTempId(), nullptr);//&e.getRightExp());
         }
     }
     else if (e.getLeftExp().isCallExp()) // A(12) = ...

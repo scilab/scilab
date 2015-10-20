@@ -99,11 +99,13 @@ namespace jit
     /* JITArrayofComplex */
     llvm::Value * JITArrayofComplex::loadReal(JITVisitor & jit)
     {
+	std::wcerr << L"WTF 2="; data->dump();
 	return loadData(jit);
     }
 
     llvm::Value * JITArrayofComplex::loadImag(JITVisitor & jit)
     {
+	std::wcerr << L"WTF="; imag->dump();
 	return jit.getBuilder().CreateAlignedLoad(imag, sizeof(void *));
     }
 

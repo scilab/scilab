@@ -21,20 +21,21 @@
 #include "JITScalars.hxx"
 #include "JITArrayofs.hxx"
 #include "JITVisitor.hxx"
+#include "Debug.hxx"
+#include "calls/FunctionSignature.hxx"
 #include "alltypes.hxx"
-
 #include "ScilabJITEventListener.hxx"
+#include "UTF8.hxx"
 
-#define TIME_LLVM 1
+#define TIME_LLVM 0
 
 namespace jit
 {
 const bool JITVisitor::__init__ = InitializeLLVM();
 
-JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::ConstVisitor(),
-    analysis(_analysis),
+JITVisitor::JITVisitor() : ast::ConstVisitor(),
     context(llvm::getGlobalContext()),
-    module(new llvm::Module("JIT", context)),
+    module(new llvm::Module("JIT0", context)),
     target(nullptr),
     engine(InitializeEngine(module, &target)),
     MPM(),
@@ -55,11 +56,10 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     int16PtrTy(llvm::Type::getInt16PtrTy(context)),
     int32PtrTy(llvm::Type::getInt32PtrTy(context)),
     int64PtrTy(llvm::Type::getInt64PtrTy(context)),
+    id(1),
     _result(nullptr),
     cpx_rvalue(nullptr)
 {
-    MPM.add(llvm::createTargetTransformInfoWrapperPass(target->getTargetIRAnalysis()));
-    FPM.add(llvm::createTargetTransformInfoWrapperPass(target->getTargetIRAnalysis()));
     initPassManagers();
 
     //std::wcerr << "Map size=" << MemoryManager::getMapSize() << std::endl;
@@ -78,7 +78,6 @@ void JITVisitor::run()
 void JITVisitor::dump() const
 {
     module->dump();
-    //function->dump();
 }
 
 void JITVisitor::runOptimizationPasses()
@@ -102,7 +101,7 @@ void JITVisitor::runOptimizationPasses()
 #endif
 }
 
-void JITVisitor::compileModule()
+void JITVisitor::compile()
 {
     /*std::string error;
     llvm::raw_fd_ostream stream("/tmp/scilab.s", error, llvm::sys::fs::OpenFlags::F_None);
@@ -113,18 +112,29 @@ void JITVisitor::compileModule()
     frs.flush();
     stream.close();*/
 
-
+    if (function)
+    {
+	dump();
+	runOptimizationPasses();
+	//dump();
 #if TIME_LLVM == 1
-    std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 #endif
-
-    engine->finalizeObject();
-
+    
+	engine->finalizeObject();
+    
 #if TIME_LLVM == 1
-    std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-    double duration = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
-    std::wcerr << "Compile time=" << duration << " s." << std::endl;
+	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+	double duration = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
+	std::wcerr << "Compile time=" << duration << " s." << std::endl;
 #endif
+	
+	for (llvm::Function & f : *module)
+	{
+	    //addFunction(f.getName().str(), &f);
+	    f.deleteBody();
+	}
+    }
 }
 
 JITScilabPtr & JITVisitor::getCpxRValue()
@@ -234,32 +244,6 @@ void JITVisitor::visit(const ast::ArrayListVar & e)
 
 }
 
-void JITVisitor::visit(const ast::DoubleExp & e)
-{
-    if (e.getDecorator().getResult().isAnInt())
-    {
-        setResult(JITScilabPtr(new JITScalInt64(*this, (int64_t)e.getValue(), false, "")));
-    }
-    else
-    {
-        if (types::Double * pDbl = static_cast<types::Double *>(e.getConstant()))
-        {
-            if (pDbl->isComplex())
-            {
-                setResult(JITScilabPtr(new JITScalComplex(*this, std::complex<double>(pDbl->get(0), pDbl->getImg(0)), false, "")));
-            }
-            else
-            {
-                setResult(JITScilabPtr(new JITScalDouble(*this, pDbl->get(0), false, "")));
-            }
-        }
-        else
-        {
-            setResult(JITScilabPtr(new JITScalDouble(*this, e.getValue(), false, "")));
-        }
-    }
-}
-
 void JITVisitor::visit(const ast::BoolExp & e)
 {
 
@@ -280,102 +264,9 @@ void JITVisitor::visit(const ast::CellCallExp & e)
 
 }
 
-void JITVisitor::visit(const ast::AssignExp & e)
-{
-    if (e.getLeftExp().isSimpleVar()) // A = ...
-    {
-        const ast::Exp & rExp = e.getRightExp();
-        const symbol::Symbol & Lsym = static_cast<ast::SimpleVar &>(e.getLeftExp()).getSymbol();
-        if (rExp.isSimpleVar())
-        {
-            // A = B so we just share the data
-            const symbol::Symbol & Rsym = static_cast<const ast::SimpleVar &>(rExp).getSymbol();
-            JITScilabPtr & Lvalue = variables.find(Lsym)->second;
-            JITScilabPtr & Rvalue = variables.find(Rsym)->second;
-            Lvalue->storeRows(*this, Rvalue->loadRows(*this));
-            Lvalue->storeCols(*this, Rvalue->loadCols(*this));
-            Lvalue->storeData(*this, Rvalue->loadData(*this));
-            if (rExp.getDecorator().getResult().getType().type == analysis::TIType::COMPLEX)
-            {
-                Lvalue->storeImag(*this, Rvalue->loadImag(*this));
-            }
-        }
-        else
-        {
-            rExp.accept(*this);
-            // A = foo(...)...
-            if (!rExp.isCallExp())// && !rExp.isMemfillExp())
-            {
-                JITScilabPtr & Lvalue = variables.find(Lsym)->second;
-                JITScilabPtr & Rvalue = getResult();
-                Lvalue->storeRows(*this, Rvalue->loadRows(*this));
-                Lvalue->storeCols(*this, Rvalue->loadCols(*this));
-                Lvalue->storeData(*this, Rvalue->loadData(*this));
-                if (rExp.getDecorator().getResult().getType().type == analysis::TIType::COMPLEX)
-                {
-                    Lvalue->storeImag(*this, Rvalue->loadImag(*this));
-                }
-            }
-        }
-    }
-    else if (e.getLeftExp().isCallExp()) // A(12) = ...
-    {
-        ast::CallExp & ce = static_cast<ast::CallExp &>(e.getLeftExp());
-        if (ce.getName().isSimpleVar())
-        {
-            // We have an insertion
-            /**
-             *  Several possibilities:
-             *    i) A(I) = B(I): usually in Scilab that means:
-             *       temp = B(I) and then A(I) = temp
-             *       If we infered that the ext/ins is safe we can make a for loop:
-             *          for k = 1:size(I,'*'), A(I(k)) = B(I(k)), end
-             *    ii) A(I) = fun(I): in the general case we should try to devectorize the expression
-             *    iii) A(i) = B(i): no problem
-             */
-            const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(ce.getName());
-            const symbol::Symbol & symL = var.getSymbol();
-            if (e.getDecorator().safe && ce.getDecorator().getResult().getType().isscalar())
-            {
-                const analysis::TIType & ty = var.getDecorator().getResult().getType();
-                if (ty.isscalar())
-                {
-                    JITScilabPtr & Lvalue = variables.find(symL)->second;
-                    e.getRightExp().accept(*this);
-                    JITScilabPtr & Rvalue = getResult();
-                    Lvalue->storeData(*this, Rvalue->loadData(*this));
-                    if (ty.type == analysis::TIType::COMPLEX)
-                    {
-                        Lvalue->storeImag(*this, Rvalue->loadImag(*this));
-                    }
-                }
-                else
-                {
-                    llvm::Value * ptr = getPtrFromIndex(ce);
-                    e.getRightExp().accept(*this);
-                    builder.CreateStore(getResult()->loadData(*this), ptr);
-                }
-            }
-        }
-    }
-    else if (e.getLeftExp().isAssignListExp()) // [A, B] = ...
-    {
-        ast::AssignListExp & ale = static_cast<ast::AssignListExp &>(e.getLeftExp());
-        if (e.getRightExp().isCallExp())
-        {
-            e.getRightExp().accept(*this);
-        }
-    }
-}
-
 void JITVisitor::visit(const ast::TryCatchExp & e)
 {
 
-}
-
-void JITVisitor::visit(const ast::CaseExp & e)
-{
-    // treated directly in SelectExp
 }
 
 void JITVisitor::visit(const ast::ReturnExp & e)
@@ -386,21 +277,6 @@ void JITVisitor::visit(const ast::ReturnExp & e)
 void JITVisitor::visit(const ast::FieldExp & e)
 {
 
-}
-
-void JITVisitor::visit(const ast::TransposeExp & e)
-{
-
-}
-
-void JITVisitor::visit(const ast::MatrixExp & e)
-{
-
-}
-
-void JITVisitor::visit(const ast::MatrixLineExp & e)
-{
-    // treated in MatrixExp
 }
 
 void JITVisitor::visit(const ast::CellExp & e)
@@ -496,6 +372,35 @@ JITScilabPtr JITVisitor::getScalar(llvm::Value * const value, const analysis::TI
     }
 }
 
+    JITScilabPtr JITVisitor::getCreatedScalar(llvm::Value * const value, const analysis::TIType::Type ty, const bool alloc, const std::string & name)
+{
+    switch (ty)
+    {
+        case analysis::TIType::DOUBLE:
+            return std::shared_ptr<JITScilabVal>(new JITScalDouble(value, alloc, name));
+        case analysis::TIType::INT8:
+            return std::shared_ptr<JITScilabVal>(new JITScalInt8(value, alloc, name));
+        case analysis::TIType::INT16:
+            return std::shared_ptr<JITScilabVal>(new JITScalInt16(value, alloc, name));
+        case analysis::TIType::INT32:
+            return std::shared_ptr<JITScilabVal>(new JITScalInt32(value, alloc, name));
+        case analysis::TIType::INT64:
+            return std::shared_ptr<JITScilabVal>(new JITScalInt64(value, alloc, name));
+        case analysis::TIType::UINT8:
+            return std::shared_ptr<JITScilabVal>(new JITScalUInt8(value, alloc, name));
+        case analysis::TIType::UINT16:
+            return std::shared_ptr<JITScilabVal>(new JITScalUInt16(value, alloc, name));
+        case analysis::TIType::UINT32:
+            return std::shared_ptr<JITScilabVal>(new JITScalUInt32(value, alloc, name));
+        case analysis::TIType::UINT64:
+            return std::shared_ptr<JITScilabVal>(new JITScalUInt64(value, alloc, name));
+        case analysis::TIType::BOOLEAN:
+            return std::shared_ptr<JITScilabVal>(new JITScalBool(value, alloc, name));
+        default:
+            return nullptr;
+    }
+}
+
 JITScilabPtr JITVisitor::getScalar(const analysis::TypeLocal & ty, const std::string & name)
 {
     return getScalar(ty.type, ty.isAnInt, name);
@@ -539,10 +444,10 @@ JITScilabPtr JITVisitor::getScalar(const analysis::TIType::Type ty, const bool i
     }
 }
 
-/*JITScilabPtr JITVisitor::getMatrix(llvm::Value * const re, llvm::Value * const im, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name)
+JITScilabPtr JITVisitor::getMatrix(llvm::Value * const re, llvm::Value * const im, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name)
 {
-
-}*/
+    return std::shared_ptr<JITScilabVal>(new JITArrayofComplex(*this, re, im, rows, cols, refCount, alloc, name));
+}
 
 JITScilabPtr JITVisitor::getMatrix(llvm::Value * const value, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name)
 {
@@ -579,6 +484,8 @@ JITScilabPtr JITVisitor::getMatrix(const analysis::TIType::Type ty, const std::s
     {
         case analysis::TIType::DOUBLE:
             return std::shared_ptr<JITScilabVal>(new JITArrayofDouble(*this, name, init));
+        case analysis::TIType::COMPLEX:
+	    return std::shared_ptr<JITScilabVal>(new JITArrayofComplex(*this, name, init));
         case analysis::TIType::INT8:
             return std::shared_ptr<JITScilabVal>(new JITArrayofInt8(*this, name, init));
         case analysis::TIType::INT16:
@@ -609,69 +516,69 @@ JITScilabPtr JITVisitor::getMatrix(const analysis::TypeLocal & ty, const std::st
 
 void JITVisitor::action(analysis::FunctionBlock & fblock)
 {
+    if (info.find(fblock.getFunctionId()) != info.end())
+    {
+	// The function with this id has already been compiled
+	return;
+    }
+	    
     variables.clear();
     temps.clear();
+    specialVars.clear();
 
     //fblocks.emplace(&fblock);
-    std::string name(fblock.getName().begin(), fblock.getName().end());
+    std::string functionName = "jit_" + scilab::UTF8::toUTF8(fblock.getName()) + "_";
     const std::vector<analysis::ArgIOInfo> ins = fblock.getTypesIn();
     const std::vector<analysis::ArgIOInfo> outs = fblock.getTypesOut();
-    mapNameFBlock.emplace(name, &fblock);
-    std::string _name(name);
 
     // Firstly, we create the function signature
-    llvm::Type * retTy = voidTy;
     std::vector<llvm::Type *> args;
     args.reserve(4 * (ins.size() + outs.size()));
+    
     for (const auto & in : ins)
     {
-        const analysis::TIType::Type ty = in.tl.type;
         const bool scalar = in.tl.isScalar();
-        if (ty == analysis::TIType::COMPLEX)
-        {
-            llvm::Type * _ty = scalar ? dblTy : dblPtrTy;
-            args.emplace_back(_ty);
-            args.emplace_back(_ty);
-        }
-        else
-        {
-            args.emplace_back(getType(ty, scalar));
-        }
-        if (!scalar)
-        {
-            args.emplace_back(int64Ty); // for rows
-            args.emplace_back(int64Ty); // for cols
-            args.emplace_back(int64Ty); // for refcount
-        }
-        name += "_" + analysis::TIType::get_mangling(ty, scalar);
+	if (scalar)
+	{
+	    In<analysis::TIType::Type>(in.tl.type).get(args, *this);
+	}
+	else
+	{
+	    In<analysis::TIType::Type, 1>(in.tl.type).get(args, *this);
+	    In<llvm::Type>(int64Ty).get(args, *this); // for rows
+	    In<llvm::Type>(int64Ty).get(args, *this); // for cols
+	    In<llvm::Type>(int64Ty).get(args, *this); // for refcount
+	}
+	
+        functionName += analysis::TIType::get_mangling(in.tl.type, scalar);
     }
+
+    JITInfo & functionInfo = info.emplace(fblock.getFunctionId(), functionName).first->second;
+
+    for (const auto & in : ins)
+    {
+	functionInfo.addToInSignature(in.tl.isScalar(), in.tl.type);
+    }
+    
     for (const auto & out : outs)
     {
-        const analysis::TIType::Type ty = out.tl.type;
         const bool scalar = out.tl.isScalar();
-
-        // Output arguments are passed by reference
-        if (ty == analysis::TIType::COMPLEX)
-        {
-            llvm::Type * _ty = scalar ? dblPtrTy : llvm::PointerType::getUnqual(dblPtrTy);
-            args.emplace_back(_ty);
-            args.emplace_back(_ty);
-        }
-        else
-        {
-            args.emplace_back(llvm::PointerType::getUnqual(getType(ty, scalar)));
-        }
-        if (!scalar)
-        {
-            args.emplace_back(int64PtrTy); // for rows
-            args.emplace_back(int64PtrTy); // for cols
-            args.emplace_back(int64PtrTy); // for refcount
-        }
+	if (scalar)
+	{
+	    In<analysis::TIType::Type, 1>(out.tl.type).get(args, *this);
+	}
+	else
+	{
+	    In<analysis::TIType::Type, 2>(out.tl.type).get(args, *this);
+	    In<llvm::Type>(int64PtrTy).get(args, *this); // for rows
+	    In<llvm::Type>(int64PtrTy).get(args, *this); // for cols
+	    In<llvm::Type>(int64PtrTy).get(args, *this); // for refcount
+	}
+	functionInfo.addToOutSignature(scalar, out.tl.type);
     }
 
-    llvm::FunctionType * ftype = llvm::FunctionType::get(retTy, args, /* isVarArgs */ false);
-    //function = llvm::cast<llvm::Function>(module.getOrInsertFunction("jit_" + name, ftype));
-    function = llvm::cast<llvm::Function>(module->getOrInsertFunction(_name, ftype));
+    llvm::FunctionType * ftype = llvm::FunctionType::get(voidTy, args, /* isVarArgs */ false);
+    function = llvm::cast<llvm::Function>(module->getOrInsertFunction(functionName, ftype));
 
     entryBlock = llvm::BasicBlock::Create(context, "EntryBlock", function);
     builder.SetInsertPoint(entryBlock);
@@ -684,28 +591,40 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     {
         const analysis::TIType::Type ty = in.tl.type;
         const bool scalar = in.tl.isScalar();
-        const std::string name(in.sym.getName().begin(), in.sym.getName().end());
+	const std::string argName = scilab::UTF8::toUTF8(in.sym.getName());
         if (scalar)
         {
-            if (ty == analysis::TIType::COMPLEX)
+	    if (ty == analysis::TIType::COMPLEX)
             {
                 llvm::Value * re = ai++;
                 llvm::Value * im = ai++;
 
-                variables.emplace(in.sym, getScalar(re, im, ty, true, name));
+                variables.emplace(in.sym, getScalar(re, im, ty, true, argName));
             }
             else
             {
-                variables.emplace(in.sym, getScalar(ai++, ty, true, name));
+                variables.emplace(in.sym, getScalar(ai++, ty, true, argName));
             }
         }
         else
         {
-            llvm::Value * M = ai++;
-            llvm::Value * R = ai++;
-            llvm::Value * C = ai++;
-            llvm::Value * RC = ai++;
-            variables.emplace(in.sym, getMatrix(M, R, C, RC, ty, true, name));
+            if (ty == analysis::TIType::COMPLEX)
+            {
+		llvm::Value * re = ai++;
+		llvm::Value * im = ai++;
+		llvm::Value * R = ai++;
+		llvm::Value * C = ai++;
+		llvm::Value * RC = ai++;
+		variables.emplace(in.sym, getMatrix(re, im, R, C, RC, ty, true, argName));
+	    }
+	    else
+	    {
+		llvm::Value * M = ai++;
+		llvm::Value * R = ai++;
+		llvm::Value * C = ai++;
+		llvm::Value * RC = ai++;
+		variables.emplace(in.sym, getMatrix(M, R, C, RC, ty, true, argName));
+	    }
         }
     }
 
@@ -717,7 +636,6 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
         if (scalar)
         {
             JITScilabPtr & ptr = variables.emplace(out.sym, getScalar(ty, /* isAnInt */ false, name)).first->second;
-
             builder.SetInsertPoint(returnBlock);
             if (ty == analysis::TIType::COMPLEX)
             {
@@ -735,18 +653,32 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
         }
         else
         {
-            llvm::Value * M = ai++;
-            llvm::Value * R = ai++;
-            llvm::Value * C = ai++;
-            llvm::Value * RC = ai++;
-
-            JITScilabPtr & ptr = variables.emplace(out.sym, getMatrix(ty, name)).first->second;
-
+	    JITScilabPtr & ptr = variables.emplace(out.sym, getMatrix(ty, name)).first->second;
             builder.SetInsertPoint(returnBlock);
-            builder.CreateAlignedStore(ptr->loadData(*this), M, sizeof(void *));
-            builder.CreateAlignedStore(ptr->loadRows(*this), R, sizeof(int64_t));
-            builder.CreateAlignedStore(ptr->loadCols(*this), C, sizeof(int64_t));
-            builder.SetInsertPoint(entryBlock);
+	    if (ty == analysis::TIType::COMPLEX)
+            {
+                llvm::Value * re = ai++;
+                llvm::Value * im = ai++;
+		llvm::Value * R = ai++;
+		llvm::Value * C = ai++;
+		llvm::Value * RC = ai++;
+		builder.CreateAlignedStore(ptr->loadReal(*this), re, sizeof(void *));
+		builder.CreateAlignedStore(ptr->loadImag(*this), im, sizeof(void *));
+		builder.CreateAlignedStore(ptr->loadRows(*this), R, sizeof(int64_t));
+		builder.CreateAlignedStore(ptr->loadCols(*this), C, sizeof(int64_t));
+	    }
+	    else
+	    {
+                llvm::Value * M = ai++;
+		llvm::Value * R = ai++;
+		llvm::Value * C = ai++;
+		llvm::Value * RC = ai++;
+		builder.CreateAlignedStore(ptr->loadData(*this), M, sizeof(void *));
+		builder.CreateAlignedStore(ptr->loadRows(*this), R, sizeof(int64_t));
+		builder.CreateAlignedStore(ptr->loadCols(*this), C, sizeof(int64_t));
+	    }
+	    builder.SetInsertPoint(entryBlock);
+		
             //builder.CreateAlignedStore(ptr->loadRefCount(*this), RC, sizeof(int64_t));
             //funOuts.emplace_back(getMatrix(M, R, C, RC, ty, false, ""));
         }
@@ -777,9 +709,10 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     {
         total += p.second.size();
     }
-    if (total > 0)
+    if (total >= 0)
     {
-        temps.resize(total);
+        temps.resize(total + 1);
+	temps[0] = JITScilabPtr(nullptr);
         unsigned int id = 0;
         for (const auto & p : temporaries)
         {
@@ -790,11 +723,11 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
                 const std::string name = std::to_string(id++) + "_tmp";
                 if (ty.isScalar())
                 {
-                    temps[stack.top()] = getScalar(ty, name);
+                    temps[stack.top() + 1] = getScalar(ty, name);
                 }
                 else
                 {
-                    temps[stack.top()] = getMatrix(ty, name, true);
+                    temps[stack.top() + 1] = getMatrix(ty, name, true);
                 }
                 stack.pop();
             }
@@ -803,289 +736,20 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
 
     cpx_rvalue.reset(new JITScalComplex(*this, "0_cpx_rvalue"));
 
-    //function->dump();
-
     builder.SetInsertPoint(mainBlock);
 
-    fblock.getExp()->accept(*this);
-    //function->dump();
-    CreateBr(returnBlock);
 
+    //Debug::printI64(*this, variables.find(symbol::Symbol(L"a"))->second->loadRows(*this));
+
+    fblock.getExp()->accept(*this);
+    CreateBr(returnBlock);
     builder.SetInsertPoint(returnBlock);
     builder.CreateRetVoid();
 
-    //function->dump();
-
-
-    //module.dump();
-}
-
-void JITVisitor::makeCall(const std::wstring & name, const std::vector<types::InternalType *> & in, std::vector<types::InternalType *> & out)
-{
-    std::vector<llvm::Value *> args;
-    std::string _name(name.begin(), name.end());
-
-    for (auto pIT : in)
-    {
-        if (pIT->isGenericType())
-        {
-            types::GenericType * pGT = static_cast<types::GenericType *>(pIT);
-            if (pGT->isScalar())
-            {
-                switch (pGT->getType())
-                {
-                    case types::InternalType::ScilabInt8:
-                    {
-                        const int8_t x = static_cast<types::Int8 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt8:
-                    {
-                        const uint8_t x = static_cast<types::UInt8 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabInt16:
-                    {
-                        const int16_t x = static_cast<types::Int16 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt16:
-                    {
-                        const uint16_t x = static_cast<types::UInt16 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabInt32:
-                    {
-                        const int32_t x = static_cast<types::Int32 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt32:
-                    {
-                        const uint32_t x = static_cast<types::UInt32 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabInt64:
-                    {
-                        const int64_t x = static_cast<types::Int64 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt64:
-                    {
-                        const uint64_t x = static_cast<types::UInt64 *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    case types::InternalType::ScilabDouble:
-                        if (pGT->isComplex())
-                        {
-                            const double re = static_cast<types::Double *>(pGT)->getReal()[0];
-                            const double im = static_cast<types::Double *>(pGT)->getImg()[0];
-                            args.emplace_back(getValue(re));
-                            args.emplace_back(getValue(im));
-                            //args.emplace_back(getValue(std::complex<double>(re, im)));
-                        }
-                        else
-                        {
-                            const double x = static_cast<types::Double *>(pGT)->get(0);
-                            args.emplace_back(getValue(x));
-                        }
-                        break;
-                    case types::InternalType::ScilabBool:
-                    {
-                        const int32_t x = static_cast<types::Bool *>(pGT)->get(0);
-                        args.emplace_back(getValue(x));
-                        break;
-                    }
-                    default:
-                        break;
-                }
-            }
-            else
-            {
-                switch (pGT->getType())
-                {
-                    case types::InternalType::ScilabInt8:
-                    {
-                        makeArg<int8_t, types::Int8>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt8:
-                    {
-                        makeArg<uint8_t, types::UInt8>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabInt16:
-                    {
-                        makeArg<int16_t, types::Int16>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt16:
-                    {
-                        makeArg<uint16_t, types::UInt16>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabInt32:
-                    {
-                        makeArg<int32_t, types::Int32>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt32:
-                    {
-                        makeArg<uint32_t, types::UInt32>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabInt64:
-                    {
-                        makeArg<int64_t, types::Int64>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabUInt64:
-                    {
-                        makeArg<uint64_t, types::UInt64>(args, pGT);
-                        break;
-                    }
-                    case types::InternalType::ScilabDouble:
-                        if (pGT->isComplex())
-                        {
-                        }
-                        else
-                        {
-                            makeArg<double, types::Double>(args, pGT);
-                        }
-                        break;
-                    case types::InternalType::ScilabBool:
-                    {
-                        makeArg<int32_t, types::Bool>(args, pGT);
-                        break;
-                    }
-                    default:
-                        break;
-                }
-            }
-        }
-    }
-
-    // now we put the output
-    const std::vector<analysis::TIType> outs = mapNameFBlock.find(_name)->second->getOuts().tuple.types;
-    const analysis::TIType & ty = outs.front();
-    std::vector<OutContainer> llvmOuts;
-    llvmOuts.reserve(out.size());
-    llvmOuts.emplace_back(ty.type);
-
-    if (ty.isscalar())
-    {
-        switch (ty.type)
-        {
-            case analysis::TIType::DOUBLE:
-            {
-                args.emplace_back(getValue(&llvmOuts.back().data.dbl));
-                llvmOuts.back().rows = 1;
-                llvmOuts.back().cols = 1;
-                break;
-            }
-            case analysis::TIType::COMPLEX:
-            {
-                args.emplace_back(getValue(&llvmOuts.back().data.cpx[0]));
-                args.emplace_back(getValue(&llvmOuts.back().data.cpx[1]));
-                llvmOuts.back().rows = 1;
-                llvmOuts.back().cols = 1;
-                break;
-            }
-            case analysis::TIType::BOOLEAN:
-            {
-                args.emplace_back(getValue(&llvmOuts.back().data.boolean));
-                llvmOuts.back().rows = 1;
-                llvmOuts.back().cols = 1;
-                break;
-            }
-            default:
-                break;
-        }
-    }
-    else
-    {
-        switch (ty.type)
-        {
-            case analysis::TIType::DOUBLE:
-            {
-                args.emplace_back(getValue(reinterpret_cast<double **>(&llvmOuts.back().data.ptr)));
-                args.emplace_back(getValue(&llvmOuts.back().rows));
-                args.emplace_back(getValue(&llvmOuts.back().cols));
-                args.emplace_back(getValue(&llvmOuts.back().refcount));
-                break;
-
-                /*types::Double * pDbl = new types::Double();
-                double ** x = &pDbl->m_pRealData;
-                args.emplace_back(getValue(x));
-                int32_t * r = &pDbl->m_iRows;
-                args.emplace_back(getValue(r));
-                int32_t * c = &pDbl->m_iCols;
-                args.emplace_back(getValue(c));
-                int32_t * refc = &pDbl->m_iRef;
-                args.emplace_back(getValue(refc));
-                out.push_back(pDbl);*/
-            }
-            default:
-                break;
-        }
-    }
-
-    llvm::Type * voidTy = getTy<void>();
-    llvm::Function * toCall = module->getFunction(_name);
-    llvm::Function * function = llvm::cast<llvm::Function>(module->getOrInsertFunction("main", voidTy, nullptr));
-    llvm::BasicBlock * BB = llvm::BasicBlock::Create(context, "EntryBlock", function);
-    builder.SetInsertPoint(BB);
-    builder.CreateCall(toCall, llvm::ArrayRef<llvm::Value *>(args));
-    builder.CreateRetVoid();
-
-    std::chrono::steady_clock::time_point start;
-    std::chrono::steady_clock::time_point end;
-
     closeEntryBlock();
 
-    module->dump();
-
-    runOptimizationPasses();
-
-    module->dump();
-
-    compileModule();
-
-    start = std::chrono::steady_clock::now();
-    reinterpret_cast<void (*)()>(engine->getFunctionAddress("main"))();
-    end = std::chrono::steady_clock::now();
-    double duration = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
-    std::wcerr << "Exec time=" << duration << " s." << std::endl;
-
-    types::InternalType * pIT = nullptr;
-    if (ty.isscalar())
-    {
-        if (ty.type == analysis::TIType::COMPLEX)
-        {
-            pIT = new types::Double(llvmOuts.back().data.cpx[0], llvmOuts.back().data.cpx[1]);
-        }
-        else if (ty.type == analysis::TIType::DOUBLE)
-        {
-            pIT = new types::Double(llvmOuts.back().data.dbl);
-        }
-        else if (ty.type == analysis::TIType::BOOLEAN)
-        {
-            pIT = new types::Bool(llvmOuts.back().data.boolean);
-        }
-    }
-    else
-    {
-        pIT = new types::Double(llvmOuts.back().rows, llvmOuts.back().cols, reinterpret_cast<double *>(llvmOuts.back().data.ptr));
-    }
-
-    out.emplace_back(pIT);
+    addFunction(function->getName().str(), function);
+    
 }
 
 llvm::FunctionType * JITVisitor::getFunctionType(const analysis::TIType & out, const std::vector<const analysis::TIType *> & types)
@@ -1150,13 +814,7 @@ llvm::FunctionType * JITVisitor::getFunctionType(const analysis::TIType & out, c
 
 llvm::Type * JITVisitor::getPtrAsIntTy(llvm::Module & module, llvm::LLVMContext & ctxt)
 {
-#if LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR == 4
-    return module.getPointerSize() == llvm::Module::Pointer32 ? llvm::Type::getInt32Ty(ctxt) : llvm::Type::getInt64Ty(ctxt);
-#elif LLVM_VERSION_MAJOR >= 3 && LLVM_VERSION_MINOR >= 7
     return module.getDataLayout().getPointerSize() == 32 ? llvm::Type::getInt32Ty(ctxt) : llvm::Type::getInt64Ty(ctxt);
-#else
-    return module.getDataLayout()->getPointerSize() == 32 ? llvm::Type::getInt32Ty(ctxt) : llvm::Type::getInt64Ty(ctxt);
-#endif
 }
 
 bool JITVisitor::InitializeLLVM()
@@ -1196,6 +854,7 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
     delete tm;
 
     llvm::ExecutionEngine * engine = eb.create(*target);
+    engine->setVerifyModules(false);
     engine->RegisterJITEventListener(new ScilabJITEventListener());
 
     module->setDataLayout(engine->getDataLayout()->getStringRepresentation());
@@ -1204,8 +863,38 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
     return engine;
 }
 
+    void JITVisitor::reset()
+    {
+	entryBlock = nullptr;
+	mainBlock = nullptr;
+	returnBlock = nullptr;
+	errorBlock = nullptr;
+
+	_result.reset();
+	cpx_rvalue.reset();
+	multipleLHS.clear();
+	variables.clear();
+	temps.clear();
+	globals.clear();
+	while (!blocks.empty())
+	{
+	    blocks.pop();
+	}
+	specialVars.clear();
+
+	module = new llvm::Module("JIT" + std::to_string(id++), context);
+	engine->addModule(std::unique_ptr<llvm::Module>(module));
+	module->setDataLayout(*engine->getDataLayout());
+	module->setTargetTriple(target->getTargetTriple().str());
+	function = nullptr;
+    }
+
 void JITVisitor::initPassManagers()
 {
+    /* This pass is mandatory to detect register size to allow vectorization */
+    MPM.add(llvm::createTargetTransformInfoWrapperPass(target->getTargetIRAnalysis()));
+    FPM.add(llvm::createTargetTransformInfoWrapperPass(target->getTargetIRAnalysis()));
+
     llvm::PassManagerBuilder PMB;
     PMB.OptLevel = 2;
     PMB.SizeLevel = 0;

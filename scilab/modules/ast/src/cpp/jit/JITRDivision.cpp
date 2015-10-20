@@ -15,6 +15,7 @@
 #include "JITArrayofs.hxx"
 #include "JITVisitor.hxx"
 #include "calls/JITBinOpCall.hxx"
+#include "calls/FunctionSignature.hxx"
 #include "Cast.hxx"
 
 namespace jit
@@ -22,23 +23,57 @@ namespace jit
 
     void JITRDivision::MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
     {
-	llvm::LLVMContext & context = jit.getContext();
-        llvm::IRBuilder<> & builder = jit.getBuilder();
+	llvm::IRBuilder<> & builder = jit.getBuilder();
 	llvm::Type * int64_ty = jit.getTy<int64_t>();
-	llvm::Value * L_rows = L->loadRows(jit);
-	llvm::Value * L_cols = L->loadCols(jit);
-	llvm::Value * R_rows = R->loadRows(jit);
-	llvm::Value * R_cols = R->loadCols(jit);
-        llvm::Type * types[] = { jit.getTy(Ltype, 1), int64_ty, int64_ty, jit.getTy(Rtype, 1), int64_ty, int64_ty, jit.getTy(Otype, 2) };
-	llvm::Value * args[] = { L->loadData(jit), L_rows, L_cols, R->loadData(jit), R_rows, R_cols, O->getData(jit)};
-        llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_binary_mangling(scilabName, Ltype, Rtype), llvm::FunctionType::get(jit.getTy<void>(), llvm::ArrayRef<llvm::Type *>(types), false)));
-	llvm::AttrBuilder attrBuilder;
-	attrBuilder.addAttribute(llvm::Attribute::NoAlias).addAttribute(llvm::Attribute::NoCapture);
-	llvm::AttributeSet attrSet = llvm::AttributeSet::get(context, 1, attrBuilder).addAttributes(context, 4, llvm::AttributeSet::get(context, 4, attrBuilder)).addAttributes(context, 7, llvm::AttributeSet::get(context, 7, attrBuilder));
-	toCall->setAttributes(attrSet);
-        builder.CreateCall(toCall, llvm::ArrayRef<llvm::Value *>(args));
-	O->storeRows(jit, L_rows);
-	O->storeCols(jit, R_rows);
+	llvm::Value * Lr = L->loadRows(jit);
+	llvm::Value * Lc = L->loadCols(jit);
+	llvm::Value * Rr = R->loadRows(jit);
+	const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
+										     In<llvm::Type>(int64_ty),
+										     In<llvm::Type>(int64_ty),
+										     In<llvm::Type>(int64_ty),
+										     In<analysis::TIType::Type>(Ltype.type, 1),
+										     In<analysis::TIType::Type>(Rtype.type, 1),
+										     In<analysis::TIType::Type>(Otype.type, 2));
+	
+	const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
+										   In<llvm::Value>(Lr),
+										   In<llvm::Value>(Lc),
+										   In<llvm::Value>(Rr),
+										   In<JITScilabPtr, 0>(L),
+										   In<JITScilabPtr, 0>(R),
+										   In<JITScilabPtr, 1>(O));
+	
+	llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_binary_mangling(scilabName, Ltype, Rtype), llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+	builder.CreateCall(toCall, args);
+	O->storeRows(jit, Lr);
+	O->storeCols(jit, Rr);
+    }
+
+    void JITRDivision::SM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
+    {
+	llvm::IRBuilder<> & builder = jit.getBuilder();
+	llvm::Type * int64_ty = jit.getTy<int64_t>();
+	llvm::Value * Rr = R->loadRows(jit);
+	llvm::Value * Rc = R->loadCols(jit);
+	const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
+										     In<llvm::Type>(int64_ty),
+										     In<llvm::Type>(int64_ty),
+										     In<analysis::TIType::Type>(Ltype.type, 1),
+										     In<analysis::TIType::Type>(Rtype.type, 1),
+										     In<analysis::TIType::Type>(Otype.type, 2));
+	
+	const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
+										   In<llvm::Value>(Rr),
+										   In<llvm::Value>(Rc),
+										   In<JITScilabPtr, 0>(L),
+										   In<JITScilabPtr, 0>(R),
+										   In<JITScilabPtr, 1>(O));
+	
+	llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_binary_mangling(scilabName, Ltype, Rtype), llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+	builder.CreateCall(toCall, args);
+	O->storeRows(jit, Rc);
+	O->storeCols(jit, Rr);
     }
 
     JITScilabPtr JITRDivision::SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, const analysis::TIType & Otype, JITVisitor & jit)

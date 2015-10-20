@@ -214,6 +214,12 @@ namespace jit
 	    // we have a double
 	    return jit.getBuilder().CreateFCmpUNE(L->loadData(jit), jit.getConstant<double>(0));
 	}
+	else
+	{
+	    llvm::Value * l = jit.getBuilder().CreateFCmpUNE(L->loadReal(jit), jit.getConstant<double>(0));
+	    llvm::Value * r = jit.getBuilder().CreateFCmpUNE(L->loadImag(jit), jit.getConstant<double>(0));
+	    return jit.getBuilder().CreateAnd(l, r);
+	}
     }
     
     llvm::Value * ShortcutEval::toBoolM(JITScilabPtr & L, const analysis::TIType & Ltype)

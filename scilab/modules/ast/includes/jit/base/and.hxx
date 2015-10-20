@@ -17,7 +17,6 @@
 
 #include "Cast.hxx"
 
-
 namespace jit
 {
     namespace op

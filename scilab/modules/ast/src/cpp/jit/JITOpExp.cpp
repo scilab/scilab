@@ -35,6 +35,18 @@ namespace jit
 	}
     }
 
+    void JITVisitor::visit(const ast::TransposeExp & e)
+    {
+	std::vector<analysis::TIType> typesOut(1, e.getDecorator().getResult().getType());
+	std::vector<JITScilabPtr> out;
+	const bool ret = transposition.invoke(e, typesOut, out, *this);
+
+	if (ret)
+	{
+	    setResult(out.front());
+	}
+    }
+
     void JITVisitor::visit(const ast::OpExp & e)
     {
 	std::vector<analysis::TIType> typesOut(1, e.getDecorator().getResult().getType());

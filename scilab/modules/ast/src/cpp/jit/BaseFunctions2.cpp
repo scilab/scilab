@@ -10,8 +10,6 @@
 *
 */
 
-#include <chrono>
-
 #include "BaseFunctions.hxx"
 #include "BaseFunctionsMacros2.h"
 #include "base/elem_functions.hxx"
@@ -83,5 +81,55 @@ extern "C"
     {
         const std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
         return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - tictoc_start).count() * 1e-9;
+    }
+
+    void printI8(const int8_t x)
+    {
+	std::wcerr << "Int8: " << (int64_t)x << std::endl;
+    }
+    
+    void printUI8(const uint8_t x)
+    {
+	std::wcerr << "UInt8: " << (uint64_t)x << std::endl;
+    }
+
+    void printI16(const int16_t x)
+    {
+	std::wcerr << "Int16: " << (int64_t)x << std::endl;
+    }
+    
+    void printUI16(const uint16_t x)
+    {
+	std::wcerr << "UInt16: " << (uint64_t)x << std::endl;
+    }
+
+    void printI32(const int32_t x)
+    {
+	std::wcerr << "Int32: " << (int64_t)x << std::endl;
+    }
+    
+    void printUI32(const uint32_t x)
+    {
+	std::wcerr << "UInt32: " << (uint64_t)x << std::endl;
+    }
+
+    void printI64(const int64_t x)
+    {
+	std::wcerr << "Int64: " << x << std::endl;
+    }
+    
+    void printUI64(const uint64_t x)
+    {
+	std::wcerr << "UInt64: " << x << std::endl;
+    }
+
+    void printB(const int32_t x)
+    {
+	std::wcerr << "Bool: " << (x != 0) << std::endl;
+    }
+
+    void printD(const double x)
+    {
+	std::wcerr << "Dble: " << x << std::endl;
     }
 }

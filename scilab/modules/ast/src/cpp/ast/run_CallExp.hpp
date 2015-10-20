@@ -16,8 +16,31 @@ namespace ast {
 template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
-    e.getName().accept(*this);
-    types::InternalType* pIT = getResult();
+    bool isJITCall = false;
+    exps_t args;
+    types::InternalType * pIT = nullptr;
+    const Exp & name = e.getName();
+    if (name.isSimpleVar() && static_cast<const SimpleVar &>(name).getSymbol().getName() == L"jit")
+    {
+	const ast::exps_t _args = e.getArgs();
+	if (_args.size() == 1)
+	{
+	    const ast::Exp & arg = *_args.back();
+	    if (arg.isCallExp())
+	    {
+		args = static_cast<const CallExp &>(arg).getArgs();
+		static_cast<const CallExp &>(arg).getName().accept(*this);
+		pIT = getResult();
+		isJITCall = true;
+	    }
+	}
+    }
+    
+    if (!isJITCall)
+    {
+	name.accept(*this);
+	pIT = getResult();
+    }
 
     if (pIT != NULL)
     {
@@ -39,7 +62,11 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
 
         //get function arguments
-        exps_t args = e.getArgs();
+	if (!isJITCall)
+	{
+	    args = e.getArgs();
+	}
+	
         try
         {
             for (auto arg : args)
@@ -197,7 +224,18 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 }
                 else
                 {
-                    ret = pIT->invoke(in, opt, iRetCount, out, e);
+		    if (isJITCall)
+		    {
+			ret = jit::Jitter::analyzeAndJIT(e, in, out);
+			if (!ret)
+			{
+			    ret = pIT->invoke(in, opt, iRetCount, out, e);
+			}
+		    }
+		    else
+		    {
+			ret = pIT->invoke(in, opt, iRetCount, out, e);
+		    }
                     if(ret == false && pIT->isUserType())
                     {
                         // call overload

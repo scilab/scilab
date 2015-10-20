@@ -42,7 +42,7 @@ namespace jit
 
     public:
 	
-	JITOpposite() : JITUnaryOpCall("opposite") { }
+	JITOpposite() : JITUnaryOpCall("opp") { }
 
 	virtual ~JITOpposite() { }
 
@@ -60,6 +60,19 @@ namespace jit
 
 	virtual bool invoke(const ast::Exp & e, const std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit);
 	virtual JITScilabPtr S(JITScilabPtr & L, const analysis::TIType & Ltype, const analysis::TIType & Otype, JITVisitor & jit);
+    };
+
+    class JITTransposition : public JITUnaryOpCall
+    {
+	
+    public:
+	
+	JITTransposition() : JITUnaryOpCall("transp") { }
+
+	virtual ~JITTransposition() { }
+
+	virtual JITScilabPtr S(JITScilabPtr & L, const analysis::TIType & Ltype, const analysis::TIType & Otype, JITVisitor & jit);
+	virtual void M(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit);
     };
     
     

@@ -1118,7 +1118,7 @@ inline void transp(double * X, const int64_t x_r, const int64_t x_c)
     }
 }
 
-inline void rdiv(double * X, const int64_t x_r, const int64_t x_c, double * Y, const int64_t y_r, const int64_t y_c, double ** O)
+/*inline void rdiv(double * X, const int64_t x_r, const int64_t x_c, double * Y, const int64_t y_r, const int64_t y_c, double ** O)
 {
     // TODO: deal with warning messages...
     // We know that x_c == y_c
@@ -1130,22 +1130,13 @@ inline void rdiv(double * X, const int64_t x_r, const int64_t x_c, double * Y, c
 
     const int64_t max = std::max(y_r, y_c);
     const int64_t min = std::min(y_r, y_c);
+    const int64_t size = y_r * y_c;
     int info;
     double * Xt = new double[max * x_r];
-    double * Yt = new double[y_c * y_r];
-    double * _O;
-    if (*O)
-    {
-        _O = *O;
-    }
-    else
-    {
-        _O = new double[x_r * y_r];
-        *O = _O;
-    }
+    double * Yt = new double[size];
 
-    oTransp(X, x_r, x_c, Xt, max, x_r);
-    oTransp(Y, y_r, y_c, Yt, y_c, y_r);
+    transposition::oTransp(X, x_r, x_c, Xt, max, x_r);
+    transposition::oTransp(Y, y_r, y_c, Yt, y_c, y_r);
 
     bool lsq = y_r != y_c;
     double * sYt = nullptr;
@@ -1159,8 +1150,8 @@ inline void rdiv(double * X, const int64_t x_r, const int64_t x_c, double * Y, c
         double norm1 = C2F(dlange)(&one, &y_r_i, &y_c_i, Y, &y_r_i, nullptr);
         int * pivot = new int[min];
         // Y is modified by dgetrf so we need to copy to use eventually in lsq method
-        sYt = new double[y_r * y_c];
-        memcpy(sYt, Yt, sizeof(double) * y_r * y_c);
+        sYt = new double[size];
+        memcpy(sYt, Yt, sizeof(double) * size);
         C2F(dgetrf)(&y_c_i, &y_r_i, Yt, &y_c_i, pivot, &info);
         if (info > 0)
         {
@@ -1183,8 +1174,7 @@ inline void rdiv(double * X, const int64_t x_r, const int64_t x_c, double * Y, c
             }
             else
             {
-                C2F(dgetrs)(&N/*o transpose*/, &y_c_i, &x_r_i, Yt, &y_c_i, pivot, Xt, &y_c_i, &info);
-                oTransp(Xt, max, x_r, _O, x_r, y_r);
+                C2F(dgetrs)(&N, &y_c_i, &x_r_i, Yt, &y_c_i, pivot, Xt, &y_c_i, &info);
             }
 
             delete[] pivot;
@@ -1197,7 +1187,7 @@ inline void rdiv(double * X, const int64_t x_r, const int64_t x_c, double * Y, c
     {
         int * jpvt = new int[y_r]();
         int max_i = (int)max;
-        double rcond = 10 * eps;
+        const double rcond = 10 * eps;
         int rank;
         int workMin = std::max(4 * y_c, std::max(min + 3 * y_r + 1, 2 * min + x_r));
         double * work = new double[workMin];
@@ -1213,14 +1203,20 @@ inline void rdiv(double * X, const int64_t x_r, const int64_t x_c, double * Y, c
             // useless
         }
 
-        oTransp(Xt, max, x_r, _O, x_r, y_r);
         delete[] jpvt;
         delete[] work;
     }
 
+    if (!*O)
+    {
+	*O = new double[x_r * y_r];
+    }
+    transposition::oTransp(Xt, max, x_r, *O, x_r, y_r);
+    
     delete[] Xt;
     delete[] Yt;
 }
+*/
 
 /*        template<>
         inline wchar_t * sum<wchar_t *, wchar_t *, wchar_t *>(wchar_t * x, wchar_t * y)

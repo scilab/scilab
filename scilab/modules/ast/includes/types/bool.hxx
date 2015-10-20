@@ -44,6 +44,7 @@ public:
     Bool(int _iRows, int _iCols);
     Bool(int _iDims, int* _piDims);
     Bool(int _iRows, int _iCols, int **_piData);
+    Bool(int _iRows, int _iCols, int * _piData);
     ~Bool();
 
     InternalType*           clone();

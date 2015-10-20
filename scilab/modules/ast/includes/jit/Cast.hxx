@@ -101,6 +101,42 @@ namespace jit
 
     private:
 
+	template<typename T>
+	struct __BitCastHelper
+	{
+	    inline uint64_t operator()(T & x) const
+		{
+		    return (uint64_t)*reinterpret_cast<typename std::make_unsigned<T>::type *>(&x);
+		}
+	};
+
+	template<typename T>
+	struct __BitCastHelper<T *>
+	{
+	    inline uint64_t operator()(T * & x) const
+		{
+		    return (uint64_t)((uintptr_t)x);
+		}
+	};
+
+    public:
+
+	template<typename T>
+	inline static uint64_t bit_cast(T && x)
+	    {
+		T _x = x;
+		return __BitCastHelper<typename std::remove_reference<typename std::remove_cv<T>::type>::type>()(_x);
+	    }
+
+	template<typename T>
+	inline static uint64_t bit_cast(const T & x)
+	    {
+		return __BitCastHelper<typename std::remove_reference<typename std::remove_cv<T>::type>::type>()(x);
+	    }
+
+
+    private:
+
         // First bool is for if typename is integral
         // Second is for if v is integral
         template<typename, bool, bool>
@@ -149,6 +185,15 @@ namespace jit
                 }
         };
 
+    };
+
+    template<>
+    struct jit::Cast::__BitCastHelper<double>
+    {
+	inline uint64_t operator()(const double & x) const
+	    {
+		return *reinterpret_cast<const uint64_t *>(&x);
+	    }
     };
 
     // try to find the Scilab type in operation

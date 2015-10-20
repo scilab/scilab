@@ -17,6 +17,11 @@
 namespace jit
 {
 
+    void JITVisitor::visit(const ast::CaseExp & e)
+    {
+	// treated directly in SelectExp
+    }
+
     void JITVisitor::visit(const ast::SelectExp & e)
     {
 	// In the general case, a select is just a succession of if ... elseif... elseif... else... end

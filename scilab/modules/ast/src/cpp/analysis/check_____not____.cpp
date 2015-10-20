@@ -16,10 +16,10 @@
 
 namespace analysis
 {
-TIType Checkers::check_____not____(GVN & gvn, const TIType & in0)
-{
-    switch (in0.type)
+    TIType Checkers::check_____not____(GVN & gvn, const TIType & in0)
     {
+        switch (in0.type)
+        {
         case TIType::EMPTY :
         {
             return in0;
@@ -38,39 +38,39 @@ TIType Checkers::check_____not____(GVN & gvn, const TIType & in0)
         }
         case TIType::INT16 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         case TIType::INT32 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         case TIType::INT64 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         case TIType::INT8 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         case TIType::UINT16 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         case TIType::UINT32 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         case TIType::UINT64 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         case TIType::UINT8 :
         {
-            return TIType(gvn, TIType::BOOLEAN, in0.rows, in0.cols);
+            return in0;
         }
         default :
             return TIType(gvn);
+        }
     }
-}
 
 } // namespace analysis

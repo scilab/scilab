@@ -40,7 +40,7 @@ public:
     virtual void S(const analysis::TIType & argType, JITScilabPtr & arg, const analysis::TIType & OType, JITScilabPtr & out, JITVisitor & jit);
     virtual void M(const analysis::TIType & argType, JITScilabPtr & arg, const analysis::TIType & OType, JITScilabPtr & out, JITVisitor & jit);
     virtual void Sc_c(const std::string & name, JITScilabPtr & arg, JITScilabPtr & out, JITVisitor & jit);
-
+    
 private:
 
     void makeOutput(JITVisitor & jit, llvm::Value * ret, const std::vector<llvm::Value *> & outArgs, const analysis::TIType & OType, JITScilabPtr & out);

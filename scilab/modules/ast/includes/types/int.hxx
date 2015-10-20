@@ -67,6 +67,21 @@ public :
 #endif
     }
 
+    Int(int _iRows, int _iCols, T* _pData)
+    {
+	ArrayOf<T>::m_pRealData = _pData;
+	ArrayOf<T>::m_pImgData = nullptr;
+	ArrayOf<T>::m_iRows = _iRows;
+	ArrayOf<T>::m_iCols = _iCols;
+	ArrayOf<T>::m_iSize = _iRows * _iCols;
+	ArrayOf<T>::m_iDims = 2;
+	ArrayOf<T>::m_piDims[0] = _iRows;
+	ArrayOf<T>::m_piDims[1] = _iCols;
+#ifndef NDEBUG
+        //Inspector::addItem(this);
+#endif
+    }
+
     Int(int _iDims, int* _piDims)
     {
         T * pInt     = NULL;

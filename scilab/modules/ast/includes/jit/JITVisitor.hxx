@@ -52,6 +52,7 @@
 #include "allexp.hxx"
 #include "allvar.hxx"
 #include "AnalysisVisitor.hxx"
+#include "JITInfo.hxx"
 
 #include "calls/JITBinOpCall.hxx"
 #include "calls/JITUnaryOpCall.hxx"
@@ -61,12 +62,6 @@
 
 namespace jit
 {
-
-#if defined(LLVM_VERSION_MAJOR) && LLVM_VERSION_MAJOR == 3 && LLVM_VERSION_MINOR >= 7
-typedef llvm::legacy::FunctionPassManager LLVM_FunctionPassManager;
-#else
-typedef llvm::FunctionPassManager LLVM_FunctionPassManager;
-#endif
 
 class JITScilabVal;
 typedef std::shared_ptr<JITScilabVal> JITScilabPtr;
@@ -90,6 +85,7 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
             int32_t boolean;
             double cpx[2];
             void * ptr;
+	    void * cpx_ptr[2];
         };
 
         analysis::TIType::Type type;
@@ -105,9 +101,6 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
 
     static const bool __init__;
 
-    const analysis::AnalysisVisitor & analysis;
-
-    std::string err;
     llvm::LLVMContext & context;
     llvm::Module * module;
     llvm::TargetMachine * target;
@@ -135,6 +128,7 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
     llvm::BasicBlock * returnBlock;
     llvm::BasicBlock * errorBlock;
 
+    uint64_t id;
     JITScilabPtr _result;
     JITScilabPtr cpx_rvalue;
     std::vector<JITScilabPtr> multipleLHS;
@@ -143,9 +137,10 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
     std::unordered_map<std::string, llvm::GlobalVariable *> globals;
     std::stack<std::pair<llvm::BasicBlock * , llvm::BasicBlock *>> blocks;
     std::queue<analysis::FunctionBlock *> fblocks;
-    std::unordered_map<std::string, analysis::FunctionBlock *> mapNameFBlock;
     std::unordered_map<std::string, llvm::Value *> specialVars;
-
+    std::unordered_map<std::string, llvm::Function *> llvmFunctions;
+    std::unordered_map<uint64_t, JITInfo> info;
+    
 public:
 
     JITAddition addition;
@@ -161,6 +156,7 @@ public:
     JITLowerOrEq lower_or_eq;
     JITGreaterOrEq greater_or_eq;
     JITNegation negation;
+    JITTransposition transposition;
     JITShortcutEq shortcut_eq;
     JITShortcutNe shortcut_ne;
     JITShortcutLt shortcut_lt;
@@ -168,12 +164,12 @@ public:
     JITShortcutLe shortcut_le;
     JITShortcutGe shortcut_ge;
 
-    JITVisitor(const analysis::AnalysisVisitor & _analysis);
+    JITVisitor();
     virtual ~JITVisitor();
 
     JITVisitor* clone()
     {
-        return new JITVisitor(analysis);
+        return new JITVisitor();
     }
 
     void run();
@@ -195,11 +191,11 @@ public:
         return nullptr;
     }
 
-    inline llvm::Type * getTy(const analysis::TIType & ty, const unsigned char level = 0) const
+    inline llvm::Type * getTy(const analysis::TIType::Type ty, const unsigned char level = 0) const
     {
         llvm::Type * lty;
 
-        switch (ty.type)
+        switch (ty)
         {
             case analysis::TIType::BOOLEAN:
                 lty = int32Ty;
@@ -241,6 +237,11 @@ public:
         }
 
         return lty;
+    }
+
+    inline llvm::Type * getTy(const analysis::TIType & ty, const unsigned char level = 0) const
+    {
+	return getTy(ty.type);
     }
 
     inline unsigned int getTySizeInBytes(const llvm::Type * ty) const
@@ -406,12 +407,9 @@ public:
     {
         if (id >= 0 && id < temps.size())
         {
-            return temps[id];
+            return temps[id + 1];
         }
-        else
-        {
-            assert(false && " Bad temp id...");
-        }
+	return temps[0];
     }
 
     inline void addGlobal(const std::string & name, llvm::GlobalVariable * gv)
@@ -449,17 +447,46 @@ public:
         return entryBlock;
     }
 
-    void makeCall(const std::wstring & name, const std::vector<types::InternalType *> & in, std::vector<types::InternalType *> & out);
+    inline void addFunction(const std::string & name, llvm::Function * F)
+    {
+	llvmFunctions.emplace(name, F);
+    }
+    
+    inline llvm::Function * getFunction(const std::string & name) const
+    {
+	auto i = llvmFunctions.find(name);
+	if (i != llvmFunctions.end())
+	{
+	    return i->second;
+	}
+	return nullptr;
+    }
+
+    inline const JITInfo * getInfo(const uint64_t id)
+    {
+	auto i = info.find(id);
+	if (i != info.end())
+	{
+	    return &(i->second);
+	}
+	return nullptr;
+    }
+
+    void makeCallFromScilab(const uint64_t functionId, const types::typed_list & in, types::typed_list & out);
 
     JITScilabPtr getScalar(llvm::Value * const value, const analysis::TIType::Type ty, const bool alloc = false, const std::string & name = "");
+    JITScilabPtr getCreatedScalar(llvm::Value * const value, const analysis::TIType::Type ty, const bool alloc = false, const std::string & name = "");
     JITScilabPtr getScalar(llvm::Value * const re, llvm::Value * const im, const analysis::TIType::Type ty, const bool alloc = false, const std::string & name = "");
     JITScilabPtr & getCpxRValue();
     JITScilabPtr getScalar(const analysis::TIType::Type ty, const bool isAnInt, const std::string & name);
     JITScilabPtr getScalar(const analysis::TypeLocal & ty, const std::string & name);
     JITScilabPtr getMatrix(llvm::Value * const value, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name);
+    JITScilabPtr getMatrix(llvm::Value * const re, llvm::Value * const im, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name);
     JITScilabPtr getMatrix(const analysis::TIType::Type ty, const std::string & name, const bool init = false);
     JITScilabPtr getMatrix(const analysis::TypeLocal & ty, const std::string & name, const bool init = false);
-
+    void reset();
+    void compile();
+    
     llvm::FunctionType * getFunctionType(const analysis::TIType & out, const std::vector<const analysis::TIType *> & types);
 
 private:
@@ -480,11 +507,25 @@ private:
     template<typename T, typename U>
     inline void makeArg(std::vector<llvm::Value *> & args, types::GenericType * pGT)
     {
-        T * x = (T *)static_cast<U *>(pGT)->get();
-        int64_t r = static_cast<U *>(pGT)->getRows();
-        int64_t c = static_cast<U *>(pGT)->getCols();
-        int64_t refc = static_cast<U *>(pGT)->getRef();
+        T * const x = (T *)static_cast<U *>(pGT)->get();
+        const int64_t r = pGT->getRows();
+        const int64_t c = pGT->getCols();
+        const int64_t refc = pGT->getRef();
         args.emplace_back(getValue(x));
+        args.emplace_back(getValue(r));
+        args.emplace_back(getValue(c));
+        args.emplace_back(getValue(refc));
+    }
+
+    inline void makeCpxArg(std::vector<llvm::Value *> & args, types::Double * pDbl)
+    {
+        double * const x = pDbl->get();
+	double * const y = pDbl->getImg();
+        const int64_t r = pDbl->getRows();
+        const int64_t c = pDbl->getCols();
+        const int64_t refc = pDbl->getRef();
+        args.emplace_back(getValue(x));
+	args.emplace_back(getValue(y));
         args.emplace_back(getValue(r));
         args.emplace_back(getValue(c));
         args.emplace_back(getValue(refc));
@@ -541,7 +582,6 @@ private:
     llvm::Type * getType(const analysis::TIType::Type ty, const bool scalar);
     llvm::Value * getPtrFromIndex(const ast::CallExp & ce);
     void runOptimizationPasses();
-    void compileModule();
     void cloneSyms(const ast::Exp & e);
     void makeSwitch(const ast::IntSelectExp & e, const std::map<int64_t, ast::Exp *> & map);
     void CreateBr(llvm::BasicBlock * bb);
