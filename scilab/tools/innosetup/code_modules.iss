@@ -91,7 +91,7 @@ begin
     ModulesXmlFileLines[i] := '<module name="matio" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="atoms" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
