@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-13 13:26+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/tclsci/sci_gateway/c/sci_TCL_DeleteInterp.c, line: 38
 # File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 67
@@ -319,7 +319,7 @@ msgid "%s: Wrong number of input argument(s): at least one expected.\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/notclsci/notclsci.c, line: 39
+# File: modules/tclsci/src/notclsci/notclsci.cpp, line: 51
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr ""
 

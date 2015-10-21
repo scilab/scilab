@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-13 13:26+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 31
 # File: modules/cacsd/sci_gateway/c/gw_cacsd.c, line: 58
@@ -894,6 +894,7 @@ msgstr ""
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 179
 # File: modules/cacsd/sci_gateway/cpp/sci_freq.cpp, line: 253
 # File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 102
+# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 158
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 154
 # File: modules/cacsd/sci_gateway/cpp/sci_rtitr.cpp, line: 214
 #, c-format
@@ -962,12 +963,6 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument #%d: A same size as input argument %d "
 "expected.\n"
-msgstr ""
-
-#
-# File: modules/cacsd/sci_gateway/cpp/sci_ldiv.cpp, line: 158
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A matix or polynom expected.\n"
 msgstr ""
 
 #

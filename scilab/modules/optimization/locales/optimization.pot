@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-13 13:26+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 86
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 112
@@ -734,7 +734,7 @@ msgstr ""
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 202
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 229
 #, c-format
-msgid "Undefined fonction '%ls'.\n"
+msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #

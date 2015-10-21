@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-13 13:26+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 74
 #, c-format
@@ -123,7 +123,7 @@ msgstr ""
 #
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 505
 #, c-format
-msgid "%s: Wrong value for input argument #%d : A value  expected.\n"
+msgid "%s: Wrong value for input argument #%d : A value expected.\n"
 msgstr ""
 
 #
@@ -136,8 +136,9 @@ msgstr ""
 
 #
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 567
+# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 652
 #, c-format
-msgid "%s: Wrong value for input argument #%d : value >1.0 expected.\n"
+msgid "%s: Wrong value for input argument #%d : value > 1.0 expected.\n"
 msgstr ""
 
 #
@@ -148,12 +149,6 @@ msgstr ""
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 998
 #, c-format
 msgid "%s: Wrong value for input argument #%d : Positive value expected.\n"
-msgstr ""
-
-#
-# File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 652
-#, c-format
-msgid "%s: Wrong value for input argument #%d : value > 1.0 expected.\n"
 msgstr ""
 
 #
@@ -176,7 +171,7 @@ msgstr ""
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 747
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d and #%d: Mean and Cov have "
+"%s: Wrong size for input arguments #%d and #%d: Mean and Cov have "
 "incompatible dimensions.\n"
 msgstr ""
 
@@ -249,7 +244,7 @@ msgstr ""
 #
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 937
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A colomn vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
 msgstr ""
 
 #
@@ -277,14 +272,14 @@ msgstr ""
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1165
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1195
 #, c-format
-msgid "%s: Wrong value for input argument #%d and #%d: Low < High expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"
 msgstr ""
 
 #
 # File: modules/randlib/sci_gateway/cpp/sci_grand.cpp, line: 1204
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d and #%d: Low and High must be "
+"%s: Wrong value for input arguments #%d and #%d: Low and High must be "
 "integers and (high - low + 1) <=  2147483561.\n"
 msgstr ""
 

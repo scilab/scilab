@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-13 13:26+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 #
 # File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 44
@@ -42,7 +42,7 @@ msgstr ""
 # File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 94
 # File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 118
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A polynom '%ls' expected.\n"
+msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
 
 #
@@ -131,7 +131,7 @@ msgstr ""
 # File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 64
 # File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 80
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A polynomial expected.\n"
 msgstr ""
 
 #
@@ -190,7 +190,8 @@ msgstr ""
 # File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 75
 # File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 83
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A symetric polynom expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"
 msgstr ""
 
 #
@@ -246,12 +247,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
 
-# File: modules/polynomials/macros/%r_simp.sci, line: 17
-#, c-format
-msgid "%s : Wrong type for input arguments #%d: A rational expected.\n"
-msgstr ""
-
-#
 # File: modules/polynomials/macros/coffg.sci, line: 23
 # File: modules/polynomials/macros/coffg.sci, line: 36
 # File: modules/polynomials/macros/determ.sci, line: 25

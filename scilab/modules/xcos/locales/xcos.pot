@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-13 13:26+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/xcos/sci_gateway/cpp/sci_Xcos.cpp, line: 51
 #, c-format
@@ -50,6 +50,11 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
+# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 51
+# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 60
+# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 66
+# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 74
+# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 84
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 44
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 53
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 67
@@ -60,6 +65,12 @@ msgstr ""
 # File: modules/xcos/src/cpp/xcosUtilities.cpp, line: 162
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/xcos/sci_gateway/cpp/sci_xcosDiagramToScilab.cpp, line: 116
+#, c-format
+msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #
@@ -75,7 +86,7 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 97
+# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 98
 #, c-format
 msgid ""
 "Unable to load the jgraphx library.\n"
@@ -83,7 +94,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 98
+# File: modules/xcos/src/java/org/scilab/modules/xcos/Xcos.java, line: 99
 #, c-format
 msgid ""
 "Unable to load the Batik library. \n"
@@ -106,17 +117,17 @@ msgid "Please specify a valid file format"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 50
+# File: modules/xcos/src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 53
 msgid "Incompatibility detected"
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 51
+# File: modules/xcos/src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 54
 msgid "Please check the diagram, before trying to simulate it."
 msgstr ""
 
 #
-# File: modules/xcos/src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 52
+# File: modules/xcos/src/java/org/scilab/modules/xcos/io/codec/XcosDiagramCodec.java, line: 55
 msgid "Some blocks have been removed to ensure compatibility."
 msgstr ""
 
@@ -1513,15 +1524,21 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/xcos/macros/importXcosDiagram.sci, line: 28
+# File: modules/xcos/macros/importXcosDiagram.sci, line: 29
 #, c-format
 msgid "Unable to open %s"
 msgstr ""
 
 #
-# File: modules/xcos/macros/importXcosDiagram.sci, line: 35
+# File: modules/xcos/macros/importXcosDiagram.sci, line: 36
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#
+# File: modules/xcos/macros/importXcosDiagram.sci, line: 50
+#, c-format
+msgid "%s: Not supported format %s.\n"
 msgstr ""
 
 #

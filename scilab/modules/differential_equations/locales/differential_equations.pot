@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-10-13 13:26+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/differential_equations/sci_gateway/cpp/sci_bvode.cpp, line: 60
 # File: modules/differential_equations/sci_gateway/cpp/sci_daskr.cpp, line: 248
@@ -405,7 +405,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 109
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A real matrix with %d to %d colomn(s) "
+"%s: Wrong size for input argument #%d: A real matrix with %d to %d column(s) "
 "expected.\n"
 msgstr ""
 
@@ -503,7 +503,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_dassl.cpp, line: 455
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: Argument %d in te list must be of "
+"%s: Wrong size for input argument #%d: Argument %d in the list must be of "
 "size %d.\n"
 msgstr ""
 
@@ -896,7 +896,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 799
 #, c-format
 msgid ""
-"%s: Warning: Wrong value for maximun stiff/non-stiff order allowed :\n"
+"%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\n"
 "At most %d for mxordn, %d for mxords and no null value for both expected.\n"
 "Wrong value will be reduced to the default value.\n"
 msgstr ""
@@ -929,7 +929,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1266
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 1528
 #, c-format
-msgid "Integration was stoped at t = %lf.\n"
+msgid "Integration was stopped at t = %lf.\n"
 msgstr ""
 
 #
@@ -945,7 +945,7 @@ msgstr ""
 # File: modules/differential_equations/sci_gateway/cpp/sci_odedc.cpp, line: 183
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A real colunm vector expected (n x "
+"%s: Wrong size for input argument #%d: A real column vector expected (n x "
 "1).\n"
 msgstr ""
 
@@ -1127,7 +1127,7 @@ msgstr ""
 #
 # File: modules/differential_equations/src/cpp/checkodeerror.cpp, line: 187
 msgid ""
-"To many steps necessary to reached next required time discretization point. "
+"Too many steps necessary to reached next required time discretization point. "
 "Change discretisation of time vector t or decrease accuracy.\n"
 msgstr ""
 
@@ -1219,7 +1219,7 @@ msgstr ""
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 747
 # File: modules/differential_equations/src/cpp/differentialequationfunctions.cpp, line: 775
 #, c-format
-msgid "Undefined fonction '%ls'.\n"
+msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #
