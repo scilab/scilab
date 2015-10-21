@@ -32,6 +32,8 @@ checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
 junit4.jar=${thirdparty.dir}/junit4.jar
 
+hamcrest-all.jar=${thirdparty.dir}/hamcrest-all.jar
+
 cobertura.jar=${thirdparty.dir}/cobertura.jar
 
 asm3.jar=${thirdparty.dir}/asm3.jar

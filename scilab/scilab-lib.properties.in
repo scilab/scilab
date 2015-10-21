@@ -28,6 +28,8 @@ checkstyle.jar=@CHECKSTYLE@
 
 junit4.jar=@JUNIT4@
 
+hamcrest-all.jar=@HAMCREST@
+
 cobertura.jar=@COBERTURA@
 
 asm3.jar=@ASM3@

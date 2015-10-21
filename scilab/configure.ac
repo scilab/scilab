@@ -1146,6 +1146,14 @@ Unit tests],"yes")
         fi
         JUNIT4=$PACKAGE_JAR_FILE
         AC_SUBST(JUNIT4)
+        
+        # hamcrest (junit4 dependency)
+        AC_JAVA_CHECK_PACKAGE([hamcrest-all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
+        if test -z "$PACKAGE_JAR_FILE"; then
+            AC_JAVA_CHECK_PACKAGE([hamcrest/all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
+        fi
+        HAMCREST=$PACKAGE_JAR_FILE
+        AC_SUBST(HAMCREST)
 
         # Cobertura (java code coverage)
         AC_JAVA_CHECK_PACKAGE([cobertura],[net.sourceforge.cobertura.merge.Main],[cobertura - Java code coverage],"yes")
@@ -2316,6 +2324,7 @@ echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
 echo "  Junit4 .............. = $JUNIT4"
+echo "  Hamcrest ............ = $HAMCREST"
 echo "  Cobertura ........... = $COBERTURA"
 echo "  splint .............. = $SPLINT"
 
