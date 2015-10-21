@@ -1003,6 +1003,20 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         throw ie;
                     }
                 }
+                else if (pIT->isImplicitList())
+                {
+                    //expand implicit when possible
+                    types::ImplicitList* pIL = pIT->getAs<types::ImplicitList>();
+                    if (pIL->isComputable())
+                    {
+                        types::InternalType* p = pIL->extractFullMatrix();
+                        if (p)
+                        {
+                            setResult(p);
+                            pIL->killMe();
+                        }
+                    }
+                }
 
                 //don't output Simplevar and empty result
                 if (getResult() != NULL && (!exp->isSimpleVar() || bImplicitCall))

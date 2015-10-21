@@ -477,7 +477,6 @@ bool Double::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_i
                     if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
                     {
                         m_iCols1PrintState = iLastVal;
-                        ostr << std::endl << std::endl;
                         return false;
                     }
 

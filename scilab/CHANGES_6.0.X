@@ -23,15 +23,6 @@ Scilab Bug Fixes
 
 * Bug #12928 fixed - int functions with %nan and %inf return wrong values.
 
-* Bug #14059 fixed - Lack of performance on deletion of matrix elements.
-
-* Bug #14055 fixed - overload on matrix concatenation did not called with [].
-
-* Bug #14028 fixed - force flag of genlib did not rebuild bin file.
-
-* Bug #14024 fixed - Print of macrofile display a debug message
-                     instead of macro prototype.
-
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
 
 * Bug #13750 fixed - Calling ss2ss function with flag = 2 returned an error.
@@ -74,7 +65,12 @@ Scilab Bug Fixes
 
 * Bug #14023 fixed - It was not possible to concatenate cells.
 
+* Bug #14024 fixed - Print of macrofile display a debug message
+                     instead of macro prototype.
+
 * Bug #14025 fixed - head_comments did not take into account compiled functions.
+
+* Bug #14028 fixed - force flag of genlib did not rebuild bin file.
 
 * Bug #14036 fixed - tag and user_data properties were not displayed and not documented for light entity.
 
@@ -86,9 +82,13 @@ Scilab Bug Fixes
 
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.
 
+* Bug #14055 fixed - overload on matrix concatenation did not called with [].
+
 * Bug #14057 fixed - grand(m,n) returned a wrong error and grand(m,n,p) called an overloading function instead of returning an error.
 
 * Bug #14058 fixed - Scilab crashed with 'file("close", file())' instruction
+
+* Bug #14059 fixed - Lack of performance on deletion of matrix elements.
 
 * Bug #14082 fixed - m=1; m()=1; made Scilab crash.
 
@@ -121,6 +121,8 @@ Scilab Bug Fixes
 * Bug #14199 fixed - sqrt returned wrong dimension results on matrix with more than dimensions.
 
 * Bug #14205 fixed - Console crash when assigning uint32 numbers to double matrix.
+
+* Bug #14209 fixed - 1:245 created infinite loop.
 
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
