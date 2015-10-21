@@ -20,7 +20,7 @@
 //             supported. The default is to use "gif".
 // @param[opt] withPort true if the exported image should contains the port,
 //             false otherwise. The default is value is true.
-// @return status %T if the operation has been sucessfull, %F otherwise.
+// @return status %T if the operation has been successfull, %F otherwise.
 function status = generateBlockImage(block, path, filename, imageType, withPort)
     status = %f;
 

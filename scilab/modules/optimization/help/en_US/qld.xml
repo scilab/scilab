@@ -141,7 +141,7 @@
                     </para>
                     <para>info==1 : Too many iterations needed</para>
                     <para>
-                        info==2 : Accuracy insufficient to statisfy convergence
+                        info==2 : Accuracy insufficient to satisfy convergence
                         criterion
                     </para>
                     <para>info==5 : Length of working array is too short</para>

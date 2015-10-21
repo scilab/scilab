@@ -55,7 +55,7 @@ g = gtild(gm)*gm
             Imaginary-axis poles are forbidden.
         </para>
         <para>
-            gtild(g)=g (poles and zeros of g are symetric wrt imaginary axis).
+            gtild(g)=g (poles and zeros of g are symmetric wrt imaginary axis).
         </para>
         <para>
             g(inf) is positive definite.

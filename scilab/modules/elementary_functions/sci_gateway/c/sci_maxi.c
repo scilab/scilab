@@ -75,7 +75,7 @@ int func_comp(char* fname, int _iMini, void* pvApiCtx)
 
         if (iType1 != sci_matrix)
         {
-            Scierror(999, _("%s: More than one argument can be use only with double matrix in first argument.\n"), fname);
+            Scierror(999, _("%s: More than one argument can be used only with double matrix in first argument.\n"), fname);
             return 0;
         }
 

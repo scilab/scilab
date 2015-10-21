@@ -101,7 +101,7 @@ namespace
  * of one arg does not set the result to the default result value.
  * For example, '==' does require full traversal because "0. == 0" is true (and the default SparseBool value is false)
  * However, '!=' does not require it because "0. != 0." is false so the default value of the sparse result is good.
- * we dispatch according the the operators thanks to the OperatorTraits struct (as is usually done for example to
+ * we dispatch according the operators thanks to the OperatorTraits struct (as is usually done for example to
  * dispatch amongst std:: algorithms implementations according to the iterator_category in std::iterator_traits<>
  */
 struct FullTraversal {};

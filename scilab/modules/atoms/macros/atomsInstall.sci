@@ -469,7 +469,7 @@ function result = atomsInstall(packages,section)
         DESCRIPTION = atomsDESCRIPTIONadd(DESCRIPTION,this_package_name,this_package_version,this_package_details);
         atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 
-        // Sucess message if needed
+        // Success message if needed
         // =====================================================================
         atomsDisp(msprintf(" success"));
 

@@ -137,7 +137,7 @@ types::Function::ReturnValue sci_interp3d(types::typed_list &in, int _iRetCount,
         else // undefined
         {
             char* pstType = wide_string_to_UTF8(wcsType);
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp3d", 5, pstType, "outmode");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "interp3d", 5, pstType, "outmode");
             FREE(pstType);
             return types::Function::Error;
         }

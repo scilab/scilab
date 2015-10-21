@@ -615,7 +615,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         {
             if (ConfigVariable::getEnableDebug() == true)
             {
-                sciprint(_("%s: function is disable in debug mode.\n"), "resume");
+                sciprint(_("%s: function is disabled in debug mode.\n"), "resume");
                 return;
             }
 

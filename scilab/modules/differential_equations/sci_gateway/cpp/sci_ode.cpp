@@ -743,7 +743,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
     {
         if (getWarningMode())
         {
-            sciprint(_("%s: Warning: Wrong value for maximun stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
+            sciprint(_("%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
         }
 
         mxordn = 12;
@@ -1153,7 +1153,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             {
                 if (getWarningMode())
                 {
-                    sciprint(_("Integration was stoped at t = %lf.\n"), t0);
+                    sciprint(_("Integration was stopped at t = %lf.\n"), t0);
                 }
                 break;
             }
@@ -1387,7 +1387,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             {
                 if (getWarningMode())
                 {
-                    sciprint(_("Integration was stoped at t = %lf.\n"), t0);
+                    sciprint(_("Integration was stopped at t = %lf.\n"), t0);
                 }
 
                 types::Double* pDblYOutTemp = pDblYOut;

@@ -45,7 +45,7 @@ types::Function::ReturnValue sci_isalphanum(types::typed_list &in, int _iRetCoun
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument#%d: A String expected.\n"), "isalphanum", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "isalphanum", 1);
         return types::Function::Error;
     }
 
@@ -53,7 +53,7 @@ types::Function::ReturnValue sci_isalphanum(types::typed_list &in, int _iRetCoun
 
     if (pStrIn->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument#%d: A scalar String expected.\n"), "isalphanum", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar String expected.\n"), "isalphanum", 1);
         return types::Function::Error;
     }
 

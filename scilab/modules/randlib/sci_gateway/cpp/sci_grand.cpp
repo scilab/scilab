@@ -502,7 +502,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[1]->get(0) < 0.0 || vectpDblInput[1]->get(0) > 1.0) // p
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : A value  expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong value for input argument #%d : A value expected.\n"), "grand", 5);
                 return types::Function::Error;
             }
 
@@ -564,7 +564,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->get(0) < 1.0) // Df
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d : value >1.0 expected.\n"), "grand", 4);
+                Scierror(999, _("%s: Wrong value for input argument #%d : value > 1.0 expected.\n"), "grand", 4);
                 return types::Function::Error;
             }
 
@@ -744,7 +744,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[0]->getRows() != vectpDblInput[1]->getRows())
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d and #%d: Mean and Cov have incompatible dimensions.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Mean and Cov have incompatible dimensions.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 
@@ -934,7 +934,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (vectpDblInput[1]->getCols() != 1 || vectpDblInput[1]->getRows() <= 0)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong size for input argument #%d: A colomn vector expected.\n"), "grand", 5);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A column vector expected.\n"), "grand", 5);
                 return types::Function::Error;
             }
 
@@ -1162,7 +1162,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (low > high)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 
@@ -1192,7 +1192,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             if (low > high)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low < High expected.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 
@@ -1201,7 +1201,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     (high - low + 1) > 2147483561)
             {
                 delete pDblOut;
-                Scierror(999, _("%s: Wrong value for input argument #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483561.\n"), "grand", 4, 5);
+                Scierror(999, _("%s: Wrong value for input arguments #%d and #%d: Low and High must be integers and (high - low + 1) <=  2147483561.\n"), "grand", 4, 5);
                 return types::Function::Error;
             }
 

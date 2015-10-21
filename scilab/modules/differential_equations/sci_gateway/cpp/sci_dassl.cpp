@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
 
     if (pDblX0->getCols() > 2)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A real matrix with %d to %d colomn(s) expected.\n"), "dassl", iPos + 1, 1, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A real matrix with %d to %d column(s) expected.\n"), "dassl", iPos + 1, 1, 2);
         return types::Function::Error;
     }
 
@@ -452,7 +452,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 }
                 else if (pDblTemp->getSize() != 0)
                 {
-                    Scierror(267, _("%s: Wrong size for input argument #%d: Argument %d in te list must be of size %d.\n"), "dassl", iPos + 1, 3, 2);
+                    Scierror(267, _("%s: Wrong size for input argument #%d: Argument %d in the list must be of size %d.\n"), "dassl", iPos + 1, 3, 2);
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYdotData);
                     FREE(pdYData);

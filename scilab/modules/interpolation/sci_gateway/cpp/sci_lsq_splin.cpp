@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_lsq_splin(types::typed_list &in, int _iRetCount
     // *** check number of output args according the methode. ***
     if (_iRetCount > 2)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d to %dexpected.\n"), "lsq_splin", 1, 2);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "lsq_splin", 1, 2);
         return types::Function::Error;
     }
 

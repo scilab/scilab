@@ -57,8 +57,8 @@
         <title>Description</title>
         <para>
             This function proposes a graphical user interface to allow user
-            interactively select the design parameteres of windowed
-            finite impluse response filters (see <link linkend="wfir">wfir</link>). It is called by
+            interactively select the design parameters of windowed
+            finite impulse response filters (see <link linkend="wfir">wfir</link>). It is called by
             <literal>wfir</literal> when no input arguments are given.
         </para>
         <para>

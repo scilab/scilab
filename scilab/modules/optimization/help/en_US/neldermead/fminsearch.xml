@@ -7,7 +7,7 @@
     <refnamediv>
         <refname>fminsearch</refname>
         <refpurpose>
-            Computes the unconstrained minimimum of given function with
+            Computes the unconstrained minimum of given function with
             the Nelder-Mead algorithm.
         </refpurpose>
     </refnamediv>

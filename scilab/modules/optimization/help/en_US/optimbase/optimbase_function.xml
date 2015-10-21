@@ -155,7 +155,7 @@
         </para>
         <para>
             The <literal>-function()</literal> option allows to configure the cost function. 
-            The cost function is used, dependind on the context,	to compute the cost, the 
+            The cost function is used, depending on the context, to compute the cost, the
             non-linear inequality positive constraints, the gradient of the function and 
             the gradient of the non-linear inequality constraints.
         </para>
@@ -244,8 +244,7 @@
             </listitem>
         </itemizedlist>
         <para>
-            Each calling sequence corresponds to a particular class of algorithms, includinf for e
-            xample
+            Each calling sequence corresponds to a particular class of algorithms, including for example
         </para>
         <itemizedlist>
             <listitem>
@@ -265,7 +264,7 @@
             </listitem>
             <listitem>
                 <para>
-                    nonlinearily constrained, derivative-based algorithms,
+                    nonlinearly constrained, derivative-based algorithms,
                 </para>
             </listitem>
             <listitem>
@@ -298,12 +297,12 @@
         <title>Example : Setting up an optimization</title>
         <para>In the following example, one searches the minimum of the 2D
             Rosenbrock function. One begins by defining the function "rosenbrock"
-            which computes the Rosenbrock function. The traditionnal initial guess
+            which computes the Rosenbrock function. The traditional initial guess
             [-1.2 1.0] is used. The initial simplex is computed along the axes with a
             length equal to 0.1. The Nelder-Mead algorithm with variable simplex size
             is used. The verbose mode is enabled so that messages are generated during
             the algorithm. After the optimization is performed, the optimum is
-            retrieved with quiery features.
+            retrieved with query features.
         </para>
         <programlisting role="example">
             <![CDATA[ 

@@ -118,7 +118,7 @@ types::Function::ReturnValue sci_bsplin3val(types::typed_list &in, int _iRetCoun
             || pDblDer->get(1) != floor(pDblDer->get(1)) || pDblDer->get(1) < 0.0
             || pDblDer->get(2) != floor(pDblDer->get(2)) || pDblDer->get(2) < 0.0)
     {
-        Scierror(999, _("%s: Wrong values for input argument #%d : A real positiv integer vector expected.\n"), "bsplin3val", 5);
+        Scierror(999, _("%s: Wrong values for input argument #%d : A real positive integer vector expected.\n"), "bsplin3val", 5);
         return types::Function::Error;
     }
 

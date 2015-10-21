@@ -86,7 +86,7 @@ function ml = diagram2mlist(d)
         case "Deleted" then
             listObjs(k) = mlist(["Deleted"]);
         else
-            error(msprintf(_("Wrong type for diagram element #%d: %s %s or %s expected.\n"), k, "Block", "Link", "Annotation"));
+            error(msprintf(_("Wrong type for diagram element #%d: %s, %s or %s expected.\n"), k, "Block", "Link", "Annotation"));
         end
     end
     ml.objs = listObjs;

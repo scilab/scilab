@@ -644,7 +644,7 @@
                                         <term>-mymethod</term>
                                         <listitem>
                                             <para>
-                                                a function, a user-derined simplex algorithm. See below for
+                                                a function, a user-defined simplex algorithm. See below for
                                                 details (default is empty).
                                             </para>
                                         </listitem>
@@ -1462,7 +1462,7 @@
         </para>
         <para>
             If the output function sets the <literal>stop</literal> variable to true,
-            then the optimization alorithm stops and the status of the optimization is
+            then the optimization algorithm stops and the status of the optimization is
             set to <literal>"userstop"</literal>.
         </para>
     </refsection>
@@ -2399,7 +2399,7 @@ nm = neldermead_destroy(nm);
     <refsection>
         <title>Example #8: Restarting with bounds</title>
         <para>
-            In the following experimeant, we solve an optimization problem 
+            In the following experiment, we solve an optimization problem
             with bounds. 
             We use Box's algorithm, which is the only algorithm which manages bounds.
             We use the randomized bounds simplex both for the initial simplex and 

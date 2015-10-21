@@ -49,7 +49,7 @@
     <refsection>
         <title>Description</title>
         <para>get number of lines in history.</para>
-        <para>This function can also used to set maximun number of lines in
+        <para>This function can also used to set maximum number of lines in
             history file.
         </para>
     </refsection>

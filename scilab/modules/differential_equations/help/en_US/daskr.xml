@@ -282,7 +282,7 @@ integer ny, ng
                                     by <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) = "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>.
                                     If <literal>jac</literal> returns a full matrix set
                                     <literal>info(3)=[]</literal>.
-                                    Treat as dummmy if
+                                    Treat as dummy if
                                     <literal>info(8)=1</literal>.
                                 </para>
                             </listitem>

@@ -77,7 +77,7 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
         {
             if (in[i]->isPoly() == false && in[i]->isDouble() == false)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A polynom expected.\n"), "simp", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A polynomial expected.\n"), "simp", i + 1);
                 return types::Function::Error;
             }
 
@@ -115,7 +115,7 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
                 if (wstrName != pDen->getVariableName())
                 {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: A polynom '%ls' expected.\n"), "simp", 2, wstrName.c_str());
+                    Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "simp", 2, wstrName.c_str());
                     return types::Function::Error;
                 }
 

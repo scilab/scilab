@@ -314,7 +314,7 @@ y(k)   = Cx(k) + Du(k) + e(k),
     <refsection>
         <title>Comments</title>
         <para>
-            1. The Cholesy or fast QR algorithms can be much faster (for large data blocks) than QR algorithm, but they cannot be used if the correlation  matrix, H'*H, is not positive definite. In such a case, the code automatically switches to the QR algorithm, if sufficient workspace is provided and batch = 4.
+            1. The Cholesky or fast QR algorithms can be much faster (for large data blocks) than QR algorithm, but they cannot be used if the correlation  matrix, H'*H, is not positive definite. In such a case, the code automatically switches to the QR algorithm, if sufficient workspace is provided and batch = 4.
         </para>
         <para>
             2. If ldwork is specified, but it is less than the minimum workspace size  needed, that minimum value is used instead.

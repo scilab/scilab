@@ -168,7 +168,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
         }
         else // undefined
         {
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp", 5, wcsType, "outmode");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "interp", 5, wcsType, "outmode");
             return types::Function::Error;
         }
     }

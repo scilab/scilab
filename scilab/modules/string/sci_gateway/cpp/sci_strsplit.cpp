@@ -187,7 +187,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument#%d: A double or string expected.\n"), "strsplit", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A double or string expected.\n"), "strsplit", 2);
             return types::Function::Error;
         }
     }

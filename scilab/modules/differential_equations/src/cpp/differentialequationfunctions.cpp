@@ -214,7 +214,7 @@ void DifferentialEquationFunctions::execDasrtG(int* ny, double* t, double* y, in
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((dasrt_g_t)(func->functionPtr))(ny, t, y, ng, gout, rpar, ipar);
@@ -242,7 +242,7 @@ void DifferentialEquationFunctions::execDasslF(double* t, double* y, double* ydo
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((dassl_f_t)(func->functionPtr))(t, y, ydot, delta, ires, rpar, ipar);
@@ -270,7 +270,7 @@ void DifferentialEquationFunctions::execDasslJac(double* t, double* y, double* y
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((dassl_jac_t)(func->functionPtr))(t, y, ydot, pd, cj, rpar, ipar);
@@ -301,7 +301,7 @@ void DifferentialEquationFunctions::execDaskrPjac(double* res, int* ires, int* n
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPjacFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringPjacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringPjacFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((daskr_pjac_t)(func->functionPtr))(res, ires, neq, t, y, ydot, rewt, savr,
@@ -334,7 +334,7 @@ void DifferentialEquationFunctions::execDaskrPsol(int* neq, double* t, double* y
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringPsolFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringPsolFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringPsolFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((daskr_psol_t)(func->functionPtr))(neq, t, y, ydot, savr, wk, cj, wght,
@@ -364,7 +364,7 @@ void DifferentialEquationFunctions::execImplF(int* neq, double* t, double* y, do
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((impl_f_t)(func->functionPtr))(neq, t, y, s, r, ires);
@@ -392,7 +392,7 @@ void DifferentialEquationFunctions::execImplG(int* neq, double* t, double* y, do
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((impl_g_t)(func->functionPtr))(neq, t, y, ml, mu, p, nrowp);
@@ -420,7 +420,7 @@ void DifferentialEquationFunctions::execImplJac(int* neq, double* t, double* y, 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((impl_jac_t)(func->functionPtr))(neq, t, y, s, ml, mu, p, nrowp);
@@ -448,7 +448,7 @@ void DifferentialEquationFunctions::execBvodeGuess(double *x, double *z, double 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGuessFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGuessFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGuessFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
@@ -476,7 +476,7 @@ void DifferentialEquationFunctions::execBvodeDfsub(double *x, double *z, double 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDfsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDfsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDfsubFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
@@ -504,7 +504,7 @@ void DifferentialEquationFunctions::execBvodeFsub(double *x, double *z, double *
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsubFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((bvode_ddd_t)(func->functionPtr))(x, z, d);
@@ -532,7 +532,7 @@ void DifferentialEquationFunctions::execBvodeDgsub(int *i, double *z, double *g)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDgsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgsubFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
@@ -560,7 +560,7 @@ void DifferentialEquationFunctions::execBvodeGsub(int *i, double *z, double *g)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGsubFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGsubFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGsubFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((bvode_idd_t)(func->functionPtr))(i, z, g);
@@ -588,7 +588,7 @@ void DifferentialEquationFunctions::execFevalF(int *nn, double *x1, double *x2, 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
 
@@ -617,7 +617,7 @@ void DifferentialEquationFunctions::execInt3dF(double* x, int* numfun, double* f
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((int3d_f_t)(func->functionPtr))(x, numfun, funvls);
@@ -645,7 +645,7 @@ double DifferentialEquationFunctions::execInt2dF(double* x, double* y)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         return ((int2d_f_t)(func->functionPtr))(x, y);
@@ -673,7 +673,7 @@ double DifferentialEquationFunctions::execIntgF(double* x)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         return ((intg_f_t)(func->functionPtr))(x);
@@ -701,7 +701,7 @@ void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, doubl
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
 
@@ -744,7 +744,7 @@ void DifferentialEquationFunctions::execFunctionJac(int *n, double *t, double *y
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringJacFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((func_jac_t)(func->functionPtr))(n, t, y, ml, mu, J, nrpd);
@@ -772,7 +772,7 @@ void DifferentialEquationFunctions::execFunctionG(int* n, double* t, double* y, 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringGFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringGFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringGFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((func_g_t)(func->functionPtr))(n, t, y, ng, gout);

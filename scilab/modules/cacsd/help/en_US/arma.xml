@@ -128,7 +128,7 @@ z = arsimul(a,b,[0],0,u);
 //----Using macro mese 
 [sm,fr]=mese(z,m);
 
-//----The theorical result 
+//----The theoretical result
 
 function gx=gxx(z,a,b)
   w  = exp(-%i*2*%pi*z*(0:4))'

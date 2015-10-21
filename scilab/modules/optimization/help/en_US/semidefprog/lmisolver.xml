@@ -156,7 +156,7 @@ endfunction
 X = lmisolver(list(zeros(A1)), evalf); // Run optimization, X = [1.0635042 0; 0 2.0784841]
 
 X = X(1);
-[Y, Z, c] = evalf(X) // Check evaluaton function value at the point found
+[Y, Z, c] = evalf(X) // Check evaluation function value at the point found
 // Y = 0
 // Z = list([0.0731600 0.7080179; 0.7080179 0.7186999], [0.1154910 0.5345239; 0.5345239 1.4843684])
 // c = -1.0635042

@@ -87,7 +87,7 @@
         <title>Description</title>
         <para>
             The <literal>optimbase_outputcmd</literal> function calls back user's output command. 
-            The <literal>-outputcommand</literal> option allwos to configure a command which is 
+            The <literal>-outputcommand</literal> option allows to configure a command which is
             called back at the start of the optimization, at each iteration and at the end of 
             the optimization.
         </para>

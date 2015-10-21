@@ -92,7 +92,7 @@
         <para>Nyquist plot i.e Imaginary part versus Real part of the
             frequency response of <literal>sl</literal>. If the
             <literal>symmetry</literal> argument is true or omitted the
-            Nyquist plot displays the symetric graph (positive and negative
+            Nyquist plot displays the symmetric graph (positive and negative
             frequencies).
         </para>
         <para>

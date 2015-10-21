@@ -39,7 +39,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Utility fonction. <literal>num=numer(R)</literal> returns the numerator <literal>num</literal> of a rational
+            Utility function. <literal>num=numer(R)</literal> returns the numerator <literal>num</literal> of a rational
             function matrix <literal>R</literal> (<literal>R</literal> may be also a constant or polynomial matrix).
             <literal>numer(R)</literal> is equivalent to <literal>R(2)</literal>, <literal>R('num')</literal> or <literal>R.num</literal>
         </para>

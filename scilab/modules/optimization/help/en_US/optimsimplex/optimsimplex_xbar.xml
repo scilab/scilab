@@ -52,7 +52,7 @@
         <title>Description</title>
         <para>
             The <literal>optimsimplex_xbar</literal> function returns the center of n vertices, 
-            by excludin the vertex with index <literal>iexcl</literal>.
+            by excluding the vertex with index <literal>iexcl</literal>.
         </para>
     </refsection>
     <refsection>

@@ -180,7 +180,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
         if (pDblY0->getCols() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A real colunm vector expected (n x 1).\n"), "odedc", iPos + 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A real column vector expected (n x 1).\n"), "odedc", iPos + 1);
             return types::Function::Error;
         }
     }
@@ -796,7 +796,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     {
         if (getWarningMode())
         {
-            sciprint(_("%s: Warning: Wrong value for maximun stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
+            sciprint(_("%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\nAt most %d for mxordn, %d for mxords and no null value for both expected.\nWrong value will be reduced to the default value.\n"), "ode", 12, 5);
         }
 
         mxordn = 12;
@@ -1263,7 +1263,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     if (getWarningMode())
                     {
-                        sciprint(_("Integration was stoped at t = %lf.\n"), tleft);
+                        sciprint(_("Integration was stopped at t = %lf.\n"), tleft);
                     }
                     break;
                 }
@@ -1525,7 +1525,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             {
                 if (getWarningMode())
                 {
-                    sciprint(_("Integration was stoped at t = %lf.\n"), tleft);
+                    sciprint(_("Integration was stopped at t = %lf.\n"), tleft);
                 }
 
                 types::Double* pDblYOutTemp = pDblYOut;

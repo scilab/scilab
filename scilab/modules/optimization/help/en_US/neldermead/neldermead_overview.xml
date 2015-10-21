@@ -221,7 +221,7 @@
         <title>Example : Optimizing the Rosenbrock function</title>
         <para>In the following example, one searches the minimum of the 2D
             Rosenbrock function. One begins by defining the function "rosenbrock"
-            which computes the Rosenbrock function. The traditionnal initial guess
+            which computes the Rosenbrock function. The traditional initial guess
             [-1.2 1.0] is used. The initial simplex is computed along the axes with a
             length equal to 0.1. The Nelder-Mead algorithm with variable simplex size
             is used. The verbose mode is enabled so that messages are generated during

@@ -88,7 +88,7 @@
             depending on the operations.
         </para>
         <para>
-            Note : Any operation involing dense matrices of the same size, either as argument (e.g. <literal>sp=sparse(d)</literal>)
+            Note : Any operation involving dense matrices of the same size, either as argument (e.g. <literal>sp=sparse(d)</literal>)
             or as result (e.g.  <literal>d= sp + 1.</literal>) is provided for convenience purposes but should of course be avoided.
             Furthermore, random access to elements (<literal>sp(r,c)</literal>), especially for insertions, is not efficient, so
             any performance-constrained access should be done in batches with <link linkend="spget">spget</link> for read access

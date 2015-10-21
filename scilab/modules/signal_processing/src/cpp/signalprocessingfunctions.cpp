@@ -75,7 +75,7 @@ void Signalprocessingfunctions::execFunctionDgetx(double* x, int* siz, int* iss)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetxDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDgetxDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetxDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((dgetx_f_t)(func->functionPtr))(x, siz, iss);
@@ -136,7 +136,7 @@ void Signalprocessingfunctions::execFunctionDgety(double* y, int* siz, int* iss)
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringDgetyDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringDgetyDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringDgetyDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((dgety_f_t)(func->functionPtr))(y, siz, iss);
