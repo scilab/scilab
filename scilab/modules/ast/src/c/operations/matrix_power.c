@@ -597,26 +597,26 @@ int iPowerComplexSquareMatrixByRealScalar(
         }
         else
         {
-            int i           = 0;
-            int iOne        = 1;
-            int iTwo        = 2;
-            int iPos        = 0;
-            int iPrevPos    = 0;
-            int iSize       = _iCols1 * _iCols1;
-            int iSize2      = iSize * 2;
-            int iInc        = (_iCols1 + 1) * 2;
+            int i = 0;
+            int iOne = 1;
+            int iTwo = 2;
+            int iPos = 0;
+            int iPrevPos = 0;
+            int iSize = _iCols1 * _iCols1;
+            int iSize2 = iSize * 2;
+            int iInc = (_iCols1 + 1) * 2;
 
-            double alpha = 1.;
-            double beta  = 0.;
+            double alpha[2] = {1., 0.};
+            double beta[2] = {0., 0.};
 
-            double* pdblResult  = (double*)malloc(iSize2 * sizeof(double));
-            double* pdblTmp     = (double*)malloc(iSize2 * sizeof(double));
-            double* pdblOut     = (double*)malloc(iSize2 * sizeof(double));
+            double* pdblResult = (double*)malloc(iSize2 * sizeof(double));
+            double* pdblTmp = (double*)malloc(iSize2 * sizeof(double));
+            double* pdblOut = (double*)malloc(iSize2 * sizeof(double));
 
             // initialize the output as identity matrix
             // because we use this array in the first multiplication.
             memset(pdblOut, 0x00, iSize2 * sizeof(double));
-            C2F(dset)(&_iCols1, &alpha, pdblOut, &iInc);
+            C2F(dset)(&_iCols1, &alpha[0], pdblOut, &iInc);
 
             // copy input complex in working array as Z storage.
             C2F(dcopy)(&iSize, _pdblReal1, &iOne, pdblTmp, &iTwo);
@@ -634,18 +634,18 @@ int iPowerComplexSquareMatrixByRealScalar(
                     for (i = iPrevPos; i < iPos; i++)
                     {
                         double* pdblSwitch;
-                        C2F(zgemm)( "N", "N", &_iCols1, &_iCols1, &_iCols1, &alpha, pdblTmp, &_iCols1,
-                                    pdblTmp, &_iCols1, &beta, pdblResult, &_iCols1);
+                        C2F(zgemm)("N", "N", &_iCols1, &_iCols1, &_iCols1, alpha, pdblTmp, &_iCols1,
+                                   pdblTmp, &_iCols1, beta, pdblResult, &_iCols1);
 
-                        pdblSwitch  = pdblTmp;
-                        pdblTmp     = pdblResult;
-                        pdblResult  = pdblSwitch;
+                        pdblSwitch = pdblTmp;
+                        pdblTmp = pdblResult;
+                        pdblResult = pdblSwitch;
                     }
 
                     iPrevPos = iPos;
 
-                    C2F(zgemm)( "N", "N", &_iCols1, &_iCols1, &_iCols1, &alpha, pdblTmp, &_iCols1,
-                                pdblOut, &_iCols1, &beta, pdblResult, &_iCols1);
+                    C2F(zgemm)("N", "N", &_iCols1, &_iCols1, &_iCols1, alpha, pdblTmp, &_iCols1,
+                               pdblOut, &_iCols1, beta, pdblResult, &_iCols1);
 
                     C2F(dcopy)(&iSize2, pdblResult, &iOne, pdblOut, &iOne);
                 }
