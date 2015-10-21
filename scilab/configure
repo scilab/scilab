@@ -713,7 +713,6 @@ ARPACK_NG_TRUE
 ARPACK_LIBS
 LAPACK_LIBS
 BLAS_LIBS
-BLAS_CFLAGS
 FLIBS
 GENERATE_LOCALIZATION_FILES_FALSE
 GENERATE_LOCALIZATION_FILES_TRUE
@@ -1091,8 +1090,6 @@ CCC
 YACC
 YFLAGS
 CXXCPP
-BLAS_CFLAGS
-BLAS_LIBS
 PCRE_CFLAGS
 PCRE_LIBS
 CURL_CFLAGS
@@ -1873,8 +1870,6 @@ Some influential environment variables:
               This script will default YFLAGS to the empty string to avoid a
               default value of `-d' given by some make applications.
   CXXCPP      C++ preprocessor
-  BLAS_CFLAGS C compiler flags for BLAS, overriding pkg-config
-  BLAS_LIBS   linker flags for BLAS, overriding pkg-config
   PCRE_CFLAGS C compiler flags for PCRE, overriding pkg-config
   PCRE_LIBS   linker flags for PCRE, overriding pkg-config
   CURL_CFLAGS C compiler flags for CURL, overriding pkg-config
@@ -11678,7 +11673,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 11681 "configure"
+// #line 11676 "configure"
 import java.util.regex.Pattern;
 
 
@@ -11765,7 +11760,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 11768 "configure"
+// #line 11763 "configure"
 import java.util.regex.Pattern;
 
 import gnu.java.io.EncodingManager;
@@ -11849,7 +11844,7 @@ $as_echo_n "checking java API version... " >&6; }
     # The class java.nio.charset.Charset is new to 1.4
 
     cat << \EOF > conftest.java
-// #line 11852 "configure"
+// #line 11847 "configure"
 import java.util.regex.Pattern;
 
 import java.nio.charset.Charset;
@@ -11914,7 +11909,7 @@ EOF
     # The class java.lang.StringBuilder is new to 1.5
 
     cat << \EOF > conftest.java
-// #line 11917 "configure"
+// #line 11912 "configure"
 import java.util.regex.Pattern;
 
 import java.lang.StringBuilder;
@@ -11979,7 +11974,7 @@ EOF
     # The class java.util.ArrayDeque is new to 1.6
 
     cat << \EOF > conftest.java
-// #line 11982 "configure"
+// #line 11977 "configure"
 import java.util.regex.Pattern;
 
 import java.util.ArrayDeque;
@@ -12044,7 +12039,7 @@ EOF
     # The class java.nio.file.Path is new to 1.7
 
     cat << \EOF > conftest.java
-// #line 12047 "configure"
+// #line 12042 "configure"
 import java.util.regex.Pattern;
 
 import java.nio.file.Path;
@@ -12109,7 +12104,7 @@ EOF
     # The class java.util.stream.DoubleStream is new to 1.8
 
     cat << \EOF > conftest.java
-// #line 12112 "configure"
+// #line 12107 "configure"
 import java.util.regex.Pattern;
 
 import java.util.stream.DoubleStream;
@@ -13587,7 +13582,7 @@ $as_echo_n "checking jgraphx... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13590 "configure"
+// #line 13585 "configure"
 import java.util.regex.Pattern;
 
 import com.mxgraph.model.mxCell;
@@ -13694,7 +13689,7 @@ $as_echo_n "checking minimal version (2.0.0.1) of jgraphx... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 13697 "configure"
+// #line 13692 "configure"
 import java.util.regex.Pattern;
 
 import com.mxgraph.view.mxGraph;
@@ -13766,7 +13761,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 13769 "configure"
+// #line 13764 "configure"
 import java.util.regex.Pattern;
 
 import com.mxgraph.view.mxGraph;
@@ -13860,7 +13855,7 @@ $as_echo_n "checking scirenderer... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13863 "configure"
+// #line 13858 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.scirenderer.PackageInfo;
@@ -13967,7 +13962,7 @@ $as_echo_n "checking minimal version (1.1.0) of scirenderer... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 13970 "configure"
+// #line 13965 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.scirenderer.PackageInfo;
@@ -14039,7 +14034,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14042 "configure"
+// #line 14037 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.scirenderer.PackageInfo;
@@ -14138,7 +14133,7 @@ $as_echo_n "checking flexdock... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14141 "configure"
+// #line 14136 "configure"
 import java.util.regex.Pattern;
 
 import org.flexdock.docking.DockingManager;
@@ -14245,7 +14240,7 @@ $as_echo_n "checking minimal version (1.2.4) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14248 "configure"
+// #line 14243 "configure"
 import java.util.regex.Pattern;
 
 import org.flexdock.util.Utilities;
@@ -14317,7 +14312,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14320 "configure"
+// #line 14315 "configure"
 import java.util.regex.Pattern;
 
 import org.flexdock.util.Utilities;
@@ -14408,7 +14403,7 @@ $as_echo_n "checking looks... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14411 "configure"
+// #line 14406 "configure"
 import java.util.regex.Pattern;
 
 import com.jgoodies.looks.common.MenuItemRenderer;
@@ -14525,7 +14520,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14528 "configure"
+// #line 14523 "configure"
 import java.util.regex.Pattern;
 
 import com.jgoodies.looks.common.MenuItemRenderer;
@@ -14643,7 +14638,7 @@ $as_echo_n "checking skinlf... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14646 "configure"
+// #line 14641 "configure"
 import java.util.regex.Pattern;
 
 import com.l2fprod.util.AccessUtils;
@@ -14760,7 +14755,7 @@ $as_echo_n "checking jogl2... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14763 "configure"
+// #line 14758 "configure"
 import java.util.regex.Pattern;
 
 import javax.media.opengl.glu.GLUnurbs;
@@ -14866,7 +14861,7 @@ $as_echo_n "checking minimal version (Specification-Version 2.2) of jogl2... " >
     if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14869 "configure"
+// #line 14864 "configure"
 import java.util.regex.Pattern;
 
 import java.io.IOException;
@@ -14943,7 +14938,7 @@ EOF
     else
 
     cat << \EOF > conftest.java
-// #line 14946 "configure"
+// #line 14941 "configure"
 import java.util.regex.Pattern;
 
 import java.io.IOException;
@@ -15145,7 +15140,7 @@ $as_echo_n "checking gluegen2-rt... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15148 "configure"
+// #line 15143 "configure"
 import java.util.regex.Pattern;
 
 import jogamp.common.os.MachineDescriptionRuntime;
@@ -15319,7 +15314,7 @@ $as_echo_n "checking jhall... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15322 "configure"
+// #line 15317 "configure"
 import java.util.regex.Pattern;
 
 import javax.help.JHelp;
@@ -15434,7 +15429,7 @@ $as_echo_n "checking javahelp2... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15437 "configure"
+// #line 15432 "configure"
 import java.util.regex.Pattern;
 
 import javax.help.JHelp;
@@ -15552,7 +15547,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15555 "configure"
+// #line 15550 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -15666,7 +15661,7 @@ $as_echo_n "checking jrosetta-api... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15669 "configure"
+// #line 15664 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -15784,7 +15779,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15787 "configure"
+// #line 15782 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
@@ -15890,7 +15885,7 @@ $as_echo_n "checking minimal version (1.0.4) of jrosetta-engine... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15893 "configure"
+// #line 15888 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.util.ConfigurationBuilder;
@@ -15962,7 +15957,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15965 "configure"
+// #line 15960 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.util.ConfigurationBuilder;
@@ -16055,7 +16050,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16058 "configure"
+// #line 16053 "configure"
 import java.util.regex.Pattern;
 
 import net.sourceforge.jeuclid.LayoutContext;
@@ -16174,7 +16169,7 @@ $as_echo_n "checking fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16177 "configure"
+// #line 16172 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.fop.pdf.PDFInfo;
@@ -16298,7 +16293,7 @@ $as_echo_n "checking freehep-graphics2d... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16301 "configure"
+// #line 16296 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.graphics2d.VectorGraphics;
@@ -16415,7 +16410,7 @@ $as_echo_n "checking freehep-graphicsio-emf... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16418 "configure"
+// #line 16413 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.graphicsio.emf.EMFGraphics2D;
@@ -16532,7 +16527,7 @@ $as_echo_n "checking freehep-graphicsio... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16535 "configure"
+// #line 16530 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.graphicsio.VectorGraphicsIO;
@@ -16649,7 +16644,7 @@ $as_echo_n "checking freehep-io... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16652 "configure"
+// #line 16647 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.util.io.XMLSequence;
@@ -16766,7 +16761,7 @@ $as_echo_n "checking freehep-util... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16769 "configure"
+// #line 16764 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.util.StringUtilities;
@@ -16884,7 +16879,7 @@ $as_echo_n "checking batik-all... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16887 "configure"
+// #line 16882 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.parser.Parser;
@@ -17001,7 +16996,7 @@ $as_echo_n "checking batik... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17004 "configure"
+// #line 16999 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.parser.Parser;
@@ -17108,7 +17103,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 17111 "configure"
+// #line 17106 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.Version;
@@ -17180,7 +17175,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 17183 "configure"
+// #line 17178 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.Version;
@@ -17271,7 +17266,7 @@ $as_echo_n "checking commons-io... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17274 "configure"
+// #line 17269 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.output.CountingOutputStream;
@@ -17388,7 +17383,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17391 "configure"
+// #line 17386 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.xmlgraphics.util.Service;
@@ -17505,7 +17500,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17508 "configure"
+// #line 17503 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.avalon.framework.configuration.ConfigurationException;
@@ -17622,7 +17617,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17625 "configure"
+// #line 17620 "configure"
 import java.util.regex.Pattern;
 
 import org.w3c.dom.svg.SVGDocument;
@@ -17739,7 +17734,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17742 "configure"
+// #line 17737 "configure"
 import java.util.regex.Pattern;
 
 import org.w3c.dom.svg.SVGDocument;
@@ -17860,7 +17855,7 @@ $as_echo_n "checking commons-logging... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17863 "configure"
+// #line 17858 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.logging.LogFactory;
@@ -17977,7 +17972,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17980 "configure"
+// #line 17975 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -18084,7 +18079,7 @@ $as_echo_n "checking minimal version (1.0.3) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 18087 "configure"
+// #line 18082 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -18156,7 +18151,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 18159 "configure"
+// #line 18154 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -18247,7 +18242,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18250 "configure"
+// #line 18245 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
@@ -18370,7 +18365,7 @@ $as_echo_n "checking checkstyle... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18373 "configure"
+// #line 18368 "configure"
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
@@ -18487,7 +18482,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18490 "configure"
+// #line 18485 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.Converter;
@@ -18604,7 +18599,7 @@ $as_echo_n "checking antlr... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18607 "configure"
+// #line 18602 "configure"
 import java.util.regex.Pattern;
 
 import antlr.TokenStreamException;
@@ -18721,7 +18716,7 @@ $as_echo_n "checking junit4... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18724 "configure"
+// #line 18719 "configure"
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
@@ -18835,7 +18830,7 @@ $as_echo_n "checking junit... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18838 "configure"
+// #line 18833 "configure"
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
@@ -18956,7 +18951,7 @@ $as_echo_n "checking hamcrest-all... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18959 "configure"
+// #line 18954 "configure"
 import java.util.regex.Pattern;
 
 import org.hamcrest.core.IsNull;
@@ -19070,7 +19065,7 @@ $as_echo_n "checking hamcrest/all... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 19073 "configure"
+// #line 19068 "configure"
 import java.util.regex.Pattern;
 
 import org.hamcrest.core.IsNull;
@@ -19188,7 +19183,7 @@ $as_echo_n "checking cobertura... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 19191 "configure"
+// #line 19186 "configure"
 import java.util.regex.Pattern;
 
 import net.sourceforge.cobertura.merge.Main;
@@ -19305,7 +19300,7 @@ $as_echo_n "checking asm3... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 19308 "configure"
+// #line 19303 "configure"
 import java.util.regex.Pattern;
 
 import org.objectweb.asm.Type;
@@ -19419,7 +19414,7 @@ $as_echo_n "checking asm... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 19422 "configure"
+// #line 19417 "configure"
 import java.util.regex.Pattern;
 
 import org.objectweb.asm.Type;
@@ -19536,7 +19531,7 @@ $as_echo_n "checking ecj... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 19539 "configure"
+// #line 19534 "configure"
 import java.util.regex.Pattern;
 
 import org.eclipse.jdt.core.compiler.batch.BatchCompiler;
@@ -23802,7 +23797,7 @@ CHK_EIGEN_MINOR=0
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later" >&5
 $as_echo_n "checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23805 "configure"
+#line 23800 "configure"
 #include "confdefs.h"
 
 #include "$PATH_TO_EIGEN/Eigen/Sparse"
@@ -25159,7 +25154,7 @@ fi
 
 # BLAS in OpenBlas library (http://www.openblas.net/)
 if test $acx_blas_ok = no; then
-	as_ac_Lib=`$as_echo "ac_cv_lib_openblas_$sgemm" | $as_tr_sh`
+    as_ac_Lib=`$as_echo "ac_cv_lib_openblas_$sgemm" | $as_tr_sh`
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in -lopenblas" >&5
 $as_echo_n "checking for $sgemm in -lopenblas... " >&6; }
 if eval \${$as_ac_Lib+:} false; then :
@@ -25315,98 +25310,6 @@ fi
 
 fi
 
-fi
-if test $acx_blas_ok = no; then
-
-pkg_failed=no
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for BLAS" >&5
-$as_echo_n "checking for BLAS... " >&6; }
-
-if test -n "$PKG_CONFIG"; then
-    if test -n "$BLAS_CFLAGS"; then
-        pkg_cv_BLAS_CFLAGS="$BLAS_CFLAGS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"atlas\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "atlas") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_BLAS_CFLAGS=`$PKG_CONFIG --cflags "atlas" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-if test -n "$PKG_CONFIG"; then
-    if test -n "$BLAS_LIBS"; then
-        pkg_cv_BLAS_LIBS="$BLAS_LIBS"
-    else
-        if test -n "$PKG_CONFIG" && \
-    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"atlas\""; } >&5
-  ($PKG_CONFIG --exists --print-errors "atlas") 2>&5
-  ac_status=$?
-  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
-  test $ac_status = 0; }; then
-  pkg_cv_BLAS_LIBS=`$PKG_CONFIG --libs "atlas" 2>/dev/null`
-else
-  pkg_failed=yes
-fi
-    fi
-else
-	pkg_failed=untried
-fi
-
-
-
-if test $pkg_failed = yes; then
-
-if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
-        _pkg_short_errors_supported=yes
-else
-        _pkg_short_errors_supported=no
-fi
-        if test $_pkg_short_errors_supported = yes; then
-	        BLAS_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "atlas"`
-        else
-	        BLAS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "atlas"`
-        fi
-	# Put the nasty error message in config.log where it belongs
-	echo "$BLAS_PKG_ERRORS" >&5
-
-	as_fn_error $? "Package requirements (atlas) were not met:
-
-$BLAS_PKG_ERRORS
-
-Consider adjusting the PKG_CONFIG_PATH environment variable if you
-installed software in a non-standard prefix.
-
-Alternatively, you may set the environment variables BLAS_CFLAGS
-and BLAS_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-" "$LINENO" 5
-elif test $pkg_failed = untried; then
-	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
-$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
-as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
-is in your PATH or set the PKG_CONFIG environment variable to the full
-path to pkg-config.
-
-Alternatively, you may set the environment variables BLAS_CFLAGS
-and BLAS_LIBS to avoid the need to call pkg-config.
-See the pkg-config man page for more details.
-
-To get pkg-config, see <http://pkg-config.freedesktop.org/>.
-See \`config.log' for more details" "$LINENO" 5; }
-else
-	BLAS_CFLAGS=$pkg_cv_BLAS_CFLAGS
-	BLAS_LIBS=$pkg_cv_BLAS_LIBS
-        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-	acx_blas_ok=yes; BLAS_TYPE="Atlas"
-fi
 fi
 
 # BLAS in Intel MKL libraries (http://software.intel.com/en-us/articles/a-new-linking-model-single-dynamic-library-mkl_rt-since-intel-mkl-103)
@@ -28485,7 +28388,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 28488 "configure"
+#line 28391 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -28796,7 +28699,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 28799 "configure"
+#line 28702 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -29385,7 +29288,7 @@ $as_echo_n "checking saxon9he... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 29388 "configure"
+// #line 29291 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -29500,7 +29403,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 29503 "configure"
+// #line 29406 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -29616,7 +29519,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 29619 "configure"
+// #line 29522 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;
