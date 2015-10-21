@@ -27,18 +27,13 @@ PCREMatcher::PCREMatcher(const std::wstring & _pattern) : pattern(_pattern)
     if (_pattern.empty())
     {
         re = nullptr;
-        extra = nullptr;
     }
     else
     {
         const char * error = nullptr;
         int errorOffset = -1;
         re = pcre_compile(scilab::UTF8::toUTF8(pattern).c_str(), PCRE_UTF8, &error, &errorOffset, nullptr);
-        if (re)
-        {
-            extra = pcre_study(re, 0, &error);
-        }
-        else
+        if (!re)
         {
             if (error)
             {
@@ -57,10 +52,6 @@ PCREMatcher::~PCREMatcher()
     if (re)
     {
         pcre_free(re);
-    }
-    if (extra)
-    {
-        pcre_free_study(extra);
     }
 }
 
@@ -84,7 +75,7 @@ bool PCREMatcher::match(const wchar_t * str, const unsigned int len, const bool 
     {
         int resVect[3];
         char * _str = wide_string_to_UTF8(str);
-        int result = pcre_exec(re, extra, _str, len, 0, 0, resVect, sizeof(resVect) / sizeof(int));
+        int result = pcre_exec(re, nullptr, _str, len, 0, 0, resVect, sizeof(resVect) / sizeof(int));
         FREE(_str);
         if (full)
         {

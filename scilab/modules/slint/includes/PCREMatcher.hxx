@@ -26,7 +26,6 @@ class PCREMatcher
 
     const std::wstring pattern;
     pcre * re;
-    pcre_extra * extra;
 
 public:
 
