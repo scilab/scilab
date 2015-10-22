@@ -30,6 +30,8 @@
 
 extern "C"
 {
+#include "api_scilab.h"
+
 #include "charEncoding.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -87,7 +89,16 @@ void encode(T* input, std::vector<double> &ret)
     // Allocation for type + number of dimensions + each dimension + each element
     ret.reserve(ret.size() + totalSize);
 
-    ret.push_back(((types::InternalType*) input)->getType());
+    int iType = 0;
+    getVarType(nullptr, (int*) input, &iType);
+    ret.push_back(iType);
+    if (iType != sci_boolean)
+    {
+        int iPrec = 0;
+        getMatrixOfIntegerPrecision(nullptr, (int*) input, &iPrec);
+        ret.push_back(iPrec);
+    }
+
     ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
@@ -115,7 +126,7 @@ static void encode(types::Double* input, std::vector<double> &ret)
     // Allocation for type + number of dimensions + each dimension + complex boolean + each element (doubled if complex)
     ret.reserve(ret.size() + totalSize);
 
-    ret.push_back(types::InternalType::ScilabDouble);
+    ret.push_back(sci_matrix);
     ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
@@ -166,7 +177,7 @@ static void encode(types::String* input, std::vector<double> &ret)
     // Allocation for type + number of dimensions + each dimension + each element length + each element
     ret.reserve(ret.size() + totalSize);
 
-    ret.push_back(types::InternalType::ScilabString);
+    ret.push_back(sci_strings);
     ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
@@ -205,7 +216,9 @@ static void encode(types::List* input, std::vector<double> &ret)
 {
     const int iElements = input->getSize();
 
-    ret.push_back(input->getType());
+    int iType = 0;
+    getVarType(nullptr, (int*) input, &iType);
+    ret.push_back(iType);
     ret.push_back(iElements);
     for (int i = 0; i < iElements; ++i)
     {
@@ -252,52 +265,59 @@ static void encode(types::List* input, std::vector<double> &ret)
 
 bool var2vec(types::InternalType* in, std::vector<double> &out)
 {
-    switch (in->getType())
+    int iType = 0;
+    getVarType(nullptr, (int*) in, &iType);
+    switch (iType)
     {
             // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
-        case types::InternalType::ScilabDouble :
+        case sci_matrix  :
             encode(in->getAs<types::Double>(), out);
             break;
 
-        case types::InternalType::ScilabInt8   :
-            encode(in->getAs<types::Int8>(), out);
+        case sci_ints    :
+            switch (in->getType())
+            {
+                case types::InternalType::ScilabInt8 :
+                    encode(in->getAs<types::Int8>(), out);
+                    break;
+                case types::InternalType::ScilabUInt8  :
+                    encode(in->getAs<types::UInt8>(), out);
+                    break;
+                case types::InternalType::ScilabInt16  :
+                    encode(in->getAs<types::Int16>(), out);
+                    break;
+                case types::InternalType::ScilabUInt16 :
+                    encode(in->getAs<types::UInt16>(), out);
+                    break;
+                case types::InternalType::ScilabInt32  :
+                    encode(in->getAs<types::Int32>(), out);
+                    break;
+                case types::InternalType::ScilabUInt32 :
+                    encode(in->getAs<types::UInt32>(), out);
+                    break;
+                case types::InternalType::ScilabInt64  :
+                    encode(in->getAs<types::Int64>(), out);
+                    break;
+                case types::InternalType::ScilabUInt64 :
+                    encode(in->getAs<types::UInt64>(), out);
+                    break;
+            }
             break;
-        case types::InternalType::ScilabUInt8  :
-            encode(in->getAs<types::UInt8>(), out);
-            break;
-        case types::InternalType::ScilabInt16  :
-            encode(in->getAs<types::Int16>(), out);
-            break;
-        case types::InternalType::ScilabUInt16 :
-            encode(in->getAs<types::UInt16>(), out);
-            break;
-        case types::InternalType::ScilabInt32  :
-            encode(in->getAs<types::Int32>(), out);
-            break;
-        case types::InternalType::ScilabUInt32 :
-            encode(in->getAs<types::UInt32>(), out);
-            break;
-        case types::InternalType::ScilabInt64  :
-            encode(in->getAs<types::Int64>(), out);
-            break;
-        case types::InternalType::ScilabUInt64 :
-            encode(in->getAs<types::UInt64>(), out);
-            break;
-        case types::InternalType::ScilabBool   :
+        case sci_boolean :
             encode(in->getAs<types::Bool>(), out);
             break;
 
-        case types::InternalType::ScilabString :
+        case sci_strings :
             encode(in->getAs<types::String>(), out);
             break;
 
-        case types::InternalType::ScilabList   :
+        case sci_list    :
             encode(in->getAs<types::List>(), out);
             break;
-        case types::InternalType::ScilabTList  :
+        case sci_tlist   :
             encode(in->getAs<types::List>(), out);
             break;
-        case types::InternalType::ScilabMList  :
+        case sci_mlist   :
             encode(in->getAs<types::List>(), out);
             break;
             //case types::InternalType::ScilabStruct :

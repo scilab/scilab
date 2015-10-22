@@ -30,6 +30,8 @@
 
 extern "C"
 {
+#include "api_scilab.h"
+
 #include "Scierror.h"
 #include "localization.h"
 }
@@ -172,7 +174,7 @@ static bool readElement(const double* const input, const int iType, const int iD
 {
     switch (iType)
     {
-        case types::InternalType::ScilabDouble :
+        case sci_matrix  :
         {
             if (inputRows < 5)
             {
@@ -191,151 +193,158 @@ static bool readElement(const double* const input, const int iType, const int iD
             break;
         }
 
-        case types::InternalType::ScilabInt8   :
+        case sci_ints    :
         {
-            if (inputRows < 4)
+            switch (static_cast<int>(input[1]))
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
+                case sci_int8   :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
 
-            types::Int8* pInt8 = nullptr;
-            const int resSize = decode<types::Int8>(input + 2, inputRows, iDims, offset, pInt8);
-            if (resSize < 0)
-            {
-                return false;
+                    types::Int8* pInt8 = nullptr;
+                    const int resSize = decode<types::Int8>(input + 3, inputRows, iDims, offset, pInt8);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pInt8;
+                    offset += 1 + resSize;
+                    break;
+                }
+                case sci_uint8  :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
+
+                    types::UInt8* pUInt8 = nullptr;
+                    const int resSize = decode<types::UInt8>(input + 3, inputRows, iDims, offset, pUInt8);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pUInt8;
+                    offset += 1 + resSize;
+                    break;
+                }
+                case sci_int16  :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
+
+                    types::Int16* pInt16 = nullptr;
+                    const int resSize = decode<types::Int16>(input + 3, inputRows, iDims, offset, pInt16);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pInt16;
+                    offset += 1 + resSize;
+                    break;
+                }
+                case sci_uint16 :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
+
+                    types::UInt16* pUInt16 = nullptr;
+                    const int resSize = decode<types::UInt16>(input + 3, inputRows, iDims, offset, pUInt16);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pUInt16;
+                    offset += 1 + resSize;
+                    break;
+                }
+                case sci_int32  :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
+
+                    types::Int32* pInt32 = nullptr;
+                    const int resSize = decode<types::Int32>(input + 3, inputRows, iDims, offset, pInt32);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pInt32;
+                    offset += 1 + resSize;
+                    break;
+                }
+                case sci_uint32 :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
+
+                    types::UInt32* pUInt32 = nullptr;
+                    const int resSize = decode<types::UInt32>(input + 3, inputRows, iDims, offset, pUInt32);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pUInt32;
+                    offset += 1 + resSize;
+                    break;
+                }
+                case sci_int64 :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
+
+                    types::Int64* pInt64 = nullptr;
+                    const int resSize = decode<types::Int64>(input + 3, inputRows, iDims, offset, pInt64);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pInt64;
+                    offset += 1 + resSize;
+                    break;
+                }
+                case sci_uint64 :
+                {
+                    if (inputRows < 5)
+                    {
+                        Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 5, 1);
+                        return false;
+                    }
+
+                    types::UInt64* pUInt64 = nullptr;
+                    const int resSize = decode<types::UInt64>(input + 3, inputRows, iDims, offset, pUInt64);
+                    if (resSize < 0)
+                    {
+                        return false;
+                    }
+                    res = pUInt64;
+                    offset += 1 + resSize;
+                    break;
+                }
             }
-            res = pInt8;
-            offset += resSize;
             break;
         }
-        case types::InternalType::ScilabUInt8  :
-        {
-            if (inputRows < 4)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
-
-            types::UInt8* pUInt8 = nullptr;
-            const int resSize = decode<types::UInt8>(input + 2, inputRows, iDims, offset, pUInt8);
-            if (resSize < 0)
-            {
-                return false;
-            }
-            res = pUInt8;
-            offset += resSize;
-            break;
-        }
-        case types::InternalType::ScilabInt16  :
-        {
-            if (inputRows < 4)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
-
-            types::Int16* pInt16 = nullptr;
-            const int resSize = decode<types::Int16>(input + 2, inputRows, iDims, offset, pInt16);
-            if (resSize < 0)
-            {
-                return false;
-            }
-            res = pInt16;
-            offset += resSize;
-            break;
-        }
-        case types::InternalType::ScilabUInt16 :
-        {
-            if (inputRows < 4)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
-
-            types::UInt16* pUInt16 = nullptr;
-            const int resSize = decode<types::UInt16>(input + 2, inputRows, iDims, offset, pUInt16);
-            if (resSize < 0)
-            {
-                return false;
-            }
-            res = pUInt16;
-            offset += resSize;
-            break;
-        }
-        case types::InternalType::ScilabInt32  :
-        {
-            if (inputRows < 4)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
-
-            types::Int32* pInt32 = nullptr;
-            const int resSize = decode<types::Int32>(input + 2, inputRows, iDims, offset, pInt32);
-            if (resSize < 0)
-            {
-                return false;
-            }
-            res = pInt32;
-            offset += resSize;
-            break;
-        }
-        case types::InternalType::ScilabUInt32 :
-        {
-            if (inputRows < 4)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
-
-            types::UInt32* pUInt32 = nullptr;
-            const int resSize = decode<types::UInt32>(input + 2, inputRows, iDims, offset, pUInt32);
-            if (resSize < 0)
-            {
-                return false;
-            }
-            res = pUInt32;
-            offset += resSize;
-            break;
-        }
-        case types::InternalType::ScilabInt64  :
-        {
-            if (inputRows < 4)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
-
-            types::Int64* pInt64 = nullptr;
-            const int resSize = decode<types::Int64>(input + 2, inputRows, iDims, offset, pInt64);
-            if (resSize < 0)
-            {
-                return false;
-            }
-            res = pInt64;
-            offset += resSize;
-            break;
-        }
-        case types::InternalType::ScilabUInt64 :
-        {
-            if (inputRows < 4)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 4, 1);
-                return false;
-            }
-
-            types::UInt64* pUInt64 = nullptr;
-            const int resSize = decode<types::UInt64>(input + 2, inputRows, iDims, offset, pUInt64);
-            if (resSize < 0)
-            {
-                return false;
-            }
-            res = pUInt64;
-            offset += resSize;
-            break;
-        }
-        case types::InternalType::ScilabBool   :
+        case sci_boolean :
         {
             if (inputRows < 4)
             {
@@ -354,7 +363,7 @@ static bool readElement(const double* const input, const int iType, const int iD
             break;
         }
 
-        case types::InternalType::ScilabString :
+        case sci_strings :
         {
             if (inputRows < 4)
             {
@@ -373,9 +382,9 @@ static bool readElement(const double* const input, const int iType, const int iD
             break;
         }
 
-        case types::InternalType::ScilabList   :
-        case types::InternalType::ScilabTList  :
-        case types::InternalType::ScilabMList  :
+        case sci_list    :
+        case sci_tlist   :
+        case sci_mlist   :
         {
             if (inputRows < 2)
             {
@@ -384,11 +393,11 @@ static bool readElement(const double* const input, const int iType, const int iD
             }
 
             types::List* pList = nullptr;
-            if (iType == types::InternalType::ScilabList)
+            if (iType == sci_list)
             {
                 pList = new types::List();
             }
-            else if (iType == types::InternalType::ScilabTList)
+            else if (iType == sci_tlist)
             {
                 pList = new types::TList();
             }
@@ -419,7 +428,16 @@ static bool readElement(const double* const input, const int iType, const int iD
                 }
                 // Extract the list elements infos and recursively call readElement
                 int elementType = static_cast<int>(*(input + offset));
-                int elementDims = static_cast<int>(*(input + offset + 1));
+                int elementDims;
+                if (elementType == sci_ints)
+                {
+                    // Integers store their precision in *(input + offset + 1)
+                    elementDims = static_cast<int>(*(input + offset + 2));
+                }
+                else
+                {
+                    elementDims = static_cast<int>(*(input + offset + 1));
+                }
                 types::InternalType* element;
                 if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
                 {
@@ -523,7 +541,16 @@ static bool readElement(const double* const input, const int iType, const int iD
 bool vec2var(const std::vector<double> in, types::InternalType* &out)
 {
     const int iType = static_cast<int>(in[0]);
-    const int iDims = static_cast<int>(in[1]);
+    int iDims;
+    if (iType == sci_ints)
+    {
+        // Integers store their precision in in[1]
+        iDims = static_cast<int>(in[2]);
+    }
+    else
+    {
+        iDims = static_cast<int>(in[1]);
+    }
 
     int offset = 0;
     if (!readElement(&in[0], iType, iDims, static_cast<int>(in.size()), offset, out))

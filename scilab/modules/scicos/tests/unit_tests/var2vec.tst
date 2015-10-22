@@ -15,13 +15,13 @@ assert_checkequal(size(b), [15 1]);
 
 // Double
 a = [];
-assert_checkequal(var2vec(a), [12; 2; 0; 0; 0]);
+assert_checkequal(var2vec(a), [1; 2; 0; 0; 0]);
 Mat = [10 11 12 13; 14 15 16 17];
-assert_checkequal(var2vec(Mat), [12; 2; 2; 4; 0; 10; 14; 11; 15; 12; 16; 13; 17]);
+assert_checkequal(var2vec(Mat), [1; 2; 2; 4; 0; 10; 14; 11; 15; 12; 16; 13; 17]);
 HyperMat = hypermat([2, 2, 2], 1:8);
-assert_checkequal(var2vec(HyperMat), [12; 3; 2; 2; 2; 0; (1:8)']);
+assert_checkequal(var2vec(HyperMat), [1; 3; 2; 2; 2; 0; (1:8)']);
 cplx = HyperMat+HyperMat*%i;
-assert_checkequal(var2vec(cplx), [12; 3; 2; 2; 2; 1; (1:8)'; (1:8)']);
+assert_checkequal(var2vec(cplx), [1; 3; 2; 2; 2; 1; (1:8)'; (1:8)']);
 
 // Integers
 // int8
