@@ -359,6 +359,10 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd; ++j)
         {
+            if (ConfigVariable::getPromptMode() == 7)
+            {
+                stPrompt = SCIPROMPT_PAUSE;
+            }
             // printf some exp
             ast::exps_t::iterator k = j;
             int iLastLine = (*j)->getLocation().last_line;

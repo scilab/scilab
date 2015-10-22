@@ -431,9 +431,10 @@ int ConfigVariable::getPromptMode(void)
 
 bool ConfigVariable::isEmptyLineShow(void)
 {
-    if ( m_iPromptMode == 0     ||
-            m_iPromptMode == 2  ||
-            m_iPromptMode == 3)
+    if ( m_iPromptMode == 0    ||
+            m_iPromptMode == 2 ||
+            m_iPromptMode == 3 ||
+            m_iPromptMode == 7)
     {
         return true;
     }
@@ -445,10 +446,11 @@ bool ConfigVariable::isEmptyLineShow(void)
 
 bool ConfigVariable::isPromptShow(void)
 {
-    if ( m_iPromptMode == 0     ||
-            m_iPromptMode == 1  ||
-            m_iPromptMode == 2  ||
-            m_iPromptMode == 3)
+    if ( m_iPromptMode == 0    ||
+            m_iPromptMode == 1 ||
+            m_iPromptMode == 2 ||
+            m_iPromptMode == 3 ||
+            m_iPromptMode == 7)
     {
         return true;
     }

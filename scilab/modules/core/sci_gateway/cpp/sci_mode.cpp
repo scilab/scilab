@@ -19,6 +19,7 @@
 extern "C"
 {
 #include "Scierror.h"
+#include "sciprint.h"
 #include "localization.h"
 }
 
@@ -69,6 +70,11 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
         }
 
         ConfigVariable::setPromptMode(iScilabMode);
+
+        if (iScilabMode == 4 || iScilabMode == 7)
+        {
+            sciprint(_("Pause mode: enter empty lines to continue.\n"));
+        }
     }
 
     return types::Function::OK;

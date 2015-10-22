@@ -51,6 +51,8 @@ extern "C"
 #include "os_string.h"
 #include "elem_common.h"
 #include "storeCommand.h"
+#include "prompt.h"
+#include "scilabRead.h"
 }
 
 namespace ast
@@ -1259,6 +1261,7 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 {
     CoverageInstance::invokeAndStartChrono((void*)&e);
+    int lastLine = 0;
     for (auto exp : e.getExps())
     {
         if (exp->isCommentExp())
@@ -1269,7 +1272,13 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         if (ConfigVariable::isExecutionBreak())
         {
             ConfigVariable::resetExecutionBreak();
+            if (ConfigVariable::getPromptMode() == 7)
+            {
+                ClearTemporaryPrompt();
+            }
+
             StorePrioritaryCommand("pause");
+            ThreadManagement::WaitForRunMeSignal();
         }
 
         // interrupt me to execute a prioritary command
@@ -1380,6 +1389,35 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 }
 
                 pIT->killMe();
+            }
+
+            if (ConfigVariable::getPromptMode() == 7)
+            {
+                Location loc = exp->getLocation();
+                if (lastLine < loc.first_line)
+                {
+                    //break execution
+                    SetTemporaryPrompt(SCIPROMPT_PAUSE);
+                    ConfigVariable::setScilabCommand(0);
+                    char* pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
+                    if (pcConsoleReadStr) // exec is called from a callback
+                    {
+                        ThreadManagement::SendConsoleExecDoneSignal();
+                    }
+                    else // exec is called from the console
+                    {
+                        scilabRead();
+                        pcConsoleReadStr = ConfigVariable::getConsoleReadStr();
+                    }
+
+                    if (pcConsoleReadStr && pcConsoleReadStr[0] == 'p' && pcConsoleReadStr[1] == '\0')
+                    {
+                        //mode pause
+                        ConfigVariable::setExecutionBreak();
+                    }
+                }
+
+                lastLine = loc.last_line;
             }
 
             if ((&e)->isBreakable() && exp->isBreak())
