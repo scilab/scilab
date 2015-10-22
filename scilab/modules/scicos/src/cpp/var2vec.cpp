@@ -318,11 +318,17 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
             encode(in->getAs<types::List>(), out);
             break;
         case sci_mlist   :
-            encode(in->getAs<types::List>(), out);
+            switch (in->getType())
+            {
+                case types::InternalType::ScilabMList :
+                    encode(in->getAs<types::List>(), out);
+                    break;
+                case types::InternalType::ScilabStruct :
+                    //encode(in->getAs<types::Struct>(), out);
+                    Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List");
+                    return false;
+            }
             break;
-            //case types::InternalType::ScilabStruct :
-            //    encode(in->getAs<types::Struct>(), out);
-            //    break;
 
         default :
             //Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List", "Struct");
