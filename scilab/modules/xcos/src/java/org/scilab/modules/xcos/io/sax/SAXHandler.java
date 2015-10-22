@@ -13,7 +13,6 @@
 package org.scilab.modules.xcos.io.sax;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
@@ -28,7 +27,6 @@ import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
-import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;

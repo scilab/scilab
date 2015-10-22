@@ -48,6 +48,7 @@ class BlockHandler implements ScilabHandler {
         this.saxHandler = saxHandler;
     }
 
+    @Override
     public BasicBlock startElement(HandledElement found, Attributes atts) {
         String v;
         BasicBlock block;
@@ -158,6 +159,7 @@ class BlockHandler implements ScilabHandler {
         return block;
     }
 
+    @Override
     public void endElement(HandledElement found) {
     }
 }

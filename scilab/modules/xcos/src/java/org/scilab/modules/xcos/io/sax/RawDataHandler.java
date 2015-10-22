@@ -99,13 +99,13 @@ class RawDataHandler implements ScilabHandler {
 
         switch (found) {
             case ScilabBoolean:
-            // no break on purpose
+                // no break on purpose
             case ScilabDouble:
-            // no break on purpose
+                // no break on purpose
             case ScilabInteger:
-            // no break on purpose
+                // no break on purpose
             case ScilabString:
-            // no break on purpose
+                // no break on purpose
             case Array: {
                 String as = atts.getValue("as");
 
@@ -305,25 +305,25 @@ class RawDataHandler implements ScilabHandler {
                     switch (ScilabIntegerTypeEnum.valueOf(v)) {
                         case sci_int8:
                             unsigned = false;
-                        // no break on purpose
+                            // no break on purpose
                         case sci_uint8:
                             container = new ScilabInteger(new byte[height][width], unsigned);
                             break;
                         case sci_int16:
                             unsigned = false;
-                        // no break on purpose
+                            // no break on purpose
                         case sci_uint16:
                             container = new ScilabInteger(new short[height][width], unsigned);
                             break;
                         case sci_int32:
                             unsigned = false;
-                        // no break on purpose
+                            // no break on purpose
                         case sci_uint32:
                             container = new ScilabInteger(new int[height][width], unsigned);
                             break;
                         case sci_int64:
                             unsigned = false;
-                        // no break on purpose
+                            // no break on purpose
                         case sci_uint64:
                             container = new ScilabInteger(new long[height][width], unsigned);
                             break;
@@ -357,13 +357,13 @@ class RawDataHandler implements ScilabHandler {
     public void endElement(HandledElement found) {
         switch (found) {
             case Array:
-            // no break on purpose
+                // no break on purpose
             case ScilabBoolean:
-            // no break on purpose
+                // no break on purpose
             case ScilabDouble:
-            // no break on purpose
+                // no break on purpose
             case ScilabInteger:
-            // no break on purpose
+                // no break on purpose
             case ScilabString: {
                 // defensive programming
                 if (!(saxHandler.parents.peek() instanceof RawDataDescriptor)) {

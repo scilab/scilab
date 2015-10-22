@@ -123,7 +123,7 @@ class CustomHandler implements ScilabHandler {
 
                 saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PROPERTIES, properties);
 
-            // no break on purpose, we decode non-root specific properties later
+                // no break on purpose, we decode non-root specific properties later
             case SuperBlockDiagram:
                 final Kind kind;
                 if (uid == 0l) {
