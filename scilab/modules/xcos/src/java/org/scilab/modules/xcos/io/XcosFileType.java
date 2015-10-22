@@ -40,6 +40,9 @@ import javax.xml.transform.stream.StreamSource;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.View;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.codec.XcosCodec;
@@ -64,9 +67,16 @@ public enum XcosFileType {
             ParserConfigurationException {
             LOG.entering("XcosFileType.ZCOS", "load");
 
-            XcosPackage p = new XcosPackage(new File(file));
-            p.setContent(into);
-            p.load();
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
+            try {
+                JavaController.unregister_view(xcosView);
+
+                XcosPackage p = new XcosPackage(new File(file));
+                p.setContent(into);
+                p.load();
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
+            }
 
             LOG.exiting("XcosFileType.ZCOS", "load");
         }
@@ -89,8 +99,10 @@ public enum XcosFileType {
         @Override
         public void load(String file, XcosDiagram into)
         throws TransformerException {
-
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
             try {
+                JavaController.unregister_view(xcosView);
+
                 final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
                 final Transformer aTransformer = tranFactory.newTransformer();
 
@@ -108,6 +120,8 @@ public enum XcosFileType {
                 Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
             } catch (Exception e) {
                 e.printStackTrace();
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
             }
         }
 

@@ -12,10 +12,15 @@
 
 package org.scilab.modules.xcos.io.sax;
 
+import java.util.ArrayList;
+
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.VectorOfScicosID;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
+import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -82,6 +87,7 @@ class PortHandler implements ScilabHandler {
 
         v = atts.getValue("id");
         if (v != null) {
+            port.setId(v);
             saxHandler.allChildren.peek().put(v, uid);
         }
 
@@ -114,11 +120,11 @@ class PortHandler implements ScilabHandler {
         }
 
         /*
-         * Associate to the parent block
+         * Associate to the parent block : now or later
          */
 
         int ordering = 0;
-        long parent = 0l;
+        Long parent = 0l;
 
         v = atts.getValue("ordering");
         if (v != null) {
@@ -128,17 +134,47 @@ class PortHandler implements ScilabHandler {
         v = atts.getValue("parent");
         if (v != null) {
             parent = saxHandler.allChildren.peek().get(v);
+
+            // if we can resolve the parent, then connect it directly
+            if (parent != null) {
+                VectorOfScicosID associatedPorts = new VectorOfScicosID();
+                saxHandler.controller.getObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
+
+                associatedPorts.resize(ordering + 1);
+                associatedPorts.set(ordering, uid);
+                saxHandler.controller.referenceObject(uid);
+
+                saxHandler.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);
+                saxHandler.controller.setObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
+            } else {
+                // resolve the parent later
+                ArrayList<UnresolvedReference> refList = saxHandler.unresolvedReferences.get(v);
+                if (refList == null) {
+                    refList = new ArrayList<>();
+                    saxHandler.unresolvedReferences.put(v, refList);
+                }
+                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.PORT), ObjectProperties.SOURCE_BLOCK, ObjectProperties.CHILDREN, ordering));
+            }
         }
 
-        VectorOfScicosID associatedPorts = new VectorOfScicosID();
-        saxHandler.controller.getObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
+        /*
+         * Associate to the link if possible (reverse linking)
+         */
+        v = atts.getValue("as");
+        if (v != null) {
+            ObjectProperties opposite = null;
+            if ("source".equals(v)) {
+                opposite = ObjectProperties.SOURCE_PORT;
+            } else if ("target".equals(v)) {
+                opposite = ObjectProperties.DESTINATION_PORT;
+            }
 
-        associatedPorts.resize(ordering + 1);
-        associatedPorts.set(ordering, uid);
-        saxHandler.controller.referenceObject(uid);
-
-        saxHandler.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);
-        saxHandler.controller.setObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
+            XcosCell cell = saxHandler.lookupForParentXcosCellElement();
+            if (cell.getKind() == Kind.LINK) {
+                saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), opposite, port.getUID());
+                saxHandler.controller.setObjectProperty(port.getUID(), port.getKind(), ObjectProperties.CONNECTED_SIGNALS, cell.getUID());
+            }
+        }
 
         return port;
     }

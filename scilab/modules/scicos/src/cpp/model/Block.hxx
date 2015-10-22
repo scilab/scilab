@@ -97,7 +97,7 @@ struct Angle
     bool mirror;
     double theta;
 
-    Angle() : flip(true), mirror(false), theta(0) {};
+    Angle() : flip(false), mirror(false), theta(0) {};
     Angle(const Angle& a) : flip(a.flip), mirror(a.mirror), theta(a.theta) {};
     Angle(const std::vector<double>& a) :
         flip(  ((static_cast<int>(a[0]) & 0x0001) == 0) ? false : true),

@@ -20,12 +20,9 @@ import java.awt.event.KeyEvent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.JavaController;
-import org.scilab.modules.xcos.Kind;
-import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -74,24 +71,17 @@ public class FlipAction extends VertexSelectionDependantAction {
 
             Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
-            JavaController controller = new JavaController();
-            VectorOfDouble mvcAngle = new VectorOfDouble();
+            try {
+                getGraph(null).getModel().beginUpdate();
 
-            getGraph(null).getModel().beginUpdate();
-            for (int i = 0; i < allCells.length; ++i) {
-                if (allCells[i] instanceof BasicBlock) {
-                    long uid = ((BasicBlock) allCells[i]).getUID();
-                    controller.getObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
-
-                    // retrieve then toggle a bit
-                    int mirrorAndFlip = (int) mvcAngle.get(0);
-                    mirrorAndFlip ^= 0x0001;
-
-                    mvcAngle.set(0, mirrorAndFlip);
-                    controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+                for (int i = 0; i < allCells.length; ++i) {
+                    if (allCells[i] instanceof BasicBlock) {
+                        BlockPositioning.toggleFlip((XcosDiagram) getGraph(null), (BasicBlock) allCells[i]);
+                    }
                 }
+            } finally {
+                getGraph(null).getModel().endUpdate();
             }
-            getGraph(null).getModel().endUpdate();
         }
     }
 

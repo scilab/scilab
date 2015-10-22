@@ -30,7 +30,7 @@ class LinkHandler implements ScilabHandler {
 
     /**
      * Default constructor
-     * 
+     *
      * @param saxHandler
      *            the shared sax handler
      */
@@ -45,20 +45,20 @@ class LinkHandler implements ScilabHandler {
         final long uid = saxHandler.controller.createObject(Kind.LINK);
 
         switch (found) {
-        case CommandControlLink:
-            link = new CommandControlLink(uid);
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, -1);
-            break;
-        case ExplicitLink:
-            link = new ExplicitLink(uid);
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 1);
-            break;
-        case ImplicitLink:
-            link = new ImplicitLink(uid);
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 2);
-            break;
-        default:
-            throw new IllegalArgumentException();
+            case CommandControlLink:
+                link = new CommandControlLink(uid);
+                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, -1);
+                break;
+            case ExplicitLink:
+                link = new ExplicitLink(uid);
+                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 1);
+                break;
+            case ImplicitLink:
+                link = new ImplicitLink(uid);
+                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 2);
+                break;
+            default:
+                throw new IllegalArgumentException();
         }
 
         /*
@@ -66,8 +66,8 @@ class LinkHandler implements ScilabHandler {
          */
         v = atts.getValue("id");
         if (v != null) {
+            link.setId(v);
             saxHandler.allChildren.peek().put(v, uid);
-            saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.UID, v);
         }
 
         v = atts.getValue("source");
@@ -77,6 +77,7 @@ class LinkHandler implements ScilabHandler {
                 // if the attribute is present then the connected port is already
                 // decoded and present in the map
                 saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.SOURCE_PORT, src.longValue());
+                saxHandler.controller.setObjectProperty(src.longValue(), Kind.PORT, ObjectProperties.CONNECTED_SIGNALS, uid);
             } else {
                 // if not present then it will be resolved later
                 ArrayList<UnresolvedReference> refList = saxHandler.unresolvedReferences.get(v);
@@ -84,7 +85,7 @@ class LinkHandler implements ScilabHandler {
                     refList = new ArrayList<>();
                     saxHandler.unresolvedReferences.put(v, refList);
                 }
-                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.SOURCE_PORT, null, 0));
+                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.SOURCE_PORT, ObjectProperties.CONNECTED_SIGNALS, 0));
             }
         }
 
@@ -95,6 +96,7 @@ class LinkHandler implements ScilabHandler {
                 // if the attribute is present then the connected port is already
                 // decoded and present in the map
                 saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.DESTINATION_PORT, dst.longValue());
+                saxHandler.controller.setObjectProperty(dst.longValue(), Kind.PORT, ObjectProperties.CONNECTED_SIGNALS, uid);
             } else {
                 // if not present then it will be resolved later
                 ArrayList<UnresolvedReference> refList = saxHandler.unresolvedReferences.get(v);
@@ -102,7 +104,7 @@ class LinkHandler implements ScilabHandler {
                     refList = new ArrayList<>();
                     saxHandler.unresolvedReferences.put(v, refList);
                 }
-                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.DESTINATION_PORT, null, 0));
+                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.LINK), ObjectProperties.DESTINATION_PORT, ObjectProperties.CONNECTED_SIGNALS, 0));
             }
         }
 

@@ -126,8 +126,8 @@ class BlockHandler implements ScilabHandler {
          */
         v = atts.getValue("id");
         if (v != null) {
+            block.setId(v);
             saxHandler.allChildren.peek().put(v, uid);
-            saxHandler.controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.UID, v);
         }
 
         v = atts.getValue("interfaceFunctionName");

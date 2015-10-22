@@ -192,7 +192,7 @@ class CustomHandler implements ScilabHandler {
                 long uid = uidObject.longValue();
 
                 for (UnresolvedReference unresolvedReference : entry.getValue()) {
-                    unresolvedReference.resolve(saxHandler.controller, uid);
+                    unresolvedReference.resolve(saxHandler.controller, uid, saxHandler.controller.getKind(uid));
                 }
             }
         }

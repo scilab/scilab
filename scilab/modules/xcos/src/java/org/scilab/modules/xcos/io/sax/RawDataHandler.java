@@ -428,7 +428,7 @@ class RawDataHandler implements ScilabHandler {
                             vec.set(i, value.getRealElement(i, 0));
                         }
 
-                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.RPAR, vec);
+                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, vec);
                         break;
                     }
                     case EXPRS:

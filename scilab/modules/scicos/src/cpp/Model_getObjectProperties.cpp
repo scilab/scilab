@@ -227,6 +227,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case STYLE:
                 o->getStyle(v);
                 return true;
+            case UID:
+                o->getUID(v);
+                return true;
             default:
                 break;
         }
@@ -284,6 +287,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case LABEL:
                 o->getLabel(v);
                 return true;
+            case UID:
+                o->getUID(v);
+                return true;
             default:
                 break;
         }
@@ -298,6 +304,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
                 return true;
             case LABEL:
                 o->getLabel(v);
+                return true;
+            case UID:
+                o->getUID(v);
                 return true;
             default:
                 break;

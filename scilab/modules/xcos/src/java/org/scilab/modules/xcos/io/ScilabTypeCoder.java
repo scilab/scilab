@@ -42,59 +42,6 @@ import org.scilab.modules.xcos.VectorOfDouble;
  */
 public class ScilabTypeCoder {
 
-    // MAGIC NUMBER inside
-    // directly stolen from internal.hxx to preserve the values
-    private static enum NativeScilabType {
-        ScilabNull, // no type, no data, nothing !
-        /* Internal Type */
-        ScilabInternal,
-        /* Generic Types */
-        ScilabGeneric,
-        ScilabInt8,
-        ScilabUInt8,
-        ScilabInt16,
-        ScilabUInt16,
-        ScilabInt32,
-        ScilabUInt32,
-        ScilabInt64,
-        ScilabUInt64,
-        ScilabString,
-        ScilabDouble,
-        ScilabBool,
-        ScilabFloat,
-        ScilabPolynom,
-        ScilabSinglePolynom,
-        /* Callable */
-        ScilabFunction,
-        ScilabMacro,
-        ScilabMacroFile,
-        /* Implicit List */
-        ScilabImplicitList,
-        /* Container */
-        ScilabContainer,
-        ScilabList,
-        ScilabTList,
-        ScilabMList,
-        ScilabSingleStruct,
-        ScilabStruct,
-        ScilabCell,
-        /* User */
-        ScilabUserType,
-        /* For list operation */
-        ScilabListOperation, // parent type
-        ScilabListInsertOperation,
-        ScilabListDeleteOperation,
-        ScilabListUndefinedOperation,
-        ScilabFile,
-        ScilabColon,
-        ScilabThreadId,
-        ScilabSparse,
-        ScilabSparseBool,
-        ScilabHandle,
-        ScilabVoid,
-        ScilabLibrary
-    }
-
     class JavaScilabType {
         final ScilabTypeEnum type;
         final ScilabIntegerTypeEnum intType;
@@ -108,26 +55,7 @@ public class ScilabTypeCoder {
     /** current position in the vec buffer */
     int position = 0;
 
-    /** map a java type to native one */
-    private static WeakReference<Map<Integer, JavaScilabType>> weakTypeMap = new WeakReference<>(null);
-    private Map<Integer, JavaScilabType> typeMap;
-
     public ScilabTypeCoder() {
-        typeMap = weakTypeMap.get();
-        if (typeMap == null) {
-            typeMap = new HashMap<>();
-            typeMap.put(NativeScilabType.ScilabDouble.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_matrix, null));
-            typeMap.put(NativeScilabType.ScilabInt8.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_int8));
-            typeMap.put(NativeScilabType.ScilabInt16.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_int16));
-            typeMap.put(NativeScilabType.ScilabInt32.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_int32));
-            typeMap.put(NativeScilabType.ScilabInt64.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_int64));
-            typeMap.put(NativeScilabType.ScilabUInt8.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_uint8));
-            typeMap.put(NativeScilabType.ScilabUInt16.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_uint16));
-            typeMap.put(NativeScilabType.ScilabUInt32.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_uint32));
-            typeMap.put(NativeScilabType.ScilabUInt64.ordinal(), new JavaScilabType(ScilabTypeEnum.sci_ints, ScilabIntegerTypeEnum.sci_uint64));
-
-            weakTypeMap = new WeakReference<Map<Integer, JavaScilabType>>(typeMap);
-        }
     }
 
     /*
@@ -168,13 +96,13 @@ public class ScilabTypeCoder {
                 encode((ScilabString) var, vec);
                 break;
             case sci_list:
-                encode((ArrayList<ScilabType>) var, vec);
+                encode((ArrayList<ScilabType>) var, vec, var.getType());
                 break;
             case sci_mlist:
-                encode((ArrayList<ScilabType>) var, vec);
+                encode((ArrayList<ScilabType>) var, vec, var.getType());
                 break;
             case sci_tlist:
-                encode((ArrayList<ScilabType>) var, vec);
+                encode((ArrayList<ScilabType>) var, vec, var.getType());
                 break;
             default:
                 break;
@@ -193,7 +121,7 @@ public class ScilabTypeCoder {
      */
     private void encode(ScilabDouble var, VectorOfDouble vec) {
         // Header
-        encodeHeader(var, vec, NativeScilabType.ScilabDouble);
+        encodeHeader(var, vec, ScilabTypeEnum.sci_matrix);
 
         // specific flag for managing the complex case
         if (var.isReal()) {
@@ -217,37 +145,6 @@ public class ScilabTypeCoder {
     }
 
     private void encode(ScilabInteger var, VectorOfDouble vec) {
-        // pre-processing: native type identifier
-        final NativeScilabType detected;
-        switch (var.getPrec()) {
-            case sci_int16:
-                detected = NativeScilabType.ScilabInt16;
-                break;
-            case sci_int32:
-                detected = NativeScilabType.ScilabInt32;
-                break;
-            case sci_int64:
-                detected = NativeScilabType.ScilabInt64;
-                break;
-            case sci_int8:
-                detected = NativeScilabType.ScilabInt8;
-                break;
-            case sci_uint16:
-                detected = NativeScilabType.ScilabUInt16;
-                break;
-            case sci_uint32:
-                detected = NativeScilabType.ScilabUInt32;
-                break;
-            case sci_uint64:
-                detected = NativeScilabType.ScilabUInt64;
-                break;
-            case sci_uint8:
-                detected = NativeScilabType.ScilabUInt8;
-                break;
-            default:
-                throw new IllegalArgumentException();
-        }
-
         // pre-processing: retrieve the raw data per type
         int sizeof;
         long[][] longData = null;
@@ -280,7 +177,7 @@ public class ScilabTypeCoder {
         }
 
         // Header
-        encodeHeader(var, vec, detected);
+        encodeHeader(var, vec, ScilabTypeEnum.sci_ints);
 
         // push the data on a pre-allocated space
         final int requiredBytes = sizeof * var.getHeight() * var.getWidth();
@@ -315,7 +212,7 @@ public class ScilabTypeCoder {
 
     private void encode(ScilabBoolean var, VectorOfDouble vec) {
         // header
-        encodeHeader(var, vec, NativeScilabType.ScilabBool);
+        encodeHeader(var, vec, ScilabTypeEnum.sci_boolean);
 
         // put all the boolean as int accordingly to Scilab 6 implementation
         final int requiredBytes = Integer.BYTES * var.getHeight() * var.getWidth();
@@ -334,7 +231,7 @@ public class ScilabTypeCoder {
 
     private void encode(ScilabString var, VectorOfDouble vec) {
         // header
-        encodeHeader(var, vec, NativeScilabType.ScilabString);
+        encodeHeader(var, vec, ScilabTypeEnum.sci_strings);
 
         // add the offset table which contains the offset of each UTF-8 encoded strings
         int offsetTableStart = vec.size();
@@ -360,9 +257,9 @@ public class ScilabTypeCoder {
         }
     }
 
-    private void encode(ArrayList<ScilabType> var, VectorOfDouble vec) {
+    private void encode(ArrayList<ScilabType> var, VectorOfDouble vec, ScilabTypeEnum as) {
         // header
-        encodeHeader(var, vec, NativeScilabType.ScilabList);
+        encodeHeader(var, vec, as);
 
         // encode list content
         for (ScilabType localVar : var) {
@@ -377,52 +274,43 @@ public class ScilabTypeCoder {
      *            the scilab matrix type to encode
      * @param vec
      *            the raw encoded data container
+     * @param as
+     *            the type to encode
      * @param detected
      *            the detected type
      */
     @SuppressWarnings({ "unchecked", "fallthrough" })
-    private void encodeHeader(Object var, VectorOfDouble vec, final NativeScilabType detected) {
+    private void encodeHeader(Object var, VectorOfDouble vec, final ScilabTypeEnum as) {
         ScilabType matrix = null;
         ArrayList<ScilabType> list = null;
-        Map<String, ScilabType> map = null;
 
         // defensive programming
-        switch (detected) {
-            case ScilabDouble:
-            case ScilabBool:
-            case ScilabInt8:
-            case ScilabInt16:
-            case ScilabInt32:
-            case ScilabInt64:
-            case ScilabUInt8:
-            case ScilabUInt16:
-            case ScilabUInt32:
-            case ScilabUInt64:
-            case ScilabString:
+        switch (as) {
+            case sci_boolean:
+            case sci_ints:
+            case sci_matrix:
+            case sci_strings:
                 matrix = (ScilabType) var;
                 break;
-            case ScilabList:
-            case ScilabMList:
-            case ScilabTList:
+            case sci_list:
+            case sci_mlist:
+            case sci_tlist:
                 list = (ArrayList<ScilabType>) var;
-                break;
-
-            case ScilabStruct:
-                map = (Map<String, ScilabType>) var;
                 break;
             default:
                 throw new IllegalArgumentException();
         }
 
-        vec.add(detected.ordinal());
+        vec.add(as.swigValue());
+        if (matrix instanceof ScilabInteger) {
+            vec.add(((ScilabInteger) matrix).getPrec().swigValue());
+        }
         if (matrix != null) {
             vec.add(2);
             vec.add(matrix.getWidth());
             vec.add(matrix.getHeight());
         } else if (list != null) {
             vec.add(list.size());
-        } else if (map != null) {
-            throw new IllegalStateException();
         } else {
             throw new IllegalArgumentException();
         }
@@ -612,6 +500,9 @@ public class ScilabTypeCoder {
     private ScilabType decodeHeader(VectorOfDouble vec) {
         int nativeScilabType = (int) vec.get(position++);
 
+        // specific integer sub-type
+        int precision = 0;
+
         // for data[][]-based type
         int height = 0;
         int width = 0;
@@ -619,11 +510,13 @@ public class ScilabTypeCoder {
         // for ArrayList-based type
         int listLen = 0;
 
-        final JavaScilabType type = typeMap.get(nativeScilabType);
-        switch (type.type) {
+        final ScilabTypeEnum type = ScilabTypeEnum.swigToEnum(nativeScilabType);
+        switch (type) {
+            case sci_ints:
+                // special case for integer precision
+                precision = (int) vec.get(position++);
             case sci_matrix:
             case sci_boolean:
-            case sci_ints:
             case sci_strings:
                 height = (int) vec.get(position++);
                 width = (int) vec.get(position++);
@@ -639,7 +532,7 @@ public class ScilabTypeCoder {
 
         // special case for complex double matrix
         double[][] imagData = null;
-        if (type.type == ScilabTypeEnum.sci_matrix) {
+        if (type == ScilabTypeEnum.sci_matrix) {
             boolean isComplex = vec.get(position++) != 0;
 
             if (isComplex) {
@@ -648,13 +541,13 @@ public class ScilabTypeCoder {
         }
 
         // allocate the right type with the decoded properties
-        switch (type.type) {
+        switch (type) {
             case sci_matrix:
                 return new ScilabDouble(new double[height][width], imagData);
             case sci_boolean:
                 return new ScilabBoolean(new boolean[height][width]);
             case sci_ints:
-                switch (type.intType) {
+                switch (ScilabIntegerTypeEnum.swigToEnum(precision)) {
                     case sci_int8:
                         return new ScilabInteger(new byte[height][width], false);
                     case sci_int16:

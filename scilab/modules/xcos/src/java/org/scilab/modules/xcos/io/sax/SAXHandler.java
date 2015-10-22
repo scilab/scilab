@@ -28,6 +28,7 @@ import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -53,17 +54,17 @@ public class SAXHandler extends DefaultHandler {
             this.associatedPropertyIndex = associatedPropertyIndex;
         }
 
-        public void resolve(JavaController controller, long v) {
+        public void resolve(JavaController controller, long v, Kind kind) {
             controller.setObjectProperty(owner.getUID(), owner.getKind(), property, v);
 
             if (associatedProperty != null) {
                 VectorOfScicosID associated = new VectorOfScicosID();
-                controller.getObjectProperty(owner.getUID(), owner.getKind(), associatedProperty, associated);
+                controller.getObjectProperty(v, kind, associatedProperty, associated);
 
                 associated.resize(associatedPropertyIndex + 1);
                 associated.set(associatedPropertyIndex, v);
 
-                controller.setObjectProperty(owner.getUID(), owner.getKind(), associatedProperty, associated);
+                controller.setObjectProperty(v, kind, associatedProperty, associated);
             }
         }
     }

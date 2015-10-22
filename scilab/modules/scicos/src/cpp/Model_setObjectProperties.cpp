@@ -294,6 +294,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setFontSize(v);
             case STYLE:
                 return o->setStyle(v);
+            case UID:
+                return o->setUID(v);
             default:
                 break;
         }
@@ -341,6 +343,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case LABEL:
                 return o->setLabel(v);
+            case UID:
+                return o->setUID(v);
             default:
                 break;
         }
@@ -354,6 +358,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setStyle(v);
             case LABEL:
                 return o->setLabel(v);
+            case UID:
+                return o->setUID(v);
             default:
                 break;
         }

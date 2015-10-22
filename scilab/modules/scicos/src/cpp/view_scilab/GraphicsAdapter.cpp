@@ -156,7 +156,10 @@ struct flip
         std::vector<double> angle;
         controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
 
-        data[0] = static_cast<int>(angle[0]);
+        int mirrorAndFlip = angle[0];
+        mirrorAndFlip ^= 1 << 0;
+
+        data[0] = mirrorAndFlip;
         return o;
     }
 
@@ -169,7 +172,7 @@ struct flip
         }
 
         types::Bool* current = v->getAs<types::Bool>();
-        if (current->isScalar() != true)
+        if (!current->isScalar())
         {
             get_or_allocate_logger()->log(LOG_ERROR, _("Wrong dimension for field %s.%s: %d-by-%d expected.\n"), "graphics", "flip", 1, 1);
             return false;
@@ -179,7 +182,9 @@ struct flip
         std::vector<double> angle;
         controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
 
-        angle[0] = (current->get(0) == false) ? 0 : 1;
+        int mirrorAndFlip = static_cast<int>(angle[0]);
+        current->get(0) ? mirrorAndFlip &= ~(1 << 0) : mirrorAndFlip |= 1 << 0;
+        angle[0] = mirrorAndFlip;
 
         controller.setObjectProperty(adaptee, BLOCK, ANGLE, angle);
         return true;

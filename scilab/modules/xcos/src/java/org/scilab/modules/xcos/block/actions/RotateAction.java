@@ -20,12 +20,9 @@ import java.awt.event.KeyEvent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.JavaController;
-import org.scilab.modules.xcos.Kind;
-import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -72,23 +69,19 @@ public class RotateAction extends VertexSelectionDependantAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+            Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
-            Object[] allCells = ((XcosDiagram) getGraph(null))
-                                .getSelectionCells();
+            try {
+                getGraph(null).getModel().beginUpdate();
 
-            JavaController controller = new JavaController();
-            VectorOfDouble mvcAngle = new VectorOfDouble();
-
-            getGraph(null).getModel().beginUpdate();
-            for (int i = 0; i < allCells.length; ++i) {
-                if (allCells[i] instanceof BasicBlock) {
-                    long uid = ((BasicBlock) allCells[i]).getUID();
-                    controller.getObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
-                    mvcAngle.set(1, mvcAngle.get(1) + 90d);
-                    controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+                for (int i = 0; i < allCells.length; ++i) {
+                    if (allCells[i] instanceof BasicBlock) {
+                        BlockPositioning.rotateAllPorts((XcosDiagram) getGraph(null), (BasicBlock) allCells[i]);
+                    }
                 }
+            } finally {
+                getGraph(null).getModel().endUpdate();
             }
-            getGraph(null).getModel().endUpdate();
         }
     }
 }
