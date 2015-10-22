@@ -126,6 +126,8 @@ Scilab Bug Fixes
 
 * Bug #14159 fixed - Matplot crashed Scilab on boolean input.
 
+* Bug #14187 fixed - fscanfMat failed to read format %d, %i and %f.
+
 * Bug #14199 fixed - sqrt returned wrong dimension results on matrix with more than dimensions.
 
 * Bug #14203 fixed - Improve some error messages, some help pages and some comments.
