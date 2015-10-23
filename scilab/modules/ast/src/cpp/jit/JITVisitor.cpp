@@ -106,9 +106,9 @@ void JITVisitor::compile()
 {
     if (function)
     {
-        dump();
+        //dump();
         runOptimizationPasses();
-        dump();
+        //dump();
 #if TIME_LLVM == 1
         std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 #endif
@@ -913,7 +913,7 @@ void JITVisitor::initPassManagers()
     FPM.add(llvm::createTargetTransformInfoWrapperPass(target->getTargetIRAnalysis()));
 
     llvm::PassManagerBuilder PMB;
-    PMB.OptLevel = 2;
+    PMB.OptLevel = 3;
     PMB.SizeLevel = 0;
     PMB.BBVectorize = true;
     PMB.LoopVectorize = true;

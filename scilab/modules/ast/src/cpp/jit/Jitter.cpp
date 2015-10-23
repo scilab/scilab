@@ -37,33 +37,33 @@ bool Jitter::analyzeAndJIT(const ast::CallExp & ce, const types::typed_list & in
         {
             //analysis::Chrono::tic();
             ast::CallExp * ce = static_cast<ast::CallExp *>(arg.clone());
-            //analysis::Chrono::toc(L"timer 1");
+            //analysis::Chrono::toc(L"Clone CallExp");
 
             //analysis::Chrono::tic();
             ce->accept(analysis);
-            //analysis::Chrono::toc(L"timer 2");
+            //analysis::Chrono::toc(L"Analysis & code generation");
 
             //analysis::Chrono::tic();
             jit.compile();
-            //analysis::Chrono::toc(L"timer 3");
+            //analysis::Chrono::toc(L"Compile");
 
             if (const uint64_t fid = ce->getDecorator().getResult().getFunctionId())
             {
                 //analysis::Chrono::tic();
                 jit.makeCallFromScilab(fid, in, out);
-                //analysis::Chrono::toc(L"timer 4");
+                //analysis::Chrono::toc(L"Call");
 
                 //analysis::Chrono::tic();
                 delete ce;
-                //analysis::Chrono::toc(L"timer 5");
+                //analysis::Chrono::toc(L"Delete CallExp");
 
                 //analysis::Chrono::tic();
                 jit.reset();
-                //analysis::Chrono::toc(L"timer 6");
+                //analysis::Chrono::toc(L"JIT reset");
 
                 //analysis::Chrono::tic();
                 analysis.reset();
-                //analysis::Chrono::toc(L"timer 7");
+                //analysis::Chrono::toc(L"Analysis reset");
 
                 return true;
             }

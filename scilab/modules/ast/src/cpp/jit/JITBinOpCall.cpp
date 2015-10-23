@@ -28,7 +28,6 @@ bool JITBinOpCall::invoke(const ast::Exp & e, const std::vector<analysis::TIType
     const analysis::TIType & Rtype = oe.getRight().getDecorator().getResult().getType();
 
     oe.getLeft().accept(jit);
-    jit.getFunction().dump();
     JITScilabPtr L = jit.getResult();
     oe.getRight().accept(jit);
     JITScilabPtr & R = jit.getResult();
