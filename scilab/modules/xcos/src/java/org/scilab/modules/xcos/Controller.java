@@ -56,8 +56,8 @@ public class Controller {
     JavaControllerJNI.Controller_deleteObject(swigCPtr, this, uid);
   }
 
-  public long cloneObject(long uid, boolean cloneChildren) {
-    return JavaControllerJNI.Controller_cloneObject(swigCPtr, this, uid, cloneChildren);
+  public long cloneObject(long uid, boolean cloneChildren, boolean clonePorts) {
+    return JavaControllerJNI.Controller_cloneObject(swigCPtr, this, uid, cloneChildren, clonePorts);
   }
 
   public Kind getKind(long uid) {

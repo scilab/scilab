@@ -51,7 +51,7 @@ public:
         return o;
     }
     void deleteObject(ScicosID uid);
-    ScicosID cloneObject(ScicosID uid, bool cloneChildren);
+    ScicosID cloneObject(ScicosID uid, bool cloneChildren, bool clonePorts);
 
     kind_t getKind(ScicosID uid) const;
     std::vector<ScicosID> getAll(kind_t k) const;
@@ -108,7 +108,7 @@ private:
      * Methods
      */
 
-    ScicosID cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren);
+    ScicosID cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren, bool clonePorts);
 
     template<typename T>
     void cloneProperties(model::BaseObject* initial, ScicosID clone)

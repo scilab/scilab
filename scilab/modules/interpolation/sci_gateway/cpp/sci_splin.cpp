@@ -152,7 +152,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
         else // undefined
         {
             char* pstType = wide_string_to_UTF8(wcsType);
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "splin", 3, pstType, "spline");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "splin", 3, pstType, "spline");
             FREE(pstType);
             return types::Function::Error;
         }
@@ -175,7 +175,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
 
             if (pDblDer->getSize() != 2)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d : A martix of size 2 expected.\n"), "splin", 4);
+                Scierror(999, _("%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"), "splin", 4);
                 return types::Function::Error;
             }
         }

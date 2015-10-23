@@ -157,9 +157,9 @@ tlistRef = tlist(["tl" "f1" "f2" "f3"], [], testHM, []);
 o.model.opar = tlistRef;
 assert_checkequal(o.model.opar, tlistRef);
 // With struct
-structRef = struct("f1", [], "f2", testHM, "f3", []);
-o.model.opar = structRef;
-assert_checkequal(o.model.opar, structRef);
+//structRef = struct("f1", [], "f2", testHM, "f3", []);
+//o.model.opar = structRef;
+//assert_checkequal(o.model.opar, structRef);
 
 // Test 'equations'
 o = VsourceAC("define")

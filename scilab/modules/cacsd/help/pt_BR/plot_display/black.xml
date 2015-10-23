@@ -112,7 +112,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="exemple"><![CDATA[
+        <programlisting role="example"><![CDATA[
     //Black diagram
     s=poly(0,'s');
     sl=syslin('c',5*(1+s)/(.1*s.^4+s.^3+15*s.^2+3*s+1))

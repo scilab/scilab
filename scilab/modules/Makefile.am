@@ -91,7 +91,8 @@ history_browser \
 preferences \
 xml \
 types \
-external_objects
+external_objects \
+slint
 
 if GUI
 SUBDIRS += external_objects_java
@@ -138,10 +139,10 @@ GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
 	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -155,7 +156,8 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
 	$(top_builddir)/modules/commons/libscicommons-disable.la \
-	$(top_builddir)/modules/preferences/libscipreferences-cli.la
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+	$(top_builddir)/modules/tclsci/libscitclsci-disable.la
 
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
@@ -192,7 +194,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
-	$(top_builddir)/modules/external_objects/libsciexternal_objects.la
+	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
+	$(top_builddir)/modules/slint/libscislint.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \

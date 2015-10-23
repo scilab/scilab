@@ -27,6 +27,22 @@ extern "C"
 std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
 std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
 
+static void sendExecDoneSignal(Runner* _pRunner)
+{
+    switch (_pRunner->getCommandOrigin())
+    {
+        case CONSOLE :
+        {
+            ThreadManagement::SendConsoleExecDoneSignal();
+            break;
+        }
+        case TCLSCI :
+        case NONE :
+        default :
+        {}
+    }
+}
+
 void StaticRunner::launch()
 {
     // get the runner to execute
@@ -36,9 +52,18 @@ void StaticRunner::launch()
     debugger::DebuggerMagager* manager = debugger::DebuggerMagager::getInstance();
 
     ConfigVariable::resetExecutionBreak();
+
     int oldMode = ConfigVariable::getPromptMode();
     symbol::Context* pCtx = symbol::Context::getInstance();
     int scope = pCtx->getScopeLevel();
+
+    // a TCL command display nothing
+    int iOldPromptMode = 0;
+    if (runMe->getCommandOrigin() == TCLSCI)
+    {
+        iOldPromptMode = ConfigVariable::getPromptMode();
+        ConfigVariable::setPromptMode(-1);
+    }
 
     try
     {
@@ -80,6 +105,11 @@ void StaticRunner::launch()
     }
     catch (const ast::InternalError& se)
     {
+        if (runMe->getCommandOrigin() == TCLSCI)
+        {
+            ConfigVariable::setPromptMode(iOldPromptMode);
+        }
+
         scilabErrorW(se.GetErrorMessage().c_str());
         scilabErrorW(L"\n");
         std::wostringstream ostr;
@@ -89,6 +119,11 @@ void StaticRunner::launch()
     }
     catch (const ast::InternalAbort& ia)
     {
+        if (runMe->getCommandOrigin() == TCLSCI)
+        {
+            ConfigVariable::setPromptMode(iOldPromptMode);
+        }
+
         // management of pause
         if (ConfigVariable::getPauseLevel())
         {
@@ -103,14 +138,17 @@ void StaticRunner::launch()
             pCtx->scope_end();
         }
 
-        if (runMe->isConsoleCommand())
-        {
-            ThreadManagement::SendConsoleExecDoneSignal();
-        }
+        // send the good signal about the end of execution
+        sendExecDoneSignal(runMe.get());
 
         //clean debugger step flag if debugger is not interrupted ( end of debug )
         manager->resetStep();
         throw ia;
+    }
+
+    if (runMe->getCommandOrigin() == TCLSCI)
+    {
+        ConfigVariable::setPromptMode(iOldPromptMode);
     }
 
     if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
@@ -130,10 +168,8 @@ void StaticRunner::launch()
     // reset error state when new prompt occurs
     ConfigVariable::resetError();
 
-    if (runMe->isConsoleCommand())
-    {
-        ThreadManagement::SendConsoleExecDoneSignal();
-    }
+    // send the good signal about the end of execution
+    sendExecDoneSignal(runMe.get());
 
     //clean debugger step flag if debugger is not interrupted ( end of debug )
     manager->resetStep();
@@ -167,8 +203,13 @@ bool StaticRunner::isInterruptibleCommand()
     return m_bInterruptibleCommand;
 }
 
+command_origin_t StaticRunner::getCommandOrigin()
+{
+    return m_RunMe.load()->getCommandOrigin();
+}
+
 void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
-                               bool _isPrioritaryThread, bool _isInterruptible, bool _isConsoleCommand)
+                               bool /*_isPrioritaryThread*/, bool _isInterruptible, command_origin_t _iCommandOrigin)
 {
     if (isRunnerAvailable())
     {
@@ -179,7 +220,7 @@ void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
     // lock runner to be sure we are waiting for
     // "AwakeRunner" signal before start execution
     ThreadManagement::LockRunner();
-    Runner *runMe = new Runner(_theProgram, _visitor, _isConsoleCommand, _isInterruptible);
+    Runner *runMe = new Runner(_theProgram, _visitor, _iCommandOrigin, _isInterruptible);
     setRunner(runMe);
 
     ThreadManagement::SendRunMeSignal();
@@ -211,4 +252,9 @@ int StaticRunner_isInterruptibleCommand(void)
 void StaticRunner_setInterruptibleCommand(int val)
 {
     StaticRunner::setInterruptibleCommand(val == 1);
+}
+
+command_origin_t StaticRunner_getCommandOrigin(void)
+{
+    return StaticRunner::getCommandOrigin();
 }

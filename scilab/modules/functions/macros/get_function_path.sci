@@ -31,7 +31,7 @@ function path = get_function_path(name)
     if libname <> [] then
         for i = 1:size(libname,"*")
             [funcnames, pathlib] = libraryinfo(libname(i));
-            path = [path ; pathlib + name + ".sci"];
+            path = [path ; fullfile(pathlib, name + ".sci")];
         end
         path = pathconvert(path,%F);
     end

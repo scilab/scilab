@@ -87,4 +87,5 @@
     <module name="ast" activate="yes"/>
     <module name="external_objects_java" activate="yes"/>
     <module name="mpi" activate="no"/>
+    <module name="slint" activate="yes"/>
 </modules>

@@ -398,35 +398,35 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
 void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
+    ss << "objectCreated" << "( " << uid << " , " << k << " )" << std::endl;
     log(LOG_DEBUG, ss);
 }
 
 void LoggerView::objectReferenced(const ScicosID& uid, kind_t k, unsigned refCount)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
+    ss << "objectReferenced" << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
     log(LOG_DEBUG, ss);
 }
 
 void LoggerView::objectUnreferenced(const ScicosID& uid, kind_t k, unsigned refCount)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
+    ss << "objectUnreferenced" << "( " << uid << " , " << k << " ) : " << refCount << std::endl;
     log(LOG_DEBUG, ss);
 }
 
 void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
+    ss << "objectDeleted" << "( " << uid << " , " << k << " )" << std::endl;
     log(LOG_DEBUG, ss);
 }
 
 void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u)
 {
     std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " , " << p << " ) : " << u << std::endl;
+    ss << "propertyUpdated" << "( " << uid << " , " << k << " , " << p << " ) : " << u << std::endl;
     log(LOG_TRACE, ss);
 }
 

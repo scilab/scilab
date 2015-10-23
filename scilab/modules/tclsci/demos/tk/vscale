@@ -41,7 +41,7 @@ proc setHeight {w height} {
     if {$y2 < 21} {
 	set y2 21
     }
-    ScilabEval "if (isdef('handle_demo_scale') & is_handle_valid(handle_demo_scale)) then demredraw($y2),end"
+    ScilabEval "if (isdef('handle_demo_scale') & is_handle_valid(handle_demo_scale)) then demredraw($y2),end" sync seq
     $w coords poly 15 20 35 20 35 $y2 45 $y2 25 $height 5 $y2 15 $y2 15 20
     $w coords line 15 20 35 20 35 $y2 45 $y2 25 $height 5 $y2 15 $y2 15 20
 }

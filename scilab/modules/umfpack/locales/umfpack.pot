@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/umfpack/sci_gateway/c/sci_res_with_prec.c, line: 171
 #, c-format
@@ -50,7 +50,7 @@ msgstr ""
 
 #
 # File: modules/umfpack/sci_gateway/c/sci_taucs_chfact.c, line: 165
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 220
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 242
 #, c-format
 msgid "%s: An error occurred: %s\n"
 msgstr ""
@@ -93,7 +93,7 @@ msgstr ""
 
 #
 # File: modules/umfpack/sci_gateway/c/sci_taucs_chsolve.c, line: 146
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 148
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 162
 # File: modules/umfpack/sci_gateway/c/sci_umf_lusolve.c, line: 210
 # File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 212
 # File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 250
@@ -151,8 +151,8 @@ msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 167
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 193
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 189
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 215
 # File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 307
 # File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 340
 #, c-format
@@ -160,24 +160,24 @@ msgid "%s: An error occurred: %s: %s\n"
 msgstr ""
 
 #
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 167
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 193
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 189
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 215
 # File: modules/umfpack/sci_gateway/c/sci_umfpack.c, line: 307
 msgid "symbolic factorization"
 msgstr ""
 
 #
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 201
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 223
 msgid "The (square) matrix appears to be singular."
 msgstr ""
 
 #
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 201
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 223
 msgid "Warning"
 msgstr ""
 
 #
-# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 220
+# File: modules/umfpack/sci_gateway/c/sci_umf_lufact.c, line: 242
 msgid "no place to store the LU pointer in ListNumeric."
 msgstr ""
 

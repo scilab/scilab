@@ -47,6 +47,10 @@ public class VectorOfScicosID {
     JavaControllerJNI.VectorOfScicosID_ensureCapacity(swigCPtr, this, n);
   }
 
+  public void resize(long n) {
+    JavaControllerJNI.VectorOfScicosID_resize(swigCPtr, this, n);
+  }
+
   public int size() {
     return JavaControllerJNI.VectorOfScicosID_size(swigCPtr, this);
   }
@@ -85,6 +89,12 @@ public class VectorOfScicosID {
 
   public boolean remove(long val) {
     return JavaControllerJNI.VectorOfScicosID_remove(swigCPtr, this, val);
+  }
+
+  public java.nio.ByteBuffer asByteBuffer(int i, int capacity) {
+    java.nio.ByteBuffer buffer = JavaControllerJNI.VectorOfScicosID_asByteBuffer(swigCPtr, this, i, capacity);
+    buffer.order(java.nio.ByteOrder.nativeOrder());
+    return buffer;
   }
 
 }

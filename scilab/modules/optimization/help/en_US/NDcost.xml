@@ -104,7 +104,7 @@ x0=[1;2;3;4];
 //
 // We suppose to have m measurements of x (that is y(1)) at different times
 // t_obs(1), ..., t_obs(m) called x_obs(1), ..., x_obs(m)  (in this example
-// these measuresments will be simulated), and we want to identify the parameters
+// these measurements will be simulated), and we want to identify the parameters
 // c and k by minimizing the sum of squared errors between x_obs and y1(t_obs,p).
 //
 // (*) This method is not the most efficient but it is easy to implement.
@@ -125,7 +125,7 @@ endfunction
 
 function r = cost_func(p, t_obs, x_obs, t0, y0)
   // This is the function to be minimized, that is the sum of the squared
-  // errors between what gives the model and the measuments.
+  // errors between what gives the model and the measurements.
   sol = uN(p, t_obs, t0, y0)
   e = sol(1,:) - x_obs
   r = sum(e.*e)

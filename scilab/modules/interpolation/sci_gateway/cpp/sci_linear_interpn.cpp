@@ -182,7 +182,7 @@ types::Function::ReturnValue sci_linear_interpn(types::typed_list &in, int _iRet
         else // undefined
         {
             char* pst = wide_string_to_UTF8(wcsType);
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "linear_interpn", 2 * n + 3, pst, "outmode");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "linear_interpn", 2 * n + 3, pst, "outmode");
             FREE(pst);
             return types::Function::Error;
         }

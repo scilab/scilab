@@ -47,6 +47,7 @@ public class PreLoadedElement extends AbstractElement<PreLoaded> {
      * Default constructor
      */
     public PreLoadedElement() {
+        super(null);
     }
 
     /**

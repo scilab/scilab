@@ -55,7 +55,7 @@
             <varlistentry>
                 <term>coords</term>
                 <listitem>
-                    <para>Matrix of point coordinatres in the simplex (optional).</para>
+                    <para>Matrix of point coordinates in the simplex (optional).</para>
                     <para>
                         This argument is expected to be <literal>nbve</literal>-by-<literal>n</literal> 
                         matrix, where <literal>n</literal> is the dimension of the space and <literal>nbve</literal>

@@ -39,7 +39,7 @@
             <varlistentry>
                 <term>key </term>
                 <listitem>
-                    <para>A string. The name of the key to quiery.</para>
+                    <para>A string. The name of the key to query.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

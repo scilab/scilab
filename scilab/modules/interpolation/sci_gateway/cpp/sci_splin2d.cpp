@@ -174,7 +174,7 @@ types::Function::ReturnValue sci_splin2d(types::typed_list &in, int _iRetCount, 
         else // undefined
         {
             char* pstType = wide_string_to_UTF8(wcsType);
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "splin2d", 4, pstType, "spline");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "splin2d", 4, pstType, "spline");
             FREE(pstType);
             return types::Function::Error;
         }

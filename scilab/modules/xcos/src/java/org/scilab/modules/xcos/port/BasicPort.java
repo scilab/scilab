@@ -124,6 +124,10 @@ public abstract class BasicPort extends XcosCell {
         setStyle(style);
         setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
         setOrientation(orientation);
+
+        boolean isImplicit = getType() == Type.IMPLICIT;
+        JavaController controller = new JavaController();
+        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
     }
 
     /**

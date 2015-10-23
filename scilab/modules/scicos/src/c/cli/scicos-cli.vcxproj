@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -273,21 +273,43 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_pointer_xproperty.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_debug.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_debug_count.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_log.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_new.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_setfield.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_time.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_set_blockerror.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_model2blk.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_set_xproperty.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_sig2data.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_vec2var.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_validvar.cpp" />
+    <ClCompile Include="..\..\cpp\Controller.cpp" />
+    <ClCompile Include="..\..\cpp\controller_helpers.cpp" />
     <ClCompile Include="..\..\cpp\il_sim.cpp" />
     <ClCompile Include="..\..\cpp\il_state.cpp" />
     <ClCompile Include="..\..\cpp\createblklist.cpp" />
     <ClCompile Include="..\..\cpp\extractblklist.cpp" />
+    <ClCompile Include="..\..\cpp\LoggerView.cpp" />
+    <ClCompile Include="..\..\cpp\Model.cpp" />
+    <ClCompile Include="..\..\cpp\Model_getObjectProperties.cpp" />
+    <ClCompile Include="..\..\cpp\Model_setObjectProperties.cpp" />
     <ClCompile Include="..\..\cpp\sciblk2.cpp" />
     <ClCompile Include="..\..\cpp\sciblk4.cpp" />
     <ClCompile Include="..\..\cpp\var2vec.cpp" />
     <ClCompile Include="..\..\cpp\vec2var.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\Adapters.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\BlockAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\CprAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\DiagramAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\GraphicsAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\LinkAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\ModelAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\ParamsAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\ScsAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\StateAdapter.cpp" />
+    <ClCompile Include="..\..\cpp\view_scilab\TextAdapter.cpp" />
     <ClCompile Include="..\ddaskr.c" />
     <ClCompile Include="..\DllmainScicos.c" />
     <ClCompile Include="..\ezxml.c" />
@@ -306,12 +328,36 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\var2sci.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\includes\Controller.hxx" />
+    <ClInclude Include="..\..\..\includes\Model.hxx" />
+    <ClInclude Include="..\..\..\includes\model\BaseObject.hxx" />
+    <ClInclude Include="..\..\..\includes\View.hxx" />
+    <ClInclude Include="..\..\..\includes\view_scilab\Adapters.hxx" />
+    <ClInclude Include="..\..\cpp\controller_helpers.hxx" />
     <ClInclude Include="..\..\cpp\createblklist.hxx" />
     <ClInclude Include="..\..\cpp\extractblklist.hxx" />
     <ClInclude Include="..\..\cpp\copyvarfromtlist.hxx" />
+    <ClInclude Include="..\..\cpp\LoggerView.hxx" />
+    <ClInclude Include="..\..\cpp\model\Annotation.hxx" />
+    <ClInclude Include="..\..\cpp\model\Block.hxx" />
+    <ClInclude Include="..\..\cpp\model\Diagram.hxx" />
+    <ClInclude Include="..\..\cpp\model\Link.hxx" />
+    <ClInclude Include="..\..\cpp\model\Port.hxx" />
     <ClInclude Include="..\..\cpp\var2vec.hxx" />
     <ClInclude Include="..\..\cpp\vec2var.hxx" />
     <ClInclude Include="..\..\..\includes\dynlib_scicos.h" />
+    <ClInclude Include="..\..\cpp\view_scilab\BaseAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\BlockAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\CprAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\DiagramAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\GraphicsAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\LinkAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\ModelAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\ParamsAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\ports_management.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\ScsAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\StateAdapter.hxx" />
+    <ClInclude Include="..\..\cpp\view_scilab\TextAdapter.hxx" />
     <ClInclude Include="..\ddaskr.h" />
     <ClInclude Include="..\ezxml.h" />
     <ClInclude Include="..\..\..\includes\gw_scicos.h" />

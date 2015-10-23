@@ -331,6 +331,7 @@ struct options
         types::Double* ThreeD2 = new types::Double(33);
         ThreeDField->append(ThreeD2);
         Scsopt->append(ThreeDField);
+        ThreeDField->killMe();
 
         types::Double* BackgroundField = new types::Double(1, 2);
         BackgroundField->set(0, 8);
@@ -356,6 +357,7 @@ struct options
         ID2->set(3, 1);
         IDField->append(ID2);
         Scsopt->append(IDField);
+        IDField->killMe();
 
         types::Double* CmapField = new types::Double(1, 3);
         CmapField->set(0, 0.8);

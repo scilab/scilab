@@ -53,11 +53,13 @@ public class XcosDelegates {
         diag.installListeners();
 
         final XcosFileType filetype = XcosFileType.findFileType(xcosFile);
-        filetype.load(xcosFile, diag);
-
-        final mxGraphComponent graphComponent = diag.getAsComponent();
-
-        final BufferedImage image = mxCellRenderer.createBufferedImage(diag, null, 1, null, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
+        // FIXME load file
+        //        filetype.load(xcosFile, diag);
+        //
+        //        final mxGraphComponent graphComponent = diag.getAsComponent();
+        //
+        //        final BufferedImage image = mxCellRenderer.createBufferedImage(diag, null, 1, null, graphComponent.isAntiAlias(), null, graphComponent.getCanvas());
+        final BufferedImage image = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
         ImageIO.write(image, "png", imageFile);
 
         controller.deleteObject(diag.getUID());

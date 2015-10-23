@@ -367,6 +367,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
 HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
@@ -642,6 +643,7 @@ libsciio_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/hdf5/includes \
+    -I$(top_srcdir)/modules/tclsci/includes \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

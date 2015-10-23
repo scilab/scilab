@@ -15,8 +15,197 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
+# File: modules/tclsci/sci_gateway/c/sci_TCL_DeleteInterp.c, line: 38
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 67
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalStr.c, line: 64
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistArray.c, line: 61
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistInterp.c, line: 49
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 60
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 61
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 46
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 59
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 78
+#, c-format
+msgid "%s: Error main TCL interpreter not initialized.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_DeleteInterp.c, line: 57
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 58
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 97
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalStr.c, line: 83
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistArray.c, line: 54
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistArray.c, line: 81
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistInterp.c, line: 43
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 53
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 81
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 55
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 80
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 90
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 66
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 105
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 156
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 52
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 80
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 53
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 69
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 102
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_DeleteInterp.c, line: 65
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 106
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalStr.c, line: 90
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistArray.c, line: 90
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 91
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 88
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 75
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 90
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 113
+#, c-format
+msgid "%s: No such slave interpreter.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_DeleteInterp.c, line: 76
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 123
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 148
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalStr.c, line: 99
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistArray.c, line: 97
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistArray.c, line: 122
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistInterp.c, line: 69
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 98
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 123
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 94
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 180
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 131
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 81
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 208
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 97
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 122
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 121
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 75
+#, c-format
+msgid "%s: File %s not found.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalFile.c, line: 139
+#, c-format
+msgid ""
+"%s, at line %i of file %s\n"
+"\t%s.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalStr.c, line: 57
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 119
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalStr.c, line: 162
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistArray.c, line: 113
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistInterp.c, line: 57
+# File: modules/tclsci/sci_gateway/c/sci_TCL_ExistVar.c, line: 113
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 124
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 157
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 61
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 110
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 220
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UnsetVar.c, line: 112
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 153
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_EvalStr.c, line: 175
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: String or vector of strings "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 137
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 143
+# File: modules/tclsci/src/cpp/ScilabEval.cpp, line: 41
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVar.c, line: 172
+#, c-format
+msgid "%s: Could not read Tcl Variable.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 44
+msgid "Alpha Release"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 47
+msgid "Beta Release"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 50
+msgid "Final Release"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 53
+msgid "Unknown Release"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_GetVersion.c, line: 124
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 171
+msgid "This function doesn't work with Complex.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 181
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 189
+msgid "[] doesn't work with Tcl/Tk.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_SetVar.c, line: 212
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/sci_gateway/c/sci_TCL_UpVar.c, line: 162
+#, c-format
+msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgstr ""
+
+#
 # File: modules/tclsci/src/c/EnvTclTk.c, line: 103
 # File: modules/tclsci/src/c/EnvTclTk.c, line: 112
 # File: modules/tclsci/src/c/EnvTclTk.c, line: 121
@@ -110,21 +299,27 @@ msgid "Tcl Error: %s\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/setvar.c, line: 49
+# File: modules/tclsci/src/c/setvar.c, line: 40
 msgid "Variable too long.\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/c/setvar.c, line: 55
-# File: modules/tclsci/src/c/setvar.c, line: 83
-# File: modules/tclsci/src/c/setvar.c, line: 109
-# File: modules/tclsci/src/c/setvar.c, line: 141
+# File: modules/tclsci/src/c/setvar.c, line: 46
+# File: modules/tclsci/src/c/setvar.c, line: 70
+# File: modules/tclsci/src/c/setvar.c, line: 96
+# File: modules/tclsci/src/c/setvar.c, line: 128
 #, c-format
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr ""
 
 #
-# File: modules/tclsci/src/notclsci/notclsci.c, line: 39
+# File: modules/tclsci/src/cpp/ScilabEval.cpp, line: 126
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr ""
+
+#
+# File: modules/tclsci/src/notclsci/notclsci.cpp, line: 51
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr ""
 

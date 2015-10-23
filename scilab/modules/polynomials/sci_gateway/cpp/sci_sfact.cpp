@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
 
         if (2 * iDegD2 != iDegree)
         {
-            Scierror(999, _("%s: Wrong value for input argument #%d: A symetric polynom expected.\n"), "sfact", 1);
+            Scierror(999, _("%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"), "sfact", 1);
             return types::Function::Error;
         }
 
@@ -80,7 +80,7 @@ types::Function::ReturnValue sci_sfact(types::typed_list &in, int _iRetCount, ty
         {
             if (pdblCoef[i] != pdblCoef[iDegree - i])
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A symetric polynom expected.\n"), "sfact", 1);
+                Scierror(999, _("%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"), "sfact", 1);
                 return types::Function::Error;
             }
         }

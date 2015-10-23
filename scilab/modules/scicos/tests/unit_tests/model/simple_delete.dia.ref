@@ -64,6 +64,7 @@ Xcos trace: propertyUpdated( 3 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , INPUTS ) : NO_CHANGES
@@ -139,6 +140,7 @@ Xcos trace: propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES

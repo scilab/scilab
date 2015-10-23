@@ -112,7 +112,7 @@ void OptimizationFunctions::execCostf(int *ind, int *n, double *x, double *f, do
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringOptimCostfFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringOptimCostfFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringOptimCostfFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((costf_t)(func->functionPtr))(ind, n, x, f, g, ti, tr, td);
@@ -141,7 +141,7 @@ void OptimizationFunctions::execFsolveFct(int* n, double* x, double* v, int* ifl
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveFctFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFsolveFctFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveFctFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((fct_t)(func->functionPtr))(n, x, v, iflag);
@@ -168,7 +168,7 @@ void OptimizationFunctions::execFsolveJac(int* n, double* x, double* v, double* 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFsolveJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveJacFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         // c or fortran jac fuction are the same proto as fct
@@ -199,7 +199,7 @@ void OptimizationFunctions::execLsqrsolveFct(int* m, int* n, double* x, double* 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveFctFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFsolveFctFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveFctFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         ((lsqrfct_t)(func->functionPtr))(m, n, x, v, iflag);
@@ -226,7 +226,7 @@ void OptimizationFunctions::execLsqrsolveJac(int* m, int* n, double* x, double* 
         ConfigVariable::EntryPointStr* func = ConfigVariable::getEntryPoint(m_pStringFsolveJacFunctionDyn->get(0));
         if (func == NULL)
         {
-            sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFsolveJacFunctionDyn->get(0));
+            sprintf(errorMsg, _("Undefined function '%ls'.\n"), m_pStringFsolveJacFunctionDyn->get(0));
             throw ast::InternalError(errorMsg);
         }
         // c or fortran jac fuction are the same proto as fct

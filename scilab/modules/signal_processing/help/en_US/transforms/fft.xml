@@ -342,7 +342,7 @@ X = fftshift(fft(A));
 set(gcf(),"color_map",jetcolormap(128));
 clf;grayplot(0:255,0:255,abs(X)')
      ]]></programlisting>
-        <para>mupliple fft</para>
+        <para>multiple fft</para>
         <programlisting role="example"><![CDATA[
 //simple case, 3 1-D fft at a time
 N=2048;

@@ -1,6 +1,7 @@
 //
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - DIGITEO - Antoine ELIAS
+// Copyright (C) 2015 - Scilab Enterprises - Clement DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -29,16 +30,28 @@ function result = importXcosDiagram(xcosFile)
             return;
         end
         // construct a full path string
-        fullPathName = get_absolute_file_path(fname + extension) + fname + extension;
+        fullPathName = get_absolute_file_path(fname + extension) + fname + convstr(extension, "l");
         mclose(a);
     else
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected." + "\n"), "importXcosDiagram", 1));
         return;
     end
 
-    // import the real file
-    scs_m = scicos_diagram();
-    convertStatus = xcos(fullPathName, scs_m);
+    // decode scilab managed file format
+    [path,fname,extension] = fileparts(fullPathName);
+    select extension
+    case "sod"  then
+        load(fullPathName, "scs_m");
+    case "h5"   then
+        load(fullPathName, "scs_m");
+    case "cosf" then
+        exec(fullPathName);
+    case "cos"  then
+        error(msprintf(gettext("%s: Not supported format %s.\n"), "importXcosDiagram", extension));
+    else
+        // on the Java side
+        scs_m = xcosDiagramToScilab(fullPathName);
+    end
 
     //return scs_m in Scilab environment
     result = %t;

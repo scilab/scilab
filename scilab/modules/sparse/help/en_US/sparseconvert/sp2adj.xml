@@ -70,7 +70,7 @@
         <title>Description</title>
         <para>
             sp2adj converts a sparse matrix into its adjacency format.
-            The values in the adjacency format are stored colum-by-column.
+            The values in the adjacency format are stored column-by-column.
             This is why this format is sometimes called "Compressed sparse column" or CSC.
         </para>
     </refsection>
@@ -80,7 +80,7 @@
             In the following example, we create a full matrix, which entries
             goes from 1 to 10.
             Then we convert it into a sparse matrix, which removes the zeros.
-            Finally, we compute the adjacency represention of this matrix.
+            Finally, we compute the adjacency representation of this matrix.
             The matrix v contains only the nonzero entries of A.
         </para>
         <programlisting role="example"><![CDATA[

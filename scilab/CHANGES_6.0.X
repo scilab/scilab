@@ -4,6 +4,9 @@
 New Features
 =============
 
+* SSE2, Streaming SIMD Extensions 2 support is now mandatory to run Scilab on 
+  Linux i686.
+
 * valgrind error detection added to test_run (Linux Only)
 
 * Introduction of a call stack limit. Default maximum depth is setup to 1000 and
@@ -18,16 +21,9 @@ Deprecated Behaviors
 Scilab Bug Fixes
 ================
 
+* Bug #11511 fixed - error() did non accept string matrix (non regression test).
+
 * Bug #12928 fixed - int functions with %nan and %inf return wrong values.
-
-* Bug #14059 fixed - Lack of performance on deletion of matrix elements.
-
-* Bug #14055 fixed - overload on matrix concatenation did not called with [].
-
-* Bug #14028 fixed - force flag of genlib did not rebuild bin file.
-
-* Bug #14024 fixed - Print of macrofile display a debug message
-                     instead of macro prototype.
 
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
 
@@ -39,17 +35,33 @@ Scilab Bug Fixes
 
 * Bug #13853 fixed - plzr() returned wrong results for discrete-time systems with a numeric time step.
 
+* Bug #13862 fixed - There was no lazy evaluation of 'or' operands in 'if' tests.
+
+* Bug #13864 fixed - macro %l_isequal was useless in Scilab 6.
+
 * Bug #13872 fixed - Non regression test added for unique function (the indices returned were wrong)
 
 * Bug #13890 fixed - getd did not return loaded symbols in previous scope.
 
+* Bug #13893 fixed - simp() function did not set a rational denominator at 1 when numerator was equal to zero.
+
 * Bug #13894 fixed - Default working directory of the previous session did not work.
 
+* Bug #13903 fixed - get_function_path() returned a path with a missing file separator.
+
 * Bug #13907 fixed - Avoids the gray background on the right panel of the palette Browser.
+
+* Bug #13908 fixed - part(text, n:$) was very slow.
+
+* Bug #13919 fixed - Scilab parsed "hidden" as a reserved keyword but it is not used.
+
+* Bug #13920 fixed - `getscilabkeywords` help page should be in the "Scilab keywords" section.
 
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
 
 * Bug #13983 fixed - who_user returned wrong values.
+
+* Bug #13990 fixed - `gettext` did not manage the added '_W' macro.
 
 * Bug #14020 fixed - Incorrect carriage return ascii code.
 
@@ -57,7 +69,12 @@ Scilab Bug Fixes
 
 * Bug #14023 fixed - It was not possible to concatenate cells.
 
+* Bug #14024 fixed - Print of macrofile display a debug message
+                     instead of macro prototype.
+
 * Bug #14025 fixed - head_comments did not take into account compiled functions.
+
+* Bug #14028 fixed - force flag of genlib did not rebuild bin file.
 
 * Bug #14036 fixed - tag and user_data properties were not displayed and not documented for light entity.
 
@@ -69,9 +86,15 @@ Scilab Bug Fixes
 
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.
 
+* Bug #14055 fixed - overload on matrix concatenation did not called with [].
+
 * Bug #14057 fixed - grand(m,n) returned a wrong error and grand(m,n,p) called an overloading function instead of returning an error.
 
 * Bug #14058 fixed - Scilab crashed with 'file("close", file())' instruction
+
+* Bug #14059 fixed - Lack of performance on deletion of matrix elements.
+
+* Bug #14065 fixed - Change "java size" in points in graphics font help page.
 
 * Bug #14082 fixed - m=1; m()=1; made Scilab crash.
 
@@ -87,6 +110,8 @@ Scilab Bug Fixes
 
 * Bug #14113 fixed - Scilab 6 did not detect infinite loop.
 
+* Bug #14135 fixed - crash when running "Graphics -> Matplot -> Java Image" demonstration.
+
 * Bug #14141 fixed - recursive insertion: gcf().attribute=value => "Wrong insertion : function or macro are not expected".
 
 * Bug #14144 fixed - Scilab crashed with int64(2^63).
@@ -98,6 +123,16 @@ Scilab Bug Fixes
 * Bug #14156 fixed - mfscanf returned an empty matrix when datafile contained a header.
 
 * Bug #14159 fixed - Matplot crashed Scilab on boolean input.
+
+* Bug #14199 fixed - sqrt returned wrong dimension results on matrix with more than dimensions.
+
+* Bug #14203 fixed - Improve some error messages, some help pages and some comments.
+
+* Bug #14205 fixed - Console crash when assigning uint32 numbers to double matrix.
+
+* Bug #14209 fixed - 1:245 created infinite loop.
+
+* Bug #14212 fixed - Scilab 6 did not load array of struct from Scilab 5.5 files correctly
 
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab

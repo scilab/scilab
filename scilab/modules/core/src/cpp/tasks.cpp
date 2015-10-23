@@ -137,7 +137,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 ** Execute the stored AST.
 */
 void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose,
-                 bool isInterruptibleThread, bool isPrioritaryThread, bool isConsoleCommand)
+                 bool isInterruptibleThread, bool isPrioritaryThread, command_origin_t iCommandOrigin)
 {
     if (tree == NULL)
     {
@@ -191,7 +191,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         exec = (ast::RunVisitor*)ConfigVariable::getDefaultVisitor();
     }
 
-    StaticRunner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, isConsoleCommand);
+    StaticRunner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, iCommandOrigin);
     //DO NOT DELETE tree or newTree, they was deleted by Runner or previously;
 
     if (timed)

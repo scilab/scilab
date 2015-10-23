@@ -23,97 +23,134 @@
 #include "TCL_getErrorLine.h"
 #include "getshortpathname.h"
 
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_EvalFile(char *fname, unsigned long l)
+int sci_TCL_EvalFile(char *fname, void* pvApiCtx)
 {
-    /*    execute Tcl scripts
-        int m1, n1, l1;
-        int m2, n2, l2;
-        int RET;
+    SciErr sciErr;
 
-        Tcl_Interp *TCLinterpreter = NULL;
+    int* piAddrl1 = NULL;
+    char* l1 = NULL;
+    int* piAddrl2 = NULL;
+    char* l2 = NULL;
 
-        CheckRhs(1, 2);
-        CheckLhs(1, 1);
+    int m1, n1;
+    int m2, n2;
+    int RET;
 
-        if (GetType(1) == sci_strings)
+    Tcl_Interp *TCLinterpreter = NULL;
+
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 1, 1);
+
+    if (checkInputArgumentType(pvApiCtx, 1, sci_strings))
+    {
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+        if (sciErr.iErr)
         {
-            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-            // Check if there is a global interpreter
-            TCLinterpreter = getTclInterp();
-            releaseTclInterp();
-            if (TCLinterpreter == NULL)
-            {
-                Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
-                return 0;
-            }
+            printError(&sciErr, 0);
+            return 1;
+        }
 
-            // Check if the file to load exists
-            if (!FileExist(cstk(l1)))
-            {
-                Scierror(999, _("%s: File %s not found.\n"), fname, cstk(l1));
-                return 0;
-            }
+        // Retrieve a matrix of double at position 1.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl1, &l1))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            return 1;
+        }
 
-            if (Rhs == 2)
+        // Check if there is a global interpreter
+        TCLinterpreter = getTclInterp();
+        releaseTclInterp();
+        if (TCLinterpreter == NULL)
+        {
+            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            freeAllocatedSingleString(l1);
+            return 0;
+        }
+
+        // Check if the file to load exists
+        if (!FileExist((l1)))
+        {
+            Scierror(999, _("%s: File %s not found.\n"), fname, (l1));
+            freeAllocatedSingleString(l1);
+            return 0;
+        }
+
+        if (nbInputArgument(pvApiCtx) == 2)
+        {
+            // two arguments given - get a pointer on the slave interpreter
+            if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
             {
-                // two arguments given - get a pointer on the slave interpreter
-                if (GetType(2) == sci_strings)
+                sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+                if (sciErr.iErr)
                 {
-                    GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
-                    TCLinterpreter = Tcl_GetSlave(getTclInterp(), cstk(l2));
-                    releaseTclInterp();
-                    if (TCLinterpreter == NULL)
-                    {
-                        Scierror(999, _("%s: No such slave interpreter.\n"), fname);
-                        return 0;
-                    }
-
-                    {
-                        BOOL bOK = FALSE;
-                        char *sz = cstk(l1);
-                        char *szShort = getshortpathname(sz, &bOK);
-                        RET = sendTclFileToSlave(szShort, cstk(l2));
-                        FREE(szShort);
-                    }
+                    freeAllocatedSingleString(l1);
+                    printError(&sciErr, 0);
+                    return 1;
                 }
-                else
+
+                // Retrieve a matrix of double at position 2.
+                if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                    freeAllocatedSingleString(l1);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+                    return 1;
+                }
+
+                TCLinterpreter = Tcl_GetSlave(getTclInterp(), (l2));
+                releaseTclInterp();
+                if (TCLinterpreter == NULL)
+                {
+                    freeAllocatedSingleString(l1);
+                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
                     return 0;
                 }
+
+                {
+                    BOOL bOK = FALSE;
+                    char *sz = (l1);
+                    char *szShort = getshortpathname(sz, &bOK);
+                    RET = sendTclFileToSlave(szShort, (l2));
+                    FREE(szShort);
+                }
+
+                freeAllocatedSingleString(l2);
             }
             else
             {
-                BOOL bOK = FALSE;
-                char *sz = cstk(l1);
-                char *szShort = getshortpathname(sz, &bOK);
-                RET = sendTclFile(szShort);
-                FREE(szShort);
-            }
-
-            if (RET == TCL_ERROR)
-            {
-                const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
-                if (Err > 0)
-                {
-                    sciprint(_("%s, at line %i of file %s\n	%s.\n"), fname, TCL_getErrorLine(TCLinterpreter), cstk(l1), (char *)trace);
-                }
-                else
-                {
-                    Scierror(999, _("%s, at line %i of file %s\n	%s.\n"), fname, TCL_getErrorLine(TCLinterpreter), cstk(l1), (char *)trace);
-                    return 0;
-                }
+                freeAllocatedSingleString(l1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+                return 0;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+            BOOL bOK = FALSE;
+            char *sz = (l1);
+            char *szShort = getshortpathname(sz, &bOK);
+            RET = sendTclFile(szShort);
+            FREE(szShort);
+        }
+
+        if (RET == TCL_ERROR)
+        {
+            const char *trace = Tcl_GetVar(TCLinterpreter, "errorInfo", TCL_GLOBAL_ONLY);
+            Scierror(999, _("%s, at line %i of file %s\n	%s.\n"), fname, TCL_getErrorLine(TCLinterpreter), (l1), (char *)trace);
+            freeAllocatedSingleString(l1);
             return 0;
         }
 
-        LhsVar(1) = 0;
-        PutLhsVar();
-    */    return 0;
+        freeAllocatedSingleString(l1);
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
+        return 0;
+    }
+
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -29,15 +29,12 @@ class Annotation: public BaseObject
 {
 public:
     Annotation(): BaseObject(ANNOTATION), m_parentDiagram(ScicosID()), m_parentBlock(ScicosID()),
-        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), m_style(""), m_relatedTo(ScicosID())
+        m_description("Text"), m_font("2"), m_font_size("1"), m_style(""), m_relatedTo(ScicosID()), m_uid()
     {
-        std::vector<double> geom (4, 0);
-        geom[2] = 2;
-        geom[3] = 1;
-        m_geometry = Geometry(geom);
+        m_geometry = {0, 0, 2, 1};
     };
     Annotation(const Annotation& o) : BaseObject(ANNOTATION), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_geometry(o.m_geometry),
-        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_style(o.m_style), m_relatedTo(o.m_relatedTo) {};
+        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_style(o.m_style), m_relatedTo(o.m_relatedTo), m_uid(o.m_uid) {};
     ~Annotation() = default;
 
 private:
@@ -177,6 +174,22 @@ private:
         return SUCCESS;
     }
 
+    void getUID(std::string& data) const
+    {
+        data = m_uid;
+    }
+
+    update_status_t setUID(const std::string& data)
+    {
+        if (data == m_uid)
+        {
+            return NO_CHANGES;
+        }
+
+        m_uid = data;
+        return SUCCESS;
+    }
+
 private:
     ScicosID m_parentDiagram;
     ScicosID m_parentBlock;
@@ -187,6 +200,7 @@ private:
     std::string m_font_size;
     std::string m_style;
     ScicosID m_relatedTo;
+    std::string m_uid;
 };
 
 } /* namespace model */

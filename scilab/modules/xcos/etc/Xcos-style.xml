@@ -567,7 +567,6 @@
         <add as="image" value="$SCILAB/modules/xcos/images/blocks/ASCOPE.svg"/>
     </add>
     <add as="AFFICH_m" extend="Affiche"/>
-    <add as="AFFICH_f" extend="Affiche"/>
     <add as="TRASH_f" extend="blockWithLabel">
         <add as="displayedLabel" value="Trash"/>
     </add>

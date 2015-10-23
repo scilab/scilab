@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -520,6 +520,8 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "typesjni", "modules\types\typesjni\typesjni.vcxproj", "{FC2F9DEC-EF14-401B-A0A9-CCD88552A359}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mpi", "modules\mpi\mpi.vcxproj", "{5E726409-247A-464A-A994-6E6A7A02A981}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slint", "modules\slint\slint.vcxproj", "{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1705,6 +1707,14 @@ Global
 		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|Win32.Build.0 = Release|Win32
 		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|x64.ActiveCfg = Release|x64
 		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|x64.Build.0 = Release|x64
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Debug|Win32.Build.0 = Debug|Win32
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Debug|x64.ActiveCfg = Debug|x64
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Debug|x64.Build.0 = Debug|x64
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|Win32.ActiveCfg = Release|Win32
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|Win32.Build.0 = Release|Win32
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|x64.ActiveCfg = Release|x64
+		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

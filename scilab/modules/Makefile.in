@@ -288,8 +288,8 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph ast \
 	scinotes parallel modules_manager ui_data history_browser \
-	preferences xml types external_objects external_objects_java \
-	scicos_blocks scicos xcos mpi . javasci
+	preferences xml types external_objects slint \
+	external_objects_java scicos_blocks scicos xcos mpi . javasci
 am__DIST_COMMON = $(srcdir)/Makefile.in \
 	$(top_srcdir)/config/mkinstalldirs
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
@@ -392,6 +392,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
 HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
@@ -626,7 +627,7 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	hdf5 graph ast scinotes parallel modules_manager ui_data \
-	history_browser preferences xml types external_objects \
+	history_browser preferences xml types external_objects slint \
 	$(am__append_1) $(am__append_2) $(am__append_3) \
 	$(am__append_4) . $(am__append_5)
 
@@ -650,10 +651,10 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
 	$(top_builddir)/modules/preferences/libscipreferences.la \
 	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la
+	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -667,7 +668,8 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
 	$(top_builddir)/modules/commons/libscicommons-disable.la \
-	$(top_builddir)/modules/preferences/libscipreferences-cli.la
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+	$(top_builddir)/modules/tclsci/libscitclsci-disable.la
 
 ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/mexlib/libmex.la \
@@ -704,7 +706,7 @@ ENGINE_LIBS = $(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
-	$(am__append_6)
+	$(top_builddir)/modules/slint/libscislint.la $(am__append_6)
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \

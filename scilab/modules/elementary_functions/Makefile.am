@@ -278,7 +278,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/danints.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_sqrt.c \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
     sci_gateway/c/sci_nearfloat.c \
@@ -336,7 +335,8 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_tril.cpp \
     sci_gateway/cpp/sci_real.cpp \
     sci_gateway/cpp/sci_round.cpp \
-    sci_gateway/cpp/sci_sign.cpp
+    sci_gateway/cpp/sci_sign.cpp \
+    sci_gateway/cpp/sci_sqrt.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

@@ -729,16 +729,16 @@ CXXFLAGS="$saved_cppflags"
 
 ################
 ## SSE
-## By default, for x86 CPU, enable the SSE.
+## By default, for x86 CPU, enable the SSE2.
 ## Note that it is already the case with 64 bits CPU
 ## (these extensions are enabled by default by gcc)
 ################
 
 case "$host" in
      i*86-linux-gnu|i*86-*-linux-gnu)
-        SSE_CFLAGS="-msse"
-        SSE_FFLAGS="-msse"
-        SSE_CXXFLAGS="-msse"
+        SSE_CFLAGS="-msse2"
+        SSE_FFLAGS="-msse2"
+        SSE_CXXFLAGS="-msse2"
      ;;
 esac
 
@@ -1152,6 +1152,14 @@ Unit tests],"yes")
         fi
         JUNIT4=$PACKAGE_JAR_FILE
         AC_SUBST(JUNIT4)
+        
+        # hamcrest (junit4 dependency)
+        AC_JAVA_CHECK_PACKAGE([hamcrest-all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
+        if test -z "$PACKAGE_JAR_FILE"; then
+            AC_JAVA_CHECK_PACKAGE([hamcrest/all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
+        fi
+        HAMCREST=$PACKAGE_JAR_FILE
+        AC_SUBST(HAMCREST)
 
         # Cobertura (java code coverage)
         AC_JAVA_CHECK_PACKAGE([cobertura],[net.sourceforge.cobertura.merge.Main],[cobertura - Java code coverage],"yes")
@@ -2056,6 +2064,7 @@ modules/preferences/Makefile
 modules/xml/Makefile
 modules/external_objects/Makefile
 modules/external_objects_java/Makefile
+modules/slint/Makefile
 modules/Makefile
 Makefile
 scilab.pc
@@ -2321,6 +2330,7 @@ echo "  Checkstyle .......... = $CHECKSTYLE"
 echo "  Commons-beanutils ... = $COMMONS_BEANUTILS"
 echo "  Antlr ............... = $ANTLR"
 echo "  Junit4 .............. = $JUNIT4"
+echo "  Hamcrest ............ = $HAMCREST"
 echo "  Cobertura ........... = $COBERTURA"
 echo "  splint .............. = $SPLINT"
 

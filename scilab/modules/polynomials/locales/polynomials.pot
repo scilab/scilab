@@ -15,141 +15,141 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 45
-# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 51
-# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 50
+# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 44
+# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 53
+# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 52
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 63
+# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 61
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 69
+# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 67
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 82
-# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 92
-# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 119
+# File: modules/polynomials/sci_gateway/cpp/sci_bezout.cpp, line: 80
+# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 94
+# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 118
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A polynom '%ls' expected.\n"
+msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 42
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 46
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 51
-# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 44
+# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 41
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 45
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 54
+# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 46
 # File: modules/polynomials/sci_gateway/cpp/sci_simpMode.cpp, line: 28
-# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 35
+# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 34
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 48
-# File: modules/polynomials/sci_gateway/cpp/sci_degree.cpp, line: 39
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 52
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 57
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 47
-# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 71
+# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 47
+# File: modules/polynomials/sci_gateway/cpp/sci_degree.cpp, line: 38
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 51
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 60
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 46
+# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 72
 # File: modules/polynomials/sci_gateway/cpp/sci_simpMode.cpp, line: 34
-# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 41
+# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 40
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 56
-# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 64
+# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 55
+# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 63
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 76
+# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 75
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real vector expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 86
+# File: modules/polynomials/sci_gateway/cpp/sci_coeff.cpp, line: 85
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive vector expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 69
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 83
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 66
-# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 68
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 67
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 81
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 69
+# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 76
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 80
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 74
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 83
 #, c-format
 msgid "%s: Wrong value for input argument #%d : %s or %s expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 90
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 73
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 114
-# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 75
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 88
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 76
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 117
+# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 73
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 98
-# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 85
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 96
+# File: modules/polynomials/sci_gateway/cpp/sci_varn.cpp, line: 83
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Valid variable name expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 176
+# File: modules/polynomials/sci_gateway/cpp/sci_poly.cpp, line: 173
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 62
-# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 79
+# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 64
+# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 80
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A polynom expected.\n"
+msgid "%s: Wrong type for input argument #%d: A polynomial expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 69
-# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 86
+# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 71
+# File: modules/polynomials/sci_gateway/cpp/sci_pppdiv.cpp, line: 88
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 138
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 140
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : If algo is %s, a real is expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 163
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 165
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : If algo is %s, a degree less than "
@@ -157,44 +157,45 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 189
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 191
 #, c-format
 msgid "%s: Convergence problem...\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 193
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 195
 #, c-format
 msgid "%s: Leading coefficient is zero.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 197
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 199
 #, c-format
 msgid "%s: Too high degree (max 100).\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 266
+# File: modules/polynomials/sci_gateway/cpp/sci_roots.cpp, line: 268
 #, c-format
 msgid "%s: unable to find spec function\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 62
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 60
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 77
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 85
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 75
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 83
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A symetric polynom expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 104
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 102
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non negative or null value expected "
@@ -202,14 +203,14 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 111
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 159
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 109
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 158
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Convergence problem.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 127
+# File: modules/polynomials/sci_gateway/cpp/sci_sfact.cpp, line: 125
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
@@ -222,13 +223,13 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 89
+# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 90
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
 msgstr ""
 
 #
-# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 199
+# File: modules/polynomials/sci_gateway/cpp/sci_simp.cpp, line: 198
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A non null denominator expected.\n"
@@ -246,12 +247,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
 
-# File: modules/polynomials/macros/%r_simp.sci, line: 17
-#, c-format
-msgid "%s : Wrong type for input arguments #%d: A rational expected.\n"
-msgstr ""
-
-#
 # File: modules/polynomials/macros/coffg.sci, line: 23
 # File: modules/polynomials/macros/coffg.sci, line: 36
 # File: modules/polynomials/macros/determ.sci, line: 25

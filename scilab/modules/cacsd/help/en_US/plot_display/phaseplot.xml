@@ -50,7 +50,7 @@
             <varlistentry>
                 <term>step</term>
                 <listitem>
-                    <para>real scalar: the frequency discretization step (logarithmic scale)). If it is not specified the alorithm uses adaptative frequency steps.</para>
+                    <para>real scalar: the frequency discretization step (logarithmic scale)). If it is not specified the algorithm uses adaptative frequency steps.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

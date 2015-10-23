@@ -87,6 +87,7 @@ struct Geometry
     Geometry() : m_x(0), m_y(0), m_width(20), m_height(20) {};
     Geometry(const Geometry& g) : m_x(g.m_x), m_y(g.m_y), m_width(g.m_width), m_height(g.m_height) {};
     Geometry(const std::vector<double>& v) : m_x(v[0]), m_y(v[1]), m_width(v[2]), m_height(v[3]) {};
+    Geometry(std::initializer_list<double> l) : m_x(*l.begin()), m_y(*(l.begin() + 1)), m_width(*(l.begin() + 2)), m_height(*(l.begin() + 3)) {};
 
     void fill(std::vector<double>& v) const
     {

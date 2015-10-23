@@ -57,6 +57,7 @@ import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.graph.DiagramComparator;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.preferences.XcosConfiguration;
@@ -79,7 +80,7 @@ public final class Xcos {
     /**
      * The current Xcos version
      */
-    public static final String VERSION = "1.0";
+    public static final String VERSION = "2.0";
     /**
      * The current Xcos tradename
      */
@@ -141,8 +142,7 @@ public final class Xcos {
      */
     private Xcos(final XcosTabFactory factory) {
         /*
-         * Read the configuration to support dynamic (before Xcos launch)
-         * settings.
+         * Read the configuration to support dynamic (before Xcos launch) settings.
          */
         try {
             LogManager.getLogManager().readConfiguration();
@@ -189,7 +189,6 @@ public final class Xcos {
         }
         ScilabTabFactory.getInstance().addTabFactory(this.factory);
 
-
     }
 
     @Override
@@ -206,8 +205,7 @@ public final class Xcos {
      *
      * This method use runtime class loading to handle ClassNotFoundException.
      *
-     * This method catch any exception and rethrow it with a well defined
-     * message. Thus it doesn't pass the IllegalCatch metrics.
+     * This method catch any exception and rethrow it with a well defined message. Thus it doesn't pass the IllegalCatch metrics.
      */
     // CSOFF: IllegalCatch
     // CSOFF: MagicNumber
@@ -332,7 +330,6 @@ public final class Xcos {
         return opened;
     }
 
-
     public Long openedDiagramUID(File f) {
         Long opened = Long.valueOf(0);
         if (f == null) {
@@ -402,8 +399,7 @@ public final class Xcos {
     /**
      * Open a file from it's filename.
      *
-     * This method must be called on the EDT thread. For other use, please use
-     * the {@link #xcos(String, String)} method.
+     * This method must be called on the EDT thread. For other use, please use the {@link #xcos(String, String)} method.
      *
      * @param file
      *            the file to open. If null an empty diagram is created.
@@ -547,7 +543,7 @@ public final class Xcos {
     /**
      * Clear the browser state and unregister the current view.
      */
-    public void clearBrowser()  {
+    public void clearBrowser() {
         if (browser != null) {
             JavaController.unregister_view(browser);
             browser = null;
@@ -570,8 +566,7 @@ public final class Xcos {
     }
 
     /**
-     * Add a diagram to the diagram list for a file. Be sure to set the right
-     * opened status on the diagram before calling this method.
+     * Add a diagram to the diagram list for a file. Be sure to set the right opened status on the diagram before calling this method.
      *
      * @param f
      *            the file
@@ -615,7 +610,7 @@ public final class Xcos {
             }
 
             @Override
-            public boolean addAll(Collection <? extends XcosDiagram > c) {
+            public boolean addAll(Collection<? extends XcosDiagram> c) {
                 final boolean status = super.addAll(c);
                 DiagramComparator.sort(this);
                 return status;
@@ -754,8 +749,7 @@ public final class Xcos {
     /**
      * Close the current xcos session.
      *
-     * This method must be called on the EDT thread. For other use, please use
-     * the {@link #closeXcosFromScilab()} method.
+     * This method must be called on the EDT thread. For other use, please use the {@link #closeXcosFromScilab()} method.
      */
     public static synchronized void closeSession(final boolean ask) {
         if (!SwingUtilities.isEventDispatchThread()) {
@@ -803,8 +797,7 @@ public final class Xcos {
     /*
      * Scilab exported methods.
      *
-     * All the following methods must use SwingUtilities method to assert that
-     * the operations will be called on the EDT thread.
+     * All the following methods must use SwingUtilities method to assert that the operations will be called on the EDT thread.
      *
      * @see modules/xcos/src/jni/Xcos.giws.xml
      *
@@ -849,10 +842,38 @@ public final class Xcos {
     }
 
     /**
+     * Load an xcos diagram without using Scilab at all.
+     *
+     * <P>
+     * This support a reduced number of format and should be mainly used to test the decoder
+     *
+     * @param file
+     *            the file
+     * @param diagramId
+     *            the diagram to load into
+     * @throws Exception
+     *             on loading error
+     */
+    @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
+    public static void xcosDiagramToScilab(String file, long diagramId) throws Exception {
+        XcosFileType filetype = XcosFileType.findFileType(file);
+        if (filetype == null) {
+            throw new IllegalArgumentException("not handled filetype");
+        }
+        switch (filetype) {
+            case XCOS:
+            case ZCOS:
+                filetype.load(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                break;
+            case COSF:
+                throw new IllegalArgumentException("not handled filetype");
+        }
+    }
+
+    /**
      * Close the current xcos session from any thread.
      *
-     * This method invoke Xcos operation on the EDT thread. Please prefer using
-     * {@link #closeSession()} when the caller is on the EDT thread.
+     * This method invoke Xcos operation on the EDT thread. Please prefer using {@link #closeSession()} when the caller is on the EDT thread.
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
     public static void closeXcosFromScilab() {
@@ -881,8 +902,7 @@ public final class Xcos {
     }
 
     /**
-     * Look in each diagram to find the block corresponding to the given uid and
-     * display a warning message.
+     * Look in each diagram to find the block corresponding to the given uid and display a warning message.
      *
      * This method invoke Xcos operation on the EDT thread.
      *
@@ -938,7 +958,6 @@ public final class Xcos {
                 return;
             }
 
-
         }
     }
 
@@ -946,14 +965,12 @@ public final class Xcos {
         mxCell[] found = new mxCell[uid.length];
         XcosView view = (XcosView) JavaController.lookup_view(Xcos.class.getName());
 
-        final String[] sortedUIDs = Arrays.copyOf(uid,  uid.length);
+        final String[] sortedUIDs = Arrays.copyOf(uid, uid.length);
         Arrays.sort(sortedUIDs);
 
         view.getVisibleObjects().values().stream()
-        //look for the visible objects in the UID set
-        .filter(o -> o instanceof mxCell)
-        .map(o -> (mxCell) o)
-        .filter(o -> Arrays.binarySearch(sortedUIDs, o.getId()) >= 0)
+        // look for the visible objects in the UID set
+        .filter(o -> o instanceof mxCell).map(o -> (mxCell) o).filter(o -> Arrays.binarySearch(sortedUIDs, o.getId()) >= 0)
 
         // push the results to the resulting array
         .forEach(o -> found[Arrays.asList(uid).indexOf(o.getId())] = o);

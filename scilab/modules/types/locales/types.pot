@@ -15,46 +15,45 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
-# File: modules/types/sci_gateway/cpp/sci_fieldnames.cpp, line: 34
+# File: modules/types/sci_gateway/cpp/sci_fieldnames.cpp, line: 32
 # File: modules/types/sci_gateway/cpp/sci_isfield.cpp, line: 38
-# File: modules/types/sci_gateway/cpp/sci_usertype.cpp, line: 72
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp, line: 29
-# File: modules/types/sci_gateway/cpp/sci_inspectorGetFunctionList.cpp, line: 32
-# File: modules/types/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 30
-# File: modules/types/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 30
+# File: modules/types/sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp, line: 27
+# File: modules/types/sci_gateway/cpp/sci_inspectorGetFunctionList.cpp, line: 30
+# File: modules/types/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 28
+# File: modules/types/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 28
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 37
-# File: modules/types/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 37
-# File: modules/types/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 55
-# File: modules/types/sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp, line: 51
+# File: modules/types/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 35
+# File: modules/types/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 35
+# File: modules/types/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 53
+# File: modules/types/sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp, line: 49
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 44
-# File: modules/types/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 44
-# File: modules/types/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 62
-# File: modules/types/sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp, line: 58
+# File: modules/types/sci_gateway/cpp/sci_inspectorGetItem.cpp, line: 42
+# File: modules/types/sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp, line: 42
+# File: modules/types/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 60
+# File: modules/types/sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp, line: 56
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 33
-# File: modules/types/sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp, line: 33
-# File: modules/types/sci_gateway/cpp/sci_typeof.cpp, line: 31
+# File: modules/types/sci_gateway/cpp/sci_inspectorShowItem.cpp, line: 31
+# File: modules/types/sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp, line: 31
+# File: modules/types/sci_gateway/cpp/sci_typeof.cpp, line: 30
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
@@ -75,8 +74,7 @@ msgstr ""
 
 #
 # File: modules/types/sci_gateway/cpp/sci_isfield.cpp, line: 52
-# File: modules/types/sci_gateway/cpp/sci_typeof.cpp, line: 57
-# File: modules/types/sci_gateway/cpp/sci_usertype.cpp, line: 81
+# File: modules/types/sci_gateway/cpp/sci_typeof.cpp, line: 66
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
@@ -109,44 +107,44 @@ msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 36
+# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 34
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number is expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 53
+# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 51
 #, c-format
 msgid "%s: Field names must be strings.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 78
-# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 85
+# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 76
+# File: modules/types/sci_gateway/cpp/sci_struct.cpp, line: 83
 #, c-format
 msgid "%s: Arguments must be scalar or must have same dimensions.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 40
+# File: modules/types/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 38
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 47
+# File: modules/types/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 58
+# File: modules/types/sci_gateway/cpp/sci_tlist_or_mlist.hxx, line: 56
 #, c-format
 msgid "%s: Can not create a %s with input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/types/sci_gateway/cpp/sci_typeof.cpp, line: 68
+# File: modules/types/sci_gateway/cpp/sci_typeof.cpp, line: 77
 #, c-format
 msgid "%s: Wrong values for input argument #%d: '%s' expected .\n"
 msgstr ""

@@ -80,6 +80,7 @@ Xcos trace: propertyUpdated( 5 , DIAGRAM , TITLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , PATH ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , DIAGRAM , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectCreated( 6 , LINK )
 Xcos trace: propertyUpdated( 6 , LINK , COLOR ) : NO_CHANGES

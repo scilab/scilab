@@ -58,7 +58,7 @@ C_GATEWAY_PROTOTYPE(sci_number_properties);
 //C_GATEWAY_PROTOTYPE(sci_round);
 //C_GATEWAY_PROTOTYPE(sci_sign);
 //C_GATEWAY_PROTOTYPE(sci_sin);
-C_GATEWAY_PROTOTYPE(sci_sqrt);
+//C_GATEWAY_PROTOTYPE(sci_sqrt);
 //C_GATEWAY_PROTOTYPE(sci_tan);
 C_GATEWAY_PROTOTYPE(sci_testmatrix);
 //C_GATEWAY_PROTOTYPE(sci_tril);

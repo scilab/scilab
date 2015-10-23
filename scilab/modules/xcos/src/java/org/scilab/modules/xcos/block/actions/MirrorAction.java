@@ -19,12 +19,9 @@ import java.awt.event.KeyEvent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.JavaController;
-import org.scilab.modules.xcos.Kind;
-import org.scilab.modules.xcos.ObjectProperties;
-import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -39,8 +36,7 @@ public class MirrorAction extends VertexSelectionDependantAction {
     /** Mnemonic key of the action */
     public static final int MNEMONIC_KEY = KeyEvent.VK_M;
     /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit()
-            .getMenuShortcutKeyMask();
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
 
     /**
      * Constructor
@@ -72,22 +68,19 @@ public class MirrorAction extends VertexSelectionDependantAction {
     public void actionPerformed(ActionEvent e) {
         if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
 
-            Object[] allCells = ((XcosDiagram) getGraph(null))
-                                .getSelectionCells();
+            Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
-            JavaController controller = new JavaController();
-            VectorOfDouble mvcAngle = new VectorOfDouble();
+            try {
+                getGraph(null).getModel().beginUpdate();
 
-            getGraph(null).getModel().beginUpdate();
-            for (int i = 0; i < allCells.length; ++i) {
-                if (allCells[i] instanceof BasicBlock) {
-                    long uid = ((BasicBlock) allCells[i]).getUID();
-                    controller.getObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
-                    mvcAngle.set(0, mvcAngle.get(0) + 4d);
-                    controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+                for (int i = 0; i < allCells.length; ++i) {
+                    if (allCells[i] instanceof BasicBlock) {
+                        BlockPositioning.toggleMirror((XcosDiagram) getGraph(null), (BasicBlock) allCells[i]);
+                    }
                 }
+            } finally {
+                getGraph(null).getModel().endUpdate();
             }
-            getGraph(null).getModel().endUpdate();
         }
     }
 

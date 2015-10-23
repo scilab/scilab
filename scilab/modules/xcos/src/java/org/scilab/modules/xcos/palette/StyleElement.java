@@ -48,6 +48,7 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
      * Default constructor
      */
     public StyleElement() {
+        super(null);
     }
 
     /**
@@ -234,22 +235,4 @@ public class StyleElement extends AbstractElement<mxStylesheet> {
             throw new WrongTypeException(DATA_FIELD_NAMES, field);
         }
     }
-
-    /**
-     * Not used
-     *
-     * @param from
-     *            Not used
-     * @param element
-     *            Not used
-     * @return null
-     * @see org.scilab.modules.xcos.io.scicos.Element#encode(java.lang.Object,
-     *      org.scilab.modules.types.ScilabType)
-     */
-    @Override
-    @Deprecated
-    public ScilabType encode(mxStylesheet from, ScilabType element) {
-        return null;
-    }
-
 }

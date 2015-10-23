@@ -30,13 +30,13 @@ types::Function::ReturnValue sci_expm(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expmected.\n"), "expm", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "expm", 1);
         return types::Function::Error;
     }
 
     if (_iRetCount > 1)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expmected.\n"), "expm", 1);
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "expm", 1);
         return types::Function::Error;
     }
 

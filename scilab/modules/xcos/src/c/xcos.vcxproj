@@ -250,6 +250,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosDiagramToScilab.cpp" />
     <ClCompile Include="..\cpp\loadStatus.cpp" />
     <ClCompile Include="..\jni\JavaController_wrap.cxx" />
     <ClCompile Include="..\jni\XcosCellFactory.cpp" />

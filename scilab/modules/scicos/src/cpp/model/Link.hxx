@@ -38,9 +38,9 @@ enum link_kind_t
 class Link: public BaseObject
 {
 public:
-    Link() : BaseObject(LINK), m_parentDiagram(ScicosID()), m_parentBlock(ScicosID()), m_sourcePort(ScicosID()), m_destinationPort(ScicosID()), m_controlPoints(),
-        m_label(), m_thick(std::vector<double>(2)), m_color(1), m_linkKind(regular) {};
-    Link(const Link& o) : BaseObject(LINK), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_sourcePort(o.m_sourcePort), m_destinationPort(o.m_destinationPort),
+    Link() : BaseObject(LINK), m_parentDiagram(ScicosID()), m_parentBlock(ScicosID()), m_sourcePort(ScicosID()), m_destinationPort(ScicosID()), m_uid(), m_controlPoints(),
+        m_label(), m_thick(2), m_color(1), m_linkKind(regular) {};
+    Link(const Link& o) : BaseObject(LINK), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_sourcePort(o.m_sourcePort), m_destinationPort(o.m_destinationPort),  m_uid(o.m_uid),
         m_controlPoints(o.m_controlPoints), m_label(o.m_label), m_thick(o.m_thick), m_color(o.m_color), m_linkKind(o.m_linkKind) {};
     ~Link() = default;
 
@@ -210,6 +210,22 @@ private:
         return SUCCESS;
     }
 
+    void getUID(std::string& data) const
+    {
+        data = m_uid;
+    }
+
+    update_status_t setUID(const std::string& data)
+    {
+        if (data == m_uid)
+        {
+            return NO_CHANGES;
+        }
+
+        m_uid = data;
+        return SUCCESS;
+    }
+
 private:
     ScicosID m_parentDiagram;
     ScicosID m_parentBlock;
@@ -217,6 +233,7 @@ private:
     ScicosID m_sourcePort;
     ScicosID m_destinationPort;
 
+    std::string m_uid;
     // used to store, user-defined control points
     std::vector<double> m_controlPoints;
 

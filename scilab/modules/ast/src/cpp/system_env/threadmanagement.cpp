@@ -11,6 +11,7 @@
 */
 
 #include "threadmanagement.hxx"
+#include "runner.hxx"
 
 #ifdef DEBUG_THREAD
 #include <iostream>
@@ -221,6 +222,9 @@ void ThreadManagement::SendConsoleExecDoneSignal(void)
 
 void ThreadManagement::WaitForConsoleExecDoneSignal(void)
 {
+# ifdef __DEBUG_SIGNAL
+    std::cout << "WaitForConsoleExecDoneSignal" << std::endl;
+# endif // __DEBUG_SIGNAL
     __LockSignal(&m_ConsoleExecDoneLock);
     ThreadManagement::UnlockStoreCommand();
     m_ConsoleExecDoneWasSignalled = false;
@@ -248,8 +252,12 @@ void ThreadManagement::WaitForConsoleExecDoneSignal(void)
 
     The loop while is used to avoid spurious wakeup of __Wait.
 ***/
+
 void ThreadManagement::SendAwakeRunnerSignal(void)
 {
+# ifdef __DEBUG_SIGNAL
+    std::cout << "SendAwakeRunnerSignal" << std::endl;
+# endif // __DEBUG_SIGNAL
     __LockSignal(&m_AwakeRunnerLock);
     m_AwakeRunnerWasSignalled = true;
 #ifdef DEBUG_THREAD
@@ -261,6 +269,9 @@ void ThreadManagement::SendAwakeRunnerSignal(void)
 
 void ThreadManagement::WaitForAwakeRunnerSignal(void)
 {
+# ifdef __DEBUG_SIGNAL
+    std::cout << "WaitForAwakeRunnerSignal" << std::endl;
+# endif // __DEBUG_SIGNAL
     __LockSignal(&m_AwakeRunnerLock);
     ThreadManagement::UnlockRunner();
     m_AwakeRunnerWasSignalled = false;
@@ -290,6 +301,9 @@ void ThreadManagement::WaitForAwakeRunnerSignal(void)
 ***/
 void ThreadManagement::SendStartPendingSignal(void)
 {
+# ifdef __DEBUG_SIGNAL
+    std::cout << "SendStartPendingSignal" << std::endl;
+# endif // __DEBUG_SIGNAL
     __LockSignal(&m_StartPendingLock);
     m_StartPendingWasSignalled = true;
 #ifdef DEBUG_THREAD
@@ -301,6 +315,9 @@ void ThreadManagement::SendStartPendingSignal(void)
 
 void ThreadManagement::WaitForStartPendingSignal(void)
 {
+# ifdef __DEBUG_SIGNAL
+    std::cout << "WaitForStartPendingSignal" << std::endl;
+# endif // __DEBUG_SIGNAL
     __LockSignal(&m_StartPendingLock);
     while (m_StartPendingWasSignalled == false)
     {
@@ -356,7 +373,7 @@ void ThreadManagement::WaitForCommandStoredSignal(void)
     Wait : Wait for an available Runner.
 
     This signal can be sent without any threads are waiting for,
-    so we have to perform the Wait for each call to WaitForAwakeRunnerSignal.
+    so we have to perform the Wait for each call to WaitForRunMeSignal.
     (This can happends when an execution is interrupted by an other one.
      This signal is sent but the main thread is not waiting for.)
 
@@ -377,7 +394,10 @@ void ThreadManagement::WaitForRunMeSignal(void)
 {
     __LockSignal(&m_RunMeLock);
     m_RunMeWasSignalled = false;
-    while (m_RunMeWasSignalled == false)
+    // Some times, the signal "SendRunMeSignal" can be sent before the main thread is waiting for.
+    // If a Runner is available do not perform this wait.
+    bool bWait = StaticRunner_isRunnerAvailable() == false;
+    while (m_RunMeWasSignalled == false && bWait)
     {
 #ifdef DEBUG_THREAD
         PrintDebug("WaitForRunMeSignal");

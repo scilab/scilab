@@ -15,41 +15,41 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 # File: modules/external_objects/sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 32
 # File: modules/external_objects/sci_gateway/cpp/sci_doubleExclam_invoke_.cpp, line: 37
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 186
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 194
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 207
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 221
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 230
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 403
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 418
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 434
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 456
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 467
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 487
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 496
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 502
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 510
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 520
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 528
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 541
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 551
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 562
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 573
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 584
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 595
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 606
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 619
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 630
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 641
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 649
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 666
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 682
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 703
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 730
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 185
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 193
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 206
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 220
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 229
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 402
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 417
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 433
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 455
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 466
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 486
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 495
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 501
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 509
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 519
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 527
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 540
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 550
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 561
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 572
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 583
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 594
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 605
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 618
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 629
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 640
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 648
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 665
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 681
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 702
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 729
 # File: modules/external_objects/src/cpp/addNamedVariable.cpp, line: 41
 # File: modules/external_objects/src/cpp/addToClasspath.cpp, line: 46
 # File: modules/external_objects/src/cpp/addToClasspath.cpp, line: 56
@@ -63,10 +63,10 @@ msgstr ""
 # File: modules/external_objects/src/cpp/compile.cpp, line: 73
 # File: modules/external_objects/src/cpp/compile.cpp, line: 85
 # File: modules/external_objects/src/cpp/convMatrixMethod.cpp, line: 46
-# File: modules/external_objects/src/cpp/deff.cpp, line: 65
-# File: modules/external_objects/src/cpp/deff.cpp, line: 74
-# File: modules/external_objects/src/cpp/deff.cpp, line: 85
-# File: modules/external_objects/src/cpp/deff.cpp, line: 107
+# File: modules/external_objects/src/cpp/deff.cpp, line: 64
+# File: modules/external_objects/src/cpp/deff.cpp, line: 73
+# File: modules/external_objects/src/cpp/deff.cpp, line: 84
+# File: modules/external_objects/src/cpp/deff.cpp, line: 106
 # File: modules/external_objects/src/cpp/display.cpp, line: 37
 # File: modules/external_objects/src/cpp/display.cpp, line: 54
 # File: modules/external_objects/src/cpp/doubleExclam_invoke.cpp, line: 66
@@ -184,69 +184,69 @@ msgid "Invalid environment: identifier %d is invalid"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 57
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 56
 msgid "Invalid environment"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 81
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 80
 #, c-format
 msgid "Invalid variable name: %s"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 84
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 90
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 96
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 102
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 138
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 144
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 150
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 156
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 83
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 89
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 95
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 101
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 137
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 143
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 149
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 155
 msgid "Cannot allocate memory"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 250
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 267
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 249
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 266
 msgid "Invalid variable: cannot create data"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 440
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 748
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 439
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 747
 msgid "External Class expected"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 723
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 722
 msgid "External object expected"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 736
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 735
 msgid "Incompatible External object"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 766
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 765
 #, c-format
 msgid "Unable to wrap. Unmanaged datatype (%d) ?"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 855
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 870
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 854
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 869
 msgid "Invalid String"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 860
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 859
 msgid "A single string expected"
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 865
+# File: modules/external_objects/src/cpp/ScilabObjects.cpp, line: 864
 msgid "A single String expected"
 msgstr ""
 
@@ -287,7 +287,7 @@ msgstr ""
 
 #
 # File: modules/external_objects/src/cpp/compile.cpp, line: 66
-# File: modules/external_objects/src/cpp/deff.cpp, line: 79
+# File: modules/external_objects/src/cpp/deff.cpp, line: 78
 # File: modules/external_objects/src/cpp/import.cpp, line: 69
 # File: modules/external_objects/src/cpp/import.cpp, line: 92
 # File: modules/external_objects/src/cpp/objectExtract.cpp, line: 96
@@ -309,18 +309,18 @@ msgid "The argument must be 'rc' or 'cr'."
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/deff.cpp, line: 91
+# File: modules/external_objects/src/cpp/deff.cpp, line: 90
 #, c-format
 msgid "Invalid dimensions for input argument #%d: A single string expected."
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/deff.cpp, line: 96
+# File: modules/external_objects/src/cpp/deff.cpp, line: 95
 msgid "Invalid dimensions: arguments #2 and #3 must have the same."
 msgstr ""
 
 #
-# File: modules/external_objects/src/cpp/deff.cpp, line: 156
+# File: modules/external_objects/src/cpp/deff.cpp, line: 154
 msgid "Invalid variable: cannot create the data"
 msgstr ""
 

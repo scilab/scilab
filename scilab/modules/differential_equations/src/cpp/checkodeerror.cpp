@@ -184,7 +184,7 @@ int checkError(int idid, std::string strName)
         {
             if (getWarningMode())
             {
-                sciprint(_("To many steps necessary to reached next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n"));
+                sciprint(_("Too many steps necessary to reached next required time discretization point. Change discretisation of time vector t or decrease accuracy.\n"));
             }
             return 2;
         }

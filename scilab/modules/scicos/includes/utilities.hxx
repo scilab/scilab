@@ -88,7 +88,7 @@ enum object_properties_t
     SOURCE_PORT,        //!< model::Link::sourcePort value
     CONTROL_POINTS,     //!< model::Link::controlPoints value
     THICK,              //!< model::Link::thick value
-    COLOR,              //!< model::Link::color value
+    COLOR,              //!< model::Link & Block & Diagram::color value
     KIND,               //!< model::Link::kind value
     FROM,               //!< model::Link::from value
     TO,                 //!< model::Link::to value

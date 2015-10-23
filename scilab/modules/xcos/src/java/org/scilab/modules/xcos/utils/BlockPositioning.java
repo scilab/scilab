@@ -37,8 +37,7 @@ import com.mxgraph.util.mxStyleUtils;
 public final class BlockPositioning {
 
     /**
-     * The default grid size. This value is used when the grid size isn't
-     * accessible (on the palette).
+     * The default grid size. This value is used when the grid size isn't accessible (on the palette).
      */
     public static final double DEFAULT_GRIDSIZE = Double.MIN_NORMAL;
     /** The rotation step of the clockwise and anticlockwise rotation */
@@ -58,7 +57,7 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateWestPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
+    public static void updateWestPortsPosition(final XcosDiagram diag, BasicBlock block, List<? extends BasicPort> ports) {
 
         double gridSize = diag.getGridSize();
 
@@ -98,8 +97,7 @@ public final class BlockPositioning {
      */
     private static double calculateAlignedPosition(final double gridSize, final double segLength, int i) {
         /*
-         * The base position is the origin of the port geometry. It is the
-         * upper-left corner position.
+         * The base position is the origin of the port geometry. It is the upper-left corner position.
          */
         final double basePosition = (i + 1) * segLength;
 
@@ -109,8 +107,7 @@ public final class BlockPositioning {
         final double alignedBasePosition = basePosition - Math.IEEEremainder(basePosition, gridSize);
 
         /*
-         * The aligned position is the base position translated from origin to
-         * the middle of the port.
+         * The aligned position is the base position translated from origin to the middle of the port.
          */
         final double alignedPosition = alignedBasePosition - (BasicPort.DEFAULT_PORTSIZE / 2.0);
 
@@ -125,7 +122,7 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateNorthPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
+    public static void updateNorthPortsPosition(final XcosDiagram diag, BasicBlock block, List<? extends BasicPort> ports) {
         double gridSize = diag.getGridSize();
 
         final mxGeometry blockGeom = block.getGeometry();
@@ -159,7 +156,7 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateEastPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
+    public static void updateEastPortsPosition(final XcosDiagram diag, BasicBlock block, List<? extends BasicPort> ports) {
         double gridSize = diag.getGridSize();
 
         final mxGeometry blockGeom = block.getGeometry();
@@ -193,7 +190,7 @@ public final class BlockPositioning {
      * @param ports
      *            The ports we have to move on the side.
      */
-    public static void updateSouthPortsPosition(final XcosDiagram diag, BasicBlock block, List <? extends BasicPort > ports) {
+    public static void updateSouthPortsPosition(final XcosDiagram diag, BasicBlock block, List<? extends BasicPort> ports) {
         double gridSize = diag.getGridSize();
 
         final mxGeometry blockGeom = block.getGeometry();
@@ -239,8 +236,7 @@ public final class BlockPositioning {
     }
 
     /**
-     * Update the port position for the specified orientation. This function
-     * manage the flip and mirror properties.
+     * Update the port position for the specified orientation. This function manage the flip and mirror properties.
      *
      * @param block
      *            The block we are working on
@@ -261,10 +257,10 @@ public final class BlockPositioning {
         VectorOfDouble mvcAngle = new VectorOfDouble();
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
 
-        double flags = mvcAngle.get(0);
-        final boolean mirrored = flags == 4d;
-        final boolean flipped = flags == 8d;
-        final int angle = ( ((int) Math.round(mvcAngle.get(1))) % 360 + 360) % 360;
+        int flags = (int) mvcAngle.get(0);
+        final boolean mirrored = (flags & 0x0002) != 0;
+        final boolean flipped = (flags & 0x0001) != 0;
+        final int angle = (((int) Math.round(mvcAngle.get(1))) % 360 + 360) % 360;
 
         List<BasicPort> working = ports;
 
@@ -283,8 +279,7 @@ public final class BlockPositioning {
         }
 
         /*
-         * Ugly modification of the iter to update at the right position Works
-         * only for 0 - 90 - 180 - 270 angles.
+         * Ugly modification of the iter to update at the right position Works only for 0 - 90 - 180 - 270 angles.
          */
         Orientation rotated = rotateOrientation(iter, mirrored, flipped);
 
@@ -292,8 +287,7 @@ public final class BlockPositioning {
     }
 
     /**
-     * Ugly modification of the iter to update at the right position. Works only
-     * for 0 - 90 - 180 - 270 angles.
+     * Ugly modification of the iter to update at the right position. Works only for 0 - 90 - 180 - 270 angles.
      *
      * @param iter
      *            the real orientation
@@ -322,8 +316,7 @@ public final class BlockPositioning {
     }
 
     /**
-     * Update the ports positions according to the angle. This function doesn't
-     * handle order inversion.
+     * Update the ports positions according to the angle. This function doesn't handle order inversion.
      *
      * @param block
      *            The block we are working on
@@ -336,8 +329,7 @@ public final class BlockPositioning {
      */
     private static void updatePortsPosition(final XcosDiagram diag, BasicBlock block, Orientation iter, final double angle, List<BasicPort> working) {
         /*
-         * Ugly modification of the iter to update at the right position Works
-         * only for 0 - 90 - 180 - 270 angles.
+         * Ugly modification of the iter to update at the right position Works only for 0 - 90 - 180 - 270 angles.
          */
         final int nbOfOrientations = Orientation.values().length; // 4
         Orientation rotated = iter;
@@ -377,8 +369,9 @@ public final class BlockPositioning {
         VectorOfDouble mvcAngle = new VectorOfDouble();
         controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
 
-        final boolean mirrored = mvcAngle.get(0) == 4d;
-        final boolean flipped = mvcAngle.get(0) == 8d;
+        final int mirrorAndFlip = (int) mvcAngle.get(0);
+        final boolean flipped = (mirrorAndFlip & 0x0001) != 0;
+        final boolean mirrored = (mirrorAndFlip & 0x0002) != 0;
         final double angle = mvcAngle.get(1);
 
         final int childrenCount = block.getChildCount();
@@ -393,7 +386,6 @@ public final class BlockPositioning {
                 final mxIGraphModel model = diag.getModel();
                 final String rot = Double.toString(orientation.getRelativeAngle(angle, port.getClass(), flipped, mirrored));
                 mxStyleUtils.setCellStyles(model, new Object[] { port }, XcosConstants.STYLE_ROTATION, rot);
-
 
                 diag.getModel().endUpdate();
             }
@@ -417,11 +409,9 @@ public final class BlockPositioning {
         diag.getModel().endUpdate();
 
         /*
-         * FIXME: #6705; This placement trick doesn't work on the first block
-         * Dnd as the view is not revalidated.
+         * FIXME: #6705; This placement trick doesn't work on the first block Dnd as the view is not revalidated.
          *
-         * On block loading, parentDiagram is null thus placement is not
-         * performed.
+         * On block loading, parentDiagram is null thus placement is not performed.
          */
     }
 
@@ -434,9 +424,15 @@ public final class BlockPositioning {
     public static void toggleFlip(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
         VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
 
-        mvcAngle.set(0, mvcAngle.get(0) + 8d);
+        // retrieve then mask the value
+        int mirrorAndFlip = (int) mvcAngle.get(0);
+        mirrorAndFlip ^= 0x0001;
+
+        mvcAngle.set(0, mirrorAndFlip);
+        controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
+
         updateBlockView(diag, block);
     }
 
@@ -449,9 +445,15 @@ public final class BlockPositioning {
     public static void toggleMirror(final XcosDiagram diag, BasicBlock block) {
         JavaController controller = new JavaController();
         VectorOfDouble mvcAngle = new VectorOfDouble();
-        controller.getObjectProperty(block.getUID(), Kind.BLOCK, ObjectProperties.ANGLE, mvcAngle);
+        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
 
-        mvcAngle.set(0, mvcAngle.get(0) + 16d);
+        // retrieve then mask the value
+        int mirrorAndFlip = (int) mvcAngle.get(0);
+        mirrorAndFlip ^= 0x0002;
+
+        mvcAngle.set(0, mirrorAndFlip);
+        controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.ANGLE, mvcAngle);
+
         updateBlockView(diag, block);
     }
 

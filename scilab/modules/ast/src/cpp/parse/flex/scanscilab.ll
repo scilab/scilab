@@ -25,6 +25,8 @@ extern "C"
 static int comment_level = 0;
 static int paren_level = 0;
 static int last_token = 0;
+static int exit_status = PARSE_ERROR;
+static int str_opener_column = 0;
 static std::string current_file;
 static std::string program_name;
 
@@ -33,7 +35,7 @@ static std::string pstBuffer;
 extern void yyerror(std::string);
 
 #define YY_USER_ACTION                          \
- yylloc.first_column = yylloc.last_column;yylloc.last_column += yyleng;
+    yylloc.first_column = yylloc.last_column; yylloc.last_column += yyleng;
 //yylloc.last_column += yyleng;
 
 /* -*- Verbose Special Debug -*- */
@@ -283,22 +285,6 @@ assign			"="
     DEBUG("BEGIN(INITIAL)");
     BEGIN(INITIAL);
 	return scan_throw(ENDFUNCTION);
-}
-
-<INITIAL,BEGINID>"#function"	{
-	if (last_token != DOT)
-    {
-        ParserSingleInstance::pushControlStatus(Parser::WithinFunction);
-    }
-    DEBUG("BEGIN(INITIAL)");
-    BEGIN(INITIAL);
-	return scan_throw(HIDDENFUNCTION);
-}
-
-<INITIAL,BEGINID>"hidden"	{
-    DEBUG("BEGIN(INITIAL)");
- 	BEGIN(INITIAL);
-    return scan_throw(HIDDEN);
 }
 
 <INITIAL,BEGINID>"for" {
@@ -575,7 +561,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
 #endif
-  scan_step();
+  //scan_step();
   return scan_throw(VARFLOAT);
 }
 
@@ -584,7 +570,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
 #endif
-  scan_step();
+  //scan_step();
   return scan_throw(VARFLOAT);
 }
 
@@ -604,7 +590,7 @@ assign			"="
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] LITTLE : " << yytext << std::endl;
 #endif
-  scan_step();
+//  scan_step();
   return scan_throw(NUM);
 }
 
@@ -646,6 +632,7 @@ assign			"="
 
 <INITIAL,MATRIX,SHELLMODE>{dquote}		{
   pstBuffer.clear();
+  str_opener_column = yylloc.first_column;
   yy_push_state(DOUBLESTRING);
 }
 
@@ -670,6 +657,7 @@ assign			"="
   else
   {
       pstBuffer.clear();
+      str_opener_column = yylloc.first_column;
       yy_push_state(SIMPLESTRING);
   }
 }
@@ -1011,7 +999,7 @@ assign			"="
 
   {quote}					{
     yy_pop_state();
-    scan_step();
+    //scan_step();
     wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
     if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
     {
@@ -1026,6 +1014,7 @@ assign			"="
     yylval.str = new std::wstring(pwstBuffer);
     pstBuffer.clear();
     FREE(pwstBuffer);
+    yylloc.first_column = str_opener_column;
     return scan_throw(STR);
   }
 
@@ -1037,6 +1026,8 @@ assign			"="
   }
 
   {next}{newline}           {
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
       /* Do nothing... Just skip */
   }
 
@@ -1058,7 +1049,7 @@ assign			"="
 
   {in_string}						|
   .                                                     {
-    scan_step();
+    //scan_step();
     pstBuffer += yytext;
   }
 }
@@ -1084,7 +1075,7 @@ assign			"="
 
   {dquote}                      {
     yy_pop_state();
-    scan_step();
+    //scan_step();
     wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
     if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
     {
@@ -1099,6 +1090,7 @@ assign			"="
     yylval.str = new std::wstring(pwstBuffer);
     pstBuffer.clear();
     FREE(pwstBuffer);
+    yylloc.first_column = str_opener_column;
     return scan_throw(STR);
   }
 
@@ -1110,6 +1102,8 @@ assign			"="
   }
 
   {next}{newline}           {
+      yylloc.last_line += 1;
+      yylloc.last_column = 1;
       /* Do nothing... Just skip */
   }
 
@@ -1131,7 +1125,7 @@ assign			"="
 
   {in_string}         |
   .                   {
-   scan_step();
+   //scan_step();
    pstBuffer += yytext;
   }
 }

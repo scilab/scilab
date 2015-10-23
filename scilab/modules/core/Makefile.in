@@ -207,8 +207,6 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-getos.lo \
 	src/c/libscicore_algo_la-transposeMatrix.lo \
 	src/c/libscicore_algo_la-getversion.lo \
-	src/c/libscicore_algo_la-dynamic_tclsci.lo \
-	src/c/libscicore_algo_la-dynamic_parallel.lo \
 	src/c/libscicore_algo_la-backtrace.lo \
 	src/c/libscicore_algo_la-signal_mgmt.lo \
 	src/c/libscicore_algo_la-suspendProcess.lo \
@@ -471,6 +469,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
 HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
@@ -713,8 +712,6 @@ CORE_C_SOURCES = \
     src/c/getos.c \
     src/c/transposeMatrix.c \
     src/c/getversion.c \
-    src/c/dynamic_tclsci.c \
-    src/c/dynamic_parallel.c \
     src/c/backtrace.c \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
@@ -1094,10 +1091,6 @@ src/c/libscicore_algo_la-transposeMatrix.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-getversion.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-dynamic_tclsci.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-dynamic_parallel.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-backtrace.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-signal_mgmt.lo: src/c/$(am__dirstamp) \
@@ -1393,8 +1386,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-dynamic_gateways.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-dynamic_parallel.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-dynamic_tclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-freeArrayOfString.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getcommandlineargs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getdynamicdebuginfo.Plo@am__quote@
@@ -1602,20 +1593,6 @@ src/c/libscicore_algo_la-getversion.lo: src/c/getversion.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getversion.c' object='src/c/libscicore_algo_la-getversion.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-getversion.lo `test -f 'src/c/getversion.c' || echo '$(srcdir)/'`src/c/getversion.c
-
-src/c/libscicore_algo_la-dynamic_tclsci.lo: src/c/dynamic_tclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-dynamic_tclsci.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-dynamic_tclsci.Tpo -c -o src/c/libscicore_algo_la-dynamic_tclsci.lo `test -f 'src/c/dynamic_tclsci.c' || echo '$(srcdir)/'`src/c/dynamic_tclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-dynamic_tclsci.Tpo src/c/$(DEPDIR)/libscicore_algo_la-dynamic_tclsci.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dynamic_tclsci.c' object='src/c/libscicore_algo_la-dynamic_tclsci.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-dynamic_tclsci.lo `test -f 'src/c/dynamic_tclsci.c' || echo '$(srcdir)/'`src/c/dynamic_tclsci.c
-
-src/c/libscicore_algo_la-dynamic_parallel.lo: src/c/dynamic_parallel.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-dynamic_parallel.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-dynamic_parallel.Tpo -c -o src/c/libscicore_algo_la-dynamic_parallel.lo `test -f 'src/c/dynamic_parallel.c' || echo '$(srcdir)/'`src/c/dynamic_parallel.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-dynamic_parallel.Tpo src/c/$(DEPDIR)/libscicore_algo_la-dynamic_parallel.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/dynamic_parallel.c' object='src/c/libscicore_algo_la-dynamic_parallel.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-dynamic_parallel.lo `test -f 'src/c/dynamic_parallel.c' || echo '$(srcdir)/'`src/c/dynamic_parallel.c
 
 src/c/libscicore_algo_la-backtrace.lo: src/c/backtrace.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-backtrace.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-backtrace.Tpo -c -o src/c/libscicore_algo_la-backtrace.lo `test -f 'src/c/backtrace.c' || echo '$(srcdir)/'`src/c/backtrace.c

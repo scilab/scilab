@@ -77,6 +77,16 @@ public:
     }
     /** \} */
 
+    inline bool operator<(const Location & loc) const
+    {
+        return first_line < loc.first_line || (first_line == loc.first_line && first_column < loc.first_column);
+    }
+
+    inline bool operator==(const Location & loc) const
+    {
+        return first_line == loc.first_line && first_column == loc.first_column && last_line == loc.last_line && last_column == loc.last_column;
+    }
+
     std::wstring getLocationString() const
     {
         std::wostringstream os;

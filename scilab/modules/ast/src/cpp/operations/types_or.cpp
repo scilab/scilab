@@ -405,6 +405,11 @@ InternalType* GenericShortcutOr(InternalType* _pL)
         BoolOrBool(_pL->getAs<Bool>(), (Bool**)&pResult);
     }
 
+    if (_pL->isDouble())
+    {
+        DoubleOrDouble(_pL->getAs<Double>(), (Bool**)&pResult);
+    }
+
     if (_pL->isInt())
     {
         IntOrInt(_pL, (Bool**)&pResult);
@@ -446,6 +451,22 @@ int BoolOrBool(Bool* _pL, Bool** _pOut)
         if (_pL->get(i) == 0)
         {
             //call non shorcut opearion
+            *_pOut = NULL;
+            return 0;
+        }
+    }
+
+    *_pOut = new Bool(1); //true || something -> true
+    return 0;
+}
+
+int DoubleOrDouble(Double* _pL, Bool** _pOut)
+{
+    for (int i = 0 ; i < _pL->getSize() ; i++)
+    {
+        if (_pL->get(i) == 0)
+        {
+            //call non shorcut operation
             *_pOut = NULL;
             return 0;
         }

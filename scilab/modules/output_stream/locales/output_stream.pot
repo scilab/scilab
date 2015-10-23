@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 104
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 122
@@ -25,21 +25,21 @@ msgstr ""
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 182
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 274
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 288
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 668
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 673
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 787
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 803
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 676
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 681
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 795
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 813
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 900
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 969
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 985
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1290
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1312
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1339
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1360
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1423
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1437
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1512
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 823
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 912
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 981
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1000
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1306
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1328
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1355
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1376
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1439
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1453
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1528
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -48,33 +48,33 @@ msgstr ""
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 203
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 211
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 338
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 356
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 377
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 403
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 429
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 454
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 477
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 500
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 608
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 619
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 642
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 691
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 700
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 710
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 752
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 761
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 773
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 796
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 822
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 856
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 865
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 892
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 908
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 934
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 943
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 357
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 379
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 406
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 433
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 459
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 483
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 507
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 616
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 627
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 650
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 699
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 708
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 718
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 760
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 769
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 781
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 805
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 833
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 868
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 877
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 904
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 920
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 946
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 955
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 978
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 999
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 967
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 991
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1015
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
@@ -87,16 +87,16 @@ msgstr ""
 
 #
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 259
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1397
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1479
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1413
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1495
 #, c-format
 msgid "%s: error can not create diary: %s.\n"
 msgstr ""
 
 #
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 265
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1403
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1485
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1419
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1501
 #, c-format
 msgid "%s: error can not create diary.\n"
 msgstr ""
@@ -109,112 +109,112 @@ msgstr ""
 
 #
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 317
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 779
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 961
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 787
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 973
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #
 # File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 322
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 391
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 417
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 443
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 466
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 489
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 514
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 631
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 654
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 393
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 420
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 447
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 471
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 495
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 521
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 639
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 662
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 367
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 520
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 526
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 590
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 662
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 368
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 528
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 534
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 598
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 670
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 726
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 832
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1009
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 734
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 844
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1025
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 732
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 740
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 838
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 915
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1015
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 850
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 927
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1031
 # File: modules/output_stream/sci_gateway/cpp/sci_mprintf.cpp, line: 45
-# File: modules/output_stream/sci_gateway/cpp/sci_msprintf.cpp, line: 40
+# File: modules/output_stream/sci_gateway/cpp/sci_msprintf.cpp, line: 39
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 882
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1449
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1525
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 894
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1465
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1541
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1029
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1045
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1046
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1062
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1079
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1095
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1119
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1135
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1151
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1167
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1191
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1207
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1224
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1240
 #, c-format
 msgid "%s: Wrong value for input argument #%d: error can not resume diary.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1265
+# File: modules/output_stream/sci_gateway/cpp/sci_diary.cpp, line: 1281
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: error can not resume diary %d.\n"
@@ -228,7 +228,7 @@ msgstr ""
 
 #
 # File: modules/output_stream/sci_gateway/cpp/sci_mprintf.cpp, line: 39
-# File: modules/output_stream/sci_gateway/cpp/sci_msprintf.cpp, line: 34
+# File: modules/output_stream/sci_gateway/cpp/sci_msprintf.cpp, line: 33
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
 msgstr ""
@@ -253,24 +253,24 @@ msgid "     (end) %s\n"
 msgstr ""
 
 #
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 152
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 203
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 244
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 150
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 201
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 243
 # File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 253
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 271
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 280
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 299
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 308
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 324
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 333
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 350
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 272
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 282
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 302
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 312
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 329
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 339
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 357
 #, c-format
 msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr ""
 
 #
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 161
-# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 212
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 159
+# File: modules/output_stream/src/cpp/scilab_sprintf.cpp, line: 210
 #, c-format
 msgid "%s: Wrong type of input arguments #%d: A real scalar expected.\n"
 msgstr ""

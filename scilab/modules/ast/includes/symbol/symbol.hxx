@@ -102,7 +102,7 @@ private:
  ** \param ostr the destination output stream
  ** \param the a reference to the symbol to redirect
  */
-std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
+EXTERN_AST std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
 
 /** Typedef for the list of Symbol */
 typedef std::list<const Symbol*> symbols_t;

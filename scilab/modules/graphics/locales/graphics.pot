@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 80
 # File: modules/graphics/sci_gateway/c/sci_Legend.c, line: 219
@@ -128,12 +128,12 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 192
 # File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 198
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 146
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 153
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 161
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 171
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 178
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 207
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 214
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 150
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 158
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 168
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 175
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 204
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 211
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
@@ -150,18 +150,18 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_newaxes.c, line: 130
 # File: modules/graphics/sci_gateway/c/sci_unzoom.c, line: 86
 # File: modules/graphics/sci_gateway/cpp/sci_winsid.cpp, line: 48
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 295
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 294
 # File: modules/graphics/src/c/Champ.c, line: 98
 # File: modules/graphics/src/c/Champ.c, line: 123
 # File: modules/graphics/src/c/Contour.c, line: 449
 # File: modules/graphics/src/c/Contour.c, line: 526
 # File: modules/graphics/src/c/FeC.c, line: 231
-# File: modules/graphics/src/c/Format.c, line: 865
-# File: modules/graphics/src/c/Format.c, line: 871
-# File: modules/graphics/src/c/Format.c, line: 1090
-# File: modules/graphics/src/c/Format.c, line: 1122
-# File: modules/graphics/src/c/Format.c, line: 1159
-# File: modules/graphics/src/c/Format.c, line: 1237
+# File: modules/graphics/src/c/Format.c, line: 864
+# File: modules/graphics/src/c/Format.c, line: 870
+# File: modules/graphics/src/c/Format.c, line: 1089
+# File: modules/graphics/src/c/Format.c, line: 1121
+# File: modules/graphics/src/c/Format.c, line: 1158
+# File: modules/graphics/src/c/Format.c, line: 1236
 # File: modules/graphics/src/c/Gray.c, line: 205
 # File: modules/graphics/src/c/Gray.c, line: 356
 # File: modules/graphics/src/c/Gray.c, line: 509
@@ -348,9 +348,9 @@ msgstr ""
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 145
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 160
 # File: modules/graphics/sci_gateway/cpp/sci_contour2dm.cpp, line: 168
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 72
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 98
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 110
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 71
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 96
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 109
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
@@ -519,7 +519,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_rotate_axes.c, line: 99
 # File: modules/graphics/sci_gateway/c/sci_set.c, line: 299
 # File: modules/graphics/sci_gateway/c/sci_unglue.c, line: 81
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 240
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 236
 # File: modules/graphics/src/c/BuildObjects.c, line: 822
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
@@ -556,7 +556,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_param3d1.c, line: 218
 # File: modules/graphics/sci_gateway/c/sci_xarrows.c, line: 195
 # File: modules/graphics/sci_gateway/c/sci_xrect.c, line: 83
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 230
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 228
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr ""
@@ -589,7 +589,7 @@ msgstr ""
 # File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 150
 # File: modules/graphics/sci_gateway/c/sci_xstringb.c, line: 174
 # File: modules/graphics/sci_gateway/c/sci_xtitle.c, line: 104
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 107
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 105
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
@@ -615,7 +615,7 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/c/sci_get.c, line: 168
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 141
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 138
 #, c-format
 msgid "%s: Unable to get useful path from this handle.\n"
 msgstr ""
@@ -1128,25 +1128,26 @@ msgstr ""
 
 #
 # File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 54
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 66
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 72
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 64
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 71
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 116
+# File: modules/graphics/sci_gateway/cpp/sci_get.cpp, line: 114
 #, c-format
 msgid "%s: Could not read property '%s' for root object.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 89
-# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 125
-# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 161
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 79
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 115
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 151
+# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 86
+# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 121
+# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 156
+# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 216
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 77
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 113
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 149
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 162
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 176
 # File: modules/graphics/src/cpp/set_data_property.cpp, line: 236
@@ -1159,59 +1160,59 @@ msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 276
+# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 306
 #, c-format
 msgid "%s: Wrong type for input argument #%ls: string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 292
+# File: modules/graphics/sci_gateway/cpp/sci_matplot.cpp, line: 341
 #, c-format
 msgid "%s: Wrong type for input argument #%ls: A matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 219
+# File: modules/graphics/sci_gateway/cpp/sci_matplot1.cpp, line: 217
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 72
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 80
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 78
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 86
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 127
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 134
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 151
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 158
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 70
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 78
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 77
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 85
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 126
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 133
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 150
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 157
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 89
-# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 371
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 95
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 592
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 87
+# File: modules/graphics/sci_gateway/cpp/sci_xget.cpp, line: 369
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 94
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 591
 #, c-format
 msgid "%s: Unrecognized input argument: '%s'.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 180
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 179
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 339
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 338
 #, c-format
 msgid "Figure n%d"
 msgstr ""
 
 #
-# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 543
+# File: modules/graphics/sci_gateway/cpp/sci_xset.cpp, line: 542
 #, c-format
 msgid "%s: window dimensions have been set less than 2^16.\n"
 msgstr ""
@@ -1257,42 +1258,42 @@ msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 348
+# File: modules/graphics/src/c/Format.c, line: 347
 msgid "Internal Error: Loop in graduate1\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 349
+# File: modules/graphics/src/c/Format.c, line: 348
 msgid "Please send a Bug report to dev@lists.scilab.org\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 849
+# File: modules/graphics/src/c/Format.c, line: 848
 msgid "Error: ComputeFormat must be used with AXIS objects\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 988
+# File: modules/graphics/src/c/Format.c, line: 987
 #, c-format
 msgid "%s: Wrong type argument %s.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1109
-# File: modules/graphics/src/c/Format.c, line: 1146
+# File: modules/graphics/src/c/Format.c, line: 1108
+# File: modules/graphics/src/c/Format.c, line: 1145
 #, c-format
 msgid "Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1114
-# File: modules/graphics/src/c/Format.c, line: 1151
+# File: modules/graphics/src/c/Format.c, line: 1113
+# File: modules/graphics/src/c/Format.c, line: 1150
 #, c-format
 msgid "%s must be changed FIRST, %s is '%s' and %s dimension < %d.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/Format.c, line: 1228
+# File: modules/graphics/src/c/Format.c, line: 1227
 #, c-format
 msgid "Bad size in %s: you must first increase the size of the %s.\n"
 msgstr ""
@@ -1305,27 +1306,27 @@ msgid "%s: Wrong size for input argument #%d: %d < %d expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/GetCommandArg.c, line: 220
-# File: modules/graphics/src/c/GetCommandArg.c, line: 239
+# File: modules/graphics/src/c/GetCommandArg.c, line: 230
+# File: modules/graphics/src/c/GetCommandArg.c, line: 250
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: String of %d characters expected.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/GetProperty.c, line: 636
-# File: modules/graphics/src/c/GetProperty.c, line: 661
-# File: modules/graphics/src/c/GetProperty.c, line: 688
+# File: modules/graphics/src/c/GetProperty.c, line: 641
+# File: modules/graphics/src/c/GetProperty.c, line: 666
+# File: modules/graphics/src/c/GetProperty.c, line: 693
 msgid "Coordinates modifications are only applicable on axes objects.\n"
 msgstr ""
 
 #
-# File: modules/graphics/src/c/GetProperty.c, line: 715
+# File: modules/graphics/src/c/GetProperty.c, line: 720
 msgid "Only axes handles have a viewing area."
 msgstr ""
 
 #
-# File: modules/graphics/src/c/GetProperty.c, line: 724
+# File: modules/graphics/src/c/GetProperty.c, line: 729
 #, c-format
 msgid "This object has no %s property.\n"
 msgstr ""
@@ -1570,9 +1571,9 @@ msgstr ""
 # File: modules/graphics/src/c/getHandleProperty/get_polyline_style_property.c, line: 42
 # File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 46
 # File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 63
-# File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 84
-# File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 99
-# File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 112
+# File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 87
+# File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 104
+# File: modules/graphics/src/c/getHandleProperty/get_position_property.c, line: 119
 # File: modules/graphics/src/c/getHandleProperty/get_rect_property.c, line: 39
 # File: modules/graphics/src/c/getHandleProperty/get_resize_property.c, line: 31
 # File: modules/graphics/src/c/getHandleProperty/get_rotation_angles_property.c, line: 40

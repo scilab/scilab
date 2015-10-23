@@ -24,9 +24,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\c\DllMainTclsci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\EnvTclTk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -78,9 +75,6 @@
     <ClCompile Include="sci_gateway\c\sci_TCL_UpVar.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\ScilabEval.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\setenvtcl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,6 +103,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\TerminateTclTk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\LoadUnloadTclsci.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ScilabEval.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\tclsci_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 86
 # File: modules/optimization/sci_gateway/c/sci_qld.c, line: 112
@@ -158,8 +158,8 @@ msgstr ""
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 51
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 63
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 262
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 107
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 63
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 108
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 64
 # File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 52
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -168,8 +168,8 @@ msgstr ""
 #
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 57
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 69
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 113
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 987
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 114
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 988
 # File: modules/optimization/sci_gateway/cpp/sci_semidef.cpp, line: 58
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
@@ -184,8 +184,8 @@ msgstr ""
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 134
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 206
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 232
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 246
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 272
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 247
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 273
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
 msgstr ""
@@ -195,7 +195,7 @@ msgstr ""
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 180
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 122
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 220
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 259
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 260
 #, c-format
 msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
 msgstr ""
@@ -205,7 +205,7 @@ msgstr ""
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 212
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 152
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 254
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 292
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 293
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: The first argument in the list must "
@@ -215,7 +215,7 @@ msgstr ""
 #
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 146
 # File: modules/optimization/sci_gateway/cpp/sci_lsqrsolve.cpp, line: 158
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 298
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 299
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
@@ -224,9 +224,9 @@ msgstr ""
 #
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 221
 # File: modules/optimization/sci_gateway/cpp/sci_fsolve.cpp, line: 241
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 455
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 672
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 692
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 456
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 673
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 693
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
@@ -325,135 +325,135 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 126
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 134
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 127
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 135
 #, c-format
 msgid "%s: Wrong type for input argument #%s: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 145
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 163
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 181
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 199
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 217
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 146
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 164
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 182
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 200
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 218
 #, c-format
 msgid "%s: Wrong type for input argument #%s: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 152
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 170
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 188
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 206
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 153
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 171
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 189
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 207
 #, c-format
 msgid "%s: Wrong size for input argument #%s: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 310
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 311
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 316
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 317
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 335
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 354
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 390
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 336
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 355
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 391
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 396
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 397
 #, c-format
 msgid "%s: Bounds and initial guess are incompatible.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 402
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 403
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%s: Incorrect stopping parameters.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 417
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 418
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 485
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 500
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 486
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 501
 #, c-format
 msgid "Can not allocate %.2f MB memory.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 510
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 1045
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 511
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 1046
 #, c-format
 msgid "%s: NO hot restart available in this method.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 518
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 519
 #, c-format
 msgid "Hot restart: dimension of working table (argument n:%d).\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 602
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 603
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Incorrect stopping parameters.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 611
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 612
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 622
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 623
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 631
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 632
 #, c-format
 msgid "%s: \"in\" not allowed with simulator defined by a function.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 640
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 658
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 733
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 641
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 659
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 734
 # File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 34
 #, c-format
 msgid "%s: Stop requested by simulator (ind=0).\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 645
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 663
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 738
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 646
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 664
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 739
 # File: modules/optimization/src/cpp/checkoptimerror.cpp, line: 40
 #, c-format
 msgid "%s: Problem with initial constants in simul.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 711
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 712
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: \"ar\", \"in\", \"ti\" or \"td\" not "
@@ -461,81 +461,81 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 979
+# File: modules/optimization/sci_gateway/cpp/sci_optim.cpp, line: 980
 #, c-format
 msgid "%s: This method is NOT implemented.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 69
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 70
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 77
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 78
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 85
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 86
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 106
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 132
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 107
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 133
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A real vector of size %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 153
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 154
 #, c-format
 msgid "%s: Error while reading line %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 158
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 159
 #, c-format
 msgid "%s: Unknown row type %s at line %d.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 366
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 367
 #, c-format
 msgid "%s: %d logical unit already used.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 369
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 370
 #, c-format
 msgid "%s: Too many files opened!\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 372
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 373
 #, c-format
 msgid "%s: Unknown file format.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 375
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 376
 #, c-format
 msgid "%s: File \"%s\" already exists or directory write access denied.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 378
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 379
 #, c-format
 msgid "%s: File \"%s\" does not exist or read access denied.\n"
 msgstr ""
 
 #
-# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 381
+# File: modules/optimization/sci_gateway/cpp/sci_readmps.cpp, line: 382
 #, c-format
 msgid "%s: Can not open File \"%s\"\n"
 msgstr ""
@@ -728,56 +728,56 @@ msgid "%s: End of optimization (linear search fails).\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 113
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 142
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 169
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 200
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 227
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 115
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 144
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 171
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 202
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 229
 #, c-format
-msgid "Undefined fonction '%ls'.\n"
+msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 124
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 153
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 182
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 211
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 240
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 126
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 155
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 184
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 213
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 242
 #, c-format
 msgid "User function '%s' have not been setted.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 432
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 441
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 484
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 493
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 433
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 442
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 485
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 494
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 575
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 665
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 766
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 864
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 664
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 764
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 861
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 458
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 467
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 459
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 468
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
 # File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 584
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 674
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 673
 #, c-format
 msgid ""
 "%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
 #
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 775
-# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 873
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 773
+# File: modules/optimization/src/cpp/optimizationfunctions.cpp, line: 870
 #, c-format
 msgid "%s: Wrong size for output argument #%d: A vector of %d expected.\n"
 msgstr ""

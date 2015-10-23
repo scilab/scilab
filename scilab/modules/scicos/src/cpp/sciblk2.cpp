@@ -82,11 +82,19 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
         if (!vec2var(std::vector<double>(z, z + *nz), Z))
         {
             setErrAndFree(-1, out);
+            delete in[0];
+            delete in[1];
+            delete in[2];
+            delete in[3];
             return;
         }
         if (!Z->isDouble())
         {
             setErrAndFree(-1, out);
+            delete in[0];
+            delete in[1];
+            delete in[2];
+            delete in[3];
             return;
         }
         //types::Double* Z = new types::Double(*nz, 1);

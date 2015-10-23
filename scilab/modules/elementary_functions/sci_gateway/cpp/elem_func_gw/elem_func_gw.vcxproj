@@ -210,7 +210,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\..\c\sci_log10.c" />
     <ClCompile Include="..\..\c\sci_nearfloat.c" />
     <ClCompile Include="..\..\c\sci_number_properties.c" />
-    <ClCompile Include="..\..\c\sci_sqrt.c" />
     <ClCompile Include="..\..\c\sci_testmatrix.c" />
     <ClCompile Include="..\elem_func_gw.cpp" />
     <ClCompile Include="..\sci_abs.cpp" />
@@ -256,6 +255,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_sin.cpp" />
     <ClCompile Include="..\sci_sinh.cpp" />
     <ClCompile Include="..\sci_size.cpp" />
+    <ClCompile Include="..\sci_sqrt.cpp" />
     <ClCompile Include="..\sci_sum.cpp" />
     <ClCompile Include="..\sci_tan.cpp" />
     <ClCompile Include="..\sci_tanh.cpp" />

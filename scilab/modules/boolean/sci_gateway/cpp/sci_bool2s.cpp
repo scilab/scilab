@@ -118,6 +118,7 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         }
 
         pOut = pSpOut;
+        delete[] pRows;
     }
     else
     {

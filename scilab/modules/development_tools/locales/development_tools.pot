@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 # File: modules/development_tools/macros/assert/assert_checkalmostequal.sci, line: 92
 # File: modules/development_tools/macros/assert/assert_checkfilesequal.sci, line: 15
@@ -300,7 +300,7 @@ msgstr ""
 #
 # File: modules/development_tools/macros/bench_run.sci, line: 105
 # File: modules/development_tools/macros/test_clean.sci, line: 135
-# File: modules/development_tools/macros/test_run.sci, line: 379
+# File: modules/development_tools/macros/test_run.sci, line: 382
 #, c-format
 msgid "The test %s is not available from the %s module"
 msgstr ""
@@ -406,32 +406,38 @@ msgstr ""
 
 #
 # File: modules/development_tools/macros/test_clean.sci, line: 116
-# File: modules/development_tools/macros/test_run.sci, line: 233
+# File: modules/development_tools/macros/test_run.sci, line: 236
 #, c-format
 msgid "%s: Wrong size for input argument."
 msgstr ""
 
 #
 # File: modules/development_tools/macros/test_clean.sci, line: 141
-# File: modules/development_tools/macros/test_run.sci, line: 255
+# File: modules/development_tools/macros/test_run.sci, line: 258
 #, c-format
 msgid "%s: Wrong number of input arguments."
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 333
+# File: modules/development_tools/macros/test_run.sci, line: 336
 #, c-format
 msgid "%s is not an installed module or toolbox"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1109
+# File: modules/development_tools/macros/test_run.sci, line: 649
+msgid ""
+"option JVM NOT MANDATORY is deprecated, please use CLI SHELL MODE instead"
+msgstr ""
+
+#
+# File: modules/development_tools/macros/test_run.sci, line: 1146
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr ""
 
 #
-# File: modules/development_tools/macros/test_run.sci, line: 1256
+# File: modules/development_tools/macros/test_run.sci, line: 1293
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "

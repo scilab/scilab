@@ -47,6 +47,10 @@ public class VectorOfString {
     JavaControllerJNI.VectorOfString_ensureCapacity(swigCPtr, this, n);
   }
 
+  public void resize(long n) {
+    JavaControllerJNI.VectorOfString_resize(swigCPtr, this, n);
+  }
+
   public int size() {
     return JavaControllerJNI.VectorOfString_size(swigCPtr, this);
   }
@@ -85,6 +89,12 @@ public class VectorOfString {
 
   public boolean remove(String val) {
     return JavaControllerJNI.VectorOfString_remove(swigCPtr, this, val);
+  }
+
+  public java.nio.ByteBuffer asByteBuffer(int i, int capacity) {
+    java.nio.ByteBuffer buffer = JavaControllerJNI.VectorOfString_asByteBuffer(swigCPtr, this, i, capacity);
+    buffer.order(java.nio.ByteOrder.nativeOrder());
+    return buffer;
   }
 
 }

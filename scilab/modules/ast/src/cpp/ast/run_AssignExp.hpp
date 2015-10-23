@@ -55,7 +55,7 @@ namespace ast {
                     if (pIT->getAs<types::ImplicitList>()->isComputable())
                     {
                         types::InternalType *pTemp = pIT->getAs<types::ImplicitList>()->extractFullMatrix();
-                        delete pIT;
+                        pIT->killMe();
                         pIT = pTemp;
                     }
                 }

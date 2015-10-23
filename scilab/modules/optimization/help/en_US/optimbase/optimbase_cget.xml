@@ -33,13 +33,13 @@
             <varlistentry>
                 <term>key </term>
                 <listitem>
-                    <para>A string, the name of the key to quiery.</para>
+                    <para>A string, the name of the key to query.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>value </term>
                 <listitem>
-                    <para>the value in fonction of the given key.</para>
+                    <para>the value in function of the given key.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

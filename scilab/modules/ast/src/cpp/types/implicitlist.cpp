@@ -333,55 +333,45 @@ bool ImplicitList::isComputable()
 
 bool ImplicitList::toString(std::wostringstream& ostr)
 {
-    if (isComputable())
+    ostr << L" ";
+    if (m_eStartType == ScilabDouble)
     {
-        types::InternalType* pIT = extractFullMatrix();
-        bool ret = pIT->toString(ostr);
-        delete pIT;
-        return ret;
+        Double *pD = m_poStart->getAs<Double>();
+        ostr << printDouble(pD);
     }
-    else
+    else //Polynom
     {
-        ostr << L" ";
-        if (m_eStartType == ScilabDouble)
-        {
-            Double *pD = m_poStart->getAs<Double>();
-            ostr << printDouble(pD);
-        }
-        else //Polynom
-        {
-            Polynom* pMP = m_poStart->getAs<types::Polynom>();
-            ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
-        }
-
-        ostr << L":";
-
-        if (m_eStepType == ScilabDouble)
-        {
-            Double *pD = m_poStep->getAs<Double>();
-            ostr << printDouble(pD);
-        }
-        else //Polynom
-        {
-            Polynom* pMP = m_poStep->getAs<types::Polynom>();
-            ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
-        }
-
-        ostr << L":";
-
-        if (m_eEndType == ScilabDouble)
-        {
-            Double *pD = m_poEnd->getAs<Double>();
-            ostr << printDouble(pD);
-        }
-        else //Polynom
-        {
-            Polynom* pMP = m_poEnd->getAs<types::Polynom>();
-            ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
-        }
-        ostr << std::endl;
-        return true;
+        Polynom* pMP = m_poStart->getAs<types::Polynom>();
+        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
     }
+
+    ostr << L":";
+
+    if (m_eStepType == ScilabDouble)
+    {
+        Double *pD = m_poStep->getAs<Double>();
+        ostr << printDouble(pD);
+    }
+    else //Polynom
+    {
+        Polynom* pMP = m_poStep->getAs<types::Polynom>();
+        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
+    }
+
+    ostr << L":";
+
+    if (m_eEndType == ScilabDouble)
+    {
+        Double *pD = m_poEnd->getAs<Double>();
+        ostr << printDouble(pD);
+    }
+    else //Polynom
+    {
+        Polynom* pMP = m_poEnd->getAs<types::Polynom>();
+        ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
+    }
+    ostr << std::endl;
+    return true;
 }
 
 InternalType::ScilabType ImplicitList::getOutputType()

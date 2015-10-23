@@ -49,7 +49,7 @@
             <literal>y/(1+y)</literal> in the <literal>real(y)</literal>, <literal>imag(y)</literal> plane
         </para>
         <para>
-            <literal>hallchart</literal> may be used in cunjunction with
+            <literal>hallchart</literal> may be used in conjunction with
             <link linkend="nyquist">nyquist</link>. 
         </para>
         <para>
@@ -63,14 +63,14 @@
             <literal>[-90 -60 -45 -30 -15 15 30 45 60 90]</literal>
         </para>
         <para>
-            This function superseeds the <link linkend="m_circle">m_circle</link> function
+            This function supersedes the <link linkend="m_circle">m_circle</link> function
         </para>
     </refsection>
     <refsection>
         <title>Graphics entities organization</title>
         <para>
             The <literal>hallchart</literal> function create a single
-            compound object which is generaly the last child of the current
+            compound object which is generally the last child of the current
             axes. This compound object contains a set of compound objects, one
             for each grid curve. The first ones are the iso module curves and
             the last one the iso-argument contours. Each of these compound

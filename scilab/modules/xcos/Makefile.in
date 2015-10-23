@@ -211,6 +211,7 @@ am__objects_4 = sci_gateway/cpp/libscixcos_la-sci_Xcos.lo \
 	sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo \
 	sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo \
+	sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosPalCategoryAdd.lo \
 	sci_gateway/cpp/libscixcos_la-sci_xcosPalDelete.lo \
@@ -387,6 +388,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
 HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
@@ -661,6 +663,7 @@ GATEWAY_CXX_SOURCES = \
 	sci_gateway/cpp/sci_warnBlockByUID.cpp \
 	sci_gateway/cpp/sci_closeXcosFromScilab.cpp \
 	sci_gateway/cpp/sci_xcosCellCreated.cpp \
+	sci_gateway/cpp/sci_xcosDiagramToScilab.cpp \
 	sci_gateway/cpp/sci_xcosPalLoad.cpp \
 	sci_gateway/cpp/sci_xcosPalCategoryAdd.cpp \
 	sci_gateway/cpp/sci_xcosPalDelete.cpp \
@@ -1255,6 +1258,9 @@ sci_gateway/cpp/libscixcos_la-sci_closeXcosFromScilab.lo:  \
 sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1316,6 +1322,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosAddToolsMenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosCellCreated.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosConfigureXmlFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalCategoryAdd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDelete.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalDisable.Plo@am__quote@
@@ -1465,6 +1472,13 @@ sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo: sci_gateway/cpp/sci_xcosCe
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosCellCreated.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosCellCreated.lo `test -f 'sci_gateway/cpp/sci_xcosCellCreated.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosCellCreated.cpp
+
+sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo: sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Tpo sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosDiagramToScilab.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' object='sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscixcos_la-sci_xcosDiagramToScilab.lo `test -f 'sci_gateway/cpp/sci_xcosDiagramToScilab.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosDiagramToScilab.cpp
 
 sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo: sci_gateway/cpp/sci_xcosPalLoad.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscixcos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscixcos_la-sci_xcosPalLoad.Tpo -c -o sci_gateway/cpp/libscixcos_la-sci_xcosPalLoad.lo `test -f 'sci_gateway/cpp/sci_xcosPalLoad.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_xcosPalLoad.cpp

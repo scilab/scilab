@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/localization/sci_gateway/c/sci_addlocalizationdomain.c, line: 48
 # File: modules/localization/sci_gateway/c/sci_addlocalizationdomain.c, line: 69
@@ -63,67 +63,67 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_getdefaultlanguage.cpp, line: 31
-# File: modules/localization/sci_gateway/cpp/sci_getlanguage.cpp, line: 32
-# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 68
-# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 35
+# File: modules/localization/sci_gateway/cpp/sci_getdefaultlanguage.cpp, line: 29
+# File: modules/localization/sci_gateway/cpp/sci_getlanguage.cpp, line: 30
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 62
+# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 33
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_getdefaultlanguage.cpp, line: 37
-# File: modules/localization/sci_gateway/cpp/sci_getlanguage.cpp, line: 38
-# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 74
-# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 41
+# File: modules/localization/sci_gateway/cpp/sci_getdefaultlanguage.cpp, line: 35
+# File: modules/localization/sci_gateway/cpp/sci_getlanguage.cpp, line: 36
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 68
+# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 39
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 85
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 79
 #, c-format
 msgid "%ls: This feature is only used on Windows.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 95
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 88
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 104
-# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 96
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 97
+# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 94
 #, c-format
 msgid "Unsupported language '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 133
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 126
 msgid "The language for menus cannot be changed on a running console.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 134
+# File: modules/localization/sci_gateway/cpp/sci_setdefaultlanguage.cpp, line: 127
 msgid "Restart Scilab to apply to menus.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 47
+# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 45
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 60
-# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 64
+# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 58
+# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 62
 #, c-format
 msgid "%ls: Unsupported language '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 97
+# File: modules/localization/sci_gateway/cpp/sci_setlanguage.cpp, line: 95
 #, c-format
 msgid "Switching to default language : '%ls'.\n"
 msgstr ""

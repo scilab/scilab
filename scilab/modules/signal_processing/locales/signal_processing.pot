@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 #
 # File: modules/signal_processing/sci_gateway/c/sci_conv2.c, line: 39
@@ -155,12 +155,6 @@ msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/sci_gateway/cpp/sci_fft.cpp, line: 113
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d eor %d xpected.\n"
-msgstr ""
-
-#
 # File: modules/signal_processing/sci_gateway/cpp/sci_rpem.cpp, line: 78
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %d-element list expected.\n"
@@ -258,37 +252,37 @@ msgid "%s: error in function syredi.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 79
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 140
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 78
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 139
 #, c-format
-msgid "Undefined fonction '%ls'.\n"
+msgid "Undefined function '%ls'.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 90
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 151
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 89
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 150
 #, c-format
 msgid "User function '%s' have not been setted.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 121
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 164
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 120
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 163
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 209
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 303
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 207
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 300
 #, c-format
 msgid "%ls: error while calling user function.\n"
 msgstr ""
 
 #
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 242
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 250
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 336
-# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 344
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 240
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 248
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 333
+# File: modules/signal_processing/src/cpp/signalprocessingfunctions.cpp, line: 341
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""

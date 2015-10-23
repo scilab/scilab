@@ -32,10 +32,9 @@ struct Parameter
     std::vector<double> opar;
 
     // opar default value is an empty list encoded by var2vec()
-    Parameter() : rpar(), ipar(), opar(2)
+    Parameter() : rpar(), ipar()
     {
-        opar[0] = 22;
-        opar[1] = 0;
+        opar = {22, 0};
     }
 };
 
@@ -46,10 +45,9 @@ struct State
     std::vector<double> odstate;
 
     // odstate default value is an empty list encoded by var2vec()
-    State() : state(), dstate(), odstate(2)
+    State() : state(), dstate()
     {
-        odstate[0] = 22;
-        odstate[1] = 0;
+        odstate = {22, 0};
     }
 };
 
@@ -96,21 +94,31 @@ struct Descriptor
 struct Angle
 {
     bool flip;
+    bool mirror;
     double theta;
 
-    Angle() : flip(true), theta(0) {};
-    Angle(const Angle& a) : flip(a.flip), theta(a.theta) {};
-    Angle(const std::vector<double>& a) : flip((a[0] == 0) ? false : true), theta(a[1]) {};
+    Angle() : flip(false), mirror(false), theta(0) {};
+    Angle(const Angle& a) : flip(a.flip), mirror(a.mirror), theta(a.theta) {};
+    Angle(const std::vector<double>& a) :
+        flip(  ((static_cast<int>(a[0]) & 0x0001) == 0) ? false : true),
+        mirror(((static_cast<int>(a[0]) & 0x0002) == 0) ? false : true),
+        theta(a[1])
+    {};
 
     void fill(std::vector<double>& a) const
     {
         a.resize(2);
-        a[0] = (flip == false) ? 0 : 1;
+
+        int mirrorAndFlip = static_cast<int>(a[0]);
+        (flip == false) ?   mirrorAndFlip &= ~(1 << 0) : mirrorAndFlip |= 1 << 0;
+        (mirror == false) ? mirrorAndFlip &= ~(1 << 1) : mirrorAndFlip |= 1 << 1;
+
+        a[0] = mirrorAndFlip;
         a[1] = theta;
     }
     bool operator==(const Angle& a) const
     {
-        return flip == a.flip && theta == a.theta;
+        return flip == a.flip && mirror == a.mirror && theta == a.theta;
     }
 };
 
@@ -118,17 +126,18 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_exprs(std::vector<double> (5, 0)), m_label(), m_style(), m_nzcross(std::vector<int> (1, 0)), m_nmode(std::vector<int> (1, 0)), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_label(), m_style(), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
         m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_portReference(ScicosID())
     {
-        // By default, 'm_exprs' takes the value of vec2var([]), which is {12, 2, 0, 0, 0}
-        m_exprs[0] = 12;
-        m_exprs[1] = 2;
-    };
+        m_exprs = {12, 2, 0, 0, 0};
+        m_nmode = {0};
+        m_nzcross = {0};
+        m_childrenColor = { -1, 1};
+    }
     Block(const Block& o) : BaseObject(BLOCK), m_parentDiagram(o.m_parentDiagram), m_interfaceFunction(o.m_interfaceFunction), m_geometry(o.m_geometry),
         m_angle(o.m_angle), m_exprs(o.m_exprs), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
         m_sim(o.m_sim), m_in(o.m_in), m_out(o.m_out), m_ein(o.m_ein), m_eout(o.m_eout), m_parameter(o.m_parameter), m_state(o.m_state), m_parentBlock(o.m_parentBlock),
-        m_children(o.m_children), m_portReference(o.m_portReference) {};
+        m_children(o.m_children), m_childrenColor(o.m_childrenColor), m_portReference(o.m_portReference) {}
     ~Block() = default;
 
 private:
@@ -147,6 +156,22 @@ private:
         }
 
         this->m_children = children;
+        return SUCCESS;
+    }
+
+    void getChildrenColor(std::vector<int>& data) const
+    {
+        data = this->m_childrenColor;
+    }
+
+    update_status_t setChildrenColor(const std::vector<int>& data)
+    {
+        if (data == this->m_childrenColor)
+        {
+            return NO_CHANGES;
+        }
+
+        this->m_childrenColor = data;
         return SUCCESS;
     }
 
@@ -701,6 +726,7 @@ private:
      */
     ScicosID m_parentBlock;
     std::vector<ScicosID> m_children;
+    std::vector<int> m_childrenColor;
 
     /**
      * I/O Blocks: the corresponding parent port

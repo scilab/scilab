@@ -346,9 +346,11 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"external_objects"] = std::pair<GW_MOD, GW_MOD>(&ExternalObjectsModule::Load, &ExternalObjectsModule::Unload);
     m_ModuleMap[L"external_objects_java"] = std::pair<GW_MOD, GW_MOD>(&ExternalObjectsJavaModule::Load, &ExternalObjectsJavaModule::Unload);
     m_ModuleMap[L"preferences"] = std::pair<GW_MOD, GW_MOD>(&PreferencesModule::Load, &PreferencesModule::Unload);
+    m_ModuleMap[L"slint"] = std::pair<GW_MOD, GW_MOD>(&SlintModule::Load, &SlintModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
+        m_ModuleMap[L"tclsci"] = std::pair<GW_MOD, GW_MOD>(&TclsciModule::Load, &TclsciModule::Unload);
         m_ModuleMap[L"jvm"] = std::pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
         m_ModuleMap[L"ui_data"] = std::pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
     }

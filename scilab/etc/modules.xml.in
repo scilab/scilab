@@ -89,4 +89,5 @@
 <module name="external_objects" activate="yes"/>
 <module name="ast" activate="yes"/>
 <module name="external_objects_java" activate="@JAVA_ENABLE@"/>
+<module name="slint" activate="yes"/>
 </modules>

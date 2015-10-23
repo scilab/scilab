@@ -218,7 +218,7 @@ me=3;
     </refsection>
     <refsection>
         <title>Used Functions</title>
-        <para>qpgen2.f and &gt;qpgen1.f (also named QP.solve.f) developped by
+        <para>qpgen2.f and &gt;qpgen1.f (also named QP.solve.f) developed by
             Berwin A. Turlach according to the Goldfarb/Idnani algorithm
         </para>
     </refsection>

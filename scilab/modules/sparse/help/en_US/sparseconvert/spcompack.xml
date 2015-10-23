@@ -47,7 +47,7 @@
     <refsection>
         <title>Description</title>
         <programlisting role=""><![CDATA[ 
-Utility fonction spcompak is used to convert a compressed adjacency
+Utility function spcompak is used to convert a compressed adjacency
 representation into standard adjacency representation.
  ]]></programlisting>
     </refsection>

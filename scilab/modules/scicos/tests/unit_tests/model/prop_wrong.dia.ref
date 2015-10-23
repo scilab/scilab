@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- XCOS TEST -->
+// <-- CLI SHELL MODE -->
 scicos_log("TRACE");
 b = scicos_block();
 Xcos debug: objectCreated( 1 , BLOCK )

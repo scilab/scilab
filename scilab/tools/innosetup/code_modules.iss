@@ -91,16 +91,15 @@ begin
     ModulesXmlFileLines[i] := '<module name="matio" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="atoms" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="slint" activate="yes"/>'; i := i + 1;
 
 #ifndef SCILAB_F2C
     //ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
 #endif
-
-
 
     ModulesXmlFileLines[i] := '<!-- JMV dependencies -->'; i := i + 1;
     if (IsComponentSelected( ExpandConstant('{#COMPN_JVM_MODULE}') )) then

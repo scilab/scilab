@@ -3,13 +3,16 @@ LIBRARY    core.dll
 
 EXPORTS
 callFunctionFromGateway
-com_
-iop_
+StorePrioritaryCommand
+StoreConsoleCommand
+StoreCommandWithFlags
 StoreCommand
 GetCommand
+isEmptyCommandQueue
 ismenu
-StorePrioritaryCommand
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc
+StaticRunner_launch
+StaticRunner_getCommandOrigin

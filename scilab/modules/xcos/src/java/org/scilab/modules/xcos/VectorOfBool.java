@@ -43,20 +43,16 @@ public class VectorOfBool {
     this(JavaControllerJNI.new_VectorOfBool__SWIG_1(n), true);
   }
 
-  public long size() {
-    return JavaControllerJNI.VectorOfBool_size(swigCPtr, this);
-  }
-
-  public long capacity() {
-    return JavaControllerJNI.VectorOfBool_capacity(swigCPtr, this);
-  }
-
   public void ensureCapacity(long n) {
     JavaControllerJNI.VectorOfBool_ensureCapacity(swigCPtr, this, n);
   }
 
   public void resize(long n) {
     JavaControllerJNI.VectorOfBool_resize(swigCPtr, this, n);
+  }
+
+  public int size() {
+    return JavaControllerJNI.VectorOfBool_size(swigCPtr, this);
   }
 
   public boolean isEmpty() {

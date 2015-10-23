@@ -23,7 +23,6 @@
 #include "localization.h"
 #include "version.h"
 #include "getversion.h"
-#include "dynamic_tclsci.h"
 #include "..\..\..\..\libs\pcre\pcre.h"
 #include "getBlasType.h"
 /*--------------------------------------------------------------------------*/

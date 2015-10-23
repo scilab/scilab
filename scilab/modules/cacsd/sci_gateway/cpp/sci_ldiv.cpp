@@ -155,7 +155,7 @@ types::Function::ReturnValue sci_ldiv(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A matix or polynom expected.\n"), "ldiv", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"), "ldiv", 2);
         return types::Function::Error;
     }
 

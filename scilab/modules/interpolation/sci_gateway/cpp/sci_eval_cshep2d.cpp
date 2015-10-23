@@ -89,7 +89,7 @@ types::Function::ReturnValue sci_eval_cshep2d(types::typed_list &in, int _iRetCo
 
     if (pDblYp->getRows() != pDblXp->getRows() || pDblYp->getCols() != pDblXp->getCols())
     {
-        Scierror(999, _("%s: Wrong size for input arguments #%d ans #%d: Same size expected.\n"), "eval_cshep2d", 1, 2);
+        Scierror(999, _("%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"), "eval_cshep2d", 1, 2);
         return types::Function::Error;
     }
 

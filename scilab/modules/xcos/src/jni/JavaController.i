@@ -47,6 +47,7 @@ namespace std {
         vector(size_type n);
         %rename(ensureCapacity) reserve;
         void reserve(size_type n);
+        void resize(size_type n);
         int size() const;
         %rename(isEmpty) empty;
         bool empty() const;
@@ -93,6 +94,17 @@ namespace std {
                     self->erase(it);
                 return true;
             }
+            void* asByteBuffer(int i, int capacity) {
+                (void) capacity;
+                void* buffer = nullptr;
+                int size = int(self->size()) ;
+                if (i>=0 && i<size) {
+                    buffer = ((char*) self->data()) + i;
+                } else {
+                    throw std::out_of_range("vector index out of range");
+                }
+                return buffer;
+            }
         }
     };
 
@@ -104,10 +116,10 @@ namespace std {
         typedef bool const_reference;
         vector();
         vector(size_type n);
-        size_type size() const;
-        size_type capacity() const;
+        %rename(ensureCapacity) reserve;
         void reserve(size_type n);
         void resize(size_type n);
+        int size() const;
         %rename(isEmpty) empty;
         bool empty() const;
         void clear();
@@ -206,6 +218,27 @@ namespace std {
 %apply bool &OUTPUT { bool &v };
 %apply long long &OUTPUT { long long &v }; // ScicosID
 %apply std::string &OUTPUT { std::string &v };
+
+/*
+ * Custom typemap to retrieve a view of the memory as a ByteBuffer
+ */
+%typemap(jni)     void* "jobject"
+%typemap(jtype)   void* "java.nio.ByteBuffer"
+%typemap(jstype)  void* "java.nio.ByteBuffer"
+
+%typemap(out) void* {
+    if (arg3 <= 0) {
+        arg3 = arg1->size() - arg2;
+    } else if (arg1->size() < arg3) {
+        throw std::out_of_range("vector index out of range");
+    }
+    $result = JCALL2(NewDirectByteBuffer, jenv, $1, arg3 * sizeof(decltype(arg1->back())));
+}
+%typemap(javaout) void* {
+    java.nio.ByteBuffer buffer = $jnicall;
+    buffer.order(java.nio.ByteOrder.nativeOrder());
+    return buffer;
+  }
 
 /*
  * Generate the View interface

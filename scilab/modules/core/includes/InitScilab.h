@@ -14,8 +14,15 @@
 #ifndef __INITSCILAB_H__
 #define __INITSCILAB_H__
 
+#include "storeCommand.h" // command_origin_t
+
 typedef struct
 {
+    char* pstParseFile;
+    char* pstFile;
+    char* pstExec;
+    char* pstLang;
+    void* pExpTree;
     int iParseTrace;
     int iPrintAst;
     int iExecAst;
@@ -28,20 +35,15 @@ typedef struct
     int iNoJvm;
     int iNoStart;
     int iShowVersion;
-    char* pstParseFile;
-    char* pstFile;
-    char* pstExec;
-    char* pstLang;
     int iSerialize;
     int iKeepConsole;
     int iNoBanner;
-    void* pExpTree;
     int iMultiLine;
     int isInterruptible;
     int isPrioritary;
-    int isConsoleCommand;
     int iStartConsoleThread;
     int iForceQuit;
+    enum command_origin_t iCommandOrigin;
 } ScilabEngineInfo;
 
 ScilabEngineInfo* InitScilabEngineInfo();

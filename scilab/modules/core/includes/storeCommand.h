@@ -14,8 +14,23 @@
 #ifndef __STORECOMMAND_H__
 #define __STORECOMMAND_H__
 
-#include <wchar.h>
-#include "machine.h"
+enum command_origin_t
+{
+    NONE,
+    CONSOLE, // command from console
+    TCLSCI   // command from tclsci using ScilabEval interpreter
+};
+
+/**
+ * Store a non-prioritary and interruptible command
+ *
+ * @param command           : command wich will be stored
+ * @param piInterruptible   : 1 if it is a interruptible command
+ * @param piPrioritary      : 1 if it is a prioritary command
+ * @param iCmdorigin        : origine of the command
+ * @return <ReturnValue>
+ */
+int StoreCommandWithFlags(char* command, int iPrioritary, int iInterruptible, enum command_origin_t iCmdorigin);
 
 /**
  * Store a non-prioritary and interruptible command
@@ -47,10 +62,10 @@ int StorePrioritaryCommand(char *command);
  * @param command           : command wich will be executed
  * @param piInterruptible   : 1 if it is a interruptible command
  * @param piPrioritary      : 1 if it is a prioritary command
- * @param piConsole         : 1 if it is a console command
+ * @param iCmdorigin        : origine of the command
  * @return <ReturnValue>    : 0 if command queue is empty
  */
-int GetCommand (char** command, int* piInterruptible, int* piPrioritary, int* piConsole);
+int GetCommand(char** command, int* piPrioritary, int* piInterruptible, enum command_origin_t* iCmdorigin);
 
 /**
 * check if command queue is empty
@@ -58,20 +73,12 @@ int GetCommand (char** command, int* piInterruptible, int* piPrioritary, int* pi
 */
 int isEmptyCommandQueue(void);
 
-
-
 /*
  * Checks if there's something on the
  * commandQueue
  * @return
  */
 int ismenu(void);
-
-
-/**
-*
-*/
-int C2F(getmen)(char * btn_cmd, int * lb, int * entry);
 
 
 #endif /* __STORECOMMAND_H__ */

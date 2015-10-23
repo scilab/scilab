@@ -27,10 +27,10 @@ Source: modules\{#TYPES}\license.txt; DestDir: {app}\modules\{#TYPES}; Component
 Source: modules\{#TYPES}\etc\{#TYPES}.quit; DestDir: {app}\modules\{#TYPES}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#TYPES}\etc\{#TYPES}.start; DestDir: {app}\modules\{#TYPES}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#TYPES}\macros\buildmacros.sce; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TYPES}\macros\buildmacros.bat; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TYPES}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TYPES}\macros\lib; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#TYPES}\macros\buildmacros.sce; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#TYPES}\macros\buildmacros.bat; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#TYPES}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#TYPES}\macros\lib; DestDir: {app}\modules\{#TYPES}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TYPES}\tests\*.*; DestDir: {app}\modules\{#TYPES}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;

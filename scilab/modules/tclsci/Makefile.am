@@ -3,13 +3,11 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-
 if TCLTK
 
 TCLSCI_C_SOURCES = \
     src/c/TCL_Global.c \
     src/c/InitTclTk.c \
-    src/c/ScilabEval.c \
     src/c/setenvtcl.c \
     src/c/InitializeTclTk.c \
     src/c/TerminateTclTk.c \
@@ -20,7 +18,14 @@ TCLSCI_C_SOURCES = \
     src/c/TCL_ArraySize.c \
     src/c/TCL_Command.c \
     src/c/GlobalTclInterp.c \
-    src/c/TCL_getErrorLine.c
+    src/c/TCL_getErrorLine.c \
+    src/c/LoadUnloadTclsci.c
+
+TCLSCI_CPP_SOURCES = \
+    src/cpp/ScilabEval.cpp
+
+GATEWAY_CPP_SOURCES = \
+	sci_gateway/cpp/tclsci_gw.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_opentk.c \
@@ -39,14 +44,12 @@ GATEWAY_C_SOURCES = \
 
 else
 
-TCLSCI_C_SOURCES = src/notclsci/notclsci.c
-
+TCLSCI_C_SOURCES =
+TCLSCI_CPP_SOURCES = src/notclsci/notclsci.cpp
+GATEWAY_CPP_SOURCES =
 GATEWAY_C_SOURCES =
 
 endif
-
-pkglib_LTLIBRARIES = libscitclsci.la
-noinst_LTLIBRARIES = libscitclsci-algo.la
 
 libscitclsci_la_LDFLAGS = $(AM_LDFLAGS)
 
@@ -72,17 +75,46 @@ libscitclsci_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
     $(AM_CPPFLAGS)
 
-libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)
-libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
+# Without the TCLSCI module
+libscitclsci_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    $(AM_CPPFLAGS)
+
+libscitclsci_algo_la_SOURCES = $(TCLSCI_CPP_SOURCES) $(TCLSCI_C_SOURCES)
+libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscitclsci_algo_la_CPPFLAGS = $(libscitclsci_la_CPPFLAGS)
+
+TCLSCI_DISABLE_CPP_SOURCES = src/notclsci/notclsci.cpp
+libscitclsci_disable_la_SOURCES = $(TCLSCI_DISABLE_CPP_SOURCES)
+
+pkglib_LTLIBRARIES = libscitclsci-disable.la libscitclsci.la
+noinst_LTLIBRARIES = libscitclsci-algo.la
+
 
 # For the code check (splint)
 CHECK_SRC= $(libscitclsci_la_SOURCES)
 INCLUDE_FLAGS = $(libscitclsci_la_CPPFLAGS)
 
-libscitclsci_la_LIBADD = libscitclsci-algo.la $(TCLTK_LIBS)
+libscitclsci_la_LIBADD = libscitclsci-algo.la
+if TCLTK
+libscitclsci_la_LIBADD += $(TCLTK_LIBS)
+endif
+
 #### Target ######
 modulename=tclsci
 

@@ -15,36 +15,36 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:21+0100\n"
 
 # File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 83
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 118
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 162
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 191
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 120
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 166
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 195
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 247
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 251
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
 msgstr ""
 
 #
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 257
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 261
 #, c-format
 msgid "%s: Error while building documentation: %s.\n"
 msgstr ""
 
 #
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 258
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 262
 #, c-format
 msgid "%s: Execution Java stack: %s.\n"
 msgstr ""
 
 #
-# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 261
+# File: modules/helptools/sci_gateway/cpp/sci_buildDoc.cpp, line: 265
 msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"

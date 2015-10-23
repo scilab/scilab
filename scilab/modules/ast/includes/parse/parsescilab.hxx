@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -43,8 +43,8 @@ extern int yydebug;
 /* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-enum yytokentype
-{
+  enum yytokentype
+  {
     YYEOF = 0,
     DOTS = 258,
     EOL = 259,
@@ -103,33 +103,31 @@ enum yytokentype
     OTHERWISE = 312,
     FUNCTION = 313,
     ENDFUNCTION = 314,
-    HIDDENFUNCTION = 315,
-    HIDDEN = 316,
-    FOR = 317,
-    WHILE = 318,
-    DO = 319,
-    BREAK = 320,
-    CONTINUE = 321,
-    TRY = 322,
-    CATCH = 323,
-    RETURN = 324,
-    FLEX_ERROR = 325,
-    STR = 326,
-    ID = 327,
-    VARINT = 328,
-    VARFLOAT = 329,
-    NUM = 330,
-    PATH = 331,
-    COMMENT = 332,
-    BLOCKCOMMENT = 333,
-    TOPLEVEL = 334,
-    HIGHLEVEL = 335,
-    UPLEVEL = 336,
-    LISTABLE = 337,
-    CONTROLBREAK = 338,
-    UMINUS = 339,
-    FUNCTIONCALL = 340
-};
+    FOR = 315,
+    WHILE = 316,
+    DO = 317,
+    BREAK = 318,
+    CONTINUE = 319,
+    TRY = 320,
+    CATCH = 321,
+    RETURN = 322,
+    FLEX_ERROR = 323,
+    STR = 324,
+    ID = 325,
+    VARINT = 326,
+    VARFLOAT = 327,
+    NUM = 328,
+    PATH = 329,
+    COMMENT = 330,
+    BLOCKCOMMENT = 331,
+    TOPLEVEL = 332,
+    HIGHLEVEL = 333,
+    UPLEVEL = 334,
+    LISTABLE = 335,
+    CONTROLBREAK = 336,
+    UMINUS = 337,
+    FUNCTIONCALL = 338
+  };
 #endif
 /* Tokens.  */
 #define YYEOF 0
@@ -190,41 +188,39 @@ enum yytokentype
 #define OTHERWISE 312
 #define FUNCTION 313
 #define ENDFUNCTION 314
-#define HIDDENFUNCTION 315
-#define HIDDEN 316
-#define FOR 317
-#define WHILE 318
-#define DO 319
-#define BREAK 320
-#define CONTINUE 321
-#define TRY 322
-#define CATCH 323
-#define RETURN 324
-#define FLEX_ERROR 325
-#define STR 326
-#define ID 327
-#define VARINT 328
-#define VARFLOAT 329
-#define NUM 330
-#define PATH 331
-#define COMMENT 332
-#define BLOCKCOMMENT 333
-#define TOPLEVEL 334
-#define HIGHLEVEL 335
-#define UPLEVEL 336
-#define LISTABLE 337
-#define CONTROLBREAK 338
-#define UMINUS 339
-#define FUNCTIONCALL 340
+#define FOR 315
+#define WHILE 316
+#define DO 317
+#define BREAK 318
+#define CONTINUE 319
+#define TRY 320
+#define CATCH 321
+#define RETURN 322
+#define FLEX_ERROR 323
+#define STR 324
+#define ID 325
+#define VARINT 326
+#define VARFLOAT 327
+#define NUM 328
+#define PATH 329
+#define COMMENT 330
+#define BLOCKCOMMENT 331
+#define TOPLEVEL 332
+#define HIGHLEVEL 333
+#define UPLEVEL 334
+#define LISTABLE 335
+#define CONTROLBREAK 336
+#define UMINUS 337
+#define FUNCTIONCALL 338
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
+
 union YYSTYPE
 {
 
 
-    /* Tokens. */
+  /* Tokens. */
     double                      number;
     std::wstring*               str;
     std::wstring*               path;
@@ -279,6 +275,8 @@ union YYSTYPE
 
 
 };
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -288,10 +286,10 @@ union YYSTYPE
 typedef struct YYLTYPE YYLTYPE;
 struct YYLTYPE
 {
-    int first_line;
-    int first_column;
-    int last_line;
-    int last_column;
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
 };
 # define YYLTYPE_IS_DECLARED 1
 # define YYLTYPE_IS_TRIVIAL 1

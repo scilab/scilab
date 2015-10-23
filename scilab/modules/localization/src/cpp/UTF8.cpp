@@ -42,14 +42,14 @@ std::string UTF8::toUTF8(const std::wstring & wstr)
         return std::string();
     }
 
-    size = WideCharToMultiByte(CP_UTF8, dwFlags, wstr.c_str(), -1, nullptr, 0, nullptr, 0);
+    size = WideCharToMultiByte(CP_UTF8, dwFlags, wstr.c_str(), (int)wstr.size(), nullptr, 0, nullptr, 0);
     if (size == 0)
     {
         return std::string();
     }
 
     buf = new char[size];
-    size = WideCharToMultiByte(CP_UTF8, dwFlags, wstr.c_str(), -1, buf, size, nullptr, 0);
+    size = WideCharToMultiByte(CP_UTF8, dwFlags, wstr.c_str(), (int)wstr.size(), buf, size, nullptr, 0);
     if (size <= 0)
     {
         delete[] buf;
@@ -78,14 +78,14 @@ std::wstring UTF8::toWide(const std::string & str)
         codePage = CP_UTF8;
     }
 
-    int nwide = MultiByteToWideChar(codePage, dwFlags, str.c_str(), -1, nullptr, 0);
+    int nwide = MultiByteToWideChar(codePage, dwFlags, str.c_str(), (int)str.size(), nullptr, 0);
     if (nwide == 0)
     {
         return std::wstring();
     }
 
     wchar_t * buf = new wchar_t[nwide];
-    if (MultiByteToWideChar(codePage, dwFlags, str.c_str(), -1, buf, nwide) == 0)
+    if (MultiByteToWideChar(codePage, dwFlags, str.c_str(), (int)str.size(), buf, nwide) == 0)
     {
         delete[] buf;
         return std::wstring();

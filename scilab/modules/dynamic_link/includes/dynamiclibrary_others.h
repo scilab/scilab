@@ -12,7 +12,7 @@
  */
 #ifndef __DYNAMICLIBRARY_OTHERS_H__
 #define __DYNAMICLIBRARY_OTHERS_H__
-#ifdef __unix__ // guard against mis-compilation
+#if defined(__APPLE__) || defined(__unix__) // guard against mis-compilation
 
 #include <dlfcn.h>
 #include <wchar.h>

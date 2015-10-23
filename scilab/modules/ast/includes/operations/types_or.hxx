@@ -123,6 +123,7 @@ template<typename T, typename U, typename O> inline static void int_or(T l, U r,
 
 // ||
 int IntOrInt(types::InternalType* _pL, types::Bool** _pOut);
+int DoubleOrDouble(types::Double* _pI1, types::Bool** _pOut);
 int BoolOrBool(types::Bool* _pI1, types::Bool** _pOut);
 int SparseBoolOrSparseBool(types::InternalType* _pL, types::Bool** _pOut);
 

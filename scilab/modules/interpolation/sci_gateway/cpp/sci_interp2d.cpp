@@ -147,7 +147,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
     sizeOfC = 16 * (sizeOfX - 1) * (sizeOfY - 1);
     if (pDblC->getCols() != 1 || pDblC->getSize() != sizeOfC)
     {
-        Scierror(999, _("%s: Wrong size for input arguments #%d: A colomn vector of size %d expected.\n"), "interp2d", 5, sizeOfC);
+        Scierror(999, _("%s: Wrong size for input arguments #%d: A column vector of size %d expected.\n"), "interp2d", 5, sizeOfC);
         return types::Function::Error;
     }
 
@@ -184,7 +184,7 @@ types::Function::ReturnValue sci_interp2d(types::typed_list &in, int _iRetCount,
         }
         else // undefined
         {
-            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is a unknow '%s' type.\n"), "interp2d", 6, wcsType, "outmode");
+            Scierror(999, _("%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"), "interp2d", 6, wcsType, "outmode");
             return types::Function::Error;
         }
     }

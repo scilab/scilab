@@ -35,6 +35,8 @@ C : complex
 + : >= 0
 - : <= 0
 */
+extern int C2F(zgemm) (char *_pstTransA, char *_pstTransB, int *_piN, int *_piM, int *_piK, double *_pdblAlpha, double *_pdblA, int *_piLdA,
+                       double *_pdblB, int *_piLdB, double *_pdblBeta, double *_pdblC, int *_piLdC);
 
 /*ddpowe*/
 int iPowerRealScalarByRealScalar(
@@ -450,11 +452,11 @@ int iPowerRealSquareMatrixByRealScalar(
         }
         else if (iExpRef == 0)
         {
-            int iSize				= _iRows1 * _iCols1;
-            int iOne				= 1;
-            double dblOne		= 1;
-            double dblZero	= 0;
-            int iRowp1			= _iRows1 + 1;
+            int iSize       = _iRows1 * _iCols1;
+            int iOne        = 1;
+            double dblOne   = 1;
+            double dblZero  = 0;
+            int iRowp1      = _iRows1 + 1;
 
             if (C2F(dasum)(&iSize, _pdblReal1, &iOne) == 0)
             {
@@ -466,37 +468,62 @@ int iPowerRealSquareMatrixByRealScalar(
         }
         else
         {
-            int iExp	= 0;
-            int iRow	= 0;
-            int iCol	= 0;
-            int iSize	= _iRows1 * _iCols1;
-            int iOne	= 1;
+            int i           = 0;
+            int iOne        = 1;
+            int iPos        = 0;
+            int iPrevPos    = 0;
+            int iSize       = _iCols1 * _iCols1;
+            int iInc        = _iCols1 + 1;
 
-            /*temporary work space*/
-            double *pWork2 = (double*)malloc(sizeof(double) * iSize);
-            double *pWork3 = (double*)malloc(sizeof(double) * _iRows1);
+            double alpha = 1.;
+            double beta  = 0.;
 
-            C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut, &iOne);
-            C2F(dcopy)(&iSize, _pdblReal1, &iOne, pWork2, &iOne);
-            //l1 -> l2
-            for (iExp = 1 ; iExp < iExpRef ; iExp++)
+            double* pdblResult  = (double*)malloc(iSize * sizeof(double));
+            double* pdblTmp     = (double*)malloc(iSize * sizeof(double));
+
+            // initialize the output as identity matrix
+            // because we use this array in the first multiplication.
+            memset(_pdblRealOut, 0x00, iSize * sizeof(double));
+            C2F(dset)(&_iCols1, &alpha, _pdblRealOut, &iInc);
+
+            // copy input data to avoid input modification
+            C2F(dcopy)(&iSize, _pdblReal1, &iOne, pdblTmp, &iOne);
+
+            // find all "1" in binary representation of the power integer.
+            // then perform multiplication according the "1" position.
+            while (iExpRef != 0)
             {
-                for (iCol = 0 ; iCol < _iCols1 ; iCol++)
+                if (iExpRef & 1u)
                 {
-                    double *pPtr = _pdblRealOut + iCol * _iCols1;
-                    C2F(dcopy)(&_iRows1, pPtr, &iOne, pWork3, &iOne);
-                    //ls -> l3
-                    for (iRow = 0 ; iRow < _iRows1 ; iRow++)
+                    // start the loop at the last position
+                    // because we keep the last result to perform
+                    // the multiplication.
+                    for (i = iPrevPos; i < iPos; i++)
                     {
-                        int iOffset = iRow + iCol * _iRows1;
-                        pPtr = pWork2 + iRow;
-                        _pdblRealOut[iOffset] = C2F(ddot)(&_iRows1, pPtr, &_iRows1, pWork3, &iOne);
-                    }//for
-                }//for
-            }//for
-            free(pWork2);
-            free(pWork3);
-        }//if(iExpRef != 1 && != 0)
+                        double* pdblSwitch;
+                        C2F(dgemm)( "N", "N", &_iCols1, &_iCols1, &_iCols1, &alpha, pdblTmp, &_iCols1,
+                                    pdblTmp, &_iCols1, &beta, pdblResult, &_iCols1);
+
+                        pdblSwitch  = pdblTmp;
+                        pdblTmp     = pdblResult;
+                        pdblResult  = pdblSwitch;
+                    }
+
+                    iPrevPos = iPos;
+
+                    C2F(dgemm)( "N", "N", &_iCols1, &_iCols1, &_iCols1, &alpha, pdblTmp, &_iCols1,
+                                _pdblRealOut, &_iCols1, &beta, pdblResult, &_iCols1);
+
+                    C2F(dcopy)(&iSize, pdblResult, &iOne, _pdblRealOut, &iOne);
+                }
+
+                iPos++;
+                iExpRef = iExpRef >> 1;
+            }
+
+            free(pdblResult);
+            free(pdblTmp);
+        }
     }
     else
     {
@@ -572,54 +599,70 @@ int iPowerComplexSquareMatrixByRealScalar(
         }
         else
         {
-            int iSize = _iRows1 * _iCols1;
-            int iExp  = 0;
-            int iRow  = 0;
-            int iCol  = 0;
-            int iOne  = 1;
+            int i = 0;
+            int iOne = 1;
+            int iTwo = 2;
+            int iPos = 0;
+            int iPrevPos = 0;
+            int iSize = _iCols1 * _iCols1;
+            int iSize2 = iSize * 2;
+            int iInc = (_iCols1 + 1) * 2;
 
-            //temporary work space
-            double *pWorkReal2 = (double*)malloc(sizeof(double) * iSize);
-            double *pWorkImg2  = (double*)malloc(sizeof(double) * iSize);
-            double *pWorkReal3 = (double*)malloc(sizeof(double) * _iRows1);
-            double *pWorkImg3  = (double*)malloc(sizeof(double) * _iRows1);
+            double alpha[2] = {1., 0.};
+            double beta[2] = {0., 0.};
 
-            //copy In to Out
-            C2F(dcopy)(&iSize, _pdblReal1, &iOne, _pdblRealOut,	&iOne);
-            C2F(dcopy)(&iSize, _pdblImg1, &iOne, _pdblImgOut, &iOne);
+            double* pdblResult = (double*)malloc(iSize2 * sizeof(double));
+            double* pdblTmp = (double*)malloc(iSize2 * sizeof(double));
+            double* pdblOut = (double*)malloc(iSize2 * sizeof(double));
 
-            C2F(dcopy)(&iSize, _pdblReal1, &iOne, pWorkReal2, &iOne);
-            C2F(dcopy)(&iSize, _pdblImg1, &iOne, pWorkImg2, &iOne);
+            // initialize the output as identity matrix
+            // because we use this array in the first multiplication.
+            memset(pdblOut, 0x00, iSize2 * sizeof(double));
+            C2F(dset)(&_iCols1, &alpha[0], pdblOut, &iInc);
 
-            //l1 -> l2
-            for (iExp = 1 ; iExp < iExpRef ; iExp++)
+            // copy input complex in working array as Z storage.
+            C2F(dcopy)(&iSize, _pdblReal1, &iOne, pdblTmp, &iTwo);
+            C2F(dcopy)(&iSize, _pdblImg1, &iOne, pdblTmp + 1, &iTwo);
+
+            // find all "1" in binary representation of the power integer.
+            // then perform multiplication according the "1" position.
+            while (iExpRef != 0)
             {
-                for (iCol = 0 ; iCol < _iCols1 ; iCol++)
+                if (iExpRef & 1u)
                 {
-                    double *pPtrReal = _pdblRealOut + iCol * _iCols1;
-                    double *pPtrImg	 = _pdblImgOut + iCol * _iCols1;
-                    C2F(dcopy)(&_iRows1, pPtrReal, &iOne, pWorkReal3, &iOne);
-                    C2F(dcopy)(&_iRows1, pPtrImg, &iOne, pWorkImg3, &iOne);
-                    //ls -> l3
-                    for (iRow = 0 ; iRow < _iRows1 ; iRow++)
+                    // start the loop at the last position
+                    // because we keep the last result to perform
+                    // the multiplication.
+                    for (i = iPrevPos; i < iPos; i++)
                     {
-                        int iOffset = iRow + iCol * _iRows1;
-                        pPtrReal = pWorkReal2 + iRow;
-                        pPtrImg = pWorkImg2 + iRow;
+                        double* pdblSwitch;
+                        C2F(zgemm)("N", "N", &_iCols1, &_iCols1, &_iCols1, alpha, pdblTmp, &_iCols1,
+                                   pdblTmp, &_iCols1, beta, pdblResult, &_iCols1);
 
-                        _pdblRealOut[iOffset] = C2F(ddot)(&_iRows1, pPtrReal, &_iRows1, pWorkReal3, &iOne)
-                                                - C2F(ddot)(&_iRows1, pPtrImg, &_iRows1, pWorkImg3, &iOne);
-                        _pdblImgOut[iOffset]  = C2F(ddot)(&_iRows1, pPtrReal, &_iRows1, pWorkImg3, &iOne)
-                                                + C2F(ddot)(&_iRows1, pPtrImg, &_iRows1, pWorkReal3, &iOne);
-                    }//for
-                }//for
-            }//for
-            free(pWorkReal2);
-            free(pWorkImg2);
-            free(pWorkReal3);
-            free(pWorkImg3);
+                        pdblSwitch = pdblTmp;
+                        pdblTmp = pdblResult;
+                        pdblResult = pdblSwitch;
+                    }
 
-        }//if(iExpRef != 1 && != 0)
+                    iPrevPos = iPos;
+
+                    C2F(zgemm)("N", "N", &_iCols1, &_iCols1, &_iCols1, alpha, pdblTmp, &_iCols1,
+                               pdblOut, &_iCols1, beta, pdblResult, &_iCols1);
+
+                    C2F(dcopy)(&iSize2, pdblResult, &iOne, pdblOut, &iOne);
+                }
+
+                iPos++;
+                iExpRef = iExpRef >> 1;
+            }
+
+            C2F(dcopy)(&iSize, pdblOut, &iTwo, _pdblRealOut, &iOne);
+            C2F(dcopy)(&iSize, pdblOut + 1, &iTwo, _pdblImgOut, &iOne);
+
+            free(pdblResult);
+            free(pdblTmp);
+            free(pdblOut);
+        }
     }
     else
     {

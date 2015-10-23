@@ -195,7 +195,7 @@ function y = A ( x )
         </para>
     </refsection>
     <refsection>
-        <title>Example with well-conditionned and ill-conditionned
+        <title>Example with well-conditioned and ill-conditioned
             problems
         </title>
         <para>In the following example, two linear systems are solved. The first
@@ -207,7 +207,7 @@ function y = A ( x )
             set to 30. See below for other examples of the "key=value" syntax.
         </para>
         <programlisting role="example"><![CDATA[
-// Well-conditionned problem
+// Well-conditioned problem
 A = [ 94  0   0   0    0   28  0   0   32  0
      0   59  13  5    0   0   0   10  0   0
      0   13  72  34   2   0   0   0   0   65
@@ -223,7 +223,7 @@ b = ones(10, 1);
 [x, fail, err, iter, res] = conjgrad(A, b, "bicg", 1d-12, 15);
 mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
 
-// Ill-contionned one
+// Ill-conditioned one
 A = [ 894     0   0     0   0   28  0   0   1000  70000
       0      5   13    5   0   0   0   0   0     0
       0      13  72    34  0   0   0   0   0     6500
@@ -249,7 +249,7 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
             this example, is when a list is passed to the primitive.
         </para>
         <programlisting role="example"><![CDATA[
-// Well-conditionned problem
+// Well-conditioned problem
 A = [ 94  0   0   0    0   28  0   0   32  0
      0   59  13  5    0   0   0   10  0   0
      0   13  72  34   2   0   0   0   0   65
@@ -300,12 +300,12 @@ mprintf("      fail=%d, iter=%d, errrel=%e\n",fail,iter,err)
     <refsection>
         <title>Examples with key=value syntax</title>
         <para>The following example shows how to pass arguments with the
-            "key=value" syntax. This allows to set non-positionnal arguments, that is,
+            "key=value" syntax. This allows to set non-positional arguments, that is,
             to set arguments which are not depending on their order in the list of
             arguments. The available keys are the names of the optional arguments,
             that is : tol, maxIter, %M, %M2, x0, verbose. Notice that, in the
             following example, the verbose option is given before the maxIter option.
-            Without the "key=value" syntax, the positionnal arguments would require
+            Without the "key=value" syntax, the positional arguments would require
             that maxIter come first and verbose after.
         </para>
         <programlisting role="example"><![CDATA[

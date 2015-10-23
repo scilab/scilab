@@ -69,8 +69,12 @@ struct SimulationConfig
 class Diagram: public BaseObject
 {
 public:
-    Diagram() : BaseObject(DIAGRAM), m_title("Untitled"), m_path(), m_properties(), m_context(), m_children(), m_version() {};
-    Diagram(const Diagram& o) : BaseObject(DIAGRAM), m_title(o.m_title), m_path(o.m_path), m_properties(o.m_properties),
+    Diagram() : BaseObject(DIAGRAM), m_title("Untitled"), m_path(), m_properties(), m_context(), m_children(), m_version()
+    {
+        m_color = { -1, 1};
+    }
+
+    Diagram(const Diagram& o) : BaseObject(DIAGRAM), m_title(o.m_title), m_path(o.m_path), m_color(o.m_color), m_properties(o.m_properties),
         m_context(o.m_context), m_children(o.m_children), m_version(o.m_version) {};
     ~Diagram() = default;
 
@@ -173,6 +177,22 @@ private:
         return SUCCESS;
     }
 
+    void getColor(std::vector<int>& data) const
+    {
+        data = m_color;
+    }
+
+    update_status_t setColor(const std::vector<int>& data)
+    {
+        if (data == m_color)
+        {
+            return NO_CHANGES;
+        }
+
+        m_color = data;
+        return SUCCESS;
+    }
+
     void getVersionNumber(std::string& data) const
     {
         data = m_version;
@@ -192,6 +212,7 @@ private:
 private:
     std::string m_title;
     std::string m_path;
+    std::vector<int> m_color;
     SimulationConfig m_properties;
     std::vector<std::string> m_context;
 

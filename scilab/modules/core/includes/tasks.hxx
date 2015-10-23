@@ -15,6 +15,11 @@
 
 #include "parser.hxx"
 
+extern "C"
+{
+#include "storeCommand.h" // command_origin_t
+}
+
 /*
 ** Parse
 **
@@ -49,7 +54,7 @@ void printAstTask(ast::Exp *tree, bool timed);
 ** Execute the stored AST.
 */
 void execAstTask(ast::Exp *tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose,
-    bool _isInterruptibleThread, bool _isPrioritaryThread, bool _isConsoleCommand);
+                 bool _isInterruptibleThread, bool _isPrioritaryThread, command_origin_t _iCommandOrigin);
 
 /*
 ** Exec Tree with original visitor ( without template )

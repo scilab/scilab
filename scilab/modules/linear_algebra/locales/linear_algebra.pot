@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-08-17 11:28+0100\n"
+"Revision-Date: 2015-10-21 17:22+0100\n"
 
 # File: modules/linear_algebra/sci_gateway/c/sci_norm.c, line: 54
 #, c-format
@@ -74,216 +74,216 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 45
+# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 44
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 79
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 300
+# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 76
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 297
 #, c-format
 msgid "%s: Arguments %d and %d must have equal dimensions.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 98
-# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 63
-# File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 52
-# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 60
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 55
-# File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 53
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 66
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 86
+# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 95
+# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 65
+# File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 50
+# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 58
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 53
+# File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 51
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 65
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 85
 #, c-format
 msgid "%s: Wrong type for argument %d: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 109
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 62
-# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 86
-# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 103
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 114
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 66
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 69
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 97
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 335
-# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 203
+# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 106
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 60
+# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 84
+# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 101
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 111
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 64
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 67
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 95
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 332
+# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 202
 #, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 125
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 94
-# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 116
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 145
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 126
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 166
+# File: modules/linear_algebra/sci_gateway/cpp/sci_balanc.cpp, line: 122
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 92
+# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 114
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 142
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 124
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 164
 #, c-format
 msgid "%s: LAPACK error n%d.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 50
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 44
-# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 45
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 47
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 48
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 51
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 170
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 188
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 197
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 49
+# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 52
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 43
+# File: modules/linear_algebra/sci_gateway/cpp/sci_hess.cpp, line: 44
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 46
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lu.cpp, line: 47
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 50
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 167
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 185
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 194
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 48
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 56
+# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 58
 #, c-format
 msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 71
+# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 73
 #, c-format
 msgid "%s: Wrong type for argument %d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 94
-# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 146
+# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 96
+# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 145
 #, c-format
 msgid "%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 127
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 141
-# File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 86
+# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 129
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 138
+# File: modules/linear_algebra/sci_gateway/cpp/sci_rcond.cpp, line: 84
 #, c-format
 msgid "%s: Allocation failed.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 147
+# File: modules/linear_algebra/sci_gateway/cpp/sci_bdiag.cpp, line: 149
 #, c-format
 msgid "%s: Non convergence in QR steps.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 66
-# File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 94
+# File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 64
+# File: modules/linear_algebra/sci_gateway/cpp/sci_chol.cpp, line: 92
 #, c-format
 msgid "%s: Matrix is not positive definite.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 73
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 64
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 293
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 71
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 62
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 290
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 79
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 105
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 102
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 72
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 92
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 70
-# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 129
+# File: modules/linear_algebra/sci_gateway/cpp/sci_det.cpp, line: 77
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 102
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 100
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 71
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 91
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 68
+# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 128
 #, c-format
 msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 94
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 416
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 92
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 413
 msgid "Warning :\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 95
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 93
 #, c-format
 msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 102
+# File: modules/linear_algebra/sci_gateway/cpp/sci_inv.cpp, line: 100
 #, c-format
 msgid "%s: Problem is singular.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 73
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 70
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 83
+# File: modules/linear_algebra/sci_gateway/cpp/sci_lsq.cpp, line: 80
 #, c-format
 msgid "%s: %s and %s must have equal number of rows.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 120
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 118
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 133
+# File: modules/linear_algebra/sci_gateway/cpp/sci_qr.cpp, line: 131
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 98
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 97
 #, c-format
 msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 179
-# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 86
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 176
+# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 85
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 276
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 273
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 315
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 312
 #, c-format
 msgid "%s: Subroutine not found: %s\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 337
+# File: modules/linear_algebra/sci_gateway/cpp/sci_schur.cpp, line: 334
 #, c-format
 msgid "%s: Schur exit with state %d\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 114
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 351
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 359
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 112
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 348
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 356
 #, c-format
 msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 148
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 214
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 146
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 212
 #, c-format
 msgid ""
 "%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack "
@@ -291,8 +291,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 156
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 221
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 154
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 219
 #, c-format
 msgid ""
 "%s: Convergence problem, %d off-diagonal elements of an intermediate "
@@ -300,9 +300,9 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 178
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 244
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 425
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 176
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 242
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 422
 #, c-format
 msgid ""
 "%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack "
@@ -310,8 +310,8 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 185
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 451
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 183
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 448
 #, c-format
 msgid ""
 "%s: The QR algorithm failed to compute all the eigenvalues, and no "
@@ -320,7 +320,7 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 251
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 249
 #, c-format
 msgid ""
 "%s: The QR algorithm failed to compute all the eigenvalues, and no "
@@ -329,30 +329,30 @@ msgid ""
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 417
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 414
 msgid "Non convergence in the QZ algorithm.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 418
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 415
 #, c-format
 msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 435
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 432
 #, c-format
 msgid "%s: The QZ iteration failed in DGGEV.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 441
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 438
 #, c-format
 msgid "%s: Other than QZ iteration failed in DHGEQZ.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 445
+# File: modules/linear_algebra/sci_gateway/cpp/sci_spec.cpp, line: 442
 #, c-format
 msgid "%s: Error return from DTGEVC.\n"
 msgstr ""
@@ -364,7 +364,7 @@ msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
 msgstr ""
 
 #
-# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 207
+# File: modules/linear_algebra/sci_gateway/cpp/sci_svd.cpp, line: 206
 #, c-format
 msgid "%s: Convergence problem...\n"
 msgstr ""

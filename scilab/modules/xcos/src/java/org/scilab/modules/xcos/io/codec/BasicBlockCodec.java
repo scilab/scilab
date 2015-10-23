@@ -12,8 +12,11 @@
 
 package org.scilab.modules.xcos.io.codec;
 
+import java.util.EnumSet;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabType;
@@ -22,8 +25,8 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.model.BlockInterFunction;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
-import org.scilab.modules.xcos.graph.model.XcosCellFactory.BlockInterFunction;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -41,8 +44,7 @@ import com.mxgraph.util.mxUtils;
 public class BasicBlockCodec extends XcosObjectCodec {
 
     private static final String BASIC_BLOCK = BasicBlock.class.getSimpleName();
-    private static final String SIMULATION_FUNCTION_TYPE = "simulationFunctionType";
-    private static final String[] IGNORED_FIELDS = new String[] { SIMULATION_FUNCTION_TYPE, "locked", "parametersPCS" };
+    private static final String[] IGNORED_FIELDS = new String[] { };
     private static final Logger LOG = Logger.getLogger(BasicBlockCodec.class.getName());
 
     /**
@@ -66,36 +68,44 @@ public class BasicBlockCodec extends XcosObjectCodec {
      * Register all known codecs on the {@link mxCodecRegistry}.
      */
     public static void register() {
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.io");
-        mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
+        try {
 
-        for (BlockInterFunction function : XcosCellFactory.BlockInterFunction.values()) {
-            XcosObjectCodec codec = new BasicBlockCodec(XcosCellFactory.createBlock(function), IGNORED_FIELDS, REFS, null);
-            mxCodecRegistry.register(codec);
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.block");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.io");
+            mxCodecRegistry.addPackage("org.scilab.modules.xcos.block.positionning");
+
+
+            Map<Class <? extends BasicBlock>, List<BlockInterFunction>> customBlocks = EnumSet.allOf(BlockInterFunction.class).stream()
+                    .collect(Collectors.groupingBy(BlockInterFunction::getKlass));
+
+            for (Class<? extends BasicBlock> blockKlass : customBlocks.keySet()) {
+                final String interfaceFunction = customBlocks.get(blockKlass).get(0).name();
+                XcosObjectCodec codec = new BasicBlockCodec(XcosCellFactory.createBlock(interfaceFunction), IGNORED_FIELDS, REFS, null);
+                mxCodecRegistry.register(codec);
+            }
+
+            mxCellCodec cellCodec = new mxCellCodec(new mxCell(), null, REFS, null);
+            mxCodecRegistry.register(cellCodec);
+
+            /*
+             * per block specific codec setup
+             */
+            BasicBlockCodec codec = (BasicBlockCodec) mxCodecRegistry.getCodec("AfficheBlock");
+            codec.exclude.add("printTimer");
+            codec.exclude.add("updateAction");
+
+            /*
+             * Compat. to remove old specific implementations
+             *
+             * These implementation was available from Scilab-5.2.0 to Scilab-5.3.3.
+             */
+            mxCodecRegistry.addAlias("ConstBlock", BASIC_BLOCK);
+            mxCodecRegistry.addAlias("GainBlock", BASIC_BLOCK);
+            mxCodecRegistry.addAlias("PrintBlock", BASIC_BLOCK);
+
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-        XcosObjectCodec basicBlockCodec = new BasicBlockCodec(new BasicBlock(0l), IGNORED_FIELDS, REFS, null);
-        mxCodecRegistry.register(basicBlockCodec);
-
-        mxCellCodec cellCodec = new mxCellCodec(new mxCell(), null, REFS, null);
-        mxCodecRegistry.register(cellCodec);
-
-        /*
-         * per block specific codec setup
-         */
-        BasicBlockCodec codec = (BasicBlockCodec) mxCodecRegistry.getCodec("AfficheBlock");
-        codec.exclude.add("printTimer");
-        codec.exclude.add("updateAction");
-
-        /*
-         * Compat. to remove old specific implementations
-         *
-         * These implementation was available from Scilab-5.2.0 to Scilab-5.3.3.
-         */
-        mxCodecRegistry.addAlias("ConstBlock", BASIC_BLOCK);
-        mxCodecRegistry.addAlias("GainBlock", BASIC_BLOCK);
-        mxCodecRegistry.addAlias("PrintBlock", BASIC_BLOCK);
     }
 
     /**

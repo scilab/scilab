@@ -61,7 +61,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
         {
             if (bDouble)
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A polynom expected.\n"), "pppdiv", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A polynomial expected.\n"), "pppdiv", i + 1);
                 return types::Function::Error;
             }
 
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_pppdiv(types::typed_list &in, int _iRetCount, t
 
             if (wstrName != L"" && wstrName != pPolyIn->getVariableName())
             {
-                Scierror(999, _("%s: Wrong value for input argument #%d: A polynom '%ls' expected.\n"), "pppdiv", i + 1, wstrName.c_str());
+                Scierror(999, _("%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"), "pppdiv", i + 1, wstrName.c_str());
                 return types::Function::Error;
             }
 

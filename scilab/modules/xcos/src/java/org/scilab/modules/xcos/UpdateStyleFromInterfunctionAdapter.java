@@ -30,7 +30,7 @@ public final class UpdateStyleFromInterfunctionAdapter extends XcosViewListener 
      */
     @Override
     public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
-        if (status != UpdateStatus.SUCCESS) {
+        if (status != UpdateStatus.SUCCESS || kind != Kind.BLOCK) {
             return;
         }
 

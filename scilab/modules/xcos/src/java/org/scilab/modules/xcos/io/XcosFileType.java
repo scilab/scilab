@@ -28,18 +28,26 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.View;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.codec.XcosCodec;
+import org.scilab.modules.xcos.io.sax.SAXHandler;
+import org.scilab.modules.xcos.io.spec.ContentEntry;
 import org.scilab.modules.xcos.io.spec.XcosPackage;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Node;
@@ -59,9 +67,16 @@ public enum XcosFileType {
             ParserConfigurationException {
             LOG.entering("XcosFileType.ZCOS", "load");
 
-            XcosPackage p = new XcosPackage(new File(file));
-            p.setContent(into);
-            p.load();
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
+            try {
+                JavaController.unregister_view(xcosView);
+
+                XcosPackage p = new XcosPackage(new File(file));
+                p.setContent(into);
+                p.load();
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
+            }
 
             LOG.exiting("XcosFileType.ZCOS", "load");
         }
@@ -84,27 +99,29 @@ public enum XcosFileType {
         @Override
         public void load(String file, XcosDiagram into)
         throws TransformerException {
-            final XcosCodec codec = new XcosCodec();
-            final TransformerFactory tranFactory = ScilabTransformerFactory
-                                                   .newInstance();
-            final Transformer aTransformer = tranFactory.newTransformer();
-
-            StreamSource src;
+            View xcosView = JavaController.lookup_view(Xcos.class.getName());
             try {
-                src = new StreamSource(new File(file).toURI().toURL()
-                                       .toString());
-                final DOMResult result = new DOMResult(codec.getDocument());
+                JavaController.unregister_view(xcosView);
+
+                final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
+                final Transformer aTransformer = tranFactory.newTransformer();
+
+                final StreamSource src = new StreamSource(new File(file).toURI().toURL().toString());
+                final SAXResult result = new SAXResult(new SAXHandler(into, new ScilabList()));
 
                 LOG.entering("Transformer", "transform");
                 aTransformer.transform(src, result);
                 LOG.exiting("Transformer", "transform");
 
-                LOG.entering("XcosCodec", "decode");
-                codec.setElementIdAttributes();
-                codec.decode(result.getNode().getFirstChild(), into);
-                LOG.exiting("XcosCodec", "decode");
-            } catch (MalformedURLException e) {
+            } catch (TransformerConfigurationException e) {
+                Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
+            } catch (TransformerException e) {
                 e.printStackTrace();
+                Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                JavaController.register_view(Xcos.class.getName(), xcosView);
             }
         }
 

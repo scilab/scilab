@@ -338,7 +338,7 @@ function result = atomsRemove(packages,section,del)
 
         result = [ result ; this_package_insdet ];
 
-        // Sucess message if needed
+        // Success message if needed
         // =====================================================================
         atomsDisp(msprintf(" success"));
     end

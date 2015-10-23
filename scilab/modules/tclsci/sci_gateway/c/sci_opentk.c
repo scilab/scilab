@@ -12,24 +12,25 @@
 
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_opentk(char *fname, unsigned long l)
+int sci_opentk(char *fname, void* pvApiCtx)
 {
-    /*    Tcl_Interp *TCLinterpLocal = NULL;
+    Tcl_Interp *TCLinterpLocal = NULL;
 
-        CheckRhs(0, 0);
-        CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-        TCLinterpLocal = Tcl_CreateInterp();
-        Tcl_Init(TCLinterpLocal);
-        Tk_Init(TCLinterpLocal);
-        TKmainWindow = Tk_MainWindow(TCLinterpLocal);
-        Tk_GeometryRequest(TKmainWindow, 200, 200);
-        Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
+    TCLinterpLocal = Tcl_CreateInterp();
+    Tcl_Init(TCLinterpLocal);
+    Tk_Init(TCLinterpLocal);
+    TKmainWindow = Tk_MainWindow(TCLinterpLocal);
+    Tk_GeometryRequest(TKmainWindow, 200, 200);
+    Tk_SetWindowBackground(TKmainWindow, WhitePixelOfScreen(Tk_Screen(TKmainWindow)));
 
-        LhsVar(1) = 0;
-        PutLhsVar();
-    */
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -59,7 +59,7 @@
                 <listitem>
                     <para>A boolean.</para>
                     <para>terminate = %t if the algorithm must terminate.</para>
-                    <para>terminate = %f if the algorithme must continue.</para>
+                    <para>terminate = %f if the algorithm must continue.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

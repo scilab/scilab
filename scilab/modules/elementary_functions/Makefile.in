@@ -350,9 +350,7 @@ libscielementary_functions_algo_la_OBJECTS =  \
 libscielementary_functions_la_DEPENDENCIES =  \
 	libdummy-elementary_functions.la \
 	libscielementary_functions-algo.la
-am__objects_7 =  \
-	sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo \
-	sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo \
+am__objects_7 = sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_isequalbitwise.lo \
@@ -408,7 +406,8 @@ am__objects_8 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_tril.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_real.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_round.lo \
-	sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo
+	sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
 	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
@@ -594,6 +593,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
 HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
@@ -1090,7 +1090,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/danints.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_sqrt.c \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
     sci_gateway/c/sci_nearfloat.c \
@@ -1148,7 +1147,8 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_tril.cpp \
     sci_gateway/cpp/sci_real.cpp \
     sci_gateway/cpp/sci_round.cpp \
-    sci_gateway/cpp/sci_sign.cpp
+    sci_gateway/cpp/sci_sign.cpp \
+    sci_gateway/cpp/sci_sqrt.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -1957,9 +1957,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -2134,6 +2131,9 @@ sci_gateway/cpp/libscielementary_functions_la-sci_round.lo:  \
 sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions.la: $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscielementary_functions_la_rpath) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
@@ -2166,7 +2166,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log10.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_nearfloat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_number_properties.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_testmatrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-elem_func_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_abs.Plo@am__quote@
@@ -2211,6 +2210,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sinh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_size.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tanh.Plo@am__quote@
@@ -2595,13 +2595,6 @@ src/c/libscielementary_functions_algo_la-convertbase.lo: src/c/convertbase.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/convertbase.c' object='src/c/libscielementary_functions_algo_la-convertbase.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-convertbase.lo `test -f 'src/c/convertbase.c' || echo '$(srcdir)/'`src/c/convertbase.c
-
-sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo: sci_gateway/c/sci_sqrt.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Tpo sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_sqrt.c' object='sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
 
 sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo: sci_gateway/c/sci_number_properties.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_number_properties.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo `test -f 'sci_gateway/c/sci_number_properties.c' || echo '$(srcdir)/'`sci_gateway/c/sci_number_properties.c
@@ -3088,6 +3081,13 @@ sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo: sci_gateway/cpp/sci_s
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_sign.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo `test -f 'sci_gateway/cpp/sci_sign.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sign.cpp
+
+sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo: sci_gateway/cpp/sci_sqrt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo `test -f 'sci_gateway/cpp/sci_sqrt.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sqrt.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sqrt.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_sqrt.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo `test -f 'sci_gateway/cpp/sci_sqrt.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sqrt.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

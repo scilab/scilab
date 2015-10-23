@@ -613,14 +613,14 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 {
     if (e.isGlobal())
     {
-        if (ConfigVariable::getEnableDebug() == true)
-        {
-            sciprint(_("%s: function is disable in debug mode.\n"), "resume");
-            return;
-        }
-
         if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == ConfigVariable::getActivePauseLevel())
         {
+            if (ConfigVariable::getEnableDebug() == true)
+            {
+                sciprint(_("%s: function is disabled in debug mode.\n"), "resume");
+                return;
+            }
+
             //return or resume
             ConfigVariable::DecreasePauseLevel();
             return;
@@ -1005,6 +1005,20 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         throw ie;
                     }
                 }
+                else if (pIT->isImplicitList())
+                {
+                    //expand implicit when possible
+                    types::ImplicitList* pIL = pIT->getAs<types::ImplicitList>();
+                    if (pIL->isComputable())
+                    {
+                        types::InternalType* p = pIL->extractFullMatrix();
+                        if (p)
+                        {
+                            setResult(p);
+                            pIL->killMe();
+                        }
+                    }
+                }
 
                 //don't output Simplevar and empty result
                 if (getResult() != NULL && (!exp->isSimpleVar() || bImplicitCall))
@@ -1258,6 +1272,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             pITStart->isList() == false) // list case => call overload
     {
         pITStart->killMe();
+        setResult(NULL);
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 1);
         throw InternalError(szError, 999, e.getLocation());
@@ -1266,11 +1281,13 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     e.getStep().accept(*this);
     types::GenericType* pITStep = static_cast<types::GenericType*>(getResult());
+    setResult(NULL);
     if ((pITStep->getSize() != 1 || (pITStep->isDouble() && pITStep->getAs<types::Double>()->isComplex())) &&
             pITStep->isList() == false) // list case => call overload
     {
         pITStart->killMe();
         pITStep->killMe();
+        setResult(NULL);
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 2);
         throw InternalError(szError, 999, e.getLocation());
@@ -1279,12 +1296,14 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     e.getEnd().accept(*this);
     types::GenericType* pITEnd = static_cast<types::GenericType*>(getResult());
+    setResult(NULL);
     if ((pITEnd->getSize() != 1 || (pITEnd->isDouble() && pITEnd->getAs<types::Double>()->isComplex())) &&
             pITEnd->isList() == false) // list case => call overload
     {
         pITStart->killMe();
         pITStep->killMe();
         pITEnd->killMe();
+        setResult(NULL);
         wchar_t szError[bsiz];
         os_swprintf(szError, bsiz, _W("%ls: Wrong type for argument %d: Real scalar expected.\n").c_str(), L"':'", 3);
         throw InternalError(szError, 999, e.getLocation());
@@ -1308,8 +1327,8 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     //check compatibility
     // double : double : double or poly : poly : poly and mix like double : double : poly
     if ((piStart->isPoly() || piStart->isDouble()) &&
-            (piStep->isPoly()  || piStep->isDouble())  &&
-            (piEnd->isPoly()   || piEnd->isDouble()))
+            (piStep->isPoly() || piStep->isDouble()) &&
+            (piEnd->isPoly() || piEnd->isDouble()))
     {
         // No need to kill piStart, ... because Implicit list ctor will incref them
         setResult(new types::ImplicitList(piStart, piStep, piEnd));
@@ -1317,12 +1336,12 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     }
 
     // int : double or int : int
-    if ( piStart->isInt()   &&
+    if (piStart->isInt() &&
             (piStep->isDouble() || piStep->isInt()) &&
             piEnd->isInt())
     {
         // check for same int type int8, int 16 ...
-        if (piStart->getType() == piEnd->getType()  &&
+        if (piStart->getType() == piEnd->getType() &&
                 (piStart->getType() == piStep->getType() ||
                  piStep->isDouble()))
         {
@@ -1364,12 +1383,14 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     }
     catch (const InternalError& error)
     {
+        setResult(NULL);
         cleanInOut(in, out);
         throw error;
     }
 
     if (Ret != types::Callable::OK)
     {
+        setResult(NULL);
         cleanInOut(in, out);
         throw InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }

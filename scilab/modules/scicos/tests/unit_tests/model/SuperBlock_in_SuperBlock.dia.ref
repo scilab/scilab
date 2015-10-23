@@ -64,6 +64,7 @@ Xcos trace: propertyUpdated( 5 , DIAGRAM , TITLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , PATH ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , DIAGRAM , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectCreated( 6 , LINK )
 Xcos trace: propertyUpdated( 6 , LINK , COLOR ) : NO_CHANGES
@@ -123,6 +124,7 @@ Xcos trace: propertyUpdated( 8 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , INPUTS ) : NO_CHANGES
@@ -143,6 +145,7 @@ Xcos trace: propertyUpdated( 9 , DIAGRAM , TITLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , DIAGRAM , PATH ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , DIAGRAM , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectCreated( 10 , LINK )
 Xcos trace: propertyUpdated( 10 , LINK , COLOR ) : NO_CHANGES
@@ -289,6 +292,7 @@ Xcos trace: propertyUpdated( 12 , DIAGRAM , TITLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 12 , DIAGRAM , PATH ) : NO_CHANGES
 Xcos trace: propertyUpdated( 12 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Xcos trace: propertyUpdated( 12 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 12 , DIAGRAM , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 12 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectCreated( 13 , BLOCK )
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
@@ -310,6 +314,7 @@ Xcos trace: propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , BLOCK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , INPUTS ) : NO_CHANGES
@@ -330,6 +335,7 @@ Xcos trace: propertyUpdated( 14 , DIAGRAM , TITLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 14 , DIAGRAM , PATH ) : NO_CHANGES
 Xcos trace: propertyUpdated( 14 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 Xcos trace: propertyUpdated( 14 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , DIAGRAM , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 14 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectCreated( 15 , LINK )
 Xcos trace: propertyUpdated( 15 , LINK , COLOR ) : NO_CHANGES

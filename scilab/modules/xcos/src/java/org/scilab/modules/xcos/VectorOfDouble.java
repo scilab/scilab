@@ -47,6 +47,10 @@ public class VectorOfDouble {
     JavaControllerJNI.VectorOfDouble_ensureCapacity(swigCPtr, this, n);
   }
 
+  public void resize(long n) {
+    JavaControllerJNI.VectorOfDouble_resize(swigCPtr, this, n);
+  }
+
   public int size() {
     return JavaControllerJNI.VectorOfDouble_size(swigCPtr, this);
   }
@@ -85,6 +89,12 @@ public class VectorOfDouble {
 
   public boolean remove(double val) {
     return JavaControllerJNI.VectorOfDouble_remove(swigCPtr, this, val);
+  }
+
+  public java.nio.ByteBuffer asByteBuffer(int i, int capacity) {
+    java.nio.ByteBuffer buffer = JavaControllerJNI.VectorOfDouble_asByteBuffer(swigCPtr, this, i, capacity);
+    buffer.order(java.nio.ByteOrder.nativeOrder());
+    return buffer;
   }
 
 }

@@ -443,7 +443,7 @@ public final class ConfigSciNotesManager {
             }
         }
 
-        // if we have reached the maximun , we remove the oldest files
+        // if we have reached the maximum, we remove the oldest files
         while (recentFiles.getLength() >= MAXRECENT) {
             root.removeChild(root.getFirstChild());
         }
