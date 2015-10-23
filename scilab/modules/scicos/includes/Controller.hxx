@@ -55,6 +55,7 @@ public:
 
     kind_t getKind(ScicosID uid) const;
     std::vector<ScicosID> getAll(kind_t k) const;
+    void sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& kind);
     model::BaseObject* getObject(ScicosID uid) const;
     template<typename T>
     T* getObject(ScicosID uid) const

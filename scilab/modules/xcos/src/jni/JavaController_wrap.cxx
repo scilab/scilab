@@ -718,7 +718,9 @@ SWIGINTERN void *std_vector_Sl_int_Sg__asByteBuffer(std::vector< int > *self,int
                 void* buffer = nullptr;
                 int size = int(self->size()) ;
                 if (i>=0 && i<size) {
-                    buffer = ((char*) self->data()) + i;
+                    buffer = self->data() + i;
+                } else if (i==0 && size == 0) {
+                    buffer = self->data();
                 } else {
                     throw std::out_of_range("vector index out of range");
                 }
@@ -797,7 +799,9 @@ SWIGINTERN void *std_vector_Sl_double_Sg__asByteBuffer(std::vector< double > *se
                 void* buffer = nullptr;
                 int size = int(self->size()) ;
                 if (i>=0 && i<size) {
-                    buffer = ((char*) self->data()) + i;
+                    buffer = self->data() + i;
+                } else if (i==0 && size == 0) {
+                    buffer = self->data();
                 } else {
                     throw std::out_of_range("vector index out of range");
                 }
@@ -847,7 +851,9 @@ SWIGINTERN void *std_vector_Sl_std_string_Sg__asByteBuffer(std::vector< std::str
                 void* buffer = nullptr;
                 int size = int(self->size()) ;
                 if (i>=0 && i<size) {
-                    buffer = ((char*) self->data()) + i;
+                    buffer = self->data() + i;
+                } else if (i==0 && size == 0) {
+                    buffer = self->data();
                 } else {
                     throw std::out_of_range("vector index out of range");
                 }
@@ -897,7 +903,9 @@ SWIGINTERN void *std_vector_Sl_ScicosID_Sg__asByteBuffer(std::vector< ScicosID >
                 void* buffer = nullptr;
                 int size = int(self->size()) ;
                 if (i>=0 && i<size) {
-                    buffer = ((char*) self->data()) + i;
+                    buffer = self->data() + i;
+                } else if (i==0 && size == 0) {
+                    buffer = self->data();
                 } else {
                     throw std::out_of_range("vector index out of range");
                 }
@@ -1406,6 +1414,31 @@ SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controll
   result = ((org_scilab_modules_scicos::Controller const *)arg1)->getAll(arg2);
   *(std::vector< ScicosID > **)&jresult = new std::vector< ScicosID >((const std::vector< ScicosID > &)result); 
   return jresult;
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1sortAndFillKind(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jobject jarg2_, jlong jarg3, jobject jarg3_) {
+  org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
+  std::vector< ScicosID > *arg2 = 0 ;
+  std::vector< int > *arg3 = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  (void)jarg2_;
+  (void)jarg3_;
+  arg1 = *(org_scilab_modules_scicos::Controller **)&jarg1; 
+  arg2 = *(std::vector< ScicosID > **)&jarg2;
+  if (!arg2) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< ScicosID > & reference is null");
+    return ;
+  } 
+  arg3 = *(std::vector< int > **)&jarg3;
+  if (!arg3) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "std::vector< int > & reference is null");
+    return ;
+  } 
+  (arg1)->sortAndFillKind(*arg2,*arg3);
 }
 
 

@@ -27,28 +27,31 @@ import java.util.logging.Logger;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamWriter;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMResult;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.sax.SAXResult;
+import javax.xml.transform.stax.StAXSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.View;
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
-import org.scilab.modules.xcos.io.codec.XcosCodec;
-import org.scilab.modules.xcos.io.sax.SAXHandler;
+import org.scilab.modules.xcos.io.sax.XcosSAXHandler;
 import org.scilab.modules.xcos.io.spec.ContentEntry;
 import org.scilab.modules.xcos.io.spec.XcosPackage;
+import org.scilab.modules.xcos.io.writer.XcosWriter;
 import org.scilab.modules.xcos.utils.XcosMessages;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
@@ -107,7 +110,7 @@ public enum XcosFileType {
                 final Transformer aTransformer = tranFactory.newTransformer();
 
                 final StreamSource src = new StreamSource(new File(file).toURI().toURL().toString());
-                final SAXResult result = new SAXResult(new SAXHandler(into, new ScilabList()));
+                final SAXResult result = new SAXResult(new XcosSAXHandler(into, null));
 
                 LOG.entering("Transformer", "transform");
                 aTransformer.transform(src, result);
@@ -127,21 +130,14 @@ public enum XcosFileType {
 
         @Override
         public void save(String file, XcosDiagram from) throws Exception {
-            final XcosCodec codec = new XcosCodec();
-            final TransformerFactory tranFactory = ScilabTransformerFactory
-                                                   .newInstance();
-            final Transformer aTransformer = tranFactory.newTransformer();
-
-            LOG.entering("XcosCodec", "encode");
-            final Node doc = codec.encode(from);
-            LOG.exiting("XcosCodec", "encode");
-
-            final DOMSource src = new DOMSource(doc);
             final StreamResult result = new StreamResult(file);
 
-            LOG.entering("Transformer", "transform");
-            aTransformer.transform(src, result);
-            LOG.exiting("Transformer", "transform");
+            final XMLOutputFactory factory = ScilabXMLOutputFactory.newInstance();
+            final XMLStreamWriter writer = factory.createXMLStreamWriter(result);
+
+            LOG.entering("XMLStreamWriter", "write");
+            new XcosWriter(null, writer).write(from.getUID(), from.getKind());
+            LOG.exiting("XMLStreamWriter", "write");
         }
     },
     /**

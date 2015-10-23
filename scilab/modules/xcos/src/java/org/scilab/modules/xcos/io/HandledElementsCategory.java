@@ -10,8 +10,8 @@
  *
  */
 
-package org.scilab.modules.xcos.io.sax;
+package org.scilab.modules.xcos.io;
 
-enum HandledElementsCategory {
+public enum HandledElementsCategory {
     JGRAPHX, BLOCK, LINK, PORT, RAW_DATA, CUSTOM
 }

@@ -99,7 +99,9 @@ namespace std {
                 void* buffer = nullptr;
                 int size = int(self->size()) ;
                 if (i>=0 && i<size) {
-                    buffer = ((char*) self->data()) + i;
+                    buffer = self->data() + i;
+                } else if (i==0 && size == 0) {
+                    buffer = self->data();
                 } else {
                     throw std::out_of_range("vector index out of range");
                 }

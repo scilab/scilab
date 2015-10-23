@@ -49,9 +49,6 @@ public class XcosCell extends ScilabGraphUniqueObject {
         if (uid == 0l) {
             throw new IllegalArgumentException();
         }
-
-        JavaController controller = new JavaController();
-        controller.referenceObject(uid);
     }
 
     /**
@@ -231,7 +228,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
             case ANNOTATION:
             case BLOCK:
             case PORT:
-                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STYLE, String.valueOf(style));
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STYLE, style);
                 break;
             default:
                 break;
@@ -278,19 +275,21 @@ public class XcosCell extends ScilabGraphUniqueObject {
     public mxICell setTerminal(mxICell terminal, boolean isSource) {
         mxICell cell = super.setTerminal(terminal, isSource);
 
+        final long uid;
         if (cell == null) {
-            return cell;
+            uid = 0l;
+        } else {
+            // a terminal of an XcosCell is always another XcosCell
+            uid = ((XcosCell) cell).getUID();
         }
 
-        // a terminal of an XcosCell is always another XcosCell
-        XcosCell t = (XcosCell) cell;
         JavaController controller = new JavaController();
         switch (getKind()) {
             case LINK:
                 if (isSource) {
-                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_PORT, t.getUID());
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_PORT, uid);
                 } else {
-                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, t.getUID());
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, uid);
                 }
                 break;
             default:
@@ -459,11 +458,5 @@ public class XcosCell extends ScilabGraphUniqueObject {
         XcosCell c = (XcosCell) super.clone();
         c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
         return c;
-    }
-
-    @Override
-    protected void finalize() throws Throwable {
-        JavaController controller = new JavaController();
-        controller.deleteObject(getUID());
     }
 }

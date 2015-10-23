@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.port.control;
 
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
@@ -40,6 +41,11 @@ public class ControlPort extends BasicPort {
     @Override
     public Type getType() {
         return null;
+    }
+
+    @Override
+    public PortKind getPortKind() {
+        return PortKind.PORT_EIN;
     }
 
 }

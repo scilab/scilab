@@ -25,7 +25,9 @@ import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
 import org.scilab.modules.xcos.graph.model.XcosCell;
@@ -62,6 +64,9 @@ public abstract class BasicLink extends XcosCell {
         setVertex(false);
         setEdge(true);
         setStyle(style + XcosOptions.getEdition().getEdgeStyle());
+
+        JavaController controller = new JavaController();
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.KIND, getLinkKind());
     }
 
     /**
@@ -256,6 +261,9 @@ public abstract class BasicLink extends XcosCell {
 
     /** @return The scicos color and type values */
     public abstract double[][] getColorAndType();
+
+    /** the scicos kind */
+    public abstract int getLinkKind();
 
     /**
      * Open the contextual menu of the link

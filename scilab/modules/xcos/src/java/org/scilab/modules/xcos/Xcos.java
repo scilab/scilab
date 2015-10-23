@@ -842,20 +842,22 @@ public final class Xcos {
     }
 
     /**
-     * Load an xcos diagram without using Scilab at all.
+     * Load or Save an xcos diagram without using Scilab at all.
      *
      * <P>
-     * This support a reduced number of format and should be mainly used to test the decoder
+     * This support a reduced number of format and should be mainly used to test
      *
      * @param file
      *            the file
      * @param diagramId
      *            the diagram to load into
+     * @param export
+     *            flag used to indicate an export (true == export ; false == import)
      * @throws Exception
      *             on loading error
      */
     @ScilabExported(module = "xcos", filename = "Xcos.giws.xml")
-    public static void xcosDiagramToScilab(String file, long diagramId) throws Exception {
+    public static void xcosDiagramToScilab(String file, long diagramId, boolean export) throws Exception {
         XcosFileType filetype = XcosFileType.findFileType(file);
         if (filetype == null) {
             throw new IllegalArgumentException("not handled filetype");
@@ -863,7 +865,11 @@ public final class Xcos {
         switch (filetype) {
             case XCOS:
             case ZCOS:
-                filetype.load(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                if (export) {
+                    filetype.save(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                } else {
+                    filetype.load(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                }
                 break;
             case COSF:
                 throw new IllegalArgumentException("not handled filetype");

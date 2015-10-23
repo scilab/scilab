@@ -13,11 +13,14 @@
 package org.scilab.modules.xcos.io.sax;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
@@ -27,6 +30,9 @@ import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.io.HandledElement;
+import org.scilab.modules.xcos.io.HandledElementsCategory;
+import org.scilab.modules.xcos.utils.Stack;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -34,7 +40,8 @@ import org.xml.sax.helpers.DefaultHandler;
 /**
  * Implement a diagram SAX handler to decode the document as a stream.
  */
-public class SAXHandler extends DefaultHandler {
+public class XcosSAXHandler extends DefaultHandler {
+    protected static final Logger LOG = Logger.getLogger("org.scilab.modules.xcos.io.sax");
 
     /*
      * Utilities classes and methods
@@ -59,8 +66,8 @@ public class SAXHandler extends DefaultHandler {
                 VectorOfScicosID associated = new VectorOfScicosID();
                 controller.getObjectProperty(v, kind, associatedProperty, associated);
 
-                associated.resize(associatedPropertyIndex + 1);
-                associated.set(associatedPropertyIndex, v);
+                associated.resize(Math.max(associated.size(), associatedPropertyIndex + 1));
+                associated.set(associatedPropertyIndex, owner.getUID());
 
                 controller.setObjectProperty(v, kind, associatedProperty, associated);
             }
@@ -86,7 +93,8 @@ public class SAXHandler extends DefaultHandler {
     protected final ScilabList dictionary;
     protected final JavaController controller;
     protected final Map<String, HandledElement> elementMap;
-    protected final Map<HandledElementsCategory, ScilabHandler> handlers;
+
+    private final Map<HandledElementsCategory, ScilabHandler> handlers;
 
     /*
      * Current state of the parser, also raw shared with the sub-handlers
@@ -99,7 +107,7 @@ public class SAXHandler extends DefaultHandler {
     /** List of unresolved references that will be resolved at {@link HandledElement#XcosDiagram} or {@link HandledElement#SuperBlockDiagram} ending */
     HashMap<String, ArrayList<UnresolvedReference>> unresolvedReferences = new HashMap<>();
 
-    public SAXHandler(final XcosDiagram content, final ScilabList dictionary) {
+    public XcosSAXHandler(final XcosDiagram content, final ScilabList dictionary) {
         this.root = content;
         this.dictionary = dictionary;
 
@@ -124,18 +132,18 @@ public class SAXHandler extends DefaultHandler {
 
     @Override
     public void startElement(String uri, String localName, String qName, Attributes atts) throws SAXException {
-        // DO NOT COMMIT
         // FOR DEBUG only : printout an XML tree
-        //                char[] indent = new char[parents.size()];
-        //                Arrays.fill(indent, ' ');
-        //                System.err.println(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
-        // DO NOT COMMIT
+        if (LOG.isLoggable(Level.FINEST)) {
+            char[] indent = new char[parents.size()];
+            Arrays.fill(indent, ' ');
+            LOG.finest(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
+        }
 
         HandledElement found = elementMap.get(localName);
         Object localParent = null;
 
         if (found != null) {
-            localParent = handlers.get(found.category).startElement(found, atts);
+            localParent = handlers.get(found.getCategory()).startElement(found, atts);
         }
 
         parents.push(localParent);
@@ -146,7 +154,7 @@ public class SAXHandler extends DefaultHandler {
         HandledElement found = elementMap.get(localName);
 
         if (found != null) {
-            handlers.get(found.category).endElement(found);
+            handlers.get(found.getCategory()).endElement(found);
         }
 
         parents.pop();

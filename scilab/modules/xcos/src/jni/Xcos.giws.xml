@@ -8,6 +8,7 @@
         <method name="xcosDiagramToScilab" returnType="void" modifier="static">
             <parameter name="file" type="String"/>
             <parameter name="diagramId" type="long"/>
+            <parameter name="exported" type="boolean"/>
         </method>
         <method name="warnCellByUID" returnType="void" modifier="static">
             <parameter name="uids" type="String[]"/>

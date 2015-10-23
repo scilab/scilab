@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.io.sax;
+package org.scilab.modules.xcos.io;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -23,7 +23,7 @@ import java.util.stream.Stream;
  * <p>
  * Note: the names correspond to each Element localName.
  */
-enum HandledElement {
+public enum HandledElement {
     add(HandledElementsCategory.RAW_DATA),
     AfficheBlock(HandledElementsCategory.BLOCK),
     Array(HandledElementsCategory.RAW_DATA),
@@ -67,7 +67,7 @@ enum HandledElement {
     VoltageSensorBlock(HandledElementsCategory.BLOCK),
     XcosDiagram(HandledElementsCategory.CUSTOM);
 
-    static Map<String, HandledElement> getMap() {
+    public static Map<String, HandledElement> getMap() {
         Map<String, HandledElement> map = new HashMap<>(HandledElement.values().length);
         Stream.of(HandledElement.values())
         .forEach(e -> map.put(e.name(), e));
@@ -79,5 +79,9 @@ enum HandledElement {
 
     private HandledElement(final HandledElementsCategory category) {
         this.category = category;
+    }
+
+    public HandledElementsCategory getCategory() {
+        return category;
     }
 }

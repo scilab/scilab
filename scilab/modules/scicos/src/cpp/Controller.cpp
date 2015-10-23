@@ -462,6 +462,40 @@ std::vector<ScicosID> Controller::getAll(kind_t k) const
     return m_instance.model.getAll(k);
 }
 
+void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& kinds)
+{
+    // create a container of pair
+    struct local_pair
+    {
+        ScicosID first;
+        int second;
+    };
+    std::vector<local_pair> container(uids.size());
+
+    // fill it
+    for (size_t i = 0; i < uids.size(); ++i)
+    {
+        container[i] = { uids[i], getKind(uids[i]) };
+    }
+
+    // sort according to the kinds
+    std::sort(container.begin(), container.end(), [] (const local_pair & a, const local_pair & b)
+    {
+        return a.second < b.second;
+    });
+
+    // move things back
+    uids.clear();
+    kinds.reserve(uids.capacity());
+    for (const auto& v : container)
+    {
+        uids.push_back(v.first);
+        kinds.push_back(v.second);
+    }
+}
+
+
+
 model::BaseObject* Controller::getObject(ScicosID uid) const
 {
     return m_instance.model.getObject(uid);

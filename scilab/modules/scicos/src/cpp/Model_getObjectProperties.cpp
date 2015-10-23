@@ -251,6 +251,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case STYLE:
                 o->getStyle(v);
                 return true;
+            case DESCRIPTION:
+                o->getDescription(v);
+                return true;
             case LABEL:
                 o->getLabel(v);
                 return true;

@@ -20,7 +20,6 @@
 XCOS_IMPEXP int sci_xcosNotify(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_warnBlockByUID(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_closeXcosFromScilab(char *fname, void *pvApiCtx);
-XCOS_IMPEXP int sci_xcosDiagramToScilab(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosDiagramOpen(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosDiagramClose(char *fname, void *pvApiCtx);
 XCOS_IMPEXP int sci_xcosPalLoad(char *fname, void *pvApiCtx);

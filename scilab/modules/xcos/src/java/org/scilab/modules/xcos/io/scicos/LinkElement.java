@@ -18,6 +18,7 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -106,8 +107,8 @@ public final class LinkElement extends AbstractElement<BasicLink> {
         /*
          * Fill the data
          */
-        link.setSource(start);
-        link.setTarget(end);
+        link.setTerminal(start, true);
+        link.setTerminal(end, false);
 
         mxGeometry geom = link.getGeometry();
         if (geom == null) {
@@ -136,6 +137,7 @@ public final class LinkElement extends AbstractElement<BasicLink> {
             LOG.severe(e.toString());
         }
 
+        link.setId(UUID.randomUUID().toString());
         return link;
     }
 

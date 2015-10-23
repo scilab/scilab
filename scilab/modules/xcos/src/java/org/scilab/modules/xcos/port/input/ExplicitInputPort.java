@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.port.input;
 
+import org.scilab.modules.xcos.PortKind;
+
 /**
  * An explicit output port is a port where the transfer of information has a
  * 'IN' direction.
@@ -30,5 +32,4 @@ public class ExplicitInputPort extends InputPort {
     public Type getType() {
         return Type.EXPLICIT;
     }
-
 }

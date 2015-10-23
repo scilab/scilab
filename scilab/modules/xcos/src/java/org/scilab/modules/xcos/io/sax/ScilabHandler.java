@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.io.sax;
 
+import org.scilab.modules.xcos.io.HandledElement;
 import org.xml.sax.Attributes;
 
 /**

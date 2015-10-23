@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.io.scicos;
 
 import java.util.List;
 
+import org.flexdock.util.UUID;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
@@ -101,6 +102,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         data = (ScilabMList) element;
 
         port = allocatePort();
+        port.setId(UUID.randomUUID().toString());
 
         port = beforeDecode(element, port);
 

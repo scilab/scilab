@@ -37,4 +37,11 @@ public class CommandControlLink extends BasicLink {
         return COLOR_AND_TYPE;
     }
 
+    @Override
+    public int getLinkKind() {
+        return -1;
+    }
+
+
+
 }

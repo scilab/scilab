@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.io.sax;
+package org.scilab.modules.xcos.utils;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -24,7 +24,7 @@ import java.util.stream.Stream;
  * @param <E>
  *            the contained item klass
  */
-class Stack<E> {
+public class Stack<E> {
     private ArrayList<E> stack = new ArrayList<>();
 
     public void pop() {

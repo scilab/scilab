@@ -16,6 +16,7 @@ import static java.util.Arrays.asList;
 
 import java.util.List;
 
+import org.flexdock.util.UUID;
 import org.scilab.modules.types.ScilabBoolean;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
@@ -156,6 +157,7 @@ final class BlockModelElement extends BlockPartsElement {
             int nbControlPort = dataNbControlPort.getHeight();
             for (int i = 0; i < nbControlPort; i++) {
                 final BasicPort port = new ControlPort(controller.createObject(Kind.PORT));
+                port.setId(UUID.randomUUID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);
@@ -168,6 +170,7 @@ final class BlockModelElement extends BlockPartsElement {
             int nbCommandPort = dataNbCommandPort.getHeight();
             for (int i = 0; i < nbCommandPort; i++) {
                 final BasicPort port = new CommandPort(controller.createObject(Kind.PORT));
+                port.setId(UUID.randomUUID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);

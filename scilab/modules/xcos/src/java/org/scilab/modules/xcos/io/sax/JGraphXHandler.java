@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.io.sax;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.io.HandledElement;
 import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
@@ -22,9 +23,9 @@ import com.mxgraph.util.mxPoint;
 
 class JGraphXHandler implements ScilabHandler {
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler saxHandler;
 
-    JGraphXHandler(SAXHandler saxHandler) {
+    JGraphXHandler(XcosSAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 

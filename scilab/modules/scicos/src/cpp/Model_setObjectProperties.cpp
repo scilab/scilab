@@ -313,6 +313,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setSimBlocktype(v);
             case STYLE:
                 return o->setStyle(v);
+            case DESCRIPTION:
+                return o->setDescription(v);
             case LABEL:
                 return o->setLabel(v);
             case UID:

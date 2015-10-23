@@ -12,14 +12,12 @@
 
 package org.scilab.modules.xcos.io.spec;
 
-import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
-import java.util.logging.Logger;
 import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
@@ -48,7 +46,6 @@ import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**
@@ -57,7 +54,6 @@ import org.xml.sax.SAXException;
  * You can load/save from/to a file a specific package without storing any data.
  */
 public class XcosPackage {
-    private static final Logger LOG = Logger.getLogger(XcosPackage.class.getName());
     private static final String MIMETYPE = "mimetype";
     private static final String META_INF_MANIFEST_XML = "META-INF/manifest.xml";
 
@@ -66,8 +62,6 @@ public class XcosPackage {
     private static final byte[] MIME_BYTES = MIME.getBytes();
 
     private static final String INVALID_MIMETYPE = "Invalid mimetype";
-
-    private static final String DICTIONARY_PATH = "dictionary/dictionary.ser";
 
     /**
      * Specific InputStream implementation to use entry closing instead of
@@ -119,14 +113,19 @@ public class XcosPackage {
 
     /**
      * Entries encoder/decoder stored in the encoding order
+     * <p>
+     * take care:
+     * <ul>
+     * <li>the order is the encoding order (from start to end)
+     * <li>decoding will be performed from the end to the start
      */
-    private Entry[] availableEntries;
+    private Entry[] availableEntries = new Entry[] { new ContentEntry(), new DictionaryEntry() };
 
     /*
      * Data to store or load into
      */
     private XcosDiagram content;
-    private ScilabList dictionary;
+    private final ScilabList dictionary;
 
     /*
      * External methods, to save/load a file
@@ -143,13 +142,11 @@ public class XcosPackage {
      */
     public XcosPackage(final File file) throws ParserConfigurationException {
         this.file = file;
+        this.dictionary = new ScilabList();
 
         manifest = ScilabDocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         final Element root = manifest.createElementNS("urn:scilab:xcos:xmlns:manifest:0.1", "manifest:manifest");
         manifest.appendChild(root);
-
-        // take care: the order is the encoding order
-        availableEntries = new Entry[] { new ContentEntry() };
     }
 
     private boolean hasInvalidManifest() {
@@ -172,79 +169,36 @@ public class XcosPackage {
             checkHeader();
         }
 
-        final ScilabList dictionary = getDictionary();
+        // Decode using the specified order (from end to start)
+        for (int i = availableEntries.length - 1; 0 <= i;) {
+            Entry e = availableEntries[i];
 
-        final FileInputStream fis = new FileInputStream(file);
-        final ZipInputStream zin = new ZipInputStream(fis);
-        // input stream without close operation
-        final EntryInputStream ein = new EntryInputStream(zin);
+            // open the file on each entry to manage non well ordered (but still
+            // valid) zip files
+            final FileInputStream fis = new FileInputStream(file);
+            final ZipInputStream zin = new ZipInputStream(fis);
 
-        ZipEntry entry;
-        try {
-            while ((entry = zin.getNextEntry()) != null) {
-                final Node root = manifest.getFirstChild();
-                for (Node n = root.getFirstChild(); n != null; n = n.getNextSibling()) {
-                    // node precondition
-                    if (n.getNodeType() != Node.ELEMENT_NODE) {
-                        continue;
-                    }
-                    if (!n.hasAttributes()) {
-                        continue;
-                    }
+            try {
+                ZipEntry entry;
+                while ((entry = zin.getNextEntry()) != null) {
+                    final String path = entry.getName();
+                    if (path.equals(e.getFullPath())) {
+                        // decode the current entry
+                        e.setup(this);
+                        e.load(entry, new EntryInputStream(zin));
 
-                    final String media = n.getAttributes().getNamedItem("manifest:media-type").getNodeValue();
-                    final String path = n.getAttributes().getNamedItem("manifest:full-path").getNodeValue();
-
-                    // path should be the entry one, if not continue
-                    if (!path.equals(entry.getName()) || path.equals(DICTIONARY_PATH)) {
-                        continue;
-                    }
-
-                    // select the right entry decoder
-                    for (final Entry e : availableEntries) {
-                        if (media.equals(e.getMediaType()) && path.matches(e.getFullPath())) {
-                            if (dictionary != null) {
-                                ((ContentEntry) e).setDictionary(dictionary);
-                            }
-                            e.setup(this);
-                            e.load(entry, ein);
-                            break;
+                        // try to decode the next entry (for well ordered zip,
+                        // the more common case)
+                        i--;
+                        if (0 <= i) {
+                            e = availableEntries[i];
                         }
                     }
                 }
+            } finally {
+                zin.close();
             }
-
-        } finally {
-            zin.close();
         }
-    }
-
-    public ScilabList getDictionary() throws IOException {
-        LOG.entering("XcosPackage", "getDictionary");
-        final FileInputStream fis = new FileInputStream(file);
-        final ZipInputStream zin = new ZipInputStream(fis);
-
-        ZipEntry entry;
-        BufferedInputStream bis = new BufferedInputStream(zin);
-
-        try {
-            while ((entry = zin.getNextEntry()) != null) {
-                final String name = entry.getName();
-                if (name.equals(DICTIONARY_PATH)) {
-                    DictionaryEntry e = new DictionaryEntry();
-                    e.setup(this);
-                    e.load(entry, bis);
-                    return e.getDictionary();
-                }
-            }
-        } finally {
-            bis.close();
-            zin.close();
-
-            LOG.exiting("XcosPackage", "getDictionary");
-        }
-
-        return null;
     }
 
     /**
@@ -316,6 +270,8 @@ public class XcosPackage {
 
             // store the manifest file
             storeTrailer(zout);
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             zout.close();
         }
@@ -383,6 +339,10 @@ public class XcosPackage {
 
     public XcosDiagram getContent() {
         return content;
+    }
+
+    public ScilabList getDictionary() {
+        return dictionary;
     }
 
     /*

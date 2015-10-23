@@ -128,8 +128,12 @@ public final class XcosCellFactory {
      *            the current diagram instance
      */
     public static void insertChildren(JavaController controller, XcosDiagram diagram) {
+        /*
+         * Retrieve then clear the children to avoid inserting the UIDs twice
+         */
         VectorOfScicosID children = new VectorOfScicosID();
         controller.getObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, children);
+        controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, new VectorOfScicosID());
         final int childrenLen = children.size();
 
         /*
@@ -183,7 +187,7 @@ public final class XcosCellFactory {
                 l.setSource(srcPort);
             } else {
                 //          	  FIXME Commented for the alpha release
-                throw new IllegalStateException();
+                //                throw new IllegalStateException();
             }
 
             BasicPort destPort = ports.get(dest[0]);;
@@ -191,7 +195,7 @@ public final class XcosCellFactory {
                 l.setTarget(destPort);
             } else {
                 //            	  FIXME Commented for the alpha release
-                throw new IllegalStateException();
+                //                throw new IllegalStateException();
             }
         }
 

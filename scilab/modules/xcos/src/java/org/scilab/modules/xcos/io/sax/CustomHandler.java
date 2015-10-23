@@ -16,7 +16,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.stream.Stream;
+
+import javax.naming.LimitExceededException;
 
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
@@ -26,14 +29,15 @@ import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
-import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
+import org.scilab.modules.xcos.io.HandledElement;
+import org.scilab.modules.xcos.io.sax.XcosSAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.xml.sax.Attributes;
 
 class CustomHandler implements ScilabHandler {
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler saxHandler;
 
     /**
      * Default constructor
@@ -41,7 +45,7 @@ class CustomHandler implements ScilabHandler {
      * @param saxHandler
      *            the shared sax handler
      */
-    CustomHandler(SAXHandler saxHandler) {
+    CustomHandler(XcosSAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 
@@ -71,6 +75,10 @@ class CustomHandler implements ScilabHandler {
                 return null;
             }
             case XcosDiagram:
+                if (XcosSAXHandler.LOG.isLoggable(Level.FINER)) {
+                    XcosSAXHandler.LOG.entering(CustomHandler.class.getName(), "startElement(\"XcosDiagram\", ...)");
+                }
+
                 // do not allocate this is already allocated as #root
                 uid = saxHandler.root.getUID();
 
@@ -123,7 +131,7 @@ class CustomHandler implements ScilabHandler {
 
                 saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PROPERTIES, properties);
 
-                // no break on purpose, we decode non-root specific properties later
+            // no break on purpose, we decode non-root specific properties later
             case SuperBlockDiagram:
                 final Kind kind;
                 if (uid == 0l) {
@@ -173,6 +181,10 @@ class CustomHandler implements ScilabHandler {
                 resolve();
                 saxHandler.allChildren.pop();
                 XcosCellFactory.insertChildren(saxHandler.controller, saxHandler.root);
+
+                if (XcosSAXHandler.LOG.isLoggable(Level.FINER)) {
+                    XcosSAXHandler.LOG.exiting(CustomHandler.class.getName(), "endElement(\"XcosDiagram\")");
+                }
                 break;
             case SuperBlockDiagram:
                 resolve();

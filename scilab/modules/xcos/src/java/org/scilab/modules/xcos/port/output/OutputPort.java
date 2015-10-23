@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.port.output;
 
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
@@ -34,5 +35,10 @@ public abstract class OutputPort extends BasicPort {
      */
     public OutputPort(long uid, String style) {
         super(uid, style, Orientation.EAST);
+    }
+
+    @Override
+    public PortKind getPortKind() {
+        return PortKind.PORT_OUT;
     }
 }
