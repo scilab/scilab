@@ -61,7 +61,17 @@ function varargout = %_sodload(%__varnameList__)
                 end
 
                 if typeof(varValue)=="st" then
-                    varValue(fieldNames(kField)) = fieldValue;
+                    s = size(varValue, "*");
+                    if s > 1 then
+                        if typeof(fieldValue) <> "list" then //houston !
+                        end
+
+                        for iDim = 1:s
+                            varValue(iDim)(fieldNames(kField)) = fieldValue(iDim);
+                        end
+                    else
+                        varValue(fieldNames(kField)) = fieldValue;
+                    end
                 else
                     varValue{kField} = fieldValue;
                 end

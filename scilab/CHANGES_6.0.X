@@ -130,6 +130,8 @@ Scilab Bug Fixes
 
 * Bug #14209 fixed - 1:245 created infinite loop.
 
+* Bug #14212 fixed - Scilab 6 did not load array of struct from Scilab 5.5 files correctly
+
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================
