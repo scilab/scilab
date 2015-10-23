@@ -52,7 +52,13 @@ class BlockHandler implements ScilabHandler {
     public BasicBlock startElement(HandledElement found, Attributes atts) {
         String v;
         BasicBlock block;
-        final long uid = saxHandler.controller.createObject(Kind.BLOCK);
+        Kind kind;
+        if (found == HandledElement.TextBlock) {
+            kind = Kind.ANNOTATION;
+        } else {
+            kind = Kind.BLOCK;
+        }
+        final long uid = saxHandler.controller.createObject(kind);
 
         switch (found) {
             case AfficheBlock:
@@ -133,26 +139,26 @@ class BlockHandler implements ScilabHandler {
 
         v = atts.getValue("interfaceFunctionName");
         if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, v);
-        } else {
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, v);
+        } else if (kind == Kind.BLOCK) {
             // Setup the interface function accordingly to the mapping table
             // by default it is empty and might not be serialized (depending on
             // the class)
             String defaultInterfaceFunction = Arrays.stream(BlockInterFunction.values()).filter(n -> n.getKlass().equals(block.getClass())).map(e -> e.name())
                                               .findFirst().get();
-            saxHandler.controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, defaultInterfaceFunction);
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, defaultInterfaceFunction);
         }
         v = atts.getValue("simulationFunctionName");
         if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, v);
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_NAME, v);
         }
         v = atts.getValue("blockType");
         if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.SIM_BLOCKTYPE, v);
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.SIM_BLOCKTYPE, v);
         }
         v = atts.getValue("style");
         if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.BLOCK, ObjectProperties.STYLE, v);
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.STYLE, v);
         }
 
         saxHandler.insertChild(block);
