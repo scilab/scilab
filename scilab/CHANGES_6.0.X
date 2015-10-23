@@ -21,6 +21,8 @@ Deprecated Behaviors
 Scilab Bug Fixes
 ================
 
+* Bug #11511 fixed - error() did non accept string matrix (non regression test).
+
 * Bug #12928 fixed - int functions with %nan and %inf return wrong values.
 
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
