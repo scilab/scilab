@@ -53,6 +53,7 @@
 #include "allvar.hxx"
 #include "AnalysisVisitor.hxx"
 #include "JITInfo.hxx"
+#include "Debug.hxx"
 
 #include "calls/JITBinOpCall.hxx"
 #include "calls/JITUnaryOpCall.hxx"
@@ -85,7 +86,7 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
             int32_t boolean;
             double cpx[2];
             void * ptr;
-	    void * cpx_ptr[2];
+            void * cpx_ptr[2];
         };
 
         analysis::TIType::Type type;
@@ -140,7 +141,7 @@ class EXTERN_AST JITVisitor : public ast::ConstVisitor, public analysis::FBlockE
     std::unordered_map<std::string, llvm::Value *> specialVars;
     std::unordered_map<std::string, llvm::Function *> llvmFunctions;
     std::unordered_map<uint64_t, JITInfo> info;
-    
+
 public:
 
     JITAddition addition;
@@ -241,7 +242,7 @@ public:
 
     inline llvm::Type * getTy(const analysis::TIType & ty, const unsigned char level = 0) const
     {
-	return getTy(ty.type);
+        return getTy(ty.type);
     }
 
     inline unsigned int getTySizeInBytes(const llvm::Type * ty) const
@@ -409,7 +410,7 @@ public:
         {
             return temps[id + 1];
         }
-	return temps[0];
+        return temps[0];
     }
 
     inline void addGlobal(const std::string & name, llvm::GlobalVariable * gv)
@@ -449,27 +450,32 @@ public:
 
     inline void addFunction(const std::string & name, llvm::Function * F)
     {
-	llvmFunctions.emplace(name, F);
+        llvmFunctions.emplace(name, F);
     }
-    
+
     inline llvm::Function * getFunction(const std::string & name) const
     {
-	auto i = llvmFunctions.find(name);
-	if (i != llvmFunctions.end())
-	{
-	    return i->second;
-	}
-	return nullptr;
+        auto i = llvmFunctions.find(name);
+        if (i != llvmFunctions.end())
+        {
+            return i->second;
+        }
+        return nullptr;
     }
 
     inline const JITInfo * getInfo(const uint64_t id)
     {
-	auto i = info.find(id);
-	if (i != info.end())
-	{
-	    return &(i->second);
-	}
-	return nullptr;
+        auto i = info.find(id);
+        if (i != info.end())
+        {
+            return &(i->second);
+        }
+        return nullptr;
+    }
+
+    inline const JITSymbolMap & getVariables() const
+    {
+        return variables;
     }
 
     void makeCallFromScilab(const uint64_t functionId, const types::typed_list & in, types::typed_list & out);
@@ -484,9 +490,10 @@ public:
     JITScilabPtr getMatrix(llvm::Value * const re, llvm::Value * const im, llvm::Value * const rows, llvm::Value * const cols, llvm::Value * const refCount, const analysis::TIType::Type ty, const bool alloc, const std::string & name);
     JITScilabPtr getMatrix(const analysis::TIType::Type ty, const std::string & name, const bool init = false);
     JITScilabPtr getMatrix(const analysis::TypeLocal & ty, const std::string & name, const bool init = false);
+    llvm::Value * getPtrFromIndex(const ast::CallExp & ce);
     void reset();
     void compile();
-    
+
     llvm::FunctionType * getFunctionType(const analysis::TIType & out, const std::vector<const analysis::TIType *> & types);
 
 private:
@@ -520,12 +527,12 @@ private:
     inline void makeCpxArg(std::vector<llvm::Value *> & args, types::Double * pDbl)
     {
         double * const x = pDbl->get();
-	double * const y = pDbl->getImg();
+        double * const y = pDbl->getImg();
         const int64_t r = pDbl->getRows();
         const int64_t c = pDbl->getCols();
         const int64_t refc = pDbl->getRef();
         args.emplace_back(getValue(x));
-	args.emplace_back(getValue(y));
+        args.emplace_back(getValue(y));
         args.emplace_back(getValue(r));
         args.emplace_back(getValue(c));
         args.emplace_back(getValue(refc));
@@ -580,7 +587,6 @@ private:
 
     void action(analysis::FunctionBlock & fblock);
     llvm::Type * getType(const analysis::TIType::Type ty, const bool scalar);
-    llvm::Value * getPtrFromIndex(const ast::CallExp & ce);
     void runOptimizationPasses();
     void cloneSyms(const ast::Exp & e);
     void makeSwitch(const ast::IntSelectExp & e, const std::map<int64_t, ast::Exp *> & map);

@@ -28,6 +28,7 @@ bool JITBinOpCall::invoke(const ast::Exp & e, const std::vector<analysis::TIType
     const analysis::TIType & Rtype = oe.getRight().getDecorator().getResult().getType();
 
     oe.getLeft().accept(jit);
+    jit.getFunction().dump();
     JITScilabPtr L = jit.getResult();
     oe.getRight().accept(jit);
     JITScilabPtr & R = jit.getResult();
@@ -94,33 +95,33 @@ void JITBinOpCall::MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScila
     vectorize(L, Ltype, R, Rtype, O, Otype, jit);
 }
 
-    void JITBinOpCall::vectorize(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
-    {
-	llvm::IRBuilder<> & builder = jit.getBuilder();
-	llvm::Type * int64_ty = jit.getTy<int64_t>();
-	llvm::Value * rows = L->loadRows(jit);
-	llvm::Value * cols = L->loadCols(jit);
-	llvm::Value * rc = builder.CreateMul(rows, cols);
-	const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
-										     In<llvm::Type>(int64_ty),
-										     In<analysis::TIType::Type>(Ltype.type, Ltype.isscalar() ? 0 : 1),
-										     In<analysis::TIType::Type>(Rtype.type, Rtype.isscalar() ? 0 : 1),
-										     In<analysis::TIType::Type>(Otype.type, Otype.isscalar() ? 1 : 2));
-	
-	const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
-										   In<llvm::Value>(rc),
-										   In<JITScilabPtr, 0>(L),
-										   In<JITScilabPtr, 0>(R),
-										   In<JITScilabPtr, 1>(O));
-	
-	llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_binary_mangling(scilabName, Ltype, Rtype), llvm::FunctionType::get(jit.getTy<void>(), types, false)));
-	/*llvm::AttrBuilder attrBuilder;
-	  attrBuilder.addAttribute(llvm::Attribute::NoAlias).addAttribute(llvm::Attribute::NoCapture);
-	  llvm::AttributeSet attrSet = llvm::AttributeSet::get(context, 2, attrBuilder).addAttributes(context, 3, llvm::AttributeSet::get(context, 3, attrBuilder)).addAttributes(context, 4, llvm::AttributeSet::get(context, 4, attrBuilder));
-	  toCall->setAttributes(attrSet);*/
-	builder.CreateCall(toCall, args);
-	O->storeRows(jit, rows);
-	O->storeCols(jit, cols);
-    }
-    
+void JITBinOpCall::vectorize(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITScilabPtr & O, const analysis::TIType & Otype, JITVisitor & jit)
+{
+    llvm::IRBuilder<> & builder = jit.getBuilder();
+    llvm::Type * int64_ty = jit.getTy<int64_t>();
+    llvm::Value * rows = L->loadRows(jit);
+    llvm::Value * cols = L->loadCols(jit);
+    llvm::Value * rc = builder.CreateMul(rows, cols);
+    const std::vector<llvm::Type *> types = FunctionSignature::getFunctionArgsTy(jit,
+                                            In<llvm::Type>(int64_ty),
+                                            In<analysis::TIType::Type>(Ltype.type, Ltype.isscalar() ? 0 : 1),
+                                            In<analysis::TIType::Type>(Rtype.type, Rtype.isscalar() ? 0 : 1),
+                                            In<analysis::TIType::Type>(Otype.type, Otype.isscalar() ? 1 : 2));
+
+    const std::vector<llvm::Value *> args = FunctionSignature::getFunctionArgs(jit,
+                                            In<llvm::Value>(rc),
+                                            In<JITScilabPtr, 0>(L),
+                                            In<JITScilabPtr, 0>(R),
+                                            In<JITScilabPtr, 1>(O));
+
+    llvm::Function * toCall = static_cast<llvm::Function *>(jit.getModule().getOrInsertFunction(analysis::TIType::get_binary_mangling(scilabName, Ltype, Rtype), llvm::FunctionType::get(jit.getTy<void>(), types, false)));
+    /*llvm::AttrBuilder attrBuilder;
+      attrBuilder.addAttribute(llvm::Attribute::NoAlias).addAttribute(llvm::Attribute::NoCapture);
+      llvm::AttributeSet attrSet = llvm::AttributeSet::get(context, 2, attrBuilder).addAttributes(context, 3, llvm::AttributeSet::get(context, 3, attrBuilder)).addAttributes(context, 4, llvm::AttributeSet::get(context, 4, attrBuilder));
+      toCall->setAttributes(attrSet);*/
+    builder.CreateCall(toCall, args);
+    O->storeRows(jit, rows);
+    O->storeCols(jit, cols);
+}
+
 }

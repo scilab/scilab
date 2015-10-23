@@ -17,42 +17,63 @@
 namespace jit
 {
 
-    bool Jitter::analyzeAndJIT(const ast::CallExp & ce, const types::typed_list & in, types::typed_list & out)
+bool Jitter::analyzeAndJIT(const ast::CallExp & ce, const types::typed_list & in, types::typed_list & out)
+{
+    static analysis::AnalysisVisitor analysis;
+    static jit::JITVisitor jit;
+    static bool init = false;
+
+    if (!init)
     {
-	static analysis::AnalysisVisitor analysis;
-	static jit::JITVisitor jit;
-	static bool init = false;
-
-	if (!init)
-	{
-	    analysis.registerFBlockEmittedListener(&jit);
-	}
-	
-	const ast::exps_t args = ce.getArgs();
-	if (args.size() == 1)
-	{
-	    ast::Exp & arg = *args.back();
-	    if (arg.isCallExp())
-	    {
-		ast::CallExp * ce = static_cast<ast::CallExp *>(arg.clone());
-		ce->accept(analysis);
-		jit.compile();
-		if (const uint64_t fid = ce->getDecorator().getResult().getFunctionId())
-		{
-		    jit.makeCallFromScilab(fid, in, out);
-		    delete ce;
-		    jit.reset();
-		    analysis.reset();
-
-		    return true;
-		}
-
-		delete ce;
-		jit.reset();
-		analysis.reset();
-	    }
-	}
-
-	return false;
+        analysis.registerFBlockEmittedListener(&jit);
+        init = true;
     }
+
+    const ast::exps_t args = ce.getArgs();
+    if (args.size() == 1)
+    {
+        ast::Exp & arg = *args.back();
+        if (arg.isCallExp())
+        {
+            //analysis::Chrono::tic();
+            ast::CallExp * ce = static_cast<ast::CallExp *>(arg.clone());
+            //analysis::Chrono::toc(L"timer 1");
+
+            //analysis::Chrono::tic();
+            ce->accept(analysis);
+            //analysis::Chrono::toc(L"timer 2");
+
+            //analysis::Chrono::tic();
+            jit.compile();
+            //analysis::Chrono::toc(L"timer 3");
+
+            if (const uint64_t fid = ce->getDecorator().getResult().getFunctionId())
+            {
+                //analysis::Chrono::tic();
+                jit.makeCallFromScilab(fid, in, out);
+                //analysis::Chrono::toc(L"timer 4");
+
+                //analysis::Chrono::tic();
+                delete ce;
+                //analysis::Chrono::toc(L"timer 5");
+
+                //analysis::Chrono::tic();
+                jit.reset();
+                //analysis::Chrono::toc(L"timer 6");
+
+                //analysis::Chrono::tic();
+                analysis.reset();
+                //analysis::Chrono::toc(L"timer 7");
+
+                return true;
+            }
+
+            delete ce;
+            jit.reset();
+            analysis.reset();
+        }
+    }
+
+    return false;
+}
 }

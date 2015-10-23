@@ -15,10 +15,10 @@
 namespace jit
 {
 
-    template<typename T, typename U>
-    inline void push(void * list, const T x)
-    {
-	reinterpret_cast<types::typed_list *>(list)->push_back(new U(x));
-    }
-    
+template<typename T, typename U>
+inline void push(void * list, const T x)
+{
+    reinterpret_cast<types::typed_list *>(list)->push_back(new U(x));
+}
+
 }

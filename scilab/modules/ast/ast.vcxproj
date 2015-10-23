@@ -660,6 +660,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\analysis\check_____times____.cpp" />
     <ClCompile Include="src\cpp\analysis\check_____transp____.cpp" />
     <ClCompile Include="src\cpp\analysis\check_____unaryminus____.cpp" />
+    <ClCompile Include="src\cpp\analysis\Chrono.cpp" />
     <ClCompile Include="src\cpp\analysis\CompleteMacroSignature.cpp" />
     <ClCompile Include="src\cpp\analysis\ConstantValue.cpp" />
     <ClCompile Include="src\cpp\analysis\ConstantVisitor.cpp" />

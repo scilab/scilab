@@ -14,122 +14,129 @@
 #include "BaseFunctionsMacros2.h"
 #include "base/elem_functions.hxx"
 
+#include "dynlib_ast.h"
+
 extern "C"
 {
-    int32_t toBoolean_Md(const double * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Md(const double * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, double, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mi8(const int8_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mi8(const int8_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, int8_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mi16(const int16_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mi16(const int16_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, int16_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mi32(const int32_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mi32(const int32_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, int32_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mi64(const int64_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mi64(const int64_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, int64_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mui8(const uint8_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mui8(const uint8_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, uint8_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mui16(const uint16_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mui16(const uint16_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, uint16_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mui32(const uint32_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mui32(const uint32_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, uint32_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mui64(const uint64_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mui64(const uint64_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, uint64_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    int32_t toBoolean_Mb(const int32_t * x, const int64_t x_r, const int64_t x_c)
+    EXTERN_AST int32_t toBoolean_Mb(const int32_t * x, const int64_t x_r, const int64_t x_c)
     {
         return jit::BaseFunctions::breakOnM<false, int32_t, jit::BaseFunctions::asBool>(x, x_r, x_c);
     }
 
-    std::complex<double> cfloor(const std::complex<double> z)
+    EXTERN_AST std::complex<double> cfloor(const std::complex<double> z)
     {
         return jit::elem::floor<const std::complex<double> &, std::complex<double>>()(z);
     }
 
     static std::chrono::steady_clock::time_point tictoc_start;
-    void tic()
+    EXTERN_AST void tic()
     {
         tictoc_start = std::chrono::steady_clock::now();
     }
 
-    double toc()
+    EXTERN_AST double toc()
     {
         const std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
         return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - tictoc_start).count() * 1e-9;
     }
 
-    void printI8(const int8_t x)
+    EXTERN_AST void printI8(const int8_t x)
     {
-	std::wcerr << "Int8: " << (int64_t)x << std::endl;
-    }
-    
-    void printUI8(const uint8_t x)
-    {
-	std::wcerr << "UInt8: " << (uint64_t)x << std::endl;
+        std::wcerr << "Int8: " << (int64_t)x << std::endl;
     }
 
-    void printI16(const int16_t x)
+    EXTERN_AST void printUI8(const uint8_t x)
     {
-	std::wcerr << "Int16: " << (int64_t)x << std::endl;
-    }
-    
-    void printUI16(const uint16_t x)
-    {
-	std::wcerr << "UInt16: " << (uint64_t)x << std::endl;
+        std::wcerr << "UInt8: " << (uint64_t)x << std::endl;
     }
 
-    void printI32(const int32_t x)
+    EXTERN_AST void printI16(const int16_t x)
     {
-	std::wcerr << "Int32: " << (int64_t)x << std::endl;
-    }
-    
-    void printUI32(const uint32_t x)
-    {
-	std::wcerr << "UInt32: " << (uint64_t)x << std::endl;
+        std::wcerr << "Int16: " << (int64_t)x << std::endl;
     }
 
-    void printI64(const int64_t x)
+    EXTERN_AST void printUI16(const uint16_t x)
     {
-	std::wcerr << "Int64: " << x << std::endl;
-    }
-    
-    void printUI64(const uint64_t x)
-    {
-	std::wcerr << "UInt64: " << x << std::endl;
+        std::wcerr << "UInt16: " << (uint64_t)x << std::endl;
     }
 
-    void printB(const int32_t x)
+    EXTERN_AST void printI32(const int32_t x)
     {
-	std::wcerr << "Bool: " << (x != 0) << std::endl;
+        std::wcerr << "Int32: " << (int64_t)x << std::endl;
     }
 
-    void printD(const double x)
+    EXTERN_AST void printUI32(const uint32_t x)
     {
-	std::wcerr << "Dble: " << x << std::endl;
+        std::wcerr << "UInt32: " << (uint64_t)x << std::endl;
+    }
+
+    EXTERN_AST void printI64(const int64_t x)
+    {
+        std::wcerr << "Int64: " << x << std::endl;
+    }
+
+    EXTERN_AST void printUI64(const uint64_t x)
+    {
+        std::wcerr << "UInt64: " << x << std::endl;
+    }
+
+    EXTERN_AST void printB(const int32_t x)
+    {
+        std::wcerr << "Bool: " << (x != 0) << std::endl;
+    }
+
+    EXTERN_AST void printD(const double x)
+    {
+        std::wcerr << "Dble: " << x << std::endl;
+    }
+
+    EXTERN_AST void printPtr(const uint8_t * x)
+    {
+        std::wcerr << "Ptr: " << (void *)x << "  " << (uintptr_t)x << std::endl;
     }
 }

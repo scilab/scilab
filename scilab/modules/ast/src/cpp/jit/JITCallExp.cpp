@@ -25,7 +25,7 @@ void JITVisitor::visit(const ast::CallExp & e)
         const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e.getName());
         const analysis::TIType & funty = var.getDecorator().getResult().getType();
 
-        if (funty.type == analysis::TIType::FUNCTION || funty.type == analysis::TIType::MACRO)
+        if (funty.type == analysis::TIType::FUNCTION || funty.type == analysis::TIType::MACRO || funty.ismatrix())
         {
             if (e.getParent()->isAssignExp())
             {
@@ -58,16 +58,16 @@ void JITVisitor::visit(const ast::CallExp & e)
                     }
                     JITCall::call(e, typesOut, out, *this);
                 }
-		else if (ae.getLeftExp().isCallExp()) // A(i, j) = ...
-		{
-		    const ast::CallExp & ce = static_cast<const ast::CallExp &>(ae.getLeftExp());
-		    llvm::Value * ptr = getPtrFromIndex(ce);
+                else if (ae.getLeftExp().isCallExp()) // A(i, j) = ...
+                {
+                    const ast::CallExp & ce = static_cast<const ast::CallExp &>(ae.getLeftExp());
+                    llvm::Value * ptr = getPtrFromIndex(ce);
                     std::vector<analysis::TIType> typesOut;
                     typesOut.emplace_back(ce.getDecorator().getResult().getType());
                     std::vector<JITScilabPtr> out;
                     out.emplace_back(getCreatedScalar(ptr, ce.getDecorator().getResult().getType().type, true, ""));
                     JITCall::call(e, typesOut, out, *this);
-		}
+                }
             }
             else
             {
@@ -78,23 +78,6 @@ void JITVisitor::visit(const ast::CallExp & e)
                 if (!out.empty())
                 {
                     setResult(out.front());
-                }
-            }
-        }
-        else
-        {
-            // We have an extraction
-            if (e.getDecorator().safe)
-            {
-                if (var.getDecorator().getResult().getType().isscalar())
-                {
-                    setResult(variables.find(var.getSymbol())->second);
-                }
-                else
-                {
-                    llvm::Value * ptr = getPtrFromIndex(e);
-                    llvm::Value * val = builder.CreateAlignedLoad(ptr, getTySizeInBytes(getTy(funty)));
-                    setResult(getScalar(val, funty.type, false, ""));
                 }
             }
         }

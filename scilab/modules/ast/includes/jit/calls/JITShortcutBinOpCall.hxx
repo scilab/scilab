@@ -18,100 +18,101 @@
 namespace jit
 {
 
-    // TODO: add shortcut for not operator (~)
-    
-    class JITShortcutBinOpCall : public JITCall
-    {
+// TODO: add shortcut for not operator (~)
 
-	const std::string scilabName;
-	
-    public:
-	
-        JITShortcutBinOpCall(const std::string & _scilabName) : scilabName(_scilabName) { }
-	
-	virtual ~JITShortcutBinOpCall() { }
+class JITShortcutBinOpCall : public JITCall
+{
 
-	virtual bool invoke(const ast::Exp & e, const std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit);
-	virtual void init(const std::vector<analysis::TIType> & args, JITVisitor & jit) { }
-	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit) = 0;
-	virtual JITScilabPtr SM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	virtual JITScilabPtr MS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	virtual JITScilabPtr MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-    };
+    const std::string scilabName;
 
-    class JITShortcutEq : public JITShortcutBinOpCall
-    {
+public:
 
-    public:
-	
-        JITShortcutEq() : JITShortcutBinOpCall("breakOn_eq") { }
-	~JITShortcutEq() { }
+    JITShortcutBinOpCall(const std::string & _scilabName) : scilabName(_scilabName) { }
 
-	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	
-    };
-    
-    class JITShortcutNe : public JITShortcutBinOpCall
-    {
+    virtual ~JITShortcutBinOpCall() { }
 
-    public:
-	
-        JITShortcutNe() : JITShortcutBinOpCall("breakOn_ne") { }
-	~JITShortcutNe() { }
+    virtual bool invoke(const ast::Exp & e, const std::vector<analysis::TIType> & typesOut, std::vector<JITScilabPtr> & out, JITVisitor & jit);
+    virtual void init(const std::vector<analysis::TIType> & args, JITVisitor & jit) { }
+    virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit) = 0;
+    virtual JITScilabPtr SM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+    virtual JITScilabPtr MS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+    virtual JITScilabPtr MM(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+    virtual JITScilabPtr vectorize(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+};
 
-	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	
-    };
+class JITShortcutEq : public JITShortcutBinOpCall
+{
 
-    class JITShortcutGt : public JITShortcutBinOpCall
-    {
+public:
 
-    public:
-	
-        JITShortcutGt() : JITShortcutBinOpCall("breakOn_gt") { }
-	~JITShortcutGt() { }
+    JITShortcutEq() : JITShortcutBinOpCall("shortcut_eq") { }
+    ~JITShortcutEq() { }
 
-	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	
-    };
+    virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
 
-    class JITShortcutLt : public JITShortcutBinOpCall
-    {
+};
 
-    public:
-	
-        JITShortcutLt() : JITShortcutBinOpCall("breakOn_lt") { }
-	~JITShortcutLt() { }
+class JITShortcutNe : public JITShortcutBinOpCall
+{
 
-	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	
-    };
+public:
 
-    class JITShortcutGe : public JITShortcutBinOpCall
-    {
+    JITShortcutNe() : JITShortcutBinOpCall("shortcut_ne") { }
+    ~JITShortcutNe() { }
 
-    public:
-	
-        JITShortcutGe() : JITShortcutBinOpCall("breakOn_ge") { }
-	~JITShortcutGe() { }
+    virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
 
-	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	
-    };
+};
 
-    class JITShortcutLe : public JITShortcutBinOpCall
-    {
+class JITShortcutGt : public JITShortcutBinOpCall
+{
 
-    public:
-	
-        JITShortcutLe() : JITShortcutBinOpCall("breakOn_le") { }
-	~JITShortcutLe() { }
+public:
 
-	virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
-	
-    };
+    JITShortcutGt() : JITShortcutBinOpCall("shortcut_gt") { }
+    ~JITShortcutGt() { }
 
-    
+    virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+
+};
+
+class JITShortcutLt : public JITShortcutBinOpCall
+{
+
+public:
+
+    JITShortcutLt() : JITShortcutBinOpCall("shortcut_lt") { }
+    ~JITShortcutLt() { }
+
+    virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+
+};
+
+class JITShortcutGe : public JITShortcutBinOpCall
+{
+
+public:
+
+    JITShortcutGe() : JITShortcutBinOpCall("shortcut_ge") { }
+    ~JITShortcutGe() { }
+
+    virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+
+};
+
+class JITShortcutLe : public JITShortcutBinOpCall
+{
+
+public:
+
+    JITShortcutLe() : JITShortcutBinOpCall("shortcut_le") { }
+    ~JITShortcutLe() { }
+
+    virtual JITScilabPtr SS(JITScilabPtr & L, const analysis::TIType & Ltype, JITScilabPtr & R, const analysis::TIType & Rtype, JITVisitor & jit);
+
+};
+
+
 } // namespace jit
 
 #endif // __JIT_SHORTCUT_BINOP_CALL_HXX__

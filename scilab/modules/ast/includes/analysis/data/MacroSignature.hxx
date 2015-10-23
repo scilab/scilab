@@ -24,9 +24,6 @@
 namespace analysis
 {
 
-class MacroDef;
-class DataManager;
-
 /**
  * \struct MacroSignature
  * \brief A MacroSignature is defined by a macro name, the number of LHS and the types of the arguments
@@ -37,7 +34,7 @@ struct MacroSignature
     const unsigned int lhs;
     TITypeSignatureTuple tuple;
 
-    MacroSignature(MacroDef & macrodef, const unsigned int _lhs, const std::vector<TIType> & in) : name(macrodef.getName()), lhs(_lhs), tuple(in) { }
+    MacroSignature(const std::wstring & _name, const unsigned int _lhs, const std::vector<TIType> & in) : name(_name), lhs(_lhs), tuple(in) { }
 
     friend std::wostream & operator<<(std::wostream & out, const MacroSignature & signature)
     {

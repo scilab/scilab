@@ -109,6 +109,7 @@ src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
 src/cpp/types/types_tools.cpp \
 src/cpp/types/void.cpp \
+src/cpp/analysis/Chrono.cpp \
 src/cpp/analysis/AnalysisVisitor.cpp \
 src/cpp/analysis/ArgnAnalyzer.cpp \
 src/cpp/analysis/Block.cpp \

@@ -18,52 +18,52 @@
 namespace jit
 {
 
-    class JITInfo
+class JITInfo
+{
+    const std::string name;
+    analysis::TITypeSignatureTuple inSignature;
+    analysis::TITypeSignatureTuple outSignature;
+    void * wrapper;
+
+public:
+
+    JITInfo(const std::string & _name) : name(_name), wrapper(nullptr) { }
+
+    inline const std::string & getName() const
     {
-	const std::string name;
-	analysis::TITypeSignatureTuple inSignature;
-	analysis::TITypeSignatureTuple outSignature;
-	void * wrapper;
+        return name;
+    }
 
-    public:
+    inline void setWrapper(void * _wrapper)
+    {
+        wrapper = _wrapper;
+    }
 
-	JITInfo(const std::string & _name) : name(_name), wrapper(nullptr) { }
+    inline void * getWrapper() const
+    {
+        return wrapper;
+    }
 
-	inline const std::string & getName() const
-	    {
-		return name;
-	    }
-	
-	inline void setWrapper(void * _wrapper)
-	    {
-		wrapper = _wrapper;
-	    }
+    inline void addToOutSignature(const bool scalar, const analysis::TIType::Type type)
+    {
+        outSignature.emplace(scalar, type);
+    }
 
-	inline void * getWrapper() const
-	    {
-		return wrapper;
-	    }
+    inline const analysis::TITypeSignatureTuple & getOutSignature() const
+    {
+        return outSignature;
+    }
 
-	inline void addToOutSignature(const bool scalar, const analysis::TIType::Type type)
-	    {
-		outSignature.emplace(scalar, type);
-	    }
-	
-	inline const analysis::TITypeSignatureTuple & getOutSignature() const
-	    {
-		return outSignature;
-	    }
+    inline void addToInSignature(const bool scalar, const analysis::TIType::Type type)
+    {
+        inSignature.emplace(scalar, type);
+    }
 
-	inline void addToInSignature(const bool scalar, const analysis::TIType::Type type)
-	    {
-		inSignature.emplace(scalar, type);
-	    }
-	
-	inline const analysis::TITypeSignatureTuple & getInSignature() const
-	    {
-		return inSignature;
-	    }
-    };
+    inline const analysis::TITypeSignatureTuple & getInSignature() const
+    {
+        return inSignature;
+    }
+};
 
 } // namespace jit
 

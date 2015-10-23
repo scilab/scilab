@@ -16,25 +16,26 @@
 namespace jit
 {
 
-    class JITVisitor;
-    
-    class Debug
-    {
+class JITVisitor;
 
-    public:
+class Debug
+{
 
-	static void printI8(JITVisitor & jit, llvm::Value * x);
-	static void printUI8(JITVisitor & jit, llvm::Value * x);
-	static void printI16(JITVisitor & jit, llvm::Value * x);
-	static void printUI16(JITVisitor & jit, llvm::Value * x);
-	static void printI32(JITVisitor & jit, llvm::Value * x);
-	static void printUI32(JITVisitor & jit, llvm::Value * x);
-	static void printI64(JITVisitor & jit, llvm::Value * x);
-	static void printUI64(JITVisitor & jit, llvm::Value * x);
-	static void printD(JITVisitor & jit, llvm::Value * x);
-	static void printB(JITVisitor & jit, llvm::Value * x);
+public:
 
-    };
+    static void printI8(JITVisitor & jit, llvm::Value * x);
+    static void printUI8(JITVisitor & jit, llvm::Value * x);
+    static void printI16(JITVisitor & jit, llvm::Value * x);
+    static void printUI16(JITVisitor & jit, llvm::Value * x);
+    static void printI32(JITVisitor & jit, llvm::Value * x);
+    static void printUI32(JITVisitor & jit, llvm::Value * x);
+    static void printI64(JITVisitor & jit, llvm::Value * x);
+    static void printUI64(JITVisitor & jit, llvm::Value * x);
+    static void printD(JITVisitor & jit, llvm::Value * x);
+    static void printB(JITVisitor & jit, llvm::Value * x);
+    static void printPtr(JITVisitor & jit, llvm::Value * x);
+
+};
 
 } // namespace jit
 

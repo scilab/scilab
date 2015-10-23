@@ -10,6 +10,8 @@
  *
  */
 
+#include <system_error>
+
 #include "llvm/Support/FormattedStream.h"
 #include "llvm/Transforms/IPO/PassManagerBuilder.h"
 #include "llvm/Analysis/TargetTransformInfo.h"
@@ -21,7 +23,6 @@
 #include "JITScalars.hxx"
 #include "JITArrayofs.hxx"
 #include "JITVisitor.hxx"
-#include "Debug.hxx"
 #include "calls/FunctionSignature.hxx"
 #include "alltypes.hxx"
 #include "ScilabJITEventListener.hxx"
@@ -103,37 +104,38 @@ void JITVisitor::runOptimizationPasses()
 
 void JITVisitor::compile()
 {
-    /*std::string error;
-    llvm::raw_fd_ostream stream("/tmp/scilab.s", error, llvm::sys::fs::OpenFlags::F_None);
-    llvm::formatted_raw_ostream frs(stream);
-    llvm::PassManager PM;
-    target->addPassesToEmitFile(PM, frs, llvm::TargetMachine::CGFT_AssemblyFile);
-    PM.run(*module);
-    frs.flush();
-    stream.close();*/
-
     if (function)
     {
-	dump();
-	runOptimizationPasses();
-	//dump();
+        dump();
+        runOptimizationPasses();
+        dump();
 #if TIME_LLVM == 1
-	std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+        std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
 #endif
-    
-	engine->finalizeObject();
-    
+
+        /*std::error_code error;
+        llvm::raw_fd_ostream stream("/home/calixte/scilab.s", error, llvm::sys::fs::OpenFlags::F_Text);
+        std::wcerr << "ERROR=" << scilab::UTF8::toWide(error.message()) << std::endl;
+        //llvm::formatted_raw_ostream frs(stream);
+        llvm::legacy::PassManager PM;
+        target->addPassesToEmitFile(PM, stream, llvm::TargetMachine::CGFT_AssemblyFile);
+        PM.run(*module);
+        //frs.flush();
+        stream.close();*/
+
+        engine->finalizeObject();
+
 #if TIME_LLVM == 1
-	std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-	double duration = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
-	std::wcerr << "Compile time=" << duration << " s." << std::endl;
+        std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+        double duration = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
+        std::wcerr << "Compile time=" << duration << " s." << std::endl;
 #endif
-	
-	for (llvm::Function & f : *module)
-	{
-	    //addFunction(f.getName().str(), &f);
-	    f.deleteBody();
-	}
+
+        for (llvm::Function & f : *module)
+        {
+            //addFunction(f.getName().str(), &f);
+            f.deleteBody();
+        }
     }
 }
 
@@ -372,7 +374,7 @@ JITScilabPtr JITVisitor::getScalar(llvm::Value * const value, const analysis::TI
     }
 }
 
-    JITScilabPtr JITVisitor::getCreatedScalar(llvm::Value * const value, const analysis::TIType::Type ty, const bool alloc, const std::string & name)
+JITScilabPtr JITVisitor::getCreatedScalar(llvm::Value * const value, const analysis::TIType::Type ty, const bool alloc, const std::string & name)
 {
     switch (ty)
     {
@@ -485,7 +487,7 @@ JITScilabPtr JITVisitor::getMatrix(const analysis::TIType::Type ty, const std::s
         case analysis::TIType::DOUBLE:
             return std::shared_ptr<JITScilabVal>(new JITArrayofDouble(*this, name, init));
         case analysis::TIType::COMPLEX:
-	    return std::shared_ptr<JITScilabVal>(new JITArrayofComplex(*this, name, init));
+            return std::shared_ptr<JITScilabVal>(new JITArrayofComplex(*this, name, init));
         case analysis::TIType::INT8:
             return std::shared_ptr<JITScilabVal>(new JITArrayofInt8(*this, name, init));
         case analysis::TIType::INT16:
@@ -518,10 +520,10 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
 {
     if (info.find(fblock.getFunctionId()) != info.end())
     {
-	// The function with this id has already been compiled
-	return;
+        // The function with this id has already been compiled
+        return;
     }
-	    
+
     variables.clear();
     temps.clear();
     specialVars.clear();
@@ -534,22 +536,22 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     // Firstly, we create the function signature
     std::vector<llvm::Type *> args;
     args.reserve(4 * (ins.size() + outs.size()));
-    
+
     for (const auto & in : ins)
     {
         const bool scalar = in.tl.isScalar();
-	if (scalar)
-	{
-	    In<analysis::TIType::Type>(in.tl.type).get(args, *this);
-	}
-	else
-	{
-	    In<analysis::TIType::Type, 1>(in.tl.type).get(args, *this);
-	    In<llvm::Type>(int64Ty).get(args, *this); // for rows
-	    In<llvm::Type>(int64Ty).get(args, *this); // for cols
-	    In<llvm::Type>(int64Ty).get(args, *this); // for refcount
-	}
-	
+        if (scalar)
+        {
+            In<analysis::TIType::Type>(in.tl.type).get(args, *this);
+        }
+        else
+        {
+            In<analysis::TIType::Type, 1>(in.tl.type).get(args, *this);
+            In<llvm::Type>(int64Ty).get(args, *this); // for rows
+            In<llvm::Type>(int64Ty).get(args, *this); // for cols
+            In<llvm::Type>(int64Ty).get(args, *this); // for refcount
+        }
+
         functionName += analysis::TIType::get_mangling(in.tl.type, scalar);
     }
 
@@ -557,24 +559,24 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
 
     for (const auto & in : ins)
     {
-	functionInfo.addToInSignature(in.tl.isScalar(), in.tl.type);
+        functionInfo.addToInSignature(in.tl.isScalar(), in.tl.type);
     }
-    
+
     for (const auto & out : outs)
     {
         const bool scalar = out.tl.isScalar();
-	if (scalar)
-	{
-	    In<analysis::TIType::Type, 1>(out.tl.type).get(args, *this);
-	}
-	else
-	{
-	    In<analysis::TIType::Type, 2>(out.tl.type).get(args, *this);
-	    In<llvm::Type>(int64PtrTy).get(args, *this); // for rows
-	    In<llvm::Type>(int64PtrTy).get(args, *this); // for cols
-	    In<llvm::Type>(int64PtrTy).get(args, *this); // for refcount
-	}
-	functionInfo.addToOutSignature(scalar, out.tl.type);
+        if (scalar)
+        {
+            In<analysis::TIType::Type, 1>(out.tl.type).get(args, *this);
+        }
+        else
+        {
+            In<analysis::TIType::Type, 2>(out.tl.type).get(args, *this);
+            In<llvm::Type>(int64PtrTy).get(args, *this); // for rows
+            In<llvm::Type>(int64PtrTy).get(args, *this); // for cols
+            In<llvm::Type>(int64PtrTy).get(args, *this); // for refcount
+        }
+        functionInfo.addToOutSignature(scalar, out.tl.type);
     }
 
     llvm::FunctionType * ftype = llvm::FunctionType::get(voidTy, args, /* isVarArgs */ false);
@@ -591,10 +593,10 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     {
         const analysis::TIType::Type ty = in.tl.type;
         const bool scalar = in.tl.isScalar();
-	const std::string argName = scilab::UTF8::toUTF8(in.sym.getName());
+        const std::string argName = scilab::UTF8::toUTF8(in.sym.getName());
         if (scalar)
         {
-	    if (ty == analysis::TIType::COMPLEX)
+            if (ty == analysis::TIType::COMPLEX)
             {
                 llvm::Value * re = ai++;
                 llvm::Value * im = ai++;
@@ -610,21 +612,21 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
         {
             if (ty == analysis::TIType::COMPLEX)
             {
-		llvm::Value * re = ai++;
-		llvm::Value * im = ai++;
-		llvm::Value * R = ai++;
-		llvm::Value * C = ai++;
-		llvm::Value * RC = ai++;
-		variables.emplace(in.sym, getMatrix(re, im, R, C, RC, ty, true, argName));
-	    }
-	    else
-	    {
-		llvm::Value * M = ai++;
-		llvm::Value * R = ai++;
-		llvm::Value * C = ai++;
-		llvm::Value * RC = ai++;
-		variables.emplace(in.sym, getMatrix(M, R, C, RC, ty, true, argName));
-	    }
+                llvm::Value * re = ai++;
+                llvm::Value * im = ai++;
+                llvm::Value * R = ai++;
+                llvm::Value * C = ai++;
+                llvm::Value * RC = ai++;
+                variables.emplace(in.sym, getMatrix(re, im, R, C, RC, ty, true, argName));
+            }
+            else
+            {
+                llvm::Value * M = ai++;
+                llvm::Value * R = ai++;
+                llvm::Value * C = ai++;
+                llvm::Value * RC = ai++;
+                variables.emplace(in.sym, getMatrix(M, R, C, RC, ty, true, argName));
+            }
         }
     }
 
@@ -653,32 +655,32 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
         }
         else
         {
-	    JITScilabPtr & ptr = variables.emplace(out.sym, getMatrix(ty, name)).first->second;
+            JITScilabPtr & ptr = variables.emplace(out.sym, getMatrix(ty, name)).first->second;
             builder.SetInsertPoint(returnBlock);
-	    if (ty == analysis::TIType::COMPLEX)
+            if (ty == analysis::TIType::COMPLEX)
             {
                 llvm::Value * re = ai++;
                 llvm::Value * im = ai++;
-		llvm::Value * R = ai++;
-		llvm::Value * C = ai++;
-		llvm::Value * RC = ai++;
-		builder.CreateAlignedStore(ptr->loadReal(*this), re, sizeof(void *));
-		builder.CreateAlignedStore(ptr->loadImag(*this), im, sizeof(void *));
-		builder.CreateAlignedStore(ptr->loadRows(*this), R, sizeof(int64_t));
-		builder.CreateAlignedStore(ptr->loadCols(*this), C, sizeof(int64_t));
-	    }
-	    else
-	    {
+                llvm::Value * R = ai++;
+                llvm::Value * C = ai++;
+                llvm::Value * RC = ai++;
+                builder.CreateAlignedStore(ptr->loadReal(*this), re, sizeof(void *));
+                builder.CreateAlignedStore(ptr->loadImag(*this), im, sizeof(void *));
+                builder.CreateAlignedStore(ptr->loadRows(*this), R, sizeof(int64_t));
+                builder.CreateAlignedStore(ptr->loadCols(*this), C, sizeof(int64_t));
+            }
+            else
+            {
                 llvm::Value * M = ai++;
-		llvm::Value * R = ai++;
-		llvm::Value * C = ai++;
-		llvm::Value * RC = ai++;
-		builder.CreateAlignedStore(ptr->loadData(*this), M, sizeof(void *));
-		builder.CreateAlignedStore(ptr->loadRows(*this), R, sizeof(int64_t));
-		builder.CreateAlignedStore(ptr->loadCols(*this), C, sizeof(int64_t));
-	    }
-	    builder.SetInsertPoint(entryBlock);
-		
+                llvm::Value * R = ai++;
+                llvm::Value * C = ai++;
+                llvm::Value * RC = ai++;
+                builder.CreateAlignedStore(ptr->loadData(*this), M, sizeof(void *));
+                builder.CreateAlignedStore(ptr->loadRows(*this), R, sizeof(int64_t));
+                builder.CreateAlignedStore(ptr->loadCols(*this), C, sizeof(int64_t));
+            }
+            builder.SetInsertPoint(entryBlock);
+
             //builder.CreateAlignedStore(ptr->loadRefCount(*this), RC, sizeof(int64_t));
             //funOuts.emplace_back(getMatrix(M, R, C, RC, ty, false, ""));
         }
@@ -712,7 +714,7 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     if (total >= 0)
     {
         temps.resize(total + 1);
-	temps[0] = JITScilabPtr(nullptr);
+        temps[0] = JITScilabPtr(nullptr);
         unsigned int id = 0;
         for (const auto & p : temporaries)
         {
@@ -749,7 +751,7 @@ void JITVisitor::action(analysis::FunctionBlock & fblock)
     closeEntryBlock();
 
     addFunction(function->getName().str(), function);
-    
+
 }
 
 llvm::FunctionType * JITVisitor::getFunctionType(const analysis::TIType & out, const std::vector<const analysis::TIType *> & types)
@@ -848,9 +850,21 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
     llvm::TargetMachine * tm = eb.selectTarget();
     llvm::Triple triple(llvm::sys::getProcessTriple());
 
+    /** For information, the following code:
+     *  define void @jit_foo_SdSd(double, double, double*) {
+     *    %3 = fcmp oeq double %0, %1
+     *    %. = select i1 %3, double 1.234567e+00, double 2.987654e+00
+     *    store double %., double* %2, align 8
+     *    ret void
+     *  }
+     *	failed at execution when Reloc::Default & CodeModel::Default and it's ok with Reloc::PIC_ & CodeModel::Default
+     *  or Reloc::Default & CodeModel::JITDefault.
+     *  It seems that the addresses where the constants (1.23... & 2.98...) are located are not accessible.
+     */
+
     // The following line is mandatory for Windows OS
     triple.setObjectFormat(llvm::Triple::ELF);
-    *target = tm->getTarget().createTargetMachine(triple.getTriple(), tm->getTargetCPU(), tm->getTargetFeatureString(), tm->Options, llvm::Reloc::Default, llvm::CodeModel::Default, llvm::CodeGenOpt::Level::Aggressive);
+    *target = tm->getTarget().createTargetMachine(triple.getTriple(), tm->getTargetCPU(), tm->getTargetFeatureString(), tm->Options, llvm::Reloc::Default, llvm::CodeModel::JITDefault, llvm::CodeGenOpt::Level::Aggressive);
     delete tm;
 
     llvm::ExecutionEngine * engine = eb.create(*target);
@@ -863,31 +877,34 @@ llvm::ExecutionEngine * JITVisitor::InitializeEngine(llvm::Module * module, llvm
     return engine;
 }
 
-    void JITVisitor::reset()
+void JITVisitor::reset()
+{
+    if (entryBlock)
     {
-	entryBlock = nullptr;
-	mainBlock = nullptr;
-	returnBlock = nullptr;
-	errorBlock = nullptr;
+        entryBlock = nullptr;
+        mainBlock = nullptr;
+        returnBlock = nullptr;
+        errorBlock = nullptr;
 
-	_result.reset();
-	cpx_rvalue.reset();
-	multipleLHS.clear();
-	variables.clear();
-	temps.clear();
-	globals.clear();
-	while (!blocks.empty())
-	{
-	    blocks.pop();
-	}
-	specialVars.clear();
+        _result.reset();
+        cpx_rvalue.reset();
+        multipleLHS.clear();
+        variables.clear();
+        temps.clear();
+        globals.clear();
+        while (!blocks.empty())
+        {
+            blocks.pop();
+        }
+        specialVars.clear();
 
-	module = new llvm::Module("JIT" + std::to_string(id++), context);
-	engine->addModule(std::unique_ptr<llvm::Module>(module));
-	module->setDataLayout(*engine->getDataLayout());
-	module->setTargetTriple(target->getTargetTriple().str());
-	function = nullptr;
+        module = new llvm::Module("JIT" + std::to_string(id++), context);
+        engine->addModule(std::unique_ptr<llvm::Module>(module));
+        module->setDataLayout(*engine->getDataLayout());
+        module->setTargetTriple(target->getTargetTriple().str());
+        function = nullptr;
     }
+}
 
 void JITVisitor::initPassManagers()
 {
@@ -898,11 +915,11 @@ void JITVisitor::initPassManagers()
     llvm::PassManagerBuilder PMB;
     PMB.OptLevel = 2;
     PMB.SizeLevel = 0;
-    /*PMB.BBVectorize = true;
+    PMB.BBVectorize = true;
     PMB.LoopVectorize = true;
     PMB.SLPVectorize = true;
     PMB.LoadCombine = true;
-    PMB.DisableUnrollLoops = false;*/
+    PMB.DisableUnrollLoops = false;
     //PMB.RerollLoops = false;
     //PMB.DisableGVNLoadPRE = true;
     PMB.DisableUnitAtATime = false;

@@ -1959,5 +1959,8 @@
     <ClCompile Include="src\cpp\jit\Debug.cpp">
       <Filter>Source Files\jit</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\analysis\Chrono.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

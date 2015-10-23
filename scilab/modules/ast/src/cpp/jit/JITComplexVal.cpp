@@ -17,125 +17,123 @@
 namespace jit
 {
 
-    llvm::Type * JITScalComplex::getCpx128Ty(JITVisitor & jit)
+llvm::Type * JITScalComplex::getCpx128Ty(JITVisitor & jit)
+{
+    /*
+      llvm::Type * types[] = { dblTy, dblTy };
+      return llvm::StructType::get(jit.getContext(), llvm::ArrayRef<llvm::Type *>(types));
+    */
+    llvm::Type * dblTy = jit.getTy<double>();
+    return llvm::VectorType::get(dblTy, 2);
+}
+
+llvm::Value * JITScalComplex::loadReal(JITVisitor & jit)
+{
+    return loadData(jit);
+}
+
+llvm::Value * JITScalComplex::loadImag(JITVisitor & jit)
+{
+    if (allocated)
     {
-        /*
-          llvm::Type * types[] = { dblTy, dblTy };
-          return llvm::StructType::get(jit.getContext(), llvm::ArrayRef<llvm::Type *>(types));
-        */
-	llvm::Type * dblTy = jit.getTy<double>();
-        return llvm::VectorType::get(dblTy, 2);
+        return jit.getBuilder().CreateAlignedLoad(imag, sizeof(double));
+    }
+    else
+    {
+        return imag;
+    }
+}
+
+std::pair<llvm::Value *, llvm::Value *> JITScalComplex::loadReIm(JITVisitor & jit)
+{
+    llvm::Value * re, * im;
+    if (allocated)
+    {
+        re = jit.getBuilder().CreateAlignedLoad(data, sizeof(double));
+        im = jit.getBuilder().CreateAlignedLoad(imag, sizeof(double));
+    }
+    else
+    {
+        re = data;
+        im = imag;
     }
 
-    llvm::Value * JITScalComplex::loadReal(JITVisitor & jit)
-    {
-	return loadData(jit);
-    }
+    return std::pair<llvm::Value *, llvm::Value *>(re, im);
+}
 
-    llvm::Value * JITScalComplex::loadImag(JITVisitor & jit)
+void JITScalComplex::storeImag(JITVisitor & jit, llvm::Value * _imag)
+{
+    if (allocated)
     {
-	if (allocated)
-	{
-	    return jit.getBuilder().CreateAlignedLoad(imag, sizeof(double));
-	}
-	else
-	{
-	    return imag;
-	}
+        jit.getBuilder().CreateAlignedStore(_imag, imag, sizeof(double));
     }
+    else
+    {
+        assert(false && "storeImag mustn't be called");
+    }
+}
 
-    std::pair<llvm::Value *, llvm::Value *> JITScalComplex::loadReIm(JITVisitor & jit)
-    {	
-        llvm::Value * re, * im;
-	if (allocated)
-	{
-	    re = jit.getBuilder().CreateAlignedLoad(data, sizeof(double));
-	    im = jit.getBuilder().CreateAlignedLoad(imag, sizeof(double));
-	}
-	else
-	{
-	    re = data;
-	    im = imag;
-	}
-	
-        return std::pair<llvm::Value *, llvm::Value *>(re, im);
+void JITScalComplex::storeReIm(JITVisitor & jit, std::pair<llvm::Value *, llvm::Value *> reim)
+{
+    if (allocated)
+    {
+        jit.getBuilder().CreateAlignedStore(reim.first, data, sizeof(double));
+        jit.getBuilder().CreateAlignedStore(reim.second, imag, sizeof(double));
     }
+    else
+    {
+        assert(false && "storeReal/Imag mustn't be called");
+    }
+}
 
-    void JITScalComplex::storeImag(JITVisitor & jit, llvm::Value * _imag)
-    {
-	if (allocated)
-	{
-	    jit.getBuilder().CreateAlignedStore(_imag, imag, sizeof(double));
-	}
-	else
-	{
-	    assert(false && "storeImag mustn't be called");
-	}
-    }
+void JITScalComplex::setImag(llvm::Value * _imag)
+{
+    imag = _imag;
+}
 
-    void JITScalComplex::storeReIm(JITVisitor & jit, std::pair<llvm::Value *, llvm::Value *> reim)
-    {
-	if (allocated)
-	{
-	    jit.getBuilder().CreateAlignedStore(reim.first, data, sizeof(double));
-	    jit.getBuilder().CreateAlignedStore(reim.second, imag, sizeof(double));
-	}
-	else
-	{
-	    assert(false && "storeReal/Imag mustn't be called");
-	}
-    }
-    
-    void JITScalComplex::setImag(llvm::Value * _imag)
-    {
-	imag = _imag;
-    }
-    
-    llvm::Value * JITScalComplex::getImag(JITVisitor & jit) const
-    {
-	return imag;
-    }
+llvm::Value * JITScalComplex::getImag(JITVisitor & jit) const
+{
+    return imag;
+}
 
-    /* JITArrayofComplex */
-    llvm::Value * JITArrayofComplex::loadReal(JITVisitor & jit)
-    {
-	std::wcerr << L"WTF 2="; data->dump();
-	return loadData(jit);
-    }
+/* JITArrayofComplex */
+llvm::Value * JITArrayofComplex::loadReal(JITVisitor & jit)
+{
+    return loadData(jit);
+}
 
-    llvm::Value * JITArrayofComplex::loadImag(JITVisitor & jit)
-    {
-	std::wcerr << L"WTF="; imag->dump();
-	return jit.getBuilder().CreateAlignedLoad(imag, sizeof(void *));
-    }
+llvm::Value * JITArrayofComplex::loadImag(JITVisitor & jit)
+{
+    return jit.getBuilder().CreateAlignedLoad(imag, sizeof(void *));
+}
 
-    std::pair<llvm::Value *, llvm::Value *> JITArrayofComplex::loadReIm(JITVisitor & jit)
-    {	
-	llvm::Value * re = jit.getBuilder().CreateAlignedLoad(data, sizeof(double));
-	llvm::Value * im = jit.getBuilder().CreateAlignedLoad(imag, sizeof(double));
-	
-        return std::pair<llvm::Value *, llvm::Value *>(re, im);
-    }
+std::pair<llvm::Value *, llvm::Value *> JITArrayofComplex::loadReIm(JITVisitor & jit)
+{
+    llvm::Value * re = jit.getBuilder().CreateAlignedLoad(data, sizeof(double));
+    llvm::Value * im = jit.getBuilder().CreateAlignedLoad(imag, sizeof(double));
 
-    void JITArrayofComplex::storeImag(JITVisitor & jit, llvm::Value * _imag)
-    {
-	jit.getBuilder().CreateAlignedStore(_imag, imag, sizeof(void *));
-    }
+    return std::pair<llvm::Value *, llvm::Value *>(re, im);
+}
 
-    void JITArrayofComplex::storeReIm(JITVisitor & jit, std::pair<llvm::Value *, llvm::Value *> reim)
-    {
-	jit.getBuilder().CreateAlignedStore(reim.first, data, sizeof(double));
-	jit.getBuilder().CreateAlignedStore(reim.second, imag, sizeof(double));
-    }
-    
-    void JITArrayofComplex::setImag(llvm::Value * _imag)
-    {
-	imag = _imag;
-    }
-    
-    llvm::Value * JITArrayofComplex::getImag(JITVisitor & jit) const
-    {
-	return imag;
-    }
+void JITArrayofComplex::storeImag(JITVisitor & jit, llvm::Value * _imag)
+{
+    jit.getBuilder().CreateAlignedStore(_imag, imag, sizeof(void *));
+}
+
+void JITArrayofComplex::storeReIm(JITVisitor & jit, std::pair<llvm::Value *, llvm::Value *> reim)
+{
+    jit.getBuilder().CreateAlignedStore(reim.first, data, sizeof(double));
+    jit.getBuilder().CreateAlignedStore(reim.second, imag, sizeof(double));
+}
+
+void JITArrayofComplex::setImag(llvm::Value * _imag)
+{
+    imag = _imag;
+}
+
+llvm::Value * JITArrayofComplex::getImag(JITVisitor & jit) const
+{
+    return imag;
+}
 
 } // namespace jit

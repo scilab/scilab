@@ -19,70 +19,70 @@
 
 namespace jit
 {
-    namespace op
+namespace op
+{
+
+template<bool are_integral, typename T, typename U, typename V>
+struct __And_helper;
+
+template<typename T, typename U, typename V>
+struct __And_helper<true, T, U, V>
+{
+    inline V operator()(T x, U y)
     {
+        return (V)x & (V)y;
+    }
+};
 
-	template<bool are_integral, typename T, typename U, typename V>
-	struct __And_helper;
+template<typename T, typename U, typename V>
+struct __And_helper<false, T, U, V>
+{
+    inline V operator()(T x, U y)
+    {
+        return (x != 0) && (y != 0);
+    }
+};
 
-	template<typename T, typename U, typename V>
-	struct __And_helper<true, T, U, V>
-	{
-	    inline V operator()(T x, U y)
-		{
-		    return (V)x & (V)y;
-		}
-	};
+template<typename U, typename V>
+struct __And_helper<false, const std::complex<double> &, U, V>
+{
 
-	template<typename T, typename U, typename V>
-	struct __And_helper<false, T, U, V>
-	{
-	    inline V operator()(T x, U y)
-		{
-		    return (x != 0) && (y != 0);
-		}
-	};
+    inline V operator()(const std::complex<double> & x, U y)
+    {
+        return (x != 0.) && ((double)y != 0);
+    }
+};
 
-	template<typename U, typename V>
-	struct __And_helper<false, const std::complex<double> &, U, V>
-	{
+template<typename T, typename V>
+struct __And_helper<false, T, const std::complex<double> &, V>
+{
 
-	    inline V operator()(const std::complex<double> & x, U y)
-		{
-		    return (x != 0.) && ((double)y != 0);
-		}
-	};
+    inline V operator()(T x, const std::complex<double> & y)
+    {
+        return ((double)x != 0.) && (y != 0.);
+    }
+};
 
-	template<typename T, typename V>
-	struct __And_helper<false, T, const std::complex<double> &, V>
-	{
+template<typename V>
+struct __And_helper<false, const std::complex<double> &, const std::complex<double> &, V>
+{
 
-	    inline V operator()(T x, const std::complex<double> & y)
-		{
-		    return ((double)x != 0.) && (y != 0.);
-		}
-	};
+    inline V operator()(const std::complex<double> & x, const std::complex<double> & y)
+    {
+        return (x != 0.) && (y != 0.);
+    }
+};
 
-	template<typename V>
-	struct __And_helper<false, const std::complex<double> &, const std::complex<double> &, V>
-	{
+template<typename T, typename U, typename V>
+struct And
+{
+    inline V operator()(T x, U y)
+    {
+        return __And_helper < jit::is_pure_integral<T>::value && jit::is_pure_integral<U>::value, T, U, V > ()(x, y);
+    }
+};
 
-	    inline V operator()(const std::complex<double> & x, const std::complex<double> & y)
-		{
-		    return (x != 0.) && (y != 0.);
-		}
-	};
-
-	template<typename T, typename U, typename V>
-	struct And
-	{
-	    inline V operator()(T x, U y)
-		{
-		    return __And_helper<jit::is_pure_integral<T>::value && jit::is_pure_integral<U>::value, T, U, V>()(x, y);
-		}
-	};
-
-    } // namespace op
+} // namespace op
 
 } // namespace jit
 

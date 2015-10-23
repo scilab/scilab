@@ -31,62 +31,91 @@
 
 namespace jit
 {
-    namespace functors
+namespace functors
+{
+template<typename Functor>
+struct Binary
+{
+
+    template<typename T, typename U, typename V>
+    inline void operator()(jit::vect::WrapVecIn<T> && x, jit::vect::WrapVecIn<U> && y, jit::vect::WrapOut<V> && o, const int64_t i)
     {
-	template<typename Functor>
-	struct Binary
-	{
-	    
-	    template<typename T, typename U, typename V>
-	    inline void operator()(jit::vect::WrapVecIn<T> && x, jit::vect::WrapVecIn<U> && y, jit::vect::WrapOut<V> && o, const int64_t i)
-		{
-		    o[i] = Functor()(x[i], y[i]);
-		}
-	};
+        o[i] = Functor()(x[i], y[i]);
+    }
+};
 
-	template<typename T, typename U, typename V>
-	using add = Binary<jit::op::Add<T, U, V>>;
+template<typename Functor>
+struct BinaryOp
+{
 
-	template<typename T, typename U, typename V>
-	using sub = Binary<jit::op::Sub<T, U, V>>;
+    template<typename T, typename U>
+    inline bool operator()(jit::vect::WrapVecIn<T> && x, jit::vect::WrapVecIn<U> && y, const int64_t i)
+    {
+        return Functor()(x[i], y[i]);
+    }
+};
 
-	template<typename T, typename U, typename V>
-	using dottimes = Binary<jit::op::Prod<T, U, V>>;
+template<typename T, typename U, typename V>
+using add = Binary<jit::op::Add<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using dotpower = Binary<jit::op::Pow<T, U, V>>;
+template<typename T, typename U, typename V>
+using sub = Binary<jit::op::Sub<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using dotldiv = Binary<jit::op::Ldiv<T, U, V>>;
+template<typename T, typename U, typename V>
+using dottimes = Binary<jit::op::Prod<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using dotrdiv = Binary<jit::op::Rdiv<T, U, V>>;
+template<typename T, typename U, typename V>
+using dotpower = Binary<jit::op::Pow<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using neq = Binary<jit::op::Neq<T, U, V>>;
+template<typename T, typename U, typename V>
+using dotldiv = Binary<jit::op::Ldiv<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using eq = Binary<jit::op::Eq<T, U, V>>;
+template<typename T, typename U, typename V>
+using dotrdiv = Binary<jit::op::Rdiv<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using gt = Binary<jit::op::Gt<T, U, V>>;
+template<typename T, typename U, typename V>
+using neq = Binary<jit::op::Neq<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using ge = Binary<jit::op::Ge<T, U, V>>;
+template<typename T, typename U>
+using shortcut_neq = BinaryOp<jit::op::Neq<T, U, bool>>;
 
-	template<typename T, typename U, typename V>
-	using lt = Binary<jit::op::Lt<T, U, V>>;
+template<typename T, typename U, typename V>
+using eq = Binary<jit::op::Eq<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using le = Binary<jit::op::Le<T, U, V>>;
+template<typename T, typename U>
+using shortcut_eq = BinaryOp<jit::op::Eq<T, U, bool>>;
 
-	template<typename T, typename U, typename V>
-	using And = Binary<jit::op::And<T, U, V>>;
+template<typename T, typename U, typename V>
+using gt = Binary<jit::op::Gt<T, U, V>>;
 
-	template<typename T, typename U, typename V>
-	using Or = Binary<jit::op::Or<T, U, V>>;
-	
-    } // namespace functors
+template<typename T, typename U>
+using shortcut_gt = BinaryOp<jit::op::Gt<T, U, bool>>;
+
+template<typename T, typename U, typename V>
+using ge = Binary<jit::op::Ge<T, U, V>>;
+
+template<typename T, typename U>
+using shortcut_ge = BinaryOp<jit::op::Ge<T, U, bool>>;
+
+template<typename T, typename U, typename V>
+using lt = Binary<jit::op::Lt<T, U, V>>;
+
+template<typename T, typename U>
+using shortcut_lt = BinaryOp<jit::op::Lt<T, U, bool>>;
+
+template<typename T, typename U, typename V>
+using le = Binary<jit::op::Le<T, U, V>>;
+
+template<typename T, typename U>
+using shortcut_le = BinaryOp<jit::op::Le<T, U, bool>>;
+
+template<typename T, typename U, typename V>
+using And = Binary<jit::op::And<T, U, V>>;
+
+template<typename T, typename U, typename V>
+using Or = Binary<jit::op::Or<T, U, V>>;
+
+} // namespace functors
 
 } // namespace jit
 

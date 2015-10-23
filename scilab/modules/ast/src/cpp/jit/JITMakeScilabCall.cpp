@@ -18,38 +18,38 @@
 namespace jit
 {
 
-    void JITVisitor::makeCallFromScilab(const uint64_t functionId, const types::typed_list & in, types::typed_list & out)
+void JITVisitor::makeCallFromScilab(const uint64_t functionId, const types::typed_list & in, types::typed_list & out)
+{
+    auto info_it = info.find(functionId);
+    const analysis::TITypeSignatureTuple & outSignature = info_it->second.getOutSignature();
+
+    if (!info_it->second.getWrapper())
     {
-        auto info_it = info.find(functionId);
-        const analysis::TITypeSignatureTuple & outSignature = info_it->second.getOutSignature();
+        const analysis::TITypeSignatureTuple & inSignature = info_it->second.getInSignature();
+        const std::string _id = std::to_string(functionId);
+        const std::string wrapper = _id;
+        llvm::Module & M = *new llvm::Module("JIT" + std::to_string(id++), context);
+        engine->addModule(std::unique_ptr<llvm::Module>(&M));
+        M.setDataLayout(*engine->getDataLayout());
+        M.setTargetTriple(target->getTargetTriple().str());
+        llvm::Type * argsTy[] = { int64PtrTy };
+        llvm::Function * toCall = getFunction(info_it->second.getName());
+        llvm::FunctionType * ftype = llvm::FunctionType::get(voidTy, argsTy, /* isVarArgs */ false);
+        llvm::Function * function = static_cast<llvm::Function *>(M.getOrInsertFunction(wrapper, ftype));
+        llvm::BasicBlock * BB = llvm::BasicBlock::Create(context, "", function);
+        std::vector<llvm::Value *> args;
+        builder.SetInsertPoint(BB);
 
-        if (!info_it->second.getWrapper())
+        uint64_t i = 0;
+        llvm::Function::arg_iterator ai = function->arg_begin();
+        for (const auto & s : inSignature.getTypes())
         {
-            const analysis::TITypeSignatureTuple & inSignature = info_it->second.getInSignature();
-            const std::string _id = std::to_string(functionId);
-            const std::string wrapper = _id;
-            llvm::Module & M = *new llvm::Module("JIT" + std::to_string(id++), context);
-            engine->addModule(std::unique_ptr<llvm::Module>(&M));
-            M.setDataLayout(*engine->getDataLayout());
-            M.setTargetTriple(target->getTargetTriple().str());
-            llvm::Type * argsTy[] = { int64PtrTy };
-            llvm::Function * toCall = getFunction(info_it->second.getName());
-            llvm::FunctionType * ftype = llvm::FunctionType::get(voidTy, argsTy, /* isVarArgs */ false);
-            llvm::Function * function = static_cast<llvm::Function *>(M.getOrInsertFunction(wrapper, ftype));
-            llvm::BasicBlock * BB = llvm::BasicBlock::Create(context, "", function);
-            std::vector<llvm::Value *> args;
-            builder.SetInsertPoint(BB);
-
-            uint64_t i = 0;
-            llvm::Function::arg_iterator ai = function->arg_begin();
-            for (const auto & s : inSignature.getTypes())
+            llvm::Value * x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+            x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+            if (s.scalar)
             {
-                llvm::Value * x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                if (s.scalar)
+                switch (s.type)
                 {
-                    switch (s.type)
-                    {
                     case analysis::TIType::DOUBLE:
                     {
                         args.emplace_back(builder.CreateBitCast(x, dblTy));
@@ -59,7 +59,7 @@ namespace jit
                     {
                         args.emplace_back(builder.CreateBitCast(x, dblTy));
                         x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-			x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                        x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
                         args.emplace_back(builder.CreateBitCast(x, dblTy));
                         break;
                     }
@@ -108,94 +108,12 @@ namespace jit
                     }
                     default:
                         break;
-                    }
-                }
-                else
-                {
-                    switch (s.type)
-                    {
-                    case analysis::TIType::DOUBLE:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
-                        break;
-                    }
-                    case analysis::TIType::COMPLEX:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
-                        x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-			x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                        args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
-                        break;
-                    }
-                    case analysis::TIType::BOOLEAN:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int32PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::INT8:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int8PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::INT16:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int16PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::INT32:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int32PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::INT64:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::UINT8:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int8PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::UINT16:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int16PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::UINT32:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int32PtrTy));
-                        break;
-                    }
-                    case analysis::TIType::UINT64:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy));
-                        break;
-                    }
-                    default:
-                        break;
-                    }
-
-                    x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		    x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                    args.emplace_back(x); // rows
-                    x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		    x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                    args.emplace_back(x); // cols
-                    x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		    x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                    args.emplace_back(x); // refc
                 }
             }
-
-            for (const auto & s : outSignature.getTypes())
+            else
             {
-                llvm::Value * x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                if (s.scalar)
+                switch (s.type)
                 {
-                    switch (s.type)
-                    {
                     case analysis::TIType::DOUBLE:
                     {
                         args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
@@ -205,7 +123,7 @@ namespace jit
                     {
                         args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
                         x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-			x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                        x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
                         args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
                         break;
                     }
@@ -256,109 +174,191 @@ namespace jit
                     }
                     default:
                         break;
-                    }
                 }
-                else
-                {
-                    switch (s.type)
-                    {
-                    case analysis::TIType::DOUBLE:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(dblPtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::COMPLEX:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(dblPtrTy)));
-                        x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-			x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(dblPtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::BOOLEAN:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int32PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::INT8:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int8PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::INT16:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int16PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::INT32:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int32PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::INT64:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int64PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::UINT8:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int8PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::UINT16:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int16PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::UINT32:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int32PtrTy)));
-                        break;
-                    }
-                    case analysis::TIType::UINT64:
-                    {
-                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int64PtrTy)));
-                        break;
-                    }
-                    default:
-                        break;
-                    }
 
-                    x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		    x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                    args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy)); // rows
-                    x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		    x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                    args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy)); // cols
-                    x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
-		    x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
-                    args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy)); // refc
-                }
+                x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                args.emplace_back(x); // rows
+                x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                args.emplace_back(x); // cols
+                x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                args.emplace_back(x); // refc
             }
-
-            builder.CreateCall(toCall, args);
-            builder.CreateRetVoid();
-
-	    M.dump();
-	    
-            engine->generateCodeForModule(&M);
-            info_it->second.setWrapper(reinterpret_cast<void *>(engine->getFunctionAddress(wrapper)));
-
-	    function->removeFromParent();
-	    delete function;
         }
 
-        std::vector<uint64_t> args;
-
-        for (auto pIT : in)
+        for (const auto & s : outSignature.getTypes())
         {
-            if (pIT->isGenericType())
+            llvm::Value * x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+            x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+            if (s.scalar)
             {
-                types::GenericType * pGT = static_cast<types::GenericType *>(pIT);
-                if (pGT->isScalar())
+                switch (s.type)
                 {
-                    switch (pGT->getType())
+                    case analysis::TIType::DOUBLE:
                     {
+                        args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
+                        break;
+                    }
+                    case analysis::TIType::COMPLEX:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
+                        x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                        x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                        args.emplace_back(builder.CreateIntToPtr(x, dblPtrTy));
+                        break;
+                    }
+                    case analysis::TIType::BOOLEAN:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int32PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::INT8:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int8PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::INT16:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int16PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::INT32:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int32PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::INT64:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::UINT8:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int8PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::UINT16:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int16PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::UINT32:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int32PtrTy));
+                        break;
+                    }
+                    case analysis::TIType::UINT64:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy));
+                        break;
+                    }
+                    default:
+                        break;
+                }
+            }
+            else
+            {
+                switch (s.type)
+                {
+                    case analysis::TIType::DOUBLE:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(dblPtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::COMPLEX:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(dblPtrTy)));
+                        x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                        x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(dblPtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::BOOLEAN:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int32PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::INT8:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int8PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::INT16:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int16PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::INT32:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int32PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::INT64:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int64PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::UINT8:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int8PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::UINT16:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int16PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::UINT32:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int32PtrTy)));
+                        break;
+                    }
+                    case analysis::TIType::UINT64:
+                    {
+                        args.emplace_back(builder.CreateIntToPtr(x, llvm::PointerType::getUnqual(int64PtrTy)));
+                        break;
+                    }
+                    default:
+                        break;
+                }
+
+                x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy)); // rows
+                x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy)); // cols
+                x = builder.CreateGEP(ai, getConstant<int64_t>(i++));
+                x = builder.CreateAlignedLoad(x, sizeof(uint64_t));
+                args.emplace_back(builder.CreateIntToPtr(x, int64PtrTy)); // refc
+            }
+        }
+
+        builder.CreateCall(toCall, args);
+        builder.CreateRetVoid();
+
+        M.dump();
+
+        engine->generateCodeForModule(&M);
+        info_it->second.setWrapper(reinterpret_cast<void *>(engine->getFunctionAddress(wrapper)));
+
+        function->removeFromParent();
+        delete function;
+    }
+
+    std::vector<uint64_t> args;
+
+    for (auto pIT : in)
+    {
+        if (pIT->isGenericType())
+        {
+            types::GenericType * pGT = static_cast<types::GenericType *>(pIT);
+            if (pGT->isScalar())
+            {
+                switch (pGT->getType())
+                {
                     case types::InternalType::ScilabInt8:
                     {
                         args.emplace_back(Cast::bit_cast(static_cast<types::Int8 *>(pGT)->get(0)));
@@ -417,12 +417,12 @@ namespace jit
                     }
                     default:
                         break;
-                    }
                 }
-                else
+            }
+            else
+            {
+                switch (pGT->getType())
                 {
-                    switch (pGT->getType())
-                    {
                     case types::InternalType::ScilabInt8:
                     {
                         args.emplace_back(Cast::bit_cast(static_cast<types::Int8 *>(pGT)->get()));
@@ -481,27 +481,27 @@ namespace jit
                     }
                     default:
                         break;
-                    }
-		    int32_t _r = pGT->getRows();
-		    uint64_t r = Cast::bit_cast(_r);
-                    args.emplace_back(r);
-                    args.emplace_back(Cast::bit_cast(pGT->getCols()));
-                    args.emplace_back(Cast::bit_cast(pGT->getRef()));
                 }
+                int32_t _r = pGT->getRows();
+                uint64_t r = Cast::bit_cast(_r);
+                args.emplace_back(r);
+                args.emplace_back(Cast::bit_cast(pGT->getCols()));
+                args.emplace_back(Cast::bit_cast(pGT->getRef()));
             }
         }
+    }
 
-        std::vector<OutContainer> llvmOuts;
-        llvmOuts.reserve(outSignature.getTypes().size());
+    std::vector<OutContainer> llvmOuts;
+    llvmOuts.reserve(outSignature.getTypes().size());
 
-        for (const auto s : outSignature.getTypes())
+    for (const auto s : outSignature.getTypes())
+    {
+        llvmOuts.emplace_back(s.type);
+        OutContainer & oc = llvmOuts.back();
+        if (s.scalar)
         {
-            llvmOuts.emplace_back(s.type);
-            OutContainer & oc = llvmOuts.back();
-            if (s.scalar)
+            switch (s.type)
             {
-                switch (s.type)
-                {
                 case analysis::TIType::DOUBLE:
                 {
                     args.emplace_back(Cast::bit_cast(&oc.data.dbl));
@@ -560,14 +560,14 @@ namespace jit
                 }
                 default:
                     break;
-                }
-                oc.rows = 1;
-                oc.cols = 1;
             }
-            else
+            oc.rows = 1;
+            oc.cols = 1;
+        }
+        else
+        {
+            switch (s.type)
             {
-                switch (s.type)
-                {
                 case analysis::TIType::DOUBLE:
                 {
                     args.emplace_back(Cast::bit_cast(&oc.data.ptr));
@@ -626,30 +626,31 @@ namespace jit
                 }
                 default:
                     break;
-                }
-
-                args.emplace_back(Cast::bit_cast(&oc.rows));
-                args.emplace_back(Cast::bit_cast(&oc.cols));
-                args.emplace_back(Cast::bit_cast(&oc.refcount));
             }
+
+            args.emplace_back(Cast::bit_cast(&oc.rows));
+            args.emplace_back(Cast::bit_cast(&oc.cols));
+            args.emplace_back(Cast::bit_cast(&oc.refcount));
         }
+    }
 
-	//std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
-        reinterpret_cast<void (*)(uint64_t *)>(info_it->second.getWrapper())(&args[0]);
-	//std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
-	//double duration = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
-	//std::wcerr << "Exec time=" << duration << " s." << std::endl;
-    
-        std::vector<OutContainer>::iterator i = llvmOuts.begin();
-        for (const auto s : outSignature.getTypes())
+
+    //std::chrono::steady_clock::time_point start = std::chrono::steady_clock::now();
+    reinterpret_cast<void (*)(uint64_t *)>(info_it->second.getWrapper())(&args[0]);
+    //std::chrono::steady_clock::time_point end = std::chrono::steady_clock::now();
+    //double duration = (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
+    //std::wcerr << "Exec time=" << duration << " s." << std::endl;
+
+    std::vector<OutContainer>::iterator i = llvmOuts.begin();
+    for (const auto s : outSignature.getTypes())
+    {
+        types::InternalType * pIT = nullptr;
+        OutContainer & oc = *(i++);
+
+        if (s.scalar)
         {
-            types::InternalType * pIT = nullptr;
-            OutContainer & oc = *(i++);
-
-            if (s.scalar)
+            switch (s.type)
             {
-                switch (s.type)
-                {
                 case analysis::TIType::DOUBLE:
                 {
                     pIT = new types::Double(oc.data.dbl);
@@ -707,12 +708,12 @@ namespace jit
                 }
                 default:
                     break;
-                }
             }
-            else
+        }
+        else
+        {
+            switch (s.type)
             {
-                switch (s.type)
-                {
                 case analysis::TIType::DOUBLE:
                 {
                     pIT = new types::Double(oc.rows, oc.cols, reinterpret_cast<double *>(oc.data.ptr));
@@ -770,10 +771,10 @@ namespace jit
                 }
                 default:
                     break;
-                }
             }
+        }
 
-            out.emplace_back(pIT);
-	}
+        out.emplace_back(pIT);
     }
+}
 }

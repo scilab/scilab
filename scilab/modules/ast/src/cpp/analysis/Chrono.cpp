@@ -10,28 +10,9 @@
  *
  */
 
-#ifndef __JIT_JITTER_HXX__
-#define __JIT_JITTER_HXX__
+#include "Chrono.hxx"
 
-#include "internal.hxx"
-
-namespace ast
+namespace analysis
 {
-class CallExp;
+std::chrono::steady_clock::time_point Chrono::_tic;
 }
-
-namespace jit
-{
-
-class JITVisitor;
-
-class Jitter
-{
-public:
-
-    static bool analyzeAndJIT(const ast::CallExp & ce, const types::typed_list & in, types::typed_list & out);
-
-};
-}
-
-#endif // __JIT_JITTER_HXX__

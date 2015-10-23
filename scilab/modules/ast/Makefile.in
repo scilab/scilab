@@ -243,6 +243,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/types/threadId.cpp src/cpp/types/tlist.cpp \
 	src/cpp/types/tostring_common.cpp src/cpp/types/types.cpp \
 	src/cpp/types/types_tools.cpp src/cpp/types/void.cpp \
+	src/cpp/analysis/Chrono.cpp \
 	src/cpp/analysis/AnalysisVisitor.cpp \
 	src/cpp/analysis/ArgnAnalyzer.cpp src/cpp/analysis/Block.cpp \
 	src/cpp/analysis/Checkers.cpp \
@@ -496,6 +497,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/types/libsciast_la-types.lo \
 	src/cpp/types/libsciast_la-types_tools.lo \
 	src/cpp/types/libsciast_la-void.lo \
+	src/cpp/analysis/libsciast_la-Chrono.lo \
 	src/cpp/analysis/libsciast_la-AnalysisVisitor.lo \
 	src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo \
 	src/cpp/analysis/libsciast_la-Block.lo \
@@ -1147,6 +1149,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/types/threadId.cpp src/cpp/types/tlist.cpp \
 	src/cpp/types/tostring_common.cpp src/cpp/types/types.cpp \
 	src/cpp/types/types_tools.cpp src/cpp/types/void.cpp \
+	src/cpp/analysis/Chrono.cpp \
 	src/cpp/analysis/AnalysisVisitor.cpp \
 	src/cpp/analysis/ArgnAnalyzer.cpp src/cpp/analysis/Block.cpp \
 	src/cpp/analysis/Checkers.cpp \
@@ -2009,6 +2012,9 @@ src/cpp/analysis/$(am__dirstamp):
 src/cpp/analysis/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/analysis/$(DEPDIR)
 	@: > src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-Chrono.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-AnalysisVisitor.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
@@ -2613,6 +2619,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-Block.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-CeilAnalyzer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-Checkers.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-Chrono.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-CompleteMacroSignature.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-ConstantValue.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-ConstantVisitor.Plo@am__quote@
@@ -3603,6 +3610,13 @@ src/cpp/types/libsciast_la-void.lo: src/cpp/types/void.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/void.cpp' object='src/cpp/types/libsciast_la-void.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-void.lo `test -f 'src/cpp/types/void.cpp' || echo '$(srcdir)/'`src/cpp/types/void.cpp
+
+src/cpp/analysis/libsciast_la-Chrono.lo: src/cpp/analysis/Chrono.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-Chrono.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-Chrono.Tpo -c -o src/cpp/analysis/libsciast_la-Chrono.lo `test -f 'src/cpp/analysis/Chrono.cpp' || echo '$(srcdir)/'`src/cpp/analysis/Chrono.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-Chrono.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-Chrono.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/Chrono.cpp' object='src/cpp/analysis/libsciast_la-Chrono.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-Chrono.lo `test -f 'src/cpp/analysis/Chrono.cpp' || echo '$(srcdir)/'`src/cpp/analysis/Chrono.cpp
 
 src/cpp/analysis/libsciast_la-AnalysisVisitor.lo: src/cpp/analysis/AnalysisVisitor.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-AnalysisVisitor.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-AnalysisVisitor.Tpo -c -o src/cpp/analysis/libsciast_la-AnalysisVisitor.lo `test -f 'src/cpp/analysis/AnalysisVisitor.cpp' || echo '$(srcdir)/'`src/cpp/analysis/AnalysisVisitor.cpp

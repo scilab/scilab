@@ -20,50 +20,50 @@
 
 namespace jit
 {
-    namespace op
+namespace op
+{
+
+template<typename T, typename U, typename V>
+struct Add
+{
+
+    inline V operator()(T x, U y)
     {
+        return (V)x + (V)y;
+    }
+};
 
-	template<typename T, typename U, typename V>
-	struct Add
-	{
+template<typename U>
+struct Add<const std::complex<double> &, U, std::complex<double>>
+{
 
-	    inline V operator()(T x, U y)
-		{
-		    return (V)x + (V)y;
-		}
-	};
-	
-	template<typename U>
-	struct Add<const std::complex<double> &, U, std::complex<double>>
-	{
+    inline std::complex<double> operator()(const std::complex<double> & x, U y)
+    {
+        return x + (double)y;
+    }
+};
 
-	    inline std::complex<double> operator()(const std::complex<double> & x, U y)
-		{
-		    return x + (double)y;
-		}
-	};
+template<typename T>
+struct Add<T, const std::complex<double> &, std::complex<double>>
+{
 
-	template<typename T>
-	struct Add<T, const std::complex<double> &, std::complex<double>>
-	{
+    inline std::complex<double> operator()(T x, const std::complex<double> & y)
+    {
+        return (double)x + y;
+    }
+};
 
-	    inline std::complex<double> operator()(T x, const std::complex<double> & y)
-		{
-		    return (double)x + y;
-		}
-	};
+template<>
+struct Add<const std::complex<double> &, const std::complex<double> &, std::complex<double>>
+{
 
-	template<>
-	struct Add<const std::complex<double> &, const std::complex<double> &, std::complex<double>>
-	{
+    inline std::complex<double> operator()(const std::complex<double> & x, const std::complex<double> & y)
+    {
+        return x + y;
+    }
+};
 
-	    inline std::complex<double> operator()(const std::complex<double> & x, const std::complex<double> & y)
-		{
-		    return x + y;
-		}
-	};
-
-    } // namespace op
+} // namespace op
 
 } // namespace jit
 
