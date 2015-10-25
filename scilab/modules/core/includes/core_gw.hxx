@@ -71,5 +71,6 @@ CPP_GATEWAY_PROTOTYPE(sci_macr2tree);
 CPP_GATEWAY_PROTOTYPE(sci_predef);
 CPP_GATEWAY_PROTOTYPE(sci_debug);
 CPP_GATEWAY_PROTOTYPE(sci_recursionlimit);
+CPP_GATEWAY_PROTOTYPE(sci_type);
 
 #endif /* __CORE_GW_HXX__ */

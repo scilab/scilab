@@ -1,0 +1,96 @@
+.scilabcomment {
+ font-style: italic;
+ color: #01a801
+}
+
+.scilabdefault {
+ font-style: normal;
+ color: #000000
+}
+
+.scilabspecial {
+ font-style: normal;
+ color: #ffaa00
+}
+
+.scilabconstants {
+ font-style: normal;
+ color: #da70d6
+}
+
+.scilaboperator {
+ font-style: normal;
+ color: #5c5c5c
+}
+
+.scilabnumber {
+ font-style: normal;
+ color: #bc8f8f
+}
+
+.scilabfkeyword {
+ font-style: normal;
+ color: #b01813
+}
+
+.scilabskeyword {
+ font-style: normal;
+ color: #a020f0
+}
+
+.scilabckeyword {
+ font-style: normal;
+ color: #5f9ea0
+}
+
+.scilabcommand {
+ font-style: normal;
+ color: #32b9b9
+}
+
+.scilabmacro {
+ font-style: normal;
+ color: #ae5cb0
+}
+
+a.scilabcommand {
+ font-style: normal;
+ text-decoration: underline;
+ color: #32b9b9
+}
+
+a.scilabmacro {
+ font-style: normal;
+ text-decoration: underline;
+ color: #ae5cb0
+}
+
+.scilabstring {
+ font-style: normal;
+ color: #bc8f8f
+}
+
+.scilabid {
+ font-style: normal;
+ color: #000000
+}
+
+.scilabinputoutputargs {
+ font-weight: bold;
+ color: #834310
+}
+
+.scilabfunctionid {
+ font-weight: bold;
+ color: #000000
+}
+
+.scilabfield {
+ font-style: normal;
+ color: #aaaaaa
+}
+
+.scilabopenclose {
+ font-style: normal;
+ color: #4a55db
+}

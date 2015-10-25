@@ -53,7 +53,6 @@ int C2F(sci_funcprot)(char *fname, void* pvApiCtx);
 //int C2F(sci_newfun)(char *fname, void* pvApiCtx); -> C++
 
 //Scilab 6
-C_GATEWAY_PROTOTYPE(sci_type);
 C_GATEWAY_PROTOTYPE(sci_getdebuginfo);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CORE__ */

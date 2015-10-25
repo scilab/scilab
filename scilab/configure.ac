@@ -2059,6 +2059,7 @@ modules/xml/Makefile
 modules/external_objects/Makefile
 modules/external_objects_java/Makefile
 modules/slint/Makefile
+modules/coverage/Makefile
 modules/Makefile
 Makefile
 scilab.pc

@@ -333,17 +333,17 @@ public :
 
     void visitprivate(const CellExp &e);
     void visitprivate(const FieldExp &e);
-    void visitprivate(const IfExp  &e);
-    void visitprivate(const WhileExp  &e);
+    void visitprivate(const IfExp &e);
+    void visitprivate(const WhileExp &e);
     void visitprivate(const ForExp  &e);
     void visitprivate(const ReturnExp &e);
     void visitprivate(const SelectExp &e);
     void visitprivate(const SeqExp  &e);
     void visitprivate(const NotExp &e);
     void visitprivate(const TransposeExp &e);
-    void visitprivate(const FunctionDec  &e);
+    void visitprivate(const FunctionDec &e);
     void visitprivate(const ListExp &e);
-    void visitprivate(const AssignExp  &e);
+    void visitprivate(const AssignExp &e);
     void visitprivate(const OpExp &e);
     void visitprivate(const LogicalOpExp &e);
     void visitprivate(const MatrixExp &e);
@@ -354,161 +354,19 @@ public :
     void visitprivate(const DAXPYExp &e);
     void visitprivate(const IntSelectExp &e);
     void visitprivate(const StringSelectExp &e);
-    void visitprivate(const TryCatchExp  &e);
+    void visitprivate(const TryCatchExp &e);
 
-    void visitprivate(const StringExp &e)
-    {
-        if (e.getConstant() == nullptr)
-        {
-            types::String *psz = new types::String(e.getValue().c_str());
-            (const_cast<StringExp *>(&e))->setConstant(psz);
-
-        }
-        setResult(e.getConstant());
-    }
-
-
-    void visitprivate(const DoubleExp  &e)
-    {
-        if (e.getConstant() == nullptr)
-        {
-            types::Double *pdbl = new types::Double(e.getValue());
-            (const_cast<DoubleExp *>(&e))->setConstant(pdbl);
-
-        }
-        setResult(e.getConstant());
-    }
-
-
-    void visitprivate(const BoolExp  &e)
-    {
-        if (e.getConstant() == nullptr)
-        {
-            types::Bool *pB = new types::Bool(e.getValue());
-            (const_cast<BoolExp *>(&e))->setConstant(pB);
-
-        }
-        setResult(e.getConstant());
-    }
-
-
-    void visitprivate(const NilExp &/*e*/)
-    {
-        setResult(new types::Void());
-    }
-
-
-    void visitprivate(const SimpleVar &e)
-    {
-        symbol::Context* ctx = symbol::Context::getInstance();
-        symbol::Variable* var = ((SimpleVar&)e).getStack();
-        types::InternalType *pI = ctx->get(var);
-        setResult(pI);
-        if (pI != nullptr)
-        {
-            if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
-            {
-                std::wostringstream ostr;
-                ostr << e.getSymbol().getName() << L"  = ";
-#ifndef NDEBUG
-                ostr << L"(" << pI->getRef() << L")";
-#endif
-                ostr << std::endl;
-                ostr << std::endl;
-                scilabWriteW(ostr.str().c_str());
-                std::wostringstream ostrName;
-                ostrName  << e.getSymbol().getName();
-                VariableToString(pI, ostrName.str().c_str());
-            }
-
-            //check if var is recalled in current scope like
-            //function f()
-            //  a; //<=> a=a;
-            //  a(2) = 18;
-            //endfunction
-            if (e.getParent()->isSeqExp())
-            {
-                if (ctx->getScopeLevel() > 1 && var->empty() == false && var->top()->m_iLevel != ctx->getScopeLevel())
-                {
-                    //put var in current scope
-                    ctx->put(var, pI);
-                }
-            }
-        }
-        else
-        {
-            char pstError[bsiz];
-            wchar_t* pwstError;
-
-            char* strErr =  wide_string_to_UTF8(e.getSymbol().getName().c_str());
-
-            os_sprintf(pstError, _("Undefined variable: %s\n"), strErr);
-            pwstError = to_wide_string(pstError);
-            FREE(strErr);
-            std::wstring wstError(pwstError);
-            FREE(pwstError);
-            throw InternalError(wstError, 999, e.getLocation());
-            //Err, SimpleVar doesn't exist in Scilab scopes.
-        }
-    }
-
-
-    void visitprivate(const ColonVar &/*e*/)
-    {
-        types::Colon *pC = new types::Colon();
-        setResult(pC);
-    }
-
-
-    void visitprivate(const DollarVar &/*e*/)
-    {
-        setResult(types::Polynom::Dollar());
-    }
-
-    void visitprivate(const BreakExp &e)
-    {
-        const_cast<BreakExp*>(&e)->setBreak();
-    }
-
-    void visitprivate(const ContinueExp &e)
-    {
-        const_cast<ContinueExp*>(&e)->setContinue();
-    }
-
-    void visitprivate(const ArrayListExp  &e)
-    {
-        exps_t::const_iterator it;
-        int iNbExpSize = this->getExpectedSize();
-        this->setExpectedSize(1);
-
-        types::typed_list lstIT;
-        for (it = e.getExps().begin() ; it != e.getExps().end() ; it++)
-        {
-            (*it)->accept(*this);
-            for (int j = 0; j < getResultSize(); j++)
-            {
-                lstIT.push_back(getResult(j));
-            }
-        }
-
-        setResult(lstIT);
-
-        this->setExpectedSize(iNbExpSize);
-    }
-
-    void visitprivate(const VarDec  &e)
-    {
-        try
-        {
-            /*getting what to assign*/
-            e.getInit().accept(*this);
-            getResult()->IncreaseRef();
-        }
-        catch (const InternalError& error)
-        {
-            throw error;
-        }
-    }
+    void visitprivate(const StringExp & e);
+    void visitprivate(const DoubleExp & e);
+    void visitprivate(const BoolExp & e);
+    void visitprivate(const NilExp & e);
+    void visitprivate(const SimpleVar & e);
+    void visitprivate(const ColonVar & e);
+    void visitprivate(const DollarVar & e);
+    void visitprivate(const BreakExp & e);
+    void visitprivate(const ContinueExp & e);
+    void visitprivate(const ArrayListExp & e);
+    void visitprivate(const VarDec & e);
 
     types::InternalType* callOverloadOpExp(OpExp::Oper _oper, types::InternalType* _paramL, types::InternalType* _paramR);
     types::InternalType* callOverloadMatrixExp(const std::wstring& strType, types::InternalType* _paramL, types::InternalType* _paramR);

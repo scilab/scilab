@@ -129,9 +129,6 @@
     <ClCompile Include="sci_macr2tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_type.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_predef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -142,6 +139,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_what.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_type.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

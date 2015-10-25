@@ -66,7 +66,6 @@ CORE_FORTRAN_SOURCES = \
 	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c
 
 GATEWAY_CPP_SOURCES = \
@@ -110,7 +109,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_macr2tree.cpp \
 	sci_gateway/cpp/sci_predef.cpp \
 	sci_gateway/cpp/sci_debug.cpp \
-	sci_gateway/cpp/sci_recursionlimit.cpp
+	sci_gateway/cpp/sci_recursionlimit.cpp \
+	sci_gateway/cpp/sci_type.cpp
 
 libscicore_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

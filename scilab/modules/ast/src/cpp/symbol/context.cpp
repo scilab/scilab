@@ -267,6 +267,11 @@ int Context::getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModu
     return variables.getFunctionList(lst, _stModuleName, m_iLevel);
 }
 
+int Context::getFunctionList(std::list<types::Callable *> & lst, std::wstring _stModuleName)
+{
+    return variables.getFunctionList(lst, _stModuleName, m_iLevel);
+}
+
 int Context::getConsoleVarsName(std::list<std::wstring>& lst)
 {
     if (console)

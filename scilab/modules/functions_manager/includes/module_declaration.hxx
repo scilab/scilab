@@ -56,4 +56,5 @@
 #include "../../preferences/includes/preferences_gw.hxx"
 #include "../../tclsci/includes/tclsci_gw.hxx"
 #include "../../slint/includes/slint_gw.hxx"
+#include "../../coverage/includes/coverage_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

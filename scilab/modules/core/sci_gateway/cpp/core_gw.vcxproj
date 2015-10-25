@@ -189,7 +189,6 @@
     <ClCompile Include="sci_recursionlimit.cpp" />
     <ClCompile Include="sci_sciargs.cpp" />
     <ClCompile Include="..\c\sci_getdebuginfo.c" />
-    <ClCompile Include="..\c\sci_type.c" />
     <ClCompile Include="core_gw.cpp" />
     <ClCompile Include="sci_abort.cpp" />
     <ClCompile Include="sci_argn.cpp" />
@@ -210,6 +209,7 @@
     <ClCompile Include="sci_pause.cpp" />
     <ClCompile Include="sci_quit.cpp" />
     <ClCompile Include="sci_debug.cpp" />
+    <ClCompile Include="sci_type.cpp" />
     <ClCompile Include="sci_typename.cpp" />
     <ClCompile Include="sci_warning.cpp" />
     <ClCompile Include="sci_what.cpp" />

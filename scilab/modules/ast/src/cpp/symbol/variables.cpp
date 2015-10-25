@@ -343,6 +343,28 @@ int Variables::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleNam
     return static_cast<int>(lst.size());
 }
 
+int Variables::getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName, int _iLevel)
+{
+    for (auto var : vars)
+    {
+	if (var.second->empty())
+	{
+	    continue;
+	}
+	
+	if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
+	{
+	    types::Callable * pCall = var.second->top()->m_pIT->getAs<types::Callable>();
+	    if (_stModuleName == L"" || _stModuleName == pCall->getModule())
+	    {
+		lst.push_back(pCall);
+	    }
+	}
+    }
+    
+    return static_cast<int>(lst.size());
+}
+
 int Variables::getVarsToVariableBrowser(std::list<Variable*>& lst)
 {
     for (auto var : vars)

@@ -116,6 +116,9 @@
     <None Include="string_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+    <None Include="coverage_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\exps\all.hxx">
@@ -844,6 +847,9 @@
     <ClInclude Include="includes\analysis\DollarInfo.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
+    <ClInclude Include="includes\system_env\coverage_instance.hxx">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">
@@ -1540,6 +1546,9 @@
       <Filter>Source Files\ast</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ast\prettyprintvisitor.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\coverage_instance.cpp">
       <Filter>Source Files\ast</Filter>
     </ClCompile>
   </ItemGroup>

@@ -154,6 +154,7 @@ struct Variables
     int getProtectedVarsName(std::list<std::wstring>& lstVarName) const;
     int getFunctionsName(std::list<std::wstring>& lst);
     int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName, int _iLevel);
+    int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName, int _iLevel);
     int getVarsToVariableBrowser(std::list<Variable*>& lst);
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel);
 

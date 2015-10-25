@@ -92,7 +92,8 @@ preferences \
 xml \
 types \
 external_objects \
-slint
+slint \
+coverage
 
 if GUI
 SUBDIRS += external_objects_java
@@ -195,7 +196,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/types/libscitypes.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
-	$(top_builddir)/modules/slint/libscislint.la
+	$(top_builddir)/modules/slint/libscislint.la \
+	$(top_builddir)/modules/coverage/libscicoverage.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \

@@ -523,6 +523,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mpi", "modules\mpi\mpi.vcxp
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "slint", "modules\slint\slint.vcxproj", "{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "coverage", "modules\coverage\coverage.vcxproj", "{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -1715,6 +1717,14 @@ Global
 		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|Win32.Build.0 = Release|Win32
 		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|x64.ActiveCfg = Release|x64
 		{C4A6EABA-B46E-421A-A8E3-2ACA7F27DD82}.Release|x64.Build.0 = Release|x64
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Debug|Win32.Build.0 = Debug|Win32
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Debug|x64.ActiveCfg = Debug|x64
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Debug|x64.Build.0 = Debug|x64
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Release|Win32.ActiveCfg = Release|Win32
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Release|Win32.Build.0 = Release|Win32
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Release|x64.ActiveCfg = Release|x64
+		{B150E4A2-2EC1-4BE0-B416-95CFEB13E2FF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

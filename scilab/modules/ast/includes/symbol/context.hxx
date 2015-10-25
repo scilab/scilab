@@ -75,6 +75,8 @@ public:
 
     /*return function list in the module _stModuleName*/
     int getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModuleName);
+    /*return function list in the module _stModuleName*/
+    int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName);
 
     int getConsoleVarsName(std::list<std::wstring>& lst);
     int getVarsName(std::list<std::wstring>& lst);

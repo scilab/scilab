@@ -243,8 +243,7 @@ am__v_lt_1 =
 @MAINTAINER_MODE_TRUE@am_libscicore_algo_la_rpath =
 am__DEPENDENCIES_1 =
 libscicore_la_DEPENDENCIES = libscicore-algo.la $(am__DEPENDENCIES_1)
-am__objects_4 = sci_gateway/c/libscicore_la-sci_type.lo \
-	sci_gateway/c/libscicore_la-sci_getdebuginfo.lo
+am__objects_4 = sci_gateway/c/libscicore_la-sci_getdebuginfo.lo
 am__objects_5 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_getmodules.lo \
 	sci_gateway/cpp/libscicore_la-sci_clear.lo \
@@ -285,7 +284,8 @@ am__objects_5 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_macr2tree.lo \
 	sci_gateway/cpp/libscicore_la-sci_predef.lo \
 	sci_gateway/cpp/libscicore_la-sci_debug.lo \
-	sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo
+	sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo \
+	sci_gateway/cpp/libscicore_la-sci_type.lo
 am_libscicore_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscicore_la_OBJECTS = $(am_libscicore_la_OBJECTS)
 libscicore_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
@@ -739,7 +739,6 @@ CORE_FORTRAN_SOURCES = \
 	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c
 
 GATEWAY_CPP_SOURCES = \
@@ -783,7 +782,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_macr2tree.cpp \
 	sci_gateway/cpp/sci_predef.cpp \
 	sci_gateway/cpp/sci_debug.cpp \
-	sci_gateway/cpp/sci_recursionlimit.cpp
+	sci_gateway/cpp/sci_recursionlimit.cpp \
+	sci_gateway/cpp/sci_type.cpp
 
 libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(srcdir)/src/cpp/ -I$(top_srcdir)/modules/ast/includes/ast/ \
@@ -1171,9 +1171,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscicore_la-sci_type.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscicore_la-sci_getdebuginfo.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -1306,6 +1303,9 @@ sci_gateway/cpp/libscicore_la-sci_debug.lo:  \
 sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscicore_la-sci_type.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscicore.la: $(libscicore_la_OBJECTS) $(libscicore_la_DEPENDENCIES) $(EXTRA_libscicore_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscicore_la_LINK) $(am_libscicore_la_rpath) $(libscicore_la_OBJECTS) $(libscicore_la_LIBADD) $(LIBS)
@@ -1329,7 +1329,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicore_la-sci_getdebuginfo.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicore_la-sci_type.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-core_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_abort.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_analyzeroptions.Plo@am__quote@
@@ -1365,6 +1364,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_quit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_recursionlimit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_sciargs.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_type.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_typename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_warning.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_what.Plo@am__quote@
@@ -1647,13 +1647,6 @@ src/c/libscicore_algo_la-InitializePreferences.lo: src/c/InitializePreferences.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/InitializePreferences.c' object='src/c/libscicore_algo_la-InitializePreferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-InitializePreferences.lo `test -f 'src/c/InitializePreferences.c' || echo '$(srcdir)/'`src/c/InitializePreferences.c
-
-sci_gateway/c/libscicore_la-sci_type.lo: sci_gateway/c/sci_type.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-sci_type.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-sci_type.Tpo -c -o sci_gateway/c/libscicore_la-sci_type.lo `test -f 'sci_gateway/c/sci_type.c' || echo '$(srcdir)/'`sci_gateway/c/sci_type.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicore_la-sci_type.Tpo sci_gateway/c/$(DEPDIR)/libscicore_la-sci_type.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_type.c' object='sci_gateway/c/libscicore_la-sci_type.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicore_la-sci_type.lo `test -f 'sci_gateway/c/sci_type.c' || echo '$(srcdir)/'`sci_gateway/c/sci_type.c
 
 sci_gateway/c/libscicore_la-sci_getdebuginfo.lo: sci_gateway/c/sci_getdebuginfo.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-sci_getdebuginfo.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-sci_getdebuginfo.Tpo -c -o sci_gateway/c/libscicore_la-sci_getdebuginfo.lo `test -f 'sci_gateway/c/sci_getdebuginfo.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdebuginfo.c
@@ -2056,6 +2049,13 @@ sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo: sci_gateway/cpp/sci_recursi
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_recursionlimit.cpp' object='sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_recursionlimit.lo `test -f 'sci_gateway/cpp/sci_recursionlimit.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_recursionlimit.cpp
+
+sci_gateway/cpp/libscicore_la-sci_type.lo: sci_gateway/cpp/sci_type.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_type.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_type.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_type.lo `test -f 'sci_gateway/cpp/sci_type.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_type.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_type.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_type.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_type.cpp' object='sci_gateway/cpp/libscicore_la-sci_type.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_type.lo `test -f 'sci_gateway/cpp/sci_type.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_type.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

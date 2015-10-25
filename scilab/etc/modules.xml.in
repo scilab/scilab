@@ -90,4 +90,5 @@
 <module name="ast" activate="yes"/>
 <module name="external_objects_java" activate="@JAVA_ENABLE@"/>
 <module name="slint" activate="yes"/>
+<module name="coverage" activate="yes"/>
 </modules>
