@@ -1481,7 +1481,7 @@ if test "$with_openmp" != no; then
 #   AC_OPENMP
     OPENMP_CFLAGS="-fopenmp"
     OPENMP_CXXFLAGS="-fopenmp"
-    OPENMP_LIBS="-lgomp -lstdc++" # Force -lstdc++ because some compilers do not add it automatically.
+    OPENMP_LIBS="-lgomp" 
 
     AC_CHECK_HEADERS([omp.h], [],
      [AC_MSG_ERROR([Could not find omp.h])])
@@ -1849,9 +1849,6 @@ AC_SUBST(GRAPHICS_ENABLE)
 LT_PREREQ([2.2.7])
 LT_INIT([shared dlopen disable-static])
 
-# Eliminate -lstdc++ addition to postdeps for cross compiles.
-postdeps_CXX=`echo " $postdeps_CXX " | sed 's, -lstdc++ ,,g'`
-
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
 
@@ -1949,9 +1946,9 @@ fi
 
 
 #########
-## Make sure that the libstdc++ and libgcc can be compiled as static
+## Make sure that the libstdc++ libgcc and libgfortran can be compiled as 
+## static if requested
 #########
-
 AC_CHECK_STDCPP_STATIC()
 
 #################
@@ -1968,10 +1965,47 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 # SCI_*FLAGS contains all defaults values detected on configure
-SCI_CFLAGS=$(echo                       $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
-SCI_CXXFLAGS=$(echo $STDCXX_11_CXXFLAGS $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
-SCI_FFLAGS=$(echo                       $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
-SCI_LDFLAGS=$(echo                      $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $COMPILER_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
+SCI_CFLAGS=$(echo                                             \
+             $LARGEFILE_CFLAGS                                \
+             $CODECOVERAGE_CFLAGS                             \
+             $DEBUG_CFLAGS                                    \
+             $ARCH_CFLAGS                                     \
+             $COMPILER_CFLAGS                                 \
+             $SCILIBS_CFLAGS                                  \
+             $SSE_CFLAGS                                      \
+             $BACKTRACE_CFLAGS                                \
+             $WARNING_CFLAGS                                  )
+SCI_CXXFLAGS=$(echo                                           \
+               $STDCXX_11_CXXFLAGS                            \
+               $LARGEFILE_CXXFLAGS                            \
+               $CODECOVERAGE_CXXFLAGS                         \
+               $DEBUG_CXXFLAGS                                \
+               $ARCH_CXXFLAGS                                 \
+               $COMPILER_CXXFLAGS                             \
+               $SCILIBS_CXXFLAGS                              \
+               $SSE_CXXFLAGS                                  \
+               $BACKTRACE_CXXFLAGS                            \
+               $WARNING_CXXFLAGS                              )
+SCI_FFLAGS=$(echo                                             \
+             $LARGEFILE_FFLAGS                                \
+             $CODECOVERAGE_FFLAGS                             \
+             $DEBUG_FFLAGS                                    \
+             $ARCH_FFLAGS                                     \
+             $COMPILER_FFLAGS                                 \
+             $SCILIBS_FFLAGS                                  \
+             $SSE_FFLAGS                                      \
+             $BACKTRACE_FFLAGS                                \
+             $WARNING_FFLAGS                                  )
+SCI_LDFLAGS=$(echo                                            \
+              $LARGEFILE_LDFLAGS                              \
+              $CODECOVERAGE_LDFLAGS                           \
+              $DEBUG_LDFLAGS                                  \
+              $ARCH_LDFLAGS                                   \
+              $COMPILER_LDFLAGS                               \
+              $SCILIBS_LDFLAGS                                \
+              $SSE_LDFLAGS                                    \
+              $BACKTRACE_LDFLAGS                              \
+              $WARNING_LDFLAGS                                )
 AC_SUBST(SCI_CFLAGS)
 AC_SUBST(SCI_CXXFLAGS)
 AC_SUBST(SCI_FFLAGS)

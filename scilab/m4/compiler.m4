@@ -31,18 +31,18 @@ AC_DEFUN([CHECK_COMPILER_ARG],[
 AC_DEFUN([AC_CHECK_STDCPP_STATIC],[
 
 AC_ARG_ENABLE(static-system-lib,
-    AC_HELP_STRING([--disable-static-system-lib],[Disable the usage of the static stdc++ and libgcc libs]))
+    AC_HELP_STRING([--enable-static-system-lib],[Enable the usage of the static stdc++ and libgcc libs]),
+)
 
 # Check if -static-libstdc++ and -static-libgcc are supported.
 saved_LDFLAGS="$LDFLAGS"
 
 compiler_manage_static_libs=no
-USE_STATIC_SYSTEM_LIB=yes
+USE_STATIC_SYSTEM_LIB=no
 
-
-if test "x$enable_static_system_lib" == "xno"; then
-# The user ask for an explicit disable.
-   USE_STATIC_SYSTEM_LIB=no
+if test "x$enable_static_system_lib" == "xyes"; then
+# The user ask for an explicit enable.
+   USE_STATIC_SYSTEM_LIB=yes
 fi
 
 
@@ -59,7 +59,7 @@ int main() {return 0;}])],
 AC_LANG_POP(C++)
 
 LDFLAGS="$saved_LDFLAGS"
-if test "x$compiler_manage_static_libs" == "xno" -a "x$enable_static_system_lib" != "xno"; then
+if test "x$compiler_manage_static_libs" == "xno" -a "x$enable_static_system_lib" == "xyes"; then
    AC_MSG_ERROR([The $CC compiler does not support the options -static-libstdc++/-static-libgcc. Update your compiler or use the option --disable-static-system-lib])
 fi
 

@@ -1771,8 +1771,8 @@ Optional Features:
   --disable-libtool-lock  avoid locking (might break parallel builds)
   --disable-ccache        Disable the use of ccache
 
-  --disable-static-system-lib
-                          Disable the usage of the static stdc++ and libgcc
+  --enable-static-system-lib
+                          Enable the usage of the static stdc++ and libgcc
                           libs
 
 Optional Packages:
@@ -4397,7 +4397,7 @@ else
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4443,7 +4443,7 @@ else
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4467,7 +4467,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4512,7 +4512,7 @@ else
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -4536,7 +4536,7 @@ rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
     We can't simply define LARGE_OFF_T to be 9223372036854775807,
     since some C++ compilers masquerading as C compilers
     incorrectly reject 9223372036854775807.  */
-#define LARGE_OFF_T ((((off_t) 1 << 31) << 31) - 1 + (((off_t) 1 << 31) << 31))
+#define LARGE_OFF_T (((off_t) 1 << 62) - 1 + ((off_t) 1 << 62))
   int off_t_is_large[(LARGE_OFF_T % 2147483629 == 721
 		       && LARGE_OFF_T % 2147483647 == 1)
 		      ? 1 : -1];
@@ -24052,7 +24052,7 @@ if test "$with_openmp" != no; then
 #   AC_OPENMP
     OPENMP_CFLAGS="-fopenmp"
     OPENMP_CXXFLAGS="-fopenmp"
-    OPENMP_LIBS="-lgomp -lstdc++" # Force -lstdc++ because some compilers do not add it automatically.
+    OPENMP_LIBS="-lgomp"
 
     for ac_header in omp.h
 do :
@@ -43080,9 +43080,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
-# Eliminate -lstdc++ addition to postdeps for cross compiles.
-postdeps_CXX=`echo " $postdeps_CXX " | sed 's, -lstdc++ ,,g'`
-
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
 
@@ -43774,9 +43771,9 @@ fi
 
 
 #########
-## Make sure that the libstdc++ and libgcc can be compiled as static
+## Make sure that the libstdc++ libgcc and libgfortran can be compiled as
+## static if requested
 #########
-
 
 
 # Check whether --enable-static-system-lib was given.
@@ -43789,12 +43786,11 @@ fi
 saved_LDFLAGS="$LDFLAGS"
 
 compiler_manage_static_libs=no
-USE_STATIC_SYSTEM_LIB=yes
+USE_STATIC_SYSTEM_LIB=no
 
-
-if test "x$enable_static_system_lib" == "xno"; then
-# The user ask for an explicit disable.
-   USE_STATIC_SYSTEM_LIB=no
+if test "x$enable_static_system_lib" == "xyes"; then
+# The user ask for an explicit enable.
+   USE_STATIC_SYSTEM_LIB=yes
 fi
 
 
@@ -43832,7 +43828,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 LDFLAGS="$saved_LDFLAGS"
-if test "x$compiler_manage_static_libs" == "xno" -a "x$enable_static_system_lib" != "xno"; then
+if test "x$compiler_manage_static_libs" == "xno" -a "x$enable_static_system_lib" == "xyes"; then
    as_fn_error $? "The $CC compiler does not support the options -static-libstdc++/-static-libgcc. Update your compiler or use the option --disable-static-system-lib" "$LINENO" 5
 fi
 
@@ -43866,10 +43862,47 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 # SCI_*FLAGS contains all defaults values detected on configure
-SCI_CFLAGS=$(echo                       $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
-SCI_CXXFLAGS=$(echo $STDCXX_11_CXXFLAGS $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
-SCI_FFLAGS=$(echo                       $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
-SCI_LDFLAGS=$(echo                      $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $COMPILER_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
+SCI_CFLAGS=$(echo                                             \
+             $LARGEFILE_CFLAGS                                \
+             $CODECOVERAGE_CFLAGS                             \
+             $DEBUG_CFLAGS                                    \
+             $ARCH_CFLAGS                                     \
+             $COMPILER_CFLAGS                                 \
+             $SCILIBS_CFLAGS                                  \
+             $SSE_CFLAGS                                      \
+             $BACKTRACE_CFLAGS                                \
+             $WARNING_CFLAGS                                  )
+SCI_CXXFLAGS=$(echo                                           \
+               $STDCXX_11_CXXFLAGS                            \
+               $LARGEFILE_CXXFLAGS                            \
+               $CODECOVERAGE_CXXFLAGS                         \
+               $DEBUG_CXXFLAGS                                \
+               $ARCH_CXXFLAGS                                 \
+               $COMPILER_CXXFLAGS                             \
+               $SCILIBS_CXXFLAGS                              \
+               $SSE_CXXFLAGS                                  \
+               $BACKTRACE_CXXFLAGS                            \
+               $WARNING_CXXFLAGS                              )
+SCI_FFLAGS=$(echo                                             \
+             $LARGEFILE_FFLAGS                                \
+             $CODECOVERAGE_FFLAGS                             \
+             $DEBUG_FFLAGS                                    \
+             $ARCH_FFLAGS                                     \
+             $COMPILER_FFLAGS                                 \
+             $SCILIBS_FFLAGS                                  \
+             $SSE_FFLAGS                                      \
+             $BACKTRACE_FFLAGS                                \
+             $WARNING_FFLAGS                                  )
+SCI_LDFLAGS=$(echo                                            \
+              $LARGEFILE_LDFLAGS                              \
+              $CODECOVERAGE_LDFLAGS                           \
+              $DEBUG_LDFLAGS                                  \
+              $ARCH_LDFLAGS                                   \
+              $COMPILER_LDFLAGS                               \
+              $SCILIBS_LDFLAGS                                \
+              $SSE_LDFLAGS                                    \
+              $BACKTRACE_LDFLAGS                              \
+              $WARNING_LDFLAGS                                )
 
 
 
