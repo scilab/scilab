@@ -32,7 +32,7 @@ const MacroOut * CompleteMacroSignature::getOutTypes(AnalysisVisitor & visitor, 
                 }
             }
             functionId = mpcmo.id;
-	    //std::wcerr << L"Macro found in cache: " << signature << std::endl;
+            //std::wcerr << L"Macro found in cache: " << signature << std::endl;
 
             return &mpcmo.out;
         }
@@ -61,10 +61,10 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
         fblock.getExp()->accept(visitor);
         dm.finalizeBlock();
 
-        std::wcerr << fblock << std::endl;
+        //std::wcerr << fblock << std::endl;
         const auto p = outMap.emplace(id++, fblock.getVerifiedConstraints(), fblock.getUnverifiedConstraints(), fblock.getGlobalConstants(), fblock.getOuts(*this));
-	fblock.setFunctionId(p.first->id);
-	functionId = p.first->id;
+        fblock.setFunctionId(p.first->id);
+        functionId = p.first->id;
         visitor.emitFunctionBlock(fblock);
 
         return &p.first->out;

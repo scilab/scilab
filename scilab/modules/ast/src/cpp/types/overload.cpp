@@ -53,7 +53,6 @@ std::wstring Overload::buildOverloadName(const std::wstring& _stFunctionName, ty
 types::Function::ReturnValue Overload::generateNameAndCall(const std::wstring& _stFunctionName, types::typed_list &in, int _iRetCount, types::typed_list &out, bool _isOperator)
 {
     std::wstring stFunc = buildOverloadName(_stFunctionName, in, _iRetCount, _isOperator);
-    std::wcerr << L"FNAME=" << stFunc << std::endl;
     if (symbol::Context::getInstance()->get(symbol::Symbol(stFunc)))
     {
         return call(stFunc, in, _iRetCount, out, _isOperator);

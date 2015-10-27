@@ -339,7 +339,7 @@ void JITVisitor::makeCallFromScilab(const uint64_t functionId, const types::type
         builder.CreateCall(toCall, args);
         builder.CreateRetVoid();
 
-        M.dump();
+        //M.dump();
 
         engine->generateCodeForModule(&M);
         info_it->second.setWrapper(reinterpret_cast<void *>(engine->getFunctionAddress(wrapper)));
