@@ -731,8 +731,8 @@ void fillSubtractFunction()
     scilab_fill_sub(PolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //poly - []
-    scilab_fill_sub(Polynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_sub(PolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_sub(Polynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_sub(PolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //poly - eye
     scilab_fill_sub(Polynom, Identity, M_M, Polynom, Double, Polynom);
@@ -765,8 +765,8 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarPolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //scalar poly - []
-    scilab_fill_sub(ScalarPolynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_sub(ScalarPolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_sub(ScalarPolynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_sub(ScalarPolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //scalar poly - eye
     scilab_fill_sub(ScalarPolynom, Identity, M_M, Polynom, Double, Polynom);
@@ -782,7 +782,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Sparse, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_sub(Sparse, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_sub(Sparse, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_sub(Sparse, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_sub(Sparse, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_sub(Sparse, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -793,7 +793,7 @@ void fillSubtractFunction()
     scilab_fill_sub(SparseComplex, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_sub(SparseComplex, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_sub(SparseComplex, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_sub(SparseComplex, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_sub(SparseComplex, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_sub(SparseComplex, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -895,7 +895,9 @@ InternalType* sub_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_M_E(T *_pL, U * /*_pR*/)
 {
-    return _pL;
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 
@@ -974,7 +976,9 @@ InternalType* sub_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_MC_E(T *_pL, U * /*_pR*/)
 {
-    return _pL;
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 
@@ -1013,8 +1017,8 @@ InternalType* sub_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_S_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0);
-    sub(_pL->get(0), pOut->get());
+    Double* pOut = Double::Empty();
+    sub();
     return pOut;
 }
 
@@ -1054,8 +1058,8 @@ InternalType* sub_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(0), _pL->getImg(0), (size_t)1, pOut->get(), pOut->getImg());
+    Double* pOut = Double::Empty();
+    sub();
     return pOut;
 }
 
@@ -1063,13 +1067,17 @@ InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* sub_E_M(T * /*_pL*/, U *_pR)
 {
-    return opposite_M<U, O>(_pR);
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* sub_E_MC(T * /*_pL*/, U *_pR)
 {
-    return opposite_MC<U, O>(_pR);
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O>
@@ -1449,22 +1457,30 @@ template<class T, class U, class O> InternalType* sub_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_pR*/)
 {
-    return (O*)_pL;
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*_pR*/)
 {
-    return (O*)_pL;
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U *_pR)
 {
-    return opposite_I<U, O>(_pR);
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* sub_E_IC(T * /*_pL*/, U *_pR)
 {
-    return opposite_IC<U, O>(_pR);
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)

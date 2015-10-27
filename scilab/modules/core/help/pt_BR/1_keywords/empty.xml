@@ -16,7 +16,7 @@
             <literal> [] * A = A * [] = [] </literal>
         </para>
         <para>
-            <literal> [] + A = A + [] = A</literal>
+            <literal> [] + A = A + [] = []</literal>
         </para>
         <para>
             [ [], A] = [A, []] = A <literal> inv([]) =[] </literal>

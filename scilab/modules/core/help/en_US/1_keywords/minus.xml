@@ -48,8 +48,7 @@
         <para>Subtraction</para>
         <para>For numeric operands subtraction as its usual meaning. If one of
             the operands is a matrix and the other one a scalar then the operation is
-            performed element-wise. For <literal>X - Y</literal>, if <literal>Y==[]</literal> then <literal>X</literal> is returned; if
-            <literal>X==[]</literal> then <literal>-Y</literal> is returned.
+            performed element-wise. For <literal>X - Y</literal>, if <literal>Y == []</literal> or <literal>Y == []</literal> then <literal>[]</literal> is returned;
         </para>
         <para>Subtraction may also be defined for other data types through
             "soft-coded" operations (see <link linkend="overloading">overloading</link>).
@@ -78,5 +77,14 @@
                 <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>Modified the behaviour of <literal>A - []</literal> and <literal>[] - A</literal> to return the empty matrix <literal>[]</literal> instead of <literal>A</literal> or <literal>-A</literal></revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -24,6 +24,7 @@ Deprecated Behaviors
 
 * <-- JVM NOT MANDATORY --> is obsolete, use <-- CLI SHELL MODE --> instead.
 
+* Addition or subtraction with an empty matrix now return an empty matrix.
 
 Scilab Bug Fixes
 ================

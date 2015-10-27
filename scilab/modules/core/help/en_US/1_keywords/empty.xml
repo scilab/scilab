@@ -15,7 +15,7 @@
             <literal> [] * A = A * [] = [] </literal>
         </para>
         <para>
-            <literal> [] + A = A + [] = A</literal>
+            <literal> [] + A = A + [] = []</literal>
         </para>
         <para>
             <literal>[ [], A] = [A, []] = A </literal>
@@ -66,5 +66,14 @@ size(wr), w1=ss2tf(wr), size(w1)
                 <link linkend="syslin">syslin</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>Modified the behaviour of <literal>A + []</literal> to be the empty matrix <literal>[]</literal> instead of <literal>A</literal></revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

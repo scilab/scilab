@@ -154,10 +154,10 @@ void fillAddFunction()
     scilab_fill_add(Empty, UInt64, E_M, Double, UInt64, UInt64);
     scilab_fill_add(Empty, Bool, E_M, Double, Bool, Double);
     scilab_fill_add(Empty, String, E_M, Double, String, String);
-    scilab_fill_add(Empty, Polynom, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(Empty, PolynomComplex, M_M, Double, Polynom, Polynom);
-    scilab_fill_add(Empty, Sparse, M_M, Double, Sparse, Sparse);
-    scilab_fill_add(Empty, SparseComplex, M_M, Double, Sparse, Sparse);
+    scilab_fill_add(Empty, Polynom, E_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, PolynomComplex, E_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, Sparse, E_M, Double, Sparse, Sparse);
+    scilab_fill_add(Empty, SparseComplex, E_M, Double, Sparse, Sparse);
 
     //Empty + Matrix Complex
     scilab_fill_add(Empty, DoubleComplex, E_MC, Double, Double, Double);
@@ -173,11 +173,11 @@ void fillAddFunction()
     scilab_fill_add(Empty, ScalarUInt64, E_S, Double, UInt64, UInt64);
     scilab_fill_add(Empty, ScalarBool, E_S, Double, Bool, Double);
     scilab_fill_add(Empty, ScalarString, E_S, Double, String, String);
-    scilab_fill_add(Empty, ScalarPolynom, M_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, ScalarPolynom, E_S, Double, Polynom, Polynom);
 
     //Empty + Scalar Complex
     scilab_fill_add(Empty, ScalarDoubleComplex, E_SC, Double, Double, Double);
-    scilab_fill_add(Empty, ScalarPolynomComplex, M_M, Double, Polynom, Polynom);
+    scilab_fill_add(Empty, ScalarPolynomComplex, E_M, Double, Polynom, Polynom);
     //Empty + Empty
     scilab_fill_add(Empty, Empty, E_E, Double, Double, Double);
     //Empty + eye
@@ -721,8 +721,8 @@ void fillAddFunction()
     scilab_fill_add(PolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //poly + []
-    scilab_fill_add(Polynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(PolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_add(Polynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_add(PolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //poly + eye
     scilab_fill_add(Polynom, Identity, M_I, Polynom, Double, Polynom);
@@ -755,8 +755,8 @@ void fillAddFunction()
     scilab_fill_add(ScalarPolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //scalar poly + []
-    scilab_fill_add(ScalarPolynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_add(ScalarPolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_add(ScalarPolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //scalar poly + eye
     scilab_fill_add(ScalarPolynom, Identity, M_I, Polynom, Double, Polynom);
@@ -772,7 +772,7 @@ void fillAddFunction()
     scilab_fill_add(Sparse, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_add(Sparse, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_add(Sparse, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_add(Sparse, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_add(Sparse, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_add(Sparse, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -783,7 +783,7 @@ void fillAddFunction()
     scilab_fill_add(SparseComplex, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_add(SparseComplex, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_add(SparseComplex, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_add(SparseComplex, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_add(SparseComplex, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_add(SparseComplex, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -1131,7 +1131,9 @@ InternalType* add_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_M_E(T *_pL, U * /*_pR*/)
 {
-    return _pL;
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 
@@ -1188,8 +1190,8 @@ InternalType* add_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_MC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(_pL->getDims(), _pL->getDimsArray(), true);
-    add(_pL->get(), _pL->getImg(), (size_t)_pL->getSize(), pOut->get(), pOut->getImg());
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1225,8 +1227,8 @@ InternalType* add_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_S_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0);
-    add(_pL->get(0), pOut->get());
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1260,8 +1262,8 @@ InternalType* add_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0.0, 0.0);
-    add(_pL->get(0), _pL->getImg(0), pOut->get(), pOut->getImg());
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1269,25 +1271,33 @@ InternalType* add_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* add_E_M(T *_pL, U *_pR)
 {
-    return add_M_E<U, T, O>(_pR, _pL);
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* add_E_MC(T *_pL, U *_pR)
 {
-    return add_MC_E<U, T, O>(_pR, _pL);
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* add_E_S(T *_pL, U *_pR)
 {
-    return add_S_E<U, T, O>(_pR, _pL);
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* add_E_SC(T *_pL, U *_pR)
 {
-    return add_SC_E<U, T, O>(_pR, _pL);
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<class T, class U, class O>
@@ -1518,25 +1528,29 @@ template<class T, class U, class O> InternalType* add_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* add_I_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = (O*)_pL->clone();
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* add_IC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = (O*)_pL->clone();
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* add_E_I(T * /*_pL*/, U *_pR)
 {
-    O* pOut = (O*)_pR->clone();
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* add_E_IC(T * /*_pL*/, U *_pR)
 {
-    O* pOut = (O*)_pR->clone();
+    Double* pOut = Double::Empty();
+    add();
     return pOut;
 }
 
@@ -1657,25 +1671,33 @@ InternalType* add_S_S<String, String, String>(String* _pL, String* _pR)
 template<>
 InternalType* add_M_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
-    return _pL;
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<>
 InternalType* add_S_E<String, Double, String>(String* _pL, Double* /*_pR*/)
 {
-    return _pL;
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<>
 InternalType* add_E_M<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
-    return _pR;
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<>
 InternalType* add_E_S<Double, String, String>(Double* /*_pL*/, String* _pR)
 {
-    return _pR;
+    Double* pOut = Double::Empty();
+    add();
+    return pOut;
 }
 
 template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)

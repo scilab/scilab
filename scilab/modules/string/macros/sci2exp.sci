@@ -112,7 +112,7 @@ function t=str2exp(a,lmax)
 
     [m,n]=size(a),
     dots="."+"."
-    t=[];
+    t="";
     quote="''"
 
     a=strsubst(a,quote,quote+quote)
