@@ -10,7 +10,7 @@
  *
  */
 #include "internal.hxx"
-#include "types_gw.hxx"
+#include "core_gw.hxx"
 #include "function.hxx"
 #include "overload.hxx"
 #include "string.hxx"

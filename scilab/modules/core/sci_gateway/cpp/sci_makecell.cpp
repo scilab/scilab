@@ -10,7 +10,7 @@
  *
  */
 
-#include "types_gw.hxx"
+#include "core_gw.hxx"
 #include "double.hxx"
 #include "int.hxx"
 #include "cell.hxx"

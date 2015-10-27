@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2010-2010 - DIGITEO - Antoine ELIAS
+ *  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -10,19 +11,12 @@
  *
  */
 
-#include "types_gw.hxx"
-#include "list.hxx"
+#include "core_gw.hxx"
 #include "function.hxx"
+#include "tlist.hxx"
+#include "sci_tlist_or_mlist.hxx"
 
-types::Function::ReturnValue sci_list(types::typed_list &in, int _piRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_tlist_gw(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    types::List *pRetVal = new types::List();
-
-    for (const auto& it : in)
-    {
-        pRetVal->append((it));
-    }
-
-    out.push_back(pRetVal);
-    return types::Function::OK;
+    return sci_tlist_or_mlist<types::TList>(in, _piRetCount, out, L"tlist");
 }

@@ -10,12 +10,12 @@
  *
  */
 
-#include "types_gw.hxx"
-#include "mlist.hxx"
+#include "core_gw.hxx"
 #include "function.hxx"
-#include "sci_tlist_or_mlist.hxx"
+#include "listdelete.hxx"
 
-types::Function::ReturnValue sci_mlist(types::typed_list &in, int _piRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_null(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    return sci_tlist_or_mlist<types::MList>(in, _piRetCount, out, L"mlist");
+    out.push_back(new types::ListDelete());
+    return types::Function::OK;
 }

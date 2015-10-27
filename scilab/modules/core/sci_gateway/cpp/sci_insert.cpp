@@ -10,12 +10,20 @@
  *
  */
 
-#include "types_gw.hxx"
+#include "core_gw.hxx"
 #include "function.hxx"
-#include "listdelete.hxx"
+#include "listinsert.hxx"
+#include "listundefined.hxx"
 
-types::Function::ReturnValue sci_null(types::typed_list &in, int _piRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_insert(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    out.push_back(new types::ListDelete());
+    if (in.size() == 0)
+    {
+        out.push_back(new types::ListInsert(new types::ListUndefined()));
+    }
+    else
+    {
+        out.push_back(new types::ListInsert(in[0]));
+    }
     return types::Function::OK;
 }

@@ -10,20 +10,12 @@
  *
  */
 
-#include "types_gw.hxx"
+#include "core_gw.hxx"
+#include "mlist.hxx"
 #include "function.hxx"
-#include "listinsert.hxx"
-#include "listundefined.hxx"
+#include "sci_tlist_or_mlist.hxx"
 
-types::Function::ReturnValue sci_insert(types::typed_list &in, int _piRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_mlist_gw(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
-    if (in.size() == 0)
-    {
-        out.push_back(new types::ListInsert(new types::ListUndefined()));
-    }
-    else
-    {
-        out.push_back(new types::ListInsert(in[0]));
-    }
-    return types::Function::OK;
+    return sci_tlist_or_mlist<types::MList>(in, _piRetCount, out, L"mlist");
 }
