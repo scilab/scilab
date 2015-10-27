@@ -11,27 +11,59 @@
 */
 
 /*--------------------------------------------------------------------------*/
+#include <stdio.h>
 #include <string.h>
 #include "TermReadAndProcess.h"
 #include "sci_malloc.h"
 #include "prompt.h"
 #include "TermConsole.h"
+#include "isatty.hxx"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char * getCmdLine(void)
 {
-    char *line = NULL;
-    static char save_prompt[PROMPT_SIZE_MAX];
-
-    if (GetTemporaryPrompt() != NULL) /* Input function is used */
+#ifdef _MSC_VER
+    /* if file descriptor returned is -2 stdin is not associated with an input stream */
+    /* example : echo plot3d | scilex -nw -e */
+    if (!isatty(_fileno(stdin)) && (_fileno(stdin) != -2))
+#else
+    if (!isatty(fileno(stdin)))
+#endif
     {
-        line = TerminalGetString(GetTemporaryPrompt());
+        char buffer[bsiz];
+        //read from stdin
+        int eof = (fgets(buffer, bsiz, stdin) == NULL);
+        if (eof)
+        {
+            //send command to quit to Scilab
+            return os_strdup("quit");
+        }
+
+        //remove trailing \n
+        int len_line = (int)strlen(buffer);
+        if (buffer[len_line - 1] == '\n')
+        {
+            buffer[len_line - 1] = '\0';
+        }
+
+        return os_strdup(buffer);
     }
     else
     {
-        GetCurrentPrompt(save_prompt);
-        line = TerminalGetString(save_prompt);
+        char *line = NULL;
+        static char save_prompt[PROMPT_SIZE_MAX];
+
+        if (GetTemporaryPrompt() != NULL) /* Input function is used */
+        {
+            line = TerminalGetString(GetTemporaryPrompt());
+        }
+        else
+        {
+            GetCurrentPrompt(save_prompt);
+            line = TerminalGetString(save_prompt);
+        }
+        strcpy(save_prompt, "");
+        return line;
     }
-    strcpy(save_prompt, "");
-    return line;
 }
 /*--------------------------------------------------------------------------*/
