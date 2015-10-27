@@ -58,6 +58,7 @@ Xcos debug: objectCreated( 2 , ANNOTATION )
 Xcos trace: propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , ANNOTATION , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , STYLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , ANNOTATION , PARENT_DIAGRAM ) : NO_CHANGES

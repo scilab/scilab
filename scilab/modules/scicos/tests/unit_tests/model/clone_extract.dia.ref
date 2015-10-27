@@ -83,6 +83,7 @@ Xcos trace: propertyUpdated( 4 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug: objectCreated( 5 , LINK )
 Xcos trace: propertyUpdated( 5 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , LINK , KIND ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , LINK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , LINK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , LINK , THICK ) : NO_CHANGES
@@ -114,6 +115,7 @@ newLink.from = [3 1 0];
 Xcos debug: objectCreated( 7 , LINK )
 Xcos trace: propertyUpdated( 7 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , LINK , KIND ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , LINK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , LINK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , LINK , THICK ) : NO_CHANGES

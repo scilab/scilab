@@ -54,6 +54,7 @@ Xcos debug: objectUnreferenced( 3 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 4 , LINK )
 Xcos trace: propertyUpdated( 4 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , KIND ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , LINK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , LINK , THICK ) : NO_CHANGES
@@ -85,6 +86,7 @@ Xcos trace: propertyUpdated( 5 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectCreated( 6 , LINK )
 Xcos trace: propertyUpdated( 6 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , LINK , KIND ) : NO_CHANGES
+Xcos trace: propertyUpdated( 6 , LINK , UID ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , LINK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , LINK , CONTROL_POINTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 6 , LINK , THICK ) : NO_CHANGES

@@ -34,7 +34,7 @@ struct Parameter
     // opar default value is an empty list encoded by var2vec()
     Parameter() : rpar(), ipar()
     {
-        opar = {22, 0};
+        opar = {15, 0};
     }
 };
 
@@ -47,7 +47,7 @@ struct State
     // odstate default value is an empty list encoded by var2vec()
     State() : state(), dstate()
     {
-        odstate = {22, 0};
+        odstate = {15, 0};
     }
 };
 
@@ -129,7 +129,8 @@ public:
         m_label(), m_style(), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
         m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_portReference(ScicosID())
     {
-        m_exprs = {12, 2, 0, 0, 0};
+        // m_exprs default value is an empty matrix encoded by var2vec()
+        m_exprs = {1, 2, 0, 0, 0};
         m_nmode = {0};
         m_nzcross = {0};
         m_childrenColor = { -1, 1};
