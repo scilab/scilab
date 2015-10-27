@@ -547,6 +547,9 @@ detect_java_vm() {
                         armv*)
                             proc="arm"
                             ;;
+                        aarch64)
+                            proc="aarch64"
+                            ;;
                         *)
                             echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us on http://bugzilla.scilab.org"
                             ;;

@@ -57,6 +57,8 @@ Scilab Bug Fixes
 
 * Bug #13920 fixed - `getscilabkeywords` help page should be in the "Scilab keywords" section.
 
+* Bug #13931 fixed - handle "aarch64" processor for some Linux distribution.
+
 * Bug #13944 fixed - The menu "Toolboxes" was missing.
 
 * Bug #13983 fixed - who_user returned wrong values.
