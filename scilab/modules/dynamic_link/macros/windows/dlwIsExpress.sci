@@ -8,11 +8,5 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //=============================================================================
 function ret = dlwIsExpress()
-    ret = %f;
-    if  dlwIsVc10Express() | ...
-        dlwIsVc11Express() | ...
-        dlwIsVc12Express() | ...
-        dlwIsVc14Express() then
-        ret = %t;
-    end
+    ret = strindex(findmsvccompiler(), "Express") <> [];
 endfunction
