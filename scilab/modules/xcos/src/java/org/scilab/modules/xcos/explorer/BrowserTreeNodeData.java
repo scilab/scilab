@@ -36,7 +36,7 @@ public class BrowserTreeNodeData {
 
     public BrowserTreeNodeData() {
         // root TreeNode, set a default value but kind should not be used
-        this.uid = 0;
+        this.uid = 0l;
         kind = Kind.DIAGRAM;
     }
 
