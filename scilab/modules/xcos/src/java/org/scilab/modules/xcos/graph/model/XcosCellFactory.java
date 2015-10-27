@@ -327,11 +327,16 @@ public final class XcosCellFactory {
         if (block.getKind() == Kind.BLOCK) {
             insertPortChildren(controller, block);
         }
+        final boolean convertGeometry;
 
         String[] strUID = new String[1];
         controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.UID, strUID);
-        if (!strUID[0].isEmpty()) {
+        if (strUID[0].isEmpty()) {
+            // this is a new block, convert the geom and positions
+            convertGeometry = true;
+        } else {
             block.setId(strUID[0]);
+            convertGeometry = false;
         }
 
         String[] style = new String[1];
@@ -350,13 +355,17 @@ public final class XcosCellFactory {
          */
         double x = geom.get(0);
         double y = geom.get(1);
-        double w = geom.get(2) * DEFAULT_SIZE_FACTOR;
-        double h = geom.get(3) * DEFAULT_SIZE_FACTOR;
+        double w = geom.get(2);
+        double h = geom.get(3);
+        if (convertGeometry) {
+            w = w * DEFAULT_SIZE_FACTOR;
+            h = h * DEFAULT_SIZE_FACTOR;
 
-        /*
-         * Invert the y-axis value and translate it.
-         */
-        y = -y - h;
+            /*
+             * Invert the y-axis value and translate it.
+             */
+            y = -y - h;
+        }
 
 
         block.setGeometry(new mxGeometry(x, y, w, h));
