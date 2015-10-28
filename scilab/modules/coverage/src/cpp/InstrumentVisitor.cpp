@@ -93,6 +93,7 @@ void InstrumentVisitor::visit(ast::SelectExp & e)
 void InstrumentVisitor::visit(ast::CaseExp & e)
 {
     cover.add(macro, e.getTest());
+    ++instrCounts;
     e.getBody()->accept(*this);
 }
 
@@ -117,7 +118,7 @@ void InstrumentVisitor::visit(ast::FunctionDec & e)
         }
 
         pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList, static_cast<ast::SeqExp &>(e.getBody()), L"script");
-	pMacro->setLines(e.getLocation().first_line, e.getLocation().last_line);
+        pMacro->setLines(e.getLocation().first_line, e.getLocation().last_line);
         //pMacro->setFirstLine(e.getLocation().first_line);
         e.setMacro(pMacro);
     }
