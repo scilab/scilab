@@ -63,6 +63,12 @@ size_t required_length(T* v)
 template<typename T>
 int decode(const double* const tab, const int tabSize, const int iDims, const int offset, T* &res)
 {
+    if (iDims < 1)
+    {
+        Scierror(999, _("%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot be empty.\n"), vec2varName.c_str(), offset + 3, 1);
+        return -1;
+    }
+
     int  iElements = 1;
     int* pDims = new int[iDims];
     for (int i = 0; i < iDims; ++i)
@@ -133,6 +139,12 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
 template<>
 int decode(const double* const tab, const int tabSize, const int iDims, const int offset, types::String* &res)
 {
+    if (iDims < 1)
+    {
+        Scierror(999, _("%s: Wrong value for element #%d of input argument #%d: String matrix cannot be empty.\n"), vec2varName.c_str(), offset + 2, 1);
+        return -1;
+    }
+
     int  iElements = 1;
     int* pDims = new int[iDims];
     for (int i = 0; i < iDims; ++i)

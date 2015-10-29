@@ -44,4 +44,10 @@ c = var2vec(list(list()));
 refMsg = msprintf(_("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), "vec2var", 1, 4, 1);
 assert_checkerror("vec2var(c(1:$-1))", refMsg);
 
+d = [10 0 0 0]';
+refMsg = msprintf(_("%s: Wrong value for element #%d of input argument #%d: String matrix cannot be empty.\n"), "vec2var", 2, 1);
+assert_checkerror("vec2var(d)", refMsg);
 
+e = [8 1 0 0 0]';
+refMsg = msprintf(_("%s: Wrong value for element #%d of input argument #%d: Integer matrix cannot be empty.\n"), "vec2var", 3, 1);
+assert_checkerror("vec2var(e)", refMsg);
