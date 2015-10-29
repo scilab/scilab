@@ -454,6 +454,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
                 }
 
+                // avoid double delete on exps when "seqExp" is destryed and "LExp" too
+                ast::exps_t& protectExp = seqExp.getExps();
+                for (int i = 0; i < protectExp.size(); ++i)
+                {
+                    protectExp[i] = NULL;
+                }
+
                 //store message
                 iErr = ConfigVariable::getLastErrorNumber();
                 if (bErrCatch == false)
@@ -462,14 +469,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                     //restore previous prompt mode
                     ConfigVariable::setPromptMode(oldVal);
-
-                    // avoid double delete on exps when "seqExp" is destryed and "LExp" too
-                    ast::exps_t& protectExp = seqExp.getExps();
-                    for (int i = 0; i < protectExp.size(); ++i)
-                    {
-                        protectExp[i] = NULL;
-                    }
-
                     throw ie;
                 }
 

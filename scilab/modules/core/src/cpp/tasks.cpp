@@ -224,7 +224,7 @@ void dumpStackTask(bool timed)
 ** Execute scilab.start
 **
 */
-void execScilabStartTask(bool _bSerialize)
+int execScilabStartTask(bool _bSerialize)
 {
     Parser parse;
     std::wstring stSCI = ConfigVariable::getSCIPath();
@@ -237,7 +237,7 @@ void execScilabStartTask(bool _bSerialize)
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");
         ThreadManagement::UnlockParser();
-        return;
+        return 0;
     }
     ThreadManagement::UnlockParser();
 
@@ -246,14 +246,15 @@ void execScilabStartTask(bool _bSerialize)
     {
         newTree = callTyper(parse.getTree());
     }
-    StaticRunner::exec(newTree, new ast::ExecVisitor());
+
+    return StaticRunner::exec(newTree, new ast::ExecVisitor()) ? 0 : 1;
 }
 
 /*
 ** Execute scilab.quit
 **
 */
-void execScilabQuitTask(bool _bSerialize)
+int execScilabQuitTask(bool _bSerialize)
 {
     Parser parse;
     std::wstring stSCI = ConfigVariable::getSCIPath();
@@ -266,7 +267,7 @@ void execScilabQuitTask(bool _bSerialize)
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.quit");
         ThreadManagement::UnlockParser();
-        return;
+        return 0;
     }
     ThreadManagement::UnlockParser();
 
@@ -275,7 +276,8 @@ void execScilabQuitTask(bool _bSerialize)
     {
         newTree = callTyper(parse.getTree());
     }
-    StaticRunner::exec(newTree, new ast::ExecVisitor());
+
+    return StaticRunner::exec(newTree, new ast::ExecVisitor()) ? 0 : 1;
 }
 
 

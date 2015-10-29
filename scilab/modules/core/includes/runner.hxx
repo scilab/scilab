@@ -80,7 +80,7 @@ public:
     static command_origin_t getCommandOrigin();
     static void execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
                             bool _isInterruptible, bool _isPrioritary, command_origin_t _iCommandOrigin);
-    static void exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor);
+    static bool exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor);
 
 private:
     static std::atomic<Runner*> m_RunMe;

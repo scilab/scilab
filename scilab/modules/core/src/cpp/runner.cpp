@@ -227,11 +227,22 @@ void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
     ThreadManagement::WaitForAwakeRunnerSignal();
 }
 
-void StaticRunner::exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor)
+bool StaticRunner::exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor)
 {
     Runner *runMe = new Runner(_theProgram, _visitor);
     setRunner(runMe);
-    launch();
+
+    try
+    {
+        launch();
+    }
+    catch (const ast::InternalAbort& /*ia*/)
+    {
+        //catch exit command in .start or .quit
+        return false;
+    }
+
+    return true;
 }
 
 void StaticRunner_launch(void)
