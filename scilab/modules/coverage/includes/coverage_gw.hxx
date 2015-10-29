@@ -17,6 +17,20 @@
 
 #include "dynlib_coverage.h"
 
+class CoverageModule
+{
+private:
+    CoverageModule() {};
+    ~CoverageModule() {};
+
+public:
+    COVERAGE_IMPEXP static int Load();
+    COVERAGE_IMPEXP static int Unload()
+    {
+        return 1;
+    }
+};
+
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_covStart, COVERAGE_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_covWrite, COVERAGE_IMPEXP);
 CPP_GATEWAY_PROTOTYPE_EXPORT(sci_covStop, COVERAGE_IMPEXP);

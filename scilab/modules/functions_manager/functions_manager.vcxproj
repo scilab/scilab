@@ -229,6 +229,9 @@
     <ProjectReference Include="..\core\sci_gateway\cpp\core_gw.vcxproj">
       <Project>{3e933eb6-d427-4828-9b30-b6b9987491f6}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\coverage\coverage.vcxproj">
+      <Project>{b150e4a2-2ec1-4be0-b416-95cfeb13e2ff}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\data_structures\src\c\data_structures.vcxproj">
       <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>
     </ProjectReference>

@@ -36,7 +36,8 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_covStart.cpp \
     sci_gateway/cpp/sci_covWrite.cpp \
     sci_gateway/cpp/sci_covStop.cpp \
-    sci_gateway/cpp/sci_covMerge.cpp
+    sci_gateway/cpp/sci_covMerge.cpp \
+    sci_gateway/cpp/coverage_gw.cpp
 
 libscicoverage_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -82,4 +83,4 @@ libscicoverage_la_includedir=$(pkgincludedir)
 
 #### coverage : gateway declaration ####
 libscicoverage_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscicoverage_la_sci_gateway_DATA = sci_gateway/coverage_gateway.xml
+libscicoverage_la_sci_gateway_DATA =

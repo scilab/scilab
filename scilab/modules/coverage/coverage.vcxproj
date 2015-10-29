@@ -219,6 +219,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\cpp\coverage_gw.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_covMerge.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_covStart.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_covStop.cpp" />
