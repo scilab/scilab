@@ -24,9 +24,6 @@
     <Filter Include="Header Files\output">
       <UniqueIdentifier>{9f137ccc-400e-45bc-9e0a-70108af226f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\output\cnes">
-      <UniqueIdentifier>{d303f476-858e-41e1-99e9-be17e9d2903e}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="slint.rc">
@@ -195,9 +192,6 @@
     </ClInclude>
     <ClInclude Include="includes\XMLtools.hxx">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\output\cnes\CNESResult.hxx">
-      <Filter>Header Files\output\cnes</Filter>
     </ClInclude>
     <ClInclude Include="includes\checkers\CommentRatioChecker.hxx">
       <Filter>Header Files\checkers</Filter>

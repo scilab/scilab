@@ -312,7 +312,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\..\cpp\controller_helpers.hxx" />
     <ClInclude Include="..\..\cpp\createblklist.hxx" />
     <ClInclude Include="..\..\cpp\extractblklist.hxx" />
-    <ClInclude Include="..\..\cpp\copyvarfromtlist.hxx" />
     <ClInclude Include="..\..\cpp\LoggerView.hxx" />
     <ClInclude Include="..\..\cpp\model\Annotation.hxx" />
     <ClInclude Include="..\..\cpp\model\Block.hxx" />

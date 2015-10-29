@@ -325,9 +325,6 @@
     <ClInclude Include="..\cpp\LoggerView.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\copyvarfromtlist.hxx">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\var2vec.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>

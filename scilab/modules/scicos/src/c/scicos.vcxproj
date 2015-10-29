@@ -314,7 +314,6 @@ lib /DEF:"$(ProjectDir)Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="..\..\includes\View.hxx" />
     <ClInclude Include="..\cpp\createblklist.hxx" />
     <ClInclude Include="..\cpp\extractblklist.hxx" />
-    <ClInclude Include="..\cpp\copyvarfromtlist.hxx" />
     <ClInclude Include="..\cpp\il_sim.hxx" />
     <ClInclude Include="..\cpp\il_state.hxx" />
     <ClInclude Include="..\cpp\LoggerView.hxx" />

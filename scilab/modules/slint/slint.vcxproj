@@ -286,7 +286,6 @@
     <ClInclude Include="includes\config\XMLConfig.hxx" />
     <ClInclude Include="includes\dynlib_slint.h" />
     <ClInclude Include="includes\FileException.hxx" />
-    <ClInclude Include="includes\output\cnes\CNESResult.hxx" />
     <ClInclude Include="includes\output\SLintResult.hxx" />
     <ClInclude Include="includes\output\SLintScilabResult.hxx" />
     <ClInclude Include="includes\output\SLintXmlResult.hxx" />
