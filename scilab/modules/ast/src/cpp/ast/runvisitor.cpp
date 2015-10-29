@@ -1367,7 +1367,6 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         if (p)
                         {
                             setResult(p);
-                            pIL->killMe();
                         }
                     }
                 }
