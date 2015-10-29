@@ -27,7 +27,7 @@ public :
     int                     m_iIn;
     int                     m_iOut;
     int*                    m_piRetCount;
-    char*                   m_pstName;
+    const char*             m_pstName;
     int*                    m_pOutOrder;
 
     GatewayStruct() {};

@@ -69,7 +69,7 @@ int sci_tempname(char *fname, void* pvApiCtx)
 #if _MSC_VER
             if (wcslen(wcprefix) > 3)
             {
-                FREE(wcprefix);
+                freeAllocatedSingleWideString(wcprefix);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string (3 characters max.) expected.\n"), fname, 1);
                 return 0;
             }
@@ -77,14 +77,14 @@ int sci_tempname(char *fname, void* pvApiCtx)
         }
         else
         {
-            FREE(wcprefix);
+            freeAllocatedSingleWideString(wcprefix);
             Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
     }
 
     wcTempFilename = createtempfilenameW(wcprefix, TRUE);
-    FREE(wcprefix);
+    freeAllocatedSingleWideString(wcprefix);
     if (wcTempFilename == NULL)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), fname);

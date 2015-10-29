@@ -129,10 +129,11 @@ public :
     }
 
 protected :
-    std::wstring           m_wstName;
-    std::wstring           m_wstModule;
-    int                    m_iFirstLine;
-    int                    m_iLastLine;
+    std::wstring            m_wstName;
+    std::string             m_stName;
+    std::wstring            m_wstModule;
+    int                     m_iFirstLine;
+    int                     m_iLastLine;
 };
 }
 

@@ -102,7 +102,7 @@ int sci_PlaySound(char *fname, void* pvApiCtx)
     expandedPath = expandPathVariableW(pStVarOne);
     if (pStVarOne)
     {
-        FREE(pStVarOne);
+        freeAllocatedSingleString(pStVarOne);
         pStVarOne = NULL;
     }
 
