@@ -14,6 +14,7 @@
 
 #include "output/SLintXmlResult.hxx"
 #include "checkers/SLintChecker.hxx"
+#include "FileException.hxx"
 #include "SLint.hxx"
 #include "SciFile.hxx"
 #include "UTF8.hxx"
@@ -36,6 +37,7 @@ SLintXmlResult::SLintXmlResult(const std::wstring & _path) : current(nullptr), p
     {
         delete out;
         out = nullptr;
+        throw FileException(fullpath, L"Can\'t open it.");
     }
     else
     {
