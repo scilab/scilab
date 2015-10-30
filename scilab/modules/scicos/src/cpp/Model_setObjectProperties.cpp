@@ -407,6 +407,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setRpar(v);
             case OPAR:
                 return o->setOpar(v);
+            case EQUATIONS:
+                return o->setEquations(v);
             default:
                 break;
         }
@@ -586,8 +588,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Block* o = static_cast<model::Block*>(baseObject);
         switch (p)
         {
-            case EQUATIONS:
-                return o->setEquations(v);
             case DIAGRAM_CONTEXT:
                 return o->setContext(v);
             default:

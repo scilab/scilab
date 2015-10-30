@@ -58,6 +58,58 @@ const std::wstring inputs (L"inputs");
 const std::wstring outputs (L"outputs");
 const std::wstring parameters (L"parameters");
 
+types::InternalType* get_with_vec2var(const ModelAdapter& adaptor, const Controller& controller, object_properties_t p)
+{
+    ScicosID adaptee = adaptor.getAdaptee()->id();
+
+    std::vector<double> prop_content;
+    controller.getObjectProperty(adaptee, BLOCK, p, prop_content);
+
+    // Corner-case, the empty content is an empty double
+    if (prop_content.empty())
+    {
+        return types::Double::Empty();
+    }
+
+    // The returned value is a list
+    types::InternalType* res;
+    if (!vec2var(prop_content, res))
+    {
+        return nullptr;
+    }
+
+    return res;
+}
+
+const bool set_with_var2vec(ModelAdapter& adaptor, types::InternalType* v, Controller& controller, object_properties_t p)
+{
+    ScicosID adaptee = adaptor.getAdaptee()->id();
+
+    // corner-case the empty content is an empty-double
+    if (v->getType() == types::InternalType::ScilabDouble)
+    {
+        types::Double* current = v->getAs<types::Double>();
+        if (current->getSize() != 0)
+        {
+            return false;
+        }
+
+        // prop_content should be empty
+        std::vector<double> prop_content;
+        controller.setObjectProperty(adaptee, BLOCK, p, prop_content);
+        return true;
+    }
+
+    std::vector<double> prop_content;
+    if (!var2vec(v, prop_content))
+    {
+        return false;
+    }
+
+    controller.setObjectProperty(adaptee, BLOCK, p, prop_content);
+    return true;
+}
+
 struct sim
 {
 
@@ -685,54 +737,12 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        std::vector<double> prop_content;
-        controller.getObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
-
-        // Corner-case, the empty content is an empty double
-        if (prop_content.empty())
-        {
-            return types::Double::Empty();
-        }
-
-        // The returned value is a list
-        types::InternalType* res;
-        if (!vec2var(prop_content, res))
-        {
-            return 0;
-        }
-
-        return res;
+        return get_with_vec2var(adaptor, controller, ODSTATE);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        // corner-case the empty content is an empty-double
-        if (v->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* current = v->getAs<types::Double>();
-            if (current->getSize() != 0)
-            {
-                return false;
-            }
-
-            // prop_content is empty
-            std::vector<double> prop_content;
-            controller.setObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
-            return true;
-        }
-
-        std::vector<double> prop_content;
-        if (!var2vec(v, prop_content))
-        {
-            return false;
-        }
-
-        controller.setObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
-        return true;
+        return set_with_var2vec(adaptor, v, controller, ODSTATE);
     }
 };
 
@@ -1121,54 +1131,12 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        std::vector<double> prop_content;
-        controller.getObjectProperty(adaptee, BLOCK, OPAR, prop_content);
-
-        // Corner-case, the empty content is an empty double
-        if (prop_content.empty())
-        {
-            return types::Double::Empty();
-        }
-
-        // The returned value is a list
-        types::InternalType* res;
-        if (!vec2var(prop_content, res))
-        {
-            return 0;
-        }
-
-        return res;
+        return get_with_vec2var(adaptor, controller, OPAR);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        // corner-case the empty content is an empty-double
-        if (v->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* current = v->getAs<types::Double>();
-            if (current->getSize() != 0)
-            {
-                return false;
-            }
-
-            // prop_content should be empty
-            std::vector<double> prop_content;
-            controller.setObjectProperty(adaptee, BLOCK, OPAR, prop_content);
-            return true;
-        }
-
-        std::vector<double> prop_content;
-        if (!var2vec(v, prop_content))
-        {
-            return false;
-        }
-
-        controller.setObjectProperty(adaptee, BLOCK, OPAR, prop_content);
-        return true;
+        return set_with_var2vec(adaptor, v, controller, OPAR);
     }
 };
 
@@ -1428,472 +1396,12 @@ struct equations
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        std::vector<std::string> equations;
-        controller.getObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
-
-        if (equations.size() == 0)
-        {
-            return new types::List();
-        }
-
-        types::TList* o = new types::TList();
-
-        // Header, starting with "modelica"
-        types::String* header = new types::String(1, 5);
-        header->set(0, modelica.c_str());
-        header->set(1, model.c_str());
-        header->set(2, inputs.c_str());
-        header->set(3, outputs.c_str());
-        header->set(4, parameters.c_str());
-        o->set(0, header);
-
-        // 'model'
-        if (equations[0].c_str() == std::string())
-        {
-            o->set(1, types::Double::Empty());
-        }
-        else
-        {
-            types::String* modelField = new types::String(1, 1);
-            modelField->set(0, equations[0].c_str());
-            o->set(1, modelField);
-        }
-
-        // 'inputs'
-        std::istringstream inputsSizeStr (equations[1]);
-        int inputsSize;
-        inputsSizeStr >> inputsSize;
-        if (inputsSize <= 0 || inputsSize > equations.size() - 2)
-        {
-            types::Double* inputsField = types::Double::Empty();
-            o->set(2, inputsField);
-
-            // fall back to a safe value for future indexing
-            inputsSize = 0;
-        }
-        else
-        {
-            types::String* inputsField = new types::String(inputsSize, 1);
-            for (int i = 0; i < inputsSize; ++i)
-            {
-                inputsField->set(i, equations[i + 2].c_str());
-            }
-            o->set(2, inputsField);
-        }
-
-        // 'outputs'
-        std::istringstream outputsSizeStr (equations[2 + inputsSize]);
-        int outputsSize;
-        outputsSizeStr >> outputsSize;
-        if (outputsSize <= 0 || outputsSize > equations.size() - 3 - inputsSize)
-        {
-            types::Double* outputsField = types::Double::Empty();
-            o->set(3, outputsField);
-
-            // fall back to a safe value for future indexing
-            outputsSize = 0;
-        }
-        else
-        {
-            types::String* outputsField = new types::String(outputsSize, 1);
-            for (int i = 0; i < outputsSize; ++i)
-            {
-                outputsField->set(i, equations[i + 3 + inputsSize].c_str());
-            }
-            o->set(3, outputsField);
-        }
-
-        // 'parameters'
-        types::List* parametersField = new types::List();
-
-        // 'parameters' names
-        std::istringstream parametersSizeStr (equations[3 + inputsSize + outputsSize]);
-        int parametersSize;
-        parametersSizeStr >> parametersSize;
-        if (parametersSize <= 0 || parametersSize > equations.size() - 4 - inputsSize - outputsSize)
-        {
-            types::Double* parametersNames = types::Double::Empty();
-            parametersField->set(0, parametersNames);
-
-            // fall back to a safe value for future indexing
-            parametersSize = 0;
-        }
-        else
-        {
-            types::String* parametersNames = new types::String(parametersSize, 1);
-            for (int i = 0; i < parametersSize; ++i)
-            {
-                parametersNames->set(i, equations[i + 4 + inputsSize + outputsSize].c_str());
-            }
-            parametersField->set(0, parametersNames);
-        }
-
-        // 'parameters' values
-        types::List* parametersValues = new types::List();
-        for (int i = 0; i < parametersSize; ++i)
-        {
-            std::istringstream parametersValueStr (equations[i + 4 + inputsSize + outputsSize + parametersSize]);
-            double parametersVal;
-            parametersValueStr >> parametersVal;
-            types::Double* parametersValue = new types::Double(parametersVal);
-            parametersValues->set(i, parametersValue);
-        }
-        parametersField->set(1, parametersValues);
-
-        // 'parameters' states (optional, only check its presence if at least one parameter is present)
-        if (parametersSize != 0)
-        {
-            std::string parametersStatesBool (equations[4 + inputsSize + outputsSize + 2 * parametersSize]);
-            if (strcmp(parametersStatesBool.c_str(), "T") == 0) // Check the presence of the "states" field
-            {
-                types::Double* parametersStates = new types::Double(parametersSize, 1);
-                for (int i = 0; i < parametersSize; ++i)
-                {
-                    std::istringstream parametersStateStr (equations[i + 5 + inputsSize + outputsSize + 2 * parametersSize]);
-                    double parametersState;
-                    parametersStateStr >> parametersState;
-                    parametersStates->set(i, parametersState);
-                }
-                parametersField->set(2, parametersStates);
-            }
-        }
-
-        o->set(4, parametersField);
-
-        return o;
+        return get_with_vec2var(adaptor, controller, EQUATIONS);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ScicosID adaptee = adaptor.getAdaptee()->id();
-
-        if (v->getType() == types::InternalType::ScilabList)
-        {
-            types::List* current = v->getAs<types::List>();
-            if (current->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-            return true;
-        }
-
-        if (v->getType() != types::InternalType::ScilabTList)
-        {
-            return false;
-        }
-
-        types::TList* current = v->getAs<types::TList>();
-
-        // Check the header
-        types::String* header = current->getFieldNames();
-        if (header->getSize() != 5)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(0) != modelica)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(1) != model)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(2) != inputs)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(3) != outputs)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-        if (header->get(4) != parameters)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        char* c_str; // Temporary buffer used for conversions
-
-        // 'model'
-        std::vector<std::string> equations;
-        if (current->get(1)->getType() == types::InternalType::ScilabString)
-        {
-            types::String* modelField = current->get(1)->getAs<types::String>();
-            if (modelField->getSize() != 1)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            c_str = wide_string_to_UTF8(modelField->get(0));
-            std::string modelFieldStored(c_str);
-            FREE(c_str);
-            equations.push_back(modelFieldStored);
-        }
-        else if (current->get(1)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* modelFieldDouble = current->get(1)->getAs<types::Double>();
-            if (modelFieldDouble->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            // An empty matrix stores an empty string, which will later be translated back to an empty matrix
-            equations.push_back(std::string());
-        }
-        else
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        // 'inputs'
-        size_t inputsSize;
-        if (current->get(2)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* inputsField = current->get(2)->getAs<types::Double>();
-            if (inputsField->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            inputsSize = 0;
-            std::ostringstream strInputs;
-            strInputs << inputsSize;
-            std::string inputsSizeStr = strInputs.str();
-            equations.push_back(inputsSizeStr); // When 'inputs'=[], just insert "0" in 'equations'
-        }
-        else
-        {
-            if (current->get(2)->getType() != types::InternalType::ScilabString)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::String* inputsField = current->get(2)->getAs<types::String>();
-            inputsSize = inputsField->getSize();
-            equations.resize(equations.size() + 1 + inputsSize);
-            std::ostringstream strInputs;
-            strInputs << inputsSize;
-            std::string inputsSizeStr = strInputs.str();
-            equations[1] = inputsSizeStr; // Saving the size of the 'inputs' field'
-            for (size_t i = 0; i < inputsSize; ++i)
-            {
-                c_str = wide_string_to_UTF8(inputsField->get(static_cast<int>(i)));
-                std::string inputsFieldStored(c_str);
-                FREE(c_str);
-                equations[i + 2] = inputsFieldStored;
-            }
-        }
-
-        // 'outputs'
-        size_t outputsSize;
-        if (current->get(3)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* outputsField = current->get(3)->getAs<types::Double>();
-            if (outputsField->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            outputsSize = 0;
-            std::ostringstream strOutputs;
-            strOutputs << outputsSize;
-            std::string outputsSizeStr = strOutputs.str();
-            equations.push_back(outputsSizeStr); // When 'outputs'=[], just insert "0" in 'equations'
-        }
-        else
-        {
-            if (current->get(3)->getType() != types::InternalType::ScilabString)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::String* outputsField = current->get(3)->getAs<types::String>();
-            outputsSize = outputsField->getSize();
-            equations.resize(equations.size() + 1 + outputsSize);
-            std::ostringstream strOutputs;
-            strOutputs << outputsSize;
-            std::string outputsSizeStr = strOutputs.str();
-            equations[2 + inputsSize] = outputsSizeStr; // Saving the size of the 'outputs' field'
-            for (size_t i = 0; i < outputsSize; ++i)
-            {
-                c_str = wide_string_to_UTF8(outputsField->get(static_cast<int>(i)));
-                std::string outputsFieldStored(c_str);
-                FREE(c_str);
-                equations[i + 3 + inputsSize] = outputsFieldStored;
-            }
-        }
-
-        // 'parameters'
-        int parametersIndex = 4;
-        if (current->get(parametersIndex)->getType() == types::InternalType::ScilabDouble)
-        {
-            // For backward compatibility sake, allow the presence of an empty matrix here
-            types::Double* emptyMatrix = current->get(parametersIndex)->getAs<types::Double>();
-            if (emptyMatrix->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            parametersIndex++;
-        }
-
-        if (current->get(parametersIndex)->getType() != types::InternalType::ScilabList)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        types::List* list = current->get(parametersIndex)->getAs<types::List>();
-        if (list->getSize() != 2 && list->getSize() != 3)
-        {
-            get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-            return false;
-        }
-
-        // 'parameters' names
-        size_t parametersSize;
-        if (list->get(0)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* parametersNames = list->get(0)->getAs<types::Double>();
-            if (parametersNames->getSize() != 0)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            // When 'parameters(1)'=[], just insert "0" in 'equations', set in the model and return
-            parametersSize = 0;
-            std::ostringstream strParameters;
-            strParameters << parametersSize;
-            std::string parametersSizeStr = strParameters.str();
-            equations.push_back(parametersSizeStr);
-
-            controller.setObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
-            return true;
-        }
-        else
-        {
-            if (list->get(0)->getType() != types::InternalType::ScilabString)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::String* parametersNames = list->get(0)->getAs<types::String>();
-            parametersSize = parametersNames->getSize();
-            equations.resize(equations.size() + 1 + parametersSize);
-            std::ostringstream strParameters;
-            strParameters << parametersSize;
-            std::string parametersSizeStr = strParameters.str();
-            equations[3 + inputsSize + outputsSize] = parametersSizeStr; // Saving the size of the 'parameters' field'
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                c_str = wide_string_to_UTF8(parametersNames->get(static_cast<int>(i)));
-                std::string parametersName(c_str);
-                FREE(c_str);
-                equations[i + 4 + inputsSize + outputsSize] = parametersName;
-            }
-        }
-
-        // 'parameters' values
-        if (list->get(1)->getType() == types::InternalType::ScilabDouble)
-        {
-            types::Double* parameterVal = list->get(1)->getAs<types::Double>();
-            if (parameterVal->getSize() != static_cast<int>(parametersSize))
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                std::ostringstream strParameterVal;
-                strParameterVal << parameterVal->get(static_cast<int>(i));
-                std::string parameterValStr = strParameterVal.str();
-                equations.push_back(parameterValStr);
-            }
-        }
-        else
-        {
-            if (list->get(1)->getType() != types::InternalType::ScilabList)
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            types::List* list2 = list->get(1)->getAs<types::List>();
-            if (list2->getSize() != static_cast<int>(parametersSize))
-            {
-                get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                return false;
-            }
-
-            equations.resize(equations.size() + parametersSize);
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                if (list2->get(static_cast<int>(i))->getType() != types::InternalType::ScilabDouble)
-                {
-                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                    return false;
-                }
-
-                types::Double* parametersVal = list2->get(static_cast<int>(i))->getAs<types::Double>();
-                if (parametersVal->getSize() != 1)
-                {
-                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s : Equation expected.\n"), "model", "equations");
-                    return false;
-                }
-
-                std::ostringstream strParametersVal;
-                strParametersVal << parametersVal->get(0);
-                std::string parametersValStr = strParametersVal.str();
-                equations[i + 4 + inputsSize + outputsSize + parametersSize] = parametersValStr;
-            }
-        }
-
-        // 'parameters' states (optional)
-        equations.push_back("F"); // String boolean to indicate the presence, or not, of a "states" field
-        if (list->getSize() == 3)
-        {
-            equations.back() = "T";
-            if (list->get(2)->getType() != types::InternalType::ScilabDouble)
-            {
-                return false;
-            }
-
-            types::Double* parameterStates = list->get(2)->getAs<types::Double>();
-            if (parameterStates->getSize() != static_cast<int>(parametersSize))
-            {
-                return false;
-            }
-
-            for (size_t i = 0; i < parametersSize; ++i)
-            {
-                std::ostringstream strParameterStates;
-                strParameterStates << parameterStates->get(static_cast<int>(i));
-                std::string parameterStatesStr = strParameterStates.str();
-                equations.push_back(parameterStatesStr);
-            }
-        }
-
-        controller.setObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
-        return true;
+        return set_with_var2vec(adaptor, v, controller, EQUATIONS);
     }
 };
 

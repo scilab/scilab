@@ -32,6 +32,7 @@ Xcos trace: propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
@@ -85,6 +86,7 @@ Xcos trace: propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 // b is now a SuperBlock containing a diagram containing a link, with its 'from' and and 'to' properties set

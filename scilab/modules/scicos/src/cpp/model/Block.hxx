@@ -126,11 +126,13 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_label(), m_style(), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_label(), m_style(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
         m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_childrenColor(), m_context(), m_portReference(ScicosID())
     {
         // m_exprs default value is an empty matrix encoded by var2vec()
         m_exprs = {1, 2, 0, 0, 0};
+        // m_equations default value is an empty list encoded by var2vec()
+        m_equations = {15, 0};
         m_nmode = {0};
         m_nzcross = {0};
         m_childrenColor = { -1, 1};
@@ -448,12 +450,12 @@ private:
         return SUCCESS;
     }
 
-    void getEquations(std::vector<std::string>& data) const
+    void getEquations(std::vector<double>& data) const
     {
         data = m_equations;
     }
 
-    update_status_t setEquations(const std::vector<std::string>& data)
+    update_status_t setEquations(const std::vector<double>& data)
     {
         if (data == m_equations)
         {
@@ -725,7 +727,7 @@ private:
     std::string m_style;
     std::vector<int> m_nzcross;
     std::vector<int> m_nmode;
-    std::vector<std::string> m_equations;
+    std::vector<double> m_equations;
     std::string m_uid;
 
     Descriptor m_sim;

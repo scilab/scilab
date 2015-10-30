@@ -451,6 +451,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case OPAR:
                 o->getOpar(v);
                 return true;
+            case EQUATIONS:
+                o->getEquations(v);
+                return true;
             default:
                 break;
         }
@@ -640,9 +643,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = static_cast<model::Block*>(baseObject);
         switch (p)
         {
-            case EQUATIONS:
-                o->getEquations(v);
-                return true;
             case DIAGRAM_CONTEXT:
                 o->getContext(v);
                 return true;
