@@ -31,7 +31,7 @@
             <![CDATA[ 
 #include "api_scilab.h"
 
-int handleExample(char *fname,unsigned long fname_len)
+int handleExample(char *fname,void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;

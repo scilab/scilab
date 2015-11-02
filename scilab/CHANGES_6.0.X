@@ -157,6 +157,8 @@ Bug Fixes
 
 * Bug #14040 fixed - graphic property setting fails when using array of handles
 
+* Bug #14043 fixed - Examples of api Scilab help pages had to be updated (pvApiCtx in gateway prototypes).
+
 * Bug #14047 fixed - wrong behaviour of break ( continue ) in if outside of loop.
 
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.

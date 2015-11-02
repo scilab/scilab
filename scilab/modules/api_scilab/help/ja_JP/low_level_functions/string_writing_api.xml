@@ -99,7 +99,7 @@
         <title>ゲートウェイのソース</title>
         <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
-int write_string(char *fname,unsigned long fname_len)
+int write_string(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	//情報変数 : 文字列の行列 2 x 3

@@ -119,7 +119,7 @@ int get_integer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 int get_string_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 int get_pointer_info(int _iRhs, int* _piParent, int *_piAddr, int _iItemPos);
 
-int common_read(char *fname,unsigned long fname_len)
+int common_read(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int iItem       = 0;

@@ -30,7 +30,7 @@
         <programlisting role="example">
             <![CDATA[
 #include "api_scilab.h"
-int sci_mysizedouble(char * fname, unsigned long fname_len)
+int sci_mysizedouble(char * fname, void* pvApiCtx)
 {
     SciErr      sciErr;
     int         m_in_row;

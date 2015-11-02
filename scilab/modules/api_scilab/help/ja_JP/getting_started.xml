@@ -287,7 +287,7 @@
 #include "api_scilab.h"
 #include "BOOL.h"
 // 関数宣言
-int sci_foo(char *fname, unsigned long fname_len)
+int sci_foo(char *fname, void* pvApiCtx)
 {
     // エラー管理変数
     SciErr sciErr;

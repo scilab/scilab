@@ -74,7 +74,7 @@
         <programlisting role="code_gateway">
             <![CDATA[ 
 #include "api_scilab.h"
-int read_pointer(char *fname,unsigned long fname_len)
+int read_pointer(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 

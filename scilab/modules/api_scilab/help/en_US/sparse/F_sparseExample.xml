@@ -29,7 +29,7 @@
         <title>Gateway Source</title>
         <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
-int sparseExample(char *fname,unsigned long fname_len)
+int sparseExample(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int* piAddr = NULL;

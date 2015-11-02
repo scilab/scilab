@@ -30,7 +30,7 @@
         <title>ゲートウェイソース</title>
         <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
-int stringExample(char *fname,unsigned long fname_len)
+int stringExample(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int* piAddr = NULL;

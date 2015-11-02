@@ -107,7 +107,7 @@
         <title>Gateway Source</title>
         <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
-int read_double(char *fname,unsigned long fname_len)
+int read_double(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int i;
