@@ -140,6 +140,8 @@ Scilab Bug Fixes
 
 * Bug #14212 fixed - Scilab 6 did not load array of struct from Scilab 5.5 files correctly
 
+* Bug #14223 fixed - det returned an error when it is used with a singular matrix.
+
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================

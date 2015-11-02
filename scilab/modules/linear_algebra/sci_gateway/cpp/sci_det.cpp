@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     int iExponent = 0;
     int iRet = iDetM(pData, pDbl->getCols(), pDblMantissa->getReal(), pDbl->isComplex() ? pDblMantissa->getImg() : NULL, pDblExponent ? &iExponent : NULL);
-    if (iRet != 0)
+    if (iRet < 0)
     {
         Scierror(999, _("%s: LAPACK error n°%d.\n"), "det", iRet);
         return types::Function::Error;
