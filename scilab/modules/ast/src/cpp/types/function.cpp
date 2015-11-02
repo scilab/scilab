@@ -89,6 +89,10 @@ Function* Function::createFunction(const std::wstring& _wstFunctionName, const s
 Function::Function(const std::wstring& _wstName, GW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule) : Callable(), m_pFunc(_pFunc), m_pLoadDeps(_pLoadDeps)
 {
     setName(_wstName);
+    char* s = wide_string_to_UTF8(m_wstName.data());
+    m_stName = s;
+    FREE(s);
+
     setModule(_wstModule);
 }
 
@@ -134,6 +138,9 @@ InternalType* Function::clone()
 OptFunction::OptFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule)
 {
     m_wstName = _wstName;
+    char* s = wide_string_to_UTF8(m_wstName.data());
+    m_stName = s;
+    FREE(s);
     m_pFunc = _pFunc;
     m_pLoadDeps = _pLoadDeps;
     m_wstModule = _wstModule;
@@ -143,7 +150,10 @@ OptFunction::OptFunction(OptFunction* _pWrapFunction)
 {
     m_wstModule  = _pWrapFunction->getModule();
     m_wstName    = _pWrapFunction->getName();
-    m_pFunc  = _pWrapFunction->getFunc();
+    char* s = wide_string_to_UTF8(m_wstName.data());
+    m_stName = s;
+    FREE(s);
+    m_pFunc = _pWrapFunction->getFunc();
     m_pLoadDeps = _pWrapFunction->getDeps();
 }
 
@@ -173,6 +183,9 @@ WrapFunction::WrapFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD
     m_wstName = _wstName;
     m_pOldFunc = _pFunc;
     m_wstModule = _wstModule;
+    char* s = wide_string_to_UTF8(m_wstName.data());
+    m_stName = s;
+    FREE(s);
     m_pLoadDeps = _pLoadDeps;
 }
 
