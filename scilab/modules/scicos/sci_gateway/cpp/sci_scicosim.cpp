@@ -972,7 +972,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     il_sim->append(il_sim_lab_input->clone());
     types::String* il_sim_lab = il_sim->get(31)->getAs<types::String>();
     int* il_sim_labptr;
-    if ((il_sim_labptr = new (std::nothrow) int[il_sim_lab->getSize()]) == nullptr)
+    try
+    {
+        il_sim_labptr = new int[il_sim_lab->getSize()];
+    }
+    catch (const std::bad_alloc& e)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
         il_state->DecreaseRef();
@@ -984,7 +988,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
     char** l_sim_lab;
-    if ((l_sim_lab = new (std::nothrow) char*[il_sim_lab->getSize()]) == nullptr)
+    try
+    {
+        l_sim_lab = new char*[il_sim_lab->getSize()];
+    }
+    catch (const std::bad_alloc& e)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
         il_state->DecreaseRef();
@@ -1040,7 +1048,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     il_sim->append(il_sim_uid_input->clone());
     types::String* il_sim_uid = il_sim->get(33)->getAs<types::String>();
     int* il_sim_uidptr;
-    if ((il_sim_uidptr = new (std::nothrow) int[il_sim_uid->getSize()]) == nullptr)
+    try
+    {
+        il_sim_uidptr = new int[il_sim_uid->getSize()];
+    }
+    catch (const std::bad_alloc& e)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
         il_state->DecreaseRef();
@@ -1054,7 +1066,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
     char** l_sim_uid;
-    if ((l_sim_uid = new (std::nothrow) char*[il_sim_uid->getSize()]) == nullptr)
+    try
+    {
+        l_sim_uid = new char*[il_sim_uid->getSize()];
+    }
+    catch (const std::bad_alloc& e)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
         il_state->DecreaseRef();
@@ -1287,7 +1303,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     *******************************/
     // Define new variable 'lfunpt'
     void** lfunpt;
-    if ((lfunpt = new (std::nothrow) void*[nblk]) == nullptr)
+    try
+    {
+        lfunpt = new void*[nblk];
+    }
+    catch (const std::bad_alloc& e)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
         il_state->DecreaseRef();
@@ -1429,7 +1449,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     if (noz > 0)
     {
         // Allocation of 'oz'
-        if ((oz = new (std::nothrow) void*[noz]) == nullptr)
+        try
+        {
+            oz = new void*[noz];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1446,7 +1470,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
         // Allocation of 'ozsz'
-        if ((ozsz = new (std::nothrow) int[2 * noz]) == nullptr)
+        try
+        {
+            ozsz = new int[2 * noz];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1464,7 +1492,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
         // Allocation of 'oztyp'
-        if ((oztyp = new (std::nothrow) int[noz]) == nullptr)
+        try
+        {
+            oztyp = new int[noz];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1593,7 +1625,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     if (nopar > 0)
     {
         // Allocation of 'opar'
-        if ((opar = new (std::nothrow) void*[nopar]) == nullptr)
+        try
+        {
+            opar = new void*[nopar];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1613,7 +1649,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
         // Allocation of 'oparsz'
-        if ((oparsz = new (std::nothrow) int[2 * nopar]) == nullptr)
+        try
+        {
+            oparsz = new int[2 * nopar];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1634,7 +1674,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
         // Allocation of 'opartyp'
-        if ((opartyp = new (std::nothrow) int[nopar]) == nullptr)
+        try
+        {
+            opartyp = new int[nopar];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1675,7 +1719,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     {
                         opartyp[j] = SCSCOMPLEX_N; // Double complex matrix
                         // Allocate a long array in order to make the real and complex parts contiguous (oparDouble->get() and oparDouble->getImg())
-                        if ((opar[j] = new (std::nothrow) double[2 * oparDouble->getSize()]) == nullptr)
+                        try
+                        {
+                            opar[j] = new double[2 * oparDouble->getSize()];
+                        }
+                        catch (const std::bad_alloc& e)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
                             il_state->DecreaseRef();
@@ -1798,7 +1846,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     if (nlnk > 0)
     {
         // Allocation of 'outtbptr'
-        if ((outtbptr = new (std::nothrow) void*[nlnk]) == nullptr)
+        try
+        {
+            outtbptr = new void*[nlnk];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1821,7 +1873,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
         // Allocation of 'outtbptrsz'
-        if ((outtbsz = new (std::nothrow) int[2 * nlnk]) == nullptr)
+        try
+        {
+            outtbsz = new int[2 * nlnk];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1845,7 +1901,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             return types::Function::Error;
         }
         // Allocation of 'outtbtyp'
-        if ((outtbtyp = new (std::nothrow) int[nlnk]) == nullptr)
+        try
+        {
+            outtbtyp = new int[nlnk];
+        }
+        catch (const std::bad_alloc& e)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
             il_state->DecreaseRef();
@@ -1889,7 +1949,11 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     {
                         outtbtyp[j] = SCSCOMPLEX_N; // Double complex matrix
                         // Allocate a long array in order to make the real and complex parts contiguous (outtbDouble->get() and outtbDouble->getImg())
-                        if ((outtbptr[j] = new (std::nothrow) double[2 * outtbDouble->getSize()]) == nullptr)
+                        try
+                        {
+                            outtbptr[j] = new double[2 * outtbDouble->getSize()];
+                        }
+                        catch (const std::bad_alloc& e)
                         {
                             Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
                             il_state->DecreaseRef();
@@ -2135,12 +2199,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 break;
 
             case 6  :
-                if ((error = new (std::nothrow) char[MAX_ERROR_LEN]) != nullptr)
+                try
                 {
+                    error = new char[MAX_ERROR_LEN];
                     allocatedError = TRUE;
                     snprintf(error, MAX_ERROR_LEN, _("the block %d has been called with input out of its domain"), C2F(curblk).kfun);
                 }
-                else
+                catch (const std::bad_alloc& e)
                 {
                     error = _("cannot allocate memory");
                 }
@@ -2163,12 +2228,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 break;
 
             case 21  :
-                if ((error = new (std::nothrow) char[MAX_ERROR_LEN]) != nullptr)
+                try
                 {
+                    error = new char[MAX_ERROR_LEN];
                     allocatedError = TRUE;
                     snprintf(error, MAX_ERROR_LEN, _("cannot allocate memory in block=%d"), C2F(curblk).kfun);
                 }
-                else
+                catch (const std::bad_alloc& e)
                 {
                     error = _("cannot allocate memory");
                 }
@@ -2205,12 +2271,13 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 else if (ierr >= 100)
                 {
                     int istate = -(ierr - 100);
-                    if ((error = new (std::nothrow) char[MAX_ERROR_LEN]) != nullptr)
+                    try
                     {
+                        error = new char[MAX_ERROR_LEN];
                         allocatedError = TRUE;
                         snprintf(error, MAX_ERROR_LEN, _("integration problem istate=%d"), istate);
                     }
-                    else
+                    catch (const std::bad_alloc& e)
                     {
                         error = _("cannot allocate memory");
                     }

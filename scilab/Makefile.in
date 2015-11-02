@@ -115,6 +115,12 @@ build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = scilab-bin$(EXEEXT) scilab-cli-bin$(EXEEXT)
 @IS_MACOSX_TRUE@am__append_1 = bin/checkmacosx.applescript
+
+#
+# using the static system libs might produce linkage issue (eg.
+# std::nothrow for instance) but it seems to be the only acceptable
+# solution for now.
+#
 @USE_STATIC_SYSTEM_LIB_TRUE@am__append_2 = -static-libstdc++ -static-libgcc
 # -static-libgfortran
 @USE_STATIC_SYSTEM_LIB_TRUE@am__append_3 = -static-libstdc++ -static-libgcc
