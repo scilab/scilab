@@ -198,9 +198,6 @@ end
             <member>
                 <link linkend="ilib_build">ilib_build</link>
             </member>
-            <member>
-                <link linkend="api_scilab">api_scilab</link>
-            </member>
         </simplelist>
     </refsection>
     <refsection>

@@ -32,12 +32,13 @@ public :
     void                            whoAmI(void)
     {
         std::cout << "types::TList";
-    };
+    }
 
-    ScilabType                        getType(void)
+    ScilabType                      getType(void)
     {
         return ScilabTList;
     }
+
     bool                            isTList()
     {
         return true;

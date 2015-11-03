@@ -336,7 +336,9 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_real.cpp \
     sci_gateway/cpp/sci_round.cpp \
     sci_gateway/cpp/sci_sign.cpp \
-    sci_gateway/cpp/sci_sqrt.cpp
+    sci_gateway/cpp/sci_sqrt.cpp \
+    sci_gateway/cpp/sci_issquare.cpp \
+    sci_gateway/cpp/sci_isvector.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 

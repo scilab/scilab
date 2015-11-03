@@ -41,12 +41,12 @@ Cell::Cell(int _iRows, int _iCols, InternalType** data)
     createCell(2, piDims, data);
 }
 
-Cell::Cell(int _iDims, int* _piDims, InternalType** data)
+Cell::Cell(int _iDims, const int* _piDims, InternalType** data)
 {
     createCell(_iDims, _piDims, data);
 }
 
-void Cell::createCell(int _iDims, int* _piDims, InternalType** data)
+void Cell::createCell(int _iDims, const int* _piDims, InternalType** data)
 {
     InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);

@@ -850,6 +850,9 @@
     <ClInclude Include="includes\system_env\coverage_instance.hxx">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
+    <ClInclude Include="includes\types\addfunction.h">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">

@@ -49,7 +49,7 @@ GraphicHandle::GraphicHandle(int _iRows, int _iCols)
 #endif
 }
 
-GraphicHandle::GraphicHandle(int _iDims, int* _piDims)
+GraphicHandle::GraphicHandle(int _iDims, const int* _piDims)
 {
     long long* pH = NULL;
     create(_piDims, _iDims, &pH, NULL);

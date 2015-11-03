@@ -23,7 +23,7 @@ extern "C"
 #include "charEncoding.h"
 }
 
-types::Function::ReturnValue sci_struct(types::typed_list &in, int _piRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_struct_gw(types::typed_list &in, int _piRetCount, types::typed_list &out)
 {
     int* piDimsRef  = NULL;
     int iDimsRef    = 0;

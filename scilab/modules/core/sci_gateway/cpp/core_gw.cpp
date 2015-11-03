@@ -65,10 +65,10 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"debug", &sci_debug, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"recursionlimit", &sci_recursionlimit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"list", &sci_list_gw, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"struct", &sci_struct, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"struct", &sci_struct_gw, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"null", &sci_null, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cell", &sci_cell, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cell", &sci_cell_gw, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tlist", &sci_tlist_gw, MODULE_NAME));

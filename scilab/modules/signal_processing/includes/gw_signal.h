@@ -20,9 +20,9 @@
 /*--------------------------------------------------------------------------*/
 SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_remez);
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_amell);
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_conv2);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_remez);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_amell);
+EXTERN_SIGNAL_PROCESSING_GW STACK_GATEWAY_PROTOTYPE(sci_conv2);
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

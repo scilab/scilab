@@ -23,7 +23,7 @@ class EXTERN_AST GraphicHandle : public ArrayOf<long long>
 public :
     GraphicHandle(long long _handle);
     GraphicHandle(int _iRows, int _iCols);
-    GraphicHandle(int _iDims, int* _piDims);
+    GraphicHandle(int _iDims, const int* _piDims);
 
     virtual                 ~GraphicHandle();
 
@@ -90,7 +90,7 @@ protected :
     }
 
 private :
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual long long       getNullValue();
     virtual GraphicHandle*  createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

@@ -616,6 +616,7 @@ public abstract class DocbookTagConverter extends DefaultHandler implements Conv
     public abstract String handleLink(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleListitem(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleLiteral(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleLiterallayout(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleMediaobject(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleMember(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleNote(final Map<String, String> attributes, final String contents) throws SAXException;

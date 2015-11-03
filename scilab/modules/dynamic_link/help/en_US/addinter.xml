@@ -193,7 +193,7 @@ clear list_functions;
                 <link linkend="clearfun">clearfun</link>
             </member>
             <member>
-                <link linkend="api_scilab">api_scilab</link>
+                <link linkend="api_scilab_legacy">api_scilab</link>
             </member>
         </simplelist>
     </refsection>

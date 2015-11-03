@@ -39,8 +39,8 @@ public :
 
     Int(int _iRows, int _iCols)
     {
-        int piDims[2]   = {_iRows, _iCols};
-        T * pInt     = NULL;
+        int piDims[2] = {_iRows, _iCols};
+        T * pInt = NULL;
         this->create(piDims, 2, &pInt, NULL);
 #ifndef NDEBUG
         //Inspector::addItem(this);
@@ -50,7 +50,7 @@ public :
     Int(T _val)
     {
         int piDims[2]   = {1, 1};
-        T * pInt     = NULL;
+        T * pInt = NULL;
         this->create(piDims, 2, &pInt, NULL);
         pInt[0] = _val;
 #ifndef NDEBUG
@@ -60,16 +60,16 @@ public :
 
     Int(int _iRows, int _iCols, T** _pData)
     {
-        int piDims[2] = {_iRows, _iCols};
+        const int piDims[2] = {_iRows, _iCols};
         this->create(piDims, 2, _pData, NULL);
 #ifndef NDEBUG
         //Inspector::addItem(this);
 #endif
     }
 
-    Int(int _iDims, int* _piDims)
+    Int(int _iDims, const int* _piDims)
     {
-        T * pInt     = NULL;
+        T * pInt = NULL;
         this->create(_piDims, _iDims, &pInt, NULL);
 #ifndef NDEBUG
         //Inspector::addItem(this);
@@ -163,7 +163,7 @@ protected :
     inline InternalType::ScilabId   getId(void);
 
 private :
-    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/)
+    virtual bool subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDims*/) override
     {
         int iCurrentLine = 0;
         int iLineLen = ConfigVariable::getConsoleWidth();
@@ -483,6 +483,7 @@ private :
         const static bool value = true;
     };
 
+    public:
     bool isInt8()
     {
         return is_same_int<T, char>::value;

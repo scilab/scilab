@@ -69,7 +69,7 @@ protected :
 
 
     /*internal constructor*/
-    void create(int* _piDims, int _iDims, T** _pRealData, T** _pImgData)
+    void create(const int* _piDims, int _iDims, T** _pRealData, T** _pImgData)
     {
         m_iSize     = 1;
         m_iDims     = _iDims;
@@ -453,7 +453,7 @@ public :
     }
 
     /*dimensions functions*/
-    int getIndex(int* _piIndexes)
+    int getIndex(const int* _piIndexes)
     {
         int idx = 0;
         int iMult = 1;

@@ -31,8 +31,8 @@ public :
     }
 };
 
-C_GATEWAY_PROTOTYPE(sci_addModulePreferences);
-C_GATEWAY_PROTOTYPE(sci_removeModulePreferences);
-C_GATEWAY_PROTOTYPE(sci_preferences);
+STACK_GATEWAY_PROTOTYPE(sci_addModulePreferences);
+STACK_GATEWAY_PROTOTYPE(sci_removeModulePreferences);
+STACK_GATEWAY_PROTOTYPE(sci_preferences);
 
 #endif /* __PREFERENCES_GW_HXX__ */

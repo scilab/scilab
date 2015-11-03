@@ -25,12 +25,12 @@ public :
         m_pvData = NULL;
     }
 
-    Pointer(void* _pvData)
+    Pointer(const void* _pvData)
     {
         m_pvData = _pvData;
     }
 
-    Pointer(int _rows, int _cols, void* _pvData, bool _complex = false)
+    Pointer(int _rows, int _cols, const void* _pvData, bool _complex = false)
     {
         m_iRows  = _rows;
         m_iCols  = _cols;
@@ -75,12 +75,12 @@ public :
         return new Pointer(m_iRows, m_iCols, m_pvData, m_cplx);
     }
 
-    void* get()
+    const void* get()
     {
         return m_pvData;
     }
 
-    void set(void* _pvData)
+    void set(const void* _pvData)
     {
         m_pvData = _pvData;
     }
@@ -92,7 +92,7 @@ public :
 
 protected :
 
-    void* m_pvData;
+    const void* m_pvData;
     bool m_cplx;
 };
 }

@@ -1,0 +1,31 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+function test_string(safe)
+    ilib_verbose(0);
+    mkdir(pathconvert(TMPDIR+"/api_c/" + safe));
+    cd(pathconvert(TMPDIR+"/api_c/" + safe));
+    copyfile(SCI+"/modules/api_scilab/tests/unit_tests/api_c/string_test.c",pathconvert(TMPDIR+"/api_c/" + safe + "/string_test.c",%F));
+    cflags = "";
+    if safe == "unsafe" then
+        cflags = "-D__API_SCILAB_UNSAFE__";
+    end
+    ilib_build("libstring" + safe,["string_test","sci_string_test", "csci6"],"string_test.c",[],"","",cflags);
+    exec("loader.sce");
+    in1 = ["one.one", "one.two", "one.three", "one.four"; "two.one", "two.two", "two.three", "two.four"; "three.one", "three.two", "three.three", "three.four"];
+    in2 = "IBM©";
+    [out1, out2] = string_test(in1, in2);
+    ref(:,:,1) = in1 + ".one";
+    ref(:,:,2) = in1 + ".two";
+    assert_checkequal(out1, ref);
+    assert_checkequal(out2, "HAL©");
+    disp("OK");
+endfunction
+test_string("safe");
+ OK
+test_string("unsafe");
+ OK

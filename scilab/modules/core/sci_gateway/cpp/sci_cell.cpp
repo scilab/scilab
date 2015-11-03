@@ -16,7 +16,7 @@
 #include "function.hxx"
 #include "overload.hxx"
 
-types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_cell_gw(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Cell* pRetVal = NULL;
     if (in.size() == 0)

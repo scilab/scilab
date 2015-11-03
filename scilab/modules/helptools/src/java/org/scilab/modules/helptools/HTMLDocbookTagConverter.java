@@ -848,6 +848,23 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle a literallayout
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleLiterallayout(final Map<String, String> attributes, final String contents) throws SAXException {
+        
+        //replace \n by <br>
+        String s = contents.replace("\n", "<BR>");
+        //replace spaces by &nbsp;
+        s = s.replace(" ", "&nbsp;");
+        
+        return encloseContents("code", "literallayout", s);
+    }
+
+    /**
      * Handle a varname
      * @param attributes the tag attributes
      * @param contents the tag contents

@@ -406,7 +406,9 @@ am__objects_8 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_real.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_round.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo \
-	sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo
+	sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo
 am_libscielementary_functions_la_OBJECTS = $(am__objects_7) \
 	$(am__objects_8)
 libscielementary_functions_la_OBJECTS =  \
@@ -1140,7 +1142,9 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_real.cpp \
     sci_gateway/cpp/sci_round.cpp \
     sci_gateway/cpp/sci_sign.cpp \
-    sci_gateway/cpp/sci_sqrt.cpp
+    sci_gateway/cpp/sci_sqrt.cpp \
+    sci_gateway/cpp/sci_issquare.cpp \
+    sci_gateway/cpp/sci_isvector.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
 
@@ -2126,6 +2130,12 @@ sci_gateway/cpp/libscielementary_functions_la-sci_sign.lo:  \
 sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscielementary_functions.la: $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_DEPENDENCIES) $(EXTRA_libscielementary_functions_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscielementary_functions_la_rpath) $(libscielementary_functions_la_OBJECTS) $(libscielementary_functions_la_LIBADD) $(LIBS)
@@ -2187,6 +2197,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_int.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isequal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isreal.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_issquare.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isvector.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_kron.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_log.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_log1p.Plo@am__quote@
@@ -3080,6 +3092,20 @@ sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo: sci_gateway/cpp/sci_s
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_sqrt.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sqrt.lo `test -f 'sci_gateway/cpp/sci_sqrt.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sqrt.cpp
+
+sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo: sci_gateway/cpp/sci_issquare.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_issquare.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo `test -f 'sci_gateway/cpp/sci_issquare.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_issquare.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_issquare.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_issquare.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_issquare.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_issquare.lo `test -f 'sci_gateway/cpp/sci_issquare.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_issquare.cpp
+
+sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo: sci_gateway/cpp/sci_isvector.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isvector.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo `test -f 'sci_gateway/cpp/sci_isvector.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isvector.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isvector.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_isvector.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_isvector.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_isvector.lo `test -f 'sci_gateway/cpp/sci_isvector.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isvector.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

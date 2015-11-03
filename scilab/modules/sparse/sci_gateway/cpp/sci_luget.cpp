@@ -42,8 +42,8 @@ types::Function::ReturnValue sci_luget(types::typed_list &in, int _iRetCount, ty
     int nonZerosU   = 0;
     int nonZerosQ   = 0;
 
-    bool cplx       = false;
-    void* pData     = NULL;
+    bool cplx           = false;
+    const void* pData   = NULL;
 
     double* dblP    = NULL;
     double* dblL    = NULL;

@@ -37,11 +37,6 @@
 #define GET_INDEX    63
 #define SET_INDEX    64
 
-int gw_graphics(void)
-{
-    return 0;
-}
-
 /*--------------------------------------------------------------------------*/
 void loadGraphicModule(void)
 {

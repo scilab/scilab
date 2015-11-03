@@ -17,11 +17,11 @@
 #include "dynlib_spreadsheet.h"
 #include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvDefault);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvRead);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvStringToDouble);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvTextScan);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvWrite);
+SPREADSHEET_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_csvDefault);
+SPREADSHEET_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_csvRead);
+SPREADSHEET_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_csvStringToDouble);
+SPREADSHEET_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_csvTextScan);
+SPREADSHEET_IMPEXP STACK_GATEWAY_PROTOTYPE(sci_csvWrite);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPREADSHEET_H__ */
 /*--------------------------------------------------------------------------*/

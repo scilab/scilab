@@ -24,8 +24,8 @@ bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vecto
 
 EXTERN_AST int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
 EXTERN_AST void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew);
-EXTERN_AST void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims);
-EXTERN_AST int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims);
+EXTERN_AST void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims);
+EXTERN_AST int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims);
 EXTERN_AST types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName);
 }
 

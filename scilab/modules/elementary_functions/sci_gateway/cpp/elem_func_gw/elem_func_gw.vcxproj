@@ -263,6 +263,8 @@ lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACH
     <ClCompile Include="..\sci_triu.cpp" />
     <ClCompile Include="..\sci_zeros.cpp" />
     <ClCompile Include="..\sci_real.cpp" />
+    <ClCompile Include="..\sci_issquare.cpp" />
+    <ClCompile Include="..\sci_isvector.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\dynlib_elementary_functions_gw.h" />

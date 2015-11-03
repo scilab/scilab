@@ -23,9 +23,9 @@
         </refsection>
         <title>呼び出し手順</title>
         <para>入力引数プロファイル:</para>
-        <synopsis>SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)</synopsis>
+        <synopsis>SciErr createPointer(void* _pvCtx, int _iVar, const void* _pvPtr)</synopsis>
         <para>名前指定変数プロファイル:</para>
-        <synopsis>SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void** _pvPtr)</synopsis>
+        <synopsis>SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void const** _pvPtr)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>引数</title>
@@ -148,7 +148,7 @@ int read_pointer(char *fname,void* pvApiCtx)
 	{//モードを読み込み
 		int iType			= 0;
 		int* piAddr			= NULL;
-		void* pvPtr			= NULL;
+		const void* pvPtr	= NULL;
 		double* pdblData	= NULL;
 		sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
 		if(sciErr.iErr)
