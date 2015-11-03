@@ -120,7 +120,7 @@ double datan2s(double _dblValX, double _dblValY)
 
      So if |s| is less than SLIM we switch to a special
      evaluation done by the function lnp1m1. The
-     threshold value SLIM is choosen by experiment
+     threshold value SLIM is chosen by experiment
      (with the Pari-gp software). For |s|
      "very small" we used a truncated taylor dvp,
      else a minimax polynome (see lnp1m1).

@@ -28,7 +28,7 @@
             <varlistentry>
                 <term>axes_handle</term>
                 <listitem>
-                    <para>The handle of the axes, if ommited is used the current axes.</para>
+                    <para>The handle of the axes, if omitted is used the current axes.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -68,7 +68,7 @@
                             <term>direction: </term>
                             <listitem>
                                 <para>This field defines the ray direction for directional light.
-                                    The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
+                                    The direction can be changed using a 3 element vector <literal>"[x, y, z]"</literal>
                                     representing a vector starting from the origin.
                                 </para>
                                 <para>

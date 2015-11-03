@@ -36,7 +36,7 @@
         <para>
             This function  may be used if you want  to plot  the sparse
             pattern  of the Cholesky factorization (or if you  code something which
-            use the factors). Traditionnaly, the factorization is written :
+            use the factors). Traditionally, the factorization is written :
         </para>
         <programlisting role=""><![CDATA[ 
 P A P' = C C'

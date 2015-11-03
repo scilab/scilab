@@ -5,7 +5,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="acoth" xml:lang="en">
     <refnamediv>
         <refname>acoth</refname>
-        <refpurpose>element wise hyperbolic cotangeant inverse.</refpurpose>
+        <refpurpose>element wise hyperbolic cotangent inverse.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -30,7 +30,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Computes the element wise hyperbolic cotangeant inverse of the
+        <para>Computes the element wise hyperbolic cotangent inverse of the
             argument.
         </para>
     </refsection>

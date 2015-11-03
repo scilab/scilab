@@ -96,7 +96,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//function to overload cosinus on string
+//function to overload cosine on string
 function v = %c_cos(val)
     printf("val : %s\n", val);
     v = cos(evstr(val));

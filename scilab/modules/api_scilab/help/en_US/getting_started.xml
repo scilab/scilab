@@ -145,7 +145,7 @@
                                 <para>Almost all Scilab datatypes have an equivalent C function to perform such task.</para>
                             </listitem>
                             <listitem>
-                                <para>Other checks can be done like specific values expected, consitency between the first and second input arguments, etc.</para>
+                                <para>Other checks can be done like specific values expected, consistency between the first and second input arguments, etc.</para>
                             </listitem>
                             <listitem>
                                 <para>Data transformation (optional).</para>

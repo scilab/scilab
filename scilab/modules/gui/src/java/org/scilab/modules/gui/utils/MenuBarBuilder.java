@@ -275,7 +275,7 @@ public final class MenuBarBuilder {
         /**
          * Add submenu for menu
          * @param menuItem will become a menu with subMenuItems
-         * @param node to get attributs of the menu
+         * @param node to get attributes of the menu
          */
         public void addSubMenuItem(MenuItem menuItem, Node node) {
 

@@ -734,8 +734,8 @@ fopt = 0
                     Although the algorithm practically converges in many situations,
                     the Nelder-Mead algorithm is not a provably convergent algorithm.
                     There are several known counter-examples where the algorithm
-                    fails to converge on a stationnary point and, instead, converge
-                    to a non-stationnary point. This situation is often indicated by a
+                    fails to converge on a stationary point and, instead, converge
+                    to a non-stationary point. This situation is often indicated by a
                     repeated application of the contraction step. In that situation, we simply restart the
                     algorithm with the final point as the new initial guess.
                     If the algorithm converges to the same point, there is a good

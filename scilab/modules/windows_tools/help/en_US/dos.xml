@@ -47,7 +47,7 @@
 [s,w] = dos('dir');
 [s,w] = dos('dir','-echo');
 dos('start notepad')
-dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched notepad's processus
+dos('taskkill /IM notepad.exe') // Caution, this command will kill all launched notepad's process
 [s, w] = dos('foo')
 [s, w, code] = dos('dir')
 [s, w, code] = dos('foo')

@@ -11,7 +11,7 @@ function [s1,s2]=sysconv(s1,s2)
     //Syntax : [s1,s2]=sysconv(s1,s2)
     //
     // Converts s1 and s2 into common representation in order that
-    // system interconnexion operations can be applied.
+    // system interconnection operations can be applied.
     // The conversion rules in given in the following table.
     //   'c'  -> continuous time system
     //   'd'  -> discrete time system

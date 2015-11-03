@@ -75,7 +75,7 @@
             by the <link linkend="interp2d">interp2d</link> function. Several kind of
             splines may be computed by selecting the appropriate
             <literal>spline_type</literal> parameter. The method used to compute the
-            bicubic spline (or sub-spline) is the old fashionned one 's, i.e. to
+            bicubic spline (or sub-spline) is the old fashioned one 's, i.e. to
             compute on each grid point <emphasis>(xi,yj)</emphasis> an approximation
             of the first derivatives <emphasis>ds/dx(xi,yj)</emphasis> and
             <emphasis>ds/dy(xi,yj)</emphasis> and of the cross derivative

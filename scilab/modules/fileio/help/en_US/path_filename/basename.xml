@@ -58,7 +58,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <code>basename(files)</code> returns the suffixs of paths, i.e. the last string following the final file separator for each path given in <varname>files</varname>.
+            <code>basename(files)</code> returns the suffices of paths, i.e. the last string following the final file separator for each path given in <varname>files</varname>.
         </para>
         <para>
             If <varname>flag</varname> is true the paths are first converted for the current operating system (for example, 'C:/Tmp/folder' will be converted on Windows to 'C:\Tmp\folder').

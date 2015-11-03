@@ -40,7 +40,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>The result of a XPath query or the chidren of a node can be a set of XMLElements which contains numbers, so the aim of this function is to convert the contents of each nodes into a double.</para>
+        <para>The result of a XPath query or the children of a node can be a set of XMLElements which contains numbers, so the aim of this function is to convert the contents of each nodes into a double.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

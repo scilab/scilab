@@ -676,7 +676,7 @@ int iLeftDivisionOfRealMatrix(
 }
 
 
-/*Complex matrixes left division*/
+/*Complex matrices left division*/
 int iLeftDivisionOfComplexMatrix(
     double *_pdblReal1,     double *_pdblImg1,      int _iRows1,    int _iCols1,
     double *_pdblReal2,     double *_pdblImg2,      int _iRows2,    int _iCols2,

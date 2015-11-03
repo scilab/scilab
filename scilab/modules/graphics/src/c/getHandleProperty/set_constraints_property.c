@@ -382,42 +382,42 @@ int clearConstraints(int iObjUID)
     status = setGraphicObjectProperty(iObjUID, __GO_UI_BORDER_POSITION__, &iPos, jni_int, 1);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_GRID__, pi, jni_int_vector, 4);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_WEIGHT__, pdbl, jni_double_vector, 2);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_FILL__, &iFill, jni_int, 1);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_ANCHOR__, &iAnchor, jni_int, 1);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_UI_GRIDBAG_PADDING__, pi, jni_int_vector, 2);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 

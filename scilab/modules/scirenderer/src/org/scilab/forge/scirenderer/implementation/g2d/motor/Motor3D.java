@@ -299,7 +299,7 @@ public class Motor3D {
      * @param vertices a buffer containing vertices
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @return an array of length 2 containing the vertices array and the colors array
      */
     private Object[] getArrays(FloatBuffer vertices, FloatBuffer colors, Color defaultColor, FloatBuffer textureCoords, IntBuffer indices) {
@@ -378,7 +378,7 @@ public class Motor3D {
      * @param vertices a buffer containing vertices
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @param drawingMode the drawing mode
      * @param stroke the Stroke to use to draw a segment
      */
@@ -458,7 +458,7 @@ public class Motor3D {
      * @param normals a buffer containing the normals (not used)
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @param drawingMode the drawing mode
      */
     private void addTriangles(FloatBuffer vertices, FloatBuffer normals, FloatBuffer colors, Color defaultColor, IntBuffer indices, FloatBuffer textureCoords, final BufferedImage image, Texture texture, Geometry.FillDrawingMode drawingMode, G2DLightManager lightManager) {
@@ -535,7 +535,7 @@ public class Motor3D {
      * @param vertices an array of float containing (vertices.length / G2DElementsBuffer.ELEMENT_SIZE) vectors coordinates
      * @param t the transformation to use for the projection
      * @param dir if true t.projectDirection() is used rather than t.project()
-     * @return an array of Vector3d containg the vertices
+     * @return an array of Vector3d containing the vertices
      */
     private static final Vector3d[] getMultiVectors(final float[] vertices, final Transformation t, final boolean dir) {
         Vector3d[] v = new Vector3d[vertices.length / G2DElementsBuffer.ELEMENT_SIZE];
@@ -559,7 +559,7 @@ public class Motor3D {
     /**
      * Convert an array of float into an array of Vector3d objects
      * @param vertices an array of float containing (vertices.length / G2DElementsBuffer.ELEMENT_SIZE) vectors coordinates
-     * @return an array of Vector3d containg the vertices
+     * @return an array of Vector3d containing the vertices
      */
     private static final Vector3d[] getMultiVectors(final float[] vertices) {
         Vector3d[] v = new Vector3d[vertices.length / G2DElementsBuffer.ELEMENT_SIZE];

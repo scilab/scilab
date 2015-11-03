@@ -9,7 +9,7 @@
 
 function [nArgOut,vectInput]=check2dFun(funName,func,X,current_figure,cur_draw_mode)
 
-    // In this function we determine wether the function 'func'
+    // In this function we determine whether the function 'func'
     // has the syntax [y]=func(x) or [x,y]=func(t).
     // We also test if the function accepts vector input
     // arguments.

@@ -237,7 +237,7 @@ if(getos() <> "Windows")
         if res<>g(many_args) then pause,end;
     end;
 
-    // test scheduling: sleeping is embarassingly parallel even on uniprocessors ! :)
+    // test scheduling: sleeping is embarrassingly parallel even on uniprocessors ! :)
     function r=do_sleep(t);sleep(t*1000);r=1;endfunction
     many_workers= 80;
     sleep_time=2;

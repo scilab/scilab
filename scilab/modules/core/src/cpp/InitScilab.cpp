@@ -677,7 +677,7 @@ void* scilabReadAndStore(void* param)
             {
                 char* tmpCommand = NULL;
 
-                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("someting")
+                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
                 if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
                 {
                     tmpCommand = os_strdup(command + 2);

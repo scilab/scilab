@@ -26,7 +26,7 @@
             <literal>browsevar</literal> is the embedded Scilab variable browser.
         </para>
         <para>
-            <literal>browsevar</literal> lists all user variables the current environnement.
+            <literal>browsevar</literal> lists all user variables the current environment.
         </para>
         <para>
             <literal>browsevar</literal> has several features: 
@@ -71,7 +71,7 @@
                     </para>
                 </listitem>
                 <listitem><para>
-                        Direct connexion to the <link linkend="editvar">editvar component</link> by double-clicking on the variable name
+                        Direct connection to the <link linkend="editvar">editvar component</link> by double-clicking on the variable name
                         <para/>
                     </para>
                 </listitem>

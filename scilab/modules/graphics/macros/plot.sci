@@ -169,7 +169,7 @@ function plot(varargin)
     cur_draw_mode = current_figure.immediate_drawing;
     current_figure.immediate_drawing = "off";
 
-    // check wether this is the first plot for the axes in which we will draw
+    // check whether this is the first plot for the axes in which we will draw
     curAxes = gca();
     // save auto_clear state.
     OldAutoClear = curAxes.auto_clear;

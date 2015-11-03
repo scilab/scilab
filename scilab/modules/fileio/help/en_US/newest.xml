@@ -52,7 +52,7 @@
         <title>Description</title>
         <para>
             Given a set of pathnames <function>newest</function> returns the index of the newest
-            one. Non existant files are supposed to be the oldest.
+            one. Non existent files are supposed to be the oldest.
         </para>
     </refsection>
     <refsection>

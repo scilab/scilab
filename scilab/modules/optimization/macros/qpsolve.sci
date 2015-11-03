@@ -17,7 +17,7 @@ function [x, iact, iter, f]=qpsolve(Q,p,C,b,ci,cs,me)
     end
     C(me+1:$, :) = -C(me+1:$, :);
     b(me+1:$) = -b(me+1:$);
-    // replace boundary contraints by linear constraints
+    // replace boundary constraints by linear constraints
     Cb = []; bb = [];
     if ci <> [] then
         Cb = [Cb; speye(Q)]

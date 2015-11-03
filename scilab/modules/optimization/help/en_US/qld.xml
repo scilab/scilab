@@ -95,7 +95,7 @@
             <varlistentry>
                 <term>tol</term>
                 <listitem>
-                    <para>Floatting point number, required precision.</para>
+                    <para>Floating point number, required precision.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

@@ -21,9 +21,9 @@
 
 class FILEIO_IMPEXP FileManager
 {
-    //static attributs instantiation
+    //static attributes instantiation
 public :
-    /*commom attributs and function for all File*/
+    /*commom attributes and function for all File*/
     static int                  getFileMaxID();
     static bool                 isOpened(const std::wstring& _stFilename);
     static int                  getFileID(const std::wstring& _stFilename);

@@ -220,7 +220,7 @@
                 <para>Real A matrix</para>
                 <itemizedlist>
                     <listitem>
-                        <para>Symetric</para>
+                        <para>Symmetric</para>
                         <para>The eigenvalues and the eigenvectors are real.</para>
                     </listitem>
                     <listitem>
@@ -233,7 +233,7 @@
                 <para>Complex A matrix</para>
                 <itemizedlist>
                     <listitem>
-                        <para>Symetric</para>
+                        <para>Symmetric</para>
                         <para>The eigenvalues are real but the eigenvectors are
                             complex.
                         </para>

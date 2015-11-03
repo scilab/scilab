@@ -20,7 +20,7 @@
 */
 #include "issymmetric.h"
 /*
-** Check wether or not a Matrix is Symmetric.
+** Check whether or not a Matrix is Symmetric.
 */
 
 /*

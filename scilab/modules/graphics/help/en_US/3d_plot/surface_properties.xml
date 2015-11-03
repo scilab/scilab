@@ -136,7 +136,7 @@
                         directly given in points. When <literal>mark_size_unit</literal> is set to
                         <literal>"tabulated"</literal>, <literal>mark_size</literal> is computed relative
                         to the font size array: therefore, its value should be an integer in
-                        [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
+                        [0 5] which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt. Note that
                         <link linkend="plot3d">plot3d</link> and pure scilab functions use
                         <literal>tabulated</literal> mode as default ; when using the
                         <link linkend="surf">surf</link> (or <link linkend="plot">plot</link> for 2D lines) function, the
@@ -151,7 +151,7 @@
                         The <literal>mark_size</literal> property is used to select the type of
                         size of the marks when <literal>mark_mode</literal> property is
                         <literal>"on"</literal>. Its value should be an integer between 0 and 5
-                        whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
+                        which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                     </para>
                 </listitem>
             </varlistentry>
@@ -161,7 +161,7 @@
                     <para>
                         This field contains the <literal>mark_foreground</literal> property
                         value which is the marks' edge color. Its value should be a color
-                        index (relative to the current color_map) or 0 for transparant edge.
+                        index (relative to the current color_map) or 0 for transparent edge.
                     </para>
                 </listitem>
             </varlistentry>
@@ -171,7 +171,7 @@
                     <para>
                         This field contains the <literal>mark_background</literal> property
                         value which is the marks' face color. Its value should be a color
-                        index (relative to the current color_map) or 0 for transparant face.
+                        index (relative to the current color_map) or 0 for transparent face.
                     </para>
                 </listitem>
             </varlistentry>
@@ -181,7 +181,7 @@
                     <para>
                         This field defines a <literal>tlist</literal> data structure of type
                         "3d" composed of a row and column indices of each element as the x-,
-                        y- and z-coordinates contained respectivly in
+                        y- and z-coordinates contained respectively in
                         <literal>data.x</literal>,<literal>data.y</literal> and <literal>data.z</literal>. The
                         complementary field named <literal>data.color</literal> is available in case
                         a real color vector or matrix is specified. If none,
@@ -240,7 +240,7 @@
                                         proportional to <literal>z</literal>. The minimum <literal>z</literal>
                                         value is painted using the index 1 color while the maximum
                                         <literal>z</literal> value is painted using highest color index. The
-                                        edges of the facets can be additionaly drawn depending on the
+                                        edges of the facets can be additionally drawn depending on the
                                         value of <literal>color_mode</literal> (see above).
                                     </para>
                                 </listitem>
@@ -372,7 +372,7 @@
                         <literal>'scaled'</literal> or <literal>'direct'</literal>. If a
                         <literal>data.color</literal> is set, each index color data specifies a
                         single value for each vertex. <literal>cdata_mapping</literal> determines
-                        wether those indices are scaled to map linearly into the current
+                        whether those indices are scaled to map linearly into the current
                         colormap (<literal>'scaled'</literal> mode) or point directly into this
                         colormap (<literal>'direct</literal>' mode). This property is useful when
                         <literal>color_flag</literal> equals <literal>2</literal>,<literal>3</literal> or
@@ -486,7 +486,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the surface
-                        data structure, and to retreive it.
+                        data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>

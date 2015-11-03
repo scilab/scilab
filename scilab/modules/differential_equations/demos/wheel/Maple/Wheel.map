@@ -139,8 +139,8 @@ sorties(`systeme.tex`,` S(q)`,SS);
 # ( eta[i] is the maple variable ti )
 # but the indices can be mixed and linsolve doesn't 
 # always return the same result 
-# We have to check the correspondance between t.sig(i)=[phi,theta,psi]
-# and to change SS to have a good corespondance 
+# We have to check the correspondence between t.sig(i)=[phi,theta,psi]
+# and to change SS to have a good corespondence
 #-------------------------------------------------------------------------
 knsize:=3;
 permut:={seq(SS[i+3,1]=t_s[i],i=1..knsize)}:

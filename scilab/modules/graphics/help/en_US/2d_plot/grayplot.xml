@@ -71,7 +71,7 @@
             <literal>z</literal> on a grid defined by <literal>x</literal> and <literal>y</literal>.
             Each rectangle on the grid is filled with a gray or color level depending
             on the average value of <literal>z</literal> on the corners of the
-            rectangle. If z contains %nan values, the surounding rectangles are not displayed.
+            rectangle. If z contains %nan values, the surrounding rectangles are not displayed.
         </para>
         <para>
             Enter the command <literal>grayplot()</literal> to see a demo.

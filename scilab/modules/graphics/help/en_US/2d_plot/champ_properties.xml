@@ -53,7 +53,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the
-                        champ data structure, and to retreive it.
+                        champ data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>

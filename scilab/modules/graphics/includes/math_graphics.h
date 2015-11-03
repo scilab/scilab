@@ -115,13 +115,13 @@ GRAPHICS_IMPEXP void scalarMult2D(const double v[2], const double scalar, double
 #define NORM_2D(v) (sqrt(SQUARE_NORM_2D(v)))
 
 /**
- * Compute wether the point lies within the triangle defined by A, B and C
+ * Compute whether the point lies within the triangle defined by A, B and C
  */
 GRAPHICS_IMPEXP BOOL isPointInTriangle(const double point[2], const double a[2],
                                        const double b[2], const double c[2]);
 
 /**
- * Compute wether p1 and p2 are on the same side of line (A,B).
+ * Compute whether p1 and p2 are on the same side of line (A,B).
  */
 GRAPHICS_IMPEXP BOOL areOnSameSideOfLine(const double p1[2], const double p2[2],
         const double a[2], const double b[2]);

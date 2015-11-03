@@ -452,7 +452,7 @@ test_run('time','datenum',[],TMPDIR+"/time_datenum_test_run.xml");
         <title>Internal Design</title>
         <para>
             The tests are performed in the temporary directory, not in the directory
-            which originaly contain the tests files.
+            which originally contain the tests files.
             The .tst file is copied into the temporary directory, the test is performed
             and the .dia.ref is copied back into the original location.
         </para>

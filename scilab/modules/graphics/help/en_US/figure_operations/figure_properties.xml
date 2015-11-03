@@ -101,7 +101,7 @@
                         <varlistentry>
                             <term>viewport: </term>
                             <listitem>
-                                <para>Postion of the visible part of graphics in the
+                                <para>Position of the visible part of graphics in the
                                     panner.
                                 </para>
                             </listitem>
@@ -210,14 +210,14 @@
                             <term>user_data: </term>
                             <listitem>
                                 <para>This field can be use to store any scilab variable in the
-                                    figure data structure, and to retreive it.
+                                    figure data structure, and to retrieve it.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
                             <term>tag: </term>
                             <listitem>
-                                <para>This field can be use to store a character string generally used to identify the control. It allows to give it a "name". Mainly used in conjontion with findobj().</para>
+                                <para>This field can be use to store a character string generally used to identify the control. It allows to give it a "name". Mainly used in conjunction with findobj().</para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
@@ -297,7 +297,7 @@
                             <listitem>
                                 <para>This field can be used to customize the icon of a Scilab figure.</para>
                                 <para>
-                                    Its value is a character string containing the (absolute or relaitve to Scilab <link linkend="pwd">current working directory.</link> path of the image file containing the icon.
+                                    Its value is a character string containing the (absolute or relative to Scilab <link linkend="pwd">current working directory.</link> path of the image file containing the icon.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -357,7 +357,7 @@
                             <term>dockable</term>
                             <listitem>
                                 <para>
-                                    This property determines if created window can be docked inside Scilab environnment. If its value is <literal>"on"</literal> then the window will have a bar enabling the user to dock/undock it. Else the window will look like a standard OS window. This value can only be set at creation.
+                                    This property determines if created window can be docked inside Scilab environment. If its value is <literal>"on"</literal> then the window will have a bar enabling the user to dock/undock it. Else the window will look like a standard OS window. This value can only be set at creation.
                                 </para>
                             </listitem>
                         </varlistentry>

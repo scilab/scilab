@@ -53,8 +53,8 @@
         <title>Description</title>
         <para>
             This routine can be used to make a copy of a graphics entity with
-            all its propeties'values, it returns the handle on this new
-            entity.  
+            all its properties' values, it returns the handle on this new
+            entity. If
             <literal>h_axes</literal> omitted, graphics entity is cloned and it's 
             copied in the  same parent axes entity.
         </para>

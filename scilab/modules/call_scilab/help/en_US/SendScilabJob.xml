@@ -23,7 +23,7 @@
     <refsection>
         <title>Description</title>
         <para>This fonction is provided in call_scilab. This function send a task
-            which will be proccessed by the Scilab engine.
+            which will be processed by the Scilab engine.
         </para>
     </refsection>
     <refsection>
@@ -38,7 +38,7 @@
             <varlistentry>
                 <term>returns</term>
                 <listitem>
-                    <para>0 is the operation is successfull.</para>
+                    <para>0 is the operation is successful.</para>
                     <para>-1 if Call Scilab has not been able to write the job into
                         Scilab.
                     </para>

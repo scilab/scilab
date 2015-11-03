@@ -463,7 +463,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
     else
     {
         //result == NULL ,variable doesn't exist :(
-        // Sould never be in this case
+        // Should never be in this case
         // In worst case variable pointing to function does not exists
         // visitprivate(SimpleVar) will throw the right exception.
     }

@@ -34,7 +34,7 @@
             <varlistentry>
                 <term>xcoord</term>
                 <listitem>
-                    <para>Real scalar: x-ccordinate of the mouse pointer when
+                    <para>Real scalar: x-coordinate of the mouse pointer when
                         the click or event occurred, in current graphic scale (see <link linkend="gca">gca()</link>).
                     </para>
                 </listitem>
@@ -42,7 +42,7 @@
             <varlistentry>
                 <term>ycoord</term>
                 <listitem>
-                    <para>Real scalar: x-ccordinate of the mouse pointer when
+                    <para>Real scalar: y-coordinate of the mouse pointer when
                         the click or event occurred, in current graphic scale (see <link linkend="gca">gca()</link>).
                     </para>
                 </listitem>

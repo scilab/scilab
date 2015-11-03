@@ -25,7 +25,7 @@
                 <listitem>
                     <para>
                         a n by 2 array. The first column contains the X
-                        coordinates of the poyline, while the second one contains
+                        coordinates of the polyline, while the second one contains
                         the Y coordinates.
                     </para>
                 </listitem>
@@ -66,7 +66,7 @@
                 <term>c</term>
                 <listitem>
                     <para>
-                        The interpolation coefficient of the orthonal projection.
+                        The interpolation coefficient of the orthogonal projection.
                     </para>
                 </listitem>
             </varlistentry>

@@ -141,7 +141,7 @@
 // Syntax to describe implicit list
 #define SCI_IMPLICIT_LIST	SCI_COLON
 
-// Syntax to write Matrixes
+// Syntax to write Matrices
 #define SCI_OPEN_MATRIX		        SCI_LBRACK
 #define SCI_CLOSE_MATRIX	        SCI_RBRACK
 #define SCI_LINE_SEPARATOR	        SCI_SEMICOLON

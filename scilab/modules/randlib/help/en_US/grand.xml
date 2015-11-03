@@ -936,7 +936,7 @@ xtitle("Layer 10");
         </scilab:image>
     </refsection>
     <refsection>
-        <title>Get predictible or less predictible numbers</title>
+        <title>Get predictable or less predictable numbers</title>
         <para>
             The pseudo random number generators are based on deterministic sequences.
             In order to get reproducible simulations, the initial seed of the generator is constant,

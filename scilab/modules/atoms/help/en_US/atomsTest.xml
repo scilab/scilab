@@ -240,7 +240,7 @@
                         <td>
                             <emphasis>failed : bug reopened</emphasis>
                         </td>
-                        <td>This bug used to be fixed, but it came back to an instable
+                        <td>This bug used to be fixed, but it came back to an unstable
                             status and is waiting another fix from its developer
                         </td>
                     </tr>
@@ -291,7 +291,7 @@
                     </tr>
                 </informaltable>
                 You then have a summary of the execution, indicating
-                how many tests were skipped, failed or suceed, and the duration time of
+                how many tests were skipped, failed or succeed, and the duration time of
                 the whole. In details, you have a report for each test that failed,
                 indicating where to check for error logs.
             </para>

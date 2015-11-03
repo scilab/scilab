@@ -87,7 +87,7 @@ GRAPHICS_IMPEXP int getOrCreateDefaultSubwin(void)
 /**ConstructText
  * This function creates the parents window (manager) and the elementaries structures
  * @param  char *pparentsubwinUID : parent subwin UID
- * @param  char * text[] : intial text matrix string.
+ * @param  char * text[] : initial text matrix string.
  * @param  int nbCol : the number column of the text
  * @param  int nbRow : the number of row of the text
  * @return  : object UID if ok , NULL if not

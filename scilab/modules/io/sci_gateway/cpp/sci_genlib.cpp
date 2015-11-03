@@ -135,14 +135,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[2];
         if (pIT->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
         types::Bool* p = pIT->getAs<types::Bool>();
         if (p->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
@@ -155,14 +155,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[3];
         if (pIT->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
         types::Bool* p = pIT->getAs<types::Bool>();
         if (p->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 

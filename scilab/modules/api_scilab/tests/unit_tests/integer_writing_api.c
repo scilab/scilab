@@ -57,7 +57,7 @@ int read_integer(char *fname, void* pvApiCtx)
     CheckInputArgument(pvApiCtx, 6, 6);
     CheckOutputArgument(pvApiCtx, 6, 6);
 
-    //get varialbe address
+    //get variable address
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr8);
     if (sciErr.iErr)
     {

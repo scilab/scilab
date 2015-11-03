@@ -48,7 +48,7 @@
                 <term>methods </term>
                 <listitem>
                     <para>The method to use to compute the simplex gradient (optional).</para>
-                    <para>Two methodes are available: </para>
+                    <para>Two methods are available: </para>
                     <itemizedlist>
                         <listitem>
                             <para>

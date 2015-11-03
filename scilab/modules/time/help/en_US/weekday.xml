@@ -24,7 +24,7 @@
     <refsection>
         <title>Description</title>
         <para>[N,S] = weekday(D) returns the day of the week in numeric(N) and string(S) form for a given serial date number or date string D. Input argument D can represent more than one date in an array of serial date number.</para>
-        <para>[N,S] = weekday(D, form) returns the week in numeric(N) and string(S) form, where the content of S depends on the form argument. If form is 'long', then S countains the full name of the weekday (e.g, Thuesday). If form is 'short', then S contains an abbreviated name (e.g., Tue) from this table.</para>
+        <para>[N,S] = weekday(D, form) returns the week in numeric(N) and string(S) form, where the content of S depends on the form argument. If form is 'long', then S contains the full name of the weekday (e.g, Tuesday). If form is 'short', then S contains an abbreviated name (e.g., Tue) from this table.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

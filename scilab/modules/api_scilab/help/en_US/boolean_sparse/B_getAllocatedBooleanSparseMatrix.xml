@@ -14,7 +14,7 @@
     <refnamediv>
         <refname>getAllocatedBooleanSparseMatrix</refname>
         <refpurpose>
-            Get sparse matrix attributs.
+            Get sparse matrix attributes.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

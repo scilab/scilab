@@ -19,7 +19,7 @@ namespace ast
 {
 /** \brief Abstract an Mathematical Expression node.
 **
-** \b Example:  Operations, Transpose, Matrixes... */
+** \b Example:  Operations, Transpose, Matrices... */
 class MathExp : public Exp
 {
 public:

@@ -145,7 +145,7 @@ static void* allocWorkspace(int const ws[2], int const isCplx, int* allocated)
 
 /*
  * internal wrappers around LAPACK function calls
- * For symmetric cases, we use use an int (bool really) computeEigenVectors to express wether eigenvalues should be computed.
+ * For symmetric cases, we use use an int (bool really) computeEigenVectors to express whether eigenvalues should be computed.
  * For unsymmetric cases, eigenvectors are not computed in place, so a NULL pointer for ouput indicates that eigen vectors should not be computed
  *
  * @param pData double[complex]* ptr to data matrix for symmetric matrix, also used as output for eigen vectors (when computed)
@@ -397,7 +397,7 @@ static doublecomplex* allocateZggevWorkspace(int iCols, int* pWorksize)
 
 /*
  * internal wrappers around LAPACK function calls
- * For symmetric cases, we use use an int (bool really) computeEigenVectors to express wether eigenvalues should be computed.
+ * For symmetric cases, we use use an int (bool really) computeEigenVectors to express whether eigenvalues should be computed.
  * For unsymmetric cases, eigenvectors are not computed in place, so a NULL pointer for ouput indicates that eigen vectors should not be computed
  *
  * @param pData double[complex]* ptr to data matrix for symmetric matrix, also used as output for eigen vectors (when computed)

@@ -67,7 +67,7 @@
         <title>Description</title>
         <para>This routine can be used to retrieve the value of a specified property from a
             graphics entity or a GUI object. In this case it is equivalent to use the dot operator on a handle.
-            For exemple, <literal>get(h,"background")</literal> is equivalent to <literal>h.background</literal>.
+            For example, <literal>get(h,"background")</literal> is equivalent to <literal>h.background</literal>.
         </para>
         <para>Property names are character strings. To get the list of all existing properties
             see <link linkend="graphics_entities">graphics_entities</link> or <link linkend="uicontrol">uicontrol</link>

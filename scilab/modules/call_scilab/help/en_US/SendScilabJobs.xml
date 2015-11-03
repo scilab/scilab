@@ -21,7 +21,7 @@
     <refsection>
         <title>Description</title>
         <para>This fonction is provided in call_scilab. This function send many
-            tasks which will be proccessed by the Scilab engine.
+            tasks which will be processed by the Scilab engine.
         </para>
         <para>
             <note>

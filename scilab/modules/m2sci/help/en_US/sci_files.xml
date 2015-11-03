@@ -93,7 +93,7 @@
                     <varlistentry>
                         <term>Cste</term>
                         <listitem>
-                            <para>create a tree representing a constante value</para>
+                            <para>create a tree representing a constant value</para>
                         </listitem>
                     </varlistentry>
                     <varlistentry>

@@ -107,7 +107,7 @@
                             <term>"clear" (default)</term>
                             <listitem>
                                 <para>
-                                    <literal>clf(.., "clear")</literal> clears the targetted figure or frame.
+                                    <literal>clf(.., "clear")</literal> clears the targeted figure or frame.
                                     <itemizedlist>
                                         <listitem>
                                             All its <literal>children</literal> are deleted: axes, uicontrols, menus (for figures only), ...

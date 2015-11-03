@@ -108,7 +108,7 @@
     </refsection>
     <refsection>
         <title>Remarks</title>
-        <para>Y_alpha and J_alpha Bessel functions are 2 independant solutions of
+        <para>Y_alpha and J_alpha Bessel functions are 2 independent solutions of
             the Bessel 's differential equation :
         </para>
         <informalequation>
@@ -118,7 +118,7 @@
                 </imageobject>
             </mediaobject>
         </informalequation>
-        <para>K_alpha and I_alpha modified Bessel functions are 2 independant
+        <para>K_alpha and I_alpha modified Bessel functions are 2 independent
             solutions of the modified Bessel 's differential equation :
         </para>
         <informalequation>

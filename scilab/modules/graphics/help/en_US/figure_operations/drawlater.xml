@@ -24,10 +24,10 @@
     </refsynopsisdiv>
     <refsection>
         <title>Description</title>
-        <para>This function can be used not to display immediatly onto the
+        <para>This function can be used not to display immediately onto the
             <literal>current figure</literal> the next created graphics objects - i.e. by
             calling high level functions such as plotting functions or setting
-            properties to existant objects. The <literal>immediate_drawing</literal>
+            properties to existent objects. The <literal>immediate_drawing</literal>
             property of the current figure is set to <literal>'off'</literal> in order to
             postpon the next drawings.
         </para>

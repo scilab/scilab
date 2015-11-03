@@ -49,7 +49,7 @@
         <para>
             <literal>pie(x):</literal> if size of x is N then pie function draws a pie
             with N parts, the area of the ith part is equal to (x(i)/sum(x))*( surface
-            of the unit cercle).
+            of the unit circle).
         </para>
         <para>
             <literal>pie(x,sp):</literal>the sp vector allows to cut one or several
@@ -62,7 +62,7 @@
             <literal>pie(x,txt):</literal> the txt vector allows to write a text for
             each part of the pie, the ith component of txt corresponds to the ith part
             (default : it's written the percentages which corresponds to the parts
-            suface). The size of txt must be equal to N.
+            surface). The size of txt must be equal to N.
         </para>
     </refsection>
     <refsection>

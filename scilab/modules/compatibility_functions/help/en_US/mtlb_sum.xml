@@ -23,7 +23,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    When called with one input: Matlab <literal>sum</literal> threts the values along the first
+                    When called with one input: Matlab <literal>sum</literal> treats the values along the first
                     non-singleton dimension of input while Scilab <literal>sum</literal> threats all values of input.
                 </para>
             </listitem>

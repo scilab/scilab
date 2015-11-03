@@ -191,7 +191,7 @@
                 <term>user_data:</term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the arc
-                        data structure, and to retreive it.
+                        data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>

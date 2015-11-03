@@ -193,7 +193,7 @@ all: simple_call_scilab.c
                 </itemizedlist>
             </listitem>
         </itemizedlist>
-        <para>Note that two environnement variables are taken in account for
+        <para>Note that two environment variables are taken in account for
             specific needs:
         </para>
         <itemizedlist>

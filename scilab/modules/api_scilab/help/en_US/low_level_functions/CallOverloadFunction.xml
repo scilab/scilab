@@ -63,7 +63,7 @@ int callOverload(char *fname,void* pvApiCtx)
         <title>Scilab test script</title>
         <programlisting role="code_scilab"><![CDATA[ 
 function x = %c_getSize(a)
-    x = lenght(a);
+    x = length(a);
 endfunction
 
 function x = %s_getSize(a)

@@ -80,7 +80,7 @@
             The short one will give faster code and an easier calling syntax but one
             has to write a small (C or Fortran) interface in order to make the short
             form possible. The long one make it possible to call a Fortran routine (or
-            a C one) whitout modification of the code but the syntax is more complex
+            a C one) without modification of the code but the syntax is more complex
             and the interpreted code slower.
         </para>
         <para>The meaning of each parameter is described now:</para>
@@ -123,7 +123,7 @@
                 <listitem>
                     <para>is a keyword used to separate input variables from output
                         variables. when this key word is present it is assumed that the long
-                        form will be used and when it is not prsent, the short form is
+                        form will be used and when it is not present, the short form is
                         used.
                     </para>
                 </listitem>
@@ -133,7 +133,7 @@
                 <listitem>
                     <para>
                         are the size (<literal>#</literal> of rows and columns. For
-                        'c' arguments,<literal>m1*n1</literal> is the number of charaters )
+                        'c' arguments,<literal>m1*n1</literal> is the number of characters )
                         of output variables and
                     </para>
                 </listitem>

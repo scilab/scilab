@@ -61,7 +61,7 @@
                     <para>
                         Specifying the sizes of the markers.
                         To plot each marker with equal size, specify s as a scalar.
-                        To plot each marker with a diferent size, specify s as a vector with length equal to the length of x, y and z.
+                        To plot each marker with a different size, specify s as a vector with length equal to the length of x, y and z.
                         The units for s is points squared with a default value of 36 points squared.
                         The size equals the area of the circle surrounding the marker.
                     </para>
@@ -75,7 +75,7 @@
                         To plot each marker with the same color, specify c as a string representing a known color, see <link linkend="color_list">color_list</link>.
                         A color can also be specified by a vector of 3 RGB values.
                         RGB values correspond to red, green and blue intensity between 0 and 1.
-                        To plot each marker with a diferent color, specify c as a vector with length equal to the length of x, y and z.
+                        To plot each marker with a different color, specify c as a vector with length equal to the length of x, y and z.
                         The values of c are linarly mapped to the colors in the current colormap.
                         Colors can also by specified by a matrix of RGB values or a vector of strings representing known colors.
                         A matrix of RGB values has 3 columns and the number of rows equals the length of x, y and z.

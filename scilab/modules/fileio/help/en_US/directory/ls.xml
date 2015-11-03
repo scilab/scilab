@@ -59,7 +59,7 @@
             pattern for both Unix and Windows.
         </para>
         <para>
-            If you want to get a vector of all files matching a pattern use preferabily
+            If you want to get a vector of all files matching a pattern use preferably
             the  <link linkend="listfiles">listfiles</link>  or the <link linkend="dir">dir</link> function.
         </para>
         <para>

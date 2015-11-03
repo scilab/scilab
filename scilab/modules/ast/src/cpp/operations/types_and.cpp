@@ -448,7 +448,7 @@ int BoolAndBool(Bool* _pL, Bool** _pOut)
         }
     }
 
-    //call non shorcut opearion
+    //call non shortcut operation
     *_pOut = NULL;
     return 0;
 }
@@ -466,7 +466,7 @@ static int IntAndInt(K* _pL, Bool** _pOut)
         }
     }
 
-    //call non shorcut opearion
+    //call non shortcut operation
     *_pOut = NULL;
     return 0;
 }

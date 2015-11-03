@@ -126,7 +126,7 @@
             <varlistentry>
                 <term>X0</term>
                 <listitem>
-                    <para>intial state of the estimated linear system.</para>
+                    <para>initial state of the estimated linear system.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

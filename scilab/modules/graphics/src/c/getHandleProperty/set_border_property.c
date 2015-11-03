@@ -155,7 +155,7 @@ int clearBorder(int iObjUID)
     status = setGraphicObjectProperty(iObjUID, __GO_UI_FRAME_BORDER__, &iBorder, jni_int, 1);
     if (status != TRUE)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "contraints");
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "constraints");
         return SET_PROPERTY_ERROR;
     }
 

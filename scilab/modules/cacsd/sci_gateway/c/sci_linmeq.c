@@ -521,7 +521,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
         }
     }
 
-    // Determine the lenghts of working arrays.
+    // Determine the lengths of working arrays.
     // Use a larger value for NDWORK for enabling calls of block algorithms
     // in DGEES, and possibly in DGEHRD, DGEQRF, DGERQF, SB04PD.
     LDA = Max(1, N);

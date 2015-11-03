@@ -202,7 +202,7 @@
     clf();
     nyquist([Plant;Plant*PID],0.5,100,["Plant";"Plant and PID corrector"]);
     hallchart(colors=color('light gray')*[1 1])
-    //move the caption in the lower rigth corner
+    //move the caption in the lower right corner
     ax=gca();Leg=ax.children(1);
     Leg.legend_location="in_upper_left";
     ]]></programlisting>

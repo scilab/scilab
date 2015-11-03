@@ -666,7 +666,7 @@ static void GradFixedlog(double minVal, double maxVal, double* outTicks, int nbG
     int initSize  = 0;
     int i = 0;
 
-    /* intialize the array as usual */
+    /* initialize the array as usual */
     double tempTicks[20];
     GradLog(minVal, maxVal, tempTicks, &initSize, FALSE);
 

@@ -1043,7 +1043,7 @@ function [dmval,zu]=fsub(x,parameters)
                     <para>
                         where all these arguments excepted <literal>ifail</literal> are
                         described above. <literal>ifail</literal> can be used to display the
-                        bvode call corresonding to the selected optional arguments. If
+                        bvode call corresponding to the selected optional arguments. If
                         <literal>guess</literal> is given <literal>iguess</literal> is set to
                         1
                     </para>

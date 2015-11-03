@@ -135,7 +135,7 @@
     PID=syslin('c',(1/(2*xsi*tau*s))*(1+2*xsi*tau*s+tau.^2*s.^2));
     clf();
     black([Plant;Plant*PID ],0.01,100,["Plant";"Plant and PID corrector"]);
-    //move the caption in the lower rigth corner
+    //move the caption in the lower right corner
     ax=gca();Leg=ax.children(1);
     Leg.legend_location="in_lower_right";
     nicholschart(colors=color('light gray')*[1 1])

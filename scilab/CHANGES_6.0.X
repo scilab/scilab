@@ -217,6 +217,8 @@ Bug Fixes
 
 * Bug #14212 fixed - Scilab 6 did not load array of struct from Scilab 5.5 files correctly
 
+* Bug #14219 fixed - As bug #14203, improve some error messages, some help pages and some comments.
+
 * Bug #14223 fixed - det returned an error when it is used with a singular matrix.
 
 * Bug #14225 fixed - command-line option "-quit" should set the processs Exit status

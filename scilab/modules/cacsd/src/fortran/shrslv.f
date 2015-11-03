@@ -8,7 +8,7 @@ c
 c!calling sequence
 c
 c       subroutine shrslv(a,b,c,m,n,na,nb,nc,eps,cond,rmax,fail)
-c   a      a doubly subscripted array containg the matrix a in
+c   a      a doubly subscripted array containing the matrix a in
 c          lower schur form
 c
 c   b      a doubly subscripted array containing tbe matrix b

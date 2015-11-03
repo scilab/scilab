@@ -64,8 +64,8 @@
                                     This field contains the <literal>visible</literal> property value
                                     for axes . Its value should be <literal>"on" </literal> or
                                     <literal>"off"</literal> . By default, axes is visible <literal>"on"</literal>
-                                    in case all "visible" chidren are displayed on the screen, If
-                                    <literal>"off"</literal> the axes and all its chidren are not
+                                    in case all "visible" children are displayed on the screen, If
+                                    <literal>"off"</literal> the axes and all its children are not
                                     drawn.
                                 </para>
                             </listitem>
@@ -82,10 +82,10 @@
                                     corresponding to the <literal> x,y</literal> or <literal>z</literal> axis. The
                                     scaling data and if required the grids are drawn if the value is
                                     <literal>"on"</literal>. Note that when creating a simple axes entity
-                                    using the <literal>gca()</literal> (shorcut for
+                                    using the <literal>gca()</literal> (shortcut for
                                     <literal>get"current_axes")</literal>) or <literal>gcf()</literal> (shortcut
                                     for <literal>get(current_figure)</literal>) commands, the axes
-                                    visiblibilty is set to <literal>"off"</literal>.
+                                    visibility is set to <literal>"off"</literal>.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -95,7 +95,7 @@
                                 <para>
                                     A <literal>1x3</literal> string vector corresponding to the three
                                     axes (X,Y,Z). For each axes, the property specifies the direction
-                                    of the incresing values. If <literal>"off"</literal>, the default
+                                    of the increasing values. If <literal>"off"</literal>, the default
                                     direction is used. If <literal>"on"</literal>, the direction is reverse.
                                     It is also possible to use only one string, <literal>"on"</literal> or
                                     <literal>"off"</literal>, to set simultaneously the three data.
@@ -326,7 +326,7 @@
                             <term>ticks_st: </term>
                             <listitem>
                                 <para>
-                                    This property specifies scale-translate factors to apply to each ticks position before to use it in the formatted string used as label. So if the factors are <literal>[x_s y_s z_s ; x_t y_t z_t]</literal> and if a x_tick is positionned at X, the value used to format the label will be <literal>x_s*(X-x_t)</literal>. It could be particulary useful when the axes bounds are too closed.
+                                    This property specifies scale-translate factors to apply to each ticks position before to use it in the formatted string used as label. So if the factors are <literal>[x_s y_s z_s ; x_t y_t z_t]</literal> and if a x_tick is positioned at X, the value used to format the label will be <literal>x_s*(X-x_t)</literal>. It could be particularly useful when the axes bounds are too closed.
                                     <para>
                                         It is a matrix with 2 rows and at most 3 columns.
                                     </para>
@@ -419,7 +419,7 @@
                             <listitem>
                                 <para>
                                     This property is used to have isometric scales on the x, y and
-                                    z axes (for exemple to make the display of the curve sin(x) versus
+                                    z axes (for example to make the display of the curve sin(x) versus
                                     cos(x) be a circle not an ellipse). Its value should be
                                     <literal>"on"</literal> or <literal>"off"</literal>. If the value is
                                     <literal>"on"</literal>, the axes <literal>data_bounds</literal> automatically
@@ -471,7 +471,7 @@
                             <listitem>
                                 <para>
                                     3 character string that sets the scale (linear or logarithmic) along the axes.
-                                    Each character speficfies the scale for respectively the X, Y and Z axes.
+                                    Each character specifies the scale for respectively the X, Y and Z axes.
                                     They should take a value between <literal>'n'</literal> for linear scale or
                                     <literal>'l'</literal> for logarithmic scale.
                                 </para>
@@ -503,7 +503,7 @@
                                     <literal>[xmin,xmax,ymin,ymax]</literal>,
                                     <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>,
                                     <literal>[xmin;xmax;ymin;ymax]</literal> or
-                                    <literal>[xmin;xmax;ymin;ymax;zmin;zmax]</literal>. Note that, to stricly have the
+                                    <literal>[xmin;xmax;ymin;ymax;zmin;zmax]</literal>. Note that, to strictly have the
                                     specified data bounds, <literal>tight_limits</literal> must be set to
                                     <literal>"on"</literal> value (see above).
                                     To manually set data_bounds set <literal>auto_scale="off"</literal>
@@ -573,7 +573,7 @@
                             <listitem>
                                 <para>
                                     This field can be use to store any scilab variable in the axes
-                                    data structure, and to retreive it.
+                                    data structure, and to retrieve it.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -596,7 +596,7 @@
                             <listitem>
                                 <para>
                                     If this property value is equal to <literal>"on"</literal>, a call
-                                    to a high level graphic will re-ininitialize the current axes and
+                                    to a high level graphic will re-initialize the current axes and
                                     erase all its children before preforming the drawing (log_flags will be reset).
                                     If the value is <literal>"off"</literal> the drawings will be added to current axes
                                     according to <literal>"auto_scale"</literal> property.
@@ -704,7 +704,7 @@
                                     directly given in points. When <literal>mark_size_unit</literal> is set
                                     to <literal>"tabulated"</literal>, <literal>mark_size</literal> is computed
                                     relative to the font size array: therefore, its value should be an
-                                    integer in [0 5] whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and
+                                    integer in [0 5] which stands for 8pt, 10pt, 12pt, 14pt, 18pt and
                                     24pt. Note that <link linkend="plot2d">plot2d</link> and pure scilab functions use
                                     <literal>tabulated</literal> mode as default ; when using
                                     <link linkend="plot">plot</link> function, the <literal>point</literal> mode is
@@ -720,7 +720,7 @@
                                     property value for Segs Rectangle Legend Axis Plot3d Fac3d and
                                     Polyline objects. <literal>mark_size</literal> selects the font size of
                                     mark to be displayed. Its value should be an integer in [0 5]
-                                    whith stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
+                                    which stands for 8pt, 10pt, 12pt, 14pt, 18pt and 24pt.
                                 </para>
                                 <para>
                                     <warning>In the special case where mark_style and mark_size are 0, a dot of one pixel is drawn.</warning>
@@ -736,7 +736,7 @@
                                     rectangle, legend, surface, segment and axis objects are using
                                     this property to specify a foreground (edge) color for their
                                     marks. Its value should be a color index (relative to the current
-                                    color_map) or 0 for transparant edge. Note that the default value is <literal>-1</literal>
+                                    color_map) or 0 for transparent edge. Note that the default value is <literal>-1</literal>
                                     (default black) and, even if you change the
                                     <literal>color_map</literal>, this <literal>-1</literal> value will always
                                     point onto the default black color.
@@ -752,7 +752,7 @@
                                     created under this axes. Polyline, rectangle, legend, surface,
                                     segment and axis objects are using this property to specify a
                                     background (face) color for their marks. It takes as value an
-                                    index relative to the current colormap or 0 for transparant face. Note that the default value
+                                    index relative to the current colormap or 0 for transparent face. Note that the default value
                                     is <literal>-2</literal> (default white) and, even if you change the
                                     <literal>color_map</literal>, this <literal>-2</literal> value will always
                                     point onto the default white color.

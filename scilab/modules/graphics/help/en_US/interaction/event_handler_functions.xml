@@ -28,7 +28,7 @@
                 <term>h</term>
                 <listitem>
                     <para>window number if the event occurred in an axe with a figure type parent. (DEPRECATED)</para>
-                    <para>handle of the axe's parent where the event occured.</para>
+                    <para>handle of the axe's parent where the event occurred.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -55,7 +55,7 @@
         <title>Description</title>
         <para>
             When the event handler mode is enable, Scilab will call the specified event handler
-            function each time an event occures in the graphic window. The event handler function
+            function each time an event occurres in the graphic window. The event handler function
             must comply with the above prototype. Each time an event occurred, the function is called
             and its four parameters are set accordingly to the window number, mouse position and
             type of event.

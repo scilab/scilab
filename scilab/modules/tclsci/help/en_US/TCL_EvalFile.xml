@@ -58,7 +58,7 @@
             for instance to use Interface Builders such as SpecTcl to design the
             interface. The interfaces built directly with tcl/tk scripts are much
             faster than the ones built with the Scilab Graphic Object library provided
-            with tksci (see uicontrol for example). Indeed, those Objects are warpings
+            with tksci (see uicontrol for example). Indeed, those Objects are wrappers
             around tk graphic widgets. Nevertheless, this way of creating graphic user
             interface should only be used when one aims at addressing directly
             specific tk/tcl features. There are two main reasons for this. First of

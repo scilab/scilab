@@ -147,7 +147,7 @@
                jimport javax.swing.JLabel;
 
                jframe = JFrame.new("Hello World !! Window");
-               jlabel = JLabel.new("A JLabel containing ""Hello Wolrd""");
+               jlabel = JLabel.new("A JLabel containing ""Hello World""");
                cp = jframe.getContentPane();
                cp.add(jlabel);
                jframe.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

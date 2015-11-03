@@ -19,7 +19,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     //  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci.
     //  help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
     //  help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.dem.sce demo files.
-    //  [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.
+    //  [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrices.
     // Parameters
     //  funname: the name of a single .sci source file to be processed.
     //  dirname: directory name where all .sci files will be processed.

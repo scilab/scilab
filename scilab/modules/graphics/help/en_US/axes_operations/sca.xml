@@ -35,7 +35,7 @@
         <para>
             <literal>sca(a)</literal> is used to set the current <literal>Axes</literal> entity (see
             <link linkend="graphics_entities">graphics_entities</link>) to the one pointed to by the handle
-            <literal>a</literal>. The drawing functions generaly use the
+            <literal>a</literal>. The drawing functions generally use the
             current axes entity.
         </para>
     </refsection>
