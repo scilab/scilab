@@ -104,19 +104,25 @@ struct objs
                 case BLOCK :
                 {
                     BlockAdapter* block = new BlockAdapter(controller, static_cast<model::Block*>(o));
-                    BlockAdapter* oldBlock = adaptor.getListObjects()->get(i)->getAs<BlockAdapter>();
-                    block->setFrom(oldBlock->getFrom());
-                    block->setTo(oldBlock->getTo());
-                    block->setListObjects(oldBlock->getListObjects());
-                    block->setContribContent(oldBlock->getContribContent());
+                    if (adaptor.getListObjects()->getSize() != 0)
+                    {
+                        BlockAdapter* oldBlock = adaptor.getListObjects()->get(i)->getAs<BlockAdapter>();
+                        block->setFrom(oldBlock->getFrom());
+                        block->setTo(oldBlock->getTo());
+                        block->setListObjects(oldBlock->getListObjects());
+                        block->setContribContent(oldBlock->getContribContent());
+                    }
                     ret->append(block);
                     break;
                 }
                 default : // LINK
                     LinkAdapter* link = new LinkAdapter(controller, static_cast<model::Link*>(o));
-                    link->setFrom(adaptor.getFrom()[link_i]);
-                    link->setTo(adaptor.getTo()[link_i]);
-                    link_i++;
+                    if (adaptor.getListObjects()->getSize() != 0)
+                    {
+                        link->setFrom(adaptor.getFrom()[link_i]);
+                        link->setTo(adaptor.getTo()[link_i]);
+                        link_i++;
+                    }
                     ret->append(link);
                     break;
             }
