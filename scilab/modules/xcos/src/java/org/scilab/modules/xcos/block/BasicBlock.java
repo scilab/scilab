@@ -15,8 +15,12 @@ package org.scilab.modules.xcos.block;
 import java.awt.MouseInfo;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.Deque;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -38,6 +42,10 @@ import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
+import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfScicosID;
+import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.EditFormatAction;
@@ -232,75 +240,214 @@ public class BasicBlock extends XcosCell implements Serializable {
     }
 
     /**
+     * Does the block update and register on the undo manager
+     * @param controller
+     *
+     * @param modifiedBlock
+     *            the new settings
+     */
+    public void updateBlockSettings(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
+        if (modifiedBlock == null) {
+            return;
+        }
+
+        /*
+         * Update the block settings
+         */
+        updateFields(controller, parent, modifiedBlock);
+
+        /*
+         * Update the children ports
+         */
+        updateChildren(controller, parent, modifiedBlock);
+    }
+
+    /**
+     * Update the instance field and the model values
+     *
+     * @param modifiedBlock
+     *            the modified instance
+     */
+    private void updateFields(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
+        if (modifiedBlock == null) {
+            return;
+        }
+
+        // TODO these copies are not managed by undo/redo ; fix that
+
+        int[] integer = new int[1];
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_FUNCTION_API, integer);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_API, integer[0]);
+
+        String[] str = new String[1];
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.INTERFACE_FUNCTION, str);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.INTERFACE_FUNCTION, str[0]);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_FUNCTION_NAME, str);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_FUNCTION_NAME, str[0]);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_BLOCKTYPE, str);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_BLOCKTYPE, str[0]);
+
+        VectorOfDouble vDouble = new VectorOfDouble();
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.EXPRS, vDouble);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.EXPRS, vDouble);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.STATE, vDouble);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STATE, vDouble);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.DSTATE, vDouble);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DSTATE, vDouble);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.ODSTATE, vDouble);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.ODSTATE, vDouble);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.RPAR, vDouble);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.RPAR, vDouble);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.OPAR, vDouble);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.OPAR, vDouble);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.EQUATIONS, vDouble);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.EQUATIONS, vDouble);
+
+        VectorOfInt vInt = new VectorOfInt();
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.SIM_DEP_UT, vInt);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SIM_DEP_UT, vInt);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.NZCROSS, vInt);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.NZCROSS, vInt);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.NMODE, vInt);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.NMODE, vInt);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.IPAR, vInt);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.IPAR, vInt);
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.COLOR, vInt);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.COLOR, vInt);
+
+        VectorOfString vStr = new VectorOfString();
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, vStr);
+
+        VectorOfScicosID children = new VectorOfScicosID();
+
+        controller.getObjectProperty(modifiedBlock.getUID(), modifiedBlock.getKind(), ObjectProperties.CHILDREN, children);
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.CHILDREN, children);
+
+        /*
+         * JGraphX mapped properties
+         */
+        parent.getModel().setStyle(this, modifiedBlock.getStyle());
+        parent.getModel().setValue(this, modifiedBlock.getValue());
+    }
+
+    /**
      * Update the children of the block.
      *
      * @param modifiedBlock
      *            the new block instance
      */
-    private void updateChildren(BasicBlock modifiedBlock) {
-        // if (modifiedBlock == null) {
-        // return;
-        // }
-        //
-        // XcosDiagram graph = getParentDiagram();
-        // if (graph == null) {
-        // setParentDiagram(Xcos.findParent(this));
-        // graph = getParentDiagram();
-        // LOG.finest(PARENT_DIAGRAM_WAS_NULL);
-        // }
-        //
-        // /*
-        // * Checked as port classes only
-        // */
-        // @SuppressWarnings("unchecked")
-        // Set < Class <? extends mxICell >> types = new HashSet < Class <? extends mxICell >> (Arrays.asList(InputPort.class, OutputPort.class, ControlPort.class,
-        // CommandPort.class));
-        //
-        // Map < Class <? extends mxICell > , Deque<mxICell >> annotatedOlds = getTypedChildren(types);
-        // Map < Class <? extends mxICell > , Deque<mxICell >> annotatedNews = modifiedBlock.getTypedChildren(types);
-        //
-        // getParentDiagram().getModel().beginUpdate();
-        // try {
-        // for (Class <? extends mxICell > klass : types) {
-        // final Deque<mxICell> olds = annotatedOlds.get(klass);
-        // final Deque<mxICell> news = annotatedNews.get(klass);
-        //
-        // // updated ports
-        // while (!olds.isEmpty() && !news.isEmpty()) {
-        // mxICell previous = olds.poll();
-        // mxICell modified = news.poll();
-        //
-        // final int previousIndex = children.indexOf(previous);
-        //
-        // // relink
-        // if (previous.getEdgeCount() != 0) {
-        // final mxICell edge = previous.getEdgeAt(0);
-        // final boolean isOutgoing = previous == edge.getTerminal(true);
-        // previous.removeEdge(edge, isOutgoing);
-        // modified.insertEdge(edge, isOutgoing);
-        // }
-        //
-        // getParentDiagram().removeCells(new Object[] { previous }, false);
-        // getParentDiagram().addCells(new Object[] { modified }, this, previousIndex);
-        //
-        // // Clone the geometry to avoid empty geometry on new cells.
-        // getParentDiagram().getModel().setGeometry(modified, (mxGeometry) previous.getGeometry().clone());
-        //
-        // }
-        //
-        // // removed ports
-        // if (!olds.isEmpty()) {
-        // getParentDiagram().removeCells(olds.toArray(), true);
-        // }
-        //
-        // // added ports
-        // if (!news.isEmpty()) {
-        // getParentDiagram().addCells(news.toArray(), this);
-        // }
-        // }
-        // } finally {
-        // getParentDiagram().getModel().endUpdate();
-        // }
+    private void updateChildren(JavaController controller, XcosDiagram parent, BasicBlock modifiedBlock) {
+        if (modifiedBlock == null) {
+            return;
+        }
+
+        /*
+         * Checked as port classes only
+         */
+        Set < Class <? extends mxICell >> types = new HashSet < Class <? extends mxICell >> (Arrays.asList(InputPort.class, OutputPort.class, ControlPort.class, CommandPort.class));
+
+        Map < Class <? extends mxICell > , Deque<mxICell >> annotatedOlds = getTypedChildren(types);
+        Map < Class <? extends mxICell > , Deque<mxICell >> annotatedNews = modifiedBlock.getTypedChildren(types);
+
+        parent.getModel().beginUpdate();
+        try {
+            for (Class <? extends mxICell > klass : types) {
+                final Deque<mxICell> olds = annotatedOlds.get(klass);
+                final Deque<mxICell> news = annotatedNews.get(klass);
+
+                // updated ports
+                while (!olds.isEmpty() && !news.isEmpty()) {
+                    mxICell previous = olds.poll();
+                    mxICell modified = news.poll();
+
+                    final int previousIndex = children.indexOf(previous);
+
+                    // relink
+                    if (previous.getEdgeCount() != 0) {
+                        final mxICell edge = previous.getEdgeAt(0);
+                        final boolean isOutgoing = previous == edge.getTerminal(true);
+                        previous.removeEdge(edge, isOutgoing);
+                        modified.insertEdge(edge, isOutgoing);
+                    }
+
+                    parent.removeCells(new Object[] { previous }, false);
+                    parent.addCells(new Object[] { modified }, this, previousIndex);
+
+                    // Clone the geometry to avoid empty geometry on new cells.
+                    parent.getModel().setGeometry(modified, (mxGeometry) previous.getGeometry().clone());
+
+                }
+
+                // removed ports
+                if (!olds.isEmpty()) {
+                    parent.removeCells(olds.toArray(), true);
+                }
+
+                // added ports
+                if (!news.isEmpty()) {
+                    parent.addCells(news.toArray(), this);
+                }
+            }
+        } finally {
+            parent.getModel().endUpdate();
+        }
+    }
+
+    /**
+     * Format the children as a typed map for the given class set.
+     *
+     * @param types
+     *            the classes to search for.
+     * @return a map which linked foreach type the corresponding cell list.
+     */
+    private Map < Class <? extends mxICell > , Deque<mxICell >> getTypedChildren(Set < Class <? extends mxICell >> types) {
+        Map < Class <? extends mxICell > , Deque<mxICell >> oldPorts = new HashMap < Class <? extends mxICell > , Deque<mxICell >> ();
+
+        // Allocate all types set
+        for (Class <? extends mxICell > type : types) {
+            oldPorts.put(type, new LinkedList<mxICell>());
+        }
+
+        if (getChildCount() <= 0) {
+            return oldPorts;
+        }
+
+        // children lookup
+        for (Object cell : children) {
+
+            Class <? extends Object > klass = cell.getClass();
+            while (klass != null) {
+                if (types.contains(klass)) {
+                    break;
+                }
+                klass = klass.getSuperclass();
+            }
+
+            final Deque<mxICell> current = oldPorts.get(klass);
+            if (current != null) {
+                current.add((mxICell) cell);
+            }
+        }
+
+        return oldPorts;
     }
 
     /**
@@ -310,7 +457,7 @@ public class BasicBlock extends XcosCell implements Serializable {
      *            the classes to search for.
      * @return a map which linked foreach type the corresponding cell index in the children.
      */
-    public Map<Class<? extends mxICell>, ArrayList<Integer>> getTypedChildrenIndexes(Set<Class<? extends mxICell>> types) {
+    private Map<Class<? extends mxICell>, ArrayList<Integer>> getTypedChildrenIndexes(Set<Class<? extends mxICell>> types) {
         Map<Class<? extends mxICell>, ArrayList<Integer>> oldPorts = new HashMap<Class<? extends mxICell>, ArrayList<Integer>>();
 
         // Allocate all types set
@@ -384,93 +531,6 @@ public class BasicBlock extends XcosCell implements Serializable {
 
     public ArrayList<Long> getTypedChildrenUIDs(Class<? extends mxICell> type) {
         return getTypedChildrenUIDs(Collections.singleton(type)).get(type);
-    }
-
-    /**
-     * @param context
-     *            parent diagram context
-     */
-    public void openBlockSettings() {
-        // FIXME: implement something
-        // final XcosDiagram graph;
-        // if (getParentDiagram() == null) {
-        // setParentDiagram(Xcos.findParent(this));
-        // graph = getParentDiagram();
-        // LOG.finest(PARENT_DIAGRAM_WAS_NULL);
-        // } else {
-        // graph = getParentDiagram();
-        // }
-        // if (graph instanceof PaletteDiagram) {
-        // return;
-        // }
-        //
-        // if (context == null) {
-        // throw new IllegalArgumentException();
-        // }
-        //
-        // // prevent to open twice
-        // if (isLocked()) {
-        // return;
-        // }
-        //
-        // graph.setCellsLocked(true);
-        // graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        //
-        // // sort children according to the ordering parameter (useful on
-        // // scilab-5.2.x diagrams)
-        // sortChildren();
-        //
-        // final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        // if (handler == null) {
-        // return;
-        // }
-        //
-        // try {
-        // // Write scs_m
-        // handler.writeBlock(this);
-        // // Write context
-        // handler.writeContext(context);
-        //
-        // final ActionListener action = new ActionListener() {
-        // @Override
-        // public void actionPerformed(ActionEvent e) {
-        // LOG.finest("Updating data.");
-        //
-        // graph.getView().clear(this, true, true);
-        //
-        // // Now read new Block
-        // graph.getModel().beginUpdate();
-        // try {
-        // final BasicBlock modifiedBlock = handler.readBlock();
-        // updateBlockSettings(modifiedBlock);
-        //
-        // graph.fireEvent(new mxEventObject(XcosEvent.ADD_PORTS, XcosConstants.EVENT_BLOCK_UPDATED, BasicBlock.this));
-        // } catch (ScicosFormatException ex) {
-        // LOG.severe(ex.toString());
-        // } finally {
-        // graph.getModel().endUpdate();
-        // setLocked(false);
-        //
-        // handler.release();
-        //
-        // graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        // graph.setCellsLocked(false);
-        // }
-        // }
-        // };
-        //
-        // setLocked(true);
-        // ScilabInterpreterManagement.asynchronousScilabExec(action, "blk = xcosBlockInterface", getInterfaceFunctionName().toCharArray(), "set",
-        // ScilabDirectHandler.BLK.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
-        // } catch (InterpreterException e) {
-        // LOG.severe(e.toString());
-        // setLocked(false);
-        //
-        // handler.release();
-        //
-        // graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-        // graph.setCellsLocked(false);
-        // }
     }
 
     /**

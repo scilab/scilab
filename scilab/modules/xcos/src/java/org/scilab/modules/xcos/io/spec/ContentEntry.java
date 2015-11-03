@@ -99,6 +99,7 @@ public class ContentEntry implements Entry {
 
             LOG.entering("XMLStreamWriter", "write");
             new XcosWriter(pack.getDictionary(), writer).write(content.getUID(), content.getKind());
+            writer.close();
             LOG.exiting("XMLStreamWriter", "write");
 
             /*
@@ -110,6 +111,8 @@ public class ContentEntry implements Entry {
             pack.getManifest().getFirstChild().appendChild(e);
         } catch (XMLStreamException e) {
             Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessage());
+        } finally {
+            stream.closeEntry();
         }
     }
 }

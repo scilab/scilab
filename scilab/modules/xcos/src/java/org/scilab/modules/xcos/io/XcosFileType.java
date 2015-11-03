@@ -134,10 +134,13 @@ public enum XcosFileType {
 
             final XMLOutputFactory factory = ScilabXMLOutputFactory.newInstance();
             final XMLStreamWriter writer = factory.createXMLStreamWriter(result);
-
-            LOG.entering("XMLStreamWriter", "write");
-            new XcosWriter(null, writer).write(from.getUID(), from.getKind());
-            LOG.exiting("XMLStreamWriter", "write");
+            try {
+                LOG.entering("XMLStreamWriter", "write");
+                new XcosWriter(null, writer).write(from.getUID(), from.getKind());
+                LOG.exiting("XMLStreamWriter", "write");
+            } finally {
+                writer.close();
+            }
         }
     },
     /**

@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.graph.swing.handler;
 
 import java.awt.datatransfer.DataFlavor;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +22,10 @@ import java.util.logging.Logger;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.graph.model.BlockInterFunction;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
@@ -32,6 +35,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxIGraphModel;
+import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.swing.handler.mxGraphHandler;
 import com.mxgraph.swing.util.mxGraphTransferable;
 import com.mxgraph.util.mxPoint;
@@ -96,10 +100,10 @@ public class GraphHandler extends mxGraphHandler {
                 if (cell instanceof BasicLink) {
                     clickOnLink(e, (BasicLink) cell);
                 } else if (cell instanceof BasicBlock) {
-                    openBlock(e, (BasicBlock) cell);
+                    openBlock(graphComponent, e, (BasicBlock) cell);
                 } else if (cell instanceof BasicPort) {
                     // translated to the parent
-                    openBlock(e, (BasicBlock) ((BasicPort) cell).getParent());
+                    openBlock(graphComponent, e, (BasicBlock) ((BasicPort) cell).getParent());
                 } else if (cell == null) {
                     createTextBlock(e);
                 }
@@ -204,14 +208,15 @@ public class GraphHandler extends mxGraphHandler {
     /**
      * Open a block
      *
+     * @param comp the component
      * @param e
      *            the mouse event
      * @param cell
      *            the block
      */
-    private void openBlock(MouseEvent e, BasicBlock cell) {
-        // FIXME: play with the xcos view
-        //        cell.openBlockSettings(((XcosDiagram) graphComponent.getGraph()).getContext());
+    private void openBlock(mxGraphComponent comp, MouseEvent e, BasicBlock cell) {
+        BlockParametersAction action = GraphActionManager.getInstance((ScilabGraph) comp.getGraph(), BlockParametersAction.class);
+        action.actionPerformed();
 
         e.consume();
     }

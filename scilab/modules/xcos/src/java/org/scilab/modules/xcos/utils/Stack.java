@@ -47,8 +47,11 @@ public class Stack<E> {
         return stack.size();
     }
 
+    /**
+     * Stream in a reversed order (traditional stack usage)
+     * @return a stream object
+     */
     public Stream<E> stream() {
-        // stream in a reversed order (traditional stack usage)
         return IntStream.range(0, stack.size()).mapToObj(i -> stack.get(stack.size() - 1 - i));
     }
 

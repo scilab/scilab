@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
@@ -57,6 +58,7 @@ public final class XcosCellFactory {
 
     /** Size compatibility for user defined blocks */
     private static final double DEFAULT_SIZE_FACTOR = 20.0;
+    private static final Logger LOG = Logger.getLogger(XcosCellFactory.class.getName());
 
     /** Default singleton constructor */
     private XcosCellFactory() {
@@ -72,12 +74,22 @@ public final class XcosCellFactory {
      *            the kind of the created object (as an int)
      */
     @ScilabExported(module = "xcos", filename = "XcosCellFactory.giws.xml")
-    public static void created(long uid, int kind) {
+    public static synchronized void created(long uid, int kind) {
         lastCreated = new ScicosObjectOwner(uid, Kind.values()[kind]);
 
     }
 
     private static ScicosObjectOwner lastCreated = null;
+
+    /**
+     * Retrieve and clear the last created object (<pre>xcosCellCreated</pre> call)
+     * @return the last created object
+     */
+    public static synchronized ScicosObjectOwner getLastCreated() {
+        ScicosObjectOwner last = lastCreated;
+        lastCreated = null;
+        return last;
+    }
 
     /*
      * Diagram management
@@ -101,12 +113,12 @@ public final class XcosCellFactory {
         XcosDiagram diagram;
         try {
             synchronousScilabExec(
-                "function f(), " + buildCall("exec", filename, -1) + buildCall("xcosCellCreated", "scs_m".toCharArray()) + "endfunction; f();");
+                "function f(), " + buildCall("exec", filename, -1) + "; " + buildCall("xcosCellCreated", "scs_m".toCharArray()) + "endfunction; f();");
 
-            if (lastCreated.getKind() == Kind.DIAGRAM) {
-                diagram = new XcosDiagram(lastCreated.getUID(), lastCreated.getKind());
+            ScicosObjectOwner last = getLastCreated();
+            if (last.getKind() == Kind.DIAGRAM) {
+                diagram = new XcosDiagram(last.getUID(), last.getKind());
                 insertChildren(controller, diagram);
-                lastCreated = null;
             } else {
                 diagram = null;
             }
@@ -186,16 +198,14 @@ public final class XcosCellFactory {
             if (srcPort != null) {
                 l.setSource(srcPort);
             } else {
-                //          	  FIXME Commented for the alpha release
-                //                throw new IllegalStateException();
+                LOG.severe("Unable to connect link " + l.getId() + " : invalid source " + src[0]);
             }
 
-            BasicPort destPort = ports.get(dest[0]);;
+            BasicPort destPort = ports.get(dest[0]);
             if (destPort != null) {
                 l.setTarget(destPort);
             } else {
-                //            	  FIXME Commented for the alpha release
-                //                throw new IllegalStateException();
+                LOG.severe("Unable to connect link " + l.getId() + " : invalid target " + dest[0]);
             }
         }
 
@@ -247,23 +257,25 @@ public final class XcosCellFactory {
     private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) {
         BasicBlock block;
         try {
+            ScicosObjectOwner last;
+
             if (BlockInterFunction.BASIC_BLOCK.name().equals(interfaceFunction)) {
                 // deliver all the MVC speed for the casual case
-                lastCreated = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
+                last = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
             } else {
                 // allocate an empty block that will be filled later
                 synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
+                last = getLastCreated();
             }
 
             // defensive programming
-            if (lastCreated == null) {
+            if (last == null) {
                 System.err.println("XcosCellFactory#createBlock : unable to allocate " + interfaceFunction);
                 return null;
             }
 
-            if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(lastCreated.getKind())) {
-                block = createBlock(controller, func, interfaceFunction, lastCreated.getUID());
-                lastCreated = null;
+            if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(last.getKind())) {
+                block = createBlock(controller, func, interfaceFunction, last.getUID());
             } else {
                 block = null;
             }
@@ -375,6 +387,24 @@ public final class XcosCellFactory {
         block.setGeometry(new mxGeometry(x, y, w, h));
 
         return block;
+    }
+
+    /**
+     * Instantiate a new block for an already created MVC object
+     *
+     * @param lastCreated the owned MVC object
+     * @return a block or null
+     */
+    public static BasicBlock createBlock(final JavaController controller, ScicosObjectOwner lastCreated) {
+        // pre-condition
+        if (lastCreated.getKind() != Kind.ANNOTATION && lastCreated.getKind() != Kind.BLOCK) {
+            return null;
+        }
+
+        String[] interfaceFunction = new String[1];
+        BlockInterFunction func = lookForInterfunction(interfaceFunction[0]);
+
+        return createBlock(controller, func, interfaceFunction[0], lastCreated.getUID());
     }
 
     /*

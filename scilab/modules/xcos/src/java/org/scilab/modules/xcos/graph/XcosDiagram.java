@@ -38,6 +38,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -52,6 +54,7 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.SaveAsAction;
@@ -67,10 +70,12 @@ import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosFileType;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
 import org.scilab.modules.xcos.link.explicit.ExplicitLink;
@@ -87,6 +92,7 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.Stack;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -201,6 +207,38 @@ public class XcosDiagram extends ScilabGraph {
                 return klass.isInstance(cell);
             }
         });
+    }
+
+    /**
+     * Fill the hierarchy from the first element up to the root diagram (included)
+     * <p>
+     * Should be used as :
+     * <pre>
+     *  hierarchy = fillHierarchy(new ScicosObjectOwner(getUID(), getKind()))
+     * </pre>
+     * @param hierarchy the collection to fill
+     * @return the filled collection (the root at the end)
+     */
+    public static Stack<ScicosObjectOwner> lookForHierarchy(ScicosObjectOwner current) {
+        ScicosObjectOwner local = current;
+        Stack<ScicosObjectOwner> hierarchy = new Stack<>();
+        JavaController controller = new JavaController();
+
+        long[] parent = new long[] {local.getUID()};
+        if (local.getKind() == Kind.DIAGRAM) {
+            hierarchy.push(local);
+            return hierarchy;
+        }
+
+        while (parent[0] != 0l) {
+            hierarchy.push(new ScicosObjectOwner(parent[0], Kind.BLOCK));
+            controller.getObjectProperty(local.getUID(), local.getKind(), ObjectProperties.PARENT_BLOCK, parent);
+        }
+
+        controller.getObjectProperty(local.getUID(), local.getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
+        hierarchy.push(new ScicosObjectOwner(parent[0], Kind.DIAGRAM));
+
+        return hierarchy;
     }
 
     /**
@@ -1751,6 +1789,7 @@ public class XcosDiagram extends ScilabGraph {
         }
         setTitle(name.substring(0, name.lastIndexOf('.')));
         setModified(false);
+        updateTabTitle();
 
         fireEvent(new mxEventObject(mxEvent.ROOT));
 
@@ -1902,6 +1941,10 @@ public class XcosDiagram extends ScilabGraph {
      * @return Root parent of the whole parent
      */
     public XcosDiagram getRootDiagram() {
+        if (getKind() == Kind.DIAGRAM) {
+            return this;
+        }
+
         JavaController controller = new JavaController();
         long[] parent = new long[1];
         controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
@@ -1990,17 +2033,31 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Set the current diagram in a modified state
-     *
-     * @param modified
-     *            True or False whether the current diagram must be saved or not.
+     * Read the applicable context on this diagram.
+     * <p>
+     * This function retrieve the current diagram's context and all its parent
+     * @return the full context
      */
-    @Override
-    public void setModified(final boolean modified) {
-        super.setModified(modified);
-        // FIXME update the tab title on the caller
-        // updateTabTitle();
+    public String[] getContext() {
+        final ArrayList<String> allContext = new ArrayList<>();
+        final Stack<ScicosObjectOwner> hierarchy = lookForHierarchy(new ScicosObjectOwner(getUID(), getKind()));
+
+        final JavaController controller = new JavaController();
+        final VectorOfString context = new VectorOfString();
+
+        hierarchy.stream().forEach(o -> {
+            controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.DIAGRAM_CONTEXT, context);
+
+            final int length = context.size();
+            for (int i = 0; i < length; i++) {
+                allContext.add(context.get(i));
+            }
+            allContext.add("");
+        });
+
+        return allContext.toArray(new String[allContext.size()]);
     }
+
 
     /**
      * Evaluate the current context
@@ -2009,27 +2066,26 @@ public class XcosDiagram extends ScilabGraph {
      */
     public Map<String, String> evaluateContext() {
         Map<String, String> result = Collections.emptyMap();
-        // FIXME: evaluate the context on scilab 6 ?
-        // final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        // if (handler == null) {
-        // return result;
-        // }
-        //
-        // try {
-        // // first write the context strings
-        // handler.writeContext(getContext());
-        //
-        // // evaluate using script2var
-        // ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + ", struct());");
-        //
-        // // read the structure
-        // result = handler.readContext();
-        // } catch (final InterpreterException e) {
-        // info("Unable to evaluate the contexte");
-        // e.printStackTrace();
-        // } finally {
-        // handler.release();
-        // }
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return result;
+        }
+
+        try {
+            // first write the context strings
+            handler.writeContext(getContext());
+
+            // evaluate using script2var
+            ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + ", struct());");
+
+            // read the structure
+            result = handler.readContext();
+        } catch (final InterpreterException e) {
+            info("Unable to evaluate the contexte");
+            e.printStackTrace();
+        } finally {
+            handler.release();
+        }
 
         return result;
     }
