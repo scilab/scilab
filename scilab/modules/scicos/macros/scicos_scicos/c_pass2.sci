@@ -20,7 +20,7 @@
 //
 
 function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
-    // cor    ; correspondance table with initial block ordering
+    // cor    ; correspondence table with initial block ordering
     //
     // bllst: list with nblk elts where nblk denotes number of blocks.
     //        Each element must be a list with 16 elements:

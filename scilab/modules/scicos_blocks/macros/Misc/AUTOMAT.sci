@@ -46,7 +46,7 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
             end
             //===========================================
             GTV="[ok,NMode,Minitial,NX,X0,XP,"+CX+",exprs]=scicos_getvalue(''Set Finite state machine model'',..
-            [''Number (finite-state) Modes'';''Initial Mode'';''Number of continuous-time states'';''Continuous-time states intial values'';''Xproperties of continuous-time states in each Mode'';"+MSG+"],..
+            [''Number (finite-state) Modes'';''Initial Mode'';''Number of continuous-time states'';''Continuous-time states initial values'';''Xproperties of continuous-time states in each Mode'';"+MSG+"],..
             list(''vec'',1,''vec'',1,''vec'',1,''mat'',[-1,-1],''mat'',[-1,-1],"+VEC+"),exprs)"
             execstr(GTV);
             if ~ok then
@@ -56,15 +56,15 @@ function [x,y,typ]=AUTOMAT(job,arg1,arg2)
             ModifEncore=%f;
 
             if (NMode_old>NMode) then
-                exprs(NMode+6:NMode_old+5)=[];// number of fileds
+                exprs(NMode+6:NMode_old+5)=[];// number of fields
                 ModifEncore=%t;
             end
             if (NMode_old<NMode) then
-                exprs(NMode_old+6:NMode+5)=exprs(NMode_old+4);// number of fileds
+                exprs(NMode_old+6:NMode+5)=exprs(NMode_old+4);// number of fields
                 ModifEncore=%t;
             end
             if (NX<>size(X0,"*")) then
-                messagebox("the size of intial continuous-time states should be NX="+string(NX),"modal","error");
+                messagebox("the size of initial continuous-time states should be NX="+string(NX),"modal","error");
                 ModifEncore=%t;
             end
 

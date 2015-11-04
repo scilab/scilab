@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TOWS_c">
     <refnamediv>
         <refname>TOWS_c</refname>
-        <refpurpose>Data to Scilab worspace</refpurpose>
+        <refpurpose>Data to Scilab workspace</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="TOWS_c">Data to Scilab worspace</link>
+                    <link linkend="TOWS_c">Data to Scilab workspace</link>
                 </para>
             </listitem>
             <listitem>

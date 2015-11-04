@@ -237,7 +237,7 @@ public class SetupDialog extends JDialog {
     private JFormattedTextField maxStepSize;
 
     /**
-     * Instanciate a new dialog.
+     * Instantiate a new dialog.
      *
      * @param parent
      *            the current selected graph component

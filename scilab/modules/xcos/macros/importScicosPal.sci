@@ -88,7 +88,7 @@ function importScicosPal(palFiles, outPath)
             block_name = varsToLoad(i) + ".sod";
             blockFile = outPath + "/" + block_name
 
-            // instanciate a block
+            // instantiate a block
             // /!\ may cause an error depending on the implementation
             execstr("out = " + varsToLoad(i) + "(""define"")");
 

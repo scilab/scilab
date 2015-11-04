@@ -1165,7 +1165,7 @@ static void cosini(double *told)
         }
 
         flag__ = 6;
-        for (jj = 1; jj <= ncord; ++jj)   /*for each continous block*/
+        for (jj = 1; jj <= ncord; ++jj)   /*for each continuous block*/
         {
             C2F(curblk).kfun = cord[jj];
             if (funtyp[C2F(curblk).kfun] >= 0)

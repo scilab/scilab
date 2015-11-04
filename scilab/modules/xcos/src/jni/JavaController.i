@@ -256,7 +256,7 @@ namespace std {
 %ignore org_scilab_modules_scicos::Controller::register_view;
 %include "../scicos/includes/Controller.hxx";
 
-// Instanciate templates mapped to Java
+// Instantiate templates mapped to Java
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<int>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<bool>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<double>;

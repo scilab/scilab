@@ -42,7 +42,7 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
      */
     public static enum DebugLevel {
         /** No trace nor debug */
-        ZERO(0, XcosMessages.DEBUGLEVEL_0), /** Discrete/Continous switch */
+        ZERO(0, XcosMessages.DEBUGLEVEL_0), /** Discrete/Continuous switch */
         ONE(1, XcosMessages.DEBUGLEVEL_1), /** Per block trace */
         TWO(2, XcosMessages.DEBUGLEVEL_2), /** Debug blocks without trace */
         THREE(3, XcosMessages.DEBUGLEVEL_3);

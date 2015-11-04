@@ -239,7 +239,7 @@ function [ok,tt,dep_ut]=genfunc2(tt,inp,out,nci,nco,nx,nz,nrp,type_)
 
         while %t do
             if txt6==[] then txt6=" ",end
-            txt6=dialog(["You may define here functions imposing contraints";
+            txt6=dialog(["You may define here functions imposing constraints";
             "on initial inputs, states and outputs";
             "Note: these functions may be called more than once";
             " ";
