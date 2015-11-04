@@ -462,6 +462,13 @@ int BoolOrBool(Bool* _pL, Bool** _pOut)
 
 int DoubleOrDouble(Double* _pL, Bool** _pOut)
 {
+    if (_pL->isEmpty())
+    {
+        //call non shorcut operation
+        *_pOut = NULL;
+        return 0;
+    }
+
     for (int i = 0 ; i < _pL->getSize() ; i++)
     {
         if (_pL->get(i) == 0)
