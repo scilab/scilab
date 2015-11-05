@@ -25,9 +25,7 @@ Source: modules\{#SLINT}\sci_gateway\{#SLINT}_gateway.xml; DestDir: {app}\module
 Source: modules\{#SLINT}\etc\{#SLINT}.quit; DestDir: {app}\modules\{#SLINT}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SLINT}\etc\{#SLINT}.start; DestDir: {app}\modules\{#SLINT}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SLINT}\etc\{#SLINT}.xml; DestDir: {app}\modules\{#SLINT}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#SLINT}\etc\cnes_tool_conf.xml; DestDir: {app}\modules\{#SLINT}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#SLINT}\etc\cnes_analysis_conf.xml; DestDir: {app}\modules\{#SLINT}\etc; Components: {#COMPN_SCILAB}
-;
+S
 Source: modules\{#SLINT}\macros\buildmacros.sce; DestDir: {app}\modules\{#SLINT}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SLINT}\macros\buildmacros.bat; DestDir: {app}\modules\{#SLINT}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SLINT}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SLINT}\macros; Components: {#COMPN_SCILAB}
