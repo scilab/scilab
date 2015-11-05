@@ -19,9 +19,7 @@ libscislint_la_etcdir = $(mydatadir)/etc
 libscislint_la_etc_DATA = \
     etc/slint.quit \
     etc/slint.start \
-    etc/slint.xml \
-    etc/cnes_analysis_conf.xml \
-    etc/cnes_tool_conf.xml
+    etc/slint.xml
 
 include $(top_srcdir)/Makefile.incl.am
 
@@ -80,23 +78,7 @@ src/cpp/FunctionArgsOrderChecker.cpp \
 src/cpp/FunctionTestReturnChecker.cpp \
 src/cpp/ReturnsCountChecker.cpp \
 src/cpp/XMLtools.cpp \
-src/cpp/SLintXmlResult.cpp \
-src/cpp/AnalysisConfiguration.cpp \
-src/cpp/AnalysisConfigurationType.cpp \
-src/cpp/AnalysisRuleParameterType.cpp \
-src/cpp/AnalysisRuleType.cpp \
-src/cpp/ExcludedProjectFileType.cpp \
-src/cpp/RuleLinkType.cpp \
-src/cpp/Standard.cpp \
-src/cpp/StandardRuleParameterType.cpp \
-src/cpp/StandardRuleParameterValueType.cpp \
-src/cpp/StandardRuleType.cpp \
-src/cpp/StandardType.cpp \
-src/cpp/ToolConfiguration.cpp \
-src/cpp/ToolConfigurationType.cpp \
-src/cpp/CNESException.cpp \
-src/cpp/CNESConfig.cpp \
-src/cpp/CNESResult.cpp
+src/cpp/SLintXmlResult.cpp 
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_slint.cpp
