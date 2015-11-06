@@ -16,8 +16,10 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
@@ -27,7 +29,7 @@ import org.scilab.modules.gui.utils.SciTranslator;
  * it means call a dedicated scilab function like this :
  * function my_eventhandler(windowsId, mouse X, mouse Y, mouse Button)
  */
-public class ScilabEventListener implements KeyListener, MouseListener, MouseMotionListener {
+public class ScilabEventListener implements KeyListener, MouseListener, MouseWheelListener, MouseMotionListener {
 
     private String callback;
     private Integer windowsUID;
@@ -200,5 +202,18 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         callScilab();
         eventTranslator.setClickAction(SciTranslator.UNMANAGED);
     }
+
+    public void mouseWheelMoved(MouseWheelEvent arg0) {
+        int notches = arg0.getWheelRotation();
+        if (notches < 0) {
+            eventTranslator.setClickAction(SciTranslator.SCIWHEELUP);
+        } else {
+            eventTranslator.setClickAction(SciTranslator.SCIWHEELDOWN);
+        }
+
+        callScilab();
+        eventTranslator.setClickAction(SciTranslator.UNMANAGED);
+    }
+
 
 }

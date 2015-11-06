@@ -16,8 +16,10 @@ package org.scilab.modules.gui.editor;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelListener;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
 import org.scilab.modules.gui.datatip.DatatipDelete;
@@ -47,7 +49,7 @@ import org.scilab.modules.gui.plotbrowser.PlotBrowser;
  * @since 2012-06-01
  */
 
-public class EditorEventListener implements KeyListener, MouseListener, MouseMotionListener {
+public class EditorEventListener implements KeyListener, MouseWheelListener, MouseListener, MouseMotionListener {
 
     Integer windowUid;
 
@@ -228,6 +230,10 @@ public class EditorEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseMoved(MouseEvent arg0) {
+    }
+
+
+    public void mouseWheelMoved(MouseWheelEvent arg0) {
     }
 }
 

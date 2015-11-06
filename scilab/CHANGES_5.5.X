@@ -1,6 +1,12 @@
                      Changes between version 5.5.2 and 5.5.3
                      =======================================
 
+Graphics Evolutions
+===================
+
+* Mouse wheel can be an event for event handler functions.
+
+
 Scilab Bug Fixes
 ================
 

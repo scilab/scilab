@@ -160,6 +160,19 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>ibutton==20</term>
+                <listitem>
+                    <para>La molette de la souris a été tournée vers l'avant (la fonction zoom étant toujours active)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ibutton==-20</term>
+                <listitem>
+                    <para>La molette de la souris a été tournée vers l'arrière (la fonction zoom étant toujours active)</para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>ibutton &gt;=32</term>
                 <listitem>
                     <para>

@@ -152,6 +152,19 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>ibut==20</term>
+                <listitem>
+                    <para>Mouse wheel has been scrolled forward (zoom is still active)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ibut==-20</term>
+                <listitem>
+                    <para>Mouse wheel has been scrolled backward (zoom is still active)</para>
+                    <para/>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>ibut &gt; =32</term>
                 <listitem>
                     <para>uma tecla com código ascii(ibut) foi pressionada</para>

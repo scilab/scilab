@@ -638,6 +638,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                 contentCanvas.addEventHandlerKeyListener(editorEventHandler);
                 contentCanvas.addEventHandlerMouseListener(editorEventHandler);
                 contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseWheelListener(editorEventHandler);
                 if (eventEnabled) {
                     editorEventHandler.setEnable(false);
                     enableEventHandler();
@@ -1488,6 +1489,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             contentCanvas.addEventHandlerKeyListener(eventHandler);
             contentCanvas.addEventHandlerMouseListener(eventHandler);
             contentCanvas.addEventHandlerMouseMotionListener(eventHandler);
+            contentCanvas.addEventHandlerMouseWheelListener(eventHandler);
         }
     }
 
@@ -1499,6 +1501,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
             contentCanvas.removeEventHandlerKeyListener(eventHandler);
             contentCanvas.removeEventHandlerMouseListener(eventHandler);
             contentCanvas.removeEventHandlerMouseMotionListener(eventHandler);
+            contentCanvas.removeEventHandlerMouseWheelListener(eventHandler);
         }
     }
 

@@ -49,6 +49,10 @@ public class SciTranslator {
      * other clicks can raise such a code
      */
     public static final int SCIMOVED = -1;
+    /** Internal state WHEEL */
+    public static final int SCIWHEELDOWN = -20;
+    public static final int SCIWHEELUP = 20;
+
     /** Internal state CLOSE */
     public static final int SCICLOSE = -1000;
 

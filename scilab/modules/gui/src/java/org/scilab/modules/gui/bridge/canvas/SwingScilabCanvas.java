@@ -28,6 +28,7 @@ import java.awt.event.FocusListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelListener;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
@@ -344,6 +345,22 @@ public class SwingScilabCanvas extends JPanel implements SimpleCanvas {
      */
     public void removeEventHandlerMouseListener(MouseListener listener) {
         drawableComponent.removeMouseListener(listener);
+    }
+
+    /**
+     * Adds the listener handling mouse wheel events to the canvas.
+     * @param listener listener to add.
+     */
+    public void addEventHandlerMouseWheelListener(MouseWheelListener listener) {
+        drawableComponent.addMouseWheelListener(listener);
+    }
+
+    /**
+     * Removes the listener handling mouse wheel events from the canvas.
+     * @param listener listener to remove.
+     */
+    public void removeEventHandlerMouseWheelListener(MouseWheelListener listener) {
+        drawableComponent.removeMouseWheelListener(listener);
     }
 
     /**
