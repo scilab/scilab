@@ -12,7 +12,7 @@
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
 ;
 ;--------------------------------------------------------------------------------------------------------------
-; optimization module
+; coverage module
 ;--------------------------------------------------------------------------------------------------------------
 ;
 #define COVERAGE "coverage"
@@ -22,11 +22,8 @@ Source: bin\{#COVERAGE}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COVERAGE}\data\*.*; DestDir: {app}\modules\{#COVERAGE}\data; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COVERAGE}\sci_gateway\{#COVERAGE}_gateway.xml; DestDir: {app}\modules\{#COVERAGE}\sci_gateway; Components: {#COMPN_SCILAB}
-;
 Source: modules\{#COVERAGE}\etc\{#COVERAGE}.quit; DestDir: {app}\modules\{#COVERAGE}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#COVERAGE}\etc\{#COVERAGE}.start; DestDir: {app}\modules\{#COVERAGE}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#COVERAGE}\etc\{#COVERAGE}.xml; DestDir: {app}\modules\{#COVERAGE}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COVERAGE}\macros\buildmacros.sce; DestDir: {app}\modules\{#COVERAGE}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#COVERAGE}\macros\buildmacros.bat; DestDir: {app}\modules\{#COVERAGE}\macros; Components: {#COMPN_SCILAB}
@@ -37,6 +34,6 @@ Source: modules\{#COVERAGE}\macros\cleanmacros.bat; DestDir: {app}\modules\{#COV
 ;
 ;Source: modules\{#COVERAGE}\demos\*.*; DestDir: {app}\modules\{#COVERAGE}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#COVERAGE}\tests\*.*; DestDir: {app}\modules\{#COVERAGE}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB}  and {#COMPN_TESTS}
+;Source: modules\{#COVERAGE}\tests\*.*; DestDir: {app}\modules\{#COVERAGE}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB}  and {#COMPN_TESTS}
 ;
 ;--------------------------------------------------------------------------------------------------------------

@@ -96,6 +96,7 @@ begin
     ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="slint" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="coverage" activate="yes"/>'; i := i + 1;
 
 #ifndef SCILAB_F2C
     //ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
