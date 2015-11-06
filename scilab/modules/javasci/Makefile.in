@@ -274,6 +274,7 @@ AUTOMAKE = @AUTOMAKE@
 AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
+BLAS_CFLAGS = @BLAS_CFLAGS@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCACHE = @CCACHE@
@@ -1011,9 +1012,9 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@clean-local:
 @JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-data-local:
+@JAVASCI_FALSE@clean-local:
 @JAVASCI_FALSE@install-html-local:
 clean: clean-am
 
