@@ -71,7 +71,7 @@ private :
 class StaticRunner
 {
 public:
-    static void launch(void);
+    static int launch(void);
     static void setRunner(Runner* _RunMe);
     static Runner* getRunner(void);
     static bool isRunnerAvailable(void);

@@ -43,8 +43,9 @@ static void sendExecDoneSignal(Runner* _pRunner)
     }
 }
 
-void StaticRunner::launch()
+int StaticRunner::launch()
 {
+    int iRet = 0;
     // get the runner to execute
     std::unique_ptr<Runner> runMe(getRunner());
     // set if the current comment is interruptible
@@ -116,6 +117,7 @@ void StaticRunner::launch()
         ConfigVariable::whereErrorToString(ostr);
         scilabErrorW(ostr.str().c_str());
         ConfigVariable::resetWhereError();
+        iRet = 1;
     }
     catch (const ast::InternalAbort& ia)
     {
@@ -173,6 +175,7 @@ void StaticRunner::launch()
 
     //clean debugger step flag if debugger is not interrupted ( end of debug )
     manager->resetStep();
+    return iRet;
 }
 
 void StaticRunner::setRunner(Runner* _RunMe)

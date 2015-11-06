@@ -185,6 +185,8 @@ Bug Fixes
 
 * Bug #14223 fixed - det returned an error when it is used with a singular matrix.
 
+* Bug #14225 fixed - command-line option "-quit" should set the processs Exit status
+
 * Bug #14232 fixed - Typos in Xcos.
 
 
