@@ -558,7 +558,7 @@ void CoverModule::toHTML(const std::wstring & outputDir)
             << L"</html>\n";
 
         out.flush();
-        writeFile(out, __outputDir, L"results.html");
+        writeFile(out, __outputDir, L"report.html");
     }
 
     FREE(_outputDir);
@@ -773,7 +773,7 @@ void CoverModule::writeMacroHTMLReport(ast::Exp * tree, const std::wstring & fil
         << L"</script>\n"
         << L"</head>\n"
         << L"<body>\n"
-        << L"<h2 class=\'title\'>Source File</h2>\n"
+        << L"<h2 class=\'title\'>Coverage and Profiling report</h2>\n"
         << L"<table class='sourceFile'>\n";
 
     if (!path.empty())
