@@ -33,9 +33,9 @@
     <br/>
 
     <div class="refsection">
-      <h3 class="title">Welcome to Scilab 6.0.0-alpha-1</h3>
+      <h3 class="title">Welcome to Scilab 6.0.0-alpha-2</h3>
       <p class="para">
-        Scilab 6.0.0 is a major new release of Scilab, the open source platform for numerical computation. This 6.0.0-alpha-1 release, is a preview for developers, partners and community evaluation.
+        Scilab 6.0 is a major new release of Scilab, the open source platform for numerical computation. This 6.0.0-alpha-2 release, is a preview for developers, partners and community evaluation.
       </p>
       <p class="para">
         As an alpha, this release is not yet ready for production usage. If you are new to Scilab, or if you are simply a user of Scilab, you should probably continue using the 5.5.2 release, and wait for a beta version before trying the 6 family.
@@ -45,8 +45,7 @@
         However, if you have already developed code on Scilab, or if you are an experienced user, then you should start looking at this release. Please try the work you have done on earlier releases of Scilab with this version: checking for compatibility may save you time later. If you find bugs or incompatibilities, please report them on our <a href="http://bugzilla.scilab.org/" class="ulink">Bug Tracker</a>: this will help get a better product, faster, which ultimately will be benefit you too.
       </p>
 
-      <h2 class="title">What's new in Scilab 6.0.0-alpha-1 ?</h2>
-
+      <h2 class="title">What's new in Scilab 6.0</h2>
       <p class="para">
         This release includes a major rewrite of Scilab's internal core. The changes to the visible aspects of the software are limited.
       </p>
@@ -76,21 +75,25 @@
           <li>Native data structures (cell, struct), as well as multidimensional matrices, which yield, in most cases, better performance, both in memory usage, and execution speed. There could be some performance degradation in some cases: please feel free to report them.</li>
         </ul>
       </p>
-      <p class="para">
-        These changes may not amount much to end-users, but they were much needed, much worked-on, improvements to the Scilab platform. These improvements will enable further improvements in the future, in terms of code management, development tools (debugger, analyzer...), as well as improvements to other part of the platform (Xcos...) that would not be possible without this release.
-      </p>
-      <h2 class="title">Specific new features and complete changelog</h2>
-      <p class="para">
-        For a complete list of changes between the 5.5.2 release and this release, please look at the CHANGES_6.0.X file present at the root of the installation of Scilab.
+      <p class="para">These changes enable additional functionalities; some of them were added in the alpha-2 release:
+        <ul>
+          <li>A full-featured debugger, with ability to run Scilab scripts or functions step-by-step, to put (conditional) breakpoint, in particular break only when an exception is set... has been added.  Run &quot;help debug&quot; for more information.</li>
+          <li>A new profiler and coverage tool has been added. It replaces the &quot;profile&quot; function (which is still there but not working, and will be removed in the final release).   It produces HTML report for the time spent (profile) on each line. It is not documented; the names of the functions are not finalized yet, feedback is welcome on the usability. Also, it is known not to work on Xcos, and probably does not work well on complex code.<li>
+          <li>A &quot;lint&quot;-like command, slint, has been added, for code static analysis: it detects unclear, risky or suspicious code. It is not documented yet, however.</li>
+        </ul>
       </p>
       <h2 class="title">Main limitations</h2>
       <p class="para">
         Several important parts of the platform are not functional in this alpha:
         <ul>
-          <li>Xcos is not functional yet; the editor is not working yet at in this alpha 1 (it will in the final release, for sure). The simulator has been ported but is still not usable,</li>
-          <li>The debugging and profiling capabilities present in the 5.5.2 version are not ported to 6; most likely it will be replaced by completly new features,</li>
-          <li>ATOMS is functional, but since none of ATOMS modules currently on <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> have been ported, it is not of much use.</li>
+          <li>Xcos is only minimally functional. The schema editor is working for creating, editing and saving schemas, although some features are not working ("region to superblock"; complex linking using spits; editing blocks that use Scilab) but they should report clean errors. The simulator is still not usable, so simulations cannot work. This is mostly to get feedback on loading existing schemas; please report issues you get.
+</li>
+          <li>Extending Scilab with ATOMS modules is working, but only very few ATOMS modules currently on <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> have been ported to Scilab 6, so it has only limited use.</li>
         </ul>
+      </p>
+      <h2 class="title">Complete changelog</h2>
+      <p class="para">
+      For a more complete list of changes between the 5.5.2 release and the 6.0.0 alpha-1 and alpha-2 releases, please see the CHANGES_6.0.X file at the root of the installation.
       </p>
     </div>
 

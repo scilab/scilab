@@ -1,33 +1,64 @@
-        Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2 of Scilab
-        =================================================================
+
+
+        Welcome to Scilab 6
+        ===================
+
+This file details the changes between 6.0.0-alpha-1 and 6.0.0-alpha-2 of Scilab (below); and between version 5.5.2 and 6.0.0-alpha-1 (further down). 
+
+For a high-level overview of the changes in this release, please consult the "What's new" page of the help, by simply typing "help" in Scilab console.
+
+
+
+        Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2
+        =======================================================
 
 New Features
-=============
+============
 
-* SSE2, Streaming SIMD Extensions 2 support is now mandatory to run Scilab on
-  Linux i686.
+* Scilab now includes a full-featured debugger, with ability to run Scilab scripts or functions step-by-step, to put (conditional) breakpoint, in particular break only when an exception is set. Run "help debug" for more information.
 
-* valgrind error detection added to test_run (Linux Only)
+* A new profiler and coverage tool has been added. 
+  It replaces the "profile" function (which is still there but not working, and will be removed in the final release).
+  It produces HTML report for the time spent (profile) on each line. Example of use:
 
-* Introduction of a call stack limit. Default maximum depth is setup to 1000 and
-  can be changed by new function recursionlimit or by preferences interface.
+     covStart(isempty) // instruments the "isempty" macro; instrumenting a whole library can be done with: covStart("elementary_functions")
+     for i=1:1e5; isempty(i); end // execute some code - this will be profiled
+     covWrite("html", "TMPDIR/coverage") // write the profiling/coverage report as "report.html" in the folder specified as second parameter
+     covStop(); // stop the profiling 
 
+  A function to merge multiple profiler/coverage is provided too: covMerge([ list_of_files_to_merge], file_to_merge_to). 
+  The API will change before the release; the current API is mostly to get feedback from the community.
 
-  Modified Functions
-===================
+* A "lint"-like command, slint, has been added, for code static analysis: it detects unclear, risky or suspicious code.
+  Usage: slint("<sci filename>"). It is not documented yet.
 
-* ieee: the initial mode value is now setted to 2.
-
-
-Deprecated Behaviors
+Other feature changes
 =====================
 
-* <-- JVM NOT MANDATORY --> is obsolete, use <-- CLI SHELL MODE --> instead.
+* Valgrind error detection added to test_run (on Linux only)
 
 * Addition or subtraction with an empty matrix now return an empty matrix.
 
-Scilab Bug Fixes
+* SSE2, Streaming SIMD Extensions 2 support is now mandatory to run Scilab on Linux i686.
+
+* A call stack limit has been introduced. Default maximum depth is setup to 1000 and
+  can be changed by new function recursionlimit or by preferences interface.
+
+* The floating point exception mode (ieee) is now set to 2 by default: floating point exceptions now produce "Inf" or "Nan",
+  and do not cause any error. The previous behavior can be recalled by simply calling: ieee(0)
+
+API modification
 ================
+
+* User-defined functions written in C (gateways) must now use the "pvApiCtx" name for their second parameter, for example:
+
+     int sci_Levkov(char *fname, void* pvApiCtx)
+
+ instead of any "unsigned long l". This is now requires for some macros, such as Rhs(), to work. 
+ (Although not strictly an API change, it may require gateway code to be modified).
+
+Bug Fixes
+=========
 
 * Bug #11511 fixed - error() did non accept string matrix (non regression test).
 
@@ -157,19 +188,20 @@ Scilab Bug Fixes
 * Bug #14232 fixed - Typos in Xcos.
 
 
-            Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
-            =========================================================
+
+            Changes between version 5.5.2 and 6.0.0-alpha-1
+            ===============================================
 
 
+Main new Features
+=================
 
-This file details the technical changes done in Scilab 6.0.0-alpha-1 release.
+* New language parser and interpreter. See the help for more details.
 
-For a more complete overview of the changes in this release, please consult the "What's new" page of the help, by simply typing "help" in Scilab console.
+* Support for bigger data sets: dynamic memory usage. No need for "stacksize" anymore. See the help for more details.
 
-
-
-New Features
-=============
+Other feature additions
+=======================
 
 * scatter/scatter3 plot with different mark colors is now available.
 
@@ -354,8 +386,8 @@ Deprecated Behaviors
 * (a=b) executed like a == b is now deprecated and returns an error.
 
 
-Scilab Bug Fixes
-================
+Bug Fixes
+=========
 
 * Bug #6064 fixed - scatter function did not exist in Scilab.
 
@@ -398,14 +430,17 @@ Scilab Bug Fixes
 
 * Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.
 
+* Bug #14043 fixed - Gateway C prototype changed from int sci_...(char *fname, unsigned long l)
+                     to sci_...(char *fname, void* pvApiCtx). Variable name has to be 
+                     exactly "pvApyCtx" when macros are used in a gateway. (1)
+
+* Bug #14044 fixed - MALLOC.h is now renamed to sci_malloc.h. (1)
+
+(1) originally not documented in the alpha 1 release.
 
 Known issues
 =============
 
 * Xcos does not work in this version.
-
-* Debugging capabilities are not yet replugged.
-
-* Profiling capabilities are not yet replugged.
 
 * This version will start in English by default.
