@@ -14,39 +14,36 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
 
 #, c-format
-msgid "%s : lnksz argument must be double or integer.\n"
-msgstr "%s : L'argument lnksz ha de ser enter o decimal.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : lnktyp argument must be double or integer.\n"
-msgstr "%s : L'argument lnktyp ha de ser enter o decimal.\n"
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : inconsistent dimension between lnksz and lnktyp.\n"
-msgstr "%s : Les dimensions de lnksz i lnktyp són inconsistents.\n"
+msgid ""
+"%s: Wrong type for input argument #%d : A real or integer matrix expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : bad dimension for lnksz argument.\n"
-msgstr "%s : La dimensió de l'argument lnksz és incorrecte.\n"
+msgid "%s : inconsistent dimensions between arguments.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : bad dimension for lnktyp argument.\n"
-msgstr "%s : La dimensió de l'argument lnktyp és incorrecte.\n"
+msgid "%s : bad dimension for argument #%d.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : lnksz and lnktyp argument must have the same length.\n"
-msgstr "%s : L'argument lnksz i lnktyp ha de tenir la mateixa mida.\n"
+msgid "%s : arguments must have the same length.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : No more free memory.\n"
-msgstr "%s : No hi ha més memòria lliure.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -55,11 +52,8 @@ msgstr "%s : El primer argument ha de ser una llista de scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
-msgstr "%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de memòria.\n"
+msgstr ""
+"%s : El primer argument ha de ser una llista de scicos_block vàlida.\n"
 
 #, c-format
 msgid "%s : Second argument must be scalar.\n"
@@ -74,39 +68,57 @@ msgid "%s: scicosim is not running.\n"
 msgstr "%s: No s'està executant l'scicosim.\n"
 
 #, c-format
-msgid "%s : First argument must be a string.\n"
-msgstr "%s : El primer argument ha de ser un text.\n"
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s : First argument must be a matrix or an hypermatrix\n"
-"of real, complex or integer numbers.\n"
+"%s: Wrong type for input argument #%d : A real, complex or integer matrix "
+"expected.\n"
 msgstr ""
-"%s : El primer argument ha de ser una matriu o una hipermatriu\n"
-"de números reals, complexos o enters.\n"
 
 #, c-format
-msgid "%s : Only hypermatrix with 3 dimensions is allowed.\n"
-msgstr "%s : Només estan permeses les hipermatrius de 3 dimensions.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Only hypermatrices with 3 dimensions "
+"are allowed.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Second argument must be a scalar.\n"
-msgstr "%s : El segon argument ha de ser un escalar.\n"
+msgid "%s: Wrong type for input argument #%d : A real expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Second argument must be a real.\n"
+msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d : A real value expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: 1st and 2nd argument must have equal size\n"
 msgstr "%s: El primer i el segon argument han de tenir la mateixa mida.\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
 msgid ""
 "\n"
-"getscicosvars : utility function to retrieve\n"
+"getscicosvars: utility function to retrieve\n"
 msgstr ""
-"\n"
-"getscicosvars : La funció d'utilitat obtindrà\n"
 
 msgid ""
 "                scicos arrays during simulation.\n"
@@ -116,40 +128,34 @@ msgstr ""
 "\n"
 
 msgid ""
-"Usage : [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
+"Usage: [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
 "\n"
 msgstr ""
-"Utilització: [myvar]=getscicosvars([\"str1\";\"str2\";...]);\n"
-"\n"
 
-msgid "- myvar : an int32 or double matrix or a Tlist.\n"
-msgstr "- myvar : una matriu d'enters, de decimals o una Tlist.\n"
+msgid "- myvar: an int32 or double matrix or a Tlist.\n"
+msgstr ""
 
 msgid "- [\"str1\";\"str2\",...] is a string matrix\n"
 msgstr "- [\"str1\";\"str2\",...] és una matriu de text\n"
 
-msgid "  that must be informed with the following values :\n"
-msgstr "  que han de venir informats amb els següents valors:\n"
+msgid "  that must be informed with the following values:\n"
+msgstr ""
 
 #, c-format
-msgid "%s : No more memory.\n"
-msgstr "%s : No hi ha més memòria.\n"
+msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Undefined field in string matrix position : %d.\n"
-msgstr "%s : El camp de la posició %d de la matriu no està definit.\n"
+msgid "%s: Undefined field in string matrix position: %d.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Error.\n"
-msgstr "%s : Error.\n"
+msgid "%s: Error with parameter \"%s\".\n"
+msgstr ""
 
 #, c-format
 msgid "%s : First argument must be a Typed list.\n"
 msgstr "%s : El primer argument ha de ser una llista.\n"
-
-#, c-format
-msgid "%s : First argument must be a scicos model.\n"
-msgstr "%s : El primer argument ha de ser un model de scicos.\n"
 
 #, c-format
 msgid "%s : unknown block : %s\n"
@@ -168,10 +174,6 @@ msgid "%s : Undefined Function type\n"
 msgstr "%s : El tipus de funció no està definit\n"
 
 #, c-format
-msgid "%s : Function not found\n"
-msgstr "%s : No s'ha trobat la funció\n"
-
-#, c-format
 msgid "%s : Undetermined Size. in(%d)=%d. Please adjust your model.\n"
 msgstr "%s : Mida indeterminada. in(%d)=%d. Ajusteu el vostre model.\n"
 
@@ -184,8 +186,12 @@ msgid "%s : Undetermined Size. in2(%d)=%d. Please adjust your model.\n"
 msgstr "%s : Mida indeterminada. in2(%d)=%d. Ajusteu el vostre model.\n"
 
 #, c-format
-msgid "%s : Undetermined Type. intyp(%d)=%d. Please adjust your model.\n"
-msgstr "%s : Tipus indeterminat. intyp(%d)=%d. Ajusteu el vostre model.\n"
+msgid "%s : Undetermined Size. intyp(%d)=%d. Please adjust your model.\n"
+msgstr ""
+
+#, c-format
+msgid "%s : Unknown Data type\n"
+msgstr ""
 
 #, c-format
 msgid "%s : Undetermined Size. out(%d)=%d. Please adjust your model.\n"
@@ -196,68 +202,140 @@ msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
 msgstr "%s : Mida indeterminada. out2(%d)=%d. Ajusteu el vostre model.\n"
 
 #, c-format
-msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
-msgstr "%s : Tipus indeterminat. outtyp(%d)=%d. Ajusteu el vostre model.\n"
+msgid "%s : Undetermined Size. outtyp(%d)=%d. Please adjust your model.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : oz element of state must be a list.\n"
-msgstr "%s : L'element oz de l'estat ha de ser una llista.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : outtb element of state must be a list.\n"
-msgstr "%s : L'element outtb de l'estat ha de ser una llista.\n"
+msgid "%s: Wrong size for input argument #%d : A real scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Third argument must be a scalar.\n"
-msgstr "%s : El tercer argument ha de ser un escalar.\n"
+msgid "%s: Wrong value for input argument #%d : An integer value expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Fourth argument must be a Tlist.\n"
-msgstr "%s : El quart argument ha de ser un Tlist.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Second element of sim must be a list.\n"
-msgstr "%s : El segon element de sim ha de ser una llista.\n"
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : sim.opar must be a list.\n"
-msgstr "%s : sim.opar ha de ser una llista.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: invalid UID.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: not handled kind.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String or ID expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A tlist expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d : %d elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for element #%d of argument #%d : A matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for element #%d of argument #%d : A list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : Incompatible sim.nb RHS parameter.\n"
 msgstr "%s : El paràmetre sim.nb RHS és incompatible.\n"
 
 #, c-format
-msgid "%s : Sixth argument must have at least four elements.\n"
-msgstr "%s : El sisè argument ha de tenir com a molt quatre elements.\n"
+msgid ""
+"%s: Wrong type for element #%d of argument #%d : A string matrix expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s : Sixth argument must have a maximum of seven elements.\n"
-msgstr "%s : El sisè argument ha de tenir com a molt set elements.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : %s, %s %s %s or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d : %d to %d elements expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : error in cross variable size checking : %d\n"
 msgstr "%s : error en la comprovació de la mida de la variable: %d\n"
 
 #, c-format
-msgid "%s : error\n"
-msgstr "%s : error\n"
+msgid ""
+"%s: Wrong size for element #%d of input argument #%d : A scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s : error. Type %d of double scalar matrix not yet supported for outtb.\n"
+"%s: Wrong type for element #%d of input argument #%d : string or macro "
+"expected.\n"
 msgstr ""
-"%s : error. El tipus %d de la matriu de nombres decimals no està suportat "
-"per a outtb.\n"
 
 #, c-format
-msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid ""
+"%s: Wrong type for element #%d of element #%d of argument #%d : A matrix "
+"expected.\n"
 msgstr ""
-"%s : error. El tipus %d de la matriu d'enters no està suportat per a outtb.\n"
 
 #, c-format
-msgid "%s : error. Type %d not yet supported for outtb.\n"
-msgstr "%s : error. El tipus %d no està suportat per a outtb.\n"
+msgid "%s : No more free memory.\n"
+msgstr "%s : No hi ha més memòria lliure.\n"
 
 msgid "scheduling problem"
 msgstr "problema de planificació"
@@ -335,41 +413,41 @@ msgid "scicos unexpected error, please report..."
 msgstr ""
 
 #, c-format
-msgid "%s : First argument must be a structure.\n"
-msgstr "%s : El primer argument ha de ser una estructura.\n"
-
-#, c-format
-msgid "%s : First argument must be a scicos signal structure.\n"
+msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
 msgstr ""
-"%s : El primer argument ha de ser una estructura de senyal de scicos.\n"
 
 #, c-format
-msgid "%s: error %d. Stack is full.\n"
-msgstr "%s: error %d. La pila és plena.\n"
+msgid "%s: Wrong value for input argument #%d : %d or %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: error %d. No more space on the stack for new data.\n"
-msgstr "%s: error %d. No hi ha més espai a la pila.\n"
+msgid "%s: Wrong type for input argument #%d : A struct expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: error %d. Undefined error.\n"
-msgstr "%s: error %d. Error indefinit.\n"
+msgid "%s: Wrong size for input argument #%d : A single struct expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: error %d. Only int or double object are accepted.\n"
-msgstr "%s: error %d. Només s'accepten objectes enters o decimals.\n"
+msgid ""
+"%s: Wrong fields for input argument #%d : \"%s\" and \"%s\" expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: error %d. Bad double object sub_type.\n"
-msgstr "%s: error %d. El subtipus d'objecte decimal és incorrecte.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: error %d. Bad int object sub_type.\n"
-msgstr "%s: error %d. El subtipus d'objecte enter és incorrecte.\n"
+msgid "%s: Wrong type for input argument #%d: A real row vector expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: error %d. A type of a scilab object has changed.\n"
-msgstr "%s: error %d. S'ha modificat el tipus d'un objecte de Scilab.\n"
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: At least %dx%d expected.\n"
+msgstr ""
 
 msgid "type 1 function not allowed for scilab blocks\n"
 msgstr "les funcions de tipus 1 no estan permeses per a blocs d'Scilab\n"
@@ -379,9 +457,6 @@ msgstr "les funcions de tipus 2 no estan permeses per a blocs d'Scilab\n"
 
 msgid "Undefined Function type\n"
 msgstr "Tipus de funció no definit\n"
-
-msgid "Function not found\n"
-msgstr "No s'ha trobat la funció\n"
 
 #, c-format
 msgid ""
@@ -607,6 +682,188 @@ msgstr ""
 " pot ser que crideu algunes funcions amb entrades incorrectes."
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %d (String) expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for element #%d of input argument #%d: Unknown type.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s: Tlist or Mlist expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong length for field %s: at least %d element expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong length for header of field %s: at least %d element expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for header of field %s: %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s: list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for element %d of field %s: unknown Scicos object.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s: %d-by-%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for field %s: at least %d-by-%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: %d-by-%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: Boolean matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s: Real matrix object.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s: String matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong length for field %s.%s: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s : string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: Round number expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for field %s.%s: %d-by-%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: m-by-1 expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: List expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: %s (%s) has an invalid port number.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: %s (%s) has an invalid implicit port.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: %s (%s) has an invalid explicit port.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: Diagram expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: List clear previous value.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: m-by-1 matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: Integer values expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: Equation expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimension for field %s.%s: Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s: Mlist expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong size for field %s: at least %d elements expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for header of field %s: field %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong dimensions for field %s.%s: %d-by-%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s: String matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: %s or %s vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong type for field %s.%s .\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: Must be in the interval [%d, %d].\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for field %s.%s: FIXME port has not been updated.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
 
@@ -703,7 +960,7 @@ msgid "End problem: "
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgid "Wrong type for diagram element #%d: %s, %s or %s expected.\n"
 msgstr ""
 
 msgid "Your model contains states defined in standard Scicos blocks.\n"
@@ -986,7 +1243,7 @@ msgid "%s: Empty diagram"
 msgstr ""
 
 #, c-format
-msgid "The variable name %s cannot be used as block parameter: ignored"
+msgid "The variable name %s cannot be used as block parameter: ignored\n"
 msgstr ""
 
 msgid "scs_show active..."
@@ -1016,10 +1273,6 @@ msgstr ""
 
 msgid "XML to Modelica"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 msgid "Xcos block parameter error"
 msgstr ""

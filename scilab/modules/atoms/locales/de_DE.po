@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-02-20 08:46+0000\n"
-"Last-Translator: Niko K <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:06+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
 
 #, c-format
@@ -53,7 +53,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: You haven't write access on this directory : %s.\n"
-msgstr "%s: Sie haben keine Schreibberechtigung für dieses Verzeichnis: %s.\n"
+msgstr ""
+"%s: Sie haben keine Schreibberechtigung für dieses Verzeichnis: %s.\n"
 
 #, c-format
 msgid "%s: Module '%s' is not installed ('%s' section).\n"
@@ -566,7 +567,8 @@ msgstr "Installiere"
 msgid "Installation failed!"
 msgstr "Installation fehlgeschlagen!"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Installation abgeschlossen! Starten Sie Scilab bitte neu, damit die "
 "Änderungen wirksam werden."
@@ -878,15 +880,16 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM überwacht: '%s'\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: 'error' oder 'warning' "
 "erwartet.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: einzelne Zeichenkette erwartet, "
 "die mit .tar.gz, .tgz oder .zip endet.\n"
@@ -1014,18 +1017,19 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: Der Abhängigkeitsbaum kann nicht aufgelöst werden.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: Buchstaben 'A' oder 'I' "
 "erwartet.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr ""
-"%s: Falscher Wert für Eingangsargument #%d: dies ist keine gültige Version/"
-"Abhängigkeit.\n"
+"%s: Falscher Wert für Eingangsargument #%d: dies ist keine gültige "
+"Version/Abhängigkeit.\n"
 
 msgid "Atoms:"
 msgstr ""
@@ -1082,10 +1086,12 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) ist nicht installiert.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Falscher Wert für Eingangsargument #%d: dies ist keine gültige Version.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
-msgstr "%s: Falscher Wert für Eingangsargument #%d: ASC oder DESC erwartet.\n"
+msgstr ""
+"%s: Falscher Wert für Eingangsargument #%d: ASC oder DESC erwartet.\n"

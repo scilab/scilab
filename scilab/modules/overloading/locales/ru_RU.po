@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-25 15:20+0000\n"
+"PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
@@ -51,7 +51,8 @@ msgstr ""
 "скаляр.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: Вставка строкового значения в матрицу чисел не реализовано.\n"
 
 #, c-format
@@ -71,7 +72,8 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: Недопустимое имя поля.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось допустимое имя "
 "поля.\n"
@@ -85,7 +87,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Неверное количество выходных аргументов.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: нельзя определить "
 "транспонирование.\n"
@@ -197,7 +200,8 @@ msgstr ""
 "%s: Входная и выходная матрицы должны иметь одинаковое количество элементов."
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
@@ -228,11 +232,6 @@ msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидались целочисленные значения.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных аргументов: Ожидалось как минимум %d.\n"
-
-#, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
 msgstr "%s: Недопустимый синтаксис для MIMO-системы.\n"
 
@@ -259,14 +258,6 @@ msgstr "%s: Неверный размер входных аргументов.\n
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Неверные размеры аргументов.\n"
 
-msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
-"scilab-6.\n"
-"           Use vector .^ scalar instead.\n"
-msgstr ""
-"  Внимание: синтаксис вектор ^ скаляр устарел и будет удалён в Scilab-6.\n"
-"           Вместо этого используйте вектор .^ скаляр.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -285,16 +276,8 @@ msgstr ""
 "двоеточия.\n"
 
 #, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr "%s: Невозможно привести к диагональному виду.\n"
-
-#, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr "%s: Случай вставки в разрежённую матрицу не реализован.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Field names mismatch.\n"
@@ -302,7 +285,8 @@ msgstr "%s: Имена полей не совпадают.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: not a valid field name.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: неправильное имя поля.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -313,7 +297,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Неверный тип параметра %d: ожидался вещественный скаляр.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: входная и выходная матрицы должны иметь одинаковое число элементов.\n"
 

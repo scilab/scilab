@@ -9,47 +9,14 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-17 14:38+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scilab function expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une fonction Scilab "
-"attendue.\n"
-
-#
-# File: includes/stack-c.h, line: 305
-#, c-format
-msgid " results may be inaccurate. rcond = %s1\n"
-msgstr " Les résultats peuvent être inexacts. rcond = %s1\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -61,7 +28,8 @@ msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr "%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -78,20 +46,176 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel attendu.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
+"caractères attendue.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Debugger can be activated only at console scope level\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Debugger is not running. Call \"%s\" without parameter first.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to retrieve information about breakpoint %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls"
+msgstr ""
+
+msgid "callstack:"
+msgstr ""
+
+msgid "debug commands : \n"
+msgstr ""
+
+msgid "show this help"
+msgstr ""
+
+msgid "stop debugging"
+msgstr ""
+
+msgid "show callstack"
+msgstr ""
+
+msgid "execute cmd"
+msgstr ""
+
+msgid "continue execution"
+msgstr ""
+
+msgid "abort execution"
+msgstr ""
+
+msgid "continue to next statement"
+msgstr ""
+
+msgid "step into function"
+msgstr ""
+
+msgid "step outside function"
+msgstr ""
+
+msgid "set a breakpoint"
+msgstr ""
+
+msgid "delete all breakpoints"
+msgstr ""
+
+msgid "delete a specific breakpoint"
+msgstr ""
+
+msgid "enable all breakpoints"
+msgstr ""
+
+msgid "enable a specific breakpoint"
+msgstr ""
+
+msgid "disable all breakpoints"
+msgstr ""
+
+msgid "disable a specific breakpoint"
+msgstr ""
+
+msgid "show all breakpoints"
+msgstr ""
+
+msgid "show a specific breakpoint"
+msgstr ""
+
+msgid "  for more details, help debug.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument.\n"
-msgstr "%s : Type erroné de l'argument d'entrée.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid ""
@@ -101,17 +225,43 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
+"%s : Type erroné de l'argument %d : Une matrice de chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input argument %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -121,34 +271,12 @@ msgstr ""
 "l'intervalle [%d, %d].\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: string or scalar integer value "
-"expected.\n"
+msgid "%s: Wrong number of output argument(s): %d expected."
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
-"une valeur entière scalaire attendue.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
+msgid "%s: Wrong value for input argument #%d: 0, 1 or 2 expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '0' ou '1' attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for inputs arguments.\n"
-msgstr "%s : Type erroné des arguments d'entrée.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %d, %d or %d expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %d, %d ou %d attendu.\n"
-
-#, c-format
-msgid "%s: The file %s does not exist.\n"
-msgstr "%s : Le fichier %s n'existe pas.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
@@ -161,14 +289,12 @@ msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée %d : \"%s\" attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments #%d or #%d: Strings expected.\n"
-msgstr ""
-"%s : Type erroné des arguments d'entrée n°%d ou n°%d : Des chaînes de "
-"caractères attendues.\n"
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s : Le fichier %s n'existe pas.\n"
 
 #, c-format
-msgid "Warning: Problems with %s.\n"
-msgstr "Attention : Problèmes avec %s.\n"
+msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -181,234 +307,94 @@ msgid "%s: Wrong file version.xml %s.\n"
 msgstr "%s: fichier version.xml incorrect %s.\n"
 
 #, c-format
-msgid "%s: Wrong module name %s.\n"
-msgstr "%s : Nom de module erroné %s.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
+msgid "%s: Wrong number of output arguments: At most %d expected.\n"
 msgstr ""
-"%s : Type erroné des arguments d'entrée n°%d et n°%d : Des chaînes de "
-"caractères attendues.\n"
 
 #, c-format
-msgid "%s: Cannot allocate memory.\n"
-msgstr "%s: Ne peut allouer de la mémoire.\n"
-
-#, c-format
-msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
-msgstr "%s : Hors des valeurs limites. Pas dans [%lu,%lu].\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
+msgid "%s : Wrong value for argument #%d: %s\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Scalaire, '%s' ou '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgid "%s: Wrong value for input argument #%d : 0, 1 or 2 expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un booléen attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un int attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgid "%s: Wrong size for input argument #%d: a string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: macro expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Valid function name expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: function-name is incorrect.\n"
 msgstr "%s : function-name est incorrect.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: function is disabled in debug mode.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une chaîne de "
-"caractères attendu.\n"
 
 #, c-format
-msgid "%s: Impossible to read %s gateway.\n"
-msgstr "%s : Impossible de lire l'interface %s.\n"
-
-#, c-format
-msgid "%s: Invalid module name : %s.\n"
-msgstr "%s : Nom de module invalide : %s.\n"
+msgid "%s: Wrong size for input argument #%d: string expected."
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Cannot allocate memory.\n"
-"%s\n"
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s : Impossible d'allouer de la mémoire.\n"
-"%s\n"
 
 #, c-format
-msgid "%s: Cannot allocate this quantity of memory.\n"
-msgstr "%s : Impossible d'allouer la quantité de mémoire indiquée.\n"
-
-#, c-format
-msgid "%s: The requested size is smaller than the minimal one.\n"
-msgstr "%s : La dimension demandée est plus petite que le minimum autorisé.\n"
-
-#, c-format
-msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
-"%s : Impossible de créer (ou de redimensionner) la pile (probablement du à "
-"une erreur de malloc).\n"
 
 #, c-format
-msgid "%s: Unknown error.\n"
-msgstr "%s : Erreur inconnue.\n"
+msgid "%s: Wrong value for input argument #%d: A value >= %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
+msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: '%s' already exists.\n"
-msgstr "%s: '%s' existe déjà.\n"
+msgid "%s: Insert a new type is not managed.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Unknown Error.\n"
-msgstr "%s: Erreur inconnue.\n"
+msgid "WARNING: %ls\n"
+msgstr ""
 
 #, c-format
-msgid "WARNING: %s"
-msgstr "ATTENTION : %s"
+msgid "%s:\n"
+msgstr ""
 
 #, c-format
-msgid "WARNING: %s\n"
-msgstr "AVERTISSEMENT : %s\n"
-
-#, c-format
-msgid "%s%s"
-msgstr "%s%s"
-
-#, c-format
-msgid "%s%s\n"
-msgstr "%s%s\n"
-
-msgid "Internal Functions:\n"
-msgstr "Fonctions internes :\n"
-
-msgid "Commands:\n"
-msgstr "Commandes :\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments de sortie : %d attendus.\n"
+msgid "%s: Wrong value for input argument #%d: 'sorted' expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+"%s: Wrong value for input argument #%d: 'local', 'get' or 'global' "
+"expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s' ou '%s' "
-"attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s' or '%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s'.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
-"argument #%d must be '%s'.\n"
+"%s: Wrong value for input argument #%d: 'local', 'get', 'global' or 'sorted' "
+"expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s' attendu. "
-"L'argument d'entrée n°%d doit être '%s'.\n"
-
-#, c-format
-msgid " using %10d elements out of  %10d.\n"
-msgstr " utilise %10d éléments parmi %10d.\n"
-
-#, c-format
-msgid " and   %10d variables out of %10d.\n"
-msgstr " et %10d variables parmi %10d.\n"
-
-msgid "Your variables are:"
-msgstr "Vos variables sont :"
-
-msgid "Your global variables are:"
-msgstr "Vos variables globales sont :"
-
-msgid "Fatal Error: Can't create table for scilab functions.\n"
-msgstr "Erreur fatale : Impossible de créer la table des fonctions Scilab.\n"
-
-#, c-format
-msgid "Error: Impossible to define %s environment variable.\n"
-msgstr "Erreur : Impossible de définir la variable d'environnement %s.\n"
-
-msgid "Scilab Enterprises\n"
-msgstr "Scilab Enterprises\n"
-
-msgid "Copyright (c) 2011-2015 (Scilab Enterprises)\n"
-msgstr "Copyright (c) 2011-2015 (Scilab Enterprises)\n"
-
-msgid "Copyright (c) 1989-2012 (INRIA)\n"
-msgstr "Copyright (c) 1989-2012 (INRIA)\n"
-
-msgid "Copyright (c) 1989-2007 (ENPC)\n"
-msgstr "Copyright (c) 1989-2007 (ENPC)\n"
-
-#, c-format
-msgid "Impossible to load %s library: %s\n"
-msgstr "Impossible de charger la bibliothèque %s : %s\n"
-
-#, c-format
-msgid "Impossible to load %s function in %s library: %s\n"
-msgstr "Impossible de charger la fonction %s dans la bibliothèque %s : %s\n"
-
-#, c-format
-msgid "Impossible to call %s in %s library: %s\n"
-msgstr "Impossible d'appeler %s dans la bibliothèque %s : %s\n"
-
-#, c-format
-msgid "Error: Not a valid primitive ID %d.\n"
-msgstr "Erreur : Ce n'est pas un identifiant de primitive valide (ID =  %d).\n"
-
-msgid "Aborting current computation\n"
-msgstr "Abandon du calcul en cours\n"
-
-#, c-format
-msgid "Error: Not a valid gateway ID %d. Should be between %d and %d.\n"
-msgstr ""
-"Erreur : %d n'est pas un identifiant de passerelle valide. Doit être compris "
-"entre %d et %d.\n"
 
 msgid "The SCI environment variable is not set.\n"
 msgstr "La variable d'environnement SCI n'est pas définie.\n"
@@ -437,77 +423,6 @@ msgstr ""
 "'%s' trouvé.\n"
 
 #, c-format
-msgid ""
-"Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" "
-"for element wise operation \n"
-msgstr ""
-"Attention : \"%d.%s ...\" est interprété comme \"%d.0%s ...\". Utilisez "
-"\"%d .%s ...\" pour une opération élément par élément \n"
-
-msgid "SCI environment variable not defined.\n"
-msgstr "La variable d'environnement SCI n'est pas définie.\n"
-
-#
-# File: src/c/inisci-c.c, line: 110
-# File: src/c/inisci-c.c, line: 150
-# File: src/c/inisci-c.c, line: 177
-msgid "Warning"
-msgstr "Attention"
-
-msgid "SCIHOME not defined.\n"
-msgstr "La variable SCIHOME n'est pas définie.\n"
-
-msgid "TMPDIR not defined.\n"
-msgstr "La variable TMPDIR n'est pas définie.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Compiled macro expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une macro compilée attendue.\n"
-
-#, c-format
-msgid "%s: stack size exceeded (Use stacksize function to increase it).\n"
-msgstr ""
-"%s : Taille de la pile dépassée (utilisez la fonction stacksize pour "
-"augmenter la taille de la pile).\n"
-
-#, c-format
-msgid "%s: Out of code.\n"
-msgstr "%s : Plus de code.\n"
-
-#, c-format
-msgid "%s: Wrong %s value %d instead of %d.\n"
-msgstr "%s : Valeur erronée %s %d au lieu de %d.\n"
-
-#, c-format
-msgid "%s: code %d not yet implemented.\n"
-msgstr "%s : code %d pas encore implémenté.\n"
-
-#, c-format
-msgid "%s: Unknown code %d at index2 %d.\n"
-msgstr "%s : Code inconnu %d à index2 %d.\n"
-
-#, c-format
-msgid "%s: Old version of if and while not implemented.\n"
-msgstr "%s : Ancienne version de if et while pas implémentée.\n"
-
-#, c-format
-msgid "%s: Wrong type value.\n"
-msgstr "%s : Valeur de type erronée.\n"
-
-#, c-format
-msgid "%s: Unknown operator %d.\n"
-msgstr "%s : Opérateur %d inconnu.\n"
-
-#, c-format
-msgid "%s: Wrong fromwhat value %s.\n"
-msgstr "%s : Valeur erronée fromwhat %s.\n"
-
-#, c-format
-msgid "%s: wrong code %d.\n"
-msgstr "%s : Code erroné %d.\n"
-
-#, c-format
 msgid "Error: Could not parse file %s\n"
 msgstr "Erreur : Impossible d'analyser le fichier %s\n"
 
@@ -527,52 +442,6 @@ msgid ""
 msgstr ""
 "Erreur : Fichier version %s invalide (l'encodage n'est pas 'utf-8') Encodage "
 "'%s' trouvé\n"
-
-#, c-format
-msgid "Error: could not parse file %s\n"
-msgstr "Erreur : Impossible d'analyser (parser) le fichier %s\n"
-
-#, c-format
-msgid "Error: Memory allocation.\n"
-msgstr "Erreur d'allocation mémoire.\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid gateway file %s (should start with <GATEWAY> and contain "
-"<PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
-msgstr ""
-"Erreur : Fichier interface %s invalide (devrait commencer par <GATEWAY> et "
-"contenir <PRIMITIVE gatewayId='' primitiveId='' primitiveName=''>)\n"
-
-#, c-format
-msgid ""
-"Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
-"found\n"
-msgstr ""
-"Erreur : Fichier interface %s invalide (l'encodage n'est pas 'utf-8') "
-"Encodage '%s' trouvé\n"
-
-msgid "Error returning tlist, memory full.\n"
-msgstr "Erreur en retournant un tlist, mémoire pleine.\n"
-
-msgid "tlist not completely filled.\n"
-msgstr "tlist partiellement remplie.\n"
-
-msgid "List full.\n"
-msgstr "Liste pleine.\n"
-
-msgid "Unexpected opcode, please report into the Scilab bug tracker."
-msgstr ""
-"Code opérateur inattendu. Merci de rapporter un bug sur le bug tracker "
-"Scilab."
-
-msgid "Functions compiled with very old versions are no more handled."
-msgstr ""
-"Les fonctions compilées avec de très anciennes versions ne sont plus "
-"supportées."
-
-msgid "No space to allocate Scilab stack.\n"
-msgstr "Pas assez de mémoire disponible pour allouer le coeur de Scilab.\n"
 
 #, c-format
 msgid ""
@@ -598,457 +467,6 @@ msgstr ""
 "* les informations suivantes : \n"
 "%s %s\n"
 
-msgid "stack size exceeded!\n"
-msgstr "Taille de la pile dépassée\n"
-
-msgid "Use stacksize function to increase it.\n"
-msgstr "Utilisez la fonction stacksize pour l'augmenter.\n"
-
-#, c-format
-msgid "Memory used for variables: %d\n"
-msgstr "Mémoire utilisée pour les variables : %d\n"
-
-#, c-format
-msgid "Intermediate memory needed: %d\n"
-msgstr "Mémoire intermédiaire requise : %d\n"
-
-#, c-format
-msgid "Total memory available: %d\n"
-msgstr "Mémoire totale disponible : %d\n"
-
-#, c-format
-msgid "%s: argument %d should be a list of size at least %d.\n"
-msgstr "%s : L'argument %d doit être une liste de taille au moins %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Une matrice réelle attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
-msgstr "%s : Dimension erronée de l'argument %d : (%d,%d) attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for element %d of argument #%d: Real or Complex matrix "
-"expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Une matrice réelle ou "
-"complexe attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice réelle ou complexe "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Too many variables.\n"
-msgstr "%s : Trop de variables.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: List of size at least %d expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une liste de taille au moins %d "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
-msgstr "%s : Dimension erronée de l'argument %d : Au moins %d attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for element %d of argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Une matrice booléenne "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for element %d of argument #%d: Sparse matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Une matrice creuse "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Une matrice creuse attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for element %d of argument #%d: Vector expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Un vecteur attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Vector expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un vecteur attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un vecteur réel attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: %d expected.\n"
-msgstr "%s : Dimension erronée de l'argument %d : %d attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for element %d of argument #%d: Scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Scalar expected.\n"
-msgstr "%s : Type erroné de l'argument n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for element %d of argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Une matrice de chaîne "
-"de caractères attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice de chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: List expected.\n"
-msgstr "%s : Type erroné du paramètre %d : Une liste attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice polynomiale attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un polynôme attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Working int matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice de travail d'entiers "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for element %d of argument #%d: Row vector expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Un vecteur ligne "
-"attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un vecteur ligne attendu.\n"
-
-#, c-format
-msgid "%s: argument %d >(%d) should be a column vector.\n"
-msgstr "%s : L'argument %d >(%d) devrait être un vecteur colonne.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Un vecteur colonne attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for element %d of argument #%d: Pointer expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Un pointeur attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Pointer expected.\n"
-msgstr "%s : Type erroné de l'argument n°%d : Un pointeur attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Une matrice attendue.\n"
-
-#, c-format
-msgid "%s: Subroutine '%s' not found.\n"
-msgstr "%s : Impossible de trouver la sous-routine '%s'.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Function or string (external function) "
-"expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une fonction ou chaîne de caractères "
-"(fonction externe) attendue.\n"
-
-#, c-format
-msgid "%s: Incompatible sizes.\n"
-msgstr "%s : Tailles incompatibles.\n"
-
-#, c-format
-msgid "%s: Optional argument %d not given and default value %s not found.\n"
-msgstr ""
-"%s : L'argument optionnel %d n'est pas donné et la valeur par défaut %s "
-"n'est pas trouvée.\n"
-
-#, c-format
-msgid "%f: No more space to store string arguments.\n"
-msgstr ""
-"%f : Plus de place disponible pour stocker les arguments de type chaîne de "
-"caractères.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for element %d of argument #%d: Matrix of handle expected.\n"
-msgstr ""
-"%s : Type erroné de l'élément %d de l'argument n°%d : Une matrice de handle "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
-msgstr "%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr "%s : Le paramètre optionnel name=val doit être à la fin.\n"
-
-#, c-format
-msgid "%s: Unrecognized optional arguments %s.\n"
-msgstr "%s : Le paramètre optionnel %s n'est pas reconnu.\n"
-
-msgid "Optional argument list is empty.\n"
-msgstr "La liste d'arguments optionnels est vide.\n"
-
-msgid "Optional arguments list: \n"
-msgstr "Liste d'arguments optionnels : \n"
-
-#
-# File: src/c/link_std.c, line: 381
-#, c-format
-msgid "and %s.\n"
-msgstr "et %s.\n"
-
-#, c-format
-msgid "%s: bad call to %s! (1rst argument).\n"
-msgstr "%s : Appel erroné sur %s (premier argument).\n"
-
-#, c-format
-msgid ""
-"%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"%s : (%s) trop de variables dans la pile. Éditez stack.h et augmentez "
-"intersiz.\n"
-
-#, c-format
-msgid "%s: (%s) bad third argument!\n"
-msgstr "%s : (%s) troisième paramètre erroné !\n"
-
-#, c-format
-msgid "%s: Wrong type for argument: Complex expected.\n"
-msgstr "%s : Type erroné du paramètre : Un complexe attendu.\n"
-
-#, c-format
-msgid "%s: bad call to %s!\n"
-msgstr "%s : Appel erroné pour %s!\n"
-
-#, c-format
-msgid "%s: argument %d > (%d) should be a complex matrix.\n"
-msgstr "%s : Le paramètre %d > (%d) devrait être une matrice complexe.\n"
-
-#, c-format
-msgid "%s: bad call to %s (third argument %c).\n"
-msgstr "%s : Appel erroné pour %s (troisième paramètre %c).\n"
-
-#, c-format
-msgid "%s: (%s) bad second argument!\n"
-msgstr "%s : (%s) second paramètre erroné !\n"
-
-#, c-format
-msgid ""
-"%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
-msgstr ""
-"%s : createcvarfromptr : trop de variables sur la pile. augmentez intersiz.\n"
-
-#, c-format
-msgid "%s: Recursion problems. Sorry ...\n"
-msgstr "%s : Problèmes de récursion. Désolé...\n"
-
-#, c-format
-msgid "%s: Too many names.\n"
-msgstr "%s : Trop de noms.\n"
-
-#, c-format
-msgid "%s: %s is not a Scilab function.\n"
-msgstr "%s : %s n'est pas une fonction Scilab.\n"
-
-msgid "built in"
-msgstr "Intégré"
-
-msgid "Invalid time domain.\n"
-msgstr "Domaine de temps invalide.\n"
-
-msgid "Invalid system.\n"
-msgstr "Système invalide.\n"
-
-msgid "A non square matrix!\n"
-msgstr "Une matrice non carrée !\n"
-
-#, c-format
-msgid "Invalid %c,%c matrices.\n"
-msgstr "Matrices %c,%c invalides.\n"
-
-#, c-format
-msgid "%s: internal error, info=%d.\n"
-msgstr "%s : erreur interne, info=%d.\n"
-
-#, c-format
-msgid "%s: intersiz is too small.\n"
-msgstr "%s : intersiz est trop petit.\n"
-
-msgid "first"
-msgstr "Premier"
-
-msgid "second"
-msgstr "Deuxième"
-
-msgid "third"
-msgstr "Troisième"
-
-msgid "fourth"
-msgstr "Quatrième"
-
-#, c-format
-msgid "%s argument"
-msgstr "Paramètre %s"
-
-#, c-format
-msgid "argument #%d"
-msgstr "argument n°%d"
-
-#, c-format
-msgid "%s and %s arguments"
-msgstr "Les %s et %s paramètres"
-
-#, c-format
-msgid "%s argument and argument #%d"
-msgstr "%s argument et argument n°%d"
-
-#, c-format
-msgid "arguments #%d and #%d"
-msgstr "arguments n°%d et n°%d"
-
-msgid "should be square"
-msgstr "devrait être carré"
-
-msgid "should be a vector"
-msgstr "devrait être un vecteur"
-
-msgid "should be a row vector"
-msgstr "devrait être un vecteur ligne"
-
-msgid "should be a column vector"
-msgstr "devrait être un vecteur colonne"
-
-msgid "should be a scalar"
-msgstr "devrait être un scalaire"
-
-#, c-format
-msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
-msgstr "%s : %s a des dimensions erronées (%d,%d),  (%d,%d) attendu.\n"
-
-#, c-format
-msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"
-msgstr "%s : %s a une %s dimension erronée (%d),  (%d) attendu.\n"
-
-#, c-format
-msgid "%s: %s has wrong length %d, expecting (%d).\n"
-msgstr "%s : %s a une longueur erronée %d, (%d) attendu.\n"
-
-#, c-format
-msgid "%s: %s have incompatible dimensions (%dx%d) # (%dx%d)\n"
-msgstr "%s : %s ont des dimensions incompatibles (%dx%d) # (%dx%d)\n"
-
-#, c-format
-msgid "%s: %s have incompatible dimensions.\n"
-msgstr "%s : %s ont des dimensions incompatibles.\n"
-
-#, c-format
-msgid "%s: %s should be a list with %d-element being %s.\n"
-msgstr "%s : %s devrait être une liste avec %d-élément étant %s.\n"
-
-#
-# File: src/c/stack2.c, line: 2959
-msgid "square"
-msgstr "carré"
-
-msgid "a vector"
-msgstr "Un vecteur"
-
-msgid "a row vector"
-msgstr "Un vecteur ligne"
-
-msgid "a column vector"
-msgstr "Un vecteur colonne"
-
-msgid "a scalar"
-msgstr "Un scalaire"
-
-#, c-format
-msgid "%s: argument %d(%d) has wrong %s dimension (%d), expecting (%d).\n"
-msgstr ""
-"%s : L'argument %d(%d) n'a pas la bonne dimension %s (%d), valeur attendue "
-"(%d).\n"
-
-#, c-format
-msgid "GetDataFromName: variable %s not found.\n"
-msgstr "GetDataFromName : variable %s non trouvée.\n"
-
-#, c-format
-msgid "%s: Variable %s not found.\n"
-msgstr "%s : Variable %s introuvable.\n"
-
-#
-# File: src/c/stack3.c, line: 74
-# File: src/c/stack3.c, line: 123
-# File: src/c/stack3.c, line: 263
-# File: src/c/stack3.c, line: 320
-# File: src/c/stack3.c, line: 420
-# File: src/c/stack3.c, line: 472
-# File: src/c/stack3.c, line: 518
-# File: src/c/stack3.c, line: 548
-# File: src/c/stack3.c, line: 586
-# File: src/c/stack3.c, line: 657
-# File: src/c/stack3.c, line: 703
-#, c-format
-msgid "Undefined variable %s.\n"
-msgstr "Variable indéfinie %s.\n"
-
-#, c-format
-msgid "%s: argument must be a string.\n"
-msgstr "%s:  L'argument doit être une chaîne de caractères.\n"
-
-#, c-format
-msgid "Unqueuing %s - No option.\n"
-msgstr "Retire %s de la queue - Pas d'option.\n"
-
-#, c-format
-msgid "Unqueuing %s - seq.\n"
-msgstr "Retire %s de la queue - seq.\n"
-
 #, c-format
 msgid ""
 "%s: Please install texmacs ATOMS module: atomsInstall('texmacs')\n"
@@ -1057,29 +475,12 @@ msgstr ""
 "%s : Veuillez installer le module ATOMS texmacs : atomsInstall('texmacs')\n"
 "\n"
 
-msgid "Cannot find Windows temporary directory (1)."
-msgstr "Impossible de trouver le répertoire temporaire de Windows (1)."
-
 #
-# File: src/c/tmpdir.c, line: 52
-# File: src/c/tmpdir.c, line: 73
-# File: src/c/CallScilab.c, line: 42
-msgid "Error"
-msgstr "Erreur"
-
-#
-# File: src/c/tmpdir.c, line: 72
-#, c-format
-msgid "Impossible to create : %s"
-msgstr "Impossible de créer : %s"
-
-#, c-format
-msgid "Warning: Could not resolve the realpath of %s.\n"
-msgstr "Attention : Impossible de résoudre le chemin vers %s.\n"
-
-#, c-format
-msgid "Error: Could not create %s: %s\n"
-msgstr "Erreur : Impossible de créer %s: %s\n"
+# File: src/c/inisci-c.c, line: 110
+# File: src/c/inisci-c.c, line: 150
+# File: src/c/inisci-c.c, line: 177
+msgid "Warning"
+msgstr "Attention"
 
 #, c-format
 msgid "Scilab version \"%d.%d.%d.%d\"\n"
@@ -1096,6 +497,13 @@ msgstr ""
 msgid "Scilab Version Info."
 msgstr "Information sur la version de Scilab."
 
+msgid "Debugger is on a breakpoint\n"
+msgstr ""
+
+msgid ""
+"(c)ontinue or (a)bort current execution before execute a new command\n"
+msgstr ""
+
 msgid ""
 "\n"
 "Call stack:\n"
@@ -1109,6 +517,22 @@ msgid ""
 msgstr ""
 "Fin de la pile\n"
 "\n"
+
+msgid "Scilab Enterprises\n"
+msgstr ""
+
+msgid "Copyright (c) 2011-2015 (Scilab Enterprises)\n"
+msgstr ""
+
+msgid "Copyright (c) 1989-2012 (INRIA)\n"
+msgstr ""
+
+msgid "Copyright (c) 1989-2007 (ENPC)\n"
+msgstr ""
+
+#, c-format
+msgid "Recursion limit reached (%d).\n"
+msgstr ""
 
 msgid ""
 "No available console !\n"
@@ -1124,20 +548,12 @@ msgstr "Onglet vide"
 msgid "Scilab %s Console"
 msgstr "Console Scilab %s"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un entier est attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type of input argument #%d: Integer expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
-
 msgid "Startup execution:"
 msgstr "Initialisation :"
 
 #
 # File: etc/scilab.start, line: 40
+#, c-format
 msgid "  loading initial environment"
 msgstr "  Chargement de l'environnement de travail"
 
@@ -1166,30 +582,6 @@ msgstr "&?"
 msgid "&Toolboxes"
 msgstr "Modules"
 
-msgid "Introduction: Getting started with Scilab"
-msgstr "Introduction : Débuter avec Scilab"
-
-msgid "Scilab objects"
-msgstr "Objets Scilab"
-
-msgid "Operations and numerical primitives"
-msgstr "Opérations et primitives numériques"
-
-msgid "Online definition of function"
-msgstr "Définition d'une fonction en ligne"
-
-msgid "Optimization and simulation"
-msgstr "Optimisation et simulation"
-
-msgid "Systems: definition and analysis"
-msgstr "Systèmes : définitions et analyse"
-
-msgid "Linear algebra"
-msgstr "Algèbre linéaire"
-
-msgid "Call an external routine"
-msgstr "Appeler une routine externe"
-
 #, c-format
 msgid "%s: Could not find '%s': Please check that macros have been built.\n"
 msgstr ""
@@ -1210,7 +602,8 @@ msgstr "%s : Le fichier n'existe pas : %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
@@ -1249,12 +642,6 @@ msgstr "%s : Erreur système : Commande exécutée : %s."
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d au moins attendus.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une variable définie "
-"attendue.\n"
 
 msgid "Scilab Version: "
 msgstr "Version de Scilab : "
@@ -1298,8 +685,8 @@ msgid "User variables are:"
 msgstr "Vos variables sont :"
 
 #, c-format
-msgid "Using %s elements out of %s"
-msgstr "Utilisation des éléments %s de %s"
+msgid "Using %s elements"
+msgstr ""
 
 msgid " by "
 msgstr " par "

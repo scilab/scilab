@@ -14,12 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- Створення [%s] (макрос) --\n"
 
 msgid "Input file"
 msgstr "Вхідний файл"
@@ -175,7 +171,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs не може бути %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr "рекурсивне видобування з одним індексом типу %s ще не реалізовано."
 
 #, c-format
@@ -190,7 +187,8 @@ msgid "Matlab function %s not yet converted."
 msgstr "Функцію Matlab %s ще не перетворено."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) можна замінити на %s() або %s, незалежно від того, є %s M-файлом чи "
 "ні."
@@ -246,7 +244,8 @@ msgid "// Display mode"
 msgstr "// Режим показу"
 
 msgid "// Display warning for floating point exception"
-msgstr "// Показ попередження для виключень під час операцій з плаваючою комою"
+msgstr ""
+"// Показ попередження для виключень під час операцій з плаваючою комою"
 
 msgid "// Output variables initialisation (not found in input variables)"
 msgstr "// Ініціалізація вихідних змінних (не знайдено у вхідних змінних)"
@@ -330,8 +329,8 @@ msgstr "якщо"
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"недостатньо даних, вам слід вказати принаймні variable_name|dimensions|"
-"datatype."
+"недостатньо даних, вам слід вказати принаймні "
+"variable_name|dimensions|datatype."
 
 msgid "too much data."
 msgstr "забагато даних."
@@ -611,7 +610,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Завершення сеансу mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Принаймні один з операндів %s є порожньою матрицею. Еквівалентом у Scilab "
 "буде []."
@@ -621,14 +621,16 @@ msgid "recursive extraction from a variable %s of type %s."
 msgstr "рекурсивне видобування зі змінної %s типу %s."
 
 msgid "Extraction from strings with more than two indexes not implemented."
-msgstr "Видобування рядків з кількістю індексів, більшою за 2, не реалізовано."
+msgstr ""
+"Видобування рядків з кількістю індексів, більшою за 2, не реалізовано."
 
 #, c-format
 msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr "Вада M2SCI: видобування невідомої змінної %s у списку змінних."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "рекурсивна вставка у змінну, яка не належить до типу «cell» або «struct»: %s."
 
@@ -638,7 +640,8 @@ msgstr "змінна призначення не є коміркою: %s нал�
 
 #, c-format
 msgid "One operand is an empty matrix in : %s, result set to []."
-msgstr "У %s одним з операндів є порожня матриця, результат встановлено у []."
+msgstr ""
+"У %s одним з операндів є порожня матриця, результат встановлено у []."
 
 #, c-format
 msgid ""
@@ -795,13 +798,15 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "Непридатний для обробки клас: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "Для isequal потрібно використовувати поля у тому самому порядку для того, "
 "щоб структури були рівними."
 
 msgid "Option -regexp not yet handled: will be ignored."
-msgstr "Обробки параметра -regexp ще не передбачено, його буде проігноровано."
+msgstr ""
+"Обробки параметра -regexp ще не передбачено, його буде проігноровано."
 
 #, c-format
 msgid "%s is an empty matrix, so result is set to []."
@@ -822,7 +827,8 @@ msgid "%s considered to be a Scilab macro."
 msgstr "%s розпізнано як макрос Scilab."
 
 msgid "string output can be different from Matlab num2str output."
-msgstr "вихідний рядок може відрізнятися від вихідного рядка num2str у Matlab."
+msgstr ""
+"вихідний рядок може відрізнятися від вихідного рядка num2str у Matlab."
 
 msgid "See msprintf for solutions."
 msgstr "Див. шляхи розв’язання у msprintf."
@@ -845,7 +851,8 @@ msgstr ""
 "розмірності, це не стосується матриць."
 
 msgid "Option -append not yet handled: will be ignored."
-msgstr "Обробки параметра -append ще не передбачено, його буде проігноровано."
+msgstr ""
+"Обробки параметра -append ще не передбачено, його буде проігноровано."
 
 #, c-format
 msgid ""

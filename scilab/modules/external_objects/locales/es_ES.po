@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-05-14 19:30+0000\n"
 "Last-Translator: Adolfo Jayme <fitoschido@gmail.com>\n"
@@ -14,13 +14,10 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
-msgid "Exception thrown in file"
-msgstr "Se generó una excepción en el archivo"
-
-msgid "at line"
-msgstr "en la línea"
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Variable no válida: no se pueden recuperar los datos"
 
 #, c-format
 msgid "%s: An error occurred: %s"
@@ -39,9 +36,6 @@ msgstr ""
 
 msgid "Cannot allocate memory"
 msgstr "No se puede asignar memoria"
-
-msgid "Invalid variable: cannot retrieve the data"
-msgstr "Variable no válida: no se pueden recuperar los datos"
 
 msgid "Invalid variable: cannot create data"
 msgstr "Variable no válida: no se pueden crear los datos"

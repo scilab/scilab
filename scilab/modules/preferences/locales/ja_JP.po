@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 14:11+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -34,51 +34,6 @@ msgid ""
 msgstr ""
 "%s: Java例外が発生しました:\n"
 "%s"
-
-msgid "Preferences"
-msgstr "設定"
-
-msgid "Preferences backup"
-msgstr "設定のバックアップ"
-
-msgid "Select a backup file"
-msgstr "バックアップファイルを選択"
-
-msgid "Scilab Configuration files"
-msgstr "Scilab設定ファイル"
-
-msgid "Restore"
-msgstr "復元"
-
-msgid "Create a backup file"
-msgstr "バックアップファイルを作成"
-
-msgid "Save"
-msgstr "保存"
-
-msgid "Select a file to open with SciNotes"
-msgstr "SciNotesで開くファイルを選択"
-
-msgid "Select a directory"
-msgstr "ディレクトリを選択"
-
-msgid "Please install atoms module."
-msgstr "atmosモジュールをインストールしてください."
-
-msgid "Please install xcos module."
-msgstr "xcosモジュールをインストールしてください."
-
-msgid "Default"
-msgstr "デフォルト"
-
-msgid "Cancel"
-msgstr "取消"
-
-msgid "OK"
-msgstr "OK"
-
-msgid "Apply"
-msgstr "適用する"
 
 msgid "Invalid path:"
 msgstr "無効なパス:"
@@ -105,10 +60,30 @@ msgstr "リセット"
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilabモジュール '%s' はインストールされていません.\n"
 
+msgid "Preferences"
+msgstr "設定"
+
+msgid "Preferences backup"
+msgstr "設定のバックアップ"
+
+msgid "Select a backup file"
+msgstr "バックアップファイルを選択"
+
+msgid "Scilab Configuration files"
+msgstr "Scilab設定ファイル"
+
+msgid "Restore"
+msgstr "復元"
+
+msgid "Create a backup file"
+msgstr "バックアップファイルを作成"
+
+msgid "Save"
+msgstr "保存"
+
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -116,8 +91,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid XConfiguration.xml file.\n"
@@ -145,5 +119,4 @@ msgstr "%s: 属性名が無効です: %s."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a 2xN matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 2xNの行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 2xNの行列を指定してください.\n"

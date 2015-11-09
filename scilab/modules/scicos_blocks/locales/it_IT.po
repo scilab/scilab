@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 msgid "overflow error"
@@ -24,8 +24,50 @@ msgid "Trigger block must have discrete time input."
 msgstr "Il blocco di attivazione deve avere un ingresso di tempo discreto."
 
 #, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+
+msgid "Read error!\n"
+msgstr "Errore di lettura!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Non è possibile aprire il file!\n"
+
+msgid "Read error\n"
+msgstr "Errore di lettura\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr ""
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "La dimensione del buffer o la dimensione dell'ingresso è cambiata!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Non è possibile aprire /dev/audio!\n"
+
+#, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "La variabile \"%s\" non esiste.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
 
 msgid "Invalid variable type.\n"
 msgstr "Variabile di tipo non valido.\n"
@@ -64,6 +106,15 @@ msgstr "Il risultato dovrebbe essere di tipo uint16.\n"
 msgid "Output should be of uint32 type.\n"
 msgstr "Il risultato dovrebbe essere di tipo uint32.\n"
 
+msgid "Cannot read the values field.\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr "Il tipo del vettore Time non è double.\n"
+
+msgid "The Time vector type is complex.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
@@ -71,54 +122,11 @@ msgstr ""
 "Il vettore Time ha una dimensione sbagliata, era attesa [%d, %d] e ottenuta "
 "[%d, %d].\n"
 
-msgid "The Time vector type is not double.\n"
-msgstr "Il tipo del vettore Time non è double.\n"
+msgid "Cannot read the time field.\n"
+msgstr ""
 
 msgid "The time vector should be an increasing vector.\n"
 msgstr "Il vettore Time dovrebbe essere un vettore crescente.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problema di allocazione in spline.\n"
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr ""
-"Il tipo della variabile non è corretto: errore nella codifica della "
-"ipermatrice di Scilab.\n"
-
-#, c-format
-msgid ""
-"The LU factorization has been completed, but the factor U is exactly "
-"singular : U(%d,%d) is exactly zero."
-msgstr ""
-
-msgid "Read error!\n"
-msgstr "Errore di lettura!\n"
-
-msgid "Could not open the file!\n"
-msgstr "Non è possibile aprire il file!\n"
-
-msgid "Read error\n"
-msgstr "Errore di lettura\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f \n"
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "La dimensione del buffer o la dimensione dell'ingresso è cambiata!\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "il tempo ritardato=%f , ma l'ultimo tempo immagazzinato = %f\n"
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
-
-msgid "Could not open /dev/audio!\n"
-msgstr "Non è possibile aprire /dev/audio!\n"
 
 msgid "Clear a bit"
 msgstr ""
@@ -830,7 +838,3 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Erano attese le stesse dimensioni."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""

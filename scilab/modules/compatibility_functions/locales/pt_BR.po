@@ -8,54 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 15:53+0000\n"
+"PO-Revision-Date: 2015-10-08 22:06+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pt_BR\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se de %d a "
-"%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"escalar.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"texto.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve pertencer ao "
-"conjunto {%s}.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""
@@ -75,7 +35,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments: String expected.\n"
-msgstr "%s: Tipo incorreto para argumentos de entrada: esperava-se um texto.\n"
+msgstr ""
+"%s: Tipo incorreto para argumentos de entrada: esperava-se um texto.\n"
 
 #, c-format
 msgid ""
@@ -94,7 +55,8 @@ msgstr ""
 "argumento não correspondem ao conteúdo da célula especificada.\n"
 
 #, c-format
-msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid ""
+"%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: Este recurso não foi implementado: suporte a hipermatrizes.\n"
 
 #, c-format
@@ -141,7 +103,8 @@ msgstr ""
 "quadrada.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: Esperava-se %s, %s,'%s' "
 "ou '%s'.\n"
@@ -230,7 +193,8 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: Não há a grade minor (menor) no Scilab.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se '%s', '%s' "
 "ou '%s'.\n"
@@ -273,11 +237,18 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Quantidade incorreta de argumento(s) de entrada: esperava-se %d.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se %d.\n"
 
 #, c-format
 msgid "%s: pencil is not diagonalizable.\n"
 msgstr "%s: o lápis não é diagonalizável.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Quantidade incorreta de argumento(s) de entrada: esperava-se de %d a "
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"

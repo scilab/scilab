@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 21:44+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Invalid index.\n"
@@ -47,7 +47,8 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván skalár, 'c', nebo 'd'.\n"
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: Ovlivnění řetězce v matici čísel není zavedeno.\n"
 
 #, c-format
@@ -65,7 +66,8 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: Neplatný název pole.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný název pole.\n"
 
@@ -78,7 +80,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: ŠPatná velikost vstupního argumentu #%d: Transpozice nemůže být určena.\n"
 
@@ -181,7 +184,8 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr "%s: Vstupní a výstupní matice musí mít stejný počet prvků"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 
@@ -210,10 +214,6 @@ msgstr ""
 "%s: Špatný txp vstupního argumentu #%d: Očekávány celočíselné hodnoty.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekávány alespoň %d.\n"
-
-#, c-format
 msgid "%s: Invalid syntax for a MIMO system.\n"
 msgstr "%s: Neplatná syntaxe pro systém MIMO.\n"
 
@@ -238,15 +238,6 @@ msgstr "%s: Špatná velikost vstupních argumentů.\n"
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Špatná velikost vstupních argumentů.\n"
 
-msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
-"scilab-6.\n"
-"           Use vector .^ scalar instead.\n"
-msgstr ""
-"  Varování: Syntaxe vektor ^ skalár je zastaralá, bude odstraněna v "
-"scilab-6.\n"
-"           Místo toho použijte vektor .^ skalár.\n"
-
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -261,16 +252,8 @@ msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr "%s? Prázdné přidělení může mít index pouze bez dvojtečky.\n"
 
 #, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
 #, c-format
 msgid "%s: Field names mismatch.\n"
@@ -289,7 +272,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr "%s: vstupní a výstupní matice musí mít stejný počet prvků.\n"
 
 #, c-format

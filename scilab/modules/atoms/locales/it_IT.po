@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-15 20:15+0000\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
@@ -173,7 +173,8 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Module %s is already installed. Please remove it before checking it.\n"
-msgstr "%s: Il modulo %s è già installato. Rimuoverlo prima di controllarlo.\n"
+msgstr ""
+"%s: Il modulo %s è già installato. Rimuoverlo prima di controllarlo.\n"
 
 #, c-format
 msgid "%s: Module %s does not exist in current repositories.\n"
@@ -291,7 +292,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
-msgstr "%s: Errore durante la copiatura del file '%s' nella directory '%s'.\n"
+msgstr ""
+"%s: Errore durante la copiatura del file '%s' nella directory '%s'.\n"
 
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
@@ -600,7 +602,8 @@ msgstr "Installazione in corso"
 msgid "Installation failed!"
 msgstr "Installazione fallita!"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Installazione effettuata! Riavviare Scilab per effettuare i cambiamenti."
 
@@ -686,8 +689,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Valore errato per l'argomento in ingresso #%d: era atteso 'filter:"
-"all','filter:main' o una categoria valida.\n"
+"%s: Valore errato per l'argomento in ingresso #%d: era atteso "
+"'filter:all','filter:main' o una categoria valida.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -714,7 +717,8 @@ msgstr "%s: Il pacchetto '%s' non è presente nella struct.\n"
 #, c-format
 msgid ""
 "%s: The version '%s' of the package '%s' is not present in the struct.\n"
-msgstr "%s: La versione '%s' del pacchetto '%s' non è presente nella struct.\n"
+msgstr ""
+"%s: La versione '%s' del pacchetto '%s' non è presente nella struct.\n"
 
 #, c-format
 msgid ""
@@ -849,7 +853,8 @@ msgstr "Download in corso... Attendere."
 
 #, c-format
 msgid "%s: Error: the response status from the URL %s is invalid.\n"
-msgstr "%s: Errore: lo stato della risposta dall'indirizzo %s non è valido.\n"
+msgstr ""
+"%s: Errore: lo stato della risposta dall'indirizzo %s non è valido.\n"
 
 #, c-format
 msgid "%s: Error while opening an Internet connection.\n"
@@ -924,15 +929,16 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM calcolato : '%s'\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso 'error' o "
 "'warning'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa singola che finisce per .tar.gz, .tgz o .zip.\n"
@@ -1062,15 +1068,16 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: L'albero delle dipendenze non può essere risolto.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: erano attese le "
 "lettere 'A' o 'I'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: questa non è una "
 "versione/dipendenza valida.\n"
@@ -1131,7 +1138,8 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) non è installato.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: non è una versione "
 "valida.\n"

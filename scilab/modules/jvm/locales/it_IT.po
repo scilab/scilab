@@ -14,23 +14,17 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
-
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "L'interfaccia della JVM è disabilitata in modalità -nogui o -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memoria esaurita.\n"
-
-#, c-format
 msgid "%s: Could not add URL to system classloader : %s.\n"
-msgstr "%s: Non è possibile aggiungere un URL al classloader di sistema: %s.\n"
+msgstr ""
+"%s: Non è possibile aggiungere un URL al classloader di sistema: %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -40,13 +34,24 @@ msgstr ""
 
 #, c-format
 msgid "%s: Could not add path to java.library.path: %s.\n"
-msgstr "%s: Non è possibile aggiungere un percorso a java.library.path: %s.\n"
+msgstr ""
+"%s: Non è possibile aggiungere un percorso a java.library.path: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d o #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -74,9 +79,9 @@ msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
 "not adding extra dependencies which could not be found at runtime.\n"
 msgstr ""
-"Se Scilab è usato tramite Java,assicurarsi che lo IDE in uso (es: Netbeans,"
-"ecc) non stia aggiungendo delle dipendenze extra che non possono essere "
-"trovate durante l'esecuzione.\n"
+"Se Scilab è usato tramite Java,assicurarsi che lo IDE in uso (es: "
+"Netbeans,ecc) non stia aggiungendo delle dipendenze extra che non possono "
+"essere trovate durante l'esecuzione.\n"
 
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "Non è possibile accedere alla classe Main di Scilab\n"
@@ -128,19 +133,19 @@ msgstr "Errore: %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug http://"
-"bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
 msgstr ""
-"Se si sta usando una versione binaria di Scilab,segnalare un bug su http://"
-"bugzilla.scilab.org/.\n"
+"Se si sta usando una versione binaria di Scilab,segnalare un bug su "
+"http://bugzilla.scilab.org/.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script bin/"
-"scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
 msgstr ""
-"Se si sta usando una versione compilata di Scilab, aggiornare lo script bin/"
-"scilab per fornire il percorso alla JVM.\n"
+"Se si sta usando una versione compilata di Scilab, aggiornare lo script "
+"bin/scilab per fornire il percorso alla JVM.\n"
 
 #, c-format
 msgid "The problem might be related to SELinux. Try to deactivate it.\n"
@@ -214,7 +219,8 @@ msgid "Warning: Could not find Java package '%s'.\n"
 msgstr "Attenzione: non è possibile trovare il pacchetto Java '%s'.\n"
 
 msgid "Could not access to the constructor of the Main Scilab Class:\n"
-msgstr "Non è possibile accedere al costruttore della classe Main di Scilab:\n"
+msgstr ""
+"Non è possibile accedere al costruttore della classe Main di Scilab:\n"
 
 msgid "Could not create a Scilab main class. Error:\n"
 msgstr "Non è possibile creare una classe main di Scilab. Errore:\n"
@@ -237,8 +243,8 @@ msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
 "found.\n"
 msgstr ""
-"Errore: il file di configurazione %s non è valido (la codifica non è '%s'),"
-"trovata la codifica '%s'.\n"
+"Errore: il file di configurazione %s non è valido (la codifica non è "
+"'%s'),trovata la codifica '%s'.\n"
 
 #, c-format
 msgid "Error: could not parse file %s\n"

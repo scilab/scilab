@@ -8,14 +8,30 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-14 21:57+0000\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
+"expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di stringhe o una matrice di interi.\n"
+
+#, c-format
+msgid "%s : wrong UTF-8 sequence.\n"
+msgstr ""
 
 msgid "WARNING : \n"
 msgstr "ATTENZIONE : \n"
@@ -27,59 +43,12 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
-"expected.\n"
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe o una matrice di interi.\n"
 
 #, c-format
-msgid "%s: Feature %s is obsolete.\n"
-msgstr "%s: La caratteristica %s è obsoleta.\n"
-
-msgid "Warning"
-msgstr "Attenzione"
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
-msgstr "%s: Usare %s invece.\n"
-
-#, c-format
-msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
-"%s: Questa caratteristica verrà rimossa permanentemente in Scilab %s\n"
-"\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"reale.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memoria esaurita.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Errore di allocazione della memoria.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
-"expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso "
-"'u' (maiuscolo) o 'l' (minuscolo).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -88,15 +57,16 @@ msgstr ""
 "di stringhe.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
+"expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di interi.\n"
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso 'u' "
+"(maiuscolo) o 'l' (minuscolo).\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' .\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -105,100 +75,72 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha dei valori sbagliati: erano attese delle "
 "stringhe non-vuote.\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
-"expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"reale o una matrice di stringhe.\n"
+"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar String expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
 
 #, c-format
-msgid "%s: impossible to get dimensions of this matrix.\n"
-msgstr "%s: è impossibile ottenere le dimensioni di questa matrice.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument(s).\n"
-msgstr "%s: Gli argomenti in ingresso sono di tipo sbagliato.\n"
+msgid "%s: Wrong type for input argument #%d: string or matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
+msgid "%s: Wrong type for input argument(s).\n"
+msgstr "%s: Gli argomenti in ingresso sono di tipo sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha dei valori sbagliati: deve essere >=1.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a string vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
-"di stringhe.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso '%s' o "
-"'%s'.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s' o "
-"'%s'.\n"
-
-#, c-format
-msgid "%s : Wrong size for input argument(s).\n"
-msgstr "%s: Gli argomenti in ingresso hanno delle dimensioni sbagliate.\n"
-
-#, c-format
-msgid "%s: error.\n"
-msgstr "%s: errore.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument(s).\n"
-msgstr "%s: Gli argomenti in ingresso hanno delle dimensioni sbagliate.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty real "
-"matrix expected.\n"
+"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
+"expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe o una matrice reale vuota.\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"matrice di stringhe non vuota.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A character expected.\n"
+msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
-"carattere.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Char expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -210,46 +152,13 @@ msgid "%s : No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
+msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso hanno una dimensione sbagliata: erano attese "
-"le stesse dimensioni.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Character expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un "
-"carattere.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
-"expected.\n"
+"%s: Wrong type for input argument #%d: string or string vector expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di stringhe o una matrice vuota.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
-"Encoding problem).\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
-"stringa valida (problema con la codifica UTF-8)\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row vector of strings or column "
-"vector of strings expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un vettore "
-"riga di stringhe o un vettore colonna di stringhe.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"matrice non vuota.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -262,10 +171,26 @@ msgstr ""
 "booleano.\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di stringhe o una matrice vuota.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "matrice non vuota.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
@@ -274,10 +199,12 @@ msgstr ""
 "singola stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
-"scalare.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar double expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
@@ -286,15 +213,12 @@ msgstr ""
 "intero.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
+msgid "%s: Wrong size for input argument #%d: A positive value expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un valore "
-"> 0.\n"
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in uscita è sbagliato: ne erano attesi %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -306,6 +230,14 @@ msgstr ""
 "%s: Gli elementi del %d° argomento devono essere in ordine crescente.\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s: errore.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: a string expected, not a regexp "
 "pattern.\n"
@@ -314,26 +246,26 @@ msgstr ""
 "stringa, non uno schema regexp.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
-"expected.\n"
+msgid "%s: Wrong type for input argument #%d: A double or string expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"matrice di stringhe non vuota.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '.' o "
 "','.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A character or a vector of single "
-"characters expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa un carattere "
-"o un vettore di caratteri singoli.\n"
 
 #, c-format
 msgid "%s: Delimiter must not be alphameric.\n"
@@ -383,17 +315,6 @@ msgid "%s: Unknown error.\n"
 msgstr "%s: Errore sconosciuto.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: $ expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso $.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a function expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"funzione.\n"
-
-#, c-format
 msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
 "%s: $ è l'unica variabile implicita supportata negli indici selezionati"
@@ -418,14 +339,6 @@ msgstr ""
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è sbagliato: dimensione non consistente.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
-"expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
-"di reali, interi o stringhe.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -462,9 +375,10 @@ msgid "%s: This feature has not been implemented: %s.\n"
 msgstr "%s: La seguente caratteristica non è stata sviluppata: %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"

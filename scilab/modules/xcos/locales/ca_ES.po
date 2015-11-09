@@ -8,108 +8,53 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-03 02:52+0000\n"
+"PO-Revision-Date: 2015-10-08 22:10+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: No hi ha més memòria.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-msgid "Straight"
-msgstr "Directe"
-
-msgid "Horizontal"
-msgstr "Horitzontal"
-
-msgid "Vertical"
-msgstr "Vertical"
-
-msgid "No trace nor debug printing"
-msgstr "No hi ha traces ni depuracions"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Light Simulation trace (Discrete and Continuous part switches)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "Crides a traces i depuracions per execucions de blocs"
-
-msgid "Debug block calls without trace"
-msgstr "Crides a blocs de depuració sense traces"
-
-msgid "Number of recently opened files to display: "
-msgstr ""
-
-msgid "Default file format"
-msgstr ""
-
-msgid "Link Style"
-msgstr "Estil dels enllaços"
-
-msgid "Diagram background"
-msgstr "Fons del diagrama"
-
-msgid "Grid"
-msgstr "Quadrícula"
-
-msgid "Default simulation settings"
-msgstr ""
-
-msgid "Final integration time"
-msgstr "Temps total d'integració"
-
-msgid "Real time scaling"
-msgstr "Escalat en temps real"
-
-msgid "Integrator absolute tolerance"
-msgstr "Tolerància absoluta de l'integrador"
-
-msgid "Integrator relative tolerance"
-msgstr "Tolerància relativa de l'integrador"
-
-msgid "Tolerance on time"
-msgstr "Tolerància temporal"
-
-msgid "Max integration time interval"
-msgstr "Intèrval màxim d'integració"
-
-msgid "Solver kind"
-msgstr ""
-
-msgid "Maximum step size (0 means no limit)"
-msgstr ""
-
-msgid "Default trace settings"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un booleà.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
+"de caràcters.\n"
 
 #, c-format
 msgid ""
@@ -126,9 +71,6 @@ msgid ""
 msgstr ""
 "No s'ha pogut carregar la llibreria Batik. \n"
 "Ha de ser la versió %s ; Hi ha la versió %s ."
-
-msgid "parent diagram not found."
-msgstr ""
 
 msgid "Preview"
 msgstr ""
@@ -460,6 +402,12 @@ msgstr "Inverteix"
 msgid "Show/Hide shadow"
 msgstr "Mostra/amaga les ombres"
 
+msgid "Grid"
+msgstr "Quadrícula"
+
+msgid "Diagram background"
+msgstr "Fons del diagrama"
+
 msgid "Bold"
 msgstr "Negreta"
 
@@ -499,8 +447,8 @@ msgstr "Ajuda de bloc"
 msgid "Xcos Demonstrations"
 msgstr ""
 
-msgid "About Xcos"
-msgstr "Quant al Xcos"
+msgid "About Scilab"
+msgstr ""
 
 msgid "Palettes"
 msgstr "Paletes"
@@ -574,7 +522,8 @@ msgstr "Activa"
 msgid "Palette name"
 msgstr "Nom de la paleta"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "S'ha modificat el diagrama des de l'últim que es va desar.<br/> El voleu "
 "desar?"
@@ -652,22 +601,26 @@ msgstr "Afegeix"
 msgid "Add to new diagram"
 msgstr "Afegeix a un diagrama nou"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Un port de dades d'entrada explícit ha d'estar connectat a un port de dades "
 "de sortida explícit"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Un port de dades d'entrada implícit ha d'estar connectat a un port de dades "
 "de sortida implícit"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Un port de dades de sortida explícit ha d'estar connectat a un port de dades "
 "d'entrada explícit"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Un port de dades de sortida implícit ha d'estar connectat a un port de dades "
 "d'entrada implícit"
@@ -714,12 +667,48 @@ msgstr "Color d'emplenat"
 msgid "Text Color"
 msgstr "Color del text"
 
+msgid "Link Style"
+msgstr "Estil dels enllaços"
+
+msgid "Straight"
+msgstr "Directe"
+
+msgid "Horizontal"
+msgstr "Horitzontal"
+
+msgid "Vertical"
+msgstr "Vertical"
+
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Indiqueu el nivell de depuració (0,1,2,3) <br/> Això executa scicos_debug(n)"
 
 msgid "Execution trace and Debug"
 msgstr "Depuració i traces de l'execució"
+
+msgid "Final integration time"
+msgstr "Temps total d'integració"
+
+msgid "Real time scaling"
+msgstr "Escalat en temps real"
+
+msgid "Integrator absolute tolerance"
+msgstr "Tolerància absoluta de l'integrador"
+
+msgid "Integrator relative tolerance"
+msgstr "Tolerància relativa de l'integrador"
+
+msgid "Tolerance on time"
+msgstr "Tolerància temporal"
+
+msgid "Max integration time interval"
+msgstr "Intèrval màxim d'integració"
+
+msgid "Solver kind"
+msgstr ""
+
+msgid "Maximum step size (0 means no limit)"
+msgstr ""
 
 msgid "Default"
 msgstr "Predeterminat"
@@ -758,10 +747,23 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Feu clic al diagrama per afegir un punt d'enllaç o en un destí compatible "
 "per finalitzar"
+
+msgid "No trace nor debug printing"
+msgstr "No hi ha traces ni depuracions"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "Light Simulation trace (Discrete and Continuous part switches)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Crides a traces i depuracions per execucions de blocs"
+
+msgid "Debug block calls without trace"
+msgstr "Crides a blocs de depuració sense traces"
 
 msgid "All supported formats"
 msgstr ""
@@ -827,8 +829,8 @@ msgid ""
 "The user palette configuration file (palettes.xml) is invalid.<BR> Switching "
 "to the default one."
 msgstr ""
-"El fitxer de configuració de la paleta d'usuari (palettes.xml) és invàlid."
-"<BR> S'utilitzarà el predeterminat."
+"El fitxer de configuració de la paleta d'usuari (palettes.xml) és "
+"invàlid.<BR> S'utilitzarà el predeterminat."
 
 msgid ""
 "The user configuration file (xcos.xml) is invalid.<BR> Switching to the "
@@ -854,153 +856,29 @@ msgid "Expecting '%d'."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. <br/"
-">Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+"El mòdul '%s' de l'Scilab està inhabilitat en els modes -nogui i -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "No està instal·lat el mòdul '%s' del Scilab.\n"
 
-msgid "Basic controller"
+msgid "Number of recently opened files to display: "
 msgstr ""
 
-msgid "Water tank"
+msgid "Default file format"
 msgstr ""
 
-msgid "Discrete Controller"
+msgid "Default simulation settings"
 msgstr ""
 
-msgid "Kalman Filter"
-msgstr ""
-
-msgid "Discrete Kalman Filter"
-msgstr ""
-
-msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
-
-msgid "Temperature Controller"
-msgstr ""
-
-msgid "Inverted pendulum"
-msgstr ""
-
-msgid "Lorenz butterfly"
-msgstr ""
-
-msgid "RLC Circuit"
-msgstr ""
-
-msgid "Bridge Rectifer"
-msgstr ""
-
-msgid "Transformer"
-msgstr ""
-
-msgid "Differential amplifier"
-msgstr ""
-
-msgid "OpAmp amplifier"
-msgstr ""
-
-msgid "Switched capacitor integrator"
-msgstr ""
-
-msgid "DC/DC Buck Converter"
-msgstr ""
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "Colpitts oscillator"
-msgstr ""
-
-msgid "Logic AND gate"
-msgstr ""
-
-msgid "Logic NOR gate"
-msgstr ""
-
-msgid "If Then Else"
-msgstr ""
-
-msgid "And"
-msgstr ""
-
-msgid "Automotive Suspension"
-msgstr ""
-
-msgid "Ball on a Platform"
-msgstr ""
-
-msgid "Bouncing Ball"
-msgstr ""
-
-msgid "Chaos Modelica"
-msgstr ""
-
-msgid "Hydraulics blocks"
-msgstr ""
-
-msgid "RLC circuit"
-msgstr ""
-
-msgid "Old Gain Block"
-msgstr ""
-
-msgid "Standard demos"
-msgstr ""
-
-msgid "Control Systems"
-msgstr ""
-
-msgid "Electrical Systems"
-msgstr ""
-
-msgid "Mechanical Systems"
-msgstr ""
-
-msgid "Modelica demos"
-msgstr ""
-
-msgid "Old demos"
-msgstr ""
-
-msgid "Simple Demo"
-msgstr ""
-
-msgid "Bouncing Balls"
-msgstr ""
-
-msgid "Simple Thermostat"
-msgstr ""
-
-msgid "Table Lookup"
-msgstr ""
-
-msgid "Signal Builder"
-msgstr ""
-
-msgid "Fibonacci Numbers"
-msgstr ""
-
-msgid "Scilab block"
-msgstr ""
-
-msgid "Xcos data types"
-msgstr ""
-
-msgid "Zero Crossing"
-msgstr ""
-
-msgid "_IF_ Xcos block"
-msgstr ""
-
-msgid "Goto/From blocks"
-msgstr ""
-
-msgid "Event demos"
+msgid "Default trace settings"
 msgstr ""
 
 #, c-format
@@ -1018,7 +896,8 @@ msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un bloc.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser un camí a un "
 "directori.\n"
@@ -1075,17 +954,15 @@ msgstr ""
 "d'escriptura.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
-msgstr ""
-"%s: L'argument %d és d'un tipus incorrecte: Ha de ser una cadena de text o "
-"un diagrama"
-
-#, c-format
 msgid "Unable to open %s"
 msgstr "No s'ha pogut obrir %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Not supported format %s.\n"
 msgstr ""
 
 #, c-format
@@ -1116,7 +993,8 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 "%s: L'argument d'entrada %s és d'un tipus incorrecte: Ha de ser una paleta o "
 "un camí.\n"
@@ -1144,7 +1022,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Unable to load block from %s: hdf5 file expected.\n"
-msgstr "%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
+msgstr ""
+"%s: No s'ha pogut carregar el bloc de %s: Ha de ser un fitxer hdf5.\n"
 
 #, c-format
 msgid "%s: Unable to load block from %s: no `scs_m' variable found.\n"
@@ -1372,16 +1251,4 @@ msgid "Simulation problem"
 msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
-
-#, c-format
-msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

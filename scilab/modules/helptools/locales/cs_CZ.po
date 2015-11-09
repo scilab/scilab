@@ -6,27 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-24 19:23+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Špatný typ pro vstupní argument #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -53,9 +45,6 @@ msgstr "Modul Scilabu '%s' není nainstalován.\n"
 
 msgid "Version"
 msgstr "Verze"
-
-msgid "Description"
-msgstr "Popis"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -306,15 +295,16 @@ msgstr "%s: Soubor KAPITOLA není na řádku %d dobře formátován\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec končící ."
-"last_successful_build.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec končící "
+".last_successful_build.\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr "%s: Soubor last_successful_build není na řádku %d dobře formátován.\n"
+msgstr ""
+"%s: Soubor last_successful_build není na řádku %d dobře formátován.\n"
 
 #, c-format
 msgid ""

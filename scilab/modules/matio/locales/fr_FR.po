@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 08:30+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 #, c-format
@@ -110,8 +110,10 @@ msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr "%s : Les tableaux de caractères N-D ne sont pas implémentés.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Mlist expected.\n"
-msgstr "%s : Type erroné du premier argument d'entrée : Mlist attendu.\n"
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr ""
+"%s : La sauvegarde de tableaux 2D de chaînes de caractères n'est pas "
+"implémentée.\n"
 
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
@@ -128,12 +130,6 @@ msgstr ""
 "différentes longueurs n'est pas implémentée.\n"
 
 #, c-format
-msgid "%s: 2D array of strings saving is not implemented.\n"
-msgstr ""
-"%s : La sauvegarde de tableaux 2D de chaînes de caractères n'est pas "
-"implémentée.\n"
-
-#, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
 "%s : Type erroné du premier argument d'entrée : Une matrice de doubles "
@@ -146,6 +142,14 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: MList expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
 msgstr ""
 "%s : Les Mlistes de type %s n'ont pu être transformées en fichiers binaires "
@@ -156,9 +160,6 @@ msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
 msgstr ""
 "%s : Type erroné du premier argument d'entrée : Une matrice creuse "
 "attendue.\n"
-
-msgid "Scilab matio module not installed.\n"
-msgstr "Le module Scilab matio n'est pas installé.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"

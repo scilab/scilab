@@ -14,13 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Il modulo \"%s\" di Scilab è disabilitato in modalità -nogui o -nwni.\n"
 
 msgid "History loading in progress..."
 msgstr "Caricamento cronologia in corso..."
@@ -69,7 +64,3 @@ msgstr "Impossile eliminare l'attuale linea di inizio sessione."
 
 msgid "History preferences"
 msgstr "Preferenze della cronologia"
-
-#, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr "Il modulo \"%s\" di Scilab non è installato.\n"

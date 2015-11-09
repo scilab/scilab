@@ -7,15 +7,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-29 18:28+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
 
 #, c-format
@@ -38,51 +38,6 @@ msgid ""
 msgstr ""
 "%s: сталося виключення Java:\n"
 "%s"
-
-msgid "Preferences"
-msgstr "Налаштування"
-
-msgid "Preferences backup"
-msgstr "Резервне копіювання налаштувань"
-
-msgid "Select a backup file"
-msgstr "Вибір файла резервної копії"
-
-msgid "Scilab Configuration files"
-msgstr "файли налаштувань Scilab"
-
-msgid "Restore"
-msgstr "Відновити"
-
-msgid "Create a backup file"
-msgstr "Створити файл резервної копії"
-
-msgid "Save"
-msgstr "Зберегти"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Виберіть файл, який слід відкрити у SciNotes"
-
-msgid "Select a directory"
-msgstr "Виберіть каталог"
-
-msgid "Please install atoms module."
-msgstr "Будь ласка, встановіть модуль atoms."
-
-msgid "Please install xcos module."
-msgstr "Будь ласка, встаовіть модуль xcos."
-
-msgid "Default"
-msgstr "Типове"
-
-msgid "Cancel"
-msgstr "Скасувати"
-
-msgid "OK"
-msgstr "Гаразд"
-
-msgid "Apply"
-msgstr "Застосувати"
 
 msgid "Invalid path:"
 msgstr "Некоректний шлях:"
@@ -108,6 +63,27 @@ msgstr "Скинути"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
+
+msgid "Preferences"
+msgstr "Налаштування"
+
+msgid "Preferences backup"
+msgstr "Резервне копіювання налаштувань"
+
+msgid "Select a backup file"
+msgstr "Вибір файла резервної копії"
+
+msgid "Scilab Configuration files"
+msgstr "файли налаштувань Scilab"
+
+msgid "Restore"
+msgstr "Відновити"
+
+msgid "Create a backup file"
+msgstr "Створити файл резервної копії"
+
+msgid "Save"
+msgstr "Зберегти"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

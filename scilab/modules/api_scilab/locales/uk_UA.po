@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-07 19:46+0000\n"
+"PO-Revision-Date: 2015-10-10 09:23+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -33,6 +33,10 @@ msgid "%s: Unable to get argument #%d"
 msgstr "%s: не вдалося отримати аргумент №%d"
 
 #, c-format
+msgid "%s: No more memory to allocated variable"
+msgstr "%s: не вистачає пам’яті для змінної"
+
+#, c-format
 msgid "%s: Unable to create variable in Scilab memory"
 msgstr "%s: не вдалося створити змінну у пам’яті Scilab"
 
@@ -46,6 +50,9 @@ msgstr "%s: не вдалося створити %s з назвою «%s»"
 
 msgid "matrix of boolean"
 msgstr "матриця з булівських значень"
+
+msgid "Redefining permanent variable.\n"
+msgstr "Повторне визначення незмінної змінної.\n"
 
 #, c-format
 msgid "%s: Unable to get variable \"%s\""
@@ -83,6 +90,9 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
 "%d параметрів.\n"
 
+msgid "matrix"
+msgstr "матриця"
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr ""
@@ -99,7 +109,8 @@ msgstr "%s: помилкова кількість вихідних параме�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
@@ -124,10 +135,6 @@ msgstr "%s: не вдалося отримати розмірність змін
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
 msgstr "%s: помилковий виклик %s (перший параметр).\n"
-
-#, c-format
-msgid "%s: Unable to get name of argument #%d"
-msgstr "%s: не вдалося отримати назву параметра №%d"
 
 #, c-format
 msgid "%s: Unable to get address of variable \"%s\""
@@ -166,7 +173,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"%s: помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
 "«%s».\n"
 
 #, c-format
@@ -191,28 +198,20 @@ msgstr ""
 msgid "%s: Unable to get dimension from variable \"%s\""
 msgstr "%s: не вдалося отримати розмірність зі змінної «%s»"
 
+#, c-format
+msgid "Invalid type pointer in '%s'\n"
+msgstr "Некоректний тип вказівника у «%s»\n"
+
 msgid "double matrix"
 msgstr "матриця зі значень double"
 
 #, c-format
-msgid "stack size exceeded!\n"
-msgstr "Перевищено розміри стеку!\n"
+msgid "%s: %ls"
+msgstr "%s: %ls"
 
 #, c-format
-msgid "Use stacksize function to increase it.\n"
-msgstr "Скористайтеся функцією stacksize, щоб збільшити ці розміри.\n"
-
-#, c-format
-msgid "Memory used for variables: %d\n"
-msgstr "Пам’ять, відведена під змінні: %d\n"
-
-#, c-format
-msgid "Intermediate memory needed: %d\n"
-msgstr "Потрібна проміжна область пам’яті: %d\n"
-
-#, c-format
-msgid "Total memory available: %d\n"
-msgstr "Загалом доступно пам’яті: %d\n"
+msgid "%s: No more memory to allocate variable"
+msgstr "%s: не вистачає пам’яті для розміщення змінної"
 
 msgid "API Error:\n"
 msgstr "Помилка API:\n"
@@ -223,6 +222,10 @@ msgstr "\tу %s\n"
 
 msgid "handle matrix"
 msgstr "матриця елемента керування"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s: помилковий виклик для отримання некомплексної матриці"
 
 msgid "int matrix"
 msgstr "матриця зі значень int"
@@ -243,33 +246,19 @@ msgid "%s: Unable to get address of item #%d in argument #%d"
 msgstr "%s: не вдалося отримати адресу елемента №%d у аргументі №%d"
 
 #, c-format
-msgid "%s: Unable to get address of item #%d in variable \"%s\""
-msgstr "%s: не вдалося отримати адресу елемента №%d у змінній «%s»"
-
-#, c-format
 msgid "%s: Unable to create list item #%d in Scilab memory"
 msgstr "%s: не вдалося створити пункт списку №%d у пам’яті Scilab"
 
 #, c-format
-msgid "%s: Unable to create list item #%d in variable \"%s\""
-msgstr "%s: не вдалося створити пункт списку №%d у змінній «%s»"
-
-#, c-format
-msgid "%s: Items must be inserted in order"
-msgstr "%s: елементи слід вставляти впорядковано"
+msgid "%s: Unable to get address of item #%d in variable \"%s\""
+msgstr "%s: не вдалося отримати адресу елемента №%d у змінній «%s»"
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
 
 #, c-format
-msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr ""
-"%s: записи додаткових параметрів у формі назва=значення слід вказувати "
-"наприкінці.\n"
-
-#, c-format
-msgid "%s: Unrecognized optional arguments %s.\n"
-msgstr "%s: невідомі додаткові параметри %s.\n"
+msgid "%ls: Unrecognized optional arguments %ls.\n"
+msgstr "%ls: невідомі додаткові параметри %ls.\n"
 
 msgid "Optional argument list is empty.\n"
 msgstr "Список додаткових параметрів порожній.\n"
@@ -287,32 +276,11 @@ msgstr "вказівник"
 msgid "polynomial matrix"
 msgstr "поліноміальна матриця"
 
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s: помилковий виклик для отримання некомплексної матриці"
-
-#, c-format
-msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
-msgstr "%s: формальна назва змінної полінома не може бути довшою за 4 символи"
-
-msgid "matrix of double"
-msgstr "матриця зі значень double"
-
 msgid "sparse matrix"
 msgstr "розріджена матриця"
 
 msgid "string matrix"
 msgstr "рядкова матриця"
-
-msgid "matrix of string"
-msgstr "матриця з рядків"
-
-#, c-format
-msgid "%s: Unable to convert to wide string #%d"
-msgstr "%s: не вдалося перетворити довгий рядок №%d"
-
-msgid "matrix of wide string"
-msgstr "матриця з довгих рядків"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -325,19 +293,3 @@ msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
 msgstr ""
 "\"%s: помилковий тип вхідного параметра «%s»: слід використовувати одинарне "
 "значення типу «string».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-msgid "%s: Invalid variable name.\n"
-msgstr "%s: : некоректна назва змінної.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"

@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-29 18:30+0000\n"
+"PO-Revision-Date: 2015-10-09 07:31+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
@@ -115,10 +115,8 @@ msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr "%s: N-D-масиви символів ще не реалізовано.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Mlist expected.\n"
-msgstr ""
-"%s: помилковий тип першого вхідного параметра: слід використовувати m-список "
-"(mlist).\n"
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr "%s: збереження двовимірного масиву рядків ще не реалізовано.\n"
 
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
@@ -135,10 +133,6 @@ msgstr ""
 "реалізовано.\n"
 
 #, c-format
-msgid "%s: 2D array of strings saving is not implemented.\n"
-msgstr "%s: збереження двовимірного масиву рядків ще не реалізовано.\n"
-
-#, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
 "%s: помилковий тип першого вхідного параметра: слід використовувати матрицю "
@@ -151,17 +145,25 @@ msgstr ""
 "з цілих значень.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю з "
+"цілих чисел.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: MList expected.\n"
+msgstr "%s: помилковий тип параметра %d: мало бути використано тип MList.\n"
+
+#, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
-msgstr "%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
+msgstr ""
+"%s: m-списки типу %s не можна записувати до бінарних файлів Matlab.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
 msgstr ""
 "%s: помилковий тип першого вхідного параметра: слід використовувати "
 "розріджену матрицю.\n"
-
-msgid "Scilab matio module not installed.\n"
-msgstr "Модуль matio Scilab не встановлено.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"

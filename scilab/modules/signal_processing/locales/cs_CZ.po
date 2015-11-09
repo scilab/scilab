@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-07-06 21:26+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -31,181 +31,137 @@ msgstr "%s: Špatný typ argumentu #%d: Očekáván reálný vektor.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekáván reálný nebo komplexní vektor.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+msgstr ""
+"%s: Špatný typ argumentu #%d: Očekáván reálný nebo komplexní vektor.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Chyba při přidělování paměti.\n"
 
-msgid "Simulation of an ARMAX process:"
-msgstr "Simulace procesu ARMAX:"
-
-msgid "Identification ARX (least square):"
-msgstr "Identifikační ARX (nejmenší čtverec):"
-
-msgid "Simulation of an ARMAX process: "
-msgstr "Simulace procesu ARMAX: "
-
-msgid "Identification ARX (least square): "
-msgstr "Identifikační ARX (nejmenší čtverec): "
-
-msgid "Arma Spectral power estimation:"
-msgstr "Odhad Spektrálního zářivého toku ARMA:"
-
-msgid "Arma identification"
-msgstr "Identifikace ARMA"
-
-msgid "Theoretical value"
-msgstr "Teoretická hodnota"
-
-msgid "Using macro mese"
-msgstr "POužití makra mese"
-
-msgid "Spectral power"
-msgstr "Spektrální zářivý tok"
-
-msgid "frequency"
-msgstr "frekvence"
-
-msgid "spectral estimate"
-msgstr "spektrální odhad"
-
-msgid "Press Return to continue ... \n"
-msgstr "Stiskněte Enter pro pokračování... \n"
-
-msgid "filtered signal"
-msgstr "filtrovaný signál"
-
-msgid "given noisy signal"
-msgstr "zadán hlučný signál"
-
-msgid "Signal"
-msgstr "Signál"
-
-msgid "2 points convolution"
-msgstr "2 body konvoluce"
-
-msgid "3 points convolution"
-msgstr "3 body konvoluce"
-
-msgid "Signal derivative estimate"
-msgstr "Odhad derivace signálu"
-
-msgid "Choose filter type and parameters"
-msgstr "Zvolte typ filtru a parametry"
-
-msgid "Discrete IIR filter "
-msgstr "Diskrétní filtr IIR "
-
-msgid "Discrete IIR filter: low pass  fr < 0.2"
-msgstr ""
-
-msgid "Discrete IIR filter: band pass 0.15 < fr < 0.25"
-msgstr ""
-
-msgid "Minimax FIR filter"
-msgstr "Minimax filtr s KIO"
-
-msgid "low pass  cut-off in [.23,.27]"
-msgstr "nízkoprůchodové useknutí v [.23,.27]"
-
-msgid "length 33"
-msgstr "délka 33"
-
-msgid "Remez Triangular filter"
-msgstr "Remezův trojúhelníkový filtr"
-
-msgid "magnitude error"
-msgstr "chyba magnitudy"
-
-msgid "Signal Processing"
-msgstr "Zpracování Signálů"
-
-msgid "Spectral Estimation"
-msgstr "Spektrální Odhad"
-
-msgid "IIR filter design"
-msgstr "Návrh filtru s NIO"
-
-msgid "Minimax FIR filter design"
-msgstr "Návr minimax filtru s KIO"
-
-msgid "Discrete IIR filter"
-msgstr "Diskrétní filtr s NIO"
-
-msgid "Wiener filter"
-msgstr ""
-
-msgid "Bode plots"
-msgstr "Frekvenční charakteristiky"
-
-msgid "Window FIR filters"
-msgstr "Okenní filtry KIO"
-
-msgid "1-D convolution"
-msgstr "1-D konvoluce"
-
-msgid "2-D convolution"
-msgstr "2-D konvoluce"
-
-msgid "Arma simulation and identification"
-msgstr "Simulace a identifikace ARM"
-
-msgid "Arma, bidimensional version"
-msgstr "Arma, dvojdimenzionální verze"
-
-msgid "Arma, Spectral power estimation"
-msgstr "Arma, Odhad spektrálního zářivého toku"
-
-msgid "Data spectrum"
-msgstr "Datové spektrum"
-
-msgid "magnitude"
-msgstr "magnituda"
-
-msgid "Spectral estimation"
-msgstr "Spektrální odhad"
-
-msgid "spectral power"
-msgstr "síla spektra"
-
-msgid "estimates xf"
-msgstr "odhady xf"
-
-msgid "estimates xs"
-msgstr "odhady xs"
-
-msgid "real state"
-msgstr "skutečný stav"
-
-msgid "Windowed FIR Low pass Filter"
-msgstr ""
-
-msgid "Kaiser window, cut-off: 0.2"
-msgstr ""
-
-msgid "Hamming window, cut-off: 0.2, 0.3"
-msgstr ""
-
-msgid "length 127"
-msgstr ""
-
-msgid "Windowed FIR Band pass Filter"
-msgstr ""
-
-msgid "Chebyshev window, cut-off: 0.15, 0.35"
-msgstr ""
-
-msgid "length 55"
+#, c-format
+msgid "%s : Memory allocation error.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+msgid "fft call : needs power of two!"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many coefficients are required.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %d-element list expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: A matrix of real "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: Size must be multiple "
+"of %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: A square matrix "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element %d of input argument #%d: Same sizes of element "
+"%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Incompatible input arguments #%d and #%d: Same column dimensions "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A %d-by-%d array expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: specs => invalid order filter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: specs => too high order filter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: error in function syredi.\n"
+msgstr ""
+
+#, c-format
+msgid "Undefined function '%ls'.\n"
+msgstr ""
+
+#, c-format
+msgid "User function '%s' have not been setted.\n"
+msgstr ""
+
+msgid "An error occurred while getting Signalprocessingfunctions object.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls: error while calling user function.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -213,10 +169,6 @@ msgid ""
 "expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole desetinných čísel.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
@@ -232,10 +184,6 @@ msgstr ""
 msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
 msgstr ""
 "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekáván stejný stupeň.\n"
-
-#, c-format
-msgid "%s: Input argument #%d must be real.\n"
-msgstr "%s: Vstupní argument #%d musí být reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
@@ -293,10 +241,6 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
 
@@ -307,7 +251,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -331,10 +276,6 @@ msgstr ""
 "nebo řada vektorů desetinných čísel.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
 "rational expected.\n"
@@ -343,10 +284,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáván %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive integer expected.\n"
@@ -358,13 +295,15 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáváno kladné celé číslo.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno kladné celé číslo.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
-msgstr "%s: Špatné hodnoty vstupního argumentu #%d: Nepodporovaný typ '%s'.\n"
+msgstr ""
+"%s: Špatné hodnoty vstupního argumentu #%d: Nepodporovaný typ '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -416,12 +355,6 @@ msgstr ""
 "bude menší než argument #%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu [%s, %s].\n"
-
-#, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Nekompatibilní vstupní argumenty #%d a #%d: Očekávány stejné velikosti.\n"
@@ -437,7 +370,8 @@ msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: očekáváno pole racionálních zlomků.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáváno pole %d prvků.\n"
 
@@ -460,7 +394,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
+msgstr ""
+"%s: Špatná hodnota vstupního argumentu #%d: Musí být v intervalu %s.\n"
 
 #, c-format
 msgid "%s: Elements of %dth argument must be in increasing order.\n"
@@ -593,14 +528,6 @@ msgid ""
 msgstr ""
 "%s: Špatné hodnoty vstupního argumentu #%d: První prvek musí být %s a "
 "poslední %s.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Elements must be in increasing "
-"order.\n"
-msgstr ""
-"%s: Špatné hodnoty vstupního argumentu #%d: Prvky musí být ve vzestupném "
-"pořadí.\n"
 
 #, c-format
 msgid "%s: Too abrupt change near end of frequency range.\n"

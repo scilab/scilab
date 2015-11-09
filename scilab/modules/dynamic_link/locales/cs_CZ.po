@@ -6,54 +6,52 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-24 17:02+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec vektoru.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgid "%s : Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Byl očekáván řetězec vektoru < "
-"%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů: Očekávány řetězce.\n"
+msgid "%s : Wrong type for input argument #%d: String vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr "%s: druhý argument musí být jedinečné id sdílené knihovny.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
+msgid "%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
+msgid ""
+"%s Wrong type for input argument #%d: string or string vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
@@ -63,86 +61,9 @@ msgid "Unique id of a shared library expected."
 msgstr "Očekáváno jedinečné id sdílené knihovny."
 
 #, c-format
-msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: %s\n"
-
-msgid "Unique dynamic library name expected."
-msgstr "Očekáváno jedinečné jméno dynamické knihovny."
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings vector expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu. Očekáván řetězec vektoru.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu. Očekávány řetězce.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
-
-#, c-format
-msgid "Error: Not a valid internal routine number %d.\n"
-msgstr "Chyba: %d není platné číslo vnitřní rutiny.\n"
-
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "Rozhraní %s není propojeno.\n"
-
-#, c-format
-msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: Sdílená knihovna nebyla načtena: %s\n"
-
-#, c-format
-msgid "%s: Cannot open shared files. Max entry %d reached.\n"
-msgstr ""
-"%s: Nelze otevřít sdílené soubory. Bylo dosaženo maximálního vstupu %d.\n"
-
-#, c-format
-msgid "%s: Shared lib %s does not exist.\n"
-msgstr "%s: Sdílená knihovna %s neexistuje.\n"
-
-#, c-format
-msgid "%s: Already loaded from library %s\n"
-msgstr "%s: Již načteno z knihovny %s\n"
-
-#, c-format
-msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: problém s jedním ze vstupních bodů.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Vyskytla se chyba: %s\n"
-
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr "%s: nelze načíst x86 dll v prostředí x64.\n"
-
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr "%s: nelze načíst x64 dll v prostředí x86.\n"
-
-#, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: Soubor %s neexistuje v prostředí PATH.\n"
-
-#, c-format
-msgid "Link failed for dynamic library '%s'.\n"
-msgstr "Propojení selhalo ve sdílené knihovně '%s'.\n"
-
-#, c-format
-msgid "An error occurred: %s\n"
-msgstr "Došlo k chybě: %s\n"
-
-msgid "Shared archive loaded.\n"
-msgstr "Sdílené knihovny načteny.\n"
-
-msgid "Link done.\n"
-msgstr "Propojení dokončeno.\n"
 
 #, c-format
 msgid ""
@@ -161,63 +82,66 @@ msgid "] : %d libraries.\n"
 msgstr "] : %d knihoven.\n"
 
 #, c-format
-msgid "Entry point %s in shared library %d.\n"
-msgstr "Vstupní bod %s ve sdílené knihovně %d.\n"
+msgid "Entry point %ls in shared library %d.\n"
+msgstr ""
 
 #, c-format
-msgid "Cannot open shared files max entry %d reached.\n"
-msgstr "Nelze otevřít sdílené soubory, bylo dosaženo maximálního vstupu %d.\n"
+msgid "%s: Wrong type for input argument #%d: real scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Entry name %s.\n"
-msgstr "Zadejte jméno %s.\n"
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: Sdílená knihovna nebyla načtena: %s\n"
 
 #, c-format
-msgid "%s is not an entry point.\n"
-msgstr "%s není vstupní bod.\n"
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: Sdílená knihovna %s neexistuje.\n"
 
 #, c-format
-msgid "Linking %s.\n"
-msgstr "Propojení %s.\n"
-
-msgid "Calling a C function from Scilab.\n"
-msgstr "Volání funkce C pomocí Scilab.\n"
-
-msgid "Calling ilib_for_link to build C function.\n"
-msgstr "Volání ilib_for_link pro sestavení funkce C.\n"
-
-msgid "Calling C function. Z = X+Y"
-msgstr "Volání funkce C. Z = X+Y"
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: Již načteno z knihovny %s\n"
 
 #, c-format
-msgid "with X = %d"
-msgstr "kde X = %d"
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: problém s jedním ze vstupních bodů.\n"
 
 #, c-format
-msgid "with Y = %d"
-msgstr "kde Y = %d"
+msgid "%s: can not to load a x86 dll in a x64 environment.\n"
+msgstr "%s: nelze načíst x86 dll v prostředí x64.\n"
 
 #, c-format
-msgid "Result Z = %d"
-msgstr "Výsledek Z = %d"
+msgid "%s: can not load a x64 dll in a x86 environment.\n"
+msgstr "%s: nelze načíst x64 dll v prostředí x86.\n"
 
-msgid "Calling a Fortran subroutine from Scilab.\n"
-msgstr "Volání podprogramu Fortran pomocí Scilab.\n"
+#, c-format
+msgid "%ls: The file %ls does not exist in PATH environment.\n"
+msgstr ""
 
-msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
-msgstr "Volání ilib_for_link pro sestavení podprogramu Fortran.\n"
+#, c-format
+msgid "Link failed for dynamic library '%ls'.\n"
+msgstr ""
 
-msgid "Calling Fortran subroutine. Z = X+Y"
-msgstr "Volání podprogramu Fotran. Z = X+Y"
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Došlo k chybě: %s\n"
 
-msgid "Dynamic link"
-msgstr "Dynamické propojení"
+msgid "Shared archive loaded.\n"
+msgstr "Sdílené knihovny načteny.\n"
 
-msgid "Call a C function"
-msgstr "Zavolat funkci C"
+msgid "Link done.\n"
+msgstr "Propojení dokončeno.\n"
 
-msgid "Call a Fortran subroutine"
-msgstr "Zavolat podprogram Fortran"
+#, c-format
+msgid "Entry name %ls.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls is not an entry point.\n"
+msgstr ""
+
+#, c-format
+msgid "Linking %ls.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -226,9 +150,6 @@ msgstr "%s: Je vyžadován kompilátor C nebo Fortran.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Špatný počet vstupních argumentů.\n"
-
-msgid "Microsoft Visual Studio C x86 Compiler not found."
-msgstr "Kompilátor C Microsoft Visual Studio x86 nenalezen."
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Intel Fortran Compiler 9, 10, 11 nebo 12 nebyl nalezen."
@@ -275,7 +196,8 @@ msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
@@ -287,7 +209,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
-msgstr "%s: Pro vstupní argument #%d je očekávána spravovaná přípona souboru."
+msgstr ""
+"%s: Pro vstupní argument #%d je očekávána spravovaná přípona souboru."
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d:  or [] expected.\n"
@@ -450,7 +373,8 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr "   %s: Kopírovat soubory kompilace (Makefile*, libtool...) do DOČSLO\n"
+msgstr ""
+"   %s: Kopírovat soubory kompilace (Makefile*, libtool...) do DOČSLO\n"
 
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
@@ -459,7 +383,8 @@ msgstr "   %s: Kopírovat %s do DOČSLO\n"
 #, c-format
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
-msgstr "   %s: Nezkopírováno %s: Zdrojové a cílové složky jsou stejné (%s).\n"
+msgstr ""
+"   %s: Nezkopírováno %s: Zdrojové a cílové složky jsou stejné (%s).\n"
 
 #, c-format
 msgid ""
@@ -554,6 +479,10 @@ msgstr "%s: Tato funkce vyžadovala kompilátor C z Microsoft visual studio.\n"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

@@ -8,14 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-20 13:10+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:06+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -26,12 +34,24 @@ msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
 msgstr "%s：输入参数#%d和#%d的值错误。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr "%s：输入参数#%d的值错误：必须在[%d %d]之间。\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -58,10 +78,6 @@ msgid "%s: C and D must have equal number of rows.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: NCON must be a scalar.\n"
 msgstr ""
 
@@ -78,12 +94,34 @@ msgid "%s: SB10DD exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: SB10FD exit with info = %d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数。\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The system has no outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The number of samples should be at least %d"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: INFO = %d on exit from IB01CD\n"
+msgstr ""
+
+#, c-format
+msgid "%s: SB10FD exit with info = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s must be a scalar.\n"
@@ -114,10 +152,6 @@ msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong column size for input argument #%d: Same column size of input "
 "argument #%d expected.\n"
@@ -125,8 +159,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument #"
-"%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument "
+"#%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -196,7 +230,19 @@ msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Type must be continuous or "
+"discrete.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
 msgstr ""
 
 #, c-format
@@ -216,10 +262,6 @@ msgid "%s: RICDMF exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个标量。\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same column dimension as input "
 "argument #%d expected.\n"
@@ -234,6 +276,61 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The order should be at most %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d columns "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The number of samples should be at least %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: INFO = %d ON EXIT FROM IB01BD\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: INFO = %d on exit from IB01AD\n"
+msgstr ""
+
+#, c-format
 msgid "%s: ZB03OD exit with info = %d.\n"
 msgstr ""
 
@@ -241,35 +338,190 @@ msgstr ""
 msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr ""
 
-msgid "CACSD"
-msgstr "控制系统计算机辅助设计"
-
-msgid "LQG"
-msgstr ""
-
-msgid "Mixed-sensitivity"
-msgstr ""
-
-msgid "PID"
-msgstr ""
-
-msgid "Inverted pendulum"
-msgstr ""
-
-msgid "Flat systems"
-msgstr ""
-
-msgid "Tracking"
-msgstr ""
-
-msgid "Robust control"
-msgstr ""
-
-msgid "Press Return to continue ... \n"
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: More than degree of input argument "
+"#%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'all' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Impossible to reach required order.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Failure when looking for the intersection with domains bounds.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many solutions found.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: too many solutions found\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Division by zero...\n"
+msgstr ""
+
+msgid "Warning :\n"
+msgstr ""
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %g\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The algorithm has failed.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A same size as input argument %d "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Uncontrollable system.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occured in '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr ""
+
+msgid "Problem is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A not empty matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: attempt to divide by zero.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: ierr %d from qitz (eispack).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr "%s：输入参数类型错误：应该为线性动态系统。\n"
 
 #, c-format
@@ -395,18 +647,6 @@ msgid "%s: Wrong type for input argument #%d: A list expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个列表。\n"
 
 #, c-format
-msgid "%s: Undefined type '%s'.\n"
-msgstr "%s：未定义的类型'%s'。\n"
-
-#, c-format
-msgid "%s: Some output(s) are undefined.\n"
-msgstr "%s：某些输出未定义。\n"
-
-#, c-format
-msgid "%s: Some input(s) are undefined.\n"
-msgstr "%s：某些输入未定义。\n"
-
-#, c-format
 msgid "%s: Hybrid system not implemented.\n"
 msgstr "%s：混合系统尚未实现。\n"
 
@@ -427,12 +667,24 @@ msgid "%s: Invalid sizes found during the process.\n"
 msgstr "%s：在执行过程中发现不正确的大小。\n"
 
 #, c-format
+msgid "%s: Undefined type '%s'.\n"
+msgstr "%s：未定义的类型'%s'。\n"
+
+#, c-format
 msgid "%s: No output found.\n"
 msgstr "%s：没有输出。\n"
 
 #, c-format
 msgid "%s: No input found.\n"
 msgstr "%s：没有输入。\n"
+
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr "%s：某些输出未定义。\n"
+
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr "%s：某些输入未定义。\n"
 
 msgid "Frequency (Hz)"
 msgstr "频率（Hz）"
@@ -444,7 +696,8 @@ msgid "Frequency (rad/s)"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid ""
+"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -543,7 +796,8 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为稳定系统。\n"
 
 #, c-format
@@ -592,11 +846,6 @@ msgstr ""
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
-msgstr "%s：输入参数#%d和参数#%d不相容：应该为同样的行数。\n"
 
 #, c-format
 msgid "%s: Bad conditioning.\n"
@@ -712,10 +961,6 @@ msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Single input, single output system "
 "expected.\n"
@@ -746,7 +991,8 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s：%s是不定矩阵。\n"
 
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s：%s的可控性和可观测性模式接近虚轴。\n"
 
 #, c-format
@@ -756,10 +1002,6 @@ msgstr "%s：%s的所有模式都接近非最小，所以%s接近%d。\n"
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
 msgstr "%s：不满足弗朗西斯（Francis）方程。\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -893,7 +1135,8 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s：%s非对称。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 
 #, c-format
@@ -905,7 +1148,8 @@ msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
 msgstr "%s：A的控制性和观察性模式接近虚轴。"
 
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr "%s：A的所有模式接近nonminimal，使得|| G ||接近0。\n"
 
 #, c-format
@@ -1025,10 +1269,6 @@ msgstr "%s：输入参数#%d的类型错误：应该为多项式数组。\n"
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个多项式。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
 
 #, c-format
 msgid ""

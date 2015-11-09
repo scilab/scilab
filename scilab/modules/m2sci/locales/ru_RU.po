@@ -14,12 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
-
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- Создание [%s] (Макросы) --\n"
 
 msgid "Input file"
 msgstr "Входной файл"
@@ -175,7 +171,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs не может быть %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr "рекурсивное извлечение с одним индексом типа %s ещё не реализовано."
 
 #, c-format
@@ -190,7 +187,8 @@ msgid "Matlab function %s not yet converted."
 msgstr "Функция Matlab %s еще не преобразована."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) может быть заменена с помощью %s() или %s будь %s M-файлом или нет."
 
@@ -207,7 +205,8 @@ msgstr "L.%d: Неизвестная переменная %s является M-
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file (sci_%s exists)."
-msgstr "L.%d: Неизвестная переменная %s является M-файлом (sci_%s существует)."
+msgstr ""
+"L.%d: Неизвестная переменная %s является M-файлом (sci_%s существует)."
 
 #, c-format
 msgid "Variable %s supposed to be the Imaginary unit."
@@ -280,7 +279,8 @@ msgstr ""
 "// Выход: tree = эквивалент в Scilab для tree"
 
 msgid "//  dims(i,:) is the ith output argument dimensions vector"
-msgstr "//  dims(i,:) является вектором размерностей i-го выходного параметра"
+msgstr ""
+"//  dims(i,:) является вектором размерностей i-го выходного параметра"
 
 msgid "//  prop(i) is the ith output argument property"
 msgstr "//  prop(i) является свойством i-го выходного параметра"
@@ -331,8 +331,8 @@ msgstr "если"
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"недостаточно данных, следует указать как минимум имя_переменной|размеры|"
-"тип_данных."
+"недостаточно данных, следует указать как минимум "
+"имя_переменной|размеры|тип_данных."
 
 msgid "too much data."
 msgstr "слишком много данных."
@@ -610,7 +610,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Конец сессии mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Как минимум один параметр %s является пустой матрицей, эквивалентом в Scilab "
 "будет []."
@@ -628,7 +629,8 @@ msgstr ""
 "M2SCI ошибка: извлечение из неизвестной переменной %s в списке переменных."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "рекурсивная вставка в переменную, которая не является ни ячейкой, ни "
 "структурой: %s."
@@ -639,7 +641,8 @@ msgstr "переменная назначения не  ячейка: %s име�
 
 #, c-format
 msgid "One operand is an empty matrix in : %s, result set to []."
-msgstr "Один операнд является пустой матрицей в %s, результат установлен в []."
+msgstr ""
+"Один операнд является пустой матрицей в %s, результат установлен в []."
 
 #, c-format
 msgid ""
@@ -796,7 +799,8 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "Класс не поддерживается: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal требует, чтобы поля в структурах с одинаковыми порядковыми номерами "
 "были равны."

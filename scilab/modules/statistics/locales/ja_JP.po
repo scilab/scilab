@@ -8,291 +8,54 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-22 12:16+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 44
-msgid "X,Y,A and B"
-msgstr "X,Y,A と B"
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 50
-msgid "A,B,P and Q"
-msgstr "A,B,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 56
-msgid "B,P,Q,X and Y"
-msgstr "B,P,Q,X と Y"
-
-#
-# File: sci_gateway/c/sci_cdfbet.c, line: 62
-msgid "P,Q,X,Y and A"
-msgstr "P,Q,X,Y と A"
+#, c-format
+msgid "%s: Answer appears to be lower than lowest search bound %g\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または '%s' を指定し"
-"てください.\n"
 
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 44
-msgid "S,Xn,Pr and Ompr"
-msgstr "S,Xn,Pr と Ompr"
+#, c-format
+msgid "%s: Answer appears to be higher than greatest search bound %f\n"
+msgstr ""
 
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 50
-msgid "Xn,Pr,Ompr,P and Q"
-msgstr "Xn,Pr,Ompr,P と Q"
+#, c-format
+msgid "%s: Std must not be zero\n"
+msgstr ""
 
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 56
-msgid "Pr,OMPr,P,Q and S"
-msgstr "Pr,OMPr,P,Q と S"
+#, c-format
+msgid "%s: cumgam returned an error\n"
+msgstr ""
 
-#
-# File: sci_gateway/c/sci_cdfbin.c, line: 62
-msgid "P,Q,S  and Xn"
-msgstr "P,Q,S  と Xn"
+#, c-format
+msgid "%s: gamma or inverse gamma routine failed\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d out of range. Bound exceeded: %f.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d': Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Warning: using non integer values for argument #%d may lead to incorrect "
 "results.\n"
-msgstr ""
-"%s: 警告: 引数 #%d に非整数値を使用すると結果が不正確になる可能性がありま"
-"す.\n"
-
-#
-# File: sci_gateway/c/sci_cdfchi.c, line: 43
-msgid "X and Df"
-msgstr "X と Df"
-
-#
-# File: sci_gateway/c/sci_cdfchi.c, line: 49
-# File: sci_gateway/c/sci_cdft.c, line: 46
-msgid "Df, P and Q"
-msgstr "Df, P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfchi.c, line: 55
-msgid "P,Q and X"
-msgstr "P,Q と X"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s' または '%s' を指定してくだ"
-"さい.\n"
-
-#
-# File: sci_gateway/c/sci_cdfchi.c, line: 73
-msgid "cdfchi: Error in cumgam\n"
-msgstr "cdfchi: cumgam の誤り\n"
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 39
-msgid "X,Df and Pnonc"
-msgstr "X,Df と Pnonc"
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 45
-msgid "Df,Pnonc,P and Q"
-msgstr "Df,Pnonc,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 51
-msgid "Pnonc,P,Q and X"
-msgstr "Pnonc,P,Q と X"
-
-#
-# File: sci_gateway/c/sci_cdfchn.c, line: 57
-msgid "P,Q,X and Df"
-msgstr "P,Q,X と Df"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 41
-msgid "F,Dfn and Dfd"
-msgstr "F,Dfn と Dfd"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 47
-msgid "Dfn,Dfd,P and Q"
-msgstr "Dfn,Dfd,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 53
-msgid "Dfd,P,Q and F"
-msgstr "Dfd,P,Q と F"
-
-#
-# File: sci_gateway/c/sci_cdff.c, line: 59
-msgid "P,Q,F and Dfn"
-msgstr "P,Q,F と Dfn"
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 41
-msgid "F,Dfn,Dfd and Pnonc"
-msgstr "F,Dfn,Dfd と Pnonc"
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 47
-msgid "Dfn,Dfd,Pnonc,P and Q"
-msgstr "Dfn,Dfd,Pnonc,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 53
-msgid "Dfd,Pnonc,P,Q and F"
-msgstr "Dfd,Pnonc,P,Q と F"
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 59
-msgid "Pnonc,P,Q,F and Dfn"
-msgstr "Pnonc,P,Q,F と Dfn"
-
-#
-# File: sci_gateway/c/sci_cdffnc.c, line: 65
-msgid "P,Q,F,Dfn and Dfd"
-msgstr "P,Q,F,Dfn と Dfd"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  '%s', '%s', '%s', '%s' または '%s'  "
-"を指定してください.\n"
-
-msgid "X,Shape and Rate"
-msgstr "X, Shape および Rate"
-
-msgid "Shape,Rate,P and Q"
-msgstr "Shape,Rate,P および Q"
-
-msgid "Rate,P,Q and X"
-msgstr "レート,P,QおよびX"
-
-#
-# File: sci_gateway/c/sci_cdfgam.c, line: 60
-msgid "P,Q,X and Shape"
-msgstr "P,Q,X と 形状"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 43
-msgid "S,XN,PR and OMPR"
-msgstr "S,XN,PR と OMPR"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 49
-msgid "XN,PR,OMPR,P and Q"
-msgstr "XN,PR,OMPR,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 55
-msgid "PR,OMPR,P,Q and S"
-msgstr "PR,OMPR,P,Q と S"
-
-#
-# File: sci_gateway/c/sci_cdfnbn.c, line: 62
-msgid "P,Q,S and Xn"
-msgstr "P,Q,S と Xn"
-
-msgid "X,Mean and Std"
-msgstr "X, 平均および標準偏差"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 48
-msgid "Mean,Std,P and Q"
-msgstr "平均,Std,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 54
-msgid "Std,P,Q and X"
-msgstr "Std,P,Q と X"
-
-#
-# File: sci_gateway/c/sci_cdfnor.c, line: 60
-msgid "P,Q,X and Mean"
-msgstr "P,Q,X と 平均"
-
-msgid " Std must not be zero\n"
-msgstr " std はゼロ以外にしてください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A matrix of integer values "
-"expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 整数値の行列を指定してください.\n"
-
-#
-# File: sci_gateway/c/sci_cdfpoi.c, line: 41
-msgid "S and Xlam"
-msgstr "S と Xlam"
-
-#
-# File: sci_gateway/c/sci_cdfpoi.c, line: 47
-msgid "Xlam,P and Q"
-msgstr "Xlam,P と Q"
-
-#
-# File: sci_gateway/c/sci_cdfpoi.c, line: 53
-msgid "P,Q and S"
-msgstr "P,Q と S"
-
-#
-# File: sci_gateway/c/sci_cdft.c, line: 40
-msgid "T and Df"
-msgstr "T と Df"
-
-#
-# File: sci_gateway/c/sci_cdft.c, line: 52
-msgid "P,Q and T"
-msgstr "P,Q と T"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
-msgstr ""
-"%s: '%s' オプションを有する入力引数の数が間違っています: %d 個の引数を指定し"
-"てください.\n"
-
-#
-# File: src/c/CdfBase.c, line: 36
-#, c-format
-msgid "%s and %s must have same size.\n"
-msgstr "%s と %s は、サイズが一致しなくてはいけません。\n"
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %g\n"
-msgstr "解が探索域の下限 %g よりも小さいようです\n"
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %f\n"
-msgstr "解が探索範囲の下限 %f よりも小さくなっています.\n"
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %s\n"
-msgstr "探索範囲の上限 %s よりも大きな解が得られました\n"
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %f\n"
-msgstr "解が探索範囲の上限 %f よりも大きくなっています.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
+msgstr "%s: 警告: 引数 #%d に非整数値を使用すると結果が不正確になる可能性があります.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -312,26 +75,20 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 整数を指�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  %d  および %d の間の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d 以上の整数を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d 以上の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s', %d または %d を指定してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s', %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
@@ -339,25 +96,19 @@ msgstr "%s: 入力引数 #%d の型が間違っています: ベクトルを指�
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
-msgstr ""
-"%s: 入力引数 #%d および #%d に互換性がありません: 同じ大きさを指定してくださ"
-"い"
+msgstr "%s: 入力引数 #%d および #%d に互換性がありません: 同じ大きさを指定してください"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Same number of line as first input "
 "argument expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 最初の入力引数の行の数を同じにしてくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 最初の入力引数の行の数を同じにしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Same number of column as first input "
 "argument expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 最初の入力引数の列の数を同じにしてくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 最初の入力引数の列の数を同じにしてください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a real matrix expected.\n"
@@ -367,19 +118,15 @@ msgstr "%s: 入力引数 #%d の型が間違っています:  実数行例を指
 msgid ""
 "%s: Wrong type for input argument #%d: an integer or a real matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  整数または実数行例を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  整数または実数行例を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  %dx%d を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  %dx%d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
@@ -387,8 +134,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています:  整数を指定し
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d, %d または %d を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -396,8 +142,7 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が正しくありません: %d 個以上の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
@@ -433,74 +178,52 @@ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を
 msgid ""
 "%s: Wrong dimensions for input argument #%d: A column vector or matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の次元が間違っています:  列ベクトルまたは行列を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています:  列ベクトルまたは行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimensions for input argument #%d: A row vector or matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: 行ベクトルまたは行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 行ベクトルまたは行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', %d, '%s' or %d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  '%s', %d, '%s'または %dを指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  '%s', %d, '%s'または %dを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real vector or matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数ベクトルまたは行列を指定してくださ"
-"い.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数ベクトルまたは行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: スカラーまたはベクトルを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: スカラーまたはベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A full or sparse matrix, or an "
 "integer matrix, or an hypermat expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  通常または疎の行列または整数行列また"
-"はハイパー行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  通常または疎の行列または整数行列またはハイパー行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ次元で指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s','%s' or a positive number "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s','%s' または 正の数値を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s','%s' または 正の数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -512,36 +235,23 @@ msgstr "%s: 出力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex, boolean, polynomial "
 "matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 実数または複素数, 論理値, 多項式行列を"
-"指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素数, 論理値, 多項式行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してくださ"
-"い.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: ''%s', '%s', '%s', %d または %d  を指"
-"定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ''%s', '%s', '%s', %d または %d  を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
@@ -551,8 +261,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 数値を指定し�
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same column dimensions "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d に互換性がありません: 列の数を同じにしてください.\n"
+msgstr "%s: 入力引数 #%d と #%d に互換性がありません: 列の数を同じにしてください.\n"
 
 #, c-format
 msgid "%s: No NaNs detected, please use %s() instead.\n"
@@ -564,8 +273,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 数値を指定し�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected."
@@ -576,43 +284,35 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: NaNが検出されました, かわりに %s() を使用してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 非負の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
-msgstr ""
-"%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさとしてくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d および #%d の大きさが間違っています: 同じ大きさとしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of rows of the second "
 "input argument expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 2番目の入力引数の行の数を同じにし"
-"てください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 2番目の入力引数の行の数を同じにしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same number of columns of the second "
 "input argument expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 2番目の入力引数の列の数を同じにし"
-"てください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 2番目の入力引数の列の数を同じにしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value of input argument #%d: Lower than or equal to size of input "
 "argument #%d expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 入力引数 #%d 以下の値を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 入力引数 #%d 以下の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 大きさを %s にしてください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 大きさを %s にしてください.\n"
 
 #, c-format
 msgid "%s: Graph demand out of bounds.\n"
@@ -630,40 +330,32 @@ msgstr "固有値"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' or a positive "
 "integer expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または正の整数を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' または正の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数 %d の値が間違っています: '%s', '%s', %d または %d を指定してくだ"
-"さい.\n"
+msgid ""
+"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgstr "%s: 入力引数 %d の値が間違っています: '%s', '%s', %d または %d を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Vector, matrix of numbers or strings "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 数値または文字列のベクトル/行列を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 数値または文字列のベクトル/行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Real number between %d to %d "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:  %d  から %d の範囲の実数を指定してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:  %d  から %d の範囲の実数を指定してください.\n"
 
 #, c-format
 msgid "Wrong value for input argument orien: %s.\n"
@@ -705,11 +397,8 @@ msgstr "%s: m の値が間違っています:  平均の予測値を指定して
 msgid ""
 "%s: The significance of input argument #%d has been modified. Please refer "
 "to the variance help page.\n"
-msgstr ""
-"%s: 入力引数 #%d の有意性が修正されました. varianceのヘルプページを参照してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の有意性が修正されました. varianceのヘルプページを参照してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"

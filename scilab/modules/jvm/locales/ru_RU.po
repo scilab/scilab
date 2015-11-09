@@ -8,25 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-16 15:58+0000\n"
+"PO-Revision-Date: 2015-11-07 11:28+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
-
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "Интерфейс JVM недоступен в режимах -nogui и -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Недостаточно памяти.\n"
 
 #, c-format
 msgid "%s: Could not add URL to system classloader : %s.\n"
@@ -43,8 +36,20 @@ msgid "%s: Could not add path to java.library.path: %s.\n"
 msgstr "%s: Не удалось добавить путь в java.library.path: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid ""
@@ -122,16 +127,16 @@ msgstr "Ошибка: %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug http://"
-"bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
 msgstr ""
 "Если вы используете бинарную версию Scilab, просьба сообщить об ошибке на "
 "http://bugzilla.scilab.org/.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script bin/"
-"scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
 msgstr ""
 "Если вы используете самостоятельно собранную версию Scilab, обновите "
 "сценарий bin/scilab для указания пути к JVM.\n"

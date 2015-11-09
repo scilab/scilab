@@ -8,37 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 08:42+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s : Une erreur s'est produite : %s\n"
-
 msgid "Cannot play file."
 msgstr "Impossible de lire le fichier."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -50,21 +34,6 @@ msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Le module sound de Scilab n'est pas installé.\n"
-
-msgid "Sound file handling"
-msgstr "Gestion de fichiers son"
-
-msgid "FFT on a wav file"
-msgstr "Transformée de Fourier rapide sur un fichier wav"
-
-msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr "Analyse de Fourier de 0,5 secondes de paramètres sonores."
-
-msgid "A complete picture of the sound."
-msgstr "Une image complète du son."
-
-msgid "see 'mapsound' function"
-msgstr "Voir la fonction 'mapsound'"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -86,7 +55,8 @@ msgid "Sample limits out of range."
 msgstr "Limites d'échantillonnage en dehors de l'intervalle."
 
 msgid "Sample limits must be given in ascending order."
-msgstr "Les limites de l'échantillon doivent être données par ordre croissant."
+msgstr ""
+"Les limites de l'échantillon doivent être données par ordre croissant."
 
 msgid "Error in file format."
 msgstr "Erreur de format de fichier."
@@ -152,7 +122,8 @@ msgstr "Format de données inconnu."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 msgid "Requires 2-D values only."
 msgstr "Requiert des valeurs 2D seulement."
@@ -204,7 +175,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s : Une erreur est survenue : %s n'est pas supporté.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s : Une erreur est survenue : Format de fichier invalide. Erreur pendant la "
 "lecture du morceau <%s>.\n"

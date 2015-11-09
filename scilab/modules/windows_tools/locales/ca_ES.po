@@ -8,32 +8,45 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-04-19 18:08+0000\n"
-"Last-Translator: Marc Coll Carrillo <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Només en mode Windows, no en mode finestra.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Error de memòria.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
+"text.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada té un valor incorrecte: Han de ser nombres enters "
-"no-negatius.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un escalar.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -46,29 +59,21 @@ msgstr ""
 "de caràcters.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
-"text.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: No hi ha més memòria.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un text.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Error de memòria.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Els arguments d'entrada són d'un tipus incorrecte. Han de ser cadenes de "
-"text.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
@@ -78,11 +83,11 @@ msgid "see help"
 msgstr "Veieu l'ajuda"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: No s'ha pogut obrir el fitxer %s.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid "%s: Cannot open file %ls.\n"
 msgstr ""
 
 #, c-format
@@ -97,9 +102,6 @@ msgstr "%s: No es pot consultar un valor d'aquest tipus.\n"
 msgid "Scilab %s Console"
 msgstr ""
 
-msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-
 msgid "Error(s) : see help powershell"
 msgstr "Error(s) : Veieu help powershell"
 
@@ -111,7 +113,3 @@ msgstr "Només per a Microsoft Windows."
 
 msgid "Powershell 1.0 not found."
 msgstr "No s'ha trobat el Powershell 1.0."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"

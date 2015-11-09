@@ -8,14 +8,27 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-23 03:59+0000\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pt_BR\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -24,9 +37,8 @@ msgstr ""
 "texto.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgid "%s: Wrong number of output argument(s): %d expected."
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
 #, c-format
 msgid ""
@@ -36,36 +48,8 @@ msgstr ""
 "%s: Valor incorreto para argumento de entrada: esperava-se '%s', '%s', '%s', "
 "'%s', '%s' ou '%s'.\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Quantidade incorreta de argumentos de saída.\n"
-
 msgid "File or Directory"
 msgstr "Arquivo ou diretório"
 
 msgid "Scilab completion module not installed.\n"
 msgstr "O módulo de autocompletar do Scilab não está instalado.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments.\n"
-msgstr "%s: Tipo incorreto para os argumentos de entrada.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
-"booleano.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: Tamanho incorreto para o argumento de entrada #%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument: string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada: esperava-se um texto.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"

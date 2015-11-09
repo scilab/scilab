@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2011-03-12 12:21+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
@@ -14,75 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-
-msgid "mexPutFull failed\n"
-msgstr "mexPutFull selhal\n"
-
-msgid "No more memory available: increase stacksize"
-msgstr "Už není dostupná žádná další paměť: zvyšte velikost zásobníku"
-
-msgid "Routine mxIsSingle not implemented.\n"
-msgstr "Rutina mxIsSingle není zavedena.\n"
-
-msgid "Variable is not logical."
-msgstr "Proměnná není logická."
-
-msgid "No more memory available: increase stacksize."
-msgstr "Není dostupná žádná další pamět: zvyšte velikost zásobníku."
+"X-Generator: Launchpad (build 17838)\n"
 
 msgid "Warning: "
 msgstr "Varování: "
-
-msgid "mexCallSCILAB: invalid pointer passed to called function."
-msgstr "mexCallSCILAB: předán neplatný ukazatel zavolané funkci."
-
-msgid "mexCallSCILAB: evaluation failed. "
-msgstr "mexCallSCILAB: vyhodnocení selhalo. "
-
-msgid "GetElementSize error."
-msgstr "Chyba GetElementSize."
-
-msgid "Function mexPutArray is obsolete, use mexPutVariable!\n"
-msgstr "Funkce mexPutArray je zastaralá, použijte mexPutVariable!\n"
-
-msgid "Routine mxSetName not implemented !\n"
-msgstr "Rutina mxSetName není zavedena !\n"
-
-msgid "Routine mxSetData not implemented.\n"
-msgstr "Rutina mxSetData není zavedena.\n"
-
-msgid "Last warning"
-msgstr "Poslední varování"
-
-msgid "Warning"
-msgstr "Varování"
-
-#, c-format
-msgid "%s: mxSetPr overwriting destination by %i bytes.\n"
-msgstr "%s: mxSetPr přepisuji cíl o %i bajtů.\n"
-
-#, c-format
-msgid "%s: mxSetPi overwriting destination by %i bytes.\n"
-msgstr "%s: mxSetPi přepisuji cíl o %i bajtů.\n"
-
-msgid "Routine mxGetName not implemented.\n"
-msgstr "Rutina mxGetName není zavedena.\n"
-
-msgid "Routine mxSetDimensions not implemented.\n"
-msgstr "Rutina mxSetDimensions není zavedena.\n"
-
-msgid "Invalid string matrix (at most one column!)"
-msgstr "Neplatný řezězec matice (nanejvýš jeden slupec!)"
-
-msgid "Column length of string matrix must agree!"
-msgstr "Délka sloupce řetězce matice musí souhlasit!"
-
-msgid "Use mtlb_sparse(sparse( ))!"
-msgstr "Použijte mtlb_sparse(sparse( ))!"
-
-msgid "Invalid input"
-msgstr "Neplatný vstup"
-
-msgid "No more memory"
-msgstr "Žádná další paměť"

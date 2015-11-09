@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-01 10:13+0000\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -18,23 +18,8 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Memory 分配有誤.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串陣列.\n"
-
-#
-# File: sci_gateway/c/sci_fullpath.c, line: 64
-# File: sci_gateway/c/sci_fprintfMat.c, line: 30
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
 msgid "%s: Can not read named argument %s.\n"
@@ -60,23 +45,202 @@ msgstr "%s: 第#%d個參數值有誤:有效的檔名或目錄才對.\n"
 msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: 參數值有誤.\n"
 
-#
-# File: sci_gateway/c/sci_createdir.c, line: 50
 #, c-format
-msgid "%s: Warning: Directory '%s' already exists.\n"
-msgstr "%s: 警告: 目錄 '%s' 已存在.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
+msgstr "%s: 第#%d個參數長度有誤:  1-by-n or m-by-1 陣列才對.\n"
 
 #
-# File: sci_gateway/c/sci_isdir.c, line: 37
-# File: sci_gateway/c/sci_getshortpathname.c, line: 61
-# File: sci_gateway/c/sci_getlongpathname.c, line: 60
-# File: sci_gateway/c/sci_createdir.c, line: 63
-# File: sci_gateway/c/sci_removedir.c, line: 56
-# File: sci_gateway/c/sci_fileext.c, line: 66
-# File: sci_gateway/c/sci_deletefile.c, line: 51
+# File: sci_gateway/c/sci_fprintfMat.c, line: 55
 #, c-format
-msgid "%s: Wrong type for input argument: string expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應為一字串.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
+
+#, c-format
+msgid "%s: can not open file %s.\n"
+msgstr "%s：無法開啟檔案 %s 。\n"
+
+#, c-format
+msgid "%s: Invalid format.\n"
+msgstr "%s：無效的格式。\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s: 錯誤.\n"
+
+#, c-format
+msgid "%s: can not read file %s.\n"
+msgstr "%s：無法讀取檔案 %s 。\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not create the output argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred.\n"
+msgstr "%s: 產生錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A string (3 characters max.) "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls: Warning: Directory '%ls' already exists.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_mfprintf.c, line: 56
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤.\n"
+
+#
+# File: sci_gateway/c/sci_fullpath.c, line: 59
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: '%s' 唯一無效之路徑.\n"
+
+#, c-format
+msgid "%s: The file %s is not opened in scilab.\n"
+msgstr "%s:  %s檔在 scilab中還沒打開.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
+msgstr "%s: 第 %d 個輸入參數長度錯誤: 必須小於 %d 個字元.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Cannot check the end of file whose descriptor is %d: File is not "
+"active.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File not found: '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' expected.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_mfscanf.c, line: 55
+# File: sci_gateway/c/sci_mfprintf.c, line: 41
+#, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: 錯誤之檔案代碼 (descriptor): %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%ls: Cannot check the end of file whose descriptor is %d: File is not "
+"active.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
+msgstr "%s: 無法讀取描述子是 %d的檔案: 檔案未在執行中.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong file mode: READ only.\n"
+msgstr "%s: 檔案模式有誤: 唯讀.\n"
+
+#, c-format
+msgid "%s: Error while writing in file: disk full or deleted file.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot read file %d.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_mfscanf.c, line: 92
@@ -105,206 +269,9 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體耗盡.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"
-msgstr "%s: 第#%d個參數長度有誤: m-by-1 陣列才對.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: 輸出參數數目錯誤: 應為 %d.\n"
-
-#, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
-"expected.\n"
+"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤.\n"
-
-#
-# File: sci_gateway/c/sci_findfiles.c, line: 53
-#, c-format
-msgid "%s: Error while trying to retrieve the name of the current directory.\n"
-msgstr "%s: 嘗試取得目前目錄名稱時發生錯誤.\n"
-
-#
-# File: sci_gateway/c/sci_findfiles.c, line: 79
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
-
-#
-# File: sci_gateway/c/sci_findfiles.c, line: 100
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
-msgstr "%s: 第#%d個參數長度有誤:  1-by-n or m-by-1 陣列才對.\n"
-
-#
-# File: sci_gateway/c/sci_fprintfMat.c, line: 55
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Matrix of floating point numbers "
-"expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串型態.\n"
-
-#, c-format
-msgid "%s: can not open file %s.\n"
-msgstr "%s：無法開啟檔案 %s 。\n"
-
-#, c-format
-msgid "%s: Invalid format.\n"
-msgstr "%s：無效的格式。\n"
-
-#, c-format
-msgid "%s: error.\n"
-msgstr "%s: 錯誤.\n"
-
-#, c-format
-msgid "%s: can not read file %s.\n"
-msgstr "%s：無法讀取檔案 %s 。\n"
-
-#
-# File: sci_gateway/c/sci_fullpath.c, line: 59
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: '%s' 唯一無效之路徑.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Could not create the output argument.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: no empty string expected.\n"
-msgstr "%s: 輸入參數數值錯誤: 不應有空字串.\n"
-
-#, c-format
-msgid "%s: The file %s is not opened in scilab.\n"
-msgstr "%s:  %s檔在 scilab中還沒打開.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Incompatible input arguments #%d and #%d: Same size expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must be less than %d characters.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 必須小於 %d 個字元.\n"
-
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 57
-#, c-format
-msgid ""
-"%s: Warning: Specified maximum number of files (%d) > Absolute maximum "
-"number of files allowed (%d).\n"
-msgstr "%s: 警告: 給定之最大檔案數目 (%d) > 可允許絕對最大 檔案數目 (%d).\n"
-
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 68
-#, c-format
-msgid ""
-"%s: Could not extend the number of files simultaneously open in Scilab.\n"
-msgstr "%s: 無法擴增在 Scilab 內同時開啟之檔案數目.\n"
-
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 75
-#, c-format
-msgid ""
-"%s: Warning : only extend the limit for the number of scilab's files opened "
-"simultaneously.\n"
-msgstr "%s: 警告 : 只擴增在 Scilab 內同時開啟之檔案數目之上限.\n"
-
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 81
-#, c-format
-msgid "%s: Wrong size for input argument: Scalar expected.\n"
-msgstr "%s: 輸入參數長度錯誤: 應為純量.\n"
-
-#
-# File: sci_gateway/c/sci_maxfiles.c, line: 87
-#, c-format
-msgid "%s: Wrong type for input argument: Matrix expected.\n"
-msgstr "%s: 輸入參數型態錯誤: 應為矩陣.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr "%s: 第#%d個參數長度有誤: 整數才對.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: 第#%d個參數型別有誤:   整數才對.\n"
-
-#, c-format
-msgid "%s: No such file %s.\n"
-msgstr "%s: 沒這個 %s檔.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
-msgstr "%s: 第#%d個參數型別有誤:   整數或字串才對.\n"
-
-#, c-format
-msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
-msgstr "%s: 無法讀取描述子是 %d的檔案: 檔案未在執行中.\n"
-
-#
-# File: sci_gateway/c/sci_mfprintf.c, line: 26
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 最少應為 %d.\n"
-
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 55
-# File: sci_gateway/c/sci_mfprintf.c, line: 41
-#, c-format
-msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: 錯誤之檔案代碼 (descriptor): %d.\n"
-
-#, c-format
-msgid "%s: Wrong file mode: READ only.\n"
-msgstr "%s: 檔案模式有誤: 唯讀.\n"
-
-#
-# File: sci_gateway/c/sci_mfprintf.c, line: 56
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤: 應為 %d.\n"
-
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 36
-# File: sci_gateway/c/sci_msscanf.c, line: 35
-# File: sci_gateway/c/sci_mscanf.c, line: 40
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為純量.\n"
-
-#
-# File: sci_gateway/c/sci_mfscanf.c, line: 84
-# File: sci_gateway/c/sci_msscanf.c, line: 84
-# File: sci_gateway/c/sci_mscanf.c, line: 91
-#, c-format
-msgid "%s: Data mismatch.\n"
-msgstr "%s: 資料不吻合.\n"
 
 #, c-format
 msgid ""
@@ -312,13 +279,15 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A positive integer value expected.\n"
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
@@ -328,20 +297,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr "%s: 第 #%d個參數長度有誤: String or logical unit 才對.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: String or logical unit expected.\n"
-msgstr "%s: 第 #%d個參數長度有誤: String or logical unit 才對.\n"
 
 #, c-format
 msgid "%s: Too many files opened!\n"
@@ -363,88 +318,64 @@ msgstr "%s: 無效的檔名 %s.\n"
 msgid "%s: invalid status.\n"
 msgstr "%s: 無效的狀態.\n"
 
-#
-# File: src/c/mput.c, line: 71
-# File: src/c/mget.c, line: 70
-# File: src/c/mget.c, line: 185
 #, c-format
-msgid "%s: No input file associated to logical unit %d.\n"
-msgstr "%s: 並無對應到邏輯編號為 %d 之輸入檔.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgstr "%s:輸入參數#%d的型別錯誤: 必需是字串或整數值.\n"
+
+#, c-format
+msgid "%s: Unable to read file %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: 第#%d個參數型別有誤:   整數才對.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: 第#%d個參數長度有誤: 整數才對.\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: 無效的檔名.\n"
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
-msgstr "%s: 第 #%d個參驄長度有誤: Integer 才對.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
-msgstr "%s:輸入參數#%d的型別錯誤: 必需是字串或整數值.\n"
-
 #
-# File: sci_gateway/c/sci_mscanf.c, line: 57
+# File: sci_gateway/c/sci_mfscanf.c, line: 84
+# File: sci_gateway/c/sci_msscanf.c, line: 84
+# File: sci_gateway/c/sci_mscanf.c, line: 91
 #, c-format
-msgid "%s: Specified format cannot include any '\\n'\n"
-msgstr "%s: 給定之格式內不能包含字串 '\\n'\n"
-
-#
-# File: macros/mkdir.sci, line: 72
-# File: macros/mkdir.sci, line: 81
-# File: macros/mkdir.sci, line: 85
-# File: macros/mkdir.sci, line: 89
-# File: macros/rmdir.sci, line: 62
-# File: macros/rmdir.sci, line: 66
-# File: sci_gateway/c/sci_msscanf.c, line: 55
-# File: sci_gateway/c/sci_mscanf.c, line: 74
-# File: src/c/do_xxprintf.c, line: 241
-# File: src/c/do_xxprintf.c, line: 415
-# File: src/c/do_xxprintf.c, line: 432
-# File: src/c/do_xxprintf.c, line: 437
-# File: src/c/do_xxscanf.c, line: 136
-# File: src/c/do_xxscanf.c, line: 147
-# File: src/c/do_xxscanf.c, line: 187
-# File: src/c/do_xxscanf.c, line: 207
-# File: src/c/do_xxscanf.c, line: 273
-# File: src/c/do_xxscanf.c, line: 289
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: 錯誤產生: %s\n"
-
-#
-# File: sci_gateway/c/sci_msscanf.c, line: 55
-msgid "Not enough entries."
-msgstr "已無足夠之項目."
+msgid "%s: Data mismatch.\n"
+msgstr "%s: 資料不吻合.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為布林數(boolean).\n"
-
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s: 產生錯誤.\n"
-
-#, c-format
-msgid "%s: Warning: Directory '%s' does not exist.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
+#
+# File: src/c/mseek.c, line: 55
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A string (3 characters max.) "
-"expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s' .\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while opening, reading or writing.\n"
+msgstr "%s: 開啟, 讀取 或寫入中發生錯誤.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Warning: Directory '%ls' does not exist.\n"
 msgstr ""
 
 msgid "Could not parse the URL.\n"
@@ -509,7 +440,8 @@ msgstr "%s: 錯誤: 要求過多(> %d) 轉換.\n"
 #
 # File: src/c/do_xxscanf.c, line: 175
 #, c-format
-msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr "%s: 錯誤: %%[ 指示 (directive) 之 %d 欄位過長 (> %d)  .\n"
 
 #
@@ -525,13 +457,15 @@ msgstr "轉換錯誤."
 #
 # File: src/c/do_xxscanf.c, line: 194
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr "%s: 錯誤:  %%s 指示 (directive) 之 %d 欄位過長 (> %d)  .\n"
 
 #
 # File: src/c/do_xxscanf.c, line: 216
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr "%s: 錯誤:  %%c 指示 (directive) 之 %d 欄位過長 (> %d)  .\n"
 
 #
@@ -544,6 +478,35 @@ msgstr "%s: 錯誤: 格式過長 (>%d).\n"
 msgid "Warning: Could not open directory %s: %s\n"
 msgstr "注意: 無法打開目錄 %s: %s\n"
 
+#, c-format
+msgid "Warning: Error while opening %s: %s\n"
+msgstr "注意:開啟 %s: %s時有誤\n"
+
+#, c-format
+msgid "Warning: Could not remove file %s: %s\n"
+msgstr "注意:無法移除檔案 %s: %s\n"
+
+#, c-format
+msgid "Warning: Could not remove directory %s: %s\n"
+msgstr "注意:無法移除目錄 %s: %s\n"
+
+#, c-format
+msgid "Can't go to directory %s: %s\n"
+msgstr "不能進入目錄 %s: %s\n"
+
+#, c-format
+msgid "Can't go to directory %s.\n"
+msgstr "無法進入到目錄 %s.\n"
+
+msgid "Invalid buffer.\n"
+msgstr "無效的緩衝區.\n"
+
+msgid "Unknown error.\n"
+msgstr "未知的錯誤.\n"
+
+msgid "Can't get current directory.\n"
+msgstr "無法進入目前目錄內.\n"
+
 #
 # File: src/c/mclose.c, line: 56
 #, c-format
@@ -551,17 +514,19 @@ msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
 msgstr "%s: 無法讀取代碼為 %d 之檔案 : 檔案並未啟用.\n"
 
 #
-# File: src/c/mclose.c, line: 62
-#, c-format
-msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
-msgstr "%s: 無法關閉代碼為 %d 之檔案 : 無此檔案.\n"
-
-#
 # File: src/c/mget.c, line: 56
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' or '%s' 或 '%s' .\n"
+
+#
+# File: src/c/mput.c, line: 71
+# File: src/c/mget.c, line: 70
+# File: src/c/mget.c, line: 185
+#, c-format
+msgid "%s: No input file associated to logical unit %d.\n"
+msgstr "%s: 並無對應到邏輯編號為 %d 之輸入檔.\n"
 
 #
 # File: src/c/mget.c, line: 172
@@ -574,22 +539,6 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為非空字串.\n"
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: Format not recognized.\n"
-
-#
-# File: src/c/mgetstr.c, line: 70
-# File: src/c/mputi.c, line: 179
-#, c-format
-msgid "%s: No input file.\n"
-msgstr "%s: 無輸入檔.\n"
-
-#
-# File: src/c/mgeti.c, line: 175
-# File: src/c/mgeti.c, line: 181
-# File: src/c/mputi.c, line: 166
-# File: src/c/mputi.c, line: 172
-#, c-format
-msgid "%s: %s format not recognized.\n"
-msgstr "%s: 不認識 %s 格式.\n"
 
 #
 # File: src/c/mopen.c, line: 35
@@ -612,86 +561,12 @@ msgid ""
 "%s: Wrong size for input argument #%d ('%s'): Non-empty string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤 ('%s'): 應為非空字串.\n"
 
-#, c-format
-msgid "%s: No File opened in Scilab.\n"
-msgstr "%s: 在Scilab 沒有開啟任何檔案.\n"
-
 #
 # File: src/c/mput.c, line: 189
 #, c-format
-msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤 ('%s'): 無法辨識此格式.\n"
-
-#
-# File: src/c/mput.c, line: 193
-# File: src/c/mseek.c, line: 43
-# File: src/c/mputstr.c, line: 27
-# File: src/c/mtell.c, line: 26
-#, c-format
-msgid "%s: Error while opening, reading or writing '%s'.\n"
-msgstr "%s: 開啟,讀取或寫入 '%s' 時發生錯誤.\n"
-
-#, c-format
-msgid "%s: Error while opening, reading or writing.\n"
-msgstr "%s: 開啟, 讀取 或寫入中發生錯誤.\n"
-
-#
-# File: src/c/mseek.c, line: 55
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s' .\n"
-
-#
-# File: src/c/mseek.c, line: 72
-#, c-format
-msgid "%s: An error occurred in %s: errno=%s\n"
-msgstr "%s: %s 中出現錯誤: errno=%s\n"
-
-#, c-format
-msgid "Warning: Error while opening %s: %s\n"
-msgstr "注意:開啟 %s: %s時有誤\n"
-
-#, c-format
-msgid "Warning: Could not remove file %s: %s\n"
-msgstr "注意:無法移除檔案 %s: %s\n"
-
-#, c-format
-msgid "Warning: Could not remove directory %s: %s\n"
-msgstr "注意:無法移除目錄 %s: %s\n"
-
-#
-# File: src/c/fileio.c, line: 90
-#, c-format
-msgid "%s: Too many directives in scanf.\n"
-msgstr "%s: scanf 中出現過多指示 (directives).\n"
-
-#, c-format
-msgid "Can't go to directory %s: %s\n"
-msgstr "不能進入目錄 %s: %s\n"
-
-#, c-format
-msgid "Can't go to directory %s.\n"
-msgstr "無法進入到目錄 %s.\n"
-
-msgid "Invalid buffer.\n"
-msgstr "無效的緩衝區.\n"
-
-msgid "Unknown error.\n"
-msgstr "未知的錯誤.\n"
-
-msgid "Can't get current directory.\n"
-msgstr "無法進入目前目錄內.\n"
-
-#
-# File: macros/listvarinfile.sci, line: 53
-#, c-format
 msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
-msgstr "%s: 變數型態 (%s) 錯誤(在'%s' 內). 檔案可能有誤或已破壞.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
+"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤 ('%s'): 無法辨識此格式.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
@@ -721,6 +596,12 @@ msgstr "%s: 輸入參數型態錯誤: 應為字串.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 輸入參數之數目錯誤(s).\n"
+
+#
+# File: sci_gateway/c/sci_findfiles.c, line: 79
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 msgid "Impossible to create directory "
 msgstr "無法建立檔案目錄 "

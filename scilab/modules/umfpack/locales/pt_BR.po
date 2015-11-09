@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -281,13 +281,15 @@ msgstr ""
 "%s: Quantidade errada de argumentos de entrada: Esperava-se de %d a %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz "
 "quadrada esparsa\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se uma matriz "
 "quadrada esparasa.\n"
@@ -298,25 +300,8 @@ msgstr "%s: A matriz e os fatores LU não têm dimensões iguais !\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr "%s: Tipo inválido e/ou tamanho e/ou valor para o segundo argumento.\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " O tamanho atual da pilha não é suficiente para esta demonstração "
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " ponha o seguinte no prompt do Scilab :          "
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           então ponha novamente scisptdemo()                "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               CIQUE PARA CONTINUAR                    "
+msgstr ""
+"%s: Tipo inválido e/ou tamanho e/ou valor para o segundo argumento.\n"
 
 msgid "how to use this stuff"
 msgstr "como utilizar isto"

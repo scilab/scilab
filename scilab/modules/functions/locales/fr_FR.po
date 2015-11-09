@@ -8,37 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-11 15:30+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une chaîne de "
-"caractères attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
@@ -46,58 +27,75 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : 'errcatch' attendu.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
-
-#, c-format
-msgid "%s: Wrong value(s) for input argument(s).\n"
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
-"%s : Valeur(s) erronée(s) de l'argument d'entrée ou des arguments d'entrée.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgid "%s: Cannot open file %s.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgid "%s: Unable to parse macro '%s'"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : 'm' ou 'n' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A macro without varargin and "
+"varargout expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
+
+#, c-format
+msgid "Recursion limit reached (%d).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A String expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s : Bibliothèque %s invalide.\n"
 
 #, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
+msgid "%s: Wrong type for input arguments: macro expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
@@ -116,71 +114,18 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr "%s : Le fichier %s n'existe pas.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un booléen attendu.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Un booléen attendu.\n"
-
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- Création de [%s] (Macros) --\n"
-
-#, c-format
-msgid "%s: No files with extension %s found in %s\n"
-msgstr "%s : Pas de fichiers avec l'extension %s trouvés dans %s\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice de chaîne de "
-"caractères attendue.\n"
-
-#, c-format
-msgid "%s: %s file compilation forced\n"
-msgstr "%s : %s compilation du fichier forcée\n"
-
-#, c-format
-msgid "%s: Processing file: %s\n"
-msgstr "%s : Traitement du fichier : %s\n"
-
-#, c-format
-msgid "%s: Regenerate names and lib\n"
-msgstr "%s : Régénère les noms et les bibliothèques\n"
-
-#, c-format
-msgid "%s: %s file cannot be created\n"
-msgstr "%s : Impossible de créer le fichier %s\n"
-
-#, c-format
-msgid ""
-"Library file %s has been updated,\n"
-"but cannot be loaded into Scilab because %s is a protected variable.\n"
-msgstr ""
-"Le fichier bibliothèque %s a été mis à jour,\n"
-"mais ne peut pas être chargé dans Scilab car %s est une variable protégée.\n"
-
-#, c-format
-msgid "%s: Error in file %s : %s.\n"
-msgstr "%s : Erreur dans le fichier %s : %s.\n"
-
-#, c-format
-msgid "%s: Impossible to open file %s for writing\n"
-msgstr "%s : Impossible d'ouvrir le fichier %s en écriture\n"
-
-#, c-format
-msgid "%s: File %s does not contain any function.\n"
-msgstr "%s : Le fichier %s ne contient aucune fonction.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
@@ -191,8 +136,13 @@ msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s : Fonction incorrecte dans le fichier %s.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un caractère attendu.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un caractère attendu.\n"
 
 #, c-format
 msgid "%s: Undefined variable %s.\n"
@@ -209,13 +159,8 @@ msgid "No comment available."
 msgstr "Aucun commentaire n'est disponible"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une fonction Scilab "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 "%s : Valeurs erronées de l'argument d'entrée : Pas de données de profil dans "
 "la fonction\n"

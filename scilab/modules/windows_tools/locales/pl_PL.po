@@ -8,31 +8,45 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-10-26 15:19+0000\n"
-"Last-Translator: Grzegorz Szostek <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pl\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Tylko w trybie Windows, a nie w konsoli.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Błąd przedzielania pamięci\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego: Oczekiwane dodatnie liczby "
-"całkowite.\n"
+"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
+"znaków.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr "%s: Nieprawidłowy typ argumentu wejściowego: oczekiwany skalar.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -44,12 +58,6 @@ msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
-"znaków.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: oczekiwano '%s'\n"
@@ -59,13 +67,14 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Brak pamięci.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Błąd przedzielania pamięci\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: Zły typ parametrów wejściowych: oczekiwano ciągów znaków.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: Oczekiwano łańcucha "
+"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
@@ -75,14 +84,12 @@ msgid "see help"
 msgstr "zobacz pomoc"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Nie można otworzyć pliku %s.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid "%s: Cannot open file %ls.\n"
 msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego #%d: Oczekiwano łańcucha "
-"znaków.\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -96,9 +103,6 @@ msgstr "%s: Niemożna kwestionować wartości tego typu.\n"
 msgid "Scilab %s Console"
 msgstr ""
 
-msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-
 msgid "Error(s) : see help powershell"
 msgstr "Błąd : zobacz pomoc Powershell"
 
@@ -110,7 +114,3 @@ msgstr "Tylko dla Microsoft Windows"
 
 msgid "Powershell 1.0 not found."
 msgstr "Nie znaleziono Powershell 1.0."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano %d.\n"

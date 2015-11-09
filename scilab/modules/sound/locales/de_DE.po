@@ -8,35 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-05-07 18:52+0000\n"
-"Last-Translator: Dennis Baudys <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: ein Fehler ist aufgetreten: %s\n"
-
 msgid "Cannot play file."
 msgstr "Kann Datei nicht wiedergeben."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -48,21 +34,6 @@ msgstr "%s: falsches Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Scilab Audio Modul nicht installiert.\n"
-
-msgid "Sound file handling"
-msgstr ""
-
-msgid "FFT on a wav file"
-msgstr ""
-
-msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr ""
-
-msgid "A complete picture of the sound."
-msgstr ""
-
-msgid "see 'mapsound' function"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -198,13 +169,15 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: ein Fehler ist aufgetreten: %s wird nicht unterstützt.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: ein Fehler ist aufgetreten: ungültiges Dateiformat: Fehler beim Lesen "
 "des <%s> Stücks.\n"
 
 msgid "Invalid .wav file: found data before format information."
-msgstr "Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
+msgstr ""
+"Ungültige .wav-Datei gefunden: Daten beginnen vor Formatinformationen."
 
 msgid "Incorrect chunk size information in RIFF file."
 msgstr "Inkorrekte Information der Blockgröße in RIFF Datei,"

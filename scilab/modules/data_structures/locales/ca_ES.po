@@ -8,58 +8,69 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-04-18 18:56+0000\n"
-"Last-Translator: Marc Coll Carrillo <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
+
+#, c-format
+msgid "%s:  Wrong type for input argument #%d: List expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: No more memory.\n"
+msgid "%s: Wrong type for input argument #%d: List expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Can not create a mlist with input argument #%d.\n"
+msgid "%s: Soft coded field names not yet implemented.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Can not create a tlist with input argument #%d.\n"
+msgid "%s: Invalid index.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: An hypermatrix expected.\n"
+msgid "List element number %d is Undefined.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: at most %d expected.\n"
+msgid "%s: Could not read the argument #%d properties.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Invalid index #%d in hypermatrix extraction. "
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Invalid index #%d in hypermatrix insertion.\n"
+msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Invalid hypermatrix insertion.\n"
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
 msgstr ""
 
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
 msgstr ""
-"Massa arguments a la pila, editeu el stack.h i augmenteu el intersiz.\n"
+
+#, c-format
+msgid "%s: Not implemented in scilab...\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -79,31 +90,13 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
-"expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
-"de caràcters.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
+msgid "%s: Wrong type for argument %d: List expected.\n"
 msgstr ""
-"%s: El nombre d'arguments d'entrada és incorrecte: Ha de ser un nombre "
-"senar.\n"
-
-#, c-format
-msgid "%s: 'dims' can not be used as a field name.\n"
-msgstr "%s: No podeu utilitzar 'dims' com a nom d'un camp.\n"
-
-#, c-format
-msgid "%s: field name '%s' defined twice.\n"
-msgstr "%s: Heu definit dos cops el nom de camp '%s'.\n"

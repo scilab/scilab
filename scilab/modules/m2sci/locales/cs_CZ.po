@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-02-14 17:28+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
@@ -14,11 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- Vytváření [%s] (Makra) --\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 msgid "Input file"
 msgstr "Vstupní soubor"
@@ -171,7 +167,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs nemůže být  %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr "rekurzivní extrakce s jedním indexem typu %s není ještě zavedena."
 
 #, c-format
@@ -186,8 +183,10 @@ msgid "Matlab function %s not yet converted."
 msgstr "Funkce Matlab %s není ještě převedena."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
-msgstr "mtlb(%s) může být nahrazeno %s() nebo %s ať je %s M-soubor či nikoliv."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgstr ""
+"mtlb(%s) může být nahrazeno %s() nebo %s ať je %s M-soubor či nikoliv."
 
 msgid "input argument must be an 'operation' tlist."
 msgstr "vstupní argument musí být tlist 'operation'."
@@ -241,7 +240,8 @@ msgid "// Display warning for floating point exception"
 msgstr "// Zobrazit varování pro výjimky destinných čísel"
 
 msgid "// Output variables initialisation (not found in input variables)"
-msgstr "// Zavedení výstupních proměnných (nenalezeno ve vstupních proměnných)"
+msgstr ""
+"// Zavedení výstupních proměnných (nenalezeno ve vstupních proměnných)"
 
 msgid "TESTING M2SCI: creating varslist file..."
 msgstr "TEST M2SCI: vytvoření souboru varslist..."
@@ -322,8 +322,8 @@ msgstr "když"
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"není dostatek dat, meli byste zadat alespoň jméno_proměnné|rozměry|"
-"datový_typ."
+"není dostatek dat, meli byste zadat alespoň "
+"jméno_proměnné|rozměry|datový_typ."
 
 msgid "too much data."
 msgstr "příliš mnoho dat."
@@ -595,7 +595,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Konec relace mfile2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Alespoň jeden operand je prázdná matice pro operátor: %s, obdoba Scilabu je "
 "[]."
@@ -612,8 +613,10 @@ msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr "Chyba M2SCI: extrakce z neznámé proměnné %s v seznamu proměnných."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
-msgstr "rekurzivní vložení v proměnné, která není ani Buňka ani Struktura: %s"
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgstr ""
+"rekurzivní vložení v proměnné, která není ani Buňka ani Struktura: %s"
 
 #, c-format
 msgid "destination variable is not a cell: %s is of type %s."
@@ -725,7 +728,8 @@ msgstr ""
 "Ověřit, že výraz vyhodnocený pomocí execstr() je kompatibilní se Scilabem."
 
 msgid "No equivalent for findstr() in Scilab so mtlb_findstr() is called."
-msgstr "Žádná obdoba v Scilabu pro findstr(), takže je voláno mtlb_findstr()."
+msgstr ""
+"Žádná obdoba v Scilabu pro findstr(), takže je voláno mtlb_findstr()."
 
 msgid "fopen('all') has no translation."
 msgstr "fopen('all') nemá žádný překlad,"
@@ -765,13 +769,15 @@ msgstr "Možnost %s."
 
 #, c-format
 msgid "Scilab %s() does not work with Complex values: %s() call IGNORED."
-msgstr "Scilab %s() nefunguje s Komplexními hodnotami: volání %s(( IGNOROVÁNO."
+msgstr ""
+"Scilab %s() nefunguje s Komplexními hodnotami: volání %s(( IGNOROVÁNO."
 
 #, c-format
 msgid "Unhandled class: %s."
 msgstr "Neobsluhovatelná třída: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr "isequal vyžaduje pole ve stejném pořadí, aby se struktury rovnaly."
 
 msgid "Option -regexp not yet handled: will be ignored."

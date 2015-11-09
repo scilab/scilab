@@ -9,18 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-30 16:53+0000\n"
+"PO-Revision-Date: 2015-10-09 07:42+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -28,15 +24,15 @@ msgstr "%s: не вдалося прочитати вхідний парамет
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: слід використовувати матрицю з рядків.\n"
+msgstr "%s: помилковий тип параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "#%s: помилковий тип параметра №%d: слід використовувати матрицю дійсних "
 "значень або рядок «readonly».\n"
@@ -53,462 +49,6 @@ msgid ""
 msgstr ""
 "%s: помилкові розмірності вхідних параметрів №%d та №%d: розмірності мали "
 "збігатися.\n"
-
-msgid "File"
-msgstr "Файл"
-
-msgid "New"
-msgstr "Створити"
-
-msgid "Open"
-msgstr "Відкрити"
-
-msgid "Open recent"
-msgstr "Відкрити повторно"
-
-msgid "Working directories;Add a directory;Remove last directory"
-msgstr "Робочі каталоги;Додати каталог;Вилучити останній каталог"
-
-msgid "Open file in ..."
-msgstr "Відкрити файл у…"
-
-msgid "Save file in ..."
-msgstr "Зберегти файл у…"
-
-msgid "Reload"
-msgstr "Перезавантажити"
-
-msgid "Restore opened files on start-up"
-msgstr "Відкривати попередні файли під час запуску"
-
-msgid "Open function source file"
-msgstr "Відкрити файл коду функції"
-
-msgid "Open URL"
-msgstr "Відкрити URL"
-
-msgid "Save"
-msgstr "Зберегти"
-
-msgid "Save as"
-msgstr "Зберегти як"
-
-msgid "Save All"
-msgstr "Зберегти всі"
-
-msgid "Overwrite"
-msgstr "Перезаписати"
-
-msgid "Export"
-msgstr "Експорт"
-
-msgid "Page Setup"
-msgstr "Налаштування сторінки"
-
-msgid "Print Preview"
-msgstr "Перегляд друку"
-
-msgid "Print"
-msgstr "Надрукувати"
-
-msgid "Close"
-msgstr "Закрити"
-
-msgid "Close All"
-msgstr "Закрити всі"
-
-msgid "Close All But This"
-msgstr "Закрити всі крім поточної"
-
-msgid "Exit Scinotes"
-msgstr "Вийти зі Scinotes"
-
-msgid "Edit"
-msgstr "Зміни"
-
-msgid "Undo"
-msgstr "Вернути"
-
-msgid "Redo"
-msgstr "Повторити"
-
-msgid "Cut"
-msgstr "Вирізати"
-
-msgid "Copy"
-msgstr "Копіювати"
-
-msgid "Copy as HTML with line number"
-msgstr "Копіювати як HTML з номерами рядків"
-
-msgid "Paste"
-msgstr "Вставити"
-
-msgid "Delete"
-msgstr "Вилучити"
-
-msgid "Columns actions"
-msgstr "Дії над стовпчиками"
-
-msgid "Paste Column"
-msgstr "Вставити стовпчик"
-
-msgid "Repeat on the Column"
-msgstr "Повторити над цим стовпчиком"
-
-msgid "Select All"
-msgstr "Вибрати все"
-
-msgid "Select current block"
-msgstr "Позначити поточний блок"
-
-msgid "Search"
-msgstr "Пошук"
-
-msgid "Find/Replace"
-msgstr "Знайти/Замінити"
-
-msgid "Find Next"
-msgstr "Знайти далі"
-
-msgid "Find Previous"
-msgstr "Знайти позаду"
-
-msgid "Incremental Search"
-msgstr "Покроковий пошук"
-
-msgid "Find files"
-msgstr "Пошук файлів"
-
-msgid "Find word in files"
-msgstr "Пошук слів у файлах"
-
-msgid "Set anchor"
-msgstr "Встановити прив’язку"
-
-msgid "Go to next anchor"
-msgstr "Перейти до наступної прив’язки"
-
-msgid "Go to previous anchor"
-msgstr "Перейти до попередньої прив’язки"
-
-msgid "Remove anchor"
-msgstr "Вилучити прив’язку"
-
-msgid "Code Navigator"
-msgstr "Навігація кодом"
-
-msgid "Format"
-msgstr "Формат"
-
-msgid "Shift Right"
-msgstr "Зсунути праворуч"
-
-msgid "Shift Left"
-msgstr "Зсунути ліворуч"
-
-msgid "Correct Indentation"
-msgstr "Виправити відступи"
-
-msgid "Remove trailing spaces"
-msgstr "Вилучати кінцеві пробіли"
-
-msgid "Generate comments for help_from_sci"
-msgstr "Створити записи коментарів для help_from_sci"
-
-msgid "Comment Selection"
-msgstr "Закоментувати позначене"
-
-msgid "Uncomment Selection"
-msgstr "Зняти позначки коментаря з позначеного"
-
-msgid "Change the case"
-msgstr "Змінити регістр"
-
-msgid "Make Selection Lowercase"
-msgstr "Замінити великі літери у позначеному малими"
-
-msgid "Make Selection Uppercase"
-msgstr "Замінити малі літери у позначеному великими"
-
-msgid "Capitalize Selection;Capitalize character"
-msgstr "Змінити регістр позначеного;Змінити регістр символу"
-
-msgid "Single to double quote strings"
-msgstr "Рядки у одинарних лапках у подвійні лапки"
-
-msgid "Options"
-msgstr "Параметри"
-
-msgid "Current file encoding"
-msgstr "Кодування поточного файла"
-
-msgid "Line Endings"
-msgstr "Завершення рядків"
-
-msgid "Preferences"
-msgstr "Параметри"
-
-msgid "Set font"
-msgstr "Встановити шрифт"
-
-msgid "Set colors"
-msgstr "Встановити кольори"
-
-msgid "Scinotes General settings"
-msgstr "Загальні параметри Scinotes"
-
-msgid "Auto-completion on"
-msgstr "Автодоповнення"
-
-msgid "(, [, ..."
-msgstr "(, [, …"
-
-msgid "if, function, ..."
-msgstr "if, function, …"
-
-msgid "Line numbering;Off;Normal;Local numbering"
-msgstr "Нумерація рядків;Вимкнено;Локальна нумерація"
-
-msgid "Highlight current line"
-msgstr "Підсвічувати поточний рядок"
-
-msgid "Enable Auto Reformat"
-msgstr "Увімкнути автоматичну зміну формату"
-
-msgid "Suppress comments when executing selection"
-msgstr "Придушити коментарі під час виконання позначеного"
-
-msgid "Window"
-msgstr "Вікно"
-
-msgid "Copy tab in new window"
-msgstr "Копіювати вкладку у окреме вікно"
-
-msgid "Detach tab in new window"
-msgstr "Від’єднати вкладку у окреме вікно"
-
-msgid "Copy selection in a new tab"
-msgstr "Копіювати позначене до нової вкладки"
-
-msgid "Split View;Off;Split in two columns;Split in two rows"
-msgstr ""
-"Розділений перегляд;Вимкнути;Розділити на два стовпчики;Розділити на два "
-"рядки"
-
-msgid "Execute"
-msgstr "Виконати"
-
-msgid "... file with no echo"
-msgstr "…файл без виведення"
-
-msgid "... file with echo"
-msgstr "…файл з виведенням"
-
-msgid "... the selection with echo;... until the caret, with echo"
-msgstr "…позначене з виведенням;…до курсора з виведенням"
-
-msgid "Save and execute"
-msgstr "Зберегти і виконати"
-
-msgid "Save and execute all files"
-msgstr "Зберегти і виконати всі файли"
-
-msgid "?"
-msgstr "Довідка"
-
-msgid "Scinotes help"
-msgstr "Довідка зі Scinotes"
-
-msgid "Help on ;Help on selection"
-msgstr "Довідка щодо ;Довідка щодо позначеного"
-
-msgid "About"
-msgstr "Про програму"
-
-msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr "Обчислити позначене з виведенням;Обчислити до курсора з виведенням"
-
-msgid "Complete"
-msgstr "Завершити"
-
-msgid "Display"
-msgstr "Показ"
-
-msgid "Header"
-msgstr "Заголовок"
-
-msgid "Autosave"
-msgstr "Автозбереження"
-
-msgid "Editor"
-msgstr "Редактор"
-
-msgid "Use Scinotes"
-msgstr "Користування Scinotes"
-
-msgid "External editor: "
-msgstr "Зовнішній редактор: "
-
-msgid "(Don't forget to quote path containing white spaces)"
-msgstr "(Не забудьте додати лапки, якщо у запису шляху містяться пробіли)"
-
-msgid "Scilab command: "
-msgstr "Команда Scilab: "
-
-msgid "Restore previous session on start-up"
-msgstr "Відновлювати попередній сеанс під час запуску"
-
-msgid "Add carriage return at the end of the file."
-msgstr "Додавати символ нового рядка наприкінці файла."
-
-msgid "Number of recently opened files to display: "
-msgstr "Кількість нещодавно відкритих файлів у списку: "
-
-msgid "Default file encoding: "
-msgstr "Типове кодування файлів: "
-
-msgid "Default End-Of-Line: "
-msgstr "Типове завершення рядка: "
-
-msgid "Completion"
-msgstr "Доповнення"
-
-msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr "Автоматично доповнювати дужки, коли курсор перебуває наприкінці рядка"
-
-msgid "General display options"
-msgstr "Загальні параметри показу"
-
-msgid "Highlight current line: "
-msgstr "Підсвічування поточного рядка: "
-
-msgid "Show line numbers: "
-msgstr "Показ номерів рядків: "
-
-msgid "Local numbering"
-msgstr "Локальна нумерація"
-
-msgid "Normal"
-msgstr "Звичайна"
-
-msgid "Wrap lines"
-msgstr "Переносити рядки"
-
-msgid "Background color: "
-msgstr "Колір тла: "
-
-msgid "Cursor color: "
-msgstr "Колір курсора: "
-
-msgid "Keywords"
-msgstr "Ключові слова"
-
-msgid "Enable keywords colorization"
-msgstr "Увімкнути розфарбовування ключових слів"
-
-msgid "Set syntax Colors"
-msgstr "Встановити кольори синтаксису"
-
-msgid "Highlight corresponding brackets"
-msgstr "Підсвічувати відповідні дужки"
-
-msgid "Color: "
-msgstr "Колір: "
-
-msgid "Highlight on mouse over"
-msgstr "Підсвічування у разі наведення вказівника"
-
-msgid "Style: "
-msgstr "Стиль: "
-
-msgid "Filled"
-msgstr "Заповнення кольором"
-
-msgid "Framed"
-msgstr "У рамці"
-
-msgid "Underlined"
-msgstr "Підкреслення"
-
-msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr "Підсвічувати відповідні ключові слова (наприклад if ... end)"
-
-msgid "Tabulation and Indentation"
-msgstr "Табуляція і відступи"
-
-msgid "Tabulation size: "
-msgstr "Розмір табуляції: "
-
-msgid "Use space"
-msgstr "Використовувати пробіл"
-
-msgid "Representation: "
-msgstr "Представлення: "
-
-msgid "Chevrons"
-msgstr "Шеврон"
-
-msgid "Horizontal rule"
-msgstr "Горизонтальна лінійка"
-
-msgid "Vertical rule"
-msgstr "Вертикальна лінійка"
-
-msgid "Enable auto indentation"
-msgstr "Увімкнути автовідступ"
-
-msgid "Indent size: "
-msgstr "Розмір відступу: "
-
-msgid "Enable autosave in Scinotes"
-msgstr "Увімкнути автозбереження у Scinotes"
-
-msgid "Save options"
-msgstr "Параметри збереження"
-
-msgid "Save every "
-msgstr "Зберігати кожні "
-
-msgid " minutes "
-msgstr " хвилин "
-
-msgid "Close options"
-msgstr "Параметри закриття"
-
-msgid "Delete automatically saved files"
-msgstr "Вилучити автоматично збережені файли"
-
-msgid "Filename"
-msgstr "Назва файла"
-
-msgid "Append filename with: "
-msgstr "Додати назву файла з: "
-
-#, c-format
-msgid "(%date can be used to be replaced by the current date)"
-msgstr "(заповнювач %date буде замінено значенням поточної дати)"
-
-msgid "Replace extension with: "
-msgstr "Замінити суфікс на такий: "
-
-msgid "Location"
-msgstr "Розташування"
-
-msgid "Source file directory"
-msgstr "Каталог файлів кодів"
-
-msgid "Single directory"
-msgstr "Окремий каталог"
-
-msgid "Choose an autosave directory"
-msgstr "Виберіть каталог для автозбереження"
-
-msgid "Default header"
-msgstr "Типовий заголовок"
-
-msgid "Add a default header to new file"
-msgstr "Додавати до нових файлів типовий заголовок"
 
 msgid "Graphics handle field"
 msgstr "Поле елемента керування графіки"
@@ -538,11 +78,32 @@ msgid "The file %s has been modified by an other program. Reload it ?"
 msgstr ""
 "До файла %s внесено зміни сторонньою програмою. Перезавантажити його вміст?"
 
+msgid "File"
+msgstr "Файл"
+
+msgid "New"
+msgstr "Створити"
+
+msgid "Open"
+msgstr "Відкрити"
+
+msgid "Open function source file"
+msgstr "Відкрити файл коду функції"
+
+msgid "Open URL"
+msgstr "Відкрити URL"
+
 msgid "Source of '"
 msgstr "Джерело «"
 
 msgid "Recent Files"
 msgstr "Нещодавні файли"
+
+msgid "Save"
+msgstr "Зберегти"
+
+msgid "Save as"
+msgstr "Зберегти як"
 
 msgid "The file could not be created, check the path"
 msgstr "Не вдалося створити файл, перевірте вказану адресу"
@@ -556,17 +117,80 @@ msgstr "У вас немає прав доступу до запису дани�
 msgid "You do not have the permissions to read this file"
 msgstr "У вас немає прав доступу до читання цього файла"
 
+msgid "Save All"
+msgstr "Зберегти всі"
+
+msgid "Page Setup"
+msgstr "Налаштування сторінки"
+
+msgid "Print Preview"
+msgstr "Перегляд друку"
+
+msgid "Print"
+msgstr "Надрукувати"
+
 msgid "An error occurred when exporting the code using FOP"
 msgstr "Під час експортування коду за допомогою FOP сталася помилка"
 
 msgid "An error occurred when printing"
 msgstr "Під час спроби друку сталася помилка"
 
+msgid "Close"
+msgstr "Закрити"
+
+msgid "Close All"
+msgstr "Закрити всі"
+
+msgid "Close All But This"
+msgstr "Закрити всі крім поточної"
+
 msgid "Exit"
 msgstr "Вийти"
 
+msgid "?"
+msgstr "Довідка"
+
+msgid "Edit"
+msgstr "Зміни"
+
+msgid "Undo"
+msgstr "Вернути"
+
+msgid "Redo"
+msgstr "Повторити"
+
+msgid "Cut"
+msgstr "Вирізати"
+
+msgid "Copy"
+msgstr "Копіювати"
+
+msgid "Paste"
+msgstr "Вставити"
+
+msgid "Select All"
+msgstr "Вибрати все"
+
+msgid "Delete"
+msgstr "Вилучити"
+
 msgid "Tools"
 msgstr "Інструменти"
+
+msgid "Comment Selection"
+msgstr "Закоментувати позначене"
+
+msgid "Uncomment Selection"
+msgstr "Зняти позначки коментаря з позначеного"
+
+msgid "Shift Right"
+msgstr "Зсунути праворуч"
+
+msgid "Shift Left"
+msgstr "Зсунути ліворуч"
+
+msgid "Correct Indentation"
+msgstr "Виправити відступи"
 
 msgid "Help on typing"
 msgstr "Довідка при введенні"
@@ -583,6 +207,18 @@ msgstr "Клонувати і закрити вкладку у новому ві
 msgid "Remove trailing whitespaces"
 msgstr "Вилучити кінцеві пробіли"
 
+msgid "Search"
+msgstr "Пошук"
+
+msgid "Find/Replace"
+msgstr "Знайти/Замінити"
+
+msgid "Find Next"
+msgstr "Знайти далі"
+
+msgid "Find Previous"
+msgstr "Знайти позаду"
+
 msgid "Goto line"
 msgstr "Перейти до рядка"
 
@@ -591,6 +227,9 @@ msgstr "Перегляд"
 
 msgid "Show/Hide ToolBar"
 msgstr "Показати/Сховати панель інструментів"
+
+msgid "Highlight current line"
+msgstr "Підсвічувати поточний рядок"
 
 msgid "Word Wrap"
 msgstr "Перенесення слів"
@@ -637,6 +276,12 @@ msgstr "Кодування"
 msgid "Colorize"
 msgstr "Розфарбовування"
 
+msgid "Enable Auto Reformat"
+msgstr "Увімкнути автоматичну зміну формату"
+
+msgid "Line Endings"
+msgstr "Завершення рядків"
+
 msgid "Auto (Default)"
 msgstr "Автоматично (типово)"
 
@@ -648,6 +293,9 @@ msgstr "Класичний для Mac (CR)"
 
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
+
+msgid "Execute"
+msgstr "Виконати"
 
 msgid "Load Into Scilab"
 msgstr "Завантажити до Scilab"
@@ -675,6 +323,9 @@ msgstr "Довідка щодо позначеного фрагмента тек
 
 msgid "Help about '"
 msgstr "Довідка щодо «"
+
+msgid "About"
+msgstr "Про програму"
 
 msgid "Find:"
 msgstr "Знайти:"
@@ -708,6 +359,9 @@ msgstr "Позначені рядки"
 
 msgid "Select from caret"
 msgstr "Позначити від каретки"
+
+msgid "Options"
+msgstr "Параметри"
 
 msgid "Case sensitive"
 msgstr "З врахуванням регістру"
@@ -772,6 +426,12 @@ msgstr ""
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Попередження: до файла було внесено зміни сторонньою програмою!"
+
+msgid "Reload"
+msgstr "Перезавантажити"
+
+msgid "Overwrite"
+msgstr "Перезаписати"
 
 msgid "Ignore"
 msgstr "Ігнорувати"
@@ -878,7 +538,8 @@ msgid "%s is a directory."
 msgstr "%s — це каталог."
 
 msgid "Your modifications will be lost, change encoding anyway?"
-msgstr "Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
+msgstr ""
+"Внесені вами зміни буде втрачено. Попри це бажаєте змінити кодування?"
 
 msgid "Continue ?"
 msgstr "Продовжити?"
@@ -897,6 +558,12 @@ msgstr "Не позначено жодного фрагмента тексту."
 
 msgid "No text to execute."
 msgstr "Немає тексту для обробки."
+
+msgid "Complete"
+msgstr "Завершити"
+
+msgid "Copy selection in a new tab"
+msgstr "Копіювати позначене до нової вкладки"
 
 #, c-format
 msgid ""
@@ -979,6 +646,9 @@ msgstr "Колір"
 msgid "Bold"
 msgstr "Жирний"
 
+msgid "Code Navigator"
+msgstr "Навігація кодом"
+
 msgid "Absolute"
 msgstr "Абсолютний"
 
@@ -1044,6 +714,12 @@ msgstr "Довжина"
 
 msgid "Tab representation"
 msgstr "Показ табуляції"
+
+msgid "Horizontal rule"
+msgstr "Горизонтальна лінійка"
+
+msgid "Vertical rule"
+msgstr "Вертикальна лінійка"
 
 msgid "Double chevrons"
 msgstr "Подвійний шеврон"
@@ -1124,8 +800,334 @@ msgid "Choose the search base directory"
 msgstr "Виберіть кореневий каталог пошуку"
 
 #, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
+
+msgid "Open recent"
+msgstr "Відкрити повторно"
+
+msgid "Working directories;Add a directory;Remove last directory"
+msgstr "Робочі каталоги;Додати каталог;Вилучити останній каталог"
+
+msgid "Open file in ..."
+msgstr "Відкрити файл у…"
+
+msgid "Save file in ..."
+msgstr "Зберегти файл у…"
+
+msgid "Restore opened files on start-up"
+msgstr "Відкривати попередні файли під час запуску"
+
+msgid "Export"
+msgstr "Експорт"
+
+msgid "Exit Scinotes"
+msgstr "Вийти зі Scinotes"
+
+msgid "Copy as HTML with line number"
+msgstr "Копіювати як HTML з номерами рядків"
+
+msgid "Columns actions"
+msgstr "Дії над стовпчиками"
+
+msgid "Paste Column"
+msgstr "Вставити стовпчик"
+
+msgid "Repeat on the Column"
+msgstr "Повторити над цим стовпчиком"
+
+msgid "Select current block"
+msgstr "Позначити поточний блок"
+
+msgid "Incremental Search"
+msgstr "Покроковий пошук"
+
+msgid "Find files"
+msgstr "Пошук файлів"
+
+msgid "Find word in files"
+msgstr "Пошук слів у файлах"
+
+msgid "Set anchor"
+msgstr "Встановити прив’язку"
+
+msgid "Go to next anchor"
+msgstr "Перейти до наступної прив’язки"
+
+msgid "Go to previous anchor"
+msgstr "Перейти до попередньої прив’язки"
+
+msgid "Remove anchor"
+msgstr "Вилучити прив’язку"
+
+msgid "Format"
+msgstr "Формат"
+
+msgid "Remove trailing spaces"
+msgstr "Вилучати кінцеві пробіли"
+
+msgid "Generate comments for help_from_sci"
+msgstr "Створити записи коментарів для help_from_sci"
+
+msgid "Change the case"
+msgstr "Змінити регістр"
+
+msgid "Make Selection Lowercase"
+msgstr "Замінити великі літери у позначеному малими"
+
+msgid "Make Selection Uppercase"
+msgstr "Замінити малі літери у позначеному великими"
+
+msgid "Capitalize Selection;Capitalize character"
+msgstr "Змінити регістр позначеного;Змінити регістр символу"
+
+msgid "Single to double quote strings"
+msgstr "Рядки у одинарних лапках у подвійні лапки"
+
+msgid "Current file encoding"
+msgstr "Кодування поточного файла"
+
+msgid "Preferences"
+msgstr "Параметри"
+
+msgid "Set font"
+msgstr "Встановити шрифт"
+
+msgid "Set colors"
+msgstr "Встановити кольори"
+
+msgid "Scinotes General settings"
+msgstr "Загальні параметри Scinotes"
+
+msgid "Auto-completion on"
+msgstr "Автодоповнення"
+
+msgid "(, [, ..."
+msgstr "(, [, …"
+
+msgid "if, function, ..."
+msgstr "if, function, …"
+
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr "Нумерація рядків;Вимкнено;Локальна нумерація"
+
+msgid "Suppress comments when executing selection"
+msgstr "Придушити коментарі під час виконання позначеного"
+
+msgid "Window"
+msgstr "Вікно"
+
+msgid "Copy tab in new window"
+msgstr "Копіювати вкладку у окреме вікно"
+
+msgid "Detach tab in new window"
+msgstr "Від’єднати вкладку у окреме вікно"
+
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
+"Розділений перегляд;Вимкнути;Розділити на два стовпчики;Розділити на два "
+"рядки"
+
+msgid "... file with no echo"
+msgstr "…файл без виведення"
+
+msgid "... file with echo"
+msgstr "…файл з виведенням"
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr "…позначене з виведенням;…до курсора з виведенням"
+
+msgid "Save and execute"
+msgstr "Зберегти і виконати"
+
+msgid "Save and execute all files"
+msgstr "Зберегти і виконати всі файли"
+
+msgid "Scinotes help"
+msgstr "Довідка зі Scinotes"
+
+msgid "Help on ;Help on selection"
+msgstr "Довідка щодо ;Довідка щодо позначеного"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr "Обчислити позначене з виведенням;Обчислити до курсора з виведенням"
+
+msgid "Display"
+msgstr "Показ"
+
+msgid "Header"
+msgstr "Заголовок"
+
+msgid "Autosave"
+msgstr "Автозбереження"
+
+msgid "Editor"
+msgstr "Редактор"
+
+msgid "Use Scinotes"
+msgstr "Користування Scinotes"
+
+msgid "External editor: "
+msgstr "Зовнішній редактор: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Не забудьте додати лапки, якщо у запису шляху містяться пробіли)"
+
+msgid "Scilab command: "
+msgstr "Команда Scilab: "
+
+msgid "Restore previous session on start-up"
+msgstr "Відновлювати попередній сеанс під час запуску"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Додавати символ нового рядка наприкінці файла."
+
+msgid "Number of recently opened files to display: "
+msgstr "Кількість нещодавно відкритих файлів у списку: "
+
+msgid "Default file encoding: "
+msgstr "Типове кодування файлів: "
+
+msgid "Default End-Of-Line: "
+msgstr "Типове завершення рядка: "
+
+msgid "Completion"
+msgstr "Доповнення"
+
+msgid "Auto-complete brackets when cursor is at the end of a line"
+msgstr ""
+"Автоматично доповнювати дужки, коли курсор перебуває наприкінці рядка"
+
+msgid "General display options"
+msgstr "Загальні параметри показу"
+
+msgid "Highlight current line: "
+msgstr "Підсвічування поточного рядка: "
+
+msgid "Show line numbers: "
+msgstr "Показ номерів рядків: "
+
+msgid "Local numbering"
+msgstr "Локальна нумерація"
+
+msgid "Normal"
+msgstr "Звичайна"
+
+msgid "Wrap lines"
+msgstr "Переносити рядки"
+
+msgid "Background color: "
+msgstr "Колір тла: "
+
+msgid "Cursor color: "
+msgstr "Колір курсора: "
+
+msgid "Keywords"
+msgstr "Ключові слова"
+
+msgid "Enable keywords colorization"
+msgstr "Увімкнути розфарбовування ключових слів"
+
+msgid "Set syntax Colors"
+msgstr "Встановити кольори синтаксису"
+
+msgid "Highlight corresponding brackets"
+msgstr "Підсвічувати відповідні дужки"
+
+msgid "Color: "
+msgstr "Колір: "
+
+msgid "Highlight on mouse over"
+msgstr "Підсвічування у разі наведення вказівника"
+
+msgid "Style: "
+msgstr "Стиль: "
+
+msgid "Filled"
+msgstr "Заповнення кольором"
+
+msgid "Framed"
+msgstr "У рамці"
+
+msgid "Underlined"
+msgstr "Підкреслення"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr "Підсвічувати відповідні ключові слова (наприклад if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Табуляція і відступи"
+
+msgid "Tabulation size: "
+msgstr "Розмір табуляції: "
+
+msgid "Use space"
+msgstr "Використовувати пробіл"
+
+msgid "Representation: "
+msgstr "Представлення: "
+
+msgid "Chevrons"
+msgstr "Шеврон"
+
+msgid "Enable auto indentation"
+msgstr "Увімкнути автовідступ"
+
+msgid "Indent size: "
+msgstr "Розмір відступу: "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Увімкнути автозбереження у Scinotes"
+
+msgid "Save options"
+msgstr "Параметри збереження"
+
+msgid "Save every "
+msgstr "Зберігати кожні "
+
+msgid " minutes "
+msgstr " хвилин "
+
+msgid "Close options"
+msgstr "Параметри закриття"
+
+msgid "Delete automatically saved files"
+msgstr "Вилучити автоматично збережені файли"
+
+msgid "Filename"
+msgstr "Назва файла"
+
+msgid "Append filename with: "
+msgstr "Додати назву файла з: "
+
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr "(заповнювач %date буде замінено значенням поточної дати)"
+
+msgid "Replace extension with: "
+msgstr "Замінити суфікс на такий: "
+
+msgid "Location"
+msgstr "Розташування"
+
+msgid "Source file directory"
+msgstr "Каталог файлів кодів"
+
+msgid "Single directory"
+msgstr "Окремий каталог"
+
+msgid "Choose an autosave directory"
+msgstr "Виберіть каталог для автозбереження"
+
+msgid "Default header"
+msgstr "Типовий заголовок"
+
+msgid "Add a default header to new file"
+msgstr "Додавати до нових файлів типовий заголовок"
 
 msgid "The last error did not occur inside a Scilab macro."
 msgstr "Остання помилка не сталася у межах макросу Scilab."

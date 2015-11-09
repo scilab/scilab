@@ -8,37 +8,21 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-14 22:08+0000\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Si è verificato il seg. errore: %s\n"
-
 msgid "Cannot play file."
 msgstr "Non è possibile eseguire il file."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -46,25 +30,11 @@ msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è sbagliato: era atteso '%s' o '%s'.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Il modulo di Scilab per il suono non è installato.\n"
-
-msgid "Sound file handling"
-msgstr "Gestione dei file del suono"
-
-msgid "FFT on a wav file"
-msgstr "FFT su file wav"
-
-msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr "Analisi di Fourier di 0.5 secondi di parametri sonori."
-
-msgid "A complete picture of the sound."
-msgstr "Un quadro completo del suono."
-
-msgid "see 'mapsound' function"
-msgstr "vedere la funzione 'mapsound'"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -211,7 +181,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Si è verificato un errore: %s non è supportato.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Si è verificato un errore: il formato di file non è valido. Errore nel "
 "leggere la porzione <%s>.\n"

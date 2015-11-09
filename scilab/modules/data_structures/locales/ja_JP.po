@@ -8,70 +8,77 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-08 14:01+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
-msgid "%s: Can not create a mlist with input argument #%d.\n"
-msgstr "%s: mlist 入力引数 #%d を指定して mlist を作成することはできません.\n"
-
-#, c-format
-msgid "%s: Can not create a tlist with input argument #%d.\n"
-msgstr "%s: mlist 入力引数 #%d を指定して tlist を作成することはできません.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています:  %d 以上の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An hypermatrix expected.\n"
+msgid "%s:  Wrong type for input argument #%d: List expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: ハイパー行列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: 最大でも%d 個としてください.\n"
-
-#, c-format
-msgid "%s: Invalid index #%d in hypermatrix extraction. "
-msgstr "%s: ハイパー行列の展開時の添字 #%d が無効です. "
-
-#, c-format
-msgid "%s: Invalid index #%d in hypermatrix insertion.\n"
-msgstr "%s: ハイパー行列挿入時の添字 #%d が無効です.\n"
-
-#, c-format
-msgid "%s: Invalid hypermatrix insertion.\n"
-msgstr "%s: ハイパー行列の挿入が無効です.\n"
-
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgid "%s: Wrong type for input argument #%d: List expected.\n"
 msgstr ""
-"スタック上の引数が多すぎます. stack.h を編集し,intersiz を大きくしてくださ"
-"い.\n"
+
+#, c-format
+msgid "%s: Soft coded field names not yet implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Invalid index.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read the argument #%d properties.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Not implemented in scilab...\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be non-negative "
 "integers.\n"
-msgstr ""
-"%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要がありま"
-"す.\n"
+msgstr "%s: 入力引数  #%d の値が間違っています: 要素は非負の整数とする必要があります.\n"
 
 #, c-format
 msgid "%s: Number of entries does not match product of dimensions"
@@ -82,29 +89,13 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください."
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
-"expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 構造体配列またはtlistまたはmlistを指定"
-"してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
-msgstr "%s: 入力引数の数が間違っています: 引数の個数は偶数としてください.\n"
-
-#, c-format
-msgid "%s: 'dims' can not be used as a field name.\n"
-msgstr "%s: 'dims' は項目名として使うことができません。\n"
-
-#, c-format
-msgid "%s: field name '%s' defined twice.\n"
-msgstr "%s: フィールド名 '%s' が重複して定義されています.\n"
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr ""

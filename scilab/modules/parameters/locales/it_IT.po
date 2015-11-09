@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
@@ -92,85 +92,6 @@ msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr ""
 "%s: dimensione sbagliata per il parametro %s: richiesto %d,ottenuto %d\n"
 
-msgid "Parameters"
-msgstr "Parametri"
-
-msgid "plist handling"
-msgstr "gestione delle plist"
-
-msgid ""
-"This demo shows examples of plist utilizations: creation, insertion, "
-"removal, ..."
-msgstr ""
-"Questa demo mostra esempi d'uso delle plist: creazione, inserimento, "
-"rimozione, ..."
-
-#, c-format
-msgid ""
-"\n"
-"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
-"1].\n"
-msgstr ""
-"\n"
-"Crea una plist \"%s\" contenente due campi \"min\" = [0 0 0] e \"max\" = [1 "
-"1 1].\n"
-
-#, c-format
-msgid ""
-"\n"
-"Check fields: \n"
-msgstr ""
-"\n"
-"Controllare i campi: \n"
-
-#, c-format
-msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr "Imposta \"min\" = [0 0 0] e \"max\" = [1 1 1]:\n"
-
-#, c-format
-msgid "Check values: \n"
-msgstr "Controllare i valori: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Remove the parameter 'min' from %s.\n"
-msgstr ""
-"\n"
-"Rimuovere il parametro \"min\" da %s.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Before remove_param: \n"
-msgstr ""
-"\n"
-"Prima di remove_param: \n"
-
-#, c-format
-msgid ""
-"\n"
-"After remove_param: \n"
-msgstr ""
-"\n"
-"Dopo remove_param: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check removal: \n"
-msgstr ""
-"\n"
-"Controllare la rimozione: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check type: \n"
-msgstr ""
-"\n"
-"Controllare il tipo: \n"
-
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"
 msgstr "Il secondo argomento in uscita di %s è obsoleto.\n"
@@ -193,7 +114,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso %s.\n"
 
 #, c-format
 msgid "%s: parameter %s not defined"

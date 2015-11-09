@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-03-25 18:36+0000\n"
 "Last-Translator: Eberval Oliveira Castro <Unknown>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 msgid "overflow error"
 msgstr "erro de overflow"
@@ -23,8 +23,53 @@ msgid "Trigger block must have discrete time input."
 msgstr "Bloco trigger deve ter entrada discreta no tempo."
 
 #, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+"A fatorização LU está completa, mas o fator U é exatamente singular : "
+"U(%d,%d) é exatamente zero."
+
+msgid "Read error!\n"
+msgstr "Erro de leitura!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Não foi possível abrir o arquivo!\n"
+
+msgid "Read error\n"
+msgstr "Erro de leitura!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "atraso no tempo=%f mas o último tempo armazenado=%f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "Considere aumentar o comprimento do buffer no bloco de atraso \n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "O tamanho do buffer ou o tamanho da entrada foi alterado!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "atraso no tempo=%f mas o último tempo armazenado=%f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+"Considere aumentar o comprimento do buffer na variável do bloco de atraso\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Não foi possível abrir /dev/audio!\n"
+
+#, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "A variável '%s' não existe.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
 
 msgid "Invalid variable type.\n"
 msgstr "Tipo de variável inválido.\n"
@@ -63,62 +108,27 @@ msgstr "Saída deveria ser do tipo uint16.\n"
 msgid "Output should be of uint32 type.\n"
 msgstr "Saída deveria ser do tipo uint32.\n"
 
-#, c-format
-msgid ""
-"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgid "Cannot read the values field.\n"
 msgstr ""
-"O vetor Time possui tamanho incorreto. Esperava-se [%d,%d] e foi obtido [%d,"
-"%d].\n"
 
 msgid "The Time vector type is not double.\n"
 msgstr "O tipo do vetor Time não é double.\n"
 
-msgid "The time vector should be an increasing vector.\n"
-msgstr "O vetor time deveria ser um vetor crescente.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problema de alocação em spline.\n"
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr "Tipo de variável inválido : erro na codificação de hypermat scilab.\n"
+msgid "The Time vector type is complex.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"The LU factorization has been completed, but the factor U is exactly "
-"singular : U(%d,%d) is exactly zero."
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
-"A fatorização LU está completa, mas o fator U é exatamente singular : U(%d,"
-"%d) é exatamente zero."
+"O vetor Time possui tamanho incorreto. Esperava-se [%d,%d] e foi obtido "
+"[%d,%d].\n"
 
-msgid "Read error!\n"
-msgstr "Erro de leitura!\n"
-
-msgid "Could not open the file!\n"
-msgstr "Não foi possível abrir o arquivo!\n"
-
-msgid "Read error\n"
-msgstr "Erro de leitura!\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "atraso no tempo=%f mas o último tempo armazenado=%f \n"
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr "Considere aumentar o comprimento do buffer no bloco de atraso \n"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "O tamanho do buffer ou o tamanho da entrada foi alterado!\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "atraso no tempo=%f mas o último tempo armazenado=%f\n"
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
+msgid "Cannot read the time field.\n"
 msgstr ""
-"Considere aumentar o comprimento do buffer na variável do bloco de atraso\n"
 
-msgid "Could not open /dev/audio!\n"
-msgstr "Não foi possível abrir /dev/audio!\n"
+msgid "The time vector should be an increasing vector.\n"
+msgstr "O vetor time deveria ser um vetor crescente.\n"
 
 msgid "Clear a bit"
 msgstr "Limpar bit"
@@ -834,7 +844,3 @@ msgstr "'Valor inicial' e 'Valor final': tamanhos incompatíveis: %d e %d."
 
 msgid "Same sizes expected."
 msgstr "Esperava-se o mesmo tamanho."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""

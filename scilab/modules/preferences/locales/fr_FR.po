@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 08:34+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -27,7 +27,8 @@ msgstr ""
 "attendue.\n"
 
 msgid "An error occurred while opening Preferences window:"
-msgstr "Une erreur s'est produite à l'ouverture de la fenêtre de préférences :"
+msgstr ""
+"Une erreur s'est produite à l'ouverture de la fenêtre de préférences :"
 
 #, c-format
 msgid ""
@@ -36,51 +37,6 @@ msgid ""
 msgstr ""
 "%s : Une exception Java s'est produite :\n"
 "%s"
-
-msgid "Preferences"
-msgstr "Préférences"
-
-msgid "Preferences backup"
-msgstr "Sauvegarde des préférences"
-
-msgid "Select a backup file"
-msgstr "Sélectionner un fichier de sauvegarde"
-
-msgid "Scilab Configuration files"
-msgstr "Fichiers de configuration de Scilab"
-
-msgid "Restore"
-msgstr "Restaurer"
-
-msgid "Create a backup file"
-msgstr "Créer un fichier de sauvegarde"
-
-msgid "Save"
-msgstr "Enregistrer"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Sélectionner un fichier à ouvrir avec SciNotes"
-
-msgid "Select a directory"
-msgstr "Sélectionner un répertoire"
-
-msgid "Please install atoms module."
-msgstr "Veuillez installer le module ATOMS."
-
-msgid "Please install xcos module."
-msgstr "Veuillez installer le module Xcos."
-
-msgid "Default"
-msgstr "Par défaut"
-
-msgid "Cancel"
-msgstr "Annuler"
-
-msgid "OK"
-msgstr "OK"
-
-msgid "Apply"
-msgstr "Appliquer"
 
 msgid "Invalid path:"
 msgstr "Chemin incorrect:"
@@ -110,6 +66,27 @@ msgstr "Réinitialiser"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+
+msgid "Preferences"
+msgstr "Préférences"
+
+msgid "Preferences backup"
+msgstr "Sauvegarde des préférences"
+
+msgid "Select a backup file"
+msgstr "Sélectionner un fichier de sauvegarde"
+
+msgid "Scilab Configuration files"
+msgstr "Fichiers de configuration de Scilab"
+
+msgid "Restore"
+msgstr "Restaurer"
+
+msgid "Create a backup file"
+msgstr "Créer un fichier de sauvegarde"
+
+msgid "Save"
+msgstr "Enregistrer"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

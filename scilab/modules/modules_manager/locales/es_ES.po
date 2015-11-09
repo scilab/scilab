@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-10-22 15:29+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: es\n"
 
 #, c-format
@@ -67,7 +67,8 @@ msgstr ""
 "escritura.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz de "
 "strings.\n"
@@ -115,7 +116,8 @@ msgstr "Generando loader_gateway.sce...\n"
 
 #, c-format
 msgid "%s: documentation cannot be built in this scilab mode: %s.\n"
-msgstr "%s: No puede construir la documentación en este modo de scilab: %s.\n"
+msgstr ""
+"%s: No puede construir la documentación en este modo de scilab: %s.\n"
 
 msgid "Generating loader.sce...\n"
 msgstr "Generando loader.sce...\n"

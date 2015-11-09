@@ -9,22 +9,29 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-30 17:00+0000\n"
+"PO-Revision-Date: 2015-10-09 07:44+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -35,11 +42,6 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: ans cannot be edited.\n"
@@ -69,18 +71,6 @@ msgstr ""
 #, c-format
 msgid "%s: Type not handle yet"
 msgstr "%s: цей тип ще не обробляється"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Close"
-msgstr "За&крити"
-
-msgid "&?"
-msgstr "&Довідка"
-
-msgid "&About Scilab..."
-msgstr "П&ро Scilab..."
 
 msgid "Name"
 msgstr "Назва"
@@ -374,5 +364,21 @@ msgid "Type not supported for this operation"
 msgstr "Для цієї дії такий тип не підтримується"
 
 #, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
+
+msgid "&File"
+msgstr "&Файл"
+
+msgid "&Close"
+msgstr "За&крити"
+
+msgid "&?"
+msgstr "&Довідка"
+
+msgid "&About Scilab..."
+msgstr "П&ро Scilab..."

@@ -6,21 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-24 19:18+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
-msgid "Exception thrown in file"
-msgstr "V souboru nastala výjimka"
-
-msgid "at line"
-msgstr "na řádku"
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Neplatná proměnná: nelze získat data"
 
 #, c-format
 msgid "%s: An error occurred: %s"
@@ -39,9 +36,6 @@ msgstr ""
 
 msgid "Cannot allocate memory"
 msgstr "Nelze přidělit paměť"
-
-msgid "Invalid variable: cannot retrieve the data"
-msgstr "Neplatná proměnná: nelze získat data"
 
 msgid "Invalid variable: cannot create data"
 msgstr "Neplatná proměnná: nelze vytvořit data"

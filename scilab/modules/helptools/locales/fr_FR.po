@@ -8,32 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-11 15:57+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
 msgid "%s: Could find or create the working directory %s.\n"
-msgstr "%s : Impossible de trouver ou de créer le répertoire de travail %s.\n"
+msgstr ""
+"%s : Impossible de trouver ou de créer le répertoire de travail %s.\n"
 
 #, c-format
 msgid "%s: Error while building documentation: %s.\n"
@@ -57,9 +48,6 @@ msgstr "Le module '%s' de Scilab n'est pas installé.\n"
 
 msgid "Version"
 msgstr "Version"
-
-msgid "Description"
-msgstr "Description"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -168,10 +156,12 @@ msgid "Arguments"
 msgstr "Arguments"
 
 msgid "            Add here the input/output argument description."
-msgstr "            Ajouter ici la description des arguments d'entrée/sortie."
+msgstr ""
+"            Ajouter ici la description des arguments d'entrée/sortie."
 
 msgid "          Add here a paragraph of the function description."
-msgstr "          Ajouter ici un paragraphe sur la description de la fonction."
+msgstr ""
+"          Ajouter ici un paragraphe sur la description de la fonction."
 
 msgid "          Other paragraph can be added"
 msgstr "          Un autre paragraphe peut être ajouté"
@@ -186,7 +176,8 @@ msgid "        Add here scilab instructions and comments"
 msgstr "        Ajouter ici les instructions et commentaires Scilab"
 
 msgid "        Add here scilab instructions to generate a graphic"
-msgstr "        Ajouter ici les instructions Scilab pour générer un graphique"
+msgstr ""
+"        Ajouter ici les instructions Scilab pour générer un graphique"
 
 msgid "See Also"
 msgstr "Voir aussi"
@@ -319,8 +310,8 @@ msgstr "%s : Le fichier CHAPTER n'est pas bien formaté à la ligne %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
 "terminant par .last_successful_build attendue.\n"

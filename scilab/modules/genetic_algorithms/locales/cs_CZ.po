@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-02-22 20:55+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
@@ -14,26 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
-
-#, c-format
-msgid "%s: optimization starting, please wait ...\n"
-msgstr "%s: spouští se optimalizace, čekejte prosím ...\n"
-
-msgid "Genetic algorithms"
-msgstr "Genetické algoritmy"
-
-msgid "Genetic algorithms and Ising problem"
-msgstr "Genetické algoritmy a Isingův problém"
-
-msgid "MultiObjective Genetic Algorithm"
-msgstr "Víceobjektivní genetický algoritmus"
-
-msgid "Niched Sharing Genetic Algorithm"
-msgstr "Genetický algoritmus sdílení místa"
-
-msgid "Niched Sharing Genetic Algorithm II"
-msgstr "Genetický algoritmus sdílení místa II"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: wrong direction"

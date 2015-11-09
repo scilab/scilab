@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-12-15 14:11+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -25,8 +25,7 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"
@@ -36,9 +35,7 @@ msgstr "%s: 入力引数 #%d の型が正しくありません: 文字配列を�
 msgid ""
 "%s: Wrong size for input argument #%d: mx1, mx2 or mx3 string matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: mx1 ,mx2 または mx2　の文字列行列"
-"を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: mx1 ,mx2 または mx2　の文字列行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -47,9 +44,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user' または 'allusers'  を指定してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'user' または 'allusers'  を指定してください.\n"
 
 #, c-format
 msgid "%s: You haven't write access on this directory : %s.\n"
@@ -68,8 +63,7 @@ msgid ""
 "%s: The following module is installed in the user section, you cannot add it "
 "to the autoload list for all users:\n"
 msgstr ""
-"%s: 以下のモジュールはユーザーセクションにインストールされており,全ユーザー用"
-"のautoloadリストに追加することはできません:\n"
+"%s: 以下のモジュールはユーザーセクションにインストールされており,全ユーザー用のautoloadリストに追加することはできません:\n"
 
 #, c-format
 msgid "\t - '%s - %s'\n"
@@ -86,17 +80,13 @@ msgstr "%s: 以下のモジュールはインストールされていません:\
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Boolean or single string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 論理値または文字列を1つ指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値または文字列を1つ指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'user','allusers' or 'all' "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user' , 'allusers'  または 'all' を指"
-"定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'user' , 'allusers'  または 'all' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
@@ -108,9 +98,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'all' または 'main' を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'all' または 'main' を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -146,8 +134,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a matrix of string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a boolean expected.\n"
@@ -160,8 +147,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を�
 #, c-format
 msgid ""
 "%s: Module %s is already installed. Please remove it before checking it.\n"
-msgstr ""
-"%s: モジュール %s はインストール済みです. 確認する前に削除してください.\n"
+msgstr "%s: モジュール %s はインストール済みです. 確認する前に削除してください.\n"
 
 #, c-format
 msgid "%s: Module %s does not exist in current repositories.\n"
@@ -171,9 +157,7 @@ msgstr "%s: モジュール %s は現在のレポジトリには存在しませ�
 msgid ""
 "%s: Wrong value(s) for input argument #%d: some unique module names "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 何らかのユニークなモジュール名を指定し"
-"てください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 何らかのユニークなモジュール名を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -190,9 +174,7 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: 1x1 or 1x2 string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 1x1 または 1x2　の文字列行列を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1x1 または 1x2　の文字列行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -205,52 +187,40 @@ msgstr "%s: 設定ファイル('%s')の%d行目は整形式ではありません
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx2 or mx3 string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: mx2 または mx3　の文字列行列を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: mx2 または mx3　の文字列行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: All modules version should be set.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 全てのモジュールのバージョンが設定され"
-"る必要があります.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 全てのモジュールのバージョンが設定される必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'user' or 'allusers' or 'all' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user' または 'allusers'  または "
-"'all' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'user' または 'allusers'  または 'all' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1,mx2 or mx3 string matrix "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: mx1, mx2 または mx3　の文字列行列"
-"を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: mx1, mx2 または mx3　の文字列行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: mx1 or mx2 string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: mx1 または mx2　の文字列行列を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: mx1 または mx2　の文字列行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: The directory '%s' cannot been created, please check if you have write "
 "access on this directory.\n"
-msgstr ""
-"%s: ディレクトリー '%s' を作成できません. このディレクトリーへの書き込みアク"
-"セス権の有無を確認ください.\n"
+msgstr "%s: ディレクトリー '%s' を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
 
 #, c-format
 msgid "%s: The file '%s' does not exist or is not read accessible.\n"
@@ -264,21 +234,18 @@ msgid ""
 "Option offline of ATOMS configuration is set to True. atomsSystemUpdate did "
 "not check the latest modules availables."
 msgstr ""
-"ATOMSの設定のofflineオプションがTrueに設定されています. atomsSystemUpdate は"
-"利用可能な最新のモジュールをチェックしません."
+"ATOMSの設定のofflineオプションがTrueに設定されています. atomsSystemUpdate "
+"は利用可能な最新のモジュールをチェックしません."
 
 #, c-format
 msgid ""
 "%s: The directory %s cannot been created, please check if you have write "
 "access on this directory.\n"
-msgstr ""
-"%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセ"
-"ス権の有無を確認ください.\n"
+msgstr "%s: ディレクトリー %s を作成できません. このディレクトリーへの書き込みアクセス権の有無を確認ください.\n"
 
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
-msgstr ""
-"%s: ファイル'%s' をディレクトリ'%s'へコピーする際にエラーが発生しました.\n"
+msgstr "%s: ファイル'%s' をディレクトリ'%s'へコピーする際にエラーが発生しました.\n"
 
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
@@ -290,13 +257,11 @@ msgstr "%s: '%s' と同じ名前の既存のファイルが存在します.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 有効なカテゴリを指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効なカテゴリを指定してください.\n"
 
 #, c-format
 msgid "%s: Module '%s' is not installed.\n"
@@ -306,9 +271,7 @@ msgstr "%s: モジュール '%s' はインストールされていません。\n
 msgid ""
 "%s: Several versions of a package (%s) cannot be loaded at the same scilab "
 "session :\n"
-msgstr ""
-"%s: 複数のバージョンのパッケージ (%s) を同じScilabセッションにロードすること"
-"はできません:\n"
+msgstr "%s: 複数のバージョンのパッケージ (%s) を同じScilabセッションにロードすることはできません:\n"
 
 #, c-format
 msgid "\t - You've asked '%s - %s'\n"
@@ -333,8 +296,7 @@ msgstr "\t - '%s - %s' は '%s' に必要です。\n"
 #, c-format
 msgid ""
 "%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
-msgstr ""
-"%s: ファイル '%s'  (%s - %s から) が存在しないか読込みアクセスできません.\n"
+msgstr "%s: ファイル '%s'  (%s - %s から) が存在しないか読込みアクセスできません.\n"
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -347,16 +309,12 @@ msgstr "%s: '%s-%s' をアンロードする際にエラーが発生しました
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A boolean or single string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 論理値または文字列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値または文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A boolean or single string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 論理値または文字列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値または文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -388,24 +346,23 @@ msgid ""
 "%s: The directory of this package (%s-%s) is located neither in SCI nor in "
 "SCIHOME. For security reason, ATOMS refuses to delete this directory.\n"
 msgstr ""
-"%s: このパッケージ(%s-%s)のディレクトリはSCIまたはSCIHOME以下に配置されていま"
-"せん.セキュリティ上の理由により,ATOMSはこのディレクトリ削除しません.\n"
+"%s: このパッケージ(%s-"
+"%s)のディレクトリはSCIまたはSCIHOME以下に配置されていません.セキュリティ上の理由により,ATOMSはこのディレクトリ削除しません.\n"
 
 #, c-format
 msgid ""
 "%s: The directory of this package (%s-%s) cannot been deleted, please check "
 "if you have write access on this directory : %s.\n"
 msgstr ""
-"%s: このパッケージ(%s-%s)のディレクトリを削除できません、このディレクトリーで"
-"書き込みアクセス権を持つかどうか確かめて下さい : %s\n"
+"%s: このパッケージ(%s-%s)のディレクトリを削除できません、このディレクトリーで書き込みアクセス権を持つかどうか確かめて下さい : %s\n"
 
 #, c-format
 msgid ""
 "%s: The root directory of this package (%s-%s) cannot been deleted, please "
 "check if you have write access on this directory : %s.\n"
 msgstr ""
-"%s: このパッケージ(%s-%s)のルート・ディレクトリを削除できません、このディレク"
-"トリーで書き込みアクセス権を持つかどうか確かめて下さい : %s\n"
+"%s: このパッケージ(%s-%s)のルート・ディレクトリを削除できません、このディレクトリーで書き込みアクセス権を持つかどうか確かめて下さい : "
+"%s\n"
 
 #, c-format
 msgid ""
@@ -424,8 +381,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'all','user','allusers' or "
 "'official' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'all', 'users', 'alluser' または "
-"'official' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'all', 'users', 'alluser' または 'official' "
+"を指定してください.\n"
 
 #, c-format
 msgid "File %s does not exist: could not restore previous configuration."
@@ -437,14 +394,12 @@ msgstr "設定ファイルを %s に保存しました"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input configuration argument: True or False expected.\n"
-msgstr ""
-"%s: 入力設定引数の値が間違っています: true または false を指定してください.\n"
+msgstr "%s: 入力設定引数の値が間違っています: true または false を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong key for input configuration argument.\n"
@@ -525,8 +480,7 @@ msgid ""
 "No ATOMS module is available. Please, check your Internet connection or make "
 "sure that your OS is compatible with ATOMS."
 msgstr ""
-"ATOMSモジュールを利用できません. インターネット接続を確認するか.もしくは,使用"
-"するOSがATOMSと互換性があるかどうかを確認ください."
+"ATOMSモジュールを利用できません. インターネット接続を確認するか.もしくは,使用するOSがATOMSと互換性があるかどうかを確認ください."
 
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "ATOMSモジュールを利用できません. レポジトリのリストが空です."
@@ -570,9 +524,9 @@ msgstr "インストール中"
 msgid "Installation failed!"
 msgstr "インストールに失敗しました！"
 
-msgid "Installation done! Please restart Scilab to take changes into account."
-msgstr ""
-"インストールが完了しました！変更を有効にするためにScilabを再起動してください."
+msgid ""
+"Installation done! Please restart Scilab to take changes into account."
+msgstr "インストールが完了しました！変更を有効にするためにScilabを再起動してください."
 
 msgid "Updating"
 msgstr "更新中"
@@ -599,8 +553,7 @@ msgid ""
 "Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
 "used to load the module when needed."
 msgstr ""
-"起動時の自動ロードはキャンセルされました. 必要に応じてツールボックスのメ"
-"ニューまたは atomsLoad() をモジュールを読み込む際に使用できます."
+"起動時の自動ロードはキャンセルされました. 必要に応じてツールボックスのメニューまたは atomsLoad() をモジュールを読み込む際に使用できます."
 
 msgid "Download size"
 msgstr "ダウンロード・サイズ"
@@ -631,30 +584,24 @@ msgstr "MB"
 msgid ""
 "%s: Wrong value for input argument #%d: 'user', 'allusers' or 'all' "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'user' , 'allusers'  または 'all' を指"
-"定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'user' , 'allusers'  または 'all' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx3 string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: mx3 の文字列行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: mx3 の文字列行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: matrix oriented typed list expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 行列の型付きリストを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 行列の型付きリストを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: ''filter:all','filter:main' または有効"
-"なmainカテゴリを指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: ''filter:all','filter:main' "
+"または有効なmainカテゴリを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -663,8 +610,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be an atoms package name.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: atomsパッケージ名を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: atomsパッケージ名を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Struct expected.\n"
@@ -682,17 +628,13 @@ msgstr "%1$s: パッケージ  '%3$s' のバージョン '%2$s' は構造に含�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: It should have a field named '%s'.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s'という名前のフォールドを有する必要"
-"があります.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s'という名前のフォールドを有する必要があります.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: The matrix oriented typed list is "
 "not well formatted.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 行列の型付きリストが整形式ではありませ"
-"ん.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 行列の型付きリストが整形式ではありません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
@@ -728,8 +670,7 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that contains 'TOOLBOXES' or "
 "'DESCRIPTION' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'TOOLBOXES' または 'DESCRIPTION'を含む"
-"文字列を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'TOOLBOXES' または 'DESCRIPTION'を含む文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -746,9 +687,7 @@ msgstr "Atomsモジュールデータベースを更新中..."
 msgid ""
 "%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr ""
-"%s: ファイル %s が整形型でないか, ツールボックス %s - %s が %s フィールドを有"
-"していません\n"
+msgstr "%s: ファイル %s が整形型でないか, ツールボックス %s - %s が %s フィールドを有していません\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -761,9 +700,7 @@ msgstr "%s: ファイル '%s' の %d 行目は整形式ではありません.\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' is not a registered category"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' は登録済みのカテゴリではありませ"
-"ん"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' は登録済みのカテゴリではありません"
 
 #, c-format
 msgid "%s: The file '%s' cannot be written.\n"
@@ -790,22 +727,18 @@ msgid ""
 "%s: Wrong value for input argument #%d: String that starts with "
 "'http(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'http(s)?://','ftp://' または "
-"'file://' から始まる文字列を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'http(s)?://','ftp://' または 'file://' "
+"から始まる文字列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong length for input argument #%d: String which has 32-characters "
 "length expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の長さが間違っています: 長さ32文字の文字列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の長さが間違っています: 長さ32文字の文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr ""
-"%s: Wget または Curl が見つかりました: どちらかひとつをインストールしてくださ"
-"い\n"
+msgstr "%s: Wget または Curl が見つかりました: どちらかひとつをインストールしてください\n"
 
 msgid "Download in progress... Please be patient."
 msgstr "ダウンロード中... しばらくお待ちください"
@@ -887,18 +820,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - MD5SUM を参照しました : '%s'\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'error'または'warning'を指定してくださ"
-"い.\n"
+msgid ""
+"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'error'または'warning'を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with .tar."
-"gz, .tgz or .zip expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: .tar.gz, .tgz または .zipで終わる文字"
-"列を指定してください.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with "
+".tar.gz, .tgz or .zip expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: .tar.gz, .tgz または .zipで終わる文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist or is not read accessible.\n"
@@ -915,21 +845,15 @@ msgstr "%s: アーカイブ '%s' の抽出に失敗しました。\n"
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1x1 or 1x2 string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 1x1 または 1x2 の文字列行列を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1x1 または 1x2 の文字列行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: 1x2 string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 1x2　の文字列行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1x2　の文字列行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: mx2 string matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: mx2 の文字列行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: mx2 の文字列行列を指定してください.\n"
 
 msgid "All modules"
 msgstr "全モジュール"
@@ -1010,9 +934,7 @@ msgstr "Xcos"
 msgid ""
 "%s: Wrong value for input argument #%d: %s must be an available atoms "
 "package name.\n"
-msgstr ""
-"%s:  入力引数 #%d の値が間違っています: %s は有効な atoms パッケージ名である"
-"必要があります.\n"
+msgstr "%s:  入力引数 #%d の値が間違っています: %s は有効な atoms パッケージ名である必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at most %d expected.\n"
@@ -1023,16 +945,15 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: 依存ツリーを解決できません.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 文字'A'または'l'を指定してください.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 文字'A'または'l'を指定してください.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version/"
-"dependency.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 有効なバージョン/依存ではありません.\n"
+"%s: Wrong value for input argument #%d: This is not a valid "
+"version/dependency.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効なバージョン/依存ではありません.\n"
 
 msgid "Atoms:"
 msgstr "Atoms:"
@@ -1040,25 +961,20 @@ msgstr "Atoms:"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'system' or 'install' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'system' または 'install'を指定してく"
-"ださい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'system' または 'install'を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'all','allusers','user' or 'session' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'all', 'allusers', 'user' または "
-"'session' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: 'all', 'allusers', 'user' または 'session' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: String that ends with DESCRIPTION "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています:DESCRIPTIONで終わる文字列を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています:DESCRIPTIONで終わる文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: mlist expected.\n"
@@ -1088,11 +1004,10 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) はインストールされていません。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 有効なバージョンではありません.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効なバージョンではありません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: ASCまたはDESCを指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: ASCまたはDESCを指定してください.\n"

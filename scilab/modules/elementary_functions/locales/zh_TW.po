@@ -3,13 +3,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Scilab Chinese (traditional) <ade-scilab@googlegroups.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -19,10 +19,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
@@ -37,10 +33,6 @@ msgstr "%s: 第 %d 個輸入參數長度錯誤.\n"
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體耗盡.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be between %d and %d."
@@ -85,72 +77,120 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: cannot convert value(s).\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
-
-msgid "This usage of the third argument of gsort is obsolete."
-msgstr ""
-
-#, c-format
-msgid "WARNING: %s\n"
-msgstr ""
-
-msgid "It will no more be available in Scilab 6."
-msgstr ""
-
-msgid "Please use 'd' or 'i' instead."
+msgid "Warning : singularity of 'log' or 'tan' function.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"%s: More than one argument can be used only with double matrix in first "
+"argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls:  Wrong type for input argument #%d: Real Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls:  Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: unknown property kind.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: variable size exceeded : less than %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : Singularity of the function.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Warning: Wrong value for input argument #%d : Singularity of the "
+"function.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A strictly increasing order "
 "expected.\n"
 msgstr ""
-"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
 
-msgid "This usage of the second argument of gsort is obsolete."
+#, c-format
+msgid "%s: Wrong value for input argument #%d: It must be 'c' or 'd'.\n"
 msgstr ""
-
-msgid "Please use 'r', 'c', 'g', 'lr' or 'lc' instead."
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: 第 %d 輸入參數的數值錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Unknown type.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 未知型態.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s).\n"
-msgstr "%s: 輸入參數之數目錯誤。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為一正整數.\n"
+"%s: Wrong size for input argument #%d: A vector of length > %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
+msgid "%s: Wrong size for input argument #%d : A square matrix expected.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是一個矩陣.\n"
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 第 %d 輸入參數的資料型態錯誤: 應該是字串.\n"
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: 第 %d 個輸入參數資料長度錯誤: 應該是字串.\n"
+msgid "%s: Wrong value for input argument #%d: ['i' 'd'] expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -158,8 +198,75 @@ msgid ""
 msgstr "%s: 第 %d 輸入參數的資料數值錯誤: 應該是  ['g' 'r' 'c' 'lc' 'lr'] .\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: ['d' 'i'] expected.\n"
-msgstr "%s: 第 %d 輸入參數的資料數值錯誤: 應該是 ['d' 'i'].\n"
+msgid ""
+"%ls: Warning: Wrong value for input argument #%d : Singularity of the "
+"function.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : Only one value can be equal to %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d : At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument(s) : Sparse matrix cannot be reshaped "
+"beyond %d dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Input and output matrices must have the same number of elements.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non empty list expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: r, c, m or * expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: null matrix (argument # %d).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: value less than or equal to the "
+"number of dimension expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是一個矩陣.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: All arguments must have the same "
+"size.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A constant scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The tolerance is too large for the value %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument %d: (%d,%d) expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
 
 msgid ": 1-D examples "
 msgstr ""
@@ -168,18 +275,18 @@ msgid ": 2-D examples"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
+
+#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
 
-#
-# File: macros/bitxor.sci, line: 24
-# File: macros/bitor.sci, line: 27
-# File: macros/bitget.sci, line: 28
-# File: macros/bitcmp.sci, line: 38
-# File: macros/bitand.sci, line: 27
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤:應為  %d.\n"
+msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
@@ -286,12 +393,6 @@ msgid ""
 "%s: Wrong input argument #%d: Scalar/matrix of unsigned integers expected.\n"
 msgstr "%s: 輸入參數有誤 #%d: 純值/矩陣中還未指定的整數才對.\n"
 
-#
-# File: macros/bitcmp.sci, line: 40
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤: 最少須 %d 個.\n"
-
 #, c-format
 msgid "%s: Wrong input argument #%d: An unsigned integer expected.\n"
 msgstr "%s: Wrong input argument #%d: 應為一非負整數.\n"
@@ -354,10 +455,6 @@ msgid "%s: Wrong type for input argument #%d: Matrix of string expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串之矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 輸入參數個數錯誤: 應該是 %d 到 %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: 參數 %d 型態錯誤: 應該是矩陣型態.\n"
 
@@ -370,7 +467,8 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一方陣.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 矩陣無法主對角線化 (diagonalisable).\n"
 
 #, c-format
@@ -420,10 +518,6 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤:  應為正整數之純量/向量/矩陣/超矩陣.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一正整數.\n"
 
@@ -444,6 +538,10 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d,'%s',%d or '%s' expected\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: %d,'%s',%d or 應為 '%s'\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
@@ -504,10 +602,6 @@ msgid "%s: Option %s only relevant for %s and %s modes => ignored.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: not enough memory to proceed\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same number of columns "
 "expected.\n"
@@ -549,13 +643,6 @@ msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
 msgstr ""
 
 #
-# File: macros/ndgrid.sci, line: 31
-# File: macros/num2cell.sci, line: 25
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤 : 最少應有 %d 個.\n"
-
-#
 # File: macros/ndgrid.sci, line: 36
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real expected.\n"
@@ -567,7 +654,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -593,17 +681,13 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument #"
-"%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument "
+"#%d expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 最少與第  %d 參數同大小.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments: Same types expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一實數.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
@@ -622,10 +706,6 @@ msgstr "%s: #%d輸入的參數型態錯誤: 應該是實數純量或向量.\n"
 msgid ""
 "%s: Wrong size for input argument #%d: A real scalar or vector expected.\n"
 msgstr "%s: 輸入參數 #%d 的大小錯誤: 應該是實數純量或向量.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
-msgstr "%s: 輸入參數#%d的型態錯誤: 應該是實數純量.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
@@ -720,7 +800,8 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format

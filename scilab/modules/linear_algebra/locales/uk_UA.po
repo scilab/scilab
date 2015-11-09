@@ -3,31 +3,20 @@
 # This file is distributed under the same license as the scilab package.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2010.
-# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2013.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2013, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-30 16:53+0000\n"
-"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"PO-Revision-Date: 2015-10-10 14:30+0000\n"
+"Last-Translator: yurchor <Unknown>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"дійсних або комплексних значень.\n"
-
-#, c-format
-msgid "%s: Non convergence in QR steps.\n"
-msgstr "%s: розбіжність під час виконання кроків QR.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -42,7 +31,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"
 msgstr ""
-"%s: помилкове значення параметра №%d: у значенні не повинно міститися "
+"%s: помилкове значення параметра №%d: у значенні не повинне міститися "
 "записів NaN або Inf.\n"
 
 #, c-format
@@ -81,16 +70,258 @@ msgstr ""
 "дійсне число.\n"
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Arguments %d and %d must have equal dimensions.\n"
+msgstr "%s: параметр %d і параметр %d повинні мати однакові розмірності.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Square matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати квадратну матрицю.\n"
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr "%s: не вдалося виділити більше пам’яті.\n"
+
+#, c-format
+msgid "%s: LAPACK error n%d.\n"
+msgstr "%s: помилка LAPACK %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати матрицю з дійсних або "
+"комплексних значень.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A scalar expected.\n"
+msgstr ""
+"%s: помилковий тип параметра %d: слід використовувати скалярний тип.\n"
+
+#, c-format
+msgid "%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення не повинне містити "
+"NaN та Inf.\n"
+
+#, c-format
+msgid "%s: Allocation failed.\n"
+msgstr "%s: помилка розподілу пам’яті.\n"
+
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: розбіжність під час виконання кроків QR.\n"
+
+#, c-format
+msgid "%s: Matrix is not positive definite.\n"
+msgstr "%s: матриця не є додатно визначеною.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати квадратну "
+"матрицю.\n"
+
+#, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+"%s: тут не можна використовувати параметри змінної розмірності a*eye(), "
+"(параметр %d).\n"
+
+msgid "Warning :\n"
+msgstr "Попередження:\n"
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr ""
+"матриця близька до виродженої або погано масштабована. rcond = %1.4E\n"
+
+#, c-format
+msgid "%s: Problem is singular.\n"
+msgstr "%s: задача є виродженою.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень.\n"
+
+#, c-format
+msgid "%s: %s and %s must have equal number of rows.\n"
+msgstr "%s: %s і %s повинні мати однакову кількість рядків.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
 "число.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип дійсних "
+"значень або «string».\n"
+
+#, c-format
+msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
+msgstr "%s: параметр %d і параметр %d повинні мати однакові розмірності.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d або %d.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю "
 "дійсних значень.\n"
+
+#, c-format
+msgid "%s: Subroutine not found: %s\n"
+msgstr "%s: підпрограми не знайдено: %s\n"
+
+#, c-format
+msgid "%s: Schur exit with state %d\n"
+msgstr "%s: підпрограма Schur завершила роботу зі станом %d\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення не повинне містити "
+"NaN та Inf.\n"
+
+#, c-format
+msgid ""
+"%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack "
+"library problem).\n"
+msgstr ""
+"%s: на вході до ZGEEV параметр з номером 3 має некоректне значення (проблема "
+"бібліотеки lapack).\n"
+
+#, c-format
+msgid ""
+"%s: Convergence problem, %d off-diagonal elements of an intermediate "
+"tridiagonal form did not converge to zero.\n"
+msgstr ""
+"%s: проблеми зі збіжністю, %d позадіагональні елементи проміжної "
+"тридіагональної форми не збігаються до нуля.\n"
+
+#, c-format
+msgid ""
+"%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack "
+"library problem).\n"
+msgstr ""
+"%s: на вході до ZHEEV параметр з номером 3 має некоректне значення (проблема "
+"бібліотеки lapack).\n"
+
+#, c-format
+msgid ""
+"%s: The QR algorithm failed to compute all the eigenvalues, and no "
+"eigenvectors have been computed. Elements and %d+1:N of W contain "
+"eigenvalues which have converged.\n"
+msgstr ""
+"%s: за допомогою алгоритму QR не вдалося обчислити усі власні значення, а "
+"власні вектори не було обчислено. Елементи і %d+1:N матриці W містять власні "
+"значення, які вдалося знайти.\n"
+
+#, c-format
+msgid ""
+"%s: The QR algorithm failed to compute all the eigenvalues, and no "
+"eigenvectors have been computed. Elements and %d+1:N of WR and WI contain "
+"eigenvalues which have converged.\n"
+msgstr ""
+"%s: за допомогою алгоритму QR не вдалося обчислити усі власні значення, а "
+"власні вектори не було обчислено. Елементи і %d+1:N матриці WR і WI містять "
+"власні значення, які вдалося знайти.\n"
+
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr "Розбіжність під час виконання алгоритму QZ.\n"
+
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr ""
+"Верхню частину, %d  x %d блоків, можливо, записано не в узагальненій формі "
+"Шура.\n"
+
+#, c-format
+msgid "%s: The QZ iteration failed in DGGEV.\n"
+msgstr "%s: не вдалося виконати ітерацію QZ у DGGEV.\n"
+
+#, c-format
+msgid "%s: Other than QZ iteration failed in DHGEQZ.\n"
+msgstr "%s: не вдалося виконати ітерацію, відмінну від QZ у DHGEQZ.\n"
+
+#, c-format
+msgid "%s: Error return from DTGEVC.\n"
+msgstr "%s: DTGEVC повернуто повідомлення про помилку.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути принаймні %d.\n"
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr "%s: проблеми зі збіжністю…\n"
+
+#, c-format
+msgid "Argument %d in dgees had an illegal value.\n"
+msgstr "Параметр %d у dgees має некоректне значення.\n"
+
+msgid "The QR algorithm failed to compute all the eigenvalues.\n"
+msgstr "Алгоритму QR не вдалося обчислити усі власні значення.\n"
+
+msgid ""
+"The eigenvalues could not be reordered because some eigenvalues were too "
+"close to separate (the problem is very ill-conditioned).\n"
+msgstr ""
+"Не вдалося перевпорядкувати власні значення, оскільки деякі з них є надто "
+"близькими для відокремлення (задача є некоректною).\n"
+
+msgid ""
+"After reordering, roundoff changed values of some complex eigenvalues so "
+"that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. "
+"This could also be caused by underflow due to scaling.\n"
+msgstr ""
+"Після перевпорядковування округлення змінило значення деяких комплексних "
+"власних значень так, що початкові власні значення у формі Шура вже не "
+"задовольняють умові SELECT=.TRUE. Причиною цього також може бути втрата "
+"значимості через масштабування.\n"
+
+#, c-format
+msgid "Argument %d in zgees had an illegal value.\n"
+msgstr "Параметр %d у zgees має некоректне значення.\n"
+
+#, c-format
+msgid "Argument %d in dgges had an illegal value.\n"
+msgstr "Параметр %d у dgges має некоректне значення.\n"
+
+msgid "The QZ iteration failed. (A,E) are not in Schur form.\n"
+msgstr "Помилка ітерації QZ. (A,E) записано не у формі Шура.\n"
+
+msgid "Other than QZ iteration failed in DHGEQZ.\n"
+msgstr "Не вдалося виконати ітерацію, відмінну від QZ у DHGEQZ.\n"
+
+msgid "Reordering failed in DTGSEN.\n"
+msgstr "Помилка перевпорядковування у DTGSEN.\n"
+
+#, c-format
+msgid "Argument %d in zgges had an illegal value.\n"
+msgstr "Параметр %d у zgges має некоректне значення.\n"
+
+msgid "Other than QZ iteration failed in ZHGEQZ.\n"
+msgstr "Не вдалося виконати ітерацію, відмінну від QZ у ZHGEQZ.\n"
+
+msgid "Reordering failed in ZTGSEN.\n"
+msgstr "Помилка перевпорядковування у ZTGSEN.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected."
@@ -115,7 +346,8 @@ msgstr ""
 "матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний тип.\n"
@@ -126,12 +358,6 @@ msgid ""
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати %d, %d, "
 "%s, «%s» або «%s».\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -214,10 +440,6 @@ msgid ""
 msgstr ""
 "%s: для типу «%s» функцію не визначено. Перевірте параметр або визначте "
 "функцію %s."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
 #, c-format
 msgid ""

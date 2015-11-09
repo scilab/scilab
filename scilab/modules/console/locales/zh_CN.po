@@ -8,66 +8,96 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-03 08:36+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s：第%d个输入参数的值错误。\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s：此功能尚未实现。\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
 msgstr "%s：在该模式下此功能尚未实现。\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A double scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Not implemented in this mode.\n"
 msgstr "%s：在该模式下此功能尚未实现。\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s：内存分配错误。\n"
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为标量。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为标量。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为标量（>= 0）。\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+msgid "File or Directory"
+msgstr "文件或目录"
+
+msgid "Scilab Fields"
+msgstr "Scilab字段"
+
+msgid "Scilab Function"
+msgstr "Scilab函数"
+
+msgid "Scilab Command"
+msgstr "Scilab命令"
+
+msgid "Scilab Macro"
+msgstr "Scilab宏"
+
+msgid "Scilab Variable"
+msgstr "Scilab变量"
+
+msgid "Graphics handle field"
+msgstr "Scilab句柄域"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s：输出参数的数目错误。\n"
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr "命令过长(超过%d个字符): 无法发送到Scilab\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr "[继续显示？按n键停止，按任意其他键继续]"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"键入‘%s’或‘%s’以返回到标准层提示符。\n"
+"\n"
 
 msgid "Console"
 msgstr "控制台"
@@ -684,6 +714,9 @@ msgstr ""
 msgid "Width: "
 msgstr "宽度: "
 
+msgid "Recursion limit: "
+msgstr ""
+
 msgid "Language setting"
 msgstr "语言设置"
 
@@ -749,44 +782,6 @@ msgstr "操作名"
 
 msgid "Key binding"
 msgstr "键绑定"
-
-msgid "File or Directory"
-msgstr "文件或目录"
-
-msgid "Scilab Fields"
-msgstr "Scilab字段"
-
-msgid "Scilab Function"
-msgstr "Scilab函数"
-
-msgid "Scilab Command"
-msgstr "Scilab命令"
-
-msgid "Scilab Macro"
-msgstr "Scilab宏"
-
-msgid "Scilab Variable"
-msgstr "Scilab变量"
-
-msgid "Graphics handle field"
-msgstr "Scilab句柄域"
-
-#, c-format
-msgid ""
-"Command is too long (more than %d characters long): could not send it to "
-"Scilab\n"
-msgstr "命令过长(超过%d个字符): 无法发送到Scilab\n"
-
-msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr "[继续显示？按n键停止，按任意其他键继续]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"键入‘%s’或‘%s’以返回到标准层提示符。\n"
-"\n"
 
 msgid "Field"
 msgstr "字段"

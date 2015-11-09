@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-07 20:09+0000\n"
+"PO-Revision-Date: 2015-10-09 07:24+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ukPlural-Forms: nplurals=1; plural=0;\n"
 
 msgid "overflow error"
@@ -27,8 +27,53 @@ msgstr ""
 "чисел."
 
 #, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+"Розклад LU завершено, але множник U є виродженим : U(%d,%d) дорівнює нулеві."
+
+msgid "Read error!\n"
+msgstr "Помилка читання!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Не вдалося відкрити файл!\n"
+
+msgid "Read error\n"
+msgstr "Помилка читання\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "час затримки=%f, останній збережений час=%f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "Спробуйте збільшити розмір буфера у блоці затримки \n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "час затримки=%f, останній збережений час=%f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr "Спробуйте збільшити розмір буфера у блоці затримки змінної\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Не вдалося відкрити /dev/audio!\n"
+
+#, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "Змінної «%s» не існує.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+"%s: помилкова версія формату файлів SOD. Максимальна очікувана: %d Виявлено: "
+"%d\n"
+
+msgid "Erroneous saved file.\n"
+msgstr "Помилковий збережений файл.\n"
 
 msgid "Invalid variable type.\n"
 msgstr "Змінна некоректного типу.\n"
@@ -67,6 +112,15 @@ msgstr "Виведені дані мають належати до типу uint
 msgid "Output should be of uint32 type.\n"
 msgstr "Виведені дані мають належати до типу uint32.\n"
 
+msgid "Cannot read the values field.\n"
+msgstr "Не вдалося прочитати поле значень.\n"
+
+msgid "The Time vector type is not double.\n"
+msgstr "Тип вектора значень часу не збігається з double.\n"
+
+msgid "The Time vector type is complex.\n"
+msgstr "Тип вектора Time є комплексним.\n"
+
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
@@ -74,53 +128,11 @@ msgstr ""
 "Вектор часу має помилкову розмірність: мало бути — [%d, %d], маємо — [%d, "
 "%d].\n"
 
-msgid "The Time vector type is not double.\n"
-msgstr "Тип вектора значень часу не збігається з double.\n"
+msgid "Cannot read the time field.\n"
+msgstr "Не вдалося прочитати поле часу.\n"
 
 msgid "The time vector should be an increasing vector.\n"
 msgstr "Значення вектора часових даних має бути вказано за зростанням.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Проблема розподілу у сплайні.\n"
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr "Некоректний тип змінної: помилка у коді функції hypermat scilab.\n"
-
-#, c-format
-msgid ""
-"The LU factorization has been completed, but the factor U is exactly "
-"singular : U(%d,%d) is exactly zero."
-msgstr ""
-"Розклад LU завершено, але множник U є виродженим : U(%d,%d) дорівнює нулеві."
-
-msgid "Read error!\n"
-msgstr "Помилка читання!\n"
-
-msgid "Could not open the file!\n"
-msgstr "Не вдалося відкрити файл!\n"
-
-msgid "Read error\n"
-msgstr "Помилка читання\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "час затримки=%f, останній збережений час=%f \n"
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr "Спробуйте збільшити розмір буфера у блоці затримки \n"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "Розмір буфера бо розмір вхідних даних було змінено!\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "час затримки=%f, останній збережений час=%f\n"
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr "Спробуйте збільшити розмір буфера у блоці затримки змінної\n"
-
-msgid "Could not open /dev/audio!\n"
-msgstr "Не вдалося відкрити /dev/audio!\n"
 
 msgid "Clear a bit"
 msgstr "Спорожнити біт"
@@ -842,9 +854,3 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Розмірності мали збігатися."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
-"%d.\n"

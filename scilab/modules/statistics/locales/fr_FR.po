@@ -8,45 +8,46 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-29 08:28+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
-msgid "X,Y,A and B"
-msgstr "X,Y,A et B"
-
-msgid "A,B,P and Q"
-msgstr "A,B,P et Q"
-
-msgid "B,P,Q,X and Y"
-msgstr "B,P,Q,X et Y"
-
-msgid "P,Q,X,Y and A"
-msgstr "P,Q,X,Y et A"
+#, c-format
+msgid "%s: Answer appears to be lower than lowest search bound %g\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s' ou '%s' "
-"attendu.\n"
 
-msgid "S,Xn,Pr and Ompr"
-msgstr "S,Xn,Pr et Ompr"
+#, c-format
+msgid "%s: Answer appears to be higher than greatest search bound %f\n"
+msgstr ""
 
-msgid "Xn,Pr,Ompr,P and Q"
-msgstr "Xn,Pr,Ompr,P et Q"
+#, c-format
+msgid "%s: Std must not be zero\n"
+msgstr ""
 
-msgid "Pr,OMPr,P,Q and S"
-msgstr "Pr,OMPr,P,Q et S"
+#, c-format
+msgid "%s: cumgam returned an error\n"
+msgstr ""
 
-msgid "P,Q,S  and Xn"
-msgstr "P,Q,S et Xn"
+#, c-format
+msgid "%s: gamma or inverse gamma routine failed\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d out of range. Bound exceeded: %f.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d': Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -56,167 +57,10 @@ msgstr ""
 "%s : Attention : Utiliser des valeurs non entières pour l'argument n°%d peut "
 "conduire à des résultats erronés.\n"
 
-msgid "X and Df"
-msgstr "X et Df"
-
-msgid "Df, P and Q"
-msgstr "Df, P et Q"
-
-msgid "P,Q and X"
-msgstr "P,Q et X"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
-"attendu.\n"
-
-msgid "cdfchi: Error in cumgam\n"
-msgstr "cdfchi : Erreur dans cumgam\n"
-
-msgid "X,Df and Pnonc"
-msgstr "X,Df et Pnonc"
-
-msgid "Df,Pnonc,P and Q"
-msgstr "Df,Pnonc,P et Q"
-
-msgid "Pnonc,P,Q and X"
-msgstr "Pnonc,P,Q et X"
-
-msgid "P,Q,X and Df"
-msgstr "P,Q,X et Df"
-
-msgid "F,Dfn and Dfd"
-msgstr "F,Dfn et Dfd"
-
-msgid "Dfn,Dfd,P and Q"
-msgstr "Dfn,Dfd,P et Q"
-
-msgid "Dfd,P,Q and F"
-msgstr "Dfd,P,Q et F"
-
-msgid "P,Q,F and Dfn"
-msgstr "P,Q,F et Dfn"
-
-msgid "F,Dfn,Dfd and Pnonc"
-msgstr "F,Dfn,Dfd et Pnonc"
-
-msgid "Dfn,Dfd,Pnonc,P and Q"
-msgstr "Dfn,Dfd,Pnonc,P et Q"
-
-msgid "Dfd,Pnonc,P,Q and F"
-msgstr "Dfd,Pnonc,P,Q et F"
-
-msgid "Pnonc,P,Q,F and Dfn"
-msgstr "Pnonc,P,Q,F et Dfn"
-
-msgid "P,Q,F,Dfn and Dfd"
-msgstr "P,Q,F,Dfn et Dfd"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', '%s', '%s' ou "
-"'%s' attendu.\n"
-
-msgid "X,Shape and Rate"
-msgstr "X,Shape et Rate"
-
-msgid "Shape,Rate,P and Q"
-msgstr "état, Taux, P et Q"
-
-msgid "Rate,P,Q and X"
-msgstr "Taux,P,Q et X"
-
-msgid "P,Q,X and Shape"
-msgstr "P,Q,X et Shape"
-
-msgid "S,XN,PR and OMPR"
-msgstr "S,XN,PR et OMPR"
-
-msgid "XN,PR,OMPR,P and Q"
-msgstr "XN,PR,OMPR,P et Q"
-
-msgid "PR,OMPR,P,Q and S"
-msgstr "PR,OMPR,P,Q et S"
-
-msgid "P,Q,S and Xn"
-msgstr "P,Q,S et Xn"
-
-msgid "X,Mean and Std"
-msgstr "X,Mean et Std"
-
-msgid "Mean,Std,P and Q"
-msgstr "Mean,Std,P et Q"
-
-msgid "Std,P,Q and X"
-msgstr "Std,P,Q et X"
-
-msgid "P,Q,X and Mean"
-msgstr "P,Q,X et Mean"
-
-msgid " Std must not be zero\n"
-msgstr " Std ne doit pas être zéro\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A matrix of integer values "
-"expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une matrice de valeurs "
-"entières attendue.\n"
-
-msgid "S and Xlam"
-msgstr "S et Xlam"
-
-msgid "Xlam,P and Q"
-msgstr "Xlam,P et Q"
-
-msgid "P,Q and S"
-msgstr "P,Q et S"
-
-msgid "T and Df"
-msgstr "T et Df"
-
-msgid "P,Q and T"
-msgstr "P,Q et T"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'arguments d'entrée avec l'option '%s' : %d attendus.\n"
-
-#, c-format
-msgid "%s and %s must have same size.\n"
-msgstr "%s et %s doivent être de la même dimension.\n"
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %g\n"
-msgstr ""
-"La réponse semble être inférieure à la plus faible borne de recherche %g\n"
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %f\n"
-msgstr "La solution est inférieure à la borne inférieure de recherche %f\n"
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %s\n"
-msgstr "La solution est supérieure à la borne supérieure de recherche %s\n"
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %f\n"
-msgstr "La solution est supérieure à la borne supérieure de recherche %f\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
@@ -294,11 +138,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
-msgstr "%s : Dimension erronée de l'argument d'entrée n°%d : %dx%d attendu.\n"
+msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : %dx%d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
@@ -306,7 +152,8 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -318,7 +165,8 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: A single boolean expected.\n"
@@ -387,10 +235,6 @@ msgstr ""
 "réelle attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou vecteur "
@@ -450,12 +294,6 @@ msgstr ""
 "un scalaire attendu.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être dans l'ensemble "
-"{%s}.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
@@ -465,7 +303,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
-msgstr "%s : Type erroné des arguments d'entrée n°%d : Un numérique attendu.\n"
+msgstr ""
+"%s : Type erroné des arguments d'entrée n°%d : Un numérique attendu.\n"
 
 #, c-format
 msgid ""
@@ -481,7 +320,8 @@ msgstr "%s : Aucun NaN détecté, veuillez utiliser %s() à la place.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un numérique attendu.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un numérique attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -496,7 +336,8 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s : NaNs détectés, veuillez utiliser %s() à la place.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Des valeurs non-négatives "
 "attendues.\n"
@@ -560,7 +401,8 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid ""
+"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s', %d ou %d "
 "attendu.\n"

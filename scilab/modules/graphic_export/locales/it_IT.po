@@ -8,19 +8,40 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-15 20:07+0000\n"
+"PO-Revision-Date: 2015-10-08 22:10+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"Il modulo \"%s\" di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid "%s: Invalid driver: %s.\n"
+msgstr "%s: Driver non valido: %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Si è verificato il seg. errore: %s\n"
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr "%s: Percorso non valido: %s.\n"
 
 #, c-format
 msgid ""
@@ -107,32 +128,6 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr "%s: %s\n"
 
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memoria esaurita.\n"
-
-#, c-format
-msgid "%s: Invalid driver: %s.\n"
-msgstr "%s: Driver non valido: %s.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Si è verificato il seg. errore: %s\n"
-
-#, c-format
-msgid "%s: Invalid path: %s.\n"
-msgstr "%s: Percorso non valido: %s.\n"
-
 msgid "xinit must be called before xend."
 msgstr "xinit deve essere chiamato prima di xend"
 
@@ -150,8 +145,8 @@ msgstr ""
 "degli elementi o la dimensione della figura dovrebbe risolvere il problema."
 
 msgid ""
-"Unable to create export file, please fill a bug report at http://bugzilla."
-"scilab.org."
+"Unable to create export file, please fill a bug report at "
+"http://bugzilla.scilab.org."
 msgstr ""
 "Impossibile esportare il file, segnalare un bug a http://bugzilla.scilab.org."
 
@@ -161,6 +156,11 @@ msgid ""
 msgstr ""
 "Impossibile esportare il file, il file non può essere creato o è bloccato da "
 "un altro processo."
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+"Il modulo \"%s\" di Scilab è disabilitato in modalità -nogui o -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

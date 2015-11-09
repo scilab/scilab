@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-22 15:05+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -49,51 +49,42 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of double expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: doubleの行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: doubleの行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A matrix of double, with integer "
 "values, expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 整数の値を有するdoubleの行列を指定して"
-"ください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 整数の値を有するdoubleの行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s', '%s', '%s' または "
-"'%s' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: double (値 %d から %d) を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: double (値 %d から %d) を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', "
 "'%s' or '%s' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' , '%s', '%s', '%s', "
-"'%s' または '%s' を指定してください.\n"
+"%s: 入力引数 #%d の値が間違っています: '%s', '%s', '%s' , '%s', '%s', '%s', '%s' または '%s' "
+"を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 4つのエントリを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 4つのエントリを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A column or row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 列または行ベクトルを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 列または行ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
@@ -104,10 +95,9 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 文字列'%s' または '%s' を指定してくだ"
-"さい.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 文字列'%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -143,9 +133,7 @@ msgstr "%s: ファイル %s を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: can not read text: Error in the column structure\n"
@@ -159,16 +147,12 @@ msgstr "%s: テキストを読み込めません.\n"
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行1列の文字列配列を指"
-"定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1行n列またはm行1列の文字列配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: double (値は 1 から 17) を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: double (値は 1 から 17) を指定してください.\n"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
@@ -176,26 +160,39 @@ msgstr "%s: サポートされない形式 %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of string or a matrix of "
 "real expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列行列または実数行列を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列または実数行列を指定してください.\n"
 
 #, c-format
 msgid "%s: error.\n"
 msgstr "%s: エラー.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_xls_open.c, line: 81
 #, c-format
 msgid "The file %s does not exist.\n"
 msgstr "ファイル %s は存在しません。\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -208,8 +205,16 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません。\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: OLE2ファイル %s にxlsストリームがありません.\n"
+msgid "There is no xls stream in the ole2 file %ls.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_xls_open.c, line: 124
@@ -234,15 +239,14 @@ msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr "%s: 処理できるのは,BIFF8ファイル形式のみです.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_xls_read.c, line: 66
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
-msgstr ""
-"%s: 予想したデータを読み込めません、無効なxlsファイルかもしれません。\n"
+msgstr "%s: 予想したデータを読み込めません、無効なxlsファイルかもしれません。\n"
 
 #, c-format
 msgid "%s: End of file.\n"
@@ -252,8 +256,7 @@ msgstr "%s: ファイルの終端に達しました.\n"
 msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
-msgstr ""
-"%s: 列内に不整合があります.  %d行目は %d 列ですが,  その前の行は %d 列です.\n"
+msgstr "%s: 列内に不整合があります.  %d行目は %d 列ですが,  その前の行は %d 列です.\n"
 
 msgid "Warning"
 msgstr "警告"
@@ -298,8 +301,7 @@ msgstr "%s:%d:OLE_get_block:エラー: ブロックバッファはNULLです"
 # File: src/c/ripole/ole.c, line: 347
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
-msgstr ""
-"%s:%d:OLE_get_block:エラー: OLEブロックで、%d バイトの割り当てができません"
+msgstr "%s:%d:OLE_get_block:エラー: OLEブロックで、%d バイトの割り当てができません"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Seek failure (block=%d:%d)"
@@ -307,9 +309,7 @@ msgstr "%s:%d:OLE_get_block:エラー:シークに失敗しました(ブロッ�
 
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr ""
-"%s:%d:読み込んだバイト数が一致しません. %d バイトを要求しましたが, %d バイト"
-"が読み込まれました.\n"
+msgstr "%s:%d:読み込んだバイト数が一致しません. %d バイトを要求しましたが, %d バイトが読み込まれました.\n"
 
 #
 # File: src/c/ripole/ole.c, line: 388
@@ -327,9 +327,7 @@ msgstr "%s:%d:OLE_load_FAT:エラー: %d バイトを割り当てることが出
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
-msgstr ""
-"%s:%d:OLE_load_FAT:エラー: ブロックをロードできません、 読み込みセクタ = 0x"
-"%x, FAT位置 = 0x%x"
+msgstr "%s:%d:OLE_load_FAT:エラー: ブロックをロードできません、 読み込みセクタ = 0x%x, FAT位置 = 0x%x"
 
 #
 # File: src/c/ripole/ole.c, line: 1048
@@ -347,9 +345,7 @@ msgstr "%s:%d:OLE_load_FAT:エラー: 要求セクタが負(%d)でした"
 #, c-format
 msgid ""
 "%s:%d:OLE_get_miniblock:ERROR: Failed to allocate enough memory for miniChain"
-msgstr ""
-"%s:%d:OLE_get_miniblock:エラー: miniChainのためのメモリを十分に割り当てること"
-"ができませんでした"
+msgstr "%s:%d:OLE_get_miniblock:エラー: miniChainのためのメモリを十分に割り当てることができませんでした"
 
 #
 # File: src/c/ripole/ole.c, line: 1392
@@ -361,9 +357,7 @@ msgstr "%s:%d:OLE_load_chain:エラー: Load-chainはメモリ境界を越えま
 # File: src/c/ripole/ole.c, line: 1435
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR: Cannot locate file '%s' for opening (%s)"
-msgstr ""
-"%1$s:%2$d:OLE_open_file:エラー: 開いた(%4$s) のファイル '%3$s' を割り当てるこ"
-"とができません"
+msgstr "%1$s:%2$d:OLE_open_file:エラー: 開いた(%4$s) のファイル '%3$s' を割り当てることができません"
 
 #
 # File: src/c/ripole/ole.c, line: 1450
@@ -381,21 +375,16 @@ msgstr "%s:%d:OLE_open_directory:エラー: %s"
 msgid ""
 "%s:%d:OLE_store_stream:ERROR: Cannot compose full filename string from '%s' "
 "and '%s'"
-msgstr ""
-"%s:%d:OLE_store_stream:エラー: ’%s’と’%s’ から完全なファイル名を構築できませ"
-"ん"
+msgstr "%s:%d:OLE_store_stream:エラー: ’%s’と’%s’ から完全なファイル名を構築できません"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr ""
-"%1$s:%2$d:OLE_store_stream:エラー: 書き込み用(%4$s) に %3$s をオープンできま"
-"せん"
+msgstr "%1$s:%2$d:OLE_store_stream:エラー: 書き込み用(%4$s) に %3$s をオープンできません"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
 msgstr ""
-"%1$s:%2$d:OLE_store_stream:警告: ファイル %5$s に %4$d バイトのうち %3$d のみ"
-"が書き込まれました."
+"%1$s:%2$d:OLE_store_stream:警告: ファイル %5$s に %4$d バイトのうち %3$d のみが書き込まれました."
 
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 156
@@ -403,22 +392,19 @@ msgstr ""
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
 "'%s' and '%s'"
-msgstr ""
-"%s:%d:OLEUNWRAP_save_stream:エラー: '%s' と '%s' からファイル名文字を作成でき"
-"ません"
+msgstr "%s:%d:OLEUNWRAP_save_stream:エラー: '%s' と '%s' からファイル名文字を作成できません"
 
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
 msgstr ""
-"%1$s:%2$d:OLEUNWRAP_save_stream:警告: ファイル %5$s へ %4$d バイトのうち,"
-"%3$d のみが書き込まれました.\n"
+"%1$s:%2$d:OLEUNWRAP_save_stream:警告: ファイル %5$s へ %4$d バイトのうち,%3$d "
+"のみが書き込まれました.\n"
 
 #, c-format
-msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
-msgstr ""
-"%1$s:%2$d:OLEUNWRAP_save_stream:エラー: 書き込み用(%4$s)に %3$s をオープン出"
-"来ません.\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgstr "%1$s:%2$d:OLEUNWRAP_save_stream:エラー: 書き込み用(%4$s)に %3$s をオープン出来ません.\n"
 
 #, c-format
 msgid ""
@@ -430,8 +416,7 @@ msgstr "%s:%d:OLEUNWRAP_decode_attachment:デバッグ: 添付 %s:%s:%s サイ�
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Calling reporter for the filename"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment:デバッグ: ファイル名のレポータの呼び出し"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:デバッグ: ファイル名のレポータの呼び出し"
 
 #
 # File: src/c/ripole/olestream-unwrap.c, line: 334
@@ -445,9 +430,7 @@ msgstr "要素文字列 '%s' ストリームを復号化できません。\n"
 msgid ""
 "%s:%d:PLD_strreplace:ERROR: Cannot allocate %d bytes of memory to perform "
 "replacement operation"
-msgstr ""
-"%s:%d:PLD_strreplace:エラー: 置換を行うためのメモリ %d バイトを割り当てること"
-"ができません"
+msgstr "%s:%d:PLD_strreplace:エラー: 置換を行うためのメモリ %d バイトを割り当てることができません"
 
 #
 # File: src/c/ripole/pldstr.c, line: 582
@@ -456,8 +439,7 @@ msgid ""
 "%s:%d:PLD_strreplace_general: Allocated memory ran out while replacing '%s' "
 "with '%s'"
 msgstr ""
-"%1$s:%2$d:PLD_strreplace_general: '%4$s' で '%3$s' の置換の間に割り当てたメモ"
-"リがなくなりました。"
+"%1$s:%2$d:PLD_strreplace_general: '%4$s' で '%3$s' の置換の間に割り当てたメモリがなくなりました。"
 
 #, c-format
 msgid "Decoding filename=%s"
@@ -477,9 +459,3 @@ msgstr "ripOLE: %s のデコード時にエラー %d を発生しました.\n"
 # File: src/nospreadsheet/nospreadsheet.c, line: 19
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Scilab スプレッドシート・モジュールはインストールされていません。\n"
-
-msgid "Spreadsheet"
-msgstr "表計算"
-
-msgid "Read a xls file"
-msgstr "xlsファイルを読み込む"

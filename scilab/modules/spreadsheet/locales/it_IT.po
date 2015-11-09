@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-14 22:05+0000\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
@@ -117,7 +117,8 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
 "stringa '%s' o '%s'.\n"
@@ -210,8 +211,24 @@ msgid "%s: error.\n"
 msgstr "%s: errore.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "The file %s does not exist.\n"
 msgstr "Il file %s non esiste.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -222,8 +239,16 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Non è possibile aprire il file %s.\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: Non c'è alcun flusso xls nel file ole2 %s.\n"
+msgid "There is no xls stream in the ole2 file %ls.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not an ole2 file.\n"
@@ -246,10 +271,8 @@ msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr "%s: È gestito solo il formato di file BIFF8.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -310,7 +333,8 @@ msgstr "%s:%d: OLE_get_block:ERROR: fallimento nella ricerca (block=%d%d)"
 
 #, c-format
 msgid "%s:%d:Mismatch in bytes read. Requested %d, got %d\n"
-msgstr "%s:%d: Discordanza nella lettura dei byte. Richiesto %d, ottenuto %d\n"
+msgstr ""
+"%s:%d: Discordanza nella lettura dei byte. Richiesto %d, ottenuto %d\n"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: OLE file is closed\n"
@@ -401,7 +425,8 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d: OLEUNWRAP_save_stream:ERROR: non è possibile aprire %s per la "
 "scrittura (%s)\n"
@@ -454,9 +479,3 @@ msgstr "ripOLE: la decodifica di %s ha portato all'errore %d.\n"
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Il modulo speadsheet di Scilab non è installato.\n"
-
-msgid "Spreadsheet"
-msgstr "Foglio di calcolo"
-
-msgid "Read a xls file"
-msgstr "Leggi un file xls"

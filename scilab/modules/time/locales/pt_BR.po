@@ -8,20 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-23 03:54+0000\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pt_BR\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: deve estar entre %d e "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -58,17 +52,23 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr "%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
+msgstr ""
+"%s: Valor incorreto para o argumento de entrada #%d: deve ser > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
-msgstr "%s: Valor errado para argumento de entrada #%d: um real é esperado.\n"
+msgstr ""
+"%s: Valor errado para argumento de entrada #%d: um real é esperado.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
 "inteiro ou '%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -144,7 +144,8 @@ msgstr ""
 "matriz m*3 ou m*6.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Valor incorretos para o argumento de entrada #%d: %s deve estar entre %d "
 "e%d.\n"
@@ -193,7 +194,8 @@ msgstr ""
 "inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada #%d e #%d: esperava-se "
 "dimensões iguais.\n"
@@ -215,10 +217,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para os argumentos de entrada #%d e #%d: esperava-se "
 "dimensões iguais.\n"
-
-#, c-format
-msgid "%s: You must call tic() before calling toc().\n"
-msgstr "%s: Você deve chamar tic() antes de chamar toc().\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
