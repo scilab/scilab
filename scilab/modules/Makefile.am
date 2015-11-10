@@ -128,7 +128,7 @@ libscilab_la_SOURCES =
 libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 
-GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
+GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
