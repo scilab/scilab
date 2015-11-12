@@ -3,9 +3,17 @@
         Welcome to Scilab 6
         ===================
 
-This file details the changes between 6.0.0-alpha-1 and 6.0.0-alpha-2 of Scilab (below); and between version 5.5.2 and 6.0.0-alpha-1 (further down). 
+This file details the changes between 6.0.0-beta-1, 6.0.0-alpha-2, 6.0.0-alpha-1, and the previous release, version 5.5.2.
 
 For a high-level overview of the changes in this release, please consult the "What's new" page of the help, by simply typing "help" in Scilab console.
+
+
+
+
+        Changes between version 6.0.0-alpha-2 and 6.0.0-beta-1
+        ======================================================
+
+* Bug #14257 fixed - English spelling in messages and in comments.
 
 
 
@@ -17,16 +25,16 @@ New Features
 
 * Scilab now includes a full-featured debugger, with ability to run Scilab scripts or functions step-by-step, to put (conditional) breakpoint, in particular break only when an exception is set. Run "help debug" for more information.
 
-* A new profiler and coverage tool has been added. 
+* A new profiler and coverage tool has been added.
   It replaces the "profile" function (which is still there but not working, and will be removed in the final release).
   It produces HTML report for the time spent (profile) on each line. Example of use:
 
      covStart(isempty) // instruments the "isempty" macro; instrumenting a whole library can be done with: covStart("elementary_functions")
      for i=1:1e5; isempty(i); end // execute some code - this will be profiled
      covWrite("html", "TMPDIR/coverage") // write the profiling/coverage report as "report.html" in the folder specified as second parameter
-     covStop(); // stop the profiling 
+     covStop(); // stop the profiling
 
-  A function to merge multiple profiler/coverage is provided too: covMerge([ list_of_files_to_merge], file_to_merge_to). 
+  A function to merge multiple profiler/coverage is provided too: covMerge([ list_of_files_to_merge], file_to_merge_to).
   The API will change before the release; the current API is mostly to get feedback from the community.
 
 * A "lint"-like command, slint, has been added, for code static analysis: it detects unclear, risky or suspicious code.
@@ -191,8 +199,9 @@ Bug Fixes
 
 
 
-            Changes between version 5.5.2 and 6.0.0-alpha-1
-            ===============================================
+
+        Changes between version 5.5.2 and 6.0.0-alpha-1
+        ===============================================
 
 
 Main new Features

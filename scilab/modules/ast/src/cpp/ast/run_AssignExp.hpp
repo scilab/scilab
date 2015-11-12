@@ -517,7 +517,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         }
 
         std::wostringstream os;
-        os << _W("unknow script form");
+        os << _W("unknown script form");
         //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
         throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
     }

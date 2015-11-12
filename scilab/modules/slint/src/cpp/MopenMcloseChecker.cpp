@@ -71,7 +71,7 @@ void MopenMcloseChecker::preCheckNode(const ast::Exp & e, SLintContext & context
                     const ast::Exp & first = *args.front();
                     if (first.isStringExp() && static_cast<const ast::StringExp &>(first).getValue() == L"all")
                     {
-                        result.report(context, e.getLocation(), *this, _("The instruction mclose(\"all\") may have any side effets."));
+                        result.report(context, e.getLocation(), *this, _("The instruction mclose(\"all\") may have any side effects."));
                         if (!fd.empty())
                         {
                             fd.top().clear();

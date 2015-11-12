@@ -550,7 +550,7 @@ const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
     else
     {
         std::wostringstream os;
-        os << _W("Unknow expression");
+        os << _W("Unknown expression");
         //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
         throw ast::InternalError(os.str(), 999, _pExp->getLocation());
     }
