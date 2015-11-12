@@ -231,13 +231,23 @@ int execScilabStartTask(bool _bSerialize)
     stSCI += SCILAB_START;
 
     ThreadManagement::LockParser();
-    parse.parseFile(stSCI, L"");
+    try
+    {
+        parse.parseFile(stSCI, L"");
+    }
+    catch (const ast::InternalError& ie)
+    {
+        scilabWrite(ie.what());
+        ThreadManagement::UnlockParser();
+        return 1;
+    }
+
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");
         ThreadManagement::UnlockParser();
-        return 0;
+        return 1;
     }
     ThreadManagement::UnlockParser();
 
@@ -261,13 +271,23 @@ int execScilabQuitTask(bool _bSerialize)
     stSCI += SCILAB_QUIT;
 
     ThreadManagement::LockParser();
-    parse.parseFile(stSCI, L"");
+    try
+    {
+        parse.parseFile(stSCI, L"");
+    }
+    catch (const ast::InternalError& ie)
+    {
+        scilabWrite(ie.what());
+        ThreadManagement::UnlockParser();
+        return 1;
+    }
+
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.quit");
         ThreadManagement::UnlockParser();
-        return 0;
+        return 1;
     }
     ThreadManagement::UnlockParser();
 

@@ -263,7 +263,12 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     C2F(setprlev) (&pause);
 
     //load gateways
-    LoadModules();
+    if (LoadModules() == false)
+    {
+        //clear opened files
+        FileManager::destroy();
+        return 1;
+    }
 
     //variables are needed by loadModules but must be in SCOPE_CONSOLE under protection
     //remove (W)SCI/SCIHOME/HOME/TMPDIR
