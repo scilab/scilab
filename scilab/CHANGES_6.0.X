@@ -221,6 +221,8 @@ Bug Fixes
 
 * Bug #14225 fixed - command-line option "-quit" should set the processs Exit status
 
+* Bug #14228 fixed - Setting rotation_angles property to a matrix of any size did not return error message.
+
 * Bug #14232 fixed - Typos in Xcos.
 
 
