@@ -37,14 +37,14 @@ AC_ARG_WITH(docbook,
 
 	# Saxon XSLT Processor, as the JVM implementation is unable to parse the docbook xsl files
 	# check Saxon-HE 9.5 first then fallback to Saxon-6.5
-	AC_JAVA_CHECK_PACKAGE([saxon9he],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
+	AC_JAVA_CHECK_JAR([saxon9he],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
 	SAXON=$PACKAGE_JAR_FILE
 	if test -z "$SAXON"; then
-		AC_JAVA_CHECK_PACKAGE([saxon],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
+		AC_JAVA_CHECK_JAR([saxon],[net.sf.saxon.Version],[Saxon XSLT Processor],"yes")
 		SAXON=$PACKAGE_JAR_FILE
 	fi
 	if test -z "$SAXON"; then
-		AC_JAVA_CHECK_PACKAGE([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
+		AC_JAVA_CHECK_JAR([saxon],[com.icl.saxon.Loader],[Saxon XSLT Processor])
 		SAXON=$PACKAGE_JAR_FILE
 	fi
 	AC_SUBST(SAXON)
