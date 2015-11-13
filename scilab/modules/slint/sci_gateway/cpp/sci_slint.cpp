@@ -16,6 +16,7 @@
 #include "SLint.hxx"
 #include "output/SLintScilabResult.hxx"
 #include "output/SLintXmlResult.hxx"
+#include "output/cnes/CNESResult.hxx"
 #include "config/XMLConfig.hxx"
 
 #include "struct.hxx"
@@ -128,7 +129,14 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
         slint::SLintOptions options;
         if (conf)
         {
-            slint::XMLConfig::getOptions(conf->get(0), options);
+            if (conf->getSize() == 1)
+            {
+                slint::XMLConfig::getOptions(conf->get(0), options);
+            }
+            else
+            {
+                slint::XMLConfig::getOptions(*conf, options);
+            }
         }
         else
         {
@@ -137,7 +145,14 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
 
         if (outFile)
         {
-            results = new slint::SLintXmlResult(outFile->get(0));
+            if (conf && conf->getSize() >= 2 && (std::wstring(conf->get(0)) == L"cnes"))
+            {
+                results = new slint::CNES::CNESResult(conf, options.getId(), outFile->get(0));
+            }
+            else
+            {
+                results = new slint::SLintXmlResult(outFile->get(0));
+            }
         }
         else
         {
