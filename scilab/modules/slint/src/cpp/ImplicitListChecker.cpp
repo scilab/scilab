@@ -20,32 +20,61 @@ namespace slint
 void ImplicitListChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     const ast::ListExp & le = static_cast<const ast::ListExp &>(e);
-    if (le.getStart().isDoubleExp() && le.getStep().isDoubleExp() && le.getEnd().isDoubleExp())
+    if (le.getStart().isDoubleExp())
     {
         const double start = static_cast<const ast::DoubleExp &>(le.getStart()).getValue();
-        const double step = static_cast<const ast::DoubleExp &>(le.getStep()).getValue();
-        const double end = static_cast<const ast::DoubleExp &>(le.getEnd()).getValue();
-        if (ISNAN(start) || ISNAN(step) || ISNAN(end) || !finite(start) || !finite(step) || !finite(end))
+        if (ISNAN(start) || !finite(start))
         {
             result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
         }
-        else
+    }
+
+    if (le.getStart().isSimpleVar())
+    {
+        const std::wstring start = static_cast<const ast::SimpleVar &>(le.getStart()).getSymbol().getName();
+        if (start == L"%nan" || start == L"%inf")
         {
-            if (start == end)
-            {
-                result.report(context, e.getLocation(), *this, _("List has the same start and end."));
-            }
-            if (step == 0)
-            {
-                result.report(context, e.getLocation(), *this, _("List has a null step."));
-            }
-            if ((start > end && step > 0) || (start < end && step < 0))
-            {
-                result.report(context, e.getLocation(), *this, _("List is empty."));
-            }
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
         }
     }
-    else if (le.getStart().isListExp() || le.getStep().isListExp() || le.getEnd().isListExp())
+
+    if (le.getStep().isDoubleExp())
+    {
+        const double step = static_cast<const ast::DoubleExp &>(le.getStep()).getValue();
+        if (ISNAN(step) || !finite(step))
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getStep().isSimpleVar())
+    {
+        const std::wstring step = static_cast<const ast::SimpleVar &>(le.getStep()).getSymbol().getName();
+        if (step == L"%nan" || step == L"%inf")
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getEnd().isDoubleExp())
+    {
+        const double end = static_cast<const ast::DoubleExp &>(le.getEnd()).getValue();
+        if (ISNAN(end) || !finite(end))
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getEnd().isSimpleVar())
+    {
+        const std::wstring end = static_cast<const ast::SimpleVar &>(le.getEnd()).getSymbol().getName();
+        if (end == L"%nan" || end == L"%inf")
+        {
+            result.report(context, e.getLocation(), *this, _("Invalid list, it contains NaN or Inf."));
+        }
+    }
+
+    if (le.getStart().isListExp() || le.getStep().isListExp() || le.getEnd().isListExp())
     {
         result.report(context, e.getLocation(), *this, _("Bad use of ':' operator."));
     }

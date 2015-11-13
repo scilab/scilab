@@ -219,6 +219,7 @@ am__objects_1 = src/cpp/libscislint_algo_la-SLintContext.lo \
 	src/cpp/libscislint_algo_la-FunctionArgsOrderChecker.lo \
 	src/cpp/libscislint_algo_la-FunctionTestReturnChecker.lo \
 	src/cpp/libscislint_algo_la-ReturnsCountChecker.lo \
+	src/cpp/libscislint_algo_la-NotEqualChecker.lo \
 	src/cpp/libscislint_algo_la-XMLtools.lo \
 	src/cpp/libscislint_algo_la-SLintXmlResult.lo \
 	src/cpp/libscislint_algo_la-AnalysisConfiguration.lo \
@@ -598,6 +599,7 @@ pdfdir = @pdfdir@
 prefix = @prefix@
 program_transform_name = @program_transform_name@
 psdir = @psdir@
+runstatedir = @runstatedir@
 sbindir = @sbindir@
 sharedstatedir = @sharedstatedir@
 srcdir = @srcdir@
@@ -747,6 +749,7 @@ src/cpp/CommentRatioChecker.cpp \
 src/cpp/FunctionArgsOrderChecker.cpp \
 src/cpp/FunctionTestReturnChecker.cpp \
 src/cpp/ReturnsCountChecker.cpp \
+src/cpp/NotEqualChecker.cpp \
 src/cpp/XMLtools.cpp \
 src/cpp/SLintXmlResult.cpp \
 src/cpp/AnalysisConfiguration.cpp \
@@ -1003,6 +1006,8 @@ src/cpp/libscislint_algo_la-FunctionTestReturnChecker.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscislint_algo_la-ReturnsCountChecker.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscislint_algo_la-NotEqualChecker.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscislint_algo_la-XMLtools.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscislint_algo_la-SLintXmlResult.lo:  \
@@ -1097,6 +1102,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-MopenMcloseChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-NaNChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-NestedBlocksChecker.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-NotEqualChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-NotNotChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-OldNotChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-PCREException.Plo@am__quote@
@@ -1532,6 +1538,13 @@ src/cpp/libscislint_algo_la-ReturnsCountChecker.lo: src/cpp/ReturnsCountChecker.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ReturnsCountChecker.cpp' object='src/cpp/libscislint_algo_la-ReturnsCountChecker.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-ReturnsCountChecker.lo `test -f 'src/cpp/ReturnsCountChecker.cpp' || echo '$(srcdir)/'`src/cpp/ReturnsCountChecker.cpp
+
+src/cpp/libscislint_algo_la-NotEqualChecker.lo: src/cpp/NotEqualChecker.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-NotEqualChecker.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-NotEqualChecker.Tpo -c -o src/cpp/libscislint_algo_la-NotEqualChecker.lo `test -f 'src/cpp/NotEqualChecker.cpp' || echo '$(srcdir)/'`src/cpp/NotEqualChecker.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscislint_algo_la-NotEqualChecker.Tpo src/cpp/$(DEPDIR)/libscislint_algo_la-NotEqualChecker.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/NotEqualChecker.cpp' object='src/cpp/libscislint_algo_la-NotEqualChecker.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-NotEqualChecker.lo `test -f 'src/cpp/NotEqualChecker.cpp' || echo '$(srcdir)/'`src/cpp/NotEqualChecker.cpp
 
 src/cpp/libscislint_algo_la-XMLtools.lo: src/cpp/XMLtools.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-XMLtools.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-XMLtools.Tpo -c -o src/cpp/libscislint_algo_la-XMLtools.lo `test -f 'src/cpp/XMLtools.cpp' || echo '$(srcdir)/'`src/cpp/XMLtools.cpp

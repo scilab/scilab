@@ -18,7 +18,7 @@ namespace slint
 void BracketedExpChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     const ast::OpExp & oe = static_cast<const ast::OpExp &>(e);
-    if (oe.getParent()->isOpExp())
+    if (oe.getParent()->isOpExp() || oe.getParent()->isListExp())
     {
         std::pair<unsigned int, unsigned int> pos;
         bool bracketed = true;

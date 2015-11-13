@@ -40,7 +40,6 @@
         <keyword name="quit"/>
         <keyword name="exit"/>
         <keyword name="resume"/>
-        
         <keyword name="stacksize"/>
         <keyword name="lib"/>
         <keyword name="disp"/>
@@ -56,4 +55,5 @@
     </FunctionTestReturn>
     <SemicolonAtEOL enable="true" id="00039"/>
     <ReturnsCount enable="true" max="1" id="00040"/>
+    <NotEqual enable="true" operator="&lt;&gt;" id="00041"/>
 </configuration>

@@ -407,6 +407,27 @@ SLintChecker * XMLConfig::createFromXmlNode<CommentRatioChecker>(xmlNode * node)
     return nullptr;
 }
 
+template<>
+SLintChecker * XMLConfig::createFromXmlNode<NotEqualChecker>(xmlNode * node)
+{
+    bool enable = true;
+    XMLtools::getBool(node, "enable", enable);
+    if (enable)
+    {
+        std::wstring id;
+        std::wstring op;
+
+        XMLtools::getWString(node, "id", id);
+        XMLtools::getWString(node, "operator", op);
+        if (!op.empty() && (op == L"<>" || op == L"~=" || op == L"@="))
+        {
+            return new NotEqualChecker(id, op);
+        }
+    }
+
+    return nullptr;
+}
+
 std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::initCallbacks()
 {
     std::unordered_map<std::string, CBType> callbacks;
@@ -451,6 +472,7 @@ std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::initCallbacks()
     SLINT_INSERT_IN_MAP(FunctionArgsOrder);
     SLINT_INSERT_IN_MAP(FunctionTestReturn);
     SLINT_INSERT_IN_MAP(ReturnsCount);
+    SLINT_INSERT_IN_MAP(NotEqual);
 
     return callbacks;
 }

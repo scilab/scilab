@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -199,9 +199,6 @@
     <ClInclude Include="includes\XMLtools.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\output\cnes\CNESResult.hxx">
-      <Filter>Header Files\output\cnes</Filter>
-    </ClInclude>
     <ClInclude Include="includes\config\cnes\AnalysisConfiguration.hxx">
       <Filter>Header Files\config\cnes</Filter>
     </ClInclude>
@@ -270,6 +267,9 @@
     </ClInclude>
     <ClInclude Include="includes\checkers\StatInCondChecker.hxx">
       <Filter>Header Files\checkers</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\NotEqualChecker.hxx">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -490,6 +490,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ToolConfigurationType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\NotEqualChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

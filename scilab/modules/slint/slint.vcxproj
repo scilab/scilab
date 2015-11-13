@@ -262,6 +262,7 @@
     <ClInclude Include="includes\checkers\MopenMcloseChecker.hxx" />
     <ClInclude Include="includes\checkers\NaNChecker.hxx" />
     <ClInclude Include="includes\checkers\NestedBlocksChecker.hxx" />
+    <ClInclude Include="includes\checkers\NotEqualChecker.hxx" />
     <ClInclude Include="includes\checkers\NotNotChecker.hxx" />
     <ClInclude Include="includes\checkers\OldNotChecker.hxx" />
     <ClInclude Include="includes\checkers\PrintfChecker.hxx" />
@@ -349,6 +350,7 @@
     <ClCompile Include="src\cpp\MopenMcloseChecker.cpp" />
     <ClCompile Include="src\cpp\NaNChecker.cpp" />
     <ClCompile Include="src\cpp\NestedBlocksChecker.cpp" />
+    <ClCompile Include="src\cpp\NotEqualChecker.cpp" />
     <ClCompile Include="src\cpp\NotNotChecker.cpp" />
     <ClCompile Include="src\cpp\OldNotChecker.cpp" />
     <ClCompile Include="src\cpp\PCREException.cpp" />

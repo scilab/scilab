@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __SLINT_LINE_LENGTH_CHECKER_HXX__
-#define __SLINT_LINE_LENGTH_CHECKER_HXX__
+#ifndef __SLINT_NOTEQUAL_CHECKER_HXX__
+#define __SLINT_NOTEQUAL_CHECKER_HXX__
 
 #include "SLintChecker.hxx"
 
@@ -19,31 +19,28 @@ namespace slint
 {
 
 /**
- * Check for maximal line length
+ * Check the use of <> or @= or ~=
  */
-class LineLengthChecker : public SLintChecker
+class NotEqualChecker : public SLintChecker
 {
 
-    const int max;
+    const std::wstring op;
 
 public:
 
-    LineLengthChecker(const std::wstring & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
-    ~LineLengthChecker() { }
+    NotEqualChecker(const std::wstring & checkerId, const std::wstring & _op) : SLintChecker(checkerId), op(_op) { }
+    ~NotEqualChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
     void postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
-    bool isFileChecker() const;
-    void preCheckFile(SLintContext & context, SLintResult & result);
-    void postCheckFile(SLintContext & context, SLintResult & result);
     const std::string getName() const;
 
     virtual const std::vector<ast::Exp::ExpType> getAstNodes() const
     {
-        return { };
+        return { ast::Exp::OPEXP };
     }
 };
 
 } // namespace slint
 
-#endif // __SLINT_LINE_LENGTH_CHECKER_HXX__
+#endif // __SLINT_NOTEQUAL_CHECKER_HXX__

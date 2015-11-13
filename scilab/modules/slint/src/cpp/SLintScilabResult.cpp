@@ -39,7 +39,7 @@ void SLintScilabResult::finalize()
         scilabWriteW(str.c_str());
         for (const auto & p2 : p1.second)
         {
-            std::wstring str = L"  At line " + std::to_wstring(p2.first.first_line) + L": " + p2.second + L"\n";
+            std::wstring str = L"  At l. " + std::to_wstring(p2.first.first_line) + L", c. " +  std::to_wstring(p2.first.first_column) + L": " + p2.second + L"\n";
             scilabWriteW(str.c_str());
         }
     }

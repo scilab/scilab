@@ -89,4 +89,7 @@
     <analysisRule analysisRuleId="ReturnsCount" analysisRuleActivation="true">
         <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="1" />
     </analysisRule>
+    <analysisRule analysisRuleId="NotEqual" analysisRuleActivation="true">
+        <analysisRuleParameter analysisRuleParameterName="operator" analysisRuleTextValue="&lt;&gt;" />
+    </analysisRule>
 </analysisConfiguration>

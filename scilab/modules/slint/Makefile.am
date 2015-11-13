@@ -79,6 +79,7 @@ src/cpp/CommentRatioChecker.cpp \
 src/cpp/FunctionArgsOrderChecker.cpp \
 src/cpp/FunctionTestReturnChecker.cpp \
 src/cpp/ReturnsCountChecker.cpp \
+src/cpp/NotEqualChecker.cpp \
 src/cpp/XMLtools.cpp \
 src/cpp/SLintXmlResult.cpp \
 src/cpp/AnalysisConfiguration.cpp \

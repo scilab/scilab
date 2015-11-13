@@ -53,5 +53,6 @@
 #include "checkers/FunctionArgsOrderChecker.hxx"
 #include "checkers/FunctionTestReturnChecker.hxx"
 #include "checkers/ReturnsCountChecker.hxx"
+#include "checkers/NotEqualChecker.hxx"
 
 #endif // __SLINT_ALL_CHECKERS_HXX__
