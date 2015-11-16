@@ -40,4 +40,5 @@
     <ruleLink standardRuleId="CNES0038" analysisRuleId="FunctionArgsOrder" ruleCoverage="Complete" standardId=""/>
     <ruleLink standardRuleId="CNES0039" analysisRuleId="FunctionTestReturn" ruleCoverage="Complete" standardId=""/>
     <ruleLink standardRuleId="CNES0040" analysisRuleId="ReturnsCount" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0041" analysisRuleId="NotEqual" ruleCoverage="Complete" standardId=""/>
 </toolConfiguration>
