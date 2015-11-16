@@ -13756,7 +13756,7 @@ $as_echo_n "checking jgraphx... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jgraphx.jar' -or -name 'libjgraphx.jar' -or -name 'libjgraphx-java.jar' -or -name 'jgraphx*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jgraphx.jar' -or -name 'libjgraphx.jar' -or -name 'libjgraphx-java.jar' -or -name 'jgraphx*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -13977,7 +13977,7 @@ $as_echo_n "checking scirenderer... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'scirenderer.jar' -or -name 'libscirenderer.jar' -or -name 'libscirenderer-java.jar' -or -name 'scirenderer*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'scirenderer.jar' -or -name 'libscirenderer.jar' -or -name 'libscirenderer-java.jar' -or -name 'scirenderer*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -14204,7 +14204,7 @@ $as_echo_n "checking flexdock... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'flexdock.jar' -or -name 'libflexdock.jar' -or -name 'libflexdock-java.jar' -or -name 'flexdock*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'flexdock.jar' -or -name 'libflexdock.jar' -or -name 'libflexdock-java.jar' -or -name 'flexdock*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -14423,7 +14423,7 @@ $as_echo_n "checking looks... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'looks.jar' -or -name 'liblooks.jar' -or -name 'liblooks-java.jar' -or -name 'looks*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'looks.jar' -or -name 'liblooks.jar' -or -name 'liblooks-java.jar' -or -name 'looks*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -14642,7 +14642,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jgoodies-looks.jar' -or -name 'libjgoodies-looks.jar' -or -name 'libjgoodies-looks-java.jar' -or -name 'jgoodies-looks*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jgoodies-looks.jar' -or -name 'libjgoodies-looks.jar' -or -name 'libjgoodies-looks-java.jar' -or -name 'jgoodies-looks*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -14862,7 +14862,7 @@ $as_echo_n "checking skinlf... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'skinlf.jar' -or -name 'libskinlf.jar' -or -name 'libskinlf-java.jar' -or -name 'skinlf*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'skinlf.jar' -or -name 'libskinlf.jar' -or -name 'libskinlf-java.jar' -or -name 'skinlf*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -15081,7 +15081,7 @@ $as_echo_n "checking jogl2... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jogl2.jar' -or -name 'libjogl2.jar' -or -name 'libjogl2-java.jar' -or -name 'jogl2*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jogl2.jar' -or -name 'libjogl2.jar' -or -name 'libjogl2-java.jar' -or -name 'jogl2*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -15568,7 +15568,7 @@ $as_echo_n "checking gluegen2-rt... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'gluegen2-rt.jar' -or -name 'libgluegen2-rt.jar' -or -name 'libgluegen2-rt-java.jar' -or -name 'gluegen2-rt*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'gluegen2-rt.jar' -or -name 'libgluegen2-rt.jar' -or -name 'libgluegen2-rt-java.jar' -or -name 'gluegen2-rt*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -15844,7 +15844,7 @@ $as_echo_n "checking jhall... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jhall.jar' -or -name 'libjhall.jar' -or -name 'libjhall-java.jar' -or -name 'jhall*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jhall.jar' -or -name 'libjhall.jar' -or -name 'libjhall-java.jar' -or -name 'jhall*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -16061,7 +16061,7 @@ $as_echo_n "checking javahelp2... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'javahelp2.jar' -or -name 'libjavahelp2.jar' -or -name 'libjavahelp2-java.jar' -or -name 'javahelp2*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'javahelp2.jar' -or -name 'libjavahelp2.jar' -or -name 'libjavahelp2-java.jar' -or -name 'javahelp2*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -16281,7 +16281,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jrosetta-API.jar' -or -name 'libjrosetta-API.jar' -or -name 'libjrosetta-API-java.jar' -or -name 'jrosetta-API*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jrosetta-API.jar' -or -name 'libjrosetta-API.jar' -or -name 'libjrosetta-API-java.jar' -or -name 'jrosetta-API*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -16497,7 +16497,7 @@ $as_echo_n "checking jrosetta-api... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jrosetta-api.jar' -or -name 'libjrosetta-api.jar' -or -name 'libjrosetta-api-java.jar' -or -name 'jrosetta-api*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jrosetta-api.jar' -or -name 'libjrosetta-api.jar' -or -name 'libjrosetta-api-java.jar' -or -name 'jrosetta-api*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -16717,7 +16717,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jrosetta-engine.jar' -or -name 'libjrosetta-engine.jar' -or -name 'libjrosetta-engine-java.jar' -or -name 'jrosetta-engine*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jrosetta-engine.jar' -or -name 'libjrosetta-engine.jar' -or -name 'libjrosetta-engine-java.jar' -or -name 'jrosetta-engine*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -16938,7 +16938,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jeuclid-core.jar' -or -name 'libjeuclid-core.jar' -or -name 'libjeuclid-core-java.jar' -or -name 'jeuclid-core*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jeuclid-core.jar' -or -name 'libjeuclid-core.jar' -or -name 'libjeuclid-core-java.jar' -or -name 'jeuclid-core*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -17159,7 +17159,7 @@ $as_echo_n "checking fop... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'fop.jar' -or -name 'libfop.jar' -or -name 'libfop-java.jar' -or -name 'fop*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'fop.jar' -or -name 'libfop.jar' -or -name 'libfop-java.jar' -or -name 'fop*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -17385,7 +17385,7 @@ $as_echo_n "checking freehep-graphics2d... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-graphics2d.jar' -or -name 'libfreehep-graphics2d.jar' -or -name 'libfreehep-graphics2d-java.jar' -or -name 'freehep-graphics2d*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-graphics2d.jar' -or -name 'libfreehep-graphics2d.jar' -or -name 'libfreehep-graphics2d-java.jar' -or -name 'freehep-graphics2d*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -17604,7 +17604,7 @@ $as_echo_n "checking freehep-graphicsio... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-graphicsio.jar' -or -name 'libfreehep-graphicsio.jar' -or -name 'libfreehep-graphicsio-java.jar' -or -name 'freehep-graphicsio*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-graphicsio.jar' -or -name 'libfreehep-graphicsio.jar' -or -name 'libfreehep-graphicsio-java.jar' -or -name 'freehep-graphicsio*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -17823,7 +17823,7 @@ $as_echo_n "checking freehep-graphicsio-emf... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-graphicsio-emf.jar' -or -name 'libfreehep-graphicsio-emf.jar' -or -name 'libfreehep-graphicsio-emf-java.jar' -or -name 'freehep-graphicsio-emf*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-graphicsio-emf.jar' -or -name 'libfreehep-graphicsio-emf.jar' -or -name 'libfreehep-graphicsio-emf-java.jar' -or -name 'freehep-graphicsio-emf*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -18042,7 +18042,7 @@ $as_echo_n "checking freehep-io... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-io.jar' -or -name 'libfreehep-io.jar' -or -name 'libfreehep-io-java.jar' -or -name 'freehep-io*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-io.jar' -or -name 'libfreehep-io.jar' -or -name 'libfreehep-io-java.jar' -or -name 'freehep-io*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -18261,7 +18261,7 @@ $as_echo_n "checking freehep-util... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-util.jar' -or -name 'libfreehep-util.jar' -or -name 'libfreehep-util-java.jar' -or -name 'freehep-util*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'freehep-util.jar' -or -name 'libfreehep-util.jar' -or -name 'libfreehep-util-java.jar' -or -name 'freehep-util*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -18481,7 +18481,7 @@ $as_echo_n "checking batik-all... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'batik-all.jar' -or -name 'libbatik-all.jar' -or -name 'libbatik-all-java.jar' -or -name 'batik-all*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'batik-all.jar' -or -name 'libbatik-all.jar' -or -name 'libbatik-all-java.jar' -or -name 'batik-all*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -18700,7 +18700,7 @@ $as_echo_n "checking batik... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'batik.jar' -or -name 'libbatik.jar' -or -name 'libbatik-java.jar' -or -name 'batik*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'batik.jar' -or -name 'libbatik.jar' -or -name 'libbatik-java.jar' -or -name 'batik*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -18920,7 +18920,7 @@ $as_echo_n "checking commons-io... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'commons-io.jar' -or -name 'libcommons-io.jar' -or -name 'libcommons-io-java.jar' -or -name 'commons-io*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'commons-io.jar' -or -name 'libcommons-io.jar' -or -name 'libcommons-io-java.jar' -or -name 'commons-io*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -19139,7 +19139,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'xmlgraphics-commons.jar' -or -name 'libxmlgraphics-commons.jar' -or -name 'libxmlgraphics-commons-java.jar' -or -name 'xmlgraphics-commons*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'xmlgraphics-commons.jar' -or -name 'libxmlgraphics-commons.jar' -or -name 'libxmlgraphics-commons-java.jar' -or -name 'xmlgraphics-commons*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -19358,7 +19358,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'avalon-framework.jar' -or -name 'libavalon-framework.jar' -or -name 'libavalon-framework-java.jar' -or -name 'avalon-framework*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'avalon-framework.jar' -or -name 'libavalon-framework.jar' -or -name 'libavalon-framework-java.jar' -or -name 'avalon-framework*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -19577,7 +19577,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'xml-apis-ext.jar' -or -name 'libxml-apis-ext.jar' -or -name 'libxml-apis-ext-java.jar' -or -name 'xml-apis-ext*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'xml-apis-ext.jar' -or -name 'libxml-apis-ext.jar' -or -name 'libxml-apis-ext-java.jar' -or -name 'xml-apis-ext*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -19796,7 +19796,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'xml-commons-apis-ext.jar' -or -name 'libxml-commons-apis-ext.jar' -or -name 'libxml-commons-apis-ext-java.jar' -or -name 'xml-commons-apis-ext*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'xml-commons-apis-ext.jar' -or -name 'libxml-commons-apis-ext.jar' -or -name 'libxml-commons-apis-ext-java.jar' -or -name 'xml-commons-apis-ext*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -20019,7 +20019,7 @@ $as_echo_n "checking commons-logging... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'commons-logging.jar' -or -name 'libcommons-logging.jar' -or -name 'libcommons-logging-java.jar' -or -name 'commons-logging*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'commons-logging.jar' -or -name 'libcommons-logging.jar' -or -name 'libcommons-logging-java.jar' -or -name 'commons-logging*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -20238,7 +20238,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jlatexmath.jar' -or -name 'libjlatexmath.jar' -or -name 'libjlatexmath-java.jar' -or -name 'jlatexmath*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jlatexmath.jar' -or -name 'libjlatexmath.jar' -or -name 'libjlatexmath-java.jar' -or -name 'jlatexmath*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -20457,7 +20457,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jlatexmath-fop.jar' -or -name 'libjlatexmath-fop.jar' -or -name 'libjlatexmath-fop-java.jar' -or -name 'jlatexmath-fop*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'jlatexmath-fop.jar' -or -name 'libjlatexmath-fop.jar' -or -name 'libjlatexmath-fop-java.jar' -or -name 'jlatexmath-fop*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -20682,7 +20682,7 @@ $as_echo_n "checking checkstyle... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'checkstyle.jar' -or -name 'libcheckstyle.jar' -or -name 'libcheckstyle-java.jar' -or -name 'checkstyle*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'checkstyle.jar' -or -name 'libcheckstyle.jar' -or -name 'libcheckstyle-java.jar' -or -name 'checkstyle*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -20901,7 +20901,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'commons-beanutils.jar' -or -name 'libcommons-beanutils.jar' -or -name 'libcommons-beanutils-java.jar' -or -name 'commons-beanutils*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'commons-beanutils.jar' -or -name 'libcommons-beanutils.jar' -or -name 'libcommons-beanutils-java.jar' -or -name 'commons-beanutils*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -21120,7 +21120,7 @@ $as_echo_n "checking antlr... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'antlr.jar' -or -name 'libantlr.jar' -or -name 'libantlr-java.jar' -or -name 'antlr*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'antlr.jar' -or -name 'libantlr.jar' -or -name 'libantlr-java.jar' -or -name 'antlr*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -21339,7 +21339,7 @@ $as_echo_n "checking junit4... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'junit4.jar' -or -name 'libjunit4.jar' -or -name 'libjunit4-java.jar' -or -name 'junit4*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'junit4.jar' -or -name 'libjunit4.jar' -or -name 'libjunit4-java.jar' -or -name 'junit4*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -21555,7 +21555,7 @@ $as_echo_n "checking junit... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'junit.jar' -or -name 'libjunit.jar' -or -name 'libjunit-java.jar' -or -name 'junit*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'junit.jar' -or -name 'libjunit.jar' -or -name 'libjunit-java.jar' -or -name 'junit*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -21778,7 +21778,7 @@ $as_echo_n "checking hamcrest-all... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'hamcrest-all.jar' -or -name 'libhamcrest-all.jar' -or -name 'libhamcrest-all-java.jar' -or -name 'hamcrest-all*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'hamcrest-all.jar' -or -name 'libhamcrest-all.jar' -or -name 'libhamcrest-all-java.jar' -or -name 'hamcrest-all*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -21994,7 +21994,7 @@ $as_echo_n "checking hamcrest/all... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'hamcrest/all.jar' -or -name 'libhamcrest/all.jar' -or -name 'libhamcrest/all-java.jar' -or -name 'hamcrest/all*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'hamcrest/all.jar' -or -name 'libhamcrest/all.jar' -or -name 'libhamcrest/all-java.jar' -or -name 'hamcrest/all*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -22214,7 +22214,7 @@ $as_echo_n "checking cobertura... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'cobertura.jar' -or -name 'libcobertura.jar' -or -name 'libcobertura-java.jar' -or -name 'cobertura*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'cobertura.jar' -or -name 'libcobertura.jar' -or -name 'libcobertura-java.jar' -or -name 'cobertura*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -22433,7 +22433,7 @@ $as_echo_n "checking asm3... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'asm3.jar' -or -name 'libasm3.jar' -or -name 'libasm3-java.jar' -or -name 'asm3*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'asm3.jar' -or -name 'libasm3.jar' -or -name 'libasm3-java.jar' -or -name 'asm3*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -22649,7 +22649,7 @@ $as_echo_n "checking asm... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'asm.jar' -or -name 'libasm.jar' -or -name 'libasm-java.jar' -or -name 'asm*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'asm.jar' -or -name 'libasm.jar' -or -name 'libasm-java.jar' -or -name 'asm*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -22868,7 +22868,7 @@ $as_echo_n "checking ecj... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'ecj.jar' -or -name 'libecj.jar' -or -name 'libecj-java.jar' -or -name 'ecj*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'ecj.jar' -or -name 'libecj.jar' -or -name 'libecj-java.jar' -or -name 'ecj*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -32800,7 +32800,7 @@ $as_echo_n "checking saxon9he... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'saxon9he.jar' -or -name 'libsaxon9he.jar' -or -name 'libsaxon9he-java.jar' -or -name 'saxon9he*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'saxon9he.jar' -or -name 'libsaxon9he.jar' -or -name 'libsaxon9he-java.jar' -or -name 'saxon9he*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -33017,7 +33017,7 @@ $as_echo_n "checking saxon... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'saxon.jar' -or -name 'libsaxon.jar' -or -name 'libsaxon-java.jar' -or -name 'saxon*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'saxon.jar' -or -name 'libsaxon.jar' -or -name 'libsaxon-java.jar' -or -name 'saxon*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 
@@ -33235,7 +33235,7 @@ $as_echo_n "checking saxon... " >&6; }
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
 
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'saxon.jar' -or -name 'libsaxon.jar' -or -name 'libsaxon-java.jar' -or -name 'saxon*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name 'saxon.jar' -or -name 'libsaxon.jar' -or -name 'libsaxon-java.jar' -or -name 'saxon*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 

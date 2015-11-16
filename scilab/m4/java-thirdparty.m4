@@ -224,7 +224,7 @@ AC_DEFUN([AC_JAVA_CHECK_JAR], [
 
     DEFAULT_JAR_DIR="$(pwd)/thirdparty/ $(pwd)/jar/ /usr/local/java/ /usr/local/java/jar /usr/local/share/java/ /usr/local/share/java/jar/ /usr/local/lib/java/ $(find /usr/share/java/ -maxdepth 1 -type d 2>/dev/null | sort) $(find /usr/lib64/ -maxdepth 1 -type d 2>/dev/null) $(find  /usr/lib/ -maxdepth 1 -type d 2>/dev/null) $(find /usr/share/*/lib -maxdepth 1 -type d 2>/dev/null) /opt/java/lib/"
    
-    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name '$1.jar' -or -name 'lib$1.jar' -or -name 'lib$1-java.jar' -or -name '$1*.jar' \) -printf '%p:' 2>/dev/null)."
+    jar_resolved="$(find $DEFAULT_JAR_DIR -maxdepth 1 \( -type f -name '$1.jar' -or -name 'lib$1.jar' -or -name 'lib$1-java.jar' -or -name '$1*.jar' \) 2>/dev/null |tr '\n' ':')."
 
     if test ! -f conftestSharedChecker.class ; then
 	AC_JAVA_COMPILE_CHECKER_CLASS()
