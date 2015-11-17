@@ -235,7 +235,7 @@ public final class XcosMessages {
     public static final String LOADING_USER_DEFINE = Messages.gettext("Loading user defined palettes") + DOTS;
     public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock") + DOTS;
     public static final String ERROR_GENERATING_C_CODE = Messages.gettext("A SuperBlock must be selected to generate code");
-    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress") + DOTS;
+    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress");
     public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable")
             + DOTS;
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait") + DOTS;

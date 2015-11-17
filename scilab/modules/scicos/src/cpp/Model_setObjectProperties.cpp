@@ -109,8 +109,11 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
     }
     else if (k == DIAGRAM)
     {
+        model::Diagram* o = static_cast<model::Diagram*>(baseObject);
         switch (p)
         {
+            case DEBUG_LEVEL:
+                return o->setDebugLevel(v);
             default:
                 break;
         }

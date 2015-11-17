@@ -111,8 +111,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
     }
     else if (k == DIAGRAM)
     {
+        model::Diagram* o = static_cast<model::Diagram*>(baseObject);
         switch (p)
         {
+            case DEBUG_LEVEL:
+                o->getDebugLevel(v);
+                return true;
             default:
                 break;
         }

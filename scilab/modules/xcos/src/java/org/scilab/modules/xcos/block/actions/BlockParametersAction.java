@@ -160,7 +160,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
                     }
 
                     block.setLocked(true);
-                    String blk = buildCall("scicos_new", Long.toString(cell.getUID()));
+                    String blk = buildCall("scicos_new", Long.toHexString(cell.getUID()));
                     String xcosBlockInterface = buildCall("xcosBlockInterface", interfaceFunction[0].toCharArray(), "set", blk.toCharArray(), ScilabDirectHandler.CONTEXT.toCharArray());
 
                     asynchronousScilabExec(action, "xcosCellCreated", xcosBlockInterface.toCharArray());
