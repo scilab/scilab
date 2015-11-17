@@ -34,6 +34,7 @@ public class CustomWriter extends ScilabWriter {
     @Override
     public void write(long uid, Kind kind) throws XMLStreamException {
         String[] str = new String[1];
+        int[] integer = new int[1];
         VectorOfDouble vDouble = new VectorOfDouble();
         VectorOfScicosID children = new VectorOfScicosID();
 
@@ -48,6 +49,8 @@ public class CustomWriter extends ScilabWriter {
 
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.PATH, str);
                 shared.stream.writeAttribute("savedFile", str[0]);
+                shared.controller.getObjectProperty(uid, kind, ObjectProperties.DEBUG_LEVEL, integer);
+                shared.stream.writeAttribute("debugLevel", Integer.toString(integer[0]));
 
                 // write simulation properties
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.PROPERTIES, vDouble);

@@ -89,6 +89,10 @@ class CustomHandler implements ScilabHandler {
                 if (v != null) {
                     saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PATH, v);
                 }
+                v = atts.getValue("debugLevel");
+                if (v != null) {
+                    saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.DEBUG_LEVEL, Integer.valueOf(v));
+                }
 
                 /*
                  * Decode simulation properties
