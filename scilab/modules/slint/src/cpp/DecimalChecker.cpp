@@ -22,13 +22,25 @@ void DecimalChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SL
     if (context.getPosition(de.getLocation(), out))
     {
         const wchar_t * const code = context.getCode();
-        if (character != L'\0')
+        if (!character.empty())
         {
             for (const wchar_t * c = code + out.first; c < code + out.second; ++c)
             {
-                if ((*c == L'e' || *c == L'E' || *c == L'd' || *c == L'D') && *c != character)
+                if (*c == L'e' || *c == L'E' || *c == L'd' || *c == L'D')
                 {
-                    result.report(context, e.getLocation(), *this, _("Bad decimal exponent: %s was expected and %s was found."), character, *c);
+                    bool ok = false;
+                    for (const wchar_t _c : character)
+                    {
+                        if (_c == *c)
+                        {
+                            ok = true;
+                            break;
+                        }
+                    }
+                    if (!ok)
+                    {
+                        result.report(context, e.getLocation(), *this, _("Bad decimal exponent: %s was expected and %s was found."), character, *c);
+                    }
                 }
             }
         }
@@ -36,7 +48,7 @@ void DecimalChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SL
         {
             if (*(code + out.first) == L'.')
             {
-                result.report(context, e.getLocation(), *this, _("Decimal numbers musn\'t begin by a dot."));
+                result.report(context, e.getLocation(), *this, _("Decimal numbers must not begin by a dot."));
             }
         }
     }

@@ -22,16 +22,14 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
         if (!assigned.empty())
         {
             // we declare the function in the current scope
-            std::pair<Location, ast::AssignListExp *> p = { e.getLocation(), nullptr };
-            assigned.top().emplace(fd.getSymbol().getName(), p);
+            assigned.top().emplace(fd.getSymbol().getName(), std::make_tuple(e.getLocation(), false, nullptr));
         }
 
-        assigned.emplace(std::unordered_map<std::wstring, std::pair<Location, ast::AssignListExp *>>());
+        assigned.emplace(std::unordered_map<std::wstring, std::tuple<Location, bool, ast::AssignListExp *>>());
         used.emplace(std::unordered_map<std::wstring, const ast::Exp *>());
 
         // a function cans refer to itself
-        std::pair<Location, ast::AssignListExp *> p = { e.getLocation(), nullptr };
-        assigned.top().emplace(fd.getSymbol().getName(), p);
+        assigned.top().emplace(fd.getSymbol().getName(), std::make_tuple(e.getLocation(), false, nullptr));
     }
     else
     {
@@ -40,6 +38,8 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
             if (e.isSimpleVar())
             {
                 const ast::SimpleVar & var = static_cast<const ast::SimpleVar &>(e);
+
+                const std::wstring & Name = var.getSymbol().getName();
                 if (context.isAssignedVar(var))
                 {
                     // if we are not in the context on a nested assignment in a function call (foo(a,b=2))
@@ -60,13 +60,11 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                 // if rhs is used and lhs is not used then this not an "error":
                                 // we are obliged to define lhs just to get rhs.
                                 // So when rhs is used lhs is "used" too.
-                                std::pair<Location, ast::AssignListExp *> p = { var.getLocation(), static_cast<ast::AssignListExp *>(var.getParent()) };
-                                assigned.top().emplace(name, p);
+                                assigned.top().emplace(name, std::make_tuple(var.getLocation(), false, static_cast<ast::AssignListExp *>(var.getParent())));
                             }
                             else
                             {
-                                std::pair<Location, ast::AssignListExp *> p = { var.getLocation(), nullptr };
-                                assigned.top().emplace(name, p);
+                                assigned.top().emplace(name, std::make_tuple(var.getLocation(), false, nullptr));
                             }
                         }
                         else /*if (context.topLoop() && i != used.top.end() && isParentOf(context.topLoop(), i->second))*/
@@ -122,17 +120,17 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                     {
                                         result.report(context, e.getLocation(), *this, _("Use of a private macro \'%s\' defined in an other file %s."), name, fname);
                                     }
-                                    else if (!context.getPublicFunction(fname))
+                                    else if (!context.getPublicFunction(sym.getName()))
                                     {
                                         // The macro has not been declared somewhere in the project
-                                        result.report(context, e.getLocation(), *this, _("Use of non-initialized variable \'%s\' may have any side-effects."), name);
+                                        result.report(context, e.getLocation(), *this, _("TTUse of non-initialized variable \'%s\' may have any side-effects."), name);
                                     }
                                 }
                             }
                         }
                         else
                         {
-                            if (ast::AssignListExp * ale = i->second.second)
+                            if (ast::AssignListExp * ale = std::get<2>(i->second))
                             {
                                 // the variable is in an AssignListExp
                                 // so we must "use" the variables which preceed it too
@@ -162,14 +160,13 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                 }
             }
             // for i=1:10... end even if i is not used, i is useful to make the loop
-            /*else if (e.isVarDec())
+            else if (e.isVarDec())
             {
                 const ast::VarDec & vd = static_cast<const ast::VarDec &>(e);
                 const std::wstring & name = vd.getSymbol().getName();
-                std::pair<Location, ast::AssignListExp *> p = { vd.getLocation(), nullptr };
-                assigned.top().emplace(name, p);
+                assigned.top().emplace(name, std::make_tuple(vd.getLocation(), true, nullptr));
                 used.top().erase(name);
-            }*/
+            }
         }
     }
 }
@@ -188,7 +185,10 @@ void VariablesChecker::postCheckNode(const ast::Exp & e, SLintContext & context,
         map.erase(fd.getSymbol().getName());
         for (const auto & p : map)
         {
-            result.report(context, p.second.first, *this, _("Declared variable and might be unused: %s."), p.first);
+            if (!std::get<1>(p.second)) // the variable has an explicit assignment, i.e. we are not in the case for i=1:10...
+            {
+                result.report(context, std::get<0>(p.second), *this, _("Declared variable and might be unused: %s."), p.first);
+            }
         }
         assigned.pop();
         used.pop();

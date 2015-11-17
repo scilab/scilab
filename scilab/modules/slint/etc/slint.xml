@@ -12,7 +12,7 @@
     <EmptyBlock enable="true" id="00010"/>
     <MopenMclose enable="true" id="00011"/>
     <McCabe enable="true" max="30" id="00012"/>
-    <Decimal enable="true" character="e" checkDot="true" id="00013"/>
+    <Decimal enable="true" character="eE" checkDot="true" id="00013"/>
     <Printf enable="true" id="00014"/>
     <LineLength enable="true" max="80" id="00015"/>
     <LinesCount enable="true" max="200" id="00016"/>

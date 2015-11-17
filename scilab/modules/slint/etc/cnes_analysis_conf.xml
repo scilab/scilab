@@ -21,7 +21,7 @@
         <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="30" />
     </analysisRule>
     <analysisRule analysisRuleId="Decimal" analysisRuleActivation="true">
-        <analysisRuleParameter analysisRuleParameterName="character" analysisRuleTextValue="e" />
+        <analysisRuleParameter analysisRuleParameterName="character" analysisRuleTextValue="eE" />
         <analysisRuleParameter analysisRuleParameterName="checkDot" analysisRuleNumericalValue="1" />
     </analysisRule>
     <analysisRule analysisRuleId="Printf" analysisRuleActivation="true" />

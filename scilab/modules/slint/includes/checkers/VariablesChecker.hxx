@@ -28,7 +28,7 @@ namespace slint
 class VariablesChecker : public SLintChecker
 {
 
-    std::stack<std::unordered_map<std::wstring, std::pair<Location, ast::AssignListExp *>>> assigned;
+    std::stack<std::unordered_map<std::wstring, std::tuple<Location, bool, ast::AssignListExp *>>> assigned;
     std::stack<std::unordered_map<std::wstring, const ast::Exp *>> used;
 
 public:

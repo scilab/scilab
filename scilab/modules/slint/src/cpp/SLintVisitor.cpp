@@ -322,6 +322,7 @@ void SLintVisitor::visit(const ast::AssignExp & e)
     context.setLHSExp(&e.getLeftExp());
     auto range = preCheck(e);
     e.getRightExp().accept(*this);
+    context.setLHSExp(&e.getLeftExp());
     e.getLeftExp().accept(*this);
     postCheck(e, range);
     context.setLHSExp(nullptr);

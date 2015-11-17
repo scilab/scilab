@@ -125,23 +125,23 @@ std::wstring SLintXmlResult::replaceByEntities(const std::wstring & seq)
     {
         if (c == L'<')
         {
-            pushEntity(buf, L"&#0060;", 7);
+            pushEntity(buf, L"&lt;", 7);
         }
         else if (c == L'>')
         {
-            pushEntity(buf, L"&#0062;", 7);
+            pushEntity(buf, L"&gt;", 7);
         }
         else if (c == L'\'')
         {
-            pushEntity(buf, L"&#0039;", 7);
+            pushEntity(buf, L"&apos;", 7);
         }
         else if (c == L'\"')
         {
-            pushEntity(buf, L"&#0034;", 7);
+            pushEntity(buf, L"&quot;", 7);
         }
         else if (c == L'&')
         {
-            pushEntity(buf, L"&#0038;", 7);
+            pushEntity(buf, L"&amp;", 7);
         }
         else
         {

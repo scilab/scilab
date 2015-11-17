@@ -142,9 +142,8 @@ SLintChecker * XMLConfig::createFromXmlNode<DecimalChecker>(xmlNode * node)
         XMLtools::getWString(node, "id", id);
         XMLtools::getWString(node, "character", character);
         XMLtools::getBool(node, "checkDot", checkDot);
-        wchar_t c = character.empty() ? L'\0' : character.at(0);
 
-        return new DecimalChecker(id, c, checkDot);
+        return new DecimalChecker(id, character, checkDot);
     }
 
     return nullptr;

@@ -111,6 +111,7 @@ void SLint::setFiles(const std::vector<std::wstring> & files)
                 if (sf.get())
                 {
                     scifiles.emplace_back(sf);
+                    context.addPublicFunction(sf->getMain());
                 }
             }
         }

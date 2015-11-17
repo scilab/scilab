@@ -176,9 +176,8 @@ SLintChecker * CNESConfig::create<DecimalChecker>(const ToolConfigurationType & 
 
         CNESConfig::getWString(art, "character", character);
         CNESConfig::getBool(art, "checkDot", checkDot);
-        wchar_t c = character.empty() ? L'\0' : character.at(0);
 
-        return new DecimalChecker(CNESConfig::getId(tct, art), c, checkDot);
+        return new DecimalChecker(CNESConfig::getId(tct, art), character, checkDot);
     }
 
     return nullptr;
