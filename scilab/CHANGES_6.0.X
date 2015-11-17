@@ -15,6 +15,8 @@ For a high-level overview of the changes in this release, please consult the "Wh
 
 * Bug #14257 fixed - English spelling in messages and in comments.
 
+* Bug #14251 fixed - `spec` leaked some memory.
+
 
 
         Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2
