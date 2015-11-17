@@ -31,7 +31,7 @@ Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , ANNOTATION , STYLE ) : NO_CHANGES
  o  = 
-GUI     : 
+GUI     : TEXT_f
 Graphics: 
           orig = [0,0]
           sz = [2,1]
@@ -51,7 +51,7 @@ o.void
     []
 o.gui
  ans  =
-    []
+ TEXT_f
 // Modify it
 o = TEXT_f("set", o)
 Xcos debug: objectCreated( 2 , ANNOTATION )
@@ -72,7 +72,7 @@ Xcos trace: propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , ANNOTATION , STYLE ) : NO_CHANGES
 Xcos debug: objectDeleted( 1 , ANNOTATION )
  o  = 
-GUI     : 
+GUI     : TEXT_f
 Graphics: 
           orig = [0,0]
           sz = [3,4]
@@ -93,7 +93,7 @@ o.void
     []
 o.gui
  ans  =
-    []
+ TEXT_f
 // Check that all the model items are freed
 clear
 Xcos debug: objectDeleted( 2 , ANNOTATION )
