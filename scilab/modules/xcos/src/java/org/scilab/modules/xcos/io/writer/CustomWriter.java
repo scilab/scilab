@@ -114,9 +114,9 @@ public class CustomWriter extends ScilabWriter {
          * Add the legacy version comment
          */
         final Package p = Package.getPackage("org.scilab.modules.xcos");
-        StringBuilder comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
-        .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion());
-        shared.stream.writeComment(comment.toString());
+        String comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
+        .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion()).toString();
+        shared.stream.writeComment(comment);
 
         /*
          * encode some content then the children
@@ -151,5 +151,9 @@ public class CustomWriter extends ScilabWriter {
         shared.layers.pop();
         shared.stream.writeEndElement(); // root
         shared.stream.writeEndElement(); // mxGraphModel
+        shared.stream.writeEmptyElement("mxCell");
+        shared.stream.writeAttribute("as", "defaultParent");
+        shared.stream.writeAttribute("id", layer.toString());
+        shared.stream.writeAttribute("parent", root.toString());
     }
 }
