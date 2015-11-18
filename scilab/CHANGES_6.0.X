@@ -13,6 +13,8 @@ For a high-level overview of the changes in this release, please consult the "Wh
         Changes between version 6.0.0-alpha-2 and 6.0.0-beta-1
         ======================================================
 
+* Bug #13990 fixed - Windows installer did not ship all localization files.
+
 * Bug #14257 fixed - English spelling in messages and in comments.
 
 * Bug #14251 fixed - `spec` leaked some memory.
