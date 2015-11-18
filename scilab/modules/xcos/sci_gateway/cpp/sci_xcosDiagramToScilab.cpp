@@ -61,6 +61,7 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
     if (!in[0]->isString())
     {
         Scierror(77, _("%s: Wrong type for input argument #%d: string expected.\n"), funname, 1);
+        return types::Function::Error;
     }
 
     types::String* files = in[0]->getAs<types::String>();
@@ -87,6 +88,7 @@ types::Function::ReturnValue sci_xcosDiagramToScilab(types::typed_list &in, int 
             if (!in[1 + i]->isUserType())
             {
                 Scierror(77, _("%s: Wrong type for input argument #%d: ""%s"" expected.\n"), funname, "diagram");
+                return types::Function::Error;
             }
         }
         for (int i = 0; i < _iRetCount; i++)
