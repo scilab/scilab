@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.io;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
@@ -91,6 +90,7 @@ public class ScilabTypeCoder {
         VectorOfDouble vec = new VectorOfDouble();
         encode(value, vec);
 
+        // System.err.println("var2vec:" + var.toString() + ":" + toString(vec));
         if (LOG.isLoggable(Level.FINE)) {
             LOG.fine("var2vec:" + var.toString() + ":" + toString(vec));
         }
@@ -359,6 +359,7 @@ public class ScilabTypeCoder {
         ScilabType var = decodeHeader(vec);
         decode(vec, var);
 
+        // System.err.println("vec2var:" + toString(vec) + ":" + var.toString());
         if (LOG.isLoggable(Level.FINE)) {
             LOG.fine("vec2var:" + toString(vec) + ":" + var.toString());
         }
@@ -507,21 +508,27 @@ public class ScilabTypeCoder {
         }
 
         // reconstruct each String object
-        try {
-            for (int i = 0; i < var.getHeight(); i++) {
-                for (int j = 0; j < var.getWidth(); j++) {
-                    ByteBuffer view = vec.asByteBuffer(position, offset[i][j]);
-                    byte[] bytes = new byte[offset[i][j] * Double.BYTES];
+        Charset utf8 = Charset.forName("UTF-8");
+        for (int i = 0; i < var.getHeight(); i++) {
+            for (int j = 0; j < var.getWidth(); j++) {
+                ByteBuffer view = vec.asByteBuffer(position, offset[i][j]);
+                byte[] bytes = new byte[offset[i][j] * Double.BYTES];
 
-                    view.get(bytes);
-                    data[i][j] = new String(bytes, "UTF-8");
+                view.get(bytes);
 
-                    position += offset[i][j];
-                }
+                // to avoid mis-decoding we have to look for the strlen of bytes
+                int length = 0;
+                for (; length < bytes.length; length++)
+                    if (bytes[length] == 0) {
+                        break;
+                    }
+
+                data[i][j] = new String(bytes, 0, length, utf8);
+
+                position += offset[i][j];
             }
-        } catch (UnsupportedEncodingException e) {
-            // ignore as UTF-8 is always available
         }
+
         return var;
     }
 
