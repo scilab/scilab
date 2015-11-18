@@ -100,7 +100,6 @@ public class CustomWriter extends ScilabWriter {
     }
 
     private void writeDiagramAndSuperDiagramContent(long uid, Kind kind, VectorOfScicosID children) throws XMLStreamException {
-
         VectorOfInt colors = new VectorOfInt();
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
         shared.stream.writeAttribute("background", Integer.toString(colors.get(0)));

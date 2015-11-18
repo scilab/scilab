@@ -479,7 +479,7 @@ void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& 
     }
 
     // sort according to the kinds
-    std::sort(container.begin(), container.end(), [] (const local_pair & a, const local_pair & b)
+    std::stable_sort(container.begin(), container.end(), [] (const local_pair & a, const local_pair & b)
     {
         return a.second < b.second;
     });
