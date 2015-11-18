@@ -39,7 +39,7 @@ static void scilabPrint(const char* _pstText)
 
 void scilabWrite(const char* _pstText)
 {
-    if (isPromptShow())
+    if (isPrintOutput())
     {
         scilabPrint(const_cast<char*>(_pstText));
     }
@@ -52,7 +52,7 @@ void scilabForcedWrite(const char* _pstText)
 
 void scilabWriteW(const wchar_t* _pwsText)
 {
-    if (isPromptShow())
+    if (isPrintOutput())
     {
         char* pstTemp = wide_string_to_UTF8(_pwsText);
         scilabWrite(pstTemp);
@@ -69,7 +69,7 @@ void scilabForcedWriteW(const wchar_t* _pwsText)
 
 void scilabError(const char* _pstText)
 {
-    if (getSilentError() == VERBOSE_ERROR)
+    if (isSilentError() == 0)
     {
         scilabPrint(const_cast<char*>(_pstText));
     }
@@ -77,7 +77,7 @@ void scilabError(const char* _pstText)
 
 void scilabErrorW(const wchar_t* _pwsText)
 {
-    if (getSilentError() == VERBOSE_ERROR)
+    if (isSilentError() == 0)
     {
         char* pstTemp = wide_string_to_UTF8(_pwsText);
         scilabPrint(pstTemp);

@@ -202,12 +202,28 @@ public :
     //Last Error Function
 private :
     static std::wstring m_wstErrorFunction;
-
-public :
+public:
     static void setLastErrorFunction(const std::wstring& _wstFunction);
     static std::wstring& getLastErrorFunction();
 
-    //Prompt Mode and Silent error
+    //verbose ";" after instruction
+    //set before function call to know status of e.isVerbose in functions
+private:
+    static bool m_bVerbose;
+
+public : 
+    static void setVerbose(bool _bVerbose);
+    static bool getVerbose(void);
+
+
+    //silent error ( try catch, errcatch, ... )
+private : 
+    static bool m_iSilentError;
+public:
+    static void setSilentError(bool _iSilentError);
+    static bool isSilentError(void);
+
+    //Prompt Mode
 public :
     /*
     Prompt mode
@@ -220,30 +236,35 @@ public :
     step7 = 7
     */
 
-    /*
-       show = 0
-       silent = 1
-    */
 private :
     static int m_iPromptMode;
-    static int m_iSilentError;
-
-    //set before function call to know status of e.isVerbose in functions
-    static bool m_bVerbose;
+    static bool m_printInput;
+    static bool m_printOutput;
+    static bool m_printCompact;
+    static bool m_printInteractive;
 
 public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
-    static bool isPromptShow(void);
-    static bool isEmptyLineShow(void);
 
-    static void setSilentError(int _iSilentError);
-    static int getSilentError(void);
-    static void setVerbose(bool _bVerbose);
-    static bool getVerbose(void);
+    static void setPrintInput(bool val);
+    static bool isPrintInput(void);
+    static bool togglePrintInput(void);
+
+    static void setPrintOutput(bool val);
+    static bool isPrintOutput(void);
+    static bool togglePrintOutput(void);
+
+    static void setPrintInteractive(bool val);
+    static bool isPrintInteractive(void);
+    static bool togglePrintInteractive(void);
+
+    static void setPrintCompact(bool val);
+    static bool isPrintCompact(void);
+    static bool togglePrintCompact(void);
+
 
     //Thread List
-
 private :
     static std::list<types::ThreadId*> m_threadList;
 public :

@@ -68,7 +68,7 @@ int printError(SciErr* _psciErr, int _iLastMsg)
 
     SciStoreError(_psciErr->iErr);
 
-    if (getPromptMode() != PROMPTMODE_SILENT && getSilentError() == VERBOSE_ERROR)
+    if (isPrintOutput() == 1 && isSilentError() == 0)
     {
         if (_iLastMsg)
         {

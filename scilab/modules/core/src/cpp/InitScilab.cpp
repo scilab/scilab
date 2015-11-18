@@ -618,7 +618,7 @@ void* scilabReadAndStore(void* param)
 
         Parser::ParserStatus exitStatus = Parser::Failed;
 
-        if (ConfigVariable::isEmptyLineShow())
+        if (ConfigVariable::isPrintCompact() == false)
         {
             scilabWriteW(L"\n");
         }

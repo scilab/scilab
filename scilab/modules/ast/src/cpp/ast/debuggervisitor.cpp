@@ -237,7 +237,7 @@ void DebuggerVisitor::visit(const SeqExp  &e)
                     //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.getResult());
                     types::InternalType* pITAns = getResult();
                     symbol::Context::getInstance()->put(m_pAns, pITAns);
-                    if (exp->isVerbose() && ConfigVariable::isPromptShow())
+                    if (exp->isVerbose() && ConfigVariable::isPrintOutput())
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");

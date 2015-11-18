@@ -17,15 +17,6 @@
 #include <wchar.h>
 #include "dynlib_ast.h"
 
-#define PROMPTMODE_NORMAL   0   //show new values but not commands
-#define PROMPTMODE_SILENT   -1  //hide all
-#define PROMPTMODE_PROMPT   2   //show all
-#define PROMPTMODE_EXEC     1   //show all
-#define PROMPTMODE_EXEC3    3   //show all
-#define PROMPTMODE_STEP     4   //later ...
-#define PROMPTMODE_STEP7    7   //later ...
-
-#define SILENT_ERROR        1
 #define VERBOSE_ERROR       0
 
 typedef enum
@@ -52,9 +43,16 @@ EXTERN_AST int getConsoleLines(void);
 
 EXTERN_AST int getPromptMode(void);
 EXTERN_AST void setPromptMode(int _iMode);
-EXTERN_AST int isPromptShow(void);
-EXTERN_AST int getSilentError(void);
+EXTERN_AST int isSilentError(void);
 EXTERN_AST void setSilentError(int _iSilent);
+EXTERN_AST int isPrintInput();
+EXTERN_AST void setPrintInput(int);
+EXTERN_AST int isPrintOutput();
+EXTERN_AST void setPrintOutput(int);
+EXTERN_AST int isPrintCompact();
+EXTERN_AST void setPrintCompact(int);
+EXTERN_AST int isPrintInteractive();
+EXTERN_AST void setPrintInteractive(int);
 
 EXTERN_AST int getieee(void);
 EXTERN_AST void setieee(int);

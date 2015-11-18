@@ -28,16 +28,26 @@ namespace ast
 ** \b Example: (print_int(2097); print("WipeOut")) */
 class SeqExp : public Exp
 {
+public:
+
+    //enum on the orgin of execution
+    enum ExecFrom
+    {
+        SCRIPT,
+        EXEC,
+        EXECSTR
+    };
+
     /** \name Ctor & dtor.
     ** \{ */
-public:
+
     /** \brief Construct a Sequence Expression node.
     ** \param location scanner position informations
     ** \param body EXP LIST intruction
     */
     SeqExp (const Location& location,
-            exps_t& body)
-        : Exp (location)
+        exps_t& body)
+        : Exp(location), execfrom(SCRIPT)
     {
         for (auto it : body)
         {
@@ -130,6 +140,24 @@ public:
             exp->setBreakable();
         }
     }
+
+    void setExecFrom(ExecFrom from)
+    {
+        execfrom = from;
+    }
+
+    ExecFrom getExecFrom()
+    {
+        return execfrom;
+    }
+
+    ExecFrom getExecFrom() const
+    {
+        return execfrom;
+    }
+
+private :
+    ExecFrom execfrom;
 };
 
 } // namespace ast

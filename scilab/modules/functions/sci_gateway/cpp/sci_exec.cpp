@@ -45,10 +45,6 @@ extern "C"
 #include "PATH_MAX.h"
 }
 
-void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
-std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
-std::string getExpression(const std::string& _stFile, ast::Exp* _pExp);
-
 void closeFile(std::ifstream* file, int fileId, const std::wstring& wstFile, ast::Exp* pExp)
 {
     if (file)
@@ -290,208 +286,57 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     int oldVal = ConfigVariable::getPromptMode();
     ConfigVariable::setPromptMode(promptMode);
 
-    // if not exp displaying, just execute the seqexp
-    if (file == NULL || promptMode == 0 || promptMode == 2)
-    {
-        ast::SeqExp* pSeqExp = pExp->getAs<ast::SeqExp>();
-        std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
+    ast::SeqExp* pSeqExp = pExp->getAs<ast::SeqExp>();
+    pSeqExp->setExecFrom(ast::SeqExp::EXEC);
+    std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
 
+    try
+    {
+        symbol::Context* pCtx = symbol::Context::getInstance();
+        int scope = pCtx->getScopeLevel();
+        int level = ConfigVariable::getRecursionLevel();
         try
         {
-            symbol::Context* pCtx = symbol::Context::getInstance();
-            int scope = pCtx->getScopeLevel();
-            int level = ConfigVariable::getRecursionLevel();
-            try
-            {
-                pSeqExp->accept(*exec);
-            }
-            catch (const ast::RecursionException& /* re */)
-            {
-                //close opened scope during try
-                while (pCtx->getScopeLevel() > scope)
-                {
-                    pCtx->scope_end();
-                }
-
-                //decrease recursion to init value
-                while (ConfigVariable::getRecursionLevel() > level)
-                {
-                    ConfigVariable::where_end();
-                    ConfigVariable::decreaseRecursion();
-                }
-
-                //print msg about recursion limit and trigger an error
-                wchar_t sz[1024];
-                os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
-                throw ast::InternalError(sz);
-            }
+            pSeqExp->accept(*exec);
         }
-        catch (const ast::InternalAbort& ia)
+        catch (const ast::RecursionException& /* re */)
         {
-            closeFile(file, iID, wstFile, pExp);
-            throw ia;
-        }
-        catch (const ast::InternalError& ie)
-        {
-            if (bErrCatch == false)
+            //close opened scope during try
+            while (pCtx->getScopeLevel() > scope)
             {
-                closeFile(file, iID, wstFile, pExp);
-                ConfigVariable::setPromptMode(oldVal);
-                ConfigVariable::setExecutedFileID(0);
-                throw ie;
+                pCtx->scope_end();
             }
 
-            ConfigVariable::resetWhereError();
-            iErr = ConfigVariable::getLastErrorNumber();
+            //decrease recursion to init value
+            while (ConfigVariable::getRecursionLevel() > level)
+            {
+                ConfigVariable::where_end();
+                ConfigVariable::decreaseRecursion();
+            }
+
+            //print msg about recursion limit and trigger an error
+            wchar_t sz[1024];
+            os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
+            throw ast::InternalError(sz);
         }
     }
-    else
+    catch (const ast::InternalAbort& ia)
     {
-        ast::exps_t& LExp = pExp->getAs<ast::SeqExp>()->getExps();
-
-        char pstPrompt[64];
-        //get prompt
-        GetCurrentPrompt(pstPrompt);
-        std::string stPrompt(pstPrompt);
-
-        std::string str;
-        int iCurrentLine = -1; //no data in str
-        int iCurrentCol = 0; //no data in str
-
-        for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd; ++j)
+        closeFile(file, iID, wstFile, pExp);
+        throw ia;
+    }
+    catch (const ast::InternalError& ie)
+    {
+        if (bErrCatch == false)
         {
-            if (ConfigVariable::getPromptMode() == 7)
-            {
-                stPrompt = SCIPROMPT_PAUSE;
-            }
-            // printf some exp
-            ast::exps_t::iterator k = j;
-            int iLastLine = (*j)->getLocation().last_line;
-            do
-            {
-                str = printExp(*file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
-                iLastLine = (*k)->getLocation().last_line;
-                k++;
-            }
-            while (k != LExp.end() && (*k)->getLocation().first_line == iLastLine);
-
-            // In case where the line ends by spaces, iCurrentCol is not reset
-            // by printExp because we don't know if that's the end of the expression
-            // before go out of the loop. So we have to reset column count
-            // and print a new line before manage the next line.
-            if (iCurrentCol != 0)
-            {
-                iCurrentCol = 0;
-                printLine("", "", true);
-            }
-
-            // create a seqexp with printed exp
-            ast::exps_t* someExps = new ast::exps_t();
-            someExps->assign(j, k);
-            k--;
-            ast::SeqExp seqExp(Location((*j)->getLocation().first_line,
-                                        (*k)->getLocation().last_line,
-                                        (*j)->getLocation().first_column,
-                                        (*k)->getLocation().last_column),
-                               *someExps);
-
-            j = k;
-
-            std::unique_ptr<ast::ConstVisitor> exec(ConfigVariable::getDefaultVisitor());
-
-            try
-            {
-                symbol::Context* pCtx = symbol::Context::getInstance();
-                int scope = pCtx->getScopeLevel();
-                int level = ConfigVariable::getRecursionLevel();
-                try
-                {
-                    // execute printed exp
-                    seqExp.accept(*exec);
-                }
-                catch (const ast::RecursionException& /* re */)
-                {
-                    //close opened scope during try
-                    while (pCtx->getScopeLevel() > scope)
-                    {
-                        pCtx->scope_end();
-                    }
-
-                    //decrease recursion to init value
-                    while (ConfigVariable::getRecursionLevel() > level)
-                    {
-                        ConfigVariable::where_end();
-                        ConfigVariable::decreaseRecursion();
-                    }
-
-                    //print msg about recursion limit and trigger an error
-                    wchar_t sz[1024];
-                    os_swprintf(sz, 1024, _W("Recursion limit reached (%d).\n").data(), ConfigVariable::getRecursionLimit());
-                    throw ast::InternalError(sz);
-                }
-            }
-            catch (const ast::InternalAbort& ia)
-            {
-                closeFile(file, iID, wstFile, pExp);
-
-                //restore previous prompt mode
-                ConfigVariable::setPromptMode(oldVal);
-
-                // avoid double delete on exps when "seqExp" is destryed and "LExp" too
-                ast::exps_t& protectExp = seqExp.getExps();
-                for (int i = 0; i < protectExp.size(); ++i)
-                {
-                    protectExp[i] = NULL;
-                }
-
-                throw ia;
-            }
-            catch (const ast::InternalError& ie)
-            {
-                ConfigVariable::setExecutedFileID(0);
-                ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
-                if (ConfigVariable::getLastErrorLine() == 0)
-                {
-                    ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
-                }
-
-                // avoid double delete on exps when "seqExp" is destryed and "LExp" too
-                ast::exps_t& protectExp = seqExp.getExps();
-                for (int i = 0; i < protectExp.size(); ++i)
-                {
-                    protectExp[i] = NULL;
-                }
-
-                //store message
-                iErr = ConfigVariable::getLastErrorNumber();
-                if (bErrCatch == false)
-                {
-                    closeFile(file, iID, wstFile, pExp);
-
-                    //restore previous prompt mode
-                    ConfigVariable::setPromptMode(oldVal);
-                    throw ie;
-                }
-
-                if (pMacro)
-                {
-                    // reset last first line of macro called
-                    ConfigVariable::macroFirstLine_end();
-                }
-
-                ConfigVariable::resetWhereError();
-                break;
-            }
-
+            closeFile(file, iID, wstFile, pExp);
+            ConfigVariable::setPromptMode(oldVal);
             ConfigVariable::setExecutedFileID(0);
-
-            // avoid double delete on exps when "seqExp" is destryed and "LExp" too
-            ast::exps_t& protectExp = seqExp.getExps();
-            for (int i = 0; i < protectExp.size(); ++i)
-            {
-                protectExp[i] = NULL;
-            }
+            throw ie;
         }
+
+        ConfigVariable::resetWhereError();
+        iErr = ConfigVariable::getLastErrorNumber();
     }
 
     //restore previous prompt mode
@@ -506,231 +351,3 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     closeFile(file, iID, wstFile, pExp);
     return types::Function::OK;
 }
-
-std::string getExpression(const std::string& _stFile, ast::Exp* _pExp)
-{
-    std::string out;
-    std::string stBuffer;
-    int iLine = 0;
-    Location loc = _pExp->getLocation();
-    std::ifstream file(_stFile.c_str());
-
-    //bypass previous lines
-    for (int i = 0 ; i < loc.first_line; i++)
-    {
-        std::getline(file, stBuffer);
-    }
-
-    if (loc.first_line == loc.last_line)
-    {
-        int iStart = loc.first_column - 1;
-        int iEnd = loc.last_column - 1;
-        int iLen = iEnd - iStart;
-        out += std::string(stBuffer.c_str() + iStart, iLen);
-    }
-    else
-    {
-        //
-
-        //first line, entire or not
-        out += std::string(stBuffer.c_str() + loc.first_column - 1);
-        out += "\n";
-
-        //print other full lines
-        for (int i = loc.first_line; i < (loc.last_line - 1) ; i++)
-        {
-            std::getline(file, stBuffer);
-            out += stBuffer;
-            out += "\n";
-        }
-
-
-        //last line, entire or not
-        getline(file, stBuffer);
-        out += std::string(stBuffer.c_str(), loc.last_column - 1);
-        out += "\n";
-    }
-    return out;
-}
-
-std::string printExp(std::ifstream& _File, ast::Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer)
-{
-    //case 1, exp is on 1 line and take the entire line
-
-    //case 2, exp is multiline
-
-    //case 3, exp is part of a line.
-    //ex : 3 exp on the same line a = 1; b = 2; c = 3;
-
-    //case 4, exp is multiline but start and/or finish in the middle of a line
-    //ex :
-    //a = 10;for i = 1 : a
-    //	a
-    //end, b = 1;
-
-    Location loc = _pExp->getLocation();
-
-    //positionning file curser at loc.first_line
-    {
-        //strange case, current position is after the wanted position
-        if (*_piLine > loc.first_line)
-        {
-            //reset line counter and restart reading at the start of the file.
-            *_piLine = -1;
-            _File.seekg( 0, std::ios_base::beg );
-        }
-
-        //bypass previous lines
-        for (int i = *_piLine ; i < loc.first_line - 1; i++)
-        {
-
-            (*_piLine)++;
-            if ((*_piLine) != (loc.first_line - 1))
-            {
-                //empty line but not sequential lines
-                printLine("", "", true);
-            }
-            std::getline(_File, _stPreviousBuffer);
-        }
-    }
-
-    if (loc.first_line == loc.last_line)
-    {
-        //1 line
-        int iStart = loc.first_column - 1;
-        int iEnd = loc.last_column - 1;
-        int iLen = iEnd - iStart;
-        std::string strLastLine(_stPreviousBuffer.c_str() + iStart, iLen);
-        int iExpLen = iLen;
-        int iLineLen = (int)_stPreviousBuffer.size();
-        //printLine(_pstPrompt, strLastLine, true, false);
-
-        if (iStart == 0 && iExpLen == iLineLen)
-        {
-            //entire line
-            if (*_piCol)
-            {
-                //blank char at the end of previous line
-                printLine("", "", true);
-            }
-            printLine(_stPrompt, strLastLine, true);
-            *_piCol = 0;
-        }
-        else
-        {
-            if (iStart == 0)
-            {
-                //begin of line
-                if (*_piCol)
-                {
-                    //blank char at the end of previous line
-                    printLine("", "", true);
-                }
-                printLine(_stPrompt, strLastLine, false);
-                *_piCol = loc.last_column;
-            }
-            else
-            {
-                if (*_piCol == 0)
-                {
-                    printLine(_stPrompt, "", false);
-                    (*_piCol)++;
-                }
-
-                if (*_piCol < loc.first_column)
-                {
-                    //pickup separator between expressionsfrom file and add to output
-                    int iSize = loc.first_column - *_piCol;
-                    std::string stTemp(_stPreviousBuffer.c_str() +  (*_piCol - 1), iSize);
-                    printLine("", stTemp, false);
-                    *_piCol = loc.first_column;
-                }
-
-                if (iEnd == iLineLen)
-                {
-                    printLine("", strLastLine, true);
-                    *_piCol = 0;
-                }
-                else
-                {
-                    printLine("", strLastLine, false);
-                    *_piCol = loc.last_column;
-                }
-            }
-        }
-    }
-    else
-    {
-        //multiline
-
-        if (loc.first_column == 1)
-        {
-            if (*_piCol)
-            {
-                //blank char at the end of previous line
-                printLine("", "", true);
-            }
-            printLine(_stPrompt, _stPreviousBuffer.c_str() + (loc.first_column - 1), false);
-        }
-        else
-        {
-            if (*_piCol < loc.first_column)
-            {
-                //pickup separator between expressionsfrom file and add to output
-                printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
-                *_piCol = loc.first_column;
-            }
-        }
-
-        //print other full lines
-        for (int i = loc.first_line; i < (loc.last_line - 1) ; i++)
-        {
-            (*_piLine)++;
-            std::getline(_File, _stPreviousBuffer);
-            // dont print empty line of function body
-            if (_stPreviousBuffer.size() != 0)
-            {
-                printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
-            }
-        }
-
-        //last line
-        std::getline(_File, _stPreviousBuffer);
-        (*_piLine)++;
-
-        int iSize = loc.last_column - 1;
-        std::string stLastLine(_stPreviousBuffer.c_str(), iSize);
-        int iLineLen = (int)_stPreviousBuffer.size();
-        if (iLineLen == iSize)
-        {
-            printLine(_stPrompt, stLastLine, true);
-            *_piCol = 0;
-        }
-        else
-        {
-            printLine(_stPrompt, stLastLine, false);
-            *_piCol = loc.last_column;
-        }
-    }
-
-    return _stPreviousBuffer;
-}
-
-void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF)
-{
-    std::string st;
-
-    if (_stPrompt.size() != 0)
-    {
-        st = "\n" + _stPrompt;
-    }
-
-    st += _stLine;
-    if (_bLF && ConfigVariable::isEmptyLineShow())
-    {
-        st += "\n";
-    }
-
-    scilabWrite(st.c_str());
-}
-/*--------------------------------------------------------------------------*/

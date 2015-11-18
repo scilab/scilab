@@ -89,19 +89,54 @@ void setPromptMode(int _iMode)
     ConfigVariable::setPromptMode(_iMode);
 }
 
-int isPromptShow(void)
+int isPrintInput()
 {
-    return static_cast<int>(ConfigVariable::isPromptShow());
+    return ConfigVariable::isPrintInput() ? 1 : 0;
 }
 
-int getSilentError(void)
+void setPrintInput(int val)
 {
-    return static_cast<int>(ConfigVariable::getSilentError());
+    ConfigVariable::setPrintInput(val ? true : false);
+}
+
+int isPrintOutput()
+{
+    return ConfigVariable::isPrintOutput() ? 1 : 0;
+}
+
+void setPrintOutput(int val)
+{
+    ConfigVariable::setPrintOutput(val ? true : false);
+}
+
+int isPrintCompact()
+{
+    return ConfigVariable::isPrintCompact() ? 1 : 0;
+}
+
+void setPrintCompact(int val)
+{
+    ConfigVariable::setPrintCompact(val ? true : false);
+}
+
+int isPrintInteractive()
+{
+    return ConfigVariable::isPrintInteractive() ? 1 : 0;
+}
+
+void setPrintInteractive(int val)
+{
+    ConfigVariable::setPrintInteractive(val ? true : false);
+}
+
+int isSilentError(void)
+{
+    return ConfigVariable::isSilentError() ? 1 : 0;
 }
 
 void setSilentError(int _iSilent)
 {
-    ConfigVariable::setSilentError(_iSilent);
+    ConfigVariable::setSilentError(_iSilent ? true : false);
 }
 
 int getieee()

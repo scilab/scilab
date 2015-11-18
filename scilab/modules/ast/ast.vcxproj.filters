@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
@@ -858,6 +858,9 @@
     </ClInclude>
     <ClInclude Include="includes\analysis\data\VarPromotion.hxx">
       <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\ast\run_SeqExp.hpp">
+      <Filter>Header Files\ast</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

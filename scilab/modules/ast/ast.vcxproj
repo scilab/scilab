@@ -509,6 +509,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="src\cpp\ast\run_CallExp.hpp" />
     <ClInclude Include="src\cpp\ast\run_MatrixExp.hpp" />
     <ClInclude Include="src\cpp\ast\run_OpExp.hpp" />
+    <ClInclude Include="src\cpp\ast\run_SeqExp.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\analysis\AnalysisVisitor.cpp" />

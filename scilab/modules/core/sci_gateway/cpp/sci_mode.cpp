@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
 
         ConfigVariable::setPromptMode(iScilabMode);
 
-        if (iScilabMode == 4 || iScilabMode == 7)
+        if (ConfigVariable::isPrintInteractive())
         {
             sciprint(_("Pause mode: enter empty lines to continue.\n"));
         }
@@ -79,4 +79,3 @@ types::Function::ReturnValue sci_mode(types::typed_list &in, int _iRetCount, typ
 
     return types::Function::OK;
 }
-/*--------------------------------------------------------------------------*/
