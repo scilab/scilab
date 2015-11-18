@@ -265,11 +265,11 @@
     <ClInclude Include="includes\checkers\ReturnsCountChecker.hxx">
       <Filter>Header Files\checkers</Filter>
     </ClInclude>
-    <ClInclude Include="includes\checkers\StatInCondChecker.hxx">
-      <Filter>Header Files\checkers</Filter>
-    </ClInclude>
     <ClInclude Include="includes\checkers\NotEqualChecker.hxx">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\checkers\ExpInCondChecker.hxx">
+      <Filter>Header Files\checkers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -483,9 +483,6 @@
     <ClCompile Include="src\cpp\StandardType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\StatInCondChecker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\ToolConfiguration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -493,6 +490,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\NotEqualChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ExpInCondChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

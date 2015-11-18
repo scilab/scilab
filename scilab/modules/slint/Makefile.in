@@ -214,7 +214,7 @@ am__objects_1 = src/cpp/libscislint_algo_la-SLintContext.lo \
 	src/cpp/libscislint_algo_la-NotNotChecker.lo \
 	src/cpp/libscislint_algo_la-SpacesInArgsChecker.lo \
 	src/cpp/libscislint_algo_la-GlobalKeywordChecker.lo \
-	src/cpp/libscislint_algo_la-StatInCondChecker.lo \
+	src/cpp/libscislint_algo_la-ExpInCondChecker.lo \
 	src/cpp/libscislint_algo_la-CommentRatioChecker.lo \
 	src/cpp/libscislint_algo_la-FunctionArgsOrderChecker.lo \
 	src/cpp/libscislint_algo_la-FunctionTestReturnChecker.lo \
@@ -744,7 +744,7 @@ src/cpp/BracketedExpChecker.cpp \
 src/cpp/NotNotChecker.cpp \
 src/cpp/SpacesInArgsChecker.cpp \
 src/cpp/GlobalKeywordChecker.cpp \
-src/cpp/StatInCondChecker.cpp \
+src/cpp/ExpInCondChecker.cpp \
 src/cpp/CommentRatioChecker.cpp \
 src/cpp/FunctionArgsOrderChecker.cpp \
 src/cpp/FunctionTestReturnChecker.cpp \
@@ -996,7 +996,7 @@ src/cpp/libscislint_algo_la-SpacesInArgsChecker.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscislint_algo_la-GlobalKeywordChecker.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscislint_algo_la-StatInCondChecker.lo:  \
+src/cpp/libscislint_algo_la-ExpInCondChecker.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscislint_algo_la-CommentRatioChecker.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1086,6 +1086,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-EmptyBlockChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-EqEqChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-ExcludedProjectFileType.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-ExpInCondChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-FileException.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-FunctionArgsChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-FunctionArgsOrderChecker.Plo@am__quote@
@@ -1130,7 +1131,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-StandardRuleParameterValueType.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-StandardRuleType.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-StandardType.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-StatInCondChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-StructChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-TodoChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-ToolConfiguration.Plo@am__quote@
@@ -1504,12 +1504,12 @@ src/cpp/libscislint_algo_la-GlobalKeywordChecker.lo: src/cpp/GlobalKeywordChecke
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-GlobalKeywordChecker.lo `test -f 'src/cpp/GlobalKeywordChecker.cpp' || echo '$(srcdir)/'`src/cpp/GlobalKeywordChecker.cpp
 
-src/cpp/libscislint_algo_la-StatInCondChecker.lo: src/cpp/StatInCondChecker.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-StatInCondChecker.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-StatInCondChecker.Tpo -c -o src/cpp/libscislint_algo_la-StatInCondChecker.lo `test -f 'src/cpp/StatInCondChecker.cpp' || echo '$(srcdir)/'`src/cpp/StatInCondChecker.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscislint_algo_la-StatInCondChecker.Tpo src/cpp/$(DEPDIR)/libscislint_algo_la-StatInCondChecker.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/StatInCondChecker.cpp' object='src/cpp/libscislint_algo_la-StatInCondChecker.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscislint_algo_la-ExpInCondChecker.lo: src/cpp/ExpInCondChecker.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-ExpInCondChecker.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-ExpInCondChecker.Tpo -c -o src/cpp/libscislint_algo_la-ExpInCondChecker.lo `test -f 'src/cpp/ExpInCondChecker.cpp' || echo '$(srcdir)/'`src/cpp/ExpInCondChecker.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscislint_algo_la-ExpInCondChecker.Tpo src/cpp/$(DEPDIR)/libscislint_algo_la-ExpInCondChecker.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ExpInCondChecker.cpp' object='src/cpp/libscislint_algo_la-ExpInCondChecker.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-StatInCondChecker.lo `test -f 'src/cpp/StatInCondChecker.cpp' || echo '$(srcdir)/'`src/cpp/StatInCondChecker.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-ExpInCondChecker.lo `test -f 'src/cpp/ExpInCondChecker.cpp' || echo '$(srcdir)/'`src/cpp/ExpInCondChecker.cpp
 
 src/cpp/libscislint_algo_la-CommentRatioChecker.lo: src/cpp/CommentRatioChecker.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-CommentRatioChecker.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-CommentRatioChecker.Tpo -c -o src/cpp/libscislint_algo_la-CommentRatioChecker.lo `test -f 'src/cpp/CommentRatioChecker.cpp' || echo '$(srcdir)/'`src/cpp/CommentRatioChecker.cpp

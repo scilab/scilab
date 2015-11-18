@@ -48,7 +48,7 @@
 #include "checkers/NotNotChecker.hxx"
 #include "checkers/SpacesInArgsChecker.hxx"
 #include "checkers/GlobalKeywordChecker.hxx"
-#include "checkers/StatInCondChecker.hxx"
+#include "checkers/ExpInCondChecker.hxx"
 #include "checkers/CommentRatioChecker.hxx"
 #include "checkers/FunctionArgsOrderChecker.hxx"
 #include "checkers/FunctionTestReturnChecker.hxx"

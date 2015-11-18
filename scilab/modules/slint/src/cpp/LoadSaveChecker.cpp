@@ -33,7 +33,7 @@ void LoadSaveChecker::preCheckNode(const ast::Exp & e, SLintContext & context, S
                 }
                 else if (args.size() == 1)
                 {
-                    result.report(context, e.getLocation(), *this, _("Function %s should be called with variable name arguments."), name);
+                    result.report(context, e.getLocation(), *this, _("Function %s should be called with names of variables."), name);
                 }
                 else
                 {

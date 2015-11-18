@@ -246,6 +246,7 @@
     <ClInclude Include="includes\checkers\DeprecatedChecker.hxx" />
     <ClInclude Include="includes\checkers\EmptyBlockChecker.hxx" />
     <ClInclude Include="includes\checkers\EqEqChecker.hxx" />
+    <ClInclude Include="includes\checkers\ExpInCondChecker.hxx" />
     <ClInclude Include="includes\checkers\FindSymVisitor.hxx" />
     <ClInclude Include="includes\checkers\FunctionArgsChecker.hxx" />
     <ClInclude Include="includes\checkers\FunctionArgsOrderChecker.hxx" />
@@ -275,7 +276,6 @@
     <ClInclude Include="includes\checkers\SLintChecker.hxx" />
     <ClInclude Include="includes\checkers\SpacesAroundOpChecker.hxx" />
     <ClInclude Include="includes\checkers\SpacesInArgsChecker.hxx" />
-    <ClInclude Include="includes\checkers\StatInCondChecker.hxx" />
     <ClInclude Include="includes\checkers\StructChecker.hxx" />
     <ClInclude Include="includes\checkers\TodoChecker.hxx" />
     <ClInclude Include="includes\checkers\UnreachableCodeChecker.hxx" />
@@ -334,6 +334,7 @@
     <ClCompile Include="src\cpp\EmptyBlockChecker.cpp" />
     <ClCompile Include="src\cpp\EqEqChecker.cpp" />
     <ClCompile Include="src\cpp\ExcludedProjectFileType.cpp" />
+    <ClCompile Include="src\cpp\ExpInCondChecker.cpp" />
     <ClCompile Include="src\cpp\FileException.cpp" />
     <ClCompile Include="src\cpp\FunctionArgsChecker.cpp" />
     <ClCompile Include="src\cpp\FunctionArgsOrderChecker.cpp" />
@@ -378,7 +379,6 @@
     <ClCompile Include="src\cpp\StandardRuleParameterValueType.cpp" />
     <ClCompile Include="src\cpp\StandardRuleType.cpp" />
     <ClCompile Include="src\cpp\StandardType.cpp" />
-    <ClCompile Include="src\cpp\StatInCondChecker.cpp" />
     <ClCompile Include="src\cpp\StructChecker.cpp" />
     <ClCompile Include="src\cpp\TodoChecker.cpp" />
     <ClCompile Include="src\cpp\ToolConfiguration.cpp" />

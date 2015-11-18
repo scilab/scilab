@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __STAT_IN_COND_CHECKER_HXX__
-#define __STAT_IN_COND_CHECKER_HXX__
+#ifndef __EXP_IN_COND_CHECKER_HXX__
+#define __EXP_IN_COND_CHECKER_HXX__
 
 #include "SLintChecker.hxx"
 
@@ -19,17 +19,17 @@ namespace slint
 {
 
 /**
- * Check the number of statements in a condition (if or while)
+ * Check the number of expements in a condition (if or while)
  */
-class StatInCondChecker : public SLintChecker
+class ExpInCondChecker : public SLintChecker
 {
 
     const unsigned int max;
 
 public:
 
-    StatInCondChecker(const std::wstring & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
-    ~StatInCondChecker() { }
+    ExpInCondChecker(const std::wstring & checkerId, const int _max) : SLintChecker(checkerId), max(_max) { }
+    ~ExpInCondChecker() { }
 
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
     void postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
@@ -48,4 +48,4 @@ private:
 
 } // namespace slint
 
-#endif // __STAT_IN_COND_CHECKER_HXX__
+#endif // __EXP_IN_COND_CHECKER_HXX__

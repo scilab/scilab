@@ -219,7 +219,10 @@ void SLintVisitor::visit(const ast::CellExp & e)
 void SLintVisitor::visit(const ast::OpExp & e)
 {
     auto range = preCheck(e);
-    e.getLeft().accept(*this);
+    if (e.getOper() != ast::OpExp::unaryMinus)
+    {
+	e.getLeft().accept(*this);
+    }
     e.getRight().accept(*this);
     postCheck(e, range);
 }

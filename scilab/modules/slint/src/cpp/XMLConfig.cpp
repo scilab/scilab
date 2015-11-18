@@ -270,7 +270,7 @@ SLintChecker * XMLConfig::createFromXmlNode<ReturnsCountChecker>(xmlNode * node)
 }
 
 template<>
-SLintChecker * XMLConfig::createFromXmlNode<StatInCondChecker>(xmlNode * node)
+SLintChecker * XMLConfig::createFromXmlNode<ExpInCondChecker>(xmlNode * node)
 {
     bool enable = true;
     XMLtools::getBool(node, "enable", enable);
@@ -282,7 +282,7 @@ SLintChecker * XMLConfig::createFromXmlNode<StatInCondChecker>(xmlNode * node)
         XMLtools::getWString(node, "id", id);
         XMLtools::getInt(node, "max", max);
 
-        return new StatInCondChecker(id, max);
+        return new ExpInCondChecker(id, max);
     }
 
     return nullptr;
@@ -466,7 +466,7 @@ std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::initCallbacks()
     SLINT_INSERT_IN_MAP(BracketedExp);
     SLINT_INSERT_IN_MAP(NotNot);
     SLINT_INSERT_IN_MAP(IllegalCalls);
-    SLINT_INSERT_IN_MAP(StatInCond);
+    SLINT_INSERT_IN_MAP(ExpInCond);
     SLINT_INSERT_IN_MAP(CommentRatio);
     SLINT_INSERT_IN_MAP(FunctionArgsOrder);
     SLINT_INSERT_IN_MAP(FunctionTestReturn);

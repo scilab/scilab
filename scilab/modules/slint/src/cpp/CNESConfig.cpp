@@ -275,14 +275,14 @@ SLintChecker * CNESConfig::create<ReturnsCountChecker>(const ToolConfigurationTy
 }
 
 template<>
-SLintChecker * CNESConfig::create<StatInCondChecker>(const ToolConfigurationType & tct, const AnalysisRuleType & art)
+SLintChecker * CNESConfig::create<ExpInCondChecker>(const ToolConfigurationType & tct, const AnalysisRuleType & art)
 {
     if (art.getActivation())
     {
         int max = -1;
         CNESConfig::getInt(art, "max", max);
 
-        return new StatInCondChecker(CNESConfig::getId(tct, art), max);
+        return new ExpInCondChecker(CNESConfig::getId(tct, art), max);
     }
 
     return nullptr;
@@ -415,7 +415,7 @@ std::unordered_map<std::string, CNESConfig::CBType> CNESConfig::initCallbacks()
     SLINT_INSERT_IN_MAP(BracketedExp);
     SLINT_INSERT_IN_MAP(NotNot);
     SLINT_INSERT_IN_MAP(IllegalCalls);
-    SLINT_INSERT_IN_MAP(StatInCond);
+    SLINT_INSERT_IN_MAP(ExpInCond);
     SLINT_INSERT_IN_MAP(CommentRatio);
     SLINT_INSERT_IN_MAP(FunctionArgsOrder);
     SLINT_INSERT_IN_MAP(FunctionTestReturn);

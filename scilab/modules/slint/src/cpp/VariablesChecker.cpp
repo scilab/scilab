@@ -123,7 +123,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                     else if (!context.getPublicFunction(sym.getName()))
                                     {
                                         // The macro has not been declared somewhere in the project
-                                        result.report(context, e.getLocation(), *this, _("TTUse of non-initialized variable \'%s\' may have any side-effects."), name);
+                                        result.report(context, e.getLocation(), *this, _("Use of non-initialized variable \'%s\' may have side effects."), name);
                                     }
                                 }
                             }

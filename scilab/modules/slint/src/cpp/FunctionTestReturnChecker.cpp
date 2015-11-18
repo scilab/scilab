@@ -45,7 +45,7 @@ void FunctionTestReturnChecker::preCheckNode(const ast::Exp & e, SLintContext & 
                         {
                             if (pos > exps.size())
                             {
-                                result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after call."), name);
+                                result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after the call."), name);
                                 return;
                             }
                             else
@@ -61,7 +61,7 @@ void FunctionTestReturnChecker::preCheckNode(const ast::Exp & e, SLintContext & 
                     {
                         if (positions.size() > 1 || positions.back() != 1)
                         {
-                            result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after call."), name);
+                            result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after the call."), name);
                             return;
                         }
                         syms.emplace(static_cast<ast::SimpleVar &>(ae->getLeftExp()).getSymbol());
@@ -75,7 +75,7 @@ void FunctionTestReturnChecker::preCheckNode(const ast::Exp & e, SLintContext & 
                             FindSymVisitor(syms, ie->getTest());
                             if (!syms.empty())
                             {
-                                result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after call."), name);
+                                result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after the call."), name);
                                 return;
                             }
                         }
@@ -83,7 +83,7 @@ void FunctionTestReturnChecker::preCheckNode(const ast::Exp & e, SLintContext & 
                 }
                 else
                 {
-                    result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after call."), name);
+                    result.report(context, e.getLocation(), *this, _("Function %s requires an error checking just after the call."), name);
                     return;
                 }
             }

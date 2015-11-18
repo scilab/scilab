@@ -74,7 +74,7 @@ src/cpp/BracketedExpChecker.cpp \
 src/cpp/NotNotChecker.cpp \
 src/cpp/SpacesInArgsChecker.cpp \
 src/cpp/GlobalKeywordChecker.cpp \
-src/cpp/StatInCondChecker.cpp \
+src/cpp/ExpInCondChecker.cpp \
 src/cpp/CommentRatioChecker.cpp \
 src/cpp/FunctionArgsOrderChecker.cpp \
 src/cpp/FunctionTestReturnChecker.cpp \

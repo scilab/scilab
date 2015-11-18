@@ -22,7 +22,7 @@ namespace slint
 
 SciFile::SciFile() : code(nullptr), tree(nullptr), main(nullptr) { }
 
-SciFile::SciFile(const std::wstring & _filename, const wchar_t * _code, const ast::Exp * _tree) : filename(_filename), code(_code), tree(_tree)
+SciFile::SciFile(const std::wstring & _filename, const wchar_t * _code, const ast::Exp * _tree) : filename(_filename), code(_code), tree(_tree), main(nullptr)
 {
     initLines();
     analyzeTree();

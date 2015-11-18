@@ -10,11 +10,11 @@
  *
  */
 
-#include "checkers/StatInCondChecker.hxx"
+#include "checkers/ExpInCondChecker.hxx"
 
 namespace slint
 {
-void StatInCondChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
+void ExpInCondChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     unsigned int num = 0;
     if (e.isIfExp())
@@ -28,20 +28,20 @@ void StatInCondChecker::preCheckNode(const ast::Exp & e, SLintContext & context,
 
     if (num && num >= max)
     {
-        result.report(context, e.getLocation(), *this, _("Number of statements is limited: %d max."), max);
+        result.report(context, e.getLocation(), *this, _("Number of expressions in condition is limited: %d max."), max);
     }
 }
 
-void StatInCondChecker::postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
+void ExpInCondChecker::postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
 }
 
-const std::string StatInCondChecker::getName() const
+const std::string ExpInCondChecker::getName() const
 {
-    return "StatInCondChecker";
+    return "ExpInCondChecker";
 }
 
-unsigned int StatInCondChecker::checkCond(const ast::Exp & e) const
+unsigned int ExpInCondChecker::checkCond(const ast::Exp & e) const
 {
     if (e.isOpExp())
     {
