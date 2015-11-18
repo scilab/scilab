@@ -16,7 +16,6 @@ package org.scilab.modules.xcos.io;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -29,20 +28,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamWriter;
-import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.sax.SAXResult;
-import javax.xml.transform.stax.StAXSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
-import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.View;
 import org.scilab.modules.xcos.Xcos;
@@ -51,9 +46,9 @@ import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.sax.XcosSAXHandler;
 import org.scilab.modules.xcos.io.spec.ContentEntry;
 import org.scilab.modules.xcos.io.spec.XcosPackage;
+import org.scilab.modules.xcos.io.writer.IndentingXMLStreamWriter;
 import org.scilab.modules.xcos.io.writer.XcosWriter;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 /**
@@ -136,7 +131,7 @@ public enum XcosFileType {
             final XMLStreamWriter writer = factory.createXMLStreamWriter(result);
             try {
                 LOG.entering("XMLStreamWriter", "write");
-                new XcosWriter(null, writer).write(from.getUID(), from.getKind());
+                new XcosWriter(null, new IndentingXMLStreamWriter(writer)).write(from.getUID(), from.getKind());
                 LOG.exiting("XMLStreamWriter", "write");
             } finally {
                 writer.close();

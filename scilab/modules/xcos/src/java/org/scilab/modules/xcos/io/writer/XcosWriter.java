@@ -26,7 +26,6 @@ import org.scilab.modules.xcos.utils.Stack;
  * Implement an XML writer for any kind of model object
  */
 public class XcosWriter {
-
     protected static final Logger LOG = Logger.getLogger("org.scilab.modules.xcos.io.writer");
 
     /*
