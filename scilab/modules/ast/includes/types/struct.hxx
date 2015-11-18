@@ -103,9 +103,9 @@ public :
     bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
     String*                     getFieldNames();
     bool                        exists(const std::wstring& _sKey);
-    bool                        addField(const std::wstring& _sKey);
-    bool                        addFieldFront(const std::wstring& _sKey);
-    bool                        removeField(const std::wstring& _sKey);
+    Struct*                     addField(const std::wstring& _sKey);
+    Struct*                     addFieldFront(const std::wstring& _sKey);
+    Struct*                     removeField(const std::wstring& _sKey);
     bool                        toString(std::wostringstream& ostr);
     List*                       extractFieldWithoutClone(const std::wstring& _wstField);
     std::vector<InternalType*>  extractFields(std::vector<std::wstring> _wstFields);

@@ -15,10 +15,11 @@ For a high-level overview of the changes in this release, please consult the "Wh
 
 * Bug #13990 fixed - Windows installer did not ship all localization files.
 
-* Bug #14257 fixed - English spelling in messages and in comments.
-
 * Bug #14251 fixed - `spec` leaked some memory.
 
+* Bug #14253 fixed - Insertion in a struct contained in a list fixed.
+
+* Bug #14257 fixed - English spelling in messages and in comments.
 
 
         Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2
@@ -66,7 +67,7 @@ API modification
 
      int sci_Levkov(char *fname, void* pvApiCtx)
 
- instead of any "unsigned long l". This is now requires for some macros, such as Rhs(), to work. 
+ instead of any "unsigned long l". This is now requires for some macros, such as Rhs(), to work.
  (Although not strictly an API change, it may require gateway code to be modified).
 
 Bug Fixes
@@ -446,7 +447,7 @@ Bug Fixes
 * Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.
 
 * Bug #14043 fixed - Gateway C prototype changed from int sci_...(char *fname, unsigned long l)
-                     to sci_...(char *fname, void* pvApiCtx). Variable name has to be 
+                     to sci_...(char *fname, void* pvApiCtx). Variable name has to be
                      exactly "pvApyCtx" when macros are used in a gateway. (1)
 
 * Bug #14044 fixed - MALLOC.h is now renamed to sci_malloc.h. (1)
