@@ -41,6 +41,17 @@ public class CustomWriter extends ScilabWriter {
         switch (kind) {
             case DIAGRAM:
                 shared.stream.writeStartDocument();
+
+                /*
+                 * Add a version comment at startup
+                 */
+
+                final Package p = Package.getPackage("org.scilab.modules.xcos");
+                String comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
+                .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion()).toString();
+                shared.stream.writeComment(comment);
+                shared.stream.writeCharacters("\n");
+
                 shared.stream.writeStartElement(HandledElement.XcosDiagram.name());
 
                 /*
@@ -87,6 +98,7 @@ public class CustomWriter extends ScilabWriter {
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.CHILDREN, children);
                 if (children.size() > 0) {
                     shared.stream.writeStartElement(HandledElement.SuperBlockDiagram.name());
+                    shared.stream.writeAttribute("as", "child");
                     writeDiagramAndSuperDiagramContent(uid, kind, children);
                     shared.stream.writeEndElement(); // SuperBlockDiagram
                 }
@@ -108,14 +120,6 @@ public class CustomWriter extends ScilabWriter {
         String[] str = new String[1];
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.TITLE, str);
         shared.stream.writeAttribute("title", str[0]);
-
-        /*
-         * Add the legacy version comment
-         */
-        final Package p = Package.getPackage("org.scilab.modules.xcos");
-        String comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
-        .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion()).toString();
-        shared.stream.writeComment(comment);
 
         /*
          * encode some content then the children

@@ -112,8 +112,14 @@ public class RawDataWriter extends ScilabWriter {
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.NMODE, vInt);
         write(vInt, "nmode");
 
+        shared.controller.getObjectProperty(uid, kind, ObjectProperties.STATE, vDouble);
+        write(vDouble, "state");
+
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.DSTATE, vDouble);
         write(vDouble, "dState");
+
+        shared.controller.getObjectProperty(uid, kind, ObjectProperties.ODSTATE, vDouble);
+        write(new ScilabTypeCoder().vec2var(vDouble), "oDState");
 
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.EQUATIONS, vDouble);
         write(new ScilabTypeCoder().vec2var(vDouble), "equations");
@@ -232,7 +238,7 @@ public class RawDataWriter extends ScilabWriter {
         shared.stream.writeAttribute("height", Integer.toString(value.getHeight()));
         shared.stream.writeAttribute("width", Integer.toString(value.getWidth()));
         if (intPrecision != null) {
-            shared.stream.writeAttribute("intPrecision", value.getType().name());
+            shared.stream.writeAttribute("intPrecision", intPrecision);
         }
 
         for (int i = 0; i < value.getHeight(); i++) {

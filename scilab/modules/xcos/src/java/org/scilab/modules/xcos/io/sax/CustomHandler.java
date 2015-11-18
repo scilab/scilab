@@ -19,8 +19,6 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.stream.Stream;
 
-import javax.naming.LimitExceededException;
-
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
