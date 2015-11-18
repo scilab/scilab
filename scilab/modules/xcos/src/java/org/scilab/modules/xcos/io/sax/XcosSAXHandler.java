@@ -35,6 +35,7 @@ import org.scilab.modules.xcos.io.HandledElementsCategory;
 import org.scilab.modules.xcos.utils.Stack;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 /**
@@ -127,7 +128,7 @@ public class XcosSAXHandler extends DefaultHandler {
     }
 
     /*
-     * Implemented method
+     * Implemented methods for the reader
      */
 
     @Override
@@ -136,6 +137,7 @@ public class XcosSAXHandler extends DefaultHandler {
         if (LOG.isLoggable(Level.FINEST)) {
             char[] indent = new char[parents.size()];
             Arrays.fill(indent, ' ');
+            // System.err.println(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
             LOG.finest(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
         }
 
@@ -159,6 +161,10 @@ public class XcosSAXHandler extends DefaultHandler {
 
         parents.pop();
     }
+
+    /*
+     * Utilities
+     */
 
     /**
      * Insert a child into the current sub-diagram

@@ -36,7 +36,6 @@ import org.scilab.modules.xcos.io.HandledElement;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.writer.XcosWriter;
 import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
@@ -51,11 +50,6 @@ class RawDataHandler implements ScilabHandler {
         final Object value;
 
         public RawDataDescriptor(ObjectProperties as, HandledElement found, String scilabClass, Object container) {
-            // defensive programming
-            if (as == null) {
-                throw new IllegalArgumentException();
-            }
-
             this.as = as;
             this.found = found;
             this.scilabClass = scilabClass;
@@ -129,7 +123,8 @@ class RawDataHandler implements ScilabHandler {
                 if (binary &&
                         saxHandler.dictionary != null &&
                         (0 <= position && position < saxHandler.dictionary.size())) {
-                    return new RawDataDescriptor(propertyMap.get(as), found, null, saxHandler.dictionary.get(position));
+                    final ObjectProperties asProp = propertyMap.get(as);
+                    return new RawDataDescriptor(asProp, found, null, saxHandler.dictionary.get(position));
                 }
 
                 /*
@@ -154,7 +149,8 @@ class RawDataHandler implements ScilabHandler {
 
                 // allocate the right class and push it to a descriptor
                 final Object container = allocateDataType(found, atts, height, width, scilabClass);
-                return new RawDataDescriptor(propertyMap.get(as), found, scilabClass, container);
+                final ObjectProperties asProp = propertyMap.get(as);
+                return new RawDataDescriptor(asProp, found, scilabClass, container);
             }
             case add: {
                 // defensive programming
@@ -375,6 +371,19 @@ class RawDataHandler implements ScilabHandler {
                 }
                 RawDataDescriptor fieldValue = (RawDataDescriptor) saxHandler.parents.peek();
                 Object parent = saxHandler.parents.peek(1);
+
+                // when we are decoding data into a list "as" is null
+                if (fieldValue.as == null) {
+                    if ( !(parent instanceof ScilabList)) {
+                        return;
+                    }
+                    if ( !(fieldValue.value instanceof ScilabType)) {
+                        return;
+                    }
+
+                    ScilabList parentList = (ScilabList) parent;
+                    parentList.add((ScilabType) fieldValue.value);
+                }
 
                 switch (fieldValue.as) {
                     case CONTROL_POINTS: {
