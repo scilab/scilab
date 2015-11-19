@@ -91,6 +91,15 @@
           <li>Extending Scilab with ATOMS modules is working, but only very few ATOMS modules currently on <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> have been ported to Scilab 6, so it has only limited use.</li>
         </ul>
       </p>
+      <h2 class="title">Platform-specific limitations</h2>
+      <p class="para">
+      All other functionalities of Scilab are present on all platforms, with a few exceptions:
+      <ul>
+        <li>TCL/TK functionalities are not available in MacOS.</li>
+        <li>Some functions using specific Windows platform are only available on Windows (<a href="section_02d42947da4b16801e15b82ca80009fc.html">Windows tools</a>).</li>
+        <li>Compilation of C/C++ or other native code in additional modules (toolboxes), and interface with additional native third-party libraries may depend on the platforms, and may not always be supported on all platforms.</li>
+      </ul>
+      </p>
       <h2 class="title">Complete changelog</h2>
       <p class="para">
       For a more complete list of changes between the 5.5.2 release and the 6.0.0 alpha-1 and alpha-2 releases, please see the CHANGES_6.0.X file at the root of the installation.
