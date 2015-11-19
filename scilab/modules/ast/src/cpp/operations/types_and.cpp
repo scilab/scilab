@@ -536,7 +536,7 @@ InternalType* and_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -625,7 +625,7 @@ InternalType* and_int_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();

@@ -829,7 +829,7 @@ InternalType* sub_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -857,7 +857,7 @@ InternalType* sub_M_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -911,7 +911,7 @@ InternalType* sub_MC_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -939,7 +939,7 @@ InternalType* sub_MC_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -1678,7 +1678,7 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
     if (iDims1 != iDims2)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDims1    = _pL->getDimsArray();
@@ -1926,9 +1926,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
 
     if (iDims1 != iDims2)
     {
-        wchar_t pMsg[bsiz];
-        os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"-", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::InternalError(pMsg);
+        return nullptr;
     }
 
     int* piDims1 = _pR->getDimsArray();
@@ -2269,9 +2267,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
     if (iDims1 != iDims2)
     {
-        wchar_t pMsg[bsiz];
-        os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::InternalError(pMsg);
+        return nullptr;
     }
 
     int* piDims1 = _pR->getDimsArray();
@@ -2467,6 +2463,10 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         return pOut;
     }
 
+    if (_pL->getDims() > 2)
+    {
+        return nullptr;
+    }
 
     if (_pL->getRows() == _pR->getRows() && _pL->getCols() == _pR->getCols())
     {
@@ -2621,6 +2621,11 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         return pOut;
     }
 
+
+    if (_pR->getDims() > 2)
+    {
+        return nullptr;
+    }
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {

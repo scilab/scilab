@@ -234,7 +234,8 @@ int MultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double** _pDoub
 
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getCols() != _pDouble2->getRows())
     {
-        return 1;
+        //call overload
+        return 0;
     }
 
     bool bComplex1  = _pDouble1->isComplex();
@@ -333,7 +334,8 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
 
     if (_pDouble1->getDims() != _pDouble2->getDims())
     {
-        return 1;
+        //call overload
+        return 0;
     }
 
     int* piDims1 = _pDouble1->getDimsArray();
@@ -343,7 +345,7 @@ int DotMultiplyDoubleByDouble(Double* _pDouble1, Double* _pDouble2, Double**  _p
     {
         if (piDims1[i] != piDims2[i])
         {
-            return 0;
+            return 1;
         }
     }
 
@@ -471,7 +473,8 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
 
     if (_pPoly->getDims() > 2 || _pDouble->getDims() > 2 || _pDouble->getCols() != _pPoly->getRows())
     {
-        return 1;
+        //call overload
+        return 0;
     }
 
     int* piRank = new int[_pDouble->getRows() * _pPoly->getCols()];
@@ -629,7 +632,8 @@ int MultiplyPolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom **_pPolyOut)
 
     if (_pDouble->getDims() > 2 || _pPoly->getDims() > 2 || _pPoly->getCols() != _pDouble->getRows())
     {
-        return 1;
+        //call overload
+        return 0;
     }
 
     int* piRank = new int[_pPoly->getRows() * _pDouble->getCols()];
@@ -942,7 +946,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
 
     if (_pPoly1->getDims() > 2 || _pPoly2->getDims() > 2 || _pPoly1->getCols() != _pPoly2->getRows())
     {
-        return 1;
+        //call overload
+        return 0;
     }
 
     // matrix by matrix
@@ -1196,6 +1201,12 @@ int MultiplyDoubleBySparse(Double* _pDouble, Sparse *_pSparse, GenericType** _pO
         return 0;
     }
 
+    if (_pDouble->getDims() > 2)
+    {
+        //call overload
+        return 0;
+    }
+
     if (_pDouble->getCols() != _pSparse->getRows())
     {
         return 1;
@@ -1334,7 +1345,13 @@ int MultiplySparseByDouble(Sparse *_pSparse, Double*_pDouble, GenericType** _pOu
         return 0;
     }
 
-    if (_pSparse->getCols() != _pDouble->getRows())
+    if (_pDouble->getDims() > 2)
+    {
+        //call overload
+        return 0;
+    }
+    
+    if(_pSparse->getCols() != _pDouble->getRows())
     {
         return 1;
     }
@@ -1462,7 +1479,13 @@ int DotMultiplyDoubleBySparse(Double* _pDouble, Sparse* _pSparse, GenericType** 
         return MultiplyDoubleBySparse(_pDouble, _pSparse, _pOut);
     }
 
-    if (_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
+    if (_pDouble->getDims() > 2)
+    {
+        //call overload
+        return 0;
+    }
+    
+    if(_pSparse->getRows() != _pDouble->getRows() || _pSparse->getCols() != _pDouble->getCols())
     {
         return 1;
     }
