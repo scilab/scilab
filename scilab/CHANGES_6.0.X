@@ -19,6 +19,8 @@ For a high-level overview of the changes in this release, please consult the "Wh
 
 * Bug #14178 fixed - tcl/tk unavailability on MacOS is now documented.
 
+* Bug #14041 fixed - genlib crash when the file is locked by another program.
+
 * Bug #14181 fixed - Calling intg (or integrate) in a function that is being integrated failed.
 
 * Bug #14251 fixed - `spec` leaked some memory.

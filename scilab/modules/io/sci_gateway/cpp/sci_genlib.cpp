@@ -231,6 +231,15 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
             //compute file md5
             FILE* fmdf5 = os_wfopen(stFullPath.data(), L"rb");
+            if (fmdf5 == NULL)
+            {
+                char* pstr = wide_string_to_UTF8(stFullPath.data());
+                Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", pstr);
+                FREE(pstr);
+                pLib->killMe();
+                return types::Function::Error;
+            }
+
             char* md5 = md5_file(fmdf5);
             fclose(fmdf5);
 
