@@ -675,18 +675,20 @@ void* scilabReadAndStore(void* param)
 
             if (ConfigVariable::getEnableDebug())
             {
+                bool disableDebug = false;
                 char* tmpCommand = NULL;
+                int commandsize = strlen(command);
 
                 //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("something")
                 if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
                 {
                     tmpCommand = os_strdup(command + 2);
                 }
-                else if (strncmp(command, "exec ", 5) == 0)
+                else if (commandsize >= 5 && strncmp(command, "exec ", 5) == 0)
                 {
                     tmpCommand = os_strdup(command + 5);
                 }
-                else if (strncmp(command, "run ", 4) == 0)
+                else if (commandsize >= 4 && strncmp(command, "run ", 4) == 0)
                 {
                     tmpCommand = os_strdup(command + 5);
                 }
@@ -700,19 +702,37 @@ void* scilabReadAndStore(void* param)
                         continue;
                     }
                 }
-                else if ((command[0] == 'p') && command[1] == ' ')
+                else if (commandsize > 1 && command[0] == 'd' && command[1] == ' ')
                 {
                     std::string s("disp(");
                     s += command + 2;
                     s += ")";
                     tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
                 }
-                else if (strncmp(command, "disp ", 5) == 0)
+                else if (commandsize > 5 && strncmp(command, "disp ", 5) == 0)
                 {
                     std::string s("disp(");
                     s += command + 5;
                     s += ")";
                     tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
+                }
+                else if (commandsize > 1 && command[0] == 'p' && command[1] == ' ')
+                {
+                        std::string s("disp(");
+                        s += command + 2;
+                        s += ")";
+                        tmpCommand = os_strdup(s.data());
+                        disableDebug = true;
+                }
+                else if (commandsize > 6 && strncmp(command, "print ", 6) == 0)
+                {
+                    std::string s("disp(");
+                    s += command + 6;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                    disableDebug = true;
                 }
                 else
                 {
@@ -723,6 +743,11 @@ void* scilabReadAndStore(void* param)
 #else
                     os_sprintf(tmpCommand, "%s %s", "debug", command);
 #endif
+                    disableDebug = true;
+                }
+
+                if (disableDebug)
+                {
                     //disable debugger time to exec debug command
                     //it will be enable in debuggervisitor, after execution
                     ConfigVariable::setEnableDebug(false);

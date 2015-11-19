@@ -29,6 +29,10 @@
                     <para>Affiche l'aide dans la console</para>
                 </varlistentry>
                 <varlistentry>
+                    <term>help: </term>
+                    <para>Affiche l'aide dans le navigateur si cela est possible sinon l'affiche dans la console</para>
+                </varlistentry>
+                <varlistentry>
                     <term>(q)uit: </term>
                     <para>Quitte l'environnement de déboggage et revient au mode normal de Scilab.</para>
                 </varlistentry>
@@ -42,6 +46,11 @@
                     <para>Exécute une commande.</para>
                 </varlistentry>
                 <varlistentry>
+                    <term>(d)isp var: </term>
+                    <term>(p)rint var: </term>
+                    <para>Affiche la variable <literal>var</literal>.</para>
+                </varlistentry>
+                <varlistentry>
                     <term>(c)ontinue: </term>
                     <para>Poursuit l'éxécution.</para>
                 </varlistentry>
@@ -50,44 +59,40 @@
                     <para>Annule l'éxécution.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>step(n)ext or (n)ext: </term>
+                    <term>step(n)ext or next: </term>
                     <para>Poursuit l'éxécution jusqu'a l'expression suivante.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>step(i)n or (i)n: </term>
+                    <term>step(i)n or in: </term>
                     <para>Poursuit l'éxécution dans la sous fonction.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>step(o)ut or (o)ut: </term>
+                    <term>step(o)ut or out: </term>
                     <para>Poursuit l'éxécution jusqu'a revenir dans la fonction appelante.</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>(b)reakpoint or (b)reak: </term>
+                    <term>(b)reakpoint or break: </term>
                     <synopsis>breakpoint function [line [condition]]</synopsis>
                     <para>Ajoute un point d'arrêt dans une fonction a une ligne <literal>line</literal></para>
                     <para>Si une condition est spécifiée, le point d'arrêt ne devient active que si la condition est <literal>%t</literal></para>
                 </varlistentry>
                 <varlistentry>
-                    <term>(del)ete: </term>
-                    <synopsis>delete [n]</synopsis>
+                    <term>(del)ete [n]: </term>
                     <para>Supprime tous les points d'arrêt.</para>
                     <para>Si n est spécifié, supprime le point d'arrêt #n</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>enable: </term>
-                    <synopsis>enable [n]</synopsis>
+                    <term>enable [n]: </term>
                     <para>Active tous les points d'arrêt.</para>
                     <para>Si n est spécifié, active le point d'arrêt #n</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>disable: </term>
-                    <synopsis>disable [n]</synopsis>
+                    <term>disable [n]: </term>
                     <para>Désactive tous les points d'arrêt.</para>
                     <para>Si n est spécifié, désavtive le point d'arrêt #n</para>
                 </varlistentry>
                 <varlistentry>
-                    <term>(s)how: </term>
-                    <synopsis>show [n]</synopsis>
+                    <term>(s)how [n]: </term>
                     <para>Affiche tous les information sur les points d'arrêt.</para>
                     <para>Si n est spécifié, affiche les information du point d'arrêt #n</para>
                 </varlistentry>
