@@ -188,10 +188,9 @@ static wchar_t *getLanguagePreferencesAllUsers(void)
 BOOL setLanguagePreferences(void)
 {
     wchar_t* pwstLang = getlanguage();
-    char *LANGUAGE = wide_string_to_UTF8(pwstLang);
-    free(pwstLang);
+    DWORD length = ((DWORD)wcslen(pwstLang) + 1) * 2;
 
-    if (LANGUAGE)
+    if (pwstLang)
     {
         wchar_t *keyString = NULL;
         int lenkeyString = (int)(wcslen(HKCU_LANGUAGE_FORMAT) + wcslen(SCI_VERSION_WIDE_STRING)) + 1;
@@ -223,10 +222,12 @@ BOOL setLanguagePreferences(void)
                     FREE(keyString);
                     keyString = NULL;
                 }
+
+                free(pwstLang);
                 return FALSE;
             }
 
-            if ( RegSetValueExW(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)LANGUAGE, (DWORD)(strlen(LANGUAGE) + 1)) != ERROR_SUCCESS)
+            if (RegSetValueExW(hKey, LANGUAGE_ENTRY, 0, REG_SZ, (LPBYTE)pwstLang, length) != ERROR_SUCCESS)
             {
                 RegCloseKey(hKey);
                 if (keyString)
@@ -234,6 +235,8 @@ BOOL setLanguagePreferences(void)
                     FREE(keyString);
                     keyString = NULL;
                 }
+
+                free(pwstLang);
                 return FALSE;
             }
 
@@ -243,8 +246,12 @@ BOOL setLanguagePreferences(void)
                 FREE(keyString);
                 keyString = NULL;
             }
+
+            free(pwstLang);
             return TRUE;
         }
+
+        free(pwstLang);
     }
     return FALSE;
 }
