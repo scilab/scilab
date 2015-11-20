@@ -506,7 +506,8 @@ class RawDataHandler implements ScilabHandler {
                         XcosCell cell = (XcosCell) parent;
                         ScilabType value = (ScilabType) fieldValue.value;
 
-                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, new ScilabTypeCoder().var2vec(value));
+                        VectorOfDouble vec = new ScilabTypeCoder().var2vec(value);
+                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, vec);
                         break;
                     }
                     default:
