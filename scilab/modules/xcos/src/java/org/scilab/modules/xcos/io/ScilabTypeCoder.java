@@ -534,7 +534,10 @@ public class ScilabTypeCoder {
 
     private ScilabType decode(VectorOfDouble vec, ArrayList<ScilabType> var) {
         for (int i = 0; i < var.size(); i++) {
-            var.set(i, vec2var(vec));
+            ScilabType sub = decodeHeader(vec);
+            decode(vec, sub);
+
+            var.set(i, sub);
         }
         return (ScilabType) var;
     }
