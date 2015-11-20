@@ -10,7 +10,7 @@
  *
  */
 
-package org.scilab.modules.xcos.link.implicit;
+package org.scilab.modules.xcos.link;
 
 import org.scilab.modules.xcos.link.BasicLink;
 

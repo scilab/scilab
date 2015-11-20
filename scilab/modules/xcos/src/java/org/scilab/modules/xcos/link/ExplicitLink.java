@@ -10,28 +10,28 @@
  *
  */
 
-package org.scilab.modules.xcos.link.commandcontrol;
+package org.scilab.modules.xcos.link;
 
 import org.scilab.modules.xcos.link.BasicLink;
 
 /**
- * An command control link connect an
- * {@link org.scilab.modules.xcos.port.control.ControlPort} to an
- * {@link org.scilab.modules.xcos.port.command.CommandPort}.
+ * An explicit link connect an
+ * {@link org.scilab.modules.xcos.port.output.ExplicitOutputPort} to an
+ * {@link org.scilab.modules.xcos.port.input.ExplicitInputPort}.
  */
-public class CommandControlLink extends BasicLink {
+public class ExplicitLink extends BasicLink {
 
-    private static final long serialVersionUID = 5092221307994387276L;
-    // 5 means red color
-    // -1 means activation link
-    private static final double[][] COLOR_AND_TYPE = { { 5.0, -1.0 } };
+    private static final long serialVersionUID = 5094752091413277033L;
+    // 1 means black color
+    // 1 means regular link
+    private static final double[][] COLOR_AND_TYPE = { { 1.0, 1.0 } };
 
     /** Default constructor */
-    public CommandControlLink(long uid) {
-        super(uid, "CommandControlLink");
+    public ExplicitLink(long uid) {
+        super(uid, "ExplicitLink");
     }
 
-    /** @return A red colored activation link identifier */
+    /** @return A black colored explicit link identifier */
     @Override
     public double[][] getColorAndType() {
         return COLOR_AND_TYPE;
@@ -39,9 +39,6 @@ public class CommandControlLink extends BasicLink {
 
     @Override
     public int getLinkKind() {
-        return -1;
+        return 1;
     }
-
-
-
 }
