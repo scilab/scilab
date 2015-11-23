@@ -40,14 +40,15 @@ struct EXTERN_AST Variable
     Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL), last(nullptr) {};
     ~Variable();
 
-    void put(types::InternalType* _pIT, int _iLevel);
+    bool put(types::InternalType* _pIT, int _iLevel);
     void setGlobalValue(types::InternalType* _pIT);
     void setGlobalVisible(int _iLevel, bool _bVisible);
 
-    inline void put(ScopedVariable* pSV)
+    inline bool put(ScopedVariable* pSV)
     {
         last = pSV;
         stack.push(last);
+        return true;
     }
 
     inline types::InternalType* get() const

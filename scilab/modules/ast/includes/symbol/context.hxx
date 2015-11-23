@@ -119,8 +119,8 @@ public:
     types::InternalType* getGlobalValue(const Symbol& _key);
 
     /*add symbol and value in the stack*/
-    void put(const Symbol& _key, types::InternalType* _pIT);
-    void put(Variable* _var, types::InternalType* _pIT);
+    bool put(const Symbol& _key, types::InternalType* _pIT);
+    bool put(Variable* _var, types::InternalType* _pIT);
     /*add symbol and value in the previous scope*/
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT);
 
