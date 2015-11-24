@@ -37,7 +37,7 @@
  * Inline std_vector.i and add insert and remove methods
  */
 namespace std {
-    
+
     template<class T> class vector {
       public:
         typedef size_t size_type;
@@ -203,7 +203,7 @@ namespace std {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, "Array must contain at least 1 element");
     return $null;
   }
-  $1 = &temp; 
+  $1 = &temp;
   *$1 = "";
 }
 
@@ -212,7 +212,7 @@ namespace std {
   if ($1) {
      jnewstring = JCALL1(NewStringUTF, jenv, $1->c_str());
   }
-  JCALL3(SetObjectArrayElement, jenv, $input, 0, jnewstring); 
+  JCALL3(SetObjectArrayElement, jenv, $input, 0, jnewstring);
 }
 
 %apply double &OUTPUT { double &v };
@@ -310,9 +310,9 @@ import java.util.TreeMap;
 %pragma(java) modulebase="Controller"
 
 %pragma(java) modulecode=%{
-  // will contains all registered JavaViews to prevent garbage-collection 
+  // will contain all registered JavaViews to prevent garbage-collection
   private static Map<String, View> references = new TreeMap<String, View>();
-  
+
   private static long add_reference(String name, View v) {
     references.put(name, v);
     return View.getCPtr(v);

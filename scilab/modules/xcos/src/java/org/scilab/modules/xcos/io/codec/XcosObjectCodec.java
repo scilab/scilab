@@ -16,8 +16,6 @@ package org.scilab.modules.xcos.io.codec;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.Collection;
-import java.util.Hashtable;
 import java.util.Map;
 import java.util.WeakHashMap;
 
@@ -26,7 +24,6 @@ import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.graph.model.XcosCell;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 import com.mxgraph.io.mxCellCodec;

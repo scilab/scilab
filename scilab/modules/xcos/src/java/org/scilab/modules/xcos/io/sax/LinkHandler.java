@@ -24,7 +24,6 @@ import org.scilab.modules.xcos.link.CommandControlLink;
 import org.scilab.modules.xcos.link.ExplicitLink;
 import org.scilab.modules.xcos.link.ImplicitLink;
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXParseException;
 
 class LinkHandler implements ScilabHandler {
 

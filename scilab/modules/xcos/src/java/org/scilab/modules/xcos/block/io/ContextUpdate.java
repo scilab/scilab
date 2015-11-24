@@ -292,7 +292,7 @@ public abstract class ContextUpdate extends BasicBlock {
         public static ContextUpdate createBlock(BasicPort port) {
             for (IOBlocks io : IOBlocks.values()) {
                 if (io.getReferencedPortClass().isInstance(port)) {
-                    final XcosView disabledView = (XcosView) JavaController.look_for_view(Xcos.class.getName());
+                    final XcosView disabledView = (XcosView) JavaController.lookup_view(Xcos.class.getName());
                     try {
                         JavaController controller = new JavaController();
 

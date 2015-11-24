@@ -13,7 +13,6 @@
 package org.scilab.modules.xcos.graph.swing.handler;
 
 import java.awt.datatransfer.DataFlavor;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;

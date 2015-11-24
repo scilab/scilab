@@ -1588,7 +1588,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
       SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, "Array must contain at least 1 element");
       return 0;
     }
-    arg5 = &temp5; 
+    arg5 = &temp5;
     *arg5 = "";
   }
   result = (bool)((org_scilab_modules_scicos::Controller const *)arg1)->SWIGTEMPLATEDISAMBIGUATOR getObjectProperty< std::string >(arg2,arg3,arg4,*arg5);
@@ -1598,7 +1598,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
     if (arg5) {
       jnewstring = jenv->NewStringUTF(arg5->c_str());
     }
-    jenv->SetObjectArrayElement(jarg5, 0, jnewstring); 
+    jenv->SetObjectArrayElement(jarg5, 0, jnewstring);
   }
   return jresult;
 }
