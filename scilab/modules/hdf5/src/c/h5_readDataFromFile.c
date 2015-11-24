@@ -275,7 +275,7 @@ int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims)
     if (_piDims != 0 && *_iDims != 0)
     {
         int i = 0;
-        hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) * *_iDims);
+        hsize_t* dims = (hsize_t*)MALLOC(sizeof(hsize_t) **_iDims);
         if (H5Sget_simple_extent_dims(space, dims, NULL) < 0)
         {
             FREE(dims);
@@ -1078,10 +1078,6 @@ int getScilabTypeFromDataSet(int _iDatasetId)
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
     {
         iVarType = sci_strings;
-    }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
-    {
-        iVarType = sci_boolean;
     }
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
     {

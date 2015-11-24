@@ -303,13 +303,10 @@ static int sci_toprint_two_rhs(void* _pvCtx, const char *fname)
                     return 1;
                 }
 
-                for (i = 0; i < mnOne; i++)
+                if (mnOne > 0)
                 {
-                    if (i == 0)
-                    {
-                        sprintf(lines, "%s\n", pStVarOne[i]);
-                    }
-                    else
+                    sprintf(lines, "%s\n", pStVarOne[0]);
+                    for (i = 1; i < mnOne; ++i)
                     {
                         sprintf(lines, "%s%s\n", lines, pStVarOne[i]);
                     }
