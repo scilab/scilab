@@ -221,6 +221,28 @@ public :
     virtual InternalType*           clone(void) = 0;
     virtual ast::Exp*               getExp(const Location& /*loc*/);
 
+    template <typename T, typename F, typename ... A>
+    T* checkRef(T* _pIT, F f, A ... a)
+    {
+        if (getRef() > 1)
+        {
+            // A types:: content in more than one Scilab variable
+            // must be cloned before to be modified.
+            T* pClone = _pIT->clone()->template getAs<T>();
+            T* pIT = (pClone->*f)(a...);
+            if (pIT == NULL)
+            {
+                pClone->killMe();
+            }
+
+            return pIT;
+        }
+
+        return _pIT;
+    }
+
+
+
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)
     {

@@ -122,32 +122,42 @@ public :
         return L"";
     }
 
-    virtual InternalType*       clone(void)
+    virtual GenericType*        clone(void)
     {
         return NULL;
     }
 
-    virtual bool                resize(int* /*_piDims*/, int /*_iDims*/)
+    virtual GenericType*        resize(int* /*_piDims*/, int /*_iDims*/)
     {
-        return false;
+        return NULL;
     }
 
-    virtual bool                resize(int /*_iNewRows*/, int /*_iNewCols*/)
+    virtual GenericType*        resize(int /*_iNewRows*/, int /*_iNewCols*/)
     {
-        return false;
+        return NULL;
     }
 
-    virtual bool                reshape(int* /*_piDims*/, int /*_iDims*/)
+    virtual GenericType*        reshape(int* /*_piDims*/, int /*_iDims*/)
     {
-        return false;
+        return NULL;
     }
 
-    virtual bool                reshape(int /*_iNewRows*/, int /*_iNewCols*/)
+    virtual GenericType*        reshape(int /*_iNewRows*/, int /*_iNewCols*/)
     {
-        return false;
+        return NULL;
     }
 
-    virtual InternalType*       insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    virtual GenericType*        insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    {
+        return NULL;
+    }
+
+    virtual GenericType*        insertNew(typed_list* /*_pArgs*/)
+    {
+        return NULL;
+    }
+
+    virtual GenericType*        remove(typed_list* /*_pArgs*/)
     {
         return NULL;
     }

@@ -222,13 +222,16 @@ template<class T>
 void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 {
     CoverageInstance::invokeAndStartChrono((void*)&e);
+    types::InternalType *pITR = NULL; //assign only in non shortcut operations.
+    types::InternalType *pITL = NULL;
+    types::InternalType *pResult = NULL;
+
     try
     {
-        types::InternalType *pITR = NULL; //assign only in non shortcut operations.
 
         /*getting what to assign*/
         e.getLeft().accept(*this);
-        types::InternalType *pITL = getResult();
+        pITL = getResult();
         if (isSingleResult() == false)
         {
             std::wostringstream os;
@@ -248,8 +251,6 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pIL->killMe();
             }
         }
-
-        types::InternalType *pResult = NULL;
 
         switch (e.getOper())
         {
@@ -350,7 +351,19 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
     }
     catch (ast::InternalError& error)
     {
-        clearResult();
+        setResult(NULL);
+        if (pResult)
+        {
+            pResult->killMe();
+        }
+        if (pITL && (pITL != pResult))
+        {
+            pITL->killMe();
+        }
+        if (pITR && (pITR != pResult))
+        {
+            pITR->killMe();
+        }
         error.SetErrorLocation(e.getLocation());
         CoverageInstance::stopChrono((void*)&e);
         throw error;

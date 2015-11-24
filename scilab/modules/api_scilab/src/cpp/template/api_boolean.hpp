@@ -11,12 +11,13 @@
 
 #include "gatewaystruct.hxx"
 #include "bool.hxx"
-#include "api_internal_error.hxx"
 
 extern "C"
 {
 #include "api_scilab.h"
 }
+
+#include "api_internal_error.hxx"
 
 /* Scilab 6 API*/
 scilabVar API_PROTO(createBooleanMatrix)(scilabEnv env, int dim, int* const dims)
@@ -127,7 +128,7 @@ scilabStatus API_PROTO(setBooleanArray)(scilabEnv env, scilabVar var, int* const
     }
 #endif
 
-    bool bset = b->set(vals);
+    bool bset = b->set(vals) != nullptr;
 #ifdef __API_SCILAB_SAFE__
     if (bset == false)
     {

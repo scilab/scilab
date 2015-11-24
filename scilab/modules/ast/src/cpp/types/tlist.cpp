@@ -21,6 +21,8 @@
 #include "polynom.hxx"
 #include "overload.hxx"
 #include "configvariable.hxx"
+#include "types_tools.hxx"
+#include "scilabWrite.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -54,7 +56,7 @@ TList::~TList()
 ** Clone
 ** Create a new List and Copy all values.
 */
-InternalType* TList::clone()
+TList* TList::clone()
 {
     return new TList(this);
 }
@@ -278,14 +280,14 @@ std::wstring TList::getShortTypeStr()
     return getTypeStr();
 }
 
-bool TList::set(const std::wstring& _sKey, InternalType* _pIT)
+TList* TList::set(const std::wstring& _sKey, InternalType* _pIT)
 {
-    return List::set(getIndexFromString(_sKey), _pIT);
+    return List::set(getIndexFromString(_sKey), _pIT)->getAs<TList>();
 }
 
-bool TList::set(const int _iIndex, InternalType* _pIT)
+TList* TList::set(const int _iIndex, InternalType* _pIT)
 {
-    return List::set(_iIndex, _pIT);
+    return List::set(_iIndex, _pIT)->getAs<TList>();
 }
 
 String* TList::getFieldNames()

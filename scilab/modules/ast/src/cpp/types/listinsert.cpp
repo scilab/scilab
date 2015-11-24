@@ -43,7 +43,7 @@ void ListInsert::whoAmI()
     std::cout << "types::ListInsert";
 }
 
-InternalType* ListInsert::clone(void)
+ListInsert* ListInsert::clone(void)
 {
     return new ListInsert(m_pInsert);
 }

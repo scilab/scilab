@@ -28,7 +28,7 @@ void ListOperation::whoAmI()
     std::cout << "types::ListDelete";
 }
 
-InternalType* ListOperation::clone(void)
+ListOperation* ListOperation::clone(void)
 {
     return new ListOperation();
 }

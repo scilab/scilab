@@ -25,7 +25,7 @@ public :
     virtual                 ~ListDelete();
 
     // FIXME : Should not return NULL;
-    InternalType*           clone();
+    ListDelete*             clone();
 
     inline ScilabType       getType(void)
     {

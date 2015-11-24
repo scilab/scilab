@@ -16,7 +16,7 @@
 
 #include "types.hxx"
 #include "int.hxx"
-
+#include "function.hxx"
 #include "gw_xcos.hxx"
 
 extern "C" {

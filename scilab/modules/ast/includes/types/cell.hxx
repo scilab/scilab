@@ -63,15 +63,13 @@ public :
     ** Clone
     ** Create a new List and Copy all values.
     */
-    InternalType*       clone();
+    Cell*               clone();
 
-    bool                set(int _iRows, int _iCols, InternalType* _pIT);
-    bool                set(int _iRows, int _iCols, const InternalType* _pIT);
-    bool                set(int _iIndex, InternalType* _pIT);
-    bool                set(int _iIndex, const InternalType* _pIT);
-    bool                set(InternalType** _pIT);
-
-    bool                append(int _iRows, int _iCols, Cell *_poSource);
+    Cell*               set(int _iRows, int _iCols, InternalType* _pIT);
+    Cell*               set(int _iRows, int _iCols, const InternalType* _pIT);
+    Cell*               set(int _iIndex, InternalType* _pIT);
+    Cell*               set(int _iIndex, const InternalType* _pIT);
+    Cell*               set(InternalType** _pIT);
 
     bool                operator==(const InternalType& it);
     bool                operator!=(const InternalType& it);

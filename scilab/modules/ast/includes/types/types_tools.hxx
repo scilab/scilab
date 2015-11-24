@@ -15,6 +15,7 @@
 
 #include "types.hxx"
 #include "function.hxx"
+#include "double.hxx"
 
 namespace types
 {
@@ -27,6 +28,14 @@ EXTERN_AST void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgs
 EXTERN_AST void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims);
 EXTERN_AST int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims);
 EXTERN_AST types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName);
+
+//commom function
+EXTERN_AST int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex);
+EXTERN_AST Double* createEmptyDouble();
+EXTERN_AST Double* createDoubleVector(int _iSize);
+EXTERN_AST int getIntValueFromDouble(InternalType* _pIT, int _iPos);
+EXTERN_AST double* getDoubleArrayFromDouble(InternalType* _pIT);
+EXTERN_AST bool checkArgValidity(typed_list& _pArg);
 }
 
 #endif /* !__TYPES_TOOLS_HXX__ */

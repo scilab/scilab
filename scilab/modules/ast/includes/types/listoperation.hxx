@@ -24,7 +24,7 @@ public :
     ListOperation(): InternalType() {};
     virtual                 ~ListOperation();
 
-    InternalType*           clone();
+    ListOperation*          clone();
 
     inline ScilabType       getType(void)
     {

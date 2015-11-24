@@ -14,6 +14,7 @@
 #include "callable.hxx"
 #include "double.hxx"
 #include "bool.hxx"
+#include "function.hxx"
 
 extern "C"
 {
@@ -41,7 +42,7 @@ int schur_dgees(double* _real, double* _img)
         types::typed_list out;
         types::optional_list opt;
         int iRetCount = 1;
-        
+
         types::Double* pDbl = new types::Double(*_real, *_img);
         pDbl->IncreaseRef();
         in.push_back(pDbl);
@@ -104,7 +105,7 @@ int schur_dgges(double* _real, double* _img, double* _beta)
         types::typed_list out;
         types::optional_list opt;
         int iRetCount = 1;
-        
+
         types::Double* pDblAlpha = new types::Double(*_real, *_img);
         pDblAlpha->IncreaseRef();
         types::Double* pDblBeta  = new types::Double(*_beta);
@@ -172,7 +173,7 @@ int schur_zgees(doublecomplex* _complex)
         types::typed_list out;
         types::optional_list opt;
         int iRetCount = 1;
-        
+
         types::Double* pDbl = new types::Double(_complex->r, _complex->i);
         pDbl->IncreaseRef();
         in.push_back(pDbl);
@@ -241,7 +242,7 @@ int schur_zgges(doublecomplex* _alpha, doublecomplex* _beta)
         types::typed_list out;
         types::optional_list opt;
         int iRetCount = 1;
-        
+
         types::Double* pDblAlpha = new types::Double(_alpha->r, _alpha->i);
         pDblAlpha->IncreaseRef();
         types::Double* pDblBeta  = new types::Double(_beta->r, _beta->i);

@@ -45,12 +45,12 @@ public :
     virtual                 ~Polynom();
 
     // FIXME : Should not return NULL
-    InternalType*           clone();
+    Polynom*                clone();
 
-    bool                    setCoef(int _iRows, int _iCols, Double *_pdblCoef);
-    bool                    setCoef(int _iIdx, Double *_pdblCoef);
+    Polynom*                setCoef(int _iRows, int _iCols, Double *_pdblCoef);
+    Polynom*                setCoef(int _iIdx, Double *_pdblCoef);
 
-    virtual void            setComplex(bool _bComplex);
+    virtual Polynom*        setComplex(bool _bComplex);
 
     inline ScilabType       getType(void)
     {
@@ -82,15 +82,15 @@ public :
     Double*                 evaluate(Double* _pdblValue);
     void                    updateRank(void);
     Double*                 getCoef(void);
-    void                    setCoef(Double *_pCoef);
+    Polynom*                setCoef(Double *_pCoef);
     Double*                 extractCoef(int _iRank);
     bool                    insertCoef(int _iRank, Double* _pCoef);
     void                    setZeros();
-    InternalType*           insert(typed_list* _pArgs, InternalType* _pSource);
+    Polynom*                insert(typed_list* _pArgs, InternalType* _pSource);
 
-    bool                    set(int _iPos, SinglePoly* _pS);
-    bool                    set(int _iRows, int _iCols, SinglePoly* _pS);
-    bool                    set(SinglePoly** _pS);
+    Polynom*                set(int _iPos, SinglePoly* _pS);
+    Polynom*                set(int _iRows, int _iCols, SinglePoly* _pS);
+    Polynom*                set(SinglePoly** _pS);
 
     std::wstring            getRowString(int* _piDims, int _iDims, bool _bComplex);
     std::wstring            getColString(int* _piDims, int _iDims, bool _bComplex);

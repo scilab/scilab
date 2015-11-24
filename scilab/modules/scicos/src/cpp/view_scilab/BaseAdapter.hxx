@@ -298,7 +298,7 @@ public:
     virtual std::wstring getShortTypeStr() = 0;
 
 private:
-    types::InternalType* clone()
+    virtual UserType* clone() final
     {
         return new Adaptor(*static_cast<Adaptor*>(this));
     }
@@ -387,7 +387,7 @@ private:
         return NULL;
     }
 
-    types::InternalType* insert(types::typed_list* _pArgs, types::InternalType* _pSource)
+    types::UserType* insert(types::typed_list* _pArgs, types::InternalType* _pSource)
     {
         for (size_t i = 0; i < _pArgs->size(); i++)
         {

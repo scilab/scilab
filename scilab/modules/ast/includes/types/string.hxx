@@ -43,13 +43,13 @@ public :
 
     void                    whoAmI();
 
-    virtual bool            set(int _iPos, const wchar_t* _pwstData);
-    virtual bool            set(int _iRows, int _iCols, const wchar_t* _pwstData);
-    virtual bool            set(const wchar_t* const* _pwstData);
+    virtual String*         set(int _iPos, const wchar_t* _pwstData);
+    virtual String*         set(int _iRows, int _iCols, const wchar_t* _pwstData);
+    virtual String*         set(const wchar_t* const* _pwstData);
 
-    virtual bool            set(int _iPos, const char* _pcData);
-    virtual bool            set(int _iRows, int _iCols, const char* _pcData);
-    virtual bool            set(const char* const* _pstrData);
+    virtual String*         set(int _iPos, const char* _pcData);
+    virtual String*         set(int _iRows, int _iCols, const char* _pcData);
+    virtual String*         set(const char* const* _pstrData);
 
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
@@ -65,7 +65,7 @@ public :
     {
         return L"c";
     }
-    InternalType*           clone();
+    String*                 clone();
 
     inline ScilabType       getType()
     {
@@ -85,11 +85,8 @@ public :
         return false;
     }
 
-    virtual bool neg(InternalType *& out)
+    virtual bool neg(InternalType *& /*out*/)
     {
-        // silent unused parameters warnings
-        (void) out;
-
         return false;
     }
 

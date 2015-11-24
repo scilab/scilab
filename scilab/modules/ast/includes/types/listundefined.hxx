@@ -25,7 +25,7 @@ public :
     virtual                 ~ListUndefined();
 
     // FIXME : Should not return NULL;
-    InternalType*           clone();
+    ListUndefined*          clone();
 
     ScilabType                getType(void);
     bool                    isListUndefined()

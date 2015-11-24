@@ -27,7 +27,7 @@ public :
 
     virtual                 ~GraphicHandle();
 
-    InternalType*           clone();
+    GraphicHandle*          clone();
 
     void                    whoAmI();
 

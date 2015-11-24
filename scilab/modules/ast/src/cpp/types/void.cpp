@@ -28,7 +28,7 @@ void Void::whoAmI()
     std::cout << "types::Void";
 }
 
-InternalType* Void::clone(void)
+Void* Void::clone(void)
 {
     return new Void();
 }

@@ -18,6 +18,7 @@
 #include "configvariable.hxx"
 #include "scilabWrite.hxx"
 #include "type_traits.hxx"
+#include "types_tools.hxx"
 #include "numericconstants.hxx"
 #include "doubleexp.hxx"
 
@@ -106,7 +107,7 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
 #endif
 }
 
-InternalType* ImplicitList::clone()
+ImplicitList* ImplicitList::clone()
 {
     return new ImplicitList(m_poStart, m_poStep, m_poEnd);
 }

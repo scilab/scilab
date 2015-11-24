@@ -87,7 +87,7 @@ public :
 #endif
     }
 
-    InternalType* clone()
+    Int<T>* clone()
     {
         Int<T> *pbClone = new Int<T>(GenericType::getDims(), GenericType::getDimsArray());
         pbClone->set(ArrayOf<T>::get());

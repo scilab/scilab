@@ -17,6 +17,7 @@
 #include "singlestruct.hxx"
 #include "type_traits.hxx"
 #include "exp.hxx"
+#include "types_tools.hxx"
 
 extern "C"
 {
@@ -25,100 +26,25 @@ extern "C"
 
 namespace types
 {
-//n-uplet in french
-int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
+
+template <typename T>
+GenericType* ArrayOf<T>::createEmpty()
 {
-    //if bRet == 1, previous dims has reach max value.
-    int iRet = 0;
-
-    if (_iCurrentDim == 0)
-    {
-        //last dims
-        if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
-        {
-            _piIndex[_iCurrentDim] = 0;
-            return 1;
-        }
-    }
-    else
-    {
-        iRet = computeTuples(_piCountDim, _iDims, _iCurrentDim - 1, _piIndex);
-        if (iRet)
-        {
-            _piIndex[_iCurrentDim]++;
-            if (_piIndex[_iCurrentDim] >= _piCountDim[_iCurrentDim])
-            {
-                _piIndex[_iCurrentDim] = 0;
-                return 1;
-            }
-        }
-    }
-    return 0;
-}
-
-InternalType* createEmptyDouble()
-{
-    return Double::Empty();
-}
-
-int getIntValueFromDouble(InternalType* _pIT, int _iPos)
-{
-    return static_cast<int>(_pIT->getAs<Double>()->get(_iPos));
-}
-
-double* getDoubleArrayFromDouble(InternalType* _pIT)
-{
-    return _pIT->getAs<Double>()->get();
-}
-
-InternalType* createDoubleVector(int _iSize)
-{
-    int piDims[] = {1, _iSize};
-    Double* pOut = new Double(2, piDims);
-    for (int i = 0; i < _iSize; i++)
-    {
-        pOut->set(i, i + 1);
-    }
-    return pOut;
-}
-
-bool checkArgValidity(typed_list& _Arg)
-{
-    for (int i = 0; i < (int)_Arg.size(); i++)
-    {
-        if (_Arg[i]->isDouble() == false)
-        {
-            return false;
-        }
-
-        Double* pDbl = _Arg[i]->getAs<Double>();
-        double* pdbl = pDbl->get();
-        for (int j = 0; j < pDbl->getSize(); j++)
-        {
-            if (pdbl[j] <= 0)
-            {
-                return false;
-            }
-        }
-    }
-
-    return true;
+    return createEmptyDouble();
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
+void ArrayOf<T>::getIndexes(int _iIndex, int* _piIndexes)
 {
-    if (getRef() > 1)
-    {
-        // An ArrayOf content in more than one Scilab variable
-        // must be cloned before to be modified.
-        ArrayOf* pClone = clone()->template getAs<ArrayOf>();
-        InternalType* pIT = pClone->insert(_pArgs, _pSource);
-        if (pIT == NULL)
-        {
-            pClone->killMe();
-        }
+    getIndexesWithDims(_iIndex, _piIndexes, m_piDims, m_iDims);
+}
 
+template <typename T>
+ArrayOf<T>* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
+{
+    ArrayOf<T>* pIT = checkRef(this, &ArrayOf::insert, _pArgs, _pSource);
+    if (pIT != this)
+    {
         return pIT;
     }
 
@@ -138,7 +64,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
         if (isComplex() == false && pIns->isComplex() == false)
         {
-            if (set(index, *pRealData) == true)
+            if (set(index, *pRealData) != NULL)
             {
                 return this;
             }
@@ -175,7 +101,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             {
                 for (int & i : indexes)
                 {
-                    if (set(i, *pRealData) == false)
+                    if (set(i, *pRealData) == NULL)
                     {
                         status = false;
                         break;
@@ -186,7 +112,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             {
                 for (int & i : indexes)
                 {
-                    if (set(i, *pRealData) == false)
+                    if (set(i, *pRealData) == NULL)
                     {
                         status = false;
                         break;
@@ -362,11 +288,10 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     //before resize, check input dimension
-
     if (bNeedToResize)
     {
-        bool bPass = resize(piNewDims, iNewDims);
-        if (bPass == false)
+        ArrayOf<T>* pTemp = resize(piNewDims, iNewDims);
+        if (pTemp == NULL)
         {
             delete[] piCountDim;
             delete[] piMaxDim;
@@ -507,16 +432,15 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
+GenericType* ArrayOf<T>::insertNew(typed_list* _pArgs)
 {
     typed_list pArg;
     InternalType *pOut = NULL;
-    ArrayOf* pSource = _pSource->getAs<ArrayOf>();
 
     int iDims = (int)_pArgs->size();
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
-    bool bComplex = pSource->getImg() != NULL;
+    bool bComplex = getImg() != NULL;
     bool bUndefine = false;
     bool bIsImpli = false;
 
@@ -541,8 +465,8 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
     if (bUndefine)
     {
         //manage : and $ in creation by insertion
-        int *piSourceDims = pSource->getDimsArray();
-        int iSourceDims = pSource->getDims();
+        int *piSourceDims = getDimsArray();
+        int iSourceDims = getDims();
         int iCompteurNull = 0;
         int iLastNull = 0;
         for (int i = 0; i < iDims; i++)
@@ -568,19 +492,19 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
             delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            return _pSource;
+            return this;
         }
 
         //vector case
-        if (pSource->isVector() && iCompteurNull == 1)
+        if (isVector() && iCompteurNull == 1)
         {
-            piMaxDim[iLastNull] = pSource->getSize();
+            piMaxDim[iLastNull] = getSize();
             pArg[iLastNull] = createDoubleVector(piMaxDim[iLastNull]);
         }
         else
         {
             //matrix and hypermatrix case
-            if (iCompteurNull < pSource->getDims())
+            if (iCompteurNull < getDims())
             {
                 delete[] piMaxDim;
                 delete[] piCountDim;
@@ -604,7 +528,7 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
                     }
                     else
                     {
-                        //fill dimensions after pSource->getDimes() with 1
+                        //fill dimensions after getDimes() with 1
                         piMaxDim[i] = 1;
                         pArg[i] = createDoubleVector(piMaxDim[i]);
                     }
@@ -641,21 +565,21 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
 
     if (iDims == 1)
     {
-        if (pSource->getCols() == 1)
+        if (getCols() == 1)
         {
             int piRealDim[2] = {piMaxDim[0], 1};
-            pOut = pSource->createEmpty(2, piRealDim, bComplex);
+            pOut = createEmpty(2, piRealDim, bComplex);
         }
         else
         {
             //rows == 1
             int piRealDim[2] = {1, piMaxDim[0]};
-            pOut = pSource->createEmpty(2, piRealDim, bComplex);
+            pOut = createEmpty(2, piRealDim, bComplex);
         }
     }
     else
     {
-        pOut = pSource->createEmpty(iDims, piMaxDim, bComplex);
+        pOut = createEmpty(iDims, piMaxDim, bComplex);
     }
 
     //fill with null item
@@ -667,9 +591,9 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
         for (int i = 0; i < pArrayOut->getSize(); i++)
         {
             pArrayOut->deleteData(pRealData[i]);
-            pRealData[i] = pSource->getNullValue();
+            pRealData[i] = getNullValue();
             pArrayOut->deleteData(pImgData[i]);
-            pImgData[i] = pSource->getNullValue();
+            pImgData[i] = getNullValue();
         }
     }
     else
@@ -677,11 +601,11 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
         for (int i = 0; i < pArrayOut->getSize(); i++)
         {
             pArrayOut->deleteData(pRealData[i]);
-            pRealData[i] = pSource->getNullValue();
+            pRealData[i] = getNullValue();
         }
     }
 
-    if (bIsImpli && (pArrayOut->getSize() != _pSource->getAs<types::GenericType>()->getSize()))
+    if (bIsImpli && (pArrayOut->getSize() != getSize()))
     {
         delete[] piMaxDim;
         delete[] piCountDim;
@@ -690,7 +614,7 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
     //insert values in new matrix
-    InternalType* pOut2 = pArrayOut->insert(&pArg, _pSource);
+    ArrayOf* pOut2 = pArrayOut->insert(&pArg, this);
     if (pOut != pOut2)
     {
         delete pOut;
@@ -705,8 +629,14 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
 }
 
 template <typename T>
-bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
+ArrayOf<T>* ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
 {
+    ArrayOf<T>* pIT = checkRef(this, &ArrayOf::append, _iRows, _iCols, _poSource);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     ArrayOf * pGT = _poSource->getAs<ArrayOf>();
     int iRows = pGT->getRows();
     int iCols = pGT->getCols();
@@ -714,7 +644,7 @@ bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
     //insert without resize
     if (iRows + _iRows > m_iRows || iCols + _iCols > m_iCols)
     {
-        return false;
+        return NULL;
     }
 
     //Update complexity if necessary
@@ -749,11 +679,11 @@ bool ArrayOf<T>::append(int _iRows, int _iCols, InternalType* _poSource)
         }
     }
 
-    return true;
+    return this;
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
+GenericType* ArrayOf<T>::remove(typed_list* _pArgs)
 {
     ArrayOf<T>* pOut = NULL;
     int iDims = (int)_pArgs->size();
@@ -1008,7 +938,7 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
 }
 
 template <typename T>
-InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
+GenericType* ArrayOf<T>::extract(typed_list* _pArgs)
 {
     ArrayOf<T>* pOut = NULL;
     int iDims = (int)_pArgs->size();
@@ -1370,8 +1300,63 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
 }
 
 template <typename T>
-bool ArrayOf<T>::resize(int* _piDims, int _iDims)
+ArrayOf<T>* ArrayOf<T>::reshape(int* _piDims, int _iDims)
 {
+    typedef ArrayOf<T>* (ArrayOf<T>::*reshape_t)(int*, int);
+    ArrayOf<T>* pIT = checkRef(this, (reshape_t)&ArrayOf<T>::reshape, _piDims, _iDims);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
+    int iNewSize = get_max_size(_piDims, _iDims);
+    if (iNewSize != m_iSize)
+    {
+        return NULL;
+    }
+
+    for (int i = 0 ; i < _iDims ; i++)
+    {
+        m_piDims[i] = _piDims[i];
+    }
+
+    if (_iDims == 1)
+    {
+        m_piDims[1] = 1;
+        _iDims++;
+    }
+
+    int iDims = _iDims;
+    for (int i = iDims - 1; i >= 2; --i)
+    {
+        if (m_piDims[i] == 1)
+        {
+            _iDims--;
+        }
+        else
+        {
+            break;
+        }
+    }
+
+    m_iRows = m_piDims[0];
+    m_iCols = m_piDims[1];
+    m_iSize = iNewSize;
+    m_iDims = _iDims;
+
+    return this;
+}
+
+template <typename T>
+ArrayOf<T>* ArrayOf<T>::resize(int* _piDims, int _iDims)
+{
+    typedef ArrayOf<T>* (ArrayOf<T>::*resize_t)(int*, int);
+    ArrayOf<T>* pIT = checkRef(this, (resize_t)&ArrayOf::resize, _piDims, _iDims);
+    if (pIT != this)
+    {
+        return pIT;
+    }
+
     if (_iDims == m_iDims)
     {
         bool bChange = false;
@@ -1387,7 +1372,7 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
         if (bChange == false)
         {
             //nothing to do
-            return true;
+            return this;
         }
     }
 
@@ -1642,7 +1627,7 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
     m_iSize = iNewSize;
-    return true;
+    return this;
 }
 
 template <typename T>

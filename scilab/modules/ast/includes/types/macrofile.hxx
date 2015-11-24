@@ -28,7 +28,7 @@ public :
     virtual                 ~MacroFile();
 
     //FIXME : Should not return NULL
-    InternalType*           clone();
+    MacroFile*              clone();
 
     inline ScilabType       getType(void)
     {

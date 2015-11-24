@@ -98,7 +98,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
 #endif
 }
 
-InternalType* String::clone()
+String* String::clone()
 {
     String *pstClone = new String(getDims(), getDimsArray());
     pstClone->set(m_pRealData);
@@ -578,60 +578,84 @@ void String::deleteData(wchar_t* data)
     }
 }
 
-bool String::set(int _iPos, const wchar_t* _pwstData)
+String* String::set(int _iPos, const wchar_t* _pwstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
-        return false;
+        return NULL;
+    }
+
+    typedef String* (String::*set_t)(int, const wchar_t*);
+    String* pIT = checkRef(this, (set_t)&String::set, _iPos, _pwstData);
+    if (pIT != this)
+    {
+        return pIT;
     }
 
     deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
-    return true;
+    return this;
 }
 
-bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
+String* String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 {
     int piIndexes[2] = {_iRows, _iCols};
     return set(getIndex(piIndexes), _pwstData);
 }
 
-bool String::set(const wchar_t* const* _pwstData)
+String* String::set(const wchar_t* const* _pwstData)
 {
-    for (int i = 0; i < getSize(); i++)
+    typedef String* (String::*set_t)(const wchar_t * const*);
+    String* pIT = checkRef(this, (set_t)&String::set, _pwstData);
+    if (pIT != this)
     {
-        if (set(i, _pwstData[i]) == false)
-        {
-            return false;
-        }
+        return pIT;
     }
-    return true;
+
+    for (int i = 0; i < m_iSize; i++)
+    {
+        if (m_pRealData == NULL || i >= m_iSize)
+        {
+            return NULL;
+        }
+
+        deleteString(i);
+        m_pRealData[i] = copyValue(_pwstData[i]);
+    }
+    return this;
 }
 
-bool String::set(int _iPos, const char* _pcData)
+String* String::set(int _iPos, const char* _pcData)
 {
     wchar_t* w = to_wide_string(_pcData);
-    bool ret = set(_iPos, w);
+    String* ret = set(_iPos, w);
     FREE(w);
     return ret;
 }
 
-bool String::set(int _iRows, int _iCols, const char* _pcData)
+String* String::set(int _iRows, int _iCols, const char* _pcData)
 {
     int piIndexes[2] = {_iRows, _iCols};
     return set(getIndex(piIndexes), _pcData);
 }
 
-bool String::set(const char* const* _pstrData)
+String* String::set(const char* const* _pstrData)
 {
-    for (int i = 0; i < getSize(); i++)
+    typedef String* (String::*set_t)(const char * const*);
+    String* pIT = checkRef(this, (set_t)&String::set, _pstrData);
+    if (pIT != this)
     {
-        if (set(i, _pstrData[i]) == false)
+        return pIT;
+    }
+
+    for (int i = 0; i < m_iSize; i++)
+    {
+        if (set(i, _pstrData[i]) == NULL)
         {
-            return false;
+            return NULL;
         }
     }
-    return true;
+    return this;
 }
 
 wchar_t** String::allocData(int _iSize)

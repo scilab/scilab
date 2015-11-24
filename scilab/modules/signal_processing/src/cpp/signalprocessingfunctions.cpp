@@ -13,6 +13,7 @@
 #include "double.hxx"
 #include "signalprocessingfunctions.hxx"
 #include "configvariable.hxx"
+#include "function.hxx"
 
 extern "C"
 {
