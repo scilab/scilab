@@ -84,7 +84,13 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>ged</literal> starts Scilab Graphic Editor on figure number <literal>fignum</literal> and execute action given by <literal>action</literal>.
+            The Scilab Graphic Editor is the underlying Scilab function for the graphic <link linkend="object_editor">object editor</link>, the visual tool available from the graphics windows Edit menu. <code>ged()</code> is of limited use by itself (most the functionalities are available from other functions), and is only present to ensure that all Object Editor functionalities are also available in the Scilab language.
+        </para>
+        <para>
+            <code>ged()</code> starts Scilab Graphic Editor on figure number <varname>fignum</varname> and execute action given by <varname>action</varname>.
+        </para>
+        <para>
+            Note that, the Scilab Graphic Editor is implemented using the Tcl/Tk language; it is not available on MacOS, where Tcl/TK is not available.
         </para>
     </refsection>
     <refsection>
@@ -95,5 +101,13 @@ scf(0);
 plot2d();
 ged(6,0) // Then click on a curve and try moving it
  ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="object_editor">object editor</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>
