@@ -137,8 +137,14 @@ public class XcosSAXHandler extends DefaultHandler {
         if (LOG.isLoggable(Level.FINEST)) {
             char[] indent = new char[parents.size()];
             Arrays.fill(indent, ' ');
-            // System.err.println(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
-            LOG.finest(new String(indent) + localName + " id=\"" + atts.getValue("id") + "\"");
+            StringBuilder args = new StringBuilder();
+            if (atts.getValue("id") != null) {
+                args.append(" id=\"").append(atts.getValue("id")).append("\"");
+            } else if (atts.getValue("as") != null) {
+                args.append(" as=\"").append(atts.getValue("as")).append("\"");
+            }
+            // System.err.println(new StringBuilder().append(indent).append(localName).append(args).toString());
+            LOG.finest(new StringBuilder().append(indent).append(localName).append(args).toString());
         }
 
         HandledElement found = elementMap.get(localName);
@@ -198,5 +204,27 @@ public class XcosSAXHandler extends DefaultHandler {
         controller.referenceObject(cell.getUID());
 
         controller.setObjectProperty(parentUID, parentKind, ObjectProperties.CHILDREN, children);
+    }
+
+    /*
+     * Implement ErrorHandler methods
+     */
+
+    @Override
+    public void warning(SAXParseException e) throws SAXException {
+        System.err.println("XcosSAXHandler warning: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
+        System.err.println(e.getMessage());
+    }
+
+    @Override
+    public void error(SAXParseException e) throws SAXException {
+        System.err.println("XcosSAXHandler warning: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
+        System.err.println(e.getMessage());
+    }
+
+    @Override
+    public void fatalError(SAXParseException e) throws SAXException {
+        System.err.println("XcosSAXHandler warning: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
+        System.err.println(e.getMessage());
     }
 }

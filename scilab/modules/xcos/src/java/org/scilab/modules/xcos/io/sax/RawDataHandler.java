@@ -162,8 +162,7 @@ class RawDataHandler implements ScilabHandler {
 
                 switch (fieldValue.as) {
                     case DIAGRAM_CONTEXT: {
-                        @SuppressWarnings("unchecked")
-                        ArrayList<String> container = ((ArrayList<String>) fieldValue.value);
+                        ArrayList container = ((ArrayList) fieldValue.value);
                         container.add(atts.getValue("value"));
                         break;
                     }
@@ -219,7 +218,7 @@ class RawDataHandler implements ScilabHandler {
                         v = atts.getValue("imaginaryPart");
                         if (v != null) {
                             // allocate the imaginary part on demand
-                            if (imaginaryPartData == null) {
+                            if (localScilabValue.isReal()) {
                                 imaginaryPartData = new double[localScilabValue.getHeight()][localScilabValue.getWidth()];
                                 localScilabValue.setImaginaryPart(imaginaryPartData);
                             }
@@ -347,7 +346,7 @@ class RawDataHandler implements ScilabHandler {
                 } else if ("ScilabList".equals(scilabClass)) {
                     container = new ScilabList();
                 } else {
-                    container = new ArrayList<>();
+                    container = new ScilabList();
                 }
                 break;
         }
@@ -405,10 +404,10 @@ class RawDataHandler implements ScilabHandler {
                         ScicosObjectOwner diagram = (ScicosObjectOwner) parent;
 
                         @SuppressWarnings("unchecked")
-                        ArrayList<String> value = (ArrayList<String>) fieldValue.value;
+                        ArrayList value = (ArrayList) fieldValue.value;
                         VectorOfString ctx = new VectorOfString(value.size());
                         for (int i = 0; i < value.size(); i++) {
-                            ctx.set(i, value.get(i));
+                            ctx.set(i, (String) value.get(i));
                         }
                         saxHandler.controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
                         break;
