@@ -64,7 +64,7 @@ if test $acx_blas_ok = no; then
         LIBS="$save_LIBS"
     elif $WITH_DEVTOOLS; then # Scilab thirdparties
         BLAS_LIBS="-L$DEVTOOLS_LIBDIR -lblas"
-        BLAS_TYPE="Generic Blas"
+        BLAS_TYPE="Generic Blas (thirdparties)"
         acx_blas_ok=yes
     fi
 fi
@@ -238,8 +238,8 @@ if test "x$LAPACK_LIBS" != x; then
                 LAPACK_LIBS=""
         fi
 elif $WITH_DEVTOOLS; then # Scilab thirdparties
-     LAPACK_LIBS="-L$DEVTOOLS_LIBDIR -llapack"
-     LAPACK_TYPE="Library -llapack"
+     LAPACK_LIBS="-L$DEVTOOLS_LIBDIR -llapack -lblas"
+     LAPACK_TYPE="Lapack (thirdparties)"
      acx_lapack_ok=yes
 fi
 
@@ -328,7 +328,7 @@ LDFLAGS="$LDFLAGS -L$with_arpack_library"
 fi
 
 if $WITH_DEVTOOLS; then # Scilab thirdparties
-    ARPACK_LIBS="-L$DEVTOOLS_LIBDIR -larpack"
+    ARPACK_LIBS="-L$DEVTOOLS_LIBDIR -larpack -llapack -lblas"
     LDFLAGS="$LDFLAGS -L$DEVTOOLS_LIBDIR"
     acx_arpack_ok=yes
 else
