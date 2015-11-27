@@ -33,7 +33,7 @@ void BreaksInLoopChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
                 {
                     if (_breaks == maxBreaks)
                     {
-                        result.report(context, e.getLocation(), *this, _("Number of break is limited: %d max."), maxBreaks);
+                        result.report(context, e.getLocation(), *this, 1, _("Number of break is limited: %d max."), maxBreaks);
                         _breaks = -1;
                     }
                     else
@@ -49,7 +49,7 @@ void BreaksInLoopChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
                 {
                     if (_continues == maxContinues)
                     {
-                        result.report(context, e.getLocation(), *this, _("Number of continue is limited: %d max."), maxContinues);
+                        result.report(context, e.getLocation(), *this, 2, _("Number of continue is limited: %d max."), maxContinues);
                         _continues = -1;
                     }
                     else
@@ -76,5 +76,20 @@ void BreaksInLoopChecker::postCheckNode(const ast::Exp & e, SLintContext & conte
 const std::string BreaksInLoopChecker::getName() const
 {
     return "BreaksInLoopChecker";
+}
+
+const std::wstring BreaksInLoopChecker::getId(const unsigned sub) const
+{
+    switch (sub)
+    {
+        case 0:
+            return SLintChecker::getId();
+        case 1:
+            return SLintChecker::getId() + L".Break";
+        case 2:
+            return SLintChecker::getId() + L".Continue";
+        default:
+            return L"";
+    }
 }
 }

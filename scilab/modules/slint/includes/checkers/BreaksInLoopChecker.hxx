@@ -39,6 +39,7 @@ public:
     void preCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
     void postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result);
     const std::string getName() const;
+    const std::wstring getId(const unsigned sub) const;
 
     virtual const std::vector<ast::Exp::ExpType> getAstNodes() const
     {

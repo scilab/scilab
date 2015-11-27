@@ -29,7 +29,8 @@
     <ruleLink standardRuleId="SCI.INST.At" analysisRuleId="OldNot" ruleCoverage="Complete" standardId=""/>
     <ruleLink standardRuleId="COM.PRES.Ventilate" analysisRuleId="SpacesAroundOp" ruleCoverage="Complete" standardId=""/>
     <ruleLink standardRuleId="COM.PRES.Ventilate" analysisRuleId="SpacesInArgs" ruleCoverage="Complete" standardId=""/>
-    <ruleLink standardRuleId="SCI.INST.Break" analysisRuleId="BreaksInLoop" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.Break" analysisRuleId="BreaksInLoop.Break" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="SCI.INST.Continue" analysisRuleId="BreaksInLoop.Continue" ruleCoverage="Complete" standardId=""/>
     <ruleLink standardRuleId="COM.MET.Nesting" analysisRuleId="NestedBlocks" ruleCoverage="Complete" standardId=""/>
     <ruleLink standardRuleId="COM.FLOW.BooleanExpression" analysisRuleId="ExpInCond" ruleCoverage="Complete" standardId=""/>
     <ruleLink standardRuleId="COM.INST.Brace" analysisRuleId="BracketedExp" ruleCoverage="Complete" standardId=""/>
