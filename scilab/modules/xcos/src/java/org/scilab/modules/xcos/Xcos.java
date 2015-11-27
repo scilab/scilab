@@ -70,6 +70,9 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.view.mxStylesheet;
+import javax.swing.SwingWorker;
+import org.scilab.modules.graph.ScilabCanvas;
+import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 /**
  * Xcos entry point class
@@ -114,6 +117,22 @@ public final class Xcos {
         });
 
         XConfiguration.addXConfigurationListener(new XcosConfiguration());
+
+        /*
+         * Load some classes in the background to avoid any lag on the first drag'n drop.
+         *
+         * This will setup the whole rendering stack by dummy rendering a block' style
+         */
+        (new SwingWorker<Void, Void>() {
+            @Override
+            protected Void doInBackground() throws Exception {
+                Map<String, Object> style = Xcos.getInstance().getStyleSheet().getCellStyle("CLOCK_c", new HashMap<>());
+                ScilabCanvas canvas = new GraphComponent(null).createCanvas();
+                canvas.paintSvgForegroundImage(1, 1, canvas.getImageForStyle(style));
+                return null;
+            }
+
+        }).execute();
     }
 
     /*
