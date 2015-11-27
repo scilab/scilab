@@ -292,17 +292,17 @@ void Controller::deleteObject(ScicosID uid)
 void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
 {
     ScicosID v;
-    m_instance.model.getObjectProperty(uid, k, uid_prop, v);
+    getObjectProperty(uid, k, uid_prop, v);
     if (v != 0)
     {
-        auto o = m_instance.model.getObject(v);
+        auto o = getObject(v);
         if (o == nullptr)
         {
             return;
         }
 
         std::vector<ScicosID> children;
-        m_instance.model.getObjectProperty(o->id(), o->kind(), ref_prop, children);
+        getObjectProperty(o->id(), o->kind(), ref_prop, children);
 
         std::vector<ScicosID>::iterator it = std::find(children.begin(), children.end(), uid);
         if (it != children.end())
@@ -310,19 +310,19 @@ void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_pr
             children.erase(it);
         }
 
-        m_instance.model.setObjectProperty(o->id(), o->kind(), ref_prop, children);
+        setObjectProperty(o->id(), o->kind(), ref_prop, children);
     }
 }
 
 void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
 {
     std::vector<ScicosID> v;
-    m_instance.model.getObjectProperty(uid, k, uid_prop, v);
+    getObjectProperty(uid, k, uid_prop, v);
     for (const ScicosID id : v)
     {
         if (id != 0)
         {
-            auto o = m_instance.model.getObject(id);
+            auto o = getObject(id);
             if (o == nullptr)
             {
                 continue;
@@ -330,10 +330,10 @@ void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, ob
 
             // Find which end of the link is connected to the port
             ScicosID oppositeRef;
-            m_instance.model.getObjectProperty(o->id(), o->kind(), ref_prop, oppositeRef);
+            getObjectProperty(o->id(), o->kind(), ref_prop, oppositeRef);
             if (oppositeRef == uid)
             {
-                m_instance.model.setObjectProperty(o->id(), o->kind(), ref_prop, ScicosID());
+                setObjectProperty(o->id(), o->kind(), ref_prop, ScicosID());
             }
         }
     }
@@ -342,11 +342,11 @@ void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, ob
 void Controller::deleteVector(ScicosID uid, kind_t k, object_properties_t uid_prop)
 {
     std::vector<ScicosID> children;
-    m_instance.model.getObjectProperty(uid, k, uid_prop, children);
+    getObjectProperty(uid, k, uid_prop, children);
 
     for (ScicosID id : children)
     {
-        m_instance.model.deleteObject(id);
+        deleteObject(id);
     }
 }
 
@@ -358,19 +358,19 @@ void Controller::cloneProperties(model::BaseObject* initial, ScicosID clone)
         enum object_properties_t p = static_cast<enum object_properties_t>(i);
 
         T value;
-        bool status = m_instance.model.getObjectProperty(initial->id(), initial->kind(), p, value);
+        bool status = getObjectProperty(initial->id(), initial->kind(), p, value);
         if (status)
         {
-            m_instance.model.setObjectProperty(clone, initial->kind(), p, value);
+            setObjectProperty(clone, initial->kind(), p, value);
         }
     }
 }
 
 ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren, bool clonePorts)
 {
-    auto initial = m_instance.model.getObject(uid);
+    auto initial = getObject(uid);
     const kind_t k = initial->kind();
-    ScicosID o = m_instance.model.createObject(k);
+    ScicosID o = createObject(k);
     mapped.insert(std::make_pair(uid, o));
 
     // Get then set all properties per type that do not manage ScicosID
@@ -433,7 +433,7 @@ ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID 
 void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound)
 {
     ScicosID v;
-    m_instance.model.getObjectProperty(uid, k, p, v);
+    getObjectProperty(uid, k, p, v);
 
     ScicosID cloned = 0;
 
@@ -461,13 +461,13 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
         }
     }
 
-    m_instance.model.setObjectProperty(clone, k, p, cloned);
+    setObjectProperty(clone, k, p, cloned);
 }
 
 void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound)
 {
     std::vector<ScicosID> v;
-    m_instance.model.getObjectProperty(uid, k, p, v);
+    getObjectProperty(uid, k, p, v);
 
     std::vector<ScicosID> cloned;
     cloned.reserve(v.size());
@@ -506,18 +506,15 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
         }
     }
 
-    m_instance.model.setObjectProperty(clone, k, p, cloned);
+    setObjectProperty(clone, k, p, cloned);
 }
 
 ScicosID Controller::cloneObject(ScicosID uid, bool cloneChildren, bool clonePorts)
 {
-    lock(&m_instance.onModelStructuralModification);
-
     std::map<ScicosID, ScicosID> mapped;
     ScicosID clone = cloneObject(mapped, uid, cloneChildren, clonePorts);
     CLONE_PRINT(uid, clone);
 
-    unlock(&m_instance.onModelStructuralModification);
     return clone;
 }
 
