@@ -105,7 +105,7 @@ void CNESConfig::getBool(const AnalysisRuleType & art, const std::string & name,
 
 const std::wstring CNESConfig::getId(const ToolConfigurationType & tct, const AnalysisRuleType & art)
 {
-    auto i = tct.getRuleLink().find(art.getId());
+    /*auto i = tct.getRuleLink().find(art.getId());
     if (i == tct.getRuleLink().end())
     {
         return scilab::UTF8::toWide(art.getId());
@@ -113,7 +113,8 @@ const std::wstring CNESConfig::getId(const ToolConfigurationType & tct, const An
     else
     {
         return scilab::UTF8::toWide(i->second.getStandardRuleId());
-    }
+	}*/
+    return scilab::UTF8::toWide(art.getId());
 }
 
 template<>

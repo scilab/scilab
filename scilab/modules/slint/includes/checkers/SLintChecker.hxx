@@ -100,6 +100,11 @@ public:
     virtual const std::wstring & getId() const;
 
     /**
+     * Get the checker id for the sub rule
+     */
+    virtual const std::wstring getId(const unsigned sub) const;
+
+    /**
      * Check if the name corresponds to a Scilab's constant
      */
     static bool isScilabConstant(const std::wstring & name);

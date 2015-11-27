@@ -302,6 +302,8 @@
     <ClInclude Include="includes\config\XMLConfig.hxx" />
     <ClInclude Include="includes\dynlib_slint.h" />
     <ClInclude Include="includes\FileException.hxx" />
+    <ClInclude Include="includes\output\cnes\CNESCsvResult.hxx" />
+    <ClInclude Include="includes\output\cnes\CNESXmlResult.hxx" />
     <ClInclude Include="includes\output\SLintResult.hxx" />
     <ClInclude Include="includes\output\SLintScilabResult.hxx" />
     <ClInclude Include="includes\output\SLintXmlResult.hxx" />
@@ -326,8 +328,9 @@
     <ClCompile Include="src\cpp\BracketedExpChecker.cpp" />
     <ClCompile Include="src\cpp\BreaksInLoopChecker.cpp" />
     <ClCompile Include="src\cpp\CNESConfig.cpp" />
+    <ClCompile Include="src\cpp\CNESCsvResult.cpp" />
     <ClCompile Include="src\cpp\CNESException.cpp" />
-    <ClCompile Include="src\cpp\CNESResult.cpp" />
+    <ClCompile Include="src\cpp\CNESXmlResult.cpp" />
     <ClCompile Include="src\cpp\CommentRatioChecker.cpp" />
     <ClCompile Include="src\cpp\DecimalChecker.cpp" />
     <ClCompile Include="src\cpp\DeprecatedChecker.cpp" />

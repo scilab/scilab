@@ -30,8 +30,8 @@
     <SpacesAroundOp enable="true" id="00028"/>
     <SpacesInArgs enable="true" id="00029"/>
     <BreaksInLoop enable="true" maxBreaks="1" maxContinues="1" id="00030"/>
-    <NestedBlocks enable="true" max="5" id="00031"/>
-    <StatInCond enable="true" max="5" id="00032"/>
+    <NestedBlocks enable="true" max="3" id="00031"/>
+    <ExpInCond enable="true" max="5" id="00032"/>
     <BracketedExp enable="true" id="00033"/>
     <NotNot enable="true" id="00034"/>
     <IllegalCalls enable="true" id="00035">

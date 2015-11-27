@@ -99,7 +99,7 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                 {
                                     if (!pIT->isFunction() && !pIT->isMacroFile() && !pIT->isMacro())
                                     {
-                                        result.report(context, e.getLocation(), *this, _("Use of non-initialized variable \'%s\' may have any side-effects."), name);
+                                        result.report(context, e.getLocation(), *this, 1, _("Use of non-initialized variable \'%s\' may have any side-effects."), name);
                                     }
                                 }
                                 else if (!context.isPrivateFunction(sym))
@@ -118,12 +118,12 @@ void VariablesChecker::preCheckNode(const ast::Exp & e, SLintContext & context, 
                                     std::wstring fname;
                                     if (context.isExternPrivateFunction(sym, fname))
                                     {
-                                        result.report(context, e.getLocation(), *this, _("Use of a private macro \'%s\' defined in an other file %s."), name, fname);
+                                        result.report(context, e.getLocation(), *this, 3, _("Use of a private macro \'%s\' defined in an other file %s."), name, fname);
                                     }
                                     else if (!context.getPublicFunction(sym.getName()))
                                     {
                                         // The macro has not been declared somewhere in the project
-                                        result.report(context, e.getLocation(), *this, _("Use of non-initialized variable \'%s\' may have side effects."), name);
+                                        result.report(context, e.getLocation(), *this, 1, _("Use of non-initialized variable \'%s\' may have side effects."), name);
                                     }
                                 }
                             }
@@ -187,7 +187,7 @@ void VariablesChecker::postCheckNode(const ast::Exp & e, SLintContext & context,
         {
             if (!std::get<1>(p.second)) // the variable has an explicit assignment, i.e. we are not in the case for i=1:10...
             {
-                result.report(context, std::get<0>(p.second), *this, _("Declared variable and might be unused: %s."), p.first);
+                result.report(context, std::get<0>(p.second), *this, 2, _("Declared variable and might be unused: %s."), p.first);
             }
         }
         assigned.pop();
@@ -209,5 +209,22 @@ bool VariablesChecker::isParentOf(const ast::Exp * potentialParent, const ast::E
 const std::string VariablesChecker::getName() const
 {
     return "VariablesChecker";
+}
+
+const std::wstring VariablesChecker::getId(const unsigned sub) const
+{
+    switch (sub)
+    {
+    case 0:
+	return SLintChecker::getId();
+    case 1:
+	return SLintChecker::getId() + L".Uninitialized";
+    case 2:
+	return SLintChecker::getId() + L".Unused";
+    case 3:
+	return SLintChecker::getId() + L".PrivateMacro";
+    default:
+	return L"";
+    }
 }
 }

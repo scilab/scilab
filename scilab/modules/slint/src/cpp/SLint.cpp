@@ -38,7 +38,7 @@ extern "C"
 #define DEFAULT_FILESPEC L"*"
 #endif
 
-#define SLINT_PRINT_AST
+//#define SLINT_PRINT_AST
 #ifdef SLINT_PRINT_AST
 #include "prettyprintvisitor.hxx"
 #endif

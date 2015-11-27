@@ -97,7 +97,8 @@ src/cpp/ToolConfiguration.cpp \
 src/cpp/ToolConfigurationType.cpp \
 src/cpp/CNESException.cpp \
 src/cpp/CNESConfig.cpp \
-src/cpp/CNESResult.cpp
+src/cpp/CNESXmlResult.cpp \
+src/cpp/CNESCsvResult.cpp
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_slint.cpp

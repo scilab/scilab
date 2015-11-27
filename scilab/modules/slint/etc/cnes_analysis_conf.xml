@@ -3,19 +3,19 @@
     <analysisRule analysisRuleId="GlobalKeyword" analysisRuleActivation="true" />
     <analysisRule analysisRuleId="Redefinition" analysisRuleActivation="true" />
     <analysisRule analysisRuleId="Variables" analysisRuleActivation="true" />
-    <analysisRule analysisRuleId="FunctionName" analysisRuleActivation="true">
+    <analysisRule analysisRuleId="FunctionName" analysisRuleActivation="false">
         <analysisRuleParameter analysisRuleParameterName="pattern" analysisRuleTextValue="[a-z]*" />
         <analysisRuleParameter analysisRuleParameterName="length" analysisRuleValueMin="-1" analysisRuleValueMax="-1" />
     </analysisRule>
-    <analysisRule analysisRuleId="FunctionArgs" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="FunctionArgs" analysisRuleActivation="false" />
     <analysisRule analysisRuleId="UselessArg" analysisRuleActivation="true" />
     <analysisRule analysisRuleId="UselessRet" analysisRuleActivation="true" />
-    <analysisRule analysisRuleId="VariableName" analysisRuleActivation="true">
+    <analysisRule analysisRuleId="VariableName" analysisRuleActivation="false">
         <analysisRuleParameter analysisRuleParameterName="pattern" analysisRuleTextValue="[a-zA-Z0-9]*" />
         <analysisRuleParameter analysisRuleParameterName="length" analysisRuleValueMin="-1" analysisRuleValueMax="-1" />
     </analysisRule>
     <analysisRule analysisRuleId="SingleInstr" analysisRuleActivation="true" />
-    <analysisRule analysisRuleId="EmptyBlock" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="EmptyBlock" analysisRuleActivation="false" />
     <analysisRule analysisRuleId="MopenMclose" analysisRuleActivation="true" />
     <analysisRule analysisRuleId="McCabe" analysisRuleActivation="true">
         <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="30" />
@@ -24,18 +24,18 @@
         <analysisRuleParameter analysisRuleParameterName="character" analysisRuleTextValue="eE" />
         <analysisRuleParameter analysisRuleParameterName="checkDot" analysisRuleNumericalValue="1" />
     </analysisRule>
-    <analysisRule analysisRuleId="Printf" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="Printf" analysisRuleActivation="false" />
     <analysisRule analysisRuleId="LineLength" analysisRuleActivation="true">
         <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="80" />
     </analysisRule>
     <analysisRule analysisRuleId="LinesCount" analysisRuleActivation="true">
         <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="200" />
     </analysisRule>
-    <analysisRule analysisRuleId="Todo" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="Todo" analysisRuleActivation="false" />
     <analysisRule analysisRuleId="NaN" analysisRuleActivation="true" />
-    <analysisRule analysisRuleId="EqEq" analysisRuleActivation="true" />
-    <analysisRule analysisRuleId="UselessOp" analysisRuleActivation="true" />
-    <analysisRule analysisRuleId="UnreachableCode" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="EqEq" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="UselessOp" analysisRuleActivation="false" />
+    <analysisRule analysisRuleId="UnreachableCode" analysisRuleActivation="false" />
     <analysisRule analysisRuleId="Deprecated" analysisRuleActivation="true" />
     <analysisRule analysisRuleId="Select" analysisRuleActivation="true">
         <analysisRuleParameter analysisRuleParameterName="default" analysisRuleNumericalValue="1" />
@@ -43,12 +43,7 @@
         <analysisRuleParameter analysisRuleParameterName="empty" analysisRuleNumericalValue="1" />
         <analysisRuleParameter analysisRuleParameterName="oneCase" analysisRuleNumericalValue="1" />
     </analysisRule>
-    <analysisRule analysisRuleId="ImplicitList" analysisRuleActivation="true" />
-    <analysisRule analysisRuleId="Struct" analysisRuleActivation="true">
-        <analysisRuleParameter analysisRuleParameterName="fieldPattern" analysisRuleTextValue="[a-z]*" />
-        <analysisRuleParameter analysisRuleParameterName="length" analysisRuleValueMin="-1" analysisRuleValueMax="-1" />
-    </analysisRule>
-    <analysisRule analysisRuleId="LoadSave" analysisRuleActivation="true" />
+    <analysisRule analysisRuleId="ImplicitList" analysisRuleActivation="false" />
     <analysisRule analysisRuleId="OldNot" analysisRuleActivation="true" />
     <analysisRule analysisRuleId="SpacesAroundOp" analysisRuleActivation="true" />
     <analysisRule analysisRuleId="SpacesInArgs" analysisRuleActivation="true" />
@@ -59,7 +54,7 @@
     <analysisRule analysisRuleId="NestedBlocks" analysisRuleActivation="true">
         <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="5" />
     </analysisRule>
-    <analysisRule analysisRuleId="StatInCond" analysisRuleActivation="true">
+    <analysisRule analysisRuleId="ExpInCond" analysisRuleActivation="true">
         <analysisRuleParameter analysisRuleParameterName="max" analysisRuleNumericalValue="5" />
     </analysisRule>
     <analysisRule analysisRuleId="Bracketed" analysisRuleActivation="true" />

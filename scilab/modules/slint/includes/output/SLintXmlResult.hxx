@@ -35,7 +35,7 @@ public:
 
     virtual ~SLintXmlResult();
     virtual void handleFiles(const std::vector<SciFilePtr> & files) { }
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg);
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg);
     virtual void finalize();
 
     static std::wstring replaceByEntities(const std::wstring & seq);
@@ -44,9 +44,9 @@ public:
 private:
 
     void print(const SciFilePtr & file);
-    void print(const Location & loc, const SLintChecker & checker, const std::wstring & msg);
+    void print(const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg);
     void print(const Location & loc);
-    void print(const SLintChecker & checker);
+    void print(const SLintChecker & checker, const unsigned sub);
     void print(const std::wstring & msg);
 
     inline static void pushEntity(std::vector<wchar_t> & buf, const wchar_t * wstr, const unsigned char len)

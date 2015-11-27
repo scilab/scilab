@@ -26,6 +26,12 @@ FileException::FileException(const std::wstring & filename, const std::wstring &
     msg = std::string("Error with file ") + scilab::UTF8::toUTF8(filename) + ":\n" + scilab::UTF8::toUTF8(error);
 }
 
+FileException::FileException(const std::wstring & filename, const std::string & error)
+{
+    msg = std::string("Error with file ") + scilab::UTF8::toUTF8(filename) + ":\n" + error;
+}
+
+    
 #ifdef _MSC_VER
 const char * FileException::what() const
 #else

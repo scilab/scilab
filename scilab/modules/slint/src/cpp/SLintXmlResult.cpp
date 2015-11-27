@@ -68,7 +68,7 @@ const std::string SLintXmlResult::getStr(const std::wstring & str)
     return scilab::UTF8::toUTF8(replaceByEntities(str));
 }
 
-void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+    void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     if (context.getSciFile().get() != current.get())
     {
@@ -79,7 +79,7 @@ void SLintXmlResult::handleMessage(SLintContext & context, const Location & loc,
         current = context.getSciFile();
         print(current);
     }
-    print(loc, checker, msg);
+    print(loc, checker, sub, msg);
 }
 
 void SLintXmlResult::print(const SciFilePtr & file)
@@ -87,11 +87,11 @@ void SLintXmlResult::print(const SciFilePtr & file)
     (*out) << "  <File name=\"" << getStr(file->getFilename()) << "\">\n";
 }
 
-void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintXmlResult::print(const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     (*out) << "    <Result>\n";
     print(loc);
-    print(checker);
+    print(checker, sub);
     print(msg);
     (*out) << "    </Result>\n";
 }
@@ -105,10 +105,10 @@ void SLintXmlResult::print(const Location & loc)
            << "\"/>\n";
 }
 
-void SLintXmlResult::print(const SLintChecker & checker)
+    void SLintXmlResult::print(const SLintChecker & checker, const unsigned sub)
 {
     (*out) << "      <Checker name=\"" << checker.getName()
-           << "\" id=\"" << getStr(checker.getId())
+           << "\" id=\"" << getStr(checker.getId(sub))
            << "\"/>\n";
 }
 
@@ -125,23 +125,23 @@ std::wstring SLintXmlResult::replaceByEntities(const std::wstring & seq)
     {
         if (c == L'<')
         {
-            pushEntity(buf, L"&lt;", 7);
+            pushEntity(buf, L"&lt;", 4);
         }
         else if (c == L'>')
         {
-            pushEntity(buf, L"&gt;", 7);
+            pushEntity(buf, L"&gt;", 4);
         }
         else if (c == L'\'')
         {
-            pushEntity(buf, L"&apos;", 7);
+            pushEntity(buf, L"&apos;", 6);
         }
         else if (c == L'\"')
         {
-            pushEntity(buf, L"&quot;", 7);
+            pushEntity(buf, L"&quot;", 6);
         }
         else if (c == L'&')
         {
-            pushEntity(buf, L"&amp;", 7);
+            pushEntity(buf, L"&amp;", 5);
         }
         else
         {

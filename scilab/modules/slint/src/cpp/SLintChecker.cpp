@@ -71,4 +71,10 @@ const std::wstring & SLintChecker::getId() const
 {
     return checkerId;
 }
+
+const std::wstring SLintChecker::getId(const unsigned sub) const
+{
+    return sub ? L"" : getId();
+}
+    
 }

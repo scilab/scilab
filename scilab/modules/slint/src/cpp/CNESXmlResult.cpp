@@ -15,8 +15,9 @@
 #include <string>
 
 #include "output/SLintXmlResult.hxx"
-#include "output/cnes/CNESResult.hxx"
+#include "output/cnes/CNESXmlResult.hxx"
 #include "checkers/SLintChecker.hxx"
+#include "FileException.hxx"
 #include "SLint.hxx"
 #include "SciFile.hxx"
 #include "UTF8.hxx"
@@ -34,7 +35,7 @@ namespace slint
 namespace CNES
 {
 
-CNESResult::CNESResult(types::String * conf, const std::wstring & id, const std::wstring & _path) : current(nullptr), path(_path)
+    CNESXmlResult::CNESXmlResult(const ToolConfiguration & tc, types::String * conf, const std::wstring & id, const std::wstring & _path) : tct(tc.getToolConfiguration()), current(nullptr), path(_path)
 {
     std::string projectName;
     std::string projectVersion;
@@ -60,6 +61,7 @@ CNESResult::CNESResult(types::String * conf, const std::wstring & id, const std:
     {
         delete out;
         out = nullptr;
+	throw slint::FileException(fullpath, _("Cannot open the file"));
     }
     else
     {
@@ -91,7 +93,7 @@ CNESResult::CNESResult(types::String * conf, const std::wstring & id, const std:
     }
 }
 
-CNESResult::~CNESResult()
+CNESXmlResult::~CNESXmlResult()
 {
     if (out)
     {
@@ -100,7 +102,7 @@ CNESResult::~CNESResult()
     }
 }
 
-void CNESResult::finalize()
+void CNESXmlResult::finalize()
 {
     printRes();
     (*out) << "</analysisProject>\n";
@@ -109,7 +111,7 @@ void CNESResult::finalize()
     out = nullptr;
 }
 
-void CNESResult::handleFiles(const std::vector<SciFilePtr> & files)
+void CNESXmlResult::handleFiles(const std::vector<SciFilePtr> & files)
 {
     for (const auto & file : files)
     {
@@ -118,23 +120,34 @@ void CNESResult::handleFiles(const std::vector<SciFilePtr> & files)
     }
 }
 
-void CNESResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void CNESXmlResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     if (context.getSciFile().get() != current.get())
     {
         printRes();
         current = context.getSciFile();
     }
-    res[checker.getId()].emplace_back(loc, msg);
+    res[checker.getId(sub)].emplace_back(loc, msg);
 }
 
-void CNESResult::printRes()
+void CNESXmlResult::printRes()
 {
     if (current.get())
     {
         for (const auto & r : res)
         {
-            (*out) << "  <analysisRule analysisRuleId=\"" << SLintXmlResult::getStr(r.first) << "\">\n";
+	    const std::string name = scilab::UTF8::toUTF8(r.first);
+	    std::string ruleName;
+	    auto i = tct.getRuleLink().find(name);
+	    if (i == tct.getRuleLink().end())
+	    {
+		ruleName = SLintXmlResult::getStr(r.first);
+	    }
+	    else
+	    {
+		ruleName = SLintXmlResult::getStr(scilab::UTF8::toWide(i->second.getStandardRuleId()));
+	    }
+            (*out) << "  <analysisRule analysisRuleId=\"" << ruleName << "\">\n";
             for (const auto & p : r.second)
             {
                 (*out) << "    <result filename=\"" << SLintXmlResult::getStr(current->getFilename()) << "\""

@@ -36,19 +36,33 @@ public:
     template<typename... Args>
     void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & err, Args... args)
     {
-        handleMessage(context, loc, checker, make_string(err, args...));
+        handleMessage(context, loc, checker, 0, make_string(err, args...));
     }
 
     template<typename... Args>
     void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::string & err, Args... args)
     {
         wchar_t * _err = to_wide_string(err.c_str());
-        handleMessage(context, loc, checker, make_string(std::wstring(_err), args...));
+        handleMessage(context, loc, checker, 0, make_string(std::wstring(_err), args...));
+        FREE(_err);
+    }
+
+    template<typename... Args>
+    void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & err, Args... args)
+    {
+        handleMessage(context, loc, checker, sub, make_string(err, args...));
+    }
+
+    template<typename... Args>
+    void report(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::string & err, Args... args)
+    {
+        wchar_t * _err = to_wide_string(err.c_str());
+        handleMessage(context, loc, checker, sub, make_string(std::wstring(_err), args...));
         FREE(_err);
     }
 
     virtual void handleFiles(const std::vector<SciFilePtr> & files) = 0;
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg) = 0;
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg) = 0;
 
     virtual void finalize() { }
 

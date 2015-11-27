@@ -271,6 +271,12 @@
     <ClInclude Include="includes\checkers\ExpInCondChecker.hxx">
       <Filter>Header Files\checkers</Filter>
     </ClInclude>
+    <ClInclude Include="includes\output\cnes\CNESCsvResult.hxx">
+      <Filter>Header Files\output\cnes</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\output\cnes\CNESXmlResult.hxx">
+      <Filter>Header Files\output\cnes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\BracketedExpChecker.cpp">
@@ -444,9 +450,6 @@
     <ClCompile Include="src\cpp\CNESException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\CNESResult.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\CommentRatioChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -493,6 +496,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ExpInCondChecker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\CNESCsvResult.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\CNESXmlResult.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

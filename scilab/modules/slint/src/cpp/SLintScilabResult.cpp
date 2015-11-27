@@ -25,10 +25,10 @@ namespace slint
 SLintScilabResult::SLintScilabResult() { }
 SLintScilabResult::~SLintScilabResult() { }
 
-void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintScilabResult::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
     auto & mmap = results[context.getFilename()];
-    mmap.emplace(loc, checker.getId() + L": " + msg);
+    mmap.emplace(loc, checker.getId(sub) + L": " + msg);
 }
 
 void SLintScilabResult::finalize()
@@ -48,9 +48,9 @@ void SLintScilabResult::finalize()
 SLintScilabOut::SLintScilabOut() { }
 SLintScilabOut::~SLintScilabOut() { }
 
-void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg)
+void SLintScilabOut::handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg)
 {
-    results[context.getFilename()][checker.getId()].emplace_back(loc, msg);
+    results[context.getFilename()][checker.getId(sub)].emplace_back(loc, msg);
 }
 
 void SLintScilabOut::finalize()

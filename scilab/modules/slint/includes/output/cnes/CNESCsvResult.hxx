@@ -10,14 +10,15 @@
  *
  */
 
-#ifndef __SLINT_CNES_RESULT_HXX__
-#define __SLINT_CNES_RESULT_HXX__
+#ifndef __SLINT_CNES_CSV_RESULT_HXX__
+#define __SLINT_CNES_CSV_RESULT_HXX__
 
 #include <fstream>
 #include <string>
 #include <unordered_map>
 #include <vector>
 
+#include "config/cnes/ToolConfiguration.hxx"
 #include "output/SLintResult.hxx"
 
 namespace types
@@ -33,8 +34,9 @@ class SciFile;
 namespace CNES
 {
 
-class CNESResult : public SLintResult
+class CNESCsvResult : public SLintResult
 {
+    const ToolConfigurationType tct;
     const std::wstring path;
     std::ofstream * out;
     SciFilePtr current;
@@ -42,20 +44,22 @@ class CNESResult : public SLintResult
 
 public:
 
-    CNESResult(types::String * conf, const std::wstring & id, const std::wstring & _path);
+    CNESCsvResult(const ToolConfiguration & tc, types::String * conf, const std::wstring & id, const std::wstring & _path);
 
-    virtual ~CNESResult();
+    virtual ~CNESCsvResult();
     virtual void handleFiles(const std::vector<SciFilePtr> & files);
-    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const std::wstring & msg);
+    virtual void handleMessage(SLintContext & context, const Location & loc, const SLintChecker & checker, const unsigned sub, const std::wstring & msg);
     virtual void finalize();
 
 private:
 
     void printRes();
+    const std::string getStr(const std::wstring & str);
+    const std::string getStr(const std::string & str);
 };
 
 } // namespace CNES
 
 } // namespace slint
 
-#endif // __SLINT_CNES_RESULT_HXX__
+#endif // __SLINT_CNES_CSV_RESULT_HXX__

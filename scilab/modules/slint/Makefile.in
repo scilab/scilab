@@ -237,7 +237,8 @@ am__objects_1 = src/cpp/libscislint_algo_la-SLintContext.lo \
 	src/cpp/libscislint_algo_la-ToolConfigurationType.lo \
 	src/cpp/libscislint_algo_la-CNESException.lo \
 	src/cpp/libscislint_algo_la-CNESConfig.lo \
-	src/cpp/libscislint_algo_la-CNESResult.lo
+	src/cpp/libscislint_algo_la-CNESXmlResult.lo \
+	src/cpp/libscislint_algo_la-CNESCsvResult.lo
 am_libscislint_algo_la_OBJECTS = $(am__objects_1)
 libscislint_algo_la_OBJECTS = $(am_libscislint_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -767,7 +768,8 @@ src/cpp/ToolConfiguration.cpp \
 src/cpp/ToolConfigurationType.cpp \
 src/cpp/CNESException.cpp \
 src/cpp/CNESConfig.cpp \
-src/cpp/CNESResult.cpp
+src/cpp/CNESXmlResult.cpp \
+src/cpp/CNESCsvResult.cpp
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_slint.cpp
@@ -1042,7 +1044,9 @@ src/cpp/libscislint_algo_la-CNESException.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscislint_algo_la-CNESConfig.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscislint_algo_la-CNESResult.lo: src/cpp/$(am__dirstamp) \
+src/cpp/libscislint_algo_la-CNESXmlResult.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscislint_algo_la-CNESCsvResult.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscislint-algo.la: $(libscislint_algo_la_OBJECTS) $(libscislint_algo_la_DEPENDENCIES) $(EXTRA_libscislint_algo_la_DEPENDENCIES) 
@@ -1078,8 +1082,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-BracketedExpChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-BreaksInLoopChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-CNESConfig.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-CNESCsvResult.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-CNESException.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-CNESResult.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-CNESXmlResult.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-CommentRatioChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-DecimalChecker.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscislint_algo_la-DeprecatedChecker.Plo@am__quote@
@@ -1665,12 +1670,19 @@ src/cpp/libscislint_algo_la-CNESConfig.lo: src/cpp/CNESConfig.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-CNESConfig.lo `test -f 'src/cpp/CNESConfig.cpp' || echo '$(srcdir)/'`src/cpp/CNESConfig.cpp
 
-src/cpp/libscislint_algo_la-CNESResult.lo: src/cpp/CNESResult.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-CNESResult.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-CNESResult.Tpo -c -o src/cpp/libscislint_algo_la-CNESResult.lo `test -f 'src/cpp/CNESResult.cpp' || echo '$(srcdir)/'`src/cpp/CNESResult.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscislint_algo_la-CNESResult.Tpo src/cpp/$(DEPDIR)/libscislint_algo_la-CNESResult.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/CNESResult.cpp' object='src/cpp/libscislint_algo_la-CNESResult.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscislint_algo_la-CNESXmlResult.lo: src/cpp/CNESXmlResult.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-CNESXmlResult.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-CNESXmlResult.Tpo -c -o src/cpp/libscislint_algo_la-CNESXmlResult.lo `test -f 'src/cpp/CNESXmlResult.cpp' || echo '$(srcdir)/'`src/cpp/CNESXmlResult.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscislint_algo_la-CNESXmlResult.Tpo src/cpp/$(DEPDIR)/libscislint_algo_la-CNESXmlResult.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/CNESXmlResult.cpp' object='src/cpp/libscislint_algo_la-CNESXmlResult.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-CNESResult.lo `test -f 'src/cpp/CNESResult.cpp' || echo '$(srcdir)/'`src/cpp/CNESResult.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-CNESXmlResult.lo `test -f 'src/cpp/CNESXmlResult.cpp' || echo '$(srcdir)/'`src/cpp/CNESXmlResult.cpp
+
+src/cpp/libscislint_algo_la-CNESCsvResult.lo: src/cpp/CNESCsvResult.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscislint_algo_la-CNESCsvResult.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscislint_algo_la-CNESCsvResult.Tpo -c -o src/cpp/libscislint_algo_la-CNESCsvResult.lo `test -f 'src/cpp/CNESCsvResult.cpp' || echo '$(srcdir)/'`src/cpp/CNESCsvResult.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscislint_algo_la-CNESCsvResult.Tpo src/cpp/$(DEPDIR)/libscislint_algo_la-CNESCsvResult.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/CNESCsvResult.cpp' object='src/cpp/libscislint_algo_la-CNESCsvResult.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscislint_algo_la-CNESCsvResult.lo `test -f 'src/cpp/CNESCsvResult.cpp' || echo '$(srcdir)/'`src/cpp/CNESCsvResult.cpp
 
 sci_gateway/cpp/libscislint_la-sci_slint.lo: sci_gateway/cpp/sci_slint.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscislint_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscislint_la-sci_slint.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscislint_la-sci_slint.Tpo -c -o sci_gateway/cpp/libscislint_la-sci_slint.lo `test -f 'sci_gateway/cpp/sci_slint.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_slint.cpp

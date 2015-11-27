@@ -16,7 +16,9 @@
 #include "SLint.hxx"
 #include "output/SLintScilabResult.hxx"
 #include "output/SLintXmlResult.hxx"
-#include "output/cnes/CNESResult.hxx"
+#include "output/cnes/CNESXmlResult.hxx"
+#include "output/cnes/CNESCsvResult.hxx"
+#include "config/cnes/ToolConfiguration.hxx"
 #include "config/XMLConfig.hxx"
 
 #include "struct.hxx"
@@ -147,7 +149,17 @@ types::Function::ReturnValue sci_slint(types::typed_list & in, int _iRetCount, t
         {
             if (conf && conf->getSize() >= 2 && (std::wstring(conf->get(0)) == L"cnes"))
             {
-                results = new slint::CNES::CNESResult(conf, options.getId(), outFile->get(0));
+		const slint::CNES::ToolConfiguration tc = slint::CNES::ToolConfiguration::createFromXml(conf->get(1));
+		const std::wstring out(outFile->get(0));
+		const std::size_t pos = out.find_last_of(L'.');
+		if (pos != std::string::npos && out.substr(pos) == L".csv")
+		{
+		    results = new slint::CNES::CNESCsvResult(tc, conf, options.getId(), outFile->get(0));
+		}
+		else
+		{
+		    results = new slint::CNES::CNESXmlResult(tc, conf, options.getId(), outFile->get(0));
+		}
             }
             else
             {

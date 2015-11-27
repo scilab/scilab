@@ -30,7 +30,7 @@ void NestedBlocksChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
 void NestedBlocksChecker::postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     if (max >= 0)
-    {
+    { 
 	if (!stack.empty())
 	{
 	    stack.erase(std::prev(stack.end()));
