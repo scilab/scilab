@@ -15,7 +15,6 @@
     <refnamediv>
         <refname>setlanguage</refname>
         <refpurpose>Changes the language of Scilab's user interface</refpurpose>
-        </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
