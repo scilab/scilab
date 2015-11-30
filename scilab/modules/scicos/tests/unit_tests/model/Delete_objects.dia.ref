@@ -142,6 +142,7 @@ Xcos trace: propertyUpdated( 11 , LINK , KIND ) : NO_CHANGES
 scs_m.objs(1) = Sum1;
 Xcos debug: objectCreated( 12 , BLOCK )
 Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 12 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 12 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -206,6 +207,7 @@ scs_m.objs(2) = Sum2;
 Xcos debug: objectReferenced( 12 , BLOCK ) : 2
 Xcos debug: objectCreated( 16 , BLOCK )
 Xcos trace: propertyUpdated( 16 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 16 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 16 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 16 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 16 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES

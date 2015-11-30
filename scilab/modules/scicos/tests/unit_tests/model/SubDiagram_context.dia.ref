@@ -102,6 +102,7 @@ Xcos trace: propertyUpdated( 3 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 4 , BLOCK )
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES

@@ -80,6 +80,7 @@ Xcos trace: propertyUpdated( 3 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 d.objs(1) = sub;
 Xcos debug: objectCreated( 4 , BLOCK )
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -121,6 +122,7 @@ Xcos trace: propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 5 , BLOCK )
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -195,6 +197,7 @@ Xcos trace: propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 8 , BLOCK )
 Xcos trace: propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 8 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 8 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -268,6 +271,7 @@ Xcos trace: propertyUpdated( 10 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 superD.objs(1) = super;
 Xcos debug: objectCreated( 11 , BLOCK )
 Xcos trace: propertyUpdated( 11 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 11 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -310,6 +314,7 @@ Xcos trace: propertyUpdated( 11 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 11 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 13 , BLOCK )
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -378,6 +383,7 @@ Xcos debug: objectReferenced( 11 , BLOCK ) : 2
 Xcos debug: objectUnreferenced( 11 , BLOCK ) : 1
 Xcos debug: objectCreated( 15 , BLOCK )
 Xcos trace: propertyUpdated( 15 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 15 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -420,6 +426,7 @@ Xcos trace: propertyUpdated( 15 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 15 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 17 , BLOCK )
 Xcos trace: propertyUpdated( 17 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 17 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES

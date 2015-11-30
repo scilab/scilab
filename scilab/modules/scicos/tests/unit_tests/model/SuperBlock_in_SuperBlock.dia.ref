@@ -99,6 +99,7 @@ Xcos trace: propertyUpdated( 6 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 diag.objs(1) = Super1;
 Xcos debug: objectCreated( 7 , BLOCK )
 Xcos trace: propertyUpdated( 7 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 7 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 7 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 7 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -315,6 +316,7 @@ Xcos trace: propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 14 , BLOCK )
 Xcos trace: propertyUpdated( 14 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 14 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 14 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 14 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 14 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS

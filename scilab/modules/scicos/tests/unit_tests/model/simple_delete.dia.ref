@@ -95,6 +95,7 @@ Xcos trace: propertyUpdated( 4 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 4 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 5 , BLOCK )
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES

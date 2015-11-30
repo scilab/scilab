@@ -247,6 +247,7 @@ Xcos debug: objectUnreferenced( 2 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 2 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos debug: objectCreated( 18 , BLOCK )
 Xcos trace: propertyUpdated( 18 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 18 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -295,6 +296,7 @@ Xcos trace: propertyUpdated( 18 , BLOCK , DSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos debug: objectCreated( 20 , BLOCK )
 Xcos trace: propertyUpdated( 20 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 20 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 20 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 20 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 20 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -346,6 +348,7 @@ Xcos trace: propertyUpdated( 20 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace: propertyUpdated( 20 , BLOCK , PARENT_BLOCK ) : SUCCESS
 Xcos debug: objectCreated( 23 , BLOCK )
 Xcos trace: propertyUpdated( 23 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 23 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 23 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 23 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -407,6 +410,7 @@ Xcos trace: propertyUpdated( 23 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , PARENT_BLOCK ) : SUCCESS
 Xcos debug: objectCreated( 27 , BLOCK )
 Xcos trace: propertyUpdated( 27 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+Xcos trace: propertyUpdated( 27 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 27 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 27 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 27 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -458,6 +462,7 @@ Xcos trace: propertyUpdated( 27 , BLOCK , CHILDREN ) : NO_CHANGES
 Xcos trace: propertyUpdated( 27 , BLOCK , PARENT_BLOCK ) : SUCCESS
 Xcos debug: objectCreated( 30 , BLOCK )
 Xcos trace: propertyUpdated( 30 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 30 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 30 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 30 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 30 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES

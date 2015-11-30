@@ -270,6 +270,7 @@ Xcos trace: propertyUpdated( 16 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 16 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 17 , BLOCK )
 Xcos trace: propertyUpdated( 17 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 17 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 17 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 17 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -329,6 +330,7 @@ Xcos trace: propertyUpdated( 17 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug: objectCreated( 21 , BLOCK )
 Xcos trace: propertyUpdated( 21 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 21 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 21 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 21 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -378,6 +380,7 @@ Xcos trace: propertyUpdated( 21 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 21 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug: objectCreated( 24 , BLOCK )
 Xcos trace: propertyUpdated( 24 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 24 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 24 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 24 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 24 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1204,6 +1207,7 @@ Xcos trace: propertyUpdated( 32 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 32 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 33 , BLOCK )
 Xcos trace: propertyUpdated( 33 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 33 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 33 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 33 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 33 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1263,6 +1267,7 @@ Xcos trace: propertyUpdated( 33 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 33 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug: objectCreated( 37 , BLOCK )
 Xcos trace: propertyUpdated( 37 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 37 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 37 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 37 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 37 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1443,6 +1448,7 @@ Xcos trace: propertyUpdated( 42 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 42 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 43 , BLOCK )
 Xcos trace: propertyUpdated( 43 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 43 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 43 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 43 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1502,6 +1508,7 @@ Xcos trace: propertyUpdated( 43 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
 Xcos debug: objectCreated( 47 , BLOCK )
 Xcos trace: propertyUpdated( 47 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 47 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 47 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 47 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 47 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1856,6 +1863,7 @@ scs_m.objs(2) = Sum;          // Add the Block that lnk's 'from' points to
 Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectCreated( 54 , BLOCK )
 Xcos trace: propertyUpdated( 54 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 54 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 54 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 54 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 54 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1924,6 +1932,7 @@ Xcos debug: objectReferenced( 53 , LINK ) : 2
 Xcos debug: objectReferenced( 54 , BLOCK ) : 2
 Xcos debug: objectCreated( 58 , BLOCK )
 Xcos trace: propertyUpdated( 58 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 58 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 58 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 58 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 58 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
