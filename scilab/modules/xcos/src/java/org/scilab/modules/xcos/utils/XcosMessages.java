@@ -78,6 +78,7 @@ public final class XcosMessages {
     public static final String FIT_DIAGRAM_TO_VIEW = Messages.gettext("Fit diagram or blocks to view");
     public static final String NORMAL_100 = Messages.gettext("Normal 100%");
     public static final String PALETTE_BROWSER = Messages.gettext("Palette browser");
+    public static final String OLD_DIAGRAM_BROWSER = Messages.gettext("tree_show(scs_m)");
     public static final String DIAGRAM_BROWSER = Messages.gettext("Diagram browser");
     public static final String VIEWPORT = Messages.gettext("Viewport");
     public static final String GET_INFOS = Messages.gettext("Get infos");

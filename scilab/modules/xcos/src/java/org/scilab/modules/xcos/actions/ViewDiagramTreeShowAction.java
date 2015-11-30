@@ -12,27 +12,27 @@
  *
  */
 
-package org.scilab.modules.xcos.block.actions;
+package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
-
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.block.SplitBlock;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.explorer.BrowserTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
- * View the details of the action
+ * View the diagram as a scilab tree
  */
 @SuppressWarnings(value = { "serial" })
-public final class ViewDetailsAction extends VertexSelectionDependantAction {
+public final class ViewDiagramTreeShowAction extends DefaultAction {
     /** Name of the action */
-    public static final String NAME = XcosMessages.DETAILS;
+    public static final String NAME = XcosMessages.OLD_DIAGRAM_BROWSER;
     /** Icon name of the action */
     public static final String SMALL_ICON = "";
     /** Mnemonic key of the action */
@@ -46,17 +46,19 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
      * @param scilabGraph
      *            graph
      */
-    public ViewDetailsAction(ScilabGraph scilabGraph) {
+    public ViewDiagramTreeShowAction(ScilabGraph scilabGraph) {
         super(scilabGraph);
     }
 
     /**
+     * Create the menu
+     *
      * @param scilabGraph
      *            graph
      * @return menu item
      */
     public static MenuItem createMenu(ScilabGraph scilabGraph) {
-        return createMenu(scilabGraph, ViewDetailsAction.class);
+        return createMenu(scilabGraph, ViewDiagramTreeShowAction.class);
     }
 
     /**
@@ -74,32 +76,8 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
             return;
         }
 
-        Object[] selectedCells = graph.getSelectionCells();
-
-        // if no cells are selected : Do nothing
-        if (selectedCells.length == 0) {
-            return;
-        }
-
-        for (int i = 0; i < selectedCells.length; ++i) {
-            if ((selectedCells[i] instanceof BasicBlock) && !(selectedCells[i] instanceof SplitBlock)) {
-                BasicBlock instance = (BasicBlock) selectedCells[i];
-                viewDetails(instance);
-            }
-        }
-    }
-
-    /**
-     * View the data details
-     *
-     * @param data
-     *            the selected block
-     */
-    private void viewDetails(BasicBlock data) {
-        /*
-         * Build and execute the command
-         */
-        final String cmd = "tree_show(scicos_new(\"0x" + Long.toHexString(data.getUID()) + "\"));";
+        // build and execute the command
+        final String cmd = "tree_show(scicos_new(\"0x" + Long.toHexString(graph.getUID()) + "\"));";
         ScilabInterpreterManagement.requestScilabExec(cmd);
     }
 }
