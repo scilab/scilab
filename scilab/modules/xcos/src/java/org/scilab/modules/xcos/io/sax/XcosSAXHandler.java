@@ -76,9 +76,6 @@ public class XcosSAXHandler extends DefaultHandler {
     }
 
     XcosCell lookupForParentXcosCellElement() {
-        // TODO in fact we can use the depth (eg. size) of the stack to retrieve
-        // this value
-        // is it necessary to improve performance (over safety) there ?
         Optional<XcosCell> parentBlock = parents.stream()
                                          .filter(o -> o instanceof XcosCell)
                                          .map(o -> (XcosCell) o)

@@ -168,7 +168,7 @@ class CustomHandler implements ScilabHandler {
                  * Update some states
                  */
                 saxHandler.allChildren.push(new HashMap<>());
-                return new ScicosObjectOwner(uid, kind);
+                return new XcosCell(uid, kind);
             default:
                 throw new IllegalArgumentException();
         }
