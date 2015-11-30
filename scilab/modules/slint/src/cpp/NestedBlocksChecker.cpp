@@ -19,22 +19,36 @@ void NestedBlocksChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
 {
     if (max >= 0)
     {
-	stack.emplace_back(&e);
-	if (stack.size() == (1 + (unsigned int)max))
-	{
-	    result.report(context, stack.back()->getLocation(), *this, _("Too many nested blocks: %d max."), max);
-	}
+        if (e.isIfExp() && !stack.empty())
+        {
+            std::pair<unsigned int, unsigned int> pos;
+            if (context.getPosition(e.getLocation(), pos))
+            {
+                const wchar_t * kw = context.getCode() + pos.first;
+                if (*kw == L'e')
+                {
+                    // we are in a elseif
+                    stack.erase(std::prev(stack.end()));
+                }
+            }
+        }
+
+        stack.emplace_back(&e);
+        if (stack.size() == (1 + (unsigned int)max))
+        {
+            result.report(context, stack.back()->getLocation(), *this, _("Too many nested blocks: %d max."), max);
+        }
     }
 }
 
 void NestedBlocksChecker::postCheckNode(const ast::Exp & e, SLintContext & context, SLintResult & result)
 {
     if (max >= 0)
-    { 
-	if (!stack.empty())
-	{
-	    stack.erase(std::prev(stack.end()));
-	}
+    {
+        if (!stack.empty())
+        {
+            stack.erase(std::prev(stack.end()));
+        }
     }
 }
 
