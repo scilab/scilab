@@ -259,6 +259,29 @@ bool ConfigVariable::getWarningMode(void)
 /*
 ** \}
 */
+/*
+** \}
+*/
+
+/*
+** Warning Stop
+** \{
+*/
+bool ConfigVariable::m_bWarningStop = false;
+
+void ConfigVariable::setWarningStop(bool _bWarningStop)
+{
+    m_bWarningStop = _bWarningStop;
+}
+
+bool ConfigVariable::getWarningStop(void)
+{
+    return m_bWarningStop;
+}
+/*
+** \}
+*/
+
 
 /*
 ** HOME

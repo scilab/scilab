@@ -26,6 +26,7 @@
 #include "setGraphicObjectProperty.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"
+#include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 int sci_mpopup(char *fname, void* pvApiCtx)
 {
@@ -48,7 +49,7 @@ int sci_mpopup(char *fname, void* pvApiCtx)
     {
         sciprint(_("%s: Feature %s is obsolete.\n"), _("Warning"), fname);
         sciprint(_("%s: Please use %s instead.\n"), _("Warning"), "uicontextmenu");
-        sciprint(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
+        Sciwarning(_("%s: This feature will be permanently removed in Scilab %s\n\n"), _("Warning"), "5.4.1");
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);

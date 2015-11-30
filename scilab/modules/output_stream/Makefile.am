@@ -17,7 +17,8 @@ OUTPUT_STREAM_CPP_SOURCES = \
 	src/cpp/getDiaryDate.cpp \
 	src/cpp/getUniqueFilename.cpp \
 	src/cpp/scilab_sprintf.cpp \
-	src/cpp/basout.cpp
+	src/cpp/basout.cpp \
+	src/cpp/Sciwarning.cpp
 
 
 GATEWAY_CPP_SOURCES = \

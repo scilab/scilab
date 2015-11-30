@@ -27,6 +27,7 @@
 #include "SetPropertyStatus.h"
 #include "sciprint.h"
 #include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 /*------------------------------------------------------------------------*/
 int set_line_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
@@ -45,7 +46,7 @@ int set_line_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueT
     {
         sciprint(_("WARNING: %s\n"), _("{0,1} values are equivalent for line_style property."));
         sciprint(_("WARNING: %s\n"), _("0 will be removed after Scilab 5.4.0."));
-        sciprint(_("WARNING: %s\n"), _("Please use 1 instead."));
+        Sciwarning(_("WARNING: %s\n"), _("Please use 1 instead."));
     }
 
     return sciSetLineStyle(iObjUID, iLineStyle);

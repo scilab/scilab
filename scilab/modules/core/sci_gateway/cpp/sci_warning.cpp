@@ -25,10 +25,13 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "os_string.h"
+#include "Sciwarning.h"
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::String *psInput = NULL;
+
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "warning", 1);
@@ -47,20 +50,29 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    types::String *psInput = in[0]->getAs<types::String>();
+    psInput = in[0]->getAs<types::String>();
 
     if (psInput->getSize() == 1)
     {
-        /* "on" "off" "query" */
+        /* "on" "off" "query" "stop" */
         if (wcscmp(psInput->get(0), L"on") == 0)
         {
             setWarningMode(TRUE);
+            setWarningStop(FALSE);
             return types::Function::OK;
         }
 
         if (wcscmp(psInput->get(0), L"off") == 0)
         {
             setWarningMode(FALSE);
+            setWarningStop(FALSE);
+            return types::Function::OK;
+        }
+
+        if (wcscmp(psInput->get(0), L"stop") == 0)
+        {
+            setWarningMode(TRUE);
+            setWarningStop(TRUE);
             return types::Function::OK;
         }
 
@@ -68,7 +80,16 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
         {
             if (getWarningMode())
             {
-                out.push_back(new types::String(L"on"));
+                if (getWarningStop())
+                {
+                    // WarningMode and WarningStop => warning stop mode active
+                    out.push_back(new types::String(L"stop"));
+                }
+                else
+                {
+                    // WarningMode and !WarningStop => warning on  mode active
+                    out.push_back(new types::String(L"on"));
+                }
             }
             else
             {
@@ -88,6 +109,11 @@ types::Function::ReturnValue sci_warning(types::typed_list &in, int _iRetCount, 
             os_swprintf(pwstToPrint, iSize, _W("WARNING: %ls\n").c_str(), pwstTemp);
             scilabForcedWriteW(pwstToPrint);
             FREE(pwstToPrint);
+        }
+
+        if (getWarningStop())
+        {
+            Sciwarning("");
         }
     }
 

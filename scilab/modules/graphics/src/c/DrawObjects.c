@@ -46,6 +46,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 //#include "../../../tclsci/includes/GedManagement.h"
 
@@ -94,7 +95,7 @@ void sciGetDisplayedBounds(int iSubWinUID,
     {
         if (sciGetLogExponent(*xmin, *xmax, xmin, xmax) != 0)
         {
-            sciprint(_("Warning: Can't use Log on X-axis xmin is negative.\n"));
+            Sciwarning(_("Warning: Can't use Log on X-axis xmin is negative.\n"));
         }
     }
 
@@ -107,7 +108,7 @@ void sciGetDisplayedBounds(int iSubWinUID,
     {
         if (sciGetLogExponent(*ymin, *ymax, ymin, ymax) != 0)
         {
-            sciprint(_("Warning: Can't use Log on Y-axis ymin is negative.\n"));
+            Sciwarning(_("Warning: Can't use Log on Y-axis ymin is negative.\n"));
         }
     }
 
@@ -120,7 +121,7 @@ void sciGetDisplayedBounds(int iSubWinUID,
     {
         if (sciGetLogExponent(*zmin, *zmax, zmin, zmax) != 0)
         {
-            sciprint(_("Warning: Can't use Log on Z-axis zmin is negative.\n"));
+            Sciwarning(_("Warning: Can't use Log on Z-axis zmin is negative.\n"));
         }
     }
 }

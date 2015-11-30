@@ -6,3 +6,5 @@ setLastError
 isPromptShow
 getSilentError
 getConsoleWidth
+getWarningMode
+getWarningStop

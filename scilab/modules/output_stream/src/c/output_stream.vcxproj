@@ -212,6 +212,7 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   <ItemGroup>
     <ClCompile Include="..\cpp\basout.cpp" />
     <ClCompile Include="..\cpp\getUniqueFilename.cpp" />
+    <ClCompile Include="..\cpp\Sciwarning.cpp" />
     <ClCompile Include="cerro.c" />
     <ClCompile Include="..\cpp\Diary.cpp" />
     <ClCompile Include="..\cpp\diary_manager.cpp" />
@@ -265,6 +266,7 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\scilab_sprintf.hxx" />
     <ClInclude Include="..\..\includes\sciprint.h" />
     <ClInclude Include="..\..\includes\sciprint_full.h" />
+    <ClInclude Include="..\..\includes\Sciwarning.h" />
     <ClInclude Include="..\cpp\Diary.hxx" />
     <ClInclude Include="..\cpp\DiaryList.hxx" />
     <ClInclude Include="..\cpp\DiaryModesEnum.hxx" />

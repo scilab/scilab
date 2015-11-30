@@ -18,6 +18,7 @@
 #include "sci_malloc.h"
 #include "sciprint.h"
 #include "eigs_dependencies.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
 extern int C2F(dsaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
@@ -323,7 +324,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
 
             if (INFO[0] == -1) //non critical error
             {
-                sciprint("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
+                Sciwarning("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
                 break;
             }
             else
@@ -616,7 +617,7 @@ int eigs(double *AR, doublecomplex *AC, int N, int Acomplex, int Asym,
 
             if (INFO[0] == -1) //non critical error
             {
-                sciprint("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
+                Sciwarning("%s: WARNING: Maximum number of iterations reached. Only %d eigenvalues converged.\n", "eigs", IPARAM[4]);
                 break;
             }
             else

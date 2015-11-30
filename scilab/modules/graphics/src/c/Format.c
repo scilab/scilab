@@ -48,6 +48,7 @@
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 #define MAX(A,B) ((A<B)?B:A)
 
@@ -1105,7 +1106,7 @@ int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int 
         {
             if (nval != 3)
             {
-                sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "r", "tics_coord", 3);
+                Sciwarning(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "r", "tics_coord", 3);
             }
 
             if (nval < 3)
@@ -1142,7 +1143,7 @@ int ComputeXIntervals(int iObjUID, char xy_type, double ** vector, int * N, int 
         {
             if (nval != 4)
             {
-                sciprint(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "i", "tics_coord", 4);
+                Sciwarning(_("Warning: %s must be changed, %s is '%s' and %s dimension is not %d.\n"), "tics_coord", "xy_type", "i", "tics_coord", 4);
             }
 
             if (nval < 4)

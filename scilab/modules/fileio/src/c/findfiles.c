@@ -25,6 +25,7 @@
 #include "sciprint.h"
 #include "os_string.h"
 #include "charEncoding.h"
+#include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
 static BOOL find_spec( char *filename , char *filespec);
@@ -77,7 +78,7 @@ wchar_t** findfilesW(const wchar_t *path, const wchar_t *filespec, int *sizeList
         {
             char* pstPath = wide_string_to_UTF8(path);
             char* pstError = wide_string_to_UTF8(_wcserror(errno));
-            sciprint(_("Warning: Could not open directory %s: %s\n"), pstPath, pstError);
+            Sciwarning(_("Warning: Could not open directory %s: %s\n"), pstPath, pstError);
             FREE(pstPath);
             FREE(pstError);
         }
@@ -151,7 +152,7 @@ char **findfiles(const char *path, const char *filespec, int *sizeListReturned, 
     {
         if (warning)
         {
-            sciprint(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
+            Sciwarning(_("Warning: Could not open directory %s: %s\n"), path, strerror(errno));
         }
     }
 

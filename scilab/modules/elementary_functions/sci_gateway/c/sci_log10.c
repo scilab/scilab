@@ -21,6 +21,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
 int sci_log10(char *fname, void* pvApiCtx)
@@ -99,7 +100,7 @@ int sci_log10(char *fname, void* pvApiCtx)
 
         if (getieee() == 1)
         {
-            sciprint(_("Warning : singularity of 'log' or 'tan' function.\n"));
+            Sciwarning(_("Warning : singularity of 'log' or 'tan' function.\n"));
         }
     }
 

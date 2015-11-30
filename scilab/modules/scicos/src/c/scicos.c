@@ -87,6 +87,7 @@
 #include "localization.h"
 #include "charEncoding.h"
 #include "common_structure.h"
+#include "Sciwarning.h"
 
 /*--------------------------------------------------------------------------*/
 typedef struct
@@ -4122,7 +4123,7 @@ static int simblk(realtype t, N_Vector yy, N_Vector yp, void *f_data)
         {
             if ((xd[i] - xd[i] != 0))
             {
-                sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
+                Sciwarning(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
                 nantest = 1;
                 break;
             }
@@ -4157,7 +4158,7 @@ static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
         for (jj = 0; jj < ng; jj++)
             if (gout[jj] - gout[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
                 nantest = 1;
                 break;
             } /* NaN checking */
@@ -4194,7 +4195,7 @@ static void simblklsodar(int * nequations, realtype * tOld, realtype * actual, r
         {
             if ((res[i] - res[i] != 0))
             {
-                sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
+                Sciwarning(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
             }
         }
     }
@@ -4219,7 +4220,7 @@ static void grblklsodar(int * nequations, realtype * tOld, realtype * actual, in
         {
             if (res[jj] - res[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
             } /* NaN checking */
         }
     }
@@ -4328,7 +4329,7 @@ static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void
         {
             if (gout[jj] - gout[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
+                Sciwarning(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
                 nantest = 1;
                 break;
             }
@@ -4373,7 +4374,7 @@ static void simblkddaskr(realtype *tOld, realtype *actual, realtype *actualP, re
         for (jj = 0; jj < *neq; jj++)
             if (res[jj] - res[jj] != 0) /* NaN checking */
             {
-                sciprint(_("\nWarning: The residual function #%d returns a NaN"), jj);
+                Sciwarning(_("\nWarning: The residual function #%d returns a NaN"), jj);
                 *flag = -1; /* recoverable error; */
                 return;
             }
@@ -4407,7 +4408,7 @@ static void grblkddaskr(int *nequations, realtype *tOld, realtype *actual, int *
         {
             if (res[jj] - res[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
+                Sciwarning(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
                 return;
             }
         }
@@ -4459,7 +4460,7 @@ static void jacpsol(realtype *res, int *ires, int *neq, realtype *tOld, realtype
                 /* NaN test */
                 if (wp[nrow + j] - wp[nrow + j] != 0)
                 {
-                    sciprint(_("\nWarning: The preconditioner evaluation function returns a NaN at index #%d."), nrow + j);
+                    Sciwarning(_("\nWarning: The preconditioner evaluation function returns a NaN at index #%d."), nrow + j);
                     *ier = -1;
                 }
             }
@@ -4503,7 +4504,7 @@ static void psol(int *neq, realtype *tOld, realtype *actual, realtype *actualP,
     {
         if (b[i] - b[i] != 0)
         {
-            sciprint(_("\nWarning: The preconditioner application function returns a NaN at index #%d."), i);
+            Sciwarning(_("\nWarning: The preconditioner application function returns a NaN at index #%d."), i);
             /* Indicate a recoverable error, meaning that the step will be retried with the same step size
                but with a call to 'jacpsol' to update necessary data, unless the Jacobian data is current,
                in which case the step will be retried with a smaller step size. */
@@ -4544,7 +4545,7 @@ static void addevs(double t, int *evtnb, int *ierr1)
                 {
                     sciprint(_("\n Warning: an event is reprogrammed at t=%g by removing another"), t );
                     sciprint(_("\n         (already programmed) event. There may be an error in"));
-                    sciprint(_("\n         your model. Please check your model\n"));
+                    Sciwarning(_("\n         your model. Please check your model\n"));
                     TCritWarning = 1;
                 }
                 do_cold_restart(); /* the erased event could be a critical
@@ -6943,7 +6944,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
         {
             if (residual[jj] - residual[jj] != 0)
             {
-                sciprint(_("\nWarning: The initialization system #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The initialization system #%d returns a NaN/Inf"), jj);
                 nantest = 1;
                 break;
             }

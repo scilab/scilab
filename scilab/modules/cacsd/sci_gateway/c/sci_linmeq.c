@@ -136,6 +136,7 @@
 #include "localization.h"
 #include "sciprint.h"
 #include "elem_common.h"
+#include "Sciwarning.h"
 
 extern int C2F(lsame)();
 extern int C2F(dlacpy)();
@@ -1220,12 +1221,12 @@ int sci_linmeq(char *fname, void* pvApiCtx)
     }
     else if (SCALE != ONE)
     {
-        sciprint(_("%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"), fname, TEMP);
+        Sciwarning(_("%s: Warning: input arguments were scaled by %lf to avoid overflow.\n"), fname, TEMP);
     }
 
     if (PERTRB)
     {
-        sciprint(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used.\n"), fname);
+        Sciwarning(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used.\n"), fname);
     }
 
     ReturnArguments(pvApiCtx);
