@@ -12,53 +12,57 @@
 
 package org.scilab.tests.modules.xcos.port.output;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.BasicPort.Type;
+import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-import org.junit.*;
 
 /**
  * Unit test for {@link ImplicitOutputPort}
  */
 public class ImplicitOutputPortTest {
     public static final int DEFAULT_PORTSIZE = 8;
+    private JavaController controller;
+
+    @Before
+    public void loadLibrary() {
+        System.loadLibrary("scilab");
+        controller = new JavaController();
+    }
 
     @Test
     public void checkType() {
-        ImplicitOutputPort port = new ImplicitOutputPort();
+        ImplicitOutputPort port = new ImplicitOutputPort(controller.createObject(Kind.PORT));
         assert port.getType() == Type.IMPLICIT;
     }
 
     @Test
     public void checkDefaultOrientation() {
-        ImplicitOutputPort port = new ImplicitOutputPort();
+        ImplicitOutputPort port = new ImplicitOutputPort(controller.createObject(Kind.PORT));
         assert port.getOrientation() == Orientation.EAST;
     }
 
     @Test
     public void checkStyle() {
-        ImplicitOutputPort port = new ImplicitOutputPort();
+        ImplicitOutputPort port = new ImplicitOutputPort(controller.createObject(Kind.PORT));
         assert port.getStyle().contains("ImplicitOutputPort");
     }
 
     @Test
-    public void checkTypeName() {
-        ImplicitOutputPort port = new ImplicitOutputPort();
-        assert port.getTypeName().equals("ImplicitOutputPort");
-    }
-
-    @Test
     public void checkClassHierarchy() {
-        ImplicitOutputPort port = new ImplicitOutputPort();
+        ImplicitOutputPort port = new ImplicitOutputPort(controller.createObject(Kind.PORT));
         assert port instanceof OutputPort;
         assert port instanceof BasicPort;
     }
 
     @Test
     public void checkDefaultGeometry() {
-        ImplicitOutputPort port = new ImplicitOutputPort();
+        ImplicitOutputPort port = new ImplicitOutputPort(controller.createObject(Kind.PORT));
         assert port.getGeometry().getWidth() == DEFAULT_PORTSIZE;
         assert port.getGeometry().getHeight() == DEFAULT_PORTSIZE;
     }

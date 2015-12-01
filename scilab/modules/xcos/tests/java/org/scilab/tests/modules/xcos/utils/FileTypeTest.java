@@ -12,22 +12,28 @@
 
 package org.scilab.tests.modules.xcos.utils;
 
+import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.IOException;
-import java.awt.GraphicsEnvironment;
 
-import org.junit.Test;
 import org.junit.Assume;
-
+import org.junit.Before;
+import org.junit.Test;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.XcosFileType;
-
 
 /**
  * Test the {@link XcosFileType} class.
  */
 public class FileTypeTest {
     private static final String XcosFileHeader = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>";
+
+    @Before
+    public void loadLibrary() {
+        System.loadLibrary("scilab");
+    }
 
     @Test
     public void checkSupportedType() {
@@ -71,7 +77,9 @@ public class FileTypeTest {
     public void validateXcosFindFileType() throws Exception {
         Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
         File tmp = File.createTempFile("xcosTest", XcosFileType.XCOS.getDottedExtension());
-        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
+
+        JavaController controller = new JavaController();
+        XcosFileType.XCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM));
 
         assert XcosFileType.XCOS == XcosFileType.findFileType(tmp);
 
@@ -82,7 +90,9 @@ public class FileTypeTest {
     public void validateZcosFindFileType() throws Exception {
         Assume.assumeTrue(!GraphicsEnvironment.isHeadless());
         File tmp = File.createTempFile("xcosTest", XcosFileType.ZCOS.getDottedExtension());
-        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram());
+
+        JavaController controller = new JavaController();
+        XcosFileType.ZCOS.save(tmp.getCanonicalPath(), new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM));
 
         assert XcosFileType.ZCOS == XcosFileType.findFileType(tmp);
 

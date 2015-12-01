@@ -13,11 +13,15 @@ For a high-level overview of the changes in this release, please consult the "Wh
         Changes between version 6.0.0-alpha-2 and 6.0.0-beta-1
         ======================================================
 
+* Bug #13298 fixed - Static analysis bugs detected by PVS-Studio fixed.
+
 * Bug #13986 fixed - setdefaultlanguage did not set value correctly in Windows registry.
 
 * Bug #13990 fixed - Windows installer did not ship all localization files.
 
 * Bug #14178 fixed - tcl/tk unavailability on MacOS is now documented.
+
+* Bug #14041 fixed - genlib crash when the file is locked by another program.
 
 * Bug #14181 fixed - Calling intg (or integrate) in a function that is being integrated failed.
 
@@ -27,6 +31,15 @@ For a high-level overview of the changes in this release, please consult the "Wh
 
 * Bug #14257 fixed - English spelling in messages and in comments.
 
+* Bug #14257 fixed - English spelling in messages and in comments.
+
+Dependencies
+=============
+
+* Apache xmlgraphics stack upgraded to the latest versions :
+  - xmlgraphics-commons 2.0.1
+  - Batik 1.8
+  - FOP 2.0
 
         Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2
         =======================================================
