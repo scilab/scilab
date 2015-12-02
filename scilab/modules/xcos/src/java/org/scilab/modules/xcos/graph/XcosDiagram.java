@@ -110,6 +110,9 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
 
 /**
  * The base class for a diagram. This class contains jgraphx + Scicos data.
@@ -983,26 +986,6 @@ public class XcosDiagram extends ScilabGraph {
         if (gridEnable) {
             setGridSize(XcosOptions.getEdition().getGraphGrid());
         }
-
-        /*
-         * Reinstall related listeners
-         */
-
-        // FIXME handle that only for visible diagrams
-        // Property change Listener
-        // Will say if a diagram has been modified or not.
-        // final PropertyChangeListener p = new PropertyChangeListener() {
-        // @Override
-        // public void propertyChange(final PropertyChangeEvent e) {
-        // if (e.getPropertyName().compareTo(MODIFIED) == 0) {
-        // if (!e.getOldValue().equals(e.getNewValue())) {
-        // updateTabTitle();
-        // }
-        // }
-        // }
-        // };
-        // getAsComponent().removePropertyChangeListener(MODIFIED, p);
-        // getAsComponent().addPropertyChangeListener(MODIFIED, p);
     }
 
     /**
@@ -1560,15 +1543,25 @@ public class XcosDiagram extends ScilabGraph {
             final String displayedLabel = (String) style.get("displayedLabel");
             if (displayedLabel != null) {
                 if (cell instanceof BasicBlock) {
-                    try {
-                        VectorOfDouble v = new VectorOfDouble();
-                        controller.getObjectProperty(((BasicBlock) cell).getUID(), Kind.BLOCK, ObjectProperties.EXPRS, v);
+                    BasicBlock block = (BasicBlock) cell;
+                    VectorOfDouble v = new VectorOfDouble();
+                    controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, v);
 
-                        // FIXME : decode these exprs
-                        // ret = String.format(displayedLabel, ((BasicBlock) cell).getExprsFormat());
-                        ret = String.format(displayedLabel, "Not handled exprs ; please report a bug");
-                    } catch (IllegalFormatException e) {
-                        LOG.severe(e.toString());
+                    ScilabType var = new ScilabTypeCoder().vec2var(v);
+                    if (var instanceof ScilabString) {
+                        ScilabString str = (ScilabString) var;
+                        Object[] exprs = new String[str.getHeight() * str.getWidth()];
+                        for (int i = 0; i < str.getHeight() ; i++)
+                            for (int j = 0; j < str.getWidth() ; j++) {
+                                exprs[i + j * str.getHeight()] = str.getData()[i][j];
+                            }
+                        try {
+                            ret = String.format(displayedLabel, exprs);
+                        } catch (IllegalFormatException e) {
+                            LOG.severe(e.toString());
+                            ret = displayedLabel;
+                        }
+                    } else {
                         ret = displayedLabel;
                     }
                 } else {

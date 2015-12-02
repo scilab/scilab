@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos;
 
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxEventSource;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
@@ -266,6 +269,10 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         initComponents(graph);
 
         graph.getAsComponent().addKeyListener(new ArrowKeyListener());
+        graph.getModel().addListener(mxEvent.CHANGE, (Object sender, mxEventObject evt) -> {
+            graph.setModified(true);
+            graph.updateTabTitle();
+        });
     }
 
     /*
