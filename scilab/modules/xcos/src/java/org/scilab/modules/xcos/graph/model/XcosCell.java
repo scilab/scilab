@@ -291,6 +291,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
                 } else {
                     controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, uid);
                 }
+                if (uid != 0l) {
+                    controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.CONNECTED_SIGNALS, getUID());
+                }
                 break;
             default:
                 break;
