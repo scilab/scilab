@@ -40,7 +40,9 @@ import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfScicosID;
 
 class RawDataHandler implements ScilabHandler {
 
@@ -423,9 +425,14 @@ class RawDataHandler implements ScilabHandler {
                         if (fieldValue.as == ObjectProperties.RPAR && fieldValue.value instanceof ScilabMList) {
                             // CORNER CASE for partially decoded sub-diagram hierarchy
                             // decode the rpar as a subdiagram using the legacy decoders
-                            try {
-                                new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(cell.getUID(), cell.getKind()));
-                            } catch (ScicosFormatException e) {
+                            // when there is no children
+                            VectorOfScicosID children = new VectorOfScicosID();
+                            saxHandler.controller.getObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.CHILDREN, children);
+                            if (children.size() == 0) {
+                                try {
+                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(cell.getUID(), cell.getKind()));
+                                } catch (ScicosFormatException e) {
+                                }
                             }
                             return;
                         }
