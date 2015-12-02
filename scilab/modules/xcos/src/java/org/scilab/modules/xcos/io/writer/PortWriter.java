@@ -21,11 +21,13 @@ import org.scilab.modules.xcos.port.BasicPort;
 public class PortWriter extends ScilabWriter {
 
     private final ObjectProperties portKind;
+    private int ordering;
 
     public PortWriter(XcosWriter writer, ObjectProperties portKind) {
         super(writer);
 
         this.portKind = portKind;
+        this.ordering = 0;
     }
 
     @Override
@@ -75,6 +77,7 @@ public class PortWriter extends ScilabWriter {
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.UID, str);
         shared.stream.writeAttribute("id", str[0]);
         shared.stream.writeAttribute("parent", shared.layers.peek());
+        shared.stream.writeAttribute("ordering", Integer.toString(++ordering));
 
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
