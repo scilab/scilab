@@ -99,6 +99,16 @@ Other feature additions
 
 * name2rgb can now handle a single string and a matrix of strings.
 
+* isoview, isoview on, isoview off, isoview(idGraphics, "on"|"off") are now supported
+
+* householder() can now return the reflection matrix, and has a demo.
+
+* ndgrid() can now works with any types of homogeneous data
+
+* bench_run() can now return its results and/or record them in a file
+
+* typeof(.., "overload") allows now to get the overloading type-code of an object
+
 
 Installation
 ============
@@ -256,7 +266,6 @@ Modified Functions
 * ode: y0 is restricted to a column vector.
 * pppdiv: Return a scalar of type 'constant' when the rank is 0.
 * pdiv: Return a matrix of type 'constant' when all the rank are 0.
-* typeof: Add a 2nd argument "overload" of get overloaded name (typeof(cell(), "overload") -> "ce")
 
 
 Syntax Modifications
@@ -305,6 +314,8 @@ In 6.0.0:
 * Bug #13810  fixed - householder(v, k*v) returned column of %nan. Input parameters were not checked. The Householder matrix could not be returned. Help pages were inaccurate and without examples. There was no householder() demo.
 
 * Bug #13869 fixed - bench_run with option nb_run=10 did not override the NB RUN tags
+
+* Bug #13974 fixed - isoview(xmin, xmax, ymin, ymax) was unhandy.
 
 * Bug #14035 fixed - ndgrid did not manage all homogeneous data type (booleans, integers, polynomials, rationals, strings, [])
 
