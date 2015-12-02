@@ -1019,6 +1019,22 @@ public class HTMLDocbookTagConverter extends DocbookTagConverter implements Temp
     }
 
     /**
+     * Handle an anchor
+     * @param attributes the tag attributes
+     * @param contents the tag contents
+     * @return the HTML code
+     * @throws SAXEception if an error is encountered
+     */
+    public String handleAnchor(final Map<String, String> attributes, final String contents) throws SAXException {
+        String id = attributes.get("id");
+        if (id != null) {
+            return "<a name=\"" + id + "\">" + contents + "</a>";
+        } else {
+            return contents;
+        }
+    }
+
+    /**
      * Handle a progamlisting
      * @param attributes the tag attributes
      * @param contents the tag contents
