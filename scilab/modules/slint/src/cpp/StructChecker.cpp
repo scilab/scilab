@@ -32,7 +32,7 @@ void StructChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
                 }
                 else if (args.size() % 2)
                 {
-                    result.report(context, e.getLocation(), *this, _("Struct definition must contains an even number of arguments."));
+                    result.report(context, e.getLocation(), *this, _("Struct definition must contain an even number of arguments."));
                 }
                 else
                 {

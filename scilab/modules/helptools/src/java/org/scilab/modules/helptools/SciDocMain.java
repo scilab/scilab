@@ -173,10 +173,10 @@ public final class SciDocMain {
             }
 
         } catch (SAXException e) {
-            System.err.println("An error occurred during the conversion:");
+            System.err.println("XML parsing error while generating documentation for file " + sourceDoc + ":");
             System.err.println(e.toString());
         } catch (Throwable e) {
-            System.err.println("An error occurred during the conversion:\n");
+            System.err.println("Unhandled error while generating documentation for file " + sourceDoc + ":");
             e.printStackTrace();
             throw e;
         }

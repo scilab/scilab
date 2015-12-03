@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 import com.mxgraph.model.mxICell;
@@ -214,7 +213,7 @@ public class ConnectionHandler extends mxConnectionHandler {
 
                 // We are ending a link creation on an valid port,
                 // so sync the points coordinates with the model
-                XcosCell cell = (XcosCell) connectPreview.getPreviewState().getCell();
+                mxICell cell = (mxICell) connectPreview.getPreviewState().getCell();
                 cell.setGeometry(cell.getGeometry());
             }
 

@@ -245,7 +245,7 @@ static ScicosID get(types::GenericType* UIDs, int index)
         {
             wchar_t* str = UIDs->getAs<types::String>()->get(index);
             std::wistringstream iss(str);
-            iss >> ret;
+            iss >> std::hex >> ret;
             break;
         }
         case types::InternalType::ScilabInt64:

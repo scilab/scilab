@@ -183,6 +183,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
+        // update where to set the name of the executed file.
+        ConfigVariable::setFileNameToLastWhere(wstFile.data());
+
         ThreadManagement::LockParser();
         parser.parseFile(pwstTemp, L"exec");
         FREE(pwstTemp);
@@ -230,8 +233,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
 
         ThreadManagement::UnlockParser();
-        // update where to set the name of the executed file.
-        ConfigVariable::setFileNameToLastWhere(wstFile.data());
 
         ConfigVariable::setExecutedFileID(iID);
     }

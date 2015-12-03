@@ -12,7 +12,6 @@
 
 package org.scilab.modules.xcos.io;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.nio.DoubleBuffer;
 import java.nio.IntBuffer;
@@ -91,8 +90,9 @@ public class ScilabTypeCoder {
         VectorOfDouble vec = new VectorOfDouble();
         encode(value, vec);
 
+        // System.err.println("var2vec:" + var.toString() + ":" + toString(vec));
         if (LOG.isLoggable(Level.FINE)) {
-            LOG.fine("var2vec:" + var.toString() + ":" + toString(vec));
+            LOG.log(Level.FINE, "var2vec:{0}:{1}", new Object[] {var.toString(), toString(vec)});
         }
 
         if (LOG.isLoggable(Level.FINER)) {
@@ -204,9 +204,9 @@ public class ScilabTypeCoder {
         // push the data on a pre-allocated space
         final int requiredBytes = sizeof * var.getHeight() * var.getWidth();
         final int doubleLen = (requiredBytes + Double.BYTES - 1) / Double.BYTES;
-        final int position = vec.size();
-        vec.resize(position + doubleLen);
-        ByteBuffer view = vec.asByteBuffer(position, doubleLen);
+        final int index = vec.size();
+        vec.resize(index + doubleLen);
+        ByteBuffer view = vec.asByteBuffer(index, doubleLen);
 
         for (int i = 0; i < var.getHeight(); i++) {
             for (int j = 0; j < var.getWidth(); j++) {
@@ -239,10 +239,10 @@ public class ScilabTypeCoder {
         // put all the boolean as int accordingly to Scilab 6 implementation
         final int requiredBytes = Integer.BYTES * var.getHeight() * var.getWidth();
         final int doubleLen = (requiredBytes + Double.BYTES - 1) / Double.BYTES;
-        int position = vec.size();
-        vec.resize(position + doubleLen);
+        int index = vec.size();
+        vec.resize(index + doubleLen);
 
-        ByteBuffer buffer = vec.asByteBuffer(position, doubleLen);
+        ByteBuffer buffer = vec.asByteBuffer(index, doubleLen);
 
         for (int i = 0; i < var.getHeight(); i++) {
             for (int j = 0; j < var.getWidth(); j++) {
@@ -258,23 +258,29 @@ public class ScilabTypeCoder {
         // add the offset table which contains the offset of each UTF-8 encoded strings
         int offsetTableStart = vec.size();
         vec.resize(offsetTableStart + var.getHeight() * var.getWidth());
+        int offsetTableAccumulated = 0;
 
         // encode the strings as UTF-8 and store the associated offset
+        Charset utf8 = Charset.forName("UTF-8");
         for (int i = 0; i < var.getHeight(); i++) {
             for (int j = 0; j < var.getWidth(); j++) {
                 String str = var.getData()[i][j];
-                byte[] bytes = str.getBytes(Charset.forName("UTF-8"));
+                byte[] bytes = str.getBytes(utf8);
                 // append the terminal '\0'
-                final int requiredBytes = ((bytes.length + 1) * Byte.BYTES);
+                final int requiredBytes = bytes.length + 1;
                 final int doubleLen = (requiredBytes + Double.BYTES - 1) / Double.BYTES;
 
                 // set the offset
-                vec.set(offsetTableStart++, doubleLen);
+
+                offsetTableAccumulated += doubleLen;
+                vec.set(offsetTableStart++, offsetTableAccumulated);
+
 
                 // push the data through a temporary byte buffer
-                int position = vec.size();
-                vec.resize(position + doubleLen);
-                vec.asByteBuffer(position, doubleLen).put(bytes);
+                int index = vec.size();
+                vec.resize(index + doubleLen);
+                vec.asByteBuffer(index, doubleLen).put(bytes).put((byte) 0);
+
             }
         }
     }
@@ -353,14 +359,15 @@ public class ScilabTypeCoder {
         position = 0;
 
         if (LOG.isLoggable(Level.FINER)) {
-            LOG.entering(ScilabTypeCoder.class.getName(), "vec2var");
+            LOG.entering(ScilabTypeCoder.class.getName(), "vec2var", vec);
         }
 
         ScilabType var = decodeHeader(vec);
         decode(vec, var);
 
+        // System.err.println("vec2var:" + toString(vec) + ":" + var.toString());
         if (LOG.isLoggable(Level.FINE)) {
-            LOG.fine("vec2var:" + toString(vec) + ":" + var.toString());
+            LOG.log(Level.FINE, "vec2var:{0}:{1}", new Object[] {toString(vec), var.toString()});
         }
 
         if (LOG.isLoggable(Level.FINER)) {
@@ -506,28 +513,40 @@ public class ScilabTypeCoder {
             }
         }
 
+        Charset utf8 = Charset.forName("UTF-8");
+        int accumulatedOffset = 0;
+
         // reconstruct each String object
-        try {
-            for (int i = 0; i < var.getHeight(); i++) {
-                for (int j = 0; j < var.getWidth(); j++) {
-                    ByteBuffer view = vec.asByteBuffer(position, offset[i][j]);
-                    byte[] bytes = new byte[offset[i][j] * Double.BYTES];
+        for (int i = 0; i < var.getHeight(); i++) {
+            for (int j = 0; j < var.getWidth(); j++) {
+                final int nbOfDouble = offset[i][j] - accumulatedOffset;
+                ByteBuffer view = vec.asByteBuffer(position, nbOfDouble);
+                byte[] bytes = new byte[nbOfDouble * Double.BYTES];
 
-                    view.get(bytes);
-                    data[i][j] = new String(bytes, "UTF-8");
+                view.get(bytes);
 
-                    position += offset[i][j];
+                // to avoid mis-decoding we have to pass the len of bytes
+                int strlen = 0;
+                while (bytes[strlen] != 0) {
+                    strlen++;
                 }
+
+                data[i][j] = new String(bytes, 0, strlen, utf8);
+
+                accumulatedOffset += nbOfDouble;
+                position += nbOfDouble;
             }
-        } catch (UnsupportedEncodingException e) {
-            // ignore as UTF-8 is always available
         }
+
         return var;
     }
 
     private ScilabType decode(VectorOfDouble vec, ArrayList<ScilabType> var) {
         for (int i = 0; i < var.size(); i++) {
-            var.set(i, vec2var(vec));
+            ScilabType sub = decodeHeader(vec);
+            decode(vec, sub);
+
+            var.set(i, sub);
         }
         return (ScilabType) var;
     }
@@ -623,9 +642,9 @@ public class ScilabTypeCoder {
             case sci_list:
                 return new ScilabList(Collections.nCopies(listLen, null));
             case sci_mlist:
-                return new ScilabMList(new String[listLen], Collections.nCopies(listLen, null));
+                return new ScilabMList(new String[listLen - 1], Collections.nCopies(listLen - 1, null));
             case sci_tlist:
-                return new ScilabTList(new String[listLen], Collections.nCopies(listLen, null));
+                return new ScilabTList(new String[listLen - 1], Collections.nCopies(listLen - 1, null));
             default:
                 throw new IllegalArgumentException();
 

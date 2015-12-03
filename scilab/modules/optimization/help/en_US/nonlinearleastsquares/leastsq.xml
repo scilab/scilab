@@ -368,7 +368,7 @@ double precision x(n), params(*), y(m,n)
             which is non linear but does not really need to be solved with leastsq (applying
             log linearizes the model and the problem may be solved with linear algebra).
             In this example we look for the 2 parameters x(1) and x(2) of a simple
-            exponential decay model (x(1) being the unknow initial value and x(2) the
+            exponential decay model (x(1) being the unknown initial value and x(2) the
             decay constant):
         </para>
         <programlisting role="example"><![CDATA[

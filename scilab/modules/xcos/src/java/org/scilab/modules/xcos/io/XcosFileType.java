@@ -15,8 +15,9 @@ package org.scilab.modules.xcos.io;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
+import java.io.OutputStream;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.EnumSet;
@@ -29,32 +30,23 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamWriter;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.sax.SAXResult;
-import javax.xml.transform.stax.StAXSource;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 
-import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
-import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.View;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.sax.XcosSAXHandler;
-import org.scilab.modules.xcos.io.spec.ContentEntry;
 import org.scilab.modules.xcos.io.spec.XcosPackage;
+import org.scilab.modules.xcos.io.writer.IndentingXMLStreamWriter;
 import org.scilab.modules.xcos.io.writer.XcosWriter;
 import org.scilab.modules.xcos.utils.XcosMessages;
-import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLReaderFactory;
 
 /**
  * All the filetype recognized by Xcos.
@@ -101,28 +93,25 @@ public enum XcosFileType {
     XCOS("xcos", XcosMessages.FILE_XCOS) {
         @Override
         public void load(String file, XcosDiagram into)
-        throws TransformerException {
+        throws IOException {
             View xcosView = JavaController.lookup_view(Xcos.class.getName());
             try {
                 JavaController.unregister_view(xcosView);
 
-                final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
-                final Transformer aTransformer = tranFactory.newTransformer();
+                XcosSAXHandler handler = new XcosSAXHandler(into, null);
+                XMLReader reader = XMLReaderFactory.createXMLReader();
+                reader.setContentHandler(handler);
+                reader.setErrorHandler(handler);
 
-                final StreamSource src = new StreamSource(new File(file).toURI().toURL().toString());
-                final SAXResult result = new SAXResult(new XcosSAXHandler(into, null));
-
-                LOG.entering("Transformer", "transform");
-                aTransformer.transform(src, result);
-                LOG.exiting("Transformer", "transform");
-
-            } catch (TransformerConfigurationException e) {
-                Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
-            } catch (TransformerException e) {
+                LOG.entering("XMLReader", "parse");
+                reader.parse(new InputSource(file));
+                LOG.exiting("XMLReader", "parse");
+            } catch (SAXException e) {
                 e.printStackTrace();
-                Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
+                throw new RuntimeException(e);
             } catch (Exception e) {
                 e.printStackTrace();
+                throw e;
             } finally {
                 JavaController.register_view(Xcos.class.getName(), xcosView);
             }
@@ -130,13 +119,13 @@ public enum XcosFileType {
 
         @Override
         public void save(String file, XcosDiagram from) throws Exception {
-            final StreamResult result = new StreamResult(file);
+            final OutputStream result = new FileOutputStream(file);
 
             final XMLOutputFactory factory = ScilabXMLOutputFactory.newInstance();
-            final XMLStreamWriter writer = factory.createXMLStreamWriter(result);
+            final XMLStreamWriter writer = factory.createXMLStreamWriter(result, "UTF-8");
             try {
                 LOG.entering("XMLStreamWriter", "write");
-                new XcosWriter(null, writer).write(from.getUID(), from.getKind());
+                new XcosWriter(null, new IndentingXMLStreamWriter(writer)).write(from.getUID(), from.getKind());
                 LOG.exiting("XMLStreamWriter", "write");
             } finally {
                 writer.close();

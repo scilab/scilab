@@ -211,14 +211,14 @@ static int deserialize_int(void *_pvCtx, int *_piBuffer, int _iBufferSize)
         case SCI_UINT32:
             sciErr = createMatrixOfUnsignedInteger32(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (unsigned int *)pvData);
             break;
-            /*
-                case SCI_INT64 :
-                    sciErr = createMatrixOfInteger64(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (long long*)pvData);
-                    break;
-                case SCI_UINT64 :
-                    sciErr = createMatrixOfUnsignedInteger64(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (unsigned long long*)pvData);
-                    break;
-            */
+        /*
+            case SCI_INT64 :
+                sciErr = createMatrixOfInteger64(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (long long*)pvData);
+                break;
+            case SCI_UINT64 :
+                sciErr = createMatrixOfUnsignedInteger64(_pvCtx, nbInputArgument(_pvCtx) + 1, iRows, iCols, (unsigned long long*)pvData);
+                break;
+        */
         default:
             break;
     }
@@ -302,7 +302,7 @@ int deserialize_from_mpi(void *_pvCtx, int *_piBuffer, int _iBufferSize)
         case sci_ints:
             return deserialize_int(_pvCtx, _piBuffer, _iBufferSize);
         default:
-            return -1; //unknow type
+            return -1; //unknown type
     }
 }
 

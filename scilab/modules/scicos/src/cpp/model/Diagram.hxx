@@ -69,13 +69,13 @@ struct SimulationConfig
 class Diagram: public BaseObject
 {
 public:
-    Diagram() : BaseObject(DIAGRAM), m_title("Untitled"), m_path(), m_properties(), m_context(), m_children(), m_version()
+    Diagram() : BaseObject(DIAGRAM), m_title("Untitled"), m_path(), m_properties(), m_debugLevel(), m_context(), m_children(), m_version()
     {
         m_color = { -1, 1};
     }
 
     Diagram(const Diagram& o) : BaseObject(DIAGRAM), m_title(o.m_title), m_path(o.m_path), m_color(o.m_color), m_properties(o.m_properties),
-        m_context(o.m_context), m_children(o.m_children), m_version(o.m_version) {};
+        m_debugLevel(o.m_debugLevel), m_context(o.m_context), m_children(o.m_children), m_version(o.m_version) {};
     ~Diagram() = default;
 
 private:
@@ -142,6 +142,22 @@ private:
         }
 
         m_properties = p;
+        return SUCCESS;
+    }
+
+    void getDebugLevel(int& data) const
+    {
+        data = m_debugLevel;
+    }
+
+    update_status_t setDebugLevel(const int& data)
+    {
+        if (data == m_debugLevel)
+        {
+            return NO_CHANGES;
+        }
+
+        m_debugLevel = data;
         return SUCCESS;
     }
 
@@ -214,6 +230,7 @@ private:
     std::string m_path;
     std::vector<int> m_color;
     SimulationConfig m_properties;
+    int m_debugLevel;
     std::vector<std::string> m_context;
 
     std::vector<ScicosID> m_children;

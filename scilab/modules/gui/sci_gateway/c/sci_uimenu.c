@@ -100,7 +100,7 @@ int sci_uimenu(char *fname, void *pvApiCtx)
             if (iParentUID != 0)
             {
                 getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
-                if (iParentType == __GO_FIGURE__ && iParentType == __GO_UIMENU__)
+                if (iParentType != __GO_FIGURE__ && iParentType != __GO_UIMENU__)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure", "Uimenu");
                     return FALSE;

@@ -102,7 +102,7 @@ char **getfilesdictionary(char *somechars, int *sizearray, BOOL fullpath)
         {
             dictionary = (char**)REALLOC(dictionary, sizeof(char*) * (sizeListReturned + 1));
             dictionary[sizeListReturned] = NULL;
-            qsort(dictionary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmpfiles);
+            qsort(dictionary, *sizearray, sizeof dictionary[0], cmpfiles);
         }
     }
     else

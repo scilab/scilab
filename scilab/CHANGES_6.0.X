@@ -3,11 +3,43 @@
         Welcome to Scilab 6
         ===================
 
-This file details the changes between 6.0.0-alpha-1 and 6.0.0-alpha-2 of Scilab (below); and between version 5.5.2 and 6.0.0-alpha-1 (further down). 
+This file details the changes between 6.0.0-beta-1, 6.0.0-alpha-2, 6.0.0-alpha-1, and the previous release, version 5.5.2.
 
 For a high-level overview of the changes in this release, please consult the "What's new" page of the help, by simply typing "help" in Scilab console.
 
 
+
+
+        Changes between version 6.0.0-alpha-2 and 6.0.0-beta-1
+        ======================================================
+
+* Bug #13298 fixed - Static analysis bugs detected by PVS-Studio fixed.
+
+* Bug #13986 fixed - setdefaultlanguage did not set value correctly in Windows registry.
+
+* Bug #13990 fixed - Windows installer did not ship all localization files.
+
+* Bug #14178 fixed - tcl/tk unavailability on MacOS is now documented.
+
+* Bug #14041 fixed - genlib crash when the file is locked by another program.
+
+* Bug #14181 fixed - Calling intg (or integrate) in a function that is being integrated failed.
+
+* Bug #14251 fixed - `spec` leaked some memory.
+
+* Bug #14253 fixed - Insertion in a struct contained in a list fixed.
+
+* Bug #14257 fixed - English spelling in messages and in comments.
+
+* Bug #14257 fixed - English spelling in messages and in comments.
+
+Dependencies
+=============
+
+* Apache xmlgraphics stack upgraded to the latest versions :
+  - xmlgraphics-commons 2.0.1
+  - Batik 1.8
+  - FOP 2.0
 
         Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2
         =======================================================
@@ -17,16 +49,16 @@ New Features
 
 * Scilab now includes a full-featured debugger, with ability to run Scilab scripts or functions step-by-step, to put (conditional) breakpoint, in particular break only when an exception is set. Run "help debug" for more information.
 
-* A new profiler and coverage tool has been added. 
+* A new profiler and coverage tool has been added.
   It replaces the "profile" function (which is still there but not working, and will be removed in the final release).
   It produces HTML report for the time spent (profile) on each line. Example of use:
 
      covStart(isempty) // instruments the "isempty" macro; instrumenting a whole library can be done with: covStart("elementary_functions")
      for i=1:1e5; isempty(i); end // execute some code - this will be profiled
      covWrite("html", "TMPDIR/coverage") // write the profiling/coverage report as "report.html" in the folder specified as second parameter
-     covStop(); // stop the profiling 
+     covStop(); // stop the profiling
 
-  A function to merge multiple profiler/coverage is provided too: covMerge([ list_of_files_to_merge], file_to_merge_to). 
+  A function to merge multiple profiler/coverage is provided too: covMerge([ list_of_files_to_merge], file_to_merge_to).
   The API will change before the release; the current API is mostly to get feedback from the community.
 
 * A "lint"-like command, slint, has been added, for code static analysis: it detects unclear, risky or suspicious code.
@@ -54,7 +86,7 @@ API modification
 
      int sci_Levkov(char *fname, void* pvApiCtx)
 
- instead of any "unsigned long l". This is now requires for some macros, such as Rhs(), to work. 
+ instead of any "unsigned long l". This is now requires for some macros, such as Rhs(), to work.
  (Although not strictly an API change, it may require gateway code to be modified).
 
 Bug Fixes
@@ -191,8 +223,9 @@ Bug Fixes
 
 
 
-            Changes between version 5.5.2 and 6.0.0-alpha-1
-            ===============================================
+
+        Changes between version 5.5.2 and 6.0.0-alpha-1
+        ===============================================
 
 
 Main new Features
@@ -433,7 +466,7 @@ Bug Fixes
 * Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.
 
 * Bug #14043 fixed - Gateway C prototype changed from int sci_...(char *fname, unsigned long l)
-                     to sci_...(char *fname, void* pvApiCtx). Variable name has to be 
+                     to sci_...(char *fname, void* pvApiCtx). Variable name has to be
                      exactly "pvApyCtx" when macros are used in a gateway. (1)
 
 * Bug #14044 fixed - MALLOC.h is now renamed to sci_malloc.h. (1)

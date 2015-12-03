@@ -105,6 +105,7 @@ enum object_properties_t
     TITLE,              //!< model::Diagram::title file name value
     PATH,               //!< model::Diagram::title file path value
     PROPERTIES,         //!< model::Diagram::tol & tf values
+    DEBUG_LEVEL,        //!< model::Diagram::debug_level value
     DIAGRAM_CONTEXT,    //!< model::Diagram::context value
     VERSION_NUMBER,     //!< model::Diagram::version value
     MAX_OBJECT_PROPERTIES //!< last valid value of the object_properties_t enum

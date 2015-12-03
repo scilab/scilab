@@ -34,7 +34,7 @@ void SelectChecker::preCheckNode(const ast::Exp & e, SLintContext & context, SLi
     {
         if (checkOneCase)
         {
-            result.report(context, e.getLocation(), *this, _("Select with one case: it could be replace by a if statement."));
+            result.report(context, e.getLocation(), *this, _("Select with one case: it could be replaced by an if statement."));
         }
     }
     else if (checkHomogeneity)

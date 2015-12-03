@@ -199,7 +199,13 @@ final class BlockModelElement extends BlockPartsElement {
 
         // rpar
         field++;
-        controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.RPAR, toVectorOfDouble((ScilabDouble) data.get(field)));
+        if (data.get(field) instanceof ScilabMList) {
+            try {
+                new DiagramElement(new JavaController()).decode((ScilabMList) data.get(field), new XcosDiagram(into.getUID(), into.getKind()));
+            } catch (ScicosFormatException e) {}
+        } else if (data.get(field) instanceof ScilabDouble ) {
+            controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.RPAR, toVectorOfDouble((ScilabDouble) data.get(field)));
+        }
 
         // ipar
         field++;

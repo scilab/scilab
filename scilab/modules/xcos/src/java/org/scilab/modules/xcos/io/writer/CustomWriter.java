@@ -34,12 +34,24 @@ public class CustomWriter extends ScilabWriter {
     @Override
     public void write(long uid, Kind kind) throws XMLStreamException {
         String[] str = new String[1];
+        int[] integer = new int[1];
         VectorOfDouble vDouble = new VectorOfDouble();
         VectorOfScicosID children = new VectorOfScicosID();
 
         switch (kind) {
             case DIAGRAM:
                 shared.stream.writeStartDocument();
+
+                /*
+                 * Add a version comment at startup
+                 */
+
+                final Package p = Package.getPackage("org.scilab.modules.xcos");
+                String comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
+                .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion()).toString();
+                shared.stream.writeComment(comment);
+                shared.stream.writeCharacters("\n");
+
                 shared.stream.writeStartElement(HandledElement.XcosDiagram.name());
 
                 /*
@@ -48,6 +60,8 @@ public class CustomWriter extends ScilabWriter {
 
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.PATH, str);
                 shared.stream.writeAttribute("savedFile", str[0]);
+                shared.controller.getObjectProperty(uid, kind, ObjectProperties.DEBUG_LEVEL, integer);
+                shared.stream.writeAttribute("debugLevel", Integer.toString(integer[0]));
 
                 // write simulation properties
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.PROPERTIES, vDouble);
@@ -84,6 +98,7 @@ public class CustomWriter extends ScilabWriter {
                 shared.controller.getObjectProperty(uid, kind, ObjectProperties.CHILDREN, children);
                 if (children.size() > 0) {
                     shared.stream.writeStartElement(HandledElement.SuperBlockDiagram.name());
+                    shared.stream.writeAttribute("as", "child");
                     writeDiagramAndSuperDiagramContent(uid, kind, children);
                     shared.stream.writeEndElement(); // SuperBlockDiagram
                 }
@@ -97,7 +112,6 @@ public class CustomWriter extends ScilabWriter {
     }
 
     private void writeDiagramAndSuperDiagramContent(long uid, Kind kind, VectorOfScicosID children) throws XMLStreamException {
-
         VectorOfInt colors = new VectorOfInt();
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
         shared.stream.writeAttribute("background", Integer.toString(colors.get(0)));
@@ -106,14 +120,6 @@ public class CustomWriter extends ScilabWriter {
         String[] str = new String[1];
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.TITLE, str);
         shared.stream.writeAttribute("title", str[0]);
-
-        /*
-         * Add the legacy version comment
-         */
-        final Package p = Package.getPackage("org.scilab.modules.xcos");
-        StringBuilder comment = new StringBuilder().append(Xcos.TRADENAME).append(SEP).append(Xcos.VERSION).append(SEP)
-        .append(p.getSpecificationVersion()).append(SEP).append(p.getImplementationVersion());
-        shared.stream.writeComment(comment.toString());
 
         /*
          * encode some content then the children
@@ -148,5 +154,9 @@ public class CustomWriter extends ScilabWriter {
         shared.layers.pop();
         shared.stream.writeEndElement(); // root
         shared.stream.writeEndElement(); // mxGraphModel
+        shared.stream.writeEmptyElement("mxCell");
+        shared.stream.writeAttribute("as", "defaultParent");
+        shared.stream.writeAttribute("id", layer.toString());
+        shared.stream.writeAttribute("parent", root.toString());
     }
 }

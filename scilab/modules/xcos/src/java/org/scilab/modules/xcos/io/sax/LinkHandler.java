@@ -20,9 +20,9 @@ import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.io.HandledElement;
 import org.scilab.modules.xcos.io.sax.XcosSAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXParseException;
 

@@ -77,9 +77,9 @@ import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
 import org.scilab.modules.xcos.port.Orientation;
@@ -109,6 +109,7 @@ import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
+import java.lang.reflect.Constructor;
 
 /**
  * The base class for a diagram. This class contains jgraphx + Scicos data.
@@ -641,12 +642,12 @@ public class XcosDiagram extends ScilabGraph {
     @Override
     public Object createEdge(Object parent, String id, Object value, Object source, Object target, String style) {
         Object ret = null;
+        JavaController controller = new JavaController();
 
         if (source instanceof BasicPort) {
             BasicPort src = (BasicPort) source;
             BasicLink link = null;
 
-            JavaController controller = new JavaController();
             long uid = controller.createObject(Kind.LINK);
             if (src.getType() == Type.EXPLICIT) {
                 link = new ExplicitLink(uid);
@@ -667,14 +668,13 @@ public class XcosDiagram extends ScilabGraph {
             BasicLink link = null;
 
             try {
-                link = src.getClass().newInstance();
+                Class<? extends BasicLink> klass = src.getClass();
+                Constructor<? extends BasicLink> cstr = klass.getConstructor(Long.TYPE);
+                link = cstr.newInstance(controller.createObject(Kind.LINK));
 
                 // allocate the associated geometry
                 link.setGeometry(new mxGeometry());
-
-            } catch (InstantiationException e) {
-                LOG.severe(e.toString());
-            } catch (IllegalAccessException e) {
+            } catch (ReflectiveOperationException e) {
                 LOG.severe(e.toString());
             }
 

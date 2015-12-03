@@ -485,7 +485,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             break;
     }
 
-    sciprint("Unknow command \"%ls\".\n\n", command.c_str());
+    sciprint("Unknown command \"%ls\".\n\n", command.c_str());
     sciprint("use 'h' for more information\n\n");
     return types::Function::OK;
 }

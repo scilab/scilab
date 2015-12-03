@@ -163,6 +163,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                     out.push_back(pDblEigenVectors);
                 }
                 out.push_back(pDblEigenValues);
+                pDblA->killMe();
             }
             else // not symmetric
             {

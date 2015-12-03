@@ -161,8 +161,10 @@ int sci_umfpack(char* fname, void* pvApiCtx)
     else
     {
         Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "\\", "/");
+        FREE(pStr);
         return 1;
     }
+    FREE(pStr);
 
     /* get A */
     sciErr = getVarAddressFromPosition(pvApiCtx, num_A, &piAddrA);
@@ -417,6 +419,24 @@ int sci_umfpack(char* fname, void* pvApiCtx)
         umfpack_di_free_numeric(&Numeric);
     }
 
+    if (piNbItemRow != NULL)
+    {
+        FREE(piNbItemRow);
+    }
+    if (piColPos != NULL)
+    {
+        FREE(piColPos);
+    }
+    if (pdblSpReal != NULL)
+    {
+        FREE(pdblSpReal);
+    }
+    if (pdblSpImg != NULL)
+    {
+        FREE(pdblSpImg);
+    }
+    FREE(W);
+    FREE(Wi);
     freeCcsSparse(A);
 
     AssignOutputVariable(pvApiCtx, 1) = 4;

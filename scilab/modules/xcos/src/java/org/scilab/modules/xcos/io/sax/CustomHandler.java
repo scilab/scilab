@@ -19,8 +19,6 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.stream.Stream;
 
-import javax.naming.LimitExceededException;
-
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
@@ -88,6 +86,10 @@ class CustomHandler implements ScilabHandler {
                 v = atts.getValue("savedFile");
                 if (v != null) {
                     saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PATH, v);
+                }
+                v = atts.getValue("debugLevel");
+                if (v != null) {
+                    saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.DEBUG_LEVEL, Integer.valueOf(v));
                 }
 
                 /*

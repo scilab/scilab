@@ -19,7 +19,7 @@
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_XP_OR_MORE "Scilab requires Windows XP or more."
-#define MSG_DETECT_UNKNOW "Scilab does not support this unknow version of Windows."
+#define MSG_DETECT_UNKNOW "Scilab does not support this unknown version of Windows."
 #define MSG_DETECT_SSE_OR_MORE "Scilab requires SSE Instructions."
 #define MSG_WARNING "Warning"
 #define MSG_LOAD_LIBRARIES "scilex.exe failed with error %d: %s"

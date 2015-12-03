@@ -207,6 +207,19 @@ struct graphics
         // style, if it is present
         if ((current->getSize() >= 5) && ((currentField = current->getField(style.c_str())) != nullptr))
         {
+            if (currentField->getType() == types::InternalType::ScilabDouble)
+            {
+                currentFieldDouble = currentField->getAs<types::Double>();
+                if (currentFieldDouble->getSize() != 0)
+                {
+                    get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "graphics", "style");
+                    return false;
+                }
+                std::string styleField;
+                controller.setObjectProperty(adaptee, ANNOTATION, STYLE, styleField);
+                return true;
+            }
+
             if (currentField->getType() != types::InternalType::ScilabString)
             {
                 get_or_allocate_logger()->log(LOG_ERROR, _("Wrong type for field %s.%s: String matrix expected.\n"), "graphics", "style");
@@ -245,6 +258,15 @@ struct dummy_property
     }
 };
 
+struct gui
+{
+
+    static types::InternalType* get(const TextAdapter& /*adaptor*/, const Controller& /*controller*/)
+    {
+        return new types::String("TEXT_f");
+    }
+};
+
 } /* namespace */
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
@@ -258,7 +280,7 @@ TextAdapter::TextAdapter(const Controller& c, org_scilab_modules_scicos::model::
         property<TextAdapter>::add_property(Graphics, &graphics::get, &graphics::set);
         property<TextAdapter>::add_property(L"model", &dummy_property::get, &dummy_property::set);
         property<TextAdapter>::add_property(L"void", &dummy_property::get, &dummy_property::set);
-        property<TextAdapter>::add_property(L"gui", &dummy_property::get, &dummy_property::set);
+        property<TextAdapter>::add_property(L"gui", &gui::get, &dummy_property::set);
     }
 }
 

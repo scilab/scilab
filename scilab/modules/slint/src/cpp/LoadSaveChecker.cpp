@@ -29,7 +29,7 @@ void LoadSaveChecker::preCheckNode(const ast::Exp & e, SLintContext & context, S
                 const ast::exps_t args = ce.getArgs();
                 if (args.size() == 0)
                 {
-                    result.report(context, e.getLocation(), *this, _("Function %s have at least one argument."), name);
+                    result.report(context, e.getLocation(), *this, _("Function %s has at least one argument."), name);
                 }
                 else if (args.size() == 1)
                 {

@@ -1611,56 +1611,6 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
                                             const_cast<SeqExp&>(static_cast<const SeqExp&>(e.getBody())), L"script");
     pMacro->setLines(e.getLocation().first_line, e.getLocation().last_line);
 
-    bool bEquals = false;
-    int iFuncProt = ConfigVariable::getFuncprot();
-    if (iFuncProt != 0)
-    {
-        types::InternalType* pITFunc = ctx->get(((FunctionDec&)e).getStack());
-        if (pITFunc && pITFunc->isCallable())
-        {
-            if (pITFunc->isMacroFile())
-            {
-                types::MacroFile* pMF = pITFunc->getAs<types::MacroFile>();
-                bEquals = *pMF->getMacro() == *pMacro;
-            }
-            else if (pITFunc->isMacro())
-            {
-                types::Macro* pM = pITFunc->getAs<types::Macro>();
-                bEquals = *pM == *pMacro;
-            }
-        }
-        else
-        {
-            bEquals = true; //avoid msg but keep assignation
-        }
-    }
-
-    if (bEquals == false && iFuncProt == 1 && ConfigVariable::getWarningMode())
-    {
-        wchar_t pwstFuncName[1024];
-        os_swprintf(pwstFuncName, 1024, L"%-24ls", e.getSymbol().getName().c_str());
-        char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
-
-
-        sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
-        sciprint("\n");
-        FREE(pstFuncName);
-    }
-    else if (bEquals == false && iFuncProt == 2)
-    {
-        char pstError[1024];
-        char* pstFuncName = wide_string_to_UTF8(e.getSymbol().getName().c_str());
-        os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
-        wchar_t* pwstError = to_wide_string(pstError);
-        std::wstring wstError(pwstError);
-        FREE(pstFuncName);
-        FREE(pwstError);
-        delete pMacro;
-        CoverageInstance::stopChrono((void*)&e);
-        throw InternalError(wstError, 999, e.getLocation());
-    }
-
-
     if (ctx->isprotected(symbol::Symbol(pMacro->getName())))
     {
         delete pMacro;
@@ -1670,7 +1620,20 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
         throw InternalError(os.str(), 999, e.getLocation());
     }
 
-    ctx->addMacro(pMacro);
+    if (ctx->addMacro(pMacro) == false)
+    {
+        char pstError[1024];
+        char* pstFuncName = wide_string_to_UTF8(e.getSymbol().getName().c_str());
+        os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
+        wchar_t* pwstError = to_wide_string(pstError);
+        std::wstring wstError(pwstError);
+        FREE(pstFuncName);
+        FREE(pwstError);
+        pMacro->killMe();
+        CoverageInstance::stopChrono((void*)&e);
+        throw InternalError(wstError, 999, e.getLocation());
+    }
+
     CoverageInstance::stopChrono((void*)&e);
 }
 

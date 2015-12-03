@@ -13,6 +13,7 @@
 #ifndef CONTROLLER_HXX_
 #define CONTROLLER_HXX_
 
+#include <atomic>
 #include <string>
 #include <vector>
 #include <map>
@@ -20,6 +21,7 @@
 #include "utilities.hxx"
 #include "Model.hxx"
 #include "View.hxx"
+#include "model/BaseObject.hxx"
 
 #include "dynlib_scicos.h"
 
@@ -66,17 +68,28 @@ public:
     template<typename T>
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
     {
-        return m_instance.model.getObjectProperty(uid, k, p, v);
+        while (m_instance.onModelStructuralModification.test_and_set(std::memory_order_acquire))  // acquire lock
+            ; // spin
+        bool ret = m_instance.model.getObjectProperty(uid, k, p, v);
+        m_instance.onModelStructuralModification.clear(std::memory_order_release); // unlock
+        return ret;
     };
 
     template<typename T>
     update_status_t setObjectProperty(const ScicosID& uid, kind_t k, object_properties_t p, T v)
     {
+        while (m_instance.onModelStructuralModification.test_and_set(std::memory_order_acquire))  // acquire lock
+            ; // spin
         update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
+        m_instance.onModelStructuralModification.clear(std::memory_order_release); // unlock
+
+        while (m_instance.onViewsStructuralModification.test_and_set(std::memory_order_acquire))  // acquire lock
+            ; // spin
         for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
         {
             (*iter)->propertyUpdated(uid, k, p, status);
         }
+        m_instance.onViewsStructuralModification.clear(std::memory_order_release); // unlock
         return status;
     }
 
@@ -90,7 +103,10 @@ private:
      */
     struct SharedData
     {
+        std::atomic_flag onModelStructuralModification;
         Model model;
+
+        std::atomic_flag onViewsStructuralModification;
         view_name_set_t allNamedViews;
         view_set_t allViews;
 
@@ -101,7 +117,7 @@ private:
     /**
      * Shared instance of the data
      *
-     * This will be allocated on-demand be Controller::get_instance()
+     * This will be allocated on-demand by Controller::get_instance()
      */
     static SharedData m_instance;
 
@@ -110,24 +126,8 @@ private:
      */
 
     ScicosID cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren, bool clonePorts);
-
     template<typename T>
-    void cloneProperties(model::BaseObject* initial, ScicosID clone)
-    {
-        for (int i = 0; i < MAX_OBJECT_PROPERTIES; ++i)
-        {
-            enum object_properties_t p = static_cast<enum object_properties_t>(i);
-
-            T value;
-            bool status = getObjectProperty(initial->id(), initial->kind(), p, value);
-            if (status)
-            {
-                setObjectProperty(clone, initial->kind(), p, value);
-            }
-        }
-
-    };
-
+    void cloneProperties(model::BaseObject* initial, ScicosID clone);
     void deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
     void deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
     void unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop);

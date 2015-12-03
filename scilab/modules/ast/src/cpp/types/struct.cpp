@@ -402,8 +402,17 @@ bool Struct::subMatrixToString(std::wostringstream& /*ostr*/, int* /*_piDims*/, 
     return true;
 }
 
-bool Struct::addField(const std::wstring& _sKey)
+Struct* Struct::addField(const std::wstring& _sKey)
 {
+    if (getRef() > 1)
+    {
+        // A Struct content in more than one Scilab variable
+        // must be cloned before to be modified.
+        Struct* pClone = clone()->template getAs<Struct>();
+        pClone->addField(_sKey);
+        return pClone;
+    }
+
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field
@@ -421,11 +430,21 @@ bool Struct::addField(const std::wstring& _sKey)
         */
         get(i)->addField(_sKey);
     }
-    return true;
+
+    return this;
 }
 
-bool Struct::addFieldFront(const std::wstring& _sKey)
+Struct* Struct::addFieldFront(const std::wstring& _sKey)
 {
+    if (getRef() > 1)
+    {
+        // A Struct content in more than one Scilab variable
+        // must be cloned before to be modified.
+        Struct* pClone = clone()->template getAs<Struct>();
+        pClone->addField(_sKey);
+        return pClone;
+    }
+
     if (getSize() == 0)
     {
         //change dimension to 1x1 and add field
@@ -437,17 +456,26 @@ bool Struct::addFieldFront(const std::wstring& _sKey)
         get(i)->addFieldFront(_sKey);
     }
 
-    return true;
+    return this;
 }
 
-bool Struct::removeField(const std::wstring& _sKey)
+Struct* Struct::removeField(const std::wstring& _sKey)
 {
+    if (getRef() > 1)
+    {
+        // A Struct content in more than one Scilab variable
+        // must be cloned before to be modified.
+        Struct* pClone = clone()->template getAs<Struct>();
+        pClone->addField(_sKey);
+        return pClone;
+    }
+
     for (int j = 0; j < getSize(); j++)
     {
         get(j)->removeField(_sKey);
     }
 
-    return true;
+    return this;
 }
 
 bool Struct::toString(std::wostringstream& ostr)
