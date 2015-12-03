@@ -117,6 +117,11 @@ class PortHandler implements ScilabHandler {
             shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, v);
         }
 
+        v = atts.getValue("value");
+        if (v != null) {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, v);
+        }
+
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 

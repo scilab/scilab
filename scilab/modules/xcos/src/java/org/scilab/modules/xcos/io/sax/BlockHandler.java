@@ -171,7 +171,11 @@ class BlockHandler implements ScilabHandler {
 
         v = atts.getValue("value");
         if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, v);
+            if (kind == Kind.BLOCK) {
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.LABEL, v);
+            } else { // ANNOTATION
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, v);
+            }
         }
 
         saxHandler.insertChild(block);

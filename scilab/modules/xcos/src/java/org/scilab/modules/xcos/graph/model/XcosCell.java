@@ -90,6 +90,10 @@ public class XcosCell extends ScilabGraphUniqueObject {
     }
 
     private void setValue(JavaController controller, Object value) {
+        if (value == null) {
+            return;
+        }
+
         switch (getKind()) {
             case ANNOTATION:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));

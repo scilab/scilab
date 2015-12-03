@@ -364,6 +364,18 @@ public final class XcosCellFactory {
             block.setStyle(style[0]);
         }
 
+        String value;
+        if (block.getKind() == Kind.ANNOTATION) {
+            String[] description = new String[1];
+            controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.DESCRIPTION, description);
+            value = description[0];
+        } else { // BLOCK
+            String[] label = new String[1];
+            controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.LABEL, label);
+            value = label[0];
+        }
+        block.setValue(value);
+
         VectorOfDouble geom = new VectorOfDouble(4);
         controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.GEOMETRY, geom);
 

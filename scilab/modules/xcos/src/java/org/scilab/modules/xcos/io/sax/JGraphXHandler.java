@@ -21,7 +21,6 @@ import org.xml.sax.Attributes;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
 import java.util.ArrayList;
-import org.scilab.modules.types.ScilabList;
 
 class JGraphXHandler implements ScilabHandler {
 
