@@ -35,7 +35,7 @@ namespace slint
 namespace CNES
 {
 
-    CNESXmlResult::CNESXmlResult(const ToolConfiguration & tc, types::String * conf, const std::wstring & id, const std::wstring & _path) : tct(tc.getToolConfiguration()), current(nullptr), path(_path)
+CNESXmlResult::CNESXmlResult(const ToolConfiguration & tc, types::String * conf, const std::wstring & id, const std::wstring & _path) : tct(tc.getToolConfiguration()), current(nullptr), path(_path)
 {
     std::string projectName;
     std::string projectVersion;
@@ -61,7 +61,7 @@ namespace CNES
     {
         delete out;
         out = nullptr;
-	throw slint::FileException(fullpath, _("Cannot open the file"));
+        throw slint::FileException(fullpath, _("Cannot open the file"));
     }
     else
     {
@@ -127,7 +127,14 @@ void CNESXmlResult::handleMessage(SLintContext & context, const Location & loc, 
         printRes();
         current = context.getSciFile();
     }
-    res[checker.getId(sub)].emplace_back(loc, msg);
+    if (const ast::FunctionDec * fd = context.topFn())
+    {
+        res[checker.getId(sub)].emplace_back(loc, msg, fd->getSymbol().getName());
+    }
+    else
+    {
+        res[checker.getId(sub)].emplace_back(loc, msg, L"");
+    }
 }
 
 void CNESXmlResult::printRes()
@@ -136,24 +143,25 @@ void CNESXmlResult::printRes()
     {
         for (const auto & r : res)
         {
-	    const std::string name = scilab::UTF8::toUTF8(r.first);
-	    std::string ruleName;
-	    auto i = tct.getRuleLink().find(name);
-	    if (i == tct.getRuleLink().end())
-	    {
-		ruleName = SLintXmlResult::getStr(r.first);
-	    }
-	    else
-	    {
-		ruleName = SLintXmlResult::getStr(scilab::UTF8::toWide(i->second.getStandardRuleId()));
-	    }
-            (*out) << "  <analysisRule analysisRuleId=\"" << ruleName << "\">\n";
-            for (const auto & p : r.second)
+            const std::string name = scilab::UTF8::toUTF8(r.first);
+            std::string ruleName;
+            auto i = tct.getRuleLink().find(name);
+            if (i == tct.getRuleLink().end())
             {
-                (*out) << "    <result filename=\"" << SLintXmlResult::getStr(current->getFilename()) << "\""
-                       << " resultMessage=\"" << SLintXmlResult::getStr(p.second) << "\""
-                       << " resultLine=\"" << p.first.first_line << "\""
-                       << " resultColumn=\"" << p.first.first_column << "\" />\n";
+                ruleName = SLintXmlResult::getStr(r.first);
+            }
+            else
+            {
+                ruleName = SLintXmlResult::getStr(scilab::UTF8::toWide(i->second.getStandardRuleId()));
+            }
+            (*out) << "  <analysisRule analysisRuleId=\"" << ruleName << "\">\n";
+            for (const auto & info : r.second)
+            {
+                (*out) << "    <result fileName=\"" << SLintXmlResult::getStr(current->getFilename()) << "\""
+                       << " resultNamePlace=\"" << SLintXmlResult::getStr(info.funName) << "\""
+                       << " resultMessage=\"" << SLintXmlResult::getStr(info.msg) << "\""
+                       << " resultLine=\"" << info.loc.first_line << "\""
+                       << " resultColumn=\"" << info.loc.first_column << "\" />\n";
             }
             (*out) << "  </analysisRule>\n";
         }

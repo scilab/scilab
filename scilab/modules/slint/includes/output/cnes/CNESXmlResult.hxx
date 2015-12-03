@@ -36,11 +36,21 @@ namespace CNES
 
 class CNESXmlResult : public SLintResult
 {
+
+    struct __Info
+    {
+        const Location loc;
+        const std::wstring msg;
+        const std::wstring funName;
+
+        __Info(const Location & _loc, const std::wstring & _msg, const std::wstring & _funName) : loc(_loc), msg(_msg), funName(_funName) { }
+    };
+
     const ToolConfigurationType tct;
     const std::wstring path;
     std::ofstream * out;
     SciFilePtr current;
-    std::unordered_map<std::wstring, std::vector<std::pair<Location, std::wstring>>> res;
+    std::unordered_map<std::wstring, std::vector<__Info>> res;
 
 public:
 

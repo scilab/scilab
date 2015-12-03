@@ -34,7 +34,7 @@ namespace slint
 namespace CNES
 {
 
-    CNESCsvResult::CNESCsvResult(const ToolConfiguration & tc, types::String * conf, const std::wstring & id, const std::wstring & _path) : tct(tc.getToolConfiguration()), current(nullptr), path(_path)
+CNESCsvResult::CNESCsvResult(const ToolConfiguration & tc, types::String * conf, const std::wstring & id, const std::wstring & _path) : tct(tc.getToolConfiguration()), current(nullptr), path(_path)
 {
     std::string projectName;
     std::string projectVersion;
@@ -60,14 +60,14 @@ namespace CNES
     {
         delete out;
         out = nullptr;
-	throw slint::FileException(fullpath, _("Cannot open the file"));
+        throw slint::FileException(fullpath, _("Cannot open the file"));
     }
     else
     {
-	(*out) << projectName << ',';
-	(*out) << projectVersion << ',';
-	(*out) << projectAuthor << ',';
-	(*out) << "scilab,";
+        (*out) << projectName << ',';
+        (*out) << projectVersion << ',';
+        (*out) << projectAuthor << ',';
+        (*out) << "scilab,";
 
         std::chrono::time_point<std::chrono::system_clock> point = std::chrono::system_clock::now();;
         std::time_t time = std::chrono::system_clock::to_time_t(point);
@@ -76,7 +76,7 @@ namespace CNES
         {
             date = std::string(date.begin(), std::prev(date.end()));
         }
-        (*out) << getStr(date) << '\n';
+        (*out) << getStr(date) << ",\n";
     }
 }
 
@@ -108,7 +108,14 @@ void CNESCsvResult::handleMessage(SLintContext & context, const Location & loc, 
         printRes();
         current = context.getSciFile();
     }
-    res[checker.getId(sub)].emplace_back(loc, msg);
+    if (const ast::FunctionDec * fd = context.topFn())
+    {
+        res[checker.getId(sub)].emplace_back(loc, msg, fd->getSymbol().getName());
+    }
+    else
+    {
+        res[checker.getId(sub)].emplace_back(loc, msg, L"");
+    }
 }
 
 void CNESCsvResult::printRes()
@@ -117,24 +124,25 @@ void CNESCsvResult::printRes()
     {
         for (const auto & r : res)
         {
-	    const std::string name = scilab::UTF8::toUTF8(r.first);
-	    std::string ruleName;
-	    auto i = tct.getRuleLink().find(name);
-	    if (i == tct.getRuleLink().end())
-	    {
-		ruleName = getStr(r.first);
-	    }
-	    else
-	    {
-		ruleName = getStr(scilab::UTF8::toWide(i->second.getStandardRuleId()));
-	    }
-            for (const auto & p : r.second)
+            const std::string name = scilab::UTF8::toUTF8(r.first);
+            std::string ruleName;
+            auto i = tct.getRuleLink().find(name);
+            if (i == tct.getRuleLink().end())
             {
-		(*out) << ruleName << ','
-		       << getStr(current->getFilename()) << ','
-		       << getStr(p.second) << ','
-		       << p.first.first_line << ','
-		       << p.first.first_column << '\n';
+                ruleName = getStr(r.first);
+            }
+            else
+            {
+                ruleName = getStr(scilab::UTF8::toWide(i->second.getStandardRuleId()));
+            }
+            for (const auto & info : r.second)
+            {
+                (*out) << ruleName << ','
+                       << getStr(current->getFilename()) << ','
+                       << getStr(info.funName) << ','
+                       << getStr(info.msg) << ','
+                       << info.loc.first_line << ','
+                       << info.loc.first_column << '\n';
             }
         }
     }
@@ -150,8 +158,8 @@ const std::string CNESCsvResult::getStr(const std::wstring & str)
     {
         if (c == L'\"')
         {
-	    buf.push_back(L'\\');
-	    buf.push_back(L'\"');
+            buf.push_back(L'\\');
+            buf.push_back(L'\"');
         }
         else
         {
@@ -172,8 +180,8 @@ const std::string CNESCsvResult::getStr(const std::string & str)
     {
         if (c == '\"')
         {
-	    buf.push_back('\\');
-	    buf.push_back('\"');
+            buf.push_back('\\');
+            buf.push_back('\"');
         }
         else
         {
@@ -184,7 +192,7 @@ const std::string CNESCsvResult::getStr(const std::string & str)
 
     return std::string(buf.begin(), buf.end());
 }
-    
+
 } // namespace CNES
 
 } // namespace slint
