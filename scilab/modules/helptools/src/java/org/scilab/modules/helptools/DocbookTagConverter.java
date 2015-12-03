@@ -662,4 +662,5 @@ public abstract class DocbookTagConverter extends DefaultHandler implements Conv
     public abstract String handleVarname(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleWarning(final Map<String, String> attributes, final String contents) throws SAXException;
     public abstract String handleXref(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleAnchor(final Map<String, String> attributes, final String contents) throws SAXException;
 }
