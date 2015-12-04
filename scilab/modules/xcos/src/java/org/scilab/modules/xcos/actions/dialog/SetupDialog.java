@@ -478,7 +478,7 @@ public class SetupDialog extends JDialog {
             public void actionPerformed(ActionEvent e) {
                 try {
                     /*
-                     * FIXME This logic must be deported to a vetoable
+                     * TODO This logic must be deported to a vetoable
                      * handler
                      */
                     int solverSelectedIndex = solver.getSelectedIndex();
