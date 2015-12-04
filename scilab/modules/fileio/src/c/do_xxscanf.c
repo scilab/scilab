@@ -364,7 +364,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
         wchar_t *f2 = sformat;
         wchar_t *slast = sformat + MAX_STR - 1 - 4;
 
-        int bFirst = 1;
+        int bFirst = 0;
         while (*f1 != L'\0')
         {
             int n;
