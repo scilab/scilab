@@ -296,7 +296,7 @@ public abstract class ContextUpdate extends BasicBlock {
                     try {
                         JavaController controller = new JavaController();
 
-                        // FIXME: dunno if I should disable the view there :
+                        // TODO: dunno if I should disable the view there :
                         // CHECK
                         JavaController.unregister_view(disabledView);
 

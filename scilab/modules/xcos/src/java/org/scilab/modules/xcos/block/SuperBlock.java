@@ -80,7 +80,7 @@ public final class SuperBlock extends BasicBlock {
 
         setValue(label);
         if (masked) {
-            mask();
+            mask(new JavaController());
         }
     }
 
@@ -118,9 +118,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Mask the SuperBlock
      */
-    public void mask() {
-        JavaController controller = new JavaController();
-
+    public void mask(final JavaController controller) {
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, MASKED_INTERFUNCTION_NAME);
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, MASKED_SIMULATION_NAME);
 
@@ -132,9 +130,7 @@ public final class SuperBlock extends BasicBlock {
     /**
      * Unmask the SuperBlock
      */
-    public void unmask() {
-        JavaController controller = new JavaController();
-
+    public void unmask(final JavaController controller) {
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, INTERFUNCTION_NAME);
         controller.setObjectProperty(getUID(), Kind.BLOCK, ObjectProperties.SIM_FUNCTION_NAME, SIMULATION_NAME);
     }
