@@ -206,7 +206,7 @@ public class ConnectionHandler extends mxConnectionHandler {
 
             e.consume();
         } else {
-            if (marker.hasValidState()) {
+            if (marker.hasValidState() && connectPreview.getPreviewState() != null) {
                 final mxGraph graph = graphComponent.getGraph();
                 final double x = graph.snap(e.getX());
                 final double y = graph.snap(e.getY());

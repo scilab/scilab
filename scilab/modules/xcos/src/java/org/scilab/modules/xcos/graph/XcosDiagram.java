@@ -871,6 +871,14 @@ public class XcosDiagram extends ScilabGraph {
 
         final SplitBlock splitBlock = (SplitBlock) XcosCellFactory.createBlock(f);
 
+        // snap the center of the split block on the grid
+        mxGeometry geom = splitBlock.getGeometry();
+        double x = snap(splitPoint.getX());
+        double y = snap(splitPoint.getY());
+        geom.setX(x - (geom.getWidth() / 2.));
+        geom.setY(y - (geom.getHeight() / 2.));
+        splitBlock.setGeometry(geom);
+
         getModel().beginUpdate();
         try {
             // Origin of the parent, (0,0) as default may be different in case
@@ -880,8 +888,6 @@ public class XcosDiagram extends ScilabGraph {
             }
 
             addCell(splitBlock);
-            // force resize and align on the grid
-            resizeCell(splitBlock, new mxRectangle(splitPoint.getX(), splitPoint.getY(), 0, 0));
 
             // Update old link
 
@@ -905,11 +911,7 @@ public class XcosDiagram extends ScilabGraph {
                 }
             }
 
-            // disable events
-            getModel().beginUpdate();
             getModel().remove(link);
-            getModel().endUpdate();
-
             connect(linkSource, splitBlock.getIn(), saveStartPoints, orig);
             connect(splitBlock.getOut1(), linkTarget, saveEndPoints, orig);
 
