@@ -11,6 +11,8 @@ scicos_log("TRACE");
 o = BIGSOM_f("define")
 Xcos debug: objectCreated( 1 , BLOCK )
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
@@ -1118,6 +1120,8 @@ uid = ""
 o = CSCOPE("define")
 Xcos debug: objectCreated( 23 , BLOCK )
 Xcos debug: objectReferenced( 23 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 23 , BLOCK ) : 0
+Xcos debug: objectReferenced( 23 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 23 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 23 , BLOCK , ANGLE ) : NO_CHANGES
@@ -1448,6 +1452,8 @@ Xcos debug: objectUnreferenced( 26 , BLOCK ) : 0
 // Test 'opar' and 'odstate'
 o = LOGIC("define")
 Xcos debug: objectCreated( 29 , BLOCK )
+Xcos debug: objectReferenced( 29 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 Xcos debug: objectReferenced( 29 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 29 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , GEOMETRY ) : SUCCESS
@@ -2008,6 +2014,8 @@ Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 o = VsourceAC("define")
 Xcos debug: objectCreated( 34 , BLOCK )
 Xcos debug: objectReferenced( 34 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 34 , BLOCK ) : 0
+Xcos debug: objectReferenced( 34 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 34 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 34 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 34 , BLOCK , ANGLE ) : NO_CHANGES
@@ -2209,6 +2217,8 @@ Xcos debug: objectUnreferenced( 34 , BLOCK ) : 0
 // Test 'exprs' with Modelica Block
 o = MBLOCK("define")
 Xcos debug: objectCreated( 37 , BLOCK )
+Xcos debug: objectReferenced( 37 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 37 , BLOCK ) : 0
 Xcos debug: objectReferenced( 37 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 37 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 37 , BLOCK , GEOMETRY ) : SUCCESS
@@ -2438,6 +2448,8 @@ lS = list([],list([],"Configuration des Paramètres du bloc",list([])));
 o = scicos_block(gui="SUPER", graphics=scicos_graphics(exprs=lS));
 Xcos debug: objectCreated( 41 , BLOCK )
 Xcos debug: objectReferenced( 41 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 41 , BLOCK ) : 0
+Xcos debug: objectReferenced( 41 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 41 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , ANGLE ) : NO_CHANGES
@@ -2488,6 +2500,8 @@ lDS = list("3",list("J",["Configuration des Paramètres du bloc"; "mon_param"],l
 o = scicos_block(gui="DSUPER", graphics=scicos_graphics(exprs=lDS));
 Xcos debug: objectCreated( 42 , BLOCK )
 Xcos debug: objectReferenced( 42 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 42 , BLOCK ) : 0
+Xcos debug: objectReferenced( 42 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 42 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , ANGLE ) : NO_CHANGES
@@ -2521,6 +2535,8 @@ Xcos debug: objectUnreferenced( 42 , BLOCK ) : 0
 // CBLOCK, default has empty function body
 o = CBLOCK("define");
 Xcos debug: objectCreated( 43 , BLOCK )
+Xcos debug: objectReferenced( 43 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 43 , BLOCK ) : 0
 Xcos debug: objectReferenced( 43 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 43 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , GEOMETRY ) : SUCCESS
@@ -2596,6 +2612,8 @@ Xcos debug: objectUnreferenced( 43 , BLOCK ) : 0
 o = scifunc_block_m("define");
 Xcos debug: objectCreated( 46 , BLOCK )
 Xcos debug: objectReferenced( 46 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 46 , BLOCK ) : 0
+Xcos debug: objectReferenced( 46 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 46 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 46 , BLOCK , ANGLE ) : NO_CHANGES
@@ -2661,6 +2679,8 @@ Xcos debug: objectUnreferenced( 46 , BLOCK ) : 0
 o = fortran_block("define");
 Xcos debug: objectCreated( 49 , BLOCK )
 Xcos debug: objectReferenced( 49 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 49 , BLOCK ) : 0
+Xcos debug: objectReferenced( 49 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 49 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 49 , BLOCK , ANGLE ) : NO_CHANGES
@@ -2721,6 +2741,8 @@ Xcos debug: objectUnreferenced( 49 , BLOCK ) : 0
 // Test a PDE block
 o = PDE("define");
 Xcos debug: objectCreated( 52 , BLOCK )
+Xcos debug: objectReferenced( 52 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 52 , BLOCK ) : 0
 Xcos debug: objectReferenced( 52 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 52 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , GEOMETRY ) : SUCCESS
@@ -2996,6 +3018,8 @@ Xcos debug: objectUnreferenced( 52 , BLOCK ) : 0
 // Test 'ipar', 'nzcross' and 'nmode' fields
 o = scicos_block();
 Xcos debug: objectCreated( 60 , BLOCK )
+Xcos debug: objectReferenced( 60 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 Xcos debug: objectReferenced( 60 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 60 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , GEOMETRY ) : NO_CHANGES

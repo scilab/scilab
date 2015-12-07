@@ -462,6 +462,11 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
     }
 
     setObjectProperty(clone, k, p, cloned);
+    // When cloning a Link, connect both extremities together
+    if ((p == SOURCE_PORT || p == DESTINATION_PORT) && cloned != 0)
+    {
+        setObjectProperty(cloned, PORT, CONNECTED_SIGNALS, clone);
+    }
 }
 
 void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound)

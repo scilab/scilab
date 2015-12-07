@@ -23,6 +23,8 @@ Xcos trace: propertyUpdated( 1 , DIAGRAM , CHILDREN ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , DIAGRAM , VERSION_NUMBER ) : SUCCESS
 Xcos debug: objectCreated( 2 , BLOCK )
 Xcos debug: objectReferenced( 2 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 2 , BLOCK ) : 0
+Xcos debug: objectReferenced( 2 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 2 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 2 , BLOCK , ANGLE ) : NO_CHANGES
@@ -46,6 +48,8 @@ Xcos trace: propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 3 , DIAGRAM ) : 0
 Xcos debug: objectCreated( 4 , BLOCK )
+Xcos debug: objectReferenced( 4 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
 Xcos debug: objectReferenced( 4 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 4 , BLOCK , GEOMETRY ) : SUCCESS
@@ -88,6 +92,8 @@ Xcos trace: propertyUpdated( 4 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 4 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos debug: objectCreated( 7 , BLOCK )
+Xcos debug: objectReferenced( 7 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 7 , BLOCK ) : 0
 Xcos debug: objectReferenced( 7 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 7 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 7 , BLOCK , GEOMETRY ) : SUCCESS
@@ -133,6 +139,8 @@ Xcos debug: objectUnreferenced( 7 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 7 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos debug: objectCreated( 11 , BLOCK )
 Xcos debug: objectReferenced( 11 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
+Xcos debug: objectReferenced( 11 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 11 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 11 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 11 , BLOCK , ANGLE ) : NO_CHANGES
@@ -172,6 +180,8 @@ Xcos trace: propertyUpdated( 11 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 11 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 11 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos debug: objectCreated( 14 , BLOCK )
+Xcos debug: objectReferenced( 14 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 14 , BLOCK ) : 0
 Xcos debug: objectReferenced( 14 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 14 , BLOCK , GEOMETRY ) : SUCCESS
 Xcos trace: propertyUpdated( 14 , BLOCK , GEOMETRY ) : SUCCESS

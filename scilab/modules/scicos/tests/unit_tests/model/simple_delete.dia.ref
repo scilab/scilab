@@ -11,6 +11,8 @@ scicos_log("TRACE");
 scs_m = scicos_diagram( objs=list(scicos_block()) );
 Xcos debug: objectCreated( 1 , BLOCK )
 Xcos debug: objectReferenced( 1 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
+Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
@@ -57,6 +59,8 @@ Xcos debug: objectDeleted( 2 , DIAGRAM )
 // Test #2: the block is deleted after the diagram
 blk = scicos_block();
 Xcos debug: objectCreated( 3 , BLOCK )
+Xcos debug: objectReferenced( 3 , BLOCK ) : 1
+Xcos debug: objectUnreferenced( 3 , BLOCK ) : 0
 Xcos debug: objectReferenced( 3 , BLOCK ) : 1
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
