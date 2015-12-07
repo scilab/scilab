@@ -53,7 +53,7 @@ function graphics=scicos_graphics(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,...
     if exists("out_label","local")==0 then
         out_label=emptystr(pout);
     end
-    if exists("style","local")==0 then style="" + [],end
+    if exists("style","local")==0 then style="", end
 
     graphics=scicos_new(["graphics","orig","sz","flip","theta","exprs","pin",..
     "pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],..
