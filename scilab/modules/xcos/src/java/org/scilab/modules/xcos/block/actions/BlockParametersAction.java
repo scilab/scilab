@@ -108,8 +108,8 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
                 XcosDiagram sub = new XcosDiagram(cell.getUID(), cell.getKind());
                 XcosCellFactory.insertChildren(controller, sub);
 
-                XcosTab.restore(sub, true);
                 Xcos.getInstance().addDiagram(sub);
+                XcosTab.restore(sub, true);
             } else {
                 BasicBlock block = (BasicBlock) cell;
                 // prevent to open twice

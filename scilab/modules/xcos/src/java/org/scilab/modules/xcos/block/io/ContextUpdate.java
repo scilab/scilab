@@ -312,18 +312,8 @@ public abstract class ContextUpdate extends BasicBlock {
                         // controller.setObjectProperty(block.getUID(), k, p, v)
 
                         return block;
-                    } catch (InstantiationException e) {
+                    } catch (ReflectiveOperationException e) {
                         Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (IllegalAccessException e) {
-                        Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (SecurityException e) {
-                        e.printStackTrace();
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
                     } finally {
                         JavaController.register_view(Xcos.class.getName(), disabledView);
                     }

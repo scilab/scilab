@@ -1834,13 +1834,15 @@ public class XcosDiagram extends ScilabGraph {
 
         // get the path
         CharSequence formattedPath = "";
-        final File savedFile = getSavedFile();
-        if (savedFile != null) {
-            try {
-                final String path = savedFile.getCanonicalPath();
-                formattedPath = new StringBuilder().append(" (").append(path).append(')');
-            } catch (final IOException e) {
-                LOG.warning(e.toString());
+        if (getKind() == Kind.DIAGRAM) {
+            final File savedFile = getSavedFile();
+            if (savedFile != null) {
+                try {
+                    final String path = savedFile.getCanonicalPath();
+                    formattedPath = new StringBuilder().append(" (").append(path).append(')');
+                } catch (final IOException e) {
+                    LOG.warning(e.toString());
+                }
             }
         }
 

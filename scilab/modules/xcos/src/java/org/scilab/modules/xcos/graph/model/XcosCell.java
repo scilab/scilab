@@ -255,6 +255,13 @@ public class XcosCell extends ScilabGraphUniqueObject {
      */
     @Override
     public void removeFromParent() {
+        super.removeFromParent();
+
+        // do not remove from parent on SUPER_f diagram creation : there is an MVC parent but no JGraphX one
+        if (parent == null) {
+            return;
+        }
+
         JavaController controller = new JavaController();
         switch (getKind()) {
             case ANNOTATION:
@@ -276,7 +283,7 @@ public class XcosCell extends ScilabGraphUniqueObject {
                 /*
                  * If there is a parent, clear it
                  */
-                if (parent[0] == 0l) {
+                if (parent[0] != 0l) {
                     VectorOfScicosID children = new VectorOfScicosID();
                     controller.getObjectProperty(parent[0], parentKind, ObjectProperties.CHILDREN, children);
                     children.remove(getUID());
