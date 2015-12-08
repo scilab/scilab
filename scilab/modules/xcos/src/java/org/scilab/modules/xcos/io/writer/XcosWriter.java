@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.xcos.io.writer;
 
+import java.util.HashSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -36,6 +37,7 @@ public class XcosWriter {
     protected final RawDataWriter rawDataWriter;
     protected final XMLStreamWriter stream;
     protected final Stack<String> layers;
+    protected final HashSet<String> uniqueUIDs;
 
     public XcosWriter(ScilabList dictionary, XMLStreamWriter writer) {
         this.controller = new JavaController();
@@ -44,6 +46,7 @@ public class XcosWriter {
         this.stream = writer;
 
         this.layers = new Stack<>();
+        this.uniqueUIDs = new HashSet<>();
     }
 
     public void write(long uid, Kind kind) throws XMLStreamException {

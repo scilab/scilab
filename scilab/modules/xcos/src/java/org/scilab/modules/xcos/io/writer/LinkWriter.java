@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.xcos.io.writer;
 
+import java.rmi.server.UID;
 import javax.xml.stream.XMLStreamException;
 
 import org.scilab.modules.xcos.Kind;
@@ -72,7 +73,12 @@ public class LinkWriter extends ScilabWriter {
         if (!src[0].isEmpty() && !dst[0].isEmpty()) {
             shared.stream.writeStartElement(localName);
 
+            while (id[0].isEmpty() || shared.uniqueUIDs.contains(id[0])) {
+                id[0] = new UID().toString();
+            }
+            shared.controller.setObjectProperty(uid, kind, ObjectProperties.UID, id[0]);
             shared.stream.writeAttribute("id", id[0]);
+
             shared.stream.writeAttribute("parent", shared.layers.peek());
 
             shared.stream.writeAttribute("source", src[0]);

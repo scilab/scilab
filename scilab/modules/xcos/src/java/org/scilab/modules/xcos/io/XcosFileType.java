@@ -153,8 +153,8 @@ public enum XcosFileType {
     private static final Logger LOG = Logger.getLogger(XcosFileType.class
                                       .getName());
 
-    private String extension;
-    private String description;
+    private final String extension;
+    private final String description;
 
     /**
      * Default constructor
@@ -253,7 +253,7 @@ public enum XcosFileType {
 
         int index = 0;
         for (FileFilter fileFilter : filters) {
-            if (fileFilter.getDescription() == filter.getDescription()) {
+            if (fileFilter.getDescription().equals(filter.getDescription())) {
                 break;
             }
 
@@ -312,9 +312,7 @@ public enum XcosFileType {
             try {
                 new XcosPackage(theFile).checkHeader();
                 retValue = ZCOS;
-            } catch (IOException e) {
-            } catch (ParserConfigurationException e) {
-            } catch (TransformerException e) {
+            } catch (IOException | ParserConfigurationException | TransformerException e) {
             }
         }
 
@@ -339,7 +337,7 @@ public enum XcosFileType {
      *
      * @param file
      *            the file to save to
-     * @param into
+     * @param from
      *            the diagram instance to save
      * @throws Exception
      *             in case of problem

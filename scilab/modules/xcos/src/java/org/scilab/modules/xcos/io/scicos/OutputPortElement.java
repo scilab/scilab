@@ -12,9 +12,9 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
+import java.rmi.server.UID;
 import java.util.List;
 
-import org.flexdock.util.UUID;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
@@ -104,7 +104,7 @@ public final class OutputPortElement extends AbstractElement<OutputPort> {
         data = (ScilabMList) element;
 
         port = allocatePort();
-        port.setId(UUID.randomUUID().toString());
+        port.setId(new UID().toString());
 
         port = beforeDecode(element, port);
 

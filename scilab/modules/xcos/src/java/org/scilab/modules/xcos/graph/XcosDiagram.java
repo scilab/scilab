@@ -1791,6 +1791,17 @@ public class XcosDiagram extends ScilabGraph {
         info(XcosMessages.EMPTY_INFO);
     }
 
+    @Override
+    public void setSavedFile(File savedFile) {
+        super.setSavedFile(savedFile);
+
+        if (savedFile != null) {
+            JavaController controller = new JavaController();
+            controller.setObjectProperty(getUID(), getKind(), ObjectProperties.PATH, savedFile.getAbsolutePath());
+        }
+    }
+
+
     /**
      * Set the title of the diagram
      *

@@ -11,6 +11,7 @@
  */
 package org.scilab.modules.xcos.io.writer;
 
+import java.rmi.server.UID;
 import javax.xml.stream.XMLStreamException;
 
 import org.scilab.modules.xcos.Kind;
@@ -75,7 +76,12 @@ public class PortWriter extends ScilabWriter {
         shared.stream.writeEmptyElement(localName);
 
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.UID, str);
+        while (str[0].isEmpty() || shared.uniqueUIDs.contains(str[0])) {
+            str[0] = new UID().toString();
+        }
+        shared.controller.setObjectProperty(uid, kind, ObjectProperties.UID, str[0]);
         shared.stream.writeAttribute("id", str[0]);
+
         shared.stream.writeAttribute("parent", shared.layers.peek());
         shared.stream.writeAttribute("ordering", Integer.toString(++ordering));
 

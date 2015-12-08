@@ -73,7 +73,6 @@ class BlockHandler implements ScilabHandler {
                 block = new BigSom(uid);
                 break;
             case ConstBlock:
-                // FIXME: why not needed anymore
                 block = new BasicBlock(uid);
                 break;
             case EventInBlock:
@@ -89,7 +88,6 @@ class BlockHandler implements ScilabHandler {
                 block = new ExplicitOutBlock(uid);
                 break;
             case GainBlock:
-                // FIXME: why not needed anymore
                 block = new BasicBlock(uid);
                 break;
             case GroundBlock:
@@ -102,7 +100,6 @@ class BlockHandler implements ScilabHandler {
                 block = new ImplicitOutBlock(uid);
                 break;
             case PrintBlock:
-                // FIXME: why not needed anymore
                 block = new BasicBlock(uid);
                 break;
             case Product:

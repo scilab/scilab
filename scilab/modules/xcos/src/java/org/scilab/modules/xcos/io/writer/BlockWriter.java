@@ -11,8 +11,8 @@
  */
 package org.scilab.modules.xcos.io.writer;
 
+import java.rmi.server.UID;
 import java.util.EnumSet;
-import java.util.UUID;
 
 import javax.xml.stream.XMLStreamException;
 
@@ -48,10 +48,10 @@ public class BlockWriter extends ScilabWriter {
         String[] v = new String[1];
 
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.UID, v);
-        if (v[0].isEmpty()) {
-            v[0] = UUID.randomUUID().toString();
-            shared.controller.setObjectProperty(uid, kind, ObjectProperties.UID, v[0]);
+        while (v[0].isEmpty() || shared.uniqueUIDs.contains(v[0])) {
+            v[0] = new UID().toString();
         }
+        shared.controller.setObjectProperty(uid, kind, ObjectProperties.UID, v[0]);
         shared.stream.writeAttribute("id", v[0]);
         shared.stream.writeAttribute("parent", shared.layers.peek());
         shared.layers.push(v[0]);

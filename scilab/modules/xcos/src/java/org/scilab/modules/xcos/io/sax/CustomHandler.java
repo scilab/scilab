@@ -83,10 +83,7 @@ class CustomHandler implements ScilabHandler {
                 /*
                  * Decode some graph properties
                  */
-                v = atts.getValue("savedFile");
-                if (v != null) {
-                    saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PATH, v);
-                }
+                // the legacy savedFile attribute is removed to avoid any diff between two saved files with the same content
                 v = atts.getValue("debugLevel");
                 if (v != null) {
                     saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.DEBUG_LEVEL, Integer.valueOf(v));
@@ -159,6 +156,7 @@ class CustomHandler implements ScilabHandler {
                 }
                 saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
 
+                // TODO: implement a GUI to setup the title property (currently file name is used)
                 v = atts.getValue("title");
                 if (v != null) {
                     saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.TITLE, v);

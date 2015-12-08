@@ -18,7 +18,6 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -39,6 +38,7 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import java.rmi.server.UID;
 
 /**
  * Perform a link transformation between Scicos and Xcos.
@@ -137,7 +137,7 @@ public final class LinkElement extends AbstractElement<BasicLink> {
             LOG.severe(e.toString());
         }
 
-        link.setId(UUID.randomUUID().toString());
+        link.setId(new UID().toString());
         return link;
     }
 

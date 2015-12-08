@@ -48,10 +48,10 @@ public class XcosSAXHandler extends DefaultHandler {
      * Utilities classes and methods
      */
     protected static class UnresolvedReference {
-        private ScicosObjectOwner owner;
-        private ObjectProperties property;
-        private ObjectProperties associatedProperty;
-        private int associatedPropertyIndex;
+        final private ScicosObjectOwner owner;
+        final private ObjectProperties property;
+        final private ObjectProperties associatedProperty;
+        final private int associatedPropertyIndex;
 
         public UnresolvedReference(ScicosObjectOwner owner, ObjectProperties property, ObjectProperties associatedProperty, int associatedPropertyIndex) {
             this.owner = owner;
@@ -100,7 +100,7 @@ public class XcosSAXHandler extends DefaultHandler {
 
     /** Contains the decoded parent' node (as an in-depth view of decoded elements) */
     Stack<Object> parents = new Stack<>();
-    /** Mapping of UUID JGraphX strings to an MVC decoded object */
+    /** Mapping of UID JGraphX strings to an MVC decoded object */
     Stack<HashMap<String, Long>> allChildren = new Stack<>();
     /** List of unresolved references that will be resolved at {@link HandledElement#XcosDiagram} or {@link HandledElement#SuperBlockDiagram} ending */
     HashMap<String, ArrayList<UnresolvedReference>> unresolvedReferences = new HashMap<>();
@@ -177,6 +177,8 @@ public class XcosSAXHandler extends DefaultHandler {
      *   <LI>{@link ObjectProperties#PARENT_BLOCK}
      *   <LI>{@link ObjectProperties#PARENT_DIAGRAM}
      *   <LI>{@link ObjectProperties#CHILDREN}
+     * </UL>
+     * @param cell to insert
      */
     protected void insertChild(final XcosCell cell) {
         long parentUID;
@@ -215,13 +217,13 @@ public class XcosSAXHandler extends DefaultHandler {
 
     @Override
     public void error(SAXParseException e) throws SAXException {
-        System.err.println("XcosSAXHandler warning: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
+        System.err.println("XcosSAXHandler error: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
         System.err.println(e.getMessage());
     }
 
     @Override
     public void fatalError(SAXParseException e) throws SAXException {
-        System.err.println("XcosSAXHandler warning: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
+        System.err.println("XcosSAXHandler fatalError: " + e.getSystemId() + " at line " + e.getLineNumber() + " column " + e.getColumnNumber());
         System.err.println(e.getMessage());
     }
 }
