@@ -55,7 +55,13 @@ function v = for_if_return()
     v = 3;
 endfunction
 
+function y=foo()
+    y = [];
+    return y;
+end
+
 assert_checkequal(while_return(), 1);
 assert_checkequal(while_if_return(), 1);
 assert_checkequal(for_return(), 1);
 assert_checkequal(for_if_return(), 1);
+assert_checkerror("foo()", _("With input arguments, return / resume expect output arguments."));
