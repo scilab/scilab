@@ -145,7 +145,7 @@ public final class XcosCellFactory {
      */
     public static void insertChildren(JavaController controller, XcosDiagram diagram) {
         /*
-         * Retrieve then clear the children to avoid inserting the UIDs twice
+         * Retrieve the children
          */
         VectorOfScicosID children = new VectorOfScicosID();
         controller.getObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, children);
@@ -212,8 +212,14 @@ public final class XcosCellFactory {
             }
         }
 
-        // re-add the children cells
+        // re-add the children cells without duplicating them
+        children.clear();
+        controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, children);
+
         diagram.addCells(cells);
+
+        // each cell has been referenced twice (CHILDREN insert and addCells), derefence them all by one
+        Arrays.stream(cells).forEach(c -> controller.deleteObject(c.getUID()));
     }
 
     /*
@@ -497,7 +503,13 @@ public final class XcosCellFactory {
             children[i] = child;
         }
 
-        Arrays.stream(children).forEach(c -> parent.insert(c));
+        modelChildren.clear();
+        controller.setObjectProperty(parent.getUID(), parent.getKind(), property, modelChildren);
+
+        Arrays.stream(children).forEach(c -> {
+            parent.insert(c);
+            controller.deleteObject(c.getUID());
+        });
 
         return children.length;
     }
