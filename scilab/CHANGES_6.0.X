@@ -55,6 +55,8 @@ Bug Fixes
 
 * Bug #14181 fixed - Calling intg (or integrate) in a function that is being integrated failed.
 
+* Bug #14245 fixed - Problem in recursive extraction using list with struct.
+
 * Bug #14251 fixed - `spec` leaked some memory.
 
 * Bug #14253 fixed - Insertion in a struct contained in a list fixed.

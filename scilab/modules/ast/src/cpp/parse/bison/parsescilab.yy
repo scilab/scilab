@@ -1022,15 +1022,9 @@ NOT variable                %prec NOT       { $$ = new ast::NotExp(@$, *$2); pri
                               $3->setLocation(@$);
                               $$ = $3;
 }
-| functionCall DOT variable                { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("variable", "functionCall DOT variable");}
-| functionCall DOT keywords                { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("variable", "functionCall DOT keywords");}
-| functionCall DOT functionCall            {
-                              print_rules("variable", "functionCall DOT functionCall");
-                              $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));
-                              $3->setLocation(@$);
-                              $$ = $3;
-}
-| variable listableEnd                    {
+| functionCall DOT ID                       { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, symbol::Symbol(*$3))); delete $3; print_rules("variable", "functionCall DOT ID");}
+| functionCall DOT keywords                 { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("variable", "functionCall DOT keywords");}
+| variable listableEnd                      {
     print_rules("variable", "variable listableEnd");
     $$ = new ast::ListExp(@$, *$1, *($2->getStep().clone()), *($2->getEnd().clone()), $2->hasExplicitStep());
     delete($2);
@@ -1228,9 +1222,8 @@ assignable :
 variable DOT ID             %prec UPLEVEL       { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, symbol::Symbol(*$3))); delete $3;print_rules("assignable", "variable DOT ID");}
 | variable DOT keywords     %prec UPLEVEL       { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("assignable", "variable DOT keywords");}
 | variable DOT functionCall                     { $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));$3->setLocation(@$);$$ = $3;print_rules("assignable", "variable DOT functionCall");}
-| functionCall DOT variable                     { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("assignable", "functionCall DOT variable");}
+| functionCall DOT ID                           { $$ = new ast::FieldExp(@$, *$1, *new ast::SimpleVar(@$, symbol::Symbol(*$3))); delete $3; print_rules("assignable", "functionCall DOT ID");}
 | functionCall DOT keywords                     { $$ = new ast::FieldExp(@$, *$1, *$3); print_rules("assignable", "functionCall DOT keywords");}
-| functionCall DOT functionCall                 { $3->setName(new ast::FieldExp(@$, *$1, $3->getName()));$3->setLocation(@$);$$ = $3;print_rules("assignable", "functionCall DOT functionCall");}
 | ID                        %prec LISTABLE      { $$ = new ast::SimpleVar(@$, symbol::Symbol(*$1)); delete $1;print_rules("assignable", "ID");}
 | multipleResults                               { $$ = $1; print_rules("assignable", "multipleResults");}
 | variable LPAREN functionArgs RPAREN           { $$ = new ast::CallExp(@$, *$1, *$3); print_rules("assignable", "ariable LPAREN functionArgs RPAREN");}
