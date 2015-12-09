@@ -287,6 +287,7 @@ public class XcosPackage {
         crc.update(MIME_BYTES);
         entry.setCrc(crc.getValue());
         entry.setMethod(ZipEntry.STORED);
+        entry.setTime(0l);
         zout.putNextEntry(entry);
         zout.write(MIME_BYTES);
 
@@ -305,6 +306,7 @@ public class XcosPackage {
          * Append the entry
          */
         final ZipEntry entry = new ZipEntry(META_INF_MANIFEST_XML);
+        entry.setTime(0l);
         zout.putNextEntry(entry);
 
         /*

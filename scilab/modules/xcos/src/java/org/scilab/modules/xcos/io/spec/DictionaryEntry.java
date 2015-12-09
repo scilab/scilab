@@ -70,6 +70,7 @@ public class DictionaryEntry implements Entry {
          * Append a ZipEntry
          */
         final ZipEntry entry = new ZipEntry(getFullPath());
+        entry.setTime(0l);
         stream.putNextEntry(entry);
 
         /*

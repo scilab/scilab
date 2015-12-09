@@ -20,17 +20,8 @@ import java.util.zip.ZipOutputStream;
 
 import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
-import javax.xml.stream.XMLStreamReader;
 import javax.xml.stream.XMLStreamWriter;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.sax.SAXResult;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-
-import org.scilab.modules.commons.xml.ScilabTransformerFactory;
 import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.sax.XcosSAXHandler;
@@ -89,6 +80,7 @@ public class ContentEntry implements Entry {
          * Append a ZipEntry
          */
         final ZipEntry entry = new ZipEntry(getFullPath());
+        entry.setTime(0l);
         stream.putNextEntry(entry);
 
         /*
