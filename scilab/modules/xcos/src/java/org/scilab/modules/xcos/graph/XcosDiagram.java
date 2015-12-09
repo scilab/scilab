@@ -1654,13 +1654,7 @@ public class XcosDiagram extends ScilabGraph {
      * @return save status
      */
     public boolean saveDiagram() {
-        final boolean isSuccess = saveDiagramAs(getSavedFile());
-
-        if (isSuccess) {
-            setModified(false);
-        }
-
-        return isSuccess;
+        return saveDiagramAs(getSavedFile());
     }
 
     /**
@@ -1766,6 +1760,7 @@ public class XcosDiagram extends ScilabGraph {
             XcosDialogs.couldNotSaveFile(this);
         }
 
+        updateTabTitle();
         info(XcosMessages.EMPTY_INFO);
         return isSuccess;
     }
