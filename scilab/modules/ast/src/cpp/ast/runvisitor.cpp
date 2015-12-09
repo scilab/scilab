@@ -923,7 +923,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         if (e.getParent() == nullptr || e.getParent()->isAssignExp() == false)
         {
             CoverageInstance::stopChrono((void*)&e);
-            throw InternalError(_W("With input arguments, return / resume expect output arguments.\n"), 999, e.getLocation());
+            throw InternalError(_W("With input arguments, return / resume expects output arguments.\n"), 999, e.getLocation());
         }
         //in case of CallExp, we can return only one values
         int iSaveExpectedSize = getExpectedSize();
