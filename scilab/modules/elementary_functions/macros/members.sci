@@ -232,7 +232,9 @@ function [nb, loc] = members(A, S, varargin)
                 loc = I;
                 loc(k) = kS(I(k));
                 if last then
-                    loc(k) = length(S)-loc(k)+1;
+                    if ~isempty(k)
+                        loc(k) = length(S)-loc(k)+1;
+                    end
                 end
                 loc = matrix(loc, size(A));
             end
@@ -324,7 +326,9 @@ function [nb, loc] = members(A, S, varargin)
             if lhs > 1
                 if ~last
                     k = loc~=0;
-                    loc(k) = LS - loc(k) + 1;
+                    if ~isempty(loc(k))
+                        loc(k) = LS - loc(k) + 1;
+                    end
                 end
                 loc = matrix(loc, sA);
             end

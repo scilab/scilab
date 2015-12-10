@@ -23,9 +23,13 @@ function S = pol2str(p)
     S(k) = ""
     k = find(cr~=0 & ci~=0)
     k2 = find(k>length(p))
-    S(k(k2)) = "+("+S(k(k2))+")"
+    if ~isempty(S(k(k2)))
+        S(k(k2)) = "+("+S(k(k2))+")";
+    end
     k = find((cr>0 & ci==0) | (cr==0 & ci>0))
-    S(k) = "+"+S(k)
+    if ~isempty(k)
+        S(k) = "+"+S(k);
+    end
     vn = varn(p)
     clear ci cr k2
     for j = 2:(d+1)

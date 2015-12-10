@@ -102,7 +102,7 @@ function plot(varargin)
         //
         // 1. Test if 2 data couples (first : type==1, second : type=[1,13,130])
         // are at least separated by 2 indices
-        if (couple(2:$)-couple(1:$-1)<2)
+        if (size(couple, "*") > 1 && couple(2:$)-couple(1:$-1)<2)
             warning("Error inside input argument !");
             return;
         end

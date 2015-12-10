@@ -41,6 +41,7 @@ ui32 = uint32(32);
 I32 = int32([-32 -64 ; -96 -128]);
 UI32 = uint32([32 64 ; 96 128]);
 
+warning("off"); // WARNING_EMPTY_OPS
 assert_checkequal(empty - empty, []);
 assert_checkequal(empty - r, []);
 assert_checkequal(empty - c, []);

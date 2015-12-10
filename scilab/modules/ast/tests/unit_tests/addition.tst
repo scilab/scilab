@@ -44,6 +44,7 @@ UI32 = uint32([32 64 ; 96 128]);
 str = "string";
 STR = ["string1" "string2";"string3" "string4"];
 
+warning("off"); // WARNING_EMPTY_OPS
 assert_checkequal(empty + empty, []);
 assert_checkequal(empty + r, []);
 assert_checkequal(empty + c,  empty);

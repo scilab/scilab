@@ -18,6 +18,7 @@ function f = fullfile(varargin)
 
     fs = ["/" "\"];
     f  = varargin(1);
+    is_fempty = %f;
 
     if ~isempty(f) then
         if type(f) <> 10 then
@@ -28,24 +29,30 @@ function f = fullfile(varargin)
             error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", 1));
         end
         f = stripblanks(f);
+    else
+        is_fempty = %t;
     end
 
     nbParameters =  size(varargin)
     for k = 2 : nbParameters
         arg = varargin(k);
-        if isempty(f) | isempty(arg)
-            if ~isempty(arg) then
-                if type(arg) <> 10 then
-                    error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
-                end
-
-                if (size(arg,"*") <> 1) & (k <> nbParameters) then
-                    error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
-                end
+        if isempty(arg)
+            // current arg is empty => nothing to do
+            // f does not change
+            continue;
+        elseif isempty(f)
+            // f is currently empty and arg as a value
+            // check arg is a scalar string
+            // and set f as arg
+            if type(arg) <> 10 then
+                error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
             end
-            f = f + arg;
-        else
 
+            if (size(arg,"*") <> 1) & (k <> nbParameters) then
+                error(msprintf(gettext("%s: Wrong size for input argument #%d: a string expected.\n"), "fullfile", k));
+            end
+            f = arg;
+        else //arg and f are not empty
             if type(arg) <> 10 then
                 error(msprintf(gettext("%s: Wrong type for input argument #%d: a string expected.\n"), "fullfile", k));
             end

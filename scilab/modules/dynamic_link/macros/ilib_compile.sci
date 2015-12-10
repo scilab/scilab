@@ -49,6 +49,19 @@ function libn = ilib_compile(lib_name, ..
         return ;
     end
 
+    if isempty(ldflags)
+        ldflags = ""
+    end
+    if isempty(cflags)
+        cflags = ""
+    end
+    if isempty(fflags)
+        fflags = ""
+    end
+    if isempty(cc)
+        cc = ""
+    end
+
     oldpath = pwd();
     files = files(:)';
 

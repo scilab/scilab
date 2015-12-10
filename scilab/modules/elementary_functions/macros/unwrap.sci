@@ -115,7 +115,9 @@ function [retval, K] = unwrap(a, varargin)
             d(K) = ju(K) - sign(ju(K)).*jump
             // Cleaning wrongly inserted jumps :
             k = find(abs(d(K)-mean(d))>5*stdev(d))
-            d(K(k)) = d(K(k)) - sign(d(K(k))).*jump
+            if ~isempty(k)
+                d(K(k)) = d(K(k)) - sign(d(K(k))).*jump
+            end
         else
             d(K) = avL(K)
         end

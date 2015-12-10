@@ -1312,7 +1312,6 @@ InternalType* add_E_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* add_E_E(T * /*_pL*/, U * /*_pR*/)
 {
-    Sciwarning(_("operation +: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
     Double* pOut = Double::Empty();
     add();
     return pOut;

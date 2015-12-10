@@ -14,6 +14,10 @@ function f=%s_a_r(m,f)
     szf=size(den)
     szm=size(m)
 
+    if isempty(m)
+        f = [];
+        return;
+    end
     if and(szf>=0)&and(szm>=0) then
         if prod(szf)==1&prod(szm)>1 then
             den=den(ones(m))

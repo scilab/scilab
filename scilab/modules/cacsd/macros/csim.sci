@@ -93,9 +93,14 @@ function [y,x]=csim(u,dt,sl,x0,tol)
             comp(uu),
             u(1)=uu,
         end
-    else error(44,2)
+    else error(msprintf(gettext("%s: Wrong type for input argument #%d: Function expected"), "csim", 2));
     end;
     //
+    if isempty(dt) then
+        y = [];
+        x = [];
+        return
+    end
     if rhs==3 then x0=sl(6),end
     if imp==1|step==1 then x0=0*x0,end
     nt=size(dt,"*");x=0*ones(ma,nt);
@@ -160,6 +165,6 @@ function [y,x]=csim(u,dt,sl,x0,tol)
         end;
         k=k+n
     end;
-    y=c*x+d*ut
+    y = c*x + d*ut
     if lhs==2 then x=v1*v2*x,end
 endfunction

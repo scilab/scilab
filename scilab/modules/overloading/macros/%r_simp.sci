@@ -14,6 +14,7 @@ function h = %r_simp(h)
     n = numer(h)
     d = denom(h)
     i = find(clean(n)==0 & clean(d)~=0)
+    [n, d] = simp(n, d);
     d(i) = 1
     h = rlist(n, d, h(4))
 endfunction

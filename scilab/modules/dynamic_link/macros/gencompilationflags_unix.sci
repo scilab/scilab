@@ -22,6 +22,21 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"gencompilationflags_unix",5));
         return
     end
+    if isempty(ldflags)
+        ldflags = ""
+    end
+    if isempty(cflags)
+        cflags = ""
+    end
+    if isempty(fflags)
+        fflags = ""
+    end
+    if isempty(cc)
+        cc = ""
+    end
+    if isempty(flagsType)
+        flagsType = ""
+    end
 
     cmd = "";
 
