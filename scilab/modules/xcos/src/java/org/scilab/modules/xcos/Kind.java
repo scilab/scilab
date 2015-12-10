@@ -9,10 +9,10 @@
 package org.scilab.modules.xcos;
 
 public enum Kind {
-  ANNOTATION,
   BLOCK,
   DIAGRAM,
   LINK,
+  ANNOTATION,
   PORT;
 }
 

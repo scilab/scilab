@@ -37,10 +37,10 @@ enum update_status_t
  */
 enum kind_t
 {
-    ANNOTATION,     //!< model::Annotation object
     BLOCK,          //!< model::Block object
     DIAGRAM,        //!< model::Diagram object
     LINK,           //!< model::Link object
+    ANNOTATION,     //!< model::Annotation object
     PORT            //!< model::Port object
 };
 
