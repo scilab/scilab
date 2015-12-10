@@ -34,11 +34,11 @@ public class BasicLinkCodec extends XcosObjectCodec {
     public static void register() {
         JavaController controller = new JavaController();
 
-        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(new ExplicitLink(controller.createObject(Kind.LINK)), null, REFS, null);
+        BasicLinkCodec explicitlinkCodec = new BasicLinkCodec(new ExplicitLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(explicitlinkCodec);
-        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(new ImplicitLink(controller.createObject(Kind.LINK)), null, REFS, null);
+        BasicLinkCodec implicitlinkCodec = new BasicLinkCodec(new ImplicitLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(implicitlinkCodec);
-        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(new CommandControlLink(controller.createObject(Kind.LINK)), null, REFS, null);
+        BasicLinkCodec commandControllinkCodec = new BasicLinkCodec(new CommandControlLink(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, null), null, REFS, null);
         mxCodecRegistry.register(commandControllinkCodec);
     }
 

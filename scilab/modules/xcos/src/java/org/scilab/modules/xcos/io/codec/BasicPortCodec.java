@@ -75,17 +75,17 @@ public class BasicPortCodec extends XcosObjectCodec {
     public static void register() {
         JavaController controller = new JavaController();
 
-        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(controller.createObject(Kind.PORT)), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec explicitOutputPortCodec = new BasicPortCodec(new ExplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitOutputPortCodec);
-        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(controller.createObject(Kind.PORT)), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec explicitInputPortCodec = new BasicPortCodec(new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(explicitInputPortCodec);
-        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(controller.createObject(Kind.PORT)), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitOutputPortCodec = new BasicPortCodec(new ImplicitOutputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitOutputPortCodec);
-        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(controller.createObject(Kind.PORT)), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec implicitInputPortCodec = new BasicPortCodec(new ImplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(implicitInputPortCodec);
-        XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(controller.createObject(Kind.PORT)), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec commandPortCodec = new BasicPortCodec(new CommandPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(commandPortCodec);
-        XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(controller.createObject(Kind.PORT)), IGNORED_FIELDS, REFS, null);
+        XcosObjectCodec controlPortCodec = new BasicPortCodec(new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null), IGNORED_FIELDS, REFS, null);
         mxCodecRegistry.register(controlPortCodec);
         mxCodecRegistry.register(new mxObjectCodec(Orientation.EAST));
     }

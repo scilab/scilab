@@ -50,7 +50,7 @@ public class XcosDelegates {
     public static final void convertToPNG(final String helpID, final String xcosFile, final File imageFile, final String imageName) throws Exception {
         JavaController controller = new JavaController();
 
-        final XcosDiagram diag = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
+        final XcosDiagram diag = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         diag.installListeners();
 
         final XcosFileType filetype = XcosFileType.findFileType(xcosFile);

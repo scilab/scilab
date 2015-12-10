@@ -130,7 +130,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * backward compatibility, use explicit as default.
          */
         if (graphics.size() <= GRAPHICS_INIMPL_INDEX) {
-            return new ExplicitInputPort(controller.createObject(Kind.PORT));
+            return new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
         ScilabType inImpl = graphics.get(GRAPHICS_INIMPL_INDEX);
 
@@ -138,7 +138,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(inImpl)) {
-            return new ExplicitInputPort(controller.createObject(Kind.PORT));
+            return new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final ScilabString inImplicit = (ScilabString) inImpl;
@@ -147,7 +147,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * backward compatibility, use explicit as default.
          */
         if (isEmptyField(inImplicit)) {
-            return new ExplicitInputPort(controller.createObject(Kind.PORT));
+            return new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         final boolean isColumnDominant = inImplicit.getHeight() >= inImplicit.getWidth();
@@ -161,12 +161,12 @@ public final class InputPortElement extends AbstractElement<InputPort> {
          * when the type is set, create a new port instance; create an explicit typed port otherwise.
          */
         if (isSet && inimpl[indexes[0]][indexes[1]].equals(EXPLICIT)) {
-            ret = new ExplicitInputPort(controller.createObject(Kind.PORT));
+            ret = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else if (isSet && inimpl[indexes[0]][indexes[1]].equals(IMPLICIT)) {
-            ret = new ImplicitInputPort(controller.createObject(Kind.PORT));
+            ret = new ImplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         } else {
             // when not specified, use explicit
-            ret = new ExplicitInputPort(controller.createObject(Kind.PORT));
+            ret = new ExplicitInputPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, null);
         }
 
         return ret;

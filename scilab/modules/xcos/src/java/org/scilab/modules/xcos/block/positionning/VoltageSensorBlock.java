@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2010-2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,11 +13,14 @@
 
 package org.scilab.modules.xcos.block.positionning;
 
+import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.port.Orientation;
 import org.scilab.modules.xcos.port.output.OutputPort;
 
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * The VoltageSensor block has only one specificity : it's port position.
@@ -25,8 +29,8 @@ import com.mxgraph.model.mxICell;
 public class VoltageSensorBlock extends BasicBlock {
 
     /** Default constructor */
-    public VoltageSensorBlock(long uid) {
-        super(uid);
+    public VoltageSensorBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
 
     /**

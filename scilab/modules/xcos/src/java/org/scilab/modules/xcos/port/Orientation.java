@@ -13,12 +13,9 @@
 
 package org.scilab.modules.xcos.port;
 
-import java.util.NoSuchElementException;
-
+import com.mxgraph.util.mxConstants;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.output.OutputPort;
-
-import com.mxgraph.util.mxConstants;
 
 /**
  * Represent a port orientation related to the associated block. These
@@ -105,7 +102,7 @@ public enum Orientation {
                 break;
 
             default:
-                throw new NoSuchElementException();
+                break;
         }
 
         /* Calculate angle */

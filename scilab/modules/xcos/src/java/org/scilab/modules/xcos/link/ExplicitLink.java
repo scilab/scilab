@@ -13,7 +13,9 @@
 
 package org.scilab.modules.xcos.link;
 
-import org.scilab.modules.xcos.link.BasicLink;
+import com.mxgraph.model.mxGeometry;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * An explicit link connect an
@@ -27,9 +29,8 @@ public class ExplicitLink extends BasicLink {
     // 1 means regular link
     private static final double[][] COLOR_AND_TYPE = { { 1.0, 1.0 } };
 
-    /** Default constructor */
-    public ExplicitLink(long uid) {
-        super(uid, "ExplicitLink");
+    public ExplicitLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style == null || style.isEmpty() ? "ExplicitLink" : style, id, 1);
     }
 
     /** @return A black colored explicit link identifier */

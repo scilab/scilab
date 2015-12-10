@@ -488,7 +488,7 @@ public final class Xcos {
             /*
              * Allocate and setup a new diagram
              */
-            diag = new XcosDiagram(currentId, Kind.DIAGRAM);
+            diag = new XcosDiagram(controller, currentId, Kind.DIAGRAM, "");
             diag.installListeners();
 
             /*
@@ -896,13 +896,14 @@ public final class Xcos {
         if (filetype == null) {
             throw new IllegalArgumentException("not handled filetype");
         }
+
         switch (filetype) {
             case XCOS:
             case ZCOS:
                 if (export) {
-                    filetype.save(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                    filetype.save(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
                 } else {
-                    filetype.load(file, new XcosDiagram(diagramId, Kind.DIAGRAM));
+                    filetype.load(file, new XcosDiagram(new JavaController(), diagramId, Kind.DIAGRAM, ""));
                 }
                 break;
             case COSF:

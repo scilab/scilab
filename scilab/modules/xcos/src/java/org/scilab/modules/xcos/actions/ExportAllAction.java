@@ -196,7 +196,10 @@ public final class ExportAllAction extends DefaultAction {
 
 
                 if (diagrams.stream().noneMatch(d -> d.getUID() == currentUID)) {
-                    final XcosDiagram child = new XcosDiagram(currentUID, Kind.BLOCK);
+                    String[] strUID = new String[1];
+                    controller.getObjectProperty(currentUID, Kind.BLOCK, ObjectProperties.UID, strUID);
+
+                    final XcosDiagram child = new XcosDiagram(controller, currentUID, Kind.BLOCK, strUID[0]);
                     diagrams.add(child);
                     stash.add(currentUID);
                 }

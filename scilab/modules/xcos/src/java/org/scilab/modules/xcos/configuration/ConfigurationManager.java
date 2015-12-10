@@ -402,7 +402,7 @@ public final class ConfigurationManager {
         try {
             JavaController controller = new JavaController();
 
-            graph = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
+            graph = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
             graph.installListeners();
 
             if (f != null) {
@@ -461,7 +461,7 @@ public final class ConfigurationManager {
         for (int i = 0 ; i < len ; i++) {
             controller.getObjectProperty(blocks.get(i), Kind.BLOCK, ObjectProperties.UID, blockUID);
             if (uid.equals(blockUID[0])) {
-                return new XcosDiagram(blocks.get(i), Kind.BLOCK);
+                return new XcosDiagram(controller, blocks.get(i), Kind.BLOCK, blockUID[0]);
             }
         }
 

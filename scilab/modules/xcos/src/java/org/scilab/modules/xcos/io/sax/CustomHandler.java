@@ -133,12 +133,14 @@ class CustomHandler implements ScilabHandler {
             // no break on purpose, we decode non-root specific properties later
             case SuperBlockDiagram:
                 final Kind kind;
+                XcosCell parent;
                 if (uid == 0l) {
-                    XcosCell parent = saxHandler.lookupForParentXcosCellElement();
+                    parent = saxHandler.lookupForParentXcosCellElement();
                     uid = parent.getUID();
                     kind = parent.getKind();
                 } else {
                     kind = Kind.DIAGRAM;
+                    parent = new XcosCell(saxHandler.controller, uid, kind, null, null, "", "");
                 }
 
                 /*
@@ -166,7 +168,7 @@ class CustomHandler implements ScilabHandler {
                  * Update some states
                  */
                 saxHandler.allChildren.push(new HashMap<>());
-                return new XcosCell(uid, kind);
+                return parent;
             default:
                 throw new IllegalArgumentException();
         }

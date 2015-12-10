@@ -119,18 +119,14 @@ public abstract class BasicPort extends XcosCell {
      * @param style
      *            Value to be set as a Style and as TypeName
      */
-    public BasicPort(long uid, String style, Orientation orientation) {
-        super(uid, Kind.PORT);
+    public BasicPort(final JavaController controller, long uid, Kind kind, Object value, String style, String id, Orientation orientation, boolean isImplicit, PortKind portKind) {
+        super(controller, uid, kind, value, new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE), style, id);
 
-        setVertex(true);
-        setStyle(style);
-        setGeometry(new mxGeometry(0, 0, DEFAULT_PORTSIZE, DEFAULT_PORTSIZE));
+        this.vertex = true;
+
         setOrientation(orientation);
-
-        boolean isImplicit = getType() == Type.IMPLICIT;
-        JavaController controller = new JavaController();
         controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
-        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, getPortKind().ordinal());
+        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, portKind.ordinal());
     }
 
     /**

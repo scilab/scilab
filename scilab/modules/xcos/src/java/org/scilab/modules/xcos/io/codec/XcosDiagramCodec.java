@@ -98,10 +98,10 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
     public static void register() {
         JavaController controller = new JavaController();
 
-        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM), DIAGRAM_IGNORED_FIELDS, null,
+        ScilabGraphCodec diagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, ""), DIAGRAM_IGNORED_FIELDS, null,
                 null);
         mxCodecRegistry.register(diagramCodec);
-        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller.createObject(Kind.BLOCK), Kind.BLOCK),
+        ScilabGraphCodec superBlockDiagramCodec = new XcosDiagramCodec(new XcosDiagram(controller, controller.createObject(Kind.BLOCK), Kind.BLOCK, ""),
                 SUPERBLOCKDIAGRAM_IGNORED_FIELDS, null, null);
         mxCodecRegistry.register(superBlockDiagramCodec);
     }

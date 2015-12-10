@@ -206,23 +206,18 @@ public class BasicBlock extends XcosCell implements Serializable {
         }
     };
 
-    public BasicBlock(long uid) {
-        this(uid, Kind.BLOCK);
-    }
-
     /**
      * Default constructor.
      */
-    public BasicBlock(long uid, Kind kind) {
-        super(uid, kind);
+    public BasicBlock(final JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
 
         /*
-         * Default parameters for blocks
+         * Default JGraphX properties for blocks
          */
         this.visible = true;
         this.vertex = true;
         this.connectable = false;
-        this.geometry = new mxGeometry(DEFAULT_POSITION_X, DEFAULT_POSITION_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT);
     }
 
     /**
@@ -569,13 +564,14 @@ public class BasicBlock extends XcosCell implements Serializable {
                 @Override
                 public void callBack() {
                     JavaController controller = new JavaController();
-                    XcosDiagram theDiagram = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
                     BasicBlock block = null;
                     try {
                         block = (BasicBlock) BasicBlock.this.clone();
                     } catch (CloneNotSupportedException e) {
                         e.printStackTrace();
                     }
+
+                    XcosDiagram theDiagram = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
                     theDiagram.getModel().add(theDiagram.getDefaultParent(), block, 0);
                     mxGeometry geom = BasicBlock.this.getGeometry();
                     setDefaultPosition(geom);

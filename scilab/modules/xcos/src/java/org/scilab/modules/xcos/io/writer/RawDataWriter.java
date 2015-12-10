@@ -53,7 +53,7 @@ public class RawDataWriter extends ScilabWriter {
             return;
         }
 
-        // reserve the size with null values
+        // reserve the size with empty values
         shared.dictionary.addAll(Collections.nCopies(dictionaryMap.size(), new ScilabDouble()));
 
         // push all the values

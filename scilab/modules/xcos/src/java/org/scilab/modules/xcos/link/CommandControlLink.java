@@ -13,7 +13,9 @@
 
 package org.scilab.modules.xcos.link;
 
-import org.scilab.modules.xcos.link.BasicLink;
+import com.mxgraph.model.mxGeometry;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * An command control link connect an
@@ -27,9 +29,8 @@ public class CommandControlLink extends BasicLink {
     // -1 means activation link
     private static final double[][] COLOR_AND_TYPE = { { 5.0, -1.0 } };
 
-    /** Default constructor */
-    public CommandControlLink(long uid) {
-        super(uid, "CommandControlLink");
+    public CommandControlLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style == null || style.isEmpty() ? "CommandControlLink" : style, id, -1);
     }
 
     /** @return A red colored activation link identifier */

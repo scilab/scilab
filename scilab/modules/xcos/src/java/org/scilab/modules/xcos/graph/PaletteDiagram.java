@@ -30,6 +30,8 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
 import com.mxgraph.model.mxGeometry;
+import java.rmi.server.UID;
+import org.scilab.modules.xcos.JavaController;
 
 /**
  * @author Antoine ELIAS
@@ -48,7 +50,7 @@ public class PaletteDiagram extends XcosDiagram {
      * Constructor
      */
     public PaletteDiagram(long uid) {
-        super(uid, Kind.DIAGRAM);
+        super(new JavaController(), uid, Kind.DIAGRAM, new UID().toString());
         setComponent(new PaletteComponent(this));
 
         setTitle(PaletteDiagram.class.getName());

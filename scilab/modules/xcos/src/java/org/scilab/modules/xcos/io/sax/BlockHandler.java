@@ -62,66 +62,85 @@ class BlockHandler implements ScilabHandler {
         }
         final long uid = saxHandler.controller.createObject(kind);
 
+        String value = atts.getValue("value");
+        if (value != null) {
+            if (kind == Kind.BLOCK) {
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.LABEL, value);
+            } else { // ANNOTATION
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, value);
+            }
+        }
+
+        String style = atts.getValue("style");
+        if (style != null) {
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+        }
+
+        String strUID = atts.getValue("id");
+        if (strUID != null) {
+            saxHandler.allChildren.peek().put(strUID, uid);
+        }
+
         switch (found) {
             case AfficheBlock:
-                block = new AfficheBlock(uid);
+                block = new AfficheBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case BasicBlock:
-                block = new BasicBlock(uid);
+                block = new BasicBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case BigSom:
-                block = new BigSom(uid);
+                block = new BigSom(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case ConstBlock:
-                block = new BasicBlock(uid);
+                block = new BasicBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case EventInBlock:
-                block = new EventInBlock(uid);
+                block = new EventInBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case EventOutBlock:
-                block = new EventOutBlock(uid);
+                block = new EventOutBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case ExplicitInBlock:
-                block = new ExplicitInBlock(uid);
+                block = new ExplicitInBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case ExplicitOutBlock:
-                block = new ExplicitOutBlock(uid);
+                block = new ExplicitOutBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case GainBlock:
-                block = new BasicBlock(uid);
+                block = new BasicBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case GroundBlock:
-                block = new GroundBlock(uid);
+                block = new GroundBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case ImplicitInBlock:
-                block = new ImplicitInBlock(uid);
+                block = new ImplicitInBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case ImplicitOutBlock:
-                block = new ImplicitOutBlock(uid);
+                block = new ImplicitOutBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case PrintBlock:
-                block = new BasicBlock(uid);
+                block = new BasicBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case Product:
-                block = new Product(uid);
+                block = new Product(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case RoundBlock:
-                block = new RoundBlock(uid);
+                block = new RoundBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case SplitBlock:
-                block = new SplitBlock(uid);
+                block = new SplitBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case Summation:
-                block = new Summation(uid);
+                block = new Summation(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case SuperBlock:
-                block = new SuperBlock(uid);
+                block = new SuperBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case TextBlock:
-                block = new TextBlock(uid);
+                block = new TextBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             case VoltageSensorBlock:
-                block = new VoltageSensorBlock(uid);
+                block = new VoltageSensorBlock(saxHandler.controller, uid, kind, value, null, style, strUID);
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -130,12 +149,6 @@ class BlockHandler implements ScilabHandler {
         /*
          * Set the attributes
          */
-        v = atts.getValue("id");
-        if (v != null) {
-            block.setId(v);
-            saxHandler.allChildren.peek().put(v, uid);
-        }
-
         v = atts.getValue("interfaceFunctionName");
         if (v != null) {
             saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, v);
@@ -159,20 +172,6 @@ class BlockHandler implements ScilabHandler {
         if (v != null) {
             SimulationFunctionType type = SimulationFunctionType.valueOf(v);
             saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_API, type.getValue());
-        }
-
-        v = atts.getValue("style");
-        if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.STYLE, v);
-        }
-
-        v = atts.getValue("value");
-        if (v != null) {
-            if (kind == Kind.BLOCK) {
-                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.LABEL, v);
-            } else { // ANNOTATION
-                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, v);
-            }
         }
 
         saxHandler.insertChild(block);

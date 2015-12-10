@@ -53,15 +53,25 @@ class PortHandler implements ScilabHandler {
         /*
          * First, check if the port has already been defined. Otherwise, create the object in the model
          */
-        v = atts.getValue("id");
+        String strUID = atts.getValue("id");
         long uid = 0;
-        if (v != null) {
-            if (shared.allChildren.peek().containsKey(v)) {
-                uid = shared.allChildren.peek().get(v);
+        if (strUID != null) {
+            if (shared.allChildren.peek().containsKey(strUID)) {
+                uid = shared.allChildren.peek().get(strUID);
             } else {
                 uid = shared.controller.createObject(Kind.PORT);
-                shared.allChildren.peek().put(v, uid);
+                shared.allChildren.peek().put(strUID, uid);
             }
+        }
+
+        String style = atts.getValue("style");
+        if (style != null) {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, style);
+        }
+
+        String value = atts.getValue("value");
+        if (value != null) {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, value);
         }
 
         /*
@@ -70,32 +80,32 @@ class PortHandler implements ScilabHandler {
 
         switch (found) {
             case CommandPort:
-                port = new CommandPort(uid);
+                port = new CommandPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.EVENT_OUTPUTS;
                 isImplicit = false;
                 break;
             case ControlPort:
-                port = new ControlPort(uid);
+                port = new ControlPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.EVENT_INPUTS;
                 isImplicit = false;
                 break;
             case ExplicitInputPort:
-                port = new ExplicitInputPort(uid);
+                port = new ExplicitInputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.INPUTS;
                 isImplicit = false;
                 break;
             case ExplicitOutputPort:
-                port = new ExplicitOutputPort(uid);
+                port = new ExplicitOutputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.OUTPUTS;
                 isImplicit = false;
                 break;
             case ImplicitInputPort:
-                port = new ImplicitInputPort(uid);
+                port = new ImplicitInputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.INPUTS;
                 isImplicit = true;
                 break;
             case ImplicitOutputPort:
-                port = new ImplicitOutputPort(uid);
+                port = new ImplicitOutputPort(shared.controller, uid, Kind.PORT, value, style, strUID);
                 relatedProperty = ObjectProperties.OUTPUTS;
                 isImplicit = true;
                 break;
@@ -103,24 +113,9 @@ class PortHandler implements ScilabHandler {
                 throw new IllegalArgumentException();
         }
 
-        // set the decoded XML ID
-        port.setId(v);
-
-        // set the implicit
-        shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
-
         /*
          * Setup the properties
          */
-        v = atts.getValue("style");
-        if (v != null) {
-            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, v);
-        }
-
-        v = atts.getValue("value");
-        if (v != null) {
-            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, v);
-        }
 
         VectorOfInt datatype = new VectorOfInt();
         shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);

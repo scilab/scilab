@@ -55,7 +55,7 @@ public final class PaletteBlockCtrl {
     public static final XcosDiagram INTERNAL_GRAPH;
     static {
         JavaController controller = new JavaController();
-        INTERNAL_GRAPH = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
+        INTERNAL_GRAPH = new XcosDiagram(controller, controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM, "");
         INTERNAL_GRAPH.installListeners();
     }
 

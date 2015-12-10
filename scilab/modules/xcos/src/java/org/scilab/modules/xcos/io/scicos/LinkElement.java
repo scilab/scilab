@@ -130,15 +130,16 @@ public final class LinkElement extends AbstractElement<BasicLink> {
         BasicLink link = null;
         final int type = (int) ((ScilabDouble) data.get(CT_INDEX)).getRealPart()[0][1];
 
+        String id = new UID().toString();
+
         try {
             Class<? extends BasicLink> klass = LinkPortMap.getLinkClass(type);
-            Constructor<? extends BasicLink> cstr = klass.getConstructor(Long.TYPE);
-            link = cstr.newInstance(controller.createObject(Kind.LINK));
+            Constructor<? extends BasicLink> cstr = klass.getConstructor(JavaController.class, Long.TYPE, Kind.class, Object.class, mxGeometry.class, String.class, String.class);
+            link = cstr.newInstance(controller, controller.createObject(Kind.LINK), Kind.LINK, null, null, null, id);
         } catch (ReflectiveOperationException e) {
             LOG.severe(e.toString());
         }
 
-        link.setId(new UID().toString());
         return link;
     }
 

@@ -157,8 +157,7 @@ final class BlockModelElement extends BlockPartsElement {
 
             int nbControlPort = dataNbControlPort.getHeight();
             for (int i = 0; i < nbControlPort; i++) {
-                final BasicPort port = new ControlPort(controller.createObject(Kind.PORT));
-                port.setId(new UID().toString());
+                final BasicPort port = new ControlPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);
@@ -170,8 +169,7 @@ final class BlockModelElement extends BlockPartsElement {
 
             int nbCommandPort = dataNbCommandPort.getHeight();
             for (int i = 0; i < nbCommandPort; i++) {
-                final BasicPort port = new CommandPort(controller.createObject(Kind.PORT));
-                port.setId(new UID().toString());
+                final BasicPort port = new CommandPort(controller, controller.createObject(Kind.PORT), Kind.PORT, null, null, new UID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);
@@ -202,7 +200,7 @@ final class BlockModelElement extends BlockPartsElement {
         field++;
         if (data.get(field) instanceof ScilabMList) {
             try {
-                new DiagramElement(new JavaController()).decode((ScilabMList) data.get(field), new XcosDiagram(into.getUID(), into.getKind()));
+                new DiagramElement(controller).decode((ScilabMList) data.get(field), new XcosDiagram(controller, into.getUID(), into.getKind(), into.getId()));
             } catch (ScicosFormatException e) {}
         } else if (data.get(field) instanceof ScilabDouble ) {
             controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.RPAR, toVectorOfDouble((ScilabDouble) data.get(field)));

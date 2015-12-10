@@ -13,6 +13,8 @@
 
 package org.scilab.modules.xcos.port.output;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
@@ -29,13 +31,9 @@ public abstract class OutputPort extends BasicPort {
 
     /**
      * Default constructor
-     *
-     * @param type
-     *            The string port name ("ExplicitOutputPort" or
-     *            "ImplicitOutputPort")
      */
-    public OutputPort(long uid, String style) {
-        super(uid, style, Orientation.EAST);
+    public OutputPort(JavaController controller, long uid, Kind kind, Object value, String style, String id, boolean isImplicit) {
+        super(controller, uid, kind, value, style, id, Orientation.EAST, isImplicit, PortKind.PORT_OUT);
     }
 
     @Override

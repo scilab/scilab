@@ -18,6 +18,8 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 
 /**
  * A SplitBlock is used on a junction between links.
@@ -32,8 +34,8 @@ public final class SplitBlock extends BasicBlock {
     /**
      * Constructor
      */
-    public SplitBlock(long uid) {
-        super(uid);
+    public SplitBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, new mxGeometry(0, 0, DEFAULT_SIZE, DEFAULT_SIZE), style, id);
     }
 
     /**

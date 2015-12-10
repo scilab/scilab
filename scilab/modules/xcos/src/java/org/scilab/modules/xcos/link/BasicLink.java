@@ -54,20 +54,13 @@ public abstract class BasicLink extends XcosCell {
     private static final int DETECTION_RECTANGLE_DIMENSION = 10;
     private transient int ordering;
 
-    /**
-     * Default constructor
-     *
-     * @param style
-     *            The style to use for this link
-     */
-    public BasicLink(long uid, String style) {
-        super(uid, Kind.LINK);
-        setVertex(false);
-        setEdge(true);
-        setStyle(style + XcosOptions.getEdition().getEdgeStyle());
+    public BasicLink(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id, int linkKind) {
+        super(controller, uid, kind, value, geometry, style == null ? XcosOptions.getEdition().getEdgeStyle() : style, id);
 
-        JavaController controller = new JavaController();
-        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.KIND, getLinkKind());
+        this.vertex = false;
+        this.edge = true;
+
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.KIND, linkKind);
     }
 
     /**

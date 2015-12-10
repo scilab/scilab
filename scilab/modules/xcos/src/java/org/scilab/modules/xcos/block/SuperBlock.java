@@ -13,6 +13,7 @@
 
 package org.scilab.modules.xcos.block;
 
+import com.mxgraph.model.mxGeometry;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.menu.Menu;
@@ -67,24 +68,8 @@ public final class SuperBlock extends BasicBlock {
      */
     private static final String MASKED_INTERFUNCTION_NAME = "DSUPER";
 
-    /**
-     * Constructor
-     *
-     * @param uid the uid
-     * @param label "SUPER_f" or "DSUPER" to use as value
-     * @param masked true if the inner diagram should be hidden
-     */
-    public SuperBlock(long uid, String label, boolean masked) {
-        super(uid);
-
-        setValue(label);
-        if (masked) {
-            mask(new JavaController());
-        }
-    }
-
-    public SuperBlock(long uid) {
-        this(uid, INTERFUNCTION_NAME, false);
+    public SuperBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
 
     /**

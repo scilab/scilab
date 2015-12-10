@@ -13,6 +13,7 @@
 
 package org.scilab.modules.xcos.block.io;
 
+import com.mxgraph.model.mxGeometry;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.Serializable;
@@ -355,9 +356,10 @@ public abstract class ContextUpdate extends BasicBlock {
     /**
      * Constructor.
      */
-    public ContextUpdate(final long uid) {
-        super(uid);
+    public ContextUpdate(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super(controller, uid, kind, value, geometry, style, id);
     }
+
 
     /**
      * @param context

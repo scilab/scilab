@@ -15,7 +15,6 @@ package org.scilab.modules.xcos.graph.model;
 import java.util.Collections;
 import java.util.List;
 
-import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
@@ -23,11 +22,12 @@ import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfScicosID;
 
+import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxPoint;
 
-public class XcosCell extends ScilabGraphUniqueObject {
+public class XcosCell extends mxCell {
     private static final long serialVersionUID = 1L;
 
     private transient ScicosObjectOwner owner;
@@ -37,22 +37,25 @@ public class XcosCell extends ScilabGraphUniqueObject {
      *
      * This Java object owns the corresponding MVC object and thus will unrefererence it on GC.
      *
+     * @param controller
+     *            the shared controller
      * @param uid
      *            the associated MVC identifier
      * @param kind
      *            the associated MVC kind
      */
-    public XcosCell(long uid, Kind kind) {
-        owner = new ScicosObjectOwner(uid, kind);
+    public XcosCell(final JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
+        super();
 
         // defensive programming
         if (uid == 0l) {
             throw new IllegalArgumentException();
         }
 
-        /* Store default values to the C++ side */
-        JavaController controller = new JavaController();
+        owner = new ScicosObjectOwner(controller, uid, kind);
         setValue(controller, value);
+        setGeometry(controller, geometry);
+        setStyle(controller, style);
         setId(controller, id);
     }
 
@@ -81,15 +84,15 @@ public class XcosCell extends ScilabGraphUniqueObject {
      */
     @Override
     public void setValue(Object value) {
-        super.setValue(value);
-        if (owner == null) {
-            return;
-        }
-
         setValue(new JavaController(), value);
     }
 
-    private void setValue(JavaController controller, Object value) {
+    public void setValue(JavaController controller, Object value) {
+        super.setValue(value);
+        setMVCValue(controller, value);
+    }
+
+    private void setMVCValue(JavaController controller, Object value) {
         if (value == null) {
             return;
         }
@@ -115,12 +118,19 @@ public class XcosCell extends ScilabGraphUniqueObject {
      */
     @Override
     public void setId(String id) {
-        super.setId(id);
-
         setId(new JavaController(), id);
     }
 
-    private void setId(JavaController controller, String id) {
+    public void setId(JavaController controller, String id) {
+        super.setId(id);
+        setMVCId(controller, id);
+    }
+
+    private void setMVCId(JavaController controller, String id) {
+        if (id == null) {
+            return;
+        }
+
         switch (getKind()) {
             case ANNOTATION:
             case BLOCK:
@@ -140,15 +150,19 @@ public class XcosCell extends ScilabGraphUniqueObject {
      */
     @Override
     public void setGeometry(mxGeometry geometry) {
-        super.setGeometry(geometry);
-        if (owner == null) {
-            return;
-        }
-
         setGeometry(new JavaController(), geometry);
     }
 
-    private void setGeometry(JavaController controller, mxGeometry geometry) {
+    public void setGeometry(JavaController controller, mxGeometry geometry) {
+        super.setGeometry(geometry);
+        setMVCGeometry(controller, geometry);
+    }
+
+    private void setMVCGeometry(JavaController controller, mxGeometry geometry) {
+        if (geometry == null) {
+            return;
+        }
+
         switch (getKind()) {
             case ANNOTATION:
             case BLOCK: {
@@ -228,15 +242,19 @@ public class XcosCell extends ScilabGraphUniqueObject {
      */
     @Override
     public void setStyle(String style) {
-        super.setStyle(style);
-        if (owner == null) {
-            return;
-        }
-
         setStyle(new JavaController(), style);
     }
 
-    private void setStyle(JavaController controller, String style) {
+    public void setStyle(JavaController controller, String style) {
+        super.setStyle(style);
+        setMVCStyle(controller, style);
+    }
+
+    private void setMVCStyle(JavaController controller, String style) {
+        if (style == null) {
+            return;
+        }
+
         switch (getKind()) {
             case ANNOTATION:
             case BLOCK:
@@ -545,9 +563,6 @@ public class XcosCell extends ScilabGraphUniqueObject {
         XcosCell c = (XcosCell) super.clone();
 
         c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
-        c.setValue(controller, c.getValue());
-        c.setId(controller, c.getId());
-
         return c;
     }
 }

@@ -13,6 +13,9 @@
 
 package org.scilab.modules.xcos.port.output;
 
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+
 /**
  * An implicit output port is a port where the input characteristic does not
  * imply the transfer of information in an a priori known direction (Output and
@@ -27,8 +30,8 @@ public class ImplicitOutputPort extends OutputPort {
     private static final long serialVersionUID = 4210196486062437007L;
 
     /** Default constructor */
-    public ImplicitOutputPort(long uid) {
-        super(uid, "ImplicitOutputPort");
+    public ImplicitOutputPort(JavaController controller, long uid, Kind kind, Object value, String style, String id) {
+        super(controller, uid, kind, value, style == null || style.isEmpty() ? "ImplicitOutputPort" : style, id, true);
     }
 
     /** @return always Type.IMPLICIT */

@@ -20,15 +20,18 @@ public class ScicosObjectOwner {
     final Kind kind;
 
     public ScicosObjectOwner(long uid, Kind kind) {
-        this.uid = uid;
-        this.kind = kind;
+        this(new JavaController(), uid, kind);
+    }
 
+    public ScicosObjectOwner(final JavaController controller, long uid, Kind kind) {
         // defensive programming
         if (uid == 0) {
             throw new IllegalStateException();
         }
 
-        JavaController controller = new JavaController();
+        this.uid = uid;
+        this.kind = kind;
+
         controller.referenceObject(uid);
     }
 

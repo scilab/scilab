@@ -106,7 +106,7 @@ public class BlockParametersAction extends VertexSelectionDependantAction {
             BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfaceFunction[0]);
             if (func.equals(BlockInterFunction.SUPER_f)) {
                 // this is a super-block, open it
-                XcosDiagram sub = new XcosDiagram(cell.getUID(), cell.getKind());
+                XcosDiagram sub = new XcosDiagram(controller, cell.getUID(), cell.getKind(), cell.getId());
                 XcosCellFactory.insertChildren(controller, sub);
 
                 Xcos.getInstance().addDiagram(sub);

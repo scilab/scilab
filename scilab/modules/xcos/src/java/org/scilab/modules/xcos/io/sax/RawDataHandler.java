@@ -430,7 +430,7 @@ class RawDataHandler implements ScilabHandler {
                             saxHandler.controller.getObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.CHILDREN, children);
                             if (children.size() == 0) {
                                 try {
-                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(cell.getUID(), cell.getKind()));
+                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(saxHandler.controller, cell.getUID(), cell.getKind(), cell.getId()));
                                 } catch (ScicosFormatException e) {
                                 }
                             }
