@@ -80,7 +80,7 @@ public class ContentEntry implements Entry {
          * Append a ZipEntry
          */
         final ZipEntry entry = new ZipEntry(getFullPath());
-        entry.setTime(0l);
+        entry.setTime(pack.getTime());
         stream.putNextEntry(entry);
 
         /*

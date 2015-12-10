@@ -103,7 +103,7 @@ public final class BlockElement extends AbstractElement<BasicBlock> {
         final String interfunction = ((ScilabString) data.get(INTERFUNCTION_INDEX)).getData()[0][0];
         if (block == null) {
             BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfunction);
-            block = XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.BLOCK));
+            block = XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.BLOCK), Kind.BLOCK);
         }
 
         block = beforeDecode(element, block);

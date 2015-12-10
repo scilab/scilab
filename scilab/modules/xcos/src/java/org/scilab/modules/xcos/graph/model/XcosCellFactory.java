@@ -285,7 +285,7 @@ public final class XcosCellFactory {
             }
 
             if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(last.getKind())) {
-                block = createBlock(controller, func, interfaceFunction, last.getUID());
+                block = createBlock(controller, func, interfaceFunction, last.getUID(), last.getKind());
             } else {
                 block = null;
             }
@@ -306,7 +306,7 @@ public final class XcosCellFactory {
 
         final BlockInterFunction func = lookForInterfunction(interfaceFunction[0]);
 
-        return createBlock(controller, func, interfaceFunction[0], uid);
+        return createBlock(controller, func, interfaceFunction[0], uid, kind);
     }
 
     public static BlockInterFunction lookForInterfunction(String interfaceFunction) {
@@ -334,7 +334,33 @@ public final class XcosCellFactory {
      *            the allocated uid
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction, long uid) {
+    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction, long uid, Kind kind) {
+        /*
+         * Retrieve the JGraphX data before cell creation
+         */
+        String[] strUID = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.UID, strUID);
+
+        String[] style = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+
+        String value;
+        if (kind == Kind.ANNOTATION) {
+            String[] description = new String[1];
+            controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, description);
+            value = description[0];
+        } else { // BLOCK
+            String[] label = new String[1];
+            controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
+            value = label[0];
+        }
+
+        VectorOfDouble geom = new VectorOfDouble(4);
+        controller.getObjectProperty(uid, kind, ObjectProperties.GEOMETRY, geom);
+
+        /*
+         * Instanciate the block
+         */
         BasicBlock block = null;
         try {
             block = func.getKlass().getConstructor(Long.TYPE).newInstance(uid);
@@ -359,31 +385,15 @@ public final class XcosCellFactory {
             insertPortChildren(controller, properties, block);
         }
 
-        String[] strUID = new String[1];
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.UID, strUID);
+        block.setId(strUID[0]);
 
-        String[] style = new String[1];
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.STYLE, style);
         if (style[0].isEmpty()) {
             block.setStyle(interfaceFunction);
         } else {
             block.setStyle(style[0]);
         }
 
-        String value;
-        if (block.getKind() == Kind.ANNOTATION) {
-            String[] description = new String[1];
-            controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.DESCRIPTION, description);
-            value = description[0];
-        } else { // BLOCK
-            String[] label = new String[1];
-            controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.LABEL, label);
-            value = label[0];
-        }
         block.setValue(value);
-
-        VectorOfDouble geom = new VectorOfDouble(4);
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.GEOMETRY, geom);
 
         double x = geom.get(0);
         double y = geom.get(1);
@@ -443,7 +453,7 @@ public final class XcosCellFactory {
         String[] interfaceFunction = new String[1];
         BlockInterFunction func = lookForInterfunction(interfaceFunction[0]);
 
-        return createBlock(controller, func, interfaceFunction[0], lastCreated.getUID());
+        return createBlock(controller, func, interfaceFunction[0], lastCreated.getUID(), lastCreated.getKind());
     }
 
     /*

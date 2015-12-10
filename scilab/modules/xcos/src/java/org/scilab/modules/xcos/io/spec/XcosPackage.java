@@ -38,6 +38,8 @@ import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import org.scilab.modules.commons.ScilabCommons;
+import org.scilab.modules.commons.ScilabCommonsUtils;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
@@ -110,6 +112,7 @@ public class XcosPackage {
      */
     private final File file;
     private Document manifest;
+    private long time;
 
     /**
      * Entries encoder/decoder stored in the encoding order
@@ -147,6 +150,8 @@ public class XcosPackage {
         manifest = ScilabDocumentBuilderFactory.newInstance().newDocumentBuilder().newDocument();
         final Element root = manifest.createElementNS("urn:scilab:xcos:xmlns:manifest:0.1", "manifest:manifest");
         manifest.appendChild(root);
+
+        time = 0l;
     }
 
     private boolean hasInvalidManifest() {
@@ -287,7 +292,7 @@ public class XcosPackage {
         crc.update(MIME_BYTES);
         entry.setCrc(crc.getValue());
         entry.setMethod(ZipEntry.STORED);
-        entry.setTime(0l);
+        entry.setTime(getTime());
         zout.putNextEntry(entry);
         zout.write(MIME_BYTES);
 
@@ -306,7 +311,7 @@ public class XcosPackage {
          * Append the entry
          */
         final ZipEntry entry = new ZipEntry(META_INF_MANIFEST_XML);
-        entry.setTime(0l);
+        entry.setTime(getTime());
         zout.putNextEntry(entry);
 
         /*
@@ -345,6 +350,10 @@ public class XcosPackage {
 
     public ScilabList getDictionary() {
         return dictionary;
+    }
+
+    public long getTime() {
+        return time;
     }
 
     /*
