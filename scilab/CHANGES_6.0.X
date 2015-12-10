@@ -17,7 +17,7 @@ For a high-level overview of the changes in this release, please consult the "Wh
 New Features
 ============
 
-Xcos - the graphical tool for dynamic systems modeling and simulation - is 
+Xcos - the graphical tool for dynamic systems modeling and simulation - is
 finally functional in this release. You can now graphically create, edit, and
 simulate models. No changes are visible to the user, but the new Xcos uses the
 re-written Scilab engine, and is now running in native code, which should
@@ -57,6 +57,8 @@ Bug Fixes
 
 * Bug #14245 fixed - Problem in recursive extraction using list with struct.
 
+* Bug #14249 fixed - ctrl-c can be used to stop writing control expression.
+
 * Bug #14251 fixed - `spec` leaked some memory.
 
 * Bug #14253 fixed - Insertion in a struct contained in a list fixed.
@@ -66,6 +68,7 @@ Bug Fixes
 * Bug #14300 fixed - Crash when playing with structures.
 
 * Bug #14313 fixed - Parser did not create a column separator after spaces and '...' at the end of lines
+
 
 Dependencies
 =============

@@ -659,18 +659,36 @@ void* scilabReadAndStore(void* param)
             }
             else
             {
-                //+1 for null termination and +1 for '\n'
-                size_t iLen = strlen(command) + strlen(pstRead) + 2;
-                char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
+                if (ConfigVariable::isExecutionBreak())
+                {
+                    //clean parser state and close opened instruction.
+                    if (parser.getControlStatus() != Parser::AllControlClosed)
+                    {
+                        parser.cleanup();
+                        FREE(command);
+                        command = NULL;
+                        parser.setControlStatus(Parser::AllControlClosed);
+                        controlStatus = parser.getControlStatus();
+                    }
+
+                    ConfigVariable::resetExecutionBreak();
+                    break;
+                }
+                else
+                {
+                    //+1 for null termination and +1 for '\n'
+                    size_t iLen = strlen(command) + strlen(pstRead) + 2;
+                    char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
 
 #ifdef _MSC_VER
-                sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
+                    sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
 #else
-                sprintf(pstNewCommand, "%s\n%s", command, pstRead);
+                    sprintf(pstNewCommand, "%s\n%s", command, pstRead);
 #endif
-                FREE(pstRead);
-                FREE(command);
-                command = pstNewCommand;
+                    FREE(pstRead);
+                    FREE(command);
+                    command = pstNewCommand;
+                }
             }
 
             if (ConfigVariable::getEnableDebug())
