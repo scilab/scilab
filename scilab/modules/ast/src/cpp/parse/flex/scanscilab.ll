@@ -10,6 +10,9 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
+
+#include <stack>
+
 #include "isatty.hxx"
 #include "parse.hxx"
 #include "parser_private.hxx"
@@ -22,8 +25,9 @@ extern "C"
 #include "sci_malloc.h"
 }
 
+static std::stack<int> paren_levels;
+
 static int comment_level = 0;
-static int paren_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
 static int str_opener_column = 0;
@@ -429,6 +433,7 @@ assign			"="
 
 <INITIAL,MATRIX>{lbrace}		{
   yy_push_state(MATRIX);
+  paren_levels.push(0);
   ParserSingleInstance::pushControlStatus(Parser::WithinCell);
   return scan_throw(LBRACE);
 }
@@ -527,6 +532,7 @@ assign			"="
 <INITIAL,MATRIX>{lbrack}		{
   DEBUG("yy_push_state(MATRIX)");
   yy_push_state(MATRIX);
+  paren_levels.push(0);
   ParserSingleInstance::pushControlStatus(Parser::WithinMatrix);
   return scan_throw(LBRACK);
 }
@@ -714,12 +720,12 @@ assign			"="
 <MATRIX>
 {
   {lparen} {
-    paren_level++;
+    ++paren_levels.top();
     return scan_throw(LPAREN);
   }
 
   {rparen} {
-    paren_level--;
+    --paren_levels.top();
     return scan_throw(RPAREN);
   }
 
@@ -754,12 +760,14 @@ assign			"="
   {rbrack}				{
     DEBUG("yy_pop_state()");
     yy_pop_state();
+    paren_levels.pop();
     ParserSingleInstance::popControlStatus();
     return scan_throw(RBRACK);
   }
 
   {rbrace}				{
     yy_pop_state();
+    paren_levels.pop();
     ParserSingleInstance::popControlStatus();
     return scan_throw(RBRACE);
   }
@@ -780,7 +788,7 @@ assign			"="
        && last_token != EOL
        && last_token != SEMI
        && last_token != COMMA
-       && paren_level == 0)
+	&& paren_levels.top() == 0)
    {
        return scan_throw(COMMA);
    }
@@ -796,7 +804,7 @@ assign			"="
        && last_token != EOL
        && last_token != SEMI
        && last_token != COMMA
-       && paren_level == 0)
+	&& paren_levels.top() == 0)
    {
        return scan_throw(COMMA);
    }
@@ -828,6 +836,7 @@ assign			"="
 
   <<EOF>>       {
       yy_pop_state();
+      paren_levels.pop();
   }
 }
 
