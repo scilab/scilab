@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [x1,p1]=srkf(y,x0,p0,f,h,q,r)
     //square root kalman filter algorithm
@@ -29,7 +29,8 @@ function [x1,p1]=srkf(y,x0,p0,f,h,q,r)
     g=[0*q,chol(q)'];
 
     mat=[h*p0,j;f*p0,g];
-    [q,tmat]=qr(mat')';
+    [q,tmat]=qr(mat');
+    tmat=tmat';
     p1=tmat(p+1:p+n,p+1:p+n);
     k=tmat(p+1:p+n,1:p);
     re=tmat(1:p,1:p);

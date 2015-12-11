@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{871b4e56-b56f-40fd-8143-4bd6132b4964}</UniqueIdentifier>
+      <UniqueIdentifier>{e24eeb40-4723-4e7f-9ed9-a1dc43cccb82}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,9 +24,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_completion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_completion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

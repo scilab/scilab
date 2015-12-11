@@ -21,26 +21,22 @@
 //
 
 function [x,y,typ]=CONST_m(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        C=arg1.graphics.exprs;
-        standard_draw(arg1)
-    case "getinputs" then
-        x=[];y=[];typ=[];
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok, C, exprs] = scicos_getvalue([msprintf(gettext("Set %s block parameters"), "CONST_m");" "; ..
             gettext("Constant value generator");" "], gettext("Constant Value"), list("vec", -1), exprs)
 
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             nout=size(C)
             if find(nout==0)<>[] then
                 block_parameter_error(msprintf(gettext("Wrong size for ''%s'' parameter"), gettext("Constant Value")), gettext("Constant value must have at least one element."));
@@ -75,7 +71,8 @@ function [x,y,typ]=CONST_m(job,arg1,arg2)
                     model.rpar=[]
                     [model,graphics,ok]=set_io(model,graphics,list(),list(nout,ot),[],[])
                     graphics.exprs=exprs;
-                    x.graphics=graphics;x.model=model
+                    x.graphics=graphics;
+                    x.model=model
                     break;
                 end
             end
@@ -94,10 +91,7 @@ function [x,y,typ]=CONST_m(job,arg1,arg2)
         model.blocktype="d"
         model.dep_ut=[%f %f]
         exprs=sci2exp(C)
-        gr_i=["dx=sz(1)/5;dy=sz(2)/10;";
-        "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-        "txt=C;"
-        "xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

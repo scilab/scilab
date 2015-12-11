@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 */
 
 #ifndef CAP_FUNC_H_
@@ -14,7 +14,7 @@
 
 /* TODO: Check if it is really portable */
 
-/* Token used to differenciate DEL key from Backspace key for rmChar */
+/* Token used to differentiate DEL key from Backspace key for rmChar */
 
 /* When backspace is pressed */
 #define SCI_BACKSPACE 0x7f

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,12 +26,12 @@ import org.scilab.modules.graph.actions.ZoomOutAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.actions.DiagramBackgroundAction;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.actions.SetupAction;
 import org.scilab.modules.xcos.actions.XcosDocumentationAction;
 import org.scilab.modules.xcos.block.actions.ShowParentAction;
-import org.scilab.modules.xcos.graph.SuperBlockDiagram;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.swing.handler.ConnectionHandler;
 import org.scilab.modules.xcos.graph.swing.handler.GraphHandler;
@@ -101,7 +101,7 @@ public class GraphComponent extends ScilabComponent {
         menu.add(SetContextAction.createMenu((ScilabGraph) getGraph()));
         menu.add(SetupAction.createMenu((ScilabGraph) getGraph()));
 
-        if (getGraph() instanceof SuperBlockDiagram) {
+        if (((XcosDiagram) getGraph()).getKind() == Kind.BLOCK) {
             /*---*/
             menu.getAsSimpleContextMenu().addSeparator();
             /*---*/

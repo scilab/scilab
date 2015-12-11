@@ -6,43 +6,81 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 extern "C"
 {
-#include "GetConsoleShowHiddenHandles.h"
-#include "SetPropertyStatus.h"
-#include "localization.h"
-#include "Scierror.h"
-#include "returnProperty.h"
-#include "BOOL.h"
-
-#include "getGraphicObjectProperty.h"
-#include "graphicObjectProperties.h"
+#include "GetUicontrol.h"
 }
 
-int GetConsoleShowHiddenHandles(void* _pvCtx, char *pObjUID)
+void* GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
 {
     int iShowHiddenHandles = 0;
     int *piShowHiddenHandles = &iShowHiddenHandles;
 
-    getGraphicObjectProperty(pObjUID, __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
+    getGraphicObjectProperty(iObjUID, __GO_SHOWHIDDENHANDLES__, jni_bool, (void **)&piShowHiddenHandles);
 
     if (piShowHiddenHandles == NULL)
     {
         Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "ShowHiddenHandles");
 
-        return FALSE;
+        return NULL;
     }
 
     if (iShowHiddenHandles == TRUE)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
+    }
+}
+
+void* GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID)
+{
+    int iShowHiddenProperties = 0;
+    int *piShowHiddenProperties = &iShowHiddenProperties;
+
+    getGraphicObjectProperty(iObjUID, __GO_SHOWHIDDENPROPERTIES__, jni_bool, (void **)&piShowHiddenProperties);
+
+    if (piShowHiddenProperties == NULL)
+    {
+        Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "ShowHiddenProperties");
+        return NULL;
+    }
+
+    if (iShowHiddenProperties == TRUE)
+    {
+        return sciReturnString("on");
+    }
+    else
+    {
+        return sciReturnString("off");
+    }
+}
+
+void* GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID)
+{
+    int iUseDeprecatedLF = 0;
+    int *piUseDeprecatedLF = &iUseDeprecatedLF;
+
+    getGraphicObjectProperty(iObjUID, __GO_USEDEPRECATEDLF__, jni_bool, (void **)&piUseDeprecatedLF);
+
+    if (piUseDeprecatedLF == NULL)
+    {
+        Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "UseDeprecatedSkin");
+        return NULL;
+    }
+
+    if (iUseDeprecatedLF == TRUE)
+    {
+        return sciReturnString("on");
+    }
+    else
+    {
+        return sciReturnString("off");
     }
 }

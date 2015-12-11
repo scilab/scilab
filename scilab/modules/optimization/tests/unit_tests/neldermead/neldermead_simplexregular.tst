@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
@@ -24,7 +24,7 @@ nm = neldermead_configure(nm,"-x0",[1.0 2.0]');
 nm = neldermead_configure(nm,"-simplex0method","spendley");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",rosenbrock);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 simplex = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx( simplex );
 expected = [

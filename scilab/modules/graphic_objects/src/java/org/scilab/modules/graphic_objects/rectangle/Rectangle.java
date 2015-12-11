@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.rectangle;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -113,8 +114,9 @@ public class Rectangle extends ClippableContouredObject {
     /**
      * @param height the height to set
      */
-    public void setHeight(Double height) {
+    public UpdateStatus setHeight(Double height) {
         this.height = height;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -133,10 +135,11 @@ public class Rectangle extends ClippableContouredObject {
     /**
      * @param upperLeftPoint the upperLeftPoint to set
      */
-    public void setUpperLeftPoint(Double[] upperLeftPoint) {
+    public UpdateStatus setUpperLeftPoint(Double[] upperLeftPoint) {
         this.upperLeftPoint[0] = upperLeftPoint[0];
         this.upperLeftPoint[1] = upperLeftPoint[1];
         this.upperLeftPoint[2] = upperLeftPoint[2];
+        return UpdateStatus.Success;
     }
 
     /**
@@ -149,8 +152,9 @@ public class Rectangle extends ClippableContouredObject {
     /**
      * @param width the width to set
      */
-    public void setWidth(Double width) {
+    public UpdateStatus setWidth(Double width) {
         this.width = width;
+        return UpdateStatus.Success;
     }
 
     /**

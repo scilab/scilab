@@ -30,25 +30,26 @@
 * added object paramaters/states
 *
 * 20/07/07,  Masoud
-* CVODE (sundials) replaced LSODAR
+* CVODE (Sundials) replaced LSODAR
 * IDA  (Sundials)  replaced DASKR
 */
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <string.h>
+#include <wchar.h>
 #include <math.h>
 
 /* Sundials includes */
-#include <cvode/cvode.h>           /* prototypes for CVODES fcts. and consts. */
+#include <cvode/cvode.h>            /* prototypes for CVODES fcts. and consts. */
 #include <cvode/cvode_dense.h>     /* prototype for CVDense */
 #include <cvode/cvode_direct.h>    /* prototypes for various DlsMat operations */
 #include <ida/ida.h>
 #include <ida/ida_dense.h>
 #include <ida/ida_direct.h>
-#include <nvector/nvector_serial.h>  /* serial N_Vector types, fcts., and macros */
-#include <sundials/sundials_dense.h> /* prototypes for various DlsMat operations */
+#include <nvector/nvector_serial.h>   /* serial N_Vector types, fcts., and macros */
+#include <sundials/sundials_dense.h>  /* prototypes for various DlsMat operations */
 #include <sundials/sundials_direct.h> /* definitions of DlsMat and DENSE_ELEM */
-#include <sundials/sundials_types.h> /* definition of type realtype */
+#include <sundials/sundials_types.h>  /* definition of type realtype */
 #include <sundials/sundials_math.h>
 #include <kinsol/kinsol.h>
 #include <kinsol/kinsol_dense.h>
@@ -57,25 +58,24 @@
 #include "ida_impl.h"
 
 #include "machine.h" /* C2F */
-#include "dynamic_link.h"
 #include "scicos-def.h"
-#include "stack-def.h"
 #include "sciprint.h"
 #include "scicos.h"
 #include "import.h"
+#include "scicos_internal.h"
 #include "blocks.h"
 #include "core_math.h"
 #include "storeCommand.h"
 #include "syncexec.h"
 #include "realtime.h"
-#include "MALLOC.h"
-#include "cvstr.h"
+#include "sci_malloc.h"
 #include "ezxml.h"
-#include "xscion.h"
 
 #include "sciblk2.h"
 #include "sciblk4.h"
 #include "dynlib_scicos.h"
+
+#include "configvariable_interface.h" /* getEntryPointPosition() and getEntryPointFromPosition() */
 
 #include "lsodar.h"           /* prototypes for lsodar fcts. and consts. */
 #include "ddaskr.h"           /* prototypes for ddaskr fcts. and consts. */
@@ -86,6 +86,9 @@
 
 #include "localization.h"
 #include "charEncoding.h"
+#include "common_structure.h"
+#include "Sciwarning.h"
+
 /*--------------------------------------------------------------------------*/
 typedef struct
 {
@@ -99,6 +102,21 @@ typedef struct
 } *UserData;
 
 SCICOS_IMPEXP SCSPTR_struct C2F(scsptr);
+
+enum Solver
+{
+    LSodar_Dynamic = 0,
+    CVode_BDF_Newton,
+    CVode_BDF_Functional,
+    CVode_Adams_Newton,
+    CVode_Adams_Functional,
+    Dormand_Prince,
+    Runge_Kutta,
+    Implicit_Runge_Kutta,
+    IDA_BDF_Newton = 100,
+    DDaskr_BDF_Newton = 101,
+    DDaskr_BDF_GMRes = 102
+};
 /*--------------------------------------------------------------------------*/
 
 #define freeall					\
@@ -143,6 +161,17 @@ SCICOS_IMPEXP SCSPTR_struct C2F(scsptr);
 #define ONE   RCONST(1.0)
 #define ZERO  RCONST(0.0)
 #define T0    RCONST(0.0)
+
+// Special values for elements of 'funtyp'
+#define FORTRAN_GATEWAY   0
+#define UNUSED1           1
+#define UNUSED2           2
+#define SCIFUNC_BLOCK     3
+#define EXPRESSION_BLOCK  5
+#define IFTHEL_BLOCK      11
+#define ESELECT_BLOCK     12
+#define DEBUG_BLOCK       99
+#define OLD_SCI_BLOCK     10005
 /*--------------------------------------------------------------------------*/
 /* Table of constant values */
 static int c__90 = 90;
@@ -233,16 +262,16 @@ static int CallKinsol(double *told);
 static int simblk(realtype t, N_Vector yy, N_Vector yp, void *f_data);
 static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void *g_data);
 static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data);
-static int simblklsodar(int * nequations, realtype * tOld, realtype * actual, realtype * res);
-static int grblklsodar(int * nequations, realtype * tOld, realtype * actual, int * ngc, realtype * res);
-static int simblkddaskr(realtype *tOld, realtype *actual, realtype *actualP, realtype *res, int *flag, double *dummy1, int *dummy2);
-static int grblkddaskr(int *nequations, realtype *tOld, realtype *actual, int *ngc, realtype *res, double *dummy1, int *dummy2);
-static int jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
-                   realtype *rewt, realtype *savr, realtype *wk, realtype *h, realtype *cj, realtype *wp,
-                   int *iwp, int *ier, double *dummy1, int *dummy2);
-static int psol(int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
-                realtype *savr, realtype *wk, realtype *cj, realtype *wght, realtype *wp,
-                int *iwp, realtype *b, realtype *eplin, int *ier, double *dummy1, int *dummy2);
+static void simblklsodar(int * nequations, realtype * tOld, realtype * actual, realtype * res);
+static void grblklsodar(int * nequations, realtype * tOld, realtype * actual, int * ngc, realtype * res);
+static void simblkddaskr(realtype *tOld, realtype *actual, realtype *actualP, realtype *res, int *flag, double *dummy1, int *dummy2);
+static void grblkddaskr(int *nequations, realtype *tOld, realtype *actual, int *ngc, realtype *res, double *dummy1, int *dummy2);
+static void jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
+                    realtype *rewt, realtype *savr, realtype *wk, realtype *h, realtype *cj, realtype *wp,
+                    int *iwp, int *ier, double *dummy1, int *dummy2);
+static void psol(int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
+                 realtype *savr, realtype *wk, realtype *cj, realtype *wght, realtype *wp,
+                 int *iwp, realtype *b, realtype *eplin, int *ier, double *dummy1, int *dummy2);
 static void addevs(double t, int *evtnb, int *ierr1);
 static int synchro_g_nev(ScicosImport *scs_imp, double *g, int kf, int *ierr);
 static void Multp(double *A, double *B, double *R, int ra, int rb, int ca, int cb);
@@ -252,17 +281,15 @@ static void SundialsErrHandler(int error_code, const char *module, const char *f
 static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
                      N_Vector yp, N_Vector resvec, DlsMat Jacque, void *jdata,
                      N_Vector tempv1, N_Vector tempv2, N_Vector tempv3);
-static int Jacobiansddaskr(realtype *t, realtype *y, realtype *yp,
-                           realtype *pd, realtype *cj, double *dummy1, int *dummy2);
 static void call_debug_scicos(scicos_block *block, scicos_flag *flag, int flagi, int deb_blk);
 static int synchro_nev(ScicosImport *scs_imp, int kf, int *ierr);
 /*--------------------------------------------------------------------------*/
 extern int C2F(dset)(int *n, double *dx, double *dy, int *incy);
 extern int C2F(dcopy)(int *, double *, int *, double *, int *);
+extern int C2F(dgefa)(double *A, int *lead_dim_A, int *n, int *ipivots, int *info);
+extern int C2F(dgesl)(double *A, int *lead_dim_A, int *n, int *ipivots, double *B, int *job);
 extern int C2F(msgs)();
-extern int C2F(getscsmax)();
-extern int C2F(makescicosimport)();
-extern int C2F(clearscicosimport)();
+extern void C2F(clearscicosimport)();
 /*--------------------------------------------------------------------------*/
 void putevs(double *t, int *evtnb, int *ierr1);
 void Jdoit(double *told, double *xt, double *xtd, double *residual, int *job);
@@ -271,12 +298,12 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata);
 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
                 void **work, int *zptr, int *modptr_in,
                 void **oz, int *ozsz, int *oztyp, int *ozptr,
-                int *iz, int *izptr, double *t0_in,
+                char **iz, int *izptr, char **uid, int *uidptr, double *t0_in,
                 double *tf_in, double *tevts_in, int *evtspt_in,
                 int *nevts, int *pointi_in, void **outtbptr_in,
                 int *outtbsz_in, int *outtbtyp_in,
                 outtb_el *outtb_elem_in, int *nelem1, int *nlnk1,
-                int *funptr, int *funtyp_in, int *inpptr_in,
+                void** funptr, int *funtyp_in, int *inpptr_in,
                 int *outptr_in, int *inplnk_in, int *outlnk_in,
                 double *rpar, int *rpptr, int *ipar, int *ipptr,
                 void **opar, int *oparsz, int *opartyp, int *opptr,
@@ -315,7 +342,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     xptr = xptr_in - 1;
     modptr = modptr_in - 1;
     --zptr;
-    --izptr;
+    //--izptr;
     --ozptr;
     evtspt = evtspt_in - 1;
     tevts = tevts_in - 1;
@@ -506,78 +533,74 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     /* 1 : type and pointer on simulation function */
     for (kf = 0; kf < nblk; ++kf)   /*for each block */
     {
+        void* p = funptr[kf];
         C2F(curblk).kfun = kf + 1;
-        i = funptr[kf];
         Blocks[kf].type = funtyp[kf + 1];
-        if (i < 0)
+        if (Blocks[kf].type == IFTHEL_BLOCK)
         {
-            switch (funtyp[kf + 1])
+            funtyp[kf + 1] = -1;
+        }
+        else if (Blocks[kf].type == ESELECT_BLOCK)
+        {
+            funtyp[kf + 1] = -2;
+        }
+        else if (Blocks[kf].type < 0)
+        {
+            //macros
+            funtyp[kf + 1] *= -1; // Restore a positive 'funtyp' for later use
+            switch (-Blocks[kf].type)
             {
-                case 0:
-                    Blocks[kf].funpt = F2C(sciblk);
+                case FORTRAN_GATEWAY:
+                    Blocks[kf].funpt = (voidg)F2C(sciblk);
                     break;
-                case 1:
+                case UNUSED1:
                     sciprint(_("type 1 function not allowed for scilab blocks\n"));
                     *ierr = 1000 + kf + 1;
                     FREE_blocks();
                     return 0;
-                case 2:
+                case UNUSED2:
                     sciprint(_("type 2 function not allowed for scilab blocks\n"));
                     *ierr = 1000 + kf + 1;
                     FREE_blocks();
                     return 0;
-                case 3:
-                    Blocks[kf].funpt = sciblk2;
+                case SCIFUNC_BLOCK:
+                    Blocks[kf].funpt = (voidg)sciblk2;
                     Blocks[kf].type = 2;
                     break;
-                case 5:
-                    Blocks[kf].funpt = sciblk4;
+                case EXPRESSION_BLOCK:
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     Blocks[kf].type = 4;
                     break;
-                case 99: /* debugging block */
-                    Blocks[kf].funpt = sciblk4;
-                    /*Blocks[kf].type=4;*/
+                case DEBUG_BLOCK: /* debugging block */
+                    Blocks[kf].funpt = (voidg)sciblk4;
+                    Blocks[kf].type *= -1;
                     debug_block = kf;
                     break;
 
-                case 10005:
-                    Blocks[kf].funpt = sciblk4;
+                case OLD_SCI_BLOCK:
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     Blocks[kf].type = 10004;
                     break;
-                default :
+                default:
                     sciprint(_("Undefined Function type\n"));
                     *ierr = 1000 + kf + 1;
                     FREE_blocks();
                     return 0;
             }
-            Blocks[kf].scsptr = -i; /* set scilab function adress for sciblk */
-        }
-        else if (i <= ntabsim)
-        {
-            Blocks[kf].funpt = *(tabsim[i - 1].fonc);
-            Blocks[kf].scsptr = 0;     /* this is done for being able to test if a block
-									 is a scilab block in the debugging phase when
-									 sciblk4 is called */
+            Blocks[kf].scsptr = p; /* set scilab function adress for sciblk */
         }
         else
         {
-            i -= (ntabsim + 1);
-            GetDynFunc(i, &Blocks[kf].funpt);
-            if ( Blocks[kf].funpt == (voidf) 0)
-            {
-                sciprint(_("Function not found\n"));
-                *ierr = 1000 + kf + 1;
-                FREE_blocks();
-                return 0;
-            }
-            Blocks[kf].scsptr = 0;   /* this is done for being able to test if a block
-								   is a scilab block in the debugging phase when
-								   sciblk4 is called */
+            //linked functions (internal or external)
+            Blocks[kf].funpt = (voidf)p;
+            Blocks[kf].scsptr = NULL;   /* this is done for being able to test if a block
+                                        is a scilab block in the debugging phase when
+                                        sciblk4 is called */
         }
 
         /* 2 : Dimension properties */
         Blocks[kf].ztyp = ztyp[kf + 1];
-        Blocks[kf].nx = xptr[kf + 2] - xptr[kf + 1]; /* continuuous state dimension*/
+        Blocks[kf].nx = xptr[kf + 2] - xptr[kf + 1]; /* continuous state dimension*/
         Blocks[kf].ng = zcptr[kf + 2] - zcptr[kf + 1]; /* number of zero crossing surface*/
         Blocks[kf].nz = zptr[kf + 2] - zptr[kf + 1]; /* number of double discrete state*/
         Blocks[kf].noz = ozptr[kf + 2] - ozptr[kf + 1]; /* number of other discrete state*/
@@ -736,7 +759,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
         }
 
         /* 11 : block label (label) */
-        i1 = izptr[kf + 2] - izptr[kf + 1];
+        i1 = izptr[kf];
         if ((Blocks[kf].label = MALLOC(sizeof(char) * (i1 + 1))) == NULL)
         {
             FREE_blocks();
@@ -744,11 +767,22 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             return 0;
         }
         Blocks[kf].label[i1] = '\0';
-        C2F(cvstr)(&i1, &(iz[izptr[kf + 1] - 1]), Blocks[kf].label, &job, i1);
+        strcpy(Blocks[kf].label, iz[kf]);
+
+        /* block uid (uid) */
+        i1 = uidptr[kf];
+        if ((Blocks[kf].uid = MALLOC(sizeof(char) * (i1 + 1))) == NULL)
+        {
+            FREE_blocks();
+            *ierr = 5;
+            return 0;
+        }
+        Blocks[kf].uid[i1] = '\0';
+        strcpy(Blocks[kf].uid, uid[kf]);
 
         /* 12 : block array of crossed surfaces (jroot) */
         Blocks[kf].jroot = NULL;
-        if (Blocks[kf].ng != 0)
+        if (Blocks[kf].ng > 0)
         {
             if ((Blocks[kf].jroot = CALLOC(Blocks[kf].ng, sizeof(int))) == NULL)
             {
@@ -797,22 +831,23 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     }
 
     /* save ptr of scicos in import structure */
-    C2F(makescicosimport)(x, &nx, &xptr[1], &zcptr[1], z__, &nz, &zptr[1],
-                          &noz, oz, ozsz, oztyp, &ozptr[1],
-                          g, &ng, mod, &nmod, &modptr[1], iz, &izptr[1],
-                          &inpptr[1], &inplnk[1], &outptr[1], &outlnk[1],
-                          outtbptr, outtbsz, outtbtyp,
-                          outtb_elem, &nelem,
-                          &nlnk, rpar, &rpptr[1], ipar, &ipptr[1],
-                          opar, oparsz, opartyp, &opptr[1],
-                          &nblk, subscr, nsubs,
-                          &tevts[1], &evtspt[1], nevts, pointi,
-                          &iord[1], &niord, &oord[1], &noord, &zord[1], &nzord,
-                          funptr, &funtyp[1], &ztyp[1],
-                          &cord[1], &ncord, &ordclk[1], &nordclk, &clkptr[1],
-                          &ordptr[1], &nordptr, &critev[1], iwa, Blocks,
-                          t0, tf, &Atol, &rtol, &ttol, &deltat, &hmax,
-                          xprop, xd);
+    makescicosimport(x, &nx, &xptr[1], &zcptr[1], z__, &nz, &zptr[1],
+                     &noz, oz, ozsz, oztyp, &ozptr[1],
+                     g, &ng, mod, &nmod, &modptr[1], iz, &izptr[1],
+                     uid, uidptr,
+                     &inpptr[1], &inplnk[1], &outptr[1], &outlnk[1],
+                     outtbptr, outtbsz, outtbtyp,
+                     outtb_elem, &nelem,
+                     &nlnk, rpar, &rpptr[1], ipar, &ipptr[1],
+                     opar, oparsz, opartyp, &opptr[1],
+                     &nblk, subscr, nsubs,
+                     &tevts[1], &evtspt[1], nevts, pointi,
+                     &iord[1], &niord, &oord[1], &noord, &zord[1], &nzord,
+                     funptr, &funtyp[1], &ztyp[1],
+                     &cord[1], &ncord, &ordclk[1], &nordclk, &clkptr[1],
+                     &ordptr[1], &nordptr, &critev[1], iwa, Blocks,
+                     t0, tf, &Atol, &rtol, &ttol, &deltat, &hmax,
+                     xprop, xd);
 
     if (*flag__ == 1)   /*start*/
     {
@@ -838,18 +873,19 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
         /*     integration */
         switch (C2F(cmsolver).solver)
         {
-            case 0: // LSodar - Dynamic / Dynamic
-            case 1: // CVode - BDF / Newton
-            case 2: // CVode - BDF / Functional
-            case 3: // CVode - Adams / Newton
-            case 4: // CVode - Adams / Functional
-            case 5: // Dormand-Prince
-            case 6: // Runge-Kutta
-            case 7: // Implicit Runge-Kutta - RK / Fixed-Point
+            case LSodar_Dynamic:
+            case CVode_BDF_Newton:
+            case CVode_BDF_Functional:
+            case CVode_Adams_Newton:
+            case CVode_Adams_Functional:
+            case Dormand_Prince:
+            case Runge_Kutta:
+            case Implicit_Runge_Kutta:
                 cossim(t0);
                 break;
-            case 100: // IDA
-            case 101: // DDaskr
+            case IDA_BDF_Newton:
+            case DDaskr_BDF_Newton:
+            case DDaskr_BDF_GMRes:
                 cossimdaskr(t0);
                 break;
             default: // Unknown solver number
@@ -941,7 +977,7 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
     if (opt == 0 && flagvalue == NULL)
     {
         sciprint(_("\nSUNDIALS_ERROR: %s() failed - returned NULL pointer\n\n"), funcname);
-        return(1);
+        return (1);
     }
     /* Check if flag < 0 */
     else if (opt == 1)
@@ -951,17 +987,17 @@ static int check_flag(void *flagvalue, char *funcname, int opt)
         {
             sciprint(_("\nSUNDIALS_ERROR: %s() failed with flag = %d\n\n"),
                      funcname, *errflag);
-            return(1);
+            return (1);
         }
     }
     /* Check if function returned NULL pointer - no memory allocated */
     else if (opt == 2 && flagvalue == NULL)
     {
         sciprint(_("\nMEMORY_ERROR: %s() failed - returned NULL pointer\n\n"), funcname);
-        return(1);
+        return (1);
     }
 
-    return(0);
+    return (0);
 } /* check_flag */
 
 /*--------------------------------------------------------------------------*/
@@ -997,41 +1033,49 @@ static void cosini(double *told)
             case SCSREAL_N    :
                 szouttbd += outtbsz[ii] * outtbsz[ii + nlnk]; /*double real matrix*/
                 outtbd = (SCSREAL_COP *) REALLOC (outtbd, szouttbd * sizeof(SCSREAL_COP));
+                memset(outtbd, 0, szouttbd * sizeof(SCSREAL_COP));
                 break;
 
             case SCSCOMPLEX_N :
                 szouttbd += 2 * outtbsz[ii] * outtbsz[ii + nlnk]; /*double complex matrix*/
                 outtbd = (SCSCOMPLEX_COP *) REALLOC (outtbd, szouttbd * sizeof(SCSCOMPLEX_COP));
+                memset(outtbd, 0, szouttbd * sizeof(SCSCOMPLEX_COP));
                 break;
 
             case SCSINT8_N    :
                 szouttbc += outtbsz[ii] * outtbsz[ii + nlnk]; /*int8*/
                 outtbc = (SCSINT8_COP *) REALLOC (outtbc, szouttbc * sizeof(SCSINT8_COP));
+                memset(outtbc, 0, szouttbc * sizeof(SCSINT8_COP));
                 break;
 
             case SCSINT16_N   :
                 szouttbs += outtbsz[ii] * outtbsz[ii + nlnk]; /*int16*/
                 outtbs = (SCSINT16_COP *) REALLOC (outtbs, szouttbs * sizeof(SCSINT16_COP));
+                memset(outtbs, 0, szouttbs * sizeof(SCSINT16_COP));
                 break;
 
             case SCSINT32_N   :
                 szouttbl += outtbsz[ii] * outtbsz[ii + nlnk]; /*int32*/
                 outtbl = (SCSINT32_COP *) REALLOC (outtbl, szouttbl * sizeof(SCSINT32_COP));
+                memset(outtbl, 0, szouttbl * sizeof(SCSINT32_COP));
                 break;
 
             case SCSUINT8_N   :
                 szouttbuc += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint8*/
                 outtbuc = (SCSUINT8_COP *) REALLOC (outtbuc, szouttbuc * sizeof(SCSUINT8_COP));
+                memset(outtbuc, 0, szouttbuc * sizeof(SCSUINT8_COP));
                 break;
 
             case SCSUINT16_N  :
                 szouttbus += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint16*/
                 outtbus = (SCSUINT16_COP *) REALLOC (outtbus, szouttbus * sizeof(SCSUINT16_COP));
+                memset(outtbus, 0, szouttbus * sizeof(SCSUINT16_COP));
                 break;
 
             case SCSUINT32_N  :
                 szouttbul += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint32*/
                 outtbul = (SCSUINT32_COP *) REALLOC (outtbul, szouttbul * sizeof(SCSUINT32_COP));
+                memset(outtbul, 0, szouttbul * sizeof(SCSUINT32_COP));
                 break;
 
             default  : /* Add a message here */
@@ -1122,7 +1166,7 @@ static void cosini(double *told)
         }
 
         flag__ = 6;
-        for (jj = 1; jj <= ncord; ++jj)   /*for each continous block*/
+        for (jj = 1; jj <= ncord; ++jj)   /*for each continuous block*/
         {
             C2F(curblk).kfun = cord[jj];
             if (funtyp[C2F(curblk).kfun] >= 0)
@@ -1155,6 +1199,13 @@ static void cosini(double *told)
                     sszz = outtbsz[jj] * outtbsz[jj + nlnk];
                     for (kk = 0; kk < sszz; kk++)
                     {
+                        int outtbdptr_isnan = outtbdptr[kk] != outtbdptr[kk];
+                        int outtbd_isnan = (SCSREAL_COP)outtbd[curouttbd + kk] != (SCSREAL_COP)outtbd[curouttbd + kk];
+
+                        if (outtbdptr_isnan && outtbd_isnan)
+                        {
+                            continue;
+                        }
                         if (outtbdptr[kk] != (SCSREAL_COP)outtbd[curouttbd + kk])
                         {
                             goto L30;
@@ -1168,6 +1219,13 @@ static void cosini(double *told)
                     sszz = 2 * outtbsz[jj] * outtbsz[jj + nlnk];
                     for (kk = 0; kk < sszz; kk++)
                     {
+                        int outtbdptr_isnan = outtbdptr[kk] != outtbdptr[kk];
+                        int outtbd_isnan = (SCSCOMPLEX_COP)outtbd[curouttbd + kk] != (SCSCOMPLEX_COP)outtbd[curouttbd + kk];
+
+                        if (outtbdptr_isnan && outtbd_isnan)
+                        {
+                            continue;
+                        }
                         if (outtbdptr[kk] != (SCSCOMPLEX_COP)outtbd[curouttbd + kk])
                         {
                             goto L30;
@@ -1364,7 +1422,7 @@ static void cossim(double *told)
     int i3 = 0;
 
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -1376,7 +1434,6 @@ static void cossim(double *told)
     static double t = 0.;
     static int jj = 0;
     static double rhotmp = 0., tstop = 0.;
-    static int inxsci = 0;
     static int kpo = 0, kev = 0;
     int Discrete_Jump = 0;
     int *jroot = NULL, *zcros = NULL;
@@ -1385,6 +1442,8 @@ static void cossim(double *told)
     void *ode_mem = NULL;
     int flag = 0, flagr = 0;
     int cnt = 0;
+    /* Saving solver number */
+    int solver = C2F(cmsolver).solver;
     /* Defining function pointers, for more readability */
     void(* ODEFree) (void**);
     int (* ODE) (void*, realtype, N_Vector, realtype*, int);
@@ -1396,9 +1455,9 @@ static void cossim(double *told)
     /* Generic flags for stop mode */
     int ODE_NORMAL   = 1;  /* ODE_NORMAL   = CV_NORMAL   = LS_NORMAL   = 1 */
     int ODE_ONE_STEP = 2;  /* ODE_ONE_STEP = CV_ONE_STEP = LS_ONE_STEP = 2 */
-    switch (C2F(cmsolver).solver)
+    switch (solver)
     {
-        case 0: // LSodar
+        case LSodar_Dynamic:
             ODEFree = &LSodarFree;
             ODE = &LSodar;
             ODEReInit = &LSodarReInit;
@@ -1407,13 +1466,13 @@ static void cossim(double *told)
             ODEGetRootInfo = &LSodarGetRootInfo;
             ODESStolerances = &LSodarSStolerances;
             break;
-        case 1: // CVode BDF / Newton
-        case 2: // CVode BDF / Functional
-        case 3: // CVode Adams / Newton
-        case 4: // CVode Adams / Functional
-        case 5: // Dormand-Prince
-        case 6: // Runge-Kutta
-        case 7: // Implicit Runge-Kutta
+        case CVode_BDF_Newton:
+        case CVode_BDF_Functional:
+        case CVode_Adams_Newton:
+        case CVode_Adams_Functional:
+        case Dormand_Prince:
+        case Runge_Kutta:
+        case Implicit_Runge_Kutta:
             ODEFree = &CVodeFree;
             ODE = &CVode;
             ODEReInit = &CVodeReInit;
@@ -1428,7 +1487,7 @@ static void cossim(double *told)
     }
 
     jroot = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((jroot = MALLOC(sizeof(int) * ng)) == NULL )
         {
@@ -1443,7 +1502,7 @@ static void cossim(double *told)
     }
 
     zcros = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((zcros = MALLOC(sizeof(int) * ng)) == NULL )
         {
@@ -1483,30 +1542,30 @@ static void cossim(double *told)
         /* Set extension of Sundials for scicos */
         set_sundials_with_extension(TRUE);
 
-        switch (C2F(cmsolver).solver)
+        switch (solver)
         {
-            case 0:
+            case LSodar_Dynamic:
                 ode_mem = LSodarCreate(neq, ng); /* Create the lsodar problem */
                 break;
-            case 1:
+            case CVode_BDF_Newton:
                 ode_mem = CVodeCreate(CV_BDF, CV_NEWTON);
                 break;
-            case 2:
+            case CVode_BDF_Functional:
                 ode_mem = CVodeCreate(CV_BDF, CV_FUNCTIONAL);
                 break;
-            case 3:
+            case CVode_Adams_Newton:
                 ode_mem = CVodeCreate(CV_ADAMS, CV_NEWTON);
                 break;
-            case 4:
+            case CVode_Adams_Functional:
                 ode_mem = CVodeCreate(CV_ADAMS, CV_FUNCTIONAL);
                 break;
-            case 5:
+            case Dormand_Prince:
                 ode_mem = CVodeCreate(CV_DOPRI, CV_FUNCTIONAL);
                 break;
-            case 6:
+            case Runge_Kutta:
                 ode_mem = CVodeCreate(CV_ExpRK, CV_FUNCTIONAL);
                 break;
-            case 7:
+            case Implicit_Runge_Kutta:
                 ode_mem = CVodeCreate(CV_ImpRK, CV_FUNCTIONAL);
                 break;
         }
@@ -1522,7 +1581,7 @@ static void cossim(double *told)
             return;
         }
 
-        if (C2F(cmsolver).solver == 0)
+        if (solver == LSodar_Dynamic)
         {
             flag = LSodarSetErrHandlerFn(ode_mem, SundialsErrHandler, NULL);
         }
@@ -1537,7 +1596,7 @@ static void cossim(double *told)
             return;
         }
 
-        if (C2F(cmsolver).solver == 0)
+        if (solver == LSodar_Dynamic)
         {
             flag = LSodarInit(ode_mem, simblklsodar, T0, y);
         }
@@ -1560,7 +1619,7 @@ static void cossim(double *told)
             return;
         }
 
-        if (C2F(cmsolver).solver == 0)
+        if (solver == LSodar_Dynamic)
         {
             flag = LSodarRootInit(ode_mem, ng, grblklsodar);
         }
@@ -1575,8 +1634,8 @@ static void cossim(double *told)
             return;
         }
 
-        if (C2F(cmsolver).solver != 0)
-            /* Call CVDense to specify the CVDENSE dense linear solver */
+        /* Call CVDense to specify the CVDENSE dense linear solver, only for solvers needing CVode's Newton method */
+        if (solver == CVode_BDF_Newton || solver == CVode_Adams_Newton)
         {
             flag = CVDense(ode_mem, *neq);
         }
@@ -1607,7 +1666,6 @@ static void cossim(double *told)
     C2F(coshlt).halt = 0;
     *ierr = 0;
 
-    C2F(xscion)(&inxsci);
     /*     initialization */
     C2F(realtimeinit)(told, &C2F(rtfactor).scale);
 
@@ -1663,9 +1721,11 @@ static void cossim(double *told)
         while (ismenu()) //** if the user has done something, do the actions
         {
             int ierr2 = 0;
-            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+            int iUnused;
+            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
-            syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -2054,7 +2114,7 @@ static void cossimdaskr(double *told)
     /* System generated locals */
     int i3;
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -2066,7 +2126,6 @@ static void cossimdaskr(double *told)
     static double t = 0.;
     static int jj = 0;
     static double rhotmp = 0., tstop = 0.;
-    static int inxsci = 0;
     static int kpo = 0, kev = 0;
 
     int *jroot = NULL, *zcros = NULL;
@@ -2084,11 +2143,13 @@ static void cossimdaskr(double *told)
     void *dae_mem = NULL;
     UserData data = NULL;
     IDAMem copy_IDA_mem = NULL;
-    int maxnj = 0, maxnit = 0;
+    int maxnj = 0, maxnit = 0, maxnh = 0;
     /*-------------------- Analytical Jacobian memory allocation ----------*/
     int  Jn = 0, Jnx = 0, Jno = 0, Jni = 0, Jactaille = 0;
     double uround = 0.;
     int cnt = 0, N_iters = 0;
+    /* Saving solver number */
+    int solver = C2F(cmsolver).solver;
     /* Flags for initial values calculation */
     int DAE_YA_YDP_INIT = 1;
     int DAE_Y_INIT      = 2;
@@ -2104,16 +2165,18 @@ static void cossimdaskr(double *told)
     int (* DAEGetRootInfo) (void*, int*);
     int (* DAESStolerances) (void*, realtype, realtype);
     int (* DAEGetConsistentIC) (void*, N_Vector, N_Vector);
+    int (* DAESetMaxNumSteps) (void*, long int);
     int (* DAESetMaxNumJacsIC) (void*, int);
     int (* DAESetMaxNumItersIC) (void*, int);
     int (* DAESetMaxNumStepsIC) (void*, int);
     int (* DAESetLineSearchOffIC) (void*, int);
-    /* Generic flag for stop mode */
-    int DAE_NORMAL   = 1;  /* IDA_NORMAL   = 1 */
-    int DAE_ONE_STEP = 2;  /* IDA_ONE_STEP = 2 */
-    switch (C2F(cmsolver).solver)
+    /* For DAEs, the generic flags for stop mode depend on the used solver */
+    int DAE_NORMAL = 0, DAE_ONE_STEP = 0;
+    DAE_NORMAL   = (solver == IDA_BDF_Newton) ? 1 : 0;  /* IDA_NORMAL   = 1, DDAS_NORMAL   = 0 */
+    DAE_ONE_STEP = (solver == IDA_BDF_Newton) ? 2 : 1;  /* IDA_ONE_STEP = 2, DDAS_ONE_STEP = 1 */
+    switch (solver)
     {
-        case 100: // IDA
+        case IDA_BDF_Newton:
             DAEFree = &IDAFree;
             DAESolve = &IDASolve;
             DAESetId = &IDASetId;
@@ -2124,13 +2187,15 @@ static void cossimdaskr(double *told)
             DAESetStopTime = &IDASetStopTime;
             DAEGetRootInfo = &IDAGetRootInfo;
             DAESStolerances = &IDASStolerances;
+            DAESetMaxNumSteps = &IDASetMaxNumSteps;
             DAEGetConsistentIC = &IDAGetConsistentIC;
             DAESetMaxNumJacsIC = &IDASetMaxNumJacsIC;
             DAESetMaxNumItersIC = &IDASetMaxNumItersIC;
             DAESetMaxNumStepsIC = &IDASetMaxNumStepsIC;
             DAESetLineSearchOffIC = &IDASetLineSearchOffIC;
             break;
-        case 101: // DDaskr
+        case DDaskr_BDF_Newton:
+        case DDaskr_BDF_GMRes:
             DAEFree = &DDaskrFree;
             DAESolve = &DDaskrSolve;
             DAESetId = &DDaskrSetId;
@@ -2141,6 +2206,7 @@ static void cossimdaskr(double *told)
             DAESetStopTime = &DDaskrSetStopTime;
             DAEGetRootInfo = &DDaskrGetRootInfo;
             DAESStolerances = &DDaskrSStolerances;
+            DAESetMaxNumSteps = &DDaskrSetMaxNumSteps;
             DAEGetConsistentIC = &DDaskrGetConsistentIC;
             DAESetMaxNumJacsIC = &DDaskrSetMaxNumJacsIC;
             DAESetMaxNumItersIC = &DDaskrSetMaxNumItersIC;
@@ -2151,16 +2217,13 @@ static void cossimdaskr(double *told)
             *ierr = 1000;
             return;
     }
-    /* For DAEs, the stop mode flag depends on the used solver */
-    DAE_NORMAL   = (C2F(cmsolver).solver == 100) ? 1 : 0;  /* IDA_NORMAL   = 1, DDAS_NORMAL   = 0 */
-    DAE_ONE_STEP = (C2F(cmsolver).solver == 100) ? 2 : 1;  /* IDA_ONE_STEP = 2, DDAS_ONE_STEP = 1 */
 
     /* Set extension of Sundials for scicos */
     set_sundials_with_extension(TRUE);
 
     // CI=1.0;   /* for function Get_Jacobian_ci */
     jroot = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((jroot = MALLOC(sizeof(int) * ng)) == NULL )
         {
@@ -2174,12 +2237,12 @@ static void cossimdaskr(double *told)
     }
 
     zcros = NULL;
-    if (ng != 0)
+    if (ng > 0)
     {
         if ((zcros = MALLOC(sizeof(int) * ng)) == NULL )
         {
             *ierr = 10000;
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
@@ -2188,16 +2251,16 @@ static void cossimdaskr(double *told)
     }
 
     Mode_save = NULL;
-    if (nmod != 0)
+    if (nmod > 0)
     {
         if ((Mode_save = MALLOC(sizeof(int) * nmod)) == NULL )
         {
             *ierr = 10000;
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
@@ -2214,15 +2277,15 @@ static void cossimdaskr(double *told)
         yy = N_VNewEmpty_Serial(*neq);
         if (check_flag((void *)yy, "N_VNew_Serial", 0))
         {
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2237,15 +2300,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2266,15 +2329,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2283,9 +2346,9 @@ static void cossimdaskr(double *told)
 
         /* Call the Create and Init functions to initialize DAE memory */
         dae_mem = NULL;
-        if (C2F(cmsolver).solver == 101)
+        if (solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes)
         {
-            dae_mem = DDaskrCreate(neq, ng);
+            dae_mem = DDaskrCreate(neq, ng, solver);
         }
         else
         {
@@ -2305,15 +2368,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2324,7 +2387,7 @@ static void cossimdaskr(double *told)
             copy_IDA_mem = (IDAMem) dae_mem;
         }
 
-        if (C2F(cmsolver).solver == 101)
+        if (solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes)
         {
             flag = DDaskrSetErrHandlerFn(dae_mem, SundialsErrHandler, NULL);
         }
@@ -2351,22 +2414,22 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
             return;
         }
 
-        if (C2F(cmsolver).solver == 101)
+        if (solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes)
         {
             flag = DDaskrInit(dae_mem, simblkddaskr, T0, yy, yp, jacpsol, psol);
         }
@@ -2393,15 +2456,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2428,22 +2491,22 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
             return;
         }
 
-        if (C2F(cmsolver).solver == 101)
+        if (solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes)
         {
             flag = DDaskrRootInit(dae_mem, ng, grblkddaskr);
         }
@@ -2470,29 +2533,29 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
             return;
         }
 
-        if (C2F(cmsolver).solver == 100)
+        if (solver == IDA_BDF_Newton)
         {
             flag = IDADense(dae_mem, *neq);
         }
         if (check_flag(&flag, "IDADense", 1))
         {
             *ierr = 200 + (-flag);
-            if (*neq > 0)if (C2F(cmsolver).solver == 100)
+            if (*neq > 0)if (solver == IDA_BDF_Newton)
                 {
                     IDAFree(&dae_mem);
                 }
@@ -2508,15 +2571,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2543,15 +2606,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2587,15 +2650,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2629,15 +2692,15 @@ static void cossimdaskr(double *told)
                 {
                     N_VDestroy_Serial(yy);
                 }
-                if (ng != 0)
+                if (ng > 0)
                 {
                     FREE(jroot);
                 }
-                if (ng != 0)
+                if (ng > 0)
                 {
                     FREE(zcros);
                 }
-                if (nmod != 0)
+                if (nmod > 0)
                 {
                     FREE(Mode_save);
                 }
@@ -2691,15 +2754,15 @@ static void cossimdaskr(double *told)
             {
                 N_VDestroy_Serial(yy);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(jroot);
             }
-            if (ng != 0)
+            if (ng > 0)
             {
                 FREE(zcros);
             }
-            if (nmod != 0)
+            if (nmod > 0)
             {
                 FREE(Mode_save);
             }
@@ -2707,11 +2770,7 @@ static void cossimdaskr(double *told)
             return;
         }
 
-        if (C2F(cmsolver).solver == 101)
-        {
-            flag = DDaskrDlsSetDenseJacFn(dae_mem, Jacobiansddaskr);
-        }
-        else
+        if (solver == IDA_BDF_Newton)
         {
             flag = IDADlsSetDenseJacFn(dae_mem, Jacobians);
         }
@@ -2753,6 +2812,10 @@ static void cossimdaskr(double *told)
         }
 
         maxnit = 10; /* setting the maximum number of Newton iterations in any attempt to solve CIC */
+        if (C2F(cmsolver).solver == 102)
+        {
+            maxnit = 15;    /* By default, the Krylov max iterations should be 15 */
+        }
         flag = DAESetMaxNumItersIC(dae_mem, maxnit);
         if (check_flag(&flag, "IDASetMaxNumItersIC", 1))
         {
@@ -2762,10 +2825,8 @@ static void cossimdaskr(double *told)
         }
 
         /* setting the maximum number of steps in an integration interval */
-        if (C2F(cmsolver).solver == 100)
-        {
-            flag = IDASetMaxNumSteps(dae_mem, 2000);
-        }
+        maxnh = 2000;
+        flag = DAESetMaxNumSteps(dae_mem, maxnh);
         if (check_flag(&flag, "IDASetMaxNumSteps", 1))
         {
             *ierr = 200 + (-flag);
@@ -2791,8 +2852,6 @@ static void cossimdaskr(double *told)
     phase = 1;
     hot = 0;
 
-    /*      stuck=.false. */
-    C2F(xscion)(&inxsci);
     /*     initialization */
     C2F(realtimeinit)(told, &C2F(rtfactor).scale);
     /*     ATOL and RTOL are scalars */
@@ -2844,9 +2903,11 @@ static void cossimdaskr(double *told)
         while (ismenu()) //** if the user has done something, do the actions
         {
             int ierr2 = 0;
-            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+            int iUnused;
+            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
-            syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -3030,9 +3091,11 @@ L30:
                         while (ismenu()) //** if the user has done something, do the actions
                         {
                             int ierr2 = 0;
-                            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+                            int iUnused;
+                            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                             CommandLength = (int)strlen(CommandToUnstack);
-                            syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                            //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                            FREE(CommandToUnstack);
                         }
                         if (C2F(coshlt).halt != 0)
                         {
@@ -3257,7 +3320,7 @@ L30:
                 }; /* new feature of sundials, detects unmasking */
                 if (flagr == IDA_ROOT_RETURN)
                 {
-                    /*     .        at a least one root has been found */
+                    /*     .        at least one root has been found */
                     hot = 0;
                     if (Discrete_Jump == 0)
                     {
@@ -3380,9 +3443,11 @@ L30:
                 while (ismenu()) //** if the user has done something, do the actions
                 {
                     int ierr2 = 0;
-                    SeqSync = GetCommand(CommandToUnstack); //** get to the action
+                    int iUnused;
+                    GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                     CommandLength = (int)strlen(CommandToUnstack);
-                    syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                    //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                    FREE(CommandToUnstack);
                 }
 
                 if (C2F(coshlt).halt != 0)
@@ -3444,7 +3509,7 @@ L30:
             ddoit(told);
             if ((C2F(cosdebug).cosd >= 1) && (C2F(cosdebug).cosd != 3))
             {
-                sciprint(_("End of activation"));
+                sciprint(_("End of activation\n"));
             }
             if (*ierr != 0)
             {
@@ -3527,7 +3592,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
 
     /* debug block is never called */
     /*if (kf==(debug_block+1)) return;*/
-    if (block->type == 99)
+    if (block->type == DEBUG_BLOCK)
     {
         return;
     }
@@ -3569,7 +3634,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     loc = block->funpt;
 
     /* continuous state */
-    if ((solver == 100 || solver == 101) && block->type < 10000 && *flag == 0)
+    if ((solver == IDA_BDF_Newton || solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes) && block->type < 10000 && *flag == 0)
     {
         ptr_d = block->xd;
         block->xd  = block->res;
@@ -3767,7 +3832,8 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
                         block->evout, &block->nevout, block->rpar, &block->nrpar,
                         block->ipar, &block->nipar, (double **)block->inptr,
                         block->insz, &block->nin,
-                        (double **)block->outptr, block->outsz, &block->nout);
+                        (double **)block->outptr, block->outsz, &block->nout,
+                        block->scsptr);
             }
             /* with zero crossing */
             else
@@ -3779,6 +3845,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
                          block->ipar, &block->nipar, (double **)block->inptr,
                          block->insz, &block->nin,
                          (double **)block->outptr, block->outsz, &block->nout,
+                         block->scsptr,
                          block->g, &block->ng);
             }
 
@@ -3939,7 +4006,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     // sciprint("callf end  flag=%d\n",*flag);
     /* Implicit Solver & explicit block & flag==0 */
     /* adjust continuous state vector after call */
-    if ((solver == 100 || solver == 101) && block->type < 10000 && *flag == 0)
+    if ((solver == IDA_BDF_Newton || solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes) && block->type < 10000 && *flag == 0)
     {
         block->xd  = ptr_d;
         if (flagi != 7)
@@ -3986,23 +4053,26 @@ static void call_debug_scicos(scicos_block *block, scicos_flag *flag, int flagi,
     double *ptr_d = NULL;
 
     C2F(cosdebugcounter).counter = C2F(cosdebugcounter).counter + 1;
-    C2F(scsptr).ptr = Blocks[deb_blk].scsptr;
+    C2F(scsptr).ptr = block->scsptr;
 
     loc  = Blocks[deb_blk].funpt; /* GLOBAL */
     loc4 = (ScicosF4) loc;
 
     /* continuous state */
-    if ((solver == 100 || solver == 101) && block->type < 10000 && *flag == 0)
+    if ((solver == IDA_BDF_Newton || solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes) && block->type < 10000 && *flag == 0)
     {
         ptr_d = block->xd;
         block->xd  = block->res;
     }
 
+    // Temporarily replacing the block's computational function with DEBUG_BLOCK's so that sciblk4 will call %debug_scicos()
+    block->scsptr = Blocks[deb_blk].scsptr;
     (*loc4)(block, *flag);
+    block->scsptr = C2F(scsptr).ptr;
 
     /* Implicit Solver & explicit block & flag==0 */
     /* adjust continuous state vector after call */
-    if ((solver == 100 || solver == 101) && block->type < 10000 && *flag == 0)
+    if ((solver == IDA_BDF_Newton || solver == DDaskr_BDF_Newton || solver == DDaskr_BDF_GMRes) && block->type < 10000 && *flag == 0)
     {
         block->xd  = ptr_d;
         if (flagi != 7)
@@ -4053,7 +4123,7 @@ static int simblk(realtype t, N_Vector yy, N_Vector yp, void *f_data)
         {
             if ((xd[i] - xd[i] != 0))
             {
-                sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
+                Sciwarning(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
                 nantest = 1;
                 break;
             }
@@ -4088,7 +4158,7 @@ static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
         for (jj = 0; jj < ng; jj++)
             if (gout[jj] - gout[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
                 nantest = 1;
                 break;
             } /* NaN checking */
@@ -4103,10 +4173,10 @@ static int grblk(realtype t, N_Vector yy, realtype *gout, void *g_data)
 } /* grblk */
 /*--------------------------------------------------------------------------*/
 /* simblklsodar */
-static int simblklsodar(int * nequations, realtype * tOld, realtype * actual, realtype * res)
+static void simblklsodar(int * nequations, realtype * tOld, realtype * actual, realtype * res)
 {
     double tx = 0.;
-    int i = 0, nantest = 0;
+    int i = 0;
 
     tx = (double) * tOld;
 
@@ -4121,31 +4191,21 @@ static int simblklsodar(int * nequations, realtype * tOld, realtype * actual, re
 
     if (*ierr == 0)
     {
-        nantest = 0;
         for (i = 0; i < *nequations; i++) /* NaN checking */
         {
             if ((res[i] - res[i] != 0))
             {
-                sciprint(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
-                nantest = 1;
-                break;
+                Sciwarning(_("\nWarning: The computing function #%d returns a NaN/Inf"), i);
             }
         }
-        if (nantest == 1)
-        {
-            return 349;    /* recoverable error; */
-        }
     }
-
-    return (abs(*ierr)); /* ierr>0 recoverable error; ierr>0 unrecoverable error; ierr=0: ok*/
-
 } /* simblklsodar */
 /*--------------------------------------------------------------------------*/
 /* grblklsodar */
-static int grblklsodar(int * nequations, realtype * tOld, realtype * actual, int * ngc, realtype * res)
+static void grblklsodar(int * nequations, realtype * tOld, realtype * actual, int * ngc, realtype * res)
 {
     double tx = 0.;
-    int jj = 0, nantest = 0;
+    int jj = 0;
 
     tx = (double) * tOld;
 
@@ -4156,22 +4216,14 @@ static int grblklsodar(int * nequations, realtype * tOld, realtype * actual, int
 
     if (*ierr == 0)
     {
-        nantest = 0;
         for (jj = 0; jj < *ngc; jj++)
+        {
             if (res[jj] - res[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
-                nantest = 1;
-                break;
+                Sciwarning(_("\nWarning: The zero_crossing function #%d returns a NaN/Inf"), jj);
             } /* NaN checking */
-        if (nantest == 1)
-        {
-            return 350;    /* recoverable error; */
         }
     }
-    C2F(ierode).iero = *ierr;
-
-    return 0;
 } /* grblklsodar */
 /*--------------------------------------------------------------------------*/
 /* simblkdaskr */
@@ -4277,7 +4329,7 @@ static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void
         {
             if (gout[jj] - gout[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
+                Sciwarning(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
                 nantest = 1;
                 break;
             }
@@ -4292,12 +4344,11 @@ static int grblkdaskr(realtype t, N_Vector yy, N_Vector yp, realtype *gout, void
 }/* grblkdaskr */
 /*--------------------------------------------------------------------------*/
 /* simblkddaskr */
-static int simblkddaskr(realtype *tOld, realtype *actual, realtype *actualP, realtype *res, int *flag, double *dummy1, int *dummy2)
+static void simblkddaskr(realtype *tOld, realtype *actual, realtype *actualP, realtype *res, int *flag, double *dummy1, int *dummy2)
 {
     double tx = 0.;
-    realtype alpha = 0.;
 
-    int jj = 0, nantest = 0;
+    int jj = 0;
 
     if (get_phase_simulation() == 1)
     {
@@ -4307,82 +4358,159 @@ static int simblkddaskr(realtype *tOld, realtype *actual, realtype *actualP, rea
         zdoit(&tx, actual, actualP, NULL);
     }
 
-    CJJ = 1.;
+    CJJ = 6;
 
     tx = (double) * tOld;
+    *flag = 0;
 
     C2F(dcopy)(neq, actualP, &c__1, res, &c__1);
     *ierr = 0;
     C2F(ierode).iero = 0;
     odoit(&tx, actual, actualP, res);
-
     C2F(ierode).iero = *ierr;
 
     if (*ierr == 0)
     {
-        nantest = 0;
         for (jj = 0; jj < *neq; jj++)
             if (res[jj] - res[jj] != 0) /* NaN checking */
             {
-                sciprint(_("\nWarning: The residual function #%d returns a NaN"), jj);
-                nantest = 1;
-                break;
+                Sciwarning(_("\nWarning: The residual function #%d returns a NaN"), jj);
+                *flag = -1; /* recoverable error; */
+                return;
             }
-        if (nantest == 1)
-        {
-            return 257;    /* recoverable error; */
-        }
     }
+    else
+    {
+        *flag = -2;
+        return;
+    }
+    /* *flag=-1 recoverable error; *flag=-2 unrecoverable error; *flag=0: ok*/
 
-    return (abs(*ierr)); /* ierr>0 recoverable error; ierr>0 unrecoverable error; ierr=0: ok*/
 }/* simblkddaskr */
 /*--------------------------------------------------------------------------*/
 /* grblkddaskr */
-static int grblkddaskr(int *nequations, realtype *tOld, realtype *actual, int *ngc, realtype *res, double *dummy1, int *dummy2)
+static void grblkddaskr(int *nequations, realtype *tOld, realtype *actual, int *ngc, realtype *res, double *dummy1, int *dummy2)
 {
     double tx = 0.;
-    int jj = 0, nantest = 0;
+    int jj = 0;
 
     tx = (double) * tOld;
 
     *ierr = 0;
     C2F(ierode).iero = 0;
     zdoit(&tx, actual, actual, res);
+    C2F(ierode).iero = *ierr;
+
     if (*ierr == 0)
     {
-        nantest = 0; /* NaN checking */
+        /* NaN checking */
         for (jj = 0; jj < *ngc; jj++)
         {
             if (res[jj] - res[jj] != 0)
             {
-                sciprint(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
-                nantest = 1;
-                break;
+                Sciwarning(_("\nWarning: The zero-crossing function #%d returns a NaN"), jj);
+                return;
             }
         }
-        if (nantest == 1)
-        {
-            return 258; /* recoverable error; */
-        }
     }
-    C2F(ierode).iero = *ierr;
-    return (*ierr);
+    else
+    {
+        sciprint(_("\nError: Problem in the evaluation of a root function"));
+        return;
+    }
+
 }/* grblkddaskr */
 /*--------------------------------------------------------------------------*/
 /* jacpsol */
-static int jacpsol(realtype *res, int *ires, int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
-                   realtype *rewt, realtype *savr, realtype *wk, realtype *h, realtype *cj, realtype *wp, int *iwp,
-                   int *ier, double *dummy1, int *dummy2)
+static void jacpsol(realtype *res, int *ires, int *neq, realtype *tOld, realtype *actual, realtype *actualP,
+                    realtype *rewt, realtype *savr, realtype *wk, realtype *h, realtype *cj, realtype *wp, int *iwp,
+                    int *ier, double *dummy1, int *dummy2)
 {
-    // Empty routine to satisfy the ddaskr() loader. @TODO: open the Krylov feature for DDaskr.
+    /* Here, we compute the system preconditioner matrix P, which is actually the jacobian matrix,
+       so P(i,j) = dres(i)/dactual(j) + cj*dres(i)/dactualP(j), and we LU-decompose it. */
+    int i = 0, j = 0, nrow = 0, info = 0;
+    realtype tx = 0, del = 0, delinv = 0, ysave = 0, ypsave = 0;
+    realtype * e = NULL;
+
+    tx = *tOld;
+
+    /* Work array used to evaluate res(*tOld, actual + small_increment, actualP + small_increment).
+       savr already contains res(*tOld, actual, actualP). */
+    e = (realtype *) calloc(*neq, sizeof(realtype));
+
+    for (i = 0; i < *neq; ++i)
+    {
+        del =  max (SQuround * max(fabs(actual[i]), fabs(*h * actualP[i])), 1. / rewt[i]);
+        del *= (*h * actualP[i] >= 0) ? 1 : -1;
+        del =  (actual[i] + del) - actual[i];
+        ysave  = actual[i];
+        ypsave = actualP[i];
+        actual[i]  += del;
+        actualP[i] += *cj * del;
+        *ierr = 0;
+        C2F(ierode).iero = 0;
+        simblkddaskr(tOld, actual, actualP, e, ires, dummy1, dummy2);
+        C2F(ierode).iero = *ierr;
+        if (*ires == 0)
+        {
+            delinv = 1. / del;
+            for (j = 0; j < *neq; ++j)
+            {
+                wp[nrow + j] = (e[j] - savr[j]) * delinv;
+                /* NaN test */
+                if (wp[nrow + j] - wp[nrow + j] != 0)
+                {
+                    Sciwarning(_("\nWarning: The preconditioner evaluation function returns a NaN at index #%d."), nrow + j);
+                    *ier = -1;
+                }
+            }
+            nrow       += *neq;
+            actual[i]  =  ysave;
+            actualP[i] =  ypsave;
+        }
+        else
+        {
+            sciprint(_("\nError: The preconditioner evaluation function failed."));
+            *ier = -1;
+            free(e);
+            return;
+        }
+    }
+
+    /* Proceed to LU factorization of P. */
+    C2F(dgefa) (wp, neq, neq, iwp, &info);
+    if (info != 0)
+    {
+        sciprint(_("\nError: Failed to factor the preconditioner."));
+        *ier = -1;
+    }
+
+    free(e);
 }/* jacpsol */
 /*--------------------------------------------------------------------------*/
 /* psol */
-static int psol(int *nequations, realtype *tOld, realtype *actual, realtype *actualP,
-                realtype *savr, realtype *wk, realtype *cj, realtype *wght, realtype *wp,
-                int *iwp, realtype *b, realtype *eplin, int *ier, double *dummy1, int *dummy2)
+static void psol(int *neq, realtype *tOld, realtype *actual, realtype *actualP,
+                 realtype *savr, realtype *wk, realtype *cj, realtype *wght, realtype *wp,
+                 int *iwp, realtype *b, realtype *eplin, int *ier, double *dummy1, int *dummy2)
 {
-    // Empty routine to satisfy the ddaskr() loader. @TODO: open the Krylov feature for DDaskr.
+    /* This function "applies" the inverse of the preconditioner to 'b' (computes P^-1*b).
+       It is done by solving P*x = b using the linpack routine 'dgesl'. */
+    int i = 0, job = 0;
+
+    C2F(dgesl) (wp, neq, neq, iwp, b, &job);
+
+    /* NaN test */
+    for (i = 0; i < *neq; ++i)
+    {
+        if (b[i] - b[i] != 0)
+        {
+            Sciwarning(_("\nWarning: The preconditioner application function returns a NaN at index #%d."), i);
+            /* Indicate a recoverable error, meaning that the step will be retried with the same step size
+               but with a call to 'jacpsol' to update necessary data, unless the Jacobian data is current,
+               in which case the step will be retried with a smaller step size. */
+            *ier = 1;
+        }
+    }
 }/* psol */
 /*--------------------------------------------------------------------------*/
 /* Subroutine addevs */
@@ -4417,7 +4545,7 @@ static void addevs(double t, int *evtnb, int *ierr1)
                 {
                     sciprint(_("\n Warning: an event is reprogrammed at t=%g by removing another"), t );
                     sciprint(_("\n         (already programmed) event. There may be an error in"));
-                    sciprint(_("\n         your model. Please check your model\n"));
+                    Sciwarning(_("\n         your model. Please check your model\n"));
                     TCritWarning = 1;
                 }
                 do_cold_restart(); /* the erased event could be a critical
@@ -5971,6 +6099,14 @@ static void FREE_blocks()
         {
             break;
         }
+        if (Blocks[kf].uid != NULL)
+        {
+            FREE(Blocks[kf].uid);
+        }
+        else
+        {
+            break;
+        }
         if (Blocks[kf].evout != NULL)
         {
             FREE(Blocks[kf].evout);
@@ -6005,23 +6141,38 @@ int C2F(funnum)(char * fname)
 {
     int i = 0, ln = 0;
     int loc = -1;
-    while ( tabsim[i].name != (char *) NULL)
+    while (tabsim[i].name != (char *)NULL)
     {
-        if ( strcmp(fname, tabsim[i].name) == 0 )
+        if (strcmp(fname, tabsim[i].name) == 0)
         {
-            return(i + 1);
+            return (i + 1);
         }
         i++;
     }
     ln = (int)strlen(fname);
-    C2F(iislink)(fname, &loc);
-    C2F(iislink)(fname, &loc);
+    //C2F(iislink)(fname, &loc);
+    //C2F(iislink)(fname, &loc);
     if (loc >= 0)
     {
-        return(ntabsim + (int)loc + 1);
+        return (ntabsim + (int)loc + 1);
     }
-    return(0);
+    return (0);
 }/* funnum */
+/*--------------------------------------------------------------------------*/
+/* Subroutine funnum2 */
+void* funnum2(char * fname)
+{
+    int i = 0;
+    while (tabsim[i].name != (char *)NULL)
+    {
+        if (strcmp(fname, tabsim[i].name) == 0)
+        {
+            return (void*)tabsim[i].fonc;
+        }
+        i++;
+    }
+    return NULL;
+}/* funnum2 */
 /*--------------------------------------------------------------------------*/
 int get_phase_simulation(void)
 {
@@ -6040,6 +6191,17 @@ void do_cold_restart(void)
 double get_scicos_time(void)
 {
     return scicos_time;
+}
+/*--------------------------------------------------------------------------*/
+/*! \brief set the current simulation time before calling blocks
+ *
+ * As some of the blocks call get_scicos_time(), this is the only way to force
+ * a local time for these blocks. This call does not modify the Xcos solver
+ * time but is only used to step to a future point while calling blocks.
+ */
+void set_scicos_time(double t)
+{
+    scicos_time = t;
 }
 /*--------------------------------------------------------------------------*/
 /* get_block_number : return the current
@@ -6077,7 +6239,7 @@ void Coserror(const char *fmt, ...)
     va_start(ap, fmt);
 
 #ifdef vsnprintf
-    retval = vsnprintf(coserr.buf, 4095, fmt, ap);
+    retval = vsnprintf(coserr.buf, COSERR_len, fmt, ap);
 #else
     retval = vsprintf(coserr.buf, fmt, ap);
 #endif
@@ -6094,18 +6256,13 @@ void Coserror(const char *fmt, ...)
 }
 /*--------------------------------------------------------------------------*/
 /* SundialsErrHandler: in case of a Sundials error,
-* append info into full_message and call Coserror() to write it in coserr.buf
+* call Coserror() to write it in coserr.buf
+*
+* The unused parameters are there to square with Sundials' IDA error function, for better genericity.
 */
 void SundialsErrHandler(int error_code, const char *module, const char *function, char *msg, void *user_data)
 {
-    char full_message[300]; // Set big buffer to be able to redesign the message later
-
-    full_message[0] = '\0';
-    strncat(full_message, function, 25); // Sundials' longest function name : ~20 chars
-    strncat(full_message, ": ", 2);
-    strncat(full_message, msg, 120);     // Actual error message
-
-    Coserror(full_message);
+    Coserror("%s: %s", function, msg);
 }
 /*--------------------------------------------------------------------------*/
 /* get_block_error : get the block error
@@ -6163,7 +6320,7 @@ return CI;
 return CJ;
 } */
 /*--------------------------------------------------------------------------*/
-/* Fonction called by the C file produced by Modelicac 1.7.3 and 1.12.1 */
+/* Function called by the C file produced by Modelicac 1.7.3 and 1.12.1 */
 double Get_Jacobian_parameter(void)
 {
     return CJJ;
@@ -6372,6 +6529,7 @@ static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
     }
     /*----------------------------------------------*/
     job = 1; /* read jacobian through flag=10; */
+    *block_error = 0;
     Jdoit(&ttx, xc, xcdot, &Fx[-m], &job);/* Filling up the FX:Fu:Gx:Gu*/
     if (*block_error != 0)
     {
@@ -6432,25 +6590,6 @@ static int Jacobians(long int Neq, realtype tt, realtype cj, N_Vector yy,
 
 }
 /*--------------------------------------------------------------------------*/
-static int Jacobiansddaskr(realtype *t, realtype *y, realtype *yp,
-                           realtype *pd, realtype *cj, double *dummy1, int *dummy2)
-{
-    double tx;
-    int job;
-
-    tx = *t;
-    job = 1;
-
-    // CJ = (double) *cj;  // For fonction Get_Jacobian_cj
-    CJJ = (double) * cj;  // Returned by Get_Jacobian_parameter
-
-    Jdoit(&tx, y, yp, pd, &job);
-
-    C2F(ierode).iero = *ierr;
-    return 0;
-
-}
-/*----------------------------------------------------*/
 static void Multp(double *A, double *B, double *R, int ra, int rb, int ca, int cb)
 {
     int i = 0, j = 0, k = 0;
@@ -6622,12 +6761,8 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
     if (model == NULL)
     {
         sciprint(_("Error: Cannot find file '%s'.\n"), xmlfile);
-        for (i = 0; i < nvar; i++)
-        {
-            FREE(xv[i]);
-        }
-        FREE(xv);
-        return -1;/* file does not exist */
+        err = -1;
+        goto err_free_xv;
     }
 
     elements = ezxml_child(model, "elements");
@@ -6651,20 +6786,23 @@ int write_xml_states(int nvar, const char * xmlfile, char **ids, double *x)
 
 
     wcfopen(fd, (char*)xmlfile, "wb");
-    if (fd < 0)
+    if (fd == NULL)
     {
-        sciprint(_("Error: cannot write to  '%s'  \n"), xmlfile);
-        for (i = 0; i < nvar; i++)
-        {
-            FREE(xv[i]);
-        }
-        FREE(xv);
-        return -3;/* cannot write to file*/
+        err = -3;/* cannot write to file*/
+        goto err_free_s;
     }
 
     fputs (s, fd);
     fclose(fd);
 
+err_free_s:
+    free(s);
+err_free_xv:
+    for (i = 0; i < nvar; i++)
+    {
+        FREE(xv[i]);
+    }
+    FREE(xv);
     return err;
 }
 /*--------------------------------------------------------------------------*/
@@ -6806,7 +6944,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
         {
             if (residual[jj] - residual[jj] != 0)
             {
-                sciprint(_("\nWarning: The initialization system #%d returns a NaN/Inf"), jj);
+                Sciwarning(_("\nWarning: The initialization system #%d returns a NaN/Inf"), jj);
                 nantest = 1;
                 break;
             }
@@ -6824,7 +6962,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 static int CallKinsol(double *told)
 {
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -6979,9 +7117,11 @@ static int CallKinsol(double *told)
             while (ismenu()) //** if the user has done something, do the actions
             {
                 int ierr2 = 0;
-                SeqSync = GetCommand(CommandToUnstack); //** get at the action
+                int iUnused;
+                GetCommand(&CommandToUnstack, &SeqSync, &iUnused, NONE); //** get to the action
                 CommandLength = (int)strlen(CommandToUnstack);
-                syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                FREE(CommandToUnstack);
             }
 
             if (C2F(coshlt).halt != 0)

@@ -6,10 +6,11 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
+#include "H5Options.hxx"
 #include "H5Attribute.hxx"
 #include "H5DataFactory.hxx"
 
@@ -92,7 +93,7 @@ void H5Attribute::getAccessibleAttribute(const std::string & _name, const int po
     else if (lower == "data")
     {
         const H5Data & data = const_cast<H5Attribute *>(this)->getData();
-        data.toScilab(pvApiCtx, pos);
+        data.toScilab(pvApiCtx, pos, 0, 0, H5Options::isReadFlip());
 
         delete &data;
 

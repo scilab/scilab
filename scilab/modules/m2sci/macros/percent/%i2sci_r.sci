@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=%i2sci_r(tree)
     // M2SCI function
@@ -24,7 +24,7 @@ function [tree]=%i2sci_r(tree)
     else
         if ~isdefinedvar(from) then
             w=gettempvar()
-            insert(Equal(list(w),from))
+            m2sci_insert(Equal(list(w),from))
         else
             w=from
         end

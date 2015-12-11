@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -20,12 +20,16 @@
 ;
 Source: modules\{#GRAPHICS}\license.txt; DestDir: {app}\modules\{#GRAPHICS}; Components: {#COMPN_GRAPHICS}
 ;
-Source: thirdparty\jlatexmath-1.0.2.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
-Source: thirdparty\jlatexmath-fop-1.0.2.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jlatexmath-1.0.3.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\jlatexmath-fop-1.0.3.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\{#GRAPHICS}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\{#GRAPHICS}.lib; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
+Source: bin\{#GRAPHICS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 ;
 Source: bin\no{#GRAPHICS}.dll; DestDir: {app}\bin; DestName: {#GRAPHICS}.dll; Components: not ({#COMPN_GRAPHICS})
+Source: bin\no{#GRAPHICS}.lib; DestDir: {app}\bin; DestName: {#GRAPHICS}.lib; Components: not ({#COMPN_GRAPHICS})
+Source: bin\no{#GRAPHICS}.dll; DestDir: {app}\bin; DestName: {#GRAPHICS}_gw.dll; Components: not ({#COMPN_GRAPHICS})
 ;
 Source: modules\{#GRAPHICS}\sci_gateway\{#GRAPHICS}_gateway.xml; DestDir: {app}\modules\{#GRAPHICS}\sci_gateway; Components: {#COMPN_GRAPHICS}
 ;
@@ -38,14 +42,10 @@ Source: modules\{#GRAPHICS}\etc\nvidia_bug_7575.sce; DestDir: {app}\modules\{#GR
 Source: modules\{#GRAPHICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\buildmacros.bat; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
-;
 Source: modules\{#GRAPHICS}\macros\lib; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\macros\names; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\*.sci; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\*.bin; DestDir: {app}\modules\{#GRAPHICS}\macros; Components: {#COMPN_GRAPHICS}
-;
 Source: modules\{#GRAPHICS}\macros\datatips\lib; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHICS}\macros\datatips\names; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\datatips\*.sci; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHICS}\macros\datatips\*.bin; DestDir: {app}\modules\{#GRAPHICS}\macros\datatips; Components: {#COMPN_GRAPHICS}
 ;

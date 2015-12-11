@@ -5,15 +5,5 @@ EXPORTS
 ;
 ;core
 ;
-callFunctionFromGateway
-com_
-backtrace_print
-recu_
-stack_
-vstk_
-iop_
-intersci_
-scistring_
-str2name_
 MyHeapAlloc
 MyHeapFree

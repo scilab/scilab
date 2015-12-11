@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlAsNumber" xml:lang="en">
@@ -40,14 +40,14 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>The result of a XPath query or the chidren of a node can be a set of XMLElements which contains numbers, so the aim of this function is to convert the contents of each nodes into a double.</para>
+        <para>The result of a XPath query or the children of a node can be a set of XMLElements which contains numbers, so the aim of this function is to convert the contents of each nodes into a double.</para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a>12</a><a>13</a><a>1.2345678</a><a>45e3</a><a>.23E-2</a></root>");
 
-    // Retrieve the content of the nodes with name equals to "a"
+    // Retrieve the content of the nodes with name equal to "a"
     xp = xmlXPath(doc, "//a/text()");
 
     // convert the result into doubles

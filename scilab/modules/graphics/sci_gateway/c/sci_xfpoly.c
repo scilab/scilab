@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xfpoly(char *fname, unsigned long fname_len)
+int sci_xfpoly(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -41,7 +41,7 @@ int sci_xfpoly(char *fname, unsigned long fname_len)
     int* piAddrl3 = NULL;
     double* l3 = NULL;
 
-    char* psubwinUID = (char*)getOrCreateDefaultSubwin();
+    int iSubwinUID = getOrCreateDefaultSubwin();
     int iStyle = 0;
     int m1 = 0, n1 = 0;
     int m2 = 0, n2 = 0;
@@ -63,7 +63,7 @@ int sci_xfpoly(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -79,7 +79,7 @@ int sci_xfpoly(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -105,7 +105,7 @@ int sci_xfpoly(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
             return 1;
         }
 
@@ -125,14 +125,15 @@ int sci_xfpoly(char *fname, unsigned long fname_len)
         int* piColorMapSize = &iColorMapSize;
         int iForeGround = 0;
         int* piForeGround = &iForeGround;
-        char* pstParentUID = NULL;
+        int iParentUID = 0;
+        int* piParentUID = &iParentUID;
 
         //get color map size
-        getGraphicObjectProperty(psubwinUID, __GO_PARENT_FIGURE__, jni_int, (void**)&pstParentUID);
-        getGraphicObjectProperty(pstParentUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
+        getGraphicObjectProperty(iSubwinUID, __GO_PARENT_FIGURE__, jni_int, (void**)&piParentUID);
+        getGraphicObjectProperty(iParentUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
 
         //get current foreground color
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
+        getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
 
         if (iForeGround == -1)
         {
@@ -150,7 +151,7 @@ int sci_xfpoly(char *fname, unsigned long fname_len)
 
     Objfpoly((l1), (l2), m1 * n1, &iStyle, &hdl, 0);
 
-    setGraphicObjectRelationship(psubwinUID, getObjectFromHandle(hdl));
+    setGraphicObjectRelationship(iSubwinUID, getObjectFromHandle(hdl));
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

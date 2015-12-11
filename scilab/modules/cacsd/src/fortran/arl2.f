@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine arl2(f,nf,num,tq,dgmin,dgmax,errl2,w,iw,inf,ierr,ilog)
 C!but
@@ -86,6 +86,8 @@ C
       double precision tps(2),tms(2),dnrm2,sqrt,phi,gnrm,phi0
       integer dg,dgback,dgr
       external feq, jacl2
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
+cDEC$ ATTRIBUTES DLLIMPORT:: /no2f/
       common /sortie/ io,info,ll
       common /no2f/ gnrm
 C

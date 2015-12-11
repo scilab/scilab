@@ -86,13 +86,8 @@ function demo_anim6()
         drawnow();
     end
 
-    if is_handle_valid(curFig) then
-        delete(curFig);
-    end
-
 endfunction
 
 
 demo_anim6();
 clear demo_anim6;
-

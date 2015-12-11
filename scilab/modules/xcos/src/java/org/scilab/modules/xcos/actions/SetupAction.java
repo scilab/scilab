@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,6 +19,7 @@ import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.actions.dialog.SetupDialog;
+import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -74,8 +75,7 @@ public final class SetupAction extends SimulationNotRunningAction {
             return;
         }
 
-        final SetupDialog dialog = new SetupDialog(comp,
-                graph, graph.getScicosParameters());
+        final SetupDialog dialog = new SetupDialog(comp, graph, new ScicosParameters(graph.getUID(), graph.getKind()));
 
         dialog.pack();
         dialog.setVisible(true);

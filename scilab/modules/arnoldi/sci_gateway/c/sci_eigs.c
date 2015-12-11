@@ -6,13 +6,14 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
 #include <math.h>
 #include <string.h>
-#include "stack-c.h"
+
+#include "doublecomplex.h"
 #include "isanan.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
@@ -23,10 +24,10 @@
 #include "stdlib.h"
 #include "sciprint.h"
 #include "doublecomplex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "eigs.h"
 
-int sci_eigs(char *fname, unsigned long fname_len)
+int sci_eigs(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -415,7 +416,6 @@ int sci_eigs(char *fname, unsigned long fname_len)
         if (isVarComplex(pvApiCtx, piAddressVarSeven))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv");
-            0;
         }
         else
         {
@@ -457,7 +457,7 @@ int sci_eigs(char *fname, unsigned long fname_len)
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarEight, &iTypeVarEight);
-    if (sciErr.iErr || iTypeVarEight != sci_matrix && iTypeVarEight != sci_boolean)
+    if (sciErr.iErr || (iTypeVarEight != sci_matrix && iTypeVarEight != sci_boolean))
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB");
         return 1;

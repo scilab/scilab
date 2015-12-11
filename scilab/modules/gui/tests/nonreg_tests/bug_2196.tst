@@ -34,7 +34,7 @@ if pos(3) < pos(4) then pause; end
 
 
 // --- Pushbuttons ---
-h2 = uicontrol(f1,"style","pushbutton","position",[10 10 100 100])
+h2 = uicontrol(f1,"style","pushbutton","position",[10 10 100 100]);
 bg = get(h2, "backgroundcolor");
 relief = get(h2, "relief");
 

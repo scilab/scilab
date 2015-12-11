@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,40 +20,41 @@
 
 #include "getHandleProperty.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
-int get_figures_id_property(void* _pvCtx, char* pobjUID)
+void* get_figures_id_property(void* _pvCtx, int iObjUID)
 {
-    int   nbFig  = 0   ;
-    int * ids    = NULL;
-    int   status = -1  ;
+    int nbFig = 0;
+    int* ids = NULL;
+    void* status = NULL;
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figures_id");
-        return -1;
+        return NULL;
     }
 
     nbFig = sciGetNbFigure() ; /* get the number of opened windows */
 
-    ids = MALLOC(nbFig * sizeof(int));
+    ids = (int*)MALLOC(nbFig * sizeof(int));
     if (ids == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "get_figures_id_property");
-        return -1;
+        return NULL;
     }
 
     sciGetFiguresId(ids);
 
-    status = sciReturnRowIntVector(_pvCtx, ids, nbFig);
+    status = sciReturnRowIntVector(ids, nbFig);
 
     FREE(ids);
 
     return status;
 }
 /*------------------------------------------------------------------------*/
+

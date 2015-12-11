@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,22 +30,31 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_triangles_property(void* _pvCtx, char* pobjUID)
+void* get_triangles_property(void* _pvCtx, int iObjUID)
 {
-    double* triangles = NULL;
-    int numTriangles = 0;
-    int *piNumTriangles = &numTriangles;
+    double* elements = NULL;
+    int numElements = 0;
+    int *piNumElements = &numElements;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void **)&triangles);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_FEC_ELEMENTS__, jni_double_vector, (void **)&elements);
 
-    if (triangles == NULL)
+    if (elements == NULL)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "triangles");
-        return -1;
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "elements");
+        return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&piNumTriangles);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&piNumElements);
+    if (piNumElements == NULL)
+    {
+        Scierror(999, _("Wrong value for '%s' property.\n"), "elements");
+        return NULL;
+    }
 
-    return sciReturnMatrix(_pvCtx, triangles, numTriangles , 5);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
+
+    return sciReturnMatrix(elements, numElements , nVertex + 2);
 }
 /*------------------------------------------------------------------------*/

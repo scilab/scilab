@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function  bar(varargin)
@@ -14,7 +14,7 @@ function  bar(varargin)
     //
     // Input :
     // x : a real scalar or a vector
-    // y : a real sclar, or a vector
+    // y : a real scalar, or a vector
     // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8)
     // style : a string 'grouped' or 'stacked' (default: style='grouped')
 
@@ -44,13 +44,13 @@ function  bar(varargin)
     if size(ListArg) == 4 then
         COLOR=ListArg(4);
         if type(COLOR) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input arguments #%d: A string expected.\n"),"bar",4));
+            error(msprintf(gettext("%s: Wrong type for input arguments #%d: string expected.\n"),"bar",4));
         end
     end
     if size(ListArg) == 5 then
         STYLE=ListArg(5);
         if type(STYLE) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input arguments #%d: A string expected.\n"),"bar",5));
+            error(msprintf(gettext("%s: Wrong type for input arguments #%d: string expected.\n"),"bar",5));
         end
     end
     nv = size(ListArg)
@@ -165,11 +165,14 @@ function  bar(varargin)
     curFig = gcf();
     immediate_drawing = curFig.immediate_drawing;
 
+    wmode = warning("query");
+    warning("off"); // See bug #13579 (some bar() calling sequences will lead to a plot() warning)
     if COLORBOOL
         plot(X,Y,COLOR); // plot manages immediate_drawing property itself to avoid flickering
     else
         plot(X,Y); // plot manages immediate_drawing property itself to avoid flickering
     end
+    warning(wmode);
 
     curFig.immediate_drawing = "off";
 

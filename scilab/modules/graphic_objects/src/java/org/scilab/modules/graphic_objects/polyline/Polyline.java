@@ -6,18 +6,39 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.graphic_objects.polyline;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARROW_SIZE_FACTOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BAR_WIDTH__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLOSED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS_COUNT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIPS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_DISPLAY_FNC__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATATIP_MARK__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR_SET__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_INTERP_COLOR_VECTOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_POLYLINE_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_SHIFT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_SHIFT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_SHIFT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLOR_SET__;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
+import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Polyline class
@@ -26,11 +47,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 public class Polyline extends ClippableContouredObject {
     /** TBD: data */
     // Data data -> Data Model
-    /* TBD: properties relative to the data model */
+    /* TODO: properties relative to the data model */
     /** Polyline properties names */
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
-                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH
+                                    XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT,
+                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET
                                   };
 
     /** Specifies whether the polyline is closed */
@@ -39,7 +61,7 @@ public class Polyline extends ClippableContouredObject {
     /** Determines the arrow size */
     private double arrowSizeFactor;
 
-    /** Polyline drawing style (normal, staircase, bar, etc.) */
+    /** Polyline drawing style (normal, staircase, , etc.) */
     private int polylineStyle;
 
     /** Interpolation color vector (3- or 4-element array) */
@@ -63,6 +85,17 @@ public class Polyline extends ClippableContouredObject {
     /** Bar width */
     private double barWidth;
 
+    /** Datatips objects list */
+    private List<Integer> datatips;
+
+    /** Display function*/
+    private String displayFnc;
+
+    private Integer tipMark;
+
+    /** has color set */
+    private boolean colorSet;
+
     /** Constructor */
     public Polyline() {
         super();
@@ -76,6 +109,10 @@ public class Polyline extends ClippableContouredObject {
         yShift = null;
         zShift = null;
         barWidth = 0.0;
+        datatips = new ArrayList<Integer>();
+        displayFnc = "";
+        tipMark = 11;
+        colorSet = false;
     }
 
     @Override
@@ -110,6 +147,16 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.ZSHIFT;
             case __GO_BAR_WIDTH__ :
                 return PolylineProperty.BARWIDTH;
+            case __GO_DATATIPS__ :
+                return PolylineProperty.DATATIPS;
+            case __GO_DATATIPS_COUNT__ :
+                return PolylineProperty.DATATIPSCOUNT;
+            case __GO_DATATIP_DISPLAY_FNC__ :
+                return PolylineProperty.TIP_DISPLAY_FNC;
+            case __GO_DATATIP_MARK__ :
+                return PolylineProperty.TIP_MARK;
+            case __GO_COLOR_SET__ :
+                return PolylineProperty.COLORSET;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -121,29 +168,41 @@ public class Polyline extends ClippableContouredObject {
      * @return the property value
      */
     public Object getProperty(Object property) {
-        if (property == PolylineProperty.CLOSED) {
-            return getClosed();
-        } else if (property == PolylineProperty.ARROWSIZEFACTOR) {
-            return getArrowSizeFactor();
-        } else if (property == PolylineProperty.POLYLINESTYLE) {
-            return getPolylineStyle();
-        } else if (property == PolylineProperty.INTERPCOLORVECTOR) {
-            return getInterpColorVector();
-        } else if (property == PolylineProperty.INTERPCOLORVECTORSET) {
-            return getInterpColorVectorSet();
-        } else if (property == PolylineProperty.INTERPCOLORMODE) {
-            return getInterpColorMode();
-        } else if (property == PolylineProperty.XSHIFT) {
-            return getXShift();
-        } else if (property == PolylineProperty.YSHIFT) {
-            return getYShift();
-        } else if (property == PolylineProperty.ZSHIFT) {
-            return getZShift();
-        } else if (property == PolylineProperty.BARWIDTH) {
-            return getBarWidth();
-        } else {
-            return super.getProperty(property);
+        if (property instanceof PolylineProperty) {
+            switch ((PolylineProperty) property) {
+                case CLOSED:
+                    return getClosed();
+                case ARROWSIZEFACTOR:
+                    return getArrowSizeFactor();
+                case POLYLINESTYLE:
+                    return getPolylineStyle();
+                case INTERPCOLORVECTOR:
+                    return getInterpColorVector();
+                case INTERPCOLORVECTORSET:
+                    return getInterpColorVectorSet();
+                case INTERPCOLORMODE:
+                    return getInterpColorMode();
+                case XSHIFT:
+                    return getXShift();
+                case YSHIFT:
+                    return getYShift();
+                case ZSHIFT:
+                    return getZShift();
+                case BARWIDTH:
+                    return getBarWidth();
+                case DATATIPS:
+                    return getDatatips();
+                case DATATIPSCOUNT:
+                    return datatips.size();
+                case TIP_DISPLAY_FNC:
+                    return getDisplayFunction();
+                case TIP_MARK:
+                    return getTipMark();
+                case COLORSET:
+                    return getColorSet();
+            }
         }
+        return super.getProperty(property);
     }
 
     /**
@@ -154,30 +213,53 @@ public class Polyline extends ClippableContouredObject {
      */
     public UpdateStatus setProperty(Object property, Object value) {
         synchronized (this) {
-            if (property == PolylineProperty.CLOSED) {
-                setClosed((Boolean) value);
-            } else if (property == PolylineProperty.ARROWSIZEFACTOR) {
-                return setArrowSizeFactor((Double) value);
-            } else if (property == PolylineProperty.POLYLINESTYLE) {
-                return setPolylineStyle((Integer) value);
-            } else if (property == PolylineProperty.INTERPCOLORVECTOR) {
-                setInterpColorVector((Integer[]) value);
-            } else if (property == PolylineProperty.INTERPCOLORVECTORSET) {
-                setInterpColorVectorSet((Boolean) value);
-            } else if (property == PolylineProperty.INTERPCOLORMODE) {
-                return setInterpColorMode((Boolean) value);
-            } else if (property == PolylineProperty.XSHIFT) {
-                setXShift((double[]) value);
-            } else if (property == PolylineProperty.YSHIFT) {
-                setYShift((double[]) value);
-            } else if (property == PolylineProperty.ZSHIFT) {
-                setZShift((double[]) value);
-            } else if (property == PolylineProperty.BARWIDTH) {
-                setBarWidth((Double) value);
-            } else {
-                return super.setProperty(property, value);
+            if (property instanceof PolylineProperty) {
+                switch ((PolylineProperty) property) {
+                    case CLOSED:
+                        setClosed((Boolean) value);
+                        break;
+                    case ARROWSIZEFACTOR:
+                        return setArrowSizeFactor((Double) value);
+                    case POLYLINESTYLE:
+                        return setPolylineStyle((Integer) value);
+                    case INTERPCOLORVECTOR:
+                        setInterpColorVector((Integer[]) value);
+                        break;
+                    case INTERPCOLORVECTORSET:
+                        setInterpColorVectorSet((Boolean) value);
+                        break;
+                    case INTERPCOLORMODE:
+                        return setInterpColorMode((Boolean) value);
+                    case XSHIFT:
+                        setXShift((double[]) value);
+                        break;
+                    case YSHIFT:
+                        setYShift((double[]) value);
+                        break;
+                    case ZSHIFT:
+                        setZShift((double[]) value);
+                        break;
+                    case BARWIDTH:
+                        setBarWidth((Double) value);
+                        break;
+                    case DATATIPS:
+                        setDatatips((Integer[]) value);
+                        break;
+                    case DATATIPSCOUNT:
+                    	// nothing should be done
+                        break;
+                    case TIP_DISPLAY_FNC:
+                        setDisplayFunction((String) value);
+                        break;
+                    case TIP_MARK:
+                        setTipMark((Integer) value);
+                        break;
+                    case COLORSET:
+                        setColorSet((Boolean) value);
+                        break;
+                }
             }
-            return UpdateStatus.Success;
+            return super.setProperty(property, value);
         }
     }
 
@@ -209,8 +291,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param barWidth the barWidth to set
      */
-    public void setBarWidth(Double barWidth) {
+    public UpdateStatus setBarWidth(Double barWidth) {
         this.barWidth = barWidth;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -223,8 +306,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param closed the closed to set
      */
-    public void setClosed(Boolean closed) {
+    public UpdateStatus setClosed(Boolean closed) {
         this.closed = closed;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -260,7 +344,7 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param interpColorVector the interpColorVector to set
      */
-    public void setInterpColorVector(Integer[] interpColorVector) {
+    public UpdateStatus setInterpColorVector(Integer[] interpColorVector) {
         if (interpColorVectorSet == false) {
             interpColorVectorSet = true;
         }
@@ -268,6 +352,7 @@ public class Polyline extends ClippableContouredObject {
         for (int i = 0; i < interpColorVector.length; i++) {
             this.interpColorVector[i] = interpColorVector[i];
         }
+        return UpdateStatus.Success;
     }
 
     /**
@@ -280,8 +365,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param interpColorVectorSet the interpColorVectorSet to set
      */
-    public void setInterpColorVectorSet(Boolean interpColorVectorSet) {
+    public UpdateStatus setInterpColorVectorSet(Boolean interpColorVectorSet) {
         this.interpColorVectorSet = interpColorVectorSet;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -312,8 +398,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the xShift to set
      */
-    public void setXShift(double[] shift) {
+    public UpdateStatus setXShift(double[] shift) {
         xShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -326,8 +413,9 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the yShift to set
      */
-    public void setYShift(double[] shift) {
+    public UpdateStatus setYShift(double[] shift) {
         yShift = shift;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -340,8 +428,68 @@ public class Polyline extends ClippableContouredObject {
     /**
      * @param shift the zShift to set
      */
-    public void setZShift(double[] shift) {
+    public UpdateStatus setZShift(double[] shift) {
         zShift = shift;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return datatips
+     */
+    public Integer[] getDatatips() {
+        return datatips.toArray(new Integer[datatips.size()]);
+    }
+
+    /**
+     * @param datatips the datatips to set
+     */
+    public UpdateStatus setDatatips(Integer[] datatips) {
+        this.datatips = new LinkedList<Integer>(Arrays.asList(datatips));
+        return UpdateStatus.Success;
+    }
+
+    public String getDisplayFunction() {
+        return displayFnc;
+    }
+
+    public UpdateStatus setDisplayFunction(String fnc) {
+        GraphicController controller =  GraphicController.getController();
+        displayFnc = fnc;
+        //update datatips
+        for (int i = 0 ; i < datatips.size() ; i++) {
+            Datatip tip = (Datatip) controller.getObjectFromId(datatips.get(i));
+            tip.updateText();
+        }
+        return UpdateStatus.Success;
+    }
+
+    public Integer getTipMark() {
+        return tipMark;
+    }
+
+    public UpdateStatus setTipMark(Integer tipMark) {
+        if (!this.tipMark.equals(tipMark)) {
+            this.tipMark = tipMark;
+
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the colorSet
+     */
+    public Boolean getColorSet() {
+        return colorSet;
+    }
+
+    /**
+     * @param colorSet the colorSet to set
+     */
+    public UpdateStatus setColorSet(Boolean colorSet) {
+        this.colorSet = colorSet;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -350,5 +498,4 @@ public class Polyline extends ClippableContouredObject {
     public Integer getType() {
         return GraphicObjectProperties.__GO_POLYLINE__;
     }
-
 }

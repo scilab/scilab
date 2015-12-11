@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -17,19 +17,8 @@
 #include "dynlib_windows_tools.h"
 /*--------------------------------------------------------------------------*/
 WINDOWS_TOOLS_IMPEXP int gw_windows_tools(void);
-/*--------------------------------------------------------------------------*/
-/* Declaration of all the profile function declared and */
-/* used in sci_gateway */
-WINDOWS_TOOLS_IMPEXP int sci_winopen(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_winqueryreg(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_findfileassociation(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_dos(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_mcisendstring(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_consolebox(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_win64(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_istssession(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_getsystemmetrics(char *fname, unsigned long l);
-WINDOWS_TOOLS_IMPEXP int sci_createGUID(char *fname, unsigned long l);
+//Scilab 6
+int sci_dos(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_WINDOWS_TOOLS_H__ */
 

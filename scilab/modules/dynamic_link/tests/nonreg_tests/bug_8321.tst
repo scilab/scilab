@@ -30,7 +30,7 @@
 //Startup execution:
 //  loading initial environment
 // !--error 999 
-//setenv: Wrong type for input argument #2: A string expected.
+//setenv: Wrong type for input argument #2: string expected.
 //at line       6 of function dlwSetEnvCommonVc9Vc10 called by :  
 
 // You must have:

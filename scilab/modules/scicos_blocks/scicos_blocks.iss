@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -22,10 +22,12 @@
 Source: bin\{#SCICOS_BLOCKS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}-cli.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\{#SCICOS_BLOCKS}-cli_f.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
 Source: bin\{#SCICOS_BLOCKS}.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}-cli.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\{#SCICOS_BLOCKS}-cli_f.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\license.txt; DestDir: {app}\modules\{#SCICOS_BLOCKS}; Components: {#COMPN_XCOS}
 ;
@@ -41,10 +43,9 @@ Source: bin\modelicac.exe; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\modelicat.exe; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\xml2modelica.exe; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
-Source: modules\{#SCICOS_BLOCKS}\macros\lib; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
-Source: modules\{#SCICOS_BLOCKS}\macros\names; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
-Source: modules\{#SCICOS_BLOCKS}\macros\*.bin; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
+;Source: modules\{#SCICOS_BLOCKS}\macros\lib; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\*.sci; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
+Source: modules\{#SCICOS_BLOCKS}\macros\*.bin; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\*.sce; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 Source: modules\{#SCICOS_BLOCKS}\macros\*.mo; DestDir: {app}\modules\{#SCICOS_BLOCKS}\macros; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;

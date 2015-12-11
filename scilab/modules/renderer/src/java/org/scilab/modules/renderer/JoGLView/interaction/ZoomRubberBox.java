@@ -1,12 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Bruno JOFRET
+ * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -16,6 +17,7 @@ import java.awt.event.MouseEvent;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 /**
  * @author Bruno JOFRET
@@ -88,6 +90,17 @@ public class ZoomRubberBox extends RubberBox {
 
         if (bounds[0].compareTo(bounds[1]) != 0 && bounds[2].compareTo(bounds[3]) != 0 && bounds[4].compareTo(bounds[5]) != 0) {
             Boolean zoomed = tightZoomBounds(axes, bounds);
+            double[][] factors = axes.getScaleTranslateFactors();
+            bounds[0] = (bounds[0] - factors[1][0]) / factors[0][0];
+            bounds[1] = (bounds[1] - factors[1][0]) / factors[0][0];
+            bounds[2] = (bounds[2] - factors[1][1]) / factors[0][1];
+            bounds[3] = (bounds[3] - factors[1][1]) / factors[0][1];
+            bounds[4] = (bounds[4] - factors[1][2]) / factors[0][2];
+            bounds[5] = (bounds[5] - factors[1][2]) / factors[0][2];
+
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+            ScaleUtils.applyInverseLogScaleToBounds(bounds, logFlags);
+
             GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_BOX__, bounds);
             GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_ZOOM_ENABLED__, zoomed);
             getDrawerVisitor().getCanvas().redraw();

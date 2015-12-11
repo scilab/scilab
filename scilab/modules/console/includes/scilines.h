@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -44,32 +44,6 @@ CONSOLE_IMPEXP int C2F(scilines)(int *nl, int *nc);
 * @return 0
 */
 CONSOLE_IMPEXP int C2F(scilinesdefault)(void);
-
-/**
-* set number of columns to display data
-* @param new size of columns
-* @return TRUE or FALSE
-*/
-CONSOLE_IMPEXP BOOL setColumnsSize(int colums);
-
-/**
-* set number of lines to display data
-* @param new size of lines
-* @return TRUE or FALSE
-*/
-CONSOLE_IMPEXP BOOL setLinesSize(int lines_);
-
-/**
-* get number of columns to display data
-* @return numbers of columns
-*/
-CONSOLE_IMPEXP int getColumnsSize(void);
-
-/**
-* get number of lines to display data
-* @return numbers of lines
-*/
-CONSOLE_IMPEXP int getLinesSize(void);
 
 #endif /* __SCILINES_H__ */
 /*--------------------------------------------------------------------------*/

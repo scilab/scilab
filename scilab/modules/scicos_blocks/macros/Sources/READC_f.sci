@@ -22,22 +22,11 @@
 
 function [x,y,typ] = READC_f(job,arg1,arg2)
 
-    x = [];
-    y = [];
-    typ = []
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-
-    case "getinputs" then
-        [x,y,typ] = standard_inputs(arg1)
-
-    case "getoutputs" then
-        [x,y,typ] = standard_outputs(arg1)
-
-    case "getorigin" then
-        [x,y] = standard_origin(arg1)
 
     case "set" then
         x = arg1;
@@ -62,7 +51,6 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
 
             if ~ok then
                 break
-
             end //user cancel modification
 
             fname1 = pathconvert(stripblanks(fname1), %f, %t)
@@ -125,18 +113,14 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
             elseif offset < 1 then
                 block_parameter_error(msprintf(gettext("Wrong value for ''%s'' parameter: %d."), gettext("Initial Record Index"), offset), ..
                 gettext("Strictly positive integer expected."));
-
             else
-
                 if tmask1 == [] then
                     ievt = 0;
                     tmask1 = 0;
                     outpt = [];
-
                 else
                     ievt = 1;
                     outpt = 1;
-
                 end
 
                 out = size(outmask,"*")
@@ -146,28 +130,25 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
                 if ok then
                     if ievt == 0 then
                         model.firing = -1
-
                     else
                         model.firing = 0
-
                     end
 
                     ipar = [ ...
-                    length(fname1); ...
-                    _str2code(frmt1); ...
+                    length(ascii(fname1)); ...
+                    ascii(frmt1)'; ...
                     ievt; ...
                     N; ...
                     M; ...
                     swap; ...
                     offset; ...
-                    _str2code(fname1); ...
+                    ascii(fname1)'; ...
                     tmask1; ...
                     outmask(:) ...
                     ];
 
                     if prod(size(dstate)) <> (N*M) + 3 then
                         dstate = [-1; -1; lunit; zeros(N*M, 1)]
-
                     end
 
                     model.dstate = dstate;
@@ -198,8 +179,8 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
         nout = size(outmask,"*")
 
         ipar = [ ...
-        length(fname); _str2code(frmt); ievt; N; M; ...
-        swap;offset; _str2code(fname); tmask; outmask ...
+        length(ascii(fname)); ascii(frmt)'; ievt; N; M; ...
+        swap;offset; ascii(fname)'; tmask; outmask ...
         ];
 
         model = scicos_model()
@@ -209,8 +190,8 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
         model.evtout = []
         model.dstate = [1; 1; lunit; zeros(N*M,1)]
         model.ipar = [ ...
-        length(fname); _str2code(frmt); ievt; N; M; ...
-        swap; offset;_str2code(fname); ...
+        length(ascii(fname)); ascii(frmt)'; ievt; N; M; ...
+        swap; offset;ascii(fname)'; ...
         tmask; outmask ...
         ];
 
@@ -223,10 +204,7 @@ function [x,y,typ] = READC_f(job,arg1,arg2)
         string(N); string(offset);string(swap) ...
         ];
 
-        gr_i = [ ...
-        "txt=[""read from"";""C binary file""];"; ...
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),""fill"")" ...
-        ];
+        gr_i = [];
 
         x = standard_define([4 2],model,exprs,gr_i)
     end

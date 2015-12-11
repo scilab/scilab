@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -20,27 +20,35 @@
 #include <Windows.h>
 #endif
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-BOOL deleteafile(char *filename)
+BOOL deleteafile(const char *filename)
 {
-    BOOL bOK = FALSE;
 #ifndef _MSC_VER
     {
         FILE *f = fopen(filename, "r") ;
         if (! f)
         {
-            return bOK;
+            return FALSE;
         }
+
         fclose(f) ;
-        chmod(filename, S_IWRITE) ;
+
+        if (chmod(filename, S_IWRITE))
+        {
+            return FALSE;
+        }
+
         if (remove(filename) == 0)
         {
-            bOK = TRUE;
+            return TRUE;
         }
+
+        return FALSE;
     }
 #else
     {
+        BOOL bOK = FALSE;
         if (filename)
         {
             wchar_t *wcfilename = to_wide_string(filename);
@@ -48,15 +56,15 @@ BOOL deleteafile(char *filename)
             {
                 bOK = deleteafileW(wcfilename);
                 FREE(wcfilename);
-                wcfilename = NULL;
             }
         }
+
+        return bOK;
     }
 #endif
-    return bOK;
 }
 /*--------------------------------------------------------------------------*/
-BOOL deleteafileW(wchar_t *filenameW)
+BOOL deleteafileW(const wchar_t *filenameW)
 {
     BOOL bOK = FALSE;
 #ifndef _MSC_VER

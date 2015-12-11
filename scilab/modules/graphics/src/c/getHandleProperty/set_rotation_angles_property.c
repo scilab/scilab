@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_rotation_angles_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_rotation_angles_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     double* values = (double*)_pvData;
@@ -40,8 +40,14 @@ int set_rotation_angles_property(void* _pvCtx, char* pobjUID, void* _pvData, int
         Scierror(999, _("Wrong type for '%s' property: Real matrix expected.\n"), "rotation_angles");
         return SET_PROPERTY_ERROR;
     }
+    
+    if (nbRow != 1 || nbCol != 2)
+    {
+        Scierror(999, _("Wrong size for '%s' property: Row vector of size %d expected.\n"), "rotation_angles", 2);
+        return SET_PROPERTY_ERROR;
+    }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_ROTATION_ANGLES__, values, jni_double_vector, 2);
+    status = setGraphicObjectProperty(iObjUID, __GO_ROTATION_ANGLES__, values, jni_double_vector, 2);
 
     if (status == TRUE)
     {

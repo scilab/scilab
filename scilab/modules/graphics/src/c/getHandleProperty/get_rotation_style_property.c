@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,27 +30,27 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_rotation_style_property(void* _pvCtx, char * pobjUID)
+void* get_rotation_style_property(void* _pvCtx, int iObjUID)
 {
     int iRotationStyle = 0;
     int *piRotationStyle = &iRotationStyle;
-    getGraphicObjectProperty(pobjUID, __GO_ROTATION_TYPE__, jni_int, (void**)&piRotationStyle);
+    getGraphicObjectProperty(iObjUID, __GO_ROTATION_TYPE__, jni_int, (void**)&piRotationStyle);
 
     if (piRotationStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "rotation_style");
-        return -1;
+        return NULL;
     }
 
     if (iRotationStyle == 0)
     {
-        return sciReturnString(_pvCtx, "unary");
+        return sciReturnString("unary");
     }
     else if (iRotationStyle == 1)
     {
-        return sciReturnString(_pvCtx, "multiple");
+        return sciReturnString("multiple");
     }
 
-    return -1;
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

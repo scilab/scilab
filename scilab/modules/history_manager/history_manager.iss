@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -19,6 +19,7 @@
 #define HISTORY_MANAGER "history_manager"
 ;
 Source: bin\sci{#HISTORY_MANAGER}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#HISTORY_MANAGER}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#HISTORY_MANAGER}\jar\org.scilab.modules.{#HISTORY_MANAGER}.jar;DestDir: {app}\modules\{#HISTORY_MANAGER}\jar; Components: {#COMPN_SCILAB}
 ;
@@ -36,13 +37,11 @@ Source: modules\{#HISTORY_MANAGER}\etc\{#HISTORY_MANAGER}.start; DestDir: {app}\
 Source: modules\{#HISTORY_MANAGER}\etc\*.xml; DestDir: {app}\modules\{#HISTORY_MANAGER}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\etc\*.xsl; DestDir: {app}\modules\{#HISTORY_MANAGER}\etc; Components: {#COMPN_SCILAB}
 ;
-;Source: modules\{#HISTORY_MANAGER}\macros\buildmacros.sce; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#HISTORY_MANAGER}\macros\buildmacros.sce; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\macros\buildmacros.bat; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#HISTORY_MANAGER}\macros\cleanmacros.bat; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#HISTORY_MANAGER}\macros\*.bin; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HISTORY_MANAGER}\macros\*.sci; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HISTORY_MANAGER}\macros\lib; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#HISTORY_MANAGER}\macros\names; DestDir: {app}\modules\{#HISTORY_MANAGER}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HISTORY_MANAGER}\demos\*.*; DestDir: {app}\modules\{#HISTORY_MANAGER}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

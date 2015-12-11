@@ -7,7 +7,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 
@@ -42,12 +42,12 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/jvm/includes/ \
 				-I$(top_srcdir)/modules/commons/src/jni \
 				-I$(top_srcdir)/modules/graphics/includes/ \
-				-I$(top_srcdir)/modules/graphics/includes/handleDrawing/ \
 				-I$(top_srcdir)/modules/output_stream/includes/ \
 				-I$(top_srcdir)/modules/graphic_export/includes/ \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/gui/includes/ \
+				-I$(top_srcdir)/modules/string/includes/ \
 				$(AM_CPPFLAGS)
 
 # All the sources needed by libscirenderer.la

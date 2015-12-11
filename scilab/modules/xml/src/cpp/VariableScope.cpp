@@ -6,255 +6,259 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "VariableScope.hxx"
 #include "XMLObject.hxx"
 #include "XMLNodeList.hxx"
+#include <iostream>
 
 namespace org_modules_xml
 {
-    xmlFreeFunc VariableScope::XMLFreeFunc = 0;
-      std::map < void *, XMLObject * >*VariableScope::mapLibXMLToXMLObject = new std::map < void *, XMLObject * >();
-      std::map < void *, XMLNodeList * >*VariableScope::mapLibXMLToXMLNodeList = new std::map < void *, XMLNodeList * >();
-      std::map < const XMLObject *, std::vector < const XMLObject *>*>*VariableScope::parentToChildren =
-        new std::map < const XMLObject *, std::vector < const XMLObject *>*>();
+xmlFreeFunc VariableScope::XMLFreeFunc = 0;
+std::map < void *, XMLObject * > VariableScope::mapLibXMLToXMLObject = std::map < void *, XMLObject * >();
+std::map < void *, XMLNodeList * > VariableScope::mapLibXMLToXMLNodeList = std::map < void *, XMLNodeList * >();
+std::map < const XMLObject *, std::map < const XMLObject *, bool>*> VariableScope::parentToChildren = std::map < const XMLObject *, std::map < const XMLObject *, bool>*>();
 
-      VariableScope::VariableScope(int _initialSize)
+VariableScope::VariableScope(int _initialSize)
+{
+    position = -1;
+    initialSize = _initialSize;
+    scope = new std::vector < XMLObject * >();
+    freePlaces = new std::stack < int >();
+    initXMLMemory();
+}
+
+VariableScope::~VariableScope()
+{
+    for (unsigned int i = 0; i < scope->size(); i++)
     {
-        position = -1;
-        initialSize = _initialSize;
-        scope = new std::vector < XMLObject * >();
-        freePlaces = new std::stack < int >();
-          parentToChildren = new std::map < const XMLObject *, std::vector < const XMLObject *>*>();
-          initXMLMemory();
+        if ((*scope)[i])
+        {
+            delete(*scope)[i];
+        }
+    }
+    delete scope;
+    delete freePlaces;
+}
+
+/**
+ * To avoid unused place in the vector, we use a stack which contains the empty places.
+ */
+int VariableScope::getVariableId(const XMLObject & obj)
+{
+    int returnValue;
+    const XMLObject *parent = obj.getXMLObjectParent();
+
+    if (freePlaces->size() != 0)
+    {
+        returnValue = freePlaces->top();
+        freePlaces->pop();
+        (*scope)[returnValue] = const_cast < XMLObject * >(&obj);
+    }
+    else
+    {
+        returnValue = (int)scope->size();
+        scope->push_back(const_cast < XMLObject * >(&obj));
     }
 
-    VariableScope::~VariableScope()
+    if (parent)
     {
-        for (unsigned int i = 0; i < scope->size(); i++)
+        std::map < const XMLObject *, std::map < const XMLObject *, bool>*>::const_iterator it = parentToChildren.find(parent);
+
+        if (it != parentToChildren.end())
         {
-            if ((*scope)[i])
+            std::map < const XMLObject *, bool>::iterator jt = it->second->find(&obj);
+            if (jt != it->second->end())
             {
-                delete(*scope)[i];
-            }
-        }
-        delete scope;
-        delete freePlaces;
-        delete parentToChildren;
-    }
-
-    /**
-     * To avoid unused place in the vector, we use a stack which contains the empty places.
-     */
-    int VariableScope::getVariableId(const XMLObject & obj)
-    {
-        int returnValue;
-        const XMLObject *parent = obj.getXMLObjectParent();
-
-        if (freePlaces->size() != 0)
-        {
-            returnValue = freePlaces->top();
-            freePlaces->pop();
-            (*scope)[returnValue] = const_cast < XMLObject * >(&obj);
-        }
-        else
-        {
-            returnValue = (int)scope->size();
-            scope->push_back(const_cast < XMLObject * >(&obj));
-        }
-
-        if (parent)
-        {
-            std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren->find(parent);
-
-            if (it != parentToChildren->end())
-            {
-                it->second->push_back(&obj);
+                jt->second = true;
             }
             else
             {
-                (*parentToChildren)[parent] = new std::vector < const XMLObject *>();
-
-                (*parentToChildren)[parent]->push_back(&obj);
+                it->second->insert(std::pair<const XMLObject *, bool>(&obj, true));
             }
         }
-
-        return returnValue;
-    }
-
-    XMLObject *VariableScope::getVariableFromId(int id)
-    {
-        if (id >= 0 && id < (int)scope->size())
+        else
         {
-            return (*scope)[id];
-        }
-
-        return 0;
-    }
-
-    /**
-     * There are two motivations to register libxml pointers:
-     *   i) if a XMLObject is associated to a libxml node, then when this node will be removed
-     *      the XMLObject must be destroyed. This job is done in _xmlFreeFunc which is called
-     *      by libxml when a libxml node is freed.
-     *   ii) To avoid multiple instances of a XMLObject which wraps the same node, the function
-     *       getXMLObjectFromLibXMLPtr is used to know if a XMLObject already exists for the
-     *       libxml node.
-     */
-    void VariableScope::registerPointers(void *libxml, XMLObject * obj)
-    {
-        if (libxml)
-        {
-            (*mapLibXMLToXMLObject)[libxml] = obj;
+            std::map < const XMLObject *, bool> * map = new std::map < const XMLObject *, bool>();
+            map->insert(std::pair<const XMLObject *, bool>(&obj, true));
+            parentToChildren.insert(std::pair<const XMLObject *, std::map < const XMLObject *, bool>*>(parent, map));
         }
     }
 
-    void VariableScope::registerPointers(void *libxml, XMLNodeList * nodeList)
+    return returnValue;
+}
+
+XMLObject *VariableScope::getVariableFromId(int id)
+{
+    if (id >= 0 && id < (int)scope->size())
     {
-        if (libxml)
+        return (*scope)[id];
+    }
+
+    return 0;
+}
+
+/**
+ * There are two motivations to register libxml pointers:
+ *   i) if a XMLObject is associated to a libxml node, then when this node will be removed
+ *      the XMLObject must be destroyed. This job is done in _xmlFreeFunc which is called
+ *      by libxml when a libxml node is freed.
+ *   ii) To avoid multiple instances of a XMLObject which wraps the same node, the function
+ *       getXMLObjectFromLibXMLPtr is used to know if a XMLObject already exists for the
+ *       libxml node.
+ */
+void VariableScope::registerPointers(void *libxml, XMLObject * obj)
+{
+    if (libxml)
+    {
+        mapLibXMLToXMLObject[libxml] = obj;
+    }
+}
+
+void VariableScope::registerPointers(void *libxml, XMLNodeList * nodeList)
+{
+    if (libxml)
+    {
+        mapLibXMLToXMLNodeList[libxml] = nodeList;
+    }
+}
+
+void VariableScope::unregisterPointer(void *libxml)
+{
+    if (libxml)
+    {
+        mapLibXMLToXMLObject.erase(libxml);
+    }
+}
+
+void VariableScope::unregisterNodeListPointer(void *libxml)
+{
+    if (libxml)
+    {
+        mapLibXMLToXMLNodeList.erase(libxml);
+    }
+}
+
+XMLObject *VariableScope::getXMLObjectFromLibXMLPtr(void *libxml) const
+{
+    if (libxml)
+    {
+        std::map < void *, XMLObject * >::const_iterator it = mapLibXMLToXMLObject.find(libxml);
+        if (it != mapLibXMLToXMLObject.end())
         {
-            (*mapLibXMLToXMLNodeList)[libxml] = nodeList;
+            return it->second;
         }
     }
 
-    void VariableScope::unregisterPointer(void *libxml)
+    return 0;
+}
+
+XMLNodeList *VariableScope::getXMLNodeListFromLibXMLPtr(void *libxml)const
+{
+    if (libxml)
     {
-        if (libxml)
+        std::map < void *, XMLNodeList * >::const_iterator it = mapLibXMLToXMLNodeList.find(libxml);
+        if (it != mapLibXMLToXMLNodeList.end())
         {
-            mapLibXMLToXMLObject->erase(libxml);
+            return it->second;
         }
     }
 
-    void VariableScope::unregisterNodeListPointer(void *libxml)
-    {
-        if (libxml)
-        {
-            mapLibXMLToXMLNodeList->erase(libxml);
-        }
-    }
+    return 0;
+}
 
-    XMLObject *VariableScope::getXMLObjectFromLibXMLPtr(void *libxml) const
+void VariableScope::removeId(int id)
+{
+    if (id >= 0 && id < (int)scope->size() && (*scope)[id])
     {
-        if (libxml)
+        XMLObject * const child = (*scope)[id];
+        removeChildFromParent(child);
+        removeDependencies(child);
+        (*scope)[id] = 0;
+        freePlaces->push(id);
+    }
+}
+
+void VariableScope::removeDependencies(XMLObject * obj)
+{
+    std::map < const XMLObject *, std::map < const XMLObject *, bool>*>::const_iterator it = parentToChildren.find(obj);
+
+    if (it != parentToChildren.end())
+    {
+        for (std::map < const XMLObject *, bool>::const_iterator i = it->second->begin(), e = it->second->end(); i != e; ++i)
         {
-            std::map < void *, XMLObject * >::const_iterator it = mapLibXMLToXMLObject->find(libxml);
-            if (it != mapLibXMLToXMLObject->end())
+            const XMLObject *child = i->first;
+            if (child && i->second && getVariableFromId(child->getId()) == child)
             {
-                return it->second;
+                delete child;
             }
         }
+        delete it->second;
 
-        return 0;
+        parentToChildren.erase(obj);
+    }
+}
+
+void VariableScope::initXMLMemory()
+{
+    xmlFreeFunc freeFunc;
+    xmlMallocFunc mallocFunc;
+    xmlReallocFunc reallocFunc;
+    xmlStrdupFunc strdupFunc;
+
+    xmlMemGet(&freeFunc, &mallocFunc, &reallocFunc, &strdupFunc);
+    freeFunc = getFreeFunc(freeFunc);
+    xmlMemSetup(freeFunc, mallocFunc, reallocFunc, strdupFunc);
+}
+
+xmlFreeFunc VariableScope::getFreeFunc(xmlFreeFunc freeFunc)
+{
+    if (!XMLFreeFunc)
+    {
+        XMLFreeFunc = freeFunc;
     }
 
-    XMLNodeList *VariableScope::getXMLNodeListFromLibXMLPtr(void *libxml)const
-    {
-        if (libxml)
-        {
-            std::map < void *, XMLNodeList * >::const_iterator it = mapLibXMLToXMLNodeList->find(libxml);
-            if (it != mapLibXMLToXMLNodeList->end())
-            {
-                return it->second;
-            }
-        }
+    return &_xmlFreeFunc;
+}
 
-        return 0;
+void VariableScope::_xmlFreeFunc(void *mem)
+{
+    std::map < void *, XMLObject * >::const_iterator it = mapLibXMLToXMLObject.find(mem);
+
+    if (it != mapLibXMLToXMLObject.end())
+    {
+        delete it->second;
+
+        mapLibXMLToXMLObject.erase(mem);
     }
 
-    void VariableScope::removeId(int id)
+    std::map < void *, XMLNodeList * >::const_iterator itnl = mapLibXMLToXMLNodeList.find(mem);
+
+    if (itnl != mapLibXMLToXMLNodeList.end())
     {
-        if (id >= 0 && id < (int)scope->size() && (*scope)[id])
-        {
-            removeChildFromParent((*scope)[id]);
-            removeDependencies((*scope)[id]);
-            (*scope)[id] = 0;
-            freePlaces->push(id);
-        }
+        delete itnl->second;
+
+        mapLibXMLToXMLNodeList.erase(mem);
     }
 
-    void VariableScope::removeDependencies(XMLObject * obj)
+    XMLFreeFunc(mem);
+}
+
+inline void VariableScope::removeChildFromParent(const XMLObject * child)
+{
+    const XMLObject *parent = child->getXMLObjectParent();
+    std::map < const XMLObject *, std::map < const XMLObject *, bool>*>::iterator i = parentToChildren.find(parent);
+
+    if (i != parentToChildren.end())
     {
-        std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren->find(obj);
-
-        if (it != parentToChildren->end())
+        std::map < const XMLObject *, bool>::iterator j = i->second->find(child);
+        if (j != i->second->end())
         {
-            for (unsigned int i = 0; i < it->second->size(); i++)
-            {
-                const XMLObject *child = (*(it->second))[i];
-
-                if (child && getVariableFromId(child->getId()) == child)
-                {
-                    delete child;
-                }
-            }
-            delete it->second;
-
-            parentToChildren->erase(obj);
-        }
-    }
-
-    void VariableScope::initXMLMemory()
-    {
-        xmlFreeFunc freeFunc;
-        xmlMallocFunc mallocFunc;
-        xmlReallocFunc reallocFunc;
-        xmlStrdupFunc strdupFunc;
-
-        xmlMemGet(&freeFunc, &mallocFunc, &reallocFunc, &strdupFunc);
-        freeFunc = getFreeFunc(freeFunc);
-        xmlMemSetup(freeFunc, mallocFunc, reallocFunc, strdupFunc);
-    }
-
-    xmlFreeFunc VariableScope::getFreeFunc(xmlFreeFunc freeFunc)
-    {
-        if (!XMLFreeFunc)
-        {
-            XMLFreeFunc = freeFunc;
-        }
-
-        return &_xmlFreeFunc;
-    }
-
-    void VariableScope::_xmlFreeFunc(void *mem)
-    {
-        std::map < void *, XMLObject * >::const_iterator it = mapLibXMLToXMLObject->find(mem);
-
-        if (it != mapLibXMLToXMLObject->end())
-        {
-            delete it->second;
-
-            mapLibXMLToXMLObject->erase(mem);
-        }
-
-        std::map < void *, XMLNodeList * >::const_iterator itnl = mapLibXMLToXMLNodeList->find(mem);
-
-        if (itnl != mapLibXMLToXMLNodeList->end())
-        {
-            delete itnl->second;
-
-            mapLibXMLToXMLNodeList->erase(mem);
-        }
-
-        XMLFreeFunc(mem);
-    }
-
-    inline void VariableScope::removeChildFromParent(const XMLObject * child)
-    {
-        const XMLObject *parent = child->getXMLObjectParent();
-        std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren->find(parent);
-
-        if (it != parentToChildren->end())
-        {
-            for (unsigned int i = 0; i < it->second->size(); i++)
-            {
-                if (child == (*(it->second))[i])
-                {
-                    (*(it->second))[i] = 0;
-                }
-            }
+            j->second = false;
         }
     }
+}
 }

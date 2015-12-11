@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htmlWrite" xml:lang="en">
+    <refnamediv>
+        <refname>htmlWrite</refname>
+        <refpurpose>Write a HTML document in a file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            htmlWrite(doc [, filename] [, indent])
+            htmlWrite(doc [, indent])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>doc</term>
+                <listitem>
+                    <para>doc, a mlist typed XMLDoc</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>filename, a string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>indent</term>
+                <listitem>
+                    <para>indent, a boolean</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Write a HTML document in a file with the given filename or with the document url. If indent is true, then the document will be indented, by default indent is true.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    doc = htmlRead("http://www.scilab.org");
+    htmlWrite(doc, TMPDIR+"/scilab.html", %f);
+
+    // Now we open the previous file, modify it and save it
+    doc1 = htmlRead(TMPDIR+"/scilab.html");
+    xp = xmlXPath(doc1, "//title");
+    e = xp(1);
+    e.content = "Hello Scilab World";
+    htmlWrite(doc1);
+
+    // Now we check that the modification has been done
+    doc2 = htmlRead(TMPDIR+"/scilab.html");
+    xp = xmlXPath(doc2, "//title");
+    xp(1).content
+
+    xmlDelete("all");
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="xmlDump">xmlDump</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HTML features added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

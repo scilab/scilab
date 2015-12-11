@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_hankel(tree)
     // M2SCI function
@@ -19,13 +19,13 @@ function [tree]=sci_hankel(tree)
     if rhs==1 then
         if typeof(tree.rhs(1))<>"variable" then
             c=gettempvar();
-            insert(Equal(list(c),tree.rhs(1)))
+            m2sci_insert(Equal(list(c),tree.rhs(1)))
         else
             c=tree.rhs(1);
         end
 
         n=gettempvar()
-        insert(Equal(list(n),Funcall("size",1,Rhs_tlist(c,"*"),list())));
+        m2sci_insert(Equal(list(n),Funcall("size",1,Rhs_tlist(c,"*"),list())));
 
         if is_a_scalar(tree.rhs(1)) then
             v=c
@@ -54,22 +54,22 @@ function [tree]=sci_hankel(tree)
     else
         if typeof(tree.rhs(1))<>"variable" then
             c=gettempvar();
-            insert(Equal(list(c),tree.rhs(1)))
+            m2sci_insert(Equal(list(c),tree.rhs(1)))
         else
             c=tree.rhs(1);
         end
 
         if typeof(tree.rhs(2))<>"variable" then
             r=gettempvar();
-            insert(Equal(list(r),tree.rhs(2)))
+            m2sci_insert(Equal(list(r),tree.rhs(2)))
         else
             r=tree.rhs(2);
         end
 
         m=gettempvar();
         n=gettempvar();
-        insert(Equal(list(m),Funcall("size",1,Rhs_tlist(c,"*"),list())));
-        insert(Equal(list(n),Funcall("size",1,Rhs_tlist(r,"*"),list())));
+        m2sci_insert(Equal(list(m),Funcall("size",1,Rhs_tlist(c,"*"),list())));
+        m2sci_insert(Equal(list(n),Funcall("size",1,Rhs_tlist(r,"*"),list())));
 
 
         // v=[matrix(c,1,-1),matrix(r(2:$),1,-1)]

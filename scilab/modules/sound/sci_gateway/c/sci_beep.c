@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -17,7 +17,8 @@
 #include <windows.h>
 #endif
 #include "gw_sound.h"
-#include "MALLOC.h"
+#include "os_string.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
@@ -30,7 +31,7 @@ static BOOL beepON = TRUE;
 /*--------------------------------------------------------------------------*/
 void doBeep(void);
 /*--------------------------------------------------------------------------*/
-int sci_beep(char *fname, unsigned long fname_len)
+int sci_beep(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     char *output = NULL;
@@ -72,7 +73,7 @@ int sci_beep(char *fname, unsigned long fname_len)
 
         if (iType1  != sci_strings )
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
 
@@ -86,7 +87,7 @@ int sci_beep(char *fname, unsigned long fname_len)
 
         if ( (m1 != n1) && (n1 != 1) )
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
 
@@ -130,14 +131,14 @@ int sci_beep(char *fname, unsigned long fname_len)
 
     if (beepON)
     {
-        output = strdup(BEEP_ON);
+        output = os_strdup(BEEP_ON);
     }
     else
     {
-        output = strdup(BEEP_OFF);
+        output = os_strdup(BEEP_OFF);
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, &output);
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, (const char * const*) &output);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

@@ -9,60 +9,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 05:06+0000\n"
+"PO-Revision-Date: 2015-10-09 16:54+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation-team-uk@lists.sourceforge.net>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати "
-"визначену змінну.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
-msgstr "%s: помилкове значення вхідного параметра №%d: «%s» є каталогом"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: не вдалося відкрити файл %s.\n"
-
-#, c-format
-msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
-"%s: помилкова версія формату файлів SOD. Мало бути: %d Виявлено: %d\n"
-
-#, c-format
-msgid "%s: Unable to delete existing variable \"%s\"."
-msgstr "%s: не вдалося вилучити наявну змінну «%s»."
-
-#, c-format
-msgid ""
-"%s: Variable '%s' already exists in file '%s'\n"
-"Use -append option to replace existing variable\n"
-"."
-msgstr ""
-"%s: змінну «%s» вже визначено у файлі «%s»\n"
-"Скористайтеся параметром -append, щоб замінити вже визначену змінну."
-
-#, c-format
-msgid "%s: Unable to update Scilab version in \"%s\"."
-msgstr "%s: не вдалося оновити запис версії Scilab у «%s»."
-
-#, c-format
-msgid "%s: Unable to update HDF5 format version in \"%s\"."
-msgstr "%s: не вдалося оновити запис версії форматування HDF5 у «%s»."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -73,8 +27,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s: некоректний H5Object.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або H5Object.\n"
@@ -84,7 +37,13 @@ msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -109,10 +68,10 @@ msgstr ""
 "зі значень з подвійною точністю (double).\n"
 
 #, c-format
-msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: мало бути вказано вектор з "
-"п’ятьма рядками.\n"
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+"вектор-стовпчик з п’ятьма елементами.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -142,7 +101,7 @@ msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано H5Object.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано рядок.\n"
 
@@ -198,8 +157,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s: не вдалося використати H5Object: некоректний об’єкт.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або «boolean».\n"
@@ -236,9 +194,10 @@ msgid "%s: Second argument must be a dataset name.\n"
 msgstr "%s: другий параметр має бути назвою набору даних.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as the data expected.\n"
 msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: розмірності мають "
+"%s: помилкова розмірність вхідного параметра №%d: розмірності даних мали "
 "збігатися.\n"
 
 #, c-format
@@ -255,6 +214,11 @@ msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід вказати принаймні %d.\n"
+
+#, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s: не вдалося відкрити файл: %s\n"
 
@@ -269,13 +233,89 @@ msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: некоректний формат Scilab HDF5\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Unable to open file: '%s'.\n"
+msgstr "%s: не вдалося відкрити файл: «%s».\n"
+
+#, c-format
+msgid "%s: %s is not a valid lib file.\n"
+msgstr "%s: %s не є коректним файлом бібліотеки.\n"
+
+msgid "Redefining permanent variable.\n"
+msgstr "Повторне визначення незмінної змінної.\n"
+
+#, c-format
+msgid "%s: Unable to load '%s'\n"
+msgstr "%s: не вдалося завантажити «%s»\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
+msgstr ""
+"%s: помилкова версія формату файлів SOD. Мало бути: %d Виявлено: %d\n"
+
+#, c-format
+msgid "%s: Unable to load '%s'.\n"
+msgstr "%s: не вдалося завантажити «%s».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати "
+"визначену змінну.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr "%s: помилкове значення вхідного параметра №%d: «%s» є каталогом"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: не вдалося відкрити файл %s.\n"
+
+#, c-format
+msgid "%s: Unable to delete existing variable \"%s\".\n"
+msgstr "%s: не вдалося вилучити наявну змінну «%s».\n"
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable.\n"
+msgstr ""
+"%s: змінна «%s» вже існує у файлі «%s».\n"
+"Скористайтеся параметром -append для заміни наявної змінної.\n"
+
+#, c-format
+msgid "%s: Unable to export variable '%s' in file '%s'.\n"
+msgstr "%s: не вдалося експортувати змінну «%s» до файла «%s».\n"
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr "%s: не вдалося оновити запис версії Scilab у «%s»."
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr "%s: не вдалося оновити запис версії форматування HDF5 у «%s»."
+
+#, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: мало бути більше за %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: мало бути вказано рядок (string) "
 "або число з подвійною точністю (double).\n"
@@ -466,8 +506,8 @@ msgstr "Некоректний ранг вибору."
 msgid "Invalid selection."
 msgstr "Некоректний вибір."
 
-msgid "Cannot get the current errors stack"
-msgstr "Не вдалося отримати вміст поточного стека помилок"
+msgid "Cannot get the current stack of errors."
+msgstr "Не вдалося отримати поточний стек помилок."
 
 msgid "HDF5 description"
 msgstr "Опис HDF5"
@@ -663,6 +703,9 @@ msgstr "Невідомий об’єкт HDF5"
 msgid "Cannot retrieve numeric index."
 msgstr "Не вдалося отримати числовий індекс."
 
+msgid "Invalid option: must be C or FORTRAN."
+msgstr "Некоректний параметр: має бути C або FORTRAN."
+
 msgid "Cannot open object at the given position."
 msgstr "Не вдалося відкрити об’єкт за вказаною позицією."
 
@@ -716,8 +759,8 @@ msgid "Cannot create the soft link: %s."
 msgstr "Не вдалося створити гнучкий зв’язок: %s."
 
 #, c-format
-msgid "Cannot create a hard link to an external object: %s."
-msgstr "Створення жорсткого зв’язку з зовнішнім об’єктом неможливе: %s."
+msgid "Cannot create a hard link to the external object: %s."
+msgstr "Неможливо створити жорстке посилання на зовнішній об’єкт: %s."
 
 #, c-format
 msgid "Cannot create the external link: %s."
@@ -753,17 +796,6 @@ msgstr "Не вдалося демонтувати файл з такою адр
 #, c-format
 msgid "Can not read input argument #%d."
 msgstr "Не вдалося виконати читання вхідного параметра №%d."
-
-#, c-format
-msgid "Can not get the type of input argument #%d."
-msgstr "Не вдалося отримати тип вхідного параметра №%d."
-
-msgid "Complex datatype not handled for now."
-msgstr "У поточній версії обробки комплексних типів даних не передбачено."
-
-#, c-format
-msgid "%s: Can not read input argument #%d."
-msgstr "%s: не вдалося прочитати вхідний параметр №%d."
 
 #, c-format
 msgid "%s: Datatype not handled for now."

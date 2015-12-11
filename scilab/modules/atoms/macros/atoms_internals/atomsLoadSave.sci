@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -77,9 +77,6 @@ function  atomsLoadSave(loaded_mat)
     // =========================================================================
 
     mputl( loaded_str , loaded_txt);
-    wMode = warning("query");
-    warning("off");
-    save( loaded_bin  , loaded_mat);
-    warning(wMode);
+    save( loaded_bin  , "loaded_mat");
 
 endfunction

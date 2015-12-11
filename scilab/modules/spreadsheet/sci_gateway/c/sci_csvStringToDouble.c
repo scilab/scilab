@@ -7,28 +7,26 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * This code is also published under the GPL v3 license.
  *
  */
 #include <string.h>
+#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
 #include "complex_array.h"
 
 // =============================================================================
-int sci_csvStringToDouble(char *fname, unsigned long fname_len)
+int sci_csvStringToDouble(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -104,6 +102,7 @@ int sci_csvStringToDouble(char *fname, unsigned long fname_len)
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
+        break;
 
         default:
         case STRINGTOCOMPLEX_ERROR:

@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -98,7 +98,7 @@ public :
      * @param[in] the buffer length in number of elements.
      * @param[in] the number of components taken by one element in the buffer (3 or 4).
      */
-    static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
+    static void fillColors(int id, float* buffer, int bufferLength, int elementsSize);
 
     /**
      * Fills the given buffer with indices data of the given object.
@@ -108,7 +108,7 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
+    static int fillIndices(int id, int* buffer, int bufferLength, int logMask);
 };
 
 #endif

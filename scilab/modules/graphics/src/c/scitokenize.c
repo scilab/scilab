@@ -7,14 +7,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "scitokenize.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int scitokenize(char * legend, char *** Strptr, int *n)
@@ -25,9 +25,10 @@ int scitokenize(char * legend, char *** Strptr, int *n)
     int prevIndex = 0;
     int stringLength = 0, j = 0;
     char **Str = NULL;
+    int lenlegend = (int)strlen(legend);
 
     /* first get the number of tokens */
-    for (i = 0; i < (int)strlen(legend); i++)
+    for (i = 0; i < lenlegend; i++)
     {
         if (legend[i] == '@')
         {

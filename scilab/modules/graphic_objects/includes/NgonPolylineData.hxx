@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -54,6 +54,14 @@ private :
 
     /** The coordinates shift array */
     double* coordinatesShift;
+
+    /** data of datatip display function */
+    int* display_function_data;
+    int display_function_data_size;
+
+    /** The colors array */
+    int* colors;
+	int numColors;
 
 public :
     /**
@@ -210,9 +218,38 @@ public :
     void copyShiftCoordinatesArray(double * newShift, double const* oldShift, int numElementsNew);
 
     /**
+     * Sets the colors array
+     * @param[in] newColors a pointer to the array with the colors
+     * @param[in] numElements the colors array number of elements
+     * @return 1 if it succeeded, 0 if the allocation failed
+     */
+    int setColors(int const* newColors, int numElements);
+
+    /**
+     * Gets the colors array
+     * @return pointer to the array with the colors
+     */
+    int * getColors();
+
+    /**
+     * Gets the number of colors in the array
+     * @return number of colors in the array
+     */
+    int getNumColors();
+
+    /**
      * Deletes the coordinates and shift arrays
      */
     void deleteCoordinatesArrays(void);
+
+    /**
+     * Sets data for display function
+     * @param data (numElements values)
+     * @param numElements the number of elements in the array
+     */
+    int setDisplayFunctionData(int const* data, int numElements);
+    int getDisplayFunctionDataSize();
+    int* getDisplayFunctionData();
 };
 
 #endif

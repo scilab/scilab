@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -31,7 +31,7 @@ function  atomsSaveInstalled(installed_struct,section)
     // Allusers can be equal to "user" or "allusers"
 
     if type(section) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsInstall",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsInstall",2));
     end
 
     if and(section<>["user","allusers"]) then
@@ -103,9 +103,6 @@ function  atomsSaveInstalled(installed_struct,section)
     // =========================================================================
 
     mputl( installed_str , installed_txt);
-    wMode = warning("query");
-    warning("off");
-    save( installed_bin , installed_struct , installed_mat );
-    warning(wMode);
+    save( installed_bin , "installed_struct" , "installed_mat" );
 
 endfunction

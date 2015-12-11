@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //==============================================================================
 
 function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
@@ -19,7 +19,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     //  help_from_sci(funname,helpdir) // generate helpdir/funname.xml from funname.sci.
     //  help_from_sci(dirname,helpdir) // process dirname/*.sci and create helpdir/*.xml help files.
     //  help_from_sci(dirname,helpdir,demodir) // as above but also creating demodir/*.dem.sce demo files.
-    //  [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrixes.
+    //  [helptxt,demotxt]=help_from_sci(funname) // return funname.xml and funname.dem.sce code as two text matrices.
     // Parameters
     //  funname: the name of a single .sci source file to be processed.
     //  dirname: directory name where all .sci files will be processed.
@@ -152,6 +152,7 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
         if (isdef("editor") | (funptr("editor") <> 0)) then
             editor(TMPDIR + filesep() + "function_template.sci");
         end
+        [helptxt, demotxt] = help_from_sci("TMPDIR/function_template");
         return;
     end
 
@@ -257,15 +258,24 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
                 in = "";
             end
         else
+
             in = strsplit(line, i(1) + 1);
             in = stripblanks(in(2));
             code = in;  // store original line for the demos.
             if (doing ~= "Examples") then // Replacing characters like <, > or & should not be done in the Examples
                 in = strsubst(in, "&", "&amp;"); // remove elements that make xml crash.
                 in = strsubst(in, "< ", "&lt; ");
-                if strindex(in ,"<") then if isempty(regexp(in, "/\<*[a-z]\>/")) then in = strsubst(in, "<", "&lt;"); end; end
+                if strindex(in ,"<") then
+                    if ~helpfromsci_isxmlstr(in) then
+                        in = strsubst(in, "<", "&lt;");
+                    end;
+                end
                 in = strsubst(in, " >", " &gt;");
-                if strindex(in, ">") then if isempty(regexp(in, "/\<*[a-z]\>/")) then in = strsubst(in, ">", "&gt;"); end; end
+                if strindex(in, ">") then
+                    if ~helpfromsci_isxmlstr(in) then
+                        in = strsubst(in, ">", "&gt;");
+                    end;
+                end
             end
         end
 
@@ -363,6 +373,17 @@ function [helptxt,demotxt]=help_from_sci(funname,helpdir,demodir)
     end
 endfunction
 //==============================================================================
+function tf = helpfromsci_isxmlstr(str)
+    // Returns %t if the current string is a xml line
+    if ( ~isempty(regexp(str, "/\<*[a-z]\>/")) ) then
+        tf=%t
+    elseif ( ~isempty(regexp(str, "/\<(.*)\/\>/")) ) then
+        tf=%t
+    else
+        tf=%f
+    end
+endfunction
+//==============================================================================
 function [head, tail] = chop(str, tok)
     i = regexp(str, "/" + tok + "/", "o");
     if isempty(i) then
@@ -423,4 +444,3 @@ function [txt, doing] = change_activity(currently_doing, start_doing)
     end
 endfunction
 //==============================================================================
-

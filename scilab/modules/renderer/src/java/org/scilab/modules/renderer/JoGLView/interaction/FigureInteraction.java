@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -54,10 +54,10 @@ public abstract class FigureInteraction {
      */
     protected Axes getUnderlyingAxes(Point point) {
         Axes underlyingAxes = null;
-        Integer[] size = drawerVisitor.getFigure().getAxesSize();
-        double x = point.getX() / size[0];
-        double y = point.getY() / size[1];
-        for (String childId : drawerVisitor.getFigure().getChildren()) {
+        Dimension size = drawerVisitor.getCanvas().getDimension();
+        double x = point.getX() / size.getWidth();
+        double y = point.getY() / size.getHeight();
+        for (Integer childId : drawerVisitor.getFigure().getChildren()) {
             GraphicObject child = GraphicController.getController().getObjectFromId(childId);
             if (child instanceof Axes) {
                 if (child.getVisible()) {
@@ -105,7 +105,7 @@ public abstract class FigureInteraction {
      */
     protected boolean tightZoomBounds(Axes axes, Double[] zoomBounds) {
         boolean zoomed = false;
-        Double[] dataBounds = axes.getMaximalDisplayedBounds();
+        Double[] dataBounds = new Double[] { -1., 1., -1., 1., -1., 1.};
         for (int i : new int[] {0, 2, 4}) {
             if (zoomBounds[i] < dataBounds[i]) {
                 zoomBounds[i] = dataBounds[i];

@@ -5,32 +5,31 @@ dnl
 
 AC_DEFUN([SCI_INTEL_COMPILER],
 [
-		
-		CFLAGS=" $CFLAGS -mp"
-		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
-
-		FFLAGS=" $FFLAGS -cm  -w90 -w95 -mp"
-
-
 		case "$host" in
 		  i*86-*-linux-gnu | *-pc-linux-gnu )
-			# -pc64 : double precision 
+			# -pc64 : double precision
 			EXTRA_OPTIONS=" -pc64 -ffnalias -falias"
 			;;
 		esac
 
-		if test "$enable_debug_C" = yes; then
-			CFLAGS="-g $CFLAGS $EXTRA_OPTIONS"
+		if test "$enable_debug_CXX" = yes; then
+			COMPILER_CXXFLAGS="-g $COMPILER_CXXFLAGS $EXTRA_OPTIONS"
 		else
-			CFLAGS="-O -DNDEBUG $CFLAGS "
+			COMPILER_CXXFLAGS="-O -DNDEBUG $COMPILER_CXXFLAGS "
+		fi
+
+		if test "$enable_debug_C" = yes; then
+			COMPILER_CFLAGS="-g $COMPILER_CFLAGS $EXTRA_OPTIONS"
+		else
+			COMPILER_CFLAGS="-O -DNDEBUG $COMPILER_CFLAGS "
 		fi
 
 		if test "$enable_debug_fortran" = yes; then
-			FFLAGS="-g $FFLAGS $EXTRA_OPTIONS"
+			COMPILER_FFLAGS="-g $COMPILER_FFLAGS $EXTRA_OPTIONS"
 		else
-			FFLAGS="-O $FFLAGS "
-		fi		
-	
+			COMPILER_FFLAGS="-O -DNDEBUG $COMPILER_FFLAGS "
+		fi
+
 		# TODO : voir si obligatoire vu que c'est en partie le boulot de AC_PROG_C
 
 ])dnl SCI_INTEL_COMPILER

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function black(varargin)
@@ -127,11 +127,11 @@ function black(varargin)
     kk=1;p0=[phi(:,kk) d(:,kk)];ks=1;Dst=0;
     dx=max(%eps,xmx-xmn);
     dy=max(%eps,ymx-ymn);
-    dx2=dx^2;dy2=dy^2
+    dx2=dx.^2;dy2=dy.^2
 
     while kk<n
         kk=kk+1
-        Dst=Dst+min(sqrt(((phi(:,kk-1)-phi(:,kk))^2)/dx2+((d(:,kk-1)-d(:,kk))^2)/dy2))
+        Dst=Dst+min(sqrt(((phi(:,kk-1)-phi(:,kk)).^2)/dx2+((d(:,kk-1)-d(:,kk)).^2)/dy2))
         if Dst>0.2 then
             if min(abs(frq(:,ks(prod(size(ks))))-frq(:,kk))./frq(:,kk))>0.2 then
                 ks=[ks kk]
@@ -193,7 +193,8 @@ function black(varargin)
 
         xpoly(phi(k,:),d(k,:));e1=gce()
         e1.foreground=k;
-        datatipInitStruct(e1,"formatfunction","formatBlackTip","freq",frq(kf,:))
+        e1.display_function = "formatBlackTip";
+        e1.display_function_data = frq(kf,:);
 
         // glue entities relative to a single black curve
         E=[E glue([e2 e1])]
@@ -218,17 +219,4 @@ function black(varargin)
         legend([c e]',[comments(:); "2.3"+_("dB")])
     end
     fig.immediate_drawing=immediate_drawing;
-endfunction
-
-function str=formatBlackTip(curve,pt,index)
-    //This function is called by the datatip mechanism to format the tip
-    //string for black curves.
-    ud=datatipGetStruct(curve);
-    if index<>[] then
-        f=ud.freq(index)
-    else //interpolated
-        [d,ptp,i,c]=orthProj(curve.data,pt)
-        f=ud.freq(i)+(ud.freq(i+1)-ud.freq(i))*c
-    end
-    str=msprintf("%.4g°\n%.4g"+_("dB")+"\n%.4g"+_("Hz"), pt,f);
 endfunction

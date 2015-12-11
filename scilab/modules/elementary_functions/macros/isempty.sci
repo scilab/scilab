@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function answ = isempty(m)
 
@@ -17,11 +17,13 @@ function answ = isempty(m)
 
     m_type = type(m);
 
-    if( (type(m) >= 11) & (type(m) <= 13) | (type(m) >= 128) ) then
+    if( (m_type >= 11) & (m_type <= 13) | (m_type >= 128) ) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d.\n"), "isempty", 1));
     end
 
     select m_type
+    case 1
+        answ = m == [];
     case 10
         // matrix of character string
         answ = ( max(length(m)) == 0 );
@@ -42,17 +44,21 @@ function answ = isempty(m)
 
     case 16
         // typed list
-        answ = %t;
-        for i=1:size(m),
-            clear __element__;
-            __element__ = m(i);
-            if isdef("__element__") then
-                r = isempty(m(i));
-            else
-                r = %F;
-            end
-            answ = answ & r;
-        end;
+        if typeof(m) == "rational" then
+            answ = size(m, "*") == 0;
+        else
+            answ = %t;
+            for i=2:size(m),
+                clear __element__;
+                __element__ = m(i);
+                if isdef("__element__") then
+                    r = isempty(m(i));
+                else
+                    r = %F;
+                end
+                answ = answ & r;
+            end;
+        end
 
     case 17
         // mlist

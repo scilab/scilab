@@ -5,16 +5,17 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 // Tests for function dsaupd (added after a bug in the gateway: PutLhsVar missing)
 
-stacksize(300000);
 
 N = 1000;
 
 A = sprand(N, N, 0.01);
 
 IDO   = 0;
-BMAT  = 'I'; //standard eigenvalue problem
+BMAT  = "I"; //standard eigenvalue problem
 WHICH = "LM";
 NEV   = 4; //NEVth eigen values are solved
 TOL   = 1D-10;
@@ -49,13 +50,13 @@ tic();
 [IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,INFO] = dsaupd(IDO,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,INFO);
 
 while (IDO <> 99) & (IDO <> 3)
-  [IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,INFO] = dsaupd(IDO,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,INFO);
-  if (IDO == 1) then
-    WORKD(IPNTR(2):(IPNTR(2)+N - 1)) = A * WORKD(IPNTR(1):(IPNTR(1)+N - 1));
-  elseif (IDO == 3) then
-  end;
+    [IDO,RESID,V,IPARAM,IPNTR,WORKD,WORKL,INFO] = dsaupd(IDO,BMAT,N,WHICH,NEV,TOL,RESID,NCV,V,IPARAM,IPNTR,WORKD,WORKL,INFO);
+    if (IDO == 1) then
+        WORKD(IPNTR(2):(IPNTR(2)+N - 1)) = A * WORKD(IPNTR(1):(IPNTR(1)+N - 1));
+    elseif (IDO == 3) then
+    end;
 
-  i = i + 1;
+    i = i + 1;
 end;
 t1 = toc();
 printf("loop %d",i);
@@ -63,6 +64,6 @@ printf("loop %d",i);
 b = rand(N,1);
 tic();
 for j = 1:i
-  b = A * b;
+    b = A * b;
 end
 toc();

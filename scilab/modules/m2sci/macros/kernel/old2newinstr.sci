@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function instr=old2newinstr(instr,oldname,newname)
     // This function replaces by a new name (given in a input argument:newname) in a Scilab instruction all the variables names and functions names matching to a given name in a input argument:oldname

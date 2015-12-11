@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [x]=nehari(r,tol)
     // [x]=nehari(R,tol) returns the Nehari approximant of R.
@@ -24,7 +24,7 @@ function [x]=nehari(r,tol)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Linear state space expected.\n"),"nehari",1))
     end
     if r.dt==[] then
-        warning(msprintf(gettext("%s: Input argument %d is assumed continuous time.\n"),"nehari",1));
+        warning(msprintf(gettext("%s: Input argument #%d is assumed continuous time.\n"),"nehari",1));
         r.dt="c"
     end
     if r.dt<>"c" then

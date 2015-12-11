@@ -1,0 +1,801 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="uicontrol_properties" xml:lang="ja">
+    <refnamediv>
+        <refname>uicontrolプロパティ</refname>
+        <refpurpose>uicontrolプロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            これらのプロパティは
+            <link linkend="set">set</link> または <link linkend="uicontrol">uicontrol</link>
+            関数により設定できます.
+            これらの値は<link linkend="get">get</link>により取得可能です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>プロパティ</title>
+        <variablelist>
+            <varlistentry>
+                <term>BackgroundColor</term>
+                <listitem>
+                    <para>[1,3] 実数ベクトルまたは文字列</para>
+                    <para>
+                        uicontrolの背景色です.
+                        色は赤,緑および青の値として指定されます.
+                        これらの値は[0,1]の範囲の実数です.
+                        色は[R,G,B]のような実数ベクトルまたは"R|G|B|"のように
+                        "|"で区切られた文字列で指定できます.
+                    </para>
+                    <para>
+                        このプロパティを<literal>[-1 -1 -1]</literal>に設定すると
+                        ルックアンドフィールをデフォルトの背景色に設定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Border</term>
+                <listitem>
+                    <para>Borderオブジェクト.</para>
+                    <para>
+                        <literal>frame</literal>スタイルのuicontrolsでのみ使用され,
+                        このオブジェクトは <link linkend="createBorder">createBorder</link>
+                        により作成されます.
+                    </para>
+                    <para>
+                        この値に <literal>[]</literal> を設定すると
+                        フレームの境界が削除されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Callback</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        uicontrolが有効な時(例えばボタンをクリックした時),
+                        Scilabインタプリタで評価される命令.
+                    </para>
+                    <para>
+                        このプロパティは <literal>layer</literal>,
+                        <literal>frame</literal> および <literal>text</literal> スタイルの
+                        uicontrolsでは使用されません.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Callback_Type</term>
+                <listitem>
+                    <para>Scalar</para>
+                    <para>The type of callback transmitted to the uicontrol (see example below).</para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>-1</literal> none (callback desactivated)
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>0</literal> (by default) or <literal>2</literal> a non prioritary, interruptible Scilab instruction
+                            </para>
+                            <para>
+                                <literal>10</literal> or <literal>12</literal> a prioritary, non-interruptible Scilab instruction
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>1</literal> a C or a Fortran function
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Constraints</term>
+                <listitem>
+                    <para>Constraintsオブジェクト.</para>
+                    <para>
+                        このオブジェクトは <link linkend="createConstraints">createConstraints</link>
+                        により作成され,uicontrolのその親の対する位置と大きさに関する拘束条件を
+                        記述します.
+                    </para>
+                    <para>
+                        この値に <literal>[]</literal> を設定すると拘束条件を消去します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Enable</term>
+                <listitem>
+                    <para>{on} | off</para>
+                    <para>
+                        uicontrolを有効または無効にします.
+                        このプロパティを<literal>"on"</literal> (デフォルト)に
+                        設定した場合, uicontrolは有効となりますが,
+                        このプロパティに<literal>"off"</literal>を指定すると
+                        uicontrolはマウスの操作に応答せず,グレイアウトされます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FontAngle</term>
+                <listitem>
+                    <para>{normal} | italic | oblique</para>
+                    <para>
+                        コントロールが何らかのテキストを含む場合,
+                        このプロパティはフォントの傾きを設定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FontSize</term>
+                <listitem>
+                    <para>スカラー</para>
+                    <para>
+                        コントロールが何らかのテキストを含む場合,
+                        このプロパティはフォントの大きさをFontUnits単位で設定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FontUnits</term>
+                <listitem>
+                    <para>{points} | pixels | normalized</para>
+                    <para>
+                        コントロールが何らかのテキストを含む場合,
+                        このプロパティはFontSizeを指定する単位を指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FontWeight</term>
+                <listitem>
+                    <para>light | {normal} | demi | bold</para>
+                    <para>
+                        コントロールが何らかのテキストを含む場合,
+                        このプロパティは使用するフォントの重みを指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>FontName</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        コントロールのテキストを表示する際に
+                        選択されたフォントの名前を選ぶ際に使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ForegroundColor</term>
+                <listitem>
+                    <para>[1,3] 実数ベクトルまたは文字列</para>
+                    <para>
+                        uicontrolの前景色です.
+                        色は赤,緑および青の値として指定されます.
+                        これらの値は[0,1]の範囲の実数です.
+                        色は[R,G,B]のような実数ベクトルまたは"R|G|B|"のように
+                        "|"で区切られた文字列で指定できます.
+                    </para>
+                    <para>
+                        このプロパティを<literal>[-1 -1 -1]</literal>に設定すると,
+                        ルックアンドフィールによりデフォルトの表示色を設定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Groupname</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        <literal>radiobutton</literal> および <literal>checkbox</literal>
+                        スタイルuicontrolsの場合,
+                        本プロパティにより同じグループ全体のuicontrolを
+                        管理できるようになります.
+                        例えば<literal>checkbox</literal> uicontrolのグループは,
+                        選択の単一性を自動的に管理します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>HorizontalAlignment</term>
+                <listitem>
+                    <para>left | {center} | right</para>
+                    <para>uicontrolのテキスト水平アラインメントを設定します.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Icon</term>
+                <listitem>
+                    <para>文字列.</para>
+                    <para>
+                        このプロパティは,
+                        (<link linkend="pwd">Scilabワーキングディレクトリ</link>に対する)
+                        相対パス,または,
+                        <literal>pushbutton</literal> または <literal>text</literal>
+                        uicontrolで使用される
+                        使用する画像ファイルの絶対パスを表します.
+                    </para>
+                    <para>
+                        <literal>tab</literal> uicontrols内の
+                        <literal>frame</literal> uicontrols の場合,
+                        iconプロパティはシートのアイコンを設定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Layout: </term>
+                <listitem>
+                    <para>
+                        このプロパティは,
+                        <literal>frame</literal> uicontrols の子を配置する
+                        際に使用するレイアウトを設定します.
+                        利用可能なレイアウトに関する詳細については,
+                        <link linkend="layout">レイアウト</link>のページを参照ください.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Layout_options: </term>
+                <listitem>
+                    <para>
+                        このプロパティは<literal>frame</literal>の子を
+                        配置する際に使用されるレイアウトのオプションを設定します.
+                        利用可能なオプションに関する詳細については,
+                        <link linkend="layout">レイアウト</link>のページを参照ください.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ListboxTop</term>
+                <listitem>
+                    <para>スカラー</para>
+                    <para>
+                        <literal>listbox</literal> uicontrolsのみで使用され,
+                        このプロパティは,
+                        リストの可視領域の最初の行に現れるリストの要素を
+                        指定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Margins</term>
+                <listitem>
+                    <para>[1,4] 実数ベクトル.</para>
+                    <para>
+                        <literal>[top, left, bottom, right]</literal> (ピクセル単位)で
+                        uicontrolの周りの空き空間を設定します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Max</term>
+                <listitem>
+                    <para>スカラー</para>
+                    <para>
+                        "Value"プロパティで設定できる最大値を指定します.
+                        しかし,各uicontrolにおいて以下のように異なる意味を
+                        有します:
+                    </para>
+                    <itemizedlist>
+                        　                        <listitem>
+                            <para>
+                                <literal>checkbox</literal> および
+                                <literal>radiobutton</literal> uicontrols:
+                                Max はコントロールがチェックされた際に
+                                とる"Value"プロパティの値です.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>slider</literal> および
+                                <literal>spinner</literal> uicontrols:
+                                要素の最大値.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>listbox</literal> uicontrols: (Max-Min)&gt;1 の場合,
+                                リストは複数の選択が可能です.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>edit</literal> uicontrols: (Max-Min)&gt;1 の場合,
+                                editは複数行の選択が可能です.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Min</term>
+                <listitem>
+                    <para>スカラー</para>
+                    <para>
+                        "Value"プロパティで設定できる最小値を指定します.
+                        しかし,各uicontrolにおいて以下のように異なる意味を
+                        有します:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>checkbox</literal> および <literal>radiobutton</literal>
+                                uicontrols:
+                                Minはコントロールのチェックが外された際に
+                                "Value"プロパティがとる値です.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>slider</literal> および
+                                <literal>spinner</literal> uicontrols:
+                                要素の最小値.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>listbox</literal> uicontrols:
+                                (Max-Min)&gt;1 の場合,リストで複数の選択を行うことができます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>edit</literal> uicontrols:
+                                (Max-Min)&gt;1 の場合, edit は複数行を選択することができます.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Parent</term>
+                <listitem>
+                    <para>ハンドル</para>
+                    <para>
+                        uicontrolの親のハンドル.
+                        このプロパティを変更すると,
+                        コントロールをある図から別の図に移動することができます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Position</term>
+                <listitem>
+                    <para>[1,4] 実数ベクトルまたは文字列.</para>
+                    <para>
+                        このプロパティは,
+                        コントロールの形状を設定または取得する際に使用されます.
+                        このプロパティはベクトル [x y w h]です.
+                        ただし,各文字は左上隅のx位置,左上隅のy位置,
+                        uicontrolの幅および高さを表します.
+                        "x|y|w|h"のように
+                        各文字を"|"で区切った文字列で表すこともできます.
+                        単位は,"Units"プロパティで定義されます.
+                    </para>
+                    <para>
+                        幅と高さはスライダの向きを定義します.
+                        幅が高さよりも大きい場合,スライダは水平の向きとなり,
+                        それ以外の場合は垂直に配置されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Relief</term>
+                <listitem>
+                    <para>{default} | flat | groove | raised | ridge | solid | sunken</para>
+                    <para>
+                        uicontrolの境界の外観.
+                        <literal>"default"</literal> はアプリケーションの
+                        ルックアンドフィールがreliefを設定する際に使用されることを意味します.
+                    </para>
+                    <para>
+                        古くなったuicontrol用のskinを使用した場合,
+                        デフォルト値はuicontrolのスタイルに関係します:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>pushbutton</literal> uicontrols:
+                                "Relief" プロパティのデフォルト値は "raised"です.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>edit</literal> uicontrols:
+                                "Relief" プロパティのデフォルト値は "sunken"です.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>他の uicontrols:
+                                "Relief"プロパティのデフォルト値は "flat"です.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Scrollable</term>
+                <listitem>
+                    <para>論理値.</para>
+                    <para>
+                        <literal>frame</literal> および <literal>edit</literal> スタイル
+                        uicontrolsで使用され, このプロパティは
+                        uicontrolがスクロール機能を有する(<literal>%T</literal>)または
+                        有さない(デフォルト <literal>%F</literal>)ことを示します.
+                    </para>
+                    <para>
+                        <literal>frame</literal>の場合,この値は生成時に
+                        指定する必要があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SliderStep</term>
+                <listitem>
+                    <para>[1,2] 実数ベクトル</para>
+                    <para>[small big],
+                        smallステップはスライダをクリックした際,
+                        または(スライダにフォーカスがある時に)
+                        キーボード矢印をタッピングした際の移動量を表します;
+                        bigステップはCtrl-keyboard-矢印により移動する量を表します.
+                        bigステップが省略された場合,
+                        スケールの1/10がデフォルト値となります.
+                    </para>
+                    <para>
+                        <literal>spinner</literal> uicontrolの場合,
+                        このプロパティの最初の値が固定ステップとして使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>String</term>
+                <listitem>
+                    <para>文字列.</para>
+                    <para>
+                        このプロパティは(FrameおよびSliderスタイルを除く)
+                        uicontrolに表示されるテキストを表します.
+                        表の場合,この値は文字列の行列です.
+                        ListBoxesおよびPopupMenusの場合,
+                        この値は文字列のベクトルまたは
+                        各要素を"|"で区切った文字列とすることができます.
+                        Text uicontrolsの場合, テキストを整形するために
+                        この文字列にHTMLコードを含めることができます.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>pushbutton</literal> または <literal>text</literal> uicontrols
+                                の場合,
+                                テキストを2つの$ (ドル記号)で括ると,そのテキストは
+                                LaTeX式とみなされます.
+                                また,&lt; および &gt; で括ると,MathML式とみなされます.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>layer</literal> および <literal>tab</literal> uicontrolsの場合,
+                                この値は選択された子のタグを指定します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>image</literal> uicontrolsの場合,
+                                この値は画像ファイルのパスを指定します.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>table</literal> uicontrolsの場合,
+                                この値は以下のように表データを指定します: <literal>[IGNORED COL1-HEADER...COLN-HEADER;ROW1-HEADER, ROW1COL1-DATA, ROW1COLN-DATA;...;ROWM-HEADER, ROWMCOL1-DATA, ROWMCOLN-DATA]</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                色選択, アイコン, 背景および表面色を管理する
+                                <literal>listbox</literal> および<literal>popupmenu</literal> uicontrols
+                                の場合,
+                                <literal>String</literal> プロパティを
+                                以下の形式に一致する行列に設定できます:
+                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal>
+                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal>
+                                ただし, <literal>"#color1"</literal>,
+                                <literal>"#background1"</literal> および
+                                <literal>"#foreground1"</literal> はHTML形式
+                                <literal>#XXXXXX</literal>です.
+                                この要素は色付きのボックスまたは関連する文字列の
+                                左にアイコンを表示し,
+                                要素毎に異なる背景/表面色で表示します.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tag</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>
+                        このプロパティは一般にコントロールを特定するために使用されます.
+                        これによりコントロールに"名前"を付けることができます.
+                        通常,<literal>findobj()</literal>と組み合わせて使用されます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Title_position</term>
+                <listitem>
+                    <para>{top} | left | bottom | right</para>
+                    <para>
+                        <literal>tab</literal> スタイル uicontrolのタブの位置.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Title_scroll</term>
+                <listitem>
+                    <para>論理値</para>
+                    <para>
+                        <literal>tab</literal>スタイル uicontrol のタブが
+                        ラップされる (<literal>title_scroll=%F</literal>) か
+                        スクロールされる (<literal>title_scroll=%T</literal>)かを示します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>TooltipString</term>
+                <listitem>
+                    <para>文字列または文字列ベクトル</para>
+                    <para>
+                        このプロパティは,
+                        マウスがこのuicontrolの上を通過した際に表示される
+                        uicontrol tooltipのテキストを表します.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Units</term>
+                <listitem>
+                    <para>{points} | pixels | normalized</para>
+                    <para>"Position"プロパティを指定するために使用される単位を設定します.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Userdata</term>
+                <listitem>
+                    <para>Scilabデータを</para>
+                    <para>
+                        Scilabオブジェクト(string,string matrix, matrix mxn)をuicontrolに
+                        関連付ける際に使用できます.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Value</term>
+                <listitem>
+                    <para>スカラーまたはベクトル</para>
+                    <para>
+                        uicontrolの値. 正確な意味はuicontrolのスタイルに依存します:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <literal>checkbox</literal> and <literal>radiobutton</literal> uicontrols: value is set to Max (see above)
+                                when on and Min when off.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>listbox</literal> および
+                                <literal>popupmenu</literal> uicontrols:
+                                値はリスト内で選択されたエントリの添字に対応する
+                                添字のベクトルとなります.
+                                1はリストの最初の要素です.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>slider</literal> および
+                                <literal>spinner</literal> uicontrols:
+                                要素により指定された値.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>layer</literal> および <literal>tab</literal> uicontrols:
+                                表示された要素の添字.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <literal>image</literal> uicontrols:
+                                値は,画像プロパティ
+                                <literal>[X-Scale Y-Scale X-Shear Y-Shear RotationAngle]</literal>
+                                を設定する際に使用されます.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Verticalalignment</term>
+                <listitem>
+                    <para>top | {middle} | bottom</para>
+                    <para>
+                        uicontrolでテキストの垂直アラインメントを設定します.
+                        このプロパティはText および CheckBoxes スタイルでのみ
+                        効果があります.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Visible</term>
+                <listitem>
+                    <para>{on} | off</para>
+                    <para>
+                        uicontrolの可視/不可視を設定します. このプロパティが
+                        <literal>"on"</literal> (デフォルト)に設定された場合,uicontrolは可視です.
+                        しかし,このプロパティが<literal>"off"</literal>に設定された場合,
+                        uicontrolは親の図の中に表示されません.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Example for callback_type property</title>
+        <programlisting role="example"><![CDATA[
+function counter_start()
+    // Callback called after a click on start pushbutton
+    global Stop
+    Stop=%f;
+    while %t
+        i = evstr(get("count", "string"));
+        set("count", "string", string(i+1));
+        if Stop then
+            break
+        end
+    end
+endfunction
+
+function counter_stop()
+    // Callback called after a click on stop pushbutton
+    global Stop
+    Stop=%t
+endfunction
+
+function counter_reinit()
+    // Callback called after a click on reset pushbutton
+    Stop=%t
+    set("count", "string", "0");
+endfunction
+
+
+counter_main_fig = figure( ...
+"dockable", "off", ...
+"infobar_visible", "off", ...
+"toolbar_visible", "off", ...
+"toolbar", "none", ...
+"menubar_visible", "off", ...
+"menubar", "none", ...
+"layout", "none", ...
+"visible", "off", ...
+"resize", "off", ...
+"figure_position", [0 0], ...
+"axes_size", [400, 150], ...
+"figure_name", "Counter", ...
+"layout", "gridbag", ...
+"tag", "counter_main_figure");
+
+
+// Counter frame
+counter_frame = uicontrol(counter_main_fig, ...
+"layout", "gridbag", ...
+"style", "frame", ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [1, 0.5], "both"));
+
+uicontrol(counter_frame, ...
+"style", "text", ...
+"string", "Counter : ", ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [0.5, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5], ...
+"horizontalAlignment", "center");
+
+uicontrol(counter_frame, ...
+"style", "text", ...
+"string", "0", ...
+"constraints", createConstraints("gridbag", [2, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"tag", "count", ...
+"margins", [5 5 5 5]);
+
+// Buttons frame
+buttons_frame = uicontrol(counter_main_fig, ...
+"layout", "gridbag", ...
+"style", "frame", ...
+"constraints", createConstraints("gridbag", [1, 2, 1, 1], [1, 1], "both"));
+
+// The associated callback needs to be interruptible (when clicking on stop or reset for example)
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Start", ...
+"callback"  , "counter_start()", ...
+"margins", [5 5 5 5], ...
+"constraints", createConstraints("gridbag", [1, 1, 1, 1], [1, 1], "horizontal", "center"));
+
+// The associated callback needs to have priority in order to interrupt the current callback (in other words to stop the counter)
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Stop", ...
+"callback"  , "counter_stop()", ...
+"callback_type", 10, ...
+"constraints", createConstraints("gridbag", [2, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5]);
+
+// The same for the callback which reset the counter: it must have the priority over the callback which has started the counter
+uicontrol("parent", buttons_frame, ...
+"Style"     , "pushbutton", ...
+"String"    , "Reset", ...
+"callback"  , "counter_reinit()", ...
+"callback_type", 10, ...
+"constraints", createConstraints("gridbag", [3, 1, 1, 1], [1, 1], "horizontal", "center"), ...
+"margins", [5 5 5 5]);
+
+counter_main_fig.visible = "on";
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="set">set</link>
+            </member>
+            <member>
+                <link linkend="get">get</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        By default, callback_type property is now interruptible but non prioritary.
+                    </para>
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    <para>
+                        プロパティが追加・更新されました:
+                    </para>
+                    <itemizedlist>
+                        <listitem>Borderプロパティが追加されました.</listitem>
+                        <listitem>Scrollableプロパティが追加されました.</listitem>
+                        <listitem>Groupnameプロパティが追加されました.</listitem>
+                        <listitem>Iconプロパティが追加されました.</listitem>
+                        <listitem>Marginsプロパティが追加されました.</listitem>
+                        <listitem>Layoutプロパティが追加されました.</listitem>
+                        <listitem>Layout_properties プロパティが追加されました.</listitem>
+                        <listitem>
+                            Stringプロパティが
+                            <literal>listbox</literal>および
+                            <literal>combobox</literal> uicontrolsで色を設定する
+                            際に使用されるようになりました.
+                        </listitem>
+                        <listitem>Backgroundcolor および
+                            Foregroundcolor プロパティが
+                            オペレーティングシステム固有の値を管理するようになりました.
+                        </listitem>
+                    </itemizedlist>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

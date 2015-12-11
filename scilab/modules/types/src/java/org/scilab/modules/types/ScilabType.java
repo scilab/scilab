@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,6 +30,11 @@ public interface ScilabType extends Externalizable, Cloneable {
      * @since 5.4.0
      */
     public ScilabTypeEnum getType();
+
+    /**
+     * @return true if data are backed in a java.nio.Buffer
+     */
+    boolean isReference();
 
     /**
      * Return the width (number of elements) of the stored data
@@ -84,7 +89,7 @@ public interface ScilabType extends Externalizable, Cloneable {
     public Object getSerializedObject();
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return the pretty print

@@ -22,7 +22,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "scicos_block4.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void summation_ui32n(scicos_block *block, int flag)
@@ -31,16 +31,14 @@ SCICOS_BLOCKS_IMPEXP void summation_ui32n(scicos_block *block, int flag)
     {
         int j = 0, k = 0;
         int nu = 0, mu = 0, nin = 0;
-        unsigned long *y = NULL;
+        SCSUINT32_COP *y = NULL;
         int *ipar = NULL;
-        double *rpar = NULL;
-        unsigned long *u = NULL;
+        SCSUINT32_COP *u = NULL;
 
         y = Getuint32OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);
         mu = GetInPortCols(block, 1);
         ipar = GetIparPtrs(block);
-        rpar = GetRparPtrs(block);
         nin = GetNin(block);
 
         if (nin == 1)

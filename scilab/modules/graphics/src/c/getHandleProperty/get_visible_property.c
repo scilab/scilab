@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,12 +30,12 @@
 
 /*------------------------------------------------------------------------*/
 
-int get_visible_property(void* _pvCtx, char* pobjUID)
+void* get_visible_property(void* _pvCtx, int iObjUID)
 {
     int visible = 0;
     int* piVisible = &visible;
 
-    getGraphicObjectProperty(pobjUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
+    getGraphicObjectProperty(iObjUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
     if (piVisible == NULL)
     {
@@ -45,16 +45,16 @@ int get_visible_property(void* _pvCtx, char* pobjUID)
 
     if (visible)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 
-int get_UID(void* _pvCtx, char *pobjUID)
+void* get_UID(void* _pvCtx, int iObjUID)
 {
-    return sciReturnString(_pvCtx, pobjUID);
+    return sciReturnDouble((double)iObjUID);
 }
 /*------------------------------------------------------------------------*/

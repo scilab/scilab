@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2009 - INRIA - Serge Steer
@@ -15,8 +16,8 @@ ref=sinm(1);
 prot=funcprot();funcprot(0);
 //redefine the sinm function
 function y=sinm(x),y=x+1,endfunction
-if sinm(1)<>2 then bugmes();quit;end
+assert_checkequal(sinm(1),2);
 //restore it
-sinm = elementary_functionslib.sinm
-if sinm(1)<>ref then bugmes();quit;end
+sinm = elementary_functionslib.sinm;
+assert_checkequal(sinm(1),ref);
 funcprot(prot);

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //------------------------------------------------------------------------------
 // Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -45,8 +45,8 @@ begin
     ModulesXmlFileLines[i] := '<modules>'; i := i + 1;
 
     ModulesXmlFileLines[i] := '<module name="core" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="double" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="api_scilab" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="ast" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="differential_equations" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="elementary_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="functions" activate="yes"/>'; i := i + 1;
@@ -61,7 +61,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="integer" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="io" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="output_stream" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="intersci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="linear_algebra" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="localization" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="interpolation" activate="yes"/>'; i := i + 1;
@@ -72,7 +71,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="sparse" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="special_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="string" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="symbolic" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="time" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
@@ -95,13 +93,14 @@ begin
     ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="slint" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="coverage" activate="yes"/>'; i := i + 1;
 
 #ifndef SCILAB_F2C
-    ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
+    //ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
 #endif
-
-
 
     ModulesXmlFileLines[i] := '<!-- JMV dependencies -->'; i := i + 1;
     if (IsComponentSelected( ExpandConstant('{#COMPN_JVM_MODULE}') )) then
@@ -115,6 +114,7 @@ begin
         ModulesXmlFileLines[i] := '<module name="graph" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="external_objects_java" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '<!-- Scinotes dependencies -->'; i := i + 1;
@@ -147,6 +147,11 @@ begin
     begin
         ModulesXmlFileLines[i] := '<module name="development_tools" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="modules_manager" activate="yes"/>'; i := i + 1;
+    end;
+
+    if IsComponentSelected( ExpandConstant('{#COMPN_MPI}') ) then
+    begin
+        ModulesXmlFileLines[i] := '<module name="mpi" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '</modules>'; i := i + 1;

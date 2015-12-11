@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,18 +15,18 @@
 
 namespace org_modules_xml
 {
-    XMLList::XMLList():XMLObject()
-    {
-        scilabType = XMLLIST;
-    }
+XMLList::XMLList(): XMLObject(), size(0)
+{
+    scilabType = XMLLIST;
+}
 
-    const std::string XMLList::toString() const
-    {
-        std::ostringstream oss;
+const std::string XMLList::toString() const
+{
+    std::ostringstream oss;
 
-        oss << "XML List" << std::endl;
-        oss << "size: " << getSize();
+    oss << "XML List" << std::endl;
+    oss << "size: " << getSize();
 
-        return oss.str();
-    }
+    return oss.str();
+}
 }

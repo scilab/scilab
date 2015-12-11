@@ -1,0 +1,25 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+
+// Function written in the Scilab language
+function y = f(z)
+    y = z^(3 + %pi * %i);
+endfunction
+expectedI = -115.71602 + 40.575931*%i;
+
+I = intc(1+%i, 4-%i, f);
+assert_checkalmostequal(I, expectedI, [], 1e-5);
+
+abstol = 1d-10;
+reltol = 1d-6;
+expectedErr = 3.187D-12 + 8.741D-11*%i;
+
+[I, err] = intc(1+%i, 4-%i, f, abstol, reltol);
+assert_checkalmostequal(I, expectedI, [], 1e-5);
+assert_checkalmostequal(err, expectedErr, [], 1e-5);

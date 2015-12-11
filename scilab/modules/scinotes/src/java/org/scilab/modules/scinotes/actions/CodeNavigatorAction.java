@@ -6,12 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.scinotes.actions;
 
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
@@ -52,5 +53,16 @@ public final class CodeNavigatorAction extends DefaultAction {
      */
     public void doAction() {
         getEditor().addNavigator();
+    }
+
+    /**
+     * createButton
+     * @param tooltip the tooltip
+     * @param icon an icon name searched in SCI/modules/gui/images/icons/
+     * @param editor SciNotes
+     * @return PushButton
+     */
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
+        return createButton(tooltip, icon, new CodeNavigatorAction(tooltip, editor));
     }
 }

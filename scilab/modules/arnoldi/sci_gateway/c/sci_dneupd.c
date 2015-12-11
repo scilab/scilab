@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,7 +25,7 @@ extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr,
                        int *ncv, double *v, int *ldv, int *iparam, int *ipntr,
                        double *workd, double *workl, int *lworkl, int *info);
 /*--------------------------------------------------------------------------*/
-int sci_dneupd(char *fname, unsigned long fname_len)
+int sci_dneupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -75,7 +75,6 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int Dr,        mDr,       nDr;
     int Di,        mDi,       nDi;
@@ -83,9 +82,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     int mSIGMAr,   nSIGMAr;
     int mSIGMAi,   nSIGMAi;
     int mWORKev,   nWORKev;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;
@@ -117,7 +114,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -133,7 +130,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -149,7 +146,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         return 1;
     }
 
@@ -166,7 +163,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         return 1;
     }
 
@@ -183,7 +180,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         return 1;
     }
 
@@ -200,7 +197,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 7);
         return 1;
     }
 
@@ -216,7 +213,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 8);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 8);
         return 1;
     }
 
@@ -232,7 +229,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 9);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 9);
         return 1;
     }
 
@@ -248,7 +245,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 11);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 11);
         return 1;
     }
 
@@ -264,7 +261,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 13);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 13);
         return 1;
     }
 
@@ -280,7 +277,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 14);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 14);
         return 1;
     }
 
@@ -296,7 +293,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 15);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 15);
         return 1;
     }
 
@@ -313,7 +310,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 16);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 16);
         return 1;
     }
 
@@ -329,7 +326,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 17);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 17);
         return 1;
     }
 
@@ -346,7 +343,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 18);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 18);
         return 1;
     }
 
@@ -363,7 +360,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 19);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 19);
         return 1;
     }
 
@@ -380,7 +377,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 20);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 20);
         return 1;
     }
 
@@ -397,7 +394,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 21);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 21);
         return 1;
     }
 
@@ -414,7 +411,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 22);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 22);
         return 1;
     }
 
@@ -503,7 +500,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpHOWMANY, &pHOWMANY))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -519,7 +516,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
         freeAllocatedSingleString(pHOWMANY);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 10);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 10);
         return 1;
     }
 
@@ -537,7 +534,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     {
         freeAllocatedSingleString(pHOWMANY);
         freeAllocatedSingleString(pBMAT);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 12);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 12);
         return 1;
     }
 
@@ -557,7 +554,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("dneupd", (int*)(pINFO), 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

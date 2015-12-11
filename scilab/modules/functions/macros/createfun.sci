@@ -5,13 +5,16 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function %fun=createfun(t)
     //given t a string vector where first line gives the function calling
     //sequence and the following the function instructions, it returns et
     //Scilab function.
     // This is  mainly used by sci2exp
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "createfun", 1));
+    end
     h=t(1)
     k=strindex(h,"=")
     if k==[] then k1=1,else k1=k(1),end

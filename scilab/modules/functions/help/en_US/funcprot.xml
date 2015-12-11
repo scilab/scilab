@@ -17,13 +17,13 @@
             <varlistentry>
                 <term>prot</term>
                 <listitem>
-                    <para>integer with possible values 0, 1, 2</para>
+                    <para>an integer with possible values 0, 1, 2</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>previousprot</term>
                 <listitem>
-                    <para>integer with possible values 0, 1, 2 returns previous value</para>
+                    <para>an integer with possible values 0, 1, 2 returns previous value</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -31,30 +31,31 @@
     <refsection>
         <title>Description</title>
         <para>
-            Scilab functions are variable, <literal>funcprot</literal> allows the user to specify
-            what scilab do when such  variables are redefined.
+            Scilab functions are variable, <function>funcprot</function> allows the user to specify
+            what Scilab do when such  variables are redefined.
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    If <literal>prot == 0</literal> nothing special is done.
+                    If <code>prot == 0</code> nothing special is done.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    If <literal>prot == 1</literal> scilab issues a warning message when a function is redefined (default mode).
+                    If <code>prot == 1</code> Scilab issues a warning message when a function is redefined (default mode).
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    If <literal>prot == 2</literal> scilab issues an error when a function is redefined.
+                    If <code>prot == 2</code> Scilab issues an error when a function is redefined.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[previousprot = funcprot(1)
+        <programlisting role="example"><![CDATA[
+previousprot = funcprot(1)
 deff('x = foo(a)','x = a;')
 deff('x = foo(a)','x = a + 1;')
 foo = 33
@@ -62,7 +63,8 @@ funcprot(0)
 deff('x = foo(a)', 'x = a;')
 deff('x = foo(a)', 'x = a + 1;')
 foo = 33
-funcprot(previousprot)]]></programlisting>
+funcprot(previousprot)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>History</title>

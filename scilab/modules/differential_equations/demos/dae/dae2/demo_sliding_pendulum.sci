@@ -99,7 +99,6 @@ function  H=build_sliding_pendulum ()
     clf(f,"reset");
 
     a=gca();
-    f.pixmap="on";
     drawlater()
     f.axes_size = [610,676];
     xmin=-1.5;

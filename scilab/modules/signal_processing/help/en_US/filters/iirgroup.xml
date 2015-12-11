@@ -7,12 +7,17 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>[lt,grad]=iirgroup(p,r,theta,omega,wt,td)
-            [cout,grad,ind]=iirlp(x,ind,p,[flag],lambda,omega,ad,wa,td,wt)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
+            <varlistentry>
+                <term>p</term>
+                <listitem>
+                    <para>Lp criterion</para>
+                </listitem>
+            </varlistentry>
             <varlistentry>
                 <term>r</term>
                 <listitem>

@@ -6,13 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.gui.tabfactory;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 
 /**
  * @author Calixte DENIZET
@@ -24,7 +24,7 @@ public abstract class AbstractScilabTabFactory {
      * @param uuid the uuid of the Tab to restore
      * @return the corresponding Tab or null if this factory is unable to create the Tab (invalid uuid for example)
      */
-    public abstract SwingScilabTab getTab(String uuid);
+    public abstract SwingScilabDockablePanel getTab(String uuid);
 
     /**
      * Abstract method which must implement a way to return true if the factory is able to build the Tab with given uuid

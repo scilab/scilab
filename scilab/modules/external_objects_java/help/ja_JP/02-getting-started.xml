@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - S/E - Sylvestre Ledru
+* Copyright (C) 2012 - CNES - Simon Billemont
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="ja" xml:id="jims-getting-started-2">
+    
+    <refnamediv>
+        
+        <refname>入門 - 第2ステップ</refname>
+        
+        <refpurpose>Java Scilab バインディングを使用するには?</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            このチュートリアルは, 
+            
+            <link linkend="jims-getting-started">第1ステップ</link>の続きです.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例 3: Scilabvで Java オブジェクトを使用する</title>
+        
+        <para>
+            
+            この例では,より高度に抽象化された一連のJavaオブジェクトを
+            
+            定義します. 次に, Javaスクリプト言語の一種としてScilabを使用して
+            
+            これらのオブジェクトに様々な操作を行います.
+            
+            以下の様なJavaの広範な機能を紹介します; 
+            
+            staticメソッド (Factory construct), Enums, 簡単なポリモーフィズム, 
+            
+            メンバ/メソッドのスコープ.
+        </para>
+        
+        <para>
+            
+            この広範な機能は,簡単な家を記述する7つの簡単なクラスにより示されます;
+            
+        </para>
+        
+        <programlisting role="java"><![CDATA[
+// House.java という名前で保存
+package com.foo;
+
+import java.util.Arrays;
+import java.util.LinkendList;
+import java.util.List;
+
+public class House {
+
+	private Color			color;
+	private Door			door;
+	private List<IWindow>	windows	= new LinkendList<IWindow>();
+
+	public House(Color color, Door door, IWindow... windows) {
+		this.color = color;
+		this.door = door;
+		this.windows.addAll(Arrays.asList(windows));
+	}
+
+	public void repaint() {
+		swapDoorHouseColor();
+	}
+
+	private void swapDoorHouseColor() {
+		Color doorColor = door.getColor();
+		door.repaint(color);
+		color = doorColor;
+	}
+
+	public void addWindow(IWindow window) {
+		windows.add(window);
+	}
+
+	public void replaceDoor(Door newDoor) {
+		this.door = newDoor;
+	}
+
+	@Override
+	public String toString() {
+		return String.format(
+				"This is a house painted in %s, has a %s door, and %d windows",
+				color.getDescr(), door.getColor().getDescr(), windows.size());
+	}
+}
+      ]]></programlisting>
+        
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public class HouseFactory {
+
+	public static House basicHouse() {
+		Door door = new Door(Color.WHITE);
+		IWindow window = new RectangularWindow(2, 0.8);
+		return new House(Color.WHITE, door, window);
+	}
+
+	public static House flashyHouse() {
+		Door door = new Door(Color.random());
+		IWindow window = new CircularWindow(1.2);
+		return new House(Color.random(), door, window);
+	}
+}
+      ]]></programlisting>
+        
+        <programlisting role="java"><![CDATA[
+
+package com.foo;
+
+import java.util.Random;
+
+public enum Color {
+
+	BLACK("black"), BLUE("blue"), BROWN("brown"), GREEN("green"),
+	ORANGE("orange"), RED("red"), WHITE("white"), YELLOW("yellow");
+
+	public String	descr;
+
+	private Color(String s) {
+		descr = s;
+	}
+
+	public String getDescr() {
+		return descr;
+	}
+
+	public static Color random() {
+		Color[] allColors = values();
+		return allColors[new Random().nextInt(values().length)];
+	}
+}      ]]></programlisting>
+        
+        <programlisting role="java"><![CDATA[
+
+package com.foo;
+
+public class Door {
+
+	private Color	color;
+
+	public Door(Color color) {
+		this.color = color;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void repaint(Color newColor) {
+		color = newColor;
+	}
+}
+      ]]></programlisting>
+        
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public interface IWindow {
+
+	double getWindowArea();
+
+}
+      ]]></programlisting>
+        
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public class RectangularWindow implements IWindow {
+
+	double	length;
+	double	width;
+
+	public RectangularWindow(double length, double width) {
+		this.length = length;
+		this.width = width;
+	}
+
+	public double getWindowArea() {
+		return length * width;
+	}
+}
+      ]]></programlisting>
+        
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public class CircularWindow implements IWindow {
+
+	double	radius;
+
+	public CircularWindow(double radius) {
+		this.radius = radius;
+	}
+
+	public double getWindowArea() {
+		return Math.PI * radius * radius;
+	}
+}
+      ]]></programlisting>
+        
+        
+        
+        <programlisting role="example"><![CDATA[
+// この例はScilabディストリビューションに含まれます.
+directory=SCI+"/modules/external_objects_java/examples/com/foo/"
+// これらを全てコンパイルします
+jcompile(ls(directory + "/*.java"))
+      ]]></programlisting>
+        
+        <para>
+            
+            まず, 基本となるfactory houseを構築しましょう.
+            
+            このため, HouseFactory をインポートし, 静的メソッドbasicHouse()
+            
+            を呼び出す必要があります.
+            
+        </para>
+        
+        <screen>
+            
+            -->jimport("com.foo.HouseFactory")
+            
+            
+            
+            -->house = HouseFactory.basicHouse()
+            
+            house  =
+            
+            
+            
+            This is a house painted in white, has a white door, and 1 windows
+            
+            
+            
+        </screen>
+        
+        <para>
+            
+            これは, 静的メソッドをJavaと同様にコールできることを示します.
+            
+            これは, "jinvoke(HouseFactory, 'basicHouse')"  と等価であることも
+            
+            頭に入れておいてください.
+            
+            
+            
+            オブジェクトのメッセージも以下のように交換できます:
+            
+            <screen>
+                
+                com.foo.House@ae8022
+                
+                To
+                
+                This is a house painted in white, has a white door, and 1 windows
+                
+            </screen>
+            
+            これは, Houseクラスが標準で \cmd[toString] メソッドを有するためです. この <literal>toString</literal>は,この表現を生成する際に使用されます. <link linkend="jgetclassname">jgetclassname</link> を呼び出すことにより, この場合も Houseオブジェクトの実際の型(クラス)を取得できます.
+            
+            <screen>
+                
+                -->jgetclassname(house)
+                
+                ans  =
+                
+                
+                
+                com.foo.House
+                
+            </screen>
+            
+            
+            
+            更に興味深いのは,HouseをScilabに直接インポートせずに,家の説明が入手できたことです!
+            
+            家が構築されたので,この家に別の窓を追加してみましょう. このため, 新しい窓を作成し,   <literal>addWindow(IWindow)</literal>関数により家に追加します. <literal>IWindow</literal>は窓に関する抽象化された説明で, 直接インスタンス化することはできません. しかし, 構築時に以下の2種類の実装が利用可能です; <literal>RectangularWindow</literal> および <literal>CircularWindow</literal>. この家は, factory で <literal>RectangularWindow</literal> を1つ付けているため, 新たに<literal>CircularWindow</literal>を作成してみましょう.
+            
+        </para>
+        
+        <screen>
+            
+            -->jimport("com.foo.IWindow")
+            
+            
+            
+            -->IWindow.new()
+            
+            !--error 999
+            
+            Method invocation: An error occurred: Exception when calling Java method : No such constructor in the class com.foo.IWindow.
+            
+            
+            
+            -->jimport("com.foo.CircularWindow")
+            
+            
+            
+            --> newWindow = CircularWindow.new(0.5)
+            
+            newWindow  =
+            
+            
+            
+            com.foo.CircularWindow@3e389405
+            
+            
+            
+            -->house.addWindow(newWindow);
+            
+            
+            
+            -->house
+            
+            house  =
+            
+            
+            
+            This is a house painted in white, has a white door, and 2 windows
+            
+            
+            
+        </screen>
+        
+        <para>
+            
+            新しい窓が作成され, リファレンスが変数 "newWindow" に保存されました.次に, この窓が変数をラップすることを必要とせずに家に追加されました.これは通常予想される動作です.最後に, 家が2つの窓を有することを表示します.
+            
+        </para>
+        
+        <para>
+            
+            しかし, ドアが気に入らないため, ドアを変更してみましょう. ドアを作成するには, ドアの色を選ぶ必要があります. Color はJava Enum クラス型です. 前記と同様に, まず変数をインポートし,新規インスタンスを作成した後, 家のドアを交換します.
+            
+        </para>
+        
+        <screen>
+            
+            -->jimport("com.foo.Color")
+            
+            
+            
+            -->jimport("com.foo.Door")
+            
+            
+            
+            -->newDoor = Door.new(Color.RED)
+            
+            newDoor  =
+            
+            
+            
+            com.foo.Door@54a5f709
+            
+            
+            
+            -->house.replaceDoor(newDoor);
+            
+            
+            
+            -->house
+            
+            house  =
+            
+            
+            
+            This is a house painted in white, has a red door, and 2 windows
+            
+        </screen>
+        
+        <para>
+            
+            Enum型の使用はクラスと同様に簡単です! これらのメソッドとメンバは同じ方針に基づいています:
+            
+        </para>
+        
+        <screen>
+            
+            -->c = Color.random()
+            
+            c  =
+            
+            
+            
+            BLACK
+            
+            
+            
+            -->c = Color.random()
+            
+            c  =
+            
+            
+            
+            BLUE
+            
+            
+            
+            -->c.getDescr()
+            
+            ans  =
+            
+            
+            
+            blue
+            
+        </screen>
+        
+        <para>
+            
+            家に保持される窓のリストは<literal>IWindow</literal>型
+            
+            です. これにより, リストに追加できるのは通常は窓のみです.
+            
+            これを確かめるため, Scilabで<literal>Door</literal>を
+            
+            追加するとどうなるかを見てみましょう.
+            
+        </para>
+        
+        <screen>
+            
+            -->house.addWindow(newDoor);
+            
+            !--error 999
+            
+            Method invocation: An error occurred: Exception when calling Java method : No method addWindow in the class com.foo.House or bad arguments type.
+            
+        </screen>
+        
+        <para>
+            
+            Java Reflectionを使用した場合と同様, JVM セキュリティ機構が,Javaポリモーフィズム規則に反することを防止するべく監視しています.
+            
+        </para>
+        
+        <screen>
+            
+            -->c.descr
+            
+            ans  =
+            
+            
+            
+            blue
+            
+            
+            
+            -->house.door
+            
+            !--error 999
+            
+            %_EObj_e: An error occurred: Exception when calling Java method : Invalid field door
+            
+            
+            
+            -->house.repaint();
+            
+            
+            
+            -->house
+            
+            house  =
+            
+            
+            
+            This is a house painted in red, has a white door, and 2 windows
+            
+            
+            
+            -->house.swapDoorHouseColor()
+            
+            !--error 999
+            
+            %_EObj_e: An error occurred: Exception when calling Java method : Invalid field swapDoorHouseColor
+            
+        </screen>
+        
+        <para>
+            
+            結論として, JIMSパッケージは Java JNIインターフェイスをScilab上で隠蔽する役割を担っており, これにより,非常に簡単にかつ透過的にScilabでJavaライブラリを使用することが可能です.全ての通常のJVM機能が存在し,Scilab構文は明確で直感的に使用できます.
+            
+        </para>
+        
+        <para>
+            
+            ここまでで, ScilabとJavaライブラリを連携させ,
+            
+            Javaの全機能をScilabスクリプト環境で利用する
+            
+            方法を理解できたはずです.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>履歴</title>
+        
+        <revhistory>
+            
+            <revision>
+                
+                <revnumber>5.5.0</revnumber>
+                
+                <revremark>
+                    
+                    関数が導入されました. 'JIMS'モジュールに基づきます.
+                    
+                    JIMSモジュールとの動作上の主な違いは,
+                    
+                    <link linkend="jautoUnwrap">jautoUnwrap</link>がデフォルトで
+                    
+                    有効になっていることです.
+                    
+                </revremark>
+                
+            </revision>
+            
+        </revhistory>
+        
+    </refsection>
+    
+</refentry>
+
+
+

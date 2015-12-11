@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -20,15 +20,15 @@
 #include <locale.h>
 #include <errno.h>
 #include <pcre.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
 #include "pcre_private.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "strsubst.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "charEncoding.h"
+#include "freeArrayOfString.h"
 /*-------------------------------------------------------------------------------*/
 /* A number of things vary for Windows builds. Originally, pcretest opened its
 input and output without "b"; then I was told that "b" was needed in some
@@ -231,7 +231,7 @@ pcre_error_code pcre_private(char *INPUT_LINE, char *INPUT_PAT, int *Output_Star
         int erroroffset = 0, len = 0, delimiter;
 
         LOOP_PCRE_TST = TRUE;
-        p = strdup(INPUT_PAT);
+        p = os_strdup(INPUT_PAT);
         back_p = p;
         while (isspace(*p))
         {
@@ -872,12 +872,18 @@ SKIP_DATA:
                             *_pstCapturedString = (char**)MALLOC(sizeof(char*) * *_piCapturedStringCount);
                             for (i = 0 ; i < *_piCapturedStringCount ; i++)
                             {
-                                char* pstSubstring = NULL;
+                                const char* pstSubstring = NULL;
                                 pcre_get_substring(bptr, use_offsets, count, i + 1, &pstSubstring);
                                 if (pstSubstring != NULL)
                                 {
-                                    (*_pstCapturedString)[i] = strdup(pstSubstring);
+                                    (*_pstCapturedString)[i] = os_strdup(pstSubstring);
                                 }
+                                else
+                                {
+                                    //empty string is matching, so create it
+                                    (*_pstCapturedString)[i] = os_strdup("");
+                                }
+
                                 pcre_free_substring(pstSubstring);
                             }
                         }
@@ -1141,5 +1147,67 @@ SKIP_DATA:
 
     return PCRE_EXIT;
 }
+/*-------------------------------------------------------------------------------*/
+pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, int* _piStart, int* _piEnd, wchar_t*** _pstCapturedString, int* _piCapturedStringCount)
+{
+    pcre_error_code iPcreStatus = PCRE_FINISHED_OK;
+    int i               = 0;
+    int iStart          = 0;
+    int iEnd            = 0;
 
+    char* pstInput      = wide_string_to_UTF8(_pwstInput);
+    char* pstPattern    = wide_string_to_UTF8(_pwstPattern);
+    char** pstCaptured  = NULL;//(char**)MALLOC(sizeof(char*) * (strlen(pstInput) + 1));
+
+    iPcreStatus = pcre_private(pstInput, pstPattern, &iStart, &iEnd, &pstCaptured, _piCapturedStringCount);
+    if (iPcreStatus == PCRE_FINISHED_OK && iStart != iEnd)
+    {
+        char* pstTempStart      = NULL;
+        char* pstTempEnd        = NULL;
+        wchar_t* pwstTempStart  = NULL;
+        wchar_t* pwstTempEnd    = NULL;
+
+        pstTempStart            = os_strdup(pstInput);
+        pstTempEnd              = os_strdup(pstInput);
+        pstTempEnd[iEnd]        = 0;
+        pstTempStart[iStart]    = 0;
+
+
+        pwstTempStart           = to_wide_string(pstTempStart);
+        pwstTempEnd             = to_wide_string(pstTempEnd);
+
+        *_piStart               = (int)wcslen(pwstTempStart);
+        *_piEnd                 = (int)wcslen(pwstTempEnd);
+
+        if (_piCapturedStringCount && *_piCapturedStringCount > 0)
+        {
+            /*convert captured field in wide char*/
+            *_pstCapturedString = (wchar_t**)MALLOC(sizeof(wchar_t*) * *_piCapturedStringCount);
+            for (i = 0 ; i < *_piCapturedStringCount ; i++)
+            {
+                (*_pstCapturedString)[i] = to_wide_string(pstCaptured[i]);
+            }
+            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
+        }
+
+        FREE(pstTempStart);
+        FREE(pstTempEnd);
+        FREE(pwstTempStart);
+        FREE(pwstTempEnd);
+    }
+    else
+    {
+        *_piStart   = iStart;
+        *_piEnd     = iEnd;
+        if (_piCapturedStringCount && *_piCapturedStringCount > 0)
+        {
+            /*free unused captured field*/
+            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
+        }
+    }
+
+    FREE(pstInput);
+    FREE(pstPattern);
+    return iPcreStatus;
+}
 /*-------------------------------------------------------------------------------*/

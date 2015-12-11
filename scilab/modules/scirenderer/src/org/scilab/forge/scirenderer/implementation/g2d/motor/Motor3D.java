@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
+ * Copyright (C) 2012-2013 - Scilab Enterprises - Calixte Denizet
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -36,6 +36,13 @@ import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.forge.scirenderer.tranformations.Vector3f;
+
+import org.scilab.forge.scirenderer.lightning.Light;
+import org.scilab.forge.scirenderer.lightning.LightManager;
+import org.scilab.forge.scirenderer.implementation.g2d.lighting.G2DLight;
+import org.scilab.forge.scirenderer.implementation.g2d.lighting.G2DLightManager;
+import org.scilab.forge.scirenderer.shapes.appearance.Material;
 
 /**
  * @author Calixte DENIZET
@@ -133,6 +140,10 @@ public class Motor3D {
      */
     public void draw() {
         Scene.drawRoot(g2d);
+        clean();
+    }
+
+    public void clean() {
         Scene.clearAll();
         G2DTextureManager.clear();
     }
@@ -182,8 +193,11 @@ public class Motor3D {
             image = ((G2DTextureManager.G2DTexture) texture).getImage();
         }
 
+        G2DLightManager lm = (G2DLightManager)drawingTools.getLightManager();
+        lm.setMaterial(appearance.getMaterial());
+
         if (geometry.getFillDrawingMode() != Geometry.FillDrawingMode.NONE) {
-            addTriangles(vertexBuffer, normalBuffer, colorBuffer, appearance.getFillColor(), indicesBuffer, textureCoordinatesBuffer, image, texture, geometry.getFillDrawingMode());
+            addTriangles(vertexBuffer, normalBuffer, colorBuffer, appearance.getFillColor(), indicesBuffer, textureCoordinatesBuffer, image, texture, geometry.getFillDrawingMode(), lm);
         }
 
         if (geometry.getLineDrawingMode() != Geometry.LineDrawingMode.NONE) {
@@ -195,9 +209,12 @@ public class Motor3D {
         }
     }
 
-    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) {
+    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, org.scilab.forge.scirenderer.shapes.appearance.Color auxColor, ElementsBuffer colors) {
         FloatBuffer positionsBuffer = positions.getData();
         float[] buffer;
+        offset = offset < 0 ? 0 : offset;
+        stride = stride < 1 ? 1 : stride;
+        Color[] colorsArray = null;
 
         positionsBuffer.rewind();
         if (positionsBuffer.hasArray()) {
@@ -208,9 +225,27 @@ public class Motor3D {
         }
         Vector3d[] verticesArray = getMultiVectors(buffer, transf, false);
 
-        for (Vector3d v : verticesArray) {
+        if (colors != null) {
+            FloatBuffer colorsBuffer = colors.getData();
+            colorsBuffer.rewind();
+            if (colorsBuffer.hasArray()) {
+                buffer = colorsBuffer.array();
+            } else {
+                buffer = new float[colorsBuffer.limit()];
+                colorsBuffer.get(buffer);
+            }
+            colorsArray = getMultiColors(buffer);
+        }
+
+        for (int i = offset; i < verticesArray.length; i += stride) {
             try {
-                SpritedRectangle o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle);
+                Vector3d v = verticesArray[i];
+                SpritedRectangle o;
+                if (colorsArray == null) {
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, null, null);
+                } else {
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, (Color) auxColor, colorsArray[i]);
+                }
                 add(o);
             } catch (InvalidPolygonException e) { }
         }
@@ -218,7 +253,7 @@ public class Motor3D {
 
     public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, Vector3d position, double rotationAngle) {
         try {
-            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle));
+            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle, null, null));
         } catch (InvalidPolygonException e) { }
     }
 
@@ -227,14 +262,19 @@ public class Motor3D {
      * @param tri the triangle to add
      */
     private void add(Triangle tri) {
-        Vector3d normal = tri.getNormal();
-        if (normal != null) {
-            //normal = transf.projectDirection(normal);
-            if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
-                Scene.addToRoot(is2DView(), tri);
-            }
+        final boolean is2d = is2DView();
+        if (is2d) {
+            Scene.addToRoot(is2d, tri);
         } else {
-            Scene.addToRoot(is2DView(), tri);
+            Vector3d normal = tri.getNormal();
+            if (normal != null) {
+                //normal = transf.projectDirection(normal);
+                if ((mode == FaceCullingMode.CW && normal.getZ() > 0) || (mode == FaceCullingMode.CCW && normal.getZ() < 0) || mode == FaceCullingMode.BOTH) {
+                    Scene.addToRoot(is2d, tri);
+                }
+            } else {
+                Scene.addToRoot(is2d, tri);
+            }
         }
     }
 
@@ -250,12 +290,16 @@ public class Motor3D {
         Scene.addToRoot(is2DView(), sprite);
     }
 
+    private void add(PolyLine p) {
+        Scene.addToRoot(is2DView(), p);
+    }
+
     /**
      * Get arrays from Buffer
      * @param vertices a buffer containing vertices
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @return an array of length 2 containing the vertices array and the colors array
      */
     private Object[] getArrays(FloatBuffer vertices, FloatBuffer colors, Color defaultColor, FloatBuffer textureCoords, IntBuffer indices) {
@@ -283,7 +327,7 @@ public class Motor3D {
             }
             colorsArray = getMultiColors(buffer);
         } else {
-            colorsArray = new Color[vertices.limit()];
+            colorsArray = new Color[vertices.limit() / G2DElementsBuffer.ELEMENT_SIZE];
             Arrays.fill(colorsArray, defaultColor);
         }
 
@@ -313,6 +357,7 @@ public class Motor3D {
             if (textureCoords != null) {
                 ta = new Vector3d[ind.length];
             }
+
             for (int i = 0; i < ind.length; i++) {
                 va[i] = verticesArray[ind[i]];
                 ca[i] = colorsArray[ind[i]];
@@ -333,7 +378,7 @@ public class Motor3D {
      * @param vertices a buffer containing vertices
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @param drawingMode the drawing mode
      * @param stroke the Stroke to use to draw a segment
      */
@@ -351,34 +396,48 @@ public class Motor3D {
 
         switch (drawingMode) {
             case SEGMENTS_STRIP :
-                for (int i = 0; i < verticesArray.length - 1; i++) {
-                    v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
-                    c = new Color[] {colorsArray[i], colorsArray[i + 1]};
-                    try {
-                        add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
-                        cumLength += Segment.getLength(v);
-                    } catch (InvalidPolygonException e) {
-                        cumLength = 0;
+                if (is2DView()) {
+                    List<PolyLine> list = PolyLine.getPolyLines(verticesArray, colorsArray, G2DStroke.getStroke(appearance, 0), false);
+                    for (PolyLine p : list) {
+                        add(p);
+                    }
+                } else {
+                    for (int i = 0; i < verticesArray.length - 1; i++) {
+                        v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
+                        c = new Color[] {colorsArray[i], colorsArray[i + 1]};
+                        try {
+                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength), false));
+                            cumLength += Segment.getLength(v);
+                        } catch (InvalidPolygonException e) {
+                            cumLength = 0;
+                        }
                     }
                 }
                 break;
             case SEGMENTS_LOOP :
-                for (int i = 0; i < verticesArray.length - 1; i++) {
-                    v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
-                    c = new Color[] {colorsArray[i], colorsArray[i + 1]};
-                    try {
-                        add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
-                        cumLength += Segment.getLength(v);
-                    } catch (InvalidPolygonException e) {
-                        cumLength = 0;
+                if (is2DView()) {
+                    List<PolyLine> list = PolyLine.getPolyLines(verticesArray, colorsArray, G2DStroke.getStroke(appearance, 0), true);
+                    for (PolyLine p : list) {
+                        add(p);
                     }
+                } else {
+                    for (int i = 0; i < verticesArray.length - 1; i++) {
+                        v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
+                        c = new Color[] {colorsArray[i], colorsArray[i + 1]};
+                        try {
+                            add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength), false));
+                            cumLength += Segment.getLength(v);
+                        } catch (InvalidPolygonException e) {
+                            cumLength = 0;
+                        }
+                    }
+                    int n = verticesArray.length - 1;
+                    v = new Vector3d[] {verticesArray[n], verticesArray[0]};
+                    c = new Color[] {colorsArray[n], colorsArray[0]};
+                    try {
+                        add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength), false));
+                    } catch (InvalidPolygonException e) { }
                 }
-                int n = verticesArray.length - 1;
-                v = new Vector3d[] {verticesArray[n], verticesArray[0]};
-                c = new Color[] {colorsArray[n], colorsArray[0]};
-                try {
-                    add(new Segment(v, c, G2DStroke.getStroke(appearance, cumLength)));
-                } catch (InvalidPolygonException e) { }
                 break;
             case SEGMENTS :
             default :
@@ -386,7 +445,7 @@ public class Motor3D {
                     v = new Vector3d[] {verticesArray[i], verticesArray[i + 1]};
                     c = new Color[] {colorsArray[i], colorsArray[i + 1]};
                     try {
-                        add(new Segment(v, c, G2DStroke.getStroke(appearance, 0)));
+                        add(new Segment(v, c, G2DStroke.getStroke(appearance, 0), is2DView()));
                     } catch (InvalidPolygonException e) { }
                 }
                 break;
@@ -399,10 +458,10 @@ public class Motor3D {
      * @param normals a buffer containing the normals (not used)
      * @param colors a buffer containing the colors
      * @param defaultColor the color to use when colors is null
-     * @param indices a buffer containg the index of the vertices to retrieve
+     * @param indices a buffer containing the index of the vertices to retrieve
      * @param drawingMode the drawing mode
      */
-    private void addTriangles(FloatBuffer vertices, FloatBuffer normals, FloatBuffer colors, Color defaultColor, IntBuffer indices, FloatBuffer textureCoords, final BufferedImage image, Texture texture, Geometry.FillDrawingMode drawingMode) {
+    private void addTriangles(FloatBuffer vertices, FloatBuffer normals, FloatBuffer colors, Color defaultColor, IntBuffer indices, FloatBuffer textureCoords, final BufferedImage image, Texture texture, Geometry.FillDrawingMode drawingMode, G2DLightManager lightManager) {
         Object[] arrays = getArrays(vertices, colors, defaultColor, textureCoords, indices);
         Vector3d[] verticesArray = (Vector3d[]) arrays[0];
         Color[] colorsArray = (Color[]) arrays[1];
@@ -414,6 +473,8 @@ public class Motor3D {
         if (texture != null) {
             filter = texture.getMagnificationFilter();
         }
+
+        colorsArray = applyLighting(vertices, normals, indices, colorsArray, lightManager);
 
         switch (drawingMode) {
             case TRIANGLE_FAN :
@@ -474,7 +535,7 @@ public class Motor3D {
      * @param vertices an array of float containing (vertices.length / G2DElementsBuffer.ELEMENT_SIZE) vectors coordinates
      * @param t the transformation to use for the projection
      * @param dir if true t.projectDirection() is used rather than t.project()
-     * @return an array of Vector3d containg the vertices
+     * @return an array of Vector3d containing the vertices
      */
     private static final Vector3d[] getMultiVectors(final float[] vertices, final Transformation t, final boolean dir) {
         Vector3d[] v = new Vector3d[vertices.length / G2DElementsBuffer.ELEMENT_SIZE];
@@ -498,7 +559,7 @@ public class Motor3D {
     /**
      * Convert an array of float into an array of Vector3d objects
      * @param vertices an array of float containing (vertices.length / G2DElementsBuffer.ELEMENT_SIZE) vectors coordinates
-     * @return an array of Vector3d containg the vertices
+     * @return an array of Vector3d containing the vertices
      */
     private static final Vector3d[] getMultiVectors(final float[] vertices) {
         Vector3d[] v = new Vector3d[vertices.length / G2DElementsBuffer.ELEMENT_SIZE];
@@ -530,5 +591,47 @@ public class Motor3D {
         }
 
         return c;
+    }
+
+    /**
+     * Perform per-vertex lighting
+     */
+    private Color[] applyLighting(FloatBuffer vertices, FloatBuffer normals, IntBuffer index, Color[] colors, G2DLightManager lightManager) {
+
+        if (!lightManager.isLightningEnable() || vertices == null || normals == null
+                || index == null || colors == null) {
+            return colors;
+        }
+
+        Material mat = lightManager.getMaterial();
+        if (mat == null) {
+            return colors;
+        }
+
+        float[] vertexTransf = lightManager.getVertexTransform();
+        float[] normalTransf = lightManager.getNormalTransform();
+        //for transformed vertices camera is at origin.
+        Vector3f camera = new Vector3f(0.f, 0.f , 0.f);
+        Vector3f[] vertexArray = LightHelper.getIndexedVector3f(vertices, index, G2DElementsBuffer.ELEMENT_SIZE, vertexTransf);
+        Vector3f[] normalArray = LightHelper.getIndexedVector3f(normals, index, G2DElementsBuffer.ELEMENT_SIZE, normalTransf);
+
+        for (int i = 0; i < normalArray.length; ++i) {
+            normalArray[i] = normalArray[i].getNormalized();
+        }
+
+
+        Color[] outColors = new Color[colors.length];
+        boolean first = true;
+        for (int i = 0; i < lightManager.getLightNumber(); ++i) {
+            G2DLight l = (G2DLight)lightManager.getLight(i);
+
+            if (l == null || !l.isEnable()) {
+                continue;
+            }
+
+            outColors = LightHelper.applyLight(l, mat, camera, vertexArray, normalArray, colors, outColors, vertexTransf, !first);
+            first = false;
+        }
+        return outColors;
     }
 }

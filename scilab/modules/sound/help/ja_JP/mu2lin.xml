@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="mu2lin">
+    <refnamediv>
+        <refname>mu2lin</refname>
+        <refpurpose>mu-lawエンコーディングを線形信号に変換</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>mu=lin2mu(y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>実数ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>mu</term>
+                <listitem>
+                    <para>実数ベクトル</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            ユーティリティ関数: <literal>y=mu2lin(mu)</literal> は,
+            0 &lt;= mu &lt;= 255の範囲で保存された
+            mu-law形式の8-bitオーディオ信号を,
+            大きさが範囲 -s &lt; y &lt; s (ただし,s = 32124/32768 ~= .9803.  )の
+            線形信号に変換します.
+            入力 mu は,しばしば,バイトエンコードされたオーディオファイルを読み込む
+            mget(...,'uc') により取得されます.
+            Craig Reese
+            (IDA/Supercomputing Research Center Joe Campbell: Department of Defense)
+            によるCプログラムを翻訳.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="mu2lin">mu2lin</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

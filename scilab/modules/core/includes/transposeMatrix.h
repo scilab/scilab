@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -38,7 +38,7 @@ int *transposeMatrixInt(int C, int L, int *MatrixInt);
 * param[in] MatrixStr
 * return transposed matrix
 */
-char **transposeMatrixStrings(int C, int L, char **MatrixStr);
+//char **transposeMatrixStrings(int C,int L,char **MatrixStr);
 
 #endif /* __TRANSPOSEMATRIX_H__ */
 /*--------------------------------------------------------------------------*/

@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,22 +29,27 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_ytics_coord_property(void* _pvCtx, char* pobjUID)
+void* get_ytics_coord_property(void* _pvCtx, int iObjUID)
 {
     int iYNumberTicks = 0;
     int* piYNumberTicks = &iYNumberTicks;
     double* yTicksCoords = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&yTicksCoords);
+    getGraphicObjectProperty(iObjUID, __GO_Y_TICKS_COORDS__, jni_double_vector, (void **)&yTicksCoords);
 
     if (yTicksCoords == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
-        return -1;
+        return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void**)&piYNumberTicks);
+    getGraphicObjectProperty(iObjUID, __GO_Y_NUMBER_TICKS__, jni_int, (void**)&piYNumberTicks);
+    if (piYNumberTicks == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "ytics_coord");
+        return NULL;
+    }
 
-    return sciReturnRowVector(_pvCtx, yTicksCoords, iYNumberTicks);
+    return sciReturnRowVector(yTicksCoords, iYNumberTicks);
 }
 /*------------------------------------------------------------------------*/

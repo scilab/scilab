@@ -1,8 +1,0 @@
-	LIBRARY    integer_f.dll
-
-
-EXPORTS
-;
-;integer_f
-;
-memused_

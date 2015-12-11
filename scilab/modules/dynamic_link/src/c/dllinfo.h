@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __DLLINFO_H__
@@ -20,25 +20,25 @@
 * @param[in] dll filename
 * @return TRUE or FALSE
 */
-BOOL isDll(const char *dllfilename);
+BOOL isDll(const char* _pstDLLName);
 
 /**
 *  check if it is a valid x64 dll
 * @param[in] dll filename
 * @return TRUE or FALSE
 */
-BOOL isX64Dll(const char *dllfilename);
+BOOL isX64Dll(const char* _pstDLLName);
 
 /**
 *  check if it is a valid x64 dll
 * @param[in] dll filename
 * @return TRUE or FALSE
 */
-BOOL isX86Dll(const char *dllfilename);
+BOOL isX86Dll(const char* _pstDLLName);
 
 /* wide char version */
-BOOL isDllW(const wchar_t *dllfilename);
-BOOL isX64DllW(const wchar_t *dllfilename);
-BOOL isX86DllW(const wchar_t *dllfilename);
+BOOL isDllW(const wchar_t* _pwstDLLName);
+BOOL isX64DllW(const wchar_t* _pwstDLLName);
+BOOL isX86DllW(const wchar_t* _pwstDLLName);
 
 #endif

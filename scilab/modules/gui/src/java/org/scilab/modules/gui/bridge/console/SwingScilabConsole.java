@@ -6,12 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.gui.bridge.console;
 
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
@@ -21,6 +22,7 @@ import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.KeyboardFocusManager;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
@@ -41,6 +43,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.console.OneCharKeyEventListener;
 import org.scilab.modules.console.SciConsole;
 import org.scilab.modules.console.SciHistoryManager;
+import org.scilab.modules.console.SciInputCommandView;
 import org.scilab.modules.console.SciOutputView;
 import org.scilab.modules.graphic_objects.graphicObject.CallBack;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
@@ -57,6 +60,7 @@ import org.scilab.modules.gui.utils.Size;
 import org.scilab.modules.history_manager.HistoryManagement;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.commons.xml.XConfiguration;
+
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 
 import com.artenum.rosetta.interfaces.ui.InputCommandView;
@@ -175,6 +179,10 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         };
         evalWithEchoMenu.addPropertyChangeListener(listener);
 
+        menu.add(helpMenu);
+
+        menu.addSeparator();
+
         menu.add(cutMenu);
         menu.add(copyMenu);
         menu.add(pasteMenu);
@@ -191,9 +199,6 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
 
         menu.add(evalWithEchoMenu);
         menu.add(evalWithNoEchoMenu);
-        menu.addSeparator();
-
-        menu.add(helpMenu);
 
         ((JEditorPane) getConfiguration().getOutputView()).setComponentPopupMenu(menu);
         ((JTextPane) getConfiguration().getInputCommandView()).setComponentPopupMenu(menu);
@@ -252,6 +257,9 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
         if (getCanReadUserInputValue().availablePermits() == 0) {
             setUserInputValue((int) 'n');
         }
+
+        // interrupt any mscanf call (input, halt and so on)
+        ((SciInputCommandView) this.getConfiguration().getInputCommandView()).interrupt();
     }
 
     /**
@@ -370,6 +378,7 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
     public void clear() {
         CheckClearConfirmation ccc = XConfiguration.get(CheckClearConfirmation.class, XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH)[0];
         if (ccc.checked) {
+            final Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
             final boolean[] checked = new boolean[1];
             final Action action = new AbstractAction() {
                 public void actionPerformed(ActionEvent e) {
@@ -377,7 +386,16 @@ public class SwingScilabConsole extends SciConsole implements SimpleConsole {
                 }
             };
 
-            if (ScilabModalDialog.show(this, new String[] { CLEAR_CONFIRM }, CLEAR, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION) {
+            boolean isNo = ScilabModalDialog.show(this, new String[] { CLEAR_CONFIRM }, CLEAR, IconType.WARNING_ICON, ButtonType.YES_NO, DONT_SHOW, action) == AnswerOption.NO_OPTION;
+            if (focused != null) {
+                SwingUtilities.invokeLater(new Runnable() {
+                    public void run() {
+                        focused.requestFocus();
+                    }
+                });
+            }
+
+            if (isNo) {
                 if (checked[0]) {
                     XConfiguration.set(XConfiguration.getXConfigurationDocument(), CONFIRMATION_PATH + "/@state", "unchecked");
                 }

@@ -1,17 +1,18 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013-2015 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.ruler.graduations;
 
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -128,6 +129,33 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
     }
 
     @Override
+    public List<Double> getSubGraduations(final int N) {
+        if (subValues == null) {
+            List<Double> ticksValue = getAllValues();
+            if (N == 0 || ticksValue.size() == 0) {
+                subValues = new LinkedList<Double>();
+            } else {
+                Collections.sort(ticksValue);
+                subValues = new LinkedList<Double>();
+
+                for (int i = 0; i < ticksValue.size() - 1; i++) {
+                    final double first = Math.log10(ticksValue.get(i));
+                    final double second = Math.log10(ticksValue.get(i + 1));
+                    final double step = (second - first) / (N + 1);
+                    double v = first;
+                    for (int j = 0; j <= N; j++) {
+                        subValues.add(Math.pow(10, v));
+                        v += step;
+                    }
+                }
+                subValues.add(ticksValue.get(ticksValue.size() - 1));
+            }
+        }
+
+        return subValues;
+    }
+
+    @Override
     public int getSubDensity() {
         if (stepExponent >= 3) {
             return 3;
@@ -136,6 +164,14 @@ public final class LogarithmicGraduations extends AbstractGraduations implements
         } else {
             return getSubGraduations().getSubDensity();
         }
+    }
+
+    @Override
+    public String toString() {
+        String s = super.toString();
+        s += "; stepExponent=" + stepExponent + "; parent=" + getParentGraduations();
+
+        return s;
     }
 
     /**

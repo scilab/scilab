@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -47,7 +47,7 @@ FILEIO_IMPEXP int LineRead(int fd, char buf[], int n, int *cnt, int *nr);
 
 /**
 * read a line from a text file
-* used by exec to read a .sce file (see getlin.f)
+* used by exec to read a .sce file
 * @param[in] fd : a int file descriptor to open
 * @param[in/out] buf : string buffer returned
 * @param[in] *n : bsiz (4096)

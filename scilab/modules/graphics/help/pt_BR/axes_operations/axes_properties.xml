@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Djalel Abdemouche
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="axes_properties" xml:lang="en">
@@ -63,7 +63,7 @@
                                     <literal>"off"</literal> . (desligado). Por padrão, os eixos
                                     são visíveis, <literal>"on"</literal> , caso todos os galhos
                                     visíveis sejam exibidos na tela. Se <literal>"off"</literal> ,
-                                    os eixos e seus galhos não são esboçados. 
+                                    os eixos e seus galhos não são esboçados.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -101,7 +101,7 @@
                                     <literal>"on"</literal>, a direção é invertida. Também é
                                     possível utilizar apenas um string, <literal>"on"</literal> ou
                                     <literal>"off"</literal>, para ajustar simultaneamente os três
-                                    dados. 
+                                    dados.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -114,7 +114,7 @@
                                     <literal>y-grid, z-grid</literal> respectivamente para os
                                     eixos y e z. O valor padrão é <literal>-1</literal>, os grides
                                     não são desenhados, caso contrário, os grides são desenhados
-                                    utilizando a cor dada indexada pelo valor do grid. 
+                                    utilizando a cor dada indexada pelo valor do grid.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -139,20 +139,20 @@
                                     <listitem>
                                         <para>
                                             <literal>"bottom"</literal>. Neste caso, o eixo y é
-                                            desenhado na parte direita do retângulo de eixos. 
+                                            desenhado na parte direita do retângulo de eixos.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             <literal>"top"</literal>. Neste caso, o eixo y é
-                                            desenhado na parte esquerda do retângulo de eixos. 
+                                            desenhado na parte esquerda do retângulo de eixos.
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             <literal>"middle"</literal> . Neste caso, o eixo y é
                                             desenhado na posição mais próxima da coordenada 0 do eixo
-                                            x. 
+                                            x.
                                         </para>
                                     </listitem>
                                 </itemizedlist>
@@ -181,7 +181,7 @@
                                         <para>
                                             <literal>"middle"</literal>. Neste caso, o eixo y é
                                             desenhado na posição mais próxima da coordenada 0 do eixo
-                                            x. 
+                                            x.
                                         </para>
                                     </listitem>
                                 </itemizedlist>
@@ -192,7 +192,7 @@
                             <listitem>
                                 <para>um objeto anexado à entidade de eixos que retorna um
                                     manipulador gráfico de uma estrutura label (rótulo) (ver <link linkend="label_properties">label_properties</link>). Este
-                                    campo define um título com opções sobre este label. 
+                                    campo define um título com opções sobre este label.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -202,7 +202,7 @@
                                 <para> um objeto anexado à entidade de eixos que retorna um
                                     manipulador gráfico de uma estrutura label (ver <link linkend="label_properties">label_properties</link>). Este
                                     campo define um label sobre o eixo x com opções sobre este
-                                    label. 
+                                    label.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -212,7 +212,7 @@
                                 <para> um objeto anexado à entidade de eixos que retorna um
                                     manipulador gráfico de uma estrutura label (ver <link linkend="label_properties">label_properties</link>). Este
                                     campo define um label sobre o eixo y com opções sobre este
-                                    label. 
+                                    label.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -222,7 +222,7 @@
                                 <para>um objeto anexado à entidade de eixos que retorna um
                                     manipulador gráfico de uma estrutura label (ver <link linkend="label_properties">label_properties</link>). Este
                                     campo define um label sobre o eixo z com opções sobre este
-                                    label. 
+                                    label.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -244,79 +244,63 @@
                                     <literal>x_ticks, y_ticks</literal> ou
                                     <literal>z_ticks</literal> ajusta automaticamente
                                     <literal>auto_ticks</literal> para <literal>"off"</literal>
-                                    para os eixos correspondentes. 
+                                    para os eixos correspondentes.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>x_ticks.locations:</term>
+                            <term>x_ticks, y_ticks, z_ticks: </term>
                             <listitem>
-                                <para>um vetor de reais contendo a localização das graduações
-                                    sobre o eixo x. Esta propriedade pode ser editada
-                                    especificando-se um novo vetor de reais (de mesmo tamanho).
-                                    Para especificar graduações maiores ou menores, pode-se agir
-                                    no tlist <literal>x_ticks</literal> definindo também um vetor
-                                    de strings <literal>x_ticks.labels</literal>.
+                                <para>Cada uma dessas propriedades é um tlist do tipo "ticks" com dois campos chamados "locations" e "labels":
+                                    tlist <literal> (["ticks" "locations", "labels"], Locations, Labels)</literal>, onde
+                                    <variablelist>
+                                        <varlistentry>
+                                            <term>Locations</term>
+                                            <listitem>
+                                                é um vetor de reais contendo os locais de grandes formaturas junto e de acordo com a escala de dados dos dados x ou eixo y ou z.
+                                                Quando o número de grandes formaturas não tem que ser mudado, a sua localização pode ser definida ou alterada através
+                                                a sintaxe (por exemplo, ao longo de x) <literal>Haxes.x_ticks.locations = Locations</literal>, onde
+                                                <literal>Haxes = gca ();</literal> e <literal>Locations</literal> é o vetor completo de posições atualizados formaturas.
+                                                Para alterar apenas a localização om, basta usar: <literal>Haxes.x_ticks.locations(i) = newLoc</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                        <varlistentry>
+                                            <term>Labels</term>
+                                            <listitem>
+                                                é um vetor de textos contendo as etiquetas a serem exibidos na frente de cada um dos principais graduação relacionados. Quanto aos locais de formaturas, Locations podem ser tratadas com (por exemplo, ao longo de y)
+                                                <literal>Haxes.y_ticks.labels = Labels</literal> ou <literal>Haxes.y_ticks.labels(j) = newLabelJ</literal>
+                                            </listitem>
+                                        </varlistentry>
+                                    </variablelist>
+                                    <warning>
+                                        <para>
+                                            Para um eixo, <literal>Locations</literal> e <literal>Labels</literal> vetores devem ter o mesmo número de componentes.
+                                        </para>
+                                        <para>Quando o número de grandes formaturas deve ser mudado, as suas posições E as etiquetas devem ser alteradas em uma só vez, a fim de
+                                            evitar qualquer incompatibilidade: A sintaxe (por exemplo, ao longo de x) <literal>Haxes.x_ticks = tlist(["ticks" "locations", "labels"],
+                                                newLocations, newLabels)
+                                            </literal>
+                                            deve, então, ser usado.
+                                        </para>
+                                    </warning>
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>y_ticks.locations:</term>
+                            <term>x_ticks.locations, y_ticks.locations, z_ticks.locations:</term>
                             <listitem>
-                                <para>um vetor de reais contendo a localização das graduações
-                                    sobre o eixo y. Esta propriedade pode ser editada
-                                    especificando-se um novo vetor de reais (de mesmo tamanho).
-                                    Para especificar graduações maiores ou menores, pode-se agir
-                                    no tlist <literal>y_ticks</literal> definindo também um vetor
-                                    de strings <literal>y_ticks.labels</literal>.
+                                <para>Cada uma destas propriedades é um vector real, com as localizações das graduações nos x relacionados ou eixo y ou z.
+                                    <varname>x_ticks.locations</varname> deve ter o mesmo número de componentes como <varname>x_ticks.labels</varname>.
+                                    Veja <varname>x_ticks</varname> aqui acima para mais detalhes.
                                 </para>
                             </listitem>
                         </varlistentry>
                         <varlistentry>
-                            <term>z_ticks.locations:</term>
+                            <term>x_ticks.labels, y_ticks.labels, z_ticks.labels:</term>
                             <listitem>
-                                <para>um vetor de reais contendo a localização das graduações
-                                    sobre o eixo z. Esta propriedade pode ser editada
-                                    especificando-se um novo vetor de reais (de mesmo tamanho).
-                                    Para especificar graduações maiores ou menores, pode-se agir
-                                    no tlist <literal>z_ticks</literal> definindo também um vetor
-                                    de strings <literal>z_ticks.labels</literal>.
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>x_ticks.labels:</term>
-                            <listitem>
-                                <para>um vetor de strings contendo rótulos para as graduações
-                                    no eixo x. Esta propriedade pode ser editada especificando-se
-                                    um novo vetor (de mesmo tamanho). Para especificar graduações
-                                    menores ou maiores, pode se agir no tlist
-                                    <literal>x_ticks</literal> definindo também um vetor de reais
-                                    <literal>x_ticks.locations</literal> .
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>y_ticks.labels:</term>
-                            <listitem>
-                                <para>um vetor de strings contendo rótulos para as graduações
-                                    no eixo y. Esta propriedade pode ser editada especificando-se
-                                    um novo vetor (de mesmo tamanho). Para especificar graduações
-                                    menores ou maiores, pode se agir no tlist
-                                    <literal>y_ticks</literal> definindo também um vetor de reais
-                                    <literal>y_ticks.locations</literal> .
-                                </para>
-                            </listitem>
-                        </varlistentry>
-                        <varlistentry>
-                            <term>z_ticks.labels:</term>
-                            <listitem>
-                                <para>um vetor de strings contendo rótulos para as graduações
-                                    no eixo z. Esta propriedade pode ser editada especificando-se
-                                    um novo vetor (de mesmo tamanho). Para especificar graduações
-                                    menores ou maiores, pode se agir no tlist
-                                    <literal>z_ticks</literal> definindo também um vetor de reais
-                                    <literal>z_ticks.locations</literal> .
+                                <para>
+                                    Cada uma destas propriedades é um vector que contém o texto de etiquetas a serem expostos na frente de grandes carrapatos no eixo x relacionada ou y ou z. <varname>x_ticks.labels</varname> deve ter o mesmo número de componentes como <varname>x_ticks.locations</varname>.
+                                    Veja <varname>x_ticks</varname> aqui acima para mais detalhes.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -433,7 +417,7 @@
                                     outras. Os valores podem ser <literal>"on" </literal> ou
                                     <literal>"off"</literal> (que é o valor padrão). Na maior
                                     parte dos casos, ajuda a gerar uma visualização 3d semelhante
-                                    a do Matlab. 
+                                    a do Matlab.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -457,7 +441,7 @@
                                 <para>
                                     este campo é o vetor <literal>[alpha,theta]</literal>.
                                     Estes dois valores fornecem as coordenadas esféricas de
-                                    obsevação (em graus). 
+                                    obsevação (em graus).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -468,7 +452,7 @@
                                     logarítmica) o longo dos eixos. Cada caractere especifica a
                                     escala para os eixos x, y e z respectivamente. Os valores
                                     podem ser <literal>'n'</literal> para escala linear ou
-                                    <literal>'l'</literal> para escala logarítmica. 
+                                    <literal>'l'</literal> para escala logarítmica.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -480,7 +464,7 @@
                                     se adaptam para se encaixarem dentro dos valores máximos e
                                     mínimos de <literal>data_bounds</literal>. Se o campo for
                                     <literal>"off"</literal>, os eixos podem aumentar os limites
-                                    de modo a produzir rótulos de tiques convenientes. 
+                                    de modo a produzir rótulos de tiques convenientes.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -488,12 +472,16 @@
                             <term>data_bounds:</term>
                             <listitem>
                                 <para> este campo contém os valores de limite para as
-                                    coordenadas x,y e z. É a matriz
-                                    <literal>[xmin,ymin,zmin;xmax,ymax,zmax]</literal> ou
-                                    <literal>[xmin,ymin;xmax,ymax]</literal>. Note que, para ter
+                                    coordenadas x,y e z. É a matriz ou vector
+                                    <literal>[xmin,ymin; xmax,ymax]</literal>,
+                                    <literal>[xmin,ymin,zmin; xmax,ymax,zmax]</literal>,
+                                    <literal>[xmin,xmax,ymin,ymax]</literal>,
+                                    <literal>[xmin,xmax,ymin,ymax,zmin,zmax]</literal>,
+                                    <literal>[xmin;xmax;ymin;ymax]</literal> ou
+                                    <literal>[xmin;xmax;ymin;ymax;zmin;zmax]</literal>. Note que, para ter
                                     estritamente os limites de dados especificados,
                                     <literal>tight_limits</literal> deve ser ajustado para
-                                    <literal>"on"</literal> (ver acima). 
+                                    <literal>"on"</literal> (ver acima).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -606,7 +594,7 @@
                                 <para>esta propriedade controla as cores das partes
                                     escondidas. Toma como valor um índice relativo ao mapa de
                                     cores corrente. Em outro caso, se for um valor negativo, as
-                                    partes escondidas tomam a mesma cor que a superfície. 
+                                    partes escondidas tomam a mesma cor que a superfície.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -629,8 +617,7 @@
                                     Rectangle e Polyline. <literal>line_style</literal> seleciona
                                     o tipo de linha que será utilizado nos desenhos de linhas. Seu
                                     valor deve ser um inteiro no intervalo [0 6]. 0 e 1 significam
-                                    linhas sólidas, os outros selecionam linhas tracejadas (ver
-                                    <link linkend="getlinestyle">getlinestyle</link>).
+                                    linhas sólidas, os outros selecionam linhas tracejadas.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -665,7 +652,7 @@
                                     exibida. Seu valor deve ser um inteiro no intervalo [0 9] que
                                     significa: ponto, sinal de mais, cruz, estrela, diamante
                                     preenchido, diamante, triângulo para cima, triângulo para
-                                    baixo, trevo ou círculo. 
+                                    baixo, trevo ou círculo.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -698,7 +685,7 @@
                                     Legend, Axis, Plot3d, Fac3d, e Polyline.
                                     <literal>mark_size</literal> seleciona o tamanho de fonte da
                                     marca ser exibida. Deve ser um valor inteiro entre [0 5] que
-                                    significa 8pt, 10pt, 12pt, 14pt, 18pt e 24pt (ver <link linkend="getmark">getmark</link>).
+                                    significa 8pt, 10pt, 12pt, 14pt, 18pt e 24pt.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -729,7 +716,7 @@
                                     corrente. Note que o valor padrão é <literal>-2</literal>
                                     (branco padrão) e, mesmo que você mude o
                                     <literal>color_map</literal>, este valor <literal>-2</literal>
-                                    sempre apontará para a cor branca padrão. 
+                                    sempre apontará para a cor branca padrão.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -755,7 +742,7 @@
                                     relativo ao mapa de cores corrente. Note que o valor padrão é
                                     <literal>-2</literal> branco padrão) e mesmo que você mude o
                                     <literal>color_map</literal>, este valor <literal>-2</literal>
-                                    sempre apontará para a cor branca padrão. 
+                                    sempre apontará para a cor branca padrão.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -782,14 +769,14 @@
                                         <para>
                                             <literal>"off"</literal> isto indica todos os
                                             objetos criados depois que não estão recortados (valor
-                                            padrão). 
+                                            padrão).
                                         </para>
                                     </listitem>
                                     <listitem>
                                         <para>
                                             <literal>"clipgrf"</literal> isto indica todos os
                                             objetos criados depois que estão recortados fora das
-                                            fronteiras dos eixos. 
+                                            fronteiras dos eixos.
                                         </para>
                                     </listitem>
                                     <listitem>
@@ -810,7 +797,7 @@
                                     uma matriz vazia se clip_state for <literal>"off"</literal>.
                                     Em outro caso, o recorte é dado por
                                     <literal>[x,y,w,h]</literal> (ponto superior esquerdo,
-                                    largura, altura). 
+                                    largura, altura).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -844,7 +831,7 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 lines(0) // desabilitando o paginamento vertical
 a=get("current_axes")//obtendo o manipulador dos novos eixos criados
 a.axes_visible="on"; // tornando os eixos visíveis
@@ -855,7 +842,7 @@ a.sub_tics=[5,0];
 a.labels_font_color=5;
 a.grid=[2,2];
 a.box="off";
-   
+
 // exemplo com eixos 3d
 clf(); //limpando a janela de gráficos
 x=0.1:0.1:2*%pi;plot2d(x-.3,sin(x)*7+.2);
@@ -864,7 +851,7 @@ a.grid=[1 -1 -1]; //make x-grid
 a.rotation_angles=[70 250]; //girando eixos com ângulos dados
 a.grid=[1 6 -1]; //criando y-grid
 a.view="2d"; //retornando a vista 2d
-a.box="back_half"; 
+a.box="back_half";
 a.labels_font_color=5;
 a.children.children.thickness=4;
 a.children.children.polyline_style=3;
@@ -886,7 +873,7 @@ a.labels_font_size=4;
 a.parent.background=8;
 a.parent.figure_size= [400,200];
 a.rotation_angles=[0 260];
-delete(a.children(2)); 
+delete(a.children(2));
 delete(); // deletando objeto corrente
 
 a = gca();
@@ -898,7 +885,7 @@ a.data_bounds(:,1) = [1;15] ; // ajustando limites positivos para o eixo x
 a.log_flags = "lnn" ; // ajustando o eixo X para escala logarítmica
 a.log_flags = "nnn" ; // voltando para escala linear
 
-a=gca(); 
+a=gca();
 a.rotation_angles=[45 45];
 a.data_bounds=[-20,-3,-2;20 3 ,2];
 xrect([-4 0.5 8 1]);
@@ -915,10 +902,10 @@ xsegs(10*xv,yv,1:8)
 s=a.children(1);
 s.arrow_size=1;
 s.segs_color=5;
-a.data_bounds //os valores limites para as coordenadas x,y e z 
+a.data_bounds //os valores limites para as coordenadas x,y e z
 a.view="2d";
 a.data_bounds=[-10,-1; 10,1]; // ajustando os valores limites para vistas bidimensionais
-   
+
 // exemplo com eixos modelos
 da=gda() // obtendo manipulador dos eixo modelos para ver e editar campos
 // título padrão
@@ -949,6 +936,12 @@ sda() // de volta aos eixos modelos padrões
         <title>Ver Também </title>
         <simplelist type="inline">
             <member>
+                <link linkend="axis_properties">axis_properties</link>
+            </member>
+            <member>
+                <link linkend="graphics_entities">graphics_entities</link>
+            </member>
+            <member>
                 <link linkend="lines">lines</link>
             </member>
             <member>
@@ -974,9 +967,6 @@ sda() // de volta aos eixos modelos padrões
             </member>
             <member>
                 <link linkend="scf">scf</link>
-            </member>
-            <member>
-                <link linkend="graphics_entities">graphics_entities</link>
             </member>
         </simplelist>
     </refsection>

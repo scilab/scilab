@@ -1,0 +1,5 @@
+LIBRARY    string.dll
+
+
+EXPORTS
+os_wcstok

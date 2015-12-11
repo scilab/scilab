@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="strcmpi">
@@ -52,12 +52,12 @@
         <title>Description</title>
         <para>
             <code>res = strcmpi(string_one, string_two)</code> returns an
-            integral value indicating the relationship between the strings.
+            integral value indicating the relationship between the strings. The two strings are compared in using the <emphasis role="bold">lexicographical order</emphasis>.
         </para>
         <para>
             The value is <literal>0</literal> if <varname>string_one</varname>
-            is equal to <varname>string_two</varname> (case independently) and
-            <literal>1</literal> indicates the opposite.
+            is equal to <varname>string_two</varname> (case independently),
+            <literal>1</literal> if <varname>string_one</varname> is greater than <varname>string_two</varname> and <literal>-1</literal> else.
         </para>
     </refsection>
     <refsection>

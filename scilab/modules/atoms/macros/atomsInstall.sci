@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // End user function
 
@@ -94,7 +94,7 @@ function result = atomsInstall(packages,section)
         // Allusers can be a boolean or equal to "user" or "allusers"
 
         if type(section) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsInstall",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsInstall",2));
         end
 
         if and(section<>["user","allusers"]) then
@@ -123,7 +123,7 @@ function result = atomsInstall(packages,section)
         if ~ isdir( directories2create(i) ) & (mkdir( directories2create(i) ) <> 1) then
             error(msprintf( ..
             gettext("%s: The directory ''%s'' cannot been created, please check if you have write access on this directory.\n"),..
-            directories2create(i)));
+            "atomsInstall", directories2create(i)));
         end
     end
 
@@ -157,7 +157,7 @@ function result = atomsInstall(packages,section)
         if ~ isempty(regexp(this_package,"/(\.tar\.gz|\.tgz|\.zip)$/","o")) then
 
             if fileinfo( this_package ) then
-                error(msprintf(gettext("%s: The file ''%s'' doesn''t exist or is not read accessible\n"),"atomsInstall",this_package));
+                error(msprintf(gettext("%s: The file ''%s'' does not exist or is not read accessible.\n"),"atomsInstall",this_package));
             end
 
             // expand filename - bug 10707
@@ -469,7 +469,7 @@ function result = atomsInstall(packages,section)
         DESCRIPTION = atomsDESCRIPTIONadd(DESCRIPTION,this_package_name,this_package_version,this_package_details);
         atomsDESCRIPTIONwrite(DESCRIPTION,DESCRIPTION_file);
 
-        // Sucess message if needed
+        // Success message if needed
         // =====================================================================
         atomsDisp(msprintf(" success"));
 

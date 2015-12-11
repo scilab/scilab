@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -32,12 +32,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_box_property(void* _pvCtx, char* pobjUID)
+void* get_box_property(void* _pvCtx, int iObjUID)
 {
     int type = -1;
     int *piType = &type;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
+
+    if (piType == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
+        return NULL;
+    }
+
 
     /*
     * Required since the Box property is implemented differently for the Axes and Text
@@ -51,29 +58,29 @@ int get_box_property(void* _pvCtx, char* pobjUID)
             int iBoxType = 0;
             int* piBoxType = &iBoxType;
 
-            getGraphicObjectProperty(pobjUID, __GO_BOX_TYPE__, jni_int, (void **) &piBoxType);
+            getGraphicObjectProperty(iObjUID, __GO_BOX_TYPE__, jni_int, (void **) &piBoxType);
 
             if (piBoxType == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
-                return -1;
+                return NULL;
             }
 
             if (iBoxType == 0)
             {
-                return sciReturnString(_pvCtx, "off");
+                return sciReturnString("off");
             }
             else if (iBoxType == 1)
             {
-                return sciReturnString(_pvCtx, "on");
+                return sciReturnString("on");
             }
             else if (iBoxType == 2)
             {
-                return sciReturnString(_pvCtx, "hidden_axes");
+                return sciReturnString("hidden_axes");
             }
             else if (iBoxType == 3)
             {
-                return sciReturnString(_pvCtx, "back_half");
+                return sciReturnString("back_half");
             }
 
         }
@@ -83,21 +90,21 @@ int get_box_property(void* _pvCtx, char* pobjUID)
             int iBox = 0;
             int* piBox = &iBox;
 
-            getGraphicObjectProperty(pobjUID, __GO_BOX__, jni_bool, (void **) &piBox);
+            getGraphicObjectProperty(iObjUID, __GO_BOX__, jni_bool, (void **) &piBox);
 
             if (piBox == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
-                return -1;
+                return NULL;
             }
 
             if (iBox)
             {
-                return sciReturnString(_pvCtx, "on");
+                return sciReturnString("on");
             }
             else
             {
-                return sciReturnString(_pvCtx, "off");
+                return sciReturnString("off");
             }
 
         }
@@ -105,10 +112,10 @@ int get_box_property(void* _pvCtx, char* pobjUID)
         default :
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
-            return -1;
+            return NULL;
         }
     }
 
-    return -1;
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

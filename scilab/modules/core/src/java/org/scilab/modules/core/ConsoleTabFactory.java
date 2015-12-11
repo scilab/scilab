@@ -6,14 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.core;
 
 import org.scilab.modules.gui.SwingView;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 
 /**
@@ -35,9 +35,9 @@ public class ConsoleTabFactory extends AbstractScilabTabFactory {
      */
     public ConsoleTabFactory() { }
 
-    public SwingScilabTab getTab(String uuid) {
+    public SwingScilabDockablePanel getTab(String uuid) {
         if (isAValidUUID(uuid)) {
-            return (SwingScilabTab) ConsoleTab.getConsoleTab(uuid).getAsSimpleTab();
+            return (SwingScilabDockablePanel) ConsoleTab.getConsoleTab(uuid).getAsSimpleTab();
         }
         return null;
     }

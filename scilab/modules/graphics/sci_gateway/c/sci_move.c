@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
-
+#include <string.h>
 #include "api_scilab.h"
 #include "gw_graphics.h"
 #include "Interaction.h"
@@ -28,7 +28,7 @@
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_move(char * fname, unsigned long fname_len)
+int sci_move(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -42,7 +42,7 @@ int sci_move(char * fname, unsigned long fname_len)
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int nbDim = 2;
     BOOL alone = FALSE;
-    char* pobjUID = NULL;
+    int iObjUID = 0;
     double* moveVector = NULL;
 
     CheckInputArgument(pvApiCtx, 2, 3);
@@ -60,7 +60,7 @@ int sci_move(char * fname, unsigned long fname_len)
         // Retrieve a matrix of double at position 3.
         if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
 
@@ -94,9 +94,9 @@ int sci_move(char * fname, unsigned long fname_len)
         return 1;
     }
 
-    pobjUID = (char*)getObjectFromHandle((long int) * l1);
+    iObjUID = getObjectFromHandle((long int) * l1);
 
-    if (pobjUID == NULL)
+    if (iObjUID == 0)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return 1;
@@ -115,7 +115,7 @@ int sci_move(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -128,7 +128,7 @@ int sci_move(char * fname, unsigned long fname_len)
     }
     moveVector = (l2);
 
-    Objmove(pobjUID, moveVector, nbDim, alone);
+    Objmove(iObjUID, moveVector, nbDim, alone);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

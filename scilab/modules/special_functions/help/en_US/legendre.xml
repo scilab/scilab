@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="legendre" xml:lang="en">
@@ -42,8 +42,8 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        real (row) vector (elements of <literal>x</literal> must be in
-                        the <literal>(-1,1)</literal> interval)
+                        real matrix(elements of <literal>x</literal> must be in
+                        the <literal>[-1,1]</literal> interval)
                     </para>
                 </listitem>
             </varlistentry>
@@ -114,7 +114,7 @@ y(1,j) = P(n,m;x(j))      if both n and m are scalars
  ]]></programlisting>
         <para>
             so that <literal>x</literal> is preferably a row vector but any
-            <literal>mx x nx</literal> matrix is excepted and considered as an
+            <literal>mx x nx</literal> matrix is expected and considered as an
             <literal>1 x (mx * nx)</literal> matrix, reshaped following the column
             order.
         </para>
@@ -144,14 +144,14 @@ x = linspace(-l,l,200)';
 y = legendre(5, 0:5, x, "norm");
 clf()
 plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
-xtitle("the (normalised) associated Legendre functions of degree 5")
+xtitle("the (normalized) associated Legendre functions of degree 5")
  ]]></programlisting>
         <scilab:image>
             l = nearfloat("pred",1);
             x = linspace(-l,l,200)';
             y = legendre(5, 0:5, x, "norm");
             plot2d(x,y', leg="p5,0@p5,1@p5,2@p5,3@p5,4@p5,5")
-            xtitle("the (normalised) associated Legendre functions of degree 5")
+            xtitle("the (normalized) associated Legendre functions of degree 5")
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // example 3 : define then plot a spherical harmonic

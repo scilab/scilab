@@ -21,16 +21,10 @@
 function [x,y,typ]=LOOKUP2D(job,arg1,arg2)
     // Copyright INRIA
 
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
 
         x=arg1
@@ -50,20 +44,47 @@ function [x,y,typ]=LOOKUP2D(job,arg1,arg2)
             // 5 : use input above
             // 6 : Interpolation-extrapolation (linear)
 
-            if  ~ok then break;end
-            mtd=int(Method); if mtd<1 then mtd=1;end; if mtd>6 then mtd=6;end;
-            if graf<>"y" & graf<>"Y" then  graf="n"; end
+            if  ~ok then
+                break;
+            end
+            mtd=int(Method);
+            if mtd<1 then
+                mtd=1;
+            end;
+            if mtd>6 then
+                mtd=6;
+            end;
+            if graf<>"y" & graf<>"Y" then
+                graf="n";
+            end
             exprs(5)="n";// exprs.graf='n'
             exprs(4)=sci2exp(mtd);// pour le cas methode>7 | method<0
 
             METHOD=getmethod(mtd);
             if ~Ask_again then
-                xx=xx(:);yy=yy(:);
-                [nx,mx]=size(xx); [ny,my]=size(yy);[nz,mz]=size(zz);
-                if ((nx<=1)|(ny<=1)) then, x_message("input row/column data size should be greater than one");  Ask_again=%t;end
-                if ~((nx==nz)&(ny==mz)) then, x_message("incompatible size of x and y");  Ask_again=%t;end
-                [ok]=test_increasing(xx);if (~ok) then  x_message("Row input values must be monotonically increasing");Ask_again=%t;end
-                [ok]=test_increasing(yy);if (~ok) then  x_message("Column input values must be monotonically increasing");Ask_again=%t;end
+                xx=xx(:);
+                yy=yy(:);
+                [nx,mx]=size(xx);
+                [ny,my]=size(yy);
+                [nz,mz]=size(zz);
+                if ((nx<=1)|(ny<=1)) then,
+                    x_message("input row/column data size should be greater than one");
+                    Ask_again=%t;
+                end
+                if ~((nx==nz)&(ny==mz)) then,
+                    x_message("incompatible size of x and y");
+                    Ask_again=%t;
+                end
+                [ok]=test_increasing(xx);
+                if (~ok) then
+                    x_message("Row input values must be monotonically increasing");
+                    Ask_again=%t;
+                end
+                [ok]=test_increasing(yy);
+                if (~ok) then
+                    x_message("Column input values must be monotonically increasing");
+                    Ask_again=%t;
+                end
             end
             if ~Ask_again then
                 if (graf=="Y" | graf=="y") then
@@ -105,12 +126,7 @@ function [x,y,typ]=LOOKUP2D(job,arg1,arg2)
         model.blocktype="c"
         model.dep_ut=[%t %f]
         exprs=list(strcat(sci2exp(xx)),strcat(sci2exp(yy)),strcat(sci2exp(zz)),sci2exp(Method),Graf)
-        gr_i=["txt=[''   Lookup'';''   table''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'');";
-        "txt=''r'';";"xstringb(orig(1)+.01*sz(1), orig(2)+.5*sz(1), txt, sz(1)/6,sz(2)/6,''fill'');"
-        "txt=''c'';";"xstringb(orig(1)+.01*sz(1), orig(2)+.1*sz(1), txt, sz(1)/6,sz(2)/6,''fill'');"
-
-        ]
+        gr_i=[]
 
         x=standard_define([2.5 2],model,exprs,gr_i)
     end

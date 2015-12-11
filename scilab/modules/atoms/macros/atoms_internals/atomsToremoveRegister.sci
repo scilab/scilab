@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -47,7 +47,7 @@ function nbAdd = atomsToremoveRegister(name,version,section)
     // =========================================================================
 
     if type(section) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsToremoveRegister",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsToremoveRegister",3));
     end
 
     if and(section<>["user","allusers"]) then
@@ -100,10 +100,7 @@ function nbAdd = atomsToremoveRegister(name,version,section)
     // =========================================================================
 
     if nbAdd > 0 then
-        wMode = warning("query");
-        warning("off");
-        save(toremove_bin, toremove_mat);
-        warning(wMode);
+        save(toremove_bin, "toremove_mat");
     end
 
 endfunction

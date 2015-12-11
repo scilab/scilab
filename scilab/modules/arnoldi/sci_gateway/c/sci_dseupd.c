@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,7 @@ extern int C2F(dseupd)(int *rvec, char *howmny, int *select, double *d,
                        unsigned long howmany_length,
                        unsigned long bmat_length, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
-int sci_dseupd(char *fname, unsigned long fname_len)
+int sci_dseupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -71,14 +71,11 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int D,        mD,        nD;
     int Z,        mZ,        nZ;
     int mSIGMA,    nSIGMA;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;
@@ -113,7 +110,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -129,7 +126,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -145,7 +142,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         return 1;
     }
 
@@ -162,7 +159,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         return 1;
     }
 
@@ -179,7 +176,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         return 1;
     }
 
@@ -195,7 +192,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 8);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 8);
         return 1;
     }
 
@@ -211,7 +208,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 10);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 10);
         return 1;
     }
 
@@ -227,7 +224,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 11);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 11);
         return 1;
     }
 
@@ -243,7 +240,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 12);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 12);
         return 1;
     }
 
@@ -260,7 +257,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 13);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 13);
         return 1;
     }
 
@@ -276,7 +273,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 14);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 14);
         return 1;
     }
 
@@ -293,7 +290,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 15);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 15);
         return 1;
     }
 
@@ -310,7 +307,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 16);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 16);
         return 1;
     }
 
@@ -327,7 +324,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 17);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 17);
         return 1;
     }
 
@@ -344,7 +341,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 18);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 18);
         return 1;
     }
 
@@ -361,7 +358,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 19);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 19);
         return 1;
     }
 
@@ -439,7 +436,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpHOWMANY, &pHOWMANY))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -455,7 +452,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
         freeAllocatedSingleString(pHOWMANY);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 7);
         return 1;
     }
 
@@ -474,7 +471,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
     {
         freeAllocatedSingleString(pBMAT);
         freeAllocatedSingleString(pHOWMANY);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 9);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 9);
         return 1;
     }
 
@@ -492,7 +489,7 @@ int sci_dseupd(char *fname, unsigned long fname_len)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("dseupd", pINFO, 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

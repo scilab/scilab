@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -42,7 +42,7 @@ typedef struct hashtable SetPropertyHashTable;
  * The char* is the UID of the object to get the property from
  * The return value is 0 if the call was successful and -1 otherwise.
  */
-typedef int (*getPropertyFunc)(void*, char *);
+typedef void* (*getPropertyFunc)(void*, int);
 
 /**
 * Prototype of functions used to set a specific property of an handle.
@@ -51,7 +51,7 @@ typedef int (*getPropertyFunc)(void*, char *);
 * SET_PROPERTY_UNCHANGED if nothing was actually changed and SET_PROPERTY_ERROR if
 * an error occurred.
 */
-typedef int (*setPropertyFunc)(void*, char *, void*, int, int, int);
+typedef int (*setPropertyFunc)(void*, int, void*, int, int, int);
 /*--------------------------------------------------------------------------*/
 
 /*--------------------------------------------------------------------------*/

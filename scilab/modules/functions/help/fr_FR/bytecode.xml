@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *-->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="bytecode">
     <refnamediv>
@@ -18,7 +18,7 @@
         <title>Séquence d'appel</title>
         <synopsis>
             x = bytecode(f)
-            f= bytecode(X)
+            f = bytecode(x)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -36,7 +36,7 @@
                 <term>x</term>
                 <listitem>
                     <para>
-                        un vecteur d'entiers, 
+                        un vecteur d'entiers,
                     </para>
                 </listitem>
             </varlistentry>
@@ -45,16 +45,18 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>x= bytecode(f) </literal> retourne le pseudo code de la fonction
-            <literal>f</literal> dans le vecteur d'entiers Scilab
-            <literal>x</literal>.
+            <code>x = bytecode(f)</code> retourne le pseudo code de la fonction
+            <varname>f</varname> dans le vecteur d'entiers Scilab
+            <varname>x</varname>.
         </para>
         <para>
-            <literal>f= bytecode(x) </literal> retourne dans
-            <literal>f</literal> la fonction correspondant au pseudo code
+            <code>f= bytecode(x)</code> retourne dans
+            <varname>f</varname> la fonction correspondant au pseudo code
             donné dans le vecteur d'entiers
-            <literal>x</literal>. Attention la validité du pseudo code
-            n'est pas vérifiée.
+            <varname>x</varname>.
+            <warning>
+                Attention la validité du pseudo code n'est pas vérifiée.
+            </warning>
         </para>
     </refsection>
     <refsection>
@@ -67,7 +69,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function a=foo(),a=sin(3),endfunction
 bytecode(foo)
  ]]></programlisting>
@@ -80,9 +82,6 @@ bytecode(foo)
             </member>
             <member>
                 <link linkend="bytecodewalk">bytecodewalk</link>
-            </member>
-            <member>
-                <link linkend="macr2lst">macr2lst</link>
             </member>
             <member>
                 <link linkend="macr2tree">macr2tree</link>

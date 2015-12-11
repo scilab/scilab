@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,7 +17,7 @@
 /* file: sci_xpoly.c                                                      */
 /* desc : interface for xpoly routine                                     */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
@@ -35,7 +35,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xpoly(char * fname, unsigned long fname_len)
+int sci_xpoly(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -48,8 +48,8 @@ int sci_xpoly(char * fname, unsigned long fname_len)
     int* piAddrl4 = NULL;
     double* l4 = NULL;
 
-    char *psubwinUID = NULL;
-    char* pobjUID = NULL;
+    int iSubwinUID = 0;
+    int iObjUID = 0;
 
     int m1 = 0, n1 = 0, m2 = 0 , n2 = 0, m4 = 0, n4 = 0, close = 0, mn2 = 0;
 
@@ -74,7 +74,7 @@ int sci_xpoly(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -90,7 +90,7 @@ int sci_xpoly(char * fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -115,18 +115,16 @@ int sci_xpoly(char * fname, unsigned long fname_len)
         // Retrieve a matrix of double at position 3.
         if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
 
         if (strcmp((l3), "lines") == 0)
         {
-            strcpy(C2F(cha1).buf, "xlines");
             mark = 1; /* NG */
         }
         else if (strcmp((l3), "marks") == 0)
         {
-            strcpy(C2F(cha1).buf, "xmarks");
             mark = 0; /* NG */
         }
         else
@@ -137,7 +135,6 @@ int sci_xpoly(char * fname, unsigned long fname_len)
     }
     else
     {
-        strcpy(C2F(cha1).buf, "xlines");
         mark = 1; /* NG */
     }
 
@@ -155,7 +152,7 @@ int sci_xpoly(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
             return 1;
         }
 
@@ -170,13 +167,13 @@ int sci_xpoly(char * fname, unsigned long fname_len)
     }
     /* NG beg */
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     Objpoly ((l1), (l2), mn2, close, mark, &hdl);
 
-    pobjUID = (char*)getObjectFromHandle(hdl); /* the polyline newly created */
+    iObjUID = getObjectFromHandle(hdl); /* the polyline newly created */
 
-    setGraphicObjectRelationship(psubwinUID, pobjUID);
+    setGraphicObjectRelationship(iSubwinUID, iObjUID);
 
     /*
      * The contour properties set calls below were
@@ -190,25 +187,25 @@ int sci_xpoly(char * fname, unsigned long fname_len)
         markMode = 1;
         lineMode = 0;
 
-        getGraphicObjectProperty(psubwinUID, __GO_MARK_STYLE__, jni_int, (void**)&piTmp);
-        setGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, piTmp, jni_int, 1);
+        getGraphicObjectProperty(iSubwinUID, __GO_MARK_STYLE__, jni_int, (void**)&piTmp);
+        setGraphicObjectProperty(iObjUID, __GO_MARK_STYLE__, piTmp, jni_int, 1);
     }
     else
     {
         markMode = 0;
         lineMode = 1;
 
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_STYLE__, jni_int, (void**)&piTmp);
-        sciSetLineStyle(pobjUID, iTmp);
+        getGraphicObjectProperty(iSubwinUID, __GO_LINE_STYLE__, jni_int, (void**)&piTmp);
+        sciSetLineStyle(iObjUID, iTmp);
     }
 
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piTmp);
+    getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piTmp);
     foreground = iTmp;
 
-    setGraphicObjectProperty(pobjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
+    setGraphicObjectProperty(iObjUID, __GO_LINE_COLOR__, &foreground, jni_int, 1);
 
-    setGraphicObjectProperty(pobjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
-    setGraphicObjectProperty(pobjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
+    setGraphicObjectProperty(iObjUID, __GO_MARK_MODE__, &markMode, jni_bool, 1);
+    setGraphicObjectProperty(iObjUID, __GO_LINE_MODE__, &lineMode, jni_bool, 1);
 
     /* NG end */
     AssignOutputVariable(pvApiCtx, 1) = 0;

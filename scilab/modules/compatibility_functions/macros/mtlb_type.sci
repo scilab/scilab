@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function []=mtlb_type(filename)
     // Emulation function for type() Matlab function
@@ -14,7 +14,8 @@ function []=mtlb_type(filename)
         disp(mgetl(mopen(filename,"r")))
     else
         if type(evstr(filename))==13 then // Compiled function
-            disp(fun2string(evstr(filename)))
+            tree=macr2tree(evstr(filename));
+            disp(tree2code(tree))
         elseif strindex(filename,".")==[] then // File without extension
             Mfilename=filename+".m"
             [x,ierr]=fileinfo(Mfilename)

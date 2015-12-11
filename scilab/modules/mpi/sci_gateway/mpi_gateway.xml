@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE module SYSTEM "../../functions/mpi/gateway.dtd">
+<!--
+/*
+ *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ *  Copyright (C) 2015 - Scilab Enterprises - Cedric DELAMARRE
+ *
+ *  This file must be used under the terms of the CeCILL.
+ *  This source file is licensed as described in the file COPYING, which
+ *  you should have received as part of this distribution.  The terms
+ *  are also available at
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *
+ */
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ Don't touch if you do not know what you are doing
+-->
+<module name="mpi">
+    <gateway name="sci_mpi_init"                function="MPI_Init"                 type="0" />
+    <gateway name="sci_mpi_finalize"            function="MPI_Finalize"             type="0" />
+    <gateway name="sci_mpi_comm_size"           function="MPI_Comm_size"            type="0" />
+    <gateway name="sci_mpi_comm_rank"           function="MPI_Comm_rank"            type="0" />
+    <gateway name="sci_mpi_recv"                function="MPI_Recv"                 type="0" />
+    <gateway name="sci_mpi_send"                function="MPI_Send"                 type="0" />
+    <gateway name="sci_mpi_get_processor_name"  function="MPI_Get_processor_name"   type="0" />
+    <gateway name="sci_mpi_bcast"               function="MPI_Bcast"                type="0" />
+    <gateway name="sci_mpi_irecv"               function="MPI_Irecv"                type="0" />
+    <gateway name="sci_mpi_isend"               function="MPI_Isend"                type="0" />
+    <gateway name="sci_mpi_wait"                function="MPI_Wait"                 type="0" />
+</module>

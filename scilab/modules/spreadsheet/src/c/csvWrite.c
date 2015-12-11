@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #if defined(__linux__)
@@ -22,14 +22,11 @@
 #include "expandPathVariable.h"
 #include "FileExist.h"
 #include "mclose.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "core_math.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-#include "strsubst.h"
 #include "csvDefault.h"
 #include "utftolatin.h"
+#include "strsubst.h"
 // =============================================================================
 #define DEFAULT_CSV_WRITE_STRING_FORMAT "%s"
 #define DEFAULT_CSV_WRITE_DOUBLE_FORMAT "%.lg"
@@ -320,7 +317,7 @@ csvWriteError csvWrite_complex(const char *filename,
                     result = strsub(buffer, getCsvDefaultDecimal(), decimal);
                     if (result)
                     {
-                        strcpy(StringValue, result);
+                        strncpy(StringValue, result, sizeof(StringValue) - 1);
                         FREE(result);
                     }
                     else
@@ -385,11 +382,12 @@ csvWriteError csvWrite_complex(const char *filename,
                     {
                         if ((hasReal) || (imagValue < 0))
                         {
-                            strcat(StringValue, result);
+                            strncat(StringValue, result, sizeof(StringValue) - strlen(StringValue) - 1);
+                            StringValue[sizeof(StringValue) - 1] = '\0';
                         }
                         else
                         {
-                            strcpy(StringValue, result);
+                            strncpy(StringValue, result, sizeof(StringValue) - 1);
                         }
                         FREE(result);
                     }
@@ -511,59 +509,36 @@ csvWriteError csvWrite_string(const char *filename,
     {
         for ( j = 0 ; j < n ; j++)
         {
-            if (decimal == NULL)
+            char *result = NULL;
+            result = strsub((char*)(pStrValues[i + m * j]), getCsvDefaultDecimal(), decimal);
+            if (result)
             {
                 if (isIsoLatin)
                 {
-                    const char *converted = utftolatin((char*)pStrValues[i + m * j]);
+                    char *converted = utftolatin(result);
                     if (converted)
                     {
                         fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, converted);
-                        FREE((char*)converted);
+                        FREE(converted);
                         converted = NULL;
-                    }
-                    else
-                    {
-                        fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, pStrValues[i + m * j]);
-                    }
-                }
-                else
-                {
-                    fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, pStrValues[i + m * j]);
-                }
-            }
-            else
-            {
-                char *result = NULL;
-                result = strsub((char*)(pStrValues[i + m * j]), getCsvDefaultDecimal(), decimal);
-                if (result)
-                {
-                    if (isIsoLatin)
-                    {
-                        char *converted = utftolatin(result);
-                        if (converted)
-                        {
-                            fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, converted);
-                            FREE(converted);
-                            converted = NULL;
-                        }
-                        else
-                        {
-                            fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, result);
-                        }
                     }
                     else
                     {
                         fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, result);
                     }
-                    FREE(result);
-                    result = NULL;
                 }
                 else
                 {
-                    fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, pStrValues[i + m * j]);
+                    fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, result);
                 }
+                FREE(result);
+                result = NULL;
             }
+            else
+            {
+                fprintf(fd, DEFAULT_CSV_WRITE_STRING_FORMAT, pStrValues[i + m * j]);
+            }
+
             if (j + 1 < n)
             {
                 fprintf(fd, "%s", separator);

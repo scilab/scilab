@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,41 +30,113 @@
 #include "CurrentFigure.h"
 #include "CurrentSubwin.h"
 #include "CurrentObject.h"
+#include "createGraphicObject.h"
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_newaxes(char * fname, unsigned long fname_len)
+int sci_newaxes(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
     long long* outindex = NULL;
 
-    char *psubwinUID = NULL;
-    int numrow   = 1, numcol   = 1;
-    CheckInputArgument(pvApiCtx, 0, 0);
+    int iSubwinUID = 0;
+    long long hParent = 0;
+    int iParentUID = -1;
+    int iParentType = -1;
+    int *piParentType = &iParentType;
+    int iParentStyle = -1;
+    int *piParentStyle = &iParentStyle;
+
+    int iRhs = nbInputArgument(pvApiCtx);
+
+    CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    getOrCreateDefaultSubwin();
-
-    if ((psubwinUID = (char*)ConstructSubWin (getCurrentFigure())) != NULL)
+    if (iRhs == 0)
     {
-        sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, numrow, numcol, &outindex);
-        if (sciErr.iErr)
+        getOrCreateDefaultSubwin();
+
+        if ((iSubwinUID = createSubWin (getCurrentFigure())) != 0)
         {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Memory allocation error.\n"), fname);
-            return 1;
+            if (createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iSubwinUID)))
+            {
+                printError(&sciErr, 0);
+                Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                return 1;
+            }
+
+            AssignOutputVariable(pvApiCtx, 1) = 1;
+            ReturnArguments(pvApiCtx);
         }
-
-
-        *(outindex) = getHandle(psubwinUID);
-
-        AssignOutputVariable(pvApiCtx, 1) = 1;
-        ReturnArguments(pvApiCtx);
+        else
+        {
+            Scierror(999, _("%s: No more memory.\n"), fname);
+        }
+        return 0;
     }
     else
     {
-        Scierror(999, _("%s: No more memory.\n"), fname);
+        // iRhs == 1
+        int* piAddr = NULL;
+        int iType = 0;
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
+        if (sciErr.iErr)
+        {
+            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+            return 0;
+        }
+
+        if (isHandleType(pvApiCtx, piAddr) == FALSE || isScalar(pvApiCtx, piAddr) == FALSE)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: A graphic handle expected.\n"), fname, 1);
+            return 0;
+        }
+
+        if (getScalarHandle(pvApiCtx, piAddr, &hParent))
+        {
+            Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname, 1);
+            return 1;
+        }
+
+        iParentUID = getObjectFromHandle((long)hParent);
+        if (iParentUID != 0)
+        {
+            getGraphicObjectProperty(iParentUID, __GO_TYPE__, jni_int, (void **)&piParentType);
+            getGraphicObjectProperty(iParentUID, __GO_STYLE__, jni_int, (void **)&piParentStyle);
+            if (!(iParentType == __GO_FIGURE__ || iParentStyle == __GO_UI_FRAME__))
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure",
+                         "Frame");
+                return FALSE;
+            }
+
+            if ((iSubwinUID = createSubWin(iParentUID)) != 0)
+            {
+                if (createScalarHandle(pvApiCtx, iRhs + 1, getHandle(iSubwinUID)))
+                {
+                    printError(&sciErr, 0);
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 1;
+                }
+
+                AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+                ReturnArguments(pvApiCtx);
+            }
+            else
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+            }
+            return 0;
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' or '%s' handle expected.\n"), fname, 1, "Figure",
+                     "Frame");
+            return FALSE;
+        }
     }
-    return 0;
 }
 /*--------------------------------------------------------------------------*/

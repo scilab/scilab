@@ -46,7 +46,7 @@ saved_ldflags="$LDFLAGS"
 
 if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
 LDFLAGS="$LDFLAGS -L$with_blas_library"
-fi
+fi	
 
 # Get fortran linker names of BLAS functions to check for.
 AC_F77_FUNC(sgemm)
@@ -56,13 +56,17 @@ LIBS="$LIBS $FLIBS"
 
 # First, check BLAS_LIBS environment variable
 if test $acx_blas_ok = no; then
-if test "x$BLAS_LIBS" != x; then
-	save_LIBS="$LIBS"; LIBS="$BLAS_LIBS $LIBS"
-	AC_MSG_CHECKING([for $sgemm in $BLAS_LIBS])
-	AC_TRY_LINK_FUNC($sgemm, [acx_blas_ok=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [BLAS_LIBS=""])
-	AC_MSG_RESULT($acx_blas_ok)
-	LIBS="$save_LIBS"
-fi
+    if test "x$BLAS_LIBS" != x; then
+        save_LIBS="$LIBS"; LIBS="$BLAS_LIBS $LIBS"
+        AC_MSG_CHECKING([for $sgemm in $BLAS_LIBS])
+        AC_TRY_LINK_FUNC($sgemm, [acx_blas_ok=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [BLAS_LIBS=""])
+        AC_MSG_RESULT($acx_blas_ok)
+        LIBS="$save_LIBS"
+    elif $WITH_DEVTOOLS; then # Scilab thirdparties
+        BLAS_LIBS="-L$DEVTOOLS_LIBDIR -lblas"
+        BLAS_TYPE="Generic Blas (thirdparties)"
+        acx_blas_ok=yes
+    fi
 fi
 
 # BLAS linked to by default?  (happens on some supercomputers)
@@ -70,23 +74,25 @@ if test $acx_blas_ok = no; then
 	save_LIBS="$LIBS"; LIBS="$LIBS"
 	AC_CHECK_FUNC($sgemm, [acx_blas_ok=yes; BLAS_TYPE="Linked"])
 	LIBS="$save_LIBS"
-
 fi
 
-# BLAS in ATLAS library? (http://math-atlas.sourceforge.net/)
+# BLAS in OpenBlas library (http://www.openblas.net/)
 if test $acx_blas_ok = no; then
-	AC_CHECK_LIB(atlas, ATL_xerbla,
-		[AC_CHECK_LIB(f77blas, $sgemm,
-		[AC_CHECK_LIB(cblas, cblas_dgemm,
-			[acx_blas_ok=yes; BLAS_TYPE="Atlas"
-			 BLAS_LIBS="-lcblas -lf77blas -latlas"],
-			[], [-lf77blas -latlas])],
-			[], [-latlas])])
+	AC_CHECK_LIB(openblas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="OpenBLAS"; BLAS_LIBS="-lopenblas"])
 fi
 
-# BLAS in Intel MKL libraries?
+# BLAS in ATLAS library (http://math-atlas.sourceforge.net/)
 if test $acx_blas_ok = no; then
-	AC_CHECK_LIB(mkl, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="MKL"; BLAS_LIBS="-lmkl -lguide -lpthread"])
+	PKG_CHECK_MODULES(BLAS, atlas, [acx_blas_ok=yes; BLAS_TYPE="Atlas"], [acx_blas_ok=no])
+fi
+if test $acx_blas_ok = no; then
+	AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas"], [
+		AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas -latlas"], [], [-latlas])])
+fi
+
+# BLAS in Intel MKL libraries (http://software.intel.com/en-us/articles/a-new-linking-model-single-dynamic-library-mkl_rt-since-intel-mkl-103)
+if test $acx_blas_ok = no; then
+	AC_CHECK_LIB(mkl_rt, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="MKL"; BLAS_LIBS="-lmkl_rt"])
 fi
 
 # BLAS in PhiPACK libraries? (requires generic BLAS lib, too)
@@ -145,7 +151,7 @@ if test $acx_blas_ok = no; then
 fi
 
 if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
-BLAS_LIBS="$BLAS_LIBS -L$with_blas_library"
+BLAS_LIBS="-L$with_blas_library $BLAS_LIBS"
 fi
 
 AC_SUBST(BLAS_LIBS)
@@ -231,12 +237,16 @@ if test "x$LAPACK_LIBS" != x; then
         if test acx_lapack_ok = no; then
                 LAPACK_LIBS=""
         fi
+elif $WITH_DEVTOOLS; then # Scilab thirdparties
+     LAPACK_LIBS="-L$DEVTOOLS_LIBDIR -llapack -lblas"
+     LAPACK_TYPE="Lapack (thirdparties)"
+     acx_lapack_ok=yes
 fi
 
 # LAPACK linked to by default?  (is sometimes included in BLAS lib)
 if test $acx_lapack_ok = no; then
         save_LIBS="$LIBS"; LIBS="$LIBS $BLAS_LIBS $FLIBS"
-        AC_CHECK_FUNC($cheev, [acx_lapack_ok=yes; LAPACK_TYPE="Default link"])
+        AC_CHECK_FUNC($cheev, [acx_lapack_ok=yes; LAPACK_TYPE="Default link (may be provided with BLAS)"])
         LIBS="$save_LIBS"
 fi
 
@@ -306,6 +316,7 @@ dnl @author Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>
 
 AC_DEFUN([ACX_ARPACK], [
 AC_REQUIRE([ACX_BLAS])
+AC_REQUIRE([ACX_LAPACK])
 acx_arpack_ok=no
 
 AC_ARG_WITH(arpack-library,
@@ -316,18 +327,24 @@ if test "$with_arpack_library" != no -a "$with_arpack_library" != ""; then
 LDFLAGS="$LDFLAGS -L$with_arpack_library"
 fi
 
-ARPACK_LIBS="-larpack"
+if $WITH_DEVTOOLS; then # Scilab thirdparties
+    ARPACK_LIBS="-L$DEVTOOLS_LIBDIR -larpack -llapack -lblas"
+    LDFLAGS="$LDFLAGS -L$DEVTOOLS_LIBDIR"
+    acx_arpack_ok=yes
+else
+    ARPACK_LIBS="-larpack"
+fi
 # Get fortran linker name of ARPACK function to check for.
 AC_F77_FUNC(znaupd)
 
 # We cannot use ARPACK if BLAS is not found
-if test "x$acx_blas_ok" != xyes; then
+if test "x$acx_blas_ok" != xyes -a "x$acx_lapack_ok" != xyes ; then
         acx_arpack_ok=noblas
 fi
 
 # First, check ARPACK_LIBS environment variable
 if test "x$ARPACK_LIBS" != x; then
-        save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+        save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
         AC_MSG_CHECKING([for $znaupd in $ARPACK_LIBS])
         AC_TRY_LINK_FUNC($znaupd, [acx_arpack_ok=yes], [ARPACK_LIBS="-larpack"])
         AC_MSG_RESULT($acx_arpack_ok)
@@ -369,7 +386,12 @@ dnl This code is released under the GPL license.
 dnl
 AC_DEFUN([CHECK_ARPACK_OK], [
   AC_LANG_PUSH(C++)
-  save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+  save_LIBS="$LIBS";
+  LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+  save_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+  if $WITH_DEVTOOLS; then # Scilab thirdparties
+      export LD_LIBRARY_PATH="$DEVTOOLS_LIBDIR:$LD_LIBRARY_PATH"
+  fi
   AC_CACHE_CHECK([whether the arpack library works],
     [lib_cv_arpack_ok], [
       AC_RUN_IFELSE([AC_LANG_PROGRAM([[
@@ -504,6 +526,7 @@ doit (void)
   [cv_lib_arpack_ok=no],
   [cv_lib_arpack_ok=yes])])
   LIBS="$save_LIBS"
+  export LD_LIBRARY_PATH="$save_LD_LIBRARY_PATH"
   AC_LANG_POP(C++)
   if test "$cv_lib_arpack_ok" = "yes"; then
     $1

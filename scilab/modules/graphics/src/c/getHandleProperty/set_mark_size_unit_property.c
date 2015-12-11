@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,7 +19,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "stricmp.h"
+#include "os_string.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -29,10 +29,10 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*------------------------------------------------------------------------*/
-int set_mark_size_unit_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_mark_size_unit_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int markSizeUnit = 0;
@@ -58,7 +58,7 @@ int set_mark_size_unit_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
 
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_MARK_SIZE_UNIT__, &markSizeUnit, jni_int, 1);
 
     if (status == TRUE)
     {

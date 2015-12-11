@@ -6,13 +6,18 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.graphic_objects.textObject;
 
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_STYLE__;
+
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * Font class
@@ -121,8 +126,9 @@ public class Font {
     /**
      * @param color the color to set
      */
-    public void setColor(Integer color) {
+    public UpdateStatus setColor(Integer color) {
         this.color = color;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -135,8 +141,9 @@ public class Font {
     /**
      * @param fractional the fractional to set
      */
-    public void setFractional(Boolean fractional) {
+    public UpdateStatus setFractional(Boolean fractional) {
         this.fractional = fractional;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -149,8 +156,9 @@ public class Font {
     /**
      * @param size the size to set
      */
-    public void setSize(Double size) {
+    public UpdateStatus setSize(Double size) {
         this.size = size;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -163,8 +171,9 @@ public class Font {
     /**
      * @param style the style to set
      */
-    public void setStyle(Integer style) {
+    public UpdateStatus setStyle(Integer style) {
         this.style = style;
+        return UpdateStatus.Success;
     }
 
 }

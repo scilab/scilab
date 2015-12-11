@@ -6,18 +6,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.ui_data.utils;
 
 import java.awt.event.MouseEvent;
-
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.localization.Messages;
-
 
 /**
  * All localized messages/menus labels used in Editvar and Browsevar
@@ -129,6 +127,9 @@ public final class UiDataMessages {
 
     public static final String PREVIOUSDIR = Messages.gettext("Previous directory");
     public static final String NEXTDIR = Messages.gettext("Next directory");
+    public static final String PARENTDIR = Messages.gettext("Parent directory");
+    public static final String SELECTDIR = Messages.gettext("Select a directory");
+    public static final String RUNFILTER = Messages.gettext("Run filter");
 
     /** This class is a static singleton, thus it must not be instantiated */
     private UiDataMessages() { }

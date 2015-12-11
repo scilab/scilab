@@ -7,15 +7,15 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "stringsCompare.h"
-#include "MALLOC.h"
-#include "stricmp.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int sign(int x)
 {
@@ -30,7 +30,7 @@ static int sign(int x)
     return 0;
 }
 
-int * stringsCompare(char **Input_String_One, int dim_One, char **Input_String_Two, int dim_Two, BOOL dostricmp)
+int * stringsCompare(wchar_t **Input_String_One, int dim_One, wchar_t **Input_String_Two, int dim_Two, BOOL dostricmp)
 {
     int *returnedValues = NULL;
     int j = 0;
@@ -52,11 +52,11 @@ int * stringsCompare(char **Input_String_One, int dim_One, char **Input_String_T
 
             if (dostricmp)
             {
-                returnedValues[i] = sign(stricmp(Input_String_One[i], Input_String_Two[j]));
+                returnedValues[i] = sign(wcsicmp(Input_String_One[i], Input_String_Two[j]));
             }
             else
             {
-                returnedValues[i] = sign(strcmp(Input_String_One[i], Input_String_Two[j]));
+                returnedValues[i] = sign(wcscmp(Input_String_One[i], Input_String_Two[j]));
             }
         }
     }

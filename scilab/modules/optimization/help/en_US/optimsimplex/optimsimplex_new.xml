@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optimsimplex_new" xml:lang="en">
@@ -55,7 +55,7 @@
             <varlistentry>
                 <term>coords</term>
                 <listitem>
-                    <para>Matrix of point coordinatres in the simplex (optional).</para>
+                    <para>Matrix of point coordinates in the simplex (optional).</para>
                     <para>
                         This argument is expected to be <literal>nbve</literal>-by-<literal>n</literal> 
                         matrix, where <literal>n</literal> is the dimension of the space and <literal>nbve</literal>
@@ -85,7 +85,7 @@
                 <term>len</term>
                 <listitem>
                     <para>the length of the simplex (default length = 1.0) (optional).</para>
-                    <para>If length is a value, that unique lenght is used in all directions. If length is 
+                    <para>If length is a value, that unique length is used in all directions. If length is
                         a vector with n values, each length is used with the corresponding direction (n is 
                         the dimension of the space).
                     </para>
@@ -274,7 +274,7 @@
         </programlisting>
         <para>
             The <literal>data</literal> input parameter may be used if the function
-            uses some additionnal parameters. It is returned as an output
+            uses some additional parameters. It is returned as an output
             parameter because the function may modify the data while
             computing the function value. This feature may be used, for
             example, to count the number of times that the function has
@@ -308,7 +308,7 @@ s1 = optimsimplex_destroy(s1);
             In the following example, one creates a simplex with in the 2D
             domain [-5 5]^2, with [-1.2 1.0] as the first vertex. One uses the
             randomized bounds method to generate a simplex with 5 vertices. The
-            function takes an additionnal argument mystuff, which is counts the number
+            function takes an additional argument mystuff, which is counts the number
             of times the function is called. After the creation of the simplex, the
             value of mystuff.nb is 5, which is the expected result because there is
             one function call by vertex.

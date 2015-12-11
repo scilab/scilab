@@ -6,16 +6,18 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef __XMLOBJECTS_HXX__
 #define __XMLOBJECTS_HXX__
 
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <typeinfo>
+#include <set>
 
 extern "C"
 {
@@ -23,132 +25,155 @@ extern "C"
 #include "dynlib_xml_scilab.h"
 }
 
+//#define SCILAB_DEBUG_XML
+
 namespace org_modules_xml
 {
-    class VariableScope;
+class VariableScope;
 
-    /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Base class for the XML objects.
-     */
-    class XML_SCILAB_IMPEXP XMLObject
-    {
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Base class for the XML objects.
+ */
+class XML_SCILAB_IMPEXP XMLObject
+{
 
 public:
-        /**
-         * Default constructor
-         */
-        XMLObject();
 
-        /**
-         * Destructor
-         */
-        virtual ~ XMLObject()
-        {
-        }
-
-        /**
-         * Get the libxml2 pointer
-         * @return the pointer
-         */
-        virtual void *getRealXMLPointer() const
-        {
-            return 0;
-        }
-
-        /**
-         * Gets a XML parent object. A set of dependencies is created between the objects
-         * to be sure that all the XML objects will be freed when a document will be destroyed.
-         * @return the parent XMLObject
-         */
-        virtual const XMLObject *getXMLObjectParent() const
-        {
-            return 0;
-        }
+#ifdef SCILAB_DEBUG_XML
+    static std::set<XMLObject *> pointers;
+#endif
 
     /**
-         * Sets the attribute value.
-         * @param name the attribute names
-         * @param value the attribute values
-         * @param size the number of names
-         */
-        virtual void setAttributeValue(const char **name, const char **value, int size) const
-        {
-            return;
-        }
+     * Default constructor
+     */
+    XMLObject();
 
     /**
-         * Sets the attribute value with a prefix namespace.
-         * @param prefix the namespace prefix or the namespace itself
-         * @param name the attribute names
-         * @param value the attribute values
-         * @param size the number of names
-         */
-        virtual void setAttributeValue(const char **prefix, const char **name, const char **value, int size) const
-        {
-            return;
-        }
+     * Destructor
+     */
+    virtual ~ XMLObject()
+    {
+#ifdef SCILAB_DEBUG_XML
+        //std::cout << "Delete = " << (void*)this << std::endl;
+        pointers.erase(this);
+#endif
+    }
 
-        /**
-         * @return the string representation of this object
-         */
-        virtual const std::string toString() const
-        {
-            return std::string("");
-        }
+    /**
+     * Get the libxml2 pointer
+     * @return the pointer
+     */
+    virtual void *getRealXMLPointer() const
+    {
+        return 0;
+    }
 
-        /**
-         * @return a dump of this object
-         */
-        virtual const std::string dump(bool indent) const
-        {
-            return std::string("");
-        }
+    /**
+     * Gets a XML parent object. A set of dependencies is created between the objects
+     * to be sure that all the XML objects will be freed when a document will be destroyed.
+     * @return the parent XMLObject
+     */
+    virtual const XMLObject *getXMLObjectParent() const
+    {
+        return 0;
+    }
 
-        /**
-         * @return the object id
-         */
-        int getId() const
-        {
-            return id;
-        }
+    /**
+     * Sets the attribute value.
+     * @param name the attribute names
+     * @param value the attribute values
+     * @param size the number of names
+     */
+    virtual void setAttributeValue(const char **name, const char **value, int size) const
+    {
+        return;
+    }
 
-        /**
-         * Creates the Scilab's variable corresponding to this object
-         * @param pos the stack position
-         * @return 1 if all is ok, else 0
-         */
-        int createOnStack(int pos, void *pvApiCtx) const;
+    /**
+     * Sets the attribute value with a prefix namespace.
+     * @param prefix the namespace prefix or the namespace itself
+     * @param name the attribute names
+     * @param value the attribute values
+     * @param size the number of names
+     */
+    virtual void setAttributeValue(const char **prefix, const char **name, const char **value, int size) const
+    {
+        return;
+    }
 
-        /**
-         * @param id the object id
-         * @return the object which has the corresponding id or 0 if not found
-         */
-          template < class T > static T *getFromId(int id)
-        {
-            return static_cast < T * >(getVariableFromId(id));
-        }
+    /**
+     * @return the string representation of this object
+     */
+    virtual const std::string toString() const
+    {
+        return std::string("");
+    }
 
-protected:int id;
-        int scilabType;
+    /**
+     * @return a dump of this object
+     */
+    virtual const std::string dump(bool indent) const
+    {
+        return std::string("");
+    }
 
-        static VariableScope *scope;
+    /**
+     * @return the object id
+     */
+    inline int getId() const
+    {
+        return id;
+    }
 
-        /**
-         * Reset the scope
-         */
-        static void resetScope();
+    inline bool isValid() const
+    {
+        return valid;
+    }
+
+    inline void invalid()
+    {
+        valid = false;
+    }
+
+    /**
+     * Creates the Scilab's variable corresponding to this object
+     * @param pos the stack position
+     * @return 1 if all is ok, else 0
+     */
+    int createOnStack(int pos, void *pvApiCtx) const;
+
+    /**
+     * @param id the object id
+     * @return the object which has the corresponding id or 0 if not found
+     */
+    template < class T > static T *getFromId(int id)
+    {
+        return static_cast < T * >(getVariableFromId(id));
+    }
+
+protected:
+    int id;
+    int scilabType;
+    bool valid;
+
+    static VariableScope *scope;
+
+    /**
+     * Reset the scope
+     */
+    static void resetScope();
 
 private:
 
-        /**
-         * @param id the id
-         * @return XMLObject corresponding to the id or 0 if not found
-         */
-        static XMLObject *getVariableFromId(int id);
-    };
+    /**
+     * @param id the id
+     * @return XMLObject corresponding to the id or 0 if not found
+     */
+    static XMLObject *getVariableFromId(int id);
+};
 }
 
 #endif

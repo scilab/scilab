@@ -38,39 +38,25 @@
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
 currentlnf = getlookandfeel();
-
 // クラシックなルックアンドフィール
 setlookandfeel("com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel")
-
 // Windowsのルックアンドフィール
 setlookandfeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel")
-
 sleep(3000);
-
 // CDE/Motifのルックアンドフィール
 setlookandfeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel")
-
 sleep(3000);
-
 // GTK+のルックアンドフィール
 setlookandfeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel")
-
 sleep(3000);
-
 // métalのルックアンドフィール
 setlookandfeel("javax.swing.plaf.metal.MetalLookAndFeel")
-
 sleep(3000);
-
 // Macintoshのルックアンドフィール
 setlookandfeel("it.unitn.ing.swing.plaf.macos.MacOSLookAndFeel")
-
 // システムでデフォルトのルックアンドフィール
-
 setlookandfeel()
-
 sleep(3000);
-
 // 前のルックアンドフィールに戻す
 setlookandfeel(currentlnf)
  ]]></programlisting>

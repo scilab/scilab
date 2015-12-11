@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 function show_pca(lambda,facpr,N)
     //used to visualize Principal component analysis results.
@@ -19,7 +19,11 @@ function show_pca(lambda,facpr,N)
     //
     //Extracted out of pca, author: carlos klimann
 
-    if argn(2)<3 then
+    [lhs, rhs] = argn(0);
+    if rhs < 2 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"show_pca",2,3))
+    end
+    if rhs<3 then
         N=[1 2]
     end
     if size(N,"*")<>2 then

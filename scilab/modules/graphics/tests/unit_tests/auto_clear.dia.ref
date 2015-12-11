@@ -9,29 +9,11 @@
 a = gca();
 a.auto_clear = "on";
 plot3d();
-assert_checkequal(size(a.children), [1 1])
- ans  =
- 
-  T  
-assert_checkequal(a.children(1).type, "Plot3d")
- ans  =
- 
-  T  
+assert_checkequal(size(a.children), [1 1]);
+assert_checkequal(a.children(1).type, "Plot3d");
 plot2d();
-assert_checkequal(size(a.children), [1 1])
- ans  =
- 
-  T  
-assert_checkequal(a.children(1).type, "Compound")
- ans  =
- 
-  T  
-xpoly([0 1], [0 1])
-assert_checkequal(size(a.children), [1 1])
- ans  =
- 
-  T  
-assert_checkequal(a.children(1).type, "Polyline")
- ans  =
- 
-  T  
+assert_checkequal(size(a.children), [1 1]);
+assert_checkequal(a.children(1).type, "Compound");
+xpoly([0 1], [0 1]);
+assert_checkequal(size(a.children), [1 1]);
+assert_checkequal(a.children(1).type, "Polyline");

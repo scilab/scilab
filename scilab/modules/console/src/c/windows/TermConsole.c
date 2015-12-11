@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -14,15 +14,14 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "TermConsole.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "TermCommand.h"
 #include "FocusOnConsole.h"
-#include "strdup_Windows.h"
+#include "os_string.h"
 #include "TermCompletion.h"
 #include "TermLine.h"
 #include "scilines.h"
 #include "HistoryManager.h"
-#include "storeCommand.h" /* ismenu */
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 #ifdef CR_1
@@ -296,8 +295,8 @@ static unsigned char TerminalGetchar(void)
             case WINDOW_BUFFER_SIZE_EVENT:
             {
                 /* Read resize event Input */
-                setColumnsSize(irBuffer.Event.WindowBufferSizeEvent.dwSize.X);
-                setLinesSize(irBuffer.Event.WindowBufferSizeEvent.dwSize.Y);
+                setConsoleWidth(irBuffer.Event.WindowBufferSizeEvent.dwSize.X);
+                setConsoleLines(irBuffer.Event.WindowBufferSizeEvent.dwSize.Y);
 
                 ReadConsoleInput (Win32InputStream, &irBuffer, 1, &n);
             }

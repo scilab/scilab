@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Fabrice Leray
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="plot">
@@ -29,7 +29,7 @@
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>a real matrice or vector. If omitted, it is assumed to be the
+                    <para>a real matrix or vector. If omitted, it is assumed to be the
                         vector <literal>1:n</literal> where <literal>n</literal> is the number of curve
                         points given by the <literal>y</literal> parameter.
                     </para>
@@ -39,7 +39,7 @@
                 <term>y</term>
                 <listitem>
                     <para>
-                        a real matrice or vector. <literal>y</literal> can also be a
+                        a real matrix or vector. <literal>y</literal> can also be a
                         function defined as a macro or a primitive.
                     </para>
                 </listitem>
@@ -49,7 +49,7 @@
                 <listitem>
                     <para>This optional argument must be a string that will be used as a
                         shortcut to specify a way of drawing a line. We can have one
-                        <literal>LineSpec</literal> per<literal> y</literal> or <literal>{x,y}</literal>
+                        <literal>LineSpec</literal> per <literal>y</literal> or <literal>{x,y}</literal>
                         previously entered. <literal>LineSpec</literal> options deals with
                         LineStyle, Marker and Color specifiers (see <link linkend="LineSpec">LineSpec</link>).
                         Those specifiers determine the line style, mark style and color of
@@ -90,7 +90,7 @@
         <para>Data entry specification :</para>
         <para>In this paragraph and to be more clear, we won't mention
             <literal>LineSpec</literal> nor <literal>GlobalProperty</literal> optional arguments
-            as they do not interfer with entry data (except for <literal>"Xdata"</literal>,
+            as they do not interfere with entry data (except for <literal>"Xdata"</literal>,
             <literal>"Ydata"</literal> and <literal>"Zdata"</literal> property, see
             <link linkend="GlobalProperty">GlobalProperty</link>). It is assumed that all those optional
             arguments could be present too.
@@ -129,6 +129,14 @@
             rather than lines (see examples below).
         </para>
         <para>
+            <warning>
+                When it is necessary and possible, <literal>plot</literal> transposes <literal>x</literal> and <literal>y</literal>,
+                to get compatible dimensions; a warning is then issued. For instance,
+                when <literal>x</literal> has as many rows as <literal>y</literal> has columns.
+                If <literal>y</literal> is square, it is never transposed.
+            </warning>
+        </para>
+        <para>
             <literal>y</literal> can also be a function defined as a macro or a
             primitive. In this case, <literal>x</literal> data must be given (as a vector or
             matrix) and the corresponding computation <literal>y(x)</literal> is done
@@ -136,7 +144,7 @@
         </para>
         <para>
             The <literal>LineSpec</literal> and <literal>GlobalProperty</literal> arguments
-            sould be used to customize the plot. Here is a complete list of the
+            should be used to customize the plot. Here is a complete list of the
             available options.
         </para>
         <variablelist>
@@ -198,7 +206,7 @@
             Otherwise, the box is enabled.
         </para>
         <para>
-            For more information about box property and axis positionning see <link linkend="axes_properties">axes_properties</link>
+            For more information about box property and axis positioning see <link linkend="axes_properties">axes_properties</link>
         </para>
         <para>A default color table is used to color plotted curves if you do not
             specify a color. When drawing multiple lines, the plot command
@@ -259,8 +267,8 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-// x initialisation 
+        <programlisting role="example"><![CDATA[
+// x initialisation
 x=[0:0.1:2*%pi]';
 //simple plot
 plot(sin(x))
@@ -269,7 +277,7 @@ plot(sin(x))
             x=[0:0.1:2*%pi]';
             plot(sin(x))
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 x=[0:0.1:2*%pi]';
 plot(x,sin(x))
@@ -278,7 +286,7 @@ plot(x,sin(x))
             x=[0:0.1:2*%pi]';
             plot(x,sin(x))
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 //multiple plot
 x=[0:0.1:2*%pi]';
@@ -288,38 +296,38 @@ plot(x,[sin(x) sin(2*x) sin(3*x)])
             x=[0:0.1:2*%pi]';
             plot(x,[sin(x) sin(2*x) sin(3*x)])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 x=[0:0.1:2*%pi]';
-// axis on the right 
-plot(x,sin(x)) 
-a=gca(); // Handle on current axes entity 
-a.y_location ="right"; 
+// axis on the right
+plot(x,sin(x))
+a=gca(); // Handle on current axes entity
+a.y_location ="right";
 clf()
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
-            plot(x,sin(x)) 
+            plot(x,sin(x))
             a=gca();
-            a.y_location ="right"; 
+            a.y_location ="right";
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 x=[0:0.1:2*%pi]';
 // axis centered at (0,0)
 plot(x-4,sin(x),x+2,cos(x))
 a=gca(); // Handle on axes entity
-a.x_location = "origin"; 
-a.y_location = "origin"; 
+a.x_location = "origin";
+a.y_location = "origin";
 
 // Some operations on entities created by plot ...
 a=gca();
-a.isoview='on'; 
-a.children // list the children of the axes : here it is an Compound child composed of 2 entities 
-poly1= a.children.children(2); //store polyline handle into poly1 
+a.isoview='on';
+a.children // list the children of the axes : here it is an Compound child composed of 2 entities
+poly1= a.children.children(2); //store polyline handle into poly1
 poly1.foreground = 4; // another way to change the style...
-poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.thickness = 3;  // ...and the thickness of a curve.
 poly1.clip_state='off' // clipping control
-a.isoview='off'; 
+a.isoview='off';
  ]]></programlisting>
         <scilab:image>
             x=[0:0.1:2*%pi]';
@@ -338,7 +346,7 @@ a.isoview='off';
             a.isoview='off';
             
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 //LineSpec and GlobalProperty examples:
 clf();
@@ -362,7 +370,7 @@ xdel(winsid())
             scf(4) // should remain blank
             plot(axfig3,[t ;t],[sin(t) ;cos(t)],'zdat',[1:2],'marker','d','markerfac','green','markeredg','yel')
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Data specification
 t=-%pi:0.1:%pi;
 size(t)
@@ -373,7 +381,7 @@ plot(t) // simply plots y versus t vector size
             size(t)
             plot(t)
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf(); // clear figure
 t=-%pi:0.1:%pi;
 plot(t,sin(t)); // plots sin(t) versus t
@@ -383,7 +391,7 @@ plot(t,sin(t)); // plots sin(t) versus t
             t=-%pi:0.1:%pi;
             plot(t,sin(t));
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 t=[1     1     1     1
    2     3     4     5
@@ -400,7 +408,7 @@ plot(t) // plots each t column versus row size
             
             plot(t) // plots each t column versus row size
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 t=[1     1     1     1
    2     3     4     5
@@ -416,7 +424,7 @@ xtitle("sin(t)'' versus t")
 subplot(223)
 plot(t',sin(t))
 a=gca();
-a.data_bounds=[0 -1;7 1]; // to see the vertical line hiddden by the y axis
+a.data_bounds=[0 -1;7 1]; // to see the vertical line hidden by the y axis
 xtitle("sin(t) versus t''")
 subplot(224)
 plot(t',sin(t)')
@@ -438,13 +446,13 @@ xtitle("sin(t)'' versus t''")
             subplot(223)
             plot(t',sin(t))
             a=gca();
-            a.data_bounds=[0 -1;7 1]; // to see the vertical line hiddden by the y axis
+            a.data_bounds=[0 -1;7 1]; // to see the vertical line hidden by the y axis
             xtitle("sin(t) versus t''")
             subplot(224)
             plot(t',sin(t)')
             xtitle("sin(t)'' versus t''")
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 
 clf();
 t=[1     1     1     1
@@ -464,11 +472,10 @@ plot(x',t); // idem, x is automatically transposed to match t (here the columns)
             3     4     5     6
             4     5     6     7];
             
-            x=[5 6 7 8]
-            plot(x,t);
+            x=[5 6 7 8];
             plot(x',t);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 x=[5 6 7 8]
 
@@ -477,12 +484,12 @@ t=[1     1     1     1
    3     4     5     6
    4     5     6     7];
 
-// Only one matching possibility case : how to make 4 identical plots in 4 manners...
+// Only one matching possibility case: how to make 4 identical plots in 4 manners...
 // x is 1x4 (vector) and y is 4x5 (non square matrix)
 subplot(221);
 plot(x,[t [8;9;10;12]]');
 subplot(222);
-plot(x',[t [8;9;10;12]]');
+plot(x',[t [8;9;10;12]]);
 subplot(223);
 plot(x,[t [8;9;10;12]]');
 subplot(224);
@@ -499,15 +506,15 @@ plot(x',[t [8;9;10;12]]');
             // Only one matching possibility case : how to make 4 identical plots in 4 manners...
             // x is 1x4 (vector) and y is 4x5 (non square matrix)
             subplot(221);
-            plot(x,[t [8;9;10;12]]');
+            plot(x',[t [8;9;10;12]]);
             subplot(222);
-            plot(x',[t [8;9;10;12]]');
+            plot(x',[t [8;9;10;12]]);
             subplot(223);
-            plot(x,[t [8;9;10;12]]');
+            plot(x',[t [8;9;10;12]]);
             subplot(224);
-            plot(x',[t [8;9;10;12]]');
+            plot(x',[t [8;9;10;12]]);
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf()
 
 t=[1     1     1     1
@@ -518,8 +525,8 @@ t=[1     1     1     1
 //Special case 2
 // Case where only x or y is a square matrix
 //x : matrix (t) and y  : vector ([1 2 3 4])
-plot(t,[1 2 3 4]) // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-plot(t,[1;2;3;4]) // the same plot
+plot(t,[1 2 3 4]') // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
+plot(t,[1;2;3;4]') // the same plot, but here Y needs to be transposed
  ]]></programlisting>
         <scilab:image>
             t=[1     1     1     1
@@ -530,19 +537,19 @@ plot(t,[1;2;3;4]) // the same plot
             //Special case 2
             // Case where only x or y is a square matrix
             //x : matrix (t) and y  : vector ([1 2 3 4])
-            plot(t,[1 2 3 4]) // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
-            plot(t,[1;2;3;4]) // the same plot
+            plot(t,[1 2 3 4]') // equivalent to plot(t,[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 t=[1     1     1     1
    2     3     4     5
    3     4     5     6
    4     5     6     7];
 clf();
+cols = 1:4;
 
-// t is transposed : notice the priority given to the columns treatment
-plot(t',[1 2 3 4]) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]) 
-plot(t',[1 2 3 4]') // the same plot 
+// cols is transposed : notice the priority given to the columns treatment
+plot(t', cols) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4])
+plot(t', cols') // the same plot
  ]]></programlisting>
         <scilab:image>
             t=[1     1     1     1
@@ -550,12 +557,12 @@ plot(t',[1 2 3 4]') // the same plot
             3     4     5     6
             4     5     6     7];
             clf();
+            cols = 1:4;
             
-            // t is transposed : notice the priority given to the columns treatment
-            plot(t',[1 2 3 4]) // equivalent to plot(t',[1 1 1 1;2 2 2 2;3 3 3 3;4 4 4 4]) 
-            plot(t',[1 2 3 4]') // the same plot 
+            // cols is transposed : notice the priority given to the columns treatment
+            plot(t',cols') // the same plot
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 // y is a function defined by..
 // ..a primitive
@@ -565,7 +572,7 @@ plot(1:0.1:10,sin) // equivalent to plot(1:0.1:10,sin(1:0.1:10))
         <scilab:image>
             plot(1:0.1:10,sin)
         </scilab:image>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 clf();
 // ..a macro:
 deff('[y]=toto(x)','y=x.*x')

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
  * However, the API (profile of the functions in the header files) will be
@@ -18,6 +18,6 @@
 
 //internal functions
 //internal boolean sparse functions
-SciErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos);
+SciErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos);
 
 #endif /* __INTERNAL_BOOLEAN_SPARSE_API__ */

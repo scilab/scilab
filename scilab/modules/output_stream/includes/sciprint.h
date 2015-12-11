@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,6 +15,7 @@
 #define __SCIPRINT_H__
 
 #include <stdarg.h>
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,7 +27,8 @@ extern "C" {
      * @param fmt Format of the format string
      * @param ...
      */
-    void sciprint(const char *fmt, ...) ;
+    void sciprint(const char *fmt, ...);
+    //void sciprintW(wchar_t* fmt, ...);
 
 
     /**
@@ -38,7 +40,8 @@ extern "C" {
     * @return nb characters
     */
 
-    int scivprint(const char *fmt, va_list args);
+    int scivprint(const char* fmt, va_list args);
+    //int scivprintW(wchar_t* fmt, va_list args);
 
 #ifdef __cplusplus
 }

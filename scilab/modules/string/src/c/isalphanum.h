@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,12 +19,13 @@
 #include <wchar.h>
 #include "BOOL.h"
 
+#include "dynlib_string.h"
 /**
 * array elements that are alphabetic letters or digits
 * @param[in] a string
 * @return BOOL array
 */
-BOOL *isalphanumW(wchar_t *input_string, int *returnedSize);
+STRING_IMPEXP BOOL *isalphanumW(wchar_t *input_string, int *returnedSize);
 
 #endif /* __ISALPHANUM_H__ */
 /*--------------------------------------------------------------------------*/

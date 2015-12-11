@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.contouredObject;
@@ -68,7 +68,7 @@ public class ContouredObjectDrawer {
         ColorMap colorMap = visitor.getColorMap();
 
         /* Sets the drawn object's identifier as the current one */
-        String drawnObjectID = contouredObject.getIdentifier();
+        Integer drawnObjectID = contouredObject.getIdentifier();
 
         DefaultGeometry geometry = new DefaultGeometry();
         geometry.setVertices(dataManager.getVertexBuffer(drawnObjectID));

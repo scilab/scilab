@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mpi" xml:lang="ja">
+    <refnamediv>
+        <refname>MPI</refname>
+        <refpurpose>ScilabからのMPI機能へのアクセス</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>説明</title>
+        <para>
+            MPIインターフェイスがScilabに提供されています. 
+            このインターフェイスにより高性能なメッセージ指定
+            計算が可能となります.
+        </para>
+        <para>
+            他のMPIアプリケーションと同様に, Scilab/MPI は
+            <literal>mpirun</literal>コマンドにより開始され,通常,
+            開始するノード数を指定する引数<literal>-c</literal>を
+            指定します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>サポートされるデータ型</title>
+        <para>
+            Scilab MPI実装は以下の
+            (行列またはスカラー形式の)Scilabデータ型をサポートします:
+            <simplelist type="inline">
+                <member>Double</member><member>Boolean</member><member>int (全て)</member><member>String</member><member>Sparse</member><member>Boolean Sparse</member>
+            </simplelist>
+            現時点では,list, tlistまたは mlistのような高位の
+            データ型構造はサポートされていません.
+            これらをサポートするためには,バグレポートを新規に投稿するのが
+            良いでしょう.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Scilab MPIの例</title>
+        <programlisting role="scilab"><![CDATA[ 
+// TODO. 例を追加 (PI ?)
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Recv">MPI_Recv</link>
+            </member>
+            <member>
+                <link linkend="mpi_technical">実装に関する技術的詳細</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

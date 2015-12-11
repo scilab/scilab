@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -62,6 +62,19 @@ public final class ScilabSpecialTextUtilities {
             } else if (text.startsWith("<") && text.endsWith(">")) {
                 icon = compileMathMLExpression(text, component.getFont().getSize());
             }
+        }
+
+        if (icon == null) {
+            // Shortcut when we are sure text is
+            // neither Latex nor MathML
+            try {
+                //we set a void icon to erase an eventual latex or html one
+                setIcon(component, icon);
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
+            return false;
         }
 
         try {
@@ -252,22 +265,31 @@ public final class ScilabSpecialTextUtilities {
             jev.draw(g2d, 0, ascent);
             g2d.dispose();
 
-            return new SpecialIcon(new ImageIcon(bimg));
+            return new SpecialIcon(new ImageIcon(bimg), (int) Math.ceil(jev.getDescentHeight()));
         }
     }
 
     /**
      * Inner class to distinguish normal icons and icons coming from a LaTeX or a MathML compilation
      */
-    private static class SpecialIcon implements Icon {
+    public static class SpecialIcon implements Icon {
 
         Icon icon;
+        int depth;
 
         /**
          * @param icon the Icon to wrap
          */
         SpecialIcon(Icon icon) {
             this.icon = icon;
+        }
+
+        /**
+         * @param icon the Icon to wrap
+         */
+        SpecialIcon(Icon icon, int depth) {
+            this.icon = icon;
+            this.depth = depth;
         }
 
         /**
@@ -282,6 +304,10 @@ public final class ScilabSpecialTextUtilities {
          */
         public int getIconWidth() {
             return icon.getIconWidth();
+        }
+
+        public int getIconDepth() {
+            return depth;
         }
 
         /**

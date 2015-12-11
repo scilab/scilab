@@ -6,26 +6,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-15 20:50+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
 #, c-format
@@ -49,9 +45,32 @@ msgstr ""
 "%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
 "rozměry.\n"
 
+msgid "Graphics handle field"
+msgstr "Grafická obslužná rutina pole"
+
+msgid "No help"
+msgstr "Žádná nápověda"
+
+msgid "SciNotes"
+msgstr "SciNotes"
+
+msgid "Error while reading the String"
+msgstr "Chyba při čtení Řetězce"
+
+msgid "The configuration file has been corrupted and reset to default one."
+msgstr ""
+
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
+msgid "File not found: %s"
+msgstr "Soubor nenalezen: %s"
+
+#, c-format
+msgid "I/O error: %s"
+msgstr "Chyba I/O: %s"
+
+#, c-format
+msgid "The file %s has been modified by an other program. Reload it ?"
+msgstr "Soubor %s byl změněn jiným programem. Chcete ho znovu načíst ?"
 
 msgid "File"
 msgstr "Soubor"
@@ -62,29 +81,17 @@ msgstr "Nové"
 msgid "Open"
 msgstr "Otevřít"
 
-msgid "Open recent"
-msgstr "Otevřít nedávné"
-
-msgid "Working directories;Add a directory;Remove last directory"
-msgstr "Pracovní adresáře;Přidat adresář;Odstranit poslední adresář"
-
-msgid "Open file in ..."
-msgstr "Otevřít soubor v ..."
-
-msgid "Save file in ..."
-msgstr "Uložit soubor do ..."
-
-msgid "Reload"
-msgstr "Načíst znovu"
-
-msgid "Restore opened files on start-up"
-msgstr "Obnovit otevřené soubory při spuštění"
-
 msgid "Open function source file"
 msgstr "Otevřít zdrojový soubor funkce"
 
 msgid "Open URL"
 msgstr "Otevřít URL"
+
+msgid "Source of '"
+msgstr "Zdroj '"
+
+msgid "Recent Files"
+msgstr "Nedávné soubory"
 
 msgid "Save"
 msgstr "Uložit"
@@ -92,14 +99,20 @@ msgstr "Uložit"
 msgid "Save as"
 msgstr "Uložit jako"
 
+msgid "The file could not be created, check the path"
+msgstr "Soubor nelze vytvořit, zkontrolujte cestu"
+
+msgid "The file is not writable so it is opened in read-only mode"
+msgstr "Soubor není zapisovatelný, proto je otevřen v režimu pouze pro čtení"
+
+msgid "You do not have the permissions to write this file"
+msgstr "Nemáte oprávnění zapsat tento soubor"
+
+msgid "You do not have the permissions to read this file"
+msgstr "Nemáte oprávnění přečíst tento soubor"
+
 msgid "Save All"
 msgstr "Uložit vše"
-
-msgid "Overwrite"
-msgstr "Přepsat"
-
-msgid "Export"
-msgstr "Exportovat"
 
 msgid "Page Setup"
 msgstr "Nastavení stránky"
@@ -110,6 +123,12 @@ msgstr "Náhled tisku"
 msgid "Print"
 msgstr "Tisk"
 
+msgid "An error occurred when exporting the code using FOP"
+msgstr "Při exportu kódu pomocí FOP nastala chyba"
+
+msgid "An error occurred when printing"
+msgstr "Při tisku nastala chyba"
+
 msgid "Close"
 msgstr "Zavřít"
 
@@ -119,8 +138,11 @@ msgstr "Zavřít Vše"
 msgid "Close All But This"
 msgstr "Zavřít Vše Kromě Tohoto"
 
-msgid "Exit Scinotes"
-msgstr "Ukončit Scinotes"
+msgid "Exit"
+msgstr "Ukončit"
+
+msgid "?"
+msgstr "?"
 
 msgid "Edit"
 msgstr "Upravit"
@@ -137,68 +159,23 @@ msgstr "Vyjmout"
 msgid "Copy"
 msgstr "Kopírovat"
 
-msgid "Copy as HTML with line number"
-msgstr "Kopírovat jako HTML s čísly řádků"
-
 msgid "Paste"
 msgstr "Vložit"
-
-msgid "Delete"
-msgstr "Smazat"
-
-msgid "Columns actions"
-msgstr "Činnosti sloupce"
-
-msgid "Paste Column"
-msgstr "Vložit Sloupec"
-
-msgid "Repeat on the Column"
-msgstr "Zopakovat ve Sloupci"
 
 msgid "Select All"
 msgstr "Vybrat vše"
 
-msgid "Select current block"
-msgstr "Vybrat současný blok"
+msgid "Delete"
+msgstr "Smazat"
 
-msgid "Search"
-msgstr "Hledat"
+msgid "Tools"
+msgstr "Nástroje"
 
-msgid "Find/Replace"
-msgstr "Najít/Nahradit"
+msgid "Comment Selection"
+msgstr "Výběr Komentáře"
 
-msgid "Find Next"
-msgstr "Najít další"
-
-msgid "Find Previous"
-msgstr "Najít předchozí"
-
-msgid "Incremental Search"
-msgstr "Inkrementální Vyhledávání"
-
-msgid "Find files"
-msgstr "Najít soubory"
-
-msgid "Find word in files"
-msgstr "Najít slovo v souboru"
-
-msgid "Set anchor"
-msgstr "Nastavit kotvu"
-
-msgid "Go to next anchor"
-msgstr "Přejít na další kotvu"
-
-msgid "Go to previous anchor"
-msgstr "Přejit na předchozí kotvu"
-
-msgid "Remove anchor"
-msgstr "Odstranit kotvu"
-
-msgid "Code Navigator"
-msgstr "Navigátor Kódu"
-
-msgid "Format"
-msgstr "Formát"
+msgid "Uncomment Selection"
+msgstr "Odkomentovat Výběr"
 
 msgid "Shift Right"
 msgstr "Posun vpravo"
@@ -208,348 +185,6 @@ msgstr "Posun vlevo"
 
 msgid "Correct Indentation"
 msgstr "Spravit odsazení"
-
-msgid "Remove trailing spaces"
-msgstr "Odstranit koncové mezery"
-
-msgid "Generate comments for help_from_sci"
-msgstr "Vytvořit komentáře pro help_from_sci"
-
-msgid "Comment Selection"
-msgstr "Výběr Komentáře"
-
-msgid "Uncomment Selection"
-msgstr "Odkomentovat Výběr"
-
-msgid "Change the case"
-msgstr "Změnit velikost"
-
-msgid "Make Selection Lowercase"
-msgstr "Změnit výběr na malá písmena"
-
-msgid "Make Selection Uppercase"
-msgstr "Změnit výběr na velká písmena"
-
-msgid "Capitalize Selection;Capitalize character"
-msgstr "Kapitalizovat výběr, Kapitalizovat znak"
-
-msgid "Single to double quote strings"
-msgstr "Z řetězů s jednou uvozovkou na řetězy s dvojitou uvozovkou"
-
-msgid "Options"
-msgstr "Možnosti"
-
-msgid "Current file encoding"
-msgstr "Kódování současného souboru"
-
-msgid "Line Endings"
-msgstr "Konce řádků"
-
-msgid "Preferences"
-msgstr "Nastavení"
-
-msgid "Set font"
-msgstr "Nastavit písmo"
-
-msgid "Set colors"
-msgstr "Nastavit barvy"
-
-msgid "Scinotes General settings"
-msgstr "Obecná nastavení Scinotes"
-
-msgid "Auto-completion on"
-msgstr "Autodokončení zapnuto"
-
-msgid "(, [, ..."
-msgstr "(, [, ..."
-
-msgid "if, function, ..."
-msgstr "if, funkce, ..."
-
-msgid "Line numbering;Off;Normal;Whereami compatible"
-msgstr "Číslování řádků;Vypnuto;Normální;Kompatibilní s Whereami"
-
-msgid "Highlight current line"
-msgstr "Zvýraznit aktuální řádek"
-
-msgid "Enable Auto Reformat"
-msgstr "Povolit Auto Formátování"
-
-msgid "Suppress comments when executing selection"
-msgstr "Potlačit komentáře při spouštění výběru"
-
-msgid "Window"
-msgstr "Okno"
-
-msgid "Copy tab in new window"
-msgstr "Zkopírovat kartu do nového okna"
-
-msgid "Detach tab in new window"
-msgstr "Odepnout kartu do nového okna"
-
-msgid "Copy selection in a new tab"
-msgstr "Zkopírovat výběr do nového okna"
-
-msgid "Split View;Off;Horizontally;Vertically"
-msgstr "Rozdělit Zobrazení;Vypnuto;Vodorovně;Svisle"
-
-msgid "Execute"
-msgstr "Spustit"
-
-msgid "... file with no echo"
-msgstr "... soubory bez odezvy"
-
-msgid "... file with echo"
-msgstr "... soubory s odezvou"
-
-msgid "... the selection with echo;... until the caret, with echo"
-msgstr "... výběr s odezvou;... až do stříšky, s odezvou"
-
-msgid "Save and execute"
-msgstr "Uložit a spustit"
-
-msgid "Save and execute all files"
-msgstr "Uložit a spustit všechny soubory"
-
-msgid "?"
-msgstr "?"
-
-msgid "Scinotes help"
-msgstr "Nápověda Scinotes"
-
-msgid "Help on ;Help on selection"
-msgstr "Nápověda na ;Nápověda pro výběr"
-
-msgid "About"
-msgstr "O programu"
-
-msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr "Vyhodnotit Výběr s odezvou;Vyhodnotit do stříšky, s odezvou"
-
-msgid "Complete"
-msgstr "Hotovo"
-
-msgid "Display"
-msgstr "Zobrazení"
-
-msgid "Header"
-msgstr "Záhlaví"
-
-msgid "Autosave"
-msgstr "Automatické ukládání"
-
-msgid "Editor"
-msgstr "Editor"
-
-msgid "Use Scinotes"
-msgstr "Použít Scinotes"
-
-msgid "External editor: "
-msgstr "Externí editor: "
-
-msgid "(Don't forget to quote path containing white spaces)"
-msgstr "(Nezapomeňte použít uvozovky u cest obsahující mezery)"
-
-msgid "Scilab command: "
-msgstr "Příkaz Scilab: "
-
-msgid "Restore previous session on start-up"
-msgstr "Obnovit předchozí relaci při startu"
-
-msgid "Add carriage return at the end of the file."
-msgstr "Přidat návrat vozíku na konec souboru."
-
-msgid "Number of recently opened files to display: "
-msgstr "Počet nedávno otevřených souborů k zobrazení: "
-
-msgid "Default file encoding: "
-msgstr "Výchozí kódování souboru: "
-
-msgid "Default End-Of-Line: "
-msgstr "Výchozí konec řádku: "
-
-msgid "General display options"
-msgstr "Obecné možnosti zobrazení"
-
-msgid "Highlight current line: "
-msgstr "Zvýraznit současný řádek: "
-
-msgid "Show line numbers: "
-msgstr "Zobrazit čísla řádku: "
-
-msgid "Whereami compatible"
-msgstr "Kompatibilní s whereami"
-
-msgid "Normal"
-msgstr "Normální"
-
-msgid "Wrap lines"
-msgstr "Zalamovat řádky"
-
-msgid "Background color: "
-msgstr "Barva pozadí: "
-
-msgid "Cursor color: "
-msgstr "Barva kurzoru: "
-
-msgid "Keywords"
-msgstr "Klíčová slova"
-
-msgid "Enable keywords colorization"
-msgstr "Povolit obarvení klíčových slov"
-
-msgid "Set syntax Colors"
-msgstr "Nastavit barvy syntakce"
-
-msgid "Highlight corresponding brackets"
-msgstr "Zvýraznit odpovídající závorky"
-
-msgid "Color: "
-msgstr "Barva: "
-
-msgid "Highlight on mouse over"
-msgstr "Zvýraznit při najetí myši"
-
-msgid "Style: "
-msgstr "Styl: "
-
-msgid "Filled"
-msgstr "Vyplněné"
-
-msgid "Framed"
-msgstr "V rámečku"
-
-msgid "Underlined"
-msgstr "Podtržené"
-
-msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr "Zvýraznit odpovídající klíčová slova (např. if ... end)"
-
-msgid "Tabulation and Indentation"
-msgstr "Tabelace a odsazení"
-
-msgid "Tabulation size: "
-msgstr "Velikost tabelace: "
-
-msgid "Use space"
-msgstr "Použít mezeru"
-
-msgid "Representation: "
-msgstr "Znázornění: "
-
-msgid "Chevrons"
-msgstr "Ševrony"
-
-msgid "Horizontal rule"
-msgstr "Vodorovná čára"
-
-msgid "Vertical rule"
-msgstr "Svislá čára"
-
-msgid "Enable auto indentation"
-msgstr "Povolit automatické odsazování"
-
-msgid "Indent size: "
-msgstr "Velikost odsazení: "
-
-msgid "Enable autosave in Scinotes"
-msgstr "Povolit automatické ukládání ve Scinotes"
-
-msgid "Save options"
-msgstr "Možnosti ukládání"
-
-msgid "Save every "
-msgstr "Uložit každých "
-
-msgid " minutes "
-msgstr " minut "
-
-msgid "Close options"
-msgstr "Zavřít možnosti"
-
-msgid "Delete automatically saved files"
-msgstr "Smazat automaticky uložené soubory"
-
-msgid "Filename"
-msgstr "Název souboru"
-
-msgid "Append filename with: "
-msgstr "Připojit k souborům: "
-
-msgid "Replace extension with: "
-msgstr "Nahradit příponu tímto: "
-
-msgid "Location"
-msgstr "Umístění"
-
-msgid "Source file directory"
-msgstr "Adresář zdrojového souboru"
-
-msgid "Single directory"
-msgstr "Jeden adresář"
-
-msgid "Choose an autosave directory"
-msgstr "Zvolte adresář pro automatické uložení"
-
-msgid "Default header"
-msgstr "Výchozí hlavička"
-
-msgid "Add a default header to new file"
-msgstr "Přidat výchozí hlavičku do nového souboru"
-
-msgid "Graphics handle field"
-msgstr "Grafická obslužná rutina pole"
-
-msgid "No help"
-msgstr "Žádná nápověda"
-
-msgid "SciNotes"
-msgstr "SciNotes"
-
-msgid "Error while reading the String"
-msgstr "Chyba při čtení Řetězce"
-
-#, c-format
-msgid "File not found: %s"
-msgstr "Soubor nenalezen: %s"
-
-#, c-format
-msgid "I/O error: %s"
-msgstr "Chyba I/O: %s"
-
-#, c-format
-msgid "The file %s has been modified by an other program. Reload it ?"
-msgstr "Soubor %s byl změněn jiným programem. Chcete ho znovu načíst ?"
-
-msgid "Source of '"
-msgstr "Zdroj '"
-
-msgid "Recent Files"
-msgstr "Nedávné soubory"
-
-msgid "The file could not be created, check the path"
-msgstr "Soubor nelze vytvořit, zkontrolujte cestu"
-
-msgid "The file is not writable so it is opened in read-only mode"
-msgstr "Soubor není zapisovatelný, proto je otevřen v režimu pouze pro čtení"
-
-msgid "You do not have the permissions to write this file"
-msgstr "Nemáte oprávnění zapsat tento soubor"
-
-msgid "You do not have the permissions to read this file"
-msgstr "Nemáte oprávnění přečíst tento soubor"
-
-msgid "An error occurred when exporting the code using FOP"
-msgstr "Při exportu kódu pomocí FOP nastala chyba"
-
-msgid "An error occurred when printing"
-msgstr "Při tisku nastala chyba"
-
-msgid "Exit"
-msgstr "Ukončit"
-
-msgid "Tools"
-msgstr "Nástroje"
 
 msgid "Help on typing"
 msgstr "Nápověda při psaní"
@@ -566,6 +201,18 @@ msgstr "Klonovat a zavřít kartu v novém okně"
 msgid "Remove trailing whitespaces"
 msgstr "Odstranit koncová prázdná místa"
 
+msgid "Search"
+msgstr "Hledat"
+
+msgid "Find/Replace"
+msgstr "Najít/Nahradit"
+
+msgid "Find Next"
+msgstr "Najít další"
+
+msgid "Find Previous"
+msgstr "Najít předchozí"
+
 msgid "Goto line"
 msgstr "Přejít na řádek"
 
@@ -574,6 +221,9 @@ msgstr "Zobrazení"
 
 msgid "Show/Hide ToolBar"
 msgstr "Zobrazit/Skrýt Panel Nástrojů"
+
+msgid "Highlight current line"
+msgstr "Zvýraznit aktuální řádek"
 
 msgid "Word Wrap"
 msgstr "Zalamování slov"
@@ -620,6 +270,12 @@ msgstr "Kódování"
 msgid "Colorize"
 msgstr "Vybarvit"
 
+msgid "Enable Auto Reformat"
+msgstr "Povolit Auto Formátování"
+
+msgid "Line Endings"
+msgstr "Konce řádků"
+
 msgid "Auto (Default)"
 msgstr "Auto (Výchozí)"
 
@@ -631,6 +287,9 @@ msgstr "Mac Classic (CR)"
 
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
+
+msgid "Execute"
+msgstr "Spustit"
 
 msgid "Load Into Scilab"
 msgstr "Načíst do Scilabu"
@@ -658,6 +317,9 @@ msgstr "Nápověda pro vybraný text nebo klíčové slovo"
 
 msgid "Help about '"
 msgstr "Nápověda o '"
+
+msgid "About"
+msgstr "O programu"
 
 msgid "Find:"
 msgstr "Najít:"
@@ -688,6 +350,12 @@ msgstr "Vše"
 
 msgid "Selected lines"
 msgstr "Vybrané řádky"
+
+msgid "Select from caret"
+msgstr ""
+
+msgid "Options"
+msgstr "Možnosti"
 
 msgid "Case sensitive"
 msgstr "Citlivost na velikost písmen"
@@ -741,8 +409,8 @@ msgid "This file"
 msgstr "Tento soubor"
 
 #, c-format
-msgid "%s has been modified since last save. Save it?"
-msgstr "%s byl od posledního uložení změněn. Chcete ho uložit?"
+msgid "The file %s has been modified since last save. Save it?"
+msgstr ""
 
 #, c-format
 msgid "The file %s has been modified by another program ! Overwrite it ?"
@@ -750,6 +418,12 @@ msgstr "Soubor %s byl změněn jiným programem. Chcete ho přepsat ?"
 
 msgid "Warning: the file has been modified by another program !"
 msgstr "Varování: soubor byl změněn jiným programem !"
+
+msgid "Reload"
+msgstr "Načíst znovu"
+
+msgid "Overwrite"
+msgstr "Přepsat"
 
 msgid "Ignore"
 msgstr "Ignorovat"
@@ -875,6 +549,12 @@ msgstr "Žádný text nevybrán."
 msgid "No text to execute."
 msgstr "Žádný text ke spuštění."
 
+msgid "Complete"
+msgstr "Hotovo"
+
+msgid "Copy selection in a new tab"
+msgstr "Zkopírovat výběr do nového okna"
+
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
@@ -893,6 +573,25 @@ msgstr "Nelze uložit soubor %s... zastavte proces zálohování"
 
 msgid "Backup finished..."
 msgstr "Zálohování dokončeno..."
+
+#, c-format
+msgid "The directory %s does not exist. Do you want to create it?"
+msgstr ""
+
+#, c-format
+msgid "The directory %s cannot be created. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Impossible to write a file in %s. Please check your access rights."
+msgstr ""
+
+#, c-format
+msgid "Invalid directory name: %s."
+msgstr ""
+
+msgid "SciNotes autosave"
+msgstr ""
 
 #, c-format
 msgid "%s occurences found."
@@ -930,6 +629,9 @@ msgstr "Barva"
 
 msgid "Bold"
 msgstr "Tučné"
+
+msgid "Code Navigator"
+msgstr "Navigátor Kódu"
 
 msgid "Absolute"
 msgstr "Absolutní"
@@ -996,6 +698,12 @@ msgstr "Délka"
 
 msgid "Tab representation"
 msgstr "Zobrazení karty"
+
+msgid "Horizontal rule"
+msgstr "Vodorovná čára"
+
+msgid "Vertical rule"
+msgstr "Svislá čára"
 
 msgid "Double chevrons"
 msgstr "Dvojité krokve"
@@ -1076,23 +784,349 @@ msgid "Choose the search base directory"
 msgstr "Zvolte základní adresář hledání"
 
 #, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
 
-msgid "the last error did not occur inside a library function."
-msgstr "poslední chyba se neudála uvnitř knihovní funkce."
+msgid "Open recent"
+msgstr "Otevřít nedávné"
+
+msgid "Working directories;Add a directory;Remove last directory"
+msgstr "Pracovní adresáře;Přidat adresář;Odstranit poslední adresář"
+
+msgid "Open file in ..."
+msgstr "Otevřít soubor v ..."
+
+msgid "Save file in ..."
+msgstr "Uložit soubor do ..."
+
+msgid "Restore opened files on start-up"
+msgstr "Obnovit otevřené soubory při spuštění"
+
+msgid "Export"
+msgstr "Exportovat"
+
+msgid "Exit Scinotes"
+msgstr "Ukončit Scinotes"
+
+msgid "Copy as HTML with line number"
+msgstr "Kopírovat jako HTML s čísly řádků"
+
+msgid "Columns actions"
+msgstr "Činnosti sloupce"
+
+msgid "Paste Column"
+msgstr "Vložit Sloupec"
+
+msgid "Repeat on the Column"
+msgstr "Zopakovat ve Sloupci"
+
+msgid "Select current block"
+msgstr "Vybrat současný blok"
+
+msgid "Incremental Search"
+msgstr "Inkrementální Vyhledávání"
+
+msgid "Find files"
+msgstr "Najít soubory"
+
+msgid "Find word in files"
+msgstr "Najít slovo v souboru"
+
+msgid "Set anchor"
+msgstr "Nastavit kotvu"
+
+msgid "Go to next anchor"
+msgstr "Přejít na další kotvu"
+
+msgid "Go to previous anchor"
+msgstr "Přejit na předchozí kotvu"
+
+msgid "Remove anchor"
+msgstr "Odstranit kotvu"
+
+msgid "Format"
+msgstr "Formát"
+
+msgid "Remove trailing spaces"
+msgstr "Odstranit koncové mezery"
+
+msgid "Generate comments for help_from_sci"
+msgstr "Vytvořit komentáře pro help_from_sci"
+
+msgid "Change the case"
+msgstr "Změnit velikost"
+
+msgid "Make Selection Lowercase"
+msgstr "Změnit výběr na malá písmena"
+
+msgid "Make Selection Uppercase"
+msgstr "Změnit výběr na velká písmena"
+
+msgid "Capitalize Selection;Capitalize character"
+msgstr "Kapitalizovat výběr, Kapitalizovat znak"
+
+msgid "Single to double quote strings"
+msgstr "Z řetězů s jednou uvozovkou na řetězy s dvojitou uvozovkou"
+
+msgid "Current file encoding"
+msgstr "Kódování současného souboru"
+
+msgid "Preferences"
+msgstr "Nastavení"
+
+msgid "Set font"
+msgstr "Nastavit písmo"
+
+msgid "Set colors"
+msgstr "Nastavit barvy"
+
+msgid "Scinotes General settings"
+msgstr "Obecná nastavení Scinotes"
+
+msgid "Auto-completion on"
+msgstr "Autodokončení zapnuto"
+
+msgid "(, [, ..."
+msgstr "(, [, ..."
+
+msgid "if, function, ..."
+msgstr "if, funkce, ..."
+
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr ""
+
+msgid "Suppress comments when executing selection"
+msgstr "Potlačit komentáře při spouštění výběru"
+
+msgid "Window"
+msgstr "Okno"
+
+msgid "Copy tab in new window"
+msgstr "Zkopírovat kartu do nového okna"
+
+msgid "Detach tab in new window"
+msgstr "Odepnout kartu do nového okna"
+
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
+
+msgid "... file with no echo"
+msgstr "... soubory bez odezvy"
+
+msgid "... file with echo"
+msgstr "... soubory s odezvou"
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr "... výběr s odezvou;... až do stříšky, s odezvou"
+
+msgid "Save and execute"
+msgstr "Uložit a spustit"
+
+msgid "Save and execute all files"
+msgstr "Uložit a spustit všechny soubory"
+
+msgid "Scinotes help"
+msgstr "Nápověda Scinotes"
+
+msgid "Help on ;Help on selection"
+msgstr "Nápověda na ;Nápověda pro výběr"
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr "Vyhodnotit Výběr s odezvou;Vyhodnotit do stříšky, s odezvou"
+
+msgid "Display"
+msgstr "Zobrazení"
+
+msgid "Header"
+msgstr "Záhlaví"
+
+msgid "Autosave"
+msgstr "Automatické ukládání"
+
+msgid "Editor"
+msgstr "Editor"
+
+msgid "Use Scinotes"
+msgstr "Použít Scinotes"
+
+msgid "External editor: "
+msgstr "Externí editor: "
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr "(Nezapomeňte použít uvozovky u cest obsahující mezery)"
+
+msgid "Scilab command: "
+msgstr "Příkaz Scilab: "
+
+msgid "Restore previous session on start-up"
+msgstr "Obnovit předchozí relaci při startu"
+
+msgid "Add carriage return at the end of the file."
+msgstr "Přidat návrat vozíku na konec souboru."
+
+msgid "Number of recently opened files to display: "
+msgstr "Počet nedávno otevřených souborů k zobrazení: "
+
+msgid "Default file encoding: "
+msgstr "Výchozí kódování souboru: "
+
+msgid "Default End-Of-Line: "
+msgstr "Výchozí konec řádku: "
+
+msgid "Completion"
+msgstr ""
+
+msgid "Auto-complete brackets when cursor is at the end of a line"
+msgstr ""
+
+msgid "General display options"
+msgstr "Obecné možnosti zobrazení"
+
+msgid "Highlight current line: "
+msgstr "Zvýraznit současný řádek: "
+
+msgid "Show line numbers: "
+msgstr "Zobrazit čísla řádku: "
+
+msgid "Local numbering"
+msgstr ""
+
+msgid "Normal"
+msgstr "Normální"
+
+msgid "Wrap lines"
+msgstr "Zalamovat řádky"
+
+msgid "Background color: "
+msgstr "Barva pozadí: "
+
+msgid "Cursor color: "
+msgstr "Barva kurzoru: "
+
+msgid "Keywords"
+msgstr "Klíčová slova"
+
+msgid "Enable keywords colorization"
+msgstr "Povolit obarvení klíčových slov"
+
+msgid "Set syntax Colors"
+msgstr "Nastavit barvy syntakce"
+
+msgid "Highlight corresponding brackets"
+msgstr "Zvýraznit odpovídající závorky"
+
+msgid "Color: "
+msgstr "Barva: "
+
+msgid "Highlight on mouse over"
+msgstr "Zvýraznit při najetí myši"
+
+msgid "Style: "
+msgstr "Styl: "
+
+msgid "Filled"
+msgstr "Vyplněné"
+
+msgid "Framed"
+msgstr "V rámečku"
+
+msgid "Underlined"
+msgstr "Podtržené"
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr "Zvýraznit odpovídající klíčová slova (např. if ... end)"
+
+msgid "Tabulation and Indentation"
+msgstr "Tabelace a odsazení"
+
+msgid "Tabulation size: "
+msgstr "Velikost tabelace: "
+
+msgid "Use space"
+msgstr "Použít mezeru"
+
+msgid "Representation: "
+msgstr "Znázornění: "
+
+msgid "Chevrons"
+msgstr "Ševrony"
+
+msgid "Enable auto indentation"
+msgstr "Povolit automatické odsazování"
+
+msgid "Indent size: "
+msgstr "Velikost odsazení: "
+
+msgid "Enable autosave in Scinotes"
+msgstr "Povolit automatické ukládání ve Scinotes"
+
+msgid "Save options"
+msgstr "Možnosti ukládání"
+
+msgid "Save every "
+msgstr "Uložit každých "
+
+msgid " minutes "
+msgstr " minut "
+
+msgid "Close options"
+msgstr "Zavřít možnosti"
+
+msgid "Delete automatically saved files"
+msgstr "Smazat automaticky uložené soubory"
+
+msgid "Filename"
+msgstr "Název souboru"
+
+msgid "Append filename with: "
+msgstr "Připojit k souborům: "
+
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr ""
+
+msgid "Replace extension with: "
+msgstr "Nahradit příponu tímto: "
+
+msgid "Location"
+msgstr "Umístění"
+
+msgid "Source file directory"
+msgstr "Adresář zdrojového souboru"
+
+msgid "Single directory"
+msgstr "Jeden adresář"
+
+msgid "Choose an autosave directory"
+msgstr "Zvolte adresář pro automatické uložení"
+
+msgid "Default header"
+msgstr "Výchozí hlavička"
+
+msgid "Add a default header to new file"
+msgstr "Přidat výchozí hlavičku do nového souboru"
+
+msgid "The last error did not occur inside a Scilab macro."
+msgstr ""
 
 msgid " on line "
 msgstr " online "
 
-msgid "opening file "
-msgstr "otevírání souboru "
+msgid "Opening file "
+msgstr ""
 
 msgid " of the source file of the function "
 msgstr " ze zdrojového souboru funkce "
 
-msgid "the source file of the function "
-msgstr "zdrojový soubor funkce "
+msgid "The source file of the function "
+msgstr ""
 
 msgid " was not found in any library path"
 msgstr " nebylo nalezeno v žádné cestě knihovny"
+
+msgid "There is no recorded error"
+msgstr ""

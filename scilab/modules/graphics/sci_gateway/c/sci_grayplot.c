@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@
 /* file: sci_grayplot.c                                                   */
 /* desc : interface for grayplot routine                                  */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -27,7 +27,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_grayplot(char *fname, unsigned long fname_len)
+int sci_grayplot(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int frame_def = 8;
@@ -39,6 +39,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     {
         { -1, "axesflag", -1, 0, 0, NULL},
         { -1, "frameflag", -1, 0, 0, NULL},
+        { -1, "logflag", -1, 0, 0, NULL},
         { -1, "nax", -1, 0, 0, NULL},
         { -1, "rect", -1, 0, 0, NULL},
         { -1, "strf", -1, 0, 0, NULL},
@@ -46,9 +47,11 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     };
 
     char   * strf    = NULL ;
+    char strfl[4];
     double* rect    = NULL ;
     int    * nax     = NULL ;
     BOOL     flagNax = FALSE;
+    char* logFlags = NULL;
 
     int* piAddr1 = NULL;
     int* piAddr2 = NULL;
@@ -60,7 +63,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
     CheckInputArgument(pvApiCtx, 3, 7);
@@ -71,7 +74,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (FirstOpt() < 4)
+    if (FirstOpt(pvApiCtx) < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                  fname, 1, 4);
@@ -89,7 +92,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -113,7 +116,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -137,7 +140,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         printError(&sciErr, 0);
         return 1;
     }
@@ -167,13 +170,12 @@ int sci_grayplot(char *fname, unsigned long fname_len)
     GetStrf(pvApiCtx, fname, 4, opts, &strf);
     GetRect(pvApiCtx, fname, 5, opts, &rect);
     GetNax(pvApiCtx, 6, opts, &nax, &flagNax);
+    GetLogflags(pvApiCtx, fname, 7, opts, &logFlags);
 
     getOrCreateDefaultSubwin();
 
     if (isDefStrf(strf))
     {
-        char strfl[4];
-
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;
@@ -194,7 +196,7 @@ int sci_grayplot(char *fname, unsigned long fname_len)
         }
     }
 
-    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax);
+    Objgrayplot ((l1), (l2), (l3), &m3, &n3, strf, rect, nax, flagNax, logFlags);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

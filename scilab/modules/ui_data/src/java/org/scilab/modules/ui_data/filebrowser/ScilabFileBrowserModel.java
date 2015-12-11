@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,7 +18,6 @@ import java.util.Date;
 import java.util.regex.Pattern;
 
 import javax.swing.SwingWorker;
-import javax.swing.tree.TreePath;
 
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
@@ -74,9 +73,13 @@ public class ScilabFileBrowserModel extends AbstractScilabTreeTableModel impleme
             }
 
             protected void done() {
-                stt.reload(ScilabFileBrowserModel.this);
+                if (!isCancelled()) {
+                    stt.reload(ScilabFileBrowserModel.this);
+                    stt.setDirRefresher(null, null);
+                }
             }
         };
+        stt.setDirRefresher(worker, ScilabFileBrowserModel.this);
         worker.execute();
     }
 

@@ -6,11 +6,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+#include "gw_cacsd.h"
 
-#include "gw_slicot.h"
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -21,7 +22,7 @@ extern int C2F(ab13md)();
 //     [bound,D] = mucomp(Z,K,T)
 //     bound = mucomp(Z,K,T)
 
-int sci_mucomp(char *fname, unsigned long fname_len)
+int sci_mucomp(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -36,9 +37,9 @@ int sci_mucomp(char *fname, unsigned long fname_len)
     int* lIWORK     = NULL;
     double* lRWORK  = NULL;
 
-    int* piAddrlZ           = NULL;
-    doublecomplex* lZ       = NULL;
-    doublecomplex* lZWORK   = NULL;
+    int* piAddrlZ               = NULL;
+    doublecomplex* lZ           = NULL;
+    const doublecomplex* lZWORK = NULL;
 
     int LRWORK = 0, LZWRKMIN = 0;
     int M  = 0, N  = 0;
@@ -69,7 +70,7 @@ int sci_mucomp(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A complex expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A complex expected.\n"), fname, 1);
         return 1;
     }
 
@@ -161,7 +162,7 @@ int sci_mucomp(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -177,7 +178,7 @@ int sci_mucomp(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -275,5 +276,6 @@ int sci_mucomp(char *fname, unsigned long fname_len)
         AssignOutputVariable(pvApiCtx, 3) = 6;
     }
 
+    ReturnArguments(pvApiCtx);
     return 0;
 }

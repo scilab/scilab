@@ -1,8 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ * Copyright (C) 2013 - Samuel GOUGEON : upgrade for 5.5.0
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="pol2str">
     <refnamediv>
         <refname>pol2str</refname>
-        <refpurpose>conversion polynôme vers chaîne de caractères  </refpurpose>
+        <refpurpose>conversion polynôme => texte</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
@@ -14,14 +26,14 @@
             <varlistentry>
                 <term>p  </term>
                 <listitem>
-                    <para>matrice de polynôme réel
+                    <para>matrice ou hypermatrice de polynômes à coefficients réels ou complexes
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>str  </term>
                 <listitem>
-                    <para>une matrix de chaîne de caractères
+                    <para>matrice ou hypermatrice texte
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,7 +42,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            convertit le polynôme p en une chaîne de caractères (fonction utilitaire).
+            convertit les polynômes p en textes les représentant (fonction utilitaire).
+        </para>
+        <para>
+            <note>
+                Le format de sortie des coefficients est fixé par <link linkend="format">format(..)</link>.
+            </note>
         </para>
     </refsection>
     
@@ -42,6 +59,8 @@ pol2str(%z)
 p = poly ([1, 2, 3], "x","coeff");
 pol2str(p)
 
+p = (1+%i+%z)^(1:4)
+pol2str(p)
  ]]></programlisting>
     </refsection>
     
@@ -52,10 +71,20 @@ pol2str(p)
                 <link linkend="string">string</link>
             </member>
             <member>
-                <member>
-                    <link linkend="prettyprint">prettyprint</link>
-                </member>
+                <link linkend="prettyprint">prettyprint</link>
+            </member>
+            <member>
+                <link linkend="sci2exp">sci2exp</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection role="history tag">
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>Extension aux polynômes à coefficients complexes et aux hypermatrices. Vectorisation du traitement du tableau de polynômes</revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function TitleLabel(varargin)
     // TITLELABEL function
@@ -41,7 +41,7 @@ function TitleLabel(varargin)
         ListArg(1) = null();
         nv=nv-1
     else
-        error(msprintf(gettext("%s: Wrong size or type for input argument #%d: A string expected.\n"),"TitleLabel",1));
+        error(msprintf(gettext("%s: Wrong size or type for input argument #%d: string expected.\n"),"TitleLabel",1));
     end
 
     T=[];

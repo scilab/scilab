@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine wbdiag(lda,n,ar,ai,rmax,er,ei,bs,xr,xi,
      *     yr,yi,scale,job,fail)
@@ -49,7 +49,7 @@ c
 c  *er       a singly subscripted real array containing the real
 c            parts of the eigenvalues.
 c
-c  *ei       a singly subscripted real array containg the imaginary
+c  *ei       a singly subscripted real array containing the imaginary
 c            parts of the eigenvalues.
 c
 c  *bs       a singly subscripted integer array that contains block

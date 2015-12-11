@@ -16,73 +16,9 @@
 //
 // <-- Short Description -->
 // DisableInteractiveMode did not work
+// export SCI=/your/scilab/install/share/scilab
+// export LD_LIBRARY_PATH=/your/scilab/install/lib/scilab/:/your/scilab/install/lib/thirdparty/
+// make bug_8115
+// ./bug_8115
 
-// Create a C code to use call_scilab:
-
-#ifdef _MSC_VER
-#pragma comment(lib, "call_scilab.lib")
-#pragma comment(lib, "libscilab.lib")
-#endif
-/*--------------------------------------------------------------------------*/
-#include <stdio.h>
-#include <stdlib.h>
-#include "call_scilab.h"
-#include "scilabmode.h"
-/*--------------------------------------------------------------------------*/
-int main(void)
-{
-    int iErr = 0;
-    if (getScilabMode() != SCILAB_API)
-    {
-        fprintf(stderr, "BUG 8115 NOT FIXED.\n");
-        iErr = 1;
-    }
-
-    DisableInteractiveMode();
-#ifdef _MSC_VER
-    StartScilab(NULL, NULL, 0);
-#else
-    StartScilab(getenv("SCI"), NULL, 0);
-#endif
-
-    /* check that it is NWNI mode */
-    if (getScilabMode() != SCILAB_NWNI)
-    {
-        fprintf(stderr, "BUG 8115 NOT FIXED.\n");
-        iErr = 1;
-    }
-
-    TerminateScilab(NULL);
-
-    /* check that we returns to default mode */
-    if (getScilabMode() != SCILAB_API)
-    {
-        fprintf(stderr, "BUG 8115 NOT FIXED.\n");
-        iErr = 1;
-    }
-
-#ifdef _MSC_VER
-    StartScilab(NULL, NULL, 0);
-#else
-    StartScilab(getenv("SCI"), NULL, 0);
-#endif
-
-    /* check that it is API mode */
-    if (getScilabMode() != SCILAB_API)
-    {
-        fprintf(stderr, "BUG 8115 NOT FIXED.\n");
-        iErr = 1;
-    }
-
-    TerminateScilab(NULL);
-
-    /* check that we returns to default mode */
-    if (getScilabMode() != SCILAB_API)
-    {
-        fprintf(stderr, "BUG 8115 NOT FIXED.\n");
-        iErr = 1;
-    }
-
-    return iErr;
-}
-/*--------------------------------------------------------------------------*/
+// nothing must be displayed

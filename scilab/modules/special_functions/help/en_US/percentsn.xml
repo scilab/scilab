@@ -90,7 +90,7 @@ xgrid(3)
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="percentasn">%asn</link>
+                <link linkend="delip">delip</link>
             </member>
             <member>
                 <link linkend="percentk">%k</link>

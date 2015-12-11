@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,12 +15,10 @@
 #include <string.h>
 #include "system_getproperty.h"
 #include "getScilabJNIEnv.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
-char * system_getproperty(char *property, char *defaultproperty)
+char * system_getproperty(const char * property, const char * defaultproperty)
 {
     char *retValue = NULL;
     JNIEnv * currentENV = getScilabJNIEnv();
@@ -47,7 +45,7 @@ char * system_getproperty(char *property, char *defaultproperty)
                 strValue = (*currentENV)->GetStringUTFChars(currentENV, jstrValue, 0);
                 if (strValue)
                 {
-                    retValue = strdup(strValue);
+                    retValue = os_strdup(strValue);
                 }
                 (*currentENV)->ReleaseStringUTFChars(currentENV, jstrValue , strValue);
             }

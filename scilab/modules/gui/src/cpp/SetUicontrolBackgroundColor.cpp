@@ -9,19 +9,26 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolBackgroundColor.hxx"
-#include "stack-c.h"
-int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+extern "C"
+{
+#include "addColor.h"
+#include "SetUicontrol.h"
+}
+
+int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
     double* allColors = NULL;
-    BOOL status = FALSE;;
+    BOOL status = FALSE;
     int nbValues = 0;
+    int iType = -1;
+    int *piType = &iType;
+    int iColorIndex = 0;
 
     if (valueType == sci_strings)
     {
@@ -68,7 +75,18 @@ int SetUicontrolBackgroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, in
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    switch (iType)
+    {
+    case __GO_FIGURE__ :
+        iColorIndex = addColor(iObjUID, allColors);
+        status = setGraphicObjectProperty(iObjUID, __GO_BACKGROUND__, &iColorIndex, jni_int, 1);
+        break;
+    default :
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_BACKGROUNDCOLOR__, allColors, jni_double_vector, 3);
+        break;
+    }
+
 
     if (valueType == sci_strings)
     {

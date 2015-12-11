@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.graphic_objects.graphicObject;
@@ -16,6 +16,7 @@ import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.imageplot.Grayplot;
@@ -27,6 +28,7 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
@@ -47,6 +49,8 @@ public interface Visitor {
     void visit(Fec fec) throws ObjectRemovedException;
 
     void visit(Figure figure);
+    
+    void visit(Frame frame);
 
     void visit(Grayplot grayplot) throws ObjectRemovedException;
 
@@ -65,6 +69,8 @@ public interface Visitor {
     void visit(Plot3d plot3d) throws ObjectRemovedException;
 
     void visit(Text text);
+
+    void visit(Datatip datatip);
 
     void visit(Arrow arrow);
 

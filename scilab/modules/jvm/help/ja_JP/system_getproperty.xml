@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="system_getproperty">
+    
+    <refnamediv>
+        
+        <refname>system_getproperty</refname>
+        
+        <refpurpose>
+            
+            指定したキーが指すシステムプロパティを取得.
+            
+        </refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>res=system_getproperty(key)</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>res</term>
+                
+                <listitem>
+                    
+                    <para>文字列の値</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>key</term>
+                
+                <listitem>
+                    
+                    <para>文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>指定したキーが指すシステムプロパティを取得します.</para>
+        
+        <informaltable border="1">
+            
+            <tr>
+                
+                <td>java.version</td>
+                
+                <td>Java Runtime Environmentのバージョン</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vendor</td>
+                
+                <td>Java Runtime Environmentのベンダ</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vendor.url</td>
+                
+                <td>Java ベンダのURL</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.home</td>
+                
+                <td>Javaをインストールしたディレクトリ</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vm.specification.version</td>
+                
+                <td>Java Virtual Machine 仕様のバージョン</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vm.specification.vendor</td>
+                
+                <td>Java Virtual Machine 仕様のベンダ</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vm.specification.name</td>
+                
+                <td>Java Virtual Machine 仕様名</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vm.version</td>
+                
+                <td>Java Virtual Machine 実装のバージョン</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vm.vendor</td>
+                
+                <td>Java Virtual Machine 実装のベンダ</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.vm.name</td>
+                
+                <td>Java Virtual Machine 実装名</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.specification.version</td>
+                
+                <td>Java Runtime Environment 仕様のバージョン</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.specification.vendor</td>
+                
+                <td>Java Runtime Environment 仕様のベンダ</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.specification.name</td>
+                
+                <td>Java Runtime Environment 仕様名</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.class.version</td>
+                
+                <td>Java クラス形式のバージョン番号</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.class.path</td>
+                
+                <td>Java クラスパス</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.library.path</td>
+                
+                <td>ライブラリロード時の検索パスのリスト</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.io.tmpdir</td>
+                
+                <td>テンポラリファイルのパスのデフォルト</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.compiler</td>
+                
+                <td>使用するJITコンパイラの名前</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>java.ext.dirs</td>
+                
+                <td>拡張ディレクトリのパス</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>os.name</td>
+                
+                <td>オペレーティングシステム名</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>os.arch</td>
+                
+                <td>オペレーティングシステムのアーキテクチャ</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>os.version</td>
+                
+                <td>オペレーティングシステムのバージョン</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>file.separator</td>
+                
+                <td>ファイルセパレータ (UNIXでは"/")</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>path.separator</td>
+                
+                <td>パスセパレータ (UNIXでは":")</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>line.separator</td>
+                
+                <td>行セパレータ(UNIXでは"\n")</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>user.name</td>
+                
+                <td>ユーザのアカウント名</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>user.home</td>
+                
+                <td>ユーザのホームディレクトリ</td>
+                
+            </tr>
+            
+            <tr>
+                
+                <td>user.dir</td>
+                
+                <td>ユーザのカレントの作業ディレクトリ</td>
+                
+            </tr>
+            
+        </informaltable>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
+system_getproperty('awt.toolkit')
+system_getproperty('file.encoding')
+system_getproperty('file.encoding.pkg')
+system_getproperty('java.awt.graphicsenv=sun.awt.Win32GraphicsEnvironment')
+system_getproperty('java.awt.printerjob=sun.awt.windows.WPrinterJob')
+system_getproperty('java.class.path')
+system_getproperty('java.class.version')
+system_getproperty('java.endorsed.dirs')
+system_getproperty('java.ext.dirs')
+system_getproperty('java.home')
+system_getproperty('java.io.tmpdir')
+system_getproperty('java.library.path')
+system_getproperty('java.runtime.name')
+system_getproperty('java.runtime.version')
+system_getproperty('java.specification.name')
+system_getproperty('java.specification.vendor')
+system_getproperty('java.specification.version')
+system_getproperty('java.vendor')
+system_getproperty('java.vendor.url')
+system_getproperty('java.vendor.url.bug')
+system_getproperty('java.version')
+system_getproperty('java.vm.info')
+system_getproperty('java.vm.name')
+system_getproperty('java.vm.specification.name')
+system_getproperty('java.vm.specification.vendor')
+system_getproperty('java.vm.specification.version')
+system_getproperty('java.vm.vendor')
+system_getproperty('java.vm.version')
+system_getproperty('line.separator')
+system_getproperty('os.arch')
+system_getproperty('os.name')
+system_getproperty('os.version')
+system_getproperty('path.separator')
+system_getproperty('sun.arch.data.model')
+system_getproperty('sun.boot.class.path')
+system_getproperty('sun.boot.library.path')
+system_getproperty('sun.cpu.endian')
+system_getproperty('sun.cpu.isalist')
+system_getproperty('sun.desktop')
+system_getproperty('sun.io.unicode.encoding')
+system_getproperty('sun.jnu.encoding')
+system_getproperty('sun.management.compiler')
+system_getproperty('sun.os.patch.level')
+system_getproperty('user.country')
+system_getproperty('user.dir')
+system_getproperty('user.home')
+system_getproperty('user.language')
+system_getproperty('user.name')
+system_getproperty('user.timezone')
+system_getproperty('user.variant')
+ ]]></programlisting>
+        
+    </refsection>
+    
+</refentry>
+

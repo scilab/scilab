@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xml:id="getURL" xml:lang="en"
@@ -101,7 +101,7 @@
         
         <para>IPv6 (and obviously IPv4) are supported out-of-the box by getURL.</para>
         
-        <para>Proxy configuration is enabled in this version. It uses the parameters from ATOMS config file.</para>
+        <para>Proxy configuration is enabled in this version, it can be modified in the Preferences under the rubric "Internet".</para>
         
         <para>
             The <emphasis role="italic">CURLOPT_FOLLOWLOCATION</emphasis> curl option is activated to make sure the download follow the URL.
@@ -130,7 +130,7 @@
             contour3d();
             
             // Use authentication
-            getURL("http://http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
+            getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR+"/testfile.html","user","passwd")
             
             // Needs IPv6 connectivity
             getURL("http://ipv6.google.com/intl/en_com/images/srpr/logo3w.png")
@@ -147,4 +147,17 @@
             </member>
         </simplelist>
     </refsection>
+    
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function <literal>getURL()</literal> introduced
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+    
 </refentry>

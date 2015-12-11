@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
     // State-space to state-space conversion
@@ -80,14 +80,15 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
             // then output injection
             // Sl1= [ A+GC +BF+G*D*F, (B+GD,-G)]
             // 	[ C+D*F   	, (D   , 0)]
-            // this is a generalisation of the case 4
+            // this is a generalization of the case 4
             // We have then the following property
             // Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
             //
+            p = size(C,"r");
             A1=A+B*F+G*C+G*D*F;
+            B1=[B+G*D,-G];
             C1=C+ D*F;
             D1=[D,zeros(p,p)];
-            B1=[B+G*D,-G];
             A1=inv(T)*A1*T;B1=inv(T)*B1;C1=C1*T;D1=D1
             Sl1=syslin(Sl(7),A1,B1,C1,D1);
             right=syslin(Sl(7),A+B*F,B,F,eye(F*B));

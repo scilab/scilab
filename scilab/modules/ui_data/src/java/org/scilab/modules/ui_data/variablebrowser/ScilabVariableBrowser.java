@@ -6,14 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.ui_data.variablebrowser;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.textbox.ScilabTextBox;
@@ -76,11 +76,12 @@ public final class ScilabVariableBrowser implements VariableBrowser {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingScilabVariableBrowser.VARBROWSERUUID);
             if (!success) {
                 VariableBrowserTab.getVariableBrowserInstance();
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(browserTab);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);
                 window.setVisible(true);
+                window.toFront();
             }
         }
         return instance;
@@ -94,11 +95,12 @@ public final class ScilabVariableBrowser implements VariableBrowser {
         if (instance != null) {
             SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    instance.setData(data);
+                    if (instance != null) {
+                        instance.setData(data);
+                    }
                 }
             });
         }
-        ScilabVariableBrowser.updateVariableBrowser();
     }
 
     /**
@@ -107,8 +109,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
     public static void updateVariableBrowser() {
         if (instance != null) {
             SwingScilabWindow window = (SwingScilabWindow) SwingUtilities.getAncestorOfClass(SwingScilabWindow.class, browserTab);
-            window.setVisible(true);
-            window.toFront();
+            window.repaint();
         }
     }
 
@@ -133,7 +134,7 @@ public final class ScilabVariableBrowser implements VariableBrowser {
      * Close Variable Browser
      */
     public void close() {
-        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabTab) browserTab);
+        ClosingOperationsManager.startClosingOperationWithoutSave((SwingScilabDockablePanel) browserTab);
     }
 
     /**

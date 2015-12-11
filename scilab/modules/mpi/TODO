@@ -1,0 +1,55 @@
+
+* To implement:
+MPI_Barrier
+MPI_Reduce
+MPI_Cancel
+MPI_Test
+
+Workaround: allocated a big data
+
+
+* Write more test cases with big data 
+* 
+
+* ecrire d'autres tests
+* gestion du tag dans le send et le recv
+=> a mettre à jour. c'est hardcodé dans un des deux
+* gestion des irecv/isend
+* gestion des gather
+* MPI barrier
+* test unitaire de bcast
+* porter l'exemple pi.cc
+//   x = mpiallreduce(y,operation,comm)
+
+
+voir MPICOMMSPAWN
+MPIINTERCOMMMERGE
+
+freemat a
+  context->addFunction("mpisend",MPISend,4,0,"array","dest","tag","communicator");
+  context->addFunction("mpirecv",MPIRecv,3,3,"source","tag","communicator");
+  context->addFunction("mpibcast",MPIBcast,3,1,"array","root","communicator");
+  context->addFunction("mpibarrier",MPIBarrier,1,0,"communicator");
+  context->addFunction("mpicommrank",MPICommRank,1,1,"communicator");
+  context->addFunction("mpicommsize",MPICommSize,1,1,"communicator");
+  context->addFunction("mpireduce",MPIReduce,4,1,"y","operation","root","comm");
+  context->addFunction("mpiallreduce",MPIAllReduce,3,1,"y","operation","root");
+  context->addFunction("mpiinitialized",MPIInitialized,0,1);
+  context->addFunction("mpiinit",MPIInit,0,0);
+  context->addFunction("mpifinalize",MPIFinalize,0,0);
+  context->addFunction("mpicommgetparent",MPICommGetParent,0,1);
+  context->addFunction("mpicommspawn",MPICommSpawn,5,2,
+		       "command","args","maxprocs","root","comm");
+  context->addFunction("mpiintercommmerge",MPIIntercommMerge,2,1,"intercomm","highflag");
+}
+
+
+
+Mandatory functions :
+
+MPI_Reduce
+MPI_Finalize
+
+juste:
+MPI_Comm_size(1);
+fais cracher scilab (manque probablement un check que mpi est bien init)

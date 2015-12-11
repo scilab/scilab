@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,7 +24,7 @@ extern int C2F(dnaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
                        double *workl, int *lworkl, int *info,
                        unsigned long bmat_len, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
-int sci_dnaupd(char *fname, unsigned long fname_len)
+int sci_dnaupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -58,9 +58,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     int* pINFO          = NULL;
 
     int IDO,   mIDO,   nIDO;
-    int mBMAT,  nBMAT;
     int mN,     nN;
-    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;
@@ -95,7 +93,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -113,7 +111,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -129,7 +127,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         return 1;
     }
 
@@ -145,7 +143,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         return 1;
     }
 
@@ -161,7 +159,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 7);
         return 1;
     }
 
@@ -178,7 +176,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 8);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 8);
         return 1;
     }
 
@@ -194,7 +192,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 9);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 9);
         return 1;
     }
 
@@ -211,7 +209,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 10);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 10);
         return 1;
     }
 
@@ -228,7 +226,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 11);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 11);
         return 1;
     }
 
@@ -245,7 +243,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 12);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 12);
         return 1;
     }
 
@@ -262,7 +260,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 13);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 13);
         return 1;
     }
 
@@ -279,7 +277,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 14);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 14);
         return 1;
     }
 
@@ -344,7 +342,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -360,7 +358,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpWHICH, &pWHICH))
     {
         freeAllocatedSingleString(pBMAT);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
         return 1;
     }
 
@@ -375,7 +373,7 @@ int sci_dnaupd(char *fname, unsigned long fname_len)
 
     if (*pINFO < 0)
     {
-        C2F(errorinfo)("dnaupd", (int*)(pINFO), 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

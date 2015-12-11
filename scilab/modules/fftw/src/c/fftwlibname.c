@@ -6,16 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <string.h>
 #include "stdlib.h"
 #include "fftwlibname.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static char *fftwlibname = NULL;
 /*--------------------------------------------------------------------------*/
@@ -28,7 +26,7 @@ void setfftwlibname(char *libname)
             FREE(fftwlibname);
             fftwlibname = NULL;
         }
-        fftwlibname = strdup(libname);
+        fftwlibname = os_strdup(libname);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -38,7 +36,7 @@ char *getfftwlibname(void)
 
     if (fftwlibname)
     {
-        name = strdup(fftwlibname);
+        name = os_strdup(fftwlibname);
     }
 
     return name;

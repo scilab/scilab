@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="htmlRead" xml:lang="en">
+    <refnamediv>
+        <refname>htmlRead</refname>
+        <refpurpose>Read a HTML stream from a local or distant file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            doc = htmlRead(path [, encoding])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>path</term>
+                <listitem>
+                    <para>a string, the path to the file to read.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>encoding</term>
+                <listitem>
+                    <para>a string, the file encoding.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>doc</term>
+                <listitem>
+                    <para>a mlist typed XMLDoc</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Read and parse a HTML file. The returned document allows to access to the DOM tree which is kept in memory.</para>
+        <para>In general, a HTML file cannot be read with a XML parser because a HTML is rarely well-formated, so a HTML parser is required and it is more compliant.</para>
+        <para>Once the HTML file is parsed, it can be seen as a XML file in memory, so usual operations can be done.</para>
+        <para>The encoding argument is used to precise the file encoding.</para>
+        <para>
+            It is important to notice that the tree must be freed (to avoid memory leaks) with the function <link linkend="xmlDelete">xmlDelete</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+    doc = htmlRead("http://www.scilab.org");
+    e = doc.root.children(1).children(1)
+    e.name
+    e.content
+
+    // Now we can retrieve all the nodes with an 'href' attribute
+    q = xmlXPath(doc, "//*[@href]");
+    q(1).attributes
+
+    // We delete the doc
+    xmlDelete(doc);
+    ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="htmlReadStr">htmlReadStr</link>
+            </member>
+            <member>
+                <link linkend="xmlGetOpenDocs">xmlGetOpenDocs</link>
+            </member>
+            <member>
+                <link linkend="xmlDelete">xmlDelete</link>
+            </member>
+            <member>
+                <link linkend="xmlDocument">xmlDocument</link>
+            </member>
+            <member>
+                <link linkend="xmlXPath">xmlXPath</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>HTML features added.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

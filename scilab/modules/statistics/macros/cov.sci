@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function C = cov(varargin)
     // Covariance matrix
@@ -151,10 +151,10 @@ function C = cov(varargin)
         if (typeof(x) <> "constant")
             error(msprintf(gettext("%s: Wrong type for input argument #%d: a real matrix expected.\n"),"cov", 1));
         end
-        if (typeof(x) <> "constant")
+        if (typeof(y) <> "constant")
             error(msprintf(gettext("%s: Wrong type for input argument #%d: a real matrix expected.\n"),"cov", 2));
         end
-        if (typeof(x) <> "constant")
+        if (typeof(nrmlztn) <> "constant")
             error(msprintf(gettext("%s: Wrong type for input argument #%d: an integer expected.\n"),"cov", 3));
         end
         //

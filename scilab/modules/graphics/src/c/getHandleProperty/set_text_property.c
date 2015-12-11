@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,14 +28,14 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int set_text_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_text_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "text");
+        Scierror(999, _("Wrong type for '%s' property: string expected.\n"), "text");
         return SET_PROPERTY_ERROR;
     }
 
-    return sciSetText(pobjUID, (char**)_pvData, nbRow, nbCol);
+    return sciSetText(iObjUID, (char**)_pvData, nbRow, nbCol);
 }
 /*------------------------------------------------------------------------*/

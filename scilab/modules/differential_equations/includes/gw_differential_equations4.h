@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -18,10 +18,10 @@
 /*--------------------------------------------------------------------------*/
 DIFFERENTIAL_EQUATIONS_IMPEXP int gw_differential_equations4(void);
 /*--------------------------------------------------------------------------*/
-int sci_intg(char *fname, unsigned long fname_len);
-int sci_int2d(char *fname, unsigned long fname_len);
-int sci_int3d(char *fname, unsigned long fname_len);
-int sci_feval(char *fname, unsigned long fname_len);
+//int sci_intg(char *fname,unsigned long fname_len);
+//int sci_int2d(char *fname,unsigned long fname_len);
+//int sci_int3d(char *fname,unsigned long fname_len);
+//int sci_feval(char *fname,unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif  /* __GW_DIFFERENTIAL_EQUATIONS4__ */
 /*--------------------------------------------------------------------------*/

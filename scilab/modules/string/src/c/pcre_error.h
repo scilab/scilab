@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,6 +15,7 @@
 #ifndef __PCRE_ERROR_H__
 #define __PCRE_ERROR_H__
 
+#include "dynlib_string.h"
 
 /**
  *
@@ -22,7 +23,7 @@
  * @param fname the name of the Scilab function
  * @param errorCode the error code returned by the pcre function
  */
-void pcre_error(char *fname, int errorCode);
+STRING_IMPEXP void pcre_error(char const * fname, int errorCode);
 
 #endif
 

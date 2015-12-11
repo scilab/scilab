@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,9 +18,8 @@
 #include "H5Link.hxx"
 #include "H5ListObject.hxx"
 
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
+
 namespace org_modules_hdf5
 {
 
@@ -151,7 +150,7 @@ public :
 
             if (opdata.u.count == 0)
             {
-                opdata.u.name = strdup(name);
+                opdata.u.name = os_strdup(name);
 
                 return (herr_t)1;
             }

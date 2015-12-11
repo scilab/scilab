@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Restore the config file using the config.bak file
 
@@ -22,6 +22,9 @@ function atomsRestoreConfig(quiet)
     if rhs == 0 then
         quiet = %F;
     end
+
+    proxy_attrs = ["enabled", "host", "port", "user", "password"];
+    setPreferencesValue("//web/body/proxy", [proxy_attrs ; getPreferencesValue("//web/body/previous-proxy", proxy_attrs)]);
 
     pathsystemuser = atomsPath("system", "user");
 

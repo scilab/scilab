@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,7 +26,7 @@ extern "C"
 namespace org_modules_xml
 {
 
-XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node): XMLObject(), doc(_doc)
+XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node): XMLObject(), allocated(false), doc(_doc)
 {
     node = _node;
     scope->registerPointers(node, this);
@@ -34,7 +34,7 @@ XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node): XMLObject(), 
     id = scope->getVariableId(*this);
 }
 
-XMLElement::XMLElement(const XMLDocument & _doc, const char *name): XMLObject(), doc(_doc)
+XMLElement::XMLElement(const XMLDocument & _doc, const char *name): XMLObject(), allocated(true), doc(_doc)
 {
     node = xmlNewNode(0, (const xmlChar *)name);
     scope->registerPointers(node, this);
@@ -46,6 +46,11 @@ XMLElement::~XMLElement()
 {
     scope->unregisterPointer(node);
     scope->removeId(id);
+
+    if (allocated)
+    {
+        xmlFreeNode(node);
+    }
 }
 
 void *XMLElement::getRealXMLPointer() const
@@ -55,8 +60,27 @@ void *XMLElement::getRealXMLPointer() const
 
 void XMLElement::remove() const
 {
+    XMLNodeList *obj = 0;
+
+    if (node->parent && node->parent->children)
+    {
+        obj = scope->getXMLNodeListFromLibXMLPtr(node->parent->children);
+        if (obj && node->parent->children == node)
+        {
+            // node->parent->children == node => we remove the first child so parent->children
+            // needs to be correctly re-linked.
+            obj->removeElementAtPosition(1);
+            return;
+        }
+    }
+
     xmlUnlinkNode(node);
     xmlFreeNode(node);
+
+    if (obj)
+    {
+        obj->revalidateSize();
+    }
 }
 
 const XMLObject *XMLElement::getXMLObjectParent() const

@@ -6,13 +6,13 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
 /*--------------------------------------------------------------------------*/
 #include "TerminateWindows_tools.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "console.h"
 #include "InnosetupMutex.h"
 /*--------------------------------------------------------------------------*/
@@ -25,7 +25,9 @@ BOOL TerminateWindows_tools(void)
     {
         case SCILAB_STD:
         {
-            CloseScilabConsole();
+            //Since Scilab 6 All scilab mode are launch in console mode
+            //So we cannot close owner console
+            //CloseScilabConsole();
             closeInnosetupMutex();
             bOK = TRUE;
         }

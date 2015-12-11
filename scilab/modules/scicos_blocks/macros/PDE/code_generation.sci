@@ -30,7 +30,7 @@ function Code=code_generation(rdnom,equations,eq_pts_mes,flag_type,h,CI,CI1,a,..
     //                         ( -1 pour les systèmes algébriques, 1 pour les systèmes       //
     //                         algébro-différentiels).                                       //
     // sortie :                                                                              //
-    //           - Code : vecteur de chaine de caratères qui renvoi le code du bloc à        //
+    //           - Code : vecteur de chaine de caratères qui renvoie le code du bloc à        //
     //                    imprimer par la suite dans le fichier .c                           //
     // pour plus d'information voir les fonctions de calcul des blocs Scicos de type 4       //
     // (explicite) et de type 10004 (implicite).                                             //

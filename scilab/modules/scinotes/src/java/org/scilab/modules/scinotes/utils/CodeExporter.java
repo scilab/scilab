@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -114,11 +114,10 @@ public class CodeExporter extends FOCodeConverter {
      * @param format the page format
      */
     public void convert(String code, int[] lineNumberArray, String fileName, String type, String title, PageFormat format) {
-        FopFactory fopFactory = FopFactory.newInstance();
         OutputStream out = null;
 
         try {
-            fopFactory.setUserConfig(new File(ScilabConstants.SCI + "/modules/helptools/etc/fopconf.xml"));
+            FopFactory fopFactory = FopFactory.newInstance(new File(ScilabConstants.SCI + "/modules/helptools/etc/fopconf.xml"));
             FOUserAgent userAgent = fopFactory.newFOUserAgent();
             userAgent.setProducer(CREATOR);
             userAgent.setTitle(title);

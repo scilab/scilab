@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -25,6 +25,7 @@ Source: modules\{#COMMONS}\license.txt; DestDir: {app}\modules\{#COMMONS}; Compo
 ;
 Source: modules\{#COMMONS}\etc\{#COMMONS}.quit; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#COMMONS}\etc\{#COMMONS}.start; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}
+;Source: modules\{#COMMONS}\etc\*.xsl; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COMMONS}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMMONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#COMMONS}\macros\buildmacros.bat; DestDir: {app}\modules\{#COMMONS}\macros; Components: {#COMPN_SCILAB}

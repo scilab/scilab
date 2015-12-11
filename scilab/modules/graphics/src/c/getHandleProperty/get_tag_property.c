@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,12 +26,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tag_property(void* _pvCtx, char* pobjUID)
+void* get_tag_property(void* _pvCtx, int iObjUID)
 {
     char* tag = NULL;
-    int status = 0;
+    void* status = NULL;
 
-    getGraphicObjectProperty(pobjUID,  __GO_TAG__, jni_string, (void**) &tag);
+    getGraphicObjectProperty(iObjUID,  __GO_TAG__, jni_string, (void**) &tag);
 
     if (tag == NULL)
     {
@@ -40,7 +40,7 @@ int get_tag_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        status = sciReturnString(_pvCtx, tag);
+        status = sciReturnString(tag);
         free(tag);
         return status;
     }

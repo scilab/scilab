@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 
 function [s2]=mad(x,orien)
@@ -46,7 +46,7 @@ function [s2]=mad(x,orien)
         elseif orien=="c" | orien==2 then
             s2=sum(abs(x-(mean(x,2)*ones(1,ncol))),2)/ncol
         else
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'',''%s'', %d or %d.\n"),"mad",2, "r","c",1,2)),
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"mad",2, "r","c",1,2)),
         end
     end
 endfunction

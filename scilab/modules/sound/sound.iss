@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -18,13 +18,11 @@
 ;
 #define SOUND "sound"
 ;
-Source: bin\sound.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#SOUND}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SOUND}\license.txt; DestDir: {app}\modules\{#SOUND}; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SOUND}\sci_gateway\{#SOUND}_gateway.xml; DestDir: {app}\modules\{#SOUND}\sci_gateway; Components: {#COMPN_SCILAB}
-;
-;Source: modules\{#SOUND}\includes\*.h; DestDir: {app}\modules\{#SOUND}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SOUND}\etc\{#SOUND}.quit; DestDir: {app}\modules\{#SOUND}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#SOUND}\etc\{#SOUND}.start; DestDir: {app}\modules\{#SOUND}\etc; Components: {#COMPN_SCILAB}
@@ -32,10 +30,9 @@ Source: modules\{#SOUND}\etc\{#SOUND}.start; DestDir: {app}\modules\{#SOUND}\etc
 Source: modules\{#SOUND}\macros\buildmacros.sce; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SOUND}\macros\buildmacros.bat; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SOUND}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SOUND}\macros\*.bin; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SOUND}\macros\*.sci; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SOUND}\macros\*.bin; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SOUND}\macros\lib; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SOUND}\macros\names; DestDir: {app}\modules\{#SOUND}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SOUND}\demos\*.*; DestDir: {app}\modules\{#SOUND}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

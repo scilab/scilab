@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="man" xml:lang="en">
@@ -149,7 +149,7 @@ end
     &lt;title&gt;More information&lt;/title&gt;
     &lt;note&gt;&lt;para&gt;A note about foo&lt;/para&gt;&lt;/note&gt;
     &lt;caution&gt;&lt;para&gt;A caution about foo&lt;/para&gt;&lt;/caution&gt;
-    &lt;warning&gt;&lt;para&gt;A warsning about foo&lt;/para&gt;&lt;/warning&gt;
+    &lt;warning&gt;&lt;para&gt;A warning about foo&lt;/para&gt;&lt;/warning&gt;
     &lt;important&gt;&lt;para&gt;A important about foo&lt;/para&gt;&lt;/important&gt;
     &lt;tip&gt;&lt;para&gt;A tip about foo&lt;/para&gt;&lt;/tip&gt;
   &lt;/refsection&gt;

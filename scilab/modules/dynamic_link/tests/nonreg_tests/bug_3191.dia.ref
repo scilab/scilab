@@ -15,7 +15,6 @@ ilib_verbose(0);
 test_path = get_absolute_file_path('bug_3191.tst');
 currentpath = pwd();
 cd TMPDIR;
-cd ../;
 OS_TMP_DIR = pwd();
 mkdir(OS_TMP_DIR,'bug_3191');
 TEST_DIR = OS_TMP_DIR + filesep() + 'bug_3191';
@@ -23,7 +22,7 @@ copyfile(SCI+'/modules/dynamic_link/tests/nonreg_tests/bug_3191.c' , TEST_DIR + 
 chdir(TEST_DIR);
 files=['bug_3191.c'];
 ilib_build('libc_fun',['c_fun','c_intfun'],files,[]);
-// load the shared library
+// load the shared library 
 exec loader.sce;
 chdir(currentpath);
 //using the new primitive

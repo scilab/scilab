@@ -28,7 +28,8 @@
             <literal>xrect</literal> dessine un rectangle défini par <literal>[x,y,w,h]</literal> 
             (point en haut à gauche, largeur, hauteur) en coordonnées utilisateur et en utilisant le style de ligne courant.
         </para>
-        <para>ATTENTION : notez que la valeur de la hauteur est positive en allant vers la bas.</para>
+        <warning>Notez que la valeur de la hauteur est positive en allant vers la bas.</warning>
+        <warning>Le rectangle créé hérite de la propriété de clip de l'axe courant.</warning>
     </refsection>
     <refsection>
         <title>Exemples</title>

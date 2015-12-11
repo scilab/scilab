@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="getd">
@@ -28,7 +28,7 @@
                     <para>chaîne de caractères, chemin du répertoire
                     </para>
                     <para>
-                        "." si <link linkend="getd">getd</link> est appelée sans argument ou si <literal>path</literal> est une chaîne de caractères vide.
+                        "." si <function>getd</function> est appelée sans argument ou si <varname>path</varname> est une chaîne de caractères vide.
                     </para>
                 </listitem>
             </varlistentry>
@@ -37,7 +37,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <literal>path</literal>.
+            Charge tous les fichiers <literal>.sci</literal> (contenant des fonctions Scilab) présents dans le répertoire <varname>path</varname>.
         </para>
         <para>
             Si le fichier ne contient pas de fonction, le script sera executé.

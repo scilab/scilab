@@ -8,13 +8,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolFontWeight.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
-int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontWeight(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font weight can be light, normal, demi or bold */
 
@@ -24,12 +27,12 @@ int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, void* _pvData, int val
     // Font Name must be only one character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontWeight");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string expected.\n")), "FontWeight");
         return SET_PROPERTY_ERROR;
     }
     if (nbCol != 1 || nbRow == 0)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontWeight");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "FontWeight");
         return SET_PROPERTY_ERROR;
     }
 
@@ -45,7 +48,7 @@ int SetUicontrolFontWeight(void* _pvCtx, char *sciObjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTWEIGHT__, fontWeight, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTWEIGHT__, fontWeight, jni_string, 1);
 
     if (status == TRUE)
     {

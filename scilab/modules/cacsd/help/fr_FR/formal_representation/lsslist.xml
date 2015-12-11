@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="lsslist">
+    <refnamediv>
+        <refname>lsslist</refname>
+        <refpurpose> Définition d'un système dynamique linéaire  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>lsslist()
+            lsslist(A, B, C, X0, dt)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>lsslist(A, B, C, X0, dt)</literal> est équivalent à la commande
+            <literal>tlist(["lss", "A", "B", "C", "D", "X0", "dt"], A, B, C, D, X0, dt)</literal>
+        </para>
+        <para>
+            Crée une <literal>tlist</literal> avec <literal>["lss", "A", "B", "C", "D", "X0", "dt"]</literal> pour le premier champ, et
+            <varname>A</varname>, <varname>B</varname>, <varname>C</varname>,<varname>X0</varname>,<varname>dt</varname>
+            pour les termes suivants, s'ils sont spécifiés. Aucune vérification de taille ou de type n'est faite sur
+            les paramètres d'entrée.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="abcd">abcd</link>
+            </member>
+            <member>
+                <link linkend="syslin">syslin</link>
+            </member>
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

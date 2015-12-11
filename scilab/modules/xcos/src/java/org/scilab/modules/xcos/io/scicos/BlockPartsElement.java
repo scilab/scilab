@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,6 +16,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabMList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.block.BasicBlock;
 
 /**
@@ -37,7 +38,8 @@ abstract class BlockPartsElement extends AbstractElement<BasicBlock> {
     /**
      * Default constructor
      */
-    protected BlockPartsElement() {
+    protected BlockPartsElement(final JavaController controller) {
+        super(controller);
     }
 
     /**

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function r=%b_g_spb(a,b)
     //  perform logical elementwise a|b where a is a boolean sparse matrix
     //  and b a boolean matrix

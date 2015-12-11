@@ -5,18 +5,18 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function x=%hm_and(m,d)
     if argn(2)==1|d=="*" then
-        x=and(m.entries);
+        x=and(m(:));
         return
     end
-    dims=m.dims;
+    dims=size(m);
     if d=="m" then
         d=find(dims>1,1)
         if d==[] then
-            x=and(m.entries);
+            x=and(m(:));
             return
         end
     end
@@ -36,7 +36,7 @@ function x=%hm_and(m,d)
     ind=(0:p2:prod(dims)-1);
     I=ones(ind).*.I+ind.*.ones(I)
 
-    x=and(matrix(m.entries(I),dims(d),-1),1);
+    x=and(matrix(m(I),dims(d),-1),1);
 
     dims(d)=1
     while  dims($)==1 then

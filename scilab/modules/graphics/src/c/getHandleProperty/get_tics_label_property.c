@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,34 +26,34 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "Format.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_labels_property(void* _pvCtx, char* pobjUID)
+void* get_tics_labels_property(void* _pvCtx, int iObjUID)
 {
     char** labels = NULL;
     int iNumberTicksLabels = 0;
     int* piNumberTicksLabels = &iNumberTicksLabels;
 
-    getGraphicObjectProperty(pobjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void **) &piNumberTicksLabels);
+    getGraphicObjectProperty(iObjUID, __GO_NUMBER_TICKS_LABELS__, jni_int, (void **) &piNumberTicksLabels);
     if (piNumberTicksLabels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
-        return -1;
+        return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
     if (labels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
-        return -1;
+        return NULL;
     }
 
     /* User-specified ticks labels */
-    return sciReturnRowStringVector(_pvCtx, labels, iNumberTicksLabels);
+    return sciReturnRowStringVector(labels, iNumberTicksLabels);
 }
 /*------------------------------------------------------------------------*/

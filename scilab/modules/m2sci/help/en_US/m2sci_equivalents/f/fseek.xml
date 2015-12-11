@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_fseek">
@@ -43,7 +43,12 @@ mseek
     <refsection>
         <title>Particular cases</title>
         <para>
-            Scilab and Matlab functions differ by the flag which indicate the origin of the position indicator, see examples below. Note that order of input value is different.
+            Scilab and Matlab functions differ by the flag which indicate the origin of the position indicator, see examples below.
+        </para>
+        <para>
+            <note>
+                Note that order of input value is different.
+            </note>
         </para>
     </refsection>
     <refsection>

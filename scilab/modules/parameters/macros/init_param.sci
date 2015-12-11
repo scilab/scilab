@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function plist = init_param(varargin)
     param_name = [];
@@ -22,6 +22,6 @@ function plist = init_param(varargin)
     plist = mlist(["plist"],[]);
 
     for i=1:2:length(varargin)
-        [plist, _err] = add_param(plist,varargin(i),varargin(i+1));
+        plist = add_param(plist,varargin(i),varargin(i+1));
     end
 endfunction

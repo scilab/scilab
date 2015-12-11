@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function []=auwrite(y,Fs,nbits,method,aufile)
     //Write .au sound file.
@@ -158,11 +158,11 @@ function [snd]=write_sndhdr(fid,Fs,nbits,method,sz)
     snd("info")="SCI0";
 
     mput(ascii(".snd"),"c",fid); // magic number
-    mput(snd("offset"),"ulb",fid); // data location
-    mput(snd("databytes"),"ulb",fid); // size in bytes
-    mput(snd("format"),"ulb",fid); // data format
+    mput(snd("offset"),"uib",fid); // data location
+    mput(snd("databytes"),"uib",fid); // size in bytes
+    mput(snd("format"),"uib",fid); // data format
     //
-    mput(snd("rate")/snd("chans"),"ulb",fid); // sample rate
-    mput(snd("chans"),"ulb",fid); // channels
+    mput(snd("rate")/snd("chans"),"uib",fid); // sample rate
+    mput(snd("chans"),"uib",fid); // channels
     mput(ascii(snd("info")),"c",fid);  // info
 endfunction

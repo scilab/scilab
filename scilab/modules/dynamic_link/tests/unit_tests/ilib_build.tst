@@ -11,55 +11,26 @@
 
 TMP_OS_DIR=TMPDIR;
 
-TMP_DIR = TMP_OS_DIR+filesep()+'ilib_build';
+if ~isdir(TMP_OS_DIR) then pause,end;
 
-rmdir(TMP_DIR,'s');
-mkdir(TMP_OS_DIR,'ilib_build');
-
-
-if ~isdir(TMP_DIR) then pause,end;
-
-//Here with give a complete example on adding new primitive to Scilab
-//create the procedure files
-f1=['extern double fun2();'
-    'void fun1(double *x, double *y)'
-    '{*y=fun2(*x)/(*x);}'];
-
-mputl(f1,TMP_DIR+filesep()+'fun1.c');
-
-f2=['#include <math.h>'
-    'double fun2(double x)'
-    '{ return( sin(x+1.));}'];
-mputl(f2,TMP_DIR+filesep()+'fun2.c');
-
-//creating the interface file
-i=['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
-   '#include ""stack-c.h""'
-   '#include ""stackTypeVariable.h""'
-   'extern int fun1 ( double *x, double *y);'
-   'int intfun1(fname)' 
-   'char * fname;'
-   '{'
-   '  int m1,n1,l1;'
-   '  CheckRhs(1,1);'
-   '  CheckLhs(1,1);'
-   '  GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);'
-   '  fun1(stk(l1),stk(l1));'
-   '  LhsVar(1) = 1;'
-   '  return 0;'
-   '}'];
-mputl(i,TMP_DIR+filesep()+'intfun1.c');
-
-
-//creating the shared library (a gateway, a Makefile and a loader are 
-//generated. 
 cur_dir = pwd();
-chdir(TMP_DIR);
 
-files=['fun1.c','fun2.c','intfun1.c'];
-ilib_build('foo',['scifun1','intfun1'],files,[]);
+TEST_NAME = "ilib_build_2";
+mkdir(TMP_OS_DIR, TEST_NAME);
+TEST_DIR_1 = TMP_OS_DIR + filesep() + TEST_NAME;
 
-// load the shared library 
+copyfile(SCI+"/modules/dynamic_link/tests/unit_tests/intfun1.c" , TEST_DIR_1 + filesep() + "intfun1.c");
+chdir(TEST_DIR_1);
+
+//creating the shared library (a gateway, a Makefile and a loader are
+//generated.
+cur_dir = pwd();
+chdir(TEST_DIR_1);
+
+files=["intfun1.c"];
+ilib_build("foo",["scifun1","intfun1"],files,[]);
+
+// load the shared library
 exec loader.sce;
 
 chdir(cur_dir);
@@ -67,8 +38,9 @@ chdir(cur_dir);
 //using the new primitive
 if ( norm(scifun1(33) - .0160328) > 1 ) then pause,end
 
+chdir(cur_dir);
 // ulink() all libraries
 ulink();
 
 //remove TMP_DIR
-rmdir(TMP_DIR,'s');
+rmdir(TEST_DIR_1,"s");

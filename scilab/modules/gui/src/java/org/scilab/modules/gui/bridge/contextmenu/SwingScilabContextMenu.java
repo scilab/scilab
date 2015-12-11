@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,9 +14,12 @@ package org.scilab.modules.gui.bridge.contextmenu;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CHILDREN__;
 
+import java.awt.Color;
 import java.awt.MouseInfo;
 
 import javax.swing.JPopupMenu;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
@@ -46,9 +49,11 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
 
     private static final long serialVersionUID = 1L;
 
-    private String uid;
+    private Integer uid;
 
     private boolean checkedState;
+
+    private Border defaultBorder = null;
 
     /**
      * Constructor
@@ -231,7 +236,10 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -279,6 +287,10 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * @param text not used
      */
     public void setText(String text) {
+        throw new UnsupportedOperationException();
+    }
+
+    public void setEmptyText() {
         throw new UnsupportedOperationException();
     }
 
@@ -345,7 +357,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -353,7 +365,7 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 
@@ -369,4 +381,17 @@ public class SwingScilabContextMenu extends JPopupMenu implements SwingViewObjec
         }
     }
 
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("PopupMenu.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("PopupMenu.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

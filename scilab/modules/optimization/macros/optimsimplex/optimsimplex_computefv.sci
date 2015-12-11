@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //
 // optimsimplex_computefv --
@@ -16,7 +16,7 @@
 //   data : user-defined data
 //
 function [ this , data ] = optimsimplex_computefv ( varargin )
-    function argin = argindefault ( rhs , vararglist , ivar , default )
+    function argin = optim_argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -41,7 +41,7 @@ function [ this , data ] = optimsimplex_computefv ( varargin )
     end
     this = varargin(1)
     fun = varargin(2)
-    data = argindefault ( rhs , varargin , 3 , [] )
+    data = optim_argindefault ( rhs , varargin , 3 , [] )
     if (typeof(data)=="constant") then
         if ( data == [] ) then
             this = optimsimplex_compsomefv ( this , fun , 1:this.nbve )

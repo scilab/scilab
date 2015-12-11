@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
@@ -41,7 +41,7 @@ MY_assert_equal ( ierr , 10000 );
 //
 instr = "[o1,o2,o3]=assert_checkalmostequal ( 1 , 1 , %eps )";
 ierr=execstr(instr,"errcatch");
-MY_assert_equal ( ierr , 59 );
+MY_assert_equal ( ierr , 999 );
 //
 //////////////////////////////////////////
 // Check error message when type of arguments is false

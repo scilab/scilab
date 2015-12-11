@@ -9,6 +9,7 @@ sci_gateway/c/xcos_toolbox_skeleton_c.c
 libxcos_toolbox_skeleton*.*
 cleaner_gateway.sce
 *.bin
+macros/loader_pal.sce
 macros/lib
 macros/names
 images/h5/*.h5

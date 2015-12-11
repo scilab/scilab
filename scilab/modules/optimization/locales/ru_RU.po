@@ -8,18 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-14 16:48+0000\n"
+"PO-Revision-Date: 2015-04-15 16:36+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался вещественным.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
@@ -40,11 +40,6 @@ msgstr ""
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка распределения памяти.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
@@ -88,6 +83,267 @@ msgstr "%s: Проблема минимизации не имеет решени
 #, c-format
 msgid "%s: Q is not symmetric positive definite.\n"
 msgstr "%s: Q не явлляется симметричной положительно определённой.\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s: Warning: The minimization problem has no solution. The results may be "
+"inaccurate.\n"
+"\n"
+msgstr ""
+"\n"
+"%s: Внимание: задача минимизации не имеет решения. Результаты могут быть "
+"неточными.\n"
+"\n"
+
+#, c-format
+msgid ""
+"\n"
+"%s: Warning: Q is not symmetric positive definite. The results may be "
+"inaccurate.\n"
+"\n"
+msgstr ""
+"\n"
+"%s: Внимание: Q не является симметричной положительно определённой. "
+"Результаты могут быть неточными.\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Subroutine not found: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: The first argument in the list must "
+"be a string or a function.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a function expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: exception caught in '%s' subroutine.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real Scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size %d x %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A strictly positive vector "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s: Number of calls to %s has reached or exceeded %s.\n"
+msgstr ""
+
+msgid "Warning"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s: %s is too small. No further reduction in the criterion is possible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: %s: %s is too small. %s is orthogonal to the columns of the Jacobian to "
+"machine precision.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%s: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%s: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String \"b\" expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or more expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Bounds and initial guess are incompatible.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%s: Incorrect stopping parameters.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Can not allocate %.2f MB memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: NO hot restart available in this method.\n"
+msgstr ""
+
+#, c-format
+msgid "Hot restart: dimension of working table (argument n:%d).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Incorrect stopping parameters.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar of a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: \"in\" not allowed with simulator defined by a function.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Stop requested by simulator (ind=0).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Problem with initial constants in simul.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: \"ar\", \"in\", \"ti\" or \"td\" not "
+"allowed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: This method is NOT implemented.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real vector of size %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while reading line %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown row type %s at line %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %d logical unit already used.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many files opened!\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unknown file format.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File \"%s\" already exists or directory write access denied.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: File \"%s\" does not exist or read access denied.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Can not open File \"%s\"\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Input argument %d size expected.\n"
+msgstr ""
+
+msgid "semi def fails.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Input argument %d of %s function has an illegal value.\n"
+msgstr ""
 
 msgid "m must be at least one.\n"
 msgstr "m должна быть не менее одного.\n"
@@ -156,340 +412,85 @@ msgstr "Ошибка в dspst, info = %d.\n"
 msgid "Error in dspev, info = %d.\n"
 msgstr "Ошибка в dspev, info = %d.\n"
 
-msgid "Non linear data fitting"
-msgstr "Нелинейное приведение данных в соответствие"
-
-msgid "Experimental data"
-msgstr "Экспериментальные данные"
-
-msgid "Fitting function"
-msgstr "Аппроксимация функции"
-
-msgid "LQV"
-msgstr ""
-
-msgid "Spaceship landing trajectory"
-msgstr "Траектория посадки космического корабля"
-
-msgid "Computation of optimal parameters"
-msgstr "Вычисление оптимальных параметров"
-
-msgid "Running optimization ...\n"
-msgstr "Идёт оптимизация ...\n"
-
-msgid "No"
-msgstr "Нет"
-
-msgid "View Code?"
-msgstr "Посмотреть код?"
-
-msgid "Yes"
-msgstr "Да"
-
-msgid "fminsearch - Rosenbrock"
-msgstr "fminsearch - Розенброк"
-
-msgid "fminsearch - tolx"
-msgstr "fminsearch - tolx"
-
-msgid "fminsearch - Output Function"
-msgstr "fminsearch - функция на выходе"
-
-msgid "fminsearch - Option Display"
-msgstr "fminsearch - параметры"
-
-msgid "fminsearch - Plot Func Count"
-msgstr "fminsearch - график количества выполнения функции"
-
-msgid "fminsearch - Plot F"
-msgstr "fminsearch - График F"
-
-msgid "fminsearch - Plot X"
-msgstr "fminsearch - График X"
-
-msgid "neldermead - Rosenbrock Variable"
-msgstr "neldermead - переменная Розенброка"
-
-msgid "neldermead - Output Command"
-msgstr "neldermead - команда на выходе"
-
-msgid "neldermead - Dimensionality"
-msgstr "neldermead - число переменных"
-
-msgid "nmplot - Han #1"
-msgstr "nmplot - Хан #1"
-
-msgid "nmplot - Han #2"
-msgstr "nmplot - Хан #2"
-
-msgid "nmplot - McKinnon #1"
-msgstr "nmplot - Маккиннон #1"
-
-msgid "nmplot - McKinnon #2"
-msgstr "nmplot - Маккиннон #2"
-
-msgid "nmplot - Quadratic Fixed #1"
-msgstr ""
-
-msgid "nmplot - Quadratic Variable#1"
-msgstr ""
-
-msgid "nmplot - Quadratic Fixed #2"
-msgstr ""
-
-msgid "nmplot - Quadratic Variable#2"
-msgstr ""
-
-msgid "nmplot - Rosenbrock Fixed"
-msgstr ""
-
-msgid "nmplot - Rosenbrock Variable"
-msgstr ""
-
-msgid "neldermead - Box A"
-msgstr ""
-
-msgid "neldermead - Box B"
-msgstr ""
-
-msgid "neldermead - Box Bounds"
-msgstr ""
-
-msgid "neldermead - Box Post"
-msgstr ""
-
-msgid "neldermead - Polygon"
-msgstr ""
-
-msgid ""
-"Illustrates Box' algorithm on a simply bounds-constrained optimization "
-"problem.\n"
-msgstr ""
-
-msgid "Searching (please wait) ...\n"
-msgstr "Идёт поиск (пожалуйста, подождите) ...\n"
-
-msgid "...Done\n"
-msgstr "...Сделано.\n"
-
-msgid "Plot contour (please wait)...\n"
-msgstr "Построение контура (подождите, пожалуйста)...\n"
-
-msgid "End of demo.\n"
-msgstr "Конец демонстрации.\n"
-
-msgid "Illustrates Box' algorithm on Rosenbrock's Post Office Problem.\n"
-msgstr "Иллюстрирует алгоритм Бокса для задачи Розенброка о почтампте.\n"
-
-msgid "Defining Rosenbrock Post Office function...\n"
-msgstr "Определение функции почтампта Розенброка...\n"
-
-msgid "Illustrates Box' algorithm on Box problem A.\n"
-msgstr "Иллюстрирует алгоритм Бокса на задаче Бокса A.\n"
-
-msgid "A new method of constrained optimization \n"
-msgstr "Новый метод оптимизации в заданных пределах \n"
-
-msgid "and a comparison with other methods.\n"
-msgstr "и сравнение с другими методами.\n"
-
-msgid "Problem A\n"
-msgstr "Задача A\n"
-
-msgid "Searching (please wait)...\n"
-msgstr "Идёт поиск (пожалуйста, подождите)...\n"
-
 #, c-format
-msgid "Relative error on x = %e\n"
-msgstr "Относительная ошибка по x = %e\n"
-
-msgid "Illustrates Box' algorithm on Box problem B.\n"
-msgstr "Иллюстрирует алгоритм Бокса на задаче Бокса B.\n"
-
-msgid "Problem B\n"
-msgstr "Задача B\n"
-
-#, c-format
-msgid "f expected = %f\n"
-msgstr "ожидается, что f = %f\n"
-
-#, c-format
-msgid "Relative error on f = %e\n"
-msgstr "Относительная ошибка по f = %e\n"
-
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
-msgstr ""
-"Иллюстрирует чувствительномсь алгоритма Нельдера-Мида к размерности\n"
-
-msgid ""
-"Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
-"Optimization Methods and Software, 2006.\n"
+msgid "%s: Too small memory.\n"
 msgstr ""
 
 #, c-format
-msgid "Maximum dimension:%d\n"
-msgstr "Максимальная размерность: %d\n"
-
-msgid "Column #1: number of dimensions\n"
-msgstr "Столбец №1: число размерностей\n"
-
-msgid "Column #2: number of function evaluations\n"
-msgstr "Столбец №2: число вычислений функции\n"
-
-msgid "Column #3: number of iterations\n"
-msgstr "Столбец №3: число итераций\n"
-
-msgid "Column #4: convergence rate (lower is better)\n"
-msgstr "Столбец №4: скорость сходимости (чем ниже, тем лучше)\n"
-
-msgid "Number of parameters"
-msgstr "Количество параметров"
-
-msgid "Rate of convergence"
-msgstr "Скорость сходимости"
-
-msgid "Number of function evaluations"
-msgstr "Число вычислений функции"
-
-msgid "Initialization\n"
-msgstr "Инициализация\n"
-
-msgid "End of Optimization\n"
-msgstr "Конец оптимизации\n"
-
-msgid "Defining Rosenbrock function ...\n"
-msgstr "Определение функции Розенброка ...\n"
-
-msgid "Illustrates the 1st counter example given by Han et al.\n"
-msgstr "Иллюстрирует пример 1-го счётчика, данный Ханном с соавторами.\n"
-
-msgid "Defining Han function...\n"
-msgstr "Определение функции Хэна...\n"
-
-msgid "Defining initial simplex coordinates...\n"
-msgstr ""
-
-msgid "Creating nmplot object...\n"
-msgstr "Создание объекта nmplot...\n"
-
-msgid "Configuring nmplot object...\n"
-msgstr "Настройка объекта nmplot...\n"
-
-msgid "Setup output files...\n"
-msgstr "Установка выходных файлов...\n"
-
-msgid "Plotting contour (please wait)...\n"
-msgstr "Построение контура (пожалуйста, подождите)...\n"
-
-msgid "Illustrates the 2nd counter example given by Han et al.\n"
-msgstr "Иллюстрирует пример 2-го счётчика, данный Ханном с соавторами.\n"
-
-msgid "Creating nmplot object ...\n"
-msgstr "Создание объекта nmplot ...\n"
-
-msgid "Plotting contour (please wait) ...\n"
-msgstr "Построение контура (пожалуйста, подождите)...\n"
-
-msgid "Defining McKinnon function...\n"
-msgstr "Определение функции Маккиннона...\n"
-
-msgid "Error: function expects a two dimensional input\n"
-msgstr "Ошибка: функция ожидает двумерные входные данные\n"
-
-#, c-format
-msgid "x0 = %s\n"
-msgstr "x0 = %s\n"
-
-msgid "Creating object ...\n"
-msgstr "Создание объекта ...\n"
-
-msgid "Plot contour (please wait) ...\n"
-msgstr "Построение контуров (пожалуйста, подождите) ...\n"
-
-msgid "Function Value Average"
-msgstr "Среднее значение функции"
-
-msgid "Iterations"
-msgstr "Итерации"
-
-msgid "Minimum Function Value"
-msgstr "Минимальное значение функции"
-
-msgid "Maximum Oriented length"
+msgid "%s: Wrong input parameters.\n"
 msgstr ""
 
 #, c-format
-msgid "x0=%s\n"
-msgstr "x0=%s\n"
+msgid "%s: Norm of projected gradient lower than %lg.\n"
+msgstr ""
 
-msgid "Creating object...\n"
-msgstr "Создание объекта...\n"
+#, c-format
+msgid "%s: at last iteration f decreases by less than %lg.\n"
+msgstr ""
 
+#, c-format
+msgid "%s: Optimization stops because too small variations for x.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Optim stops: maximum number of calls to f is reached.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Optim stops: maximum number of iterations is reached.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Optim stops: too small variations in gradient direction.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Stop during calculation of descent direction.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Stop during calculation of estimated hessian.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: End of optimization.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: End of optimization (linear search fails).\n"
+msgstr ""
+
+#, c-format
+msgid "Undefined function '%ls'.\n"
+msgstr ""
+
+#, c-format
+msgid "User function '%s' have not been setted.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
-"Illustrates that the fixed-shape Spendley et al. algorithm performs well on "
-"a quadratic test case.\n"
+"%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
 msgstr ""
 
-msgid "Defining quadratic function ...\n"
-msgstr "Определение квадратичной функции...\n"
-
-msgid ""
-"Illustrates that the fixed-shape Spendley et al. algorithm performs badly on "
-"a badly quadratic test case.\n"
+#, c-format
+msgid "%s: Wrong size for output argument #%d: A vector of %d expected.\n"
 msgstr ""
 
-msgid "Defining quadratic function...\n"
-msgstr "Определение квадратичной функции...\n"
-
-msgid ""
-"Illustrates that the variable-shape Nelder-Mead algorithm performs well on a "
-"quadratic test case.\n"
+msgid "An error occurred while getting OptimizationFunctions object.\n"
 msgstr ""
-
-msgid ""
-"Illustrates that the Nelder-Mead algorithm performs correctly on a badly "
-"quadratic test case.\n"
-msgstr ""
-
-msgid ""
-"Illustrates that the fixed-shape Spendley et al. algorithm does NOT perform "
-"well on Rosenbrock test case.\n"
-msgstr ""
-
-msgid "Defining Rosenbrock function...\n"
-msgstr "Определение функции Розенброка...\n"
-
-msgid "Rosenbrock"
-msgstr "Розенброк"
-
-msgid "Output"
-msgstr ""
-
-msgid "Plot"
-msgstr "График"
-
-msgid "Derivative"
-msgstr "Производная"
-
-msgid "Optimization and Simulation"
-msgstr "Оптимизация и моделирование"
-
-msgid "Optimisation"
-msgstr "Оптимизиция"
-
-msgid "fminsearch"
-msgstr "fminsearch"
-
-msgid "Genetic algorithms"
-msgstr "Генетические алгоритмы"
-
-msgid "Simulated Annealing"
-msgstr "Имитационный отжиг"
 
 #, c-format
 msgid "%s: More than 20 equations are not allowed"
-msgstr ""
+msgstr "%s: Больше, чем 20 уравнений не разрешается."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -511,7 +512,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong measurement matrix."
-msgstr ""
+msgstr "%s: Неверная матрица измерений."
 
 #, c-format
 msgid "%s: Initial guess must be a column vector."
@@ -524,63 +525,12 @@ msgstr "%s: Взвешивающая матрица должна быть ква
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
 msgstr ""
+"%s: Для жёстко запрограммированной функции пользователь должен указывать "
+"выходной размер G."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался N-мерный массив.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
-
-#, c-format
-msgid "%s: Order must be 1, 2 or 4.\n"
-msgstr "%s: Порядок должен быть 1, 2 или 4.\n"
-
-#, c-format
-msgid "%s: Q must be orthogonal.\n"
-msgstr "%s: Q должно быть ортогональным.\n"
-
-#, c-format
-msgid ""
-"%s: H_form must be default,blockmat or hypermat, but current H_form=%s\n"
-msgstr ""
-"%s: значение H_form должно быть default, blockmat или hypermat, но текущее "
-"значение H_form=%s\n"
-
-#, c-format
-msgid ""
-"%s: Wrong number of elements in input argument #%d: At least %d elements "
-"expected, but current number is %d.\n"
-msgstr ""
-"%s: Неверное количество элементов во входном аргументе №%d: Ожидалось по "
-"крайней мере %d элементов, но текущее количество %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for element #%d in input argument #%d: A function is "
-"expected, but current type is %s.\n"
-msgstr ""
-"%s: Неверный тип элемента №%d входного аргумента №%d: Ожидалась функция, но "
-"текущий тип %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A function expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
-
-#, c-format
-msgid "%s: Weighting matrix must be square.\n"
-msgstr "%s: Весовая матрица должна быть квадратной.\n"
-
-#, c-format
-msgid "%s: Initial guess not feasible.\n"
-msgstr "%s: Неподходящее исходное предположение.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -652,7 +602,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: The algorithm did not converge (exitflag= %d).\n"
-msgstr ""
+msgstr "%s: Алгоритм не сходится (exitflag= %d).\n"
 
 #, c-format
 msgid ""
@@ -678,6 +628,8 @@ msgstr ""
 #, c-format
 msgid "%s: With hard coded function, user must give output size of fun."
 msgstr ""
+"%s: Для жёстко запрограммированной функции пользователь должен указывать "
+"выходной размер fun."
 
 #, c-format
 msgid "%s: initial guess is feasible."
@@ -783,6 +735,10 @@ msgstr "%s: может быть без ограничения снизу."
 msgid "%s: optimal solution found"
 msgstr "%s: найдено оптимальное решение"
 
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
+
 msgid "Welcome to LMITOOL"
 msgstr "Добро пожаловать в LMITOOL"
 
@@ -819,13 +775,13 @@ msgstr ""
 msgid ""
 "f is the objective function, a linear scalar function of the entries of the "
 "X's,"
-msgstr ""
+msgstr "f - это объектная функция, линейная скалярная функция элементов  X,"
 
 msgid "Gi's are affine matrix functions of the entries of the X's,"
-msgstr ""
+msgstr "Gi - это линейные матричные функции элементов X,"
 
 msgid "Hj's are affine symmetric matrix functions of the entries of the X's."
-msgstr ""
+msgstr "Hj - это линейные симметричные матричные функции элементов X."
 
 msgid ""
 "These functions are parameterized by the entries of known data matrices "
@@ -846,6 +802,8 @@ msgid ""
 "LMITOOL uses Semidefinite Programming package SP developed by L. "
 "Vandenberghe and S. Boyd."
 msgstr ""
+"LMITOOL использует пакет полуопределённого программирования  SP, "
+"разработанынй L. Vandenberghe и S. Boyd."
 
 msgid "LMI problem name: "
 msgstr ""
@@ -857,89 +815,75 @@ msgid "Names of data matrices: "
 msgstr "Имена матриц данных: "
 
 msgid "Problem definition"
-msgstr ""
+msgstr "Определение задачи"
 
-msgid "LMITOOL will generate for you a skeleton of the functions needed"
-msgstr ""
+msgid "LMITOOL will generate a skeleton of the functions needed"
+msgstr "LMITOOL сгенерирует основу необходимых функций"
 
 msgid " (see User's Guide for details). For that, you need to specify:"
-msgstr ""
+msgstr " (см. руководство пользователя). Для этого нужно определить:"
 
-msgid "1- Name of you problem which will be given to the solver function,"
-msgstr ""
+msgid "1- Name of your problem which will be given to the solver function,"
+msgstr "1- Имя задачи, которое будет передано функции программы решения,"
 
 msgid "2- Names of unknown matrices or list of unknown matrices,"
-msgstr ""
+msgstr "2- Имена неизвестных матриц иил список неизвестных матриц,"
 
 msgid "3- Names of data matrices or list of data matrices."
-msgstr ""
+msgstr "3- Имена матриц данных или список матриц данных."
 
 msgid "Try again"
 msgstr "Попробуйте ещё раз"
 
 msgid "File not generated by lmitool or badly modified."
-msgstr ""
+msgstr "Файл не сформирован с помощью lmitool либо плохо изменён."
 
-msgid "Function definitions"
-msgstr ""
+msgid "Function definitions: "
+msgstr "Определения функций: "
 
-msgid "Here is a skeleton of the functions which you shoud edit"
-msgstr ""
+msgid "Here is a skeleton of the functions you should edit."
+msgstr "Это шаблон функций, которые вам нужно редактировать."
 
-msgid "You can do the editing in this window or click on 'ok', save"
-msgstr ""
+msgid "You can edit in this window or click on 'ok'."
+msgstr "Вы можете редактировать в этом окне или щёлкнуть на 'ok'."
 
-msgid "the skeleton and edit later using your favorite editor"
+msgid "Save and edit the skeleton later through your favorite editor."
 msgstr ""
+"сохраните и редактируйте шаблон позже с помощью предпочитаемого вами "
+"редактора."
 
-msgid "Name of file in which you want the solver function"
-msgstr ""
+msgid "Name of the file where to save the solver function"
+msgstr "Имя файла, в котором нужно сохранить функцию программы решения"
 
-msgid "and the evaluation function be saved (overwrites if a"
-msgstr ""
+msgid "and the evaluation function"
+msgstr "и функцию вычисления"
 
-msgid "file with the same name exists already)"
-msgstr ""
+msgid "(Will overwrite if a file with the same name already exists)."
+msgstr "(Будет переписан, если файл с таким же именем уже существует)."
 
 msgid "functions saved in "
-msgstr ""
+msgstr "функции сохранены в "
 
 msgid "    To solve your problem, you need to "
-msgstr ""
+msgstr "    Чтобы решить вашу задачу, вам нужно "
 
 msgid "1- edit file "
-msgstr ""
+msgstr "1- редактировать файл "
 
 msgid "2- load (and compile) your functions:"
-msgstr ""
+msgstr "2- загрузить (и скомпилировать) ваши функции:"
 
 msgid " and call "
-msgstr ""
+msgstr " и вызвать "
 
 msgid " function:"
-msgstr ""
+msgstr " функцию:"
 
 msgid "3- Define "
-msgstr ""
+msgstr "3- Определить "
 
 msgid "To check the result, use [LME,LMI,OBJ]="
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
-
-#, c-format
-msgid "%s: Unexpected maximum number of iterations %s."
-msgstr "%s: Неверное максимальное количество итераций %s."
-
-#, c-format
-msgid "%s: Unexpected maximum number of function evaluations %s."
-msgstr "%s: Неверное максимальное количество оценок функции %s."
-
-#, c-format
-msgid "%s: Unknown status %s"
-msgstr "%s: Неизвестное состояние %s"
+msgstr "Чтобы проверить результат исползуйте [LME,LMI,OBJ]="
 
 #, c-format
 msgid "%s: Unknown step %s"
@@ -990,6 +934,18 @@ msgid ""
 msgstr ""
 "%s: Ожидалась действительная переменная, но для переменной %s на вход №%d "
 "получено %s."
+
+#, c-format
+msgid "%s: Unexpected maximum number of iterations %s."
+msgstr "%s: Неверное максимальное количество итераций %s."
+
+#, c-format
+msgid "%s: Unexpected maximum number of function evaluations %s."
+msgstr "%s: Неверное максимальное количество оценок функции %s."
+
+#, c-format
+msgid "%s: Unknown status %s"
+msgstr "%s: Неизвестное состояние %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -1068,6 +1024,12 @@ msgstr ""
 msgid "%s: History disabled ; turn on -storehistory option."
 msgstr ""
 "%s: История отключена; для включения используйте параметр -storehistory."
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s, %s, %d or %d expected.\n"
+msgstr ""
+"%s: Неверное значение для входного аргумента №%d: ожидается %s, %s, %d или "
+"%d.\n"
 
 #, c-format
 msgid ""
@@ -1193,9 +1155,68 @@ msgstr ""
 "заданному пути."
 
 #, c-format
-msgid ""
-"%s: Hard coded function not allowed, create a Scilab function using call."
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась функция или список.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+"%s: Неверный тип аргумента №%d: в первом элементе списка ожидалась функция.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong number of elements in input argument #%d: At least %d elements "
+"expected, but current number is %d.\n"
+msgstr ""
+"%s: Неверное количество элементов во входном аргументе №%d: Ожидалось по "
+"крайней мере %d элементов, но текущее количество %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор.\n"
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
+"%s: Несовместимые входные параметры №%d и №%d: ожидались одинаковые "
+"размеры.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
+msgstr "%s: Неверное значение входного параметра №%d: должно быть > %d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
+msgstr ""
+"%s: Неверное значение входного параметра #%d: должно входить в множество "
+"{%s}.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался массив строк.\n"
+
+#, c-format
+msgid "%s: Q must be orthogonal.\n"
+msgstr "%s: Q должно быть ортогональным.\n"
+
+#, c-format
+msgid "%s: Unknown value %s for option %s.\n"
+msgstr "%s: Неизвестное значение %s для опции %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась функция.\n"
 
 #, c-format
 msgid ""
@@ -1237,12 +1258,8 @@ msgid "%s: Initial guess is not feasible."
 msgstr "%s: Начальное предположение нереализуемо."
 
 #, c-format
-msgid ""
-"%s: The x0 vector is expected to be a column matrix, but current shape is %d "
-"x %d"
-msgstr ""
-"%s: Ожидалось, что вектор x0 будет вектором-столбцом, но его размерность %d "
-"x %d"
+msgid "%s: Wrong size for x0 argument: A vector expected."
+msgstr "%s: Неверный размер аргумента x0: ожидался вектор."
 
 #, c-format
 msgid "%s: Unknown value %s for %s option"
@@ -1264,6 +1281,13 @@ msgstr ""
 #, c-format
 msgid "%s: Empty function (use -function option)."
 msgstr "%s: Пустая функция (используйте параметр -function)."
+
+#, c-format
+msgid ""
+"%s: Wrong type for user function output argument #%d: A real matrix expected."
+msgstr ""
+"%s: Неверный тип выходного аргумента №%d пользовательской функции: ожидалась "
+"вещественная матрица."
 
 #, c-format
 msgid "%s: History disabled ; enable -storehistory option."
@@ -1295,6 +1319,10 @@ msgid "%s: No output command is defined."
 msgstr "%s: Не указана команда вывода."
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался TSIMPLEX.\n"
+
+#, c-format
 msgid ""
 "%s: Number of rows of x is %d, which is different from number of vertices = "
 "%d."
@@ -1317,6 +1345,16 @@ msgstr ""
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."
 msgstr "%s: Количество столбцов fv равно %d, что отличается от 1."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидается вещественный скаляр.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid ""
@@ -1427,6 +1465,13 @@ msgid "%s: The exclusion index vector has %d rows instead of 1."
 msgstr "%s: Вектор индекса исключений имеет %d строк вместо 1."
 
 #, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or sparse matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента №%d: ожидалась вещественная или разрежённая "
+"матрица.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
@@ -1445,5 +1490,5 @@ msgstr ""
 "значение.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr "%s: Неверное количество аргументов: Ожидалось %d или %d.\n"

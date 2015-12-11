@@ -1,0 +1,10 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;
+;core
+;
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

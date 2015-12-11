@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -19,10 +19,10 @@
 /*--------------------------------------------------------------------------*/
 DIFFERENTIAL_EQUATIONS_IMPEXP int gw_differential_equations2(void);
 /*--------------------------------------------------------------------------*/
-int C2F(sciimpl)(char *fname, unsigned long fname_len);
-int C2F(dassli)(char *fname, unsigned long fname_len);
-int C2F(dasrti)(char *fname, unsigned long fname_len);
-int C2F(daskri)(char *fname, unsigned long fname_len);
+//int C2F(sciimpl)(char *fname,unsigned long fname_len);
+//int C2F(dassli)(char *fname,unsigned long fname_len);
+//int C2F(dasrti)(char *fname,unsigned long fname_len);
+//int C2F(daskri)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif  /* __GW_DIFFERENTIAL_EQUATIONS2__ */
 /*--------------------------------------------------------------------------*/

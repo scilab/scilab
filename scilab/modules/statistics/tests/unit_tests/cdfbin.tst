@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -12,14 +13,19 @@
 //
 // =============================================================================
 
+function k=fact(n)
+    if n<=1;k=1;else k=n*fact(n-1);end
+endfunction
+
+function cnk=CNK(N,k)
+    cnk=fact(N)/(fact(k)*fact(N-k))
+endfunction
+ 
 prec = 1.e-5;
 
 
 XN = 10;
 PR = 0.34;
-
-deff('k=fact(n)','if n<=1;k=1;else k=n*fact(n-1);end');
-deff('cnk=CNK(N,k)','cnk=fact(N)/(fact(k)*fact(N-k))');
 
 pr  = [];
 S   = 0:XN;

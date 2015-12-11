@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __GW_PARALLEL_H__
@@ -16,8 +16,8 @@
 /*--------------------------------------------------------------------------*/
 PARALLEL_IMPEXP int gw_parallel(void);
 /*--------------------------------------------------------------------------*/
-int sci_parallel_run(char *fname, unsigned long fname_len);
-int sci_parallel_concurrency(char *fname, unsigned long fname_len);
+int sci_parallel_run(char *fname, void* pvApiCtx);
+int sci_parallel_concurrency(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_PARALLEL_H__ */
 /*--------------------------------------------------------------------------*/

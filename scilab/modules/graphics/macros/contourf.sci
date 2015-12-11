@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function contourf(x, y, z, nv, style, strf, leg, rect, nax)
 
@@ -113,11 +113,11 @@ function contourf(x, y, z, nv, style, strf, leg, rect, nax)
     end
 
     if size(strf, "*") <> 1 then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "contourf", 6));
+        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 6));
     end
 
     if size(leg, "*") <> 1 then
-        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "contourf", 7));
+        error(999, msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "contourf", 7));
     end
 
     nv1 = nv;

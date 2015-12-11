@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MCLOCK_f">
@@ -71,11 +71,6 @@
                             <xref linkend="Interfacingfunction_MCLOCK_f">Interfacing function</xref>
                         </para>
                     </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="MCLOCK_f">Compiled Super Block content</link>
-                        </para>
-                    </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
@@ -93,7 +88,7 @@
     <refsection id="Description_MCLOCK_f">
         <title>Description</title>
         <para>
-            Add here a paragraph of the function description  
+            Add here a paragraph of the function description
         </para>
         <para>
         </para>
@@ -191,14 +186,14 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="CompiledSuperBlockcontent_MCLOCK_f">
-        <title>Compiled Super Block content</title>
-        <para>
+    <refsection id="Example_MCLOCK_f">
+        <title>MClock example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/MCLOCK_f_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata fileref="../../../../help/images/MCLOCK_f_img3_eng.gif" align="center" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/events_pal/MCLOCK_f_Example.zcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
-        </para>
+        </link>
     </refsection>
 </refentry>

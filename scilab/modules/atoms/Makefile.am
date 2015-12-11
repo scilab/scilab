@@ -5,7 +5,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 modulename=atoms
 
@@ -16,6 +16,10 @@ libsciatoms_la_root_DATA =  license.txt
 #### atoms : init scripts ####
 libsciatoms_la_etcdir = $(mydatadir)/etc
 libsciatoms_la_etc_DATA = etc/atoms.quit etc/atoms.start etc/repositories
+
+#### atoms : XML gui ####
+libsciatoms_la_guidir = $(mydatadir)/gui
+libsciatoms_la_gui_DATA = gui/atomsGui.xml
 
 #### atoms : internal functions ####
 MACROSDIRSEXT = macros/atoms_internals macros/atoms_gui

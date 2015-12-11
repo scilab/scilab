@@ -5,17 +5,23 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [instr_list]=update_instr_list(instr_list,instr)
     // M2SCI function
 
     // Global variables for M2SCI
     global("m2sci_to_insert_b")
+    if isempty(m2sci_to_insert_b)
+        m2sci_to_insert_b = list();
+    end
     global("m2sci_to_insert_a")
+    if isempty(m2sci_to_insert_a)
+        m2sci_to_insert_a = list();
+    end
 
     // Get instructions that must be inserted before converted instruction
-    for k=1:size(m2sci_to_insert_b)
+    for k=1:lstsize(m2sci_to_insert_b)
         if m2sci_to_insert_b(k)<>list() then
             instr_list($+1)=m2sci_to_insert_b(k)
         end
@@ -29,7 +35,7 @@ function [instr_list]=update_instr_list(instr_list,instr)
     end
 
     // Get instructions that must be inserted after converted instruction
-    for k=1:size(m2sci_to_insert_a)
+    for k=1:lstsize(m2sci_to_insert_a)
         if m2sci_to_insert_a(k)<>list() then
             instr_list($+1)=m2sci_to_insert_a(k)
         end

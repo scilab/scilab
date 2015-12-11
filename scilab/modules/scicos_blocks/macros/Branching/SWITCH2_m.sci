@@ -20,29 +20,30 @@
 //
 
 function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,ot,rule,thra,nzz,exprs]=scicos_getvalue("Set parameters",..
             ["Datatype (1=real double  2=complex 3=int32 ...)";"pass first input if: u2>=a (0), u2>a (1), u2~=a (2)";..
             "threshold a";"use zero crossing: yes (1), no (0)"],..
             list("vec",1,"vec",1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             rule=int(rule);
-            if (rule<0) then rule=0, end
-            if (rule>2) then rule=2, end
+            if (rule<0) then
+                rule=0,
+            end
+            if (rule>2) then
+                rule=2,
+            end
             graphics.exprs=exprs;
             model.ipar=rule
             model.rpar=thra
@@ -53,7 +54,10 @@ function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
                 model.nmode=0
                 model.nzcross=0
             end
-            if ((ot<1)|(ot>8))&(ot<>-1) message("Datatype is not supported");ok=%f;end
+            if ((ot<1)|(ot>8))&(ot<>-1) then
+                message("Datatype is not supported");
+                ok=%f;
+            end
             if ok then
                 it(1)=ot;
                 it(2)=1;
@@ -63,7 +67,8 @@ function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
             end
             if ok then
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -89,7 +94,7 @@ function [x,y,typ]=SWITCH2_m(job,arg1,arg2)
 
         exprs=[sci2exp(1);string(ipar);string(rpar);string(nzz)]
 
-        gr_i=["xstringb(orig(1),orig(2),[''switch''],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Vincent COUVERT
@@ -6,7 +7,7 @@
 // =============================================================================
 
 // <-- Non-regression test for bug 2338 -->
-//
+// <-- CLI SHELL MODE -->
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=2338
 //

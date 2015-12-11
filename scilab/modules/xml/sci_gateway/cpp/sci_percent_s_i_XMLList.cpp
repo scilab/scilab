@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
+int sci_percent_s_i_XMLList(char *fname, void* pvApiCtx)
 {
     XMLNodeList *a;
     int lhsid;
@@ -102,10 +102,13 @@ int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
     }
     else if (isNamedVarExist(pvApiCtx, "%s_xmlFormat"))
     {
-        Nbvars = Max(Nbvars, Lhs + Rhs);
-        SciString(&iBegin, (char *)"%s_xmlFormat", &mlhs, &mrhs);
-        Nbvars = Max(Nbvars, Lhs + Rhs + mlhs + mrhs);
+        callScilabFunction(pvApiCtx, "%s_xmlFormat", iBegin, mlhs, mrhs);
+        //Call function directly in scilab 6 C++ api
+        //Nbvars = std::max(Nbvars, Lhs + Rhs);
+        //SciString(&iBegin, (char *)"%s_xmlFormat", &mlhs, &mrhs);
+        //Nbvars = std::max(Nbvars, Lhs + Rhs + mlhs + mrhs);
 
+        iBegin = nbInputArgument(pvApiCtx) + mrhs + 1;
         err = getVarAddressFromPosition(pvApiCtx, iBegin, &retaddr);
         if (err.iErr)
         {

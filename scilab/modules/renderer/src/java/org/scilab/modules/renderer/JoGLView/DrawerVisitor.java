@@ -6,32 +6,52 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView;
+
+import java.awt.Component;
+import java.awt.Dimension;
+import java.nio.ByteBuffer;
+import java.nio.FloatBuffer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import javax.swing.SwingUtilities;
 
 import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.Drawer;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
+import org.scilab.forge.scirenderer.buffers.BuffersManager;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
-import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
+import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.tranformations.Transformation;
 import org.scilab.forge.scirenderer.tranformations.TransformationFactory;
 import org.scilab.forge.scirenderer.tranformations.TransformationStack;
+import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.utils.shapes.geometry.CubeFactory;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.arc.Arc;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -49,12 +69,14 @@ import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
 import org.scilab.modules.graphic_objects.surface.Plot3d;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
 import org.scilab.modules.graphic_objects.vectfield.Arrow;
 import org.scilab.modules.graphic_objects.vectfield.Champ;
 import org.scilab.modules.graphic_objects.vectfield.Segs;
 import org.scilab.modules.renderer.JoGLView.arrowDrawing.ArrowDrawer;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.contouredObject.ContouredObjectDrawer;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 import org.scilab.modules.renderer.JoGLView.interaction.InteractionManager;
 import org.scilab.modules.renderer.JoGLView.label.LabelManager;
 import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
@@ -62,21 +84,8 @@ import org.scilab.modules.renderer.JoGLView.mark.MarkSpriteManager;
 import org.scilab.modules.renderer.JoGLView.postRendering.PostRendered;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.LightingUtils;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
-import org.scilab.modules.renderer.utils.textRendering.FontManager;
-
-import java.awt.Component;
-import java.awt.Dimension;
-import java.nio.ByteBuffer;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import javax.swing.SwingUtilities;
 
 /**
  * @author Pierre Lando
@@ -115,7 +124,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private static final boolean DEBUG_MODE = false;
 
     private final Component component;
-    private final Figure figure;
+    private final AxesContainer figure;
     private final InteractionManager interactionManager;
 
     private final ColorMapTextureDataProvider colorMapTextureDataProvider;
@@ -132,6 +141,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private final AxisDrawer axisDrawer;
     private final ArrowDrawer arrowDrawer;
     private final FecDrawer fecDrawer;
+    private final DatatipTextDrawer datatipTextDrawer;
 
     private DrawingTools drawingTools;
     private Texture colorMapTexture;
@@ -145,10 +155,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * Used to get access to the DrawerVisitor corresponding to a given Figure when the
      * renderer module is accessed from another thread than the AWT's.
      */
-    private final static Map<String, DrawerVisitor> visitorMap = new HashMap<String, DrawerVisitor>();
+    private final static Map<Integer, DrawerVisitor> visitorMap = new HashMap<Integer, DrawerVisitor>();
     private final List<PostRendered> postRenderedList = new LinkedList<PostRendered>();
+    private final static Map<Integer, List<Integer>> openGLChildren = new HashMap<Integer, List<Integer>>();
 
-    public DrawerVisitor(Component component, Canvas canvas, Figure figure) {
+    public static int[] getSize() {
+        return new int[] {visitorMap.size(), openGLChildren.size()};
+    }
+
+    public DrawerVisitor(Component component, Canvas canvas, AxesContainer figure) {
         GraphicController.getController().register(this);
 
         this.component = component;
@@ -168,18 +183,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         this.legendDrawer = new LegendDrawer(this);
         this.fecDrawer = new FecDrawer(this);
         this.colorMapTextureDataProvider = new ColorMapTextureDataProvider();
-
-        /*
-         * Forces font loading from the main thread. This is done because
-         * if getSciFontManager (thus, font loading) is concurrently accessed from
-         * 2 different threads (the AWT's and the main one), freezing may occur.
-         */
-        FontManager.getSciFontManager();
+        this.datatipTextDrawer = new DatatipTextDrawer(canvas.getTextureManager());
 
         visitorMap.put(figure.getIdentifier(), this);
     }
 
-    public static void changeVisitor(Figure figure, DrawerVisitor visitor) {
+    public static void changeVisitor(AxesContainer figure, DrawerVisitor visitor) {
         if (visitor == null) {
             visitorMap.remove(figure.getIdentifier());
         } else {
@@ -218,6 +227,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     /**
+     * @return the LegendDrawer
+     */
+    public LegendDrawer getLegendDrawer() {
+        return legendDrawer;
+    }
+
+    /**
      * Mark manager getter.
      * @return the mark manager.
      */
@@ -243,12 +259,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         return colorMap;
     }
 
+    public DatatipTextDrawer getDatatipTextDrawer() {
+        return datatipTextDrawer;
+    }
+
     /**
      * Returns the visitor corresponding to the Figure identifier.
      * @param figureId the figure identifier.
      * @return the visitor.
      */
-    public static DrawerVisitor getVisitor(String figureId) {
+    public static DrawerVisitor getVisitor(Integer figureId) {
         return visitorMap.get(figureId);
     }
 
@@ -265,7 +285,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     @Override
     public void draw(DrawingTools drawingTools) {
         this.drawingTools = drawingTools;
-        figure.accept(this);
+        if (figure instanceof Figure) {
+            visit((Figure) figure);
+        } else {
+            visit((Frame) figure);
+        }
 
         for (PostRendered postRendered : postRenderedList) {
             try {
@@ -281,7 +305,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * Ask the given object to accept visitor.
      * @param childrenId array of object identifier.
      */
-    public void askAcceptVisitor(String[] childrenId) {
+    public void askAcceptVisitor(Integer[] childrenId) {
         if (childrenId != null) {
 
             for (int i = childrenId.length - 1; i >= 0; --i) {
@@ -314,6 +338,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             if (axes.isValid() && axes.getVisible()) {
                 try {
                     currentAxes = axes;
+                    axesDrawer.computeRulers(axes);
                     axesDrawer.draw(axes);
                 } catch (SciRendererException e) {
                     invalidate(axes, e);
@@ -343,7 +368,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(Axis axis) {
         if (axis.getVisible()) {
             axesDrawer.enableClipping(currentAxes, axis.getClipProperty());
-            axisDrawer.draw(axis);
+            axisDrawer.draw(currentAxes, axis);
             axesDrawer.disableClipping(axis.getClipProperty());
         }
     }
@@ -372,11 +397,39 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public void visit(Figure figure) {
         synchronized (figure) {
             /** Set the current {@see ColorMap}. */
-            colorMap = figure.getColorMap();
-            drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
-            drawingTools.clearDepthBuffer();
-            if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing()) {
-                askAcceptVisitor(figure.getChildren());
+            try {
+                Dimension dims = getCanvas().getDimension();
+                colorMap = figure.getColorMap();
+                drawingTools.clear(ColorFactory.createColor(colorMap, figure.getBackground()));
+                drawingTools.clearDepthBuffer();
+                if (figure.isValid() && figure.getVisible() && figure.getImmediateDrawing() && dims.width > 1 && dims.height > 1) {
+                    askAcceptVisitor(figure.getChildren());
+                }
+            } catch (Exception e) {
+                System.err.println(e);
+            }
+        }
+    }
+
+    public void visit(Frame frame) {
+        synchronized (frame) {
+            /** Set the current {@see ColorMap}. */
+            try {
+                colorMap = frame.getColorMap();
+                drawingTools.clear(ColorFactory.createColor(colorMap, frame.getBackground()));
+                drawingTools.clearDepthBuffer();
+                if (frame.isValid() && frame.getVisible()) {
+                    DrawerVisitor visitor = visitorMap.get(frame.getIdentifier());
+                    if (visitor != null) {
+                        Dimension dims = visitor.getCanvas().getDimension();
+                        visitor.setDrawingTools(drawingTools);
+                        if (dims.width > 1 && dims.height > 1) {
+                            visitor.askAcceptVisitor(frame.getChildren());
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.err.println(e);
             }
         }
     }
@@ -395,12 +448,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 Appearance trianglesAppearance = new Appearance();
                 drawingTools.draw(triangles, trianglesAppearance);
                 /*} catch (ObjectRemovedException e) {
-                        invalidate(grayplot, e);
-                    } catch (SciRendererException e) {
-                        invalidate(grayplot, e);
-                    } catch (OutOfMemoryException e) {
-                        invalidate(grayplot, e);
-                }*/
+                  invalidate(grayplot, e);
+                  } catch (SciRendererException e) {
+                  invalidate(grayplot, e);
+                  } catch (OutOfMemoryException e) {
+                  invalidate(grayplot, e);
+                  }*/
             } catch (Exception e) {
                 System.err.println(e);
                 e.printStackTrace();
@@ -425,8 +478,16 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     drawingTools.draw(geometry, appearance);
                 } else {
                     TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
+                    double[][] factors = currentAxes.getScaleTranslateFactors();
                     Double[] scale = matplot.getScale();
                     Double[] translate = matplot.getTranslate();
+
+                    scale[0] *= factors[0][0];
+                    scale[1] *= factors[0][1];
+
+                    translate[0] = translate[0] * factors[0][0] + factors[1][0];
+                    translate[1] = translate[1] * factors[0][1] + factors[1][1];
+
                     Transformation t = TransformationFactory.getTranslateTransformation(translate[0], translate[1], 0);
                     Transformation t2 = TransformationFactory.getScaleTransformation(scale[0], scale[1], 1);
                     modelViewStack.pushRightMultiply(t);
@@ -499,10 +560,18 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
                         appearance.setTexture(getColorMapTexture());
                     } else {
-                        geometry.setColors(null);
+                        if (polyline.getColorSet()) {
+                            ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
+                            geometry.setColors(colors);
+                            appearance.setLineColor(null);
+                        } else {
+                            geometry.setColors(null);
+                            appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                        }
                     }
 
-                    appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                    Integer lineColor = polyline.getSelected() ? polyline.getSelectedColor() : polyline.getLineColor();
+                    appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                     appearance.setLineWidth(polyline.getLineThickness().floatValue());
                     appearance.setLinePattern(polyline.getLineStyleAsEnum().asPattern());
 
@@ -514,7 +583,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                          * whereas the background color is used for all the other styles.
                          */
                         if (style == 5) {
-                            fillColor = polyline.getLineColor();
+                            fillColor = lineColor;
                         } else {
                             fillColor = polyline.getBackground();
                         }
@@ -526,13 +595,118 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     if (style == 4) {
                         arrowDrawer.drawArrows(polyline.getParentAxes(), polyline.getIdentifier(), polyline.getArrowSizeFactor(),
-                                               polyline.getLineThickness(), false, false, polyline.getLineColor(), true);
+                                               polyline.getLineThickness(), false, false, lineColor, true);
                     }
 
                     if (polyline.getMarkMode()) {
-                        Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
-                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions);
+                        int offset = polyline.getMarkOffset();
+                        int stride = polyline.getMarkStride();
+                        if (polyline.getColorSet() && (polyline.getNumMarkForegrounds() > 0) || (polyline.getNumMarkBackgrounds() > 0)) {
+                            ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
+                            Color auxColor;
+                            if (polyline.getNumMarkBackgrounds() > 0) {
+                                auxColor = ColorFactory.createColor(colorMap, polyline.getMark().getForeground());
+                            } else {
+                                auxColor = ColorFactory.createColor(colorMap, polyline.getMark().getBackground());
+                            }
+                       		FloatBuffer data = positions.getData();
+                       		FloatBuffer colorData = colors.getData();
+                           	Integer[] sizes = polyline.getMarkSizes();
+                           	if ( (sizes.length > 0) && (data != null) && (colorData != null) && (positions.getSize() == sizes.length) && (colors.getSize() == sizes.length) ) {
+                            		
+                           			Integer markSizeTmp = polyline.getMarkSize();
+                           			
+                           			// markers with different sizes
+                       				data.rewind();
+                       				colorData.rewind();
+                       				
+                                    stride = stride < 1 ? 1 : stride;
+                                    offset = offset < 0 ? 0 : offset;
+
+                                    int elementSize = positions.getElementsSize();
+                      				int mark = offset * elementSize;
+                       				int k = 0;
+                       				
+                                    while (data.remaining() >= stride * elementSize) {
+                          				
+                                    	// Be careful, do not use polyline.setMarkSize since this will destroy the sizes
+                      					polyline.getMark().setSize(sizes[k++]);
+
+                      					BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
+                        				ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
+                        				ElementsBuffer singleColor = bufferManager.createElementsBuffer();
+
+                        				float[] position = {0, 0, 0, 1};
+                                        data.position(mark);
+                        				data.get(position);
+                        				
+                                        float[] color = {0, 0, 0, 0};
+                                        colorData.position(mark);
+                                        colorData.get(color);
+
+                        				mark += stride * elementSize;
+                        				
+                        				singlePosition.setData(position, elementSize);
+                        				singleColor.setData(color, elementSize);
+
+                        				Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
+                        				drawingTools.draw(sprite, AnchorPosition.CENTER, singlePosition, 0, 0, 0, auxColor, singleColor);
+                            			
+                        				bufferManager.dispose(singleColor);
+                        				bufferManager.dispose(singlePosition);
+                        			}
+                        			// restore the size of the mark
+                                	// Be careful, do not use polyline.setMarkSize since this will destroy the sizes
+                  					polyline.getMark().setSize(markSizeTmp);
+                        	} else {
+                                Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
+                        		drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, auxColor, colors);
+                        	}
+                        } else {
+                    		FloatBuffer data = positions.getData();
+                        	Integer[] sizes = polyline.getMarkSizes();
+                        	if ( (sizes.length > 0) && (data != null) && (positions.getSize() == sizes.length) ) {
+                        		
+                        		Integer markSizeTmp = polyline.getMarkSize();
+                        		
+                        		// markers with different sizes
+                   				data.rewind();
+                    				
+                                stride = stride < 1 ? 1 : stride;
+                                offset = offset < 0 ? 0 : offset;
+
+                                int elementSize = positions.getElementsSize();
+                  				int mark = offset * elementSize;
+                   				int k = 0;
+                   				
+                                while (data.remaining() >= stride * elementSize) {
+                      				
+                                	// setting the size of the mark temporary 
+                  					polyline.getMark().setSize(sizes[k++]);
+
+                  					BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
+                    				ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
+
+                    				float[] position = {0, 0, 0, 1};
+                                    data.position(mark);
+                    				data.get(position);
+                    				mark += stride * elementSize;
+                    				singlePosition.setData(position, elementSize);
+
+                    				Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
+                    				drawingTools.draw(sprite, AnchorPosition.CENTER, singlePosition, 0, 0, 0, null, null);
+                        			
+                    				bufferManager.dispose(singlePosition);
+                    			}
+                    			// restore the size of the mark
+                    			polyline.getMark().setSize(markSizeTmp);
+                        	}
+                        	else {
+                        		Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
+                        		drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, null, null);
+                        	}
+                        }
                     }
                 } catch (ObjectRemovedException e) {
                     invalidate(polyline, e);
@@ -542,6 +716,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     invalidate(polyline, e);
                 }
                 axesDrawer.disableClipping(polyline.getClipProperty());
+                askAcceptVisitor(polyline.getDatatips());
             }
         }
     }
@@ -576,12 +751,15 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (fac3d.getSurfaceMode()) {
                     DefaultGeometry geometry = new DefaultGeometry();
                     geometry.setVertices(dataManager.getVertexBuffer(fac3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(fac3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(fac3d.getIdentifier()));
 
                     geometry.setPolygonOffsetMode(true);
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(fac3d.getMaterial()));
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (fac3d.getColorMode() != 0) {
                         geometry.setFillDrawingMode(Geometry.FillDrawingMode.TRIANGLES);
@@ -613,12 +791,13 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     if ((fac3d.getColorMode() >= 0) && (fac3d.getLineThickness() > 0.0)) {
                         geometry.setLineDrawingMode(Geometry.LineDrawingMode.SEGMENTS);
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(fac3d.getIdentifier()));
-
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, fac3d.getLineColor()));
+                        Integer lineColor = fac3d.getSelected() ? fac3d.getSelectedColor() : fac3d.getLineColor();
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                         appearance.setLineWidth(fac3d.getLineThickness().floatValue());
                     }
 
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (fac3d.getMarkMode()) {
@@ -659,6 +838,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     geometry.setPolygonOffsetMode(true);
 
                     geometry.setVertices(dataManager.getVertexBuffer(plot3d.getIdentifier()));
+                    geometry.setNormals(dataManager.getNormalBuffer(plot3d.getIdentifier()));
                     geometry.setIndices(dataManager.getIndexBuffer(plot3d.getIdentifier()));
                     /* Back-facing triangles */
                     if (plot3d.getHiddenColor() > 0) {
@@ -670,6 +850,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
 
                     /* Front-facing triangles */
                     Appearance appearance = new Appearance();
+                    appearance.setMaterial(LightingUtils.getMaterial(plot3d.getMaterial()));
+                    LightingUtils.setupLights(drawingTools.getLightManager(), currentAxes);
 
                     if (plot3d.getColorFlag() == 1) {
                         geometry.setColors(dataManager.getColorBuffer(plot3d.getIdentifier()));
@@ -692,11 +874,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setWireIndices(dataManager.getWireIndexBuffer(plot3d.getIdentifier()));
 
                         appearance.setLinePattern(plot3d.getLineStyleAsEnum().asPattern());
-                        appearance.setLineColor(ColorFactory.createColor(colorMap, plot3d.getLineColor()));
+                        Integer lineColor = plot3d.getSelected() ? plot3d.getSelectedColor() : plot3d.getLineColor();
+                        appearance.setLineColor(ColorFactory.createColor(colorMap, lineColor));
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
-
                     drawingTools.draw(geometry, appearance);
+                    LightingUtils.setLightingEnable(drawingTools.getLightManager(), false);
                 }
 
                 if (plot3d.getMarkMode()) {
@@ -706,9 +889,21 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
 
-                    Texture texture = markManager.getMarkSprite(plot3d, colorMap, appearance);
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
-                    drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+                    if ((plot3d.getMark().getBackground() == -3 || plot3d.getMark().getForeground() == -3) && plot3d.getColorFlag() == 1) {
+                        Texture sprite = markManager.getMarkSprite(plot3d, null, appearance);
+                        ElementsBuffer colors = dataManager.getColorBuffer(plot3d.getIdentifier());
+                        Color auxColor;
+                        if (plot3d.getMark().getBackground() == -3) {
+                            auxColor = ColorFactory.createColor(colorMap, plot3d.getMark().getForeground());
+                        } else {
+                            auxColor = ColorFactory.createColor(colorMap, plot3d.getMark().getBackground());
+                        }
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, auxColor, colors);
+                    } else {
+                        Texture sprite = markManager.getMarkSprite(plot3d, colorMap, appearance);
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, null, null);
+                    }
                 }
             } catch (ObjectRemovedException e) {
                 invalidate(plot3d, e);
@@ -719,7 +914,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
             axesDrawer.disableClipping(plot3d.getClipProperty());
         }
-
     }
 
     @Override
@@ -732,6 +926,27 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 invalidate(text, e);
             }
             axesDrawer.disableClipping(text.getClipProperty());
+        }
+    }
+
+    @Override
+    public void visit(Datatip datatip) {
+        if (datatip.isValid() && datatip.getVisible()) {
+            axesDrawer.enableClipping(currentAxes, datatip.getClipProperty());
+            try {
+                if (datatip.getMarkMode()) {
+                    /* TODO: appearance can be not-null */
+                    Texture texture = markManager.getMarkSprite(datatip, colorMap, null);
+                    Vector3d markPos = DatatipTextDrawer.calculateAnchorPoint(datatip);
+                    drawingTools.draw(texture, AnchorPosition.CENTER, markPos);
+                }
+                if (datatip.getTipLabelMode()) {
+                    datatipTextDrawer.draw(drawingTools, colorMap, datatip);
+                }
+            } catch (SciRendererException e) {
+                invalidate((Text)datatip, e);
+            }
+            axesDrawer.disableClipping(datatip.getClipProperty());
         }
     }
 
@@ -815,11 +1030,25 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                  * in order to obtain the latter's Mark (all arrows are supposed to have the same contour properties for now).
                  */
                 if (segs.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
                     // Take only into account start-end of segs and not the arrow head.
                     positions.getData().limit(segs.getNumberArrows() * 2 * 4);
-                    drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+
+                    if (segs.getArrows().get(0).getMark().getBackground() == -3 || segs.getArrows().get(0).getMark().getForeground() == -3) {
+                        Texture sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), null, null);
+                        ElementsBuffer colors = dataManager.getColorBuffer(segs.getIdentifier());
+                        Color auxColor;
+                        if (segs.getArrows().get(0).getMark().getBackground() == -3) {
+                            auxColor = ColorFactory.createColor(colorMap, segs.getArrows().get(0).getMark().getForeground());
+                        } else {
+                            auxColor = ColorFactory.createColor(colorMap, segs.getArrows().get(0).getMark().getBackground());
+                        }
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, auxColor, colors);
+                    } else {
+                        Texture sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, null, null);
+                    }
+
                     positions.getData().limit(positions.getData().capacity());
                 }
 
@@ -840,10 +1069,48 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
+        /*
+         * Check if property is CHILDREN and if there is a new child I should care about
+         */
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        int objectStyle = (type == GraphicObjectProperties.__GO_UICONTROL__ ? (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_STYLE__) : -1);
+        if (id.intValue() != figure.getIdentifier().intValue()
+                && ((type == GraphicObjectProperties.__GO_UICONTROL__ && objectStyle != GraphicObjectProperties.__GO_UI_FRAME__)
+                    || type == GraphicObjectProperties.__GO_UIMENU__)) {
+            return;
+        }
+
+        if (property == GraphicObjectProperties.__GO_CHILDREN__) {
+            if (id.intValue() != figure.getIdentifier().intValue()) {
+                /* Ignore children that are not mine */
+                return;
+            }
+            Integer[] children = GraphicController.getController().getObjectFromId(id).getChildren();
+            List<Integer> currentOpenGLChildren = openGLChildren.get(id);
+            if (currentOpenGLChildren == null) {
+                /* No openGLChildren in cache, create empty one */
+                openGLChildren.put(id, new ArrayList<Integer>());
+                currentOpenGLChildren = openGLChildren.get(id);
+            }
+            List<Integer> updatedOpenGLChildren = new ArrayList<Integer>();
+            for (int i = 0 ; i < children.length ; ++i) {
+                Integer currentType = (Integer) GraphicController.getController().getProperty(children[i], GraphicObjectProperties.__GO_TYPE__);
+                if (currentType != GraphicObjectProperties.__GO_UICONTROL__ && currentType != GraphicObjectProperties.__GO_UIMENU__) {
+                    updatedOpenGLChildren.add(children[i]);
+                }
+            }
+            if (currentOpenGLChildren.size() == updatedOpenGLChildren.size()) {
+                /* No change made on openGL children => nothing to do */
+                return;
+            } else {
+                openGLChildren.put(id, updatedOpenGLChildren);
+            }
+        }
+
         try {
             if (needUpdate(id, property)) {
-                if (GraphicObjectProperties.__GO_COLORMAP__ == property && figure.getIdentifier().equals(id)) {
+                if (GraphicObjectProperties.__GO_COLORMAP__ == property) {
                     labelManager.disposeAll();
                     dataManager.disposeAllColorBuffers();
                     dataManager.disposeAllTextureCoordinatesBuffers();
@@ -852,6 +1119,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.disposeAll();
                     fecDrawer.updateAll();
                     colorMapTextureDataProvider.update();
+                    datatipTextDrawer.disposeAll();
                     textureManager.disposeAll();
                 } else {
                     labelManager.update(id, property);
@@ -861,17 +1129,21 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     axesDrawer.update(id, property);
                     legendDrawer.update(id, property);
                     fecDrawer.update(id, property);
+                    datatipTextDrawer.update(id, property);
                 }
 
                 if (GraphicObjectProperties.__GO_ANTIALIASING__ == property) {
                     canvas.setAntiAliasingLevel(figure.getAntialiasing());
                 }
 
-                if (isImmediateDrawing(id)) {
-                    if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
-                        canvas.redrawAndWait();
-                    } else {
-                        canvas.redraw();
+                Figure parentFigure = (Figure) GraphicController.getController().getObjectFromId(figure.getParentFigure());
+                if (figure.getVisible() && parentFigure != null && parentFigure.getVisible()) {
+                    if (isImmediateDrawing(id)) {
+                        if (GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__ == property) {
+                            canvas.redrawAndWait();
+                        } else {
+                            canvas.redraw();
+                        }
                     }
                 }
             }
@@ -893,12 +1165,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * @param property the changed property.
      * @return true id the given changed property make the figure out of date.
      */
-    protected boolean needUpdate(String id, int property) {
+    protected boolean needUpdate(Integer id, int property) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
-        if ((object != null) && isFigureChild(id)
-                && objectType != GraphicObjectProperties.__GO_UICONTROL__
-                && objectType != GraphicObjectProperties.__GO_UIMENU__) {
+        int objectStyle = (objectType == GraphicObjectProperties.__GO_UICONTROL__ ? (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_STYLE__) : -1);
+        if ((object != null) && (isFigureChild(id) || isFigureParent(id)) || (objectType == GraphicObjectProperties.__GO_UICONTROL__ && objectStyle == GraphicObjectProperties.__GO_UI_FRAME__)
+                && objectType != GraphicObjectProperties.__GO_UIMENU__ && objectType != GraphicObjectProperties.__GO_UI_FRAME_BORDER__) {
 
             if (GraphicObjectProperties.__GO_VALID__ == property) {
                 return false;
@@ -907,16 +1179,17 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             if (object instanceof Axes) {
                 Axes axes = (Axes) object;
 
-                if (axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) {
+                if ((axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property))) {
                     return false;
                 }
 
-                if (axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) {
-                    return false;
-                }
-
-                if (axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property)) {
-                    return false;
+                if ((!axes.getXAxisAutoTicks() && X_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (!axes.getYAxisAutoTicks() && Y_AXIS_TICKS_PROPERTIES.contains(property)) ||
+                        (!axes.getZAxisAutoTicks() && Z_AXIS_TICKS_PROPERTIES.contains(property))) {
+                    axesDrawer.computeMargins(axes);
+                    return true;
                 }
 
                 if (property != GraphicObjectProperties.__GO_CHILDREN__) {
@@ -924,12 +1197,31 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 }
             }
 
-            if (object instanceof Figure) {
-                if (property == GraphicObjectProperties.__GO_SIZE__ || property == GraphicObjectProperties.__GO_AXES_SIZE__ || property == GraphicObjectProperties.__GO_CHILDREN__) {
-                    Figure fig = (Figure) object;
-                    for (String gid : fig.getChildren()) {
+            if (object instanceof Label || object instanceof Legend) {
+                GraphicObject parent = GraphicController.getController().getObjectFromId(object.getParent());
+                if (parent instanceof Axes) {
+                    Axes axes = (Axes) parent;
+                    if (axes.getXAxisLabel().equals(id) ||
+                            axes.getYAxisLabel().equals(id) ||
+                            axes.getZAxisLabel().equals(id) ||
+                            axes.getTitle().equals(id)) {
+                        labelManager.update(id, property);
+                        axesDrawer.computeMargins(axes);
+                    } else if (object instanceof Legend && (property == GraphicObjectProperties.__GO_LEGEND_LOCATION__ || property == GraphicObjectProperties.__GO_LINE_WIDTH__)) {
+                        legendDrawer.update(id, property);
+                        axesDrawer.computeMargins(axes);
+                    }
+                }
+            } else if (object instanceof Figure) {
+                if (property == GraphicObjectProperties.__GO_SIZE__
+                        || property == GraphicObjectProperties.__GO_AXES_SIZE__
+                        || property == GraphicObjectProperties.__GO_CHILDREN__
+                        || property == GraphicObjectProperties.__GO_POSITION__
+                        || property == GraphicObjectProperties.__GO_VISIBLE__) {
+                    for (Integer gid : figure.getChildren()) {
                         GraphicObject go = GraphicController.getController().getObjectFromId(gid);
                         if (go instanceof Axes) {
+                            axesDrawer.computeMargins((Axes) go);
                             axesDrawer.computeRulers((Axes) go);
                         }
                     }
@@ -938,6 +1230,20 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (SILENT_FIGURE_PROPERTIES.contains(property)) {
                     return false;
                 }
+            } else if (object instanceof Frame
+                       && id.intValue() == figure.getIdentifier().intValue()
+                       && property == GraphicObjectProperties.__GO_POSITION__) {
+                Frame fig = (Frame) object;
+                for (Integer gid : fig.getChildren()) {
+                    GraphicObject go = GraphicController.getController().getObjectFromId(gid);
+                    if (go instanceof Axes) {
+                        axesDrawer.computeRulers((Axes) go);
+                    }
+                }
+
+            } else if (object instanceof Axes && property == GraphicObjectProperties.__GO_X_AXIS_LOCATION__ ||
+                       property == GraphicObjectProperties.__GO_Y_AXIS_LOCATION__ || property == GraphicObjectProperties.__GO_AUTO_MARGINS__) {
+                axesDrawer.computeMargins((Axes) object);
             }
 
             if (!object.isValid()) {
@@ -945,14 +1251,21 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
 
             return true;
-        } else {
-            return false;
         }
+        // Special case if top level figure colormap/immediate_drawing has been updated, force redraw
+        if ((property == GraphicObjectProperties.__GO_COLORMAP__ ||  property == GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__)
+                && id.intValue() == figure.getParentFigure().intValue()) {
+            return true;
+        }
+        return false;
     }
 
-    private boolean isImmediateDrawing(String id) {
-        String parentId = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        if (parentId == null || !parentId.equals(figure.getIdentifier())) {
+    private boolean isImmediateDrawing(Integer id) {
+        Integer parentId = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
+        if (figure instanceof Frame) {
+            parentId = figure.getParentFigure();
+        }
+        if (figure instanceof Figure && (parentId == null || !parentId.equals(figure.getIdentifier()))) {
             return false;
         } else {
             Boolean b =  (Boolean) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_IMMEDIATE_DRAWING__);
@@ -961,11 +1274,18 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     @Override
-    public void createObject(String id) {
+    public void createObject(Integer id) {
     }
 
     @Override
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+        if (!figure.getIdentifier().equals(id) && type == GraphicObjectProperties.__GO_UICONTROL__ || type == GraphicObjectProperties.__GO_UIMENU__) {
+            return; // Not of my managed openGL children
+        }
+
+        openGLChildren.remove(id);
+
         if (isImmediateDrawing(id)) {
             canvas.redraw();
         }
@@ -1002,13 +1322,56 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     }
 
     /**
+     * Check if the given id correspond to a parent of the current {@see Figure}.
+     * @param id the given id.
+     * @return true if the given id correspond to a parent of the current {@see Figure}.
+     */
+    private boolean isFigureParent(Integer id) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object != null) {
+            Object parentObject = GraphicController.getController().getProperty(figure.getIdentifier(), GraphicObjectProperties.__GO_PARENT__);
+            Integer parentUID = parentObject == null ? 0 : (Integer) parentObject;
+            while (parentUID.intValue() != 0) {
+                if (parentUID.intValue() == id.intValue()) {
+                    return true;
+                }
+                parentObject = GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_PARENT__);
+                parentUID = parentObject == null ? 0 : (Integer) parentObject;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * Check if the given id correspond to a child of the current {@see Figure}.
      * @param id the given id.
      * @return true if the given id correspond to a child of the current {@see Figure}.
      */
-    private boolean isFigureChild(String id) {
-        String parentFigureID = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT_FIGURE__);
-        return figure.getIdentifier().equals(parentFigureID);
+    private boolean isFigureChild(Integer id) {
+        if (id.intValue() == figure.getIdentifier().intValue()) {
+            return true;
+        }
+
+        Object parentObject = GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+        Integer parentUID = parentObject == null ? 0 : (Integer) parentObject;
+        while (parentUID != 0) {
+
+            if (figure.getIdentifier().intValue() == parentUID.intValue()) {
+                return true;
+            }
+
+            Integer parentStyle = (Integer) GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_STYLE__);
+            if (parentStyle != null && parentStyle.intValue() == GraphicObjectProperties.__GO_UI_FRAME__) {
+                // Drop drawing if parent is a Frame and I'm not the dedicated visitor.
+                return false;
+            }
+
+            parentObject = GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_PARENT__);
+            parentUID = parentObject == null ? 0 : (Integer) parentObject;
+
+        }
+        return false;
     }
 
     /**
@@ -1045,8 +1408,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
      * Figure getter.
      * @return the figure this visitor draw.
      */
-    public Figure getFigure() {
+    public AxesContainer getFigure() {
         return figure;
+    }
+
+    public Axes getAxes() {
+        return currentAxes;
     }
 
     private Geometry cube;
@@ -1076,6 +1443,11 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     private class ColorMapTextureDataProvider extends AbstractTextureDataProvider {
         byte[] whiteColor = {(byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF};
         byte[] blackColor = {0x00, 0x00, 0x00, (byte) 0xFF};
+
+        public ColorMapTextureDataProvider() {
+            super();
+            this.imageType = ImageType.RGBA_BYTE;
+        }
 
         @Override
         public Dimension getTextureSize() {

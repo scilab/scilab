@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,14 +14,13 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
 int get_list_info(void* _pvCtx, int* _piAddress);
 void insert_indent(void);
 
 static int iLocalTab = 1;
 
-int common_list(char *fname, unsigned long fname_len)
+int common_list(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddr = NULL;

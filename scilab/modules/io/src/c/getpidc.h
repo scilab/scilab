@@ -6,19 +6,19 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef __GETPIDC_H__
 #define __GETPIDC_H__
 
-#include "machine.h"
+#include "dynlib_io.h"
 /**
 * Retrieve the pid (process id)
 * @param[out] id1 the id of the process
 */
-int C2F(getpidc)(int *id1);
+IO_IMPEXP int getpidc(int *id1);
 
 
 #endif /* __GETPIDC_H__ */

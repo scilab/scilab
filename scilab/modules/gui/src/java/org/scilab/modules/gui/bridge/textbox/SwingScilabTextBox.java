@@ -7,12 +7,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.bridge.textbox;
 
+import java.awt.Color;
+
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
 
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
@@ -33,6 +37,8 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
 
     private static final long serialVersionUID = 3632560416759268432L;
 
+    private Border defaultBorder = null;
+
     /**
      * Constructor
      */
@@ -51,6 +57,10 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
      */
     public void setText(String newText) {
         super.setText(newText);
+    }
+
+    public void setEmptyText() {
+        setText(null);
     }
 
     /**
@@ -176,7 +186,10 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
      * @param reliefType the type of the relief to set (See ScilabRelief.java)
      */
     public void setRelief(String reliefType) {
-        setBorder(ScilabRelief.getBorderFromRelief(reliefType));
+        if (defaultBorder == null) {
+            defaultBorder = getBorder();
+        }
+        setBorder(ScilabRelief.getBorderFromRelief(reliefType, defaultBorder));
     }
 
     /**
@@ -204,4 +217,17 @@ public class SwingScilabTextBox extends JTextArea implements SimpleTextBox {
         throw new UnsupportedOperationException();
     }
 
+    public void resetBackground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TextArea.background");
+        if (color != null) {
+            setBackground(color);
+        }
+    }
+
+    public void resetForeground() {
+        Color color = (Color)UIManager.getLookAndFeelDefaults().get("TextArea.foreground");
+        if (color != null) {
+            setForeground(color);
+        }
+    }
 }

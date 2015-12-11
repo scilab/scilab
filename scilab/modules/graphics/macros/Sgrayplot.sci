@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     //
@@ -23,7 +23,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     // Copyright INRIA
     // Modified by Bruno Pincon (14 oct 04) to have named argument working
     // Some new modifs (Bruno Pincon, Feb 2005, demo + some checking + cleaning + add
-    // mesh and colout optionnal args)
+    // mesh and colout optional args)
 
     [lhs,rhs] = argn();
 
@@ -55,9 +55,9 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
         error(msprintf(gettext("%s: Wrong size for input arguments #%d and #%d: The number of columns of argument #%d must be equal to the size of argument #%d.\n"),"Sgrayplot", 2, 3, 3, 2));
     end
 
-    // parsing the optionnal args
+    // parsing the optional args
     opt_arg_list = ["strf", "rect","nax","zminmax", "colminmax", "mesh", "colout"]
-    opt_arg_seq = []
+    opt_arg_seq = ""
     for opt_arg = opt_arg_list
         if exists(opt_arg,"local") then
             opt_arg_seq = opt_arg_seq +","+ opt_arg + "=" + opt_arg
@@ -72,7 +72,7 @@ function []=Sgrayplot(x,y,z, strf, rect, nax, zminmax, colminmax, mesh, colout)
     num1  num1+p num+p]  ,  zeros(nbtri,1)]
 
     // then plot
-    if opt_arg_seq == [] then
+    if opt_arg_seq == "" then
         fec(noe_x,noe_y,connect,z)
     else
         execstr("fec(noe_x,noe_y,connect,z"+opt_arg_seq+")")

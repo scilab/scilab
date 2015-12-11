@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 //
@@ -17,6 +17,9 @@
 //   <no arg>
 //
 function optimsimplex_check ( this )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_check", 1));
+    end
     nx1 = size(this.x,1)
     nx2 = size(this.x,2)
     if this.nbve<> 0 & nx1 <> this.nbve then
@@ -34,4 +37,3 @@ function optimsimplex_check ( this )
         error(msprintf(gettext("%s: Number of columns of fv is %d, which is different from 1."),"optimsimplex_check" , nf2 ));
     end
 endfunction
-

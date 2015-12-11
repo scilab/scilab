@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function demo_outputcmd()
@@ -60,7 +60,7 @@ function demo_outputcmd()
     nm = neldermead_configure(nm,"-function",rosenbrock);
     nm = neldermead_configure(nm,"-x0",[-1.2 1.0]');
     nm = neldermead_configure(nm,"-maxiter",200);
-    nm = neldermead_configure(nm,"-maxfunevals",300);
+    nm = neldermead_configure(nm,"-maxfunevals",350);
     nm = neldermead_configure(nm,"-tolfunrelative",10*%eps);
     nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
     nm = neldermead_configure(nm,"-outputcommand",myoutputcmd);

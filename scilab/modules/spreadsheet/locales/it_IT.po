@@ -8,150 +8,189 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-15 02:58+0000\n"
-"Last-Translator: Wonderfulheart <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un double.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A double expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"double.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"booleano.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"valore booleano.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of double expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di double.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A matrix of double, with integer "
 "values, expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di double con valori interi.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso '%s', '%s', "
+"'%s', '%s', '%s' o '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value %d to %d) expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un double "
+"(valore fra %d e %d).\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' , '%s', '%s', '%s', "
 "'%s' or '%s' expected.\n"
 msgstr ""
+"%s: L' argomento in ingresso #%d ha un valore sbagliato: era atteso '%s', "
+"'%s', '%s' , '%s', '%s', '%s', '%s' o '%s' .\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Four entries expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: erano attese "
+"quattro voci.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A column or row vector expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"vettore colonna o un vettore riga.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Inconsistent range.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: intervallo non "
+"consistente.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
+msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era attesa una "
+"stringa '%s' o '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
 
 #, c-format
 msgid "%s: separator and decimal must have different values.\n"
-msgstr ""
+msgstr "%s: separatore e decimale devono avere valori differenti.\n"
 
 #, c-format
 msgid "%s: Range row or/and column left indice(s) out of bounds.\n"
 msgstr ""
+"%s: Riga dell'intervallo o/e indice sinistro della colonna fuori dai "
+"limiti.\n"
 
 #, c-format
 msgid "%s: can not convert data.\n"
-msgstr ""
+msgstr "%s: impossibile convertire i dati.\n"
 
 #, c-format
 msgid "%s: %s does not exist.\n"
-msgstr ""
+msgstr "%s: %s non esiste.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
-msgstr ""
+msgstr "%s: impossibile aprire il file %s.\n"
 
 #, c-format
 msgid "%s: can not read file %s: Error in the column structure\n"
 msgstr ""
+"%s: impossibile aprire il file %s: errore nella struttura della colonna\n"
 
 #, c-format
 msgid "%s: can not read file %s.\n"
-msgstr ""
+msgstr "%s: impossibile leggere il file %s.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"vettore di tipo stringa.\n"
 
 #, c-format
 msgid "%s: can not read text: Error in the column structure\n"
 msgstr ""
+"%s: impossibile leggere il testo: errore nella struttura della colonna\n"
 
 #, c-format
 msgid "%s: can not read text.\n"
-msgstr ""
+msgstr "%s: impossibile leggere il testo.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings "
 "expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"vettore di stringhe 1-per-n o m-per-1.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un double "
+"(valore fra 1 e 17).\n"
 
 #, c-format
 msgid "%s: Not supported format %s.\n"
-msgstr ""
+msgstr "%s: Il formato %s non è supportato.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -164,14 +203,32 @@ msgid ""
 "%s: Wrong type for input argument #%d: A matrix of string or a matrix of "
 "real expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una matrice "
+"di stringhe o una di numeri reali.\n"
 
 #, c-format
 msgid "%s: error.\n"
+msgstr "%s: errore.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
 msgstr ""
 
 #, c-format
 msgid "The file %s does not exist.\n"
 msgstr "Il file %s non esiste.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -182,8 +239,16 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Non è possibile aprire il file %s.\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: Non c'è alcun flusso xls nel file ole2 %s.\n"
+msgid "There is no xls stream in the ole2 file %ls.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not an ole2 file.\n"
@@ -206,10 +271,8 @@ msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr "%s: È gestito solo il formato di file BIFF8.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno "
-"scalare.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -226,9 +289,11 @@ msgid ""
 "%s: Inconsistency found in the columns. At line %d, found %d columns while "
 "the previous had %d.\n"
 msgstr ""
+"%s: Trovata un'inconsistenza nelle colonne. Alla riga %d vi sono %d colonne "
+"mentre nella precedente %d.\n"
 
 msgid "Warning"
-msgstr ""
+msgstr "Attenzione"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
@@ -414,9 +479,3 @@ msgstr "ripOLE: la decodifica di %s ha portato all'errore %d.\n"
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Il modulo speadsheet di Scilab non è installato.\n"
-
-msgid "Spreadsheet"
-msgstr "Foglio di calcolo"
-
-msgid "Read a xls file"
-msgstr "Leggi un file xls"

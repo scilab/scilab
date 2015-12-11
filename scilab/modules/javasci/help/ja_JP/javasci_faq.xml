@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" scilab:needs-examples="no" xml:id="javasci_faq_v2" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>javasci FAQ</refname>
+        
+        <refpurpose>Javasci v2に関するFAQ</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>質問 / 回答</title>
+        
+        <qandaset>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>javasciに基づくアプリケーションを実行した際,エラー
+                        
+                        <emphasis role="italic">Exception in thread "main" java.lang.NoClassDefFoundError:
+                            
+                            org/scilab/modules/javasci/Scilab
+                            
+                        </emphasis>
+                        が発生しました.
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        おそらく,
+                        
+                        org.scilab.modules.javasci.jar が CLASSPATHで定義されていないと
+                        
+                        思われます.
+                        
+                        <link linkend="compile_and_run_javasci_v2">javasciでコンパイル/実行</link>
+                        
+                        参照ください.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        Linux/Unix/MacOSXで,ネーティブライブラリjavasci2が存在しない
+                        
+                        または見つかりません.
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        おそらく the java.library.path の値が設定されていません. 
+                        
+                        <link linkend="compile_and_run_javasci_v2">javasciでコンパイル/実行</link>
+                        
+                        参照ください.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        Windowsで, ネーティブライブラリ javasci.dll が存在しないまたは見つかりません.
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>環境変数 PATH が設定されていない可能性があります. 
+                        
+                        <link linkend="compile_and_run_javasci_v2">javasciでコンパイル/実行</link>
+                        
+                        参照ください.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        Linux/Unix/MacOSXで, java.library.path を設定した
+                        
+                        後でも,ネーティブライブラリjavasci2 が
+                        
+                        存在しないまたは見つかりません.
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        以下のようなエラーが発生した場合: <emphasis role="italic">java.lang.UnsatisfiedLinkError: /path/to/scilab/lib/scilab/libscilab.so.0.0.0: libsciparameters.so.5: cannot open shared object file: No such file or directory</emphasis>, 
+                        
+                        LD_LIBRARY_PATHにScilabネーティブライブラリが存在するパスを設定して
+                        
+                        みてください.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        Windowsで, PATHを設定した後でもネーティブライブラリ
+                        
+                        javasci.dll が存在しないまたは見つかりません.
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        以下のようなエラーが発生した場合: <emphasis role="italic">java.lang.UnsatisfiedLinkError: C:\Program Files\scilab-XXXX\bin\javasci.dll: The specified procedure could not be found</emphasis>, 
+                        
+                        環境変数PATHにより,Scilabライブラリと使用するシステム上の他のライブラリが
+                        
+                        衝突するようになった可能性があります.
+                        
+                        (PATH変数で)Scilabパスを他のパスの前に移動してみてください.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        Javasciプログラムが以下のように起動に失敗します:
+                        
+                        <emphasis role="italic">An exception occurred: Auto detection of SCI failed.
+                            
+                            Could not retrieve the variable SCI
+                            
+                        </emphasis>
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        SCIを, GNU/Linuxでは
+                        
+                        <emphasis role="italic">scilab-X.Y.Z/share/scilab/</emphasis>,
+                        
+                        Mac OS Xでは
+                        
+                        <emphasis role="italic">scilab-X.Y.Z/Contents/MacOS/share/scilab/</emphasis>,
+                        
+                        Windowsでは
+                        
+                        <emphasis role="italic">scilab-X.Y.Z/</emphasis>
+                        
+                        に設定する必要があります.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        グラフィックをプロットしようとしましたが,
+                        
+                        グラフィックが現れません.
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        論理値 <emphasis role="italic">true</emphasis>を指定して
+                        
+                        コンストラクタ
+                        
+                        (<emphasis role="italic">Scilab sci = new Scilab(true);</emphasis>) 
+                        
+                        をコールしたか確認してください.
+                        
+                        これにより, Scilab をアドバンスドモードで起動します.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        Javasciから既存のSwingアプリケーションにアタッチしようと
+                        
+                        しています.
+                        
+                        どのようにすればよいのでしょう?
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        現時点では, 簡単に行うことはできません.
+                        
+                        この機能は将来のバージョンのScilabで提供されます.
+                        
+                        いつもと同様, 貢献はウエルカムです!
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        javasciからScilabグラフィックウインドウを管理する現在の手法は
+                        
+                        非常に大変とわかりました.
+                        
+                        どのようにすれば良いのでしょう?
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para>
+                        
+                        困りましたね. 我々は現在のソリューションは完全とはほど遠いと認識しています.
+                        
+                        この制限に将来のリリースで対応したいと考えています.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+            <qandaentry>
+                
+                <question>
+                    
+                    <para>
+                        
+                        Scilabインスタンスが外部モジュールを有しますが,
+                        
+                        <literal>undefined symbol</literal>により起動に失敗しました:
+                        
+                    </para>
+                    
+                </question>
+                
+                <answer>
+                    
+                    <para><literal>
+                            
+                            <emphasis role="italic">atomsLoad: An error occurred while loading 'module-0.0.2':	link : Library could not be loaded: /path/2.0-1/sci_gateway/c/../../src/cpp/libmy.so: undefined symbol: scirun_</emphasis>
+                            
+                        </literal>
+                        
+                        これには,2種類の解決策が考えられます.
+                        
+                        1番目は,
+                        
+                        シンボルを定義するライブラリを指定して構築することにより,
+                        
+                        モジュール自体を修正するものです.
+                        
+                        2番目は,未定義の変数が宣言されたライブラリを
+                        
+                        <literal>LD_PRELOAD=/path/to/the/lib/providing/the/symbol/libmy.so</literal>で
+                        
+                        定義することです.
+                        
+                    </para>
+                    
+                </answer>
+                
+            </qandaentry>
+            
+        </qandaset>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link type="remote" linkend="javasci/javadoc/index.html">Javasci v2の文書</link> を閲覧(これによりWebブラウザがオープンします).
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="javasci">Javasci</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="compile_and_run_javasci_v2">javasciでコンパイル/実行</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

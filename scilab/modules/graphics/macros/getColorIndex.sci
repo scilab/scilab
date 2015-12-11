@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function opt1 = getColorIndex(ColorString)
 
@@ -16,7 +16,7 @@ function opt1 = getColorIndex(ColorString)
     end
 
     if type(ColorString)<>10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "getColorIndex", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "getColorIndex", 1));
     end
 
     opt1=-1;
@@ -73,7 +73,7 @@ function opt1 = getColorIndex(ColorString)
     str = part(str,i:length(str));
 
     if (size(opt1,"*") > 1)  // unreachable case normally
-        warning(msprintf(gettext("%s:  Wrong number of input argument: %d expected.\n"),"getColorIndex",1));
+        warning(msprintf(gettext("%s:  Wrong number of input arguments: %d expected.\n"),"getColorIndex",1));
         return;
     end
 

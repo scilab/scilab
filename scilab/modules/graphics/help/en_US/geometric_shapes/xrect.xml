@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="xrect">
@@ -38,7 +38,8 @@
             <literal>xrect</literal> draws a rectangle defined by <literal>[x,y,w,h]</literal> 
             (upper-left point, width, height) in user coordinates.
         </para>
-        <para>WARNING: please note that height is positive downwards.</para>
+        <warning>Please note that height is positive downwards.</warning>
+        <warning>Created rectangle inherits the clip property from the current axes.</warning>
     </refsection>
     <refsection>
         <title>Examples</title>

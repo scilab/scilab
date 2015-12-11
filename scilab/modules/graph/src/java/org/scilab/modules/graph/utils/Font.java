@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,7 +17,7 @@ import java.awt.Color;
 import com.mxgraph.util.mxConstants;
 
 /**
- * Font list from Scilab getfont() and xlfont().
+ * Font list from Scilab xlfont().
  */
 public enum Font {
     /** xlfont(0) */

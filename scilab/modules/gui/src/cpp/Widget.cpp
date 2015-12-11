@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,8 +14,8 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-void requestFocus(char *pObjUID)
+void requestFocus(int iObjUID)
 {
     // Scilab default values
-    CallScilabBridge::requestFocus(getScilabJavaVM(), pObjUID);
+    CallScilabBridge::requestFocus(getScilabJavaVM(), iObjUID);
 }

@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-08-24 20:26+0000\n"
+"PO-Revision-Date: 2013-06-30 21:13+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 msgid "overflow error"
 msgstr "chyba přetečení"
@@ -23,8 +23,53 @@ msgid "Trigger block must have discrete time input."
 msgstr "Blok sepnutí musí mít diskrétní časový vstup."
 
 #, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+"LU faktorizace byla dokončena, ale faktor U je přesně singulární : U(%d,%d) "
+"ke přesně nula."
+
+msgid "Read error!\n"
+msgstr "Chyba čtení!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Nelze otevřít soubor!\n"
+
+msgid "Read error\n"
+msgstr "Chyba čtení\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "zpožděný čas=%f ale poslední uložený čas=%f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "Zvažte zvýšení délky vyrovnávací paměti v bloku zpoždění \n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "Velikost vyrovnávací paměti nebo vstupu se změnila!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "zpožděný čas=%f ale poslední uložený čas=%f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+"Zvažte zvýšení délky vyrovnávací paměti v bloku proměnného zpoždění\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Nelze otevřít /dev/audio!\n"
+
+#, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "Proměnná '%s' neexistuje.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
 
 msgid "Invalid variable type.\n"
 msgstr "Neplatný typ proměnné.\n"
@@ -63,69 +108,26 @@ msgstr "Výstup by měl být typu celoč.16.\n"
 msgid "Output should be of uint32 type.\n"
 msgstr "Výstup by měl být typu celoč.32 bez znaménka.\n"
 
+msgid "Cannot read the values field.\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr "Typ Časového vektoru není dvojitá přesnost.\n"
+
+msgid "The Time vector type is complex.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
 msgstr ""
 "Časový vektor má špatnou velikost, očekáváno [%d, %d] a předáno [%d, %d].\n"
 
-msgid "The Time vector type is not double.\n"
-msgstr "Typ Časového vektoru není dvojitá přesnost.\n"
+msgid "Cannot read the time field.\n"
+msgstr ""
 
 msgid "The time vector should be an increasing vector.\n"
 msgstr "Časový vektor by měl být rostoucí vektor.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problém přidělení ve křivce.\n"
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr "Neplatný typ proměnné : chyba v kódování hypermatice scilab.\n"
-
-#, c-format
-msgid ""
-"The LU factorization has been completed, but the factor U is exactly "
-"singular : U(%d,%d) is exactly zero."
-msgstr ""
-"LU faktorizace byla dokončena, ale faktor U je přesně singulární : U(%d,%d) "
-"ke přesně nula."
-
-msgid "Read error!\n"
-msgstr "Chyba čtení!\n"
-
-msgid "Could not open the file!\n"
-msgstr "Nelze otevřít soubor!\n"
-
-msgid "Read error\n"
-msgstr "Chyba čtení\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "zpožděný čas=%f ale poslední uložený čas=%f \n"
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr "Zvažte zvýšení délky vyrovnávací paměti v bloku zpoždění \n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "Chyba při otevírání souboru '%s'.\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "Chyba zápisu v souboru '%s'.\n"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "Velikost vyrovnávací paměti nebo vstupu se změnila!\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "zpožděný čas=%f ale poslední uložený čas=%f\n"
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
-"Zvažte zvýšení délky vyrovnávací paměti v bloku proměnného zpoždění\n"
-
-msgid "Could not open /dev/audio!\n"
-msgstr "Nelze otevřít /dev/audio!\n"
 
 msgid "Clear a bit"
 msgstr "Vyčistit bit"
@@ -329,6 +331,9 @@ msgstr "Typ posunu"
 msgid "SR flip-flop"
 msgstr "SR Klopný obvod"
 
+msgid "Matrix A is not square or D has wrong dimension"
+msgstr ""
+
 msgid "Invalid masked block."
 msgstr "Neplatný maskovaný blok."
 
@@ -429,45 +434,45 @@ msgid "Cancel"
 msgstr "Zrušit"
 
 msgid "Please give the discretization domain values"
-msgstr ""
+msgstr "Prosím zadejte hodnoty diskretizační doméně"
 
 #, c-format
 msgid "Please give the %s operator coefficients"
-msgstr ""
+msgstr "Prosím zadejte operátorům %s koeficienty"
 
 msgid "Please give the sign for the variable discriminant"
-msgstr ""
+msgstr "Prosím zadejte znaménko proměnné diskriminantu"
 
 msgid "Please give the discretization method type"
-msgstr ""
+msgstr "Prosím zadejte typ diskretizační metody"
 
 msgid "Please give the discretization method degree"
-msgstr ""
+msgstr "Prosím zadejte stupeň diskretizační metody"
 
 msgid "Please give the number of discretization points"
-msgstr ""
+msgstr "Prosím zadejte počet diskretizačních bodů"
 
 #, c-format
 msgid "Please give the initial condition %s"
-msgstr ""
+msgstr "Prosím zadejte počáteční podmínky %s"
 
 msgid "Please give the boundary conditions"
+msgstr "Prosím zadejte hraniční podmínky"
+
+#, c-format
+msgid "The finite element discretization took %.2f seconds"
 msgstr ""
 
 #, c-format
-msgid "The finite element discrtization takes %.2f seconds"
+msgid "The finite differences discretization took %.2f seconds"
 msgstr ""
 
 #, c-format
-msgid "The finite differences discrtization takes %.2f seconds"
+msgid "The finite volume discretization took %.2f seconds"
 msgstr ""
 
 #, c-format
-msgid "The finite volume discrtization takes %.2f seconds"
-msgstr ""
-
-#, c-format
-msgid "The code generation, the compilation and link takes %.2f seconds"
+msgid "The code generation, the compilation and link took %.2f seconds"
 msgstr ""
 
 msgid "Event output port"
@@ -673,8 +678,23 @@ msgstr "Špatná hodnota parametru 'Frekvence': %e."
 msgid "Implicit input port"
 msgstr "Impicitní vstupní port"
 
-msgid "Regular input port"
-msgstr "Normální vstupní port"
+msgid "Set Input block parameters"
+msgstr ""
+
+msgid "Outport size ([-1 -2] for inherit)"
+msgstr ""
+
+msgid "Outport Type (-1 for inherit)"
+msgstr ""
+
+msgid "Port number must be a positive integer"
+msgstr ""
+
+msgid "Outport Size must be a 2 elements vector"
+msgstr ""
+
+msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
+msgstr ""
 
 msgid "Modulo counter (0 to N counter)"
 msgstr "Počítadlo Modula (počítadlo 0 až N)"
@@ -822,19 +842,3 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Očekávány stejné velikosti"
-
-msgid "&File"
-msgstr "&Soubor"
-
-msgid "&Tools"
-msgstr "&Nástroje"
-
-msgid "&Edit"
-msgstr "&Úpravy"
-
-msgid "&?"
-msgstr "&?"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""

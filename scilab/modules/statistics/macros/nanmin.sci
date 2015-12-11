@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 
 
@@ -35,7 +35,11 @@ function [s,index] = nanmin(x,orient)
     //
     //
 
-    if argn(2)==1 then  orient="*",end
+    [lhs, rhs] = argn(0)
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"),"nanmin",1,2))
+    end
+    if rhs==1 then  orient="*",end
     if orient==1 then orient="r",end
     if orient==2 then orient="c",end
     if x==[]|(size(x,"*")==1&isnan(x)) then s=[],index=[],return,end

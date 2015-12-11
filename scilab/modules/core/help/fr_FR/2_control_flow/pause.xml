@@ -14,11 +14,11 @@
         </para>
         <para>
             Dans ce mode, <literal>[...]=return(...) </literal>
-            renvoie les variables de l'argument <literal>(...)</literal> dans l'environnement appelant 
+            renvoie les variables de l'argument <literal>(...)</literal> dans l'environnement appelant
             sous les noms précisés dans <literal> [...]</literal>. Sinon, les variables de l'environnement interrompu sont protégées et non modifiables.
         </para>
         <para>
-            L'instruction <literal>pause</literal> est très utile en phase de mise au point ou de déboggage.
+            L'instruction <literal>pause</literal> est très utile en phase de mise au point ou de débogage.
         </para>
         <para>
             Il est possible de sortir du mode de pause en mettant fin à l'exécution en tapant <literal>"abort"</literal>.

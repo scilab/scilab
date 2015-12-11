@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,7 +15,9 @@
 #define __GETMATLABVARIABLE_H__
 
 #include "matfile_manager.h"
-#include "MALLOC.h"
+#include "dynlib_matio.h"
+
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -34,7 +36,7 @@
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+MATIO_IMPEXP matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Integer variable from stack
@@ -63,6 +65,10 @@ matvar_t *GetIntegerVariable(void *pvApiCtx, int iVar, const char *name, int * p
  */
 matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /*
  * Get a Matlab Struct variable from stack
  *
@@ -77,7 +83,9 @@ matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfi
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
+// MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
+MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+
 
 /*
  * Get a Matlab Cell variable from stack
@@ -91,7 +99,11 @@ matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matf
  *
  * @return Matlab variable (See MATIO library)
  */
-matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+MATIO_IMPEXP matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+
+#ifdef __cplusplus
+}
+#endif
 
 /*
  * Get a Matlab Char variable from stack

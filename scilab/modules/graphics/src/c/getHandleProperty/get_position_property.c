@@ -5,12 +5,13 @@
  * Copyright (C) 2006 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010 - DIGITEO - Manuel Juliachs
  * Copyright (C) 2011 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2013 - Pedro SOUZA
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -32,13 +33,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_position_property(void* _pvCtx, char* pobjUID)
+void* get_position_property(void* _pvCtx, int iObjUID)
 {
     int iType = -1;
     int* piType = &iType;
     double* position = NULL;
+    void* ret = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
+    if (piType == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
+        return NULL;
+    }
 
     /* Special figure case */
     if (iType == __GO_FIGURE__)
@@ -47,14 +54,14 @@ int get_position_property(void* _pvCtx, char* pobjUID)
         int* figureSize;
         double position[4];
 
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
+        getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_int_vector, (void **) &figurePosition);
 
-        getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **) &figureSize);
+        getGraphicObjectProperty(iObjUID, __GO_AXES_SIZE__, jni_int_vector, (void **) &figureSize);
 
         if (figurePosition == NULL || figureSize == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
-            return -1;
+            return NULL;
         }
 
         position[0] = (double) figurePosition[0];
@@ -62,7 +69,10 @@ int get_position_property(void* _pvCtx, char* pobjUID)
         position[2] = (double) figureSize[0];
         position[3] = (double) figureSize[1];
 
-        return sciReturnRowVector(_pvCtx, position, 4);
+        ret = sciReturnRowVector(position, 4);
+        releaseGraphicObjectProperty(__GO_POSITION__, figurePosition, jni_int_vector, 2);
+        releaseGraphicObjectProperty(__GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
+        return ret;
     }
 
     /* Special label and legend case : only 2 values for position */
@@ -70,27 +80,48 @@ int get_position_property(void* _pvCtx, char* pobjUID)
     {
         double* position;
 
-        getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
+        getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
         if (position == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
-            return -1;
+            return NULL;
         }
 
-        return sciReturnRowVector(_pvCtx, position, 2);
+        ret = sciReturnRowVector(position, 2);
+        releaseGraphicObjectProperty(__GO_POSITION__, position, jni_double_vector, 2);
+        return ret;
+    }
+
+    if (iType == __GO_LIGHT__)
+    {
+        double* position = NULL;
+
+        getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **)&position);
+
+        if (position == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
+            return NULL;
+        }
+
+        ret = sciReturnRowVector(position, 3);
+        releaseGraphicObjectProperty(__GO_POSITION__, position, jni_double_vector, 3);
+        return ret;
     }
 
     /* Generic case : position is a 4 row vector */
 
-    getGraphicObjectProperty(pobjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
+    getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void **) &position);
 
     if (position == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "position");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVector(_pvCtx, position, 4);
+    ret = sciReturnRowVector(position, 4);
+    releaseGraphicObjectProperty(__GO_POSITION__, position, jni_double_vector, 4);
+    return ret;
 }
 /*------------------------------------------------------------------------*/

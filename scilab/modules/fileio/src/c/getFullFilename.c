@@ -6,23 +6,20 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
-#if defined(__linux__)
-#undef _FORTIFY_SOURCE /* Avoid dependency on GLIBC_2.4 (__wcscat_chk/__wcscpy_chk) */
-#endif
 #include "getFullFilename.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
 #include "scicurdir.h"
 #include "isdir.h"
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
-wchar_t *getFullFilenameW(wchar_t* FilenameInput)
+wchar_t *getFullFilenameW(const wchar_t* FilenameInput)
 {
     wchar_t *pStwcFullFilename = NULL;
 
@@ -121,27 +118,24 @@ wchar_t *getFullFilenameW(wchar_t* FilenameInput)
 
 }
 /*--------------------------------------------------------------------------*/
-char *getFullFilename(char* Filename)
+char *getFullFilename(const char* Filename)
 {
     char *pStFullFilename = NULL;
-
     if (Filename)
     {
         wchar_t *wcFilename = to_wide_string(Filename);
         if (wcFilename)
         {
-            wchar_t *pStwcFullFilename = NULL;
-            pStwcFullFilename = getFullFilenameW(wcFilename);
+            wchar_t *pStwcFullFilename = getFullFilenameW(wcFilename);
             FREE(wcFilename);
-            wcFilename = NULL;
             if (pStwcFullFilename)
             {
                 pStFullFilename = wide_string_to_UTF8(pStwcFullFilename);
                 FREE(pStwcFullFilename);
-                pStwcFullFilename = NULL;
             }
         }
     }
+
     return pStFullFilename;
 }
 /*--------------------------------------------------------------------------*/

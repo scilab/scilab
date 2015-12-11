@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,current_figure,cur_draw_mode)
     // SETTITLELABELPROPERTY function
@@ -168,7 +168,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
             titlelabel.text = PropertyValue;
             return
         else
-            warning(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"setTitleLabelProperty",2));
+            warning(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"setTitleLabelProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end
@@ -207,7 +207,7 @@ function [fail] = setTitleLabelProperty(PropertyName,PropertyValue,titlelabel,cu
                 return;
             end
         else
-            warning(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"setTitleLabelProperty",2));
+            warning(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"setTitleLabelProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_fileparts(tree)
     // M2SCI function
@@ -24,11 +24,11 @@ function [tree]=sci_fileparts(tree)
         tree=Operation("+",list(tree,pathconvert_funcall),tree.lhs)
     else
         add=Operation("+",list(tree.lhs(1),pathconvert_funcall),list())
-        insert(Equal(list(tree.lhs(1)),add),1)
+        m2sci_insert(Equal(list(tree.lhs(1)),add),1)
     end
 
     if lhs==4 then
-        insert(Equal(list(tree.lhs(4)),Cste("")),1)
+        m2sci_insert(Equal(list(tree.lhs(4)),Cste("")),1)
         tree.lhs(4)=null()
     end
 endfunction

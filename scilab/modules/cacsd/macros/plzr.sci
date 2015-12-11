@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function plzr(a,b,c,d)
     //
@@ -29,7 +29,7 @@ function plzr(a,b,c,d)
         dt=a.dt;
         [a,b,c,d]=a(2:5)
         if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong value of input argument %d: Proper system expected.\n"),"plzr",1));
+            error(msprintf(gettext("%s: Wrong value of input argument #%d: Proper system expected.\n"),"plzr",1));
         end
     case "state-space" then
         if rhs<>1 then
@@ -38,7 +38,7 @@ function plzr(a,b,c,d)
         dt=a(7);
         [a,b,c,d]=a(2:5)
         if type(d)<>1 then
-            error(msprintf(gettext("%s: Wrong value of input argument %d: Proper system expected.\n"),"plzr",1));
+            error(msprintf(gettext("%s: Wrong value of input argument #%d: Proper system expected.\n"),"plzr",1));
         end
     case "constant" then
         if rhs<>4 then
@@ -97,17 +97,17 @@ function plzr(a,b,c,d)
         xpoly(nr,ni)
         e=gce();e.line_mode="off";e.mark_mode="on";
         e.mark_size_unit="point";e.mark_size=7;e.mark_style=5;
-        legs=[legs;gettext("Zeros")]
+        legs=gettext("Zeros")
         lhandle=[e;lhandle]
     end;
     if size(dr,"*")<>0 then
         xpoly(dr,di)
         e=gce();e.line_mode="off";e.mark_mode="on";
         e.mark_size_unit="point";e.mark_size=7;e.mark_style=2;
-        legs=[legs;gettext("Poles")]
+        legs=[gettext("Poles");legs]
         lhandle=[e;lhandle]
     end
-    if dt == "d" then
+    if dt == "d" | type(dt) == 1 then
         ax.grid=ones(1,3)*color("gray")
         ax.box = "on";
         xarc(-1,1,2,2,0,360*64)

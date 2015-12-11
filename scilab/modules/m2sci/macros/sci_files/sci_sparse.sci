@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_sparse(tree)
     // M2SCI function
@@ -68,13 +68,13 @@ function [tree]=sci_sparse(tree)
         else
             if typeof(i)<>"variable" then
                 V1=gettempvar(1)
-                insert(Equal(list(V1),i))
+                m2sci_insert(Equal(list(V1),i))
             else
                 V1=i
             end
             if typeof(j)<>"variable" then
                 V2=gettempvar(2)
-                insert(Equal(list(V2),j))
+                m2sci_insert(Equal(list(V2),j))
             else
                 V2=j
             end
@@ -105,13 +105,13 @@ function [tree]=sci_sparse(tree)
         else
             if typeof(i)<>"variable" then
                 V1=gettempvar(1)
-                insert(Equal(list(V1),i))
+                m2sci_insert(Equal(list(V1),i))
             else
                 V1=i
             end
             if typeof(j)<>"variable" then
                 V2=gettempvar(2)
-                insert(Equal(list(V2),j))
+                m2sci_insert(Equal(list(V2),j))
             else
                 V2=j
             end

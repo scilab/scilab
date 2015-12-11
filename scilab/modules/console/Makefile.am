@@ -5,12 +5,13 @@
 # Copyright (C) DIGITEO - 2009 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009 - Pierre MARECHAL
 # Copyright (C) DIGITEO - 2011 - Allan CORNET
-# 
+# Copyright (C) DIGITEO - 2011 - Antoine ELIAS
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 
@@ -34,29 +35,23 @@ libsciconsole_la_etc_DATA = \
 	etc/Actions-Configuration.xml
 
 #### console : List of the cpp files ####
-CONSOLE_CXX_JNI_SOURCES = src/jni/CallScilabBridge.cpp
+CONSOLE_CPP_JNI_SOURCES = src/jni/CallScilabBridge.cpp
 
-CONSOLE_CXX_SOURCES =  src/cpp/ClearConsole.cpp \
-src/cpp/ClearConsolePart.cpp \
-src/cpp/ConsolePrintf.cpp \
-src/cpp/ConsoleRead.cpp \
-src/cpp/ConsoleIsWaitingForInput.cpp \
-src/cpp/GetCharWithoutOutput.cpp \
-src/cpp/PromptToHome.cpp \
-src/cpp/ScilabLinesUpdate.cpp \
-src/cpp/SetConsolePrompt.cpp
+CONSOLE_CPP_SOURCES = \
+    src/cpp/ClearConsole.cpp \
+    src/cpp/ClearConsolePart.cpp \
+    src/cpp/ConsolePrintf.cpp \
+    src/cpp/ConsoleRead.cpp \
+    src/cpp/ConsoleIsWaitingForInput.cpp \
+    src/cpp/GetCharWithoutOutput.cpp \
+    src/cpp/PromptToHome.cpp \
+    src/cpp/ScilabLinesUpdate.cpp \
+    src/cpp/SetConsolePrompt.cpp
 
 #### console : List of the c files ####
-CONSOLE_C_JNI_SOURCES = src/jni/GuiManagement_wrap.c \
-src/jni/DropFiles_wrap.c
-
-# List of the gateway c files
-CONSOLE_GATEWAY_C_SOURCES = sci_gateway/c/gw_console.c \
-sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_lines.c \
-sci_gateway/c/sci_prompt.c \
-sci_gateway/c/sci_iswaitingforinput.c
+CONSOLE_C_JNI_SOURCES = \
+    src/jni/GuiManagement_wrap.c \
+    src/jni/DropFiles_wrap.c
 
 GIWS_WRAPPERS = src/jni/CallScilabBridge.giws.xml
 
@@ -70,86 +65,103 @@ if SWIG
 BUILT_SOURCES+=swig
 endif
 
-
 # List of the c files
-libsciconsole_minimal_la_SOURCES = src/noconsole/noconsole.c \
-sci_gateway/c/gw_console.c \
-sci_gateway/c/sci_clc.c \
-sci_gateway/c/sci_tohome.c \
-sci_gateway/c/sci_lines.c \
-sci_gateway/c/sci_prompt.c \
-sci_gateway/c/sci_iswaitingforinput.c \
-src/c/clc.c \
-src/c/tohome.c \
-src/c/more.c \
-src/c/scilines.c \
-src/c/GetCommandLine.c \
-src/c/others/gotoxy_nw.c \
-src/c/others/clrscr_nw.c \
-src/c/prompt.c \
-src/c/promptecho.c \
-src/c/cmdLine/autoCompletionCli.c \
-src/c/cmdLine/charactersManagement.c \
-src/c/cmdLine/cliDisplayManagement.c \
-src/c/cmdLine/cliHistory.c \
-src/c/cmdLine/cliPrompt.c \
-src/c/cmdLine/getKey.c \
-src/c/cmdLine/getNbrLine.c \
-src/c/cmdLine/gotoFunctions.c \
-src/c/cmdLine/initConsoleMode.c \
-src/c/cmdLine/termcapManagement.c
 
+libsciconsole_minimal_la_SOURCES = \
+    src/noconsole/noconsole.c \
+    sci_gateway/cpp/sci_clc.cpp \
+    sci_gateway/cpp/sci_tohome.cpp \
+    sci_gateway/cpp/sci_lines.cpp \
+    sci_gateway/cpp/sci_prompt.cpp \
+    sci_gateway/cpp/sci_iswaitingforinput.cpp \
+    src/c/clc.c \
+    src/c/tohome.c \
+    src/c/more.c \
+    src/c/scilines.c \
+    src/c/others/gotoxy_nw.c \
+    src/c/others/clrscr_nw.c \
+    src/c/prompt.c \
+    src/c/promptecho.c \
+    src/c/cmdLine/autoCompletionCli.c \
+    src/c/cmdLine/charactersManagement.c \
+    src/c/cmdLine/cliDisplayManagement.c \
+    src/c/cmdLine/cliHistory.c \
+    src/c/cmdLine/cliPrompt.c \
+    src/c/cmdLine/getKey.c \
+    src/c/cmdLine/getNbrLine.c \
+    src/c/cmdLine/gotoFunctions.c \
+    src/c/cmdLine/initConsoleMode.c \
+    src/c/cmdLine/termcapManagement.c \
+    src/cpp/scilabRead.cpp \
+    sci_gateway/cpp/console_gw.cpp
 
-CONSOLE_C_SOURCES = src/c/GuiManagement.c \
-	src/c/dropFiles.c
+CONSOLE_C_SOURCES = \
+    src/c/GuiManagement.c \
+    src/c/dropFiles.c
+
 if IS_MACOSX
 CONSOLE_C_SOURCES += src/c/others/initMacOSXEnv.c
 endif
 
-if IS_MACOSX
-libsciconsole_minimal_la_SOURCES += src/c/others/initMacOSXEnv.c
-endif
 
-
-libsciconsole_minimal_la_CPPFLAGS = -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/history_manager/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/core/includes/ \
-				-I$(top_srcdir)/modules/completion/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/action_binding/includes/ \
-				-I$(top_srcdir)/modules/fileio/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/ui_data/includes/ \
-				-I$(top_srcdir)/modules/jvm/includes \
-				$(AM_CPPFLAGS)
+libsciconsole_minimal_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/history_manager/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/completion/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/action_binding/includes/ \
+    -I$(top_srcdir)/modules/fileio/src/c/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/ui_data/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(AM_CPPFLAGS)
 
 # Includes need for the compilation
-libsciconsole_la_CPPFLAGS= -I$(srcdir)/includes/ \
-				-I$(srcdir)/src/c/ \
-				-I$(srcdir)/src/c/cmdLine \
-				-I$(srcdir)/src/cpp/ \
-				-I$(srcdir)/src/jni/ \
-				-I$(top_srcdir)/modules/commons/src/jni/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/history_manager/includes/ \
-				-I$(top_srcdir)/modules/output_stream/includes/ \
-				-I$(top_srcdir)/modules/core/includes/ \
-				-I$(top_srcdir)/modules/completion/includes/ \
-				-I$(top_srcdir)/modules/localization/includes/ \
-				-I$(top_srcdir)/modules/action_binding/includes/ \
-				-I$(top_srcdir)/modules/fileio/src/c/ \
-				-I$(top_srcdir)/modules/api_scilab/includes/ \
-				-I$(top_srcdir)/modules/fileio/includes/ \
-				-I$(top_srcdir)/modules/ui_data/includes/ \
-				-I$(top_srcdir)/modules/jvm/includes/ \
-				$(JAVA_JNI_INCLUDE) \
-				$(AM_CPPFLAGS)
+libsciconsole_la_CPPFLAGS = \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/action_binding/includes \
+    -I$(top_srcdir)/modules/history_manager/includes/ \
+    -I$(top_srcdir)/modules/ui_data/includes/ \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/completion/includes \
+    -I$(top_srcdir)/modules/output_stream/includes \
+    -I$(top_srcdir)/modules/string/includes \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/commons/src/jni \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    $(JAVA_JNI_INCLUDE) \
+    $(AM_CPPFLAGS)
+
 
 # FIXME: Plateform specific optimisation flags should be set on configure.ac
 if IS_MACOSX
@@ -166,7 +178,7 @@ endif
 libsciconsole_la_LIBADD = libsciconsole-minimal.la
 
 # All the sources needed by libsciconsole.la
-libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CXX_JNI_SOURCES) $(CONSOLE_CXX_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES)
+libsciconsole_la_SOURCES = $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES) $(CONSOLE_CPP_JNI_SOURCES) $(CONSOLE_CPP_SOURCES) $(CONSOLE_GATEWAY_C_SOURCES) $(CONSOLE_GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(CONSOLE_C_JNI_SOURCES) $(CONSOLE_C_SOURCES)
@@ -186,5 +198,33 @@ SWIG_WRAPPERS = src/jni/GuiManagement.i \
 if GUI
 USEANT=1
 endif
+
+#### console : include files ####
+libsciconsole_la_includedir=$(pkgincludedir)
+libsciconsole_la_include_HEADERS = \
+includes/autoCompletionCli.h \
+includes/charactersManagement.h \
+includes/cliDisplayManagement.h \
+includes/cliHistory.h \
+includes/cliPrompt.h \
+includes/console_gw.hxx \
+includes/ConsolePrintf.h \
+includes/ConsoleRead.h \
+includes/dynlib_console_gw.h \
+includes/dynlib_console.h \
+includes/getKey.h \
+includes/getNbrLine.h \
+includes/gotoFunctions.h \
+includes/gw_console.h \
+includes/initConsoleMode.h \
+includes/InitializeConsole.h \
+includes/initMacOSXEnv.h \
+includes/more.h \
+includes/prompt.h \
+includes/scilabRead.h \
+includes/scilines.h \
+includes/SetConsolePrompt.h \
+includes/termcapManagement.h
+
 
 include $(top_srcdir)/Makefile.incl.am

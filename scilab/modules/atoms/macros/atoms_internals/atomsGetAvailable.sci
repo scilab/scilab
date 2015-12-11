@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -67,7 +67,7 @@ function packages = atomsGetAvailable(category,nameonly)
     if category<>[] then
 
         if type(category) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"atomsGetAvailable",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsGetAvailable",1));
         end
 
         if (size(category,"*") <> 1) & or(size(category) <> [1 2]) then

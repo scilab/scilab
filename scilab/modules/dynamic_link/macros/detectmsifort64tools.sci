@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
 function bOK = detectmsifort64tools()
@@ -16,6 +16,9 @@ function bOK = detectmsifort64tools()
         ifortcomp = findmsifortcompiler();
         if ifortcomp <> "unknown" then
             select ifortcomp,
+            case  "ifort14" then
+                IFORTPATH = getenv("IFORT_COMPILER14","");
+
             case  "ifort13" then
                 IFORTPATH = getenv("IFORT_COMPILER13","");
 
@@ -45,6 +48,8 @@ function bOK = detectmsifort64tools()
         end
 
         select ifortcomp,
+        case  "ifort14" then
+            IFORTSPATHEMT64 = IFORTPATH + "compiler\lib\intel64";
         case  "ifort13" then
             IFORTSPATHEMT64 = IFORTPATH + "compiler\lib\intel64";
         case  "ifort12" then

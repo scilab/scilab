@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - Sylvestre LEDRU
@@ -54,3 +55,24 @@ assert_checkequal(g, "myFragment"); // fragment
 
 // Badly formated URL
 assert_checkerror("splitURL(''http://plop@ae:sylvestre.ledru.info:80'');", [], 999);
+
+// No protocol
+[proto, server, path, query, username, port, frag] = splitURL("www.scilab.org");
+assert_checkequal(proto, "");
+assert_checkequal(server, "");
+assert_checkequal(path, "www.scilab.org");
+assert_checkequal(query, "");
+assert_checkequal(username, "");
+assert_checkequal(port, int32(0));
+assert_checkequal(frag, "");
+
+// Relative URL
+[proto, server, path, query, username, port, frag] = splitURL("./index.html");
+assert_checkequal(proto, "");
+assert_checkequal(server, "");
+assert_checkequal(path, "./index.html");
+assert_checkequal(query, "");
+assert_checkequal(username, "");
+assert_checkequal(port, int32(0));
+assert_checkequal(frag, "");
+

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,7 +21,7 @@
 #include "GetProperty.h"
 #include "axesScale.h"
 #include "math_graphics.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BuildObjects.h"
 #include "DestroyObjects.h"
 #include "SetProperty.h"
@@ -33,6 +33,8 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "deleteGraphicObject.h"
+#include "createGraphicObject.h"
+
 /*-------------------------------------------------------------------------------*/
 void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double xPos, double yPos,
@@ -40,43 +42,43 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
                         double corners[4][2])
 {
     /* first step, create a text object */
-    char * parentSubwinUID = (char*)getCurrentSubWin();
-    char * pTextUID = NULL;
+    int iParentSubwinUID = getCurrentSubWin();
+    int iTextUID = 0;
     double* textCorners = NULL;
     int defaultColor = 0; /* color does not matter */
     int visible = 0;
     double fontAngle = 0.;
 
     /* Update subwin scale if needed */
-    updateSubwinScale(parentSubwinUID);
+    updateSubwinScale(iParentSubwinUID);
 
-    pTextUID = allocateText(parentSubwinUID,
-                            text, nbRow, nbCol,
-                            xPos, yPos,
-                            TRUE,
-                            NULL,
-                            0,
-                            &defaultColor, &defaultColor,
-                            FALSE, FALSE, FALSE,
-                            ALIGN_LEFT);
+    iTextUID = createText(iParentSubwinUID,
+                          text, nbRow, nbCol,
+                          xPos, yPos,
+                          TRUE,
+                          NULL,
+                          0,
+                          &defaultColor, &defaultColor,
+                          FALSE, FALSE, FALSE,
+                          ALIGN_LEFT);
 
     /* Make it invisible to be sure */
     visible = 0;
-    setGraphicObjectProperty(pTextUID, __GO_VISIBLE__, &visible, jni_bool, 1);
+    setGraphicObjectProperty(iTextUID, __GO_VISIBLE__, &visible, jni_bool, 1);
 
     fontAngle = DEG2RAD(angle);
-    setGraphicObjectProperty(pTextUID, __GO_FONT_ANGLE__, &fontAngle, jni_double, 1);
+    setGraphicObjectProperty(iTextUID, __GO_FONT_ANGLE__, &fontAngle, jni_double, 1);
 
-    setGraphicObjectProperty(pTextUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
-    setGraphicObjectProperty(pTextUID, __GO_FONT_STYLE__, &fontId, jni_int, 1);
+    setGraphicObjectProperty(iTextUID, __GO_FONT_SIZE__, &fontSize, jni_double, 1);
+    setGraphicObjectProperty(iTextUID, __GO_FONT_STYLE__, &fontId, jni_int, 1);
 
-    setGraphicObjectRelationship(parentSubwinUID, pTextUID);
+    setGraphicObjectRelationship(iParentSubwinUID, iTextUID);
 
     /* Update its bounds */
-    updateTextBounds(pTextUID);
+    updateTextBounds(iTextUID);
 
     /* Then get its bounding box */
-    getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, (void**)&textCorners);
+    getGraphicObjectProperty(iTextUID, __GO_CORNERS__, jni_double_vector, (void**)&textCorners);
 
     /*
      * To do: performs a projection/unprojection to obtain the bounding box in object coordinates
@@ -95,9 +97,7 @@ void getTextBoundingBox(char ** text, int nbRow, int nbCol,
     corners[2][0] = textCorners[9];
     corners[2][1] = textCorners[10];
 
-    deleteGraphicObject(pTextUID);
-
-    releaseGraphicObjectProperty(__GO_PARENT__, pTextUID, jni_string, 1);
+    deleteGraphicObject(iTextUID);
 }
 /*-------------------------------------------------------------------------------*/
 

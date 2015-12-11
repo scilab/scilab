@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,9 +20,9 @@
 #include "exportUserInterface.hxx"
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
-
+#include "FigureList.h"
 /*--------------------------------------------------------------------------*/
-int sci_exportUI(char * fname, unsigned long fname_len)
+int sci_exportUI(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -47,8 +47,7 @@ int sci_exportUI(char * fname, unsigned long fname_len)
 
     if (checkInputArgumentType(pvApiCtx, 1, sci_handles)) // exportUI(figHandle)
     {
-        char *pstFigureUID      = NULL;
-        char *pstHandleType     = NULL;
+        int iFigureUID = 0;
         long long* stackPointer = NULL;
         // Retrieve a matrix of handle at position 1.
         sciErr = getMatrixOfHandle(pvApiCtx, piAddrstackPointer, &iRows, &iCols, &stackPointer);
@@ -62,18 +61,19 @@ int sci_exportUI(char * fname, unsigned long fname_len)
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
+            return 0;
         }
 
-        pstFigureUID = getObjectFromHandle((unsigned long) * stackPointer);
+        iFigureUID = getObjectFromHandle((unsigned long) * stackPointer);
 
-        getGraphicObjectProperty(pstFigureUID, __GO_TYPE__, jni_int, (void **)&piHandleType);
-        if (iHandleType == __GO_FIGURE__)
+        getGraphicObjectProperty(iFigureUID, __GO_TYPE__, jni_int, (void **)&piHandleType);
+        if (iHandleType != __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return FALSE;
+            return 0;
         }
 
-        getGraphicObjectProperty(pstFigureUID, __GO_ID__, jni_int, (void **)&piFigureId);
+        getGraphicObjectProperty(iFigureUID, __GO_ID__, jni_int, (void **)&piFigureId);
     }
     else if (checkInputArgumentType(pvApiCtx, 1, sci_matrix)) // exportUI(figId)
     {
@@ -84,14 +84,14 @@ int sci_exportUI(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
             return 1;
         }
 
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return FALSE;
+            return 0;
         }
 
         iFigureId = (int) * stackPointer;
@@ -99,7 +99,13 @@ int sci_exportUI(char * fname, unsigned long fname_len)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-        return FALSE;
+        return 0;
+    }
+
+    if (getFigureFromIndex(iFigureId) == 0)
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"), fname, 1);
+        return 0;
     }
 
     // call the export function

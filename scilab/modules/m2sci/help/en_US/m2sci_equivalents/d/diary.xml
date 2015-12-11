@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_diary">
@@ -46,7 +46,9 @@ diary
             When a filename is given to save environment, if this file exists, Scilab returns an error message while Matlab save environment at the end of existing file (append).
         </para>
         <para>
-            Note that <emphasis role="bold">diary on</emphasis> and <emphasis role="bold">diary toggle</emphasis> exist only in Matlab.
+            <note>
+                Note that <emphasis role="bold">diary on</emphasis> and <emphasis role="bold">diary toggle</emphasis> exist only in Matlab.
+            </note>
         </para>
         <para>
             The equivalent for Matlab <emphasis role="bold">diary off</emphasis> is <emphasis role="bold">diary(0)</emphasis> in Scilab.

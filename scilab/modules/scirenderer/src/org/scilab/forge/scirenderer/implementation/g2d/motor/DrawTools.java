@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -27,7 +27,6 @@ import java.awt.geom.Path2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
-import java.util.Arrays;
 
 import java.awt.geom.Point2D;
 import java.awt.MultipleGradientPaint;
@@ -60,17 +59,21 @@ public final class DrawTools {
         Area area = new Area(contour);
         area.add(new Area(stroke.createStrokedShape(contour)));
 
-        GradientPaint gp = new GradientPaint((float) v0[0], (float) v0[1], t.colors[0], (float) pv0[0], (float) pv0[1], TRANSLUCENT_BLACK);
-        g2d.setPaint(gp);
-        g2d.fill(contour);
 
-        gp = new GradientPaint((float) v1[0], (float) v1[1], t.colors[1], (float) pv1[0], (float) pv1[1], TRANSLUCENT_BLACK);
-        g2d.setPaint(gp);
-        g2d.fill(contour);
+        g2d.setColor(t.getColor(0));
+        g2d.fill(area);
 
-        gp = new GradientPaint((float) v2[0], (float) v2[1], t.colors[2], (float) pv2[0], (float) pv2[1], TRANSLUCENT_BLACK);
+
+        float[] col = t.getColor(1).getComponents(null);
+        GradientPaint gp = new GradientPaint((float) v1[0], (float) v1[1], t.getColor(1), (float) pv1[0], (float) pv1[1], new Color(col[0], col[1], col[2], 0.0f));
         g2d.setPaint(gp);
-        g2d.fill(contour);
+        g2d.fill(area);
+
+
+        col = t.getColor(2).getComponents(null);
+        gp = new GradientPaint((float) v2[0], (float) v2[1], t.getColor(2), (float) pv2[0], (float) pv2[1], new Color(col[0], col[1], col[2], 0.0f));
+        g2d.setPaint(gp);
+        g2d.fill(area);
 
         g2d.setPaint(oldPaint);
     }

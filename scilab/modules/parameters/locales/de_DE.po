@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
 
 #, c-format
@@ -89,6 +89,22 @@ msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr "%s: Falsche Größe für Parameter %s: %d angefordert, %d erhalten\n"
 
 #, c-format
+msgid "Second output argument of %s is obsolete.\n"
+msgstr ""
+
+#, c-format
+msgid "This argument will be permanently removed in Scilab %s"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
 msgstr "%s: Falscher Typ für Eingangsargument #%d: %s erwartet.\n"
 
@@ -105,6 +121,10 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: parameter doesn't exist"

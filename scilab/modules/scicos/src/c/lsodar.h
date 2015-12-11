@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -36,8 +36,8 @@ struct rWork_t
 };
 
 // Derivative computation and Root functions
-typedef int (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
-typedef int (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
+typedef void (*LSRhsFn) (int * neq, realtype * t, realtype * y, realtype * rwork);
+typedef void (*LSRootFn) (int * neq, realtype * t, realtype * y, int * ng, realtype * rwork);
 typedef void (*LSErrHandlerFn) (int error_code, const char *module, const char *function, char *msg, void *user_data);
 
 // LSodar problem memory structure

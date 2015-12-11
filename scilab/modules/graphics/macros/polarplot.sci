@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function polarplot(theta,rho,style,strf,leg,rect)
     [lhs,rhs]=argn(0)
@@ -161,9 +161,6 @@ function polarplot(theta,rho,style,strf,leg,rect)
     end
     drawlater()
     execstr("plot2d(x,y,"+strcat(opts,",")+")")
-    a=gca();
-    a.data_bounds=[rect(1:2);rect(3:4)]
-    a.margins=[0.07 0.07 0.12 0.07]
 
     fcolor=color("grey70");
     xset("dashes",1)
@@ -228,5 +225,10 @@ function polarplot(theta,rho,style,strf,leg,rect)
         e = gce();
         e.clip_state = "off";
     end
+
+    a=gca();
+    a.data_bounds=[rect(1:2);rect(3:4)]
+    a.margins=[0.07 0.07 0.12 0.07]
+
     drawnow()
 endfunction

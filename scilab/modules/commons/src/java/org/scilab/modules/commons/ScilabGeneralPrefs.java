@@ -6,19 +6,17 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.commons;
 
 import java.awt.Font;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.w3c.dom.Document;
 
-import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
@@ -58,6 +56,7 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
             GeneralEnvironment ge = XConfiguration.get(GeneralEnvironment.class, doc, ENV_PATH)[0];
             ScilabCommons.setieee(ge.code);
             ScilabCommons.setformat(ge.format, ge.width);
+            ScilabCommons.setRecursionLimit(ge.recursionLimit);
         }
 
         if (e.getModifiedPaths().contains(LANG_PATH)) {
@@ -113,14 +112,16 @@ public class ScilabGeneralPrefs implements XConfigurationListener {
         public int code;
         public String format;
         public int width;
+        public int recursionLimit;
 
         private GeneralEnvironment() { }
 
-        @XConfAttribute(attributes = {"fpe", "printing-format", "width"})
-        private void set(int fpe, String format, int width) {
+        @XConfAttribute(attributes = {"fpe", "printing-format", "width", "recursion-limit"})
+        private void set(int fpe, String format, int width, int recursionLimit) {
             this.code = fpe;
             this.format = format;
             this.width = Math.min(Math.max(0, width), 25);
+            this.recursionLimit = recursionLimit;
         }
     }
 

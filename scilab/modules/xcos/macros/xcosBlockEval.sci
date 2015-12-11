@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 
@@ -21,6 +21,7 @@ function blk = xcosBlockEval(interfaceAlias, blk, context)
     %mprt = funcprot()
     funcprot(0)
     scicos_getvalue = setvalue;
+    getvalue = setvalue;
     function message(txt)
         messagebox(..
         ["In block " + o.gui + ": " ; txt ; "current parameter value kept"],..

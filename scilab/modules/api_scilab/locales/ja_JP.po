@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 14:40+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ja\n"
 
 #, c-format
@@ -22,7 +22,7 @@ msgid "%s: Invalid argument address"
 msgstr "%s: 引数の位置が間違っています"
 
 #, c-format
-msgid "%s: Invalid argument type, %s excepted"
+msgid "%s: Invalid argument type, %s expected"
 msgstr "%s: 引数の型が間違っています, %s を指定してください"
 
 msgid "boolean matrix"
@@ -33,12 +33,16 @@ msgid "%s: Unable to get argument #%d"
 msgstr "%s: 引数 #%d を取得できません"
 
 #, c-format
+msgid "%s: No more memory to allocated variable"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to create variable in Scilab memory"
 msgstr "%s: Scilabメモリに変数を作成できません"
 
 #, c-format
-msgid "%s: Invalid variable name."
-msgstr "%s: 変数名が無効です."
+msgid "%s: Invalid variable name: %s."
+msgstr "%s: 変数名が無効です: %s."
 
 #, c-format
 msgid "%s: Unable to create %s named \"%s\""
@@ -46,6 +50,9 @@ msgstr "%s:  %s (名称: \"%s\") を作成できません"
 
 msgid "matrix of boolean"
 msgstr "論理値の行列"
+
+msgid "Redefining permanent variable.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to get variable \"%s\""
@@ -77,6 +84,9 @@ msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr "%s: 入力引数の数が誤っています: %d から %d を指定してください.\n"
 
+msgid "matrix"
+msgstr ""
+
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を指定してください.\n"
@@ -102,7 +112,7 @@ msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
 msgstr "%s: 出力引数の数が間違っています: %d  個以下の引数を指定してください.\n"
 
 #, c-format
-msgid "%s: matrix argument excepted"
+msgid "%s: matrix argument expected"
 msgstr "%s: 行列を引数に指定してください"
 
 #, c-format
@@ -112,10 +122,6 @@ msgstr "%s: 変数 \"%s\"　の次元を取得できません"
 #, c-format
 msgid "%s: bad call to %s! (1rst argument).\n"
 msgstr "%s: %s へのコールが間違っています (1番目の引数).\n"
-
-#, c-format
-msgid "%s: Unable to get name of argument #%d"
-msgstr "%s: 引数 #%dの名前を取得できません"
 
 #, c-format
 msgid "%s: Unable to get address of variable \"%s\""
@@ -146,8 +152,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: 引数 %d の大きさが間違っています: 大きさを (%d,%d)  としてください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはスカラーを指定してください.\n"
 
 #, c-format
@@ -172,28 +177,20 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数スカラー�
 msgid "%s: Unable to get dimension from variable \"%s\""
 msgstr "%s: 変数\"%s\"から次元を取得できません"
 
+#, c-format
+msgid "Invalid type pointer in '%s'\n"
+msgstr ""
+
 msgid "double matrix"
 msgstr "double行列"
 
 #, c-format
-msgid "stack size exceeded!\n"
-msgstr "スタックサイズが制限を超えました!\n"
+msgid "%s: %ls"
+msgstr ""
 
 #, c-format
-msgid "Use stacksize function to increase it.\n"
-msgstr "stacksize関数によりスタック設定値を増やしてください.\n"
-
-#, c-format
-msgid "Memory used for variables: %d\n"
-msgstr "変数保持用メモリ: %d\n"
-
-#, c-format
-msgid "Intermediate memory needed: %d\n"
-msgstr "中間的なメモリが必要です: %d\n"
-
-#, c-format
-msgid "Total memory available: %d\n"
-msgstr "利用可能メモリ: %d\n"
+msgid "%s: No more memory to allocate variable"
+msgstr ""
 
 msgid "API Error:\n"
 msgstr "APIエラー\n"
@@ -204,6 +201,10 @@ msgstr "\t%s の中に\n"
 
 msgid "handle matrix"
 msgstr "ハンドル行列"
+
+#, c-format
+msgid "%s: Bad call to get a non complex matrix"
+msgstr "%s: 非複素行列を取得するコールに誤りがあります"
 
 msgid "int matrix"
 msgstr "int行列"
@@ -224,31 +225,19 @@ msgid "%s: Unable to get address of item #%d in argument #%d"
 msgstr "%s: 項目#%d の位置を引数 #%d から取得できません"
 
 #, c-format
-msgid "%s: Unable to get address of item #%d in variable \"%s\""
-msgstr "%s: 項目#%d の位置を変数 \"%s\" から取得できません"
-
-#, c-format
 msgid "%s: Unable to create list item #%d in Scilab memory"
 msgstr "%s: Scilabメモリにリスト項目 #%d を作成できません"
 
 #, c-format
-msgid "%s: Unable to create list item #%d in variable \"%s\""
-msgstr "%s: リスト項目 #%d を変数 \"%s\"に作成できません"
-
-#, c-format
-msgid "%s: Items must be inserted in order"
-msgstr "%s: 項目は順番に挿入する必要があります"
+msgid "%s: Unable to get address of item #%d in variable \"%s\""
+msgstr "%s: 項目#%d の位置を変数 \"%s\" から取得できません"
 
 msgid "API_ERROR_GET_POLY_IN_LIST"
 msgstr "API_ERROR_GET_POLY_IN_LIST"
 
 #, c-format
-msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr "%s: オプションの引数 name=val は末尾に置く必要があります.\n"
-
-#, c-format
-msgid "%s: Unrecognized optional arguments %s.\n"
-msgstr "%s: 認識できないオプション引数 %s です.\n"
+msgid "%ls: Unrecognized optional arguments %ls.\n"
+msgstr ""
 
 msgid "Optional argument list is empty.\n"
 msgstr "オプションの引数リストが空です.\n"
@@ -266,32 +255,11 @@ msgstr "ポインタ"
 msgid "polynomial matrix"
 msgstr "多項式行列"
 
-#, c-format
-msgid "%s: Bad call to get a non complex matrix"
-msgstr "%s: 非複素行列を取得するコールに誤りがあります"
-
-#, c-format
-msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
-msgstr "%s: 多項式の形式変数の名前は4文字以下とする必要があります"
-
-msgid "matrix of double"
-msgstr "doubleの行列"
-
 msgid "sparse matrix"
 msgstr "疎行列"
 
 msgid "string matrix"
 msgstr "文字列行列"
-
-msgid "matrix of string"
-msgstr "文字列の行列"
-
-#, c-format
-msgid "%s: Unable to convert to wide string #%d"
-msgstr "%s: ワイド文字列 #%d を変換できません"
-
-msgid "matrix of wide string"
-msgstr "ワイド文字列の行列"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -300,19 +268,3 @@ msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定し
 #, c-format
 msgid "%s: Wrong type for input argument \"%s\": A single string expected.\n"
 msgstr "%s: 入力引数 \"%s\"の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
-msgid "%s: Invalid variable name.\n"
-msgstr "%s: 変数名が無効です.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument %d: An integer expected.\n"
-msgstr "%s: 入力引数 %d の型が間違っています:  整数を指定してください.\n"

@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_callback_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_callback_type_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int callbackType = 0;
@@ -49,13 +49,13 @@ int set_callback_type_property(void* _pvCtx, char* pobjUID, void* _pvData, int v
     callbackType = (int)((double*)_pvData)[0];
 
     /* Check the value */
-    if (callbackType < -1 || callbackType > 2)
+    if ((callbackType < -1 || callbackType > 2) && callbackType != 10 && callbackType != 12)
     {
         Scierror(999, _("Wrong value for '%s' property: %d, %d, %d or %d expected.\n"), "callback_type", -1, 0, 1, 2);
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, &callbackType, jni_int, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_CALLBACKTYPE__, &callbackType, jni_int, 1);
 
     if (status == TRUE)
     {

@@ -1,0 +1,106 @@
+# Ukrainian translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+# Yuri Chornoivan <yurchor@ukr.net>, 2012.
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2015-10-08 22:01+0000\n"
+"Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 17838)\n"
+"Language: uk\n"
+
+#, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s: функція %s є застрарілою.\n"
+
+msgid "Warning"
+msgstr "Попередження"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s: докладніші відомості можна знайти у документації.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: цю функцію буде назавжди вилучено у Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати рядок з одного "
+"символу.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+"Помилкова розмірність параметра №%d: мало бути вказано рядок або стовпчик."
+
+msgid "Invalid operation"
+msgstr "Некоректна дія"
+
+msgid "Invalid field name"
+msgstr "Некоректна назва поля"
+
+#, c-format
+msgid "Cannot set the field: %s"
+msgstr "Не вдалося встановити поле: %s"
+
+#, c-format
+msgid ""
+"Cannot compile the code:\n"
+"%s"
+msgstr ""
+"Не вдалося виконати компіляцію коду:\n"
+"%s"
+
+msgid "Invalid operator: '"
+msgstr "Некоректний оператор: '"
+
+msgid "Invalid operator: .*"
+msgstr "Некоректний оператор: .*"
+
+msgid "Invalid operator: ./"
+msgstr "Некоректний оператор: ./"
+
+msgid "Invalid operator: .\\"
+msgstr "Некоректний оператор: .\\"
+
+msgid "Invalid operator: .*."
+msgstr "Некоректний оператор: .*."
+
+msgid "Invalid operator: ./."
+msgstr "Некоректний оператор: ./."
+
+msgid "Invalid operator: .\\."
+msgstr "Некоректний оператор: .\\."
+
+msgid "Invalid operator: .^"
+msgstr "Некоректний оператор: .^"
+
+msgid "Invalid operator: .'"
+msgstr "Некоректний оператор: .'"
+
+msgid "Exception thrown in file"
+msgstr "Під час обробки файла сталося виключення"
+
+msgid "at line"
+msgstr "у рядку"

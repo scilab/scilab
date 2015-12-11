@@ -7,7 +7,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 
 # The order DOES matter !!!
@@ -15,9 +15,13 @@
 # core is the main module of Scilab. All the compilation deps has been removed
 # since it already linked almost the whole world
 
-
 SUBDIRS = \
 prebuildjava \
+threads \
+output_stream \
+arnoldi \
+elementary_functions \
+functions_manager \
 fileio \
 mexlib \
 functions \
@@ -30,10 +34,8 @@ call_scilab \
 api_scilab \
 data_structures \
 differential_equations \
-double \
 elementary_functions \
 integer \
-intersci \
 io \
 linear_algebra \
 localization \
@@ -59,11 +61,10 @@ jvm \
 action_binding \
 graphic_objects \
 renderer \
-graphic_export \
 gui \
+graphic_export \
 graphics \
 optimization \
-symbolic \
 randlib \
 interpolation \
 sound \
@@ -76,11 +77,12 @@ umfpack \
 demo_tools \
 genetic_algorithms \
 simulated_annealing \
+parameters \
 matio \
 atoms \
 hdf5 \
-graph\
-xcos \
+graph \
+ast \
 scinotes \
 parallel \
 modules_manager \
@@ -89,13 +91,23 @@ history_browser \
 preferences \
 xml \
 types \
-external_objects
+external_objects \
+slint \
+coverage
 
-if XCOS
-SUBDIRS += scicos_blocks
+if GUI
+SUBDIRS += external_objects_java
 endif
 
-SUBDIRS += scicos
+if XCOS
+SUBDIRS += scicos_blocks scicos xcos
+else
+SUBDIRS += xcos
+endif
+
+if MPI
+SUBDIRS += mpi
+endif
 
 SUBDIRS += .
 
@@ -113,10 +125,10 @@ libscilab_la_rootdir = $(mydatadir)
 pkglib_LTLIBRARIES = libscilab-cli.la libscilab.la
 libscilab_la_SOURCES =
 
-libscilab_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
+libscilab_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 
-GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
+GUI_LIBS = 	$(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/renderer/libscirenderer.la \
 	$(top_builddir)/modules/graphics/libscigraphics.la \
 	$(top_builddir)/modules/graphic_export/libscigraphic_export.la \
@@ -128,8 +140,10 @@ GUI_LIBS = $(top_builddir)/modules/gui/libscigui.la \
 	$(top_builddir)/modules/ui_data/libsciui_data.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser.la \
 	$(top_builddir)/modules/commons/libscicommons.la \
-	$(top_builddir)/modules/tclsci/libscitclsci.la \
-	$(top_builddir)/modules/preferences/libscipreferences.la
+	$(top_builddir)/modules/preferences/libscipreferences.la \
+	$(top_builddir)/modules/external_objects_java/libsciexternal_objects_java.la \
+	$(top_builddir)/modules/helptools/libscihelptools.la \
+	$(top_builddir)/modules/tclsci/libscitclsci.la
 
 NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/graphics/libscigraphics-disable.la \
@@ -142,7 +156,9 @@ NO_GUI_LIBS = $(top_builddir)/modules/gui/libscigui-disable.la \
 	$(top_builddir)/modules/scinotes/libsciscinotes-disable.la \
 	$(top_builddir)/modules/ui_data/libsciui_data-disable.la \
 	$(top_builddir)/modules/history_browser/libscihistory_browser-disable.la \
-	$(top_builddir)/modules/commons/libscicommons-disable.la
+	$(top_builddir)/modules/commons/libscicommons-disable.la \
+	$(top_builddir)/modules/preferences/libscipreferences-cli.la \
+	$(top_builddir)/modules/tclsci/libscitclsci-disable.la
 
 
 ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
@@ -156,10 +172,8 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
 	$(top_builddir)/modules/data_structures/libscidata_structures.la \
 	$(top_builddir)/modules/differential_equations/libscidifferential_equations.la \
-	$(top_builddir)/modules/double/libscidouble.la \
 	$(top_builddir)/modules/elementary_functions/libscielementary_functions.la \
 	$(top_builddir)/modules/integer/libsciinteger.la \
-	$(top_builddir)/modules/intersci/libsciintersci.la \
 	$(top_builddir)/modules/io/libsciio.la \
 	$(top_builddir)/modules/linear_algebra/libscilinear_algebra.la \
 	$(top_builddir)/modules/localization/libscilocalization.la \
@@ -176,16 +190,19 @@ ENGINE_LIBS =	$(top_builddir)/modules/fileio/libscifileio.la \
 	$(top_builddir)/modules/fftw/libscifftw.la \
 	$(top_builddir)/modules/statistics/libscistatistics.la \
 	$(top_builddir)/modules/dynamic_link/libscidynamic_link.la \
+	$(top_builddir)/modules/threads/libscithreads.la \
+	$(top_builddir)/modules/ast/libsciast.la \
+	$(top_builddir)/modules/functions_manager/libscifunctions_manager.la \
 	$(top_builddir)/modules/xml/libscixml.la \
 	$(top_builddir)/modules/external_objects/libsciexternal_objects.la \
-	$(top_builddir)/modules/preferences/libscipreferences-cli.la
+	$(top_builddir)/modules/slint/libscislint.la \
+	$(top_builddir)/modules/coverage/libscicoverage.la
 
 # These libraries are loaded dynamically from Scilab.
 ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
@@ -195,19 +212,24 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/spreadsheet/libscispreadsheet.la \
 	$(top_builddir)/modules/umfpack/libsciumfpack.la \
 	$(top_builddir)/modules/matio/libscimatio.la \
-	$(top_builddir)/modules/helptools/libscihelptools.la \
 	$(top_builddir)/modules/parallel/libsciparallel.la
 
+if MPI
+ENGINE_LIBS += $(top_builddir)/modules/mpi/libscimpi.la
+endif
 
 # Core modules
 
 libscilab_la_LIBADD =
 
 if GUI
-libscilab_la_LIBADD += $(GUI_LIBS)	$(top_builddir)/modules/types/libscitypes.la
+# Force the libscijvm to be linked first. Under Debian, this avoid some reordering issues during the link
+libscilab_la_LIBADD += $(top_builddir)/modules/jvm/libscijvm.la $(GUI_LIBS)
 else
 libscilab_la_LIBADD += $(NO_GUI_LIBS)
 endif
+
+libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli.la
 
 # Core modules
 libscilab_la_LIBADD += $(OTHER_LIBS) $(EXTERNAL_LIBS)
@@ -220,15 +242,15 @@ if FORCE_LINK
 libscilab_la_LIBADD += $(ENGINE_LIBS_DYNAMIC_LOAD)
 endif
 
-libscilab_la_LIBADD += $(top_builddir)/modules/libscilab-cli.la
+libscilab_la_LIBADD += $(LAPACK_LIBS) $(BLAS_LIBS)
 
 ################## libscilab-cli  ##################
 
 libscilab_cli_la_SOURCES =
 
-libscilab_cli_la_LDFLAGS = $(LAPACK_LIBS) $(BLAS_LIBS) $(AM_LDFLAGS)
+libscilab_cli_la_LDFLAGS = $(AM_LDFLAGS) $(SCI_LDFLAGS)
 
 # Core modules
-libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS)
+libscilab_cli_la_LIBADD = $(ENGINE_LIBS) $(NO_GUI_LIBS) $(OTHER_LIBS) $(EXTERNAL_LIBS) $(LAPACK_LIBS) $(BLAS_LIBS)
 
 .NOTPARALLEL: libscilab-cli.la libscilab.la

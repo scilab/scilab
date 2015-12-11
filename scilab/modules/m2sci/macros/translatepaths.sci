@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function   transorder=translatepaths(Paths,res_path)
     // Perform translation of Matlab M-files to Scilab for all M-files found in Paths
@@ -129,12 +129,12 @@ function   transorder=translatepaths(Paths,res_path)
         if newest(mpath,scipath,scepath)==1 then
             [fd,ierr]=file("open",pathconvert(TMPDIR)+fnam+".m","old");
             if ierr==0 & strindex(mpath,TMPDIR)==[] then
-                mfile2sci(pathconvert(TMPDIR)+fnam+".m",res_path)
+                mfile2sci(pathconvert(TMPDIR)+fnam+".m",res_path, %t, %t)
                 file("close",fd)
                 mdelete(pathconvert(TMPDIR)+fnam+".m")
                 rmdir(pathconvert(TMPDIR)+pathconvert(fnam),"s")
             else
-                mfile2sci(funpath(i),res_path)
+                mfile2sci(funpath(i),res_path, %t, %t)
             end
 
             tmp_sci_file=pathconvert(TMPDIR)+"tmp_"+fnam+".sci"
@@ -175,7 +175,13 @@ function   transorder=translatepaths(Paths,res_path)
                 mdelete(tmp_resume_m2sci_file)
             end
         end
+        if isempty(logtxt) then
+            logtxt = ""
+        end
         mputl(logtxt,res_path+"log");
+        if isempty(resumelogtxt) then
+            resumelogtxt = ""
+        end
         mputl(resumelogtxt,res_path+"resumelog");
     end
 

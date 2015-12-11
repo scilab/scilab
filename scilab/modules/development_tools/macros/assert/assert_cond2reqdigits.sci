@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function d = assert_cond2reqdigits ( varargin )
     // Suggests the number of required digits, given the condition number.
@@ -99,7 +99,7 @@ function d = assert_cond2reqdigits ( varargin )
         end
     endfunction
 
-    function argin = argindefault ( rhs , vararglist , ivar , default )
+    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -123,8 +123,8 @@ function d = assert_cond2reqdigits ( varargin )
     //
     // Get arguments
     condition = varargin ( 1 )
-    offset = argindefault ( rhs , varargin , 2 , 0 )
-    b = argindefault ( rhs , varargin , 3 , 10 )
+    offset = assert_argindefault ( rhs , varargin , 2 , 0 )
+    b = assert_argindefault ( rhs , varargin , 3 , 10 )
     //
     // Check types of variables
     if ( typeof(condition) <> "constant" ) then

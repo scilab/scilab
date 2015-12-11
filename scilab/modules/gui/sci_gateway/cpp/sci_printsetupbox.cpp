@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -17,7 +17,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "getScilabJavaVM.h"
@@ -28,7 +28,7 @@ extern "C"
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_printsetupbox(char *fname, unsigned long l)
+int sci_printsetupbox(char *fname, void* pvApiCtx)
 {
     int paramoutINT = 0;
 

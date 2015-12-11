@@ -1878,8 +1878,7 @@ public final class IndentScanner {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 5 :
-                {
+                case 5 : {
                     return 2;
                 }
                 case 7:

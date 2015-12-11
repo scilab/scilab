@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,8 +24,15 @@ import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -78,15 +85,21 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
 
-        block.mask();
+        JavaController controller = new JavaController();
+        block.mask(controller);
 
         /*
          * Create a valid DSUPER exprs field if not already present.
          */
-        if (!(block.getExprs() instanceof ScilabList)) {
+
+        VectorOfDouble vec = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
+
+        ScilabType var = new ScilabTypeCoder().vec2var(vec);
+        if (!(var instanceof ScilabList)) {
 
             /* Set default values */
-            ScilabList exprs = new ScilabList(
+            ScilabList exprsVar = new ScilabList(
                 Arrays.asList(
                     new ScilabDouble(),
                     new ScilabList(
@@ -97,13 +110,13 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
                             new ScilabList(Arrays
                                            .asList(new ScilabDouble()))))));
 
-            block.setExprs(exprs);
+            vec = new ScilabTypeCoder().var2vec(exprsVar);
+            controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
 
             /*
              * Open the customization UI on a new mask creation
              */
-            GraphActionManager.getInstance(graph,
-                                           SuperblockMaskCustomizeAction.class).actionPerformed(e);
+            GraphActionManager.getInstance(graph, SuperblockMaskCustomizeAction.class).actionPerformed(e);
         }
     }
 }

@@ -9,7 +9,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -30,7 +30,7 @@
 #include "getPropertyAssignedValue.h"
 #include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_rotate_axes(char *fname, unsigned long fname_len)
+int sci_rotate_axes(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -40,7 +40,8 @@ int sci_rotate_axes(char *fname, unsigned long fname_len)
     int nbRow = 0;
     int nbCol = 0;
 
-    char* pstrUID = NULL;
+    int iUID = 0;
+    int* piUID = &iUID;
     int iType = -1;
     int *piType = &iType;
 
@@ -50,7 +51,7 @@ int sci_rotate_axes(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        pstrUID = (char*)getCurrentFigure();
+        iUID = getCurrentFigure();
     }
     else
     {
@@ -84,22 +85,22 @@ int sci_rotate_axes(char *fname, unsigned long fname_len)
             return -1;
         }
 
-        pstrUID = (char*)getObjectFromHandle((long int) * stackPointer);
+        iUID = getObjectFromHandle((long int) * stackPointer);
 
-        getGraphicObjectProperty(pstrUID, __GO_TYPE__, jni_int, (void **)&piType);
+        getGraphicObjectProperty(iUID, __GO_TYPE__, jni_int, (void **)&piType);
         if (iType == __GO_AXES__)
         {
-            getGraphicObjectProperty(pstrUID, __GO_PARENT__, jni_string, (void **)&pstrUID);
+            iUID = getParentObject(iUID);
         }
     }
 
-    if (pstrUID == NULL)
+    if (iUID == 0)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return -1;
     }
 
-    setGraphicObjectProperty(pstrUID, __GO_INFO_MESSAGE__, "Right click and drag to rotate.", jni_string, 1);
+    setGraphicObjectProperty(iUID, __GO_INFO_MESSAGE__, "Right click and drag to rotate.", jni_string, 1);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

@@ -6,20 +6,20 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.xcos.palette;
 
 import java.awt.GraphicsEnvironment;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,12 +31,15 @@ import org.scilab.modules.graph.utils.ScilabExported;
 import org.scilab.modules.javasci.JavasciException;
 import org.scilab.modules.javasci.Scilab;
 import org.scilab.modules.localization.Messages;
+import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
@@ -205,7 +208,7 @@ public final class Palette {
                         cat.getNode().add(pal);
                         pal.setParent(cat);
 
-                        PaletteNode.refreshView(pal);
+                        PaletteNode.refreshView(cat, pal);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -254,6 +257,80 @@ public final class Palette {
     }
 
     /**
+     * Push a block list into Scilab.
+     *
+     * The block list is pushed into a "pal" variable, a pseudo palette.
+     *
+     * @param path the path used to export the palette tree
+     * @throws JavasciException on pushing error
+     * @throws InterruptedException on wait error
+     * @throws InvocationTargetException on palette creation
+     */
+    @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
+    public static void get(final String[] path) throws JavasciException, InvocationTargetException, InterruptedException {
+        SwingUtilities.invokeAndWait(new Runnable() {
+            @Override
+            public void run() {
+                PaletteNode root = getPathNode(path, false);
+
+                /*
+                 * Create a pseudo palette
+                 */
+                final PreLoaded pal;
+                if (root instanceof PreLoaded) {
+                    pal = (PreLoaded) root;
+                } else if (root instanceof Category) {
+                    LinkedList<Category> stash = new LinkedList<Category>();
+                    stash.add((Category) root);
+
+                    pal = new PreLoaded();
+                    pal.setName(root.getName());
+                    pal.getBlock().addAll(list(stash, pal));
+                } else {
+                    pal = null;
+                }
+
+
+                /*
+                 * Encode the pseudo-palette into a ScilabType
+                 */
+                final ScilabType element;
+                if (pal != null) {
+                    final PreLoadedElement encoder = new PreLoadedElement();
+                    element = encoder.encode(pal, null);
+                } else {
+                    element = new ScilabDouble();
+                }
+
+                try {
+                    Scilab.putInCurrentScilabSession("pal", element);
+                } catch (JavasciException e) {
+                    throw new RuntimeException(e);
+                }
+
+            }
+        });
+    }
+
+    private static List<PaletteBlock> list(Deque<Category> stash, PreLoaded pal) {
+        final ArrayList<PaletteBlock> blocks = new ArrayList<PaletteBlock>();
+        while (!stash.isEmpty()) {
+            final Category c = stash.pop();
+            for (PaletteNode n : c.getNode()) {
+                if (n instanceof Category) {
+                    stash.add((Category) n);
+                } else if (n instanceof PreLoaded) {
+                    final PreLoaded p = (PreLoaded) n;
+                    blocks.addAll(p.getBlock());
+                }
+
+            }
+
+        }
+        return blocks;
+    }
+
+    /**
      * Add a category into the palette manager
      *
      * @param name
@@ -274,7 +351,7 @@ public final class Palette {
                         throw new RuntimeException(String.format(WRONG_INPUT_ARGUMENT_S_INVALID_TREE_PATH, NAME));
                     }
 
-                    PaletteNode.refreshView(node.getParent());
+                    PaletteNode.refreshView(node.getParent(), node);
                 }
             });
         } catch (final InterruptedException e) {
@@ -342,7 +419,7 @@ public final class Palette {
 
                     node.setEnable(status);
 
-                    PaletteNode.refreshView(node.getParent());
+                    PaletteNode.refreshView(node.getParent(), node);
                 }
             });
         } catch (final InterruptedException e) {
@@ -393,8 +470,8 @@ public final class Palette {
                     destination.getNode().add(src);
                     src.setParent(destination);
 
-                    PaletteNode.refreshView(toBeReloaded[0]);
-                    PaletteNode.refreshView(toBeReloaded[1]);
+                    PaletteNode.refreshView(toBeReloaded[0], null);
+                    PaletteNode.refreshView(toBeReloaded[1], src);
                 }
             });
         } catch (final InterruptedException e) {
@@ -421,7 +498,7 @@ public final class Palette {
      *             on error
      */
     @ScilabExported(module = XCOS, filename = PALETTE_GIWS_XML)
-    public static void generatePaletteIcon(final String iconPath) throws Exception {
+    public static void generatePaletteIcon(final long uid, final String iconPath) throws Exception {
         /*
          * If the env. is headless does nothing
          */
@@ -430,14 +507,8 @@ public final class Palette {
             return;
         }
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        try {
-            final BasicBlock block = handler.readBlock();
-
-            generateIcon(block, iconPath);
-        } finally {
-            handler.release();
-        }
+        final BasicBlock block = new BasicBlock(uid);
+        generateIcon(block, iconPath);
 
         if (LOG.isLoggable(Level.FINEST)) {
             LOG.finest(iconPath + " updated.");
@@ -451,13 +522,15 @@ public final class Palette {
         block.getGeometry().setX(XcosConstants.PALETTE_BLOCK_WIDTH);
         block.getGeometry().setY(XcosConstants.PALETTE_BLOCK_HEIGHT);
 
-        final XcosDiagram graph = new XcosDiagram();
+        JavaController controller = new JavaController();
+
+        final XcosDiagram graph = new XcosDiagram(controller.createObject(Kind.DIAGRAM), Kind.DIAGRAM);
         graph.installListeners();
 
         graph.addCell(block);
         graph.selectAll();
 
-        BlockPositioning.updateBlockView(block);
+        BlockPositioning.updateBlockView(graph, block);
 
         /*
          * Render
@@ -481,5 +554,8 @@ public final class Palette {
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));
+
+
+        controller.deleteObject(graph.getUID());
     }
 }

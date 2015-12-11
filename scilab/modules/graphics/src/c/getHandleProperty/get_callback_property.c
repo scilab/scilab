@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,12 +28,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_callback_property(void* _pvCtx, char* pobjUID)
+void* get_callback_property(void* _pvCtx, int iObjUID)
 {
     char* callback = NULL;
-    int status = 0;
+    void* status = NULL;
 
-    getGraphicObjectProperty(pobjUID,  __GO_CALLBACK__, jni_string, (void**) &callback);
+    getGraphicObjectProperty(iObjUID,  __GO_CALLBACK__, jni_string, (void**) &callback);
 
     if (callback == NULL)
     {
@@ -42,7 +42,7 @@ int get_callback_property(void* _pvCtx, char* pobjUID)
     }
     else
     {
-        status = sciReturnString(_pvCtx, callback);
+        status = sciReturnString(callback);
         free(callback);
         return status;
     }

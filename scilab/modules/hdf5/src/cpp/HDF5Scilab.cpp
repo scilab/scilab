@@ -1,14 +1,23 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+
+#include "internal.hxx"
+#include "types.hxx"
+#include "internal.hxx"
+#include "double.hxx"
+#include "int.hxx"
+#include "string.hxx"
+#include "bool.hxx"
 
 #include "HDF5Scilab.hxx"
 
@@ -136,7 +145,7 @@ void HDF5Scilab::readAttributeData(H5Object & obj, const std::string & path, con
     }
 
     H5Attribute * attr = new H5Attribute(*hobj, attrName);
-    attr->getData().toScilab(pvApiCtx, pos);
+    attr->getData().toScilab(pvApiCtx, pos, 0, 0, H5Options::isReadFlip());
 
     if (path != ".")
     {
@@ -203,7 +212,7 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
             {
                 dims = space.select(size, start, stride, count, block);
                 data = &dataset->getData(space, dims);
-                data->toScilab(pvApiCtx, pos);
+                data->toScilab(pvApiCtx, pos, 0, 0, H5Options::isReadFlip());
             }
             catch (const H5Exception & /*e*/)
             {
@@ -218,6 +227,10 @@ void HDF5Scilab::readData(H5Object & obj, const std::string & name, const unsign
             if (data->mustDelete())
             {
                 delete data;
+            }
+            else if (!H5Object::isEmptyPath(name))
+            {
+                hobj->unregisterChild(data);
             }
         }
         else
@@ -399,7 +412,7 @@ void HDF5Scilab::createLink(H5Object & parent, const std::string & name, H5Objec
     {
         if (hard)
         {
-            throw H5Exception(__LINE__, __FILE__, _("Cannot create a hard link to an external object: %s."), name.c_str());
+            throw H5Exception(__LINE__, __FILE__, _("Cannot create a hard link to the external object: %s."), name.c_str());
         }
         createLink(parent, name, targetObject);
     }
@@ -902,12 +915,6 @@ void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** di
 {
     SciErr err;
     int * addr = 0;
-    int row;
-    int col;
-    int _type;
-
-    *mustDelete = false;
-    *mustDeleteContent = false;
 
     err = getVarAddressFromPosition(pvApiCtx, rhsPosition, &addr);
     if (err.iErr)
@@ -915,159 +922,161 @@ void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** di
         throw H5Exception(__LINE__, __FILE__, _("Can not read input argument #%d."), rhsPosition);
     }
 
-    err = getVarType(pvApiCtx, addr, &_type);
-    if (err.iErr)
+    getScilabData(type, ndims, dims, data, mustDelete, mustDeleteContent, flip, addr, rhsPosition, pvApiCtx);
+}
+
+void HDF5Scilab::getScilabData(hid_t * type, unsigned int * ndims, hsize_t ** dims, void ** data, bool * mustDelete, bool * mustDeleteContent, const bool flip, int * addr, int rhsPosition, void * pvApiCtx)
+{
+    SciErr err;
+    int row;
+    int col;
+    int _type;
+
+    *mustDelete = false;
+    *mustDeleteContent = false;
+
+    types::InternalType* pIT = (types::InternalType*)addr;
+    if (pIT->isGenericType() == false)
     {
-        throw H5Exception(__LINE__, __FILE__, _("Can not get the type of input argument #%d."), rhsPosition);
+        throw H5Exception(__LINE__, __FILE__, _("%s: Datatype not handled for now."));
     }
 
-    switch (_type)
-    {
-        case sci_matrix :
-        {
-            double * mat = 0;
+    types::GenericType* pGT = pIT->getAs<types::GenericType>();
+    int iSize = pGT->getSize();
 
-            if (isVarComplex(pvApiCtx, addr))
+    // get dimentions
+    *ndims = pGT->getDims();
+    int* _dims = pGT->getDimsArray();
+    *dims = new hsize_t[*ndims];
+
+    if (flip)
+    {
+        for (int i = 0; i < *ndims; i++)
+        {
+            (*dims)[i] = _dims[*ndims - 1 - i];
+        }
+    }
+    else
+    {
+        for (int i = 0; i < *ndims; i++)
+        {
+            (*dims)[i] = _dims[i];
+        }
+    }
+
+    // get data
+    switch (pGT->getType())
+    {
+        case types::InternalType::ScilabDouble:
+        {
+            types::Double* pDbl = pGT->getAs<types::Double>();
+            double* pdblReal = pDbl->get();
+
+            if (pDbl->isComplex())
             {
-                throw H5Exception(__LINE__, __FILE__, _("Complex datatype not handled for now."));
+                hid_t complex_id = H5Tcreate(H5T_COMPOUND, sizeof(doublecomplex));
+                H5Tinsert(complex_id, "real", offsetof(doublecomplex, r), H5T_NATIVE_DOUBLE);
+                H5Tinsert(complex_id, "imag", offsetof(doublecomplex, i), H5T_NATIVE_DOUBLE);
+
+                double* pdblImg = pDbl->getImg();
+                doublecomplex* mat = new doublecomplex[iSize];
+
+                for (int i = 0; i < iSize; i++)
+                {
+                    mat[i].r = pdblReal[i];
+                    mat[i].i = pdblImg[i];
+                }
+
+                *type = complex_id;
+                *data = mat;
+                *mustDelete = true;
             }
             else
             {
-                err = getMatrixOfDouble(pvApiCtx, addr, &row, &col, &mat);
-                if (err.iErr)
-                {
-                    throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                }
-                *type = H5Type::getBaseType(mat);
-                *ndims = 2;
-                *dims = new hsize_t[*ndims];
-                (*dims)[0] = flip ? col : row;
-                (*dims)[1] = flip ? row : col;
-                *data = mat;
+                *type = H5Type::getBaseType(pdblReal);
+                *data = pdblReal;
             }
+
             break;
         }
-        case sci_ints :
+        case types::InternalType::ScilabInt8:
         {
-            int prec = 0;
-            void * ints = 0;
-
-            err = getMatrixOfIntegerPrecision(pvApiCtx, addr, &prec);
-            if (err.iErr)
-            {
-                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-            }
-
-            switch (prec)
-            {
-                case SCI_INT8 :
-                    err = getMatrixOfInteger8(pvApiCtx, addr, &row, &col, (char **)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((char *)ints);
-                    break;
-                case SCI_UINT8 :
-                    err = getMatrixOfUnsignedInteger8(pvApiCtx, addr, &row, &col, (unsigned char **)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((unsigned char *)ints);
-                    break;
-                case SCI_INT16 :
-                    err = getMatrixOfInteger16(pvApiCtx, addr, &row, &col, (short **)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((short *)ints);
-                    break;
-                case SCI_UINT16 :
-                    err = getMatrixOfUnsignedInteger16(pvApiCtx, addr, &row, &col, (unsigned short **)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((unsigned short *)ints);
-                    break;
-                case SCI_INT32 :
-                    err = getMatrixOfInteger32(pvApiCtx, addr, &row, &col, (int**)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((int *)ints);
-                    break;
-                case SCI_UINT32 :
-                    err = getMatrixOfUnsignedInteger32(pvApiCtx, addr, &row, &col, (unsigned int **)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((unsigned int *)ints);
-                    break;
-
-#ifdef __SCILAB_INT64__
-                case SCI_INT64 :
-                    err = getMatrixOfInteger64(pvApiCtx, addr, &row, &col, (long long **)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((long long *)ints);
-                    break;
-                case SCI_UINT64 :
-                    err = getMatrixOfUnsignedInteger64(pvApiCtx, addr, &row, &col, (unsigned long long **)(&ints));
-                    if (err.iErr)
-                    {
-                        throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-                    }
-                    *type = H5Type::getBaseType((unsigned long long *)ints);
-                    break;
-#endif
-            }
-
-            *ndims = 2;
-            *dims = new hsize_t[*ndims];
-            (*dims)[0] = flip ? col : row;
-            (*dims)[1] = flip ? row : col;
-            *data = ints;
+            types::Int8* pIn = pGT->getAs<types::Int8>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
             break;
         }
-        case sci_strings :
+        case types::InternalType::ScilabUInt8:
         {
-            char ** matS = 0;
-            if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &matS))
+            types::UInt8* pIn = pGT->getAs<types::UInt8>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
+            break;
+        }
+        case types::InternalType::ScilabInt16:
+        {
+            types::Int16* pIn = pGT->getAs<types::Int16>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
+            break;
+        }
+        case types::InternalType::ScilabUInt16:
+        {
+            types::UInt16* pIn = pGT->getAs<types::UInt16>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
+            break;
+        }
+        case types::InternalType::ScilabInt32:
+        {
+            types::Int32* pIn = pGT->getAs<types::Int32>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
+            break;
+        }
+        case types::InternalType::ScilabUInt32:
+        {
+            types::UInt32* pIn = pGT->getAs<types::UInt32>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
+            break;
+        }
+        case types::InternalType::ScilabInt64:
+        {
+            types::Int64* pIn = pGT->getAs<types::Int64>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
+            break;
+        }
+        case types::InternalType::ScilabUInt64:
+        {
+            types::UInt64* pIn = pGT->getAs<types::UInt64>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
+            break;
+        }
+        case types::InternalType::ScilabString:
+        {
+            types::String* pIn = pGT->getAs<types::String>();
+            wchar_t** pwcsIn = pIn->get();
+            char** pstrIn = new char*[iSize];
+
+            for (int i = 0; i < iSize; i++)
             {
-                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
+                pstrIn[i] = wide_string_to_UTF8(pwcsIn[i]);
             }
-            *type = H5Type::getBaseType((char **)matS);
-            *ndims = 2;
-            *dims = new hsize_t[*ndims];
-            (*dims)[0] = flip ? col : row;
-            (*dims)[1] = flip ? row : col;
-            *data = matS;
+
+            *type = H5Type::getBaseType(pstrIn);
+            *data = pstrIn;
             *mustDelete = true;
             *mustDeleteContent = true;
             break;
         }
-        case sci_boolean :
+        case types::InternalType::ScilabBool:
         {
-            int * matB;
-
-            err = getMatrixOfBoolean(pvApiCtx, addr, &row, &col, &matB);
-            if (err.iErr)
-            {
-                throw H5Exception(__LINE__, __FILE__, _("%s: Can not read input argument #%d."), rhsPosition);
-            }
-            *type = H5Type::getBaseType((int *)matB);
-            *ndims = 2;
-            *dims = new hsize_t[*ndims];
-            (*dims)[0] = flip ? col : row;
-            (*dims)[1] = flip ? row : col;
-            *data = matB;
+            types::Bool* pIn = pGT->getAs<types::Bool>();
+            *type = H5Type::getBaseType(pIn->get());
+            *data = pIn->get();
             break;
         }
         default :

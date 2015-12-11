@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,6 +29,10 @@ typedef struct
     const char * format;
     const char * formatWidth;
     const char * language;
+    const char * startup_dir_use;
+    const char * startup_dir_default;
+    const char * startup_dir_previous;
+    const char * recursionlimit;
 } ScilabPreferences;
 
 #define HEAPSIZE_XPATH (const xmlChar*)"//general/body/java-heap-memory/@heap-size"
@@ -42,10 +46,18 @@ typedef struct
 #define IEEE_XPATH (const xmlChar*)"//general/body/environment/@fpe"
 #define FORMAT_XPATH (const xmlChar*)"//general/body/environment/@printing-format"
 #define FORMATWIDTH_XPATH (const xmlChar*)"//general/body/environment/@width"
+#define RECURSIONLIMIT_XPATH (const xmlChar*)"//general/body/environment/@recursion-limit"
 #define LANGUAGE_XPATH (const xmlChar*)"//general/body/languages/@lang"
+#define STARTUP_DIR_USE_XPATH (const xmlChar*)"//general/body/startup/@use"
+#define STARTUP_DIR_DEFAULT_XPATH (const xmlChar*)"//general/body/startup/@default"
+#define STARTUP_DIR_PREVIOUS_XPATH (const xmlChar*)"//general/body/startup/@previous"
 
 PREFERENCES_SCILAB_IMPEXP const ScilabPreferences * getScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void reloadScilabPreferences(void);
 PREFERENCES_SCILAB_IMPEXP void clearScilabPreferences(void);
+PREFERENCES_SCILAB_IMPEXP char * getPrefAttributeValue(const char * xpath, const char * attribute);
+PREFERENCES_SCILAB_IMPEXP char ** getPrefAttributesValues(const char * xpath, const char ** attributes, const unsigned int attrLen);
+PREFERENCES_SCILAB_IMPEXP void setAttributesValues(const char * xpath, const char ** attributes, const unsigned int kvLen);
+PREFERENCES_SCILAB_IMPEXP void setPrefAttributesValues(const char * xpath, const char ** kv, const unsigned int kvLen);
 
 #endif // __GETSCILABPREFERENCES_H__

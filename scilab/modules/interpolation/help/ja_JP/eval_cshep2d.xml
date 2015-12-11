@@ -9,7 +9,7 @@
         <synopsis>[zp [,dzpdx, dzpdy [,d2zpdxx,d2zpdxy,d2zpdyy]]] = eval_cshep2d(xp, yp, tl_coef)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>xp, yp</term>
@@ -89,24 +89,23 @@
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-// see example section of cshep2d
-
-// this example shows the behavior far from the interpolation points ...
+// cshep2dの例を参照
+// この例は補間点から離れた動作を示します...
 deff("z=f(x,y)","z = 1+ 50*(x.*(1-x).*y.*(1-y)).^2")
 x = linspace(0,1,10);
 [X,Y] = ndgrid(x,x);
 X = X(:); Y = Y(:); Z = f(X,Y);
 S = cshep2d([X Y Z]);
-// evaluation inside and outside the square [0,1]x[0,1]
+// 正方 [0,1]x[0,1] の内部および外側の評価
 m = 40;
 xx = linspace(-1.5,0.5,m);
 [xp,yp] = ndgrid(xx,xx);
 zp = eval_cshep2d(xp,yp,S);
-// compute facet (to draw one color for extrapolation region
-// and another one for the interpolation region)
+// 小面を計算 (補外領域の色,
+// 補間領域に別の色を描画)
 [xf,yf,zf] = genfac3d(xx,xx,zp);
 color = 2*ones(1,size(zf,2));
-// indices corresponding to facet in the interpolation region
+// 補間領域の小面に対応する添字
 ind=find( mean(xf,"r")>0 & mean(xf,"r")<1 & mean(yf,"r")>0 & mean(yf,"r")<1 );
 color(ind)=3;
 clf();
@@ -122,5 +121,16 @@ show_window()
                 <link linkend="cshep2d">cshep2d</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>
+                    以前は,入力引数の虚部は暗黙的に無視されていました.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,14 +27,14 @@
 #include "localization.h"
 #include "BasicAlgos.h"
 #include "Format.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_xtics_coord_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_xtics_coord_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int N = 0;
@@ -59,7 +59,7 @@ int set_xtics_coord_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_X_NUMBER_TICKS__, jni_int, (void**)&piXNumberTicks);
+    getGraphicObjectProperty(iObjUID, __GO_X_NUMBER_TICKS__, jni_int, (void**)&piXNumberTicks);
 
     if (piXNumberTicks == NULL)
     {
@@ -80,7 +80,7 @@ int set_xtics_coord_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
     }
 
     /* what follows remains here as it was */
-    status = setGraphicObjectProperty(pobjUID, __GO_X_TICKS_COORDS__, _pvData, jni_double_vector, nbCol);
+    status = setGraphicObjectProperty(iObjUID, __GO_X_TICKS_COORDS__, _pvData, jni_double_vector, nbCol);
 
     if (status == FALSE)
     {
@@ -88,7 +88,7 @@ int set_xtics_coord_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
 
     if (iTicksStyle == 0)
     {
@@ -103,23 +103,23 @@ int set_xtics_coord_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
         ticksStyle = 'i';
     }
 
-    if (ComputeXIntervals(pobjUID, ticksStyle, &vector, &N, 0) != 0)
+    if (ComputeXIntervals(iObjUID, ticksStyle, &vector, &N, 0) != 0)
     {
         /* Something wrong happened */
         FREE(vector);
-        return -1;
+        return SET_PROPERTY_ERROR;
     }
 
-    if (ComputeC_format(pobjUID, c_format) != 0)
+    if (ComputeC_format(iObjUID, c_format) != 0)
     {
         /* Something wrong happened */
         FREE(vector);
-        return -1;
+        return SET_PROPERTY_ERROR;
     }
 
     stringVector = copyFormatedArray(vector, N, c_format, 256);
 
-    status = setGraphicObjectProperty(pobjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, N);
+    status = setGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, stringVector, jni_string_vector, N);
 
     FREE(vector);
 

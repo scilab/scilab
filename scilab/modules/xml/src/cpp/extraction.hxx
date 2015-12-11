@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,9 +29,7 @@ extern "C"
 #include "xml_mlist.h"
 #include "xml_constants.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 }
 
 using namespace org_modules_xml;
@@ -56,7 +54,7 @@ int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
 
     if (strchr(str, '\n'))
     {
-        char * tok = strdup(str);
+        char * tok = os_strdup(str);
         char * stok = tok;
         std::vector<char *> vector = std::vector<char *>();
 
@@ -236,7 +234,7 @@ int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos,
  * @param fname_len the function name length
  */
 template<class T>
-int sci_extraction(char * fname, void *pvApiCtx)
+int sci_extraction(char * fname, void* pvApiCtx)
 {
     T * t;
     int id;
@@ -258,7 +256,7 @@ int sci_extraction(char * fname, void *pvApiCtx)
 
     if (!isStringType(pvApiCtx, fieldaddr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%i: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%i: string expected.\n"), fname, 1);
         return 0;
     }
 

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,8 +15,8 @@
 
 using namespace org_scilab_modules_gui_bridge;
 
-char *uiWaitContextMenu(char *pObjUID)
+char *uiWaitContextMenu(int iObjUID)
 {
     /* TO DO : create a copy or move sci_uiwait to cpp to do a delete */
-    return CallScilabBridge::displayAndWaitContextMenu(getScilabJavaVM(), pObjUID);
+    return CallScilabBridge::displayAndWaitContextMenu(getScilabJavaVM(), iObjUID);
 }

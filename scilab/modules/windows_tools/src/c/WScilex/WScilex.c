@@ -7,7 +7,7 @@
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -16,10 +16,10 @@
 #include <string.h>
 #include <stdio.h>
 #include "GetWindowsVersion.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define MSG_DETECT_XP_OR_MORE "Scilab requires Windows XP or more."
-#define MSG_DETECT_UNKNOW "Scilab does not support this unknow version of Windows."
+#define MSG_DETECT_UNKNOW "Scilab does not support this unknown version of Windows."
 #define MSG_DETECT_SSE_OR_MORE "Scilab requires SSE Instructions."
 #define MSG_WARNING "Warning"
 #define MSG_LOAD_LIBRARIES "Wscilex.exe failed with error %d: %s"

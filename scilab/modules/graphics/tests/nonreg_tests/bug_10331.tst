@@ -19,5 +19,6 @@ plot(1:10);
 e=gce();p=e.children;
 p.user_data=3;
 assert_checktrue(execstr("h=datatipCreate(p,5)","errcatch")==0);
-assert_checkequal(h,[]);
+assert_checkequal(type(h),9);
+assert_checkequal(h.type, "Datatip");
 

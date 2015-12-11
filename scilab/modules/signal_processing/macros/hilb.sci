@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function xh=hilb(n,wtype,par)
     //xh=hilb(n [,wtype [,par]])
@@ -37,6 +37,9 @@ function xh=hilb(n,wtype,par)
 
     if type(n)<>1|size(n,"*")<>1 then
         error(msprintf(gettext("%s: Wrong size for input argument #%d: A scalar expected.\n"),"hilb",1));
+    end
+    if (n - floor(n) <> 0) | (floor(n/2) == n/2) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: An odd integer expected.\n"),"hilb",1));
     end
     if and(wtype<>["re","tr","hn","hm","kr","ch"]) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n") ,"hilb",2,"''re'',''tr'',''hn'',''hm'',''kr'',''ch''"));

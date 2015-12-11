@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function []=updatevarslist(instr_lhs)
     // (2 functions in this file: merge_vars() at the end)
@@ -19,6 +19,9 @@ function []=updatevarslist(instr_lhs)
 
     // Global variable for M2SCI
     global("varslist")
+    if isempty(varslist)
+        varslist = list()
+    end
     // level is declared in m2sci.sci and modified in clause2sci.sci
     level;
 
@@ -32,6 +35,7 @@ function []=updatevarslist(instr_lhs)
     // when end of conversion of a clause : merge infered data from the last two parts of clause
     levelsize=size(level,1)
     changepartclause=%F
+
     for i=size(varslist):-1:1
         if size(varslist(i).level,1)==levelsize then
             varlevel=varslist(i).level

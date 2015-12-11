@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
 function bOK = detectmsvc64tools()
@@ -44,20 +44,33 @@ function bOK = detectmsvc64tools()
 
     if win64() then
         compiler = findmsvccompiler();
-        supported_compiler = ["msvc100pro", ..
+        supported_compiler = [ ...
+        "msvc140pro", ..
+        "msvc140express", ..
+        "msvc120pro", ..
+        "msvc120express", ..
+        "msvc110pro", ..
+        "msvc110express", ..
+        "msvc100pro", ..
         "msvc100express", ..
         "msvc90pro", ..
         "msvc90std", ..
         "msvc90express"];
 
         if (find(supported_compiler == compiler) <> []) then
-            MSVCBIN64PATH = dlwGet64BitPath() + filesep() + "VC\bin\amd64";
+            MSVCBIN64PATH = dlwGet64BitPath();
+            if dlwIsVc11Express() | dlwIsVc12Express() | dlwIsVc14Express() then
+                MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin";
+            else
+                MSVCBIN64PATH = MSVCBIN64PATH + filesep() + "VC\bin\amd64";
+            end
+
             if isdir(MSVCBIN64PATH) then
                 bOK = %T;
             else
                 show = displayWarningMsVC();
                 if show then
-                    TXT = gettext("Microsoft Visual Studio C 2008 or more x64 Compiler not installed.");
+                    TXT = gettext("Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed.");
                     warning(TXT);
                     clear TXT;
                     disableWarningMsVC();
@@ -67,7 +80,7 @@ function bOK = detectmsvc64tools()
         else
             show = displayWarningMsVC();
             if show then
-                TXT = gettext("Microsoft Visual Studio C 2008 or more Compiler not found.");
+                TXT = gettext("Microsoft Visual Studio C 2008 (or more recent) Compiler not found.");
                 warning(TXT);
                 clear TXT;
                 disableWarningMsVC();

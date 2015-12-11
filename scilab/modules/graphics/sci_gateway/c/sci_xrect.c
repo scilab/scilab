@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,6 +18,7 @@
 /* desc : interface for xrect routine                                     */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
@@ -33,7 +34,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xrect(char *fname, unsigned long fname_len)
+int sci_xrect(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -48,14 +49,14 @@ int sci_xrect(char *fname, unsigned long fname_len)
 
     long hdl = 0;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0;
-    char* psubwinUID = NULL;
+    int iSubwinUID = 0;
 
     int foreground = 0;
     int *piForeground = &foreground;
 
     CheckInputArgument(pvApiCtx, 1, 4);
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
     if (sciErr.iErr)
@@ -69,7 +70,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -84,7 +85,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
             }
 
 
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+            getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
             if (strcmp(fname, "xrect") == 0)
             {
@@ -105,7 +106,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
 
             break;
         case 4 :
-            getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+            getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
             //CheckScalar
             if (m1 != 1 || n1 != 1)
@@ -127,7 +128,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -150,7 +151,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                 return 1;
             }
 
@@ -173,7 +174,7 @@ int sci_xrect(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
                 return 1;
             }
 
@@ -209,10 +210,12 @@ int sci_xrect(char *fname, unsigned long fname_len)
 
     if (hdl > 0)
     {
-        setGraphicObjectRelationship(psubwinUID, getObjectFromHandle(hdl));
-        AssignOutputVariable(pvApiCtx, 1) = 0;
-        ReturnArguments(pvApiCtx);
+        setGraphicObjectRelationship(iSubwinUID, getObjectFromHandle(hdl));
     }
+
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

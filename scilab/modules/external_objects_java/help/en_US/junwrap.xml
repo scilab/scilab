@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="junwrap">
+    <refnamediv>
+        <refname>junwrap</refname>
+        <refpurpose>Convert a Java object into a Scilab native type</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            [var_1, var_2, ...] = junwrap(obj_1 [, obj_2 [, ...]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>obj_i</term>
+                <listitem>
+                    <para>A mlist typed _JObj</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>var_i</term>
+                <listitem>
+                    <para>Scilab variable</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Convert a native Java object in a Scilab's one.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               jimport java.lang.String;
+
+               s = String.new("Hello JIMS !!");
+               s1 = s.toUpperCase();
+               s2 = s.toLowerCase()
+               typeof(s1), typeof(s2)
+               typeof(jwrap(s1))
+               typeof(jwrap(s2))
+
+               jremove String s s1 s2
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+               jautoUnwrap(%f)
+               jimport java.io.File;
+
+               f = File.new(SCI);
+               jfiles = f.list(), // a java object due to a disabled autoUnwrap
+               files = junwrap(jfiles); // the corresponding scilab vector
+               
+               jremove File f jfiles
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="junwraprem">junwraprem</link>
+            </member>
+            <member>
+                <link linkend="jwrap">jwrap</link>
+            </member>
+            <member>
+                <link linkend="jautoUnwrap">jautoUnwrap</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

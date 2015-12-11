@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
 function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
@@ -24,6 +24,8 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     end
 
     cmd = "";
+
+    ScilabTreeFound=%f;
     tbxFlag = " -D__SCILAB_TOOLBOX__ ";
     envFlag = "";
 
@@ -31,7 +33,8 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
     end
 
-    if getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "YES" then
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK", "");
+    if (val == "" & isDebug()) | val == "YES" then
         envFlag = envFlag + " -g ";
     end
 

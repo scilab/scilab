@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-10-22 17:03+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: konrad509 <konrad509@op.pl>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pl\n"
 
 #, c-format
@@ -41,7 +41,7 @@ msgstr ""
 "typu łańcuchowego mx1, mx2 lub mx3.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest "
 "pojedynczy łańcuch.\n"
@@ -106,7 +106,7 @@ msgstr ""
 "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano najwyżej %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
 "pojedynczego łańcuchu znaków.\n"
@@ -245,8 +245,8 @@ msgstr ""
 "zapisu do tego katalogu.\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
-msgstr "%s: Plik '%s' nie istnieje lub nie może być odczytany\n"
+msgid "%s: The file '%s' does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -281,17 +281,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
-"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -332,8 +321,9 @@ msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr "\t - '%s - %s' jest wymagane przez '%s'\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
-msgstr "%s: Plik '%s' nie istnieje lub nie może być odczytany\n"
+msgid ""
+"%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -527,21 +517,6 @@ msgstr ""
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Brak modułu ATOMS. Twoja lista repozytoriów jest pusta"
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "&Plik"
-
-msgid "&Tools"
-msgstr "&Narzędzia"
-
-msgid "&Edit"
-msgstr "&Edycja"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "Plik"
 
@@ -560,8 +535,8 @@ msgstr "?"
 msgid "Atoms Help..."
 msgstr "Atomy Pomoc..."
 
-msgid "List of installed modules"
-msgstr "Lista zainstalowanych modułów"
+msgid "Back"
+msgstr ""
 
 msgid "Remove"
 msgstr "Usuń"
@@ -569,8 +544,11 @@ msgstr "Usuń"
 msgid "Install"
 msgstr "Zainstaluj"
 
-msgid "Update"
-msgstr "Aktualizuj"
+msgid "Autoload"
+msgstr ""
+
+msgid "List of installed modules"
+msgstr "Lista zainstalowanych modułów"
 
 msgid "Installing"
 msgstr "Instalowanie"
@@ -584,17 +562,6 @@ msgstr ""
 "Instalacja zakończona! Uruchom ponownie Scilab aby zmiany zostały "
 "uwzględnione."
 
-msgid "Removing"
-msgstr "Usuwanie"
-
-msgid "Remove failed!"
-msgstr "Usuwanie nie powiodło się!"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr ""
-"Usuwanie zakończone! Uruchom ponownie Scilab aby zmiany zostały wzięte pod "
-"uwage. "
-
 msgid "Updating"
 msgstr "Aktualizacja"
 
@@ -606,6 +573,25 @@ msgstr ""
 "Aktualizacja zakończona! Proszę uruchomić ponownie Scilaba aby zmiany "
 "zostały uwzględnione."
 
+msgid "Removing"
+msgstr "Usuwanie"
+
+msgid "Remove failed!"
+msgstr "Usuwanie nie powiodło się!"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr ""
+"Usuwanie zakończone! Uruchom ponownie Scilab aby zmiany zostały wzięte pod "
+"uwage. "
+
+msgid "The module will be automatically loaded at next startup."
+msgstr ""
+
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
+msgstr ""
+
 msgid "Download size"
 msgstr "Wielkość pliku pobranego"
 
@@ -614,6 +600,9 @@ msgstr "Zobacz także"
 
 msgid "Release date"
 msgstr "Data wydania"
+
+msgid "Update"
+msgstr "Aktualizuj"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -712,6 +701,15 @@ msgstr "%s: Nie znaleziono gzip.\n"
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: Wydobycie opisu pliku ('%s') nie powiodło się.\n"
 
+msgid "Done"
+msgstr ""
+
+msgid "Scanning repository"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
 msgstr ""
@@ -737,9 +735,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr "%s: Błąd w pliku %s. Przybornik %s - %s nie zawiera pola %s\n"
+msgstr ""
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -778,11 +776,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"'http://','ftp://' or 'file://' expected.\n"
+"%s: Wrong value for input argument #%d: String that starts with "
+"'http(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
-"%s: Nieprawidłowa wartość dla argumentu wejściowego nr %d: Oczekiwano "
-"łańcuchu zaczynającego się od 'http://','ftp://' lub 'file://'\n"
 
 #, c-format
 msgid ""
@@ -849,8 +845,8 @@ msgid "\t - Local location : '%s'\n"
 msgstr "\t - Lokalne położenie: '%s'\n"
 
 #, c-format
-msgid "%s: The following file hasn't been copied:\n"
-msgstr "%s: Następujący plik nie został skopiowany:\n"
+msgid "%s: The following file has not been copied:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - source    : '%s'\n"
@@ -861,8 +857,8 @@ msgid "\t - destination : '%s'\n"
 msgstr "\t -  miejsce przeznaczenia : '%s'\n"
 
 #, c-format
-msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
-msgstr "%s: Pobrany plik nie sprawdza MD5SUM:\n"
+msgid "%s: The downloaded file does not match the MD5SUM:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - file      : '%s'\n"
@@ -892,12 +888,12 @@ msgstr ""
 "znaków zakończonego .tar.gz, .tgz lub .zip\n"
 
 #, c-format
-msgid "%s: The file %s doesn't exist or is not read accessible.\n"
-msgstr "%s: Plik %s nie istnieje lub nie można go odczytać.\n"
+msgid "%s: The file %s does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: The directory %s doesn't exist.\n"
-msgstr "%s: Katalog %s nie istnieje.\n"
+msgid "%s: The directory %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The extraction of the archive '%s' has failed.\n"
@@ -927,6 +923,75 @@ msgstr "Wszystkie moduły"
 
 msgid "Main categories"
 msgstr "Główne kategorie"
+
+msgid "Aerospace"
+msgstr ""
+
+msgid "Contributed Scilab Binaries"
+msgstr ""
+
+msgid "Data Analysis And Statistics"
+msgstr ""
+
+msgid "Data Handling"
+msgstr ""
+
+msgid "Editor Styles"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "GUI"
+msgstr ""
+
+msgid "Graphics"
+msgstr ""
+
+msgid "Graphs"
+msgstr ""
+
+msgid "Image Processing"
+msgstr ""
+
+msgid "Instruments Control"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Modeling and Control Tools"
+msgstr ""
+
+msgid "Number theory"
+msgstr ""
+
+msgid "Numerical Maths"
+msgstr ""
+
+msgid "Optimization"
+msgstr ""
+
+msgid "Physics"
+msgstr ""
+
+msgid "Real-Time"
+msgstr ""
+
+msgid "Scilab development"
+msgstr ""
+
+msgid "Signal Processing"
+msgstr ""
+
+msgid "Technical"
+msgstr ""
+
+msgid "Tests"
+msgstr ""
+
+msgid "Xcos"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -997,13 +1062,16 @@ msgstr ""
 "%s: Nieprawidłowy parametr dla wartości wejściowej  #%d: '%s' nieprawidłowy "
 "adres URL.\n"
 
-#, c-format
-msgid "%s: the package '%s' doesn't exist.\n"
-msgstr "%s: Pakiet '%s' nie istnieje.\n"
+msgid "Loaded<br>at startup"
+msgstr ""
 
 #, c-format
-msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
-msgstr "%s: pakiet '%s' nie zawiera pola '%s'.\n"
+msgid "%s: the package '%s' does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: the package '%s' does not contain the field '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s (%s) isn't installed.\n"

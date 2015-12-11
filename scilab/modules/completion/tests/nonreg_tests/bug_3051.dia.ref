@@ -10,7 +10,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3051
 //
 // <-- Short Description -->
-// 
+//
 // <-- CLI SHELL MODE -->
 ilib_verbose(0);
 ierr = exec(SCI+"/modules/completion/tests/utilities/build_primitives.sce","errcatch",-1);
@@ -30,9 +30,6 @@ r = getfilepartlevel(currentline);
 if r <> 'toolbo' then bugmes();quit;end;
 r2 = completion(r,'files');
 if r2 <> 'toolbox_skeleton' + filesep() then bugmes();quit;end
-if size(r2,'*') <> 1 then
-    // remove toolbox_skeleton.iss not in release
-    r2 = r2(1);
-end
-r = completeline(currentline,r2,getpartlevel(currentline),getfilepartlevel(currentline),%t);
+pos = find(r2 == 'toolbox_skeleton'+filesep());
+r = completeline(currentline,r2(pos),getpartlevel(currentline),getfilepartlevel(currentline),%t);
 if r <> 'cd toolbox_skeleton' + filesep() then bugmes();quit;end

@@ -7,38 +7,28 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
-#ifdef _MSC_VER
-#include <windows.h>
+#ifndef _MSC_VER
+#include <iconv.h>
+#include <errno.h>
 #endif
+
+#include <wchar.h>
 #include <wctype.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
+
 #include "charEncoding.h"
-#include "MALLOC.h"
-/*--------------------------------------------------------------------------*/
-#ifndef _MSC_VER
-int wcsicmp_others(const wchar_t* s1, const wchar_t* s2)
-{
-    while (towlower(*s1) == towlower(*s2))
-    {
-        if (*s1 == 0)
-        {
-            return 0;
-        }
-        s1++;
-        s2++;
-    }
-    return towlower(*s1) - towlower(*s2);
-}
-#endif
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
+#include <Windows.h>
+
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
     char *buf = NULL;
@@ -54,7 +44,6 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     {
         return (char *)NULL;
     }
-    size += 1;
     buf = (char*)MALLOC(sizeof(char) * size);
     if (buf)
     {
@@ -65,6 +54,8 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
             return (char *)NULL;
         }
     }
+
+    buf[size - 1] = '\0';
     return buf;
 }
 /*--------------------------------------------------------------------------*/
@@ -72,37 +63,38 @@ wchar_t *to_wide_string(const char *_UTFStr)
 {
     int nwide = 0;
     wchar_t *_buf = NULL;
-
-    /* About MultiByteToWideChar :
-    Starting with Windows Vista,
-    the function does not drop illegal code points
-    if the application does not set this flag.
-
-    Windows XP: To prevent the security problem of the non-shortest-form
-    versions of UTF-8 characters, MultiByteToWideChar deletes these characters.
-    */
-
     DWORD dwFlags = 0;
+    UINT codePage = CP_ACP;
 
     if (_UTFStr == NULL)
     {
         return NULL;
     }
-    nwide = MultiByteToWideChar(CP_UTF8, dwFlags, _UTFStr, -1, NULL, 0);
+
+    if (IsValidUTF8(_UTFStr))
+    {
+        codePage = CP_UTF8;
+    }
+
+    nwide = MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, NULL, 0);
     if (nwide == 0)
     {
         return NULL;
     }
+
     _buf = (wchar_t *)MALLOC(nwide * sizeof(wchar_t));
     if (_buf == NULL)
     {
         return NULL;
     }
-    if (MultiByteToWideChar(CP_UTF8, dwFlags, _UTFStr, -1, _buf, nwide) == 0)
+
+    if (MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, _buf, nwide) == 0)
     {
         FREE(_buf);
         _buf = NULL;
     }
+
+    _buf[nwide - 1] = L'\0';
     return _buf;
 }
 /*--------------------------------------------------------------------------*/
@@ -115,21 +107,26 @@ int wcstat(char* filename, struct _stat *st)
     return stat_result;
 }
 /*--------------------------------------------------------------------------*/
-#else //Linux check for MAC OS X
+#else
+/*--------------------------------------------------------------------------*/
+#ifdef __APPLE__ // Mac OS X
+/*--------------------------------------------------------------------------*/
 char *wide_string_to_UTF8(const wchar_t *_wide)
 {
     size_t iCharLen = 0;
     wchar_t *pwstr = _wide;
     char* pchar = NULL;
+    /* The value of MB_CUR_MAX is the maximum number of bytes
+    in a multibyte character for the current locale. */
+    int iMaxLen =  0;
 
     if (_wide == NULL)
     {
         return NULL;
     }
 
-    /* The value of MB_CUR_MAX is the maximum number of bytes
-       in a multibyte character for the current locale. */
-    int iMaxLen = (int)wcslen(_wide) * MB_CUR_MAX ;
+    iMaxLen =  (int)wcslen(_wide) * MB_CUR_MAX ;
+
     pchar = (char*) MALLOC(( iMaxLen + 1) * sizeof(char));
     if (pchar == NULL)
     {
@@ -189,10 +186,98 @@ wchar_t *to_wide_string(const char *_UTFStr)
     return _buf;
 }
 /*--------------------------------------------------------------------------*/
+#else // Linux
+/*--------------------------------------------------------------------------*/
+char *wide_string_to_UTF8(const wchar_t *_wide)
+{
+    char* pOutSave = NULL;
+    wchar_t* pSaveIn = NULL;
+    size_t iSize = 0;
+    size_t iLeftIn = 0;
+    size_t iLeftOut = 0;
+    char* pOut = NULL;
+    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
+
+    if (_wide == NULL)
+    {
+        return NULL;
+    }
+
+    pSaveIn = (wchar_t*)_wide;
+    iLeftIn = wcslen(_wide) * sizeof(wchar_t);
+
+    iLeftOut = iLeftIn + (1 * sizeof(wchar_t));
+    pOut = (char*)MALLOC(iLeftOut);
+    memset(pOut, 0x00, iLeftOut);
+    pOutSave = pOut;
+
+    iSize = iconv(cd_UTF16_to_UTF8, (char**)&pSaveIn, &iLeftIn, &pOut, &iLeftOut);
+    iconv_close(cd_UTF16_to_UTF8);
+    if (iSize == (size_t)(-1))
+    {
+        return NULL;
+    }
+
+    return pOutSave;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t *to_wide_string(const char *_UTFStr)
+{
+    wchar_t* pOutSave = NULL;
+    char* pInSave = NULL;
+    size_t iSize = 0;
+    size_t iLeftIn = 0;
+    size_t iLeftOut = 0;
+    iconv_t cd_UTF8_to_UTF16 = NULL;
+    wchar_t* pOut = NULL;
+
+    if (_UTFStr == NULL)
+    {
+        return NULL;
+    }
+
+    cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
+
+    iLeftIn = strlen(_UTFStr);
+    pInSave = (char*)_UTFStr;
+
+    iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
+    pOut = (wchar_t*)MALLOC(iLeftOut);
+    memset(pOut, 0x00, iLeftOut);
+    pOutSave = pOut;
+
+    iSize = iconv(cd_UTF8_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+    iconv_close(cd_UTF8_to_UTF16);
+    if (iSize == (size_t)(-1))
+    {
+        iconv_t cd_ISO8851_to_UTF16 = iconv_open("WCHAR_T", "ISO_8859-1");
+
+        _UTFStr = pInSave;
+        iLeftIn = strlen(_UTFStr);
+
+        iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
+        pOut = pOutSave;
+        memset(pOut, 0x00, iLeftOut);
+
+
+        iSize = iconv(cd_ISO8851_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+        iconv_close(cd_ISO8851_to_UTF16);
+        if (iSize == (size_t)(-1))
+        {
+            return NULL;
+        }
+    }
+
+    return pOutSave;
+}
+/*--------------------------------------------------------------------------*/
+#endif
+/*--------------------------------------------------------------------------*/
 int wcstat(char* filename, struct stat *st)
 {
     return stat(filename, st);
 }
+/*--------------------------------------------------------------------------*/
 #endif
 /*--------------------------------------------------------------------------*/
 static int ReadUTF8Character(const char* str, int *nBytes)

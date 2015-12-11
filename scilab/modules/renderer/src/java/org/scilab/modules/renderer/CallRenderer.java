@@ -6,20 +6,23 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.renderer;
 
+import org.scilab.modules.graphic_objects.ScilabNativeView;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.textObject.Text;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.text.TextManager;
+import org.scilab.modules.renderer.JoGLView.datatip.DatatipTextDrawer;
 
 /**
  * This is a static class to access the renderer module directly
@@ -32,14 +35,18 @@ public final class CallRenderer {
      * Start an interactive zoom.
      * @param id the uid of the figure where the zoom happen.
      */
-    public static void startInteractiveZoom(String id) {
+    public static void startInteractiveZoom(int id) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
         if (visitor != null) {
             visitor.getInteractionManager().startInteractiveZoom();
         }
     }
 
-    public static double[] clickRubberBox(String id, double initialRect[]) {
+    public static void start_zoom(int figureId) {
+        startInteractiveZoom(ScilabNativeView.ScilabNativeView__getFigureFromIndex(figureId));
+    }
+
+    public static double[] clickRubberBox(int id, double initialRect[]) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
         if (visitor != null) {
             return visitor.getInteractionManager().startClickRubberBox(initialRect);
@@ -47,7 +54,7 @@ public final class CallRenderer {
         return new double[] { -1, -1, -1, -1, -1, -1, -1};
     }
 
-    public static double[] dragRubberBox(String id) {
+    public static double[] dragRubberBox(int id) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(id);
         if (visitor != null) {
             return visitor.getInteractionManager().startDragRubberBox();
@@ -58,7 +65,7 @@ public final class CallRenderer {
      * Updates the coordinate transformation of the Axes object given by the identifier.
      * @param id the Axes' identifier.
      */
-    public static void updateSubwinScale(String id) {
+    public static void updateSubwinScale(int id) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 
         if (object != null && object instanceof Axes) {
@@ -70,11 +77,15 @@ public final class CallRenderer {
      * Updates the corners of the text object corresponding to the identifier.
      * @param id the text object's identifier.
      */
-    public static void updateTextBounds(String id) {
+    public static void updateTextBounds(int id) {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 
-        if (object != null && object instanceof Text) {
-            TextManager.updateTextCorners((Text) object);
+        if (object != null) {
+            if (object instanceof Datatip) {
+                DatatipTextDrawer.updateTextCorners((Datatip) object);
+            } else if (object instanceof Text) {
+                TextManager.updateTextCorners((Text) object);
+            }
         }
     }
 
@@ -87,7 +98,7 @@ public final class CallRenderer {
      * @param coords the input object coordinates (3-element array).
      * @return the 2d view coordinates (3-element array).
      */
-    public static double[] get2dViewCoordinates(String id, double[] coords) {
+    public static double[] get2dViewCoordinates(int id, double[] coords) {
         double[] point2d = new double[] {0.0, 0.0, 0.0};
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
@@ -110,7 +121,7 @@ public final class CallRenderer {
      * @param coords the 2d view coordinates (3-element array: x, y, z).
      * @return the pixel coordinates (2-element array: x, y).
      */
-    public static double[] getPixelFrom2dViewCoordinates(String id, double[] coords) {
+    public static double[] getPixelFrom2dViewCoordinates(int id, double[] coords) {
         double[] pointPix = new double[] {0.0, 0.0};
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
@@ -134,7 +145,7 @@ public final class CallRenderer {
      * @param coords the pixel coordinates (2-element array: x, y).
      * @return the 2d view coordinates (3-element array: x, y, z).
      */
-    public static double[] get2dViewFromPixelCoordinates(String id, double[] coords) {
+    public static double[] get2dViewFromPixelCoordinates(int id, double[] coords) {
         double[] point2d = new double[] {0.0, 0.0, 0.0};
 
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
@@ -149,6 +160,24 @@ public final class CallRenderer {
         return point2d;
     }
 
+    public static double[][] getPixelFrom3dCoordinates(int id, double[] coordsX, double[] coordsY, double[] coordsZ) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Axes) {
+            return AxesDrawer.computePixelFrom3dCoordinates((Axes) object, coordsX, coordsY, coordsZ);
+        }
+
+        return null;
+    }
+
+    public static double[] getPixelFrom3dCoordinates(int id, double[] coord) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object instanceof Axes) {
+            return AxesDrawer.computePixelFrom3dCoordinates((Axes) object, coord);
+        }
+
+        return null;
+    }
+
     /**
      * Computes and returns the viewing area of the Axes object given by the identifier.
      * The viewing area is defined by its upper-left corner and its dimensions, all values
@@ -156,7 +185,7 @@ public final class CallRenderer {
      * @param id the Axes' identifier.
      * @return the Axes' viewing area (4-element array: x, y, width, height).
      */
-    public static double[] getViewingArea(String id) {
+    public static double[] getViewingArea(int id) {
         double[] viewingArea = new double[] {0.0, 0.0, 0.0, 0.0};
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
 

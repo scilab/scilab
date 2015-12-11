@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_xgetmouse(char *fname, unsigned long fname_len)
+int sci_xgetmouse(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -49,7 +49,6 @@ int sci_xgetmouse(char *fname, unsigned long fname_len)
 
     int pixelCoords[2];
     double userCoords2D[2] = {0.0, 0.0};
-    char * clickedSubwinUID = NULL;
 
     int selPosition = 0;
 
@@ -94,7 +93,7 @@ int sci_xgetmouse(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), fname, selPosition);
+            Scierror(202, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), fname, selPosition);
             return 1;
         }
 
@@ -139,9 +138,9 @@ int sci_xgetmouse(char *fname, unsigned long fname_len)
     else
     {
         // Convert pixel coordinates to user coordinates
-        clickedSubwinUID = (char*)getCurrentSubWin();
-        updateSubwinScale(clickedSubwinUID);
-        sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
+        int iClickedSubwinUID = getCurrentSubWin();
+        updateSubwinScale(iClickedSubwinUID);
+        sciGet2dViewCoordFromPixel(iClickedSubwinUID, pixelCoords, userCoords2D);
 
         l1[0] = userCoords2D[0];
         l1[1] = userCoords2D[1];

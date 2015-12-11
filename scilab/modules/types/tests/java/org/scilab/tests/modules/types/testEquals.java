@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.tests.modules.types;
@@ -199,7 +199,7 @@ public class testEquals {
         assertTrue(emptyMatrix.getHeight() == 0);
         assertTrue(emptyMatrix.getWidth() == 0);
         assertTrue(emptyMatrix.isEmpty() == true);
-        assertTrue(emptyMatrix.toString().equals("int([])") == true);
+        assertTrue(emptyMatrix.toString().equals("[]") == true);
         assertTrue(emptyMatrix.getType() == ScilabTypeEnum.sci_ints);
         emptyMatrix.setData(a, true);
         assertTrue(emptyMatrix.getType() == ScilabTypeEnum.sci_ints);

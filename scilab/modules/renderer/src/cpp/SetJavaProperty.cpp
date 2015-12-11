@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,15 +28,15 @@ extern "C"
 using namespace org_scilab_modules_renderer;
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateSubwinScale(char * pSubwinUID)
+void sciJavaUpdateSubwinScale(int iObjUID)
 {
-    CallRenderer::updateSubwinScale(getScilabJavaVM(), pSubwinUID);
+    CallRenderer::updateSubwinScale(getScilabJavaVM(), iObjUID);
 }
 
 /*---------------------------------------------------------------------------------*/
-void sciJavaUpdateTextBoundingBox(char * pTextUID)
+void sciJavaUpdateTextBoundingBox(int iTextUID)
 {
-    CallRenderer::updateTextBounds(getScilabJavaVM(), pTextUID);
+    CallRenderer::updateTextBounds(getScilabJavaVM(), iTextUID);
 }
 
 /*---------------------------------------------------------------------------------*/

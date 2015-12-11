@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -31,7 +31,7 @@
 #include "AxesModel.h"
 
 /*------------------------------------------------------------------------*/
-int set_default_values_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_default_values_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     if (valueType != sci_matrix)
     {
@@ -45,16 +45,16 @@ int set_default_values_property(void* _pvCtx, char* pobjUID, void* _pvData, int 
         return SET_PROPERTY_ERROR;
     }
 
-    if ((pobjUID != NULL) && isFigureModel(pobjUID))
+    if ((iObjUID != 0) && isFigureModel(iObjUID))
     {
-        InitFigureModel(pobjUID);
+        InitFigureModel(iObjUID);
         return SET_PROPERTY_SUCCEED;
     }
-    else if ((pobjUID != NULL) && isAxesModel(pobjUID))
+    else if ((iObjUID != 0) && isAxesModel(iObjUID))
     {
         return InitAxesModel();
     }
-    else if (pobjUID == NULL)
+    else if (iObjUID == 0)
     {
         /* set default values for current figure */
         return sciSetDefaultValues();

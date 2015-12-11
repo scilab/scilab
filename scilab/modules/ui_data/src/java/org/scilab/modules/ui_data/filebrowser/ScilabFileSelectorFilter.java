@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -38,8 +38,8 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.DefaultEditorKit;
 
 import org.scilab.modules.commons.OS;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
 
 /**
@@ -51,7 +51,7 @@ public class ScilabFileSelectorFilter extends JPanel {
 
     private static boolean isWindows = (OS.get() == OS.WINDOWS);
     private static final int GAP = 3;
-    private static final Icon VALIDATE = new ImageIcon(ScilabSwingUtilities.findIcon("filter"));
+    private static final Icon VALIDATE = new ImageIcon(FindIconHelper.findIcon("filter"));
 
     private MyJTextField textfield;
     private final SwingScilabTreeTable stt;
@@ -87,6 +87,7 @@ public class ScilabFileSelectorFilter extends JPanel {
             }
         });
         validate.setIcon(VALIDATE);
+        validate.setToolTipText(UiDataMessages.RUNFILTER);
 
         caseSensitive = new JCheckBox(UiDataMessages.CASESENSITIVE, !isWindows);
         regexp = new JCheckBox(UiDataMessages.REGEXP, false);

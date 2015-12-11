@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlXPath(char *fname, unsigned long fname_len)
+int sci_xmlXPath(char* fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -98,7 +98,7 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -122,7 +122,7 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
         if (!isStringType(pvApiCtx, addr))
         {
             freeAllocatedSingleString(query);
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -144,6 +144,7 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
 
         if (getAllocatedMatrixOfString(pvApiCtx, addr, &row, &col, &namespaces) != 0)
         {
+            freeAllocatedSingleString(query);
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
@@ -164,43 +165,43 @@ int sci_xmlXPath(char *fname, unsigned long fname_len)
 
     switch (xpath->getResultType())
     {
-    case XPATH_NODESET:
-    {
-        const XMLNodeSet *set = xpath->getNodeSet();
-
-        if (set->getSize() == 0)
+        case XPATH_NODESET:
         {
-            createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
+            const XMLNodeSet *set = xpath->getNodeSet();
+
+            if (set->getSize() == 0)
+            {
+                createMatrixOfDouble(pvApiCtx, Rhs + 1, 0, 0, 0);
+            }
+            set->createOnStack(Rhs + 1, pvApiCtx);
+            mustDelete = false;
+            break;
         }
-        set->createOnStack(Rhs + 1, pvApiCtx);
-        mustDelete = false;
-        break;
-    }
-    case XPATH_BOOLEAN:
-    {
-        int b = xpath->getBooleanValue();
+        case XPATH_BOOLEAN:
+        {
+            int b = xpath->getBooleanValue();
 
-        createScalarBoolean(pvApiCtx, Rhs + 1, b);
-        break;
-    }
-    case XPATH_NUMBER:
-    {
-        double d = xpath->getFloatValue();
+            createScalarBoolean(pvApiCtx, Rhs + 1, b);
+            break;
+        }
+        case XPATH_NUMBER:
+        {
+            double d = xpath->getFloatValue();
 
-        createScalarDouble(pvApiCtx, Rhs + 1, d);
-        break;
-    }
-    case XPATH_STRING:
-    {
-        const char *str = xpath->getStringValue();
+            createScalarDouble(pvApiCtx, Rhs + 1, d);
+            break;
+        }
+        case XPATH_STRING:
+        {
+            const char *str = xpath->getStringValue();
 
-        createSingleString(pvApiCtx, Rhs + 1, str);
-        break;
-    }
-    default:
-        delete xpath;
-        Scierror(999, gettext("%s: XPath query returned a not handled type: %i\n"), fname, xpath->getResultType());
-        return 0;
+            createSingleString(pvApiCtx, Rhs + 1, str);
+            break;
+        }
+        default:
+            Scierror(999, gettext("%s: XPath query returned a not handled type: %i\n"), fname, xpath->getResultType());
+            delete xpath;
+            return 0;
     }
 
     if (mustDelete)

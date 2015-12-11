@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -49,7 +49,7 @@ public class MainDataLoader {
      * @param id of the given object.
      * @return the data width.
      */
-    public static int getTextureWidth(String id) {
+    public static int getTextureWidth(Integer id) {
         return DataLoader.getTextureWidth(id);
     }
 
@@ -58,19 +58,76 @@ public class MainDataLoader {
      * @param id of the given object.
      * @return the data height.
      */
-    public static int getTextureHeight(String id) {
+    public static int getTextureHeight(Integer id) {
         return DataLoader.getTextureHeight(id);
     }
 
-    public static void fillTextureCoordinates(String id, FloatBuffer buffer, int bufferLength) {
+    /**
+     * Returns the data for the given object.
+     * @param id of the given object.
+     * @return the data.
+     */
+    public static ByteBuffer getTextureData(Integer id) {
+        return DataLoader.getTextureData(id);
+    }
+
+    /**
+     * Returns the data for the given object.
+     * @param id of the given object.
+     * @return the data.
+     */
+    public static boolean isTextureRowOrder(Integer id) {
+        return DataLoader.isTextureRowOrder(id) != 0;
+    }
+
+    /**
+     * Returns the data for the given object.
+     * @param id of the given object.
+     * @return the data.
+     */
+    public static void disposeTextureData(Integer id, ByteBuffer buffer) {
+        DataLoader.disposeTextureData(id, buffer);
+    }
+
+    /**
+     * Returns the image type of the texture data.
+     * 0 for RGB, 1 for RGBA, 2 for GRAY.
+     * @param id of the given object.
+     * @return the image type.
+     */
+    public static int getTextureImageType(Integer id) {
+        return DataLoader.getTextureImageType(id);
+    }
+
+    /**
+     * Returns the image type of the texture data.
+     * 0 for RGB, 1 for RGBA, 2 for GRAY.
+     * @param id of the given object.
+     * @return the image type.
+     */
+    public static int getTextureDataType(Integer id) {
+        return DataLoader.getTextureDataType(id);
+    }
+
+    /**
+     * Returns the image type of the texture data.
+     * 0 for RGB, 1 for RGBA, 2 for GRAY.
+     * @param id of the given object.
+     * @return the image type.
+     */
+    public static int getTextureGLType(Integer id) {
+        return DataLoader.getTextureGLType(id);
+    }
+
+    public static void fillTextureCoordinates(Integer id, FloatBuffer buffer, int bufferLength) {
         DataLoader.fillTextureCoordinates(id, buffer, bufferLength);
     }
 
-    public static void fillTextureData(String id, ByteBuffer buffer, int bufferLength) {
+    public static void fillTextureData(Integer id, ByteBuffer buffer, int bufferLength) {
         DataLoader.fillTextureData(id, buffer, bufferLength);
     }
 
-    public static void fillTextureData(String identifier, ByteBuffer buffer, int bufferLength, int x, int y, int width, int height) {
+    public static void fillTextureData(Integer identifier, ByteBuffer buffer, int bufferLength, int x, int y, int width, int height) {
         DataLoader.fillSubTextureData(identifier, buffer, bufferLength, x, y, width, height);
     }
 
@@ -80,7 +137,7 @@ public class MainDataLoader {
      * @return the number of data elements.
      * @throws ObjectRemovedException if the object no longer exist.
      */
-    public static int getDataSize(String id) throws ObjectRemovedException {
+    public static int getDataSize(Integer id) throws ObjectRemovedException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         if (type == null) {
@@ -105,7 +162,7 @@ public class MainDataLoader {
      * @param logMask bit mask specifying whether logarithmic coordinates are used.
      * @throws ObjectRemovedException if the object no longer exist.
      */
-    public static void fillVertices(String id, FloatBuffer buffer, int elementsSize,
+    public static void fillVertices(Integer id, FloatBuffer buffer, int elementsSize,
                                     int coordinateMask, double[] scale, double[] translation, int logMask) throws ObjectRemovedException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
@@ -121,13 +178,30 @@ public class MainDataLoader {
     }
 
     /**
+     * Fills the given buffer with normal data from the given object.
+     * @param id id of the given object.
+     * @param position buffer with vertex position data.
+     * @param buffer buffer to fill.
+     * @param elementsSize number of coordinates taken by one element in the buffer.
+     * @throws ObjectRemovedException if the object no longer exist.
+     */
+    public static void fillNormals(Integer id, FloatBuffer position, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
+        Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
+
+        if (type == null) {
+            throw (new ObjectRemovedException(id));
+        }
+        DataLoader.fillNormals(id, position, buffer, buffer.capacity(), elementsSize);
+    }
+
+    /**
      * Fills the given buffer with color data from the given object.
      * @param id id of the given object.
      * @param buffer buffer to fill.
      * @param elementsSize number of components taken by one element in the buffer (3 or 4).
      * @throws ObjectRemovedException if the object no longer exist.
      */
-    public static void fillColors(String id, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
+    public static void fillColors(Integer id, FloatBuffer buffer, int elementsSize) throws ObjectRemovedException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         if (type == null) {
@@ -147,7 +221,7 @@ public class MainDataLoader {
      * @return the object's number of indices.
      * @throws ObjectRemovedException if the object no longer exist.
      */
-    public static int getIndicesSize(String id) throws ObjectRemovedException {
+    public static int getIndicesSize(Integer id) throws ObjectRemovedException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         if (type == null) {
@@ -169,7 +243,7 @@ public class MainDataLoader {
      * @return the number of indices actually written.
      * @throws ObjectRemovedException if the object no longer exist.
      */
-    public static int fillIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
+    public static int fillIndices(Integer id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         if (type == null) {
@@ -189,7 +263,7 @@ public class MainDataLoader {
      * @return the object's number of indices.
      * @throws ObjectRemovedException if the object no longer exist.
      */
-    public static int getWireIndicesSize(String id) throws ObjectRemovedException {
+    public static int getWireIndicesSize(Integer id) throws ObjectRemovedException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
 
@@ -212,7 +286,7 @@ public class MainDataLoader {
      * @return the number of indices actually written.
      * @throws ObjectRemovedException if the object no longer exist.
      */
-    public static int fillWireIndices(String id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
+    public static int fillWireIndices(Integer id, IntBuffer buffer, int logMask) throws ObjectRemovedException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         if (type == null) {
@@ -247,10 +321,10 @@ public class MainDataLoader {
         return 0;
     }
 
-    public static int getLogMask(String id) {
+    public static int getLogMask(Integer id) {
         try {
             GraphicObject object = GraphicController.getController().getObjectFromId(id);
-            String parentAxesId = object.getParentAxes();
+            Integer parentAxesId = object.getParentAxes();
             Axes axes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
             int mask = 0;
             if (axes.getXAxisLogFlag()) {

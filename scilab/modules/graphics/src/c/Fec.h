@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -35,14 +35,14 @@
  *  Nnode : number of nodes
  *  Ntr   : number of triangles
  *  strflag,legend,brect,aint : see plot2d
- *  zminmax   : to set (optionnaly) the min and max level
- *  colminmax : to set (optionnaly) the first and last color to use
+ *  zminmax   : to set (optionaly) the min and max level
+ *  colminmax : to set (optionaly) the first and last color to use
  *
  *  modified by Bruno Pincon 01/02/2001 for gain in speed and added
  *  possibilities to set zmin, zmax by the user and also to set the
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
  */
-int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr,
+int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, int *Nvertex,
              char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
              int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2);
 

@@ -8,62 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-31 06:56+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:02+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Une variable définie "
-"attendue.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : \"%s\" est un répertoire"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
-
-#, c-format
-msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
-"%s : Version erronée du format de fichier SOD. Attendue : %d. Trouvée : %d\n"
-
-#, c-format
-msgid "%s: Unable to delete existing variable \"%s\"."
-msgstr "%s : Impossible de supprimer la variable existante \"%s\"."
-
-#, c-format
-msgid ""
-"%s: Variable '%s' already exists in file '%s'\n"
-"Use -append option to replace existing variable\n"
-"."
-msgstr ""
-"%s : La variable '%s' existe déjà dans le fichier '%s'\n"
-"Utilisez l'option -append pour remplacer la variable existante."
-
-#, c-format
-msgid "%s: Unable to update Scilab version in \"%s\"."
-msgstr "%s : Impossible de mettre à jour la version de Scilab dans \"%s\"."
-
-#, c-format
-msgid "%s: Unable to update HDF5 format version in \"%s\"."
-msgstr ""
-"%s : Impossible de mettre à jour la version du format HDF5 dans \"%s\"."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -74,8 +26,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s : H5Object invalide.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un H5Object attendu.\n"
@@ -85,7 +36,13 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -109,8 +66,10 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice double attendue.\n"
 
 #, c-format
-msgid "%s: Wrogn size for input argument #%d: five row vector expected.\n"
+msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
 msgstr ""
+"%s : Dimension erronée de l'argument d'entrée n°%d : Un vecteur de cinq "
+"lignes attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -140,7 +99,7 @@ msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un H5Object attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -194,8 +153,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s : Impossible d'utiliser le H5Object : Objet invalide.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un booléen attendu.\n"
@@ -229,10 +187,11 @@ msgid "%s: Second argument must be a dataset name.\n"
 msgstr "%s : Le deuxième argument doit être un nom de dataset.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Same size as the data expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Mêmes dimensions "
-"attendues.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : La même dimension que "
+"les données attendue.\n"
 
 #, c-format
 msgid "%s: Argument 'count' is missing.\n"
@@ -245,6 +204,10 @@ msgstr "%s : Nombre erroné d'argument(s) : %d attendu(s).\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Unable to open file: %s\n"
@@ -261,13 +224,86 @@ msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s : Format Scilab HDF5 invalide.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to open file: '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s is not a valid lib file.\n"
+msgstr ""
+
+msgid "Redefining permanent variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to load '%s'\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
+msgstr ""
+"%s : Version erronée du format de fichier SOD. Attendue : %d. Trouvée : %d\n"
+
+#, c-format
+msgid "%s: Unable to load '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Une variable définie "
+"attendue.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : \"%s\" est un répertoire"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
+
+#, c-format
+msgid "%s: Unable to delete existing variable \"%s\".\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to export variable '%s' in file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr "%s : Impossible de mettre à jour la version de Scilab dans \"%s\"."
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr ""
+"%s : Impossible de mettre à jour la version du format HDF5 dans \"%s\"."
+
+#, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
 msgstr ""
 "%s : Nombre erroné d'arguments d'entrée : Plus de %d sont attendus.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un double attendu.\n"
@@ -449,7 +485,7 @@ msgid "Unknown dataspace"
 msgstr "Dataspace inconnu"
 
 msgid "Extents"
-msgstr ""
+msgstr "Extensions"
 
 msgid "Invalid selection rank."
 msgstr "Rang de sélection invalide."
@@ -457,8 +493,8 @@ msgstr "Rang de sélection invalide."
 msgid "Invalid selection."
 msgstr "Sélection invalide."
 
-msgid "Cannot get the current errors stack"
-msgstr ""
+msgid "Cannot get the current stack of errors."
+msgstr "Impossible d'obtenir la pile courante d'erreurs."
 
 msgid "HDF5 description"
 msgstr "Description HDF5"
@@ -485,10 +521,10 @@ msgid "Link path"
 msgstr "Chemin de lien"
 
 msgid "Link target file"
-msgstr ""
+msgstr "Fichier pointé par le lien"
 
 msgid "Link target path"
-msgstr ""
+msgstr "Chemin pointé par le lien"
 
 msgid "Invalid hdf5 file: empty filename."
 msgstr "Fichier hdf5 invalide : nom de fichier vide."
@@ -586,7 +622,7 @@ msgid "Cannot get linked object"
 msgstr "Impossible d'obtenir l'objet lié"
 
 msgid "Link target name"
-msgstr ""
+msgstr "Nom pointé par le lien"
 
 #, c-format
 msgid "The link %s does not exist."
@@ -655,6 +691,9 @@ msgstr "Objet HDF5 inconnu"
 msgid "Cannot retrieve numeric index."
 msgstr "Impossible de récupérer l'index numérique"
 
+msgid "Invalid option: must be C or FORTRAN."
+msgstr "Option invalide : Doit être C ou Fortran"
+
 msgid "Cannot open object at the given position."
 msgstr "Impossible d'ouvrir l'objet à la position donnée"
 
@@ -703,15 +742,15 @@ msgstr "Le lien existe déjà : %s."
 
 #, c-format
 msgid "Cannot create the hard link: %s."
-msgstr ""
+msgstr "Impossible de créer le lien dur : %s."
 
 #, c-format
 msgid "Cannot create the soft link: %s."
-msgstr ""
+msgstr "Impossible de créer le lien symbolique : %s."
 
 #, c-format
-msgid "Cannot create a hard link to an external object: %s."
-msgstr ""
+msgid "Cannot create a hard link to the external object: %s."
+msgstr "Impossible de créer le lien dur sur l'objet externe : %s."
 
 #, c-format
 msgid "Cannot create the external link: %s."
@@ -724,7 +763,7 @@ msgid "Invalid filter"
 msgstr "Filtre invalide"
 
 msgid "Can only label a dataset"
-msgstr ""
+msgstr "Il n'est possible d'identifier qu'un ensemble de données"
 
 msgid "Target object is not a file"
 msgstr "L'objet cible n'est pas un fichier"
@@ -747,17 +786,6 @@ msgstr "Impossible de démonter le fichier à l'emplacement : %s"
 #, c-format
 msgid "Can not read input argument #%d."
 msgstr "Impossible de lire l'argument d'entrée n°%d."
-
-#, c-format
-msgid "Can not get the type of input argument #%d."
-msgstr "Impossible d'obtenir le type de l'argument d'entrée n°%d."
-
-msgid "Complex datatype not handled for now."
-msgstr "Le type de données complexe n'est pas pris en charge pour le moment."
-
-#, c-format
-msgid "%s: Can not read input argument #%d."
-msgstr "%s : Impossible de lire l'argument d'entrée n°%d."
 
 #, c-format
 msgid "%s: Datatype not handled for now."

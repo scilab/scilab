@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) DIGITEO - 2012 - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="overloading" xml:lang="ru">
+    <refnamediv>
+        <refname>перегрузка</refname>
+        <refpurpose>
+            возможности перегрузки отображения, функций и операторов
+        </refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            В Scilab'е вывод на экран переменной, функции и операторы могут быть определены для новых объектов с помощью функций (в Scilab-коде или примитивов).
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>Вывод на экран</term>
+                <listitem>
+                    <para>
+                        Вывод на экран новых объектов, определённых с
+                        помощью структуры типизированного списка
+                        <literal>tlist</literal>, может быть перегружен
+                        (по умолчанию вывод на экран схож с выводом на
+                        экран списка <literal>list</literal>). Функция
+                        перегрузки не должна иметь выходных аргументов,
+                        но должна иметь один входной аргумент. Её имя
+                        формируется следующим образом:
+                        <literal>%&lt;тип_tlist&gt;_p</literal>,
+                        где <literal>%&lt;тип_tlist&gt;</literal>
+                        указывает на первый вход компонента типа
+                        <literal>tlist</literal>, усечённого до первых
+                        9-ти символов.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Операторы</term>
+                <listitem>
+                    <para>
+                        Каждый оператор, который не определён для типов
+                        указанных операндов, может быть определён.
+                        Функция перегрузки должна иметь один выходной
+                        аргумент и один или два входных в соответствии с
+                        количеством операндов. Имя функции формируется
+                        следующим образом:
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>для бинарных операторов:
+            <literal>%&lt;тип_первого_операнда&gt;_&lt;код_оператора&gt;_&lt;тип_второго_операнда&gt;</literal>;
+        </para>
+        <para>для унарных операторов:
+            <literal>%&lt;operand_type&gt;_&lt;код_оператора&gt;</literal>;
+        </para>
+        <para>
+            операторы выделения и вставки, которые являются n-арными
+            операторами, описаны ниже.
+        </para>
+        <warning>
+            Будьте осторожны. В макросе перегрузки можно использовать
+            только те типы, которые зарегистрированы функцией
+            <function>typename</function>.
+        </warning>
+        <para>
+            <literal>&lt;operand_type&gt;</literal>,
+            <literal>&lt;тип_первого_операнда&gt;</literal>,
+            <literal>&lt;тип_второго_операнда&gt;</literal> являются
+            последовательностями символов, связанных с каждым типом
+            данных как это описано в следующей таблице:
+        </para>
+        <informaltable border="1">
+            <tr>
+                <td>тип данных</td>
+                <td>символьный код</td>
+                <td>typeof</td>
+                <td>комментарии</td>
+            </tr>
+            <tr>
+                <td>матрица чисел удвоенной точности</td>
+                <td>
+                    <literal>s</literal>
+                </td>
+                <td>
+                    <literal>constant</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>матрица полиномов</td>
+                <td>
+                    <literal>p</literal>
+                </td>
+                <td>
+                    <literal>polynomial</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>матрица логических значений</td>
+                <td>
+                    <literal>b</literal>
+                </td>
+                <td>
+                    <literal>boolean</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>разрежённая матрица</td>
+                <td>
+                    <literal>sp</literal>
+                </td>
+                <td>
+                    <literal>sparse</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>разрежённая матрица логических значений</td>
+                <td>
+                    <literal>spb</literal>
+                </td>
+                <td>
+                    <literal>boolean sparse</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>разрежённая матрица Matlab'а</td>
+                <td>
+                    <literal>msp</literal>
+                </td>
+                <td>
+                    <literal>Matlab sparse</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>матрица целочисленных значений</td>
+                <td>
+                    <literal>i</literal>
+                </td>
+                <td>
+                    <literal>int8, int16, int32, uint8, uint16, uint32</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>матрица строк</td>
+                <td>
+                    <literal>c</literal>
+                </td>
+                <td>
+                    <literal>string</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>дескриптор</td>
+                <td>
+                    <literal>h</literal>
+                </td>
+                <td>
+                    <literal>handle</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>компилированная функция</td>
+                <td>
+                    <literal>fptr</literal>
+                </td>
+                <td>
+                    <literal>fptr</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>сценарий, функция</td>
+                <td>
+                    <literal>mc</literal>
+                </td>
+                <td>
+                    <literal>function</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>библиотека</td>
+                <td>
+                    <literal>f</literal>
+                </td>
+                <td>
+                    <literal>library</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>список</td>
+                <td>
+                    <literal>l</literal>
+                </td>
+                <td>
+                    <literal>list</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>типизированный список</td>
+                <td>
+                    <literal>tlist type</literal>
+                </td>
+                <td>
+                    <literal>tlist type</literal>
+                </td>
+                <td>первая строка первого элемента типизированного списка</td>
+            </tr>
+            <tr>
+                <td>матричноориентированный список</td>
+                <td>
+                    <literal>mlist type</literal>
+                </td>
+                <td>
+                    <literal>mlist type</literal>
+                </td>
+                <td>первая строка первого элемента матричноориентированного списка</td>
+            </tr>
+            <tr>
+                <td>гиперматрица</td>
+                <td>
+                    <literal>hm</literal>
+                </td>
+                <td>
+                    <literal>hypermat</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>указатель</td>
+                <td>
+                    <literal>ptr</literal>
+                </td>
+                <td>
+                    <literal>pointer</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>cell-массив</td>
+                <td>
+                    <literal>ce</literal>
+                </td>
+                <td>
+                    <literal>ce</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>структура</td>
+                <td>
+                    <literal>st</literal>
+                </td>
+                <td>
+                    <literal>st</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>рациональное значение</td>
+                <td>
+                    <literal>r</literal>
+                </td>
+                <td>
+                    <literal>rational</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>линейное пространство состояний</td>
+                <td>
+                    <literal>lss</literal>
+                </td>
+                <td>
+                    <literal>state-space</literal>
+                </td>
+                <td/>
+            </tr>
+            <tr>
+                <td>неявный полином</td>
+                <td>
+                    <literal>ip</literal>
+                </td>
+                <td>
+                    <literal>size implicit</literal>
+                </td>
+                <td>1:1:$</td>
+            </tr>
+        </informaltable>
+        <para>
+            <literal>&lt;код_оператора&gt;</literal> - это одиночный
+            символ, связанный с каждым оператором, как описано в
+            следующей таблице:
+        </para>
+        <informaltable border="1">
+            <tr>
+                <td>
+                    оператор
+                </td>
+                <td>
+                    символьный код
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>'</literal>
+                </td>
+                <td>t</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>+</literal>
+                </td>
+                <td>a</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>-</literal>
+                </td>
+                <td>s</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>*</literal>
+                </td>
+                <td>m</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>/</literal>
+                </td>
+                <td>r</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>\</literal>
+                </td>
+                <td>l</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>^</literal>
+                </td>
+                <td>p</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.*</literal>
+                </td>
+                <td>x</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>./</literal>
+                </td>
+                <td>d</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.\</literal>
+                </td>
+                <td>q</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.*.</literal>
+                </td>
+                <td>k</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>./.</literal>
+                </td>
+                <td>y</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.\.</literal>
+                </td>
+                <td>z</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>:</literal>
+                </td>
+                <td>b</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>*.</literal>
+                </td>
+                <td>u</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>/.</literal>
+                </td>
+                <td>v</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>\.</literal>
+                </td>
+                <td>w</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>[a,b]</literal>
+                </td>
+                <td>c</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>[a;b]</literal>
+                </td>
+                <td>f</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>() выделение</literal>
+                </td>
+                <td>e</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>() вставка</literal>
+                </td>
+                <td>i</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>==</literal>
+                </td>
+                <td>o</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&lt;&gt;</literal>
+                </td>
+                <td>n</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>|</literal>
+                </td>
+                <td>g</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&amp;</literal>
+                </td>
+                <td>h</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.^</literal>
+                </td>
+                <td>j</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>.'</literal>
+                </td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&lt;</literal>
+                </td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&gt;</literal>
+                </td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&lt;=</literal>
+                </td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>&gt;=</literal>
+                </td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>~</literal>
+                </td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>
+                    <literal>iext</literal>
+                </td>
+                <td>6</td>
+            </tr>
+        </informaltable>
+        <para>
+            Функция перегрузки для синтаксиса выделения
+            <literal>b= a(i1, ..., in)</literal>
+            имеет следующую последовательность вызова:
+            <literal>b = %&lt;тип_a&gt;;_e_(i1, ..., in, a)</literal>
+        </para>
+        <para>
+            и синтаксис <literal>[x1, .., xm] = a(i1, ..., in)</literal>
+            имеет следующую последовательность вызова:
+            <literal>[x1, .., xm] = %&lt;тип_a&gt;;_e_(i1, ..., in, a)</literal>.
+        </para>
+        <para>
+            Функция перегрузки, связанная с синтаксисом вставки
+            <literal>a(i1, ..., in) = b</literal> имеет следующую
+            последовательность вызова:
+            <literal>a = %&lt;тип_b&gt;;_i_&lt;тип_a&gt;;(i1, ..., in, b, a)</literal>.
+        </para>
+        <para>
+            Символьный код <literal>6</literal> может использоваться в
+            некоторых сложных алгоритмах вставки, таких как <code>x.b(2) = 33</code>,
+            где поле <literal>b</literal> не определено в структуре
+            <literal>x</literal>. Вставка автоматически разлагается на
+            <code>temp = x.b</code>; <code>temp(2) = 33</code>;
+            <code>x.b = temp</code>. Символьный код <literal>6</literal>
+            используется для первого шага этого алгоритма. Функция
+            перегрузки <literal>6</literal> очень похожа на функцию
+            перегрузки <literal>e</literal>.
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>Функции:</term>
+                <listitem>
+                    <para>
+                        Некоторые основные функции-примитивы могут быть
+                        также перегружены для новых типов данных. Когда
+                        такая функция не определена для особого типа
+                        данных, то вызывается функция
+                        <literal>%&lt;тип_аргумента&gt;_&lt;имя_функции&gt;</literal>.
+                        Пользователь может добавить в этой вызываемой
+                        функции определение, связанное с типами входных данных.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+    </refsection>
+    <refsection>
+        <programlisting role="example">
+            //ВЫВОД НА ЭКРАН
+            var = tlist('tab', ['a', 'b'], ['x'; 'y'], rand(2, 2)) // у переменной var тип 'tab'
+            
+            typeof(var)
+            
+            function [] = %tab_p(l)
+            disp([[' '; l(3)] [l(2); string(l(4))]])
+            endfunction
+            
+            var // после перегрузки
+        </programlisting>
+    </refsection>
+    <refsection>
+        <programlisting role="example">
+            //ОПЕРАТОР
+            's' + 1 // нельзя прибавить число к строке
+            
+            function x = %c_a_s(a, b)
+            x = a + string(b);
+            endfunction
+            
+            's' + 1 // после перегрузки
+        </programlisting>
+    </refsection>
+    <refsection>
+        <programlisting role="example">
+            //ФУНКЦИЯ
+            sin('2 * x') // sin не работает со строкой
+            
+            function x = %c_sin(a)
+            x = 'sin(' + a + ')'
+            endfunction
+            
+            sin('2 * x') // после перегрузки
+        </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="tlist">tlist</link>
+            </member>
+            <member>
+                <link linkend="disp">disp</link>
+            </member>
+            <member>
+                <link linkend="symbols">symbols</link>
+            </member>
+            <member>
+                <link linkend="typeof">typeof</link>
+            </member>
+            <member>
+                <link linkend="type">type</link>
+            </member>
+            <member>
+                <link linkend="typename">typename</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

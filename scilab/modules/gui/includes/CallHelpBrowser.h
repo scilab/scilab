@@ -9,14 +9,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "BOOL.h"
-#include "localization.h"
-#include "Scierror.h"
-
+#include "dynlib_gui.h"
 /**
  * Launch a Scilab Help Browser
  *
@@ -24,7 +22,7 @@
  * @param helpsSize number of entries in helps
  * @param language Scilab current locale
  */
-int launchHelpBrowser(char **helps, int helpsSize, char *language);
+GUI_IMPEXP int launchHelpBrowser(char **helps, int helpsSize, char *language);
 
 /**
  * Search a keyword in Scilab Help Browser
@@ -35,7 +33,7 @@ int launchHelpBrowser(char **helps, int helpsSize, char *language);
  * @param language Scilab current locale
  * @param fullText true to execute a full-text search
  */
-int searchKeyword(char **helps, int helpsSize, char *keyword, char *language, BOOL fullText);
+GUI_IMPEXP int searchKeyword(char **helps, int helpsSize, char *keyword, char *language, BOOL fullText);
 
 #endif /* !__CALLHELPBROWSER_H__ */
 

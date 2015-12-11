@@ -6,21 +6,22 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include "GuiManagement.h"
 #include "scilines.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 void setScilabLines(int nbRows, int nbCols)
 {
-    if (getLinesSize() == 0)
+    if (getConsoleLines() == 0)
     {
         /* The user does not want to be asked for more display */
         /* Modify only the number of columns used to format displayed data */
-        scilines(getLinesSize(), nbCols);
+        scilines(getConsoleLines(), nbCols);
     }
     else
     {

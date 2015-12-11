@@ -7,31 +7,22 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include "Scierror.h"
 #include "gw_jvm.h"
-#include "dynlib_jvm.h"
-#include "InitializeJVM.h"
-#include "TerminateJVM.h"
-#include "loadBackGroundClassPath.h"
-#include "loadOnUseClassPath.h"
 #include "localization.h"
 
 #ifdef _MSC_VER
-#include "getScilabJNIEnv.h"
-#include "getScilabJavaVM.h"
 #include "getScilabObject.h"
 #include "addToClasspath.h"
-#include "addToLibrarypath.h"
-#include "catchIfJavaException.h"
 #endif
 
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP int gw_jvm(void)
+int gw_jvm(void)
 {
     Scierror(999, _("Scilab Java module not installed.\n"));
     return 0;
@@ -69,25 +60,25 @@ BOOL catchIfJavaException(char *errorMsg)
 }
 #endif
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL InitializeJVM(void)
+BOOL InitializeJVM(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL TerminateJVM(void)
+BOOL TerminateJVM(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL loadBackGroundClassPath(void)
+BOOL loadBackGroundClassPath(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL loadOnUseClassPath(char const* tag)
+BOOL loadOnUseClassPath(char const* tag)
 {
     return FALSE;
 }
@@ -106,13 +97,13 @@ void forceCloseMainScilabObject(void)
 }
 
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL ExecuteInitialHooks(void)
+BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
 }
 
 /*--------------------------------------------------------------------------*/
-JVM_IMPEXP BOOL isItTheDisabledLib(void)
+BOOL isItTheDisabledLib(void)
 {
     return TRUE;
 }

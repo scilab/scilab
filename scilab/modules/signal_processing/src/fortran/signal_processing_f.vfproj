@@ -6,107 +6,54 @@
 	<Configurations>
 		<Configuration Name="Debug|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib core.lib signal_processing.lib output_stream.lib elementary_functions.lib elementary_functions_f.lib core_f.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib signal_processing.lib output_stream.lib elementary_functions_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib core.lib signal_processing.lib output_stream.lib elementary_functions.lib elementary_functions_f.lib core_f.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib signal_processing.lib output_stream.lib elementary_functions_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X86 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Debug|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDebugDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib core.lib signal_processing.lib output_stream.lib elementary_functions.lib elementary_functions_f.lib core_f.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" GenerateDebugInformation="true" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib signal_processing.lib output_stream.lib elementary_functions_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|x64" OutputDirectory="$(SolutionDir)bin\" IntermediateDirectory="$(ProjectDir)$(ConfigurationName)" DeleteExtensionsOnClean="*.obj;*.mod;*.pdb;*.asm;*.map;*.dyn;*.dpi;*.tmp;*.log;*.ilk;*.dll;$(TargetPath)" ConfigurationType="typeDynamicLibrary">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" AdditionalIncludeDirectories="../../../core/includes" PreprocessorDefinitions="WIN32;FORDLL" AlternateParameterSyntax="false" F77RuntimeCompatibility="true" FPS4Libs="false" CallingConvention="callConventionCRef" ExternalNameUnderscore="true" ModulePath="$(INTDIR)/" ObjectFile="$(INTDIR)/" RuntimeLibrary="rtMultiThreadedDLL"/>
-				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib core.lib signal_processing.lib output_stream.lib elementary_functions.lib elementary_functions_f.lib core_f.lib"/>
+				<Tool Name="VFLinkerTool" OutputFile="$(SolutionDir)bin\$(ProjectName).dll" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" ModuleDefinitionFile="signal_processing_f.def" SubSystem="subSystemWindows" ImportLibrary="$(SolutionDir)bin\$(ProjectName).lib" LinkDLL="true" AdditionalDependencies="../../../../bin/blasplus.lib ../../../../bin/lapack.lib signal_processing.lib output_stream.lib elementary_functions_f.lib"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true" HeaderFileName="$(InputName).h" TypeLibraryName="$(IntDir)/$(InputName).tlb"/>
 				<Tool Name="VFCustomBuildTool"/>
-				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion
-cd $(ConfigurationName)
-set LIST_OBJ=
-for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f
-&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%
-copy $(ProjectName).def ..\$(ProjectName).def &gt;nul
-del *.def &gt;nul
-cd .." Description="Build $(ProjectName).def"/>
-				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)core_import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)core_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)core_f.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions.lib&quot; 1&gt;NUL 2&gt;NUL
-lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:X64 /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
+				<Tool Name="VFPreLinkEventTool" CommandLine="setlocal EnableDelayedExpansion&#xA;cd $(ConfigurationName)&#xA;set LIST_OBJ=&#xA;for %%f in (*.obj) do set LIST_OBJ=!LIST_OBJ! %%f&#xA;&quot;$(SolutionDir)bin\dumpexts&quot; -o $(ProjectName).def $(ProjectName).dll %LIST_OBJ%&#xA;copy $(ProjectName).def ..\$(ProjectName).def &gt;nul&#xA;del *.def &gt;nul&#xA;cd .." Description="Build $(ProjectName).def"/>
+				<Tool Name="VFPreBuildEventTool" CommandLine="lib /DEF:&quot;$(InputDir)signal_processing_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)signal_processing.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)output_stream_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)output_stream.lib&quot; 1&gt;NUL 2&gt;NUL&#xA;lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:&quot;$(InputDir)elementary_functions_f.lib&quot; 1&gt;NUL 2&gt;NUL" Description="Build Dependencies"/>
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="libraries Dependencies">
-		<File RelativePath=".\core_f_Import.def"/>
-		<File RelativePath=".\core_import.def"/>
 		<File RelativePath=".\Elementary_functions_f_Import.def"/>
-		<File RelativePath=".\Elementary_functions_Import.def"/>
 		<File RelativePath=".\output_stream_Import.def"/>
 		<File RelativePath=".\signal_processing_Import.def"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\signal_processing_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\amell.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\bgetx.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\bgety.f"/>
 		<File RelativePath=".\bldenz.f"/>
 		<File RelativePath=".\blnumz.f"/>
 		<File RelativePath=".\bounn.f"/>
@@ -137,7 +84,7 @@ lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WIN
 		<File RelativePath=".\dgee01.f"/>
 		<File RelativePath=".\dsn2.f"/>
 		<File RelativePath=".\dsqrtc.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\Ex-corr.f"/>
+		<File RelativePath=".\Ex-corr.f"/>
 		<File RelativePath=".\fft842.f"/>
 		<File RelativePath=".\filbut.f"/>
 		<File RelativePath=".\freque.f"/>
@@ -154,15 +101,6 @@ lib /DEF:&quot;$(InputDir)elementary_functions_f_Import.def&quot; /SUBSYSTEM:WIN
 		<File RelativePath=".\remez.f"/>
 		<File RelativePath=".\romeg.f"/>
 		<File RelativePath=".\rpem.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_amell.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_corr.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_delip.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_fft.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_fiir.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_remez.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rpem.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_syredi.f"/>
-		<File RelativePath=".\sci_ffir.f"/>
 		<File RelativePath=".\sn.f"/>
 		<File RelativePath=".\snell.f"/>
 		<File RelativePath=".\syredi.f"/>

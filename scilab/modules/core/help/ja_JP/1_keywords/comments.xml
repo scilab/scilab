@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="comments">
     <refnamediv>
         <refname>comments</refname>
-        <refpurpose>コメント</refpurpose>
+        <refpurpose>(// or /*...*/) comments</refpurpose>
     </refnamediv>
     <refsection>
         <title>説明</title>
@@ -10,6 +10,11 @@
             コメントの開始を意味します.
             この連続したスラッシュおよびその行のこれ以降の改行までの文字は
             解釈されません.
+        </para>
+        <para>
+            Another way to comment a block of code is to use /* at the beginning
+            and */ at the end. It is more useful than // which must be positioned at the
+            beginning of each line to comment.
         </para>
         <para>関数の内部で,最初の命令または空行までの最初のコメント行
             は関数ヘルプのデフォルトの内容を指定するために使用することができます.
@@ -21,6 +26,10 @@
 g=9.81// the gravity
 
 text='a//b'
+
+/* As this comment is quite long to be on many lines,
+the symbols slash and star to start the comment
+and star and slash to end the comment are used */
 
 function y=myfunction(x)
   // myfunction は y=x^2+1 を計算します

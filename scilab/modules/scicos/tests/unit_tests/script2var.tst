@@ -4,10 +4,13 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- CLI SHELL MODE -->
 
 loadXcosLibs();
 
-%txt=["a=1";
+%txt = [ ...
+"a=1";
 "function r=foo(v)";
 "    r=v;";
 "endfunction";
@@ -16,8 +19,14 @@ loadXcosLibs();
 "d=ones(1,1);";
 ""];
 
-%ll=struct();
-[%ll,%ierr] = script2var(%txt, %ll)
+%ierrRef = 0;
+%llRef = struct("a", 1, "b", 2, "c", 3, "d", 1);
 
-[%ll,%ierr] = script2var(%txt, %ll)
+%ll = struct();
+[%ll, %ierr] = script2var(%txt, %ll);
+assert_checkequal(%ierr, %ierrRef);
+assert_checkequal(%ll, %llRef);
 
+[%ll, %ierr] = script2var(%txt, %ll);
+assert_checkequal(%ierr, %ierrRef);
+assert_checkequal(%ll, %llRef);

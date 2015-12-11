@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA -
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="tree2code">
+    <refnamediv>
+        <refname>tree2code</refname>
+        <refpurpose>
+            формирует ASCII-определение Scilab-функции
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>txt = tree2code(tree, prettyprint)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>tree</term>
+                <listitem>
+                    <para>
+                        дерево функции (полученное с помощью <function>macr2tree</function>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>prettyprint</term>
+                <listitem>
+                    <para>необязательное логическое значение:</para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>%T</term>
+                            <listitem>
+                                <para>
+                                    генерирует код, который имеет отступы и красивый вид;
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>%F</term>
+                            <listitem>
+                                <para>
+                                    генерируемый код не приукрашен (по умолчанию).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>
+                        вектор-столбец строк, текст, предоставляющий Scilab-инструкции.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Задавая "дерево" загруженной в Scilab функции (полученное с
+            помощью функции <function>macr2tree</function>),
+            <function>tree2code</function> позволяет восстановить код.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+tree=macr2tree(cosh);
+txt=tree2code(tree,%T);
+write(%io(2),txt,'(a)');
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="macr2tree">macr2tree</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -43,7 +43,7 @@ public class ScilabFileChooserBridge {
      * @param figureID id of the exported figure
      * @return the created ExportFileChooser
      */
-    public static SimpleFileChooser createExportFileChooser(String figureUID) {
+    public static SimpleFileChooser createExportFileChooser(Integer figureUID) {
         return new SwingScilabExportFileChooser(figureUID);
     }
 
@@ -124,15 +124,6 @@ public class ScilabFileChooserBridge {
      */
     public static String[] getSelectionFileNames(FileChooser fileChooser) {
         return fileChooser.getAsSimpleFileChooser().getSelectionFileNames();
-    }
-
-    /**
-     * Get the filter index
-     * @param fileChooser the file chooser we want to get the filter index
-     * @return the filter index
-     */
-    public static int getFilterIndex(FileChooser fileChooser) {
-        return fileChooser.getAsSimpleFileChooser().getFilterIndex();
     }
 
     /**

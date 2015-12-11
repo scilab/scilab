@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 
@@ -23,9 +23,10 @@ function %Block_xcosUpdateBlock(blk)
 
     // export to hdf5
     blk = blk;
-    if export_to_hdf5(tempfile, "blk") then
+    try
+        save(tempfile, "blk")
         xcosUpdateBlock(tempfile)
-    else
+    catch
         error(msprintf(gettext("%s: Unable to export %s to %s.\n"), "xcosUpdateBlock", "`blk''", tempfile));
     end
 

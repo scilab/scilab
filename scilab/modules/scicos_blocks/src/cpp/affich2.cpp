@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 #include <math.h>
@@ -20,13 +20,11 @@ extern "C"
 {
 #include "machine.h"
 #include "dynlib_scicos_blocks.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_block4.h"
 #include "scicos.h"
 #include "core_math.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
     double C2F(sciround) (double *x);
     SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag);
@@ -78,11 +76,11 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
                     sprintf(pstFormat, "%%%d.%df", iDigit, iPrec);
                     sprintf(pstConv, pstFormat, dblValue);
 #endif
-                    pstValue[i][j] = strdup(pstConv);
+                    pstValue[i][j] = os_strdup(pstConv);
                 }
             }
 
-            AfficheBlock_setValue(block->label, pstValue, iRowsIn, iColsIn);
+            AfficheBlock_setValue(block->uid, pstValue, iRowsIn, iColsIn);
 
             break;
 
@@ -100,11 +98,11 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
 #else
                     sprintf(pstConv, "%0.2f", 0.0);
 #endif
-                    pstValue[i][j] = strdup(pstConv);
+                    pstValue[i][j] = os_strdup(pstConv);
                 }
             }
 
-            if (AfficheBlock_setValue(block->label, pstValue, iRowsIn, iColsIn) == 0)
+            if (AfficheBlock_setValue(block->uid, pstValue, iRowsIn, iColsIn) == 0)
             {
                 // storing the allocated area on the block work field.
                 block->work[0] = pstValue;

@@ -20,19 +20,14 @@
 //
 
 function [x,y,typ] = FROMWS_c(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,varnam,Method,ZC,OutEnd,exprs]=scicos_getvalue("Set From_Workspace block parameters",..
@@ -41,7 +36,9 @@ function [x,y,typ] = FROMWS_c(job,arg1,arg2)
             "Enable zero crossing(0:No, 1:Yes)?";
             "Output at end(0:Zero, 1:Hold, 2:Repeat)"],...
             list("str",1,"vec",1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if ~(Method==0 | Method==1| Method==2| Method==3) then
                 message("Interpolation method should be chosen in [0,1,2,3]");
                 ok=%f;
@@ -67,11 +64,12 @@ function [x,y,typ] = FROMWS_c(job,arg1,arg2)
             end
 
             if ok then
-                model.ipar=[length(varnam);_str2code(varnam);Method;ZC;OutEnd;];
+                model.ipar=[length(ascii(varnam));ascii(varnam)';Method;ZC;OutEnd;];
                 [model,graphics,ok]=set_io(model,graphics,list(),list([-1,-2],-1),1,1);
                 if ok then
                     graphics.exprs=exprs;
-                    x.graphics=graphics;x.model=model
+                    x.graphics=graphics;
+                    x.model=model
                     break
                 end
             end
@@ -88,14 +86,13 @@ function [x,y,typ] = FROMWS_c(job,arg1,arg2)
         model.out=-1
         model.out2=-2
         model.outtyp=-1
-        model.ipar=[length(varnam);_str2code(varnam);Method;ZC;OutEnd;];
+        model.ipar=[length(ascii(varnam));ascii(varnam)';Method;ZC;OutEnd;];
         model.evtin=[1];
         model.evtout=[1];
         model.firing=[0];
         model.blocktype="d";
         model.dep_ut=[%f %t];
-        gr_i=["txt=[''From workspace''];"..
-        ;"xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
         exprs=[string(varnam);string(Method);string(ZC);string(OutEnd)];
         x=standard_define([3.5 2],model,exprs,gr_i)
     end

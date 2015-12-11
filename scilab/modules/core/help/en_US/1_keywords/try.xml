@@ -37,7 +37,7 @@
             the error is recorded, the remaining statements up to the
             <literal>catch</literal> keyword are skipped and the statements between
             the <literal>catch</literal> and <literal>end</literal> keywords are
-            executed using the default error handling mode (see <link linkend="errcatch">errcatch</link>).
+            executed using the default error handling mode.
         </para>
         <para>
             The recorded error can be retrieved using the <link linkend="lasterror">lasterror</link> function.
@@ -62,7 +62,7 @@ if execstr("<try instructions>","errcatch")<>0 then
 end
  ]]></programlisting>
         <para>
-            It uses the same internal mechanism as <link linkend="errcatch">errcatch</link>. It is the reason why <link linkend="errcatch">errcatch</link> or
+            It uses the same internal mechanism as "errcatch". It is the reason why
             <emphasis>execstr(...,"errcatch")</emphasis> cannot be included in
             <literal>try</literal>-<literal>catch</literal> control structures. This
             context is detected and produces a specific error message (this error is
@@ -128,9 +128,6 @@ nestedtry("a string","a string")
             </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
         </simplelist>
     </refsection>

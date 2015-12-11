@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jautoUnwrap">
+    <refnamediv>
+        <refname>jautoUnwrap</refname>
+        <refpurpose>Unwrap automatically returned values</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            autoUnwrap = jautoUnwrap()
+            jautoUnwrap(autoUnwrap)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>autoUnwrap</term>
+                <listitem>
+                    <para>A boolean</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            If autoUnwrap is true, all the values returned by a method invocation are unwrapped if it is possible.
+        </para>
+        <para>
+            This strongly simplifies the usage of the Java / Scilab conversions.
+        </para>
+        <para>
+            By default, autoUnwrap is true.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               jautoUnwrap(%f);
+               jautoUnwrap()
+               jautoUnwrap(%t);
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// In this example, without disabling the auto unwrap, Scilab will try to
+// convert the result of currentTimeMillis to a long (which is not yet
+// supported in Scilab)
+// Without the auto unwrap, Scilab will keep a reference to the object
+
+               jautoUnwrap(%f)
+               jimport java.util.Date;
+               jimport java.lang.System;
+
+               t = System.currentTimeMillis();
+               s = jnewInstance(Date, t);
+               str = jnewInstance("java.lang.String", "Hello");
+               d = s.toString()
+
+               jremove Date System t s str;
+               jautoUnwrap(%t)
+      ]]></programlisting>
+        
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jinvoke">jinvoke</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

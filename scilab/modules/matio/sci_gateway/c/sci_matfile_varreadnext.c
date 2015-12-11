@@ -7,14 +7,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include "api_scilab.h"
 #include "gw_matio.h"
 
 #include "CreateMatlabVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -25,7 +25,7 @@ enum matfile_errors
     UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varreadnext(char *fname, unsigned long fname_len)
+int sci_matfile_varreadnext(char *fname, void* pvApiCtx)
 {
     mat_t *matfile = NULL;
     matvar_t *matvar = NULL;

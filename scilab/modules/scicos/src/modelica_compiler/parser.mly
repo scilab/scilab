@@ -663,3 +663,4 @@ let parse filename token_fun lexbuf =
           first_char 
           ((Lexing.lexeme_end lexbuf - Lexing.lexeme_start lexbuf) + first_char);
         raise Parsing.Parse_error
+

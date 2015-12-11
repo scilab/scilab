@@ -22,22 +22,11 @@
 
 function [x, y, typ] = RFILE_f(job,arg1,arg2)
 
-    x = [];
-    y = [];
-    typ = []
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-
-    case "getinputs" then
-        [x,y,typ] = standard_inputs(arg1)
-
-    case "getoutputs" then
-        [x,y,typ] = standard_outputs(arg1)
-
-    case "getorigin" then
-        [x,y] = standard_origin(arg1)
 
     case "set" then
         x = arg1;
@@ -68,7 +57,6 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
 
             if ~ok then
                 break
-
             end //user cancel modification
 
             fname1 = pathconvert(stripblanks(fname1), %f, %t)
@@ -116,35 +104,30 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
                     ievt = 0;
                     cout = [];
                     tmask1 = 0;
-
                 else
                     ievt = 1
                     cout = 1;
-
                 end
                 [model,graphics,ok] = check_io( model, graphics, [], nout, 1, cout)
                 if ok then
                     if ievt == 0 then
                         model.firing = []
-
                     else
                         model.firing = 0
-
                     end
                     ipar = [ ...
-                    length(fname1); ...
-                    length(frmt1); ...
+                    length(ascii(fname1)); ...
+                    length(ascii(frmt1)); ...
                     ievt; ...
                     N; ...
-                    _str2code(fname1); ...
-                    _str2code(frmt1); ...
+                    ascii(fname1)'; ...
+                    ascii(frmt1)'; ...
                     tmask1; ...
                     outmask(:) ...
                     ];
 
                     if prod(size(dstate)) <> (nout+ievt)*N + 3 then
                         dstate = [-1 ; -1; lunit; zeros((nout + ievt) * N, 1)]
-
                     end
                     model.dstate = dstate;
                     model.ipar = ipar
@@ -152,11 +135,8 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
                     x.graphics = graphics;
                     x.model = model
                     break
-
                 end
-
             end
-
         end
 
     case "define" then
@@ -170,8 +150,8 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
         tmask = 0
         outmask = 1
         ipar = [ ...
-        length(fname);length(frmt);0;N; ...
-        _str2code(fname);_str2code(frmt); ...
+        length(ascii(fname));length(ascii(frmt));0;N; ...
+        ascii(fname)';ascii(frmt)'; ...
         tmask;outmask ...
         ];
 
@@ -182,8 +162,8 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
         model.evtin = 1
         model.dstate = dstate
         model.ipar = [ ...
-        length(fname);length(frmt);0;N; ...
-        _str2code(fname);_str2code(frmt); ...
+        length(ascii(fname));length(ascii(frmt));0;N; ...
+        ascii(fname)';ascii(frmt)'; ...
         tmask;outmask ...
         ];
 
@@ -196,10 +176,7 @@ function [x, y, typ] = RFILE_f(job,arg1,arg2)
         frmt;
         string(N);
         sci2exp(out)]
-        gr_i = [ ...
-        "txt=[""read from"";""input file""];"; ...
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),""fill"")"...
-        ];
+        gr_i = [];
 
         x = standard_define([3 2],model,exprs,gr_i)
     end

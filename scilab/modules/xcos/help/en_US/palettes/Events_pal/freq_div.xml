@@ -71,11 +71,6 @@
                             <xref linkend="Interfacingfunction_freq_div">Interfacing function</xref>
                         </para>
                     </listitem>
-                    <listitem>
-                        <para>
-                            <link linkend="freq_div">Compiled Super Block content</link>
-                        </para>
-                    </listitem>
                 </itemizedlist>
             </listitem>
         </itemizedlist>
@@ -191,36 +186,24 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="CompiledSuperBlockcontent_freq_div">
-        <title>Compiled Super Block content</title>
-        <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata fileref="../../../images/freq_div_img3_eng.gif" align="center" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-    </refsection>
     <refsection id="Examples_freq_div">
-        <title>Examples</title>
+        <title>Example</title>
         <para>
-            The following example divides a frequence per three.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
-                Open this example in Xcos
-            </link>
+            The following example divides a frequency per three.
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/en_US/freq_div_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/events_pal/en_US/freq_div_en_US.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image><![CDATA[
+        </para>
+        
+        <scilab:image><![CDATA[
 importXcosDiagram(SCI + "/modules/xcos/examples/events_pal/en_US/freq_div_en_US.zcos");
 xcos_simulate(scs_m, 4);
 ]]></scilab:image>
-        </para>
     </refsection>
 </refentry>

@@ -9,37 +9,20 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "gw_graphics.h"
-#include "stack-c.h"
-#include "callFunctionFromGateway.h"
-#include "graphicModuleLoad.h"
 #include "TerminateGraphics.h"
-#include "getDictionaryGetProperties.h"
-#include "getDictionarySetProperties.h"
-#include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
-#include "math_graphics.h"
-#include "DestroyObjects.h"
-#include "axesScale.h"
 #include "BuildObjects.h"
-#include "BasicAlgos.h"
-#include "pixel_mode.h"
-#include "Axes.h"
-#include "getPropertyAssignedValue.h"
-#include "SetHashTable.h"
-#include "Scierror.h"
-#include "localization.h"
-#include "Format.h"
-#include "MALLOC.h"
-#include "Interaction.h"
-#include "InitObjects.h"
-
+#include "sci_malloc.h"
+#include "getDictionaryGetProperties.h"
+#include "getDictionarySetProperties.h"
+#include "graphicModuleLoad.h"
 /*--------------------------------------------------------------------------*/
 
 /*
@@ -56,29 +39,6 @@
 
 int gw_graphics(void)
 {
-    Rhs = Max(0, Rhs);
-
-    if ((Fin == DELETE_INDEX || Fin == GET_INDEX || Fin == SET_INDEX) && (VarType(1) == sci_tlist || VarType(1) == sci_mlist))
-    {
-        int lw = 1 + Top - Rhs;
-
-        if (Fin == DELETE_INDEX)
-        {
-            C2F(overload) (&lw, "delete", 6);
-        }
-        if (Fin == GET_INDEX)
-        {
-            C2F(overload) (&lw, "get", 3);
-        }
-        if (Fin == SET_INDEX)
-        {
-            C2F(overload) (&lw, "set", 3);
-        }
-    }
-    else
-    {
-        Scierror(999, _("Scilab Graphics module not installed.\n"));
-    }
     return 0;
 }
 
@@ -125,13 +85,13 @@ unsigned long getHandleFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, char *pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char * propertyName)
+int callSetProperty(void* _pvCtx, int pObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char * propertyName)
 {
     return -1;
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitScreenPosition(char *pobj, int pposx, int pposy)
+int sciInitScreenPosition(int pobj, int pposx, int pposy)
 {
     return -1;
 }
@@ -155,7 +115,7 @@ double getDoubleFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-char *getFigureFromIndex(int figNum)
+int getFigureFromIndex(int figNum)
 {
     return NULL;
 }
@@ -167,51 +127,51 @@ char **getStringMatrixFromStack(size_t stackPointer)
 }
 
 /*--------------------------------------------------------------------------*/
-char *allocateText(char *pparentsubwinUID,
-                   char **text,
-                   int nbRow,
-                   int nbCol,
-                   double x,
-                   double y,
-                   BOOL autoSize,
-                   double userSize[2],
-                   int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
+int allocateText(int pparentsubwinUID,
+                 char **text,
+                 int nbRow,
+                 int nbCol,
+                 double x,
+                 double y,
+                 BOOL autoSize,
+                 double userSize[2],
+                 int centerPos, int *foreground, int *background, BOOL isboxed, BOOL isline, BOOL isfilled, sciTextAlignment align)
 {
     return NULL;
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitBackground(char *pobj, int colorindex)
+int sciInitBackground(int pobj, int colorindex)
 {
     return -1;
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitMarkBackground(char *pobj, int colorindex)
+int sciInitMarkBackground(int pobj, int colorindex)
 {
     return -1;
 }
 
 /*--------------------------------------------------------------------------*/
-int sciInitMarkForeground(char *pobj, int colorindex)
+int sciInitMarkForeground(int pobj, int colorindex)
 {
     return -1;
 }
 
 /*--------------------------------------------------------------------------*/
-int sciGetNumColors(char *pobjUID)
+int sciGetNumColors(int pobjUID)
 {
     return -1;
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetViewingArea(char * pObjUID, int *xPos, int *yPos, int *width, int *height)
+void sciGetViewingArea(int pObjUID, int *xPos, int *yPos, int *width, int *height)
 {
 
 }
 
 /*--------------------------------------------------------------------------*/
-int ComputeXIntervals(char *pobjUID, char xy_type, double **vector, int *N, int checkdim)
+int ComputeXIntervals(int pobjUID, char xy_type, double **vector, int *N, int checkdim)
 {
     return -1;
 }
@@ -229,7 +189,7 @@ char *getStrMatElement(const StringMatrix * mat, int row, int col)
 }
 
 /*--------------------------------------------------------------------------*/
-StringMatrix *computeDefaultTicsLabels(char *pobjUID)
+StringMatrix *computeDefaultTicsLabels(int pobjUID)
 {
     return NULL;
 }
@@ -247,13 +207,13 @@ void stringArrayCopy(char *dest[], char *src[], int nbElement)
 }
 
 /*--------------------------------------------------------------------------*/
-void sciGetLogFlags(char *pObjUID, char flags[3])
+void sciGetLogFlags(int pObjUID, char flags[3])
 {
 
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL sciisTextEmpty(char *identifier)
+BOOL sciisTextEmpty(int iIdentifier)
 {
     return FALSE;
 }
@@ -277,7 +237,7 @@ char **getStrMatData(const StringMatrix * mat)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL isFigureModel(char *pObjUID)
+BOOL isFigureModel(int pObjUID)
 {
     return FALSE;
 }
@@ -289,7 +249,7 @@ int getPixelModeIndex(const char *modeName)
 }
 
 /*--------------------------------------------------------------------------*/
-int sciSetXorMode(char *pobj, int value)
+int sciSetXorMode(int pobj, int value)
 {
     return -1;
 }
@@ -313,9 +273,9 @@ void vectAdd3D(const double v1[3], const double v2[3], double res[3])
 }
 
 /*--------------------------------------------------------------------------*/
-char *ConstructPolyline(char *pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
-                        int closed, int n1, int plot, int *foreground, int *background,
-                        int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
+int ConstructPolyline(int pparentsubwin, double *pvecx, double *pvecy, double *pvecz,
+                      int closed, int n1, int plot, int *foreground, int *background,
+                      int *mark_style, int *mark_foreground, int *mark_background, BOOL isline, BOOL isfilled, BOOL ismark, BOOL isinterpshaded)
 {
     return NULL;
 }
@@ -401,13 +361,21 @@ BOOL sciIsExistingFigure(int figNum)
 }
 
 /*--------------------------------------------------------------------------*/
-void cloneAxesModel(char const* pstFigureUID)
+void cloneAxesModel(int pstFigureUID)
 {
 }
 
 /*--------------------------------------------------------------------------*/
-char * createNewFigureWithAxes(void)
+int createNewFigureWithAxes(void)
 {
-    return NULL;
+    return 0;
 }
+
+/*--------------------------------------------------------------------------*/
+int getOrCreateDefaultSubwin(void)
+{
+    return 0;
+}
+
+/*--------------------------------------------------------------------------*/
 

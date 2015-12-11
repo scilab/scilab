@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 
@@ -20,7 +20,7 @@
 //             supported. The default is to use "gif".
 // @param[opt] withPort true if the exported image should contains the port,
 //             false otherwise. The default is value is true.
-// @return status %T if the operation has been sucessfull, %F otherwise.
+// @return status %T if the operation has been successfull, %F otherwise.
 function status = generateBlockImage(block, path, filename, imageType, withPort)
     status = %f;
 

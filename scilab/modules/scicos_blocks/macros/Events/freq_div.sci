@@ -20,16 +20,10 @@
 //
 
 function [x,y,typ]=freq_div(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the modulo block
         for i=1:length(arg1.model.rpar.objs) do
@@ -52,22 +46,30 @@ function [x,y,typ]=freq_div(job,arg1,arg2)
         xx=arg1(spath)// get the block
         //execstr('xxn='+xx.gui+'(''set'',xx)')
         xxn=xx;
-        graphics=xx.graphics;exprs=graphics.exprs
+        graphics=xx.graphics;
+        exprs=graphics.exprs
         model=xx.model;
         while %t do
             [ok,%ph,%df,exprs]=scicos_getvalue..
             ("Set frequency division block parameters",..
             ["Phase (0 to division factor -1)";"Division factor"],..
             list("vec",1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if ok then
-                if %df<1 then %df=1,end
+                if %df<1 then
+                    %df=1,
+                end
                 %ph=abs(%ph)
-                if %ph>%df-1 then %ph=%df-1,end
+                if %ph>%df-1 then
+                    %ph=%df-1,
+                end
                 graphics.exprs=exprs
                 model.ipar=%df;
                 model.dstate=%ph;
-                xxn.graphics=graphics;xxn.model=model
+                xxn.graphics=graphics;
+                xxn.model=model
                 break
             end
         end
@@ -278,7 +280,7 @@ function [x,y,typ]=freq_div(job,arg1,arg2)
         model.evtout = 1;
         model.rpar = scs_m_1;
 
-        gr_i="xstringb(orig(1),orig(2),''freq_div'',sz(1),sz(2),''fill'')";
+        gr_i=[];
         x=standard_define([3 2],model,[],gr_i)
     end
 endfunction

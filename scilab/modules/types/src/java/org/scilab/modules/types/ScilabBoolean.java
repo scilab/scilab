@@ -8,7 +8,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,9 +25,9 @@ import java.util.Arrays;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * boolean [][]a={{true,false,true}, {true,true,true}};<br />
+ * boolean [][]a={{true,false,true}, {true,true,true}};<BR>
  * ScilabBoolean aMatrix = new ScilabBoolean(a);
  * </code>
  *
@@ -41,9 +41,10 @@ public class ScilabBoolean implements ScilabType {
     private static final int VERSION = 0;
 
     /* the boolean data */
-    private boolean[][] data;
-    private String varName;
-    private boolean swaped;
+    protected boolean[][] data;
+    protected String varName;
+    protected boolean swaped;
+    transient protected boolean byref;
 
     /**
      * Create an empty object
@@ -86,6 +87,13 @@ public class ScilabBoolean implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return byref;
+    }
+
+    /**
      * Change the value with the provided data
      *
      * @param data
@@ -102,6 +110,33 @@ public class ScilabBoolean implements ScilabType {
      */
     public boolean[][] getData() {
         return data;
+    }
+
+    /**
+     * @return the data
+     */
+    public Object getRawData() {
+        return data;
+    }
+
+    /**
+     * Get the element at position (i, j)
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @return the corresponding boolean
+     */
+    public boolean getElement(final int i, final int j) {
+        return data[i][j];
+    }
+
+    /**
+     * Set the element at position (i, j)
+     * @param i the first coordinate
+     * @param j the second coordinate
+     * @param x the new value
+     */
+    public void setElement(final int i, final int j, final boolean x) {
+        data[i][j] = x;
     }
 
     /**
@@ -162,7 +197,12 @@ public class ScilabBoolean implements ScilabType {
      */
     @Override
     public boolean isEmpty() {
-        return (data == null);
+        return data == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.deepHashCode(data);
     }
 
     /**
@@ -171,17 +211,26 @@ public class ScilabBoolean implements ScilabType {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof ScilabBoolean) {
-            return Arrays.deepEquals(this.getData(), ((ScilabBoolean) obj).getData());
-        } else {
-            return false;
+            ScilabBoolean sciBool = (ScilabBoolean) obj;
+            if (isEmpty() && sciBool.isEmpty()) {
+                return true;
+            }
+
+            if (this.getWidth() != sciBool.getWidth() || this.getHeight() != sciBool.getHeight()) {
+                return false;
+            }
+
+            return ScilabTypeUtils.equalsBoolean(this.getRawData(), this.isSwaped(), sciBool.getRawData(), sciBool.isSwaped());
         }
+
+        return false;
     }
 
     /**
      * {@inheritDoc}
      */
     public Object getSerializedObject() {
-        return data;
+        return getData();
     }
 
     @Override
@@ -201,13 +250,13 @@ public class ScilabBoolean implements ScilabType {
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeInt(VERSION);
-        out.writeObject(data);
+        out.writeObject(getData());
         out.writeObject(varName);
         out.writeBoolean(swaped);
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return the pretty print
@@ -217,14 +266,13 @@ public class ScilabBoolean implements ScilabType {
         StringBuilder result = new StringBuilder();
 
         if (isEmpty()) {
-            result.append("[]");
-            return result.toString();
+            return "[]";
         }
 
         result.append("[");
         for (int i = 0; i < getHeight(); ++i) {
             for (int j = 0; j < getWidth(); ++j) {
-                if (getData()[i][j]) {
+                if (getElement(i, j)) {
                     result.append("%t");
                 } else {
                     result.append("%f");

@@ -1,0 +1,7 @@
+<package name="org.scilab.modules.gui.ged">
+    <object name="StartGED">
+        <method name="quickGED" returnType="void" modifier="static">
+            <parameter name="uid" type="int"/>
+        </method>
+    </object>
+</package>

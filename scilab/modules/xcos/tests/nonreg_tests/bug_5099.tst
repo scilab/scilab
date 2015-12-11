@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5099
 //
 // <-- Short Description -->
-// With some diagrams, The whole diagramm is not visible after "Fit diagramm to view".
+// Some diagrams are not wholly visible after "Fit diagramm to view".
 
-xcos(SCI+'/modules/xcos/demos/susp.zcos');
+xcos(SCI+"/modules/xcos/demos/susp.zcos");
 // "Menu → View → Fit diagram to view"

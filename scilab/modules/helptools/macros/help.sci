@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function help(varargin)
 
@@ -29,13 +29,18 @@ function help(varargin)
             end
 
             if type(key) <> 10 then
-                error(999,msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"help",1));
+                error(999,msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"help",1));
             end
 
             // Search a function name
             key=stripblanks(key)
 
             if or(part(key,1)==["(",")","[","]","{","}","%","''","""",":","*","/","\",".","<",">","&","^","|","~","+","-"]) & exists(key)==0 then
+                key="symbols";
+            end
+
+            // Treat "$" apart because contrarily to the previous symbols, "$" is an existing variable in Scilab
+            if part(key,1)=="$" & (exists(key)==0 | length(key)==1) then
                 key="symbols";
             end
 

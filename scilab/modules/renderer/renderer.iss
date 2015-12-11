@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -49,10 +49,8 @@ Source: modules\{#RENDERER}\etc\{#RENDERER}.start; DestDir: {app}\modules\{#REND
 Source: modules\{#RENDERER}\macros\buildmacros.sce; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#RENDERER}\macros\buildmacros.bat; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#RENDERER}\macros\cleanmacros.bat; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-;Source: modules\{#RENDERER}\macros\*.bin; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
 ;Source: modules\{#RENDERER}\macros\*.sci; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
 ;Source: modules\{#RENDERER}\macros\lib; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
-;Source: modules\{#RENDERER}\macros\names; DestDir: {app}\modules\{#RENDERER}\macros; Components: {#COMPN_GRAPHICS}
 ;
 ;Source: modules\{#RENDERER}\demos\*.*; DestDir: {app}\modules\{#RENDERER}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;

@@ -21,22 +21,6 @@
 
 function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
     //%Description
-    // job=='plot' :      block drawing
-    //                    arg1 is block data structure
-    //                    arg2 :unused
-    // job=='getinputs' : return position and type of inputs ports
-    //                    arg1 is block data structure
-    //                    x  : x coordinates of ports
-    //                    x  : y coordinates of ports
-    //                    typ: type of ports
-    // job=='getoutputs' : return position and type of outputs ports
-    //                    arg1 is block data structure
-    //                    x  : x coordinates of ports
-    //                    x  : y coordinates of ports
-    //                    typ: type of ports
-    // job=='getorigin'  : return block origin coordinates
-    //                    x  : x coordinates of block origin
-    //                    x  : y coordinates of block origin
     // job=='set'        : block parameters acquisition
     //                    arg1 is block data structure
     //                    x is returned block data structure
@@ -44,20 +28,15 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
     //                    arg1: name of block parameters acquisition macro
     //                    x   : block data structure
     //
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         needcompile=0
         x=arg1
-        model=arg1.model;graphics=arg1.graphics;
+        model=arg1.model;
+        graphics=arg1.graphics;
         exprs=graphics.exprs
 
         while %t do
@@ -74,9 +53,13 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
             "is block always active (0:no, 1:yes)"],..
             list("mat",[-1 2],"mat",[-2 2],"vec",-1,"vec",-1,"vec",-1,"vec",-1,..
             "vec",-1,"vec",-1,"vec",1),exprs(1))
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             exprs(1)=lab
-            xx=xx(:);z=z(:);rpar=rpar(:)
+            xx=xx(:);
+            z=z(:);
+            rpar=rpar(:)
             it=ones(1,size(i,1))
             ot=ones(1,size(o,1))
             nrp=prod(size(rpar))
@@ -85,12 +68,16 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
             ni=size(i,1);
             //o=int(o(:));
             no=size(o,1);
-            ci=int(ci(:));nci=size(ci,1);
-            co=int(co(:));nco=size(co,1);
+            ci=int(ci(:));
+            nci=size(ci,1);
+            co=int(co(:));
+            nco=size(co,1);
             [ok,tt,dep_ut]=genfunc2(exprs(2),i,o,nci,nco,size(xx,1),size(z,1),..
             nrp,"c")
             dep_ut(2)=(1==deptime)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             //[model,graphics,ok]=check_io(model,graphics,i,o,ci,co)
             [model,graphics,ok]=set_io(model,graphics,list(i,it),list(o,ot),ci,co)
             if ok then
@@ -102,7 +89,9 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
                     model.opar=model.ipar;
                     model.ipar=0;
                 end
-                if or(model.opar<>tt) then needcompile=4,end
+                if or(model.opar<>tt) then
+                    needcompile=4,
+                end
                 model.opar=tt
                 model.firing=auto
                 model.dep_ut=dep_ut
@@ -148,7 +137,7 @@ function [x,y,typ]=scifunc_block_m(job,arg1,arg2)
         strcat(sci2exp(x0));strcat(sci2exp(z0));
         strcat(sci2exp(rpar));sci2exp(auto);sci2exp(0)],..
         list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "))
-        gr_i=["xstringb(orig(1),orig(2),''Scifunc'',sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([4 2],model,exprs,gr_i)
     end
 endfunction

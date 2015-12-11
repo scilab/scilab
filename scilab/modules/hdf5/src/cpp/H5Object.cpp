@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,7 +21,7 @@
 namespace org_modules_hdf5
 {
 
-H5Object & H5Object::root = *new H5Object();
+H5Object* H5Object::root = NULL;
 
 H5Object::H5Object(H5Object & _parent, const std::string & _name) : parent(_parent), children(std::set<H5Object *>()), locked(false), scilabId(-1), name(_name)
 {
@@ -97,7 +97,7 @@ H5File & H5Object::getFile() const
 {
     const H5Object * sobj = this;
     const H5Object * obj = &parent;
-    while (obj != &root)
+    while (obj != root)
     {
         sobj = obj;
         obj = &(obj->parent);
@@ -114,8 +114,9 @@ void H5Object::getAccessibleAttribute(const std::string & _name, const int pos, 
 
     if (lower == "name")
     {
-        const char * name = getName().c_str();
-        err = createMatrixOfString(pvApiCtx, pos, 1, 1, &name);
+        const std::string name = getName();
+        const char * _name = name.c_str();
+        err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_name);
         if (err.iErr)
         {
             throw H5Exception(__LINE__, __FILE__, _("Cannot create a string on the stack."));
@@ -125,7 +126,8 @@ void H5Object::getAccessibleAttribute(const std::string & _name, const int pos, 
     }
     else if (lower == "path")
     {
-        const char * path = getCompletePath().c_str();
+        const std::string completePath = getCompletePath();
+        const char * path = completePath.c_str();
         err = createMatrixOfString(pvApiCtx, pos, 1, 1, &path);
         if (err.iErr)
         {
@@ -593,6 +595,8 @@ herr_t H5Object::filterIterator(hid_t g_id, const char * name, const H5L_info_t 
                 return (herr_t)0;
             }
             break;
+        default:
+            break;
     }
 
     if (info->type == H5L_TYPE_HARD)
@@ -709,3 +713,4 @@ herr_t H5Object::filterSoftLinkIterator(hid_t g_id, const char * name, const H5L
     return (herr_t)0;
 }
 }
+

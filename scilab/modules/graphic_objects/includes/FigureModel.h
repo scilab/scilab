@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,10 +16,10 @@
 #include "dynlib_graphic_objects.h"
 #include "BOOL.h"
 
-GRAPHIC_OBJECTS_IMPEXP char const* getFigureModel(void);
+GRAPHIC_OBJECTS_IMPEXP int getFigureModel(void);
 
-GRAPHIC_OBJECTS_IMPEXP void setFigureModel(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP void setFigureModel(int iUID);
 
-GRAPHIC_OBJECTS_IMPEXP BOOL isFigureModel(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP BOOL isFigureModel(int iUID);
 
 #endif /* !__FIGURE_MODEL_H__ */

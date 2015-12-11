@@ -1,0 +1,99 @@
+# Russian translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
+"Language-Team: Russian <ru@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 17838)\n"
+
+#, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s: Функция %s устарела.\n"
+
+msgid "Warning"
+msgstr "Внимание"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s: Пожалуйста, смотрите подробности в документации.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s: Эта функция будет окончательно удалена в  Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался массив строк.\n"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr "Недопустимый размер аргумента №%d: ожидалась строка или столбец."
+
+msgid "Invalid operation"
+msgstr "Недопустимая операция"
+
+msgid "Invalid field name"
+msgstr "Недопустимое имя поля"
+
+#, c-format
+msgid "Cannot set the field: %s"
+msgstr "Нельзя установить поле:  %s"
+
+#, c-format
+msgid ""
+"Cannot compile the code:\n"
+"%s"
+msgstr ""
+"Нельзя скомпилировать код:\n"
+"%s"
+
+msgid "Invalid operator: '"
+msgstr "Недопустимый оператор: '"
+
+msgid "Invalid operator: .*"
+msgstr "Недопустимый оператор: .*"
+
+msgid "Invalid operator: ./"
+msgstr "Недопустимый оператор: ./"
+
+msgid "Invalid operator: .\\"
+msgstr "Недопустимый оператор: .\\"
+
+msgid "Invalid operator: .*."
+msgstr "Недопустимый оператор: .*."
+
+msgid "Invalid operator: ./."
+msgstr "Недопустимый оператор: ./."
+
+msgid "Invalid operator: .\\."
+msgstr "Недопустимый оператор: .\\."
+
+msgid "Invalid operator: .^"
+msgstr "Недопустимый оператор: .^"
+
+msgid "Invalid operator: .'"
+msgstr "Недопустимый оператор: .'"
+
+msgid "Exception thrown in file"
+msgstr "Выдан сигнал исключения в файле"
+
+msgid "at line"
+msgstr "на строке"

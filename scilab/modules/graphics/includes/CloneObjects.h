@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -31,28 +31,10 @@
 
 /*--------------------------------------------------------------------------*/
 /**
- * copy the ContouredObject properties of a source object to a destination object
- * The previous (non-MVC) implementation always returned 0, even if it was specified
- * that it could return -1 in the return comment.
- * @param sourceIdentifier the source object's MVC identifier
- * @param destIdentifier the destination object's MVC identifier
- * @return always 0, the copy is considered to be always correct
- */
-GRAPHICS_IMPEXP int cloneGraphicContext(char* sourceIdentifier, char* destIdentifier);
-/*--------------------------------------------------------------------------*/
-/**
- * copy the fontContext of an object to another.
- * @param sourceIdentifier the source object's MVC identifier
- * @param destIdentifier the destination object's MVC identifier
- * @return always 0, the copy is considered to be always correct
- */
-GRAPHICS_IMPEXP int cloneFontContext(char* sourceIdentifier, char* destIdentifier);
-/*--------------------------------------------------------------------------*/
-/**
  * Clones a polyline
  * @param sourceIdentifier the source polyline's identifier
  * @return the identifier of the cloned polyline.
  */
-GRAPHICS_IMPEXP char* clonePolyline(char* sourceIdentifier);
+GRAPHICS_IMPEXP int clonePolyline(int iSource);
 
 #endif /* __SCI_CLONE__ */

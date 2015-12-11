@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_fseek(tree)
     // M2SCI function
@@ -30,7 +30,7 @@ function [tree]=sci_fseek(tree)
         case 1 then
             flag="end"
         else
-            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."),expression2code(origin)),1)
+            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."), strcat(expression2code(origin), "")),1)
             flag=Funcall("fseek_origin",1,list(origin),list())
         end
     else
@@ -41,7 +41,7 @@ function [tree]=sci_fseek(tree)
                 end
             end
         else
-            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."),expression2code(origin)),1)
+            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."), strcat(expression2code(origin), "")),1)
             flag=Funcall("fseek_origin",1,list(origin),list())
         end
     end

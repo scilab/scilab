@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,6 +22,7 @@ int ScilabGateway::invoke(char * fname, const int envId, ScilabAbstractInvoker &
     int * addr = 0;
     int * args = 0;
     int ret = 0;
+    int nbArgs = Rhs;
 
     CheckOutputArgument(pvApiCtx, 1, 1);
 
@@ -50,19 +51,24 @@ int ScilabGateway::invoke(char * fname, const int envId, ScilabAbstractInvoker &
         {
             args[i] = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             delete[] args;
             delete[] tmpvar;
             throw;
         }
+
+        if (args[i] == VOID_OBJECT)
+        {
+            nbArgs = 0;
+        }
     }
 
     try
     {
-        ret = invoker.invoke(args, Rhs);
+        ret = invoker.invoke(args, nbArgs);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -89,7 +95,7 @@ int ScilabGateway::invoke(char * fname, const int envId, ScilabAbstractInvoker &
             {
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, envId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & e)
+            catch (ScilabAbstractEnvironmentException & /*e*/)
             {
                 env.removeobject(ret);
                 throw;
@@ -106,7 +112,7 @@ int ScilabGateway::invoke(char * fname, const int envId, ScilabAbstractInvoker &
         {
             ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             env.removeobject(ret);
             throw;

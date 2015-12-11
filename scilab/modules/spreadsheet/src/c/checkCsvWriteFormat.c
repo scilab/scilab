@@ -6,16 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <string.h>
 #include <ctype.h>
 #include "csvDefault.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "checkCsvWriteFormat.h"
 // =============================================================================
 #define NB_FORMAT_SUPPORTED 7
@@ -47,22 +45,18 @@ int checkCsvWriteFormat(const char *format)
 // =============================================================================
 static char *replaceInFormat(const char *format)
 {
-    char *newFormat = NULL;
     if (format)
     {
-        int i = 0;
-        for (i = 0; i < NB_FORMAT_SUPPORTED; i++)
+        char *cleanedFormat = getCleanedFormat(format);
+        if (cleanedFormat)
         {
-            char *cleanedFormat = getCleanedFormat(format);
-            if (cleanedFormat)
-            {
-                newFormat = strdup("%s");
-                FREE(cleanedFormat);
-                cleanedFormat = NULL;
-            }
+            FREE(cleanedFormat);
+            cleanedFormat = NULL;
+            return os_strdup("%s");
         }
     }
-    return newFormat;
+
+    return NULL;
 }
 // =============================================================================
 static char *getCleanedFormat(const char *format)
@@ -80,7 +74,7 @@ static char *getCleanedFormat(const char *format)
                 if (token)
                 {
                     size_t nbcharacters = strlen(percent) - strlen(token);
-                    cleanedFormat = strdup(percent);
+                    cleanedFormat = os_strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1])) ||
                             (cleanedFormat[nbcharacters - 1]) == '.') ||

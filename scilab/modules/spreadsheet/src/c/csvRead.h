@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __CSV_READ_H__
@@ -40,7 +40,7 @@ extern "C" {
 #endif
 
     csvResult* csvRead(const char *filename, const char *separator, const char *decimal,
-                       const char **toreplace, int sizetoreplace, const char *regexpcomments);
+                       const char **toreplace, int sizetoreplace, const char *regexpcomments, int header);
 
     csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separator, const char *decimal);
 

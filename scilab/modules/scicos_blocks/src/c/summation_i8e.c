@@ -21,11 +21,11 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void summation_i8e(scicos_block *block, int flag)
@@ -37,14 +37,12 @@ SCICOS_BLOCKS_IMPEXP void summation_i8e(scicos_block *block, int flag)
         char *y = NULL;
         int *ipar = NULL;
         double v = 0., l = 0.;
-        double *rpar = NULL;
         char *u = NULL;
 
         y = Getint8OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);
         mu = GetInPortCols(block, 1);
         ipar = GetIparPtrs(block);
-        rpar = GetRparPtrs(block);
         nin = GetNin(block);
         l = pow(2, 8) / 2;
         if (nin == 1)
@@ -57,7 +55,7 @@ SCICOS_BLOCKS_IMPEXP void summation_i8e(scicos_block *block, int flag)
             }
             if ((v >= l) | (v < -l))
             {
-                sciprint(_("overflow error"));
+                scicos_print(_("overflow error"));
                 set_block_error(-4);
                 return;
             }
@@ -85,7 +83,7 @@ SCICOS_BLOCKS_IMPEXP void summation_i8e(scicos_block *block, int flag)
                 }
                 if ((v >= l) | (v < -l))
                 {
-                    sciprint(_("overflow error"));
+                    scicos_print(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }

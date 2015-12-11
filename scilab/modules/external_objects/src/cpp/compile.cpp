@@ -1,17 +1,20 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012 - 2013 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "ScilabGateway.hxx"
-
+extern "C"
+{
+#include "os_string.h"
+}
 namespace org_modules_external_objects
 {
 
@@ -25,7 +28,8 @@ int ScilabGateway::compile(char * fname, const int envId, void * pvApiCtx)
     int ret = 0;
     int iType = 0;
 
-    CheckInputArgument(pvApiCtx, 2, 2);
+    CheckInputArgument(pvApiCtx, 1, 2);
+    CheckOutputArgument(pvApiCtx, 0, 1);
 
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
     ScilabGatewayOptions & options = env.getGatewayOptions();
@@ -33,9 +37,16 @@ int ScilabGateway::compile(char * fname, const int envId, void * pvApiCtx)
     ScilabObjects::initialization(env, pvApiCtx);
     options.setIsNew(false);
 
-    className = ScilabObjects::getSingleString(1, pvApiCtx);
+    if (Rhs == 1)
+    {
+        className = os_strdup("");
+    }
+    else
+    {
+        className = ScilabObjects::getSingleString(1, pvApiCtx);
+    }
 
-    err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+    err = getVarAddressFromPosition(pvApiCtx, Rhs, &addr);
     if (err.iErr)
     {
         freeAllocatedSingleString(className);
@@ -78,7 +89,7 @@ int ScilabGateway::compile(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.compilecode(className, code, row != 1 ? row : col);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         freeAllocatedSingleString(className);
         freeAllocatedMatrixOfString(row, col, code);
@@ -88,17 +99,25 @@ int ScilabGateway::compile(char * fname, const int envId, void * pvApiCtx)
     freeAllocatedSingleString(className);
     freeAllocatedMatrixOfString(row, col, code);
 
-    try
+    if (ret == -1)
     {
-        ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_CLASS, Rhs + 1, ret, envId, pvApiCtx);
+        LhsVar(1) = 0;
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    else
     {
-        env.removeobject(ret);
-        throw;
+        try
+        {
+            ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_CLASS, Rhs + 1, ret, envId, pvApiCtx);
+        }
+        catch (ScilabAbstractEnvironmentException & /*e*/)
+        {
+            env.removeobject(ret);
+            throw;
+        }
+
+        LhsVar(1) = Rhs + 1;
     }
 
-    LhsVar(1) = Rhs + 1;
     PutLhsVar();
 
     return 0;

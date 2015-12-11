@@ -3,24 +3,24 @@
     <object name="CallScilabBridge">
         <!-- Enable setting (used by setmenu/unsetmenu) -->
         <method name="setMenuEnabled" returnType="void" modifier="static">
-            <parameter type="String" name="parentUID"/>
+            <parameter type="int" name="parentUID"/>
             <parameter type="String" name="menuName"/>
             <parameter type="boolean" name="status"/>
         </method>
         <method name="setSubMenuEnabled" returnType="void" modifier="static">
-            <parameter type="String" name="parentUID"/>
+            <parameter type="int" name="parentUID"/>
             <parameter type="String" name="menuName"/>
             <parameter type="int" name="position"/>
             <parameter type="boolean" name="status"/>
         </method>
         <!-- Delete Menus (used by delmenu) -->
         <method name="removeMenu" returnType="void" modifier="static">
-            <parameter type="String" name="parentUID"/>
+            <parameter type="int" name="parentUID"/>
             <parameter type="String" name="menuName"/>
         </method>
         <!-- ContextMenu -->
         <method name="displayAndWaitContextMenu" returnType="String" modifier="static">
-            <parameter type="String" name="UID"/>
+            <parameter type="int" name="UID"/>
         </method>
         <!-- Message Box -->
         <method name="newMessageBox" returnType="int" modifier="static"/>
@@ -90,14 +90,6 @@
             <parameter name="id" type="int"/>
             <parameter name="name" type="String"/>
         </method>
-        <!-- Toolbar -->
-        <method name="isToolbarVisible" returnType="boolean" modifier="static">
-            <parameter name="parentUID" type="String"/>
-        </method>
-        <method name="setToolbarVisible" returnType="void" modifier="static">
-            <parameter name="parentUID" type="String"/>
-            <parameter name="status" type="boolean"/>
-        </method>
         <!-- Help Browser -->
         <method name="launchHelpBrowser" returnType="void" modifier="static">
             <parameter type="String[]" name="helps"/>
@@ -111,7 +103,7 @@
         </method>
         <!-- Export GUI-->
         <method name="newExportFileChooser" returnType="int" modifier="static">
-            <parameter type="String" name="figureUID"/>
+            <parameter type="int" name="figureUID"/>
         </method>
         <!-- Font Chooser -->
         <method name="newFontChooser" returnType="int" modifier="static">
@@ -177,7 +169,7 @@
             <parameter type="String" name="text"/>
         </method>
         <method name="copyFigureToClipBoard" returnType="void" modifier="static">
-            <parameter type="String" name="figID"/>
+            <parameter type="int" name="figID"/>
         </method>
         <!-- Misc -->
         <method name="getScreenResolution" returnType="int" modifier="static">
@@ -189,7 +181,7 @@
         <method name="getScreenDepth" returnType="int" modifier="static">
         </method>
         <method name="printFigure" returnType="boolean" modifier="static">
-            <parameter type="String" name="figID"/>
+            <parameter type="int" name="figID"/>
             <parameter type="boolean" name="postScript"/>
             <parameter type="boolean" name="displayDialog"/>
         </method>
@@ -203,7 +195,7 @@
         <method name="pageSetup" returnType="boolean" modifier="static">
         </method>
         <method name="requestFocus" returnType="void" modifier="static">
-            <parameter type="String" name="objUID"/>
+            <parameter type="int" name="objUID"/>
         </method>
         <method name="raiseWindow" returnType="void" modifier="static">
             <parameter type="int" name="objID"/>
@@ -214,7 +206,7 @@
         <method name="useCanvasForDisplay" returnType="boolean" modifier="static"/>
         <method name="scilabAboutBox" returnType="void" modifier="static"/>
         <method name="fireClosingFinished" returnType="void" modifier="static">
-            <parameter type="String" name="figUID"/>
+            <parameter type="int" name="figUID"/>
         </method>
     </object>
 </package>

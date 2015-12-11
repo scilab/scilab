@@ -30,9 +30,9 @@ SCICOS_BLOCKS_IMPEXP void relational_op_ui32(scicos_block *block, int flag)
 
     int m = GetInPortRows(block, 1);
     int n = GetInPortCols(block, 1);
-    unsigned long *u1 = Getuint32InPortPtrs(block, 1);
-    unsigned long *u2 = Getuint32InPortPtrs(block, 2);
-    unsigned long *y = Getuint32OutPortPtrs(block, 1);
+    SCSUINT32_COP *u1 = Getuint32InPortPtrs(block, 1);
+    SCSUINT32_COP *u2 = Getuint32InPortPtrs(block, 2);
+    SCSUINT32_COP *y = Getuint32OutPortPtrs(block, 1);
     int *ipar = GetIparPtrs(block);
 
     if (flag == 1)

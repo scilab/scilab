@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -17,7 +17,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int C2F(sci_debug)(char *fname, unsigned long fname_len)
+int C2F(sci_debug)(char *fname, void *pvApiCtx)
 {
     double dPreviousDebugLevel = 0.;
 
@@ -25,7 +25,7 @@ int C2F(sci_debug)(char *fname, unsigned long fname_len)
     CheckLhs(1, 1);
     CheckRhs(0, 1);
 
-    dPreviousDebugLevel = (double)C2F(iop).ddt;
+    //dPreviousDebugLevel = (double)C2F(iop).ddt;
 
     if (Rhs == 1)
     {
@@ -78,8 +78,8 @@ int C2F(sci_debug)(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        C2F(iop).ddt = iNewDebugLevel;
-        sciprint(" debug %d\n", C2F(iop).ddt);
+        //C2F(iop).ddt = iNewDebugLevel;
+        //sciprint(" debug %d\n", C2F(iop).ddt);
     }
 
     if (createScalarDouble(pvApiCtx, Rhs + 1, dPreviousDebugLevel) != 0)

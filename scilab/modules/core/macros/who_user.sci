@@ -6,18 +6,22 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //2012/08/06 add return value with variable list.
 
 function ret = who_user(%__bPrint__)
     //get user variables
     [nams,mem]=who("get"); //get all variables
-    p=predef(); //number of system variable
-    st=stacksize()
-    nams=nams(1:$-p+1);mem=mem(1:$-p+1);
+    p=predef("names");
+
+    //remove predef vars
+    ke=grep(nams,p);
+    nams(ke) = [];
+    mem(ke) = [];
+
     //modifiable system variables
-    excluded=["demolist","%helps","%helps_modules","home","who_user", "%__bPrint__"];
+    excluded=["nargin","nargout","demolist","%helps","%helps_modules","home","who_user", "%__bPrint__"];
     ke=grep(nams,excluded)
     nams(ke)=[];mem(ke)=[];
     ret = nams
@@ -63,6 +67,6 @@ function ret = who_user(%__bPrint__)
     "";
     txt;
     "";
-    msprintf(gettext("Using %s elements out of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
+    msprintf(gettext("Using %s elements"),string(sum(mem)))]
     write(%io(2),txt,"(1x,a)")
 endfunction

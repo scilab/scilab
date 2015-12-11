@@ -19,4 +19,4 @@
 mputl('a=""..""', TMPDIR + '/bug_9854.sce')
 scinotes(TMPDIR + '/bug_9854.sce');
 
-// All the string must have the same colour.
+// All the string must have the same color.

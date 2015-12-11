@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="oldbessel" xml:lang="ja">
@@ -108,7 +108,7 @@
     </refsection>
     <refsection>
         <title>Remarks</title>
-        <para>Y_alpha and J_alpha Bessel functions are 2 independant solutions of
+        <para>Y_alpha and J_alpha Bessel functions are 2 independent solutions of
             the Bessel 's differential equation :
         </para>
         <informalequation>
@@ -118,7 +118,7 @@
                 </imageobject>
             </mediaobject>
         </informalequation>
-        <para>K_alpha and I_alpha modified Bessel functions are 2 independant
+        <para>K_alpha and I_alpha modified Bessel functions are 2 independent
             solutions of the modified Bessel 's differential equation :
         </para>
         <informalequation>
@@ -143,14 +143,12 @@ xtitle("Some modified Bessel functions of the first kind")
 subplot(2,1,2)
 plot2d(x,ys, style=2:6, leg="I0s@I1s@I2s@I3s@I4s", rect=[0,0,6,1])
 xtitle("Some modified scaled Bessel functions of the first kind")
-
 // example #2 : display some J Bessel functions
 x = linspace(0,40,5000)';
 y = besselj(0:4,x);
 clf()
 plot2d(x,y, style=2:6, leg="J0@J1@J2@J3@J4")
 xtitle("Some Bessel functions of the first kind")
-
 // example #3 : use the fact that J_(1/2)(x) = sqrt(2/(x pi)) sin(x)
 //              to compare the algorithm of besselj(0.5,x) with
 //              a more direct formula 
@@ -166,7 +164,6 @@ xtitle("besselj(0.5,x)")
 subplot(2,1,2)
 plot2d(x(ind), er(ind), style=2, logflag="nl")
 xtitle("relative error between 2 formulae for besselj(0.5,x)") 
-
 // example #4: display some K Bessel functions
 x = linspace(0.01,10,5000)';
 y = besselk(0:4,x);
@@ -178,7 +175,6 @@ xtitle("Some modified Bessel functions of the second kind")
 subplot(2,1,2)
 plot2d(x,ys, style=0:4, leg="K0s@K1s@K2s@K3s@K4s", rect=[0,0,6,10])
 xtitle("Some modified scaled Bessel functions of the second kind")
-
 // example #5: plot severals Y Bessel functions
 x = linspace(0.1,40,5000)'; // Y Bessel functions are unbounded  for x -> 0+
 y = bessely(0:4,x);

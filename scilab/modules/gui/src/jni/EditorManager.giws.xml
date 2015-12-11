@@ -1,0 +1,13 @@
+<package name="org.scilab.modules.gui.editor">
+    <object name="EditorManager">
+        <method name="enableModify" returnType="void" modifier="static">
+            <parameter name="uid" type="int"/>
+        </method>
+        <method name="disableModify" returnType="void" modifier="static">
+            <parameter name="uid" type="int"/>
+        </method>
+        <method name="isModifyEnabled" returnType="boolean" modifier="static">
+            <parameter name="uid" type="int"/>
+        </method>
+    </object>
+</package>

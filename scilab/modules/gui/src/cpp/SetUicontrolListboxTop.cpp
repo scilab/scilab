@@ -9,13 +9,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolListboxTop.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
-int SetUicontrolListboxTop(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolListboxTop(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int value = 0;
     int* valueTab;
@@ -66,7 +69,7 @@ int SetUicontrolListboxTop(void* _pvCtx, char* sciObjUID, void* _pvData, int val
         valueTab[0] = value;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP__, valueTab, jni_int_vector, valueSize);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_LISTBOXTOP__, valueTab, jni_int_vector, valueSize);
 
     delete[] valueTab;
 

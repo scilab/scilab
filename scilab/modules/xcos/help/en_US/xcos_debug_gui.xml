@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Serge Steer
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xml:id="xcos_debug_gui" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:ns4="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+    <refnamediv>
+        <refname>xcos_debug_gui</refname>
+        
+        <refpurpose>Interactive debugging function to be used in the Debug Xcos
+            block
+        </refpurpose>
+    </refnamediv>
+    
+    <refsection>
+        <title>Description</title>
+        
+        <para>The Xcos Debug block allows to set a Scilab instruction that is
+            executed before and after the execution of each blocks during the
+            simulation. Setting the instruction xcos_debug_gui() for the Debug block
+            instruction makes a graphical user interface to be opened at the beginning
+            of the simulation. This GUI allows to interactive debug. In particular it
+            is possible to dynamically specify conditions for which the simulation
+            will be suspended (break points). When halted on a break point user can
+            examine the current values, state, input,... of the block.
+        </para>
+        
+        <para>At any time the user can specify break points by a set of cumulative
+            conditions:
+        </para>
+        
+        <itemizedlist>
+            <listitem>
+                <para>The flag value for which the current block is called</para>
+            </listitem>
+            
+            <listitem>
+                <para>The current date value</para>
+            </listitem>
+            
+            <listitem>
+                <para>If the break takes place before and/or the block call</para>
+            </listitem>
+            
+            <listitem>
+                <para>The value of a Scilab boolean expression, the break is
+                    active if the condition evaluates to true. This expression may
+                    use the block variable <link
+        linkend="C_struct">C_struct</link> that contains the current
+                    block elements and Scilab functions <link
+        linkend="curblock">curblock</link> and <link
+        linkend="scicos_time">scicos_time</link>. 
+                </para>
+            </listitem>
+        </itemizedlist>
+        
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../images/Xcos_Debug.png" format="PNG"/>
+            </imageobject>
+        </mediaobject>
+        
+        <para>When the simulation is suspended, the graphical user interface shows
+            the current time and current flag values, the block number and the path of
+            the block in the super blocks hierarchy. 
+        </para>
+        
+        <para>The "Next" button restart the simulation till the next suspending
+            condition
+        </para>
+        
+        <para>The "End debug" button disable all conditions letting the simulation
+            going on freely up to the end
+        </para>
+        
+        <para>The "Pause" button allows to interactively observe the block data
+            structure associated to the current block executing Scilab instructions in
+            the Scilab console. User must enter the "return" instruction to go
+            back.
+        </para>
+    </refsection>
+    
+    
+    <refsection>
+        <title>Authors</title>
+        
+        <simplelist type="vert">
+            <member>Serge Steer, INRIA</member>
+        </simplelist>
+    </refsection>
+    
+    <refsection>
+        <title>History</title>
+        
+        <revhistory>
+            <revision>
+                <revnumber>0.0</revnumber>
+                
+                <revdescription>Function xcos_debug_gui added</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

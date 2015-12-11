@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d;
@@ -14,7 +14,6 @@ package org.scilab.forge.scirenderer.implementation.g2d;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
-import org.scilab.forge.scirenderer.clipping.ClippingManager;
 import org.scilab.forge.scirenderer.lightning.LightManager;
 import org.scilab.forge.scirenderer.renderer.Renderer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
@@ -28,9 +27,9 @@ import org.scilab.forge.scirenderer.tranformations.TransformationManagerListener
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 
 import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvas;
-import org.scilab.forge.scirenderer.implementation.g2d.G2DCanvasFactory;
 import org.scilab.forge.scirenderer.implementation.g2d.clipping.G2DClippingManager;
 import org.scilab.forge.scirenderer.implementation.g2d.motor.Motor3D;
+import org.scilab.forge.scirenderer.implementation.g2d.lighting.G2DLightManager;
 
 /**
  *
@@ -41,7 +40,7 @@ import org.scilab.forge.scirenderer.implementation.g2d.motor.Motor3D;
 public class G2DDrawingTools implements DrawingTools {
 
     private final TransformationManager transformationManager;
-    //private final G2DLightManager lightManager;
+    private final G2DLightManager lightManager;
     private final G2DClippingManager clippingManager;
     private final G2DCanvas g2dCanvas;
 
@@ -51,7 +50,7 @@ public class G2DDrawingTools implements DrawingTools {
      */
     G2DDrawingTools(G2DCanvas canvas) {
         this.transformationManager = new TransformationManagerImpl(canvas);
-        //this.lightManager = new G2DLightManager(this);
+        this.lightManager = new G2DLightManager(this);
         this.clippingManager = new G2DClippingManager(this);
         this.g2dCanvas = canvas;
 
@@ -61,7 +60,7 @@ public class G2DDrawingTools implements DrawingTools {
                 if (transformationManager.isUsingSceneCoordinate()) {
                     g2dCanvas.getMotor3D().setTransformation(transformationManager.getG2DProjection(), transformationManager.getG2DSingleProjection());
                 } else {
-                    g2dCanvas.getMotor3D().setTransformation(transformationManager.getG2DWindowProjection(), null);
+                    g2dCanvas.getMotor3D().setTransformation(transformationManager.getG2DWindowProjection(), transformationManager.getG2DSingleProjection());
                 }
             }
         });
@@ -83,8 +82,7 @@ public class G2DDrawingTools implements DrawingTools {
 
     @Override
     public LightManager getLightManager() {
-        return null;
-        //return lightManager;
+        return lightManager;
     }
 
     @Override
@@ -129,12 +127,32 @@ public class G2DDrawingTools implements DrawingTools {
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions) {
-        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0);
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, 0, null, null);
     }
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) {
-        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, rotationAngle);
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, rotationAngle, null, null);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, Color auxColor, ElementsBuffer colors) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, 0, auxColor, colors);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle, Color auxColor, ElementsBuffer colors) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, rotationAngle, auxColor, colors);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, offset, stride, rotationAngle, null, null);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, Color auxColor, ElementsBuffer colors) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, offset, stride, rotationAngle, auxColor, colors);
     }
 
     @Override

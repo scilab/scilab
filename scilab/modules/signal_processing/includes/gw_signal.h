@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,21 +14,15 @@
 #define __GW_SIGNAL__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_signal_processing.h"
+#include "dynlib_signal_processing_gw.h"
 #include "machine.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_ffir)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_fft)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_corr)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_fiir)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_rpem)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_amell)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_delip)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_remez)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int C2F(sci_syredi)(char *fname, unsigned long fname_len);
-SIGNAL_PROCESSING_IMPEXP int sci_conv2(char *fname, unsigned long fname_len);
-
+EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_remez);
+EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_amell);
+EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_conv2);
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

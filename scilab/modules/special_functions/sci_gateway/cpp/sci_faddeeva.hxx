@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,7 +14,7 @@
    file.  This gives us a simple way to define several similar "gateway"
    functions for the Faddeeva::erf, erfc, erfcx, erfi, and Dawson functions. */
 
-int SCI_FADDEEVA(char *fname, unsigned long fname_len)
+int SCI_FADDEEVA(char *fname, void* pvApiCtx)
 {
     int* zAddr = NULL;
     double* zr = NULL;

@@ -7,17 +7,17 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "CreateMatlabVariable.h"
-#include "stack-c.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
+#include "scisparse.h"
 
 /* Defined in SCI/modules/sparse/src/fortran/spt.f */
 extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *workArray,

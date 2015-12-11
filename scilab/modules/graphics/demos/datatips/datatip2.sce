@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at;
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function datatip2
 
@@ -27,7 +27,7 @@ function datatip2
     ax=gca();ax.rotation_angles=[70 50];ax.axes_visible="off";
     drawnow()
 
-    datatipInitStruct(c,"t",t)
+    c.display_function_data = t;
     datatipSetStyle(c,2,%f) //directional arrow no box
 
     function s=mydisp(curve,pt,index),
@@ -41,10 +41,12 @@ function datatip2
         s=msprintf("%.2g", t);
     endfunction
 
-    datatipSetDisplay(c,mydisp) // Change the default datatip label
     for k=[350 400 450 500 520  550 600]
         dt=datatipCreate(c,k);
     end
+    //datatipSetDisplay(c,mydisp) // Change the default datatip label
+
+    datatipManagerMode(fig,"on") //activate the interactive editor
 
     demo_viewCode("datatip2.sce");
 

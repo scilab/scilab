@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,7 +26,7 @@ public final class GlobalEventWatcher {
     private static GlobalKeyEventWatcher keyWatcher;
     private static GlobalMouseEventWatcher mouseWatcher;
     private static boolean activated;
-    private static String axesUID = null;
+    private static Integer axesUID = null;
     private static boolean catchingCallback = false;
 
     /**
@@ -90,11 +90,11 @@ public final class GlobalEventWatcher {
         return activated;
     }
 
-    public static void setAxesUID(String axesUID) {
+    public static void setAxesUID(Integer axesUID) {
         GlobalEventWatcher.axesUID = axesUID;
     }
 
-    public static String getAxesUID() {
+    public static Integer getAxesUID() {
         return axesUID ;
     }
 
@@ -102,7 +102,7 @@ public final class GlobalEventWatcher {
         catchingCallback = true;
     }
 
-    public static void disableableCatchingCallback() {
+    public static void disableCatchingCallback() {
         catchingCallback = false;
     }
 

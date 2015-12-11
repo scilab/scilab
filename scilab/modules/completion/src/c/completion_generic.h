@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __COMPLETION_GENERIC_H__
@@ -21,7 +21,7 @@
 * @return strings found in dictionary
 */
 char **completion_generic(char **dictionary, int sizedictionary,
-                          char *somechars, int *sizeArrayReturned);
+                          const char *somechars, int *sizeArrayReturned);
 
 #endif /* __COMPLETION_GENERIC_H__ */
 /*--------------------------------------------------------------------------*/

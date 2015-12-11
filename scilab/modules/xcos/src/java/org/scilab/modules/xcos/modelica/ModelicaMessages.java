@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -62,7 +62,7 @@ public final class ModelicaMessages {
             .gettext("Generate Jacobian");
     public static final String ERROR = Messages.gettext("Error");
     public static final String UNKNOWNS_NEQ_EQUATIONS = Messages
-            .gettext("Unknowns not equals to Equations");
+            .gettext("Unknowns not equal to Equations");
     public static final String UNKNOWNS = Messages.gettext("Unknowns");
     public static final String REDUCED = Messages.gettext("Reduced");
     public static final String EXTENDED = Messages.gettext("Extended");

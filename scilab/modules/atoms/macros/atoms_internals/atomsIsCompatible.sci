@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -25,14 +25,14 @@ function result = atomsIsCompatible(version_str)
     // Check input parameter type
     // =========================================================================
     if type(version_str) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsIsCompatible",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsIsCompatible",1));
     end
 
     // Check input parameter dimension
     // =========================================================================
 
     if size(version_str,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsIsCompatible",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsIsCompatible",1));
     end
 
     // If version_str == 'any', no need to continue

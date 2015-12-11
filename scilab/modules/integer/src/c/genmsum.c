@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -70,9 +70,7 @@ int C2F(genmsum)(int *typ, int *job, int *a, int *na, int *m, int *n, int *v, in
 /* sum of int returning a double */
 #define MSUM_DOUBLE(Type) {\
 Type *A;\
-double *V;\
     A=(Type *)a;\
-    V=(Type *)v;\
     iv = 0;\
     if (*job == 0) {\
 	t = 0.0;\

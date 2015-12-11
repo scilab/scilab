@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -18,7 +18,6 @@
 ;
 #define UMFPACK "umfpack"
 ;
-Source: bin\no{#UMFPACK}.dll; DestDir: {app}\bin; DestName: {#UMFPACK}.dll; Components: not ({#COMPN_SCILAB})
 Source: bin\lib{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -35,13 +34,10 @@ Source: modules\{#UMFPACK}\macros\buildmacros.sce; DestDir: {app}\modules\{#UMFP
 Source: modules\{#UMFPACK}\macros\buildmacros.bat; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#UMFPACK}\macros\cleanmacros.bat; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#UMFPACK}\macros\lib; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#UMFPACK}\macros\names; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#UMFPACK}\macros\*.bin; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#UMFPACK}\macros\*.sci; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#UMFPACK}\macros\*.bin; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#UMFPACK}\examples\*.*; DestDir: {app}\modules\{#UMFPACK}\examples; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
-;
-;Source: modules\{#UMFPACK}\demos\*.*; DestDir: {app}\modules\{#UMFPACK}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#UMFPACK}\tests\*.*; DestDir: {app}\modules\{#UMFPACK}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;

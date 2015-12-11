@@ -8,27 +8,30 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "GetUicontrolRelief.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
-int GetUicontrolRelief(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolRelief(void* _pvCtx, int iObjUID)
 {
     char* relief = NULL;
-    int status = 0;
+    void* status = NULL;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_RELIEF__, jni_string, (void**) &relief);
+    getGraphicObjectProperty(iObjUID, __GO_UI_RELIEF__, jni_string, (void**) &relief);
 
     if (relief == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Relief");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, relief);
+        status = sciReturnString(relief);
         delete[] relief;
         return status;
     }

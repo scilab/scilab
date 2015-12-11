@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function C=expression2code(e)
@@ -340,6 +340,11 @@ function C=expression2code(e)
         // -----
     case "equal"
         C=instruction2code(e)
+        // ------
+        // INLINE
+        // ------
+    case "inline"
+        C=["function " + e.prototype;"  " + e.definition;"endfunction"];
         // -------
         // COMMENT (inside a matrix declaration for example)
         // -------

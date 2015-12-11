@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -56,22 +56,22 @@ function [tree_out,version_out] = atomsDepTreeExt(name,version)
     // =========================================================================
 
     if type(name) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDepTreeExt",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDepTreeExt",1));
     end
 
     if (rhs>=2) & (type(version) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDepTreeExt",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDepTreeExt",2));
     end
 
     // Check input parameters dimensions
     // =========================================================================
 
     if size(name) <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDepTreeExt",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDepTreeExt",1));
     end
 
     if (rhs>=2) & (size(name)<>1) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDepTreeExt",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDepTreeExt",1));
     end
 
     // If version not define, version is the list of version compatible with

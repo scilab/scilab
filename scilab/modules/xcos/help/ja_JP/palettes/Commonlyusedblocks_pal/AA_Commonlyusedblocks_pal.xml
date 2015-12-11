@@ -1,0 +1,477 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scicos
+ * 
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * 
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * 
+ * See the file ./license.txt
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="Commonlyusedblocks_pal" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>Commonlyusedblocks_pal</refname>
+        
+        <refpurpose>共通して使用されるブロックパレット</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>ブロックのスクリーンショット</title>
+        
+        <para>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="ANDBLK" fileref="../../../../../../modules/xcos/images/palettes/ANDBLK.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="BIGSOM_f" fileref="../../../../../../modules/xcos/images/palettes/BIGSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="CMSCOPE" fileref="../../../../../../modules/xcos/images/palettes/CMSCOPE.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="CONST_m" fileref="../../../../../../modules/xcos/images/palettes/CONST_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="CONVERT" fileref="../../../../../../modules/xcos/images/palettes/CONVERT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="CSCOPXY" fileref="../../../../../../modules/xcos/images/palettes/CSCOPXY.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="DEMUX" fileref="../../../../../../modules/xcos/images/palettes/DEMUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="DOLLAR_f" fileref="../../../../../../modules/xcos/images/palettes/DOLLAR_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="INTEGRAL_f" fileref="../../../../../../modules/xcos/images/palettes/INTEGRAL_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="IN_f" fileref="../../../../../../modules/xcos/images/palettes/IN_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="LOGICAL_OP" fileref="../../../../../../modules/xcos/images/palettes/LOGICAL_OP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="MUX" fileref="../../../../../../modules/xcos/images/palettes/MUX.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="NRMSOM_f" fileref="../../../../../../modules/xcos/images/palettes/NRMSOM_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="OUT_f" fileref="../../../../../../modules/xcos/images/palettes/OUT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="PRODUCT" fileref="../../../../../../modules/xcos/images/palettes/PRODUCT.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="RELATIONALOP" fileref="../../../../../../modules/xcos/images/palettes/RELATIONALOP.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="SATURATION" fileref="../../../../../../modules/xcos/images/palettes/SATURATION.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="SWITCH2_m" fileref="../../../../../../modules/xcos/images/palettes/SWITCH2_m.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+            <inlinemediaobject>
+                
+                <imageobject>
+                    
+                    <imagedata linkend="TEXT_f" fileref="../../../../../../modules/xcos/images/palettes/TEXT_f.png" width="100" depth="100" scalefit="0" align="center" valign="middle"/>
+                    
+                </imageobject>
+                
+            </inlinemediaobject>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection id="Module_Commonlyusedblocks_pal">
+        
+        <title>Module</title>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="xcos">xcos</link>
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection id="Description_Commonlyusedblocks_pal">
+        
+        <title>説明</title>
+        
+        <para>
+            
+            共通して使用されるブロックパレットでは,
+            
+            他のパレットから多くのモデルが使用する
+            
+            ブロックを見つけることができます.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection id="Blocks_Commonlyusedblocks_pal">
+        
+        <title>Blocks</title>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="ANDBLK">ANDBLK - アクティベーションand</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="BIGSOM_f">BIGSOM_f - 合計</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="CMSCOPE">CMSCOPE - マルチ表示スコープ</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="CONST_m">CONST_m - 定数</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="CONVERT">CONVERT - データ型を変換
+                        
+                    </link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="CSCOPXY">CSCOPXY - y=f(x) パーマネントビュア</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="DEMUX">DEMUX - デマルチプレクサ</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="DOLLAR_f">DOLLAR_f - 遅延演算子</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="INTEGRAL_f">INTEGRAL_f - 積分</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="IN_f">IN_f - 入力ポート</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="LOGICAL_OP">LOGICAL_OP - 論理演算子</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="MUX">MUX - マルチプレクサ</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="NRMSOM_f">NRMSOM_f - データマージ</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="OUT_f">OUT_f - 出力ポート</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="PRODUCT">PRODUCT - 積</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="RELATIONALOP">RELATIONALOP — 関係演算
+                        
+                    </link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="SATURATION">SATURATION - 飽和</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="SWITCH2_m">SWITCH2_m - スイッチ2</link>
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <link linkend="TEXT_f">TEXT_f - テキスト</link>
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+</refentry>
+

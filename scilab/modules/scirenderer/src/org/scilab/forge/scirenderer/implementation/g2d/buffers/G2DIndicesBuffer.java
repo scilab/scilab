@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.buffers;
@@ -14,7 +14,6 @@ package org.scilab.forge.scirenderer.implementation.g2d.buffers;
 import org.scilab.forge.scirenderer.buffers.DataBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 
-import java.nio.Buffer;
 import java.nio.IntBuffer;
 import java.util.Collection;
 

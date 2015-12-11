@@ -6,10 +6,10 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼出し手順</title>
-        <synopsis>t=isglobal(x)</synopsis>
+        <synopsis>t = isglobal(x)</synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Parameters</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>x</term>
@@ -28,8 +28,9 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>isglobal(x)</literal> は, x がグローバル変数として
-            宣言されている場合に true，それ以外の場合に false を返します.
+            <literal>isglobal(x)</literal> は, <varname>x</varname> がグローバル変数として
+            宣言されている場合に <emphasis>true</emphasis>，
+            それ以外の場合に <emphasis>false</emphasis> を返します.
         </para>
     </refsection>
     <refsection>

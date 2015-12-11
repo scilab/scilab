@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function rtol = assert_cond2reltol ( varargin )
     // Suggests a relative error, computed from the condition number.
@@ -94,7 +94,7 @@ function rtol = assert_cond2reltol ( varargin )
         end
     endfunction
 
-    function argin = argindefault ( rhs , vararglist , ivar , default )
+    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -118,7 +118,7 @@ function rtol = assert_cond2reltol ( varargin )
     //
     // Get arguments
     condition = varargin ( 1 )
-    offset = argindefault ( rhs , varargin , 2 , 0 )
+    offset = assert_argindefault ( rhs , varargin , 2 , 0 )
     //
     // Check types of variables
     if ( typeof(condition) <> "constant" ) then

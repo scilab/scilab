@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,6 +30,36 @@ public :
      * @return 1 if the value is not a Nan, 0 if it is.
      */
     static int isANumber(double x);
+
+    static int isANumber(int x)
+    {
+        return 1;
+    }
+
+    static int isANumber(unsigned int x)
+    {
+        return 1;
+    }
+
+    static int isANumber(char x)
+    {
+        return 1;
+    }
+
+    static int isANumber(unsigned char x)
+    {
+        return 1;
+    }
+
+    static int isANumber(short x)
+    {
+        return 1;
+    }
+
+    static int isANumber(unsigned short x)
+    {
+        return 1;
+    }
 
     /**
      * Tests whether a scalar value is finite.
@@ -57,6 +87,15 @@ public :
     static int isValid(double x, double y, double z);
 
     /**
+     * Tests whether a point is valid.
+     * The point is valid if none of its coordinates is infinite or a NaN.
+     * @param[in] the point's x-coordinate.
+     * @param[in] the point's y-coordinate.
+     * @return 1 if the point is valid, 0 if it is not.
+     */
+    static int isValid(double x, double y);
+
+    /**
      * Returns the base-10 logarithm of the input value.
      * @param[in] the input value.
      * @return the base-10 logarithm of the input value.
@@ -69,6 +108,18 @@ public :
      * @return 1 if the point is valid, 0 if it is not.
      */
     static int isLogValid(double x);
+
+    /**
+     * Determines if a point is valid in logarithmic scale.
+     * It checks whether any of its coordinates is strictly less than 0 (if the
+     * logarithmic scale applies). In the event of the former, the point is
+     * determined as not valid.
+     * @param[in] the point's x-coordinate.
+     * @param[in] the point's y-coordinate.
+     * @param[in] the bit mask specifying for which coordinates the logarithmic scale is used.
+     * @return 1 if the point is valid, 0 if it is not.
+     */
+    static int isLogValid(double x, double y, int logMask);
 
     /**
      * Determines if a point is valid in logarithmic scale.

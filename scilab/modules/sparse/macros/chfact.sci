@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function spcho=chfact(A)
     //cholesky factors, returned in a tlist
@@ -56,11 +56,11 @@ function [spcho]= blkfc1(spcho,level)
 
     select iflag
     case -1 then,
-        error(gettext("Nonpositive diag. encountered, matrix is not positive def.")),
+        error(gettext("Non-positive diagonal encountered, matrix is not positive definite.")),
     case -2 then,
-        error(gettext("Insufficient working storage in blkfct, temp(*)")),
+        error(gettext("Insufficient working storage in blkfct, temp(*).")),
     case -3 then,
-        error(gettext("Insufficient working storage in blkfct, iwork(*)")),
+        error(gettext("Insufficient working storage in blkfct, iwork(*).")),
     end;
     //
     spcho("lnz")=lnz;

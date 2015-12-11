@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -117,7 +117,10 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 
     // If necessary, rebuild the struct
     // =========================================================================
-    TIME_BEFORE_NEW_UPDATE = 86400;
+    TIME_BEFORE_NEW_UPDATE = strtod(atomsGetConfig("updateTime"))*86400;
+    if isnan(TIME_BEFORE_NEW_UPDATE) then // Value not found in config file, give the default one
+        TIME_BEFORE_NEW_UPDATE = 86400*30; // One month, in seconds
+    end
     if (packages_path_info == []) ..
         | (getdate("s") - packages_path_info(6) > TIME_BEFORE_NEW_UPDATE) ..
         | (rhs == 1 & update) then
@@ -154,6 +157,8 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
             mkdir(atoms_tmp_directory);
         end
 
+        nbRepoError = 0;
+        allRepoError = [];
         for i=1:size(repositories,"*")
             // Building url & file_out
             // ----------------------------------------
@@ -168,35 +173,50 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
 
             // Launch the download
             // ----------------------------------------
-            atomsDownload(url, file_out);
+            try
+                atomsDownload(url, file_out);
 
-            // We check that file_out exists
-            // ----------------------------------------
-            if ~isfile(file_out) then
-                error(msprintf(gettext("%s: DESCRIPTION file (''%s'') does not exist.\n"),"atomsDESCRIPTIONget", file_out));
-            end
-
-            // Extract It
-            // ----------------------------------------
-            if LINUX | MACOSX | SOLARIS | BSD then
-                extract_cmd = "gunzip "+ file_out;
-            else
-                gzip_path = getshortpathname(fullpath(pathconvert(SCI+"/tools/gzip/gzip.exe",%F)));
-                if ~isfile(gzip_path) then
-                    error(msprintf(gettext("%s: gzip not found.\n"), "atomsDESCRIPTIONget"));
+                // We check that file_out exists
+                // ----------------------------------------
+                if ~isfile(file_out) then
+                    error(msprintf(gettext("%s: DESCRIPTION file (''%s'') does not exist.\n"),"atomsDESCRIPTIONget", file_out));
                 end
-                extract_cmd = """" + gzip_path + """" + " -d """ + file_out + """";
+
+                // Extract It
+                // ----------------------------------------
+                if LINUX | MACOSX | SOLARIS | BSD then
+                    extract_cmd = "gunzip "+ file_out;
+                else
+                    gzip_path = getshortpathname(fullpath(pathconvert(SCI+"/tools/gzip/gzip.exe",%F)));
+                    if ~isfile(gzip_path) then
+                        error(msprintf(gettext("%s: gzip not found.\n"), "atomsDESCRIPTIONget"));
+                    end
+                    extract_cmd = """" + gzip_path + """" + " -d """ + file_out + """";
+                end
+
+                [rep, stat ,err] = unix_g(extract_cmd);
+
+                if stat ~= 0 then
+                    disp(err);
+                    error(msprintf(gettext("%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"),"atomsDESCRIPTIONget",file_out));
+                end
+
+                description_files = [ description_files ; strsubst(file_out,"/\.gz$/","","r") repositories(i) ];
+                mprintf(_("Scanning repository") + " " + repositories(i) + " ... " + _("Done") + "\n\n");
+            catch
+                [msg, ierr] = lasterror();
+                nbRepoError = nbRepoError + 1;
+                allRepoError = [allRepoError ; msg]
+                // If failed downloading latest repository and all previous failed => error
+                if nbRepoError == size(repositories, "*") then
+                    warning(msg);
+                    mprintf(_("Scanning repository") + " " + repositories(i) + " ... " + _("Skipped") + "\n\n");
+                    error("All ATOMS repositories scan failed.");
+                else
+                    warning(msg);
+                    mprintf(_("Scanning repository") + " " + repositories(i) + " ... " + _("Skipped") + "\n\n");
+                end
             end
-
-            [rep, stat ,err] = unix_g(extract_cmd);
-
-            if stat ~= 0 then
-                disp(err);
-                error(msprintf(gettext("%s: Extraction of the DESCRIPTION file (''%s'') has failed.\n"),"atomsDESCRIPTIONget",file_out));
-            end
-
-            description_files = [ description_files ; strsubst(file_out,"/\.gz$/","","r") repositories(i) ];
-
         end
 
         // 2nd step : Loop on available Description files
@@ -255,11 +275,8 @@ function [packages,categories_flat,categories] = atomsDESCRIPTIONget(update)
         categories     = description("categories");
         categories_flat  = description("categories_flat");
 
-        wMode = warning("query");
-        warning("off");
-        commandToExec = "save(packages_path, packages, categories, categories_flat)";
+        commandToExec = "save(packages_path, ""packages"", ""categories"", ""categories_flat"")";
         ierr = execstr(commandToExec, "errcatch");
-        warning(wMode);
         if ierr <> 0 then
             error(msprintf(gettext("%s: save (''%s'') has failed.\n"),"atomsDESCRIPTIONget", packages_path));
         end

@@ -7,12 +7,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.gui.bridge.filechooser;
 
+import java.awt.Component;
+import java.awt.KeyboardFocusManager;
 import java.io.File;
 import java.util.StringTokenizer;
 
@@ -20,6 +22,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.gui.filechooser.FileChooserInfos;
 import org.scilab.modules.gui.filechooser.SimpleFileChooser;
@@ -137,10 +140,15 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
      */
     @Override
     public void displayAndWait() {
-        JFrame parentFrame;
+        JFrame parentFrame = null;
         if (parent == null) {
-            parentFrame = new JFrame();
-            parentFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
+            Component focused = KeyboardFocusManager.getCurrentKeyboardFocusManager().getFocusOwner();
+            if (focused != null) {
+                parentFrame = (JFrame) SwingUtilities.getAncestorOfClass(JFrame.class, focused);
+            }
+            if (parentFrame == null) {
+                parentFrame = new JFrame();
+            }
         } else {
             parentFrame = parent;
         }
@@ -247,9 +255,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
             FileChooserInfos.getInstance().setSelectionSize(selectionSize);
             FileChooserInfos.getInstance().setFilterIndex(filterIndex);
         }
-
-
-
     }
 
     /**
@@ -303,23 +308,6 @@ public class SwingScilabFileChooser extends JFileChooser implements SimpleFileCh
     @Override
     public String[] getSelectionFileNames() {
         return selectionFileNames;
-    }
-
-    /**
-     * Get the filter index
-     * @return this.getFilterIndex() filter index
-     */
-    @Override
-    public int getFilterIndex() {
-        return getFilterIndex();
-    }
-
-    /**
-     * Set the flag indicating the filter index
-     * @param filterIndex index of the filter
-     */
-    public void setFilterIndex(int filterIndex) {
-        setFilterIndex(filterIndex);
     }
 
     /**

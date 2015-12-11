@@ -40,20 +40,19 @@ function  ok=xml2modelica(xmlfile,Flati)
     in = """" + xmlfile + """";
     out = "-o """ + Flati + """";
     option = "-init";  // generates a flat modelica file for the initialization
-    Errfile = " > """ + tmpdir + "ixml2modelica.err""";
-    instr = strcat([exe in option out Errfile], " ");
+    instr = strcat([exe in option out], " ");
 
     if getos() == "Windows" then,
         mputl(instr, tmpdir + "igenx.bat");
         instr = tmpdir + "igenx.bat";
     end
 
-    if execstr("unix_s(instr)","errcatch") == 0 then
+    [rep,stat,err]=unix_g(instr);
+    if stat == 0 then
         mprintf("%s\n", " xml->Modelica : " + Flati);
         ok = %t;
     else
-        messagebox([_("-------XML to Modelica error:-------");
-        mgetl(Errfile);], "error", "modal");
+        messagebox(err, _("XML to Modelica"), "error", "modal");
         ok = %f;
         return
     end

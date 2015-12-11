@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ENDBLK">
@@ -77,13 +77,6 @@
                     </listitem>
                     <listitem>
                         <para>
-                            <link linkend="ENDBLK">Compiled Super Block
-                                content
-                            </link>
-                        </para>
-                    </listitem>
-                    <listitem>
-                        <para>
                             <xref linkend="Seealso_ENDBLK">See also</xref>
                         </para>
                     </listitem>
@@ -104,11 +97,13 @@
     <refsection id="Description_ENDBLK">
         <title>Description</title>
         <para>That block can be used to set the final time of the simulation. When
-            that block is truely parametrized then the simulator will jump to the
+            that block is truly parametrized then the simulator will jump to the
             'final integration time' defined in the Setup item of the simulate Menu
             from the time defined by the parameter 'Final simulation time' of the
             dialog box. That parameter can be a numerical value or a symbolic variable
             defined in the scicos context.
+        </para>
+        <para>Note that the 'Final simulation time' item (on diagram settings) always end the simulation at the specified time. This block should be configured to end the simulation before this setting.
         </para>
     </refsection>
     <refsection id="Dialogbox_ENDBLK">
@@ -116,7 +111,7 @@
         <para>
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../images/ENDBLK_gui.gif" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../images/gui/ENDBLK_gui.gif" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
         </para>
@@ -206,15 +201,15 @@
             </listitem>
         </itemizedlist>
     </refsection>
-    <refsection id="CompiledSuperBlockcontent_ENDBLK">
-        <title>Compiled Super Block content</title>
-        <para>
+    <refsection id="Example_ENDBLK">
+        <title>End example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/ENDBLK_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
-                    <imagedata align="center" fileref="../../../images/ENDBLK_img3_eng.gif" valign="middle"/>
+                    <imagedata align="center" fileref="../../../../examples/sinks_pal/ENDBLK_Example.zcos" valign="middle"/>
                 </imageobject>
             </inlinemediaobject>
-        </para>
+        </link>
     </refsection>
     <refsection id="Seealso_ENDBLK">
         <title>See also</title>

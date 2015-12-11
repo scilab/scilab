@@ -46,7 +46,7 @@ h3 {
     font-family: monospace;
     font-size: 100%;
     background-color:#EEEEFF;
-    border-color:#CCCCCC ;
+    border-color:#CCCCCC;
     border-style:solid;
     border-width:2px medium;
     width:80%;
@@ -69,13 +69,13 @@ h3 {
 .command {
     font-family: monospace;
     font-size: 100%;
-    color: #32b9b9
+    color: #32b9b9;
 }
 
 .function {
     font-family: monospace;
     font-size: 100%;
-    color: #32b9b9
+    color: #32b9b9;
 }
 
 .varname {
@@ -87,7 +87,7 @@ h3 {
 .constant {
     font-family: monospace;
     font-size: 100%;
-    color: #da70d6
+    color: #da70d6;
 }
 
 a {
@@ -137,21 +137,21 @@ pre {
 
 ul.toc li.list-active {
     list-style-type:disc;
-    font-weight:bold
+    font-weight:bold;
 }
 
 ul.toc li.parent {
     font-size: 115%;
     padding: 5px 0px 5px 11px;
     border-bottom: 1px solid #cccccc;
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 
 ul.toc li.root {
     font-size: 135%;
     padding: 5px 0px 5px 11px;
     border-bottom: 1px solid #cccccc;
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 
 ul.toc li {
@@ -160,11 +160,11 @@ ul.toc li {
     padding: 1px 0 1px 11px;
     background-repeat: no-repeat;
     background-position: center left;
-    list-style-type: circle
+    list-style-type: circle;
 }
 
 .next {
-    float:right
+    float:right;
     text-align: right;
 }
 
@@ -176,7 +176,7 @@ ul.toc li {
     font-family: monospace;
     font-size: 100%;
     background-color:#FFFFFF;
-    border-color:#CCCCCC ;
+    border-color:#CCCCCC;
     border-style:solid;
     border-width:2px medium;
     width:80%;
@@ -338,11 +338,10 @@ div#cadre_help
 table.revhistory
 { 
   width:80%;
-  border-color:#CCCCCC ;
+  border-color:#CCCCCC;
   border-style:solid;
   border-width:2px medium;
   margin-bottom: 10px;
-
 }
 
 table.revhistory tr.title td

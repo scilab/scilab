@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function subplot(m,n,p)
     [lhs,rhs]=argn(0)
@@ -29,7 +29,8 @@ function subplot(m,n,p)
     i=p-1-n*j
     axes_bounds=[i/n,j/m,1/n,1/m];
 
-    f=gcf();
+    a = gca();
+    f = a.parent;
     na=size(f.children,"*")
     if na==1 then
         // an axes is automatically created when a figure is created
@@ -51,7 +52,7 @@ function subplot(m,n,p)
         end
     end
     //create a new axes
-    a=newaxes();
+    a=newaxes(f);
     a.axes_bounds=axes_bounds;
     sca(a);
 endfunction

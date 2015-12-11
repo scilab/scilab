@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -152,8 +152,8 @@ void normalize2d(double vect[2])
 void iNormalize2d(int vect[2])
 {
     double norm = NORM_2D(vect);
-    vect[0] = round(vect[0] / norm);
-    vect[1] = round(vect[1] / norm);
+    vect[0] = scilab_round(vect[0] / norm);
+    vect[1] = scilab_round(vect[1] / norm);
 }
 /*----------------------------------------------------------------------------*/
 BOOL isPointInTriangle(const double point[2], const double a[2],

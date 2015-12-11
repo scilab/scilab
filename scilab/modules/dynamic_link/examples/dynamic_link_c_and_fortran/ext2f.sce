@@ -6,13 +6,13 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Demo file for ext2f example
 
 // builder code for ext2f.c
 link_name = "ext2f";    // functions to be added to the call table
-flag  = "f";		// ext2f is a C function
+flag  = "f";		// ext2f is a Fortran function
 files = ["ext2f.f" ];   // objects files for ext2f
 libs  = [];		// other libs needed for linking
 

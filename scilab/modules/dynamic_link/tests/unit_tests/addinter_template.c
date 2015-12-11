@@ -3,31 +3,54 @@
 // dummy test
 //===================================================
 #include <math.h>
-#include "stack-c.h"
+#include "api_scilab.h"
 //===================================================
-int interf_template_A0(char *fname)
+int interf_template_A0(char *fname, void * pvApiCtx)
 {
-    int n1 = 1, m1 = 1, l1 = 0;
+    int rows = 1, cols = 1;
     int iValue = 0;
+    int *piInt = NULL;
+
+    int* piAddr = NULL;
+    SciErr sciErr;
 
     CheckRhs(0, 0);
     CheckLhs(1, 1);
-    CreateVar(1, "i", &m1, &n1 , &l1);
-    *istk(l1) = iValue;
+
+
+    sciErr = allocMatrixOfInteger32(pvApiCtx, 1, rows, cols, &piInt);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+    *piInt = iValue;
     LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 //===================================================
-int interf_template_B0(char *fname)
+int interf_template_B0(char *fname, void * pvApiCtx)
 {
-    int n1 = 1, m1 = 1, l1 = 0;
+    int rows = 1, cols = 1;
     int iValue = 0;
+    int *piInt = NULL;
+
+    int* piAddr = NULL;
+    SciErr sciErr;
 
     CheckRhs(0, 0);
     CheckLhs(1, 1);
-    CreateVar(1, "i", &m1, &n1 , &l1);
-    *istk(l1) = iValue;
+
+    sciErr = allocMatrixOfInteger32(pvApiCtx, Rhs + 1, rows, cols, &piInt);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+    *piInt = iValue;
     LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 //===================================================

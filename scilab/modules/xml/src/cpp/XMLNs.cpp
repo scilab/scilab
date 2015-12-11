@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,46 +18,46 @@
 namespace org_modules_xml
 {
 
-    XMLNs::XMLNs(const XMLObject & _parent, xmlNs * _ns):XMLObject(), parent(_parent)
-    {
-        ns = _ns;
-        scope->registerPointers(ns, this);
-        scilabType = XMLNAMESPACE;
-        id = scope->getVariableId(*this);
-    }
+XMLNs::XMLNs(const XMLObject & _parent, xmlNs * _ns): XMLObject(), parent(_parent)
+{
+    ns = _ns;
+    scope->registerPointers(ns, this);
+    scilabType = XMLNAMESPACE;
+    id = scope->getVariableId(*this);
+}
 
-    XMLNs::XMLNs(const XMLElement & elem, char *prefix, char *href):XMLObject(), parent(elem)
-    {
-        ns = xmlNewNs(elem.getRealNode(), (const xmlChar *)href, (const xmlChar *)prefix);
-        scope->registerPointers(ns, this);
-        scilabType = XMLNAMESPACE;
-        id = scope->getVariableId(*this);
-    }
+XMLNs::XMLNs(const XMLElement & elem, char *prefix, char *href): XMLObject(), parent(elem)
+{
+    ns = xmlNewNs(elem.getRealNode(), (const xmlChar *)href, (const xmlChar *)prefix);
+    scope->registerPointers(ns, this);
+    scilabType = XMLNAMESPACE;
+    id = scope->getVariableId(*this);
+}
 
-    XMLNs::~XMLNs()
-    {
-        scope->unregisterPointer(ns);
-        scope->removeId(id);
-    }
+XMLNs::~XMLNs()
+{
+    scope->unregisterPointer(ns);
+    scope->removeId(id);
+}
 
-    void *XMLNs::getRealXMLPointer() const
-    {
-        return static_cast < void *>(ns);
-    }
+void *XMLNs::getRealXMLPointer() const
+{
+    return static_cast < void *>(ns);
+}
 
-    const XMLObject *XMLNs::getXMLObjectParent() const
-    {
-        return &parent;
-    }
+const XMLObject *XMLNs::getXMLObjectParent() const
+{
+    return &parent;
+}
 
-    const std::string XMLNs::toString() const
-    {
-        std::ostringstream oss;
+const std::string XMLNs::toString() const
+{
+    std::ostringstream oss;
 
-        oss << "XML Namespace" << std::endl;
-        oss << "href: " << getHref() << std::endl;
-        oss << "prefix: " << getPrefix();
+    oss << "XML Namespace" << std::endl;
+    oss << "href: " << getHref() << std::endl;
+    oss << "prefix: " << getPrefix();
 
-        return oss.str();
-    }
+    return oss.str();
+}
 }

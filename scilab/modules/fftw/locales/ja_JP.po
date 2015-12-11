@@ -8,34 +8,80 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-20 07:35+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
-# File: sci_gateway/c/gw_fftw.c, line: 45
 #, c-format
-msgid "FFTW Library %s not found.\n"
-msgstr "FFTW ライブラリ %s が見つかりません。\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ割当エラー.\n"
 
-#
-# File: sci_gateway/c/gw_fftw.c, line: 49
-msgid "FFTW Library not found.\n"
-msgstr "FFTW ライブラリ が見つかりません。\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: int32 を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: FFTWフラグを指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
+msgstr "%s: MKL fftwライブラリはwisdom関数をまだ実装していません.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+
+#, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr "%s: メモリを確保できません.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 有効な wisdom を指定してください.\n"
+
+#, c-format
+msgid "%s: Creation of requested fftw plan failed.\n"
+msgstr "%s: 指定した fftw プランの作成に失敗しました.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
@@ -46,13 +92,8 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数の配列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -101,70 +142,13 @@ msgid "%s: Incompatible input arguments #%d and #%d.\n"
 msgstr "%s: 入力引数 #%d および #%d に互換性がありません.\n"
 
 #, c-format
-msgid "%s: Creation of requested fftw plan failed.\n"
-msgstr "%s: 指定した fftw プランの作成に失敗しました.\n"
+msgid "Scilab '%s' module not installed.\n"
+msgstr ""
 
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ割当エラー.\n"
+msgid "You chose to install Scilab with the fftw module."
+msgstr "fftwモジュール付きのScilabインストールが選択されました."
 
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: メモリ不足です.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: int32 を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: FFTWフラグを指定してください.\n"
-
-#, c-format
-msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
-msgstr "%s: MKL fftwライブラリはwisdom関数をまだ実装していません.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 有効な wisdom を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An integer or a floating point number "
-"expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数または浮動小数点数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An array of floating point or integer "
-"numbers expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数または整数の配列を指定してください.\n"
-
-#
-# File: src/nofftw/nofftw.c, line: 20
-msgid "Scilab FFTW module not installed.\n"
-msgstr "Scilab FFTW モジュールはインストールされていません。\n"
-
-msgid "You choose to install scilab with fftw module."
-msgstr "fftwモジュール付きのscilabインストールが選択されました."
-
-msgid "This module requires : "
+msgid "This module requires: "
 msgstr "このモジュールは以下を必要とします : "
 
 msgid ""

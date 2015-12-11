@@ -8,13 +8,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolFontAngle.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
-int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontAngle(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Font angle can be normal, italic or oblique */
 
@@ -24,12 +27,12 @@ int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, void* _pvData, int valu
     // Font Name must be only one character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontAngle");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string expected.\n")), "FontAngle");
         return SET_PROPERTY_ERROR;
     }
     if (nbCol != 1 || nbRow == 0)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontAngle");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "FontAngle");
         return SET_PROPERTY_ERROR;
     }
 
@@ -44,7 +47,7 @@ int SetUicontrolFontAngle(void* _pvCtx, char* sciObjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTANGLE__, fontAngle, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTANGLE__, fontAngle, jni_string, 1);
 
     if (status == TRUE)
     {

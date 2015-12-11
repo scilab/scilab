@@ -7,14 +7,14 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 #include "callfftw.h"
 /*--------------------------------------------------------------------------*/
 #include "dynamiclibrary.h"
 #include "getshortpathname.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 typedef void (*PROC_FFTW_EXECUTE_SPLIT_DFT)     (const fftw_plan p, double *ri, double *ii, double *ro, double *io);

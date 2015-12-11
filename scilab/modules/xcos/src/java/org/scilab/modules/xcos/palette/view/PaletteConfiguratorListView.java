@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 @SuppressWarnings(value = { "serial" })
 public class PaletteConfiguratorListView extends JTable {
     private static final String[] COLUMN_TITLE = { XcosMessages.ENABLE,
-                                  XcosMessages.PAL_NAME
+                                                   XcosMessages.PAL_NAME
                                                  };
 
     /**
@@ -44,7 +44,6 @@ public class PaletteConfiguratorListView extends JTable {
     /**
      * The default model
      */
-    @SuppressWarnings(value = { "serial" })
     public static class PaletteListModel extends AbstractTableModel {
         private final Category category;
 

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_checkfilesequal" xml:lang="ja">
@@ -22,7 +22,6 @@
             flag = assert_checkfilesequal ( filecomp , fileref )
             flag = assert_checkfilesequal ( filecomp , fileref , compfun )
             [flag,errmsg] = assert_checkfilesequal ( ... )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -139,17 +138,14 @@ txt2 = [
 fd = mopen(filecomp2,"w");
 mputl(txt2,fd);
 mclose(fd);
-
 // パスするテスト
 flag = assert_checkfilesequal ( filecomp1 , fileref1 )
 [flag,errmsg] = assert_checkfilesequal ( filecomp1 , fileref1 )
-
 // 失敗: filecomp2 <> fileref1
 // エラーが発生
 flag = assert_checkfilesequal ( filecomp2 , fileref1 )
 // エラーは発生しない
 [flag,errmsg] = assert_checkfilesequal ( filecomp2 , fileref1 )
-
 // テスト用のデータを準備
 // fileref2 == filecomp3, コメント行を無視した場合
 // fileref2 <> filecomp4, コメント行を無視した場合
@@ -189,7 +185,6 @@ txt = [
 fd = mopen(filecomp4,"w");
 mputl(txt,fd);
 mclose(fd);
-
 // コメント行を無視する比較用関数でテスト
 function otxt = myfilter ( itxt )
 nr = size(itxt,"r")
@@ -214,7 +209,6 @@ endfunction
 [flag,errmsg] = assert_checkfilesequal ( filecomp3 , fileref2 , mycompfun )
 // 失敗するテスト
 [flag,errmsg] = assert_checkfilesequal ( filecomp4 , fileref2 , mycompfun )
-
    ]]></programlisting>
     </refsection>
     <refsection>

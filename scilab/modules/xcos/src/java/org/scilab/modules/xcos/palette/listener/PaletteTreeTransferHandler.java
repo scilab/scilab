@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,8 +24,6 @@ import java.util.logging.Logger;
 import javax.swing.JComponent;
 import javax.swing.JTree;
 import javax.swing.TransferHandler;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -92,7 +90,6 @@ public class PaletteTreeTransferHandler extends TransferHandler {
      *            the transferable
      */
     private void updateTree(final JTree t, final Transferable data) {
-        final DefaultTreeModel model = (DefaultTreeModel) t.getModel();
         final TreePath path = t.getSelectionPath();
         PaletteNode newNode;
 
@@ -106,8 +103,8 @@ public class PaletteTreeTransferHandler extends TransferHandler {
             return;
         }
 
-        model.nodeStructureChanged(newNode.getParent());
-        model.nodeStructureChanged((TreeNode) path.getParentPath().getLastPathComponent());
+        PaletteNode.refreshView((PaletteNode) path.getParentPath().getLastPathComponent(), null);
+        PaletteNode.refreshView(newNode.getParent(), newNode);
     }
 
     /**

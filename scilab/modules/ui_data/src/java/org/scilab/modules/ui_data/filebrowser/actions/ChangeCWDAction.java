@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,11 +17,9 @@ import java.io.File;
 import javax.swing.JButton;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.FileBrowser;
 import org.scilab.modules.ui_data.filebrowser.FileUtils;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
@@ -56,8 +54,9 @@ public class ChangeCWDAction extends CommonCallBack {
      * @return the button used to set the cwd in using a JFileChooser
      */
     public JButton createButton() {
-        PushButton button = ScilabPushButton.createPushButton();
-        button.setCallback(new CommonCallBack(null) {
+        JButton button = new JButton();
+        button.setToolTipText(UiDataMessages.SELECTDIR);
+        button.addActionListener(new CommonCallBack(null) {
             public void callBack() {
                 SwingScilabFileChooser filechooser = new SwingScilabFileChooser();
                 filechooser.setCurrentDirectory(new File(table.getComboBox().getBaseDir()));
@@ -71,17 +70,19 @@ public class ChangeCWDAction extends CommonCallBack {
                 }
             }
         });
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getClosedDirIcon());
+        button.setIcon(FileUtils.getClosedDirIcon());
+        ScilabLAF.setDefaultProperties(button);
 
-        return (SwingScilabPushButton) button.getAsSimplePushButton();
+        return button;
     }
 
     /**
      * @return the button used to jump to the parent directory
      */
     public JButton createParentDirButton() {
-        PushButton button = ScilabPushButton.createPushButton();
-        button.setCallback(new CommonCallBack(null) {
+        JButton button = new JButton();
+        button.setToolTipText(UiDataMessages.PARENTDIR);
+        button.addActionListener(new CommonCallBack(null) {
             public void callBack() {
                 File f = new File(table.getComboBox().getBaseDir());
                 if (f.exists()) {
@@ -92,9 +93,9 @@ public class ChangeCWDAction extends CommonCallBack {
                 }
             }
         });
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getUpDirIcon());
+        button.setIcon(FileUtils.getUpDirIcon());
 
-        return (SwingScilabPushButton) button.getAsSimplePushButton();
+        return button;
     }
 
     /**
@@ -104,7 +105,7 @@ public class ChangeCWDAction extends CommonCallBack {
     private void changeDir(String path) {
         File f = new File(path);
         if (f.exists() && f.isDirectory() && f.canRead()) {
-            InterpreterManagement.requestScilabExec("chdir('" + path + "')");
+            InterpreterManagement.requestScilabExec("chdir('" + path + "');");
             FileBrowser.setBaseDir(path);
         }
     }

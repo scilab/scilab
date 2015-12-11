@@ -1,0 +1,290 @@
+<!--*
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+    *
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    *-->
+
+<package name="org.scilab.modules.external_objects_java">
+    
+    <object name="ScilabJavaObject">
+        <method name="invoke" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="String" name="methodName" />
+            <param type="int[]" name="args" />
+        </method>
+        
+        <method name="extract" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="int[]" name="args" />
+        </method>
+        
+        <method name="insert" returnType="void" modifier="static">
+            <param type="int" name="id" />
+            <param type="int[]" name="keys" />
+            <param type="int" name="value" />
+        </method>
+        
+        <method name="getInfos" returnType="String[]" modifier="static"/>
+        
+        <method name="initScilabJavaObject" returnType="void" modifier="static" />
+        
+        <method name="garbageCollect" returnType="void" modifier="static" />
+        
+        <method name="getRepresentation" returnType="String" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="isValidJavaObject" returnType="boolean" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="enableTrace" returnType="void" modifier="static">
+            <param type="String" name="filename" />
+        </method>
+        
+        <method name="disableTrace" returnType="void" modifier="static" />
+        
+        <method name="writeLog" returnType="void" modifier="static">
+            <param type="String" name="s" />
+        </method>
+        
+        
+        <method name="setField" returnType="void" modifier="static">
+            <param type="int" name="id" />
+            <param type="String" name="fieldName" />
+            <param type="int" name="idarg" />
+        </method>
+        
+        <method name="getField" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="String" name="fieldName" />
+        </method>
+        
+        <method name="getFieldType" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="String" name="fieldName" />
+        </method>
+        
+        <method name="javaCast" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="String" name="objName" />
+        </method>
+        
+        <method name="javaCast" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="int" name="classId" />
+        </method>
+        
+        <method name="getClassName" returnType="String" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="getArrayElement" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="int[]" name="index" />
+        </method>
+        
+        <method name="setArrayElement" returnType="void" modifier="static">
+            <param type="int" name="id" />
+            <param type="int[]" name="index" />
+            <param type="int" name="idArg" />
+        </method>
+        
+        <method name="removeScilabJavaObject" returnType="void" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="removeScilabJavaObject" returnType="void" modifier="static">
+            <param type="int[]" name="id" />
+        </method>
+        
+        <method name="limitDirectBuffer" returnType="void" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="isUnwrappable" returnType="int" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="double" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="double[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="double[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="int" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="int[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="int[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="byte" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="byte[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="byte[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="short" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="short[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="short[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="String" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="String[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="String[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="boolean" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="boolean[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="boolean[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="char" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="char[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="char[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="float" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="float[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="float[][]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="long" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="long[]" name="x" />
+        </method>
+        
+        <method name="wrap" returnType="int" modifier="static">
+            <param type="long[][]" name="x" />
+        </method>
+        
+        <method name="wrapList" returnType="int" modifier="static">
+            <param type="int[]" name="ids" />
+        </method>
+        
+        <method name="wrapPoly" returnType="int" modifier="static">
+            <param type="double[]" name="coefs" />
+        </method>
+        
+        <method name="getAccessibleFields" returnType="String[]" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="getAccessibleMethods" returnType="String[]" modifier="static">
+            <param type="int" name="id" />
+        </method>
+        
+        <method name="getCompletion" returnType="String[]" modifier="static">
+            <param type="int" name="id" />
+            <param type="String[]" name="fieldPath" />
+        </method>
+        
+    </object>
+    
+    <object name="ScilabJavaClass">
+        <method name="newInstance" returnType="int" modifier="static">
+            <param type="int" name="id" />
+            <param type="int[]" name="args" />
+        </method>
+    </object>
+    
+    <object name="ScilabClassLoader">
+        <method name="loadJavaClass" returnType="int" modifier="static">
+            <param type="String" name="name" />
+            <param type="boolean" name="allowReload" />
+        </method>
+    </object>
+    
+    <object name="ScilabJavaArray">
+        <method name="newInstance" returnType="int" modifier="static">
+            <param type="String" name="name" />
+            <param type="int[]" name="args" />
+        </method>
+    </object>
+    
+    <object name="ScilabJavaCompiler">
+        <method name="compileCode" returnType="int" modifier="static">
+            <param type="String" name="classname" />
+            <param type="String[]" name="code" />
+        </method>
+    </object>
+    
+    <object name="ScilabOperations">
+        <method name="add" returnType="int" modifier="static">
+            <param type="int" name="idA" />
+            <param type="int" name="idB" />
+        </method>
+    </object>
+    
+    <object name="ScilabJarCreator">
+        <method name="createJarArchive" returnType="int" modifier="static">
+            <param type="String" name="jarFilePath" />
+            <param type="String[]" name="filePaths" />
+            <param type="String" name="filesRootPath" />
+            <param type="String" name="manifestFilePath" />
+            <param type="boolean" name="keepAbsolutePaths" />
+        </method>
+    </object>
+</package>

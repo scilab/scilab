@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function   funcallname=lst_funcall(fil,fnamvect)
     //  LST_FUNCALL function (used by "translatepaths" function) Creates a list of vectors. The first component of each vector is the name of a M-file (found in the Paths to translate), followed by the called functions by this file

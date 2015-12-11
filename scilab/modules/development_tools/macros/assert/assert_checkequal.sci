@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [flag,errmsg] = assert_checkequal ( computed , expected )
     //  Check that computed and expected are equal.
@@ -48,12 +48,23 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
         errmsg = sprintf ( gettext ( "%s: Wrong number of input arguments: %d expected.\n") , "assert_checkequal" , 2 )
         error(errmsg)
     end
-    //
+
     // Check types of variables
     if ( typeof(computed) <> typeof(expected) ) then
         errmsg = sprintf ( gettext ( "%s: Incompatible input arguments #%d and #%d: Same types expected.\n" ) , "assert_checkequal" , 1 , 2 )
         error(errmsg)
+   end
+
+    // Check hypermat type
+    if (typeof(computed) == "hypermat") then
+        // Check on first element type
+        if (typeof(computed(1)) <> typeof(expected(1))) then
+            errmsg = sprintf ( gettext ( "%s: Incompatible input arguments #%d and #%d: Same types expected.\n" ) , "assert_checkequal" , 1 , 2 )
+            error(errmsg)
+        end
     end
+
+
     //
     // Check sizes of variables
     if ( or(type(computed)==[16 17]) ) then
@@ -101,19 +112,21 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
             flag = %f
         end
     end
+
     if ( flag == %t ) then
+
         errmsg = ""
     else
         // Change the message if the matrix contains more than one value
         if ( size(expected,"*") == 1 ) then
-            if ( typeof(expected) == "sparse") then
+            if ( or(typeof(expected) == ["sparse", "boolean sparse"])) then
                 val = full(expected)
             else
                 val = expected
             end
             estr = string(val)
         else
-            if ( typeof(expected) == "sparse") then
+            if ( or(typeof(expected) == ["sparse", "boolean sparse"])) then
                 val = full(expected(1))
             else
                 val = expected(1)
@@ -121,14 +134,14 @@ function [flag,errmsg] = assert_checkequal ( computed , expected )
             estr = "[" + string(val) + " ...]"
         end
         if ( size(computed,"*") == 1 ) then
-            if ( typeof(computed) == "sparse") then
+            if ( or(typeof(computed) == ["sparse", "boolean sparse"])) then
                 val = full(computed)
             else
                 val = computed
             end
             cstr = string(val)
         else
-            if ( typeof(computed) == "sparse") then
+            if ( or(typeof(computed) == ["sparse", "boolean sparse"])) then
                 val = full(computed(1))
             else
                 val = computed(1)

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 previous_dir = pwd();
 cd(get_absolute_file_path("build_primitives.sce"));
@@ -50,7 +50,7 @@ table = ["completeline"    ,"sci_completeline"    ;
 "getfields"       ,"sci_getfields" ];
 
 
-libname = ilib_build(ilib_name,table,files,libs,[],"",cflags);
+ilib_build(ilib_name,table,files,libs,[],"",cflags);
 
 cd(previous_dir);
 

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 
 function [s]=nanstdev(x,orient)
@@ -29,9 +29,10 @@ function [s]=nanstdev(x,orient)
     //Collewet Guylaine <guylaine.collewet@cemagref.fr>
     //
 
+    if argn(2)==0 then error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"nanstdev",1,2)), end
+
     if x==[] then s=%nan, return, end
 
-    if argn(2)==0 then error(msprintf(gettext("%s: Wrong number of input argument: %d to %d expected.\n"),"nanstdev",1,2)), end
     if argn(2)==1 then  orient="*",end
     if orient=="r" then orient=1,elseif orient=="c" then orient=2,end
 

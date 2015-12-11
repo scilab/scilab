@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,21 +29,42 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
+#include "sci_malloc.h"
+
 /*------------------------------------------------------------------------*/
-int set_mark_foreground_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_mark_foreground_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int markForeground = 0;
+	int *tmp = NULL;
+    int colorSet = 0;
 
-    if (valueType != sci_matrix)
+    if ( valueType != sci_matrix )
     {
         Scierror(999, _("Wrong type for '%s' property: Integer expected.\n"), "mark_foreground");
         return SET_PROPERTY_ERROR;
     }
 
-    markForeground = (int)((double*)_pvData)[0];
+    if ( nbRow != 1 || nbCol <= 0 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: Row vector expected.\n"), "mark_foreground");
+        return SET_PROPERTY_ERROR;
+    }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
+	if ( nbCol == 1 )
+	{
+		markForeground = (int)((double*)_pvData)[0];
+		status = setGraphicObjectProperty(iObjUID, __GO_MARK_FOREGROUND__, &markForeground, jni_int, 1);
+	}
+	else
+	{
+		tmp = MALLOC(nbCol * sizeof(int));
+		copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
+		status = setGraphicObjectProperty(iObjUID, __GO_MARK_FOREGROUNDS__, tmp, jni_int_vector, nbCol);
+		FREE(tmp);
+        colorSet = 1;
+        setGraphicObjectProperty(iObjUID, __GO_COLOR_SET__, &colorSet, jni_bool, 1);
+	}
 
     if (status == TRUE)
     {

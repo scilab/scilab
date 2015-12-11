@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,7 +19,7 @@ import java.awt.event.KeyEvent;
 
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
@@ -70,7 +70,7 @@ public final class CloseAction extends DefaultAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         final XcosDiagram graph = (XcosDiagram) getGraph(e);
-        final SwingScilabTab tab = ScilabTabFactory.getInstance().getFromCache(
+        final SwingScilabDockablePanel tab = ScilabTabFactory.getInstance().getFromCache(
                                        graph.getGraphTab());
         ClosingOperationsManager.startClosingOperation(tab);
     }

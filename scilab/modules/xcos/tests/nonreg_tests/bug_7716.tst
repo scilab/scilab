@@ -24,7 +24,7 @@ exec(SCI + "/modules/scicos/macros/scicos_scicos/scicos_block.sci", -1);
 exec(SCI + "/modules/scicos_blocks/macros/Linear/SUM_f.sci", -1);
 
 scs_m = SUM_f("define");
-export_to_hdf5(TMPDIR + "/sum.sod", "scs_m");
+save(TMPDIR + "/sum.sod", "scs_m");
 pal = xcosPal("SamplePal");
 blockstyle = struct();
 pal = xcosPalAddBlock(pal, TMPDIR + "/sum.sod", SCI + "/modules/xcos/images/palettes/SUM_f.png", blockstyle);

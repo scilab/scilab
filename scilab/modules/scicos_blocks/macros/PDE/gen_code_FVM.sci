@@ -42,12 +42,23 @@ function [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,..
     flag_type=1; // 1 : explicie, 2 : implicite
     impl_type=1; // 1 pour syst�me d'�tat, -1 pour le syst�me alg�brique
     sep=[",","*","/"];
-    coef51=[];coef52=[];coef1=[];coef2=[];cla=[];clb=[];clua=[];club=[];
+    coef51=[];
+    coef52=[];
+    coef1=[];
+    coef2=[];
+    cla=[];
+    clb=[];
+    clua=[];
+    club=[];
 
     for i=1:size(xn,1)
         x=xn(i);
-        a1_ev(i)=evstr(a1); a2_ev(i)=evstr(a2); a3_ev(i)=evstr(a3);
-        a4_ev(i)=evstr(a4); a5_ev(i)=evstr(a5); a6_ev(i)=evstr(a6);
+        a1_ev(i)=evstr(a1);
+        a2_ev(i)=evstr(a2);
+        a3_ev(i)=evstr(a3);
+        a4_ev(i)=evstr(a4);
+        a5_ev(i)=evstr(a5);
+        a6_ev(i)=evstr(a6);
         a7_ev(i)=evstr(a7);
     end
     if ((find(oper == 2) ==[]) & (find(oper == 4) ==[]) ) then
@@ -118,7 +129,7 @@ function [equations,flag_type,impl_type]=gen_code_FVM(a1,b1,a2,b2,a3,b3,a4,b4,..
                 elseif (i == N) then
                     F=subfv(F,mulfv(clb,b5));
                 end
-                C=addf(mulfv(multMatVect(coef51(i,:),vec2(1:N)),b5),mulf3v(msprintfv(h*a6_ev(i)),b6,vec2(i)));
+                C=addfv(mulfv(multMatVect(coef51(i,:),vec2(1:N)),b5),mulf3v(msprintfv(h*a6_ev(i)),b6,vec2(i)));
                 equations(i)="   res["+string(i-1)+"]="+subfv(F,C)+";";
             end
         end

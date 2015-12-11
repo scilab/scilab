@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -28,19 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -80,7 +84,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../jvm/includes;../../../../libs/intl;../../../core/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../jni;../../../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/intl;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../localization/includes;../../../jvm/includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -88,14 +92,12 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)history_browser.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -111,7 +113,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../jvm/includes;../../../../libs/intl;../../../core/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../jni;../../../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/intl;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../localization/includes;../../../jvm/includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -119,14 +121,12 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)history_browser.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -140,7 +140,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../jvm/includes;../../../../libs/intl;../../../core/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../jni;../../../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/intl;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../localization/includes;../../../jvm/includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -150,14 +150,12 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)history_browser.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -176,7 +174,7 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../jvm/includes;../../../../libs/intl;../../../core/includes;../../../windows_tools/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../api_scilab/includes;../jni;../../../preferences/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../jni;../../../../libs/intl;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../localization/includes;../../../jvm/includes;../../../core/includes;../../../string/includes;../../../output_stream/includes;../../../history_browser/includes;../../../fileio/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;HISTORY_MANAGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -186,14 +184,12 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)history_browser.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;fileio.lib;history_browser.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -206,39 +202,12 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\cpp\CommandLine.cpp" />
     <ClCompile Include="DllmainHistory_Manager.c" />
     <ClCompile Include="getCommentDateSession.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_history_manager.c" />
     <ClCompile Include="..\cpp\HistoryFile.cpp" />
     <ClCompile Include="..\jni\HistoryManagement_wrap.c" />
     <ClCompile Include="..\cpp\HistoryManager.cpp" />
     <ClCompile Include="..\cpp\HistorySearch.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_addhistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_displayhistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_gethistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_gethistoryfile.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_historymanager.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_historysize.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_loadhistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_removelinehistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_resethistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_saveafterncommands.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_saveconsecutivecommands.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_savehistory.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_sethistoryfile.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\cpp\CommandLine.hxx" />
-    <ClInclude Include="..\..\includes\dynlib_history_manager.h" />
-    <ClInclude Include="getCommentDateSession.h" />
-    <ClInclude Include="..\..\includes\gw_history_manager.h" />
-    <ClInclude Include="..\cpp\HistoryFile.hxx" />
-    <ClInclude Include="..\..\includes\HistoryManager.h" />
-    <ClInclude Include="..\cpp\HistoryManager.hxx" />
-    <ClInclude Include="..\cpp\HistorySearch.hxx" />
-    <ClInclude Include="..\..\includes\InitializeHistoryManager.h" />
-    <ClInclude Include="..\..\includes\TerminateHistoryManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\history_manager.pot" />
@@ -246,8 +215,6 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <None Include="fileio_Import.def" />
     <None Include="History_browser_Import.def" />
     <None Include="core_import.def" />
-    <None Include="localization_Import.def" />
-    <None Include="Scilab_windows_Import.def" />
     <None Include="..\..\history_manager.iss" />
     <None Include="..\..\sci_gateway\history_manager_gateway.xml" />
     <None Include="..\..\Makefile.am" />
@@ -263,13 +230,28 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\preferences\src\c\preferences.vcxproj">
-      <Project>{7b893e9f-d032-44de-9b71-197a29c4989b}</Project>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\cpp\HistoryFile.hxx" />
+    <ClInclude Include="..\cpp\HistoryManager.hxx" />
+    <ClInclude Include="..\cpp\HistorySearch.hxx" />
+    <ClInclude Include="..\..\includes\dynlib_history_manager.h" />
+    <ClInclude Include="..\..\includes\dynlib_history_manager_gw.h" />
+    <ClInclude Include="..\..\includes\getCommentDateSession.h" />
+    <ClInclude Include="..\..\includes\gw_history_manager.h" />
+    <ClInclude Include="..\..\includes\HistoryManager.h" />
+    <ClInclude Include="..\..\includes\InitializeHistoryManager.h" />
+    <ClInclude Include="..\..\includes\TerminateHistoryManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

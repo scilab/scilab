@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_size(tree)
     // M2SCI function
@@ -29,7 +29,7 @@ function [tree]=sci_size(tree)
         // Matlab can work with dim > size(size(X),2) but not Scilab
         if typeof(dim)=="cste" then
             if dim.value>size(X.dims) then
-                set_infos(msprintf(gettext("M2SCI found: %s > size(size(%s),2),\nSo result is set to 1."),expression2code(dim),expression2code(X)),0)
+                set_infos(msprintf(gettext("M2SCI found: %s > size(size(%s),2),\nSo result is set to 1."),strcat(expression2code(dim), ""), strcat(expression2code(X), "")),0)
                 tree=Cste(1)
             else
                 tree.lhs(1).dims=list(1,1)

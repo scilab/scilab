@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,26 +30,26 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_auto_scale_property(void* _pvCtx, char* pobjUID)
+void* get_auto_scale_property(void* _pvCtx, int iObjUID)
 {
     int iAutoScale = 0;
     int* piAutoScale = &iAutoScale;
 
-    getGraphicObjectProperty(pobjUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
+    getGraphicObjectProperty(iObjUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piAutoScale);
 
     if (piAutoScale == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_scale");
-        return -1;
+        return NULL;
     }
 
     if (iAutoScale)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 
 }

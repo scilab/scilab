@@ -6,12 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.xcos.port.control;
 
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
@@ -28,11 +29,8 @@ public class ControlPort extends BasicPort {
     private static final long serialVersionUID = -7919292589336989591L;
 
     /** Default constructor */
-    public ControlPort() {
-        super("ControlPort");
-        setOrientation(Orientation.NORTH);
-
-        setDefaultValues();
+    public ControlPort(long uid) {
+        super(uid, "ControlPort", Orientation.NORTH);
     }
 
     /**
@@ -43,6 +41,11 @@ public class ControlPort extends BasicPort {
     @Override
     public Type getType() {
         return null;
+    }
+
+    @Override
+    public PortKind getPortKind() {
+        return PortKind.PORT_EIN;
     }
 
 }

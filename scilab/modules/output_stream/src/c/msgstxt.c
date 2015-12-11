@@ -6,18 +6,18 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "stack-c.h"
 #include "basout.h"
 #include "msgstxt.h"
 /*--------------------------------------------------------------------------*/
 int C2F(msgstxt)(char *txt, long int txt_len)
 {
     static int io;
-    C2F(basout)(&io, &C2F(iop).wte, txt, txt_len);
+    static int out = 6;
+    C2F(basout)(&io, &out, txt, txt_len);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

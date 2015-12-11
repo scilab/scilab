@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [rep] = x_choices(Title,listOfChoices)
     [lhs,rhs] = argn(0)
@@ -31,7 +31,7 @@ function [rep] = x_choices(Title,listOfChoices)
 
     // Type for title
     if typeof(Title)~="string" then
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "x_choices", 1));
+        error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "x_choices", 1));
     end;
     // Type for items
     if typeof(listOfChoices)~="list" then
@@ -53,7 +53,7 @@ function [rep] = x_choices(Title,listOfChoices)
 
         // Check that first item (row label in the GUI) is a string
         if typeof(currentList(1))~="string" then
-            error(msprintf(_("%s: Wrong type for %s: A string expected.\n"),"x_choices(t,x)", "x("+string(i)+")(1)"))
+            error(msprintf(_("%s: Wrong type for %s: string expected.\n"),"x_choices(t,x)", "x("+string(i)+")(1)"))
         end
         items = [items,currentList(1)];
 

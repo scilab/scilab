@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -69,7 +69,8 @@ void H5ExternalLink::getAccessibleAttribute(const std::string & _name, const int
 
     if (lower == "type")
     {
-        const char * _type = getLinkType().c_str();
+        const std::string linkType = getLinkType();
+        const char * _type = linkType.c_str();
         err = createMatrixOfString(pvApiCtx, pos, 1, 1, &_type);
         if (err.iErr)
         {

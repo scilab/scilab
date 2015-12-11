@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -22,7 +22,7 @@
 #include "WndThread.h"
 #include "console.h"
 #include "version.h"
-#include "strdup_windows.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define NameConsole "Console"
 /*--------------------------------------------------------------------------*/
@@ -133,7 +133,7 @@ void CreateScilabConsole(int ShowBanner)
         printf(line);
         strcpy(line, "                     Scilab Enterprises\n");
         printf(line);
-        strcpy(line, "         Copyright (c) 2011-2013 (Scilab Enterprises)\n");
+        strcpy(line, "         Copyright (c) 2011-2015 (Scilab Enterprises)\n");
         printf(line);
         strcpy(line, "               Copyright (c) 1989-2012 (INRIA)\n");
         printf(line);
@@ -169,7 +169,7 @@ char *getScilexConsoleName(void)
 
     if (strlen(ScilexConsoleName) > 0)
     {
-        retName = strdup(ScilexConsoleName);
+        retName = os_strdup(ScilexConsoleName);
     }
     return retName;
 }

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,18 +23,20 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "GetProperty.h"
 #include "elementary_functions.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
+#include "elem_common.h"
 
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_glue(char * fname, unsigned long fname_len)
+int sci_glue(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -45,13 +47,14 @@ int sci_glue(char * fname, unsigned long fname_len)
     long long* outindex = NULL;
 
     int numrow = 0, numcol = 0, n = 0, cx1 = 1;
-    long *handelsvalue = NULL;
+    int *pObj = NULL;
     int i = 0;
 
-    char *pstCompoundUID = NULL;
-    char *pstParentUID = NULL;
-    char *pstCurrentParentUID = NULL;
-    char *pobjUID = NULL;
+    int iCompoundUID = 0;
+    int iParentUID = 0;
+    int iCurrentParentUID = 0;
+    int* piCurrentParentUID = &iCurrentParentUID;
+    int iObjUID = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -108,27 +111,28 @@ int sci_glue(char * fname, unsigned long fname_len)
     }
 
     /* we must change the pobj to the Compound type */
-    handelsvalue = MALLOC(n * sizeof(long));
+    pObj = (int*)MALLOC(n * sizeof(int));
     for (i = 0 ; i < n ; i++)
     {
-        handelsvalue[i] = (unsigned long) l1[i];
-        pobjUID = (char*)getObjectFromHandle(handelsvalue[i]);
-        if (pobjUID == NULL)
+        iObjUID = getObjectFromHandle((long)l1[i]);
+        pObj[i] = iObjUID;
+        if (iObjUID == 0)
         {
-            FREE(handelsvalue);
+            FREE(pObj);
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return 0;
         }
 
-        getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&pstCurrentParentUID);
+        iCurrentParentUID = getParentObject(iObjUID);
+        //getGraphicObjectProperty(iObjUID, __GO_PARENT__, jni_string, (void **)&piCurrentParentUID);
         if (i == 0)
         {
-            pstParentUID = pstCurrentParentUID;
+            iParentUID = iCurrentParentUID;
         }
 
-        if  (strcmp(pstParentUID, pstCurrentParentUID) != 0)
+        if (iParentUID != iCurrentParentUID)
         {
-            FREE(handelsvalue);
+            FREE(pObj);
             Scierror(999, _("%s: Objects must have the same parent.\n"), fname);
             return 0;
         }
@@ -150,8 +154,8 @@ int sci_glue(char * fname, unsigned long fname_len)
     //    return 0;
     //}
 
-    pstCompoundUID = ConstructCompound(handelsvalue, n);
-    setCurrentObject(pstCompoundUID);
+    iCompoundUID = createCompound(iParentUID, pObj, n);
+    setCurrentObject(iCompoundUID);
 
     numrow = 1;
     numcol = 1;
@@ -164,11 +168,10 @@ int sci_glue(char * fname, unsigned long fname_len)
         return 1;
     }
 
-    outindex[0] = getHandle(pstCompoundUID);
-    releaseGraphicObjectProperty(__GO_PARENT__, pstCompoundUID, jni_string, 1);
+    outindex[0] = getHandle(iCompoundUID);
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 3;
     ReturnArguments(pvApiCtx);
-    FREE(handelsvalue);
+    FREE(pObj);
 
     return 0;
 }

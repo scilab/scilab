@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,12 +19,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.lang.ref.WeakReference;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.ActionConstraint;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
@@ -117,7 +118,7 @@ public class RedoAction extends DefaultAction {
      * @param scilabGraph corresponding Scilab Graph
      * @return the button
      */
-    public static PushButton redoButton(ScilabGraph scilabGraph) {
+    public static JButton redoButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, RedoAction.class);
     }
 
@@ -144,5 +145,9 @@ public class RedoAction extends DefaultAction {
         graph.removeUndoHandler();
         graph.getUndoManager().redo();
         graph.registerUndoHandler();
+
+        // revalidate the graph
+        graph.getAsComponent().clearCellOverlays();
+        graph.getAsComponent().validateGraph();
     }
 }

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -32,8 +32,6 @@ import org.scilab.modules.gui.utils.Debug;
 import org.scilab.modules.localization.Messages;
 
 public class SwingScilabCanvasImpl {
-
-    private static final long serialVersionUID = -3110280842744630282L;
 
     static boolean forceGLCanvas = false;
     static boolean noGLJPanel = false;
@@ -170,7 +168,6 @@ public class SwingScilabCanvasImpl {
 
             }
         }
-
     }
 
     static boolean enableGLCanvas = forceGLCanvas || noGLJPanel;

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -45,9 +45,12 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
-import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -104,15 +107,8 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
         }
 
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
-        block.createChildDiagram(); // assert that diagram is an xcos one
 
-        XcosDiagram parentGraph = block.getParentDiagram();
-        if (parentGraph == null) {
-            block.setParentDiagram(Xcos.findParent(block));
-            parentGraph = block.getParentDiagram();
-            Logger.getLogger(SuperblockMaskCustomizeAction.class.getName()).severe("Parent diagram was null");
-        }
-        CustomizeFrame frame = new CustomizeFrame(parentGraph);
+        CustomizeFrame frame = new CustomizeFrame(graph);
         CustomizeFrame.CustomizeFrameModel model = frame.getController().getModel();
         model.setBlock(block);
         model.importFromBlock();
@@ -422,7 +418,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                      * reconstruct pol fields. The default types of the values.
                      *
                      * This field indicate the dimension of each entry (-1.0 is
-                     * automatic). FIXME: type the data there instead of using
+                     * automatic). TODO: type the data there instead of using
                      * the generic "pol".
                      */
                     polFields.add(new ScilabString("pol"));
@@ -443,7 +439,9 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                                                          new ScilabList(Arrays.asList(new ScilabString(varNames), new ScilabString(varDesc), polFields))));
                 }
 
-                getBlock().setExprs(exprs);
+                JavaController controller = new JavaController();
+                VectorOfDouble vec = new ScilabTypeCoder().var2vec(exprs);
+                controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
 
                 /*
                  * Trace the exprs update.
@@ -461,7 +459,10 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                 ScilabString varNames;
                 ScilabString varDesc;
 
-                ScilabType rawExprs = getBlock().getExprs();
+                JavaController controller = new JavaController();
+                VectorOfDouble vec = new VectorOfDouble();
+                controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
+                ScilabType rawExprs = new ScilabTypeCoder().vec2var(vec);
 
                 // Xcos from Scilab 5.2.0 version
                 // so set default values

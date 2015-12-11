@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="mpi" xml:lang="en">
+    <refnamediv>
+        <refname>MPI</refname>
+        <refpurpose>Access to MPI features from Scilab</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>A MPI interface is provided to Scilab. This interface allows high-performance Message Passing computations.</para>
+        <para>
+            Like any other MPI applications, Scilab/MPI as be started through the <literal>mpirun</literal> command usually with the argument <literal>-c</literal> to specify the number of nodes started.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Supported datatype</title>
+        <para>
+            The Scilab MPI implementation supports the following Scilab datatypes (under the matrix or scalar form):
+            <simplelist type="inline">
+                <member>Double</member><member>Boolean</member><member>int (all)</member><member>String</member><member>Sparse</member><member>Boolean Sparse</member>
+            </simplelist>
+            For now, advanced data structures like list, tlist or mlist are not supported. Opening a new bug report to see them supported is a good way.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example of Scilab MPI</title>
+        <programlisting role="scilab"><![CDATA[ 
+// TODO. Add an example (PI ?)
+
+]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Recv">MPI_Recv</link>
+            </member>
+            <member>
+                <link linkend="mpi_technical">Technical details about the implementation</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

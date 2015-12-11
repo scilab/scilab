@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 int C2F(error)(int *n)
 {
-    return errorTable(*n);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 void SciError(int n)
@@ -27,6 +27,6 @@ void SciError(int n)
 /*--------------------------------------------------------------------------*/
 void SciStoreError(int n)
 {
-    setInternalLastErrorValue(n);
+    // FIXME
 }
 /*--------------------------------------------------------------------------*/

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // End user function
 
@@ -33,14 +33,14 @@ function repositories = atomsRepositoryList(section)
     // =========================================================================
 
     if (rhs==1) & (type(section) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsRepositoryList",1));
     end
 
     // Check input argument dimension (if any)
     // =========================================================================
 
     if (rhs==1) & (size(section,"*")<>1) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsRepositoryList",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsRepositoryList",1));
     end
 
     // Check input argument values (if any)
@@ -108,7 +108,7 @@ function repositories = atomsRepositoryList(section)
         repositories    = [];
 
         for i=1:size(repositories_in(:,1),"*")
-            if regexp(repositories_in(i,1),"/^(http|ftp):\/\//","o") <> 1 then
+            if regexp(repositories_in(i,1),"/^(https?|ftp):\/\//","o") <> 1 then
                 repositories = [ repositories ; repositories_in(i,:) ];
             end
         end

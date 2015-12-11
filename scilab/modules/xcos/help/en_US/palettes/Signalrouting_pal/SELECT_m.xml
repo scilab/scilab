@@ -219,7 +219,7 @@
     </refsection>
     <refsection id="Example_SELECT_m">
         <title>Example</title>
-        <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/SELECT_m_Example.zcos">
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/SELECT_m_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../../examples/signalrouting_pal/SELECT_m_Example.zcos" valign="middle"/>

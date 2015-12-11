@@ -93,7 +93,12 @@
     <refsection id="Description_Switch">
         <title>Description</title>
         <para>
-            This is a non-ideal two-pole switch. If the explicit input become positive, two pins are connected via a resistor of resistance RON). Otherwise, two pins are connected via ROFF resistance.  Note that using this block may result in a stiff model, so try to choose proper error tolerances.  
+            This is a non-ideal two-pole switch. If the explicit input become positive, two pins are connected via a resistor of resistance RON). Otherwise, two pins are connected via ROFF resistance.
+        </para>
+        <para>
+            <note>
+                Note that using this block may result in a stiff model, so try to choose proper error tolerances.  
+            </note>
         </para>
         <para>
         </para>

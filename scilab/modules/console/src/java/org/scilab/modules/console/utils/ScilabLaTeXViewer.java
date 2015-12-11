@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -59,7 +59,7 @@ public final class ScilabLaTeXViewer extends JPanel {
      * @param size the font size
      */
     public static void setDefaultSize(int size) {
-        viewer.defaultSize = size;
+        ScilabLaTeXViewer.defaultSize = size;
     }
 
     /**
@@ -77,8 +77,8 @@ public final class ScilabLaTeXViewer extends JPanel {
      * @param sep the pane where to remove the LaTeXViewer
      */
     public static void removeLaTeXViewer(JTextComponent tc) {
-        if (viewer.icon != null) {
-            viewer.icon = null;
+        if (ScilabLaTeXViewer.icon != null) {
+            ScilabLaTeXViewer.icon = null;
             viewer.setVisible(false);
             tc.remove(viewer);
             tc.repaint();
@@ -114,13 +114,13 @@ public final class ScilabLaTeXViewer extends JPanel {
             latex = exp.substring(n, exp.length() - n);
         }
 
-        viewer.icon = ScilabSpecialTextUtilities.compilePartialLaTeXExpression(latex, defaultSize);
-        if (viewer.icon == null) {
+        ScilabLaTeXViewer.icon = ScilabSpecialTextUtilities.compilePartialLaTeXExpression(latex, defaultSize);
+        if (ScilabLaTeXViewer.icon == null) {
             return 0;
         }
 
-        width = viewer.icon.getIconWidth();
-        height = viewer.icon.getIconHeight();
+        width = ScilabLaTeXViewer.icon.getIconWidth();
+        height = ScilabLaTeXViewer.icon.getIconHeight();
         viewer.setSize(width + 2 * INSET, height + 2 * INSET);
         tc.add(viewer);
         Rectangle begin;

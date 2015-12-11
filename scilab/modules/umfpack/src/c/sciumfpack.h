@@ -40,7 +40,6 @@
 #else
 #include <umfpack.h>
 #endif
-#include "stackTypeVariable.h"
 
 enum {NOT_ENOUGH_PLACE_IN_STK, MAT_IS_NOT_SPD, A_PRIORI_OK};   /* flags for spd_sci_sparse_to_taucs_sparse */
 

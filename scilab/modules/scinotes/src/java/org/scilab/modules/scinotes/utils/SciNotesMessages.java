@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,6 +29,7 @@ public class SciNotesMessages {
 
     public static final String SCILAB_EDITOR = Messages.gettext("SciNotes");
     public static final String ERROR_WITH_STRING = Messages.gettext("Error while reading the String");
+    public static final String CORRUPTED_CONF_FILE = Messages.gettext("The configuration file has been corrupted and reset to default one.");
 
     public static final String INVALID_FILE = Messages.gettext("File not found: %s");
     public static final String IO_EXCEPTION = Messages.gettext("I/O error: %s");
@@ -153,6 +154,7 @@ public class SciNotesMessages {
     public static final String SCOPE = Messages.gettext("Scope");
     public static final String ALL = Messages.gettext("All");
     public static final String SELECTED_LINES = Messages.gettext("Selected lines");
+    public static final String SELECT_FROM_CARET = Messages.gettext("Select from caret");
     public static final String OPTIONS = Messages.gettext("Options");
     public static final String CASE_SENSITIVE = Messages.gettext("Case sensitive");
     public static final String CIRCULAR_SEARCH = Messages.gettext("Circular search");
@@ -171,7 +173,7 @@ public class SciNotesMessages {
     public static final String FILE_DOESNT_EXIST = Messages.gettext("The file %s does not exist. Do you want to create it?");
     public static final String CLOSE_TAB_TIP = Messages.gettext("close this tab");
     public static final String THIS_FILE = Messages.gettext("This file");
-    public static final String MODIFIED = Messages.gettext("%s has been modified since last save. Save it?");
+    public static final String MODIFIED = Messages.gettext("The file %s has been modified since last save. Save it?");
     public static final String EXTERNAL_MODIFICATION = Messages.gettext("The file %s has been modified by another program ! Overwrite it ?");
     public static final String EXTERNAL_MODIFICATION_INFO = Messages.gettext("Warning: the file has been modified by another program !");
     public static final String RELOAD = Messages.gettext("Reload");
@@ -232,6 +234,12 @@ public class SciNotesMessages {
 
     public static final String AUTOSAVE_ERROR = Messages.gettext("Cannot save the file %s... stop the backup process");
     public static final String AUTOSAVE_FINISHED = Messages.gettext("Backup finished...");
+    public static final String NO_EXISTING_DIR = Messages.gettext("The directory %s does not exist. Do you want to create it?");
+    public static final String UNABLE_TO_CREATE_DIR = Messages.gettext("The directory %s cannot be created. Please check your access rights.");
+    public static final String NOT_WRITABLE_DIR = Messages.gettext("Impossible to write a file in %s. Please check your access rights.");
+    public static final String NOT_A_DIR = Messages.gettext("Invalid directory name: %s.");
+    public static final String AUTOSAVE = Messages.gettext("SciNotes autosave");
+
     public static final String OCCURENCES_FOUND = Messages.gettext("%s occurences found.");
 
     /**

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function addmenu(varargin)
     // Add menus in Scilab Windows
@@ -31,7 +31,7 @@ function addmenu(varargin)
             end
 
             if size(varargin(1),"*") <> 1
-                error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
+                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu", 1));
             end
 
             if getos()=="Darwin" then
@@ -42,7 +42,7 @@ function addmenu(varargin)
             end
 
         else
-            error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
+            error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu", 1));
         end
     case 2
         if type(varargin(1))==10 & type(varargin(2))==10
@@ -56,7 +56,7 @@ function addmenu(varargin)
             end
 
             if size(varargin(1),"*") <> 1
-                error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 1));
+                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu", 1));
             end
 
             // No verification for submenus labels
@@ -74,7 +74,7 @@ function addmenu(varargin)
             end
 
             if size(varargin(1),"*") <> 1
-                error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",1));
+                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu",1));
             end
 
             if size(varargin(2)) <> 2
@@ -98,7 +98,7 @@ function addmenu(varargin)
             end
 
             if size(varargin(2),"*") <> 1
-                error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu", 2));
+                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu", 2));
             end
 
             if getos()=="Darwin" then
@@ -144,7 +144,7 @@ function addmenu(varargin)
             end
 
             if size(varargin(2),"*") <> 1
-                error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",2));
+                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu",2));
             end
 
             // No verification for submenus labels
@@ -161,7 +161,7 @@ function addmenu(varargin)
             end
 
             if size(varargin(2),"*") <> 1
-                error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",2));
+                error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu",2));
             end
 
             if size(varargin(3)) <> 2
@@ -187,7 +187,7 @@ function addmenu(varargin)
         end
 
         if size(varargin(2),"*") <> 1
-            error(msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"),"addmenu",2));
+            error(msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"),"addmenu",2));
         end
 
         // No verification for submenus labels
@@ -251,7 +251,7 @@ function addSingleMenuCallback(fig, menulabel, callback)
         if type(fig)==1
             set(h, "callback", list(4, callbackStr+"(1)"));
         else
-            set(h, "callback", list(4, callbackStr+"("+string(get(fig,"figure_id"))+",1)"));
+            set(h, "callback", list(4, callbackStr+"(1,"+string(get(fig,"figure_id"))+")"));
         end
     end
 
@@ -333,7 +333,7 @@ function [callbackStr, callbackType] = getCallbackProperties(callback)
 
     callbackStr = callback(2);
     if size(callbackStr,"*")<>1
-        error(msprintf(_("%s: Wrong type for ''%s'' property: A string expected.\n"), "addmenu", "Callback"));
+        error(msprintf(_("%s: Wrong type for ''%s'' property: string expected.\n"), "addmenu", "Callback"));
     end
 endfunction
 //------------------------------------------------------------------------------

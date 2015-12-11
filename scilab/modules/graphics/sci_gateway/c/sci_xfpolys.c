@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,7 +33,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xfpolys(char *fname, unsigned long fname_len)
+int sci_xfpolys(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -53,9 +53,9 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
     int i = 0;
     long hdl = 0;
 
-    char *pstSubWinUID = NULL;
-    char *pstFigureUID = NULL;
-    char *pstCompoundUID = NULL;
+    int iSubWinUID = 0;
+    int iFigureUID = 0;
+    int iCompoundUID = 0;
     int iSubWinForeground = 0;
 
     int iImmediateDrawing = 0;
@@ -69,6 +69,9 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
 
     int iVisible = 0;
     int *piVisible = &iVisible;
+
+    int iType = 0;
+    int *piType = &iType;
 
     CheckInputArgument(pvApiCtx, 2, 3);
 
@@ -84,7 +87,7 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -100,7 +103,7 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -133,7 +136,7 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
             return 1;
         }
 
@@ -193,22 +196,29 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
         m3 = n3 = 1;
     }
 
-    pstSubWinUID = (char*)getOrCreateDefaultSubwin();
-    getGraphicObjectProperty(pstSubWinUID, __GO_PARENT__, jni_string, (void**)&pstFigureUID);
-    getGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
-    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
+    iSubWinUID = getOrCreateDefaultSubwin();
+    iFigureUID = iSubWinUID;
+    iType = 0;
+    while (iType != __GO_FIGURE__)
+    {
+        iFigureUID = getParentObject(iFigureUID);
+        getGraphicObjectProperty(iFigureUID, __GO_TYPE__, jni_int, (void **) &piType);
+    }
+
+    getGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, jni_bool, (void **)&piImmediateDrawing);
+    setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, &iFalse, jni_bool, 1);
 
     //get color map size
-    getGraphicObjectProperty(pstFigureUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
+    getGraphicObjectProperty(iFigureUID, __GO_COLORMAP_SIZE__, jni_int, (void**)&piColorMapSize);
 
     //get current foreground color
-    getGraphicObjectProperty(pstSubWinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
+    getGraphicObjectProperty(iSubWinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeGround);
 
     // Create compound.
-    pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
-    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
+    iCompoundUID = createGraphicObject(__GO_COMPOUND__);
+    setGraphicObjectProperty(iCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(pstSubWinUID, pstCompoundUID);
+    setGraphicObjectRelationship(iSubWinUID, iCompoundUID);
 
     for (i = 0; i < n1; ++i)
     {
@@ -242,15 +252,15 @@ int sci_xfpolys(char *fname, unsigned long fname_len)
         }
 
         // Add newly created object to Compound
-        setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
+        setGraphicObjectRelationship(iCompoundUID, getObjectFromHandle(hdl));
     }
 
-    setCurrentObject(pstCompoundUID);
+    setCurrentObject(iCompoundUID);
 
-    setGraphicObjectProperty(pstFigureUID, __GO_IMMEDIATE_DRAWING__, piImmediateDrawing, jni_bool, 1);
-    getGraphicObjectProperty(pstFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
+    setGraphicObjectProperty(iFigureUID, __GO_IMMEDIATE_DRAWING__, piImmediateDrawing, jni_bool, 1);
+    getGraphicObjectProperty(iFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
-    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+    setGraphicObjectProperty(iCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

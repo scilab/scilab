@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="strtod" xml:lang="en">
@@ -18,8 +18,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-            d =  strtod(str)
-            [d, endstr] = strtod(str)
+            d =  strtod(str [,decimalseparator])
+            [d, endstr] = strtod(str [,decimalseparator])
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,6 +30,14 @@
                 <listitem>
                     <para>
                         a character string or matrix of character strings.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>decimalseparator</term>
+                <listitem>
+                    <para>
+                        the decimal separator chosen: "." (by default) or ",".
                     </para>
                 </listitem>
             </varlistentry>
@@ -82,14 +90,22 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 strtod('123.556This is a sample real')
+strtod('123,556This is a sample real', ",")
 [d,endstr] = strtod('123.556This is a sample real')
 strtod(['123.556This is a sample real','888.666 here'])
 [d,endstr] =strtod(['123.556This is a sample real','888.666 here'])
+[d,endstr] =strtod(['123.556This is a sample real','888,666 here'], ",")
  ]]></programlisting>
     </refsection>
     <refsection>
         <title>History</title>
         <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    New optional input: decimalseparator (SEP 97).
+                </revremark>
+            </revision>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>

@@ -6,16 +6,15 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <string.h>
 #include "commandwords.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BOOL.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
+
 
 /*--------------------------------------------------------------------------*/
 /* if you update command.f , please update this file too ... */
@@ -54,7 +53,7 @@ char **getcommandkeywords(int *sizearray)
         int i = 0;
         for (i = 0; i < nbrCommands; i++)
         {
-            keywords[i] = strdup(CommandWords[i]);
+            keywords[i] = os_strdup(CommandWords[i]);
         }
         *sizearray =  nbrCommands;
 

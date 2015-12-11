@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,8 +30,8 @@ import javax.swing.JTextField;
 import javax.swing.KeyStroke;
 import javax.swing.text.Element;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.ScilabDocument;
 import org.scilab.modules.scinotes.ScilabEditorPane;
@@ -86,7 +86,7 @@ public class SetAnchorAction extends DefaultAction {
 
         dialog = new JDialog();
         dialog.setModalityType(ModalityType.APPLICATION_MODAL);
-        dialog.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab")).getImage());
+        dialog.setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab")).getImage());
         JLabel label = new JLabel(SciNotesMessages.ANCHOR_NAME);
 
         cancelButton = new JButton(SciNotesMessages.CANCEL);

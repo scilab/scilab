@@ -1,0 +1,6 @@
+// ====================================================================
+// gui module initialisation file
+// CopyrighDIGITEO 2009
+// ====================================================================
+//Load  functions libraries
+//load('SCI/modules/mpi/macros/lib');

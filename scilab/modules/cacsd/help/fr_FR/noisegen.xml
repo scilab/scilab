@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="noisegen">
+    <refnamediv>
+        <refname>noisegen</refname>
+        <refpurpose>génération de bruit</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>b = noisegen(pas, Tmax, sig)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>pas</term>
+                <listitem>
+                    <para>scalaire réel, le pas de temps</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Tmax</term>
+                <listitem>
+                    <para>scalaire réel, le temps final de l'intervalle de génération</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sig</term>
+                <listitem>
+                    <para>scalaire réel, l'écart-type du bruit</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>noisegen()</literal> génère une fonction Scilab <literal>b = Noise(t)</literal>
+            où <literal>Noise(t)</literal> est une fonction constante par morceaux
+            (constante sur <literal>[k*pas, (k+1)*pas]</literal>). Les valeurs de chaque intervalle
+            constant sont aléatoires, i.i.d Gaussiennes à écart-type <literal>sig</literal>.
+            La fonction est constante pour <literal>t &lt;= 0</literal> et
+            <literal>t &gt;= Tmax</literal>.
+        </para>
+        <para>
+            <note>
+                Remarque: des fonctions de génération aléatoires telles que <link linkend="rand">rand</link> et
+                <link linkend="grand">grand</link> sont une alternative à la génération de bruit
+                contenant un large panel de lois de distribution (voir exemple 2 ci-dessous).
+            </note>
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <para>
+            Exemple #1: noisegen()
+        </para>
+        <programlisting role="example"><![CDATA[
+noisegen(0.5, 30, 1.0);
+x = -5:0.01:35;
+y = feval(x, Noise);
+plot(x, y);
+ ]]></programlisting>
+        <scilab:image>
+            noisegen(0.5, 30, 1.0);
+            x = -5:0.01:35;
+            y = feval(x, Noise);
+            plot(x, y);
+        </scilab:image>
+        <para>
+            Exemple #2: rand()
+        </para>
+        <programlisting role="example"><![CDATA[
+// Tracer un bruit blanc gaussien de moyenne nulle à variance 1.
+// Pour utiliser une variance différente, multiplier rand() par la racine carrée de la variance.
+t = 0:.5:30;
+sig = 1; // Ecart-type du bruit blanc gaussien.
+noise = sig*rand(t, "normal");
+plot2d2(t, noise);
+ ]]></programlisting>
+        <scilab:image>
+            t = 0:.5:30;
+            sig = 1;
+            noise = sig*rand(t, "normal");
+            plot2d2(t, noise)
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>Vori aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="rand">rand</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

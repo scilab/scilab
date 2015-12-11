@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine onface(nq,tq,tg,ng,nprox,ierr,w)
 C!but
@@ -39,6 +39,7 @@ C!
       dimension tq(0:nq), w(*),tg(ng+1)
 C
       dimension tps(0:1), taux2(0:2), tabeta(0:2), xx(1)
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
       common /sortie/ io,info,ll
 C
 C     decoupage du tableau de travail

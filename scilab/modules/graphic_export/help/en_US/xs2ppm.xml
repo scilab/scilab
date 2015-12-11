@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xs2ppm" xml:lang="en">
@@ -51,6 +51,27 @@
             <function>xs2ppm</function> exports the display of a graphic window into a PPM file.
         </para>
     </refsection>
+    <refsection>
+        <title>License</title>
+        <para>
+            The code of PPM is based on the work of Jef Poskanzer (Copyright (C)1996,1998) All rights reserved.
+        </para>
+        <para>
+            Redistribution and use in source and binary forms, with or without
+            modification, are permitted provided that the following conditions
+            are met:
+        </para>
+        <para>
+            1. Redistributions of source code must retain the above copyright
+            notice, this list of conditions and the following disclaimer.
+        </para>
+        <para>
+            2. Redistributions in binary form must reproduce the above copyright
+            notice, this list of conditions and the following disclaimer in the
+            documentation and/or other materials provided with the distribution.
+        </para>
+    </refsection>
+    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 

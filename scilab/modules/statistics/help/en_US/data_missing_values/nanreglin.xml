@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="nanreglin">
+    <refnamediv>
+        <refname>nanreglin</refname>
+        <refpurpose>Linear regression</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[a,b]=nanreglin(x,y)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y, a, b</term>
+                <listitem>
+                    <para>numerical vectors or matrices.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Solve the regression problem y=a*x+b in the least square sense.
+            <literal>x</literal> and <literal>y</literal> are two matrices of size
+            <literal>x(p,n)</literal> and <literal>y(q,n)</literal>, where <literal>n</literal> is the number of samples.
+        </para>
+        <para>
+            The estimator <literal>a</literal> is a matrix of size <literal>(q,p)</literal> and <literal>b</literal> is a
+            vector of size <literal>(q,1)</literal>.
+        </para>
+        <para>
+            Each line of <literal>y</literal> is treated as an independent problem, if <literal>x</literal>
+            or <literal>y</literal> contain a NaN (<literal>x(i,j) = %nan</literal> or <literal>y(i,j) = %nan</literal>),
+            then <literal>x(:,j)</literal> and <literal>y(i,j)</literal> are ignored,
+            as if the point [x(:,j); y(i,j)] did not exist.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <para>
+            Graphical example #1:
+        </para>
+        <programlisting role="example"><![CDATA[
+// In the following example, both problems represent two straight lines:
+// one goes from (0,0) to (10,10) and the other one goes from (0,20) to (10,30).
+// reglin and nanreglin find the same values because all the points are aligned and the NaNs have been ignored.
+subplot(211)
+x = 0:10;
+y = 20:30;
+[a1, b1] = reglin(x, [x ; y]);
+plot(x', (a1*x+repmat(b1,1,11))', "red")
+
+subplot(212)
+y2 = y;
+y2(2:10) = %nan; // Leaving y2(1) and y2(11) unchanged.
+[a2, b2] = nanreglin(x, [x ; y2])
+plot(x', (a2*x+repmat(b2,1,11))', "blue")
+ ]]></programlisting>
+        <scilab:image>
+            subplot(211)
+            x = 0:10;
+            y = 20:30;
+            [a1, b1] = reglin(x, [x ; y]);
+            plot(x', (a1*x+repmat(b1,1,11))', "red")
+            subplot(212)
+            y2 = y;
+            y2(2:10) = %nan;
+            [a2, b2] = nanreglin(x, [x ; y2])
+            plot(x', (a2*x+repmat(b2,1,11))', "blue")
+        </scilab:image>
+        <para>
+            Graphical example #2:
+        </para>
+        <programlisting role="example"><![CDATA[
+// Now both problems represent one straight line (reglin(x, x)) from (0,0) to (2,2),
+// but while the second argument of the first problem (reglin(x, y)) represents
+// a flat line (with equation y = 1), the second argument of the second problem
+// (reglin(x, y2)) ignores the central point of y (set to %nan) so the flat line
+// now has equation y = 0, because the two remaining points are (0,0) and (2,0).
+subplot(211)
+x = 0:2;
+y = [0 3 0];
+[a1, b1] = reglin(x, [x ; y]);
+plot(x', (a1*x+repmat(b1,1,3))', "red")
+
+subplot(212)
+y2 = y;
+y2(2) = %nan; // y2 = [0 %nan 0];
+[a2, b2] = nanreglin(x, [x ; y2]);
+plot(x', (a2*x+repmat(b2,1,3))', "blue")
+ ]]></programlisting>
+        <scilab:image>
+            subplot(211)
+            x = 0:2;
+            y = [0 3 0];
+            [a1, b1] = reglin(x, [x ; y]);
+            plot(x', (a1*x+repmat(b1,1,3))', "red")
+            subplot(212)
+            y2 = y;
+            y2(2) = %nan; // y2 = [0 %nan 0];
+            [a2, b2] = nanreglin(x, [x ; y2]);
+            plot(x', (a2*x+repmat(b2,1,3))', "blue")
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="reglin">reglin</link>
+            </member>
+            <member>
+                <link linkend="pinv">pinv</link>
+            </member>
+            <member>
+                <link linkend="leastsq">leastsq</link>
+            </member>
+            <member>
+                <link linkend="qr">qr</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>Introduction</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

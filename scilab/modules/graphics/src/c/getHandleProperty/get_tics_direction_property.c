@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,41 +30,41 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_direction_property(void* _pvCtx, char* pobjUID)
+void* get_tics_direction_property(void* _pvCtx, int iObjUID)
 {
     int iTicksDirection = 0;
     int* piTicksDirection = &iTicksDirection;
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_DIRECTION__, jni_int, (void**)&piTicksDirection);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_DIRECTION__, jni_int, (void**)&piTicksDirection);
 
     if (piTicksDirection == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_direction");
-        return -1;
+        return NULL;
     }
 
     if (iTicksDirection == 0)
     {
-        return sciReturnString(_pvCtx, "top");
+        return sciReturnString("top");
     }
     else if (iTicksDirection == 1)
     {
-        return sciReturnString(_pvCtx, "bottom");
+        return sciReturnString("bottom");
     }
     else if (iTicksDirection == 2)
     {
-        return sciReturnString(_pvCtx, "left");
+        return sciReturnString("left");
     }
     else if (iTicksDirection == 3)
     {
-        return sciReturnString(_pvCtx, "right");
+        return sciReturnString("right");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "tics_direction");
     }
 
-    return -1;
+    return NULL;
 
 }
 /*------------------------------------------------------------------------*/

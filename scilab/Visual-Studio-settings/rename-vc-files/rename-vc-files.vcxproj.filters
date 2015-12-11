@@ -2,7 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Rename Header Files">
-      <UniqueIdentifier>{bd7599c8-5433-4e31-981a-49cc95512194}</UniqueIdentifier>
+      <UniqueIdentifier>{0231dfb0-660f-415a-895a-dba4d2837c3e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,7 +24,7 @@
     <rename_vc_extension_files Include="..\..\scilab-lib.properties.vc">
       <Filter>Rename Header Files</Filter>
     </rename_vc_extension_files>
-    <rename_vc_extension_files Include="..\..\modules\core\includes\stack.h.vc">
+    <rename_vc_extension_files Include="..\..\scilab.properties.vc">
       <Filter>Rename Header Files</Filter>
     </rename_vc_extension_files>
     <rename_vc_extension_files Include="..\..\modules\core\includes\version.h.vc">

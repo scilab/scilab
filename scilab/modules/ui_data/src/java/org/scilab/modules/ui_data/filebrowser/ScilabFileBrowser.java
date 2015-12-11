@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -84,7 +84,7 @@ public final class ScilabFileBrowser {
             boolean success = WindowsConfigurationManager.restoreUUID(SwingScilabFileBrowser.FILEBROWSERUUID);
             if (!success) {
                 FileBrowserTab.getFileBrowserInstance();
-                SwingScilabWindow window = (SwingScilabWindow) ScilabWindow.createWindow().getAsSimpleWindow();
+                SwingScilabWindow window = SwingScilabWindow.createWindow(true);
                 window.addTab(instance);
                 window.setLocation(0, 0);
                 window.setSize(500, 500);

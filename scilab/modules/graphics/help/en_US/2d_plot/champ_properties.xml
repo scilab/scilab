@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="champ_properties">
@@ -53,7 +53,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the
-                        champ data structure, and to retreive it.
+                        champ data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>
@@ -84,6 +84,26 @@
                         If this this property value is <literal>"on"</literal>, fields vectors
                         are drawn using a color proportional to the intensity of the
                         field.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>arrow_size: </term>
+                <listitem>
+                    <para>
+                        This property is a double specifying the size of the arrow. The value can be positive or negative:
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>arrow_size &lt; 0</literal>: the arrow_size is proportional to the average norm of the vectors.
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>arrow_size &gt; 0</literal>: the arrow_size is proportional to the windows dimensions.
+                                </para>
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>
@@ -150,9 +170,20 @@ c=a.children
 
 c.colored="on";
 c.thickness=2;
+c.arrow_size=-1;
 c.data // display the tlist of type "scichampdata"
 a.data_bounds=[-5,-5;5,5];
  ]]></programlisting>
+        <scilab:image><![CDATA[ 
+        a=get("current_axes");
+        a.data_bounds=[-10,-10;10,10];
+        champ(-5:5,-5:5,rand(11,11),rand(11,11));
+        c=a.children;
+        c.colored="on";
+        c.thickness=2;
+        c.arrow_size=-1;
+        a.data_bounds=[-5,-5;5,5];
+        ]]></scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>

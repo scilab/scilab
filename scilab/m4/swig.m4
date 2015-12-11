@@ -16,7 +16,12 @@
 # value of the argument.  It should have the format: N[.N[.N]] (N is a
 # number between 0 and 999.  Only the first N is mandatory.)
 AC_DEFUN([SWIG_PROG],[
-	AC_PATH_PROG([SWIG_BIN],[swig])
+    SWIG_BIN="$enable_build_swig"
+    if test -x "$SWIG_BIN"; then
+       AC_MSG_RESULT([$SWIG_BIN])
+    else
+       AC_PATH_PROG([SWIG_BIN],[swig])
+    fi
 	if test -z "$SWIG_BIN" ; then
 		AC_MSG_ERROR([Cannot find swig. Please install it (package swig under Debian) or remove the option --enable-build-swig])
 	elif test -n "$1" ; then
@@ -59,6 +64,14 @@ AC_DEFUN([SWIG_ENABLE_CXX],[
 AC_DEFUN([SWIG_ENABLE_JAVA],[
 	AC_REQUIRE([SWIG_PROG])
 	SWIG_JAVA=" -java"
+])
+
+# SWIG_ENABLE_SCILAB()
+#
+# Enable SWIG Scilab support.  This effects all invocations of $(SWIG).
+AC_DEFUN([SWIG_ENABLE_SCILAB],[
+	AC_REQUIRE([SWIG_PROG])
+	SWIG_SCILAB=" -scilab -nobuilder"
 ])
 
 

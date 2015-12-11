@@ -21,17 +21,11 @@
 //
 
 function [x,y,typ]=SUPER_f(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // not used on Xcos, re-implemented for compatibility
         xcos(arg1.model.rpar);
@@ -60,14 +54,7 @@ function [x,y,typ]=SUPER_f(job,arg1,arg2)
         model.blocktype="h";
         model.dep_ut=[%f %f];
 
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
-        "xx=orig(1)+      [2 4 4]*(sz(1)/7);";
-        "yy=orig(2)+sz(2)-[2 2 6]*(sz(2)/10);";
-        "xrects([xx;yy;[sz(1)/7;sz(2)/5]*ones(1,3)]);";
-        "xx=orig(1)+      [1 2 3 4 5 6 3.5 3.5 3.5 4 5 5.5 5.5 5.5]*sz(1)/7;";
-        "yy=orig(2)+sz(2)-[3 3 3 3 3 3 3   7   7   7 7 7   7   3  ]*sz(2)/10;";
-        "xsegs(xx,yy,0);";
-        "xset(''thickness'',thick)"]
+        gr_i=[]
         x=standard_define([2 2],model,[],gr_i)
     end
 endfunction

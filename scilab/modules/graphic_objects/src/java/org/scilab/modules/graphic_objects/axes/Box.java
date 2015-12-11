@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,7 +21,7 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStat
  */
 public class Box {
     /** Box properties names */
-    public enum BoxProperty { BOX, HIDDENAXISCOLOR, TIGHTLIMITS, DATABOUNDS, REALDATABOUNDS, ZOOMENABLED, ZOOMBOX, AUTOSCALE, FIRSTPLOT };
+    public enum BoxProperty { BOX, HIDDENAXISCOLOR, XTIGHTLIMITS, YTIGHTLIMITS, ZTIGHTLIMITS, DATABOUNDS, REALDATABOUNDS, ZOOMENABLED, ZOOMBOX, AUTOSCALE, FIRSTPLOT };
 
     /** Box type */
     public static enum BoxType { OFF, ON, HIDDEN_AXES, BACK_HALF;
@@ -54,7 +54,7 @@ public class Box {
     private int hiddenAxisColor;
 
     /** Specifies whether tight limits are enforced or not */
-    private boolean tightLimits;
+    private boolean[] tightLimits;
 
     /** Data bounding box (6-element array) */
     private double[] dataBounds;
@@ -81,7 +81,7 @@ public class Box {
     public Box() {
         box = BoxType.OFF;
         hiddenAxisColor = 0;
-        tightLimits = false;
+        tightLimits = new boolean[] {false, false, false};
         dataBounds = new double[] {0, 1, 0, 1, -1, 1};
         realDataBounds = new double[6];
         zoomEnabled = false;
@@ -97,7 +97,11 @@ public class Box {
     public Box(Box box) {
         this.box = box.box;
         hiddenAxisColor = box.hiddenAxisColor;
-        tightLimits = box.tightLimits;
+
+        tightLimits = new boolean[3];
+        for (int i = 0; i < tightLimits.length; i++) {
+            tightLimits[i] = box.tightLimits[i];
+        }
 
         dataBounds = new double[6];
 
@@ -241,18 +245,56 @@ public class Box {
     }
 
     /**
-     * @return the tightLimits
+     * @return the tightLimits for X axis
      */
-    public Boolean getTightLimits() {
-        return tightLimits;
+    public Boolean getXTightLimits() {
+        return tightLimits[0];
     }
 
     /**
-     * @param tightLimits the tightLimits to set
+     * @return the tightLimits for Y axis
      */
-    public UpdateStatus setTightLimits(Boolean tightLimits) {
-        if (this.tightLimits != tightLimits) {
-            this.tightLimits = tightLimits;
+    public Boolean getYTightLimits() {
+        return tightLimits[1];
+    }
+
+    /**
+     * @return the tightLimits for X axis
+     */
+    public Boolean getZTightLimits() {
+        return tightLimits[2];
+    }
+
+    /**
+     * @param tightLimits the tightLimits to set for X axis
+     */
+    public UpdateStatus setXTightLimits(Boolean tightLimits) {
+        if (this.tightLimits[0] != tightLimits) {
+            this.tightLimits[0] = tightLimits;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @param tightLimits the tightLimits to set for Y axis
+     */
+    public UpdateStatus setYTightLimits(Boolean tightLimits) {
+        if (this.tightLimits[1] != tightLimits) {
+            this.tightLimits[1] = tightLimits;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @param tightLimits the tightLimits to set for Z axis
+     */
+    public UpdateStatus setZTightLimits(Boolean tightLimits) {
+        if (this.tightLimits[2] != tightLimits) {
+            this.tightLimits[2] = tightLimits;
             return UpdateStatus.Success;
         }
 

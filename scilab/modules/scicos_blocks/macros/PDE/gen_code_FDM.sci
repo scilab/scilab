@@ -42,7 +42,9 @@ function [equations,impl_type,Nfictif]=gen_code_FDM(a1,b1,a2,b2,a3,b3,a4,b4,..
     //    - h (Double) : le pas de discretisation h=(b-a)/N (i.e x(i)= i* h)  //
     //------------------------------------------------------------------------//
 
-    coef4=[];coef2=[];coef5=[];
+    coef4=[];
+    coef2=[];
+    coef5=[];
     impl_type=1; // 1 pour l'�tat diff�rentiel, -1 pour l'�tat alg�brique
     sep=[",","*","/"];
 
@@ -77,7 +79,7 @@ function [equations,impl_type,Nfictif]=gen_code_FDM(a1,b1,a2,b2,a3,b3,a4,b4,..
         end
 
         for i=1:Nfictif
-            equations(i)="   res["+string(i-1)+"]="+subf(vec2(i+Nfictif),dvec2(i))+";";
+            equations(i)="   res["+string(i-1)+"]="+vec2(i+Nfictif)+"-"+dvec2(i)+";";
             F=mulfv(msprintfv(a7_ev(i)),b7);
             if (i == 1) then
                 // prise en compte des conditions aux limites en a

@@ -20,8 +20,8 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <math.h>
-#include "MALLOC.h"
-#include "sciprint.h"
+#include "sci_malloc.h"
+#include "scicos_print.h"
 #include "scicos_block.h"
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
@@ -31,6 +31,7 @@
 SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
 {
     /*  rpar[0]=delay, rpar[1]=init value, ipar[0]=buffer length */
+    double** work = (double**) block->work;
     double *pw = NULL, del = 0., t = 0., td = 0., eps = 0.;
     int* iw = NULL;
     int i = 0, j = 0, k = 0;
@@ -38,15 +39,14 @@ SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
     if (flag == 4)
     {
         /* the workspace is used to store previous values */
-        if ((*block->work =
-                    scicos_malloc(sizeof(int) + sizeof(double) *
-                                  block->ipar[0] * (1 + block->insz[0]))) == NULL )
+        if ((*work = (double*) scicos_malloc(sizeof(int) + sizeof(double) *
+                                             block->ipar[0] * (1 + block->insz[0]))) == NULL )
         {
             set_block_error(-16);
             return;
         }
         eps = 1.0e-9; /* shift times to left to avoid replacing 0 */
-        pw = *block->work;
+        pw = *work;
         pw[0] = -block->rpar[0] * (block->ipar[0] - 1) - eps;
         for (j = 1; j < block->insz[0] + 1; j++)
         {
@@ -71,7 +71,7 @@ SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
     }
     else  if (flag == 5)
     {
-        scicos_free(*block->work);
+        scicos_free(*work);
 
     }
     else if (flag == 0 || flag == 2)
@@ -80,14 +80,14 @@ SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
         {
             do_cold_restart();
         }
-        pw = *block->work;
+        pw = *work;
         iw = (int *)(pw + block->ipar[0] * (1 + block->insz[0]));
         t = get_scicos_time();
         td = t - block->rpar[0];
         if (td < pw[*iw])
         {
-            sciprint(_("delayed time=%f but last stored time=%f \n"), td, pw[*iw]);
-            sciprint(_("Consider increasing the length of buffer in delay block \n"));
+            scicos_print(_("delayed time=%f but last stored time=%f \n"), td, pw[*iw]);
+            scicos_print(_("Consider increasing the length of buffer in delay block \n"));
         }
 
         if (t > pw[(block->ipar[0] + *iw - 1) % block->ipar[0]])
@@ -97,7 +97,7 @@ SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
                 pw[*iw + block->ipar[0]*j] = block->inptr[0][j - 1];
             }
             pw[*iw] = t;
-            /*sciprint(_("**time is %f. I put %f, in %d \n"), t,block->inptr[0][0],*iw);*/
+            /*scicos_print(_("**time is %f. I put %f, in %d \n"), t,block->inptr[0][0],*iw);*/
             *iw = (*iw + 1) % block->ipar[0];
 
         }
@@ -108,14 +108,14 @@ SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
                 pw[(block->ipar[0] + *iw - 1) % block->ipar[0] + block->ipar[0]*j] = block->inptr[0][j - 1];
             }
             pw[(block->ipar[0] + *iw - 1) % block->ipar[0]] = t;
-            /*sciprint("**time is %f. I put %f, in %d \n", t,block->inptr[0][0],*iw);*/
+            /*scicos_print("**time is %f. I put %f, in %d \n", t,block->inptr[0][0],*iw);*/
 
         }
 
     }
     else if (flag == 1)
     {
-        pw = *block->work;
+        pw = *work;
         iw = (int *) (pw + block->ipar[0] * (1 + block->insz[0]));
         t = get_scicos_time();
         td = t - block->rpar[0];
@@ -144,8 +144,8 @@ SCICOS_BLOCKS_IMPEXP void time_delay(scicos_block *block, int flag)
         i = (i + *iw) % block->ipar[0];
         j = (j + *iw) % block->ipar[0];
         del = pw[j] - pw[i];
-        /*    sciprint(_("time is %f. interpolating %d and %d, i.e. %f, %f\n"), t,i,j,pw[i],pw[j]);
-        sciprint(_("values are  %f   %f.\n"),pw[i+block->ipar[0]],pw[j+block->ipar[0]]);*/
+        /*    scicos_print(_("time is %f. interpolating %d and %d, i.e. %f, %f\n"), t,i,j,pw[i],pw[j]);
+        scicos_print(_("values are  %f   %f.\n"),pw[i+block->ipar[0]],pw[j+block->ipar[0]]);*/
         if (del != 0.0)
         {
             for (k = 1; k < block->insz[0] + 1; k++)

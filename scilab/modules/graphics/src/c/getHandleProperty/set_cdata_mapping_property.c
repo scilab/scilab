@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,7 +20,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "stricmp.h"
+#include "os_string.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -28,14 +28,14 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BasicAlgos.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_cdata_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_cdata_mapping_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int cdataMapping = 0;
 
@@ -59,7 +59,7 @@ int set_cdata_mapping_property(void* _pvCtx, char* pobjUID, void* _pvData, int v
         return SET_PROPERTY_ERROR;
     }
 
-    if (setGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1) == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_DATA_MAPPING__, &cdataMapping, jni_int, 1) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "cdata_mapping");
         return SET_PROPERTY_ERROR;

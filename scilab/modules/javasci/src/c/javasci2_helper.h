@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -253,7 +253,7 @@ int putUnsignedInt(char* variableName, unsigned int *variable, int nbRow, int nb
  * @param[out] nbCol Number of cols
  * @return The matrix of long (column sorted)
  */
-long * getLong(char* variableName, int *nbRow, int *nbCol);
+long long * getLong(char* variableName, int *nbRow, int *nbCol);
 
 /**
  * Set a matrix of long (int64)

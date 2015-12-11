@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,6 +29,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentSubwin.h"
+#include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
 // get_optionals not yet managed
@@ -37,7 +38,7 @@ static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
                     double* pdblX, int ypos, int yRow, int yCol, double* pdblY, int *ntics);
 
 /*--------------------------------------------------------------------------*/
-int sci_drawaxis(char *fname, unsigned long fname_len)
+int sci_drawaxis(char *fname, void* pvApiCtx)
 {
     /** XXXXX : un point en suspens c'est le "S" ou une adresse est
      *  stockees ds un unsigned long : est ce sufisant ?
@@ -58,15 +59,16 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
         { -1, NULL, -1, 0, 0, NULL}
     };
 
-    char *psubwinUID = NULL;
+    int iSubwinUID = 0;
     int minrhs = -1, maxrhs = 0, minlhs = 0, maxlhs = 1, nopt = 0;
     char dir = 'l', *format = NULL, tics = 'v', **val = NULL;
-    int fontsize = 0, sub_int = 2, seg_flag = 1, textcolor = -1, ticscolor = -1;
+    int fontsize = -1, sub_int = 2, seg_flag = 1, textcolor = -1, ticscolor = -1;
     double *x = NULL, *y = NULL;
     int nx = 0, ny = 0, ntics;
     int nb_tics_labels = -1;
+    int iRhs = nbInputArgument(pvApiCtx);
 
-    nopt = NumOpt();
+    nopt = NumOpt(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, minrhs, maxrhs + nopt);
     CheckOutputArgument(pvApiCtx, minlhs, maxlhs);
@@ -77,7 +79,7 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     if (opts[0].iPos != -1)
     {
@@ -198,9 +200,9 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     {
         static double x_def[1];
         double *bounds;
-        char *currentSubwinUID = (char*)getCurrentSubWin();
+        int iCurrentSubwinUID = getCurrentSubWin();
 
-        getGraphicObjectProperty(currentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+        getGraphicObjectProperty(iCurrentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
         nx = 1;
         x = x_def;
         if (dir == 'l')
@@ -222,9 +224,9 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     {
         static double y_def[1];
         double *bounds;
-        char *currentSubwinUID = (char*)getCurrentSubWin();
+        int iCurrentSubwinUID = getCurrentSubWin();
 
-        getGraphicObjectProperty(currentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
+        getGraphicObjectProperty(iCurrentSubwinUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&bounds);
         ny = 1;
         y = y_def;
         if (dir == 'd')
@@ -283,7 +285,8 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
 
     Objdrawaxis(dir, tics, x, &nx, y, &ny, val, sub_int, format, fontsize, textcolor, ticscolor, 'n', seg_flag, nb_tics_labels);
 
-    AssignOutputVariable(pvApiCtx, 1) = 0;
+    createScalarHandle(pvApiCtx, iRhs + 1, getHandle(getCurrentObject()));
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);
     return 0;
 }

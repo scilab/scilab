@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
@@ -38,7 +38,7 @@ nm = neldermead_configure(nm,"-function",rosenbrock);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-maxfunevals",%inf);
 nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 // Check _MYDATA_.nb
@@ -71,7 +71,7 @@ nm = neldermead_configure(nm,"-function",list(rosenbrock2,mystuff));
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-maxfunevals",%inf);
 nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 nm = neldermead_destroy(nm);
@@ -100,7 +100,7 @@ nm = neldermead_configure(nm,"-function",rosenbrock3);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-maxfunevals",%inf);
 nm = neldermead_configure(nm,"-maxiter",10);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 iter = neldermead_get(nm,"-iterations");
 assert_checkequal ( iter , 10 );
 // Check _MYDATA_.nb

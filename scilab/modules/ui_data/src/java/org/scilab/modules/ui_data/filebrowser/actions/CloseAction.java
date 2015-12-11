@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@ import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
@@ -57,6 +57,6 @@ public class CloseAction extends CommonCallBack {
      * {@inheritDoc}
      */
     public void callBack() {
-        ClosingOperationsManager.startClosingOperation((SwingScilabTab) ScilabFileBrowser.getFileBrowser());
+        ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) ScilabFileBrowser.getFileBrowser());
     }
 }

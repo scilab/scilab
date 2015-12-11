@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -28,9 +28,8 @@ Source: modules\{#PARAMETERS}\etc\{#PARAMETERS}.quit; DestDir: {app}\modules\{#P
 Source: modules\{#PARAMETERS}\etc\{#PARAMETERS}.start; DestDir: {app}\modules\{#PARAMETERS}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#PARAMETERS}\macros\lib; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#PARAMETERS}\macros\names; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#PARAMETERS}\macros\*.bin; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\macros\*.sci; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#PARAMETERS}\macros\*.bin; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\macros\buildmacros.sce; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\macros\buildmacros.bat; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 Source: modules\{#PARAMETERS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#PARAMETERS}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}

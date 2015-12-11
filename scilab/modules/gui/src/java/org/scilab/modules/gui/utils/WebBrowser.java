@@ -6,16 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.gui.utils;
 
 import java.awt.Desktop;
-import java.io.IOException;
 import java.net.URI;
-import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Set;
 
@@ -94,24 +92,43 @@ public final class WebBrowser implements XConfigurationListener {
         }
 
         try {
-            if (url.charAt(0) == 'h' || url.charAt(0) == 'f') {
-                // We have something like http://... or file://... or ftp://...
+            String protocol = getProtocol(url);
+            if (protocol == null) {
+                if (url.charAt(0) == '<') {
+                    // We have <pierre.marechal@scilab.org>
+                    String mail = "mailto:" + url.substring(1, url.length() - 1);
+                    if (webprefs.defaultMailer) {
+                        Desktop.getDesktop().mail(new URI(mail));
+                    } else {
+                        Runtime.getRuntime().exec(webprefs.cmdMailer + " " + new URI(mail).toString());
+                    }
+                }
+            } else if (protocol.equals("mailto")) {
+                if (webprefs.defaultMailer) {
+                    Desktop.getDesktop().mail(new URI(url));
+                } else {
+                    Runtime.getRuntime().exec(webprefs.cmdMailer + " " + new URI(url).toString());
+                }
+            } else {
                 if (webprefs.defaultBrowser) {
+                    // Under Windows, ShellExecute is called with the URI and under Linux it is gnome_url_show.
+                    // So to handle different protocol in URI, user must config its OS to handle them.
                     Desktop.getDesktop().browse(new URI(url));
                 } else {
                     Runtime.getRuntime().exec(webprefs.cmdBrowser + " " + new URI(url).toString());
                 }
-            } else {
-                // We have <pierre.marechal@scilab.org>
-                String mail = "mailto:" + url.substring(1, url.length() - 1);
-                if (webprefs.defaultMailer) {
-                    Desktop.getDesktop().mail(new URI(mail));
-                } else {
-                    Runtime.getRuntime().exec(webprefs.cmdMailer + " " + new URI(mail).toString());
-                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, ERROR_MSG + url);
+        }
+    }
+
+    private static String getProtocol(String url) {
+        int colon = url.indexOf(':');
+        if (colon != -1) {
+            return url.substring(0, colon);
+        } else {
+            return null;
         }
     }
 

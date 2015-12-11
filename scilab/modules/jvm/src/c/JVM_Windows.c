@@ -6,15 +6,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
+#include <windows.h>
 #include "machine.h" /* SHARED_LIB_EXT */
 #include "JVM_commons.h"
 #include "JVM_functions.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "PATH_MAX.h"
 #include "FileExist.h"
 #include "GetWindowsVersion.h"

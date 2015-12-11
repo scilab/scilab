@@ -101,18 +101,16 @@
         <para>
             The <emphasis role="bold">VanneReglante</emphasis> block represents
             a variable orifice control valve. The flow rate through the valve is
-            proportional to the valve opening, ,
+            proportional to the valve opening.
         </para>
-        <para/>
+        <latex>
+            $$
+            \Delta P \times h \times |h| = k \times Q \times |Q|
+            $$
+        </latex>
         <para>
-            <inlinemediaobject>
-                <imageobject>
-                    <imagedata align="center" fileref="../../../../help/images/VanneReglante_img2_eng.gif" valign="middle"/>
-                </imageobject>
-            </inlinemediaobject>
-        </para>
-        <para>where is the valve opening, is the pressure difference, and is the
-            flow rate. This model is only used for the laminar flow regimes. is a
+            where <latex>$h$</latex> is the valve opening, <latex>$\Delta P$</latex> is the pressure difference, and <latex>$Q$</latex> is the
+            flow rate. This model is only used for the laminar flow regimes. <latex>$k$</latex> is a
             constant depending on the valve geometry and mass density of fluid.
         </para>
     </refsection>

@@ -1,0 +1,24 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Bruno JOFRET
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+//
+// <-- ENGLISH IMPOSED -->
+// <-- XCOS TEST -->
+//
+// <-- Short Description -->
+// Blocks must have valid dimensions for their settings.
+// Some dimensions were not coherents between theirs "set" and "define" method.
+funcprot(0);
+ilib_verbose(0);
+// Stubbing global scicos flags
+needcompile = 0;
+alreadyran = %f;
+%scicos_context = struct();
+[status, message] = xcosValidateBlockSet("GENSQR_f");
+if status == %f
+    disp(message)
+end
+assert_checktrue(status);

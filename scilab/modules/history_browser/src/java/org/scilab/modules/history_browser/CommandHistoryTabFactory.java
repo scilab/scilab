@@ -6,13 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.history_browser;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.AbstractScilabTabFactory;
 
 /**
@@ -41,7 +41,7 @@ public class CommandHistoryTabFactory extends AbstractScilabTabFactory {
     /**
      * {@inheritDoc}
      */
-    public SwingScilabTab getTab(String uuid) {
+    public SwingScilabDockablePanel getTab(String uuid) {
         return CommandHistoryTab.getCommandHistoryInstance(uuid);
     }
 

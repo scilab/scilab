@@ -14,13 +14,11 @@
 //    when called with a transfer function, pfss returns a set of state-space systems as a result. 
 //    pfss used to return a transfer functions when called with a transfer function (verified of 4.1.2).
 //    When called with a tf, pfss should of course return a tf. 
+//
+// <-- CLI SHELL MODE -->
 
 tf = syslin("c", 1/%s);
 ss = tf2ss(tf);
 
 if pfss(tf)<>list(tf) then pause;end
 if pfss(ss)<>list(ss) then pause;end
-
-
-
-

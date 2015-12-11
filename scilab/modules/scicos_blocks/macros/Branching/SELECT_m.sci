@@ -20,28 +20,27 @@
 //
 
 function [x,y,typ]=SELECT_m(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,typ,nin,z0,exprs]=scicos_getvalue("Set parameters",..
             ["Datatype(1= real double  2=Complex 3=int32 ..)";"number of inputs";"initial connected input"],..
             list("vec",1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if z0>nin|z0<=0 then
                 message("initial connected input is not a valid input port number")
-            elseif ((typ<1)|(typ>8))& (typ<>-1) message("Datatype is not supported");ok=%f;
+            elseif ((typ<1)|(typ>8))& (typ<>-1) then
+                message("Datatype is not supported");
+                ok=%f;
             else
                 it=typ*ones(1,nin)
                 ot=typ
@@ -52,7 +51,8 @@ function [x,y,typ]=SELECT_m(job,arg1,arg2)
                     if ok then
                         graphics.exprs=exprs;
                         model.dstate=z0,
-                        x.graphics=graphics;x.model=model
+                        x.graphics=graphics;
+                        x.model=model
                         break
                     end
                 end
@@ -81,7 +81,7 @@ function [x,y,typ]=SELECT_m(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=[sci2exp(1);sci2exp(nin);sci2exp(z0)]
-        gr_i=["xstringb(orig(1),orig(2),''Selector'',sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

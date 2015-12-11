@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,33 +28,32 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_arc_drawing_method_property(void* _pvCtx, char* pobjUID)
+void* get_arc_drawing_method_property(void* _pvCtx, int iObjUID)
 {
     int iArcDrawingMethod = 0;
     int* piArcDrawingMethod = &iArcDrawingMethod;
 
-    getGraphicObjectProperty(pobjUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
+    getGraphicObjectProperty(iObjUID, __GO_ARC_DRAWING_METHOD__, jni_int, (void **)&piArcDrawingMethod);
 
     if (piArcDrawingMethod == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "arc_drawing_method");
-        return -1;
+        return NULL;
     }
 
     /* 0: nurbs, 1: lines */
     if (iArcDrawingMethod == 0)
     {
-        return sciReturnString(_pvCtx, "nurbs");
+        return sciReturnString("nurbs");
     }
     else if (iArcDrawingMethod == 1)
     {
-        return sciReturnString(_pvCtx, "lines");
+        return sciReturnString("lines");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "arc_drawing_method");
-        return -1;
+        return NULL;
     }
-
 }
 /*------------------------------------------------------------------------*/

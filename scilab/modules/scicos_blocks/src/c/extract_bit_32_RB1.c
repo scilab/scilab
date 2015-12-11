@@ -21,23 +21,22 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void extract_bit_32_RB1(scicos_block *block, int flag)
 {
-    int i = 0, maxim = 0, numb = 0;
-    long *y = NULL, *u = NULL, ref = 0, n = 0;
+    int i = 0, numb = 0;
+    SCSINT32_COP *y = NULL, *u = NULL, ref = 0, n = 0;
     int *ipar = NULL;
     y = Getint32OutPortPtrs(block, 1);
     u = Getint32InPortPtrs(block, 1);
     ipar = GetIparPtrs(block);
-    maxim = 32;
     ref = 0;
     numb = *(ipar + 1) - *ipar + 1;
     for (i = 0; i < numb; i++)
     {
-        n = (long)pow(2, *ipar + i);
+        n = (SCSINT32_COP)pow(2, *ipar + i);
         ref = ref + n;
     }
     *y = (*u) & (ref);

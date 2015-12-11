@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@ import java.io.File;
 
 import javax.swing.SwingUtilities;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
@@ -57,7 +57,7 @@ public class ExecuteCommandAction extends CommonCallBack {
                     String com = String.format(cmd, path);
                     ScilabConsole.getConsole().getAsSimpleConsole().sendCommandsToScilab(com, true /* display */, true /* store in history */);
                 } catch (NoClassDefFoundError e) {
-                    ScilabModalDialog.show((SwingScilabTab) SwingUtilities.getAncestorOfClass(SwingScilabTab.class, table), Messages.gettext("Feature not available in this mode..."));
+                    ScilabModalDialog.show((SwingScilabDockablePanel) SwingUtilities.getAncestorOfClass(SwingScilabDockablePanel.class, table), Messages.gettext("Feature not available in this mode..."));
                 }
             }
         }

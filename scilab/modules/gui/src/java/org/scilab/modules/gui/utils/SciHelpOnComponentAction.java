@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,7 +17,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 import org.scilab.modules.gui.bridge.CallScilabBridge;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 
 /**
  * Action executed when the user clicks on the "Help button"
@@ -27,13 +27,13 @@ public class SciHelpOnComponentAction extends AbstractAction {
 
     private static final long serialVersionUID = 1L;
 
-    private SwingScilabTab associatedTab;
+    private SwingScilabDockablePanel associatedTab;
 
     /**
      * Constructor
      * @param tab the associated tab
      */
-    public SciHelpOnComponentAction(SwingScilabTab tab) {
+    public SciHelpOnComponentAction(SwingScilabDockablePanel tab) {
         associatedTab = tab;
     }
 

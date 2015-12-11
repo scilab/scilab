@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlIsValidObject(char *fname, unsigned long fname_len)
+int sci_xmlIsValidObject(char *fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -66,10 +66,10 @@ int sci_xmlIsValidObject(char *fname, unsigned long fname_len)
 
             if (err.iErr)
             {
-                delete[]exists;
-                freeAllocatedMatrixOfString(row, col, vars);
+                delete[] exists;
                 printError(&err, 0);
                 Scierror(999, _("%s: Can not read named argument %s.\n"), fname, const_cast < const char *>(vars[i]));
+                freeAllocatedMatrixOfString(row, col, vars);
 
                 return 0;
             }

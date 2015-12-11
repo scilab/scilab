@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function []=fgrayplot(x,y,f,strf,rect,nax,void)
     //[]=fgrayplot(x,y,f)
@@ -23,10 +23,10 @@ function []=fgrayplot(x,y,f,strf,rect,nax,void)
     [lhs,rhs]=argn(0);
 
     if rhs <= 0 then   // demo
-        f = gcf();
-        f.color_map = coolcolormap(100);
         deff("[z]=Surf(x,y)","z=cos(x).^2+sin(y).^2");
         fgrayplot(-%pi:0.1:%pi,-%pi:0.1:%pi, Surf);
+        f = gcf();
+        f.color_map = coolcolormap(100);
         return
     end
 

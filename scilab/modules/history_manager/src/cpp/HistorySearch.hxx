@@ -6,16 +6,25 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*------------------------------------------------------------------------*/
 #include <list>
-#include "CommandLine.hxx"
-using namespace std;
+#include <vector>
+#include <string>
+extern "C"
+{
+#include "dynlib_history_manager.h"
+#include "BOOL.h"
+}
+
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 /*------------------------------------------------------------------------*/
-class HistorySearch
+class HISTORY_MANAGER_IMPEXP HistorySearch
 {
 public:
     /**
@@ -30,17 +39,17 @@ public:
 
     /**
     * set History to search
-    * @param a list of CommandLine
+    * @param a list of std::string
     * @return TRUE or FALSE
     */
-    BOOL setHistory(list<CommandLine> commands);
+    BOOL setHistory(std::list<std::string> _lstCommands);
 
     /**
     * set new token to search in history
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    BOOL setToken(std::string token);
+    BOOL setToken(std::string _stToken);
 
     /**
     * get token searched in history
@@ -74,19 +83,11 @@ public:
 protected:
 
 private:
-    list<CommandLine> Commands;
-    std::string my_token;
-    char **my_lines;
-    int *my_linenumbers;
-    int my_sizearray;
-    int current_position;
-    BOOL moveOnNext;
+    std::list<std::string> m_Commands;
+    std::string m_stToken;
+    std::vector<std::string> m_vstLines;
+    int m_iPosition;
 
     BOOL search(void);
-
-    BOOL freeMyToken(void);
-    BOOL freeMylines(void);
-    BOOL freeMylinenumbers(void);
-
 };
 /*------------------------------------------------------------------------*/

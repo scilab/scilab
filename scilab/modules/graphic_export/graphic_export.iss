@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -21,6 +21,12 @@
 ;
 Source: bin\sci{#GRAPHIC_EXPORT}.dll; DestDir: {app}\bin; Components: {#COMPN_GRAPHICS}
 Source: bin\no{#GRAPHIC_EXPORT}.dll; DestDir: {app}\bin; DestName: sci{#GRAPHIC_EXPORT}.dll; Components: not ({#COMPN_GRAPHICS})
+;
+Source: thirdparty\freehep-io.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\freehep-util.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\freehep-graphics2d.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\freehep-graphicsio-emf.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
+Source: thirdparty\freehep-graphicsio.jar;DestDir: {app}\thirdparty; Components: {#COMPN_GRAPHICS}
 ;
 Source: modules\{#GRAPHIC_EXPORT}\jar\org.scilab.modules.{#GRAPHIC_EXPORT}.jar;DestDir: {app}\modules\{#GRAPHIC_EXPORT}\jar; Components: {#COMPN_GRAPHICS}
 ;
@@ -36,10 +42,6 @@ Source: modules\{#GRAPHIC_EXPORT}\etc\{#GRAPHIC_EXPORT}.start; DestDir: {app}\mo
 Source: modules\{#GRAPHIC_EXPORT}\macros\buildmacros.sce; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHIC_EXPORT}\macros\buildmacros.bat; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
 Source: modules\{#GRAPHIC_EXPORT}\macros\cleanmacros.bat; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHIC_EXPORT}\macros\*.bin; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHIC_EXPORT}\macros\*.sci; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHIC_EXPORT}\macros\lib; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
-Source: modules\{#GRAPHIC_EXPORT}\macros\names; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\macros; Components: {#COMPN_GRAPHICS}
 ;
 ;Source: modules\{#GRAPHIC_EXPORT}\demos\*.*; DestDir: {app}\modules\{#GRAPHIC_EXPORT}\demos; Flags: recursesubdirs; Components: {#COMPN_GRAPHICS}
 ;

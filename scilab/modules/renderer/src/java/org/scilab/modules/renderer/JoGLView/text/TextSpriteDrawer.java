@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.text;
@@ -91,15 +91,22 @@ class TextSpriteDrawer extends TextObjectSpriteDrawer implements TextureDrawer {
     /**
      * Returns the margin modified by the scale factor.
      */
-    public int getMargin() {
-        return (int)(scaleFactor * (double)super.getMargin());
+    public int getHMargin() {
+        return (int)(scaleFactor * (double) super.getHMargin());
+    }
+
+    /**
+     * Returns the margin modified by the scale factor.
+     */
+    public int getVMargin() {
+        return (int)(scaleFactor * (double) super.getVMargin());
     }
 
     /**
      * Returns the space width modified by the scale factor.
      */
     public int getSpaceWidth() {
-        return (int)(scaleFactor * (double)super.getSpaceWidth());
+        return (int)(scaleFactor * (double) super.getSpaceWidth());
     }
 
 }

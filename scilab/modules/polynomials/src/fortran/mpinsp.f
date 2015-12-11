@@ -6,7 +6,7 @@ c     This source file is licensed as described in the file COPYING,
 c     which
 c     you should have received as part of this distribution.  The terms
 c     are also available at
-c     http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine mpinsp(dep1,lig1,col1,v1,d1,v2,d2,dep2,
      &     lig2,col2,depr,ligr,colr,defsz,iwork,ierr)
 c     !but

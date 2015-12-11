@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine n1fc1o(unit,job,i1,i2,i3,i4,i5,d1,d2,d3,d4)
 c

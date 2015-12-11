@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2013 Clement DAVID <clement.david@scilab-enterprises.com> -->
+<application>
+    <id type="desktop">scilab.desktop</id>
+    <name>Scilab</name>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>CECILL-2.1 or GPL-2.0+</project_license>
+    <summary>Scientific software package for numerical computations</summary>
+    <description>
+        <p>Scilab is free and open source software for numerical computation providing a powerful computing environment for engineering and scientific applications. Scilab includes hundreds of mathematical functions. It has a high level programming language allowing access to advanced data structures, 2-D and 3-D graphical functions. A large number of functionalities is included in Scilab:
+        </p>
+        <ul>
+            <li>Maths &amp; Simulation: For usual engineering and science applications</li>
+            <li>2-D &amp; 3-D Visualization: Graphics functions to visualize, annotate and export data</li>
+            <li>Optimization: Algorithms to solve constrained and unconstrained continuous and discrete problems</li>
+            <li>Statistics: Tools to perform data analysis and modeling</li>
+            <li>Control System Design &amp; Analysis: Standard algorithms and tools for control system study</li>
+            <li>Signal Processing: Visualize, analyze and filter signals in time and frequency domains</li>
+            <li>Application Development: Increase Scilab native functionalities and manage data exchanges</li>
+            <li>Xcos - Hybrid dynamic systems modeler and simulator: Modeling physical systems, control systems</li>
+        </ul>
+        <p>Thanks to its ability to interconnect with third-party technologies and applications, Scilab can also act as a unique platform to bring together codes written in different programming languages in a single, unified language, thus facilitating their distribution, their back-up and use.
+        </p>
+    </description>
+    <screenshots>
+        <screenshot type="default" width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-desktop.png</screenshot>
+        <screenshot width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-plot.png</screenshot>
+        <screenshot width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-xcos.png</screenshot>
+        <screenshot width="1200" height="675">http://cgit.scilab.org/cgit.cgi/scilab/plain/scilab/desktop/images/scilab-scinotes.png</screenshot>
+    </screenshots>
+    <url type="homepage">http://www.scilab.org</url>
+    <updatecontact>dev@lists.scilab.org</updatecontact>
+</application>
+

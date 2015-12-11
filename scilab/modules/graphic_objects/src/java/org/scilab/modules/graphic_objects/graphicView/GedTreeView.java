@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.graphic_objects.graphicView;
@@ -32,7 +32,7 @@ public class GedTreeView extends TreeView {
         return me;
     }
 
-    public void createObject(String id) {
+    public void createObject(Integer id) {
         try {
             GraphicObject graphiObject = GraphicController.getController().getObjectFromId(id);
             DefaultMutableTreeNode node = new DefaultMutableTreeNode(new GraphicObjectNode(graphiObject));
@@ -45,7 +45,7 @@ public class GedTreeView extends TreeView {
         }
     }
 
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         try {
             DefaultMutableTreeNode objectNode = allObjects.get(id);
             if (objectNode != null) {
@@ -59,7 +59,7 @@ public class GedTreeView extends TreeView {
         }
     }
 
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
 
         DefaultMutableTreeNode objectNode = allObjects.get(id);
         /*
@@ -73,7 +73,7 @@ public class GedTreeView extends TreeView {
                 objectNode.removeFromParent();
                 topModel.nodeStructureChanged(parentNode);
 
-                String parentUID = (String) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
+                Integer parentUID = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_PARENT__);
                 // Retrieve new Parent
                 DefaultMutableTreeNode newParentNode = allObjects.get(parentUID);
 

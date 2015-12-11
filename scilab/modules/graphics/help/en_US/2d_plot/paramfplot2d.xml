@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="paramfplot2d">
@@ -94,7 +94,7 @@ function V=twosoliton(x,t)
   f1=exp(-a1*(x-s1-v1*t));
   f2=exp(-a2*(x-s2-v2*t));
   r=((a2-1)/(a2+a1))^2;
-  V=2*(v1*f1+v2*f2+2*(a2-a1)^2*f1.*f2+r*(v2*(f1^2).*f2+v1*f1.*(f2^2)))./((1+f1+f2+r*f1.*f2)^2);
+  V=2*(v1*f1+v2*f2+2*(a2-a1)^2*f1.*f2+r*(v2*(f1.^2).*f2+v1*f1.*(f2.^2)))./((1+f1+f2+r*f1.*f2).^2);
 endfunction
 x=linspace(1,100,3000);
 clf;paramfplot2d(twosoliton,x,0:0.05:3);

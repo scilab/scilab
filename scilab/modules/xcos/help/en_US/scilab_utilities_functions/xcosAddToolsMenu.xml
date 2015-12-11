@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Clément DAVID
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcosAddToolsMenu">
+    <refnamediv>
+        <refname>xcosAddToolsMenu</refname>
+        <refpurpose>Add a menu item into the Xcos "Tools" menu.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>xcosAddToolsMenu(label, command)</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Module_xcosAddToolsMenu">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_xcosAddToolsMenu">
+        <title>Description</title>
+        <para>Add a menu into Xcos with a scilab command. The scilab command can assume that there is two variable on the current scilab context :</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">blk :</emphasis> The selected block. Variable does not exist if nothing is selected. The variable has a <link linkend="scicos_block">scicos_block</link> type.
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <emphasis role="bold">scs_m :</emphasis> The whole diagram. The variable has a <link linkend="scicos_diagram">scicos_diagram</link> type.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>This function has been introduced in Scilab 5.4.0.</para>
+        <para>
+            <programlisting role="example"><![CDATA[
+xcosAddToolsMenu("print plop", "disp(''plop'')");
+xcosAddToolsMenu("print selected block", "disp(blk)");
+xcosAddToolsMenu("print diagram", "disp(scs_m)");
+
+// define a custom update function
+function myUpdateFunction(blk, scs_m)
+    execstr(''[ok, blk] = '' + blk.gui + ''(''''set'''', blk)'') ;
+    xcosUpdateBlock(blk) ;
+endfunction
+xcosAddToolsMenu("update block", "myUpdateFunction(blk, scs_m)");
+]]></programlisting>
+        </para>
+    </refsection>
+    <refsection id="SeeAlso_xcosAddToolsMenu">
+        <title>See Also</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="xcosUpdateBlock">xcosUpdateBlock - Update a block instance</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="scicos_block">scicos_block.</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="scicos_diagram">scicos_diagram</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Authors_xcosAddToolsMenu">
+        <title>Authors</title>
+        <para>
+            <emphasis role="bold">Clément David</emphasis> - Scilab Enterprises
+        </para>
+    </refsection>
+</refentry>

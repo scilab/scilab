@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,27 +26,28 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_label_property(void* _pvCtx, char* pobjUID)
+void* get_y_label_property(void* _pvCtx, int iObjUID)
 {
-    char* labelUID = NULL;
+    int iLabelUID = 0;
+    int* piLabelUID = &iLabelUID;
     long labelHandle = 0;
 
-    getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&labelUID);
+    getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piLabelUID);
 
-    if (labelUID == NULL)
+    if (iLabelUID == 0)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_label");
-        return -1;
+        return NULL;
     }
 
-    labelHandle = getHandle(labelUID);
+    labelHandle = getHandle(iLabelUID);
 
-    return sciReturnHandle(_pvCtx, labelHandle);
+    return sciReturnHandle(labelHandle);
 }
 /*------------------------------------------------------------------------*/

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,7 +20,7 @@ extern "C"
 #include "gw_gui.h"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
@@ -30,7 +30,7 @@ extern "C"
 using namespace org_scilab_modules_gui_filechooser;
 
 /*--------------------------------------------------------------------------*/
-int sci_uigetdir(char *fname, unsigned long l)
+int sci_uigetdir(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -70,7 +70,7 @@ int sci_uigetdir(char *fname, unsigned long l)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
@@ -97,7 +97,7 @@ int sci_uigetdir(char *fname, unsigned long l)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             FREE(expandedpath);
             return 1;
         }
@@ -172,7 +172,7 @@ int sci_uigetdir(char *fname, unsigned long l)
     }
     else
     {
-        char* empty = "";
+        const char * empty = "";
         /* The user canceled the selection --> returns an empty string */
         sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &empty);
         if (sciErr.iErr)

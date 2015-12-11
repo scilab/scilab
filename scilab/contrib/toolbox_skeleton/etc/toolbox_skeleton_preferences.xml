@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <body>
-    <Form text="Rectangle">
-        <Entry text="intitulé" value="exemple"/>
-        <Select text="Hauteur" value="18">
+    <Form text="_d(toolbox_skeleton, Rectangle)">
+        <Entry text="_d(toolbox_skeleton, My Title)" value="exemple"/>
+        <Select text="_d(toolbox_skeleton, Height)" value="18">
             <Option value="12"/>
             <Option value="18"/>
             <Option value="24"/>
         </Select>
-        <Select text="Largeur" value="18">
+        <Select text="_d(toolbox_skeleton, Width)" value="18">
             <Option value="12"/>
             <Option value="18"/>
             <Option value="24"/>
         </Select>
-        <Color text="Couleur" value="#0000ff"/>
-        <Checkbox text="Contour" value="yes"/>
+        <Color text="_d(toolbox_skeleton, Color)" value="#0000ff"/>
+        <Checkbox text="_d(toolbox_skeleton, Outline)" value="yes"/>
     </Form>
 </body>

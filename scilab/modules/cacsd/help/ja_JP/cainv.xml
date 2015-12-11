@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="cainv">
@@ -112,7 +112,6 @@ X'*(A+J*C)*X = [0,0,A33,*,*,*]   X'*(B+J*D) = [*]
                [0,0,0,A44,*,*]                [0]
                [0,0,0,0,A55,*]                [0]
                [0,0,0,0,0,A66]                [0]
-
        Y*C*X = [0,0,C13,*,*,*]          Y*D = [*]
                [0,0,0,0,0,C26]                [0]
  ]]></programlisting>

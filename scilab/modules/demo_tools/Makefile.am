@@ -15,6 +15,10 @@ libdemo_tools_la_root_DATA =  license.txt
 libdemo_tools_la_etcdir = $(mydatadir)/etc
 libdemo_tools_la_etc_DATA = etc/demo_tools.quit etc/demo_tools.start
 
+#### demo_tools : XML gui ####
+libdemo_tools_la_guidir = $(mydatadir)/gui
+libdemo_tools_la_gui_DATA = gui/demo_gui.xml
+
 #### demo_tools : images files ####
 libdemo_tools_la_imagesdir=$(mydatadir)/images
 libdemo_tools_la_images_DATA = images/logo_scilab.png

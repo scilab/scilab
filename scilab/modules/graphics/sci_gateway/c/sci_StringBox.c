@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -36,9 +36,9 @@
 #define DEFAULT_ANGLE 0.0
 
 /*--------------------------------------------------------------------------*/
-static int getScalarFromStack(int paramIndex, char * funcName, double* res);
+static int getScalarFromStack(int paramIndex, char * funcName, double* res, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-static int getScalarFromStack(int paramIndex, char * funcName, double* res)
+static int getScalarFromStack(int paramIndex, char * funcName, double* res, void* pvApiCtx)
 {
     SciErr sciErr;
     int m = 0;
@@ -64,7 +64,7 @@ static int getScalarFromStack(int paramIndex, char * funcName, double* res)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), funcName,  paramIndex);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), funcName,  paramIndex);
         return -1;
     }
 
@@ -79,11 +79,9 @@ static int getScalarFromStack(int paramIndex, char * funcName, double* res)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_stringbox(char * fname, unsigned long fname_len)
+int sci_stringbox(char * fname, void *pvApiCtx)
 {
-
     SciErr sciErr;
-
     int* piAddrstackPointer = NULL;
     long long* stackPointer = NULL;
     char** strStackPointer   = NULL;
@@ -92,7 +90,8 @@ int sci_stringbox(char * fname, unsigned long fname_len)
     int type = -1;
     int *piType = &type;
 
-    char* parentAxes = NULL;
+    int iParentAxes = 0;
+    int* piParentAxes = &iParentAxes;
     double* textCorners = NULL;
     int two   = 2;
     int four  = 4;
@@ -108,7 +107,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         int n;
         /* A text handle should be specified */
 
-        char * pTextUID = NULL;
+        int iTextUID = 0;
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_handles)))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
@@ -128,26 +127,26 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for input argument #%d: Handle matrix expected.\n"), fname,  1);
+            Scierror(202, _("%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"), fname,  1, "Text");
             return 1;
         }
 
         if (m * n != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A 'Text' handle expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A ''%s'' handle expected.\n"), fname, 1, "Text");
             return 0;
         }
 
         /* Get the handle and check that this is a text handle */
-        pTextUID = (char*)getObjectFromHandle((long int) * stackPointer);
+        iTextUID = getObjectFromHandle((long int) * stackPointer);
 
-        if (pTextUID == NULL)
+        if (iTextUID == 0)
         {
             Scierror(999, _("%s: The handle is not valid.\n"), fname);
             return 0;
         }
 
-        getGraphicObjectProperty(pTextUID, __GO_TYPE__, jni_int, (void **)&piType);
+        getGraphicObjectProperty(iTextUID, __GO_TYPE__, jni_int, (void **)&piType);
 
         if (type != __GO_LABEL__ && type != __GO_TEXT__)
         {
@@ -155,16 +154,16 @@ int sci_stringbox(char * fname, unsigned long fname_len)
             return 0;
         }
 
-        getGraphicObjectProperty(pTextUID, __GO_PARENT_AXES__, jni_string, (void **)&parentAxes);
+        getGraphicObjectProperty(iTextUID, __GO_PARENT_AXES__, jni_int, (void **)&piParentAxes);
 
-        updateTextBounds(pTextUID);
+        updateTextBounds(iTextUID);
 
         /*
          * To do: performs a projection/unprojection to obtain the bounding box in object coordinates
          * but using a rotation matrix corresponding to the default rotation angles (view == 2d)
          */
 
-        getGraphicObjectProperty(pTextUID, __GO_CORNERS__, jni_double_vector, (void **)&textCorners);
+        getGraphicObjectProperty(iTextUID, __GO_CORNERS__, jni_double_vector, (void **)&textCorners);
 
         corners[1][0] = textCorners[0];
         corners[1][1] = textCorners[1];
@@ -185,7 +184,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
     }
     else
     {
-        char * parentSubwinUID = (char*)getOrCreateDefaultSubwin();
+        int iParentSubwinUID = getOrCreateDefaultSubwin();
         char ** text = NULL;
         int textNbRow;
         int textNbCol;
@@ -197,8 +196,8 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         double fontSize;
         double *pfontSize = &fontSize;
 
-        getGraphicObjectProperty(parentSubwinUID, __GO_FONT_STYLE__, jni_int, (void**)&pfontId);
-        getGraphicObjectProperty(parentSubwinUID, __GO_FONT_SIZE__, jni_double, (void **)&pfontSize);
+        getGraphicObjectProperty(iParentSubwinUID, __GO_FONT_STYLE__, jni_int, (void**)&pfontId);
+        getGraphicObjectProperty(iParentSubwinUID, __GO_FONT_SIZE__, jni_double, (void **)&pfontSize);
 
         /* Check that first argument is a string */
         if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
@@ -216,7 +215,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         // Retrieve a matrix of string at position  1.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrstackPointer, &textNbRow, &textNbCol, &strStackPointer))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname,  1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname,  1);
             return 1;
         }
 
@@ -224,13 +223,13 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         text = strStackPointer;
 
         /* Second and third arguments should be scalars */
-        if (getScalarFromStack(2, fname, &xPos) < 0)
+        if (getScalarFromStack(2, fname, &xPos, pvApiCtx) < 0)
         {
             freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
             return 0;
         }
 
-        if (getScalarFromStack(3, fname, &yPos) < 0)
+        if (getScalarFromStack(3, fname, &yPos, pvApiCtx) < 0)
         {
             freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
             return 0;
@@ -239,7 +238,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) >= 4)
         {
             /* angle is defined */
-            if (getScalarFromStack(4, fname, &angle) < 0)
+            if (getScalarFromStack(4, fname, &angle, pvApiCtx) < 0)
             {
                 freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;
@@ -250,7 +249,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         {
             double fontIdD;
             /* font style is defined */
-            if (getScalarFromStack(5, fname, &fontIdD) < 0)
+            if (getScalarFromStack(5, fname, &fontIdD, pvApiCtx) < 0)
             {
                 freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;
@@ -261,7 +260,7 @@ int sci_stringbox(char * fname, unsigned long fname_len)
         if (nbInputArgument(pvApiCtx) >= 6)
         {
             /* font size is defined */
-            if (getScalarFromStack(6, fname, &fontSize) < 0)
+            if (getScalarFromStack(6, fname, &fontSize, pvApiCtx) < 0)
             {
                 freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;

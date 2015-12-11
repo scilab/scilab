@@ -54,7 +54,8 @@ function [gk,gf]=formkf(nelem,kind,nint,nodes,x,xi,w,nnode,a6,operi,kbc,vbc)
 
         //  Prendre le i3-�me ordre de la quadrature Gaussienne: 1, ordre 1; 2, ordre 2, ...
 
-        xic = xi(:,i3);      wc = w(:,i3);
+        xic = xi(:,i3);
+        wc = w(:,i3);
         [ek,ef] = elemoper(x(i1),x(i2),n,i3,xic,wc,operi,a6);
         // assemblage
         [gk,gf]=assemb(gk,gf,ek,ef,nel,n,nodes);

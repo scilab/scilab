@@ -2,23 +2,10 @@ LIBRARY    core.dll
 
 
 EXPORTS
-LaunchScilab
-pLaunchScilabLock
-callFunctionFromGateway
-com_
-stack_
-getrhsvar_
-gettype_
-vstk_
-createvar_
-getScilabMode
-vartype_
-recu_
 with_module
 StoreCommand
+StorePrioritaryCommand
 ismenu
-getWarningMode
-iop_
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

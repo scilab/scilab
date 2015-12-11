@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,8 +24,8 @@ class H5Object;
 class H5VariableScope
 {
 
-    static std::vector<H5Object *> & scope;
-    static std::stack<int> & freePlaces;
+    static std::vector<H5Object *> scope;
+    static std::stack<int> freePlaces;
 
 public:
 
@@ -34,17 +34,9 @@ public:
     static void removeId(const int id);
     static void removeIdAndDelete(const int id);
     static void clearScope();
-
-private :
-
-    static std::vector<H5Object *> * initScope()
-    {
-        std::vector<H5Object *> * _scope = new std::vector<H5Object *>();
-        _scope->reserve(1024);
-
-        return _scope;
-    }
+    static void initScope();
 };
 }
 
 #endif // __H5VARIABLESCOPE_HXX__
+

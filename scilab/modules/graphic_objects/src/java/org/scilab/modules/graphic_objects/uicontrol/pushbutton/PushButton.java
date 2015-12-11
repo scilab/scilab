@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,6 +14,10 @@ package org.scilab.modules.graphic_objects.uicontrol.pushbutton;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_PUSHBUTTON__;
 
+import javax.swing.UIDefaults;
+import javax.swing.UIManager;
+
+import org.scilab.modules.graphic_objects.console.Console;
 import org.scilab.modules.graphic_objects.uicontrol.Uicontrol;
 
 /**
@@ -31,7 +35,27 @@ public class PushButton extends Uicontrol {
     public PushButton() {
         super();
         setStyle(__GO_UI_PUSHBUTTON__);
-        setBackgroundColor(new Double[] {BUTTON_RED_BACKGROUND, BUTTON_GREEN_BACKGROUND, BUTTON_BLUE_BACKGROUND});
+
+
+        if (Console.getConsole().getUseDeprecatedLF()) {
+            setRelief(RELIEF_RAISED);
+            setBackgroundColor(new Double[] {
+                                   BUTTON_RED_BACKGROUND,
+                                   BUTTON_GREEN_BACKGROUND,
+                                   BUTTON_BLUE_BACKGROUND
+                               });
+        } else {
+            UIDefaults defaults = UIManager.getDefaults();
+
+            //font
+            setFont(defaults.getFont("Button.font"));
+
+            //h-alignment
+            setHorizontalAlignment("center");
+
+            //v-alignement
+            setVerticalAlignment("middle");
+        }
     }
 
 }

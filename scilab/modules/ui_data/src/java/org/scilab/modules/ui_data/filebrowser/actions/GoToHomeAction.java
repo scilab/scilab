@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,12 +14,12 @@ package org.scilab.modules.ui_data.filebrowser.actions;
 
 import java.io.File;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.ui_data.FileBrowser;
 import org.scilab.modules.ui_data.filebrowser.FileUtils;
 import org.scilab.modules.ui_data.utils.UiDataMessages;
@@ -52,11 +52,12 @@ public class GoToHomeAction extends CommonCallBack {
     /**
      * @return the corresponding button
      */
-    public static PushButton createButton() {
-        PushButton button = ScilabPushButton.createPushButton();
-        button.setCallback(new GoToHomeAction());
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setToolTipText(UiDataMessages.USERHOME);
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(FileUtils.getClosedUserHomeIcon());
+    public static JButton createButton() {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new GoToHomeAction());
+        button.setToolTipText(UiDataMessages.USERHOME);
+        button.setIcon(FileUtils.getClosedUserHomeIcon());
 
         return button;
     }

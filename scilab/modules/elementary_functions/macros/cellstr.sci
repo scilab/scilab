@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function   c=cellstr(s)
 
@@ -31,10 +31,10 @@ function   c=cellstr(s)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Matrix of string expected.\n"),"cellstr",1));
     end
 
-    C=cell(size(s,1),1);
+    c=cell(size(s,1),1);
 
     for i=1:size(s,1)
-        c(i,1).entries=strcat(s(i,:));
+        c{i,1} = strcat(s(i,:));
     end
 
 endfunction

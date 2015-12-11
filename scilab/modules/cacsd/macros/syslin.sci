@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [sl]=syslin(domain,a,b,c,d,x0)
 
@@ -22,7 +22,7 @@ function [sl]=syslin(domain,a,b,c,d,x0)
         z="z"
     case 10 //continuous or discrete
         if size(domain,"*")<>1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"syslin",1))
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"syslin",1))
         end
 
         domain=part(domain,1)

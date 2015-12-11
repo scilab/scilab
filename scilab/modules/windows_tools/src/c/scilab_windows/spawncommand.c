@@ -7,33 +7,33 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "PATH_MAX.h"
-#include "MALLOC.h"
-#include "tmpdir.h"
+#include "sci_malloc.h"
 #include "FileExist.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
+#include "sci_tmpdir.h"
 #include "spawncommand.h"
-#include "strdup_windows.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "getshortpathname.h"
-#include "strdup_windows.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 #define LF_STR "\n"
 #define CR '\r'
 #define LF '\n'
-#define BLANK ' '
+#define BLANK L' '
 #define NOTPRINTABLE -96
-#define EMPTY_CHAR 0
-#define CMDLINE_FORMAT_DETACHED "%s /A /C \"%s\""
-#define CMDLINE_FORMAT_NOTDETACHED "%s /A /C \"%s && echo DOS > %s\""
-#define OUTPUT_CHECK_FILENAME_FORMAT "%s\\DOS.OK"
+#define EMPTY_CHAR L'\0'
+#define CMDLINE_FORMAT_DETACHED L"%ls /A /C \"%ls\""
+#define CMDLINE_FORMAT_NOTDETACHED L"%ls /A /C \"%ls && echo DOS > %ls\""
+#define OUTPUT_CHECK_FILENAME_FORMAT L"%ls\\DOS.OK"
 /*--------------------------------------------------------------------------*/
 pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnOut = {INVALID_HANDLE_VALUE, NULL, 0};
 pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr = {INVALID_HANDLE_VALUE, NULL, 0};
@@ -43,12 +43,12 @@ static BOOL removeEOL(char *_string);
 static BOOL removeNotPrintableCharacters(char *_string);
 static char *convertLine(char *_string, BOOL DetachProcess);
 /*--------------------------------------------------------------------------*/
-int spawncommand(char *command, BOOL DetachProcess)
+int spawncommand(wchar_t *command, BOOL DetachProcess)
 {
-    char shellCmd[PATH_MAX];
-    char *CmdLine = NULL;
+    wchar_t shellCmd[PATH_MAX];
+    wchar_t *CmdLine = NULL;
 
-    STARTUPINFO si;
+    STARTUPINFOW si;
     PROCESS_INFORMATION pi;
     SECURITY_ATTRIBUTES sa;
     DWORD threadID;
@@ -57,7 +57,7 @@ int spawncommand(char *command, BOOL DetachProcess)
     HANDLE hProcess = NULL, h = NULL, pipeThreads[2];
     DWORD ExitCode = 0;
 
-    if (strcmp(command, "") == 0)
+    if (wcscmp(command, L"") == 0)
     {
         // do nothing
         pipeSpawnOut.NumberOfLines = 0;
@@ -68,10 +68,11 @@ int spawncommand(char *command, BOOL DetachProcess)
 
         return 1;
     }
+
     hProcess = GetCurrentProcess();
 
     ZeroMemory(&pi, sizeof(PROCESS_INFORMATION));
-    ZeroMemory(&si, sizeof(STARTUPINFO));
+    ZeroMemory(&si, sizeof(STARTUPINFOW));
     si.cb = sizeof(STARTUPINFO);
     si.dwFlags   = STARTF_USESTDHANDLES;
     si.hStdInput = INVALID_HANDLE_VALUE;
@@ -94,45 +95,41 @@ int spawncommand(char *command, BOOL DetachProcess)
                     0, TRUE, DUPLICATE_SAME_ACCESS | DUPLICATE_CLOSE_SOURCE);
 
     /* base command line */
-    GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
+    GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
 
     if (DetachProcess)
     {
-        int lenCmdLine = (int)(strlen(shellCmd) + strlen(command) + strlen(CMDLINE_FORMAT_DETACHED));
-        CmdLine = (char*) MALLOC((lenCmdLine + 1) * sizeof(char));
-        sprintf(CmdLine, CMDLINE_FORMAT_DETACHED, shellCmd, command);
+        int lenCmdLine = (int)(wcslen(shellCmd) + wcslen(command) + wcslen(CMDLINE_FORMAT_DETACHED));
+        CmdLine = (wchar_t*) MALLOC((lenCmdLine + 1) * sizeof(wchar_t));
+        os_swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_DETACHED, shellCmd, command);
 
         dwCreationFlags = DETACHED_PROCESS;
     }
     else
     {
         int lenCmdLine = 0;
-        char FileTMPDir[PATH_MAX + 16];
+        wchar_t FileTMPDir[PATH_MAX + 16];
         BOOL bConvert = FALSE;
 
-        char *TMPDirLong = getTMPDIR();
-        char *TMPDirShort = getshortpathname(TMPDirLong, &bConvert);
+        wchar_t *TMPDirLong = getTMPDIRW();
 
-        sprintf(FileTMPDir, OUTPUT_CHECK_FILENAME_FORMAT, TMPDirLong);
+        os_swprintf(FileTMPDir, PATH_MAX + 16, OUTPUT_CHECK_FILENAME_FORMAT, TMPDirLong);
         FREE(TMPDirLong);
-        TMPDirLong = NULL;
-        FREE(TMPDirShort);
-        TMPDirShort = NULL;
 
-        if (FileExist(FileTMPDir))
+        if (FileExistW(FileTMPDir))
         {
-            DeleteFile(FileTMPDir);
+            DeleteFileW(FileTMPDir);
         }
 
-        lenCmdLine = (int)(strlen(shellCmd) + strlen(command) + strlen(CMDLINE_FORMAT_NOTDETACHED) +
-                           strlen(FileTMPDir));
-        CmdLine = (char*)MALLOC((lenCmdLine + 1) * sizeof(char));
-        sprintf(CmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
+        lenCmdLine = (int)(wcslen(shellCmd) + wcslen(command) + wcslen(CMDLINE_FORMAT_NOTDETACHED) +
+                           wcslen(FileTMPDir));
+        CmdLine = (wchar_t*)MALLOC((lenCmdLine + 1) * sizeof(wchar_t));
+        os_swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
 
         dwCreationFlags = 0;
     }
 
-    ok = CreateProcess(
+    ok = CreateProcessW(
              NULL,	    /* Module name. */
              CmdLine,	    /* Command line. */
              NULL,	    /* Process handle not inheritable. */
@@ -229,7 +226,7 @@ int GetNumberOfLines(char *lines)
     int NumberOfLines = 0;
     if (lines)
     {
-        char *buffer = strdup(lines);
+        char *buffer = os_strdup(lines);
         if (buffer)
         {
             int i = 0;
@@ -261,13 +258,14 @@ char **CreateOuput(pipeinfo *pipe, BOOL DetachProcess)
     {
         if (pipe->OutputBuffer)
         {
-            char *buffer = strdup((const char *)(pipe->OutputBuffer));
+            char *buffer = os_strdup(pipe->OutputBuffer);
             if (buffer)
             {
                 pipe->NumberOfLines = GetNumberOfLines(buffer);
                 if (pipe->NumberOfLines)
                 {
                     OuputStrings = (char**)MALLOC((pipe->NumberOfLines) * sizeof(char*));
+                    memset(OuputStrings, 0x00, sizeof(char*) * pipe->NumberOfLines);
                     if (OuputStrings)
                     {
                         char *line = strtok(buffer, LF_STR);
@@ -293,13 +291,13 @@ char **CreateOuput(pipeinfo *pipe, BOOL DetachProcess)
     return OuputStrings;
 }
 /*--------------------------------------------------------------------------*/
-BOOL DetectDetachProcessInCommandLine(char *command)
+BOOL DetectDetachProcessInCommandLine(wchar_t *command)
 {
     BOOL bOK = FALSE;
     if (command)
     {
-        int i = (int)strlen(command);
-        for (i = (int)strlen(command) - 1; i >= 0; i--)
+        int i = (int)wcslen(command);
+        for (i = (int)wcslen(command) - 1; i >= 0; i--)
         {
             if (command[i] == BLANK)
             {
@@ -310,8 +308,8 @@ BOOL DetectDetachProcessInCommandLine(char *command)
                 break;
             }
         }
-        i = (int)strlen(command);
-        if ( (i > 0) && (command[i - 1] == '&') )
+        i = (int)wcslen(command);
+        if ( (i > 0) && (command[i - 1] == L'&') )
         {
             bOK = TRUE;
         }
@@ -359,7 +357,7 @@ char *convertLine(char *_string, BOOL DetachProcess)
     char *convertedString = NULL;
     if (_string)
     {
-        convertedString = strdup(_string);
+        convertedString = os_strdup(_string);
 
         if (getScilabMode() == SCILAB_STD)
         {
@@ -429,7 +427,7 @@ int CallWindowsShell(char *command)
 
     GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
     TMPDir = getTMPDIRW();
-    swprintf(FileTMPDir, PATH_MAX, L"%s\\DOS.OK", TMPDir);
+    os_swprintf(FileTMPDir, PATH_MAX, L"%ls\\DOS.OK", TMPDir);
     if (TMPDir)
     {
         FREE(TMPDir);
@@ -437,15 +435,98 @@ int CallWindowsShell(char *command)
     }
 
     wcommand = to_wide_string(command);
-    iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%s /a /c \"%s\" && echo DOS>%s") + 1);
+    iCmdSize = (wcslen(shellCmd) + wcslen(wcommand) + wcslen(FileTMPDir) + wcslen(L"%ls /a /c \"%ls\" && echo DOS>%ls") + 1);
     CmdLine = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
-    swprintf(CmdLine, iCmdSize, L"%s /a /c \"%s\" && echo DOS>%s", shellCmd, wcommand, FileTMPDir);
+    os_swprintf(CmdLine, iCmdSize, L"%ls /a /c \"%ls\" && echo DOS>%ls", shellCmd, wcommand, FileTMPDir);
 
     if (CreateProcessW(NULL, CmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
         WaitForSingleObject(piProcInfo.hProcess, INFINITE);
 
         if ( GetExitCodeProcess(piProcInfo.hProcess, &ExitCode) == STILL_ACTIVE )
+        {
+            TerminateProcess(piProcInfo.hProcess, 0);
+        }
+
+        CloseHandle(piProcInfo.hProcess);
+
+        if (CmdLine)
+        {
+            FREE(CmdLine);
+            CmdLine = NULL;
+        }
+
+        if (FileExistW(FileTMPDir))
+        {
+            DeleteFileW(FileTMPDir);
+        }
+
+        returnedExitCode = (int)ExitCode;
+    }
+    else
+    {
+        CloseHandle(piProcInfo.hProcess);
+        if (CmdLine)
+        {
+            FREE(CmdLine);
+            CmdLine = NULL;
+        }
+    }
+    return returnedExitCode;
+}
+/*--------------------------------------------------------------------------*/
+int CallWindowsShellW(wchar_t* _pstCommand)
+{
+    int returnedExitCode = -1;
+
+    wchar_t shellCmd[PATH_MAX];
+    wchar_t *CmdLine = NULL;
+    size_t iCmdSize = 0;
+
+    PROCESS_INFORMATION piProcInfo;
+    STARTUPINFOW siStartInfo;
+    SECURITY_ATTRIBUTES saAttr;
+
+    DWORD ExitCode = 0;
+
+    wchar_t *TMPDir = NULL;
+    wchar_t FileTMPDir[PATH_MAX];
+
+    if (wcscmp(_pstCommand, L"") == 0)
+    {
+        // do nothing
+        return 1;
+    }
+
+    ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
+
+    ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
+    siStartInfo.cb              = sizeof(STARTUPINFO);
+    siStartInfo.dwFlags         = STARTF_USESHOWWINDOW | STARTF_USESTDHANDLES;
+    siStartInfo.wShowWindow     = SW_HIDE;
+    siStartInfo.hStdInput       = NULL;
+
+    siStartInfo.hStdOutput      = GetStdHandle(STD_OUTPUT_HANDLE);
+    siStartInfo.hStdError       = GetStdHandle(STD_ERROR_HANDLE);
+
+    GetEnvironmentVariableW(L"ComSpec", shellCmd, PATH_MAX);
+    TMPDir = getTMPDIRW();
+    os_swprintf(FileTMPDir, PATH_MAX, L"%ls\\DOS.OK", TMPDir);
+    if (TMPDir)
+    {
+        FREE(TMPDir);
+        TMPDir = NULL;
+    }
+
+    iCmdSize    = (wcslen(shellCmd) + wcslen(_pstCommand) + wcslen(FileTMPDir) + wcslen(L"%ls /a /c \"%ls\" && echo DOS>%ls") + 1);
+    CmdLine     = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
+    os_swprintf(CmdLine, iCmdSize, L"%ls /a /c \"%ls\" && echo DOS>%ls", shellCmd, _pstCommand, FileTMPDir);
+
+    if (CreateProcessW(NULL, CmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
+    {
+        WaitForSingleObject(piProcInfo.hProcess, INFINITE);
+
+        if (GetExitCodeProcess(piProcInfo.hProcess, &ExitCode) == STILL_ACTIVE)
         {
             TerminateProcess(piProcInfo.hProcess, 0);
         }

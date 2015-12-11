@@ -6,13 +6,13 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function f = fullfile(varargin)
 
     // Build a full filename from parts
 
-    if lstsize(varargin) < 1 then
+    if size(varargin) < 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): At least %d expected.\n"), "fullfile",1));
     end
 
@@ -30,7 +30,7 @@ function f = fullfile(varargin)
         f = stripblanks(f);
     end
 
-    nbParameters =  lstsize(varargin)
+    nbParameters =  size(varargin)
     for k = 2 : nbParameters
         arg = varargin(k);
         if isempty(f) | isempty(arg)

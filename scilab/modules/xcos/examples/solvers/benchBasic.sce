@@ -3,8 +3,6 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-// Run with exec("SCI/modules/xcos/examples/solvers/benchBasic.sce");
-
 // Import the diagram, augment the ending time and store its compilation in Info()
 loadScicos();
 loadXcosLibs();
@@ -12,8 +10,8 @@ importXcosDiagram("SCI/modules/xcos/demos/Controller.zcos");
 Info = scicos_simulate(scs_m, "nw");
 tf = 4000;
 tolerances = scs_m.props.tol;
-tolerances(1) = 10^(-13);
-tolerances(2) = 10^(-13);
+tolerances(1) = 1d-13;
+tolerances(2) = 1d-13;
 [%tcur, %cpr, alreadyran, needstart, needcompile, %state0] = Info(:);
 
 solverName = ["LSodar", "CVode BDF/Newton", "CVode BDF/Functional", "CVode Adams/Newton", "CVode Adams/Functional", "Dormand-Prince", "Runge-Kutta", "implicit Runge-Kutta"];
@@ -25,7 +23,7 @@ for solver = 0:7
     tolerances(6) = solver;
 
     // Modify 'Max step size' if RK-based solver
-    if (solver >= 5) then tolerances(7) = 3*10^(-2); end
+    if (solver >= 5) then tolerances(7) = 0.03; end
 
     // Start the solver
     [state, t] = scicosim(%state0, 0.0, tf, %cpr.sim, "start", tolerances);
@@ -41,4 +39,3 @@ for solver = 0:7
 
 end
 disp("--------------------------------");
-

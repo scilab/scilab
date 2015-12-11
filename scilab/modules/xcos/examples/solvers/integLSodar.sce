@@ -3,8 +3,6 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-// Run with exec("SCI/modules/xcos/examples/solvers/integLSodar.sce");
-
 // Import the diagram and augment the ending time
 loadScicos();
 loadXcosLibs();

@@ -8,7 +8,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //
 // nmplot_boxpost.sce --
@@ -97,7 +97,7 @@ function demo_boxpost()
     nm = neldermead_configure(nm,"-function",fpostoffice);
     nm = neldermead_configure(nm,"-x0",x0);
     nm = neldermead_configure(nm,"-maxiter",300);
-    nm = neldermead_configure(nm,"-maxfunevals",300);
+    nm = neldermead_configure(nm,"-maxfunevals",500);
     nm = neldermead_configure(nm,"-method","box");
     nm = neldermead_configure(nm,"-verbose",1);
     logfile = TMPDIR + "/postoffice.txt";

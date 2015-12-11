@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
@@ -37,6 +37,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
+import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerSpriteFactory;
 import org.scilab.modules.renderer.JoGLView.interaction.util.HelpersGeometry;
 import org.scilab.modules.renderer.JoGLView.interaction.util.PointAComputer;
 import org.scilab.modules.renderer.JoGLView.interaction.util.PointBComputer;
@@ -53,6 +54,10 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
 
     /** Decimal format used to show info messages */
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.###E0");
+
+    static {
+        AxesRulerSpriteFactory.setScilabStyle(DECIMAL_FORMAT);
+    }
 
     /** Axes name used to show info messages */
     private static final String[] AXES_NAMES = new String[] {"X", "Y", "Z"};
@@ -117,6 +122,7 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
      */
     protected RubberBox(DrawerVisitor drawerVisitor) {
         super(drawerVisitor);
+        axes = drawerVisitor.getAxes();
         status = Status.WAIT_POINT_A;
     }
 
@@ -299,6 +305,11 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
         if ((pointComputer != null) && (pointComputer.isValid())) {
             String message = baseMessage + " ";
             double[] data = pointComputer.getSecondPosition().getData();
+            double[][] factors = axes.getScaleTranslateFactors();
+            data[0] = (data[0] - factors[1][0]) / factors[0][0];
+            data[1] = (data[1] - factors[1][1]) / factors[0][1];
+            data[2] = (data[2] - factors[1][2]) / factors[0][2];
+
             String comma;
             if (oneAxis) {
                 comma = "";
@@ -509,5 +520,20 @@ public class RubberBox extends FigureInteraction implements PostRendered, MouseL
 
     @Override
     public void keyReleased(KeyEvent e) {
+    }
+    
+    public double[] getResults() {
+        double[][] factors = axes.getScaleTranslateFactors();
+        double result[] = {
+            mouseButton - 1,
+            (Math.min(firstPoint.getX(), secondPoint.getX()) - factors[1][0]) / factors[0][0],
+            (Math.max(firstPoint.getY(), secondPoint.getY()) - factors[1][1]) / factors[0][1],
+            (Math.max(firstPoint.getZ(), secondPoint.getZ()) - factors[1][2]) / factors[0][2],
+            (Math.abs(firstPoint.getX() - secondPoint.getX())) / factors[0][0],
+            (Math.abs(firstPoint.getY() - secondPoint.getY())) / factors[0][1],
+            (Math.abs(firstPoint.getZ() - secondPoint.getZ())) / factors[0][2]
+        };
+
+        return result;
     }
 }

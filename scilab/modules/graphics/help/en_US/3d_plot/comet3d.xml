@@ -133,11 +133,11 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500);
-clf();comet3d(sin(5*t),sin(t),t^2)
+clf();comet3d(sin(5*t),sin(t),t.^2)
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500)';
-clf();comet3d(sin(5*t),sin(t),[t^2,ones(t)])
+clf();comet3d(sin(5*t),sin(t),[t.^2,ones(t)])
     ]]></programlisting>
         <programlisting role="example"><![CDATA[
 t = linspace(-%pi,%pi,500)';

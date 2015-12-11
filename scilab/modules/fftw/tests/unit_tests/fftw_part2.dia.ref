@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //3-D transform  *******************************************************************************
 //R2R case  ------------------------------------------------------------------------------------
 A=[0   1   1
@@ -18,15 +18,15 @@ y_ref=matrix([63;-27;39;-27;12;0;-24;0;12;0;-24;0;-12;
               -12;0;0;0;0;0;0;0;0;0;0;0],[4 3 3]);
 y=fft(A);
 assert_checktrue(isreal(y));
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 assert_checkalmostequal(A,fft(y,1),0,10*%eps);
 y=fft(A,"symmetric");
 assert_checktrue(isreal(y));
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 assert_checkalmostequal(A,fft(y,1,"symmetric"),0,10*%eps);
 y=fft(A,"nonsymmetric"); //use R2C
 assert_checktrue(~isreal(y));
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 assert_checkalmostequal(A,fft(y,1,"nonsymmetric"),0,10*%eps);
 A=matrix([4750;-163;138;138;-163;-100;-2;9;-148;42;10;-301;246;246;-301;-100;42;-148;9;-2;-12;157;
           -110;224;37;-101;-94;260;258;345;-49;175;227;110;161;65;-40;-182;161;-390;412;101;168;
@@ -60,7 +60,7 @@ y_ref=matrix([ 9006; 1997.01835368650836; 7499.98164631349118; 7499.981646313491
                5499.99740938413652; 4503.41908441918713; 6998.63971425121235; 4997.98726249178435],[5,4,5]);
 y=fft(A);
 assert_checktrue(isreal(y));
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 //R2C case   ------------------------------------------------------------------------------------
 A=matrix([5;4;3;6;4;9;0;5;3;4;3;1;8;2;1;7;2;7;8;4;4;9;
           1;2;6;6;7;9;5;3;4;9;9;3;4;7;3;5;3;5;5;1;2;6;
@@ -95,7 +95,7 @@ y_ref=matrix([ 290; 22+%i*4;-26; 22-%i*4; 9.5+%i*9.52627944162882301;
                7.43941996380932657+%i*16.867370295570808; 3.64531223802112692+%i*9.52499614355328994;
                20.7330326917071268+%i*8.81688081018132586],[4,3,5]);
 y=fft(A);
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 //C2R case   ------------------------------------------------------------------------------------
 A=matrix([ 2900; 220+%i*40;-260; 220-%i*40; 95+%i*95;-11+%i*172;-35+%i*251;-29+%i*2; 95-%i*95;
            -29-%i*2;-35-%i*251;-11-%i*172;-110-%i*14; 54-%i*261;-235-%i*11;-36+%i*230;-214-%i*88;
@@ -122,7 +122,7 @@ y_ref=matrix([ 2996; 3600; 1800; 2396; 1804.08726109815325; 601.420841162336728;
                4195.39253641116193],[4,3,5]);
 y=fft(A);
 assert_checktrue(isreal(y));
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 y=fft(A,"symmetric");
 assert_checktrue(isreal(y));
 assert_checkalmostequal(y,y_ref);
@@ -155,7 +155,7 @@ y_ref=matrix([ 130-%i*22;-34-%i*14; 102+%i*10;-98+%i*2; 11.624355652982139+%i*5.
                23.5621778264910695-%i*1.9737205583711752;-6.09807621135331601+%i*24.2224318643354550;
                -21.3660254037844375-%i*6.2224318643354586; 13.2224318643354550+%i*17.6865334794732085;
                12.4903810567665818+%i*20.4185842870420871],[4,3,3]);
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 //N-D transform  *******************************************************************************
 //R2R case  ------------------------------------------------------------------------------------
 A=matrix([7090;265;265;180;-42;-198;30;15;15;180;-198;-42;160;235;-245;-335;135;182;240;-75;75;
@@ -196,7 +196,7 @@ y_ref=matrix([ 8640; 6480; 6480; 11520; 5760.26656797432588; 5039.73343202567412
                6482.39782971783188; 7921.06627189730625; 10801.5994078459589; 6480.53313594865176],[3,4,3,4]);
 y=fft(A);
 assert_checktrue(isreal(y));
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 A=matrix([ 2900; 220+%i*40;-260; 220-%i*40; 95+%i*95;-11+%i*172;-35+%i*251;-29+%i*2; 95-%i*95;
            -29-%i*2;-35-%i*251;-11-%i*172;-110-%i*14; 54-%i*261;-235-%i*11;-36+%i*230;-214-%i*88;
            207-%i*88; 36-%i*95; 74-%i*169; 175+%i*33; 151+%i*116; 256-%i*14;-189-%i*307;
@@ -222,7 +222,7 @@ y_ref=matrix([ 2996; 3600; 1800; 2396; 1804.08726109815325; 601.420841162336728;
                4195.39253641116193],[4,3,5]);
 y=fft(A);
 assert_checktrue(isreal(y));
-assert_checkalmostequal(y,y_ref); 
+assert_checkalmostequal(y,y_ref);
 y=fft(A,"symmetric");
 assert_checktrue(isreal(y));
 assert_checkalmostequal(y,y_ref);

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -19,10 +19,22 @@
 #include "deleteGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
+#ifndef _MSC_VER
+#include "configvariable_interface.h"
+#endif
 /*--------------------------------------------------------------------------*/
 int gw_graphic_objects(void)
 {
-    Scierror(999, _("Scilab '%s' module not installed.\n"), "graphic_objects");
+#ifndef _MSC_VER
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "graphic_objects");
+    }
+    else
+#endif
+    {
+        Scierror(999, _("Scilab '%s' module not installed.\n"), "graphic_objects");
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
@@ -36,25 +48,25 @@ BOOL sciIsExistingFigure(int figNum)
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-char *createGraphicObject(int _iType)
+int createGraphicObject(int _iType)
 {
-    return NULL;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-char const* createDataObject(char const* _sId, int _iType)
+int createDataObject(int iUID, int _iType)
 {
-    return NULL;
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
-void deleteGraphicObject(char *_sId)
-{
-}
-/*--------------------------------------------------------------------------*/
-void deleteDataObject(char const *_sId)
+void deleteGraphicObject(int iUID)
 {
 }
 /*--------------------------------------------------------------------------*/
-void getGraphicObjectProperty(char const* _pstID, const int _iName, enum _ReturnType_ _returnType, void **_pvData)
+void deleteDataObject(int iUID)
+{
+}
+/*--------------------------------------------------------------------------*/
+void getGraphicObjectProperty(int iUID, const int _iName, enum _ReturnType_ _returnType, void **_pvData)
 {
     *_pvData = NULL;
 }
@@ -63,12 +75,52 @@ void releaseGraphicObjectProperty(const int _iName, void * _pvData, enum _Return
 {
 }
 /*--------------------------------------------------------------------------*/
-BOOL setGraphicObjectProperty(char const* _psUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements)
+BOOL setGraphicObjectProperty(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements)
 {
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
-void setGraphicObjectRelationship(char const* _parentId, char const* _childId)
+BOOL setGraphicObjectPropertyAndNoWarn(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements)
 {
+    return FALSE;
+}
+/*--------------------------------------------------------------------------*/
+void setGraphicObjectRelationship(int iUID, int iUID2)
+{
+}
+/*--------------------------------------------------------------------------*/
+long getHandle(int UID)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNewFigureWithAxes(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getObjectFromHandle(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getValidDefaultFigureId(void)
+{
+    return 0;
+}
+
+int getCurrentFigure(void)
+{
+    return 0;
+}
+
+int createSubWin(int iParent)
+{
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

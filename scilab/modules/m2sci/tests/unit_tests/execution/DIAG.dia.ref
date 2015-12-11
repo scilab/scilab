@@ -1,0 +1,28 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2010 - DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
+// <-- LONG TIME EXECUTION -->
+// Unitary test for conversion of Matlab function: DIAG
+exec("SCI/modules/m2sci/tests/unit_tests/utils/m2sciTestExecution.sci", -1);
+if ~m2sciTestExecution("DIAG") then bugmes();quit;end
+  ****** Beginning of mfile2sci() session ******
+  File to convert: SCI/modules/m2sci/tests/unit_tests/mfiles/DIAG.m
+  Result file path: TMPDIR/
+  Recursive mode: OFF
+  Only double values used in M-file: NO
+  Verbose mode: 0
+  Generate formated code: YES
+  M-file reading...
+  M-file reading: Done
+  Syntax modification...
+  Syntax modification: Done
+  Macro to tree conversion...
+  Conversion of M-tree...
+  Conversion of M-tree: Done
+  Macro to tree conversion: Done
+  ****** End of mfile2sci() session ******

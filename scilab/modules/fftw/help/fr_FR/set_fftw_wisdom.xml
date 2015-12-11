@@ -3,19 +3,19 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - Allan Layec - INRIA
  * Copyright (C) 2012 - Serge Steer - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" 
-          xmlns:xlink="http://www.w3.org/1999/xlink" 
-          xmlns:svg="http://www.w3.org/2000/svg" 
-          xmlns:mml="http://www.w3.org/1998/Math/MathML" 
-          xmlns:db="http://docbook.org/ns/docbook" 
+<refentry xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook"
           xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="set_fftw_wisdom">
     <refnamediv>
         <refname>set_fftw_wisdom</refname>
@@ -38,10 +38,10 @@
     </refsection>
     <refsection>
         <title>Attention</title>
-        <para> 
+        <para>
             Cette fonction n'est pas implémentée lorsque Scilab utilise la
-            bibliuthèque MKL d'Intel (c'est en particulier le cas des
-            binaires Windows officiels).
+            bibliothèque MKL d'Intel (c'est en particulier le cas des
+            binaires Windows officielles).
         </para>
     </refsection>
     <refsection>
@@ -50,19 +50,19 @@
             Cette fonction charge un wisdom fftw contenue dans une chaîne de
             caractères. L'utilisation de <literal>get_fftw_wisdom</literal>
             et de <literal>set_fftw_wisdom</literal> permet d'optimiser
-            l'efficaité de la fft si de nombreux appels doivent être
+            l'efficacité de la fft si de nombreux appels doivent être
             effectués sur des tailles de données identiques et pour les
             mêmes options de la fonction <link linkend="fft">fft</link>.
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 sample_rate=1000;
 t = 0:1/sample_rate:40;
 N=size(t,'*'); //number of samples
 s=sin(2*%pi*50*t)+sin(2*%pi*70*t+%pi/4)+grand(1,N,'nor',0,1);
-fftw_forget_wisdom();  
+fftw_forget_wisdom();
 timer();y=fft(s);t1=timer() //first call
 timer();y=fft(s);t2=timer()  //second call uses preserved wisdom
 t1/t2

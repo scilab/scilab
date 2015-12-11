@@ -8,7 +8,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine rtitr(nin,nout,nu,num,inum,dgnum,den,iden,dgden,
      &                 up,u,iu,yp,y,iy,job,iw,w,ierr)
@@ -34,7 +34,7 @@ c     num    : tableau contenant les coefficients (matriciels) du polynome
 c              matriciel numerateur N. Si N=somme(Nk*z**k) alors num
 c              est la matrice bloc : num=[N ,N ,....N       ]
 c                                          0  1      dgnum+1
-c              num est modifie par l'execution ( normalisation par l
+c              num est modifie par l'execution (normalisation par le
 c              coefficient de plus haut degre de D D(dgden+1) )
 c     inum   : nombre de ligne du tableau num dans le programme appelant
 c     dgnum  : degre du polynome matriciel numerateur

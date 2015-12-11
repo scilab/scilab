@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -38,7 +38,6 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.StyleMap;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
@@ -285,11 +284,7 @@ public final class EditFormatAction extends DefaultAction {
         final mxGraphModel model = (mxGraphModel) graph.getModel();
 
         final mxCell cell = dialog.getCell();
-        final StyleMap cellStyle = new StyleMap("");
-        if (cell instanceof BasicBlock) {
-            cellStyle.put(((BasicBlock) cell).getInterfaceFunctionName(), null);
-        }
-        cellStyle.putAll(cell.getStyle());
+        final StyleMap cellStyle = new StyleMap(cell.getStyle());
 
         final mxCell identifier;
         final StyleMap identifierStyle;
@@ -377,9 +372,6 @@ public final class EditFormatAction extends DefaultAction {
         }
 
         cellStyle.clear();
-        if (cell instanceof BasicBlock) {
-            cellStyle.put(((BasicBlock) cell).getInterfaceFunctionName(), null);
-        }
 
         dialog.setValues(DEFAULT_BORDERCOLOR, DEFAULT_FILLCOLOR, mxConstants.DEFAULT_FONTFAMILY, mxConstants.DEFAULT_FONTSIZE, 0, DEFAULT_BORDERCOLOR, "", null);
 

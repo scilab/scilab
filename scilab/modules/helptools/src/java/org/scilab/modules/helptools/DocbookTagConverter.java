@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,29 +26,35 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.helptools.external.ExternalXMLHandler;
+import org.scilab.modules.helptools.image.Image;
+import org.scilab.modules.helptools.image.ImageConverter;
+import org.scilab.modules.helptools.image.LaTeXImageConverter;
+import org.scilab.modules.helptools.image.MathMLImageConverter;
+import org.scilab.modules.helptools.image.SVGImageConverter;
+import org.scilab.modules.helptools.image.ScilabImageConverter;
+import org.scilab.modules.helptools.image.XcosImageConverter;
 import org.xml.sax.Attributes;
 import org.xml.sax.InputSource;
 import org.xml.sax.Locator;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
-import org.scilab.modules.helptools.external.ExternalXMLHandler;
-import org.scilab.modules.helptools.external.HTMLMathMLHandler;
-import org.scilab.modules.helptools.external.HTMLScilabHandler;
-import org.scilab.modules.helptools.external.HTMLSVGHandler;
-
 /**
  * Class the convert a DocBook xml file
  * @author Calixte DENIZET
  */
-public class DocbookTagConverter extends DefaultHandler {
+public abstract class DocbookTagConverter extends DefaultHandler implements Converter {
 
     private static final String DOCBOOKURI = "http://docbook.org/ns/docbook";
-    private static final Class[] argsType = new Class[] {Map.class, String.class};
+    private static final Class<?>[] argsType = new Class[] {Map.class, String.class};
+    protected static final String SCI = ScilabConstants.SCI.getPath();
 
     private Map<String, Method> mapMeth = new HashMap<String, Method>();
     private Map<String, ExternalXMLHandler> externalHandlers = new HashMap<String, ExternalXMLHandler>();
     private List<DocbookTagConverter> converters;
+    private final ImageConverter imgConvert;
     private final File in;
     private DocbookElement baseElement = new DocbookElement(null, null, null);
     private Stack<DocbookElement> stack = new Stack<DocbookElement>();
@@ -78,12 +84,19 @@ public class DocbookTagConverter extends DefaultHandler {
      * Constructor
      * @param in the input file path
      */
-    public DocbookTagConverter(String in) throws IOException {
+    public DocbookTagConverter(String in, final ImageConverter imgConvert) throws IOException {
         if (in != null && !in.isEmpty()) {
             this.in = new File(in);
         } else {
             this.in = null;
         }
+
+        this.imgConvert = imgConvert;
+        imgConvert.registerExternalImageConverter(new LaTeXImageConverter(this));
+        imgConvert.registerExternalImageConverter(new MathMLImageConverter(this));
+        imgConvert.registerExternalImageConverter(new SVGImageConverter(this));
+        imgConvert.registerExternalImageConverter(new ScilabImageConverter(this));
+        imgConvert.registerExternalImageConverter(new XcosImageConverter(this));
     }
 
     /**
@@ -91,10 +104,44 @@ public class DocbookTagConverter extends DefaultHandler {
      * @param in the inputstream
      * @param inName the name of the input file
      */
-    public DocbookTagConverter(String inName, DocbookElement elem) throws IOException {
-        this(inName);
+    public DocbookTagConverter(String inName, DocbookElement elem, final ImageConverter imgConvert) throws IOException {
+        this(inName, imgConvert);
         baseElement = elem;
     }
+
+    public ImageConverter getImageConverter() {
+        return imgConvert;
+    }
+
+    public String getBaseImagePath() {
+        return "";
+    }
+
+    /**
+     * Hook used by {@link ImageConverter}s to emit format specific code from any docbook image element
+     * @param code the code to translate
+     * @param fileName the filename
+     * @param attrs the attribute of the image
+     * @return a {@link Converter} specific code which embed the image and the source code
+     */
+    public abstract String generateImageCode(String code, String fileName, Map<String, String> attrs);
+
+    /**
+     * Hook used by {@link ImageConverter}s to emit format specific code from any docbook image element
+     * @param img image information
+     * @param fileName the filename
+     * @param attrs the attribute of the image
+     * @return a {@link Converter} specific code which embed the image and the source code
+     */
+    public abstract String generateImageCode(Image img, String fileName, Map<String, String> attrs);
+
+    /**
+     * Hook used by {@link ImageConverter}s to emit format specific code from any docbook image element
+     * @param fileName the filename
+     * @param attrs the attribute of the image
+     * @return a {@link Converter} specific code which embed the image and the source code
+     */
+    public abstract String generateImageCode(String fileName, Map<String, String> attrs);
 
     /**
      * Handle the tag
@@ -104,7 +151,7 @@ public class DocbookTagConverter extends DefaultHandler {
      * @return the HTML code
      * @throws UnhandledDocbookTagException if an handled tga is encountered
      */
-    public String handleDocbookTag(String tag, Map attributes, String contents) throws SAXException {
+    public String handleDocbookTag(String tag, Map<String, String> attributes, String contents) throws SAXException {
         if (tag != null && tag.length() > 0) {
             Method method = mapMeth.get(tag);
             if (method == null) {
@@ -173,11 +220,28 @@ public class DocbookTagConverter extends DefaultHandler {
      * Register an XMLHandler for external XML
      * @param h the external XML handler
      */
-    public void registerExternalXMLHandler(ExternalXMLHandler h) {
+    protected void registerExternalXMLHandler(ExternalXMLHandler h) {
         if (externalHandlers.get(h.getURI()) == null) {
             externalHandlers.put(h.getURI(), h);
             h.setConverter(this);
         }
+    }
+
+    /**
+     * Register all needed External XML Handler.
+     */
+    @Override
+    public void registerAllExternalXMLHandlers() {
+    }
+
+    /**
+     * Unregister all External XML Handler
+     */
+    public void unregisterAllExternalXMLHandler() {
+        for (ExternalXMLHandler h : externalHandlers.values()) {
+            h.setConverter(null);
+        }
+        externalHandlers.clear();
     }
 
     /**
@@ -219,6 +283,7 @@ public class DocbookTagConverter extends DefaultHandler {
         SAXParserFactory factory = SAXParserFactory.newInstance();
         factory.setValidating(false);
         factory.setNamespaceAware(true);
+        factory.setXIncludeAware(true);
 
         try {
             factory.setFeature("http://xml.org/sax/features/namespace-prefixes", true);
@@ -240,14 +305,29 @@ public class DocbookTagConverter extends DefaultHandler {
     }
 
     /**
+     * Install not converted files (templates, images) to the converted directory
+     */
+    public void install() {
+    }
+
+    /**
      * {@inheritDoc}
      */
     public InputSource resolveEntity(String publicId, String systemId) throws SAXException, IOException {
+        if (publicId != null) {
+            publicId = publicId.replaceAll(" ", "%20");
+        }
+        if (systemId != null) {
+            systemId = systemId.replaceAll(" ", "%20");
+        }
+
         currentFileName = systemId;
         currentBaseName = new File(systemId).getName();
-        HTMLMathMLHandler.getInstance().resetCompt();
-        HTMLSVGHandler.getInstance().resetCompt();
-        HTMLScilabHandler.getInstance().resetCompt();
+
+        for (ExternalXMLHandler h : externalHandlers.values()) {
+            h.resetCompt();
+        }
+
         if (converters != null) {
             for (DocbookTagConverter conv : converters) {
                 conv.resolveEntity(publicId, systemId);
@@ -485,7 +565,6 @@ public class DocbookTagConverter extends DefaultHandler {
      * @return a trimed StringBuilder
      */
     private static StringBuilder trim(StringBuilder buf) {
-        int start = 0;
         int i = 0;
         int end = buf.length();
         char c;
@@ -507,4 +586,81 @@ public class DocbookTagConverter extends DefaultHandler {
 
         return buf;
     }
+
+    /*
+     * All Handled tag method definition, these methods are the implementation of "Docbook 5.0 - subset Scilab"
+     */
+
+    public abstract String handleAnswer(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleBibliomixed(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleBibliomset(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleBook(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCaption(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCaution(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleChapter(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCode(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleCommand(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleConstant(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleEmphasis(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleFirstname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleFunction(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleImagedata(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleImageobject(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleImportant(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInfo(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInformalequation(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInformaltable(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleInlinemediaobject(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleItemizedlist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleLatex(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleLink(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleListitem(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleLiteral(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleMediaobject(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleMember(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleNote(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleOption(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleOrderedlist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handlePara(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handlePart(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleProgramlisting(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handlePubdate(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleQandaentry(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleQandaset(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleQuestion(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefentry(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefnamediv(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefpurpose(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefsection(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRefsynopsisdiv(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleReplaceable(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevdescription(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevhistory(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevision(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevnumber(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleRevremark(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleScreen(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleScreenshot(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSection(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSimplelist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSubscript(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSuperscript(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSurname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleSynopsis(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTable(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTbody(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTd(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTerm(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTh(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTip(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTitle(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleTr(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleUlink(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleVariablelist(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleVarlistentry(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleVarname(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleWarning(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleXref(final Map<String, String> attributes, final String contents) throws SAXException;
+    public abstract String handleAnchor(final Map<String, String> attributes, final String contents) throws SAXException;
 }

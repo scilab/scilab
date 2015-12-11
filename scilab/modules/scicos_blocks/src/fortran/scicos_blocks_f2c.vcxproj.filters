@@ -370,9 +370,6 @@
     <None Include="Elementary_functions_Import.def">
       <Filter>Imports</Filter>
     </None>
-    <None Include="core_import.def">
-      <Filter>Imports</Filter>
-    </None>
     <None Include="Output_stream_f_Import.def">
       <Filter>Imports</Filter>
     </None>

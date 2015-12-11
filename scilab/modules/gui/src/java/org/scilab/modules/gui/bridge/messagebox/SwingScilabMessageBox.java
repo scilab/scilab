@@ -2,24 +2,24 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Vincent Couvert
  * Copyright (C) 2010 - DIGITEO - Vincent Couvert
+ * Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.gui.bridge.messagebox;
 
+import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -33,6 +33,10 @@ import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.ParallelGroup;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -47,6 +51,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.JToggleButton;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ListSelectionModel;
 import javax.swing.UIManager;
 import javax.swing.event.HyperlinkEvent;
@@ -54,12 +59,14 @@ import javax.swing.event.HyperlinkListener;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.messagebox.SimpleMessageBox;
 import org.scilab.modules.gui.tab.SimpleTab;
 import org.scilab.modules.gui.tab.Tab;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.utils.WebBrowser;
+import org.scilab.modules.localization.Messages;
 
 /**
  * Swing implementation of a Scilab MessageBox
@@ -69,25 +76,11 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
 
     private static final long serialVersionUID = 7939976395338222763L;
 
-    private static final int WINDOW_WIDTH = 650;
-    private static final int MESSAGE_HEIGHT = 200;
-    private static final int LISTBOX_HEIGHT = 200;
-
-    private static final int X_MDIALOG_MARGIN = 5;
-    private static final int X_MDIALOG_TEXTFIELD_SIZE = 10;
-
     private static final int X_MESSAGE_TYPE = 0;
     private static final int X_DIALOG_TYPE = 1;
     private static final int X_CHOOSE_TYPE = 2;
     private static final int X_MDIALOG_TYPE = 3;
     private static final int X_CHOICES_TYPE = 4;
-
-    private static final String SCIDIR = System.getenv("SCI");
-
-    /**
-     * Offset around object and its ScrollPane
-     */
-    private static final int OFFSET = 5;
 
     /**
      * New line character for mutli-line text components
@@ -100,23 +93,27 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private static final String SEPARATOR = "[--sep--]";
 
     /**
+     * The minimal fixed width of any mdialog inputs
+     */
+    private static final int X_MDIALOG_TEXTFIELD_SIZE = 10;
+
+    /**
      * Icons
      */
-    private final Icon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "48x48"));
-    private final Icon passwdIcon = new ImageIcon(ScilabSwingUtilities.findIcon("emblem-readonly", "48x48"));
-    private final Icon hourglassIcon = new ImageIcon(ScilabSwingUtilities.findIcon("process-working"));
+    private final Icon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab", "48x48"));
+    private final Icon passwdIcon = new ImageIcon(FindIconHelper.findIcon("emblem-readonly", "48x48"));
+    private final Icon hourglassIcon = new ImageIcon(FindIconHelper.findIcon("process-working"));
 
     private int elementId;
 
-    private Icon messageIcon; // = new
-    // ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    private Icon messageIcon;
 
     private int scilabDialogType = X_MESSAGE_TYPE;
 
     private Component parentWindow;
 
-    private final JButton btnOK = new JButton("OK");
-    private final JButton btnCancel = new JButton("Cancel");
+    private final JButton btnOK = new JButton(Messages.gettext("OK"));
+    private final JButton btnCancel = new JButton(Messages.gettext("Cancel"));
 
     /**
      * Used for x_dialog
@@ -139,7 +136,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private String[] lineLabels;
     private String[] columnLabels;
     private String[] defaultInput;
-    private JTextField[] textFields;
+    private Component[] textFields;
     private String[] userValues;
 
     /**
@@ -162,7 +159,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
     private String title;
     private final Image imageForIcon = ((ImageIcon) scilabIcon).getImage();
     private int messageType = -1;
-    private Object[] objs;
+    private Component[] objs;
     private Object[] buttons;
     private boolean modal = true;
     private JCheckBox checkbox;
@@ -278,9 +275,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         });
 
         JScrollPane messageScrollPane = new JScrollPane(messageLabel);
-        int scrollWidth = (int) Math.min(WINDOW_WIDTH, messageLabel.getPreferredSize().getWidth() + OFFSET);
-        int scrollHeight = (int) Math.min(MESSAGE_HEIGHT, messageLabel.getPreferredSize().getHeight() + OFFSET);
-        messageScrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
         // Make the scroll Pane transparent
         messageScrollPane.setOpaque(false);
         messageScrollPane.getViewport().setOpaque(false);
@@ -294,7 +288,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             // All objects in the MessageBox:
             //  - Message
             //  - Editable zone
-            objs = new Object[2];
+            objs = new Component[2];
 
             objs[0] = messageScrollPane;
 
@@ -393,10 +387,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             // Editable text zone
             JScrollPane scrollPane = new JScrollPane(panel);
 
-            scrollWidth = (int) Math.min(WINDOW_WIDTH, panel.getPreferredSize().getWidth() + OFFSET);
-            scrollHeight = (int) Math.min(LISTBOX_HEIGHT, panel.getPreferredSize().getHeight() + OFFSET);
-            scrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
-
             objs[1] = scrollPane;
 
             // And now the buttons
@@ -419,7 +409,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             // All objects in the MessageBox:
             //  - Message
             //  - Editable zone
-            objs = new Object[2];
+            objs = new Component[2];
 
             objs[0] = messageScrollPane;
 
@@ -429,58 +419,138 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             } else {
                 numberOfColumns = columnLabels.length + 1;
             }
-            GridBagLayout layout = new GridBagLayout();
-            JPanel panel = new JPanel(layout);
-            GridBagConstraints constraints = new GridBagConstraints();
-            constraints.gridx = 0;
-            constraints.gridy = 0;
-            constraints.fill = GridBagConstraints.HORIZONTAL;
-            constraints.insets = new Insets(X_MDIALOG_MARGIN, X_MDIALOG_MARGIN, X_MDIALOG_MARGIN, X_MDIALOG_MARGIN);
 
-            int line = 0;
-            int col = 0;
-            // Optional first line
+            // Allocate the Java Components
+            final JLabel[] colLabels;
+            final JLabel[] rowLabels;
             if (columnLabels != null) {
-                // Column label for "Row labels" column
-                panel.add(new JLabel(""), constraints);
-                constraints.gridx++;
-                for (col = 0; col < columnLabels.length; col++) {
-                    panel.add(new JLabel(columnLabels[col]), constraints);
-                    constraints.gridx++;
-                }
-                constraints.gridy++;
-            }
+                // Optional first line
+                colLabels = new JLabel[columnLabels.length + 1];
 
+                // the first column label is on top of the row label
+                colLabels[0] = new JLabel("");
+
+                // create the components on each column
+                for (int col = 0; col < columnLabels.length; col++) {
+                    colLabels[col + 1] = new JLabel(columnLabels[col]);
+                }
+            } else {
+                // there is no first line
+                colLabels = null;
+            }
+            rowLabels = new JLabel[lineLabels.length];
+            for (int row = 0; row < lineLabels.length; row++) {
+                // add a gap (a space) between the column's labels and data
+                rowLabels[row] = new JLabel(lineLabels[row] + " ");
+            }
 
             // Prepare return value
             if (columnLabels == null) {
                 userValues = new String[lineLabels.length];
-                textFields = new JTextField[lineLabels.length];
+                textFields = new Component[lineLabels.length];
             } else {
                 userValues = new String[lineLabels.length * columnLabels.length];
-                textFields = new JTextField[lineLabels.length * columnLabels.length];
-            }
-            for (line = 0; line < lineLabels.length; line++) {
-                constraints.gridx = 0;
-                panel.add(new JLabel(lineLabels[line]), constraints);
-                constraints.gridx++;
-                for (col = 0; col < numberOfColumns - 1; col++) {
-                    textFields[col * lineLabels.length + line] = new JTextField(defaultInput[col * lineLabels.length + line]);
-                    panel.add(textFields[col * lineLabels.length + line], constraints);
-                    textFields[col * lineLabels.length + line].setColumns(X_MDIALOG_TEXTFIELD_SIZE);
-                    constraints.gridx++;
-                }
-                constraints.gridy++;
+                textFields = new Component[lineLabels.length * columnLabels.length];
             }
 
-            panel.doLayout();
+            // set the initial values
+            for (int line = 0; line < lineLabels.length; line++) {
+                for (int col = 0; col < numberOfColumns - 1; col++) {
+                    final String initial = defaultInput[col * lineLabels.length + line];
+
+                    final Component c;
+                    if ("%T".equalsIgnoreCase(initial)) {
+                        c = new JCheckBox();
+                        ((JCheckBox) c).setSelected(true);
+                    } else if ("%F".equalsIgnoreCase(initial)) {
+                        c = new JCheckBox();
+                        ((JCheckBox) c).setSelected(false);
+                    } else {
+                        c = new JTextField(initial);
+
+                        // force an initial width when the initial text is too small
+                        if (initial.length() < X_MDIALOG_TEXTFIELD_SIZE) {
+                            ((JTextField) c).setColumns(X_MDIALOG_TEXTFIELD_SIZE);
+                        }
+                    }
+
+                    textFields[col * lineLabels.length + line] = c;
+                    rowLabels[line].setLabelFor(c);
+                }
+            }
+
+            // Prepare the layout
+            JPanel panel = new JPanel();
+            GroupLayout layout = new GroupLayout(panel);
+            panel.setLayout(layout);
+
+            final SequentialGroup horizontalGroup = layout.createSequentialGroup().addContainerGap();
+            final SequentialGroup verticalGroup = layout.createSequentialGroup().addContainerGap();
+
+            // Horizontal layout
+            {
+                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.LEADING);
+
+                if (colLabels != null) {
+                    localGroup.addComponent(colLabels[0]);
+                }
+                // special case for the row label
+                for (int row = 0; row < lineLabels.length; row++) {
+                    localGroup.addComponent(rowLabels[row]);
+                }
+                horizontalGroup.addGroup(localGroup);
+                horizontalGroup.addGap(18, 18, 18);
+            }
+            for (int col = 0 ; col < numberOfColumns - 1; col++) {
+                if (col > 0) {
+                    horizontalGroup.addPreferredGap(ComponentPlacement.RELATED);
+                }
+
+                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.CENTER);
+
+                if (colLabels != null) {
+                    // center the labels to be rendered like a spreadsheet
+                    localGroup.addComponent(colLabels[col + 1]);
+                }
+
+                // common case for the initial values
+                for (int row = 0; row < lineLabels.length; row++) {
+                    localGroup.addComponent(textFields[col * lineLabels.length + row]);
+                }
+
+                horizontalGroup.addGroup(localGroup);
+            }
+            layout.setHorizontalGroup(
+                layout.createParallelGroup(Alignment.LEADING)
+                .addGroup(horizontalGroup.addContainerGap()));
+
+            // Vertical layout
+            if (colLabels != null) {
+                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.BASELINE);
+                for (int col = 0 ; col < numberOfColumns; col++) {
+                    localGroup.addComponent(colLabels[col]);
+                }
+                verticalGroup.addGroup(localGroup);
+                verticalGroup.addGap(18, 18, 18);
+            }
+            for (int row = 0; row < lineLabels.length; row++) {
+                if (row > 0) {
+                    verticalGroup.addPreferredGap(ComponentPlacement.RELATED);
+                }
+
+                final ParallelGroup localGroup = layout.createParallelGroup(Alignment.BASELINE);
+                localGroup.addComponent(rowLabels[row]);
+                for (int col = 0 ; col < numberOfColumns - 1; col++) {
+                    localGroup.addComponent(textFields[col * lineLabels.length + row]);
+                }
+                verticalGroup.addGroup(localGroup);
+            }
+            layout.setVerticalGroup(
+                layout.createParallelGroup(Alignment.LEADING)
+                .addGroup(verticalGroup.addContainerGap()));
 
             // Editable text zone
             JScrollPane scrollPane = new JScrollPane(panel);
-
-            scrollWidth = (int) Math.min(WINDOW_WIDTH, panel.getPreferredSize().getWidth() + OFFSET);
-            scrollHeight = (int) Math.min(LISTBOX_HEIGHT, panel.getPreferredSize().getHeight() + OFFSET);
-            scrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
 
             objs[1] = scrollPane;
 
@@ -504,7 +574,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             // All objects in the MessageBox:
             //  - Message
             //  - Listbox
-            objs = new Object[2];
+            objs = new Component[2];
 
             // Add the message
             objs[0] = messageScrollPane;
@@ -513,19 +583,21 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             objs[1] = createXchooseListBox();
 
             // And now the buttons
-            buttons = new Object[1];
+            buttons = new Object[2];
             if (buttonsLabels != null) {
                 btnCancel.setText(buttonsLabels[0]);
             }
+            btnOK.addActionListener(this);
             btnCancel.addActionListener(this);
             buttons[0] = btnCancel;
+            buttons[1] = btnOK;
         } else if (scilabDialogType == X_DIALOG_TYPE) {
             // Create a MessageBox for Scilab x_dialog
 
             // All objects in the MessageBox:
             //  - Message
             //  - Editable zone
-            objs = new Object[2];
+            objs = new Component[2];
 
             objs[0] = messageScrollPane;
 
@@ -533,9 +605,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             textArea = new JTextArea(initialValue);
             textArea.setRows(initialValueSize);
             JScrollPane scrollPane = new JScrollPane(textArea);
-            scrollWidth = (int) Math.min(WINDOW_WIDTH, textArea.getPreferredSize().getWidth() + OFFSET);
-            scrollHeight = (int) Math.min(LISTBOX_HEIGHT, textArea.getPreferredSize().getHeight() + OFFSET);
-            scrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
 
             objs[1] = scrollPane;
 
@@ -559,7 +628,7 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             // All objects in the MessageBox:
             //  - Message
             int nb = checkbox == null ? 1 : 2;
-            objs = new Object[nb];
+            objs = new Component[nb];
 
             // Add the message
             objs[0] = messageScrollPane;
@@ -593,13 +662,39 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         }
         // Display
         ((JScrollPane) objs[0]).setBorder(BorderFactory.createEmptyBorder());
+        final JPanel message = new JPanel(new BorderLayout());
+
+        /*
+         * If there is only one object to display then center it
+         * If 2 objects then add a header and a centered component
+         * If more then add a header and append all other objects to a centered container
+         */
+        if (objs.length > 1) {
+            message.add(objs[0], BorderLayout.NORTH);
+        } else {
+            message.add(objs[0], BorderLayout.CENTER);
+        }
+
+        if (objs.length == 2) {
+            message.add(objs[1], BorderLayout.CENTER);
+        }
+
+        if (objs.length > 2) {
+            // seems that this case is never called as x_message is no more available into Scilab.
+            final JPanel content = new JPanel();
+            for (int i = 1; i < objs.length; i++) {
+                content.add(objs[i]);
+            }
+            message.add(content, BorderLayout.CENTER);
+        }
+
         if (messageType != -1) {
-            setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
+            setContentPane(new JOptionPane(message, messageType, JOptionPane.CANCEL_OPTION, null, buttons));
         } else {
             if (messageIcon == null) {
                 messageIcon = scilabIcon;
             }
-            setContentPane(new JOptionPane(objs, messageType, JOptionPane.CANCEL_OPTION, messageIcon, buttons));
+            setContentPane(new JOptionPane(message, messageType, JOptionPane.CANCEL_OPTION, messageIcon, buttons));
         }
         pack();
         super.setModal(modal); /* Must call the JDialog class setModal */
@@ -648,7 +743,16 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                 userValue = textArea.getText();
             } else if (scilabDialogType == X_MDIALOG_TYPE) {
                 for (int textFieldIndex = 0; textFieldIndex < textFields.length; textFieldIndex++) {
-                    userValues[textFieldIndex] = textFields[textFieldIndex].getText();
+                    final Component c = textFields[textFieldIndex];
+                    if (c instanceof JTextField) {
+                        userValues[textFieldIndex] = ((JTextField) c).getText();
+                    } else if (c instanceof JCheckBox) {
+                        if (((JCheckBox) c).isSelected()) {
+                            userValues[textFieldIndex] = "%t";
+                        } else {
+                            userValues[textFieldIndex] = "%f";
+                        }
+                    }
                 }
                 userValue = ""; /* To make getValueSize return a non zero value */
             } else if (scilabDialogType == X_CHOICES_TYPE) {
@@ -664,6 +768,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     }
                 }
                 userValue = ""; /* To make getValueSize return a non zero value */
+            } else if (scilabDialogType == X_CHOOSE_TYPE) {
+                selectedItem = listBox.getSelectedIndex() + 1;
             }
             selectedButton = 1;
         } else if (ae.getSource() == btnCancel) {
@@ -829,9 +935,6 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
         }
         listBox.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         JScrollPane scrollPane = new JScrollPane(listBox);
-        int scrollWidth = (int) Math.min(WINDOW_WIDTH, listBox.getPreferredSize().getWidth() + OFFSET);
-        int scrollHeight = LISTBOX_HEIGHT;
-        scrollPane.setPreferredSize(new Dimension(scrollWidth, scrollHeight));
         return  scrollPane;
     }
 

@@ -7,13 +7,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include "getfastcode.h"
-#include "stack-def.h"
 #include "core_math.h"
 /*--------------------------------------------------------------------------*/
 /**
@@ -66,37 +65,6 @@ int convertAsciiCodeToScilabCode(unsigned char scilab_char)
 /*--------------------------------------------------------------------------*/
 unsigned char convertScilabCodeToAsciiCode(int scilab_code)
 {
-#define eol 99
-#define EXCLAMATION_CHAR '!'
-
-    if (scilab_code == eol)
-    {
-        return (unsigned char)EXCLAMATION_CHAR;
-    }
-    else
-    {
-        if (Abs(scilab_code) > csiz)
-        {
-            if (scilab_code > eol)
-            {
-                return (unsigned char)(scilab_code - (eol + 1));
-            }
-            else
-            {
-                return EXCLAMATION_CHAR;
-            }
-        }
-        else
-        {
-            if (scilab_code < 0)
-            {
-                return (unsigned char)C2F(cha1).alfb[Abs(scilab_code)];
-            }
-            else
-            {
-                return(unsigned char) C2F(cha1).alfa[scilab_code];
-            }
-        }
-    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

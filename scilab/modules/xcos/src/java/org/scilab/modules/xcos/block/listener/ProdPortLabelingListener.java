@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -80,28 +80,29 @@ public class ProdPortLabelingListener implements PropertyChangeListener,
         /**
          * Set the ports labels
          */
-        for (InputPort port : ports) {
-            final double gain;
-
-            if (data.isEmpty()
-                    || data.getRealPart().length < port.getOrdering()) {
-                gain = 1;
-            } else {
-                gain = data.getRealPart()[port.getOrdering() - 1][0];
-            }
-
-            port.setValue(getLabel(gain));
-        }
+        // FIXME
+        //        for (InputPort port : ports) {
+        //            final double gain;
+        //
+        //            if (data.isEmpty()
+        //                    || data.getRealPart().length < port.getOrdering()) {
+        //                gain = 1;
+        //            } else {
+        //                gain = data.getRealPart()[port.getOrdering() - 1][0];
+        //            }
+        //
+        //            port.setValue(getLabel(gain));
+        //        }
 
         /**
-         * Check if all the values are equals to the default one.
+         * Check if all the values are equal to the default one.
          */
         if (!hasDefaultValue(ports)) {
             return;
         }
 
         /**
-         * When all values are equals to the default one, set it to the block
+         * When all values are equal to the default one, set it to the block
          * and hide the children.
          */
         source.setValue(NOT_PRINTED_LABEL);

@@ -16,9 +16,9 @@ function [status, msg] = xcosPalExport(pal, path)
 endfunction
 function xcosPalLoad(pal, category)
     if typeof(pal) <> "string" then bugmes();quit;end
-    if size(pal, '*') <> 1 then bugmes();quit;end
+    if size(pal, "*") <> 1 then bugmes();quit;end
     if typeof(category) <> "string" then bugmes();quit;end
-    if and([size(category, 'r') > 1, size(category, 'c') > 1]) then bugmes();quit;end
+    if and([size(category, "r") > 1, size(category, "c") > 1]) then bugmes();quit;end
 endfunction
 funcprot(prot);
 // start of the test
@@ -28,5 +28,5 @@ pal = xcosPalAddBlock(pal, "BIGSOM_f");
 if ~xcosPalAdd(pal) then bugmes();quit;end
 if ~xcosPalAdd(pal, "my Summation blocks") then bugmes();quit;end
 if ~xcosPalAdd(pal, ["Customs" "my Summation blocks"]) then bugmes();quit;end
-export_to_hdf5(TMPDIR + "/palette.sod", "pal");
+save(TMPDIR + "/palette.sod", "pal");
 if ~xcosPalAdd(TMPDIR + "/palette.sod") then bugmes();quit;end

@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6517
 //
 // <-- Short Description -->
-// This test validate the (Xcos file loading, export to hdf5)(Java part) and 
+// This test validates the (Xcos file loading, export to hdf5)(Java part) and
 // (import from hdf5)(Scilab part)
 
 result = importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_6517.zcos");

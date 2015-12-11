@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,6 +23,7 @@ import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.xml.sax.SAXException;
 
 import com.mxgraph.model.mxCell;
+import com.mxgraph.util.mxConstants;
 import com.mxgraph.util.mxPoint;
 import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUtils;
@@ -65,18 +66,30 @@ public class ScilabGraphView extends mxGraphView {
                  * scaled generated image values.
                  */
                 try {
-                    final Icon icon = ScilabGraphUtils.getTexIcon(label);
+                    float fontSize = (float) (mxUtils.getInt(style, mxConstants.STYLE_FONTSIZE, 16) * scale);
+
+                    final Icon icon = ScilabGraphUtils.getTexIcon(label, fontSize);
+                    // the icon is generated scaled so width and height are already scaled
                     w = icon.getIconWidth();
                     h = icon.getIconHeight();
 
-                    final mxPoint offset = state.getOrigin();
-                    final mxRectangle size = new mxRectangle();
-                    size.setWidth(w);
-                    size.setHeight(h);
+                    final mxPoint offset = state.getAbsoluteOffset();
+                    double x = offset.getX();
+                    double y = offset.getY();
 
-                    labelBounds = mxUtils.getScaledLabelBounds(offset.getX(),
-                                  offset.getY(), size, state.getWidth(),
-                                  state.getHeight(), style, scale);
+                    final mxRectangle vertexBounds;
+                    if (!graph.getModel().isEdge(cell)) {
+                        vertexBounds = state;
+
+                        x += vertexBounds.getX();
+                        y += vertexBounds.getY();;
+
+                        // the label is always centered
+                        x -= (w - vertexBounds.getWidth()) / 2 ;
+                        y -= (h - vertexBounds.getHeight()) / 2 ;
+                    }
+
+                    labelBounds = new mxRectangle(x, y, w, h);
                 } catch (Exception e) {
                     // popup an error
                     // FIXME: use a ScilabGraphTab instead of null there

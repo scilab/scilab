@@ -14,7 +14,7 @@
             <varlistentry>
                 <term>filename</term>
                 <listitem>
-                    <para>(optional) a string given the filename (eventually preceeding
+                    <para>(optional) a string given the filename (eventually preceding
                         by the path), if filename is not given then the function use <link linkend="uigetfile">uigetfile</link> to get filename
                         interactively
                     </para>

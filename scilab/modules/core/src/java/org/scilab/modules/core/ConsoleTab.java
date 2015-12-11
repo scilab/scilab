@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,16 +19,21 @@ import java.util.UUID;
 import javax.swing.JTextArea;
 
 import org.scilab.modules.commons.ScilabCommonsUtils;
+import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.gui.ScilabTermination;
 import org.scilab.modules.gui.bridge.CallScilabBridge;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.console.ScilabConsole;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
 import org.scilab.modules.gui.tab.ScilabTab;
 import org.scilab.modules.gui.tab.Tab;
+import org.scilab.modules.gui.textbox.ScilabTextBox;
+import org.scilab.modules.gui.textbox.TextBox;
+import org.scilab.modules.gui.toolbar.ToolBar;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.ConfigManager;
+import org.scilab.modules.gui.utils.ToolBarBuilder;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.jvm.LoadClassPath;
 import org.scilab.modules.localization.Messages;
@@ -43,6 +48,7 @@ public class ConsoleTab {
     private static final String SEE_DEFAULT_PATHS = "See SCI/etc/classpath.xml for default paths.";
     private static final String NOCONSOLE = Messages.gettext("No available console !\nPlease use STD mode.");
     private static final String EMPTYTAB = Messages.gettext("Empty tab");
+    private static final String MAINTOOLBARXMLFILE = ScilabConstants.SCI + "/modules/gui/etc/main_toolbar.xml";
 
     /**
      * Create a console tab
@@ -54,8 +60,8 @@ public class ConsoleTab {
             Tab tab = ScilabTab.createTab(EMPTYTAB, uuid);
             JTextArea textarea = new JTextArea(NOCONSOLE);
             textarea.setEditable(false);
-            ((SwingScilabTab) tab.getAsSimpleTab()).setContentPane(textarea);
-            ((SwingScilabTab) tab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
+            ((SwingScilabDockablePanel) tab.getAsSimpleTab()).setContentPane(textarea);
+            ((SwingScilabDockablePanel) tab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
 
             ClosingOperationsManager.registerClosingOperation(tab, new ClosingOperationsManager.ClosingOperation() {
 
@@ -65,18 +71,18 @@ public class ConsoleTab {
 
                 public void destroy() { }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
+                public String askForClosing(final List<SwingScilabDockablePanel> list) {
                     return null;
                 }
 
                 @Override
-                public void updateDependencies(List<SwingScilabTab> list,
-                ListIterator<SwingScilabTab> it) {
+                public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                               ListIterator<SwingScilabDockablePanel> it) {
                 }
             });
 
             ClosingOperationsManager.addDependencyWithRoot(tab);
-            WindowsConfigurationManager.restorationFinished((SwingScilabTab) tab.getAsSimpleTab());
+            WindowsConfigurationManager.restorationFinished((SwingScilabDockablePanel) tab.getAsSimpleTab());
 
             return tab;
         }
@@ -108,13 +114,13 @@ public class ConsoleTab {
                     }
                 }
 
-                public String askForClosing(final List<SwingScilabTab> list) {
+                public String askForClosing(final List<SwingScilabDockablePanel> list) {
                     return "Scilab";
                 }
 
                 @Override
-                public void updateDependencies(List<SwingScilabTab> list,
-                ListIterator<SwingScilabTab> it) {
+                public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                               ListIterator<SwingScilabDockablePanel> it) {
                 }
             });
 
@@ -131,12 +137,23 @@ public class ConsoleTab {
         /** Adding content into container */
         ScilabConsole.getConsole().setMaxOutputSize(ConfigManager.getMaxOutputSize());
         consoleTab.addMember(ScilabConsole.getConsole());
-        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
-        WindowsConfigurationManager.restorationFinished((SwingScilabTab) consoleTab.getAsSimpleTab());
+        ((SwingScilabDockablePanel) consoleTab.getAsSimpleTab()).setAssociatedXMLIDForHelp("console");
 
         MenuBar menuBar = ScilabMenuBar.createMenuBar();
-        ((SwingScilabTab) consoleTab.getAsSimpleTab()).setMenuBar(menuBar);
+        ((SwingScilabDockablePanel) consoleTab.getAsSimpleTab()).setMenuBar(menuBar);
         ScilabConsole.getConsole().addMenuBar(menuBar);
+
+        ToolBar toolBar = ToolBarBuilder.buildToolBar(MAINTOOLBARXMLFILE);
+        TextBox infoBar = ScilabTextBox.createTextBox();
+
+        toolBar.setVisible(true); // Enabled in scilab.start
+
+        ((SwingScilabDockablePanel) consoleTab.getAsSimpleTab()).setToolBar(toolBar);
+        ((SwingScilabDockablePanel) consoleTab.getAsSimpleTab()).setInfoBar(infoBar);
+
+        ScilabConsole.getConsole().addMenuBar(consoleTab.getMenuBar());
+        ScilabConsole.getConsole().addToolBar(toolBar);
+        ScilabConsole.getConsole().addInfoBar(infoBar);
 
         return consoleTab;
     }

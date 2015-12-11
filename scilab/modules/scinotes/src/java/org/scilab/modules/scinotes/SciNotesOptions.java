@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,9 +22,11 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
-
 import org.scilab.modules.commons.OS;
+
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 
 /**
@@ -58,11 +60,12 @@ public class SciNotesOptions {
         public boolean useScinotes;
         public boolean externalCmd;
         public String cmd;
+        public boolean completeAtEOL;
 
         private Preferences() { }
 
-        @XConfAttribute(tag = "scinotes-preferences", attributes = {"restart-reopen", "add-line-termination", "number-of-recently-open", "encoding", "eol", "scinotes", "cmd", "external-cmd"})
-        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, boolean externalCmd, String cmd) {
+        @XConfAttribute(tag = "scinotes-preferences", attributes = {"restart-reopen", "add-line-termination", "number-of-recently-open", "encoding", "eol", "scinotes", "cmd", "external-cmd", "complete-at-eol"})
+        private void set(boolean restartOpen, boolean addLineTermination, int numberOfRecentlyOpen, String encoding, String eol, boolean useScinotes, String cmd, boolean externalCmd, boolean completeAtEOL) {
             this.restartOpen = restartOpen;
             this.addLineTermination = addLineTermination;
             this.numberOfRecentlyOpen = numberOfRecentlyOpen > 0 ? numberOfRecentlyOpen : 1;
@@ -86,6 +89,7 @@ public class SciNotesOptions {
             this.useScinotes = useScinotes;
             this.externalCmd = externalCmd;
             this.cmd = cmd;
+            this.completeAtEOL = completeAtEOL;
         }
     }
 
@@ -210,7 +214,7 @@ public class SciNotesOptions {
         private void set(boolean enable) {
             this.enable = enable;
             if (enable) {
-                XPathFactory xpathFactory = XPathFactory.newInstance();
+                XPathFactory xpathFactory = ScilabXPathFactory.newInstance();
                 XPath xp = xpathFactory.newXPath();
                 try {
                     header = (String) xp.compile("string(" + HEADERPATH + ")").evaluate(doc, XPathConstants.STRING);

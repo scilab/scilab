@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,9 +29,10 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 /*------------------------------------------------------------------------*/
-int set_color_range_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_color_range_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int values[2];
@@ -51,16 +52,16 @@ int set_color_range_property(void* _pvCtx, char* pobjUID, void* _pvData, int val
 
     copyDoubleVectorToIntFromStack(_pvData, values, 2);
     /* Returns the number of colors of pobj's parent Figure */
-    nbColors = sciGetNumColors(pobjUID);
+    nbColors = sciGetNumColors(iObjUID);
 
     if (  values[0] > nbColors || values[0] < 0
             || values[1] > nbColors || values[1] < 0)
     {
         /* It is possible to set color_range outside the colormap, however it won't be used.*/
-        sciprint(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "color_range");
+        Sciwarning(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "color_range");
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_COLOR_RANGE__, values, jni_int_vector, 2);
+    status = setGraphicObjectProperty(iObjUID, __GO_COLOR_RANGE__, values, jni_int_vector, 2);
 
     if (status == TRUE)
     {

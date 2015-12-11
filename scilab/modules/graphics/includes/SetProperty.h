@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -34,25 +34,29 @@
 #include "dynlib_graphics.h"
 #include "BOOL.h"
 
-GRAPHICS_IMPEXP int sciSetLineWidth (char* pobj, double linewidth) ;  /* SET */
+GRAPHICS_IMPEXP int sciSetLineWidth (int iObj, double linewidth) ;  /* SET */
 
-GRAPHICS_IMPEXP int sciSetLineStyle (char* pobj, int linestyle) ; /* SET */
+GRAPHICS_IMPEXP int sciSetLineStyle (int iObj, int linestyle) ; /* SET */
 
-GRAPHICS_IMPEXP int sciSetMarkSize (char* pobj, int marksize); /* SET */
+GRAPHICS_IMPEXP int sciSetMarkSize (int iObj, int *markSizes, int numMarkSizes); /* SET */
 
 /* Text Functions */
-GRAPHICS_IMPEXP int sciSetText (  char* pobj, char ** text, int nbRow, int nbCol) ; /* SET */
+GRAPHICS_IMPEXP int sciSetText (int iObj, char ** text, int nbRow, int nbCol) ; /* SET */
 
 /* GMODE */
 GRAPHICS_IMPEXP int sciSetDefaultValues (void); /* SET */
 
 
 /* Window Functions */
-GRAPHICS_IMPEXP int sciSetSelectedSubWin (char* psubwinobj); /* SET */
+GRAPHICS_IMPEXP int sciSetSelectedSubWin (int iSubwinobj); /* SET */
 
-GRAPHICS_IMPEXP int sciSetPoint(char* pthis, double *tab, int *numrow, int *numcol); /* SET */
+GRAPHICS_IMPEXP int sciSetPoint(int iObj, double *tab, int *numrow, int *numcol); /* SET */
 
-GRAPHICS_IMPEXP BOOL sciCheckColorIndex(char* pObj, int colorIndex);
+GRAPHICS_IMPEXP BOOL sciCheckColorIndex(int iObj, int colorIndex);
+
+GRAPHICS_IMPEXP int sciSetMarkOffset(int iObjUID, int offset);
+
+GRAPHICS_IMPEXP int sciSetMarkStride(int iObjUID, int stride);
 
 /*---------------------------------------------------------------------------*/
 

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function   bool=iscellstr(c)
 
@@ -21,7 +21,7 @@ function   bool=iscellstr(c)
             if typeof(c)=="ce"
                 bool=%T;
                 for i=1:size(c,"*")
-                    if typeof(c(i).entries)<>"string" then
+                    if typeof(c{i})<>"string" then
                         bool=%F;
                         break
                     end

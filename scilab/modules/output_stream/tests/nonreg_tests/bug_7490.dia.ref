@@ -14,16 +14,13 @@
 // %inf had not always same display
 A = %inf;
 A
- A  =
- 
-    Inf  
+A  = 
+    Inf
 format('e', 8);
 A
- A  =
- 
-    Inf  
+A  = 
+    Inf
 format('e', 16);
 A
- A  =
- 
-    Inf  
+A  = 
+    Inf

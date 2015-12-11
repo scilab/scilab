@@ -6,27 +6,28 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "extraction.hxx"
+#include "gw_xml.h"
 
 using namespace org_modules_xml;
 
-int sci_percent_XMLDoc_e(char *fname, unsigned long fname_len)
+int sci_percent_XMLDoc_e(char *fname, void* pvApiCtx)
 {
     return sci_extraction < org_modules_xml::XMLDocument > (fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLElem_e(char *fname, unsigned long fname_len)
+int sci_percent_XMLElem_e(char *fname, void* pvApiCtx)
 {
     return sci_extraction < XMLElement > (fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLNs_e(char *fname, unsigned long fname_len)
+int sci_percent_XMLNs_e(char *fname, void* pvApiCtx)
 {
     return sci_extraction < XMLNs > (fname, pvApiCtx);
 }

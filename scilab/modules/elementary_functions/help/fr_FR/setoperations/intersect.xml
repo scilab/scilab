@@ -124,6 +124,9 @@ A(:,ka)
         <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
+                <link linkend="members">members</link>
+            </member>
+            <member>
                 <link linkend="unique">unique</link>
             </member>
             <member>

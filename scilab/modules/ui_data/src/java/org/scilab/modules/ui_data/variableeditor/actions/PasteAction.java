@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,21 +17,22 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.text.ParsePosition;
 import java.util.StringTokenizer;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JTable;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
-import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.ui_data.datatable.SwingEditvarTableModel;
 import org.scilab.modules.ui_data.variableeditor.SwingScilabVariableEditor;
 
@@ -74,6 +75,15 @@ public final class PasteAction extends CommonCallBack {
         JTable table = editor.getCurrentTable();
         int col = table.getSelectedColumn();
         int row = table.getSelectedRow();
+
+        if (col == -1) {
+            col = 0;
+        }
+
+        if (row == -1) {
+            row = 0;
+        }
+
         table.setColumnSelectionInterval(col, col);
         table.setRowSelectionInterval(row, row);
         String str = "";
@@ -85,15 +95,26 @@ public final class PasteAction extends CommonCallBack {
         } catch (IOException ex2) {
             System.err.println(ex2);
         }
+
         StringTokenizer rElems = new StringTokenizer(str, "\n");
         int countRows = rElems.countTokens();
         Vector vr = new Vector(countRows);
+        NumberFormat format = NumberFormat.getInstance();
+        ParsePosition position = new ParsePosition(0);
+        format.setParseIntegerOnly(false);
         for (int i = 0; i < countRows; i++) {
             StringTokenizer cElems = new StringTokenizer(rElems.nextToken(), "\t");
             int countCols = cElems.countTokens();
             Vector vc = new Vector(countCols);
             for (int j = 0; j < countCols; j++) {
-                vc.addElement(cElems.nextToken());
+                String ss = cElems.nextToken();
+                Number x = format.parse(ss, position);
+                if (position.getIndex() == ss.length()) {
+                    vc.addElement(x.toString());
+                } else {
+                    vc.addElement(ss);
+                }
+                position.setIndex(0);
             }
             vr.addElement(vc);
         }
@@ -117,12 +138,13 @@ public final class PasteAction extends CommonCallBack {
      * @param title tooltip for the button
      * @return the button
      */
-    public static PushButton createButton(SwingScilabVariableEditor editor, String title) {
-        PushButton button = ScilabPushButton.createPushButton();
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).addActionListener(new PasteAction(editor, title));
+    public static JButton createButton(SwingScilabVariableEditor editor, String title) {
+        JButton button = new JButton();
+        ScilabLAF.setDefaultProperties(button);
+        button.addActionListener(new PasteAction(editor, title));
         button.setToolTipText(title);
-        ImageIcon imageIcon = new ImageIcon(ScilabSwingUtilities.findIcon("edit-paste"));
-        ((SwingScilabPushButton) button.getAsSimplePushButton()).setIcon(imageIcon);
+        ImageIcon imageIcon = new ImageIcon(FindIconHelper.findIcon("edit-paste"));
+        button.setIcon(imageIcon);
 
         return button;
     }

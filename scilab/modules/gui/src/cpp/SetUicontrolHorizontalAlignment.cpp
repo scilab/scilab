@@ -8,13 +8,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolHorizontalAlignment.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
-int SetUicontrolHorizontalAlignment(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolHorizontalAlignment(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* HorizontalAlignment can be left, center or right */
 
@@ -44,7 +47,7 @@ int SetUicontrolHorizontalAlignment(void* _pvCtx, char* sciObjUID, void* _pvData
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_HORIZONTALALIGNMENT__, alignment, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_HORIZONTALALIGNMENT__, alignment, jni_string, 1);
 
     if (status == TRUE)
     {

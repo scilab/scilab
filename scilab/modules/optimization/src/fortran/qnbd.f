@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine qnbd(indqn,simul,n,x,f,g,imp,io,zero,
      & napmax,itmax,epsf,epsg,epsx,df0,binf,bsup,nfac,
@@ -106,11 +106,25 @@ c
       dimension trav(ntrav),itrav(nitrav),izs(*)
       external simul
 c
+c---- initial printing
       if(imp.ge.1) then
-        write(bufstr,1010)
-        call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
-        endif
-1010  format(' *********** qnbd ****************')
+         call basout(io_out, io, '')
+         write(bufstr,1010)
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         write(bufstr,750) n,epsg,imp
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         write(bufstr,751) itmax
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         write(bufstr,752) napmax
+         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
+         call basout(io_out ,io ,
+     $    '------------------------------------------------')
+1010    format(' *********** qnbd (with bound cstr) ****************')
+750     format('dimension=',i10,', epsq=',e24.16,
+     $ ', verbosity level: imp=',i10)
+751     format('max number of iterations allowed: iter=',i10)
+752     format('max number of calls to costf allowed: nap=',i10)
+      endif
 c
 c
 c     parametres caracteristiques de l algorithme

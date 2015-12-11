@@ -16,6 +16,8 @@
 
 // Check that comment are ignored
 
+// <-- CLI SHELL MODE -->
+
 loadmatfile("SCI/modules/matio/tests/nonreg_tests/bug_3780.txt", "-ascii");
 
 if ~exists("bug_3780", "local") then pause;end

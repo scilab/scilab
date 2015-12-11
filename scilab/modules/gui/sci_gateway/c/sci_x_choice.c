@@ -7,12 +7,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "gw_gui.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
@@ -21,7 +21,7 @@
 #include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_x_choice(char *fname, unsigned long fname_len)
+int sci_x_choice(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -51,7 +51,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* READ THE DEFAULT VALUES */
-    if (VarType(1) ==  sci_matrix)
+    if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrdefaultValuesAdr);
         if (sciErr.iErr)
@@ -65,7 +65,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
             return 1;
         }
 
@@ -94,7 +94,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
         // Retrieve a matrix of string at position 2.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlabelsAdr, &nbRow, &nbCol, &labelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
             return 1;
         }
 
@@ -117,7 +117,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
     freeAllocatedMatrixOfString(nbRow, nbCol, labelsAdr);
 
     /* READ THE LABELS */
-    if (VarType(3) ==  sci_strings)
+    if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrlineLabelsAdr);
         if (sciErr.iErr)
@@ -129,7 +129,7 @@ int sci_x_choice(char *fname, unsigned long fname_len)
         // Retrieve a matrix of string at position 3.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrlineLabelsAdr, &nbRowLineLabels, &nbColLineLabels, &lineLabelsAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
             return 1;
         }
 

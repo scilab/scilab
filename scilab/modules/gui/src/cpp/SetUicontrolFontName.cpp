@@ -8,13 +8,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolFontName.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
-int SetUicontrolFontName(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolFontName(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // Font Name must be only one character string
 
@@ -22,16 +25,16 @@ int SetUicontrolFontName(void* _pvCtx, char* sciObjUID, void* _pvData, int value
 
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontName");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string expected.\n")), "FontName");
         return SET_PROPERTY_ERROR;
     }
     if (nbCol != 1 || nbRow == 0)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontName");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "FontName");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FONTNAME__, _pvData, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FONTNAME__, _pvData, jni_string, 1);
 
     if (status == TRUE)
     {

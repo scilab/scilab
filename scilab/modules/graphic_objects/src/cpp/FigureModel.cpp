@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,19 +18,19 @@ extern "C"
 #include "FigureModel.h"
 }
 
-char const* getFigureModel(void)
+int getFigureModel(void)
 {
     return ScilabView::getFigureModel();
 }
 
-void setFigureModel(char const* UID)
+void setFigureModel(int UID)
 {
     ScilabView::setFigureModel(UID);
 }
 
-BOOL isFigureModel(char const* UID)
+BOOL isFigureModel(int UID)
 {
-    if (strcmp(UID, getFigureModel()) == 0)
+    if (UID == getFigureModel())
     {
         return TRUE;
     }

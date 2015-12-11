@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="SHIFT" xml:lang="fr_FR" xml.mml="http://www.w3.org/1998/Math/MathML">
@@ -100,7 +100,7 @@
             Ce bloc décale les bits du signal d'entrée. Dans cette opération les chiffres sont
             déplacés vers la droite ou la gauche. L'utilisateur peut choisir la méthode de
             décalage qui peut être normale ou cyclique en plaçant le paramètre
-            <emphasis role="bold">Shift Type</emphasis> à 0 ou 1.
+            <emphasis role="bold">Shift Type</emphasis> à <literal>0</literal> ou <literal>1</literal>.
             Le nombre et la direction des décalages sont réglés avec le paramètre
             <emphasis role="bold">Number of Bits to Shift Left</emphasis>.
             Si ce nombre est positif l'entrée est décalée à gauche, sinon elle est décalée à droite.
@@ -113,24 +113,23 @@
                 <para>
                     <emphasis role="bold">0</emphasis> : un décalage arithmétique est appliqué au signal d'entrée.
                     Dans ce cas, les bits qui sont sortis à l'une ou l'autre extrémité sont perdus. Des zéros sont
-                    insérés à droite, dans le cas d'un décalage à gauche;dans le cas d'un décalage à droite, des
+                    insérés à droite, dans le cas d'un décalage à gauche ; dans le cas d'un décalage à droite, des
                     copies du bit de signe sont insérées à gauche.
                 </para>
                 <para>
                     Par exemple un décalage arithmétique à droite de 1 bit donne : 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_arithmetic_right_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_right.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                     et un décalage arithmétique à gauche donne :
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_arithmetic_left_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_arithmetic_left.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                 </para>
-                <para/>
             </listitem>
             <listitem>
                 <para>
@@ -143,13 +142,13 @@
                     Par exemple une rotation à droite de 1 bit donne : 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_rotate_right_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_right.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                     et une rotation à gauche : 
                     <inlinemediaobject>
                         <imageobject>
-                            <imagedata fileref="../../../images/integer_pal/fr_FR/shift_rotate_left_fr_FR.png"/>
+                            <imagedata fileref="../../../images/palettes/integer_pal/shift_rotate_left.gif"/>
                         </imageobject>
                     </inlinemediaobject>
                 </para>
@@ -360,28 +359,19 @@
             </emphasis>
             à 0.5 s dans le sous-menu <emphasis>Configurer</emphasis> du menu
             <emphasis>Simulation</emphasis>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
         </para>
-        <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos" align="center" valign="middle"/>
                     </imageobject>
                 </inlinemediaobject>
             </link>
-            <scilab:image localized="true"><![CDATA[
-importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/fr_FR/SHIFT_fr_FR.zcos");
-xcos_simulate(scs_m, 4);
-]]></scilab:image>
         </para>
         <para>
             Ci-dessous le détail du compteur binaire.
         </para>
-        <para/>
         <para>
             <inlinemediaobject>
                 <imageobject>

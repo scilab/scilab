@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
     //[wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
@@ -34,7 +34,7 @@ function [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
 
     if rhs<=0 then,
         //if macro called with no arguments query user for values
-        [ok,values,exprs]=wfir_gui(exprs)
+        [ok,values,exprs]=wfir_gui()
         if ~ok then return,end
         ftype=values.ftype
         forder=values.forder

@@ -10,3 +10,5 @@ fd = mopen(this_file,"wt");
 mputstr("Scilab",fd);
 mclose(fd);
 if mgetl(this_file) <> "Scilab" then bugmes();quit;end
+ierr = execstr('mputstr(""Scilab"",5)','errcatch');
+if ierr <> 999 then bugmes();quit;end

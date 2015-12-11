@@ -2,55 +2,7 @@ LIBRARY    linear_algebra_f.dll
 
 
 EXPORTS
-; --------------------------------------- 
+; ---------------------------------------
 ; linear_algebra_f
-; --------------------------------------- 
-intdgesv3_
-complexify_
-intzgesv3_
-intdgebal_
-intzgebal_
-intdggbal_
-intzggbal_
-intdpotrf_
-intzpotrf_
-intddet_
-intzdet_
-intdgehrd_
-intzgehrd_
-intdgetri_
-intzgetri_
-intdgelsy_
-intzgelsy_
-intdgetrf_
-intzgetrf_
-intdgeqpf3_
-intzgeqpf4_
-doldqr_
-zoldqr_
-intdgecon_
-intzgecon_
-intdgees0_
-intzgees0_
-intdgges_
-intzgges_
-intzgees1_
-intdgees1_
-intzgeqpf3_
-intdgeqpf4_
-intfschur_
-intzfschur_
-intoschur_
-intzschur_
-intgschur_
-intzgschur_
-intogschur_
-intozgschur_
-intdgesv4_
-intzgesv4_
-intzgesvd2_
-intdgesvd2_
-intzgesvd1_
-intdgesvd1_
-intzoldsvd_
-intdoldsvd_
+; ---------------------------------------
+find_

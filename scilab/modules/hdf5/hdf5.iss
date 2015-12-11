@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -33,10 +33,8 @@ Source: modules\{#HDF5}\etc\{#HDF5}.start; DestDir: {app}\modules\{#HDF5}\etc; C
 ;Source: modules\{#HDF5}\macros\buildmacros.sce; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HDF5}\macros\buildmacros.bat; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HDF5}\macros\cleanmacros.bat; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#HDF5}\macros\*.bin; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HDF5}\macros\*.sci; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
 ;Source: modules\{#HDF5}\macros\lib; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#HDF5}\macros\names; DestDir: {app}\modules\{#HDF5}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#HDF5}\demos\*.*; DestDir: {app}\modules\{#HDF5}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

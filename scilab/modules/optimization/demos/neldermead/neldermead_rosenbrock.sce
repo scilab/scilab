@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function demo_nelder_rosen()
 
@@ -23,6 +23,8 @@ function demo_nelder_rosen()
     nm = neldermead_configure(nm, "-numberofvariables", 2);
     nm = neldermead_configure(nm, "-function", rosenbrock);
     nm = neldermead_configure(nm, "-x0", x0);
+    nm = neldermead_configure(nm, "-maxiter", 300);
+    nm = neldermead_configure(nm, "-maxfunevals", 300);
 
     mprintf(_("Searching (please wait) ...\n"));
     nm = neldermead_search(nm);

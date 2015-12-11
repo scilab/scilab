@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -57,7 +57,6 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import org.scilab.modules.commons.ScilabCommons;
 import org.scilab.modules.commons.ScilabConstants;
 import org.scilab.modules.commons.ScilabGeneralPrefs;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
@@ -80,7 +79,7 @@ public class XConfiguration {
     private static final String SEVERE_ERROR = Messages.gettext("A severe error occurred: cannot load the preferences file.");
     private static final String PARSING_ERROR = Messages.gettext("An error occurred when loading the preferences file, try to reload the default one.");
 
-    private static final XPathFactory xpathFactory = XPathFactory.newInstance();
+    private static final XPathFactory xpathFactory = ScilabXPathFactory.newInstance();
     private static final Map < Class<?>, StringParser > conv = new HashMap < Class<?>, StringParser > ();
 
     private static final EventListenerList listenerList = new EventListenerList();
@@ -889,7 +888,9 @@ public class XConfiguration {
          * </code>
          * The value of attribute "a" is converted into a String and passed as "one" argument,...
          */
-    public String[] attributes() default {""};
+    public String[] attributes() default {
+            ""
+        };
 
     public String tag() default "";
 

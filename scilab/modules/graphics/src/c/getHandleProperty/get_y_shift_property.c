@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,36 +25,36 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_y_shift_property(void* _pvCtx, char* pobjUID)
+void* get_y_shift_property(void* _pvCtx, int iObjUID)
 {
     double* shiftCoordinates = NULL;
     int iValue = 0;
     int* piValue = &iValue;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int, (void**)&piValue);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT_SET__, jni_int, (void**)&piValue);
 
     if (piValue == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_shift");
-        return -1;
+        return NULL;
     }
 
     if (iValue == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
-        getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Y_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
+        getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
 
-        return sciReturnRowVector(_pvCtx, shiftCoordinates, iValue);
+        return sciReturnRowVector(shiftCoordinates, iValue);
     }
 }
 /*------------------------------------------------------------------------*/

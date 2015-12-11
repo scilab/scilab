@@ -1,0 +1,660 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.
+ * The terms are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="daskr" xml:lang="fr">
+    <refnamediv>
+        <refname>daskr</refname>
+        <refpurpose>solveur de DAE avec traversées de zéros</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[r, nn [, hd]] = daskr(x0, t0, t [, atol [, rtol]], res [, jac], ng, surf [, info [, psol] [, pjac]] [, hd])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x0</term>
+                <listitem>
+                    <para>
+                        représente soit <literal>y0</literal> (<literal>ydot0</literal> sera
+                        estimé par <literal>daskr</literal> avec zéro comme première estimation),
+                        soir la matrice <literal>[y0 ydot0]</literal>.
+                        <literal>g(t, y0, ydot0)</literal> doit être égal à zéro. Si vous ne connaissez
+                        qu'une estimation de <literal>ydot0</literal>, assignez
+                        <literal>info(7)=1</literal>.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>y0</term>
+                            <listitem>
+                                <para>vecteur colonne réel des conditions initiales.</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>ydot0</term>
+                            <listitem>
+                                <para>vecteur colonne réel de la dérivée en temps de
+                                    <literal>y</literal> à <literal>t0</literal> (peut être une estimation.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t0</term>
+                <listitem>
+                    <para>réel, temps initial.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>réel, scalaire ou vecteur. Temps auxquels la solution est désirée.
+                        Notez que vous pouvez obtenir la solution à chaque étape de daskr en fixant
+                        <literal>info(2)=1</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>atol, rtol</term>
+                <listitem>
+                    <para>réels scalaires ou vecteurs colonnes de même taille que
+                        <literal>y</literal> ou tous deux de taille <literal>1</literal>. <literal>atol</literal> et <literal>rtol</literal> représentent
+                        les tolérances d'erreur absolue et relative de la solution.
+                        Si ce sont des vecteurs, alors les tolérances sont spécifiées pour chaque composante de
+                        <literal>y</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>
+                        <link linkend="external">external</link> (fonction, liste ou chaîne de caractères).
+                        Calcule la valeur de
+                        <literal>g(t, y, ydot)</literal>. Elle peut être :
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Une fonction Scilab.</para>
+                            <para>Sa séquence d'appel doit être
+                                <literal>[r, ires] = res(t, y, ydot)</literal> et doit retourner le résidu
+                                <literal>r = g(t, y, ydot)</literal> et un drapeau d'erreur
+                                <literal>ires</literal>. <literal>ires = 0</literal> si
+                                <literal>res</literal> a correctement calculé <literal>r</literal>,
+                                <literal>ires = -1</literal> si le résidu est localement non défini pour
+                                <literal>(t, y, ydot)</literal>, <literal>ires = -2</literal> si
+                                des paramètres sont hors du champ admissible.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une liste.</para>
+                            <para>Cette forme permet de passer des paramètres autres que t, y, ydot à la fonction.
+                                Elle doit se présenter comme suit :
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+list(res, x1, x2, ...)
+ ]]></programlisting>
+                            <para>où la séquence d'appel de la fonction
+                                <literal>res</literal> est maintenant
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+r = res(t, y, ydot, x1, x2, ...)
+ ]]></programlisting>
+                            <para>
+                                <literal>res</literal> retourne toujours
+                                <literal>r = g(t, y, ydot)</literal> comme fonction de
+                                <literal>(t, y, ydot, x1, x2, ...)</literal>.
+                            </para>
+                            <para>Attention : cette forme ne doit pas être utilisée s'il n'y pas
+                                d'argument additionnel à passer à la fonction.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une chaîne de caractères.</para>
+                            <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran
+                                reliée à Scilab.
+                            </para>
+                            <para>En C, la séquence d'appel doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void res(double *t, double y[], double yd[], double r[],
+         int *ires, double rpar[], int ipar[])
+ ]]></programlisting>
+                            <para>En Fortran, elle doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+subroutine res(t, y, yd, r, ires, rpar, ipar)
+double precision t, y(*), yd(*),r(*),rpar(*)
+integer ires, ipar(*)
+ ]]></programlisting>
+                            <para>
+                                Les tableaux <literal>rpar</literal> et <literal>ipar</literal>
+                                doivent être présents mais ne peuvent pas être utilisés.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>jac</term>
+                <listitem>
+                    <para>
+                        <link linkend="external">external</link> (fonction, liste ou chaîne de caractères).
+                        Calcule la valeur de <literal>dg/dy + cj*dg/dydot</literal> pour une valeur donnée du paramètre
+                        <literal>cj</literal>.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Une fonction Scilab.</para>
+                            <para>Sa séquence d'appel doit être
+                                <literal>r = jac(t, y, ydot, cj)</literal> et doit retourner
+                                <literal>r = dg(t, y, ydot)/dy + cj*dg(t, y, ydot)/dydot</literal> où
+                                <literal>cj</literal> est un scalaire réel.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une liste.</para>
+                            <para>Elle doit se présenter comme suit :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+list(jac, x1, x2, ...)
+ ]]></programlisting>
+                            <para>où la séquence d'appel de la fonction
+                                <literal>jac</literal> est désormais
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+r=jac(t, y, ydot, cj, x1, x2,...)
+ ]]></programlisting>
+                            <para>
+                                <literal>jac</literal> retourne toujours
+                                <literal>dg/dy + cj*dg/dydot</literal> comme fonction de
+                                <literal>(t, y, ydot, cj, x1, x2,...)</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une chaîne de caractères.</para>
+                            <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab.
+                            </para>
+                            <para>En C, la séquence d'appel doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void jac(double *t, double y[], double yd[], double pd[],
+         double *cj, double rpar[], int ipar[])
+ ]]></programlisting>
+                            <para>En Fortran, elle doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+subroutine jac(t, y, yd, pd, cj, rpar, ipar)
+double precision t, y(*), yd(*), pd(*), cj, rpar(*)
+integer ipar(*)
+ ]]></programlisting>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>surf</term>
+                <listitem>
+                    <para>
+                        <link linkend="external">external</link> (fonction, liste ou chaîne de caractères).
+                        Calcule la valeur du vecteur colonne <literal>surf(t, y)</literal> à
+                        <literal>ng</literal> composantes. Chaque composante représente une surface.
+                        Elle doit être définie comme suit :
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Une fonction Scilab.</para>
+                            <para>Sa séquence d'appel doit être
+                                <literal>surf(t, y)</literal>
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une liste.</para>
+                            <para>Elle doit se présenter comme suit :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+list(surf, x1, x2, ...)
+ ]]></programlisting>
+                            <para>où la séquence d'appel de la fonction
+                                <literal>surf</literal> est maintenant
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+r = surf(t, y, x1, x2, ...)
+ ]]></programlisting>
+                        </listitem>
+                        <listitem>
+                            <para>Une chaîne de caractères.</para>
+                            <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab.
+                            </para>
+                            <para>En C, la séquence d'appel doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void surf(int *ny, double *t, double y[], int *ng, double gout[])
+ ]]></programlisting>
+                            <para>En Fortran, elle doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+subroutine surf(ny, t, y, ng, gout)
+double precision t, y(*), gout(*)
+integer ny, ng
+ ]]></programlisting>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>info</term>
+                <listitem>
+                    <para>
+                        liste contenant <literal>14</literal> éléments. La valeur par défaut est
+                        <literal>list([], 0, [], [], [], 0, [], 0, [], 0, 0, [], [], 1)</literal>.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>info(1)</term>
+                            <listitem>
+                                <para>réel scalaire donnant le temps maximal pour lequel
+                                    <literal>g</literal> peut être évalué ou une matrice vide
+                                    <literal>[]</literal> si aucune limite de temps n'est imposée.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(2)</term>
+                            <listitem>
+                                <para>
+                                    drapeau indiquant si <literal>daskr</literal> retourne
+                                    ses valeurs intermédiaires calculées (<literal>= 1</literal>)
+                                    ou seulement les temps indiqués par l'utilisateur
+                                    (<literal>= 0</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(3)</term>
+                            <listitem>
+                                <para>
+                                    vecteur de deux éléments donnant la définition
+                                    <literal>[ml,mu]</literal> de la matrice bande calculeé par
+                                    <literal>jac</literal>; <literal>r(i - j + ml + mu + 1,j) = "dg(i)/dy(j)+cj*dg(i)/dydot(j)"</literal>.
+                                    Si <literal>jac</literal> retourne une matrice pleine, fixer
+                                    <literal>info(3)=[]</literal>.
+                                    Inutile si
+                                    <literal>info(8)=1</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(4)</term>
+                            <listitem>
+                                <para>réel scalaire donnant la taille maximale du pas. Fixer
+                                    <literal>info(4)=[]</literal> si illimité.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(5)</term>
+                            <listitem>
+                                <para>réel scalaire donnant le pas initial. Fixer
+                                    <literal>info(5)=[]</literal> si non spécifié.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(6)</term>
+                            <listitem>
+                                <para>
+                                    fixer <literal>info(6)=1</literal> si la solution est
+                                    non-négative, sinon fixer
+                                    <literal>info(6)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(7)</term>
+                            <listitem>
+                                <para>
+                                    si ydot0 est fixé tel que
+                                    <literal>g(t0, y0, ydot0) = 0</literal>, alors fixer
+                                    <literal>info(7)=[]</literal>. Sinon, fixer
+                                    <literal>info(7)=[+-1, ..., +-1]</literal>, avec
+                                    <literal>info(7)(i) = 1</literal> si y(i) est une variable différentielle et
+                                    <literal>info(7)(i) = -1</literal> si y(i) est une variable algébrique
+                                    (si ses dérivées n'apparaissent pas explicitement dans la fonction g(t, y, ydot)).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(8)</term>
+                            <listitem>
+                                <para>
+                                    méthode directe / Krylov. Fixer <literal>info(8)=1</literal> et founrnir une routine <literal>psol</literal>
+                                    si vous souhaitez que le solveur utilise des itérations de Krylov, sinon (méthode directe) fixer
+                                    <literal>info(8)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(9)</term>
+                            <listitem>
+                                <para>
+                                    paramètres de Krylov. Inutile si vous avez fixé
+                                    <literal>info(8)=0</literal>. Sinon, fixer
+                                    <literal>info(9)=[]</literal> ou
+                                    <literal>info(9)=[maxl kmp nrmax epli]</literal>, où :
+                                </para>
+                                <para>
+                                    - maxl = nombre maximal d'itérations de l'algorithme GMRes (par défaut
+                                    <literal>min(5, neq)</literal>),
+                                </para>
+                                <para>
+                                    - kmp = nombre de vecteurs sur lesquels l'orthogonalisation est faite dans GMRes
+                                    (par défaut maxl),
+                                </para>
+                                <para>
+                                    - nrmax = nombre maximal de redémarrages de GMRes par intération non-linéaire
+                                    (par défaut <literal>5</literal>),
+                                </para>
+                                <para>
+                                    - epli = constante du test de convergence de GMRes (par défaut <literal>0.05</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(10)</term>
+                            <listitem>
+                                <para>
+                                    conditions initiales. A ignorer si
+                                    <literal>info(7)=[]</literal>. Fixer
+                                    <literal>info(10)=1</literal> si le solveur doit s'arrêter après
+                                    le calcul des valeurs initiales, sinon fixer
+                                    <literal>info(10)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(11)</term>
+                            <listitem>
+                                <para>
+                                    routine pour le calcul et la factorisation LU du préconditionneur pour <literal>psol</literal>.
+                                    Inutile si <literal>info(8)=0</literal>. Fixer
+                                    <literal>info(11)=1</literal> et fournir une routine <literal>pjac</literal> si l'<link linkend="external">external</link>
+                                    <literal>psol</literal> doit utiliser une routine spécifique, sinon fixer
+                                    <literal>info(11)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(12)</term>
+                            <listitem>
+                                <para>
+                                    si vous souhaitez contrôler l'erreur localement sur toutes les variables, fixez
+                                    <literal>info(12)=[]</literal>. Sinon, fixez
+                                    <literal>info(12)=[+-1, ..., +-1]</literal>, avec
+                                    <literal>info(12)(i) = 1</literal> si y(i) est une variable différentielle et
+                                    <literal>info(12)(i) = -1</literal> si y(i) est une variable algébrique
+                                    (si ses dérivées n'apparaissent pas explicitement dans la fonction g(t, y, ydot)).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(13)</term>
+                            <listitem>
+                                <para>
+                                    paramètres heuristiques. Ignorer si
+                                    <literal>info(7)=[]</literal>. Sinon, fixer
+                                    <literal>info(13)=[]</literal> ou
+                                    <literal>info(13)=[mxnit mxnj mxnh lsoff stptol epinit]</literal>, où :
+                                </para>
+                                <para>
+                                    - mxnit = nombre maximal d'itérations de Newton par évaluation du préconditionneur (par défaut
+                                    <literal>5</literal> si <literal>info(8)=0</literal>, <literal>15</literal> sinon),
+                                </para>
+                                <para>
+                                    - mxnj = nombre maximal d'évaluations du préconditionneur (par défaut
+                                    <literal>6</literal> si <literal>info(8)=0</literal>, <literal>2</literal> sinon),
+                                </para>
+                                <para>
+                                    - mxnh = nombre maximal de valeurs artificielles du pas <literal>h</literal> à tenter si info(7) &#8800; [] (par défaut
+                                    <literal>5</literal>),
+                                </para>
+                                <para>
+                                    - lsoff = drapeau pour désactiver l'algorithme de recherche linéaire (lsoff = 0 pour activer, lsoff = 1 pour désactiver)
+                                    (par défaut <literal>0</literal>),
+                                </para>
+                                <para>
+                                    - stptol = pas minimal (dimmensionné) dans l'algorithme de recherche linéaire (par défaut <literal>(unit roundoff)^(2/3)</literal>),
+                                </para>
+                                <para>
+                                    - epinit = facteur déterminant dans le test de convergence de l'itération Newton (par défaut <literal>0.01</literal>).
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>info(14)</term>
+                            <listitem>
+                                <para>
+                                    verbosité. Fixer <literal>info(14)=1</literal> pour une information minimale,
+                                    <literal>info(14)=2</literal> pour une information maximale, sinon fixer
+                                    <literal>info(14)=0</literal>.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>psol</term>
+                <listitem>
+                    <para>
+                        <link linkend="external">external</link> (fonction, liste ou chaîne de caractères).
+                        Résout un système linéraire <literal>P*x = b</literal>,
+                        où P est le préconditionneur LU-factorisé que <literal>pjac</literal>
+                        a calculé auparavant et stocké dans <literal>wp</literal> et <literal>iwp</literal>.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Une fonction Scilab.</para>
+                            <para>Sa séquence d'appel doit être
+                                <literal>[r, ier] = psol(wp, iwp, b)</literal> et doit retourner la solution du système dans
+                                <literal>r</literal> et un drapeau d'erreur <literal>ier</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une liste.</para>
+                            <para>Elle doit se présenter comme suit :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+list(psol, x1, x2, ...)
+ ]]></programlisting>
+                            <para>
+                                où la séquence d'appel de <literal>psol</literal> est
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+psol(wp, iwp, b, x1, x2, ...)
+ ]]></programlisting>
+                            <para>
+                                <literal>psol</literal> retourne toujours la solution dans <literal>r</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une chaîne de caractères.</para>
+                            <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab
+                            </para>
+                            <para>En C, la séquence d'appel doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void psol (int*neq, double*t, double*y, double*ydot, double*savr,
+  double*wk, double*cj, double*wght, double*wp, int*iwp, double*b, double*eplin, int*ier, double*rpar, int*ipar)
+ ]]></programlisting>
+                            où les vecteurs <literal>wp</literal> et <literal>iwp</literal> contiennent le préconditionneur LU-factorisé
+                            <literal>P</literal>, <literal>wp</literal> représentant les valeurs et
+                            <literal>iwp</literal> les pivots utilisés dans la factorisation.
+                            <para>En Fortran, elle doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+subroutine psol (neq, t, y, ydot, savr, wk, cj, wght,
+  wp, iwp, b, eplin, ier, rpar, ipar)
+double precision t,y(*), ydot(*), savr(*), wk(*), cj, wght(*), wp(*),
+  b(*), eplin, rpar(*)
+integer neq, iwp(*), ier, ipar(*)
+ ]]></programlisting>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>pjac</term>
+                <listitem>
+                    <para>
+                        <link linkend="external">external</link> (fonction, liste ou chaîne de caractères). Calcule la valeur de
+                        <literal>dg/dy + cj*dg/dydot</literal> pour une valeur donnée du paramètre
+                        <literal>cj</literal> et la LU-factorise en deux vecteurs, réel et entier.
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>Une fonction Scilab.</para>
+                            <para>Sa séquence d'appel doit être
+                                <literal>[wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)</literal> et en retour,
+                                les vecteurs <literal>wp</literal> et <literal>iwp</literal>
+                                doivent contenir toutes les informations du préconditionneur factorisé.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une liste.</para>
+                            <para>Elle doit se présenter comme suit :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+list(pjac, x1, x2, ...)
+ ]]></programlisting>
+                            <para>
+                                où la séquence d'appel de <literal>pjac</literal> est
+                            </para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+pjac(neq, t, y, ydot, h, cj, rewt, savr, x1, x2,...)
+ ]]></programlisting>
+                            <para>
+                                <literal>pjac</literal> retourne toujours
+                                <literal>dg/dy + cj*dg/dydot</literal> comme fonction de
+                                <literal>(neq, t, y, ydot, h, cj, rewt, savr, x1, x2, ...)</literal>.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>Une chaîne de caractères.</para>
+                            <para>Elle doit se référer au nom d'une fonction C ou une routine Fortran reliée à Scilab
+                            </para>
+                            <para>En C, la séquence d'appel doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+void pjac (double*res, int*ires, int*neq, double*t, double*y, double*ydot, double*rewt, double*savr,
+double*wk, double*h, double*cj, double*wp, int*iwp, int*ier, double*rpar, int*ipar)
+ ]]></programlisting>
+                            <para>En Fortran, elle doit être :</para>
+                            <programlisting role="no-scilab-exec"><![CDATA[
+subroutine pjac (res, ires, neq, t, y, ydot, rewt, savr,
+  wk, h, cj, wp, iwp, ier, rpar, ipar)
+double precision res(*), t, y(*), ydot(*), rewt(*), savr(*),
+  wk(*), h, cj, wp(*), rpar(*)
+integer ires, neq, iwp(*), ier, ipar(*)
+ ]]></programlisting>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>hd</term>
+                <listitem>
+                    <para>
+                        vecteur réel servant à stocker le contexte de
+                        <literal>daskr</literal> et reprendre l'intégration.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>r</term>
+                <listitem>
+                    <para>
+                        matrice réelle. Chaque colonne est le vecteur <literal>[t; x(t); xdot(t)]</literal> où
+                        <literal>t</literal> est l'indice en temps aulequel la solution a été calculée,
+                        <literal>x(t)</literal> est la valeur de la solution calculée,
+                        <literal>xdot(t)</literal> est la dérivée de la solution calculée.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nn</term>
+                <listitem>
+                    <para>
+                        vecteur à deux entrées <literal>[times num]</literal>,
+                        <literal>times</literal> est la valeur du temps auquel la surface est traversée,
+                        <literal>num</literal> est le nombre de surfaces traversées.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>Solution de l'équation différentielle implicite :</para>
+        <programlisting role="no-scilab-exec"><![CDATA[
+g(t, y, ydot) = 0
+y(t0) = y0  et  ydot(t0) = ydot0
+ ]]></programlisting>
+        <para>Retourne les temps de traversée de surface et le nombre de surfaces traversées
+            dans <literal>nn</literal>.
+        </para>
+        <para>Des exemples détaillés se trouvent dans SCI/modules/differential_equations/tests/unit_tests/daskr.tst</para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// dy/dt = ((2*log(y)+8)/t-5)*y,  y(1) = 1,  1 <= t <= 6
+// g1 = ((2*log(y)+8)/t-5)*y
+// g2 = log(y) - 2.2491
+y0 = 1; t = 2:6; t0 = 1; y0d = 3;
+atol = 1.d-6; rtol = 0; ng = 2;
+
+deff('[delta, ires] = res1(t, y, ydot)', 'ires = 0; delta = ydot-((2*log(y)+8)/t-5)*y')
+deff('[rts] = gr1(t, y)', 'rts = [((2*log(y)+8)/t-5)*y; log(y)-2.2491]')
+
+[yy, nn] = daskr([y0, y0d], t0, t, atol, rtol, res1, ng, gr1);
+nn
+
+// Retourne nn = [2.4698972 2]
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="ode">ode</link>
+            </member>
+            <member>
+                <link linkend="dasrt">dasrt</link>
+            </member>
+            <member>
+                <link linkend="dassl">dassl</link>
+            </member>
+            <member>
+                <link linkend="impl">impl</link>
+            </member>
+            <member>
+                <link linkend="fort">fort</link>
+            </member>
+            <member>
+                <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="external">external</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>daskr ajouté</revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

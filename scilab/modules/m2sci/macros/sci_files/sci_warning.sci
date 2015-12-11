@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_warning(tree)
     // M2SCI function
@@ -20,7 +20,7 @@ function [tree]=sci_warning(tree)
             tree.rhs(1)=Cste("query")
             // [s,f] = warning
         else
-            insert(Equal(list(tree.lhs(2)),Cste("once")))
+            m2sci_insert(Equal(list(tree.lhs(2)),Cste("once")))
             tree.rhs(1)=Cste("query");
             tree.lhs(2)=null();
         end
@@ -34,7 +34,7 @@ function [tree]=sci_warning(tree)
 
         if typeof(tree.rhs(1))=="cste" & or(convstr(tree.rhs(1).value)==["""on""","""off""","""backtrace""","""debug""","""once""","""always"""]) then
             if tree.lhs(1).name<>"ans" then
-                no_equiv(msprintf(gettext("%s: Output value set to ''on''."),expression2code(tree)))
+                no_equiv(msprintf(gettext("%s: Output value set to ''on''."), strcat(expression2code(tree), "")))
                 tree=Cste("on")
             else
                 no_equiv(expression2code(tree))

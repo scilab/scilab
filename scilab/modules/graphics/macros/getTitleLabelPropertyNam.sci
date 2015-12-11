@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [PName] = getTitleLabelPropertyNam(PropertyName,current_figure,cur_draw_mode)
     // Copyright INRIA
@@ -27,15 +27,23 @@ function [PName] = getTitleLabelPropertyNam(PropertyName,current_figure,cur_draw
     //         'visible' 'fill_mode' 'auto_position' 'auto_rotation']; // equivalent Table
 
     opt1=[];
-
     k=find(part(Table,1:length(str))==str);
+
+    if (isempty(k)) then
+        // Scilab names are allowed too...
+        k=find(part(TableEQ,1:length(str))==str);
+        if ~isempty(k) then
+            PName = TableEQ(k(1))
+            return;
+        end
+    end
 
     if (k == [])
         warning("Error in Property specification : bad argument specified");
         PName=[];
         ResetFigureDDM(current_figure, cur_draw_mode);
         return;
-    elseif ( size(k,"*") > 1)
+    elseif (size(k,"*") > 1)
         warning("Ambiguous text property");
         PName=[];
         ResetFigureDDM(current_figure, cur_draw_mode);

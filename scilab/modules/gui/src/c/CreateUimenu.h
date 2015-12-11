@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,6 +18,6 @@
  * This function creates Uimenu structure.
  * @return created uimenu UID
  */
-char *CreateUimenu(void);
+int CreateUimenu(void);
 
 #endif /* !__CREATE_UIMENU_H__ */

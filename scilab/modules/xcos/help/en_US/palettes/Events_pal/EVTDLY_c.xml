@@ -199,7 +199,7 @@
     </refsection>
     <refsection id="Example_EVTDLY_c">
         <title>Example</title>
-        <link type="scilab" linkend="scilab.zcos/xcos/examples/events_pal/EVTDLY_c_Example.zcos">
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/events_pal/EVTDLY_c_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../../examples/events_pal/EVTDLY_c_Example.zcos" valign="middle"/>

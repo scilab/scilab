@@ -17,6 +17,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdarg.h>
@@ -24,10 +25,7 @@
 #include <string.h>
 #include <libintl.h>
 
-#if defined(__linux__)
-#define __USE_FORTIFY_LEVEL 0   /* Avoid dependency on GLIBC_2.11 (__longjmp_chk) */
-#endif
-#include <setjmp.h>             /* this declaration should remain close the __USE_FORTIFY_LEVEL define */
+#include <setjmp.h>
 
 #include <sys/types.h>          /* getpid */
 #include <unistd.h>             /* gethostname */
@@ -36,12 +34,15 @@
 #include "localization.h"
 #include "backtrace.h"
 #include "signal_mgmt.h"
-#include "machine.h"
 #include "Scierror.h"
 #include "suspendProcess.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "backtrace_print.h"
-extern jmp_buf jmp_env;
+#include "cliDisplayManagement.h"
+#include "initConsoleMode.h"
+#include "exit_status.hxx"
+
+jmp_buf ScilabJmpEnv;
 
 /*----------------------------------------------------------------------------
  * Handle a fatal signal (such as SIGFPE or SIGSEGV)
@@ -81,16 +82,18 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     /* This list comes from OpenMPI sources */
 #ifdef HAVE_STRSIGNAL
     /* On segfault, avoid calling strsignal which may allocate some memory (through gettext) */
-    char* str;
-    if (signum == 11)
     {
-        str = "Segmentation fault";
+        char* str;
+        if (signum == 11)
+        {
+            str = "Segmentation fault";
+        }
+        else
+        {
+            str = strsignal(signum);
+        }
+        ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
     }
-    else
-    {
-        str = strsignal(signum);
-    }
-    ret = snprintf(tmp, size, HOSTFORMAT "Signal: %s (%d)\n", stacktrace_hostname, getpid(), str, signum);
 #else
     ret = snprintf(tmp, size, HOSTFORMAT "Signal: %d\n", stacktrace_hostname, getpid(), signum);
 #endif
@@ -403,45 +406,27 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
     // 4 is to ignore the first 4 functions
     bt = backtrace_print(4, 1);
     Scierror(42,
-             _("Oups. A fatal error has been detected by Scilab.\nYour instance will probably crash soon.\nIf a graphic feature has been used, this might be caused by the system graphic drivers.\nPlease try to update them and try again.\nPlease report a bug on %s with:\n* a sample code which reproduces the issue\n* the result of [a, b] = getdebuginfo()\n* the following information:\n%s %s\n"),
+             _("A fatal error has been detected by Scilab.\nYour instance will probably quit unexpectedly soon.\nIf a graphic feature has been used, this might be caused by the system graphic drivers.\nPlease try to update them and run this feature again.\nYou can report a bug on %s with:\n* a sample code which reproduces the issue\n* the result of [a, b] = getdebuginfo()\n* the following information:\n%s %s\n"),
              PACKAGE_BUGREPORT, print_buffer, bt);
 
     free(bt);
-    longjmp(&jmp_env, 1);
+
+    if (getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW)
+    {
+        /* Reset termcaps and Characters display. */
+        setAttr(ATTR_RESET);
+        setCharDisplay(DISP_RESET);
+    }
+
+    longjmp(ScilabJmpEnv, HUGE_ERROR);
 }
 
 void base_error_init(void)
 {
     struct sigaction act;
-
     int j;
-
     struct sigaction ToSuspend;
-
     struct sigaction ToContinue;
-
-    /* Initialise Suspend Signal (CTRL-Z) */
-    ToSuspend.sa_handler = suspendProcess;
-    ToSuspend.sa_flags = 0;
-    sigemptyset(&ToSuspend.sa_mask);
-    sigaction(SIGTSTP, &ToSuspend, NULL);
-    /* Initialise Continue Signal (fg) */
-    ToContinue.sa_handler = continueProcess;
-    ToContinue.sa_flags = 0;
-    sigemptyset(&ToContinue.sa_mask);
-    sigaction(SIGCONT, &ToContinue, NULL);
-    /* Signal handlers */
-    csignal();
-    memset(&act, 0, sizeof(act));
-    act.sa_sigaction = sig_fatal;
-    act.sa_flags = SA_SIGINFO;
-#ifdef SA_ONESHOT
-    act.sa_flags |= SA_ONESHOT;
-#else
-    act.sa_flags |= SA_RESETHAND;
-#endif
-    sigemptyset(&act.sa_mask);
-
     int signals[] =
     {
 #ifdef SIGABRT
@@ -467,6 +452,29 @@ void base_error_init(void)
 #endif
         -1
     };
+
+    /* Initialise Suspend Signal (CTRL-Z) */
+    ToSuspend.sa_handler = suspendProcess;
+    ToSuspend.sa_flags = 0;
+    sigemptyset(&ToSuspend.sa_mask);
+    sigaction(SIGTSTP, &ToSuspend, NULL);
+    /* Initialise Continue Signal (fg) */
+    ToContinue.sa_handler = continueProcess;
+    ToContinue.sa_flags = 0;
+    sigemptyset(&ToContinue.sa_mask);
+    sigaction(SIGCONT, &ToContinue, NULL);
+    /* Signal handlers */
+    csignal();
+    memset(&act, 0, sizeof(act));
+    act.sa_sigaction = sig_fatal;
+    act.sa_flags = SA_SIGINFO;
+#ifdef SA_ONESHOT
+    act.sa_flags |= SA_ONESHOT;
+#else
+    act.sa_flags |= SA_RESETHAND;
+#endif
+    sigemptyset(&act.sa_mask);
+
     for (j = 0; signals[j] != -1; ++j)
     {
         if (0 != sigaction(signals[j], &act, NULL))

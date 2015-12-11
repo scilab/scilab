@@ -6,13 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.preferences.Component;
 
-import javax.swing.JTextField;
+import javax.swing.JPasswordField;
 
 import org.scilab.modules.preferences.XCommonManager;
 import org.scilab.modules.preferences.XComponent;
@@ -27,7 +27,7 @@ import org.w3c.dom.Node;
  * @author Pierre GRADIT
  *
  */
-public class Entry extends JTextField implements XComponent, XChooser {
+public class Entry extends JPasswordField implements XComponent, XChooser {
 
     /** Universal identifier for serialization.
      *
@@ -67,6 +67,11 @@ public class Entry extends JTextField implements XComponent, XChooser {
         }
         String enable = XConfigManager.getAttribute(peer, "enable", "true");
         setEnabled(enable.equals("true"));
+
+        String passwd = XConfigManager.getAttribute(peer, "password", "false");
+        if (!"true".equals(passwd)) {
+            setEchoChar('\0');
+        }
     }
 
     /** Sensor for 'text' attribute.
@@ -74,7 +79,7 @@ public class Entry extends JTextField implements XComponent, XChooser {
      * @return the attribute value.
      */
     public final String text() {
-        return getText();
+        return new String(getPassword());
     }
 
     /** Actuator for 'text' attribute.

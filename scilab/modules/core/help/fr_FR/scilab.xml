@@ -13,20 +13,20 @@
             scilab-cli &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Description</title>
+    <refsection role="arguments">
+        <title>Paramètres</title>
         <variablelist>
             <varlistentry>
                 <term>-args arguments</term>
                 <listitem>
                     <para>si cette option est présente des arguments sont passés à
-                        Scilab. Ils peuvent être récupérés par la fonction 
+                        Scilab. Ils peuvent être récupérés par la fonction
                         <literal>
                             <link linkend="sciargs">sciargs</link>
                         </literal>
                         .Les arguments multiples
                         doivent être passés dans chaîne de caractères les contenant, séparés
-                        par des espaces <literal>scilab -args 'foo1 foo2';</literal>. 
+                        par des espaces <literal>scilab -args 'foo1 foo2';</literal>.
                         Sans cette option, les arguments inconnus ne seront pas acceptés.
                     </para>
                 </listitem>
@@ -127,6 +127,17 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>-quit</term>
+                <listitem>
+                    <para>Cette option force Scilab à quitter la session après l'exécution des instructions
+                    données par l'option <literal>-e</literal> ou par le script indiqué via l'option
+                    <literal>-f</literal>, y compris en cas d'erreur d'exécution.
+                    Cette option doit toujours être utilisée en mode batch. Elle est ignorée lorsque
+                    l'option <literal>-e</literal> ou <literal>-f</literal> n'est pas utilisée.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>-l lang</term>
                 <listitem>
                     <para>Cette option permet de sélectionner la langue de
@@ -151,16 +162,6 @@
                         # équivalent à
                         scilab -l ja_JP
                     </programlisting>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>-mem N</term>
-                <listitem>
-                    <para>Spécifie la valeur initiale de la stacksize, cette option est
-                        a utiliser avec l'option -ns. Lorsque Scilab est appelé sans
-                        l'option -ns la valeur initiale de la stacksize est définie par le
-                        script scilab.start.
-                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -275,7 +276,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Description des variables d'environnement</title>
         <variablelist>
             <varlistentry>
@@ -307,7 +308,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Java Virtual Machine options</title>
         <para>A partir de la version 5.0 de Scilab, l'interface graphique et le
             système de génération de la documentation sont basés sur des
@@ -360,7 +361,7 @@
                     <para>Ces options activent de nombreuses vérifications, message de
                         débug et autres contrôles sur les appels JNI (appel natif Java). Ces
                         options sont utiles pour le débuggage et désactivée par défaut à
-                        cause de l'impact sur les performances. 
+                        cause de l'impact sur les performances.
                     </para>
                 </listitem>
             </varlistentry>
@@ -369,14 +370,14 @@
             De nombreuses options sont disponibles. Elles peuvent améliorer les performances, changer le rendu graphique, la gestion de la mémoire... Voir: <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>
         </para>
     </refsection>
-    <refsection>
-        <title>Examples</title>
-        <programlisting role="example"> 
+    <refsection role="examples">
+        <title>Exemples</title>
+        <programlisting role="example">
             # Lançons Scilab en mode profilage sans qu'un gdb soit lancé à chaque SIGSEGV.
             # On est sous Bash
             export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
             scilab -profiling
-            
+
             # Lançons Scilab en mode debug sans s'arrêter à chaque SIGSEGV
             # D'abord écrivons un petit fichier de commandes
             echo "handle SIGSEGV nostop" &amp;gt; debug.txt
@@ -391,33 +392,46 @@
             $ echo "disp(%pi)"|scilab-cli
             ou
             $ echo "disp(%pi)"|scilab -nwni
-            
+
             # Ouvre uniquement la fenêtre d'aide Scilab:
             $ scilab-adv-cli -e "help()"
             or
             $ scilab -nw -e "help()"
-            
-            
+
+
             # Scilab utilisé en tant que moteur de scripting
             echo "if 1&lt;&gt;2 then exit(99) end"|scilab-cli
-            echo $? 
+            echo $?
         </programlisting>
     </refsection>
     <refsection role="see also">
-        <title>See Also</title>
+        <title>Voir aussi</title>
         <simplelist type="inline">
             <member>
                 <link linkend="exit">exit</link>
             </member>
+            <member>
+                <link linkend="startup">startup</link>
+            </member>
         </simplelist>
     </refsection>
-    <refsection>
-        <title>History</title>
+    <refsection role="history">
+        <title>Historique</title>
         <revhistory>
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revremark>-noatomsautoload ajouté.</revremark>
             </revision>
         </revhistory>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>scinotes et xcos peuvent maintenant être démarrés en ligne de commande. Voir le SEP #87.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    Option <literal>-quit</literal> ajoutée. Option <literal>-mem</literal> supprimée.
+                </revremark>
+            </revision>
     </refsection>
 </refentry>

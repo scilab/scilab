@@ -20,11 +20,11 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <math.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void gainblk_ui32e(scicos_block *block, int flag)
@@ -32,9 +32,9 @@ SCICOS_BLOCKS_IMPEXP void gainblk_ui32e(scicos_block *block, int flag)
     if ((flag == 1) | (flag == 6))
     {
         int i = 0, j = 0, l = 0, ji = 0, jl = 0, il = 0;
-        unsigned long *u = NULL, *y = NULL;
+        SCSUINT32_COP *u = NULL, *y = NULL;
         int mu = 0, ny = 0, my = 0, mo = 0, no = 0;
-        unsigned long *opar = NULL;
+        SCSUINT32_COP *opar = NULL;
         double k = 0., D = 0., C = 0.;
 
         mo = GetOparSize(block, 1, 1);
@@ -47,20 +47,20 @@ SCICOS_BLOCKS_IMPEXP void gainblk_ui32e(scicos_block *block, int flag)
         opar = Getuint32OparPtrs(block, 1);
 
         k = pow(2, 32);
-        if (mo*no == 1)
+        if (mo * no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {
                 D = (double)(opar[0]) * (double)(u[i]);
                 if ((D >= k) | ( D < 0))
                 {
-                    sciprint(_("overflow error"));
+                    scicos_print(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }
                 else
                 {
-                    y[i] = (unsigned long)D;
+                    y[i] = (SCSUINT32_COP)D;
                 }
             }
         }
@@ -82,13 +82,13 @@ SCICOS_BLOCKS_IMPEXP void gainblk_ui32e(scicos_block *block, int flag)
                     }
                     if ((D >= k) | ( D < 0))
                     {
-                        sciprint(_("overflow error"));
+                        scicos_print(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }
                     else
                     {
-                        y[jl] = (unsigned long)D;
+                        y[jl] = (SCSUINT32_COP)D;
                     }
                 }
             }

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,6 +17,7 @@
 /* desc : interface for xclick routine                                    */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -33,7 +34,7 @@
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xclick(char *fname, unsigned long fname_len)
+int sci_xclick(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -44,7 +45,7 @@ int sci_xclick(char *fname, unsigned long fname_len)
 
     int mouseButtonNumber = 0;
     char * menuCallback = NULL;
-    char *pstWindowUID = NULL;
+    int iWindowUID = 0;
     int pixelCoords[2];
     double userCoords2D[2];
 
@@ -66,15 +67,15 @@ int sci_xclick(char *fname, unsigned long fname_len)
     mouseButtonNumber = getJxclickMouseButtonNumber();
     pixelCoords[0] = (int) getJxclickXCoordinate();
     pixelCoords[1] = (int) getJxclickYCoordinate();
-    pstWindowUID = getJxclickWindowID();
+    iWindowUID = getJxclickWindowID();
     menuCallback = getJxclickMenuCallback();
 
     // Convert pixel coordinates to user coordinates
     // Conversion is not done if the user clicked on a menu (pixelCoords[*] == -1)
     if (pixelCoords[0] != -1 && pixelCoords[1] != -1)
     {
-        char* clickedSubwinUID = (char*)getCurrentSubWin();
-        sciGet2dViewCoordFromPixel(clickedSubwinUID, pixelCoords, userCoords2D);
+        int iClickedSubwinUID = getCurrentSubWin();
+        sciGet2dViewCoordFromPixel(iClickedSubwinUID, pixelCoords, userCoords2D);
     }
     else
     {
@@ -155,27 +156,25 @@ int sci_xclick(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        getGraphicObjectProperty(pstWindowUID, __GO_ID__, jni_int, (void**)&piFigureId);
+        getGraphicObjectProperty(iWindowUID, __GO_ID__, jni_int, (void**)&piFigureId);
         rep[0] = (double) iFigureId;
     }
 
     if (nbOutputArgument(pvApiCtx) >= 5)
     {
-        char* strRep = NULL;
+        char *strRep  = NULL;
         AssignOutputVariable(pvApiCtx, 5) = nbInputArgument(pvApiCtx) + 5;
         istr = (int)strlen(menuCallback);
 
-        if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, (const char**)&strRep))
+        if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, &strRep))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 1;
         }
-
         strncpy(strRep, menuCallback, istr);
     }
 
     deleteJxclickString(menuCallback);
-    deleteJxclickString(pstWindowUID);
 
     ReturnArguments(pvApiCtx);
 

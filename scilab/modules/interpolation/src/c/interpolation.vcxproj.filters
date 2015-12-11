@@ -2,78 +2,72 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{1e2defb3-192e-4fad-bd03-18fb5bbd76f8}</UniqueIdentifier>
+      <UniqueIdentifier>{95764ecf-f81b-4a56-9498-7470bdb3130c}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{641b8926-11c9-423c-b626-b50013d1f81a}</UniqueIdentifier>
+      <UniqueIdentifier>{60ddd6b5-c21d-4a53-b620-fcf0511d5ae8}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{d686d340-2bec-4b35-8a68-85faf78e1e80}</UniqueIdentifier>
+      <UniqueIdentifier>{2ed13f31-c480-4101-9aff-3c8072452c61}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{1ee9be78-5b2a-4de4-bca5-6024096bb8d7}</UniqueIdentifier>
+      <UniqueIdentifier>{0e942ba0-4f67-4f79-aae5-0a6e0d6b4e7b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{7f7eec9f-537f-422d-8962-13e0b4f6d270}</UniqueIdentifier>
+      <UniqueIdentifier>{1f757c76-ad7f-4ef5-bf1a-a24cf5f1d296}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{4e10f20b-f6e8-4036-94e7-42c3edd5b86b}</UniqueIdentifier>
+      <UniqueIdentifier>{c65543b3-bb81-465a-bfaa-8b6afa1fb9e5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainInterpolation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_interpolation.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="interpolation.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_bsplin3val.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_cshep2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_eval_cshep2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_interp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_interp2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_interp3d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_linear_interpn.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lsq_splin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_splin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_splin2d.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_splin3d.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="someinterp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_bsplin3val.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_cshep2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_eval_cshep2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_interp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_interp2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_interp3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_linear_interpn.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_lsq_splin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_splin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_splin2d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_splin3d.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_interpolation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_interpolation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="interpolation.h">
@@ -93,9 +87,6 @@
     <None Include="..\..\interpolation.iss" />
     <None Include="..\..\sci_gateway\interpolation_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="elementary_functions_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="slatec_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

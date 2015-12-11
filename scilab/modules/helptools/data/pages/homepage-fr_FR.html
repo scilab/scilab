@@ -1,45 +1,134 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<style type="text/css" media="all">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Page d'Accueil de l'Aide Scilab</title>
+    <style type="text/css" media="all">
       @import url("scilab_code.css");
       @import url("xml_code.css");
       @import url("c_code.css");
       @import url("style.css");
     </style>
-</head>
-<body>
-  <div class="manualnavbar" align="left">
-    <img src="jarsci:ban_en_US.png"><br/>
-    <a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> | <a href="http://help.scilab.org/" class="ulink">Aide en ligne</a> | <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> | <a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> | <a href="http://forge.scilab.org/" class="ulink">Forge</a> | <a href="http://lists.scilab.org/" class="ulink">Archives de la liste de diffusion</a> | <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> | <a href="http://fileexchange.scilab.org/" class="ulink">File exchange</a>
-    <hr>
+  </head>
+
+  <body>
+
+    <div class="manualnavbar" align="left">
+      <img src="jarsci:ban_en_US.png" alt="ban_en_US.png"/>
+      <br/>
+      <a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> | 
+      <a href="http://help.scilab.org/" class="ulink">Aide en ligne</a> | 
+      <a href="http://wiki.scilab.org/" class="ulink">Wiki</a> | 
+      <a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> | 
+      <a href="http://forge.scilab.org/" class="ulink">Forge</a> | 
+      <a href="http://lists.scilab.org/" class="ulink">Archives des listes de diffusion</a> | 
+      <a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> | 
+      <a href="http://fileexchange.scilab.org/" class="ulink">File Exchange</a>
+      <hr/>
     </div>
+
     <span class="path"><a href="index.html">Aide Scilab</a> &gt;&gt; Page d'accueil</span>
-    <br><br><div class="refsection">
-      <h3 class="title">Nouveautés de Scilab 5.5.0</h3>
+
+    <br/>
+    <br/>
+
+    <div class="refsection">
+      <h3 class="title">Bienvenue dans Scilab 6.0.0-alpha-2</h3>
       <p class="para">
-        <a href="http://www.scilab.org/products/scilab/download/5.5.0/release_notes">Consulter tous les changements intégrés à Scilab 5.5.0 (anglais)</a>
+        Scilab 6.0 est une nouvelle version majeure de Scilab, la plateforme open source de calcul numérique. Cette version 6.0.0-alpha-2 est un aperçu pour les développeurs, les partenaires et la communauté à des fins de tests.
+      </p>
+      <p class="para">
+        Comme toute alpha, cette version n’est encore pas prête pour être utilisée en production. Si vous débutez sur Scilab, ou si vous êtes un simple utilisateur, vous devriez continuer à utiliser la version 5.5.2, et attendre une version bêta avant d'essayer la famille 6.
+      </p>
+
+      <p class="para">
+        Toutefois, si vous avez déjà développé du code sur Scilab, ou si vous êtes un utilisateur avancé, vous pourriez être intéressé par cette version. Pourquoi ne pas essayer vos développements effectués sur des versions antérieures de Scilab dans cette version : vérifier la compatibilité peut vous économiser du temps par la suite. Si vous trouvez des bugs ou des incompatibilités, merci de les signaler sur notre <a href="http://bugzilla.scilab.org/" class="ulink">gestionnaire de bugs</a> : cela vous aidera à avoir un meilleur produit, plus rapide, dont vous serez également bénéficiaire.
+      </p>
+
+      <h2 class="title">Les nouveautés de Scilab 6.0</h2>
+      <p class="para">
+        Cette version inclut une réécriture majeure du noyau interne de Scilab. Les modifications apportées aux aspects visibles du logiciel sont limitées.
+      </p>
+      <p class="para">
+        Le premier grand changement interne est un tout nouvel analyseur syntaxique et un interprète, incluant les modifications suivantes :
+        <ul>
+          <li>Le langage est beaucoup plus cohérent et prévisible,</li>
+          <li>La grammaire est plus stricte, mais plus cohérente,</li>
+          <li>La gestion des erreurs a été améliorée (mais peut encore être limitée dans l'alpha : merci d’avance de nous signaler les problèmes que vous pourriez rencontrer),</li>
+          <li>Le langage est légèrement plus compabible avec le langage Matlab (par exemple dans le cas d’instructions de contrôle telles que les déclarations switch/case).</li>
+        </ul>
+      </p>
+      <p class="para">
+        Les changements de langage ne sont pas tous rétrocompatibles. Vous devez mettre à jour vos scripts/programmes/modules, ce qui devrait être très rapide dans la plupart des cas. Par exemple, les modifications suivantes peuvent nécessiter des adaptations d’un code existant :
+        <ul>
+          <li>Les chaînes de caractères littérales ne peuvent pas mélanger des délimiteurs simple quote et double quote: elles doivent commencer et finir avec soit des simple quotes, soit des double quotes,</li>
+          <li>L’utilisation des virgules (pour avoir plusieurs instructions sur une même ligne) a été clarifiée : elles ne peuvent pas être utilisées après des instructions de contrôle comme <a href="try.html">try</a>,</li>
+          <li>Trois points ou plus ne sont plus supportés.</li>
+        </ul>
+        </p>
+      <p class="para">
+        Le deuxième grand changement interne, est la possibilité de manipuler de plus grands ensembles de données, sans épuiser les ressources du système. Cela comprend en particulier :
+        <ul>
+          <li>Une meilleure gestion de la mémoire. L’utilisation de la mémoire est dorénavant limitée par la mémoire de la machine. Cette fonctionnalité était très attendue et nécessaire. <i>stacksize</i> n’est donc plus utile.</li>
+          <li>Les grandes tailles de données sont supportées en particulier pour les fichiers HDF5,</li>
+          <li>Des nouveaux types de données et des améliorations : les entiers 64 bits; la possibilité de définir des types d'utilisateurs dans les modules C++. En outre, les matrices de plus de deux dimensions sont maintenant implémentées de manière native.</li>
+          <li>Les structures de données natives (cell, struct), ainsi que les matrices multidimensionnelles ont, dans la plupart des cas, de meilleures performances, tant en utilisation de la mémoire, qu’en rapidité d'exécution. Si dans certains cas, vous observez une baisse de performances, nous vous remercions de nous le signaler.</li>
+        </ul>
+      </p>
+      <p class="para">Plusieurs fonctionnalités additionnelles ont été ajoutées grâce aux changements faits dans le coeurs. Certaines de ces fonctionnalités sont présentes dans la version alpha-2:
+        <ul>
+          <li>Un debugger entièrement fonctionnel a été ajouté, qui permet l’exécution pas-à-pas de scripts Scilab, l'insertion de points d’arrêt (conditionnels ou non)… La commande "help debug" permet d'accéder à une aide complète.</li>
+          <li>Un outil de mesure de couverture, et de profilage a été ajouté. Il remplace l’ancienne fonction “profile” (qui est encore présente, mais pas fonctionnelle, et qui sera retirée dans la version finale). Cet outil produit un rapport HTML  sur le mesure du temps passé dans chaque ligne de script (profile). Elle n’est pas documentée, et les fonctions pour l’appeler pourront changer encore avant la version finale.</li>
+          <li>Un outil d’analyse statique, slint, est présent: il détecte le code peu clair, risqué, ou suspect. Il n’est pas documenté encore.</li>
+        </ul>
+      </p>
+      <h2 class="title">Principales limitations</h2>
+      <p class="para">
+        <ul>
+          <li>La limitation de l'alpha-2 est maintenant que Xcos n'est que très partiellement fonctionnel : l'éditeur fonctionne, et peut charger et sauver des documents, mais certaines fonctionnalités sont encore manquantes ("superblocks", édition de blocks contenant du code Scilab, liens complexes). Surtout, la simulation ne fonctionne pas encore.</li>
+          <li>L'installation et l'usage de modules supplémentaires (ATOMS) est fonctionnelle, mais peu de modules disponibles sur <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> ont été portés, donc cette fonctionnalités est d'un usage limité.</li>
+        </ul>
+      </p>
+      <h2 class="title">Limitations spécifiques aux systèmes d'exploitation</h2>
+      <p class="para">
+      <ul>
+        <li>La fonctionalité TCL/TK n'est pas disponible sous MacOS.</li>
+        <li>Certaines fonctions concernant Windows sont évidemment disponibles uniquement sous Windows (<a href="section_02d42947da4b16801e15b82ca80009fc.html">Windows tools</a>).</li>
+        <li>La compilation de C/C++ ou autre code natif dans les modules additionnels (toolboxes), ainsi que les interfaces avec les third-parties peuvent dépendre du système d'exploitation, et donc peuvent ne pas être supportés sur toutes les plateformes.</li>
+      </ul>
+      </p>
+
+      <h2 class="title">Changelog complet</h2>
+      <p class="para">
+        Pour une liste complète des changements entre la version 5.5.2 et cette version, veuillez consulter le fichier CHANGES_6.0.X présent à la racine de l'installation de Scilab.
       </p>
     </div>
-    <hr width="50%" align="left">
-<div class="refsection">
+
+    <hr/>
+    <br/>
+
+    <div class="refsection">
       <h3 class="title">Documentation et aide</h3>
-      <p class="para">Cette aide est aussi consultable sur <a href="http://help.scilab.org">http://help.scilab.org</a>, avec des fonctionnalit&eacute;s avanc&eacute;es telles que les commentaires, favoris, moteur de recherche, etc.</p>
+      <p class="para">Cette aide est aussi consultable sur <a href="http://help.scilab.org">http://help.scilab.org</a>, avec des fonctionnalit&eacute;s avanc&eacute;es telles que les commentaires, les favoris, le moteur de recherche, etc.</p>
       <p class="para">Si vous d&eacute;butez avec Scilab, vous pouvez consulter la liste des <a href="scilab_keywords.html">mots-cl&eacute;s Scilab</a>.</p>
-      <p class="para">Scilab Enterprises propose aussi des <a href="http://www.scilab.org/support/documentation/tutorials">documentations et tutoriaux</a>.</p>
-      <p class="para">De nombreuses documentations sont aussi disponibles sur le <a href="http://www.scilab.org/support/documentation">site internet de Scilab</a>.</p>
+      <p class="para">Scilab Enterprises propose aussi des <a href="http://www.scilab.org/support/documentation/tutorials">documentations et tutoriels</a>.</p>
+      <br/>
     </div>
-    <hr width="50%" align="left">
-<div class="refsection">
+
+
+    <hr/>
+    <br/>
+
+    <div class="refsection">
       <h3 class="title">Autres ressources</h3>
-      <p class="para"><a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> - Consulter le site internet de Scilab</p>
-      <p class="para"><a href="http://wiki.scilab.org/" class="ulink">Wiki</a> - Consulter les nombreuses documentations, astuces, etc</p>
-      <p class="para"><a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> - Rapporter des probl&egrave;mes et des souhaits sur Scilab</p>
+      <p class="para"><a href="http://www.scilab.org/" class="ulink">Portail Scilab</a> - Consulter le site Internet de Scilab</p>
+      <p class="para"><a href="http://wiki.scilab.org/" class="ulink">Wiki</a> - Consulter les nombreuses documentations, astuces, etc.</p>
+      <p class="para"><a href="http://bugzilla.scilab.org/" class="ulink">Suivi de bugs</a> - D&eacute;poser des probl&egrave;mes et des souhaits sur Scilab</p>
       <p class="para"><a href="http://forge.scilab.org/" class="ulink">Forge</a> - Consulter et publier des modules Scilab</p>
       <p class="para"><a href="http://www.scilab.org/communities/developer_zone/tools/mailing_list" class="ulink">Listes de diffusion</a> - Communiquer et &eacute;changer avec la communaut&eacute;</p>
       <p class="para"><a href="http://atoms.scilab.org/" class="ulink">ATOMS</a> - Acc&eacute;der aux modules externes packag&eacute;s dans Scilab</p>
-      <p class="para"><a href="http://fileexchange.scilab.org/" class="ulink">File exchange</a> - Echanger vos scripts, r&eacute;sultats et fichiers.</p>
+      <p class="para"><a href="http://fileexchange.scilab.org/" class="ulink">File Exchange</a> - Echanger vos scripts, r&eacute;sultats et fichiers.</p>
+      <br/>
     </div>
   </body>
 </html>

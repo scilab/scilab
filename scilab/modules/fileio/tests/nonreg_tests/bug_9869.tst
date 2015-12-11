@@ -14,19 +14,15 @@
 //
 // <-- Short Description -->
 // fscanf did not check number of input arguments
+// fscanf is obsolete, mfscanf is used instead.
 
-wMode = warning("query");
-warning("off");
+msgError = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n");
+assert_checkerror ("mfscanf()", msgError , [] , "mfscanf" , 2, 3);
 
-msgError = gettext("%s: Wrong number of input arguments: %d expected.\n");
-assert_checkerror ("fscanf()", msgError , [] , "fscanf" , 2);
-
-msgError = gettext("%s: Wrong number of input arguments: %d expected.\n");
-assert_checkerror ("fscanf(TMPDIR + ""/bug_9869.dat"")", msgError , [] , "fscanf" , 2);
+msgError = gettext("%s: Wrong number of input argument(s): %d to %d expected.\n");
+assert_checkerror ("mfscanf(TMPDIR + ""/bug_9869.dat"")", msgError , [] , "mfscanf" , 2, 3);
 
 mputl(string(1:4), TMPDIR + "/bug_9869.dat");
-R = fscanf(TMPDIR + "/bug_9869.dat","%d");
+fd = mopen(TMPDIR + "/bug_9869.dat");
+R = mfscanf(fd,"%d");
 assert_checkequal(R, 1);
-
-warning(wMode);
-

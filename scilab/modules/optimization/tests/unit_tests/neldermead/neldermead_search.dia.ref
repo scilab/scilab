@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // <-- CLI SHELL MODE -->
 //
 // optimtestcase --
@@ -96,7 +96,7 @@ nm = neldermead_configure(nm,"-logfile" , fullfile(TMPDIR,"search.txt" ));
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-nbineqconst",3);
 nm = neldermead_configure(nm,"-method","box");
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 nm = neldermead_destroy(nm);
 computed = deletefile(fullfile(TMPDIR,"search.txt"));
 assert_checkequal ( computed , %t );

@@ -6,14 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "api_scilab.h"
-#include "MALLOC.h"
 
-int sci_deleteNamedVariable(char *fname, unsigned long fname_len)
+int sci_deleteNamedVariable(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;
@@ -41,6 +40,7 @@ int sci_deleteNamedVariable(char *fname, unsigned long fname_len)
         iRet = deleteNamedVariable(pvApiCtx, pstVarName);
     }
 
+    freeAllocatedSingleString(pstVarName);
     createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
     AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
     return 0;

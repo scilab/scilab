@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlNs(char *fname, unsigned long fname_len)
+int sci_xmlNs(char *fname, void *pvApiCtx)
 {
     int *addr = 0;
     SciErr err;
@@ -34,8 +34,6 @@ int sci_xmlNs(char *fname, unsigned long fname_len)
     XMLElement *elem = 0;
     char *prefix = 0;
     char *href = 0;
-    int i = 0;
-    char **vars[] = { &prefix, &href };
 
     CheckLhs(1, 1);
     CheckRhs(3, 3);
@@ -57,38 +55,78 @@ int sci_xmlNs(char *fname, unsigned long fname_len)
     elem = XMLObject::getFromId < XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
-        Scierror(999, gettext("%s: XML Element does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML element does not exist.\n"), fname);
         return 0;
     }
 
-    for (; i < Rhs - 1; i++)
+    err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
+    if (err.iErr)
     {
-        err = getVarAddressFromPosition(pvApiCtx, i + 2, &addr);
-        if (err.iErr)
-        {
-            printError(&err, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 2);
-            return 0;
-        }
+        printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        return 0;
+    }
 
-        if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
-        {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, i + 2);
-            return 0;
-        }
-
-        if (getAllocatedSingleString(pvApiCtx, addr, vars[i]) != 0)
+    if (isEmptyMatrix(pvApiCtx, addr))
+    {
+        prefix = 0;
+    }
+    else if (isStringType(pvApiCtx, addr) && checkVarDimension(pvApiCtx, addr, 1, 1))
+    {
+        if (getAllocatedSingleString(pvApiCtx, addr, &prefix) != 0)
         {
             Scierror(999, _("%s: No more memory.\n"), fname);
             return 0;
         }
     }
+    else
+    {
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
+        return 0;
+    }
+
+    err = getVarAddressFromPosition(pvApiCtx, 3, &addr);
+    if (err.iErr)
+    {
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
+        printError(&err, 0);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 3);
+        return 0;
+    }
+
+    if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
+    {
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
+        return 0;
+    }
+
+    if (getAllocatedSingleString(pvApiCtx, addr, &href) != 0)
+    {
+        if (prefix)
+        {
+            freeAllocatedSingleString(prefix);
+        }
+        Scierror(999, _("%s: No more memory.\n"), fname);
+        return 0;
+    }
 
     ns = new XMLNs(*elem, prefix, href);
 
-    for (i = 0; i < Rhs - 1; i++)
+    if (prefix)
     {
-        freeAllocatedSingleString(*(vars[i]));
+        freeAllocatedSingleString(prefix);
+    }
+
+    if (href)
+    {
+        freeAllocatedSingleString(href);
     }
 
     if (!ns->createOnStack(Rhs + 1, pvApiCtx))

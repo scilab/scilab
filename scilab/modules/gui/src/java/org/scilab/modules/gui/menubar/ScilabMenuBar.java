@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,7 +17,6 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * Class for Scilab MenuBars in GUIs
@@ -32,7 +31,6 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
      */
     protected ScilabMenuBar() {
         component = ScilabBridge.createMenuBar();
-        component.setElementId(UIElementMapper.add(this));
     }
 
     /**
@@ -112,6 +110,6 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
      * @param newVisibleState is not used
      */
     public void setVisible(boolean newVisibleState) {
-        throw new UnsupportedOperationException();
+        component.setVisible(newVisibleState);
     }
 }

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:id="plotframe" xml:lang="en">
@@ -74,7 +74,10 @@
                                 <para>vector of 3 strings
                                     <literal>[title,x-leg,y-leg]</literal> corresponding
                                     respectively to the title of the plot and the captions on the
-                                    x-axis and the y-axis. Warning: the upper-case "C" is important.
+                                    x-axis and the y-axis.
+                                </para>
+                                <para>
+                                    <warning>The upper-case "C" is important.</warning>
                                 </para>
                             </listitem>
                         </varlistentry>

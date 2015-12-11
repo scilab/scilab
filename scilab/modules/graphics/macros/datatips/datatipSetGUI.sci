@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at;
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function datatipSetGUI()
     global datatipGUIwin
     if datatipGUIwin==[] then return,end
@@ -13,9 +13,6 @@ function datatipSetGUI()
     ud=datatipGetStruct(datatipGUICurve)
     if typeof(ud)<>"datatips" then
         //no datatips structure yet, initialize it
-        if ~datatipInitStruct(curve) then
-            return
-        end
         ud=datatipGetStruct(curve)
     end
     style=ud.style

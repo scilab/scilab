@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,6 +19,7 @@ import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.actions.dialog.DebugLevelDialog;
+import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -41,12 +42,9 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
      */
     public static enum DebugLevel {
         /** No trace nor debug */
-        ZERO(0, XcosMessages.DEBUGLEVEL_0),
-        /** Discrete/Continous switch */
-        ONE(1, XcosMessages.DEBUGLEVEL_1),
-        /** Per block trace */
-        TWO(2, XcosMessages.DEBUGLEVEL_2),
-        /** Debug blocks without trace */
+        ZERO(0, XcosMessages.DEBUGLEVEL_0), /** Discrete/Continuous switch */
+        ONE(1, XcosMessages.DEBUGLEVEL_1), /** Per block trace */
+        TWO(2, XcosMessages.DEBUGLEVEL_2), /** Debug blocks without trace */
         THREE(3, XcosMessages.DEBUGLEVEL_3);
 
         private int level;
@@ -107,8 +105,7 @@ public final class DebugLevelAction extends SimulationNotRunningAction {
             return;
         }
 
-        final DebugLevelDialog dialog = new DebugLevelDialog(
-            graph.getAsComponent(), graph.getScicosParameters());
+        final DebugLevelDialog dialog = new DebugLevelDialog(graph.getAsComponent(), new ScicosParameters(graph.getUID(), graph.getKind()));
 
         dialog.pack();
         dialog.setVisible(true);

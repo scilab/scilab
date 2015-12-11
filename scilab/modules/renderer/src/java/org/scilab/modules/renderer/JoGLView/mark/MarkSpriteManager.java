@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 package org.scilab.modules.renderer.JoGLView.mark;
 
@@ -37,8 +37,7 @@ public class MarkSpriteManager {
     /**
      * The sprite map.
      */
-    private final Map<String, Texture> spriteMap = new ConcurrentHashMap<String, Texture>();
-
+    private final Map<Integer, Map<Integer, Texture>> spriteMap = new ConcurrentHashMap<Integer, Map<Integer, Texture>>();
 
     /**
      * Default constructor.
@@ -48,7 +47,6 @@ public class MarkSpriteManager {
         this.textureManager = textureManager;
     }
 
-
     /**
      * Return the mark sprite for the given contoured object.
      *
@@ -57,11 +55,21 @@ public class MarkSpriteManager {
      * @return the mark sprite for the given contoured object.
      */
     public Texture getMarkSprite(ContouredObject contouredObject, ColorMap colorMap, Appearance appearance) {
-        String id = contouredObject.getIdentifier();
-        Texture sprite = spriteMap.get(id);
+        Integer id = contouredObject.getIdentifier();
+        Map<Integer, Texture> sizeMap = spriteMap.get(id);
+        Texture sprite = null;
+        int MarkSize = contouredObject.getMark().getSize();
+        if (sizeMap == null) {
+            sizeMap = new  ConcurrentHashMap<Integer, Texture>();
+            spriteMap.put(id, sizeMap);
+        }
+        else {
+            sprite = sizeMap.get(MarkSize);
+        }
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), colorMap, appearance);
-            spriteMap.put(id, sprite);
+            Integer selectedColor = contouredObject.getSelected() ? contouredObject.getSelectedColor() : null;
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, contouredObject.getMark(), selectedColor, colorMap, appearance);
+            sizeMap.put(MarkSize,sprite);
         }
         return sprite;
     }
@@ -73,11 +81,20 @@ public class MarkSpriteManager {
      * @param colorMap the current color map.
      * @return the mark sprite for the given contoured object.
      */
-    public Texture getMarkSprite(String id, Mark mark, ColorMap colorMap, Appearance appearance) {
-        Texture sprite = spriteMap.get(id);
+    public Texture getMarkSprite(Integer id, Mark mark, ColorMap colorMap, Appearance appearance) {
+        Map<Integer, Texture> sizeMap = spriteMap.get(id);
+        Texture sprite = null;
+        int markSize = mark.getSize();
+        if (sizeMap == null) {
+            sizeMap = new  ConcurrentHashMap<Integer, Texture>();
+            spriteMap.put(id, sizeMap);
+        }
+        else {
+            sprite = sizeMap.get(markSize);
+        }
         if (sprite == null) {
-            sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, colorMap, appearance);
-            spriteMap.put(id, sprite);
+            sprite = MarkSpriteFactory.getMarkSprite(textureManager, mark, null, colorMap, appearance);
+            sizeMap.put(markSize,sprite);
         }
         return sprite;
     }
@@ -87,7 +104,7 @@ public class MarkSpriteManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
 
         /**
          * If the Mark properties have changed.
@@ -99,7 +116,12 @@ public class MarkSpriteManager {
                 || property == GraphicObjectProperties.__GO_MARK_SIZE__
                 || property == GraphicObjectProperties.__GO_MARK_FOREGROUND__
                 || property == GraphicObjectProperties.__GO_MARK_BACKGROUND__
-                || property == GraphicObjectProperties.__GO_LINE_THICKNESS__) {
+                || property == GraphicObjectProperties.__GO_LINE_THICKNESS__
+                || property == GraphicObjectProperties.__GO_SELECTED__
+                || property == GraphicObjectProperties.__GO_COLOR_SET__
+                || property == GraphicObjectProperties.__GO_MARK_SIZES__
+                || property == GraphicObjectProperties.__GO_MARK_FOREGROUNDS__
+        		|| property == GraphicObjectProperties.__GO_MARK_BACKGROUNDS__) {
             dispose(id);
         }
     }
@@ -108,9 +130,12 @@ public class MarkSpriteManager {
      * Dispose the sprite corresponding to the given id.
      * @param id the given id.
      */
-    public void dispose(String id) {
-        Texture sprite = spriteMap.get(id);
-        textureManager.dispose(sprite);
+    public void dispose(Integer id) {
+        Map<Integer,Texture> sizeMap = spriteMap.get(id);
+        if (sizeMap != null) {
+        	textureManager.dispose(sizeMap.values());
+    		sizeMap.clear();
+        }
         spriteMap.remove(id);
     }
 
@@ -118,7 +143,10 @@ public class MarkSpriteManager {
      * Dispose all the mark sprite.
      */
     public void disposeAll() {
-        textureManager.dispose(spriteMap.values());
+    	for (Map<Integer,Texture> sizeMap: spriteMap.values()) {
+    		textureManager.dispose(sizeMap.values());
+    		sizeMap.clear();
+    	}
         spriteMap.clear();
     }
 }

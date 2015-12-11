@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,6 +30,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
     char * className = 0;
     int error = 0;
     char * cwd = 0;
+    int nbArgs = Rhs - 1;
 
     if (Rhs == 0)
     {
@@ -49,27 +50,33 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
         throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
     }
 
-    cwd = scigetcwd(&error);
-    if (error)
-    {
-        FREE(cwd);
-        cwd = 0;
-    }
-
     if (isStringType(pvApiCtx, addr))
     {
+        cwd = scigetcwd(&error);
+        if (error && cwd)
+        {
+            FREE(cwd);
+            cwd = 0;
+        }
+
         className = ScilabObjects::getSingleString(1, pvApiCtx);
         try
         {
             idClass = env.loadclass(className, cwd, false, helper.getAllowReload());
         }
-        catch (std::exception & e)
+        catch (std::exception & /*e*/)
         {
-            FREE(cwd);
+            if (cwd)
+            {
+                FREE(cwd);
+            }
             freeAllocatedSingleString(className);
             throw;
         }
-        FREE(cwd);
+        if (cwd)
+        {
+            FREE(cwd);
+        }
         freeAllocatedSingleString(className);
     }
     else if (ScilabObjects::isExternalClass(addr, pvApiCtx))
@@ -95,23 +102,29 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
         {
             args[i] = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             delete[] args;
             delete[] tmpvar;
             throw;
         }
+
+        if (args[i] == VOID_OBJECT)
+        {
+            nbArgs = 0;
+        }
     }
 
     try
     {
-        ret = env.newinstance(idClass, args, Rhs - 1);
+        ret = env.newinstance(idClass, args, nbArgs);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
         delete[] tmpvar;
+        throw;
     }
 
     delete[] args;
@@ -122,7 +135,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
     {
         ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         env.removeobject(ret);
         throw;

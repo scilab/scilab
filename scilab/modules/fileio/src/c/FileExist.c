@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -18,9 +18,9 @@
 #endif
 #include "FileExist.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-BOOL FileExist(char *filename)
+BOOL FileExist(const char *filename)
 {
 #ifdef _MSC_VER
     wchar_t *wcFilename = to_wide_string(filename);
@@ -46,7 +46,7 @@ BOOL FileExist(char *filename)
 
 }
 /*--------------------------------------------------------------------------*/
-BOOL FileExistW(wchar_t *wcfilename)
+BOOL FileExistW(const wchar_t *wcfilename)
 {
 #ifdef _MSC_VER
     if (wcfilename)

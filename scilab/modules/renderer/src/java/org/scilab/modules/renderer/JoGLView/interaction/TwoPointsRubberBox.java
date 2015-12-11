@@ -6,14 +6,11 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction;
 
-import java.awt.Point;
-
-import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 
 /**
@@ -30,17 +27,4 @@ public class TwoPointsRubberBox extends RubberBox implements PointRubberBox {
         super(drawerVisitor);
     }
 
-    public double[] getResults() {
-        double result[] = {
-            mouseButton - 1,
-            Math.min(firstPoint.getX(), secondPoint.getX()),
-            Math.max(firstPoint.getY(), secondPoint.getY()),
-            Math.max(firstPoint.getZ(), secondPoint.getZ()),
-            Math.abs(firstPoint.getX() - secondPoint.getX()),
-            Math.abs(firstPoint.getY() - secondPoint.getY()),
-            Math.abs(firstPoint.getZ() - secondPoint.getZ())
-        };
-
-        return result;
-    }
 }

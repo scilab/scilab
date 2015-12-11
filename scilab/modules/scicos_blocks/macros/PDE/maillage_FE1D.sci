@@ -53,7 +53,10 @@ function [xvec,nelem,nodes,kind,nint]=maillage_FE1D(a,b,inf_ele,nnode,CLa_type,.
     [nrec,junk]=size(data);
 
     for nr=1:nrec
-        n1=data(nr,1); n2=data(nr,2); x1=data(nr,3);x2=data(nr,4);
+        n1=data(nr,1);
+        n2=data(nr,2);
+        x1=data(nr,3);
+        x2=data(nr,4);
         if (n2 == 0) then
             xvec(n1) = x1;
         else

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __DYNAMIC_GATEWAYS_H__
@@ -47,6 +47,13 @@ int gw_dynamic_ui_data(void);
 int gw_dynamic_xcos(void);
 
 /**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
+
+/**
 * scinotes gateway
 * functions is loaded dynamically at runtime
 * load gw_functions in SCI/modules/scinotes/sci_gateway/gw_scinotes.c
@@ -68,42 +75,11 @@ int gw_dynamic_functions(void);
 int gw_dynamic_interpolation(void);
 
 /**
-* statistics gateway
-* statistics is loaded dynamically at runtime
-* load gw_statistics in SCI/modules/statistics/sci_gateway/gw_statistics.c
-*/
-int gw_dynamic_statistics(void);
-
-
-/**
-* signal_processing gateway
-* signal_processing is loaded dynamically at runtime
-* load gw_signal_processing in SCI/modules/signal_processing/sci_gateway/gw_signal_processing.c
-*/
-int gw_dynamic_signal_processing(void);
-
-
-/**
-* helptools gateway
-* helptools is loaded dynamically at runtime
-* load gw_helptools in SCI/modules/helptools/sci_gateway/gw_helptools.c
-*/
-int gw_dynamic_helptools(void);
-
-
-/**
 * optimization gateway
 * optimization is loaded dynamically at runtime
 * load gw_optimization in SCI/modules/optimization/sci_gateway/gw_optimization.c
 */
 int gw_dynamic_optimization(void);
-
-/**
-* matio gateway
-* matio is loaded dynamically at runtime
-* load gw_matio in SCI/modules/matio/sci_gateway/gw_matio.c
-*/
-int gw_dynamic_matio(void);
 
 /**
 * UMFPACK gateway
@@ -162,6 +138,13 @@ int gw_dynamic_symbolic(void);
 int gw_dynamic_graphic_export(void);
 
 /**
+* mpi gateway
+* mpi is loaded dynamically at runtime
+* load gw_mpi in SCI/modules/mpi/sci_gateway/gw_mpi.c
+*/
+int gw_dynamic_mpi(void);
+
+/*
 * action_binding gateway
 * action_binding is loaded dynamically at runtime
 * load gw_action_binding in SCI/modules/action_binding/sci_gateway/gw_action_binding.c
@@ -178,18 +161,14 @@ int gw_dynamic_preferences(void);
 /**
 * xml gateway
 * xml is loaded dynamically at runtime
-* load gw_xml in SCI/modules/xml/sci_gateway/gw_xml.c
+* load xml in SCI/modules/xml/sci_gateway/gw_xml.c
 */
 int gw_dynamic_xml(void);
 
-/**
-* history_browser gateway
-* history_browser is loaded dynamically at runtime
-* load gw_history_browser in SCI/modules/history_browser/sci_gateway/gw_history_browser.c
-*/
-int gw_dynamic_history_browser(void);
 
 int gw_dynamic_external_objects(void);
+
+int gw_dynamic_external_objects_java(void);
 
 #endif /* __DYNAMIC_GATEWAYS_H__ */
 /*--------------------------------------------------------------------------*/

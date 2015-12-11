@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2012-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,6 +14,7 @@
 #define __XMLNODELIST_HXX__
 
 #include "XMLList.hxx"
+#include "dynlib_xml_scilab.h"
 #include "xml.h"
 
 namespace org_modules_xml
@@ -27,7 +28,7 @@ class XMLDocument;
  *
  * Class to wrap the list of the children of a node
  */
-class XMLNodeList: public XMLList
+class XML_SCILAB_IMPEXP XMLNodeList: public XMLList
 {
 
     const XMLDocument & doc;
@@ -106,6 +107,11 @@ public:
     const XMLObject *getXMLObjectParent() const;
     const std::string dump() const;
     const XMLObject *getListElement(int index);
+
+    /**
+     * Revalidate size after an eventual alteration (such as an element removal)
+     */
+    void revalidateSize();
 
     /**
      * Gets the node list size

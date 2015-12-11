@@ -5,11 +5,7 @@ EXPORTS
 rpoly_
 dpodiv_
 dpmul1_
-mpdegr_
 wpodiv_
-dmp2pm_
-residu_
 horner_
-idegre_
 
 

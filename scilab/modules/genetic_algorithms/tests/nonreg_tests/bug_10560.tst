@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- NO CHECK REF --> 
+// <-- NO CHECK REF -->
 //
 // <-- Non-regression test for bug 10560 -->
 //
@@ -15,5 +15,5 @@
 // <-- Short Description -->
 // genetic algorithms demos failed
 
-ierr = exec('SCI/modules/genetic_algorithms/demos/GAdemo.sce', -1, 'errcatch');
+ierr = exec("SCI/modules/genetic_algorithms/demos/GAdemo.sce", "errcatch", -1);
 assert_checkequal(ierr, 0);

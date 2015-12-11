@@ -1,104 +1,96 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - Sylvestre LEDRU
+// Copyright (C) 2013 - Scilab Enterprises
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-//getURL
+function checkFile(filePath, expectedFilePath, minimalFileSize)
+    assert_checkequal(filePath, expectedFilePath)
+    info = fileinfo(filePath);
+    assert_checktrue(info(1) > minimalFileSize);
+    deletefile(filePath);
+endfunction
 
-cd TMPDIR;
-myFile=getURL("http://www.scilab.org");
-assert_checkequal(myFile, "index.html")
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 1000); // The homepage of Scilab is likely to be bigger than 1k
+function checkFileAndContent(filePath, expectedFilePath, minimalFileSize, keywordToFind)
+    fd = mopen(filePath, "r");
+    assert_checktrue(grep(mgetl(fd), keywordToFind) <> []);
+    mclose(fd);
+    checkFile(filePath, expectedFilePath, minimalFileSize);
+endfunction
 
-myFile=getURL("http://www.scilab.org/");
-assert_checkequal(myFile, "index.html")
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 1000); // The homepage of Scilab is likely to be bigger than 1k
+function checkContent(filePath, content, keyword, keywordToFind)
+    assert_checktrue(length(content) > 10);
+    assert_checktrue(grep(content, keywordToFind) <> []);
+    deletefile(filePath);
+endfunction
 
+curdir = pwd();
+destdir = fullfile(TMPDIR, "getURL");
+mkdir(destdir);
+cd(destdir);
 
-myFile=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
+// Check downloaded file
+filePath = getURL("http://www.scilab.org");
+checkFile(filePath, fullfile(destdir, "index.html"), 1000);
 
-assert_checkequal(myFile, "README");
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
+filePath = getURL("http://www.scilab.org/");
+checkFile(filePath, fullfile(destdir, "index.html"), 1000);
 
+filePath = getURL("http://www.scilab.org/product/man/numderivative.html");
+checkFile(filePath, fullfile(destdir, "numderivative.html"), 1000);
 
-targetFile=TMPDIR+"/README_Debian";
-myFile=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README",targetFile);
+filePath = getURL("www.scilab.org");
+checkFile(filePath, fullfile(destdir, "index.html"), 1000);
 
-assert_checkequal(myFile, targetFile);
-inf=fileinfo(targetFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-f1 = mopen(targetFile,"r");
-assert_checktrue(grep(mgetl(f1),"Linux") <> []);
-mclose(f1);
+filePath = getURL("www.scilab.org/product/man/numderivative.html");
+checkFile(filePath, fullfile(destdir, "numderivative.html"), 1000);
 
+filePath = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
+checkFile(filePath, fullfile(destdir, "README"), 10);
 
-targetFile="README";
-myFile=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README",TMPDIR);
+filePath = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README", fullfile(destdir, "README_Debian"));
+checkFileAndContent(filePath, fullfile(destdir, "README_Debian"), 10, "Linux");
 
-assert_checkequal(myFile, TMPDIR+"/"+targetFile);
-inf=fileinfo(TMPDIR+"/"+targetFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-f1 = mopen(TMPDIR+"/"+targetFile,"r");
-assert_checktrue(grep(mgetl(f1),"Linux") <> []);
-mclose(f1);
+filePath = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README", destdir);
+checkFileAndContent(filePath, fullfile(destdir, "README"), 10, "Linux");
 
 // HTTPS
-myFile=getURL("https://encrypted.google.com");
-assert_checkequal(myFile, "index.html");
-inf=fileinfo(myFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
+filePath = getURL("https://encrypted.google.com");
+checkFileAndContent(filePath, fullfile(destdir, "index.html"), 100, "html");
 
-targetFile=TMPDIR+"/testauth";
-myFile=getURL("http://httpbin.org/basic-auth/user/passwd",targetFile,"user","passwd");
+filePath = getURL("http://httpbin.org/basic-auth/user/passwd", fullfile(destdir, "testauth"), "user", "passwd");
+checkFileAndContent(filePath, fullfile(destdir, "testauth"), 10, "authenticated");
 
-assert_checkequal(myFile, targetFile);
-inf=fileinfo(targetFile);
-assert_checktrue(inf(1) > 10); // The file size should be more than 10
-f1 = mopen(targetFile,"r");
-assert_checktrue(grep(mgetl(f1),"authenticated") <> []);
-mclose(f1);
+// Check returned content
+[filePath, content] = getURL("http://www.scilab.org:80");
+checkContent(filePath, content, 1000, "html");
+
+[filePath, content] = getURL("http://plop:ae@www.scilab.org:80");
+checkContent(filePath, content, 1000, "html");
+
+[filePath, content] = getURL("http://www.scilab.org/aze");
+checkContent(filePath, content, 100, "aze");
+
+[filePath, content] = getURL("http://www.scilab.org");
+checkContent(filePath, content, 1000, "html");
+
+[filePath, content] = getURL("http://www.scilab.org/");
+checkContent(filePath, content, 1000, "html");
+
+[filePath, content] = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
+checkContent(filePath, content, 10, "Linux");
+
+// HTTPS
+[filePath, content] = getURL("https://encrypted.google.com");
+checkContent(filePath, content, 100, "html");
+
+[filePath, content] = getURL("http://httpbin.org/basic-auth/user/passwd", destdir, "user", "passwd");
+checkContent(filePath, content, 10, "authenticated");
 
 // Badly formated URL
 assert_checkerror("getURL(''http://plop@ae:www.scilab.org:80'');", [], 999);
 
-[f, HTMLContent]=getURL("http://www.scilab.org:80");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-
-[f, HTMLContent]=getURL("http://plop:ae@www.scilab.org:80");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-
-[f, HTMLContent]=getURL("http://www.scilab.org/aze");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checkequal(grep(HTMLContent,"404"), []);
-
-
-
-[f, HTMLContent]=getURL("http://www.scilab.org");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-
-[f, HTMLContent]=getURL("http://www.scilab.org/");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"html") <> []);
-
-[f, HTMLContent]=getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
-assert_checktrue(length(HTMLContent) > 0);
-assert_checktrue(grep(HTMLContent,"Linux") <> []);
-
-// HTTPS
-[f, HTMLContent]=getURL("https://encrypted.google.com");
-assert_checktrue(length(HTMLContent) > 100);
-
-[f, HTMLContent]=getURL("http://httpbin.org/basic-auth/user/passwd",TMPDIR,"user","passwd");
-assert_checktrue(length(HTMLContent) > 10);
-assert_checktrue(grep(HTMLContent,"authenticated") <> []);
-
-// Badly formated URL
-assert_checkerror("getURL(''http://plop@ae:www.scilab.org:80'');", [], 999);
+cd(curdir);

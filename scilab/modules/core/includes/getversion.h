@@ -6,13 +6,14 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
 #ifndef __GETVERSION_H__
 #define __GETVERSION_H__
 
+#include <wchar.h>
 #include "BOOL.h"
 
 /**
@@ -54,7 +55,13 @@ int getScilabVersionTimestamp();
 * get Scilab version as a string
 * @return scilab version
 */
-char *getScilabVersionAsString(void);
+char* getScilabVersionAsString(void);
+
+/**
+* get Scilab version as wide string
+* @return scilab version
+*/
+wchar_t* getScilabVersionAsWideString(void);
 
 /**
 * get module version as a int array
@@ -66,51 +73,51 @@ char *getScilabVersionAsString(void);
 * ver[2] Maintenance version
 * ver[3] timestamp
 */
-int* getModuleVersion(char *modulename, int *sizeArrayReturned);
+int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned);
 
 /**
 * get module version as a string
 * @param[in] module name
 * @return scilab version
 */
-char *getModuleVersionInfoAsString(char *modulename);
+wchar_t* getModuleVersionInfoAsString(wchar_t* _pwstModule);
 
 /**
 * get options used for this version
 * @param[out]
 * @return char ** with options used
 */
-char **getScilabVersionOptions(int *sizeArrayReturned);
+wchar_t** getScilabVersionOptions(int *sizeArrayReturned);
 
 /**
 * get release mode
 * @return 'release' or 'debug'
 */
-char *getReleaseMode(void);
+wchar_t* getReleaseMode(void);
 
 /**
 * get release date
 * @return date of version
 */
-char *getReleaseDate(void);
+wchar_t* getReleaseDate(void);
 
 /**
 * get release time
 * @return time of version
 */
-char *getReleaseTime(void);
+wchar_t* getReleaseTime(void);
 
 /**
 * get compiler used to build scilab
 * @return 'VC++', 'ICC', 'GCC'
 */
-char *getCompilerUsedToBuildScilab(void);
+wchar_t* getCompilerUsedToBuildScilab(void);
 
 /**
 * get Compiler Architecture
 * @return 'x86' or 'x64'
 */
-char *getCompilerArchitecture(void);
+wchar_t* getCompilerArchitecture(void);
 
 /**
 * with modelica compiler ?

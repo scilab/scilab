@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="assert_generror" xml:lang="ja">
@@ -21,7 +21,6 @@
         <synopsis>
             assert_generror ( errormsg )
             assert_generror ( errormsg , errornb )
-            
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -70,7 +69,6 @@
 // 以下のコールは共にエラーを発生します
 assert_generror ( "oups" );
 assert_generror ( "oups" , 123456789 );
-
 // 以下のコールはエラーを発生します
 assert_checktrue ( [%t %f] );
 //
@@ -101,7 +99,6 @@ back=funcprot();
 funcprot(0);
 assert_generror = olderrorfunction;
 funcprot(back);
-
    ]]></programlisting>
     </refsection>
     <refsection>

@@ -6,19 +6,15 @@
 
 function demo_fgrayplot()
 
-    my_handle             = scf(100001);
+    my_handle = scf(100001);
     clf(my_handle,"reset");
     demo_viewCode("fgrayplot.dem.sce");
-
-    // DEMO START
-
-    my_plot_desc          = "fgrayplot";
+    my_plot_desc = "fgrayplot";
     my_handle.figure_name = my_plot_desc;
 
     fgrayplot();
-    xtitle(my_plot_desc," "," "," ");
 
-    // DEMO END
+    xtitle(my_plot_desc,"X","Y","Z");
 endfunction
 
 demo_fgrayplot();

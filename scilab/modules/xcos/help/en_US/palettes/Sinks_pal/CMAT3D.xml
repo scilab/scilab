@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CMAT3D">
@@ -98,7 +98,7 @@
     <refsection id="Description_CMAT3D">
         <title>Description</title>
         <para>
-            CMAT3D is a scope that shows matrix values as z values on a xy grid.  
+            CMAT3D is a scope that shows matrix values as z values on a xy grid.
         </para>
         <para>
         </para>
@@ -121,14 +121,14 @@
                     <emphasis role="bold">Bounds Vector X (-1 for standard)</emphasis>
                 </para>
                 <para> If you let -1 the x ticks would be between 0 and 1 else you can put your own vector.</para>
-                <para> Properties : Type 'vec' of size -1. </para>
+                <para> Properties: Type 'vec' of size -1. </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Bounds Vector Y (-1 for standard)</emphasis>
                 </para>
                 <para> If you let -1 the x ticks would be between 0 and 1 else you can put your own vector.</para>
-                <para> Properties : Type 'vec' of size -1. </para>
+                <para> Properties: Type 'vec' of size -1. </para>
             </listitem>
             <listitem>
                 <para>
@@ -136,13 +136,7 @@
                 </para>
                 <para> The colormap is a range color linked to the window output of the scope. You can put a jetcolormap or hotcolormap or graycolormap or your own (see colormap help).</para>
                 <para>
-                    Properties : Must be a mx3 matrix and m
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CMAT3D_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    = 3 
+                    Properties: Must be a mx3 matrix and m ≥ 3
                 </para>
             </listitem>
             <listitem>
@@ -150,14 +144,14 @@
                     <emphasis role="bold">Zmin</emphasis>
                 </para>
                 <para> Minimum value in Z values</para>
-                <para> Properties : Type 'vec' of size 1. </para>
+                <para> Properties: Type 'vec' of size 1. </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">Zmax</emphasis>
                 </para>
                 <para> Maximum values in Z values</para>
-                <para> Properties : Type 'vec' of size 1.</para>
+                <para> Properties: Type 'vec' of size 1.</para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -189,7 +183,7 @@
                     <emphasis role="bold">regular inputs:</emphasis>
                 </para>
                 <para>
-                    <emphasis role="bold">- port 1 : size [-1,-2] / type 1</emphasis>
+                    <emphasis role="bold">- port 1: size [-1,-2] / type 1</emphasis>
                 </para>
             </listitem>
             <listitem>
@@ -240,6 +234,18 @@
                 <para> SCI/modules/scicos_blocks/src/c/cmat3d.c (Type 4)</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_CMAT3D">
+        <title>Example</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/CMAT3D_Example.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata align="center" fileref="../../../../examples/sinks_pal/CMAT3D_Example.zcos" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
     </refsection>
     <refsection id="Seealso_CMAT3D">
         <title>See also</title>

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -135,6 +135,8 @@ public class SciFileFilter extends FileFilter {
             // Bug 2861: have to return true for all files if no mask given
             return true;
         } else if (mask.equals(".*\\..*")) {
+            int selectedIndex = this.filterIndex + 1;
+            FileChooserInfos.getInstance().setFilterIndex(selectedIndex);
             // bug 7285: *.* as filter returns also files without extension
             return true;
         } else {

@@ -22,9 +22,9 @@
 #include <math.h>
 #include "scicos.h"
 #include "scicos_block4.h"
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void gainblk_i32e(scicos_block *block, int flag)
@@ -32,9 +32,9 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i32e(scicos_block *block, int flag)
     if ((flag == 1) | (flag == 6))
     {
         int i = 0, j = 0, l = 0, ji = 0, jl = 0, il = 0;
-        long *u = NULL, *y = NULL;
+        SCSINT32_COP *u = NULL, *y = NULL;
         int mu = 0, ny = 0, my = 0, mo = 0, no = 0;
-        long *opar = NULL;
+        SCSINT32_COP *opar = NULL;
         double k = 0., D = 0., C = 0.;
 
         mo = GetOparSize(block, 1, 1);
@@ -47,20 +47,20 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i32e(scicos_block *block, int flag)
         opar = Getint32OparPtrs(block, 1);
 
         k = pow(2, 32) / 2;
-        if (mo*no == 1)
+        if (mo * no == 1)
         {
             for (i = 0; i < ny * mu; ++i)
             {
                 D = (double)(opar[0]) * (double)(u[i]);
                 if ((D >= k) | ( D < -k))
                 {
-                    sciprint(_("overflow error"));
+                    scicos_print(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }
                 else
                 {
-                    y[i] = (long)D;
+                    y[i] = (SCSINT32_COP)D;
                 }
             }
         }
@@ -82,13 +82,13 @@ SCICOS_BLOCKS_IMPEXP void gainblk_i32e(scicos_block *block, int flag)
                     }
                     if ((D >= k) | ( D < -k))
                     {
-                        sciprint(_("overflow error"));
+                        scicos_print(_("overflow error"));
                         set_block_error(-4);
                         return;
                     }
                     else
                     {
-                        y[jl] = (long)D;
+                        y[jl] = (SCSINT32_COP)D;
                     }
                 }
             }

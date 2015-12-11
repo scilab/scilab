@@ -35,9 +35,14 @@ c
 
 
       integer i
-c
+c     Quantification by taking the nearest whole number of quantized steps
+c     towards minus infinity (floor)
       do 15 i=1,nu
-         y(i)=rpar(i)*ANINT(u(i)/rpar(i)+0.5d0)
+         if (u(i).lt.0.0d0)then
+            y(i)=rpar(i)*ANINT(u(i)/rpar(i)-0.5d0)
+         else
+            y(i)=rpar(i)*AINT(u(i)/rpar(i))
+         endif
  15   continue
       return
       end

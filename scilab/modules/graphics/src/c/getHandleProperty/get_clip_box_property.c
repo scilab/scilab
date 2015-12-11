@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,43 +30,43 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_clip_box_property(void* _pvCtx, char* pobjUID)
+void* get_clip_box_property(void* _pvCtx, int iObjUID)
 {
     int iClipState = 0;
     int* piClipState = &iClipState;
     double* clipBox = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
+    getGraphicObjectProperty(iObjUID, __GO_CLIP_STATE__, jni_int, (void **)&piClipState);
 
     if (piClipState == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_box");
-        return -1;
+        return NULL;
     }
 
     if (iClipState > 1)
     {
         /* clip state on */
 
-        getGraphicObjectProperty(pobjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
+        getGraphicObjectProperty(iObjUID, __GO_CLIP_BOX__, jni_double_vector, (void **)&clipBox);
 
         if (clipBox == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_box");
-            return -1;
+            return NULL;
         }
 
-        return sciReturnRowVector(_pvCtx, clipBox, 4);
+        return sciReturnRowVector(clipBox, 4);
     }
     else if (iClipState == 0 || iClipState == 1)
     {
         /* clip state off or clipgrf */
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "clip_state");
-        return -1;
+        return NULL;
     }
 }
 /*------------------------------------------------------------------------*/

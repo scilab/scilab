@@ -64,11 +64,11 @@ function state=car_polynomial_curve(initial,final,orient)
     end
     da=a-final(1)
 
-    f=  final(2)+ p(1).*da^3 +    p(2).*da^4 +    p(3).*da^5 ;
-    df  =       3*p(1).*da^2 +  4*p(2).*da^3 +  5*p(3).*da^4 ;
-    ddf =       6*p(1).*da   + 12*p(2).*da^2 + 20*p(3).*da^3 ;
+    f=  final(2)+ p(1).*da.^3 +    p(2).*da.^4 +    p(3).*da.^5 ;
+    df  =       3*p(1).*da.^2 +  4*p(2).*da.^3 +  5*p(3).*da.^4 ;
+    ddf =       6*p(1).*da   + 12*p(2).*da.^2 + 20*p(3).*da.^3 ;
 
-    k = ddf ./ ((1+df.*df)^(3/2)) ;
+    k = ddf ./ ((1+df.*df).^(3/2)) ;
     state=[ a   f  atan(df) atan(k*bigL)]
 endfunction
 

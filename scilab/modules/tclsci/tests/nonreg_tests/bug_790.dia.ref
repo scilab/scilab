@@ -13,14 +13,10 @@
 // <-- Short Description -->
 //    Scilab crashes when you enter findobj().
 //    I know that it is not usefull but, the bug exists.
-ierr = execstr("findobj()","errcatch");
-msg = lasterror();
-if ierr==0 | msg<>msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "findobj", 2) then
-  pause
-end
-ierr = execstr("findobj(""test"")","errcatch");
-msg = lasterror();
-if ierr==0 | msg<>msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "findobj", 2) then
-  pause
-end
-if execstr("findobj(""Param1"",""Param2"") == []","errcatch") <> 0 then bugmes();quit;end
+refMsg = msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "findobj", 1, 2);
+assert_checkerror("findobj()", refMsg)
+ ans  =
+ 
+  T  
+assert_checktrue(execstr("findobj(""test"") == []","errcatch")==0);
+assert_checktrue(execstr("findobj(""Param1"",""Param2"") == []","errcatch")==0);

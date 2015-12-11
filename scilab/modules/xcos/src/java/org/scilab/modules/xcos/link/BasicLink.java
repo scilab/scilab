@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,23 +19,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.ScilabGraphUniqueObject;
 import org.scilab.modules.graph.actions.DeleteAction;
 import org.scilab.modules.gui.bridge.contextmenu.SwingScilabContextMenu;
 import org.scilab.modules.gui.contextmenu.ContextMenu;
 import org.scilab.modules.gui.contextmenu.ScilabContextMenu;
 import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.menu.ScilabMenu;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
+import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
-import org.scilab.modules.xcos.port.BasicPort;
-import org.scilab.modules.xcos.port.BasicPort.Type;
 import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -50,7 +48,7 @@ import com.mxgraph.util.mxRectangle;
  * A link is always oriented from Input to Output or from Command to Control.
  */
 // CSOFF: ClassDataAbstractionCoupling
-public abstract class BasicLink extends ScilabGraphUniqueObject {
+public abstract class BasicLink extends XcosCell {
     private static final mxGeometry DEFAULT_GEOMETRY = new mxGeometry(0, 0, 80, 80);
     private static final int DETECTION_RECTANGLE_DIMENSION = 10;
     private transient int ordering;
@@ -61,11 +59,14 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
      * @param style
      *            The style to use for this link
      */
-    public BasicLink(String style) {
-        super();
+    public BasicLink(long uid, String style) {
+        super(uid, Kind.LINK);
         setVertex(false);
         setEdge(true);
         setStyle(style + XcosOptions.getEdition().getEdgeStyle());
+
+        JavaController controller = new JavaController();
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.KIND, getLinkKind());
     }
 
     /**
@@ -261,6 +262,9 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
     /** @return The scicos color and type values */
     public abstract double[][] getColorAndType();
 
+    /** the scicos kind */
+    public abstract int getLinkKind();
+
     /**
      * Open the contextual menu of the link
      *
@@ -293,43 +297,6 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
                 .getLocation().y);
 
         menu.setVisible(true);
-    }
-
-    /**
-     * Create a typed link
-     *
-     * @param from
-     *            The source
-     * @param to
-     *            The target
-     * @return The new link
-     * @deprecated Prefer using
-     *             {@link org.scilab.modules.xcos.graph.XcosDiagram#createEdge(Object, String, Object, Object, Object, String)}
-     */
-    @Deprecated
-    public static BasicLink createLinkFromPorts(BasicPort from, BasicPort to) {
-        // Pre-conditions
-        if (to == null || from == null) {
-            throw new NullPointerException();
-        }
-
-        BasicLink instance;
-
-        boolean isFromImplicit = (from.getType() == Type.IMPLICIT);
-        boolean isToImplicit = (to.getType() == Type.IMPLICIT);
-
-        boolean isFromExplicit = (from.getType() == Type.EXPLICIT);
-        boolean isToExplicit = (to.getType() == Type.EXPLICIT);
-
-        if (isFromImplicit && isToImplicit) {
-            instance = new ImplicitLink();
-        } else if (isFromExplicit && isToExplicit) {
-            instance = new ExplicitLink();
-        } else {
-            instance = new CommandControlLink();
-        }
-
-        return instance;
     }
 
     /** Invert the source and target of the link */

@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- TEST WITH GRAPHICS -->
+// <-- TEST WITH GRAPHIC -->
 // unit test for typeof()
 // constant
 assert_checkequal(typeof(1),"constant");
@@ -23,9 +23,6 @@ assert_checkequal(typeof("s"=="s"),"boolean");
 assert_checkequal(typeof(sparse([0,1,0,1:1,0,1,0])),"sparse");
 // boolean sparse
 assert_checkequal(typeof(sparse([1,1;2,2;3,3],[%t,%t,%t])),"boolean sparse");
-// Matlab sparse
-X=sparse(rand(2,2)); Y=mtlb_sparse(X);
-assert_checkequal(typeof(Y),"Matlab sparse");
 // int
 assert_checkequal(typeof(int8(1:4)),"int8");
 assert_checkequal(typeof(uint8(1:4)),"uint8");
@@ -51,7 +48,7 @@ assert_checkequal(typeof("s"),"string");
 assert_checkequal(typeof("string"),"string");
 assert_checkequal(typeof(["s","s"]),"string");
 // function
-deff('[x]=myplus(y,z)','x=y+z');
+deff("[x]=myplus(y,z)","x=y+z");
 assert_checkequal(typeof(myplus),"function");
 // library
 assert_checkequal(typeof(elementary_functionslib),"library");
@@ -63,20 +60,20 @@ x=lusolve(h,b);a*x-b;
 ludel(h);
 assert_checkequal(typeof(h),"pointer");
 // size implicit
-assert_checkequal(typeof(1:1:$), "size implicit");
+assert_checkequal(typeof(1:1:$), "implicitlist");
 // list
 assert_checkequal(typeof(list(1,2)),"list");
 t = tlist(["listtype","field1","field2"], [], []);
 assert_checkequal(typeof(t),t(1)(1));
-M = mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+M = mlist(["V","name","value"],["a","b","c"],[1 2 3]);
 M1=getfield(1,M);
 assert_checkequal(typeof(M),M1(1));
 // rational, state-space, uitree
 assert_checkequal(typeof(1/poly(0,"s")),"rational");
 A=[0,1;0,0];B=[1;1];C=[1,1];
-S1=syslin('c',A,B,C);
+S1=syslin("c",A,B,C);
 assert_checkequal(typeof(S1),"state-space");
-S2=syslin('d',A,B,C);
+S2=syslin("d",A,B,C);
 assert_checkequal(typeof(S2),"state-space");
 S3=syslin(1,A,B,C);
 assert_checkequal(typeof(S3),"state-space");
@@ -85,14 +82,9 @@ l1 = uiCreateNode("CONST_m","default","");
 assert_checkequal(typeof(l1),"uitree");
 tree = uiCreateTree(l1);
 assert_checkequal(typeof(tree),"uitree");
-// hypermat
-assert_checkequal(typeof(hypermat([2 3 2 2],1:24)),"hypermat");
-A=[1,2,3;4,5,6];
-A(:,:,2)=[1,2,3;4,5,6];
-assert_checkequal(typeof(A),"hypermat");
 // fptr
 assert_checkequal(typeof(abs),"fptr");
 // cell
 assert_checkequal(typeof(cell(3)),"ce");
 //structure
-assert_checkequal(typeof(struct('jour',25,'mois','DEC','annee',2006)),"st");
+assert_checkequal(typeof(struct("jour",25,"mois","DEC","annee",2006)),"st");

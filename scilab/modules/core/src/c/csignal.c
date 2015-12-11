@@ -7,25 +7,19 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <stdio.h>
 #include <string.h>
 #include <wchar.h>
-#include "banier.h"
 #include "csignal.h"
-#include "sigbas.h"
-#include "scilabmode.h"
-#include "getKey.h"
-#include "cliPrompt.h"
-#include "cliDisplayManagement.h"
+#include "configvariable_interface.h"
 
 /* If CTRL-C was pressed. */
 void controlC_handler(int sig)
 {
-    int j = SIGINT;
-    C2F(sigbas)(&j);
+    setExecutionBreak();
 }
 
 int csignal(void)
@@ -48,6 +42,5 @@ int csignal(void)
         return -1;
     }
 #endif
-
     return 0;
 }

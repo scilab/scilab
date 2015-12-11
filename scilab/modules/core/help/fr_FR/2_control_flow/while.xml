@@ -7,9 +7,9 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
-            while expr ,instructions,...[,else instructions], end
-            while expr do instructions,...[,else instructions], end
-            while expr then instructions,...[,else instructions], end
+            while expr ,instructions,..., end
+            while expr do instructions,..., end
+            while expr then instructions,..., end
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -32,16 +32,9 @@
                     place de ces séparateurs.
                 </para>
             </listitem>
-            <listitem>
-                <para>
-                    La construction optionnelle <literal>,else instructions</literal> permet de spécifier
-                    des <literal>instructions</literal> à exécuter si l'expression <literal>expr</literal>
-                    est fausse. 
-                </para>
-            </listitem>
         </itemizedlist>
         <para>
-            En accord avec les conventions de codage pour le langage de porgrammation Scilab, il est recommandé de :
+            En accord avec les conventions de codage pour le langage de programmation Scilab, il est recommandé de :
         </para>
         <itemizedlist>
             <listitem>
@@ -65,9 +58,9 @@
         </para>
         <programlisting role=""><![CDATA[
       i = 0
-      while i<5 
+      while i<5
           disp("i");
-          i = i + 1; 
+          i = i + 1;
       end
 ]]></programlisting>
         <para>
@@ -77,18 +70,20 @@
       i = 0; while i<5 disp("i"); i = i + 1; end
 ]]></programlisting>
         <para>
-            Attention : le nombre de caractères constituant le corps d'une
-            instruction conditionnelle (if while for ou select/case) est limité à
-            16k..
+            <warning>
+                Attention : le nombre de caractères constituant le corps d'une
+                instruction conditionnelle (if while for ou select/case) est limité à
+                16k.
+            </warning>
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 e=1; a=1; k=1;
-while norm(a-(a+e),1) > %eps, 
-    e=e/2; 
-    k=k+1; 
+while norm(a-(a+e),1) > %eps,
+    e=e/2;
+    k=k+1;
 end
 e,k
 
@@ -113,5 +108,16 @@ e,k
                 <link linkend="pause">pause</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    La construction <literal>[,else instructions]</literal> n'est plus supportée.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

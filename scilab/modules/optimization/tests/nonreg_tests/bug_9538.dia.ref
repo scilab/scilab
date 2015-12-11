@@ -1,0 +1,233 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- ENGLISH IMPOSED -->
+//
+// <-- Non-regression test for bug 9538 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=9538
+//
+// <-- Short Description -->
+// optimbase_checkshape() only allowed row vectors as return from the cost function.
+// Allowed column vectors.
+//
+// Load the program as it used to work. The fix for this bug does not apply to polygon.sce as it is.
+exec("SCI/modules/optimization/demos/neldermead/polygon.sce", -1);
+Finds the largest n-polygon with diameter smaller than 1.
+Area =0.649519 (expected = 0.649519)
+Maximum diameter=1.000000 (expected = 1.000000)
+Minimum diameter=0.500000 (expected=0.500000)
+Current area = 0.526110
+Constraint satisfaction = 0.100000 (expected positive)
+=================================
+Initialization
+Iter. #  0, Feval #117, Fval = -0.526110, S = 3.3e+00
+Iter. # 10, Feval #149, Fval = -0.571672, S = 9.8e-01
+Iter. # 20, Feval #176, Fval = -0.584718, S = 7.3e-01
+Iter. # 30, Feval #205, Fval = -0.592284, S = 7.2e-01
+Iter. # 40, Feval #233, Fval = -0.610004, S = 8.8e-01
+Iter. # 50, Feval #257, Fval = -0.612820, S = 7.0e-01
+Iter. # 60, Feval #288, Fval = -0.623092, S = 5.3e-01
+Iter. # 70, Feval #320, Fval = -0.632069, S = 5.1e-01
+Iter. # 80, Feval #348, Fval = -0.635569, S = 4.4e-01
+Iter. # 90, Feval #379, Fval = -0.636657, S = 4.9e-01
+Iter. #100, Feval #411, Fval = -0.639412, S = 4.5e-01
+Iter. #110, Feval #440, Fval = -0.639412, S = 3.2e-01
+Iter. #120, Feval #466, Fval = -0.640097, S = 3.5e-01
+Iter. #130, Feval #495, Fval = -0.640335, S = 2.5e-01
+Iter. #140, Feval #521, Fval = -0.641007, S = 2.5e-01
+Iter. #150, Feval #548, Fval = -0.644861, S = 2.4e-01
+Iter. #160, Feval #572, Fval = -0.646347, S = 2.7e-01
+Iter. #170, Feval #603, Fval = -0.646644, S = 2.1e-01
+Iter. #180, Feval #636, Fval = -0.646644, S = 2.1e-01
+Iter. #190, Feval #662, Fval = -0.646644, S = 2.1e-01
+Iter. #200, Feval #689, Fval = -0.647695, S = 1.9e-01
+Iter. #210, Feval #714, Fval = -0.648022, S = 1.9e-01
+Iter. #220, Feval #748, Fval = -0.648301, S = 1.2e-01
+Iter. #230, Feval #778, Fval = -0.648713, S = 1.8e-01
+Iter. #240, Feval #804, Fval = -0.649005, S = 1.3e-01
+Iter. #250, Feval #831, Fval = -0.649595, S = 1.0e-01
+Iter. #260, Feval #856, Fval = -0.650127, S = 1.0e-01
+Iter. #270, Feval #886, Fval = -0.650340, S = 1.4e-01
+Iter. #280, Feval #920, Fval = -0.650416, S = 1.0e-01
+Iter. #290, Feval #950, Fval = -0.650418, S = 9.0e-02
+Iter. #300, Feval #976, Fval = -0.650418, S = 7.3e-02
+Iter. #310, Feval #1004, Fval = -0.650660, S = 6.5e-02
+Iter. #320, Feval #1028, Fval = -0.650867, S = 1.1e-01
+Iter. #330, Feval #1053, Fval = -0.650968, S = 6.3e-02
+Iter. #340, Feval #1075, Fval = -0.651196, S = 1.1e-01
+Iter. #350, Feval #1098, Fval = -0.651548, S = 9.0e-02
+Iter. #360, Feval #1118, Fval = -0.651910, S = 1.2e-01
+Iter. #370, Feval #1139, Fval = -0.652586, S = 1.2e-01
+Iter. #380, Feval #1159, Fval = -0.653251, S = 1.4e-01
+Iter. #390, Feval #1180, Fval = -0.654245, S = 1.8e-01
+Iter. #400, Feval #1202, Fval = -0.654807, S = 1.6e-01
+Iter. #410, Feval #1228, Fval = -0.656402, S = 1.6e-01
+Iter. #420, Feval #1258, Fval = -0.656840, S = 9.0e-02
+Iter. #430, Feval #1282, Fval = -0.658177, S = 1.0e-01
+Iter. #440, Feval #1304, Fval = -0.658639, S = 1.3e-01
+Iter. #450, Feval #1328, Fval = -0.660199, S = 9.9e-02
+Iter. #460, Feval #1357, Fval = -0.661001, S = 1.2e-01
+Iter. #470, Feval #1388, Fval = -0.661446, S = 1.1e-01
+Iter. #480, Feval #1411, Fval = -0.662733, S = 1.3e-01
+Iter. #490, Feval #1432, Fval = -0.663961, S = 1.5e-01
+Iter. #500, Feval #1461, Fval = -0.664566, S = 1.3e-01
+Iter. #510, Feval #1492, Fval = -0.664737, S = 1.5e-01
+Iter. #520, Feval #1523, Fval = -0.664981, S = 1.2e-01
+Iter. #530, Feval #1552, Fval = -0.665215, S = 7.5e-02
+Iter. #540, Feval #1577, Fval = -0.665463, S = 1.2e-01
+Iter. #550, Feval #1602, Fval = -0.665827, S = 1.3e-01
+Iter. #560, Feval #1632, Fval = -0.665933, S = 1.0e-01
+Iter. #570, Feval #1667, Fval = -0.666014, S = 9.1e-02
+Iter. #580, Feval #1692, Fval = -0.666103, S = 8.3e-02
+Iter. #590, Feval #1718, Fval = -0.666253, S = 6.6e-02
+Iter. #600, Feval #1745, Fval = -0.666335, S = 6.1e-02
+Iter. #610, Feval #1773, Fval = -0.666591, S = 7.3e-02
+Iter. #620, Feval #1801, Fval = -0.666626, S = 4.6e-02
+Iter. #630, Feval #1832, Fval = -0.666725, S = 2.9e-02
+Iter. #640, Feval #1861, Fval = -0.666726, S = 4.9e-02
+Iter. #650, Feval #1897, Fval = -0.666808, S = 2.0e-02
+Iter. #660, Feval #1925, Fval = -0.666819, S = 1.9e-02
+Iter. #670, Feval #1949, Fval = -0.666878, S = 1.6e-02
+Iter. #680, Feval #1972, Fval = -0.666962, S = 2.3e-02
+Iter. #690, Feval #1994, Fval = -0.667053, S = 2.1e-02
+=================================
+End of Optimization
+Maximum Area =0.667053 (expected = 0.677981)
+// Now redefine largesmallpolygon() without the "transposition for neldermead"
+// and check that we get the same result as before.
+function [ f , c , index ] = largesmallpolygon ( x , index )
+    // Bibliography
+    //   "Benchmarking Optimization Software with Cops"
+    //   Dolan, Moré, 2001
+    //   Section 1, "Largest Small Polygon"
+    //
+    //   "Biggest Little Polygon"
+    //   http://mathworld.wolfram.com/BiggestLittlePolygon.html
+    //
+    //   Audet, C. "Optimisation globale structurée: propriétés, équivalences et résolution."
+    //   Thèse de Doctorat. Montréal, Canada: École Polytechnique de Montréal, 1997.
+    //   http://www.gerad.ca/Charles.Audet.
+    //
+    // Known optimal values are
+    // A6 = 0.677981 (Wolfram Mathworld)
+    // A8 = 0.726869 (Wolfram Mathworld)
+    // A25 = 0.77974 (Dolan & Moré - SNOPT)
+    // A50 = 0.784016 (Dolan & Moré - SNOPT)
+    // A75 = 0.784769 (Dolan & Moré - SNOPT)
+    // A100 = 0.785040 (Dolan & Moré - SNOPT)
+    //
+    nv = size(x,"*")/2
+    f = []
+    c = []
+    // nv: number of vertices
+    // x : a (2*nv)-by-1 matrix of doubles, where
+    // r is in [0,1]
+    // t is in [0,pi]
+    r = x(1:nv)
+    t = x(nv+1:2*nv)
+    //polygon_draw(r ,t , nv);
+    //pause
+    if ( index == 2 | index == 6 ) then
+        f = polygon_area(r ,t , nv)
+        f = -f
+    end
+    if ( index == 5 | index == 6 ) then
+        c = zeros(nv^2+nv-1,1)
+        // Set the diameters
+        d = polygon_diameters(r ,t , nv)
+        d = matrix(d,nv^2,1)
+        c(1:nv^2) = 1-d
+        // Set the angles
+        c(nv^2+1:nv^2+nv-1) = t(2:nv)-t(1:nv-1)
+        // Transpose for neldermead
+        //c = c'
+    end
+endfunction
+Warning : redefining function: largesmallpolygon       . Use funcprot(0) to avoid this message
+
+nv = 6;
+rand("seed" , 0);
+[A,r,t] = findlargestpolygon (nv);
+Current area = 0.526110
+Constraint satisfaction = 0.100000 (expected positive)
+=================================
+Initialization
+Iter. #  0, Feval #117, Fval = -0.526110, S = 3.3e+00
+Iter. # 10, Feval #149, Fval = -0.571672, S = 9.8e-01
+Iter. # 20, Feval #176, Fval = -0.584718, S = 7.3e-01
+Iter. # 30, Feval #205, Fval = -0.592284, S = 7.2e-01
+Iter. # 40, Feval #233, Fval = -0.610004, S = 8.8e-01
+Iter. # 50, Feval #257, Fval = -0.612820, S = 7.0e-01
+Iter. # 60, Feval #288, Fval = -0.623092, S = 5.3e-01
+Iter. # 70, Feval #320, Fval = -0.632069, S = 5.1e-01
+Iter. # 80, Feval #348, Fval = -0.635569, S = 4.4e-01
+Iter. # 90, Feval #379, Fval = -0.636657, S = 4.9e-01
+Iter. #100, Feval #411, Fval = -0.639412, S = 4.5e-01
+Iter. #110, Feval #440, Fval = -0.639412, S = 3.2e-01
+Iter. #120, Feval #466, Fval = -0.640097, S = 3.5e-01
+Iter. #130, Feval #495, Fval = -0.640335, S = 2.5e-01
+Iter. #140, Feval #521, Fval = -0.641007, S = 2.5e-01
+Iter. #150, Feval #548, Fval = -0.644861, S = 2.4e-01
+Iter. #160, Feval #572, Fval = -0.646347, S = 2.7e-01
+Iter. #170, Feval #603, Fval = -0.646644, S = 2.1e-01
+Iter. #180, Feval #636, Fval = -0.646644, S = 2.1e-01
+Iter. #190, Feval #662, Fval = -0.646644, S = 2.1e-01
+Iter. #200, Feval #689, Fval = -0.647695, S = 1.9e-01
+Iter. #210, Feval #714, Fval = -0.648022, S = 1.9e-01
+Iter. #220, Feval #748, Fval = -0.648301, S = 1.2e-01
+Iter. #230, Feval #778, Fval = -0.648713, S = 1.8e-01
+Iter. #240, Feval #804, Fval = -0.649005, S = 1.3e-01
+Iter. #250, Feval #831, Fval = -0.649595, S = 1.0e-01
+Iter. #260, Feval #856, Fval = -0.650127, S = 1.0e-01
+Iter. #270, Feval #886, Fval = -0.650340, S = 1.4e-01
+Iter. #280, Feval #920, Fval = -0.650416, S = 1.0e-01
+Iter. #290, Feval #950, Fval = -0.650418, S = 9.0e-02
+Iter. #300, Feval #976, Fval = -0.650418, S = 7.3e-02
+Iter. #310, Feval #1004, Fval = -0.650660, S = 6.5e-02
+Iter. #320, Feval #1028, Fval = -0.650867, S = 1.1e-01
+Iter. #330, Feval #1053, Fval = -0.650968, S = 6.3e-02
+Iter. #340, Feval #1075, Fval = -0.651196, S = 1.1e-01
+Iter. #350, Feval #1098, Fval = -0.651548, S = 9.0e-02
+Iter. #360, Feval #1118, Fval = -0.651910, S = 1.2e-01
+Iter. #370, Feval #1139, Fval = -0.652586, S = 1.2e-01
+Iter. #380, Feval #1159, Fval = -0.653251, S = 1.4e-01
+Iter. #390, Feval #1180, Fval = -0.654245, S = 1.8e-01
+Iter. #400, Feval #1202, Fval = -0.654807, S = 1.6e-01
+Iter. #410, Feval #1228, Fval = -0.656402, S = 1.6e-01
+Iter. #420, Feval #1258, Fval = -0.656840, S = 9.0e-02
+Iter. #430, Feval #1282, Fval = -0.658177, S = 1.0e-01
+Iter. #440, Feval #1304, Fval = -0.658639, S = 1.3e-01
+Iter. #450, Feval #1328, Fval = -0.660199, S = 9.9e-02
+Iter. #460, Feval #1357, Fval = -0.661001, S = 1.2e-01
+Iter. #470, Feval #1388, Fval = -0.661446, S = 1.1e-01
+Iter. #480, Feval #1411, Fval = -0.662733, S = 1.3e-01
+Iter. #490, Feval #1432, Fval = -0.663961, S = 1.5e-01
+Iter. #500, Feval #1461, Fval = -0.664566, S = 1.3e-01
+Iter. #510, Feval #1492, Fval = -0.664737, S = 1.5e-01
+Iter. #520, Feval #1523, Fval = -0.664981, S = 1.2e-01
+Iter. #530, Feval #1552, Fval = -0.665215, S = 7.5e-02
+Iter. #540, Feval #1577, Fval = -0.665463, S = 1.2e-01
+Iter. #550, Feval #1602, Fval = -0.665827, S = 1.3e-01
+Iter. #560, Feval #1632, Fval = -0.665933, S = 1.0e-01
+Iter. #570, Feval #1667, Fval = -0.666014, S = 9.1e-02
+Iter. #580, Feval #1692, Fval = -0.666103, S = 8.3e-02
+Iter. #590, Feval #1718, Fval = -0.666253, S = 6.6e-02
+Iter. #600, Feval #1745, Fval = -0.666335, S = 6.1e-02
+Iter. #610, Feval #1773, Fval = -0.666591, S = 7.3e-02
+Iter. #620, Feval #1801, Fval = -0.666626, S = 4.6e-02
+Iter. #630, Feval #1832, Fval = -0.666725, S = 2.9e-02
+Iter. #640, Feval #1861, Fval = -0.666726, S = 4.9e-02
+Iter. #650, Feval #1897, Fval = -0.666808, S = 2.0e-02
+Iter. #660, Feval #1925, Fval = -0.666819, S = 1.9e-02
+Iter. #670, Feval #1949, Fval = -0.666878, S = 1.6e-02
+Iter. #680, Feval #1972, Fval = -0.666962, S = 2.3e-02
+Iter. #690, Feval #1994, Fval = -0.667053, S = 2.1e-02
+=================================
+End of Optimization
+assert_checkalmostequal(A, 0.677981, [], 1e-1);

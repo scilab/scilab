@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,8 +15,8 @@
 #ifndef __SCI_RANKQR__
 #define __SCI_RANKQR__
 
-int sci_rrankqr(char* fname, unsigned long fname_len);
-int sci_zrankqr(char* fname, unsigned long fname_len);
+int sci_rrankqr(char* fname, void* pvApiCtx);
+int sci_zrankqr(char* fname, void* pvApiCtx);
 
 #endif /* __SCI_RANKQR__ */
 /*--------------------------------------------------------------------------*/

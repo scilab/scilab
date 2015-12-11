@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 4943 -->
 //
 // <-- Bugzilla URL -->
@@ -12,13 +13,13 @@
 // <-- Short Description -->
 // execstr does not check input arguments.
 // =============================================================================
-ierr = execstr('a=zzzzzzz','errcatch','n');
+ierr = execstr("a=zzzzzzz","errcatch","n");
 // =============================================================================
 ierr = execstr("ierr = execstr(''a=zzzzzzz'',''errcatch'',''nooon'');","errcatch");
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================
-ierr = execstr('a=zzzzzzz','errcatch');
-if ierr <> 4 then bugmes();quit;end
+ierr = execstr("a=zzzzzzz","errcatch");
+if ierr <> 999 then bugmes();quit;end
 // =============================================================================
 ierr = execstr("ierr = execstr(''a=zzzzzzz'',''errBADcatch'');","errcatch");
 if ierr <> 999 then bugmes();quit;end

@@ -47,7 +47,7 @@
         <title>Description</title>
         <para>
             This function computes the residual of a linear system <literal>r = Ax - b</literal> (together
-            with its 2-norm) with the additionnal precision provided on "Intel like" 
+            with its 2-norm) with the additional precision provided on "Intel like" 
             FPU (80 bits in place of 64) if the compiler translate "long double" to 
             use it. Else one must get the same than using <literal>A*x - b</literal> at the scilab level. 
             In both cases using <literal>[r, nr] = res_with_prec(A,x,b)</literal> is 

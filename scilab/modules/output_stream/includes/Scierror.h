@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,13 +15,14 @@
 #define __SCIERROR__
 
 #include <stdarg.h>
+#include <wchar.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 #include "do_error_number.h"
 
-
+#define bsiz 4096
     /*
     * as sciprint but with an added first argument
     * which is ignored (used in do_printf)
@@ -30,6 +31,8 @@ extern "C" {
     * @param ...
     */
     int  Scierror(int iv, const char *fmt, ...);
+    //int  ScierrorW(int iv, const wchar_t *fmt,...);
+
 
 #ifdef __cplusplus
 }

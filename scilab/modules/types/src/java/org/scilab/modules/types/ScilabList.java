@@ -7,7 +7,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,11 +25,11 @@ import java.util.Collection;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * ScilabList data = new ScilabList();<br />
- * data.add(new ScilabString("hello"));<br />
- * data.add(new ScilabDouble(2));<br />
+ * ScilabList data = new ScilabList();<BR>
+ * data.add(new ScilabString("hello"));<BR>
+ * data.add(new ScilabDouble(2));<BR>
  * </code>
  *
  * @see org.scilab.modules.javasci.Scilab
@@ -70,6 +70,22 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     public ScilabList(String varName) {
         super();
         this.varName = varName;
+    }
+
+    /**
+     * @param varName the variable name
+     * @param size the initial list size
+     */
+    public ScilabList(String varName, int size) {
+        super(size);
+        this.varName = varName;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
     }
 
     /**
@@ -172,7 +188,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return the pretty-printed data
@@ -182,8 +198,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     public String toString() {
         StringBuffer result = new StringBuffer();
         if (isEmpty()) {
-            result.append("list()");
-            return result.toString();
+            return "list()";
         }
 
         result.append("list(");

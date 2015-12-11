@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,7 +29,7 @@ GRAPHICS_IMPEXP void convertPixelCoordsToUserCoords(const int xPixCoords[], cons
 
 GRAPHICS_IMPEXP void compute_data_bounds2(int cflag, char dataflag, char * logflags, double *x, double  *y, int n1, int n2, double *drect);
 
-GRAPHICS_IMPEXP BOOL update_specification_bounds(char *psubwinUID, double rect[6], int flag);
+GRAPHICS_IMPEXP BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag);
 
 
 #endif  /* _SCI_ECH */

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.legend;
@@ -65,7 +65,6 @@ public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements Textur
         return a;
     }
 
-
     /**
      * Compute and return the matrix of text string from the given {@see Legend} object.
      * The legend text array is treated as a 1D-array.
@@ -94,6 +93,4 @@ public class LegendSpriteDrawer extends TextObjectSpriteDrawer implements Textur
 
         return texts;
     }
-
-
 }

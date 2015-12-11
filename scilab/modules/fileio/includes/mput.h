@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -23,8 +23,6 @@
 * or can be used to write in little or big endian
 */
 FILEIO_IMPEXP void C2F(mput) (int *fd, double *res, int *n, char *type, int *ierr);
-
-FILEIO_IMPEXP void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr);
 
 FILEIO_IMPEXP void mput2 (FILE *fa, int swap2, double *res, int n, char *type, int *ierr);
 

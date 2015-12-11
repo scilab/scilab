@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -41,9 +41,10 @@ public class SciNotesContents extends JPanel {
         add(stp);
         addFocusListener(new FocusListener() {
             public void focusGained(FocusEvent e) {
-                editor.getTextPane().requestFocus();
+                if (editor.getTextPane() != null) {
+                    editor.getTextPane().requestFocus();
+                }
             }
-
             public void focusLost(FocusEvent e) { }
         });
     }

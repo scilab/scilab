@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,7 +19,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdlib.h>
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetProperty.h"
@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 #include "createGraphicObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_copy(char *fname, unsigned long fname_len)
+int sci_copy(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -43,18 +43,18 @@ int sci_copy(char *fname, unsigned long fname_len)
     long long* outindex = NULL;
 
     unsigned long hdl = 0, hdlparent = 0;
-    char *pobjUID = NULL, *psubwinparenttargetUID = NULL, *pcopyobjUID = NULL;
+    int iObjUID = 0, iSubwinparenttargetUID = 0, iCopyobjUID = 0;
+    int* piSubWin = &iSubwinparenttargetUID;
     int iType = -1;
     int *piType = &iType;
     int m1 = 0, n1 = 0;
-    int numrow = 0, numcol = 0, lw = 0;
+    int numrow = 0, numcol = 0;
     int isPolyline = 0;
 
     CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     /*  set or create a graphic window*/
-    lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
     if (sciErr.iErr)
     {
@@ -73,26 +73,26 @@ int sci_copy(char *fname, unsigned long fname_len)
 
     if (m1 != 1 || n1 != 1)
     {
-        C2F(overload)(&lw, "copy", 4);
+        OverLoad(1);
         return 0;
     }
 
     hdl = (unsigned long) * l1; /* on recupere le pointeur d'objet par le handle*/
-    pobjUID = (char*)getObjectFromHandle(hdl);
-    if (pobjUID == NULL)
+    iObjUID = getObjectFromHandle(hdl);
+    if (iObjUID == 0)
     {
         Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
         return 0;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (iType != __GO_TEXT__ &&
             iType != __GO_ARC__ &&
             iType != __GO_POLYLINE__ &&
             iType != __GO_RECTANGLE__)
     {
-        C2F(overload)(&lw, "copy", 4);
+        OverLoad(1);
         return 0;
     }
 
@@ -124,14 +124,14 @@ int sci_copy(char *fname, unsigned long fname_len)
         }
 
         hdlparent = (unsigned long) * l2; /* on recupere le pointeur d'objet par le handle*/
-        psubwinparenttargetUID = (char*)getObjectFromHandle(hdlparent);
-        if (psubwinparenttargetUID == NULL)
+        iSubwinparenttargetUID = getObjectFromHandle(hdlparent);
+        if (iSubwinparenttargetUID == 0)
         {
             Scierror(999, _("%s: The handle is not or no more valid.\n"), fname);
             return 0;
         }
         // Check Parent is an of type Axes.
-        getGraphicObjectProperty(psubwinparenttargetUID, __GO_TYPE__, jni_int, (void **)&piType);
+        getGraphicObjectProperty(iSubwinparenttargetUID, __GO_TYPE__, jni_int, (void **)&piType);
 
         if (iType != __GO_AXES__)
         {
@@ -143,7 +143,7 @@ int sci_copy(char *fname, unsigned long fname_len)
     else
     {
         /* No destination Axes specified, use the copied object's parent Axes */
-        getGraphicObjectProperty(pobjUID, __GO_PARENT_AXES__, jni_string, (void **)&psubwinparenttargetUID);
+        getGraphicObjectProperty(iObjUID, __GO_PARENT_AXES__, jni_int, (void **)&piSubWin);
     }
 
     numrow   = 1;
@@ -159,17 +159,16 @@ int sci_copy(char *fname, unsigned long fname_len)
 
     if (isPolyline)
     {
-        pcopyobjUID = clonePolyline(pobjUID);
+        iCopyobjUID = clonePolyline(iObjUID);
     }
     else
     {
-        pcopyobjUID = cloneGraphicObject(pobjUID);
+        iCopyobjUID = cloneGraphicObject(iObjUID);
     }
 
-    *(outindex) = getHandle(pcopyobjUID);
+    *(outindex) = getHandle(iCopyobjUID);
 
-    setGraphicObjectRelationship(psubwinparenttargetUID, pcopyobjUID);
-    releaseGraphicObjectProperty(__GO_PARENT__, pcopyobjUID, jni_string, 1);
+    setGraphicObjectRelationship(iSubwinparenttargetUID, iCopyobjUID);
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
     ReturnArguments(pvApiCtx);

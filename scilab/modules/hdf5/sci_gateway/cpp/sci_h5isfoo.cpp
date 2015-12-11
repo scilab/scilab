@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_hdf5;
 
 /*--------------------------------------------------------------------------*/
-inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname, unsigned long fname_len)
+inline static int sci_h5isfoo(const HDF5Scilab::H5ObjectType type, char * fname, int* pvApiCtx)
 {
     H5Object * hobj = 0;
     SciErr err;
@@ -82,64 +82,64 @@ finish:
 }
 /*--------------------------------------------------------------------------*/
 
-int sci_h5isFile(char * fname, unsigned long fname_len)
+int sci_h5isFile(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5FILE, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5FILE, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 
-int sci_h5isGroup(char * fname, unsigned long fname_len)
+int sci_h5isGroup(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5GROUP, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5GROUP, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 
-int sci_h5isSet(char * fname, unsigned long fname_len)
+int sci_h5isSet(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5DATASET, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5DATASET, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 
-int sci_h5isAttr(char * fname, unsigned long fname_len)
+int sci_h5isAttr(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5ATTRIBUTE, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5ATTRIBUTE, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 
-int sci_h5isSpace(char * fname, unsigned long fname_len)
+int sci_h5isSpace(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5SPACE, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5SPACE, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 
-int sci_h5isType(char * fname, unsigned long fname_len)
+int sci_h5isType(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5TYPE, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5TYPE, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 
-int sci_h5isRef(char * fname, unsigned long fname_len)
+int sci_h5isRef(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5REFERENCE, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5REFERENCE, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_h5isList(char * fname, unsigned long fname_len)
+int sci_h5isList(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5LIST, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5LIST, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_h5isCompound(char * fname, unsigned long fname_len)
+int sci_h5isCompound(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5COMPOUND, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5COMPOUND, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_h5isArray(char * fname, unsigned long fname_len)
+int sci_h5isArray(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5ARRAY, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5ARRAY, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_h5isVlen(char * fname, unsigned long fname_len)
+int sci_h5isVlen(char * fname, int* pvApiCtx)
 {
-    return sci_h5isfoo(HDF5Scilab::H5VLEN, fname, fname_len);
+    return sci_h5isfoo(HDF5Scilab::H5VLEN, fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="or" xml:lang="ja">
@@ -19,7 +19,6 @@
         <title>呼び出し手順</title>
         <synopsis>or(A), or(A,'*')
             or(A,'r'), or(A,1)
-            
             or(A,'c'), or(A,2)
         </synopsis>
     </refsynopsisdiv>
@@ -28,7 +27,6 @@
         <para>
             <literal>or(A)</literal> は論理値行列<literal>A</literal>の
             要素の <literal>or</literal> を取得します.
-            
             <literal>or(A)</literal> は,
             <literal>A</literal>の少なくとも1個の要素が<literal>%t</literal>
             の場合に限り,

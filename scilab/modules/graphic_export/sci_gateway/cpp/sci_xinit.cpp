@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,13 +20,13 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "gw_graphic_export.h"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xinit(char * fname, unsigned long fname_len)
+int sci_xinit(char * fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = 0;
@@ -45,7 +45,7 @@ int sci_xinit(char * fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 

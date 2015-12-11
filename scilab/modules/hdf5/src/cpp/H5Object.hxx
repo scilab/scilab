@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@
 
 extern "C"
 {
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -49,7 +49,7 @@ class H5File;
 
 class H5Object
 {
-    static H5Object & root;
+    static H5Object* root;
 
     bool locked;
     H5Object & parent;
@@ -66,6 +66,16 @@ public :
     H5Object(H5Object & _parent);
     H5Object(H5Object & _parent, const std::string & _name);
     virtual ~H5Object();
+
+    static void clearRoot()
+    {
+        delete root;
+    }
+
+    static void initRoot()
+    {
+        root = new H5Object();
+    }
 
     virtual void cleanup();
 
@@ -259,7 +269,7 @@ public :
     virtual void createOnScilabStack(int pos, void * pvApiCtx) const;
     virtual void createInScilabList(int * list, int stackPos, int pos, void * pvApiCtx) const;
 
-    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0) const
+    virtual void toScilab(void * pvApiCtx, const int lhsPosition, int * parentList = 0, const int listPosition = 0, const bool flip = true) const
     {
         if (parentList)
         {
@@ -273,7 +283,15 @@ public :
 
     bool isRoot() const
     {
-        return this == &root;
+        return this == root;
+    }
+
+    void unregisterChild(H5Object * child)
+    {
+        if (!locked)
+        {
+            children.erase(child);
+        }
     }
 
     static std::string getIndentString(const unsigned int indentLevel)
@@ -283,18 +301,18 @@ public :
 
     static H5Object & getRoot()
     {
-        return root;
+        return *root;
     }
 
     static void cleanAll()
     {
-        root.locked = true;
-        for (std::set<H5Object *>::iterator it = root.children.begin(); it != root.children.end(); it++)
+        root->locked = true;
+        for (std::set<H5Object *>::iterator it = root->children.begin(); it != root->children.end(); it++)
         {
             delete *it;
         }
-        root.children.clear();
-        root.locked = false;
+        root->children.clear();
+        root->locked = false;
         H5VariableScope::clearScope();
     }
 
@@ -389,13 +407,6 @@ protected :
             children.insert(child);
         }
     }
-    void unregisterChild(H5Object * child)
-    {
-        if (!locked)
-        {
-            children.erase(child);
-        }
-    }
 
     static void count(const H5Object & obj, OpDataCount & opdata);
     static herr_t countIterator(hid_t g_id, const char * name, const H5L_info_t * info, void * op_data);
@@ -426,3 +437,4 @@ private :
 #undef __H5_LS_LENGTH__
 
 #endif // __H5OBJECT_HXX__
+

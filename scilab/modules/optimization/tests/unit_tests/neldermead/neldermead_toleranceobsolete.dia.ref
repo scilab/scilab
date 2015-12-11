@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 //
@@ -30,17 +30,14 @@ nm = neldermead_configure(nm,"-tolvarianceflag",%t);
 WARNING: Option -tolvarianceflag is obsolete.
 WARNING: Please use -outputcommand instead.
 WARNING: This feature will be permanently removed in Scilab 5.4.1
-
 nm = neldermead_configure(nm,"-tolabsolutevariance",1.e-4);
 WARNING: Option -tolabsolutevariance is obsolete.
 WARNING: Please use -outputcommand instead.
 WARNING: This feature will be permanently removed in Scilab 5.4.1
-
 nm = neldermead_configure(nm,"-tolrelativevariance",1.e-4);
 WARNING: Option -tolrelativevariance is obsolete.
 WARNING: Please use -outputcommand instead.
 WARNING: This feature will be permanently removed in Scilab 5.4.1
-
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","variable");

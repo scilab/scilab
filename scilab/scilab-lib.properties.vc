@@ -1,8 +1,14 @@
 ; Definition of lib used in Scilab
 
+freehep-graphics2d.jar=${thirdparty.dir}/freehep-graphics2d.jar
+
+freehep-graphicsio-emf.jar=${thirdparty.dir}/freehep-graphicsio-emf.jar
+
+freehep-graphicsio.jar=${thirdparty.dir}/freehep-graphicsio.jar
+
 commons-logging.jar=${thirdparty.dir}/commons-logging-1.1.jar
 
-flexdock.jar=${thirdparty.dir}/flexdock-1.2.3.jar
+flexdock.jar=${thirdparty.dir}/flexdock-1.2.4.jar
 
 jgraphx.jar=${thirdparty.dir}/jgraphx.jar
 
@@ -18,13 +24,15 @@ jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
 
 jrosetta-engine.jar=${thirdparty.dir}/jrosetta-engine.jar
 
-jlatexmath.jar=${thirdparty.dir}/jlatexmath-1.0.2.jar
+jlatexmath.jar=${thirdparty.dir}/jlatexmath-1.0.3.jar
 
-jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.2.jar
+jlatexmath-fop.jar=${thirdparty.dir}/jlatexmath-fop-1.0.3.jar
 
 checkstyle.jar=${thirdparty.dir}/checkstyle/checkstyle-5.3-all.jar
 
 junit4.jar=${thirdparty.dir}/junit4.jar
+
+hamcrest-all.jar=${thirdparty.dir}/hamcrest-all.jar
 
 cobertura.jar=${thirdparty.dir}/cobertura.jar
 
@@ -116,6 +124,10 @@ library.output_stream.name=org.scilab.modules.output_stream.jar
 library.preferences.dir=${modules.dir}/preferences/${build.jar.dir}/
 library.preferences.src.dir=${modules.dir}/preferences/${library.src.path}
 library.preferences.name=org.scilab.modules.preferences.jar
+
+library.external_objects_java.dir=${modules.dir}/external_objects_java/${build.jar.dir}/
+library.external_objects_java.src.dir=${modules.dir}/external_objects_java/${library.src.path}
+library.external_objects_java.name=org.scilab.modules.external_objects_java.jar
 
 build_javasci=true
 

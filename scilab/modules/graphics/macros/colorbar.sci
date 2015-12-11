@@ -5,9 +5,9 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function colorbar(varargin)
+function colorbar(umin, umax, colminmax, fmt)
 
     //  PURPOSE
     //     Draw a colorbar for a plot3d, fec, Sgrayplot, etc...
@@ -37,21 +37,13 @@ function colorbar(varargin)
     //     see the help page
 
     // Check number of input argument
-    if size(varargin)<2 | size(varargin)>4 then
+    [lhs, rhs] = argn();
+    if rhs < 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "colorbar", 2, 4));
     end
-    umin=varargin(1);
-    umax=varargin(2);
-    if size(varargin) > 2 then
-        colminmax=varargin(3);
-    end
-    if size(varargin) > 3 then
-        fmt=varargin(4);
-    end
-
     nb_grad = 5
     if ~exists("fmt","local") then
-        fmt="%-5.2g"
+        fmt="%-5.2g";
     else
         if type(fmt)<>10|size(fmt,"*")<>1 then
             error(msprintf(gettext("%s: Wrong type for input argument #%d: %s data structure expected.\n"), "colorbar", 4, "string (containing a C format)"));

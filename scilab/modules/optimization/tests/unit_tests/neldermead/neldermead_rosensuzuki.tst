@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
@@ -353,6 +353,6 @@ nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0 -10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0 10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 nm = neldermead_destroy(nm);
 

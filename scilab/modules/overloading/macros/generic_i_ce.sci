@@ -5,9 +5,9 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function M=generic_i_ce(varargin)
     // Generic function for insertion of any type of data in a cell
-    error(msprintf(_("%s: Invalid assignement: for insertion in cell, use e.g. x(i,j).entries=y.\n"),"generic_i_ce"));
+    error(msprintf(_("%s: Wrong assignment: for insertion in cell, use e.g. x(i,j).entries=y.\n"),"generic_i_ce"));
 endfunction

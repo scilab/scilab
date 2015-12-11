@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 
@@ -37,7 +37,6 @@
         </module>
         
         <module name="data_structures">
-            <test>fieldnames</test>
             <test>hypermat</test>
             <test>isfield</test>
             <test>listextraction</test>
@@ -62,7 +61,11 @@
         </module>
         
         <module name="elementary_functions">
+            <test>IEEEcompatibility</test>
             <test>prod</test>
+            <test>sum</test>
+            <test>cumprod</test>
+            <test>cumsum</test>
             <test>linspace</test>
             <test>logspace</test>
             <test>gsort</test>
@@ -107,7 +110,6 @@ Randomly fail ...
         <module name="core">
             <test>lasterror</test>
             <test>who</test>
-            <test>stacksize</test>
         </module>
         
         <module name="string">

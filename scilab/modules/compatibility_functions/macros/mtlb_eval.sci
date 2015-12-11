@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function r=mtlb_eval(%s1,%s2)
     // Emulation function for Matlab eval()
@@ -48,6 +48,7 @@ function r=mtlb_eval(%s1,%s2)
     margin="  "
     verbose_mode = 0;
     logfile=file("open",res_path+"m2sci_fun.log","unknown")
+    global("varslist")
     varslist=m2sci_init()
 
     // Define a function which contains expression/instruction to eval and convert it

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: es\n"
 
 #, c-format
@@ -53,10 +53,8 @@ msgstr "factorización"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be a valid reference to a "
-"Cholesky factorisation"
+"Cholesky factorization"
 msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Debe ser una referencia "
-"válida a una factorización de Cholesky."
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -77,20 +75,22 @@ msgstr "%s: Tamaño incorrecto del argumento de entrada #%d.\n"
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"factorization.\n"
 msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: not compatible with the Cholesky "
-"factorisation.\n"
+"factorization.\n"
 msgstr ""
-"%s: Tamaño incorrecto del argumento de entrada #%d: no es compatible con la "
-"factorización de Choleski.\n"
 
 #, c-format
 msgid "%s: not enough memory.\n"
 msgstr "%s: No hay suficiente memoria.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A pointer expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -99,6 +99,10 @@ msgid ""
 msgstr ""
 "%s: Valor incorrecto del argumento de entrada #%d: Debe ser una referencia "
 "válida a los factores (umf) LU.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A sparse matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s: %s\n"
@@ -120,11 +124,17 @@ msgstr "no hay lugar para almacenar el puntero LU en ListNumeric."
 msgid "%s: An error occurred: %s.\n"
 msgstr "%s: Ha ocurrido un error: %s.\n"
 
-msgid "This is not a factorisation of a square matrix"
-msgstr "Esta no es una factorización de una matriz cuadrada."
+msgid "This is not a factorization of a square matrix"
+msgstr ""
 
-msgid "This is a factorisation of a singular matrix"
-msgstr "Esta es la factorización de una matriz singular."
+msgid "This is a factorization of a singular matrix"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A real or complex column vector or "
+"matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
@@ -136,6 +146,14 @@ msgstr "%s: Tamaño incorrecto del argumento de entrada #%d: %s.\n"
 
 msgid "Matrix is not compatible with the given LU factors"
 msgstr "La matriz no es compatible con los factores LU dados."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
 
 msgid "numeric factorization"
 msgstr "factorización numérica"
@@ -280,24 +298,6 @@ msgstr "%s: La matriz y la factorización LU no tienen la misma dimensión !\n"
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr "%s: Tipo y/o tamaño y/o valor Invalido para el segundo argumento.\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " El tamaño de la pila no es suficiente para esta demostración "
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " ingrese lo siguiente en la línea de comandos de Scilab :          "
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           luego reingrese scisptdemo()                "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               CLICK PARA CONTINUAR                    "
 
 msgid "how to use this stuff"
 msgstr "como usar estas cosas"

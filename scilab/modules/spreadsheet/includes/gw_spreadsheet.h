@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,17 +15,13 @@
 #define __GW_SPREADSHEET_H__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_spreadsheet.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-SPREADSHEET_IMPEXP int gw_spreadsheet(void);
-/*--------------------------------------------------------------------------*/
-SPREADSHEET_IMPEXP int sci_xls_read(char *fname, unsigned long fname_len);
-SPREADSHEET_IMPEXP int sci_xls_open(char *fname, unsigned long fname_len);
-SPREADSHEET_IMPEXP int sci_csvDefault(char *fname, unsigned long fname_len);
-SPREADSHEET_IMPEXP int sci_csvRead(char *fname, unsigned long fname_len);
-SPREADSHEET_IMPEXP int sci_csvStringToDouble(char *fname, unsigned long fname_len);
-SPREADSHEET_IMPEXP int sci_csvTextScan(char *fname, unsigned long fname_len);
-SPREADSHEET_IMPEXP int sci_csvWrite(char *fname, unsigned long fname_len);
-
+SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvDefault);
+SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvRead);
+SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvStringToDouble);
+SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvTextScan);
+SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvWrite);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPREADSHEET_H__ */
 /*--------------------------------------------------------------------------*/

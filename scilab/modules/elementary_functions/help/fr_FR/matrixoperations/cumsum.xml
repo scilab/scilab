@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cumsum" xml:lang="fr">
@@ -129,6 +129,46 @@
                     <literal>orientation</literal> est l'index de la première
                     dimension de <literal>x</literal> qui est plus grande que
                     1. Cette option est utilisé pour la compatibilité avec Matlab. 
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            L'argument <literal>outtype</literal> gère la façon dont le produit est réalisé :
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>Pour les matrices de doubles, de polynômes, de fractions rationnelles, 
+                    l'évaluation est toujours effetuée sur des nombres à virgule flottante.
+                    Les options <literal>"double"</literal> ou <literal>"native"</literal> sont équivalentes 
+                    (par défaut, <literal>outtype = "double"</literal>).
+                </para>
+            </listitem>
+            <listitem>
+                <para>Pour les tableaux d'entiers,</para>
+                <para>
+                    si <literal>outtype="native"</literal>, le calcul est effectué sur des nombres entiers
+                    (modulo 2^b, où b est le nombre de bits utilisés).
+                </para>
+                <para>
+                    si <literal>outtype="double"</literal>, le calcul est effectué sur 
+                    des nombres à virgule flottante.
+                </para>
+                <para>
+                    La valeur par défaut est <literal>outtype="native"</literal>
+                </para>
+            </listitem>
+            <listitem>
+                <para>Pour les tableaux de booléens,</para>
+                <para>
+                    si <literal>outtype="native"</literal>, le calcul est effectué sur des booléens 
+                    (* est remplacée par &amp;),
+                </para>
+                <para>
+                    si <literal>outtype="double"</literal>, le calcul est effectué sur des nombres 
+                    à virgule flottante (%t est remplacé par 1 et %f par 0).
+                </para>
+                <para>
+                    La valeur par défaut est <literal>outtype="double"</literal>
                 </para>
             </listitem>
         </itemizedlist>

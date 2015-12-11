@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -46,6 +46,7 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.fontchooser.SimpleFontChooser;
 import org.scilab.modules.gui.utils.ScilabFontUtils;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -106,7 +107,7 @@ public class SwingScilabFontChooser extends JDialog implements SimpleFontChooser
     public SwingScilabFontChooser(JFrame owner, Font font, boolean calledFromScinotes) {
         super(owner, Messages.gettext("Font Chooser"), true);
         this.calledFromScinotes = calledFromScinotes;
-        ((JFrame) getParent()).setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("scilab", "256x256")).getImage());
+        ((JFrame) getParent()).setIconImage(new ImageIcon(FindIconHelper.findIcon("scilab", "256x256")).getImage());
 
         getContentPane().setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 

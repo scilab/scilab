@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - S/E - Sylvestre Ledru
+* Copyright (C) 2012 - CNES - Simon Billemont
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jims-getting-started-2">
+    <refnamediv>
+        <refname>Getting started - Second step</refname>
+        <refpurpose>How to use the Java Scilab binding?</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            This tutorial follows the <link linkend="jims-getting-started">First step</link>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Example 3: Working with Java objects in Scilab</title>
+        <para>For this example, we define a set of higher abstraction Java objects. Then we will use Scilab as a sort of Java scripting language apply various operations on these objects. A wide variation of Java functionality will be showcased such as; static methods (Factory construct), Enums, simple polymorphism, and scope of members/methods.</para>
+        <para>
+            This wide variety of functionality will be demonstrated using a set of 7 simple classes that describe a simple house;
+        </para>
+        <programlisting role="java"><![CDATA[
+// Save under the name House.java
+package com.foo;
+
+import java.util.Arrays;
+import java.util.LinkendList;
+import java.util.List;
+
+public class House {
+
+	private Color			color;
+	private Door			door;
+	private List<IWindow>	windows	= new LinkendList<IWindow>();
+
+	public House(Color color, Door door, IWindow... windows) {
+		this.color = color;
+		this.door = door;
+		this.windows.addAll(Arrays.asList(windows));
+	}
+
+	public void repaint() {
+		swapDoorHouseColor();
+	}
+
+	private void swapDoorHouseColor() {
+		Color doorColor = door.getColor();
+		door.repaint(color);
+		color = doorColor;
+	}
+
+	public void addWindow(IWindow window) {
+		windows.add(window);
+	}
+
+	public void replaceDoor(Door newDoor) {
+		this.door = newDoor;
+	}
+
+	@Override
+	public String toString() {
+		return String.format(
+				"This is a house painted in %s, has a %s door, and %d windows",
+				color.getDescr(), door.getColor().getDescr(), windows.size());
+	}
+}
+      ]]></programlisting>
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public class HouseFactory {
+
+	public static House basicHouse() {
+		Door door = new Door(Color.WHITE);
+		IWindow window = new RectangularWindow(2, 0.8);
+		return new House(Color.WHITE, door, window);
+	}
+
+	public static House flashyHouse() {
+		Door door = new Door(Color.random());
+		IWindow window = new CircularWindow(1.2);
+		return new House(Color.random(), door, window);
+	}
+}
+      ]]></programlisting>
+        <programlisting role="java"><![CDATA[
+
+package com.foo;
+
+import java.util.Random;
+
+public enum Color {
+
+	BLACK("black"), BLUE("blue"), BROWN("brown"), GREEN("green"),
+	ORANGE("orange"), RED("red"), WHITE("white"), YELLOW("yellow");
+
+	public String	descr;
+
+	private Color(String s) {
+		descr = s;
+	}
+
+	public String getDescr() {
+		return descr;
+	}
+
+	public static Color random() {
+		Color[] allColors = values();
+		return allColors[new Random().nextInt(values().length)];
+	}
+}      ]]></programlisting>
+        <programlisting role="java"><![CDATA[
+
+package com.foo;
+
+public class Door {
+
+	private Color	color;
+
+	public Door(Color color) {
+		this.color = color;
+	}
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void repaint(Color newColor) {
+		color = newColor;
+	}
+}
+      ]]></programlisting>
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public interface IWindow {
+
+	double getWindowArea();
+
+}
+      ]]></programlisting>
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public class RectangularWindow implements IWindow {
+
+	double	length;
+	double	width;
+
+	public RectangularWindow(double length, double width) {
+		this.length = length;
+		this.width = width;
+	}
+
+	public double getWindowArea() {
+		return length * width;
+	}
+}
+      ]]></programlisting>
+        <programlisting role="java"><![CDATA[
+package com.foo;
+
+public class CircularWindow implements IWindow {
+
+	double	radius;
+
+	public CircularWindow(double radius) {
+		this.radius = radius;
+	}
+
+	public double getWindowArea() {
+		return Math.PI * radius * radius;
+	}
+}
+      ]]></programlisting>
+        
+        <programlisting role="example"><![CDATA[
+// The examples are shipped in the Scilab distribution.
+directory=SCI+"/modules/external_objects_java/examples/com/foo/"
+// Compile of all them
+jcompile(ls(directory + "/*.java"))
+      ]]></programlisting>
+        <para>
+            First, let's construct a basic factory house. For this, the HouseFactory should be imported and the static method basicHouse() should be invoked.
+        </para>
+        <screen>
+            -->jimport("com.foo.HouseFactory")
+            
+            -->house = HouseFactory.basicHouse()
+            house  =
+            
+            This is a house painted in white, has a white door, and 1 windows
+            
+        </screen>
+        <para>
+            This shows that static methods can be called as one would in Java. Also keep in mind that this is equivalent to "jinvoke(HouseFactory, 'basicHouse')"
+            
+            Also the message of the object has changed from something like:
+            <screen>
+                com.foo.House@ae8022
+                To
+                This is a house painted in white, has a white door, and 1 windows
+            </screen>
+            This is due to the fact that the House class has a non-default \cmd[toString] method. This <literal>toString</literal> is used to generate this representation. We can still get the actual type (class) of our House object by invoking <link linkend="jgetclassname">jgetclassname</link>
+            <screen>
+                -->jgetclassname(house)
+                ans  =
+                
+                com.foo.House
+            </screen>
+            
+            What is also interesting to know is that we now have a description of a house, without having to import House into Scilab directly!
+            Now that a house has been constructed, it is time to add another window to that house. For this purpose we need to create a new window and add it to the house using the function <literal>addWindow(IWindow)</literal>. <literal>IWindow</literal> is an abstract description of what a window should be and cannot be instantiated directly. There are however two implementations available that we can construct; <literal>RectangularWindow</literal> and <literal>CircularWindow</literal>. Since the house starts with a <literal>RectangularWindow</literal> from the factory, a new <literal>CircularWindow</literal> shall be made.
+        </para>
+        <screen>
+            -->jimport("com.foo.IWindow")
+            
+            -->IWindow.new()
+            !--error 999
+            Method invocation: An error occurred: Exception when calling Java method : No such constructor in the class com.foo.IWindow.
+            
+            -->jimport("com.foo.CircularWindow")
+            
+            --> newWindow = CircularWindow.new(0.5)
+            newWindow  =
+            
+            com.foo.CircularWindow@3e389405
+            
+            -->house.addWindow(newWindow);
+            
+            -->house
+            house  =
+            
+            This is a house painted in white, has a white door, and 2 windows
+            
+        </screen>
+        <para>
+            A new window was made, and it's reference stored in the "newWindow" variable. Next, the window was directly added to the house, without any need to wrap the variable. It basically works as one would expect it to work. Finally, we notice that our house now has 2 windows.
+        </para>
+        <para>
+            However, we don't like the door, so let's change the door. To create a door, a color for that door needs to be picked. Color is of the Java Enum class type. Again as before, first the required variables need to be imported, new instances created and then the door of the house needs to be swapped out.
+        </para>
+        <screen>
+            -->jimport("com.foo.Color")
+            
+            -->jimport("com.foo.Door")
+            
+            -->newDoor = Door.new(Color.RED)
+            newDoor  =
+            
+            com.foo.Door@54a5f709
+            
+            -->house.replaceDoor(newDoor);
+            
+            -->house
+            house  =
+            
+            This is a house painted in white, has a red door, and 2 windows
+        </screen>
+        <para>
+            Using Enum types is as straightforward as using classes! Their methods and members are subject to the same principles:
+        </para>
+        <screen>
+            -->c = Color.random()
+            c  =
+            
+            BLACK
+            
+            -->c = Color.random()
+            c  =
+            
+            BLUE
+            
+            -->c.getDescr()
+            ans  =
+            
+            blue
+        </screen>
+        <para>
+            The list of windows kept by that house is of type <literal>IWindow</literal>. From this it follows that under normal circumstances only windows may be added to the list. To test this, let's see what happens when a <literal>Door</literal> is added in Scilab.
+        </para>
+        <screen>
+            -->house.addWindow(newDoor);
+            !--error 999
+            Method invocation: An error occurred: Exception when calling Java method : No method addWindow in the class com.foo.House or bad arguments type.
+        </screen>
+        <para>
+            The same as using Java Reflection, the JVM security measures prevent us from disobeying the Java polymorthism rules. The same goes for private methods and members.
+        </para>
+        <screen>
+            -->c.descr
+            ans  =
+            
+            blue
+            
+            -->house.door
+            !--error 999
+            %_EObj_e: An error occurred: Exception when calling Java method : Invalid field door
+            
+            -->house.repaint();
+            
+            -->house
+            house  =
+            
+            This is a house painted in red, has a white door, and 2 windows
+            
+            -->house.swapDoorHouseColor()
+            !--error 999
+            %_EObj_e: An error occurred: Exception when calling Java method : Invalid field swapDoorHouseColor
+        </screen>
+        <para>
+            Concluding, the JIMS package does the job of hiding the Java JNI interface with Scilab, and make it very clear and transparent to use Java libraries under Scilab. All the normal JVM functionality is present and the Scilab syntax is clear and natural to use.
+        </para>
+        <para>
+            From this point you should understand how to interface Scilab and Java libraries, utilize the full power of Java under the Scilab scripting environment.
+        </para>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

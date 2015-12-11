@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ * Copyright (C) 2013 - Samuel GOUGEON
+ * Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="profile">
+    <refnamediv>
+        <refname>profile</refname>
+        <refpurpose>Renvoie les résultats du profiling d'une fonction</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>c = profile(fun)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>une fonction Scilab</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>c</term>
+                <listitem>
+                    <para>une matrice nx3 contenant les résultats de profiling :
+                        <itemizedlist>
+                            <listitem>
+                                <para>
+                                    <literal>c(i,1)</literal> : nombre de fois que la ligne i de la fonction a été executée
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>c(i,2)</literal> : temps CPU cumulé [en secondes] passé pour exécuter la ligne i de la fonction
+                                </para>
+                            </listitem>
+                            <listitem>
+                                <para>
+                                    <literal>c(i,3)</literal> : mesure de l'effort de l'interpréteur sur la ligne i de la fonction [unité arbitraire]
+                                </para>
+                            </listitem>
+                        </itemizedlist>
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Pour utiliser <literal>profile</literal> sur une fonction, le profiling de la fonction doit d'abord avoir été activé:
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        soit en utilisant la commande <link linkend="add_profiling">add_profiling</link>
+                    </para>
+                </listitem>
+                <listitem>
+                    <para>
+                        ou si la fonction a été définie avec la commande <link linkend="deff">deff</link>, en positionnant le paramètre optionel de <link linkend="deff">deff</link> à "p".
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </para>
+        <para>
+            Une fois que la function a été exécutée, l'appel de <literal>profile</literal> renvoie une matrice, où chaque ligne contient les résultats de profiling de la ligne correspondante de la fonction (en comptant la ligne d'entête), c'est à dire le nombre de passages, ou le temps total passé par le CPU dans cette ligne, et une mesure de l'effort de l'interpréteur pour interpréter la ligne, comme suit:
+        </para>
+        <para>
+            <informaltable border="1">
+                <tr>
+                    <td>Nombre d'appels</td><td>Temps total CPU (s)</td><td>Effort interpréteur</td>
+                </tr>
+                <tr>
+                    <td>1</td><td>0</td><td>0</td>
+                </tr>
+                <tr>
+                    <td>300</td><td>0.1</td><td>0</td>
+                </tr>
+                <tr>
+                    <td>300</td><td>3,59</td><td>5</td>
+                </tr>
+                <tr>
+                    <td>...</td><td>...</td><td>...</td>
+                </tr>
+            </informaltable>
+        </para>
+        <para>
+            Ici nous pouvons voir que la 3ème ligne de la fonction a été appelée 300 fois pour un temps total CPU de 3,59 secondes.
+        </para>
+        <para>
+            Note: en raison de la limite de précision de mesure de temps CPU (en général une micro seconde), certaines lignes dont l'exécution est très rapide peuvent apparaitre avec un temps CPU cumulé à 0.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+// Fonction qui est profilée
+function x = foo(n)
+  if n > 0 then
+    x = 0;
+    for k = 1:n
+      s = svd(rand(n, n));
+      x = x + s(1);
+    end
+  else
+    x = [];
+  end
+endfunction
+
+// Active le profiling de la fonction
+add_profiling("foo");
+
+// Exécute la fonction
+foo(200);
+
+// Renvoie les résultats de profiling de la fonction
+profile(foo)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="add_profiling">add_profiling</link>
+            </member>
+            <member>
+                <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="plotprofile">plotprofile</link>
+            </member>
+            <member>
+                <link linkend="showprofile">showprofile</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

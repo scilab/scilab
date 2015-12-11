@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,8 +30,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
+import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 
 /**
  * Utility class to ease the jar loading management.
@@ -63,7 +64,7 @@ public final class LoadClassPath {
         String xpathExpression = XPATH_EXPRS + "[@on='" + module + "']";
 
         // Initialize xpath
-        XPathFactory factory = XPathFactory.newInstance();
+        XPathFactory factory = ScilabXPathFactory.newInstance();
         XPath xpath = factory.newXPath();
 
         // initialize document factory

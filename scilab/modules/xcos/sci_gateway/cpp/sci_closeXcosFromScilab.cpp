@@ -8,12 +8,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
+#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -21,22 +22,22 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
 
 /*--------------------------------------------------------------------------*/
-int sci_closeXcosFromScilab(char *fname, unsigned long fname_len)
+int sci_closeXcosFromScilab(char *fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
     // only if xcos was already opened and with supported mode
-    if ((getScilabMode() != SCILAB_NWNI) && xcosStarted())
+    if ((getScilabMode() != SCILAB_NWNI) && get_loaded_status() == XCOS_CALLED)
     {
         try
         {

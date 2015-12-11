@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -24,6 +24,10 @@
 * "TMPDIR"
 */
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 /**
 * expand in_name to produce out_name
 * @param[in] string where to find a variable and expand
@@ -37,6 +41,15 @@ FILEIO_IMPEXP char *expandPathVariable(char* str);
 * @return wide string with expanded variable
 */
 FILEIO_IMPEXP wchar_t *expandPathVariableW(wchar_t *wcstr);
+
+/**
+* set NULL to all scilab "Variable" (ie: SCI, SCIHOME, ....)
+*/
+FILEIO_IMPEXP void resetVariableValueDefinedInScilab(void);
+
+#ifdef __cplusplus
+}
+#endif //_cplusplus
 
 #endif /* __EXPANDPATHVARIABLE_H__ */
 /*--------------------------------------------------------------------------*/

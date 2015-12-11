@@ -22,14 +22,6 @@
 function [x,y,typ]=DLATCH(job,arg1,arg2)
     x=[];y=[],typ=[]
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
     case "define" then
@@ -59,11 +51,7 @@ function [x,y,typ]=DLATCH(job,arg1,arg2)
         pout=7,..
         pein=[],..
         peout=[],..
-        gr_i=list(..
-        ["dx=sz(1)/5;dy=sz(2)/10;";
-        "w=sz(1)-2*dx;h=sz(2)-2*dy;";
-        "txt=C;";
-        "xstringb(orig(1)+dx,orig(2)+dy,txt,w,h,''fill'');"],8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit="E"),..
@@ -540,37 +528,7 @@ function [x,y,typ]=DLATCH(job,arg1,arg2)
         model.firing=%f
         model.dep_ut=[%t %f]
         model.rpar=scs_m
-        gr_i=["[x,y,typ]=standard_inputs(o) ";
-        "dd=sz(1)/8,de=5.5*sz(1)/8";
-        "txt=''D'';"
-        "if ~exists(''%zoom'') then %zoom=1, end;"
-        "rectstr=stringbox(txt,orig(1)+dd,y(1)-4,0,1,1);"
-        "w=(rectstr(1,3)-rectstr(1,2))*%zoom;"
-        "h=(rectstr(2,2)-rectstr(2,4))*%zoom;"
-        "xstringb(orig(1)+dd,y(1)-4,txt,w,h,''fill'')";
-        "txt=''C'';"
-        "rectstr=stringbox(txt,orig(1)+dd,y(2)-4,0,1,1);"
-        "w=(rectstr(1,3)-rectstr(1,2))*%zoom;"
-        "h=(rectstr(2,2)-rectstr(2,4))*%zoom;"
-        "xstringb(orig(1)+dd,y(2)-4,txt,w,h,''fill'')";
-        "txt=''Q'';"
-        "rectstr=stringbox(txt,orig(1)+de,y(1)-4,0,1,1);"
-        "w=(rectstr(1,3)-rectstr(1,2))*%zoom;"
-        "h=(rectstr(2,2)-rectstr(2,4))*%zoom;"
-        "xstringb(orig(1)+de,y(1)-4,txt,w,h,''fill'')";
-        "txt=''!Q'';"
-        "rectstr=stringbox(txt,orig(1)+4.5*dd,y(2)-4,0,1,1);"
-        "w=(rectstr(1,3)-rectstr(1,2))*%zoom;"
-        "h=(rectstr(2,2)-rectstr(2,4))*%zoom;"
-        "xstringb(orig(1)+4.5*dd,y(2)-4,txt,w,h,''fill'')";
-        "txt=''DLATCH'';"
-        "style=5;"
-        "rectstr=stringbox(txt,orig(1),orig(2),0,style,1);"
-        "w=(rectstr(1,3)-rectstr(1,2))*%zoom;"
-        "h=(rectstr(2,2)-rectstr(2,4))*%zoom;"
-        "xstringb(orig(1)+sz(1)/2-w/2,orig(2)-h-4,txt,w,h,''fill'');"
-        "e=gce();"
-        "e.font_style=style;"]
+        gr_i=[]
         x=standard_define([2 3],model,[],gr_i)
     end
 endfunction

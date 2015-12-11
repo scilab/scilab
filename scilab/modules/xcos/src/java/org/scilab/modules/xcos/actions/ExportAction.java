@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -56,6 +56,7 @@ import org.w3c.dom.Document;
 import com.mxgraph.swing.mxGraphComponent;
 import com.mxgraph.util.mxCellRenderer;
 import com.mxgraph.util.mxUtils;
+import com.mxgraph.util.mxXmlUtils;
 
 /**
  * Diagram export management
@@ -268,12 +269,12 @@ public final class ExportAction extends DefaultAction {
         } else if (fileFormat.equalsIgnoreCase(VML)) {
             Document doc = mxCellRenderer.createVmlDocument(graph, null, 1, null, null);
             if (doc != null) {
-                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
+                mxUtils.writeFile(mxXmlUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
             }
         } else if (fileFormat.equalsIgnoreCase(HTML)) {
             Document doc = mxCellRenderer.createHtmlDocument(graph, null, 1, null, null);
             if (doc != null) {
-                mxUtils.writeFile(mxUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
+                mxUtils.writeFile(mxXmlUtils.getXml(doc.getDocumentElement()), filename.getCanonicalPath());
             }
         } else {
             exportBufferedImage(graph, filename, fileFormat);

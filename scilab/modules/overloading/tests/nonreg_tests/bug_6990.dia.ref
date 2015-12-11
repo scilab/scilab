@@ -1,16 +1,17 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 20010 - INRIA - Serge Steer
+// Copyright (C) 2010 - INRIA - Serge Steer
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- Non-regression test for bug 6990 -->
+// <-- CLI SHELL MODE --> 
 //
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id= 6990
 //
 // <-- Short Description -->
-// and and or does not work on hypermatrix
+// "and" and "or" does not work on hypermatrices
 A=matrix([%f;%t;%f;%f;%t;%t;%t;%t;%t;%f;%t;%t;%t;%f;%t;%t;%t;%t;%t;%t;%f;%f;%t;%t],2,3,4);
 if or(and(A,1)<>matrix([%f;%f;%t;%t;%f;%t;%f;%t;%t;%t;%f;%t],1,3,4)) then bugmes();quit;end
 if or(and(A,2)<>matrix([%f;%f;%t;%f;%t;%f;%f;%f],2,1,4)) then bugmes();quit;end

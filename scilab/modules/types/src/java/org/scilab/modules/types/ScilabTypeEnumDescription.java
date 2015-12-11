@@ -7,7 +7,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -62,5 +62,26 @@ public class ScilabTypeEnumDescription {
         } catch (IllegalArgumentException e) {
             return Messages.gettext("Unknown datatype");
         }
+    }
+
+    /*
+     * Return the description of the mlist code ('ce' => 'cell', 'st => 'struct', etc)
+     * @param shortCode the short code
+     * @return the full description
+     */
+    public static String getListTypeDescription (String shortCode) {
+        // Once we switch to Java 7, we can replace that by a String switch
+        if (shortCode.equals("ce")) {
+            shortCode = "cell";
+        } else {
+            if (shortCode.equals("st")) {
+                shortCode = "struct";
+            } else {
+                if (shortCode.equals("fptr")) {
+                    shortCode = "built-in";
+                }
+            }
+        }
+        return shortCode;
     }
 }

@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,7 +22,7 @@
 
 #include <string.h>
 
-#include "stricmp.h"
+#include "os_string.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -34,9 +34,10 @@
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 /*------------------------------------------------------------------------*/
-int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_box_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int type = -1;
@@ -48,7 +49,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     /*
      * Required since the Box property is implemented differently for the Axes and Text
@@ -77,7 +78,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
         }
         else if (stricmp((char*)_pvData, "hidden_axis") == 0)
         {
-            sciprint(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
+            Sciwarning(_("WARNING !!!\nIn '%s' property: '%s' is deprecated use '%s' instead.\n"), "box", "hidden_axis", "hidden_axes");
             boxType = 2;
         }
         else
@@ -86,7 +87,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
             return SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobjUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_BOX_TYPE__, &boxType, jni_int, 1);
 
         if (status == TRUE)
         {
@@ -117,7 +118,7 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
             return SET_PROPERTY_ERROR;
         }
 
-        status = setGraphicObjectProperty(pobjUID, __GO_BOX__, &box, jni_bool, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_BOX__, &box, jni_bool, 1);
 
         if (status == TRUE)
         {
@@ -135,6 +136,5 @@ int set_box_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, 
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
         return SET_PROPERTY_ERROR;
     }
-
 }
 /*------------------------------------------------------------------------*/

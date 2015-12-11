@@ -28,7 +28,7 @@ set(h, "string", "un|mot|accentué");
 // select item 1 and 3 in the list
 set(h, "value", [1 3]);
 // save
-save(TMPDIR + filesep() + "bug_3675.bin", "f", "h", "h2", "figure")
+save(TMPDIR + filesep() + "bug_3675.bin", "f", "h", "h2")
 // close the figure
 delete(f);
 assert_checkequal(size(winsid(), "*"), 0); // Check that saving the 'figure' function does not open a figure.

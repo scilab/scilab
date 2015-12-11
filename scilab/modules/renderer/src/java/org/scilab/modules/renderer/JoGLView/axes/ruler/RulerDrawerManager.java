@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
@@ -42,16 +42,23 @@ class RulerDrawerManager {
                 GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__,
                 GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__,
                 GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__,
+                GraphicObjectProperties.__GO_X_AXIS_FORMAT__,
+                GraphicObjectProperties.__GO_Y_AXIS_FORMAT__,
+                GraphicObjectProperties.__GO_Z_AXIS_FORMAT__,
+                GraphicObjectProperties.__GO_X_AXIS_ST_FACTORS__,
+                GraphicObjectProperties.__GO_Y_AXIS_ST_FACTORS__,
+                GraphicObjectProperties.__GO_Z_AXIS_ST_FACTORS__,
                 GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__,
                 GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__,
-                GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__
+                GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__,
+                GraphicObjectProperties.__GO_DATA_BOUNDS__
             ));
 
     /**
      * Map of up to date {@see RulerSpriteManager}
      * The key are the {@see Axes} id.
      */
-    private final Map<String, RulerDrawer[]> rulerSpriteManagerMap = new HashMap<String, RulerDrawer[]>();
+    private final Map<Integer, RulerDrawer[]> rulerSpriteManagerMap = new HashMap<Integer, RulerDrawer[]>();
 
     /** The {@see TextureManager} of the current {@see Canvas}. */
     private final TextureManager textureManager;
@@ -88,7 +95,7 @@ class RulerDrawerManager {
      * @param property the changed property.
      * @return true if it is really updated
      */
-    public boolean update(String id, int property) {
+    public boolean update(Integer id, int property) {
 
         /**
          * If update affect {@see Axes} ruler sprites, we clear the corresponding {@see RulerSpriteManager}.
@@ -123,7 +130,7 @@ class RulerDrawerManager {
      * Dispose the {@see RulerSpriteManager} of the given axes.
      * @param id the {@see Axes} id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         RulerDrawer[] rulerDrawers = rulerSpriteManagerMap.get(id);
         if (rulerDrawers != null) {
             for (RulerDrawer rulerDrawer : rulerDrawers) {

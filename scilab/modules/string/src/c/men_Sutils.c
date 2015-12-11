@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@
 #include <string.h>
 #include "men_Sutils.h"
 #include "getfastcode.h"
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr)
@@ -61,6 +61,11 @@ void ScilabMStr2CM(int *Scistring, int *nstring, int *ptrstrings, char ***strh, 
         ScilabStr2C(&ni, SciS, &p, ierr);
         if (*ierr == 1)
         {
+            if (p)
+            {
+                FREE(p);
+            }
+
             freeArrayOfString(strings, i - 1);
             return;
         }

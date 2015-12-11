@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2251
 //
 // <-- Short Description -->
-// The "isempty()" function fails to check the emptyness of variable
+// The "isempty()" function fails to check the emptyness of variable 
 // of "list"-type which contains some items of "mlist"-type if the "size"-
 // operator was not defined on this "mlist".
 // Accordingly to the help information about isempty(x)

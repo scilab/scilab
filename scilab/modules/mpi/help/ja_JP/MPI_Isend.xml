@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2011 - DIGITEO - Sylvestre Ledru
+ * 
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="MPI_Isend" xml:lang="ja">
+    <refnamediv>
+        <refname>MPI_Isend</refname>
+        <refpurpose>
+            ノード間の非ブロッキングデータ送信
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>res = MPI_Isend(value,node)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>value</term>
+                <listitem>
+                    <para>特定のノードに送信する値.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>node</term>
+                <listitem>
+                    <para>データを送信するノード</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>res</term>
+                <listitem>
+                    <para>処理結果 (成功時にtrue,失敗した場合はfalse)</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            特定のノードに変数を非ブロック(非同期)モードで送信します.
+            この値はノードで関数
+            <link linkend="MPI_Irecv">MPI_Irecv</link>により
+            取得します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+                MPI_Init();
+                rnk =    MPI_Comm_rank();
+                sizeNodes =    MPI_Comm_size();
+                SLV = rnk;
+                Master = ~ SLV;
+                assert_checkequal(MPI_Comm_size(), 2);
+                if Master
+                   for slaveId = 1:sizeNodes-1
+                     value = slaveId*2
+                     MPI_Isend(value, slaveId, 42);
+                   end
+                else
+                    rankSource=0;
+                    tag=0;
+                    MPI_Irecv(rankSource, tag, 42); // MPI_Irecv does not return any value
+                    value=MPI_Wait(42) // the value will be returned by MPI_Wait
+                    assert_checkequal(value,2);
+                end
+                MPI_Finalize();
+                exit()
+           ]]> </programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="MPI_Irecv">MPI_Irecv</link>
+            </member>
+            <member>
+                <link linkend="MPI_Wait">MPI_Wait</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

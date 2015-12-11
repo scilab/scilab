@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
@@ -73,7 +73,15 @@ class UserDefineGraduation implements Graduations {
     @Override
     public List<Double> getAllValues() {
         if (allValues == null) {
-            allValues = new LinkedList<Double>(Arrays.asList(axisProperty.getTicksLocations()));
+            Double[] locs = axisProperty.getTicksLocations();
+            final boolean log = axisProperty.getLogFlag();
+            allValues = new LinkedList<Double>();
+            for (Double d : locs) {
+                final double v = log ? Math.log10(d) : d;
+                if (contain(v)) {
+                    allValues.add(d);
+                }
+            }
         }
         return allValues;
     }
@@ -107,24 +115,45 @@ class UserDefineGraduation implements Graduations {
     @Override
     public List<Double> getSubGraduations(final int N) {
         if (subValues == null) {
-            List<Double> ticksValue = getAllValues();
-            if (N == 0 || ticksValue.size() == 0) {
+            if (N == 0) {
                 subValues = new LinkedList<Double>();
-            } else {
-                Collections.sort(ticksValue);
-                subValues = new LinkedList<Double>();
+                return subValues;
+            }
 
+            final boolean log = axisProperty.getLogFlag();
+            List<Double> ticksValue = getAllValues();
+            if (ticksValue.isEmpty()) {
+                Double[] locs = axisProperty.getTicksLocations();
+                ticksValue = new LinkedList<Double>();
+                for (Double d : locs) {
+                    ticksValue.add(d);
+                }
+            }
+
+            Collections.sort(ticksValue);
+            subValues = new LinkedList<Double>();
+
+            if (!ticksValue.isEmpty()) {
                 for (int i = 0; i < ticksValue.size() - 1; i++) {
                     final double first = ticksValue.get(i);
                     final double second = ticksValue.get(i + 1);
                     final double step = (second - first) / (N + 1);
                     double v = first;
                     for (int j = 0; j <= N; j++) {
-                        subValues.add(v);
+                        final double d = log ? Math.log10(v) : v;
+                        if (contain(d)) {
+                            subValues.add(v);
+                        }
+
                         v += step;
                     }
                 }
-                subValues.add(ticksValue.get(ticksValue.size() - 1));
+
+                double v = ticksValue.get(ticksValue.size() - 1);
+                final double d = log ? Math.log10(v) : v;
+                if (contain(d)) {
+                    subValues.add(v);
+                }
             }
         }
 

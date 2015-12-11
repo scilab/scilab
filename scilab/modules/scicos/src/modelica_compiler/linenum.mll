@@ -22,6 +22,8 @@
 
 {
 
+(** Convert {! Parser.location } to line and column numbers. *)
+
 let linenum = ref 0
 let linebeg = ref 0
 

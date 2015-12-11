@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [Inn,X,Gbar]=rowinout(G)
     // Inner-outer factorization (and row compression) of (lxp) G =:[A,B,C,D] with l>=p

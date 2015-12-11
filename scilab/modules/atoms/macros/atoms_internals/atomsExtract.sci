@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -24,22 +24,22 @@ function dir_created = atomsExtract(archive_in,dir_out)
     // =========================================================================
 
     if type(archive_in) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsExtract",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsExtract",1));
     end
 
     if type(dir_out) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsExtract",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsExtract",2));
     end
 
     // Check input parameters size
     // =========================================================================
 
     if size(archive_in,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsExtract",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsExtract",1));
     end
 
     if size(dir_out,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsExtract",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsExtract",2));
     end
 
     // Check input parameters value
@@ -50,11 +50,11 @@ function dir_created = atomsExtract(archive_in,dir_out)
     end
 
     if fileinfo(archive_in) == [] then
-        error(msprintf(gettext("%s: The file ""%s"" doesn''t exist or is not read accessible.\n"),"atomsExtract",archive_in));
+        error(msprintf(gettext("%s: The file ""%s"" does not exist or is not read accessible.\n"),"atomsExtract",archive_in));
     end
 
     if ~ isdir(dir_out) then
-        error(msprintf(gettext("%s: The directory ""%s"" doesn''t exist.\n"),"atomsExtract",dir_out));
+        error(msprintf(gettext("%s: The directory ""%s"" does not exist.\n"),"atomsExtract",dir_out));
     end
 
     // Operating system detection + Architecture detection

@@ -14,15 +14,15 @@ clll. optimize
       double precision rownr3, t0, tlast, toutc
       double precision hming, t1, temp1, temp2, x
       logical zroot
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, rowns(209),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      3   iownd(14), iowns(6),
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ rownr3(2), t0, tlast, toutc,
-     1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge      
-      integer         iero
-      common /ierode/ iero
+     1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge
 
 
 c!purpose
@@ -74,7 +74,7 @@ c evaluate g at initial t, and check for zero values. ------------------
  100  continue
       t0 = tn
       call g (neq, t0, y, ngc, g0)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = 1
       zroot = .false.
       do 110 i = 1,ngc
@@ -87,7 +87,7 @@ c g has a zero at t.  look at g at t + (small increment). --------------
       do 120 i = 1,n
  120    y(i) = y(i) + temp2*yh(i,2)
       call g (neq, t0, y, ngc, g0)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = nge + 1
       zroot = .false.
       do 130 i = 1,ngc
@@ -106,7 +106,7 @@ c
 c if a root was found on the previous step, evaluate g0 = g(t0). -------
       call intdy (t0, 0, yh, nyh, y, iflag)
       call g (neq, t0, y, ngc, g0)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = nge + 1
       zroot = .false.
       do 210 i = 1,ngc
@@ -126,12 +126,12 @@ c g has a zero at t0.  look at g at t + (small increment). -------------
       go to 240
  230  call intdy (t0, 0, yh, nyh, y, iflag)
  240  call g (neq, t0, y, ngc, g0)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = nge + 1
       zroot = .false.
       do 250 i = 1,ngc
          if (dabs(g0(i)) .gt. 0.0d0) go to 250
-         
+
          if (jroot(i) .eq. 1) then
             irt = -1
             return
@@ -141,7 +141,7 @@ c g has a zero at t0.  look at g at t + (small increment). -------------
          endif
 
  250  continue
-      if (irt .eq. 1) return      
+      if (irt .eq. 1) return
 c g0 has no zero components.  proceed to check relevant interval. ------
  260  if (tn .eq. tlast) go to 390
 c
@@ -157,7 +157,7 @@ c set t1 to tn or toutc, whichever comes first, and get g at t1. -------
       do 320 i = 1,n
  320    y(i) = yh(i,1)
  330  call g (neq, t1, y, ngc, g1)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = nge + 1
 c call roots to search for root in interval from t0 to t1. -------------
       jflag = 0
@@ -166,7 +166,7 @@ c call roots to search for root in interval from t0 to t1. -------------
       if (jflag .gt. 1) go to 360
       call intdy (x, 0, yh, nyh, y, iflag)
       call g (neq, x, y, ngc, gx)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nge = nge + 1
       go to 350
  360  t0 = x

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <stdio.h>
@@ -15,18 +15,15 @@
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "getmodules.h"
-#include "MALLOC.h"
-#include "setgetSCIpath.h"
+#include "sci_malloc.h"
+#include "sci_path.h"
 #include "localization.h"
 #include "string.h"
-#include "stricmp.h"
 #include "sciprint.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
 #include "FileExist.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
 static struct MODULESLIST *ScilabModules = NULL;
@@ -78,7 +75,7 @@ static BOOL ReadModulesFile(void)
     char *ModulesFilename = NULL;
     char *SciPath = NULL;
 
-    SciPath = getSCIpath();
+    SciPath = getSCI();
     if (SciPath == NULL)
     {
         sciprint(_("The SCI environment variable is not set.\n"));
@@ -113,7 +110,7 @@ static BOOL VerifyModule(char *ModuleName)
     char *FullPathModuleName = NULL;
 
 
-    SciPath = getSCIpath();
+    SciPath = getSCI();
     if (SciPath == NULL)
     {
         sciprint(_("The SCI environment variable is not set.\n"));
@@ -197,7 +194,7 @@ static BOOL AppendModules(char *xmlfilename)
                         {
                             /* we found the tag name */
                             const char *str = (const char*)attrib->children->content;
-                            name = strdup(str);
+                            name = os_strdup(str);
                         }
                         else if (xmlStrEqual (attrib->name, (const xmlChar*) "activate"))
                         {
@@ -226,7 +223,7 @@ static BOOL AppendModules(char *xmlfilename)
 
                             ScilabModules->numberofModules = indice + 1;
 
-                            ScilabModules->ModuleList[indice] = strdup(name);
+                            ScilabModules->ModuleList[indice] = os_strdup(name);
                             indice++;
                         }
                         else

@@ -108,16 +108,12 @@
         <programlisting role="example"><![CDATA[ 
 // 簡単な例
 messagebox("Single line message")
-
 // 表題に複数行のメッセージ
 messagebox(["Multi-line" "message"], "User defined title")
-
 // アイコンをユーザにより指定
 messagebox("An error message", "Error", "error")
-
 // ボタンラベル + "modal" で表題を置換
 messagebox("Have you seen this beautiful message", "modal", "info", ["Yes" "No"])
-
 // "modal" を5番目の入力引数に指定
 messagebox("An error message", "Error", "error", ["Continue" "Stop"], "modal")
  ]]></programlisting>

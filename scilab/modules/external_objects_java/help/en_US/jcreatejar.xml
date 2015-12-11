@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+*  ======================================================================
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
+*
+*  This file is distributed under the same license as the Scilab package.
+* =======================================================================
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jcreatejar">
+    <refnamediv>
+        <refname>jcreatejar</refname>
+        <refpurpose>Creates a Java ARchive (JAR) from a set of files / directories</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            jcreatejar(jarFilePath, filePaths[, rootPath[, manifestFilePath]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>jarFilePath</term>
+                <listitem>
+                    <para>A string containing the destination file path of the JAR.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>filePaths</term>
+                <listitem>
+                    <para>A row / column string matrix containing the paths of the input files/directories to include in the JAR.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rootPath</term>
+                <listitem>
+                    <para>An optional string setting the path from which the relative paths in the JAR of all the input files/directories will be computed.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>manifestFilePath</term>
+                <listitem>
+                    <para>An optional string setting the file path of the manifest data to include in the JAR.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Creates a JAR (Java ARchive) file from a set of input files / directories. A common use is to a create Java packages (which contain Java classes).
+            For example, the function <link linkend="ilib_build_jar">ilib_build_jar</link> uses <literal>jcreatejar</literal> to build toolboxes containing Java sources.
+            But <literal>jcreatejar</literal> can also be used to compress files of any type (for example to send them over a network).
+        </para>
+        <para>
+            Most of times, a JAR file is created from a single tree of files, and the path tree in the JAR file is the same as the input path tree. So when <literal>jcreatejar</literal> is given a set of files and directories, it automatically computes the root path of all that files / directories, and set the paths in the JAR relative to that root path. This one can also be explicitly specified in the <literal>rootPath</literal> argument.
+        </para>
+        <para>
+            A JAR file contains a manifest, which contains data to describe the content of the JAR. In the JAR, this manifest is the file <literal>MANIFEST.MF</literal> in the <literal>META-INF</literal> folder.
+            The manifest file can be automatically found at that location in the input tree, or the file path to the manifest can be given in the <literal>manifestFilePath</literal> argument. If the manifest file cannot be found, a default manifest will be created in the JAR. Note: if a manifest is given, it must contain a version attribute, otherwise the manifest in the JAR will be empty.
+        </para>
+        <para>
+            The JAR destination file path, stored in the argument <literal>jarFilePath</literal>, should have the extension <literal>.jar</literal>. The destination JAR file, if it already exists, is overwritten.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+// Example of jcreatejar: create a JAR containing a Java package
+
+// Create a directory for package sources
+jar_src_path = fullfile(TMPDIR, 'jarPackageExample');
+mkdir(jar_src_path);
+
+// Create a Java source and compiles it to a Java class
+function createJavaClass(class_name, code)
+    class_src_path = fullfile(jar_src_path, class_name + '.java');
+    fd = mopen(class_src_path, 'wt');
+    mputl(code, fd);
+    mclose(fd);
+    jcompile(class_src_path);
+endfunction
+
+// Create a class in the root of the package
+createJavaClass('Class1', msprintf( ..
+    'package jarPackageExample;\n' + ..
+    'public class Class1 {}'));
+
+// Create another class in a folder of the package
+mkdir(fullfile(jar_src_path, 'folder'));
+createJavaClass('folder/Class2', msprintf( ..
+    'package jarPackageExample.folder;\n' + ..
+    'public class Class2 {}'));
+
+// The compiled package is in TMPDIR in JIMS folder
+jar_tmp_path = fullfile(TMPDIR, 'JIMS/bin/jarPackageExample');
+
+// Create the package JAR
+jar_dest_path = fullfile(TMPDIR, 'jarPackageExample.jar');
+jcreatejar(jar_dest_path, jar_tmp_path);
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+// Example of jcreatejar: create a JAR containing images, and add a manifest
+
+// Create the manifest file
+manifest_path = fullfile(TMPDIR, 'MANIFEST.MF');
+manifest = msprintf('Manifest-Version: 1.0\nName: Scilab images');
+fd = mopen(manifest_path, 'wt');
+mputl(manifest, fd);
+mclose(fd);
+
+// Create the JAR
+jar_src_path = fullfile(SCI, 'modules/gui/images/icons');
+jar_dest_path = fullfile(TMPDIR, 'jarImagesExample.jar');
+jcreatejar(jar_dest_path, jar_src_path, '', manifest_path);
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jcompile">jcompile</link>
+            </member>
+            <member>
+                <link linkend="javaclasspath">javaclasspath</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

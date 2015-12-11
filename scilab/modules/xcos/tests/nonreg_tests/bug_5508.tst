@@ -19,8 +19,8 @@
 
 
 
-//xcos('SCI/modules/scicos/demos/bounce.cosf');
-// please check that no hdf5 files are present in /tmp
+//xcos('SCI/modules/xcos/demos/bounce.zcos');
+// Check that no hdf5 files are present in /tmp
 
 
 

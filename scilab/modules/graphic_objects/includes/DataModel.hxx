@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,8 +22,8 @@
 #include "NgonGridData.hxx"
 #include "NgonGridMatplotData.hxx"
 #include "NgonPolylineData.hxx"
-#include "TriangleMeshData.hxx"
-#include "TriangleMeshFecData.hxx"
+#include "MeshData.hxx"
+#include "MeshFecData.hxx"
 
 #include "graphicObjectProperties.h"
 
@@ -36,10 +36,7 @@ extern "C" {
 class DataModel
 {
 private :
-    DataModel()
-    {
-        m_dataMap = new std::map<std::string, Data3D*>();
-    }
+    DataModel() {}
 
 public :
     static DataModel *get()
@@ -52,6 +49,14 @@ public :
         return m_me;
     }
 
+    static void destroy()
+    {
+        if (m_me)
+        {
+            delete m_me;
+            m_me = NULL;
+        }
+    }
 public :
     /**
      * Sets a graphic object property
@@ -60,23 +65,23 @@ public :
      * property return value (also FALSE); returning an int, with -1 for a failed
      * allocation would possibly solve this problem.
      */
-    BOOL setGraphicObjectProperty(char const* _pstID, int _iName, void const* _dblValue, int numElements);
+    BOOL setGraphicObjectProperty(int iUID, int _iName, void const* _dblValue, int numElements);
 
     /** Returns a graphic object vector property */
-    void getGraphicObjectProperty(char const* _pstID, int _iName, void **_pvData);
+    void getGraphicObjectProperty(int iUID, int _iName, void **_pvData);
 
     /** Creates a data object */
-    char const* createDataObject(char const* _pstID, int _iType);
+    int createDataObject(int iUID, int _iType);
 
     /**
      * Deletes a data object
      */
-    void deleteDataObject(char const* _pstID);
+    void deleteDataObject(int iUID);
 
 private :
     static DataModel *m_me;
 
-    std::map<std::string, Data3D*> *m_dataMap;
+    std::map<int, Data3D*> m_dataMap;
 };
 
 #endif

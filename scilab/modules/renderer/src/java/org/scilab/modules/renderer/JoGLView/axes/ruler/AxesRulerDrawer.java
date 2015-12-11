@@ -2,13 +2,13 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2010 - DIGITEO - Pierre Lando
  * Copyright (C) 2011 - DIGITEO - Manuel Juliachs
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
@@ -31,14 +31,16 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.axes.Camera;
+import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
+import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 
-import java.awt.Color;
+import java.awt.Dimension;
 import java.nio.FloatBuffer;
 import java.text.DecimalFormat;
 import java.util.Arrays;
@@ -49,16 +51,11 @@ import java.util.List;
  */
 public class AxesRulerDrawer {
 
-    /**
-     * Grid pattern.
-     */
-    private static final short GRID_LINE_PATTERN = (short) 0xF0F0;
-
     private static final double LINEAR_MINIMAL_SUB_TICKS_DISTANCE = 8;
     private static final double LOG_MINIMAL_SUB_TICKS_DISTANCE = 2;
 
     /** Ticks length in pixels. */
-    private static final int TICKS_LENGTH = 6;
+    public static final int TICKS_LENGTH = 6;
 
     /** Sub-ticks length in pixels. */
     private static final int SUB_TICKS_LENGTH = 3;
@@ -71,6 +68,10 @@ public class AxesRulerDrawer {
 
     public AxesRulerDrawer(Canvas canvas) {
         this.rulerDrawerManager = new RulerDrawerManager(canvas.getTextureManager());
+    }
+
+    public RulerDrawer getRulerDrawer(Axes axes, int axis) {
+        return rulerDrawerManager.get(axes)[axis];
     }
 
     /**
@@ -95,12 +96,11 @@ public class AxesRulerDrawer {
      * @param axes the current {@see Axes}
      * @param axesDrawer the drawer used to draw the current {@see Axes}
      * @param colorMap current {@see ColorMap}
-     * @param drawingTools the used {@see DrawingTools}
      * @param transformation the current modelView projection
      * @param canvasProjection the canvas projection
      * @throws org.scilab.forge.scirenderer.SciRendererException if draw fail.
      */
-    public void computeRulers(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools, Transformation transformation, Transformation canvasProjection) {
+    public void computeRulers(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, Transformation transformation, Transformation canvasProjection) {
         Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = transformation.getMatrix();
 
@@ -110,8 +110,8 @@ public class AxesRulerDrawer {
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         DefaultRulerModel rulerModel = getDefaultRulerModel(axes, colorMap);
 
-        Vector3d xAxisPosition = computeXAxisPosition(matrix, bounds, axes.getXAxis().getAxisLocation());
-        Vector3d yAxisPosition = computeYAxisPosition(matrix, bounds, axes.getYAxis().getAxisLocation());
+        Vector3d xAxisPosition = computeXAxisPosition(matrix, bounds, axes.getXAxis().getAxisLocation(), axes.getYAxis().getReverse());
+        Vector3d yAxisPosition = computeYAxisPosition(matrix, bounds, axes.getYAxis().getAxisLocation(), axes.getXAxis().getReverse());
 
         Vector3d px = canvasProjection.projectDirection(new Vector3d(1, 0, 0)).setZ(0);
         Vector3d py = canvasProjection.projectDirection(new Vector3d(0, 1, 0)).setZ(0);
@@ -140,11 +140,16 @@ public class AxesRulerDrawer {
 
         setRulerBounds(axes.getXAxis(), rulerModel, bounds[0], bounds[1]);
 
+        rulerModel.setFormat(axes.getXAxisFormat());
+        rulerModel.setSTFactors(axes.getXAxisSTFactors());
         rulerModel.setLogarithmic(axes.getXAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getXAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
         if (!axes.getXAxis().getAutoTicks()) {
             rulerModel.setUserGraduation(new UserDefineGraduation(axes.getXAxis(), bounds[0], bounds[1]));
+            if (axes.getAutoSubticks()) {
+                rulerModel.setSubticksNumber(axes.getXAxisSubticks());
+            }
             rulerModel.setAutoTicks(false);
         } else {
             rulerModel.setAutoTicks(true);
@@ -155,7 +160,7 @@ public class AxesRulerDrawer {
         xAxisLabelPositioner.setLabelPosition(xAxisPosition);
 
         if (axes.getXAxisVisible()) {
-            rulerDrawingResult = rulerDrawers[0].computeRuler(drawingTools, rulerModel, canvasProjection);
+            rulerDrawingResult = rulerDrawers[0].computeRuler(rulerModel, canvasProjection);
             values = rulerDrawingResult.getTicksValues();
 
             if (axes.getXAxisAutoTicks()) {
@@ -163,7 +168,8 @@ public class AxesRulerDrawer {
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    //GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    axes.setXAxisSubticks(rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -179,6 +185,11 @@ public class AxesRulerDrawer {
             xAxisLabelPositioner.setProjectedTicksDirection(projTicksDir.getNormalized().setZ(0));
         }
 
+        TitlePositioner titlePositioner = axesDrawer.getTitlePositioner(axes);
+        Dimension xdim = axesDrawer.getLabelManager().getXLabelSize(colorMap, axes, axesDrawer);
+        titlePositioner.setXLabelHeight(xdim.height);
+        titlePositioner.setDistanceRatio(xAxisLabelPositioner.getDistanceRatio());
+
         // Draw Y ruler
         rulerModel = getDefaultRulerModel(axes, colorMap);
         rulerModel.setTicksDirection(yTicksDirection);
@@ -189,11 +200,16 @@ public class AxesRulerDrawer {
         }
 
         setRulerBounds(axes.getYAxis(), rulerModel, bounds[2], bounds[3]);
+        rulerModel.setFormat(axes.getYAxisFormat());
+        rulerModel.setSTFactors(axes.getYAxisSTFactors());
         rulerModel.setLogarithmic(axes.getYAxis().getLogFlag());
         rulerModel.setMinimalSubTicksDistance(axes.getYAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
         if (!axes.getYAxis().getAutoTicks()) {
             rulerModel.setUserGraduation(new UserDefineGraduation(axes.getYAxis(), bounds[2], bounds[3]));
+            if (axes.getAutoSubticks()) {
+                rulerModel.setSubticksNumber(axes.getYAxisSubticks());
+            }
             rulerModel.setAutoTicks(false);
         } else {
             rulerModel.setAutoTicks(true);
@@ -203,14 +219,15 @@ public class AxesRulerDrawer {
         yAxisLabelPositioner.setLabelPosition(yAxisPosition);
 
         if (axes.getYAxisVisible()) {
-            rulerDrawingResult = rulerDrawers[1].computeRuler(drawingTools, rulerModel, canvasProjection);
+            rulerDrawingResult = rulerDrawers[1].computeRuler(rulerModel, canvasProjection);
             values = rulerDrawingResult.getTicksValues();
             if (axes.getYAxisAutoTicks()) {
                 Arrays.sort(values);
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                 GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                 if (axes.getAutoSubticks()) {
-                    GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    //GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                    axes.setYAxisSubticks(rulerDrawingResult.getSubTicksDensity());
                 }
             }
 
@@ -228,23 +245,21 @@ public class AxesRulerDrawer {
         }
 
         // Draw Z ruler
-        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0) {
+        if (axes.getViewAsEnum() == Camera.ViewType.VIEW_3D) {
             double txs, tys, xs, ys;
-
             if (Math.abs(matrix[2]) < Math.abs(matrix[6])) {
-                xs = Math.signum(matrix[2]);
-                ys = -Math.signum(matrix[6]);
+                xs = matrix[2] > 0 ? 1 : -1;
+                ys = matrix[6] > 0 ? -1 : 1;
                 txs = xs;
                 tys = 0;
             } else {
-                xs = -Math.signum(matrix[2]);
-                ys = Math.signum(matrix[6]);
+                xs = matrix[2] > 0 ? -1 : 1;
+                ys = matrix[6] > 0 ? 1 : -1;
                 txs = 0;
                 tys = ys;
             }
 
             rulerModel = getDefaultRulerModel(axes, colorMap);
-
             rulerModel.setFirstPoint(new Vector3d(xs, ys, -1));
             rulerModel.setSecondPoint(new Vector3d(xs, ys, 1));
             rulerModel.setTicksDirection(new Vector3d(txs, tys, 0));
@@ -253,11 +268,16 @@ public class AxesRulerDrawer {
             }
 
             setRulerBounds(axes.getZAxis(), rulerModel, bounds[4], bounds[5]);
+            rulerModel.setFormat(axes.getZAxisFormat());
+            rulerModel.setSTFactors(axes.getZAxisSTFactors());
             rulerModel.setLogarithmic(axes.getZAxis().getLogFlag());
             rulerModel.setMinimalSubTicksDistance(axes.getZAxis().getLogFlag() ? LOG_MINIMAL_SUB_TICKS_DISTANCE : LINEAR_MINIMAL_SUB_TICKS_DISTANCE);
 
             if (!axes.getZAxis().getAutoTicks()) {
                 rulerModel.setUserGraduation(new UserDefineGraduation(axes.getZAxis(), bounds[4], bounds[5]));
+                if (axes.getAutoSubticks()) {
+                    rulerModel.setSubticksNumber(axes.getZAxisSubticks());
+                }
                 rulerModel.setAutoTicks(false);
             } else {
                 rulerModel.setAutoTicks(true);
@@ -267,14 +287,15 @@ public class AxesRulerDrawer {
             zAxisLabelPositioner.setLabelPosition(new Vector3d(xs, ys, 0));
 
             if (axes.getZAxisVisible()) {
-                rulerDrawingResult = rulerDrawers[2].computeRuler(drawingTools, rulerModel, canvasProjection);
+                rulerDrawingResult = rulerDrawers[2].computeRuler(rulerModel, canvasProjection);
                 values = rulerDrawingResult.getTicksValues();
                 if (axes.getZAxisAutoTicks()) {
                     Arrays.sort(values);
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__, toDoubleArray(values));
                     GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__, toStringArray(values, rulerDrawingResult.getFormat()));
                     if (axes.getAutoSubticks()) {
-                        GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                        //GraphicController.getController().setProperty(axes.getIdentifier(), GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__, rulerDrawingResult.getSubTicksDensity());
+                        axes.setZAxisSubticks(rulerDrawingResult.getSubTicksDensity());
                     }
                 }
 
@@ -282,7 +303,7 @@ public class AxesRulerDrawer {
 
                 zAxisLabelPositioner.setTicksDirection(new Vector3d(txs, tys, 0.0));
                 zAxisLabelPositioner.setDistanceRatio(distanceRatio);
-                zAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0));
+                zAxisLabelPositioner.setProjectedTicksDirection(rulerDrawingResult.getNormalizedTicksDirection().setZ(0).setY(1e-7));
             } else {
                 /* z-axis not visible: compute the projected ticks direction and distance ratio (see the x-axis case). */
                 Vector3d zTicksDirection = new Vector3d(txs, tys, 0);
@@ -305,18 +326,16 @@ public class AxesRulerDrawer {
      */
     public void drawRuler(Axes axes, AxesDrawer axesDrawer, ColorMap colorMap, DrawingTools drawingTools) throws SciRendererException {
         Appearance gridAppearance = new Appearance();
-        gridAppearance.setLinePattern(GRID_LINE_PATTERN);
-        gridAppearance.setLineWidth(axes.getLineThickness().floatValue());
 
         Double[] bounds = axes.getDisplayedBounds();
         double[] matrix = drawingTools.getTransformationManager().getModelViewStack().peek().getMatrix();
 
         RulerDrawer[] rulerDrawers = rulerDrawerManager.get(axes);
         ElementsBuffer vertexBuffer = drawingTools.getCanvas().getBuffersManager().createElementsBuffer();
-        final boolean is3D = axes.getViewAsEnum() == Camera.ViewType.VIEW_3D && axes.getRotationAngles()[1] != 90.0;
+        final boolean is3D = axes.getViewAsEnum() == Camera.ViewType.VIEW_3D;// && axes.getRotationAngles()[1] != 90.0;
 
         if (rulerDrawers[0].getModel() == null || rulerDrawers[1].getModel() == null || (is3D && rulerDrawers[2].getModel() == null)) {
-            computeRulers(axes, axesDrawer, colorMap, drawingTools, drawingTools.getTransformationManager().getModelViewStack().peek(), drawingTools.getTransformationManager().getCanvasProjection());
+            computeRulers(axes, axesDrawer, colorMap, drawingTools.getTransformationManager().getModelViewStack().peek(), drawingTools.getTransformationManager().getCanvasProjection());
         }
 
         int gridPosition;
@@ -357,6 +376,8 @@ public class AxesRulerDrawer {
                 }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getXAxisGridColor()));
+                gridAppearance.setLineWidth(axes.getXAxisGridThickness().floatValue());
+                gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getXAxisGridStyle()).asPattern());
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                 DefaultGeometry gridGeometry = new DefaultGeometry();
                 gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
@@ -398,6 +419,8 @@ public class AxesRulerDrawer {
                 }
 
                 gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getYAxisGridColor()));
+                gridAppearance.setLineWidth(axes.getYAxisGridThickness().floatValue());
+                gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getYAxisGridStyle()).asPattern());
                 drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                 DefaultGeometry gridGeometry = new DefaultGeometry();
                 gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
@@ -413,7 +436,7 @@ public class AxesRulerDrawer {
             if (axes.getZAxisVisible()) {
                 rulerDrawers[2].draw(drawingTools);
 
-                if (axes.getZAxisGridColor() != -1 || !axes.getZAxisVisible()) {
+                if (axes.getZAxisGridColor() != -1) {
                     FloatBuffer vertexData;
                     if (axes.getZAxisLogFlag()) {
                         List<Double> values = rulerDrawers[2].getSubTicksValue();
@@ -440,6 +463,8 @@ public class AxesRulerDrawer {
                     }
 
                     gridAppearance.setLineColor(ColorFactory.createColor(colorMap, axes.getZAxisGridColor()));
+                    gridAppearance.setLineWidth(axes.getZAxisGridThickness().floatValue());
+                    gridAppearance.setLinePattern(Line.LineType.fromScilabIndex(axes.getZAxisGridStyle()).asPattern());
                     drawingTools.getTransformationManager().getModelViewStack().pushRightMultiply(mirror);
                     DefaultGeometry gridGeometry = new DefaultGeometry();
                     gridGeometry.setFillDrawingMode(Geometry.FillDrawingMode.NONE);
@@ -454,7 +479,7 @@ public class AxesRulerDrawer {
         drawingTools.getCanvas().getBuffersManager().dispose(vertexBuffer);
     }
 
-    private double getNonZeroSignum(double value) {
+    private static final double getNonZeroSignum(double value) {
         if (value < 0) {
             return -1;
         } else {
@@ -479,7 +504,7 @@ public class AxesRulerDrawer {
         rulerModel.setValues(min, max);
     }
 
-    private Vector3d computeXAxisPosition(double[] projectionMatrix, Double[] bounds, AxisProperty.AxisLocation axisLocation) {
+    private Vector3d computeXAxisPosition(double[] projectionMatrix, Double[] bounds, AxisProperty.AxisLocation axisLocation, boolean reverse) {
         double y, z;
         switch (axisLocation) {
             default:
@@ -503,7 +528,7 @@ public class AxesRulerDrawer {
                 break;
             case ORIGIN:
                 z = Math.signum(projectionMatrix[9]);  // First : switch Z such that Y was maximal.
-                y = (bounds[3] + bounds[2]) / (bounds[3] - bounds[2]);
+                y = (reverse ? -1 : 1) * (bounds[3] + bounds[2]) / (bounds[3] - bounds[2]);
                 if (Math.abs(y) > 1) {
                     y = Math.signum(y);
                 }
@@ -512,7 +537,7 @@ public class AxesRulerDrawer {
         return new Vector3d(0, y, z);
     }
 
-    private Vector3d computeYAxisPosition(double[] matrix, Double[] bounds, AxisProperty.AxisLocation axisLocation) {
+    private Vector3d computeYAxisPosition(double[] matrix, Double[] bounds, AxisProperty.AxisLocation axisLocation, boolean reverse) {
         double x, z;
         switch (axisLocation) {
             default:
@@ -536,7 +561,7 @@ public class AxesRulerDrawer {
                 break;
             case ORIGIN:
                 z = Math.signum(matrix[9]);  // First : switch Z such that Y was minimal.
-                x = (bounds[1] + bounds[0]) / (bounds[1] - bounds[0]);
+                x = (reverse ? -1 : 1) * (bounds[1] + bounds[0]) / (bounds[1] - bounds[0]);
                 if (Math.abs(x) > 1) {
                     x = Math.signum(x);
                 }
@@ -661,11 +686,11 @@ public class AxesRulerDrawer {
         this.rulerDrawerManager.disposeAll();
     }
 
-    public boolean update(String id, int property) {
+    public boolean update(Integer id, int property) {
         return this.rulerDrawerManager.update(id, property);
     }
 
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         this.rulerDrawerManager.dispose(id);
     }
 }

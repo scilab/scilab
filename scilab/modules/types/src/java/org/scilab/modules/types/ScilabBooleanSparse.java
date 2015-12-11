@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -162,6 +162,13 @@ public class ScilabBooleanSparse implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
+    }
+
+    /**
      * Return the type of Scilab
      *
      * @return the type of Scilab
@@ -313,6 +320,21 @@ public class ScilabBooleanSparse implements ScilabType {
         return cols;
     }
 
+
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.hashCode(colPos);
+        result = prime * result + cols;
+        result = prime * result + nbItem;
+        result = prime * result + Arrays.hashCode(nbItemRow);
+        result = prime * result + rows;
+        return result;
+    }
+
     /**
      * @see org.scilab.modules.types.ScilabType#equals(Object)
      */
@@ -363,7 +385,7 @@ public class ScilabBooleanSparse implements ScilabType {
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return a Scilab-like String representation of the data.

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_reshape(tree)
     // M2SCI function
@@ -54,7 +54,11 @@ function [tree]=sci_reshape(tree)
         elseif size(tree.rhs)>=2
             if ~isemptyrhs then
                 for k=2:size(tree.rhs)
-                    dims($+1)=tree.rhs(k).value
+                    if typeof(tree.rhs(k)) == "cste" then
+                        dims($+1)=tree.rhs(k).value
+                    else
+                        dims($+1) = Unknown;
+                    end
                 end
                 tree.lhs(1).dims=dims
             end

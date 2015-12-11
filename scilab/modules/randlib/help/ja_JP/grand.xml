@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="grand">
@@ -115,7 +115,6 @@
             したり,内部の状態(シード)を変更または取得したり,...
             といった基底生成器への
             種々の操作を行う際に使用されます.
-            
             これらの基底生成器はランダムな整数を
             大きな整数区間(lgi)上の一様分布に従い,
             他の全ての分布はそこから取得されます.

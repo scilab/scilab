@@ -44,6 +44,8 @@ nm = nmplot_configure(nm,"-boundsmin",[0 0]);
 nm = nmplot_configure(nm,"-boundsmax",[3 3]);
 nm = nmplot_configure(nm,"-nbineqconst",4);
 nm = nmplot_configure(nm,"-simplex0method","randbounds");
+nm = nmplot_configure(nm,"-maxiter",200);
+nm = nmplot_configure(nm,"-maxfunevals",300);
 nm = nmplot_search(nm);
 xopt = nmplot_get(nm,"-xopt");
 assert_checkalmostequal(xopt,[1;1],1.d-2);

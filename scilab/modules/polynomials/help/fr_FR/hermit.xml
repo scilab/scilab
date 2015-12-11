@@ -44,7 +44,9 @@
             La variable de sortie est <literal>Ar=A*U</literal>.
         </para>
         <para>
-            Attention : version expérimentale
+            <warning>
+                Attention : version expérimentale
+            </warning>
         </para>
     </refsection>
     <refsection>

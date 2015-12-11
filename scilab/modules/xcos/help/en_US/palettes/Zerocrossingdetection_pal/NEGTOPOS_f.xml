@@ -164,7 +164,7 @@
     </refsection>
     <refsection id="Example_NEGTOPOS_f">
         <title>Example</title>
-        <link type="scilab" linkend="scilab.zcos/xcos/examples/zerocrossingdetection_pal/NEGTOPOS_f_Example.zcos">
+        <link type="scilab" linkend="scilab.xcos/xcos/examples/zerocrossingdetection_pal/NEGTOPOS_f_Example.zcos">
             <inlinemediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../../examples/zerocrossingdetection_pal/NEGTOPOS_f_Example.zcos" valign="middle"/>

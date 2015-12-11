@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,14 +24,14 @@ extern "C"
 
 
 /*---------------------------------------------------------------------------------*/
-char * exportToFile(char * figureUID,
+char * exportToFile(int iFigureUID,
                     const char * fileName,
                     ExportFileType fileType,
                     const float jpegCompressionQuality,
                     ExportOrientation orientation)
 {
     return org_scilab_modules_graphic_export::FileExporter::fileExport(getScilabJavaVM(),
-            figureUID,
+            iFigureUID,
             (char *)fileName,
             fileType,
             jpegCompressionQuality,

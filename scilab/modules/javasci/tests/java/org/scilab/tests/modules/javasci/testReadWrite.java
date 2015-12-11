@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.tests.modules.javasci;
@@ -60,6 +60,7 @@ public class testReadWrite {
         assertTrue(aFromScilab.equals(aOriginal));
     }
 
+    @Test()
     public void putAndGetDoubleTest() throws NullPointerException, JavasciException {
         double [][]a = {{21.2, 22.0, 42.0, 39.0}, {23.2, 24.0, 44.0, 40.0}};
         ScilabDouble aOriginal = new ScilabDouble(a);
@@ -236,7 +237,7 @@ public class testReadWrite {
         assertTrue(Arrays.deepEquals(aFromScilab.getFullRealPart(), aFromScilab2.getFullRealPart()));
 
         ScilabSparse mySparse = new ScilabSparse(100, 100, 5, new int[] { 1, 1, 1, 1, 1}, new int[] { 1, 25, 50, 75, 99}, new double[] { 1.0, 2.0, 3.0, 4.0, 5.0});
-        // sci.put with a sparse is not yet functionnal
+        // sci.put with a sparse is not yet functional
         //        assertTrue(sci.put("mySparse", mySparse));
         //        String ref="mySparseRef = sparse([1, 2 ; 2, 26 ; 3, 51 ; 4, 76 ; 5, 100], [1.0 ; 2.0 ; 3.0 ; 4.0 ; 5.0], [100, 100]);";
         //        sci.exec("isEqual=(mySparseRef==mySparse)");

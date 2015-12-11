@@ -5,10 +5,13 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function remove_profiling(funname)
     //remove all profiling instruction bytecode
+    if argn(2) < 1 then
+        error(sprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "remove_profiling", 1));
+    end
     nsiz=6
     execstr("code=bytecode("+funname+")")
     lc=1

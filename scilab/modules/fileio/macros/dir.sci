@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function L=dir(str)
 
@@ -14,7 +14,7 @@ function L=dir(str)
 
     if argn(2) == 1 then
         if type(str) <> 10 then
-            error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "dir", 1));
+            error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "dir", 1));
         end
 
         files = listfiles(str);

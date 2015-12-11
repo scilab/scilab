@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine arl2a(f,nf,ta,mxsol,imina,nall,inf,ierr,ilog,w,iw)
 C!but
@@ -46,6 +46,9 @@ C      iw :29+nall**2+4*nall+2*mxsol
       dimension ta(mxsol,*), f(nf), w(*), iw(*), x(1)
       integer dgmax
 C
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
+cDEC$ ATTRIBUTES DLLIMPORT:: /no2f/
+cDEC$ ATTRIBUTES DLLIMPORT:: /comall/
       common /sortie/ io,info,ll
       common /no2f/ gnrm
       common /comall/ nall1

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_is_handle_valid(char *fname, unsigned long fname_len)
+int sci_is_handle_valid(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -73,7 +73,7 @@ int sci_is_handle_valid(char *fname, unsigned long fname_len)
     /* Check each handle */
     for (i = 0; i < nbHandle; i++)
     {
-        resultStackPointer[i] =  (getObjectFromHandle((long int)handleStackPointer[i]) != NULL ? TRUE : FALSE);
+        resultStackPointer[i] =  (getObjectFromHandle((long int)handleStackPointer[i]) != 0 ? TRUE : FALSE);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_blanks(tree)
     // M2SCI function
@@ -18,7 +18,7 @@ function [tree]=sci_blanks(tree)
 
     if ~is_a_scalar(A) & typeof(A)<>"variable" then
         n=gettempvar()
-        insert(Equal(list(n),A))
+        m2sci_insert(Equal(list(n),A))
         B=Operation("ext",list(n,Cste(1)),list())
         repl_poss(B,..
         A,A,gettext("is a scalar."))

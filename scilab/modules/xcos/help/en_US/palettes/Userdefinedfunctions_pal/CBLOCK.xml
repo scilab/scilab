@@ -90,7 +90,6 @@
         <para>
             This block creates skeleton of the C-computing function. It also
             creates library file and object files.  
-            
         </para>
     </refsection>
     <refsection id="Dialogbox_CBLOCK">
@@ -188,19 +187,7 @@
                     <emphasis role="bold">initial firing vector </emphasis>
                 </para>
                 <para>
-                    A vector. Size of this vector corresponds to the number of event outputs. The value of the
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CBLOCK_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    entry specifies the time of the preprogrammed event firing on the
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CBLOCK_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    output event port. If less than zero, no event is preprogrammed.
+                    A vector. Size of this vector corresponds to the number of event outputs. The value of the <latex>$i^{th}$</latex> entry specifies the time of the preprogrammed event firing on the <latex>$i^{th}$</latex> output event port. If less than zero, no event is preprogrammed.
                 </para>
                 <para> Properties : Type 'vec' of size 'sum(%6)' </para>
             </listitem>

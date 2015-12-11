@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -16,16 +16,17 @@
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define DEFAULT_PREFIX L"SCI"
 /*--------------------------------------------------------------------------*/
-int sci_tempname(char *fname, unsigned long fname_len)
+int sci_tempname(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     wchar_t *wcprefix = NULL;
     wchar_t *wcTempFilename = NULL;
 
-    Rhs = Max(Rhs, 0);
+    //Rhs = Max(Rhs, 0);
     CheckRhs(0, 1);
     CheckLhs(1, 1);
 
@@ -34,8 +35,7 @@ int sci_tempname(char *fname, unsigned long fname_len)
         wcprefix = (wchar_t *)MALLOC(sizeof(wchar_t) * (wcslen(DEFAULT_PREFIX) + 1));
         wcscpy(wcprefix, DEFAULT_PREFIX);
     }
-
-    if (Rhs == 1)
+    else
     {
         int *piAddressVarOne = NULL;
 
@@ -43,7 +43,6 @@ int sci_tempname(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            FREE(wcprefix);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
             return 0;
         }
@@ -56,8 +55,13 @@ int sci_tempname(char *fname, unsigned long fname_len)
 
         if (isStringType(pvApiCtx, piAddressVarOne))
         {
-            if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &wcprefix) != 0)
+            if (getAllocatedSingleWideString(pvApiCtx, piAddressVarOne, &wcprefix))
             {
+                if (wcprefix)
+                {
+                    freeAllocatedSingleWideString(wcprefix);
+                }
+
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
                 return 0;
             }
@@ -65,9 +69,7 @@ int sci_tempname(char *fname, unsigned long fname_len)
 #if _MSC_VER
             if (wcslen(wcprefix) > 3)
             {
-                FREE(wcprefix);
-                wcprefix = NULL;
-
+                freeAllocatedSingleWideString(wcprefix);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string (3 characters max.) expected.\n"), fname, 1);
                 return 0;
             }
@@ -75,35 +77,30 @@ int sci_tempname(char *fname, unsigned long fname_len)
         }
         else
         {
-            FREE(wcprefix);
-            wcprefix = NULL;
-
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            freeAllocatedSingleWideString(wcprefix);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
     }
 
     wcTempFilename = createtempfilenameW(wcprefix, TRUE);
-
-    FREE(wcprefix);
-    wcprefix = NULL;
-
-    if (wcTempFilename)
+    freeAllocatedSingleWideString(wcprefix);
+    if (wcTempFilename == NULL)
     {
-        if (createSingleWideString(pvApiCtx, Rhs + 1, wcTempFilename) == 0)
-        {
-            FREE(wcTempFilename);
-            wcTempFilename = NULL;
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
+    }
 
-            LhsVar(1) = Rhs + 1;
-            PutLhsVar();
-            return 0;
-        }
+    if (createSingleWideString(pvApiCtx, Rhs + 1, wcTempFilename))
+    {
+        FREE(wcTempFilename);
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 0;
     }
 
     FREE(wcTempFilename);
-    wcTempFilename = NULL;
-    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

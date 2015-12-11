@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=======================================================================
 // File   : xstringl.sci
@@ -45,7 +45,6 @@ function [rect] = xstringl( varargin )
     // size width, height
     rect(3) = abs(corners(1,3) - corners(1,1));
     rect(4) = abs(corners(2,3) - corners(2,1));
-
 
 endfunction
 

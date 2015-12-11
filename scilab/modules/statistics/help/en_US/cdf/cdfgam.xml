@@ -3,12 +3,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
  * Copyright (C) 2010 - DIGITEO - Michael Baudin
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="cdfgam">
@@ -67,7 +67,7 @@
             distribution given values for the others.
         </para>
         <para>
-            The gamma density is 
+            The gamma density is
         </para>
         <para>
             <latex>
@@ -80,10 +80,12 @@
             where a is the shape and r is the rate.
         </para>
         <para>
-            Caution. As opposed to other technical computing languages,
-            this function makes use of the rate parameter, and not the
-            scale parameter.
-            The rate parameter is linked to the scale parameter with the equation rate=1/scale.
+            <warning>
+                Caution. As opposed to other technical computing languages,
+                this function makes use of the rate parameter, and not the
+                scale parameter.
+                The rate parameter is linked to the scale parameter with the equation rate=1/scale.
+            </warning>
         </para>
         <para>
             Computation of parameters such as X, Shape or Rate involve a search for a value that
@@ -95,35 +97,35 @@
         <title>Examples</title>
         <para>
             In the following example, we compute the probability of the event <literal>x=0.1</literal>
-            for the Gamma distribution function with <literal>Shape=1.0</literal> and 
+            for the Gamma distribution function with <literal>Shape=1.0</literal> and
             <literal>Rate=1.0</literal>.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     Shape = 0.1
     Rate = 1.0
     x = 0.1
     // Expected : P = 0.8275518
-    [P,Q]=cdfgam("PQ",x,Shape,Rate) 
+    [P,Q]=cdfgam("PQ",x,Shape,Rate)
  ]]></programlisting>
         <para>
             In the following example, we compute the probability of the event <literal>x=0.1</literal>
-            and check that the search algorithms allows to consistently invert the 
+            and check that the search algorithms allows to consistently invert the
             function.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     Shape = 0.1
     Rate = 2.0
     x = 0.3
     [P,Q]    = cdfgam("PQ",x,Shape,Rate)
     [X1]     = cdfgam("X",Shape,Rate,P,Q)
     [Shape1] = cdfgam("Shape",Rate,P,Q,x)
-    [Rate1] = cdfgam("Rate",P,Q,x,Shape)
+    [Rate1]  = cdfgam("Rate",P,Q,x,Shape)
  ]]></programlisting>
         <para>
-            In the following example, we draw the Gamma distribution function 
-            for various values of the shape and rate.
+            In the following example, we draw the Gamma distribution function
+            for various values of the Shape and Rate.
         </para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
     N = 1000;
     x = linspace(0,20,N)';
     Shape = [1 2 3 5 9];
@@ -160,5 +162,40 @@
             Barry W. Brown, James Lovato and Kathy Russell. The University of
             Texas.
         </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="cdfbet">cdfbet</link>
+            </member>
+            <member>
+                <link linkend="cdfbin">cdfbin</link>
+            </member>
+            <member>
+                <link linkend="cdfchi">cdfchi</link>
+            </member>
+            <member>
+                <link linkend="cdfchn">cdfchn</link>
+            </member>
+            <member>
+                <link linkend="cdff">cdff</link>
+            </member>
+            <member>
+                <link linkend="cdffnc">cdffnc</link>
+            </member>
+            <member>
+                <link linkend="cdfnbn">cdfnbn</link>
+            </member>
+            <member>
+                <link linkend="cdfnor">cdfnor</link>
+            </member>
+            <member>
+                <link linkend="cdfpoi">cdfpoi</link>
+            </member>
+            <member>
+                <link linkend="cdft">cdft</link>
+            </member>
+        </simplelist>
     </refsection>
 </refentry>

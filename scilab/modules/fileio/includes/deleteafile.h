@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -21,14 +21,14 @@
 * @param[in] filename
 * @return BOOLEAN TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL deleteafile(char *filename);
+FILEIO_IMPEXP BOOL deleteafile(const char *filename);
 
 /**
 * delete a file by filename
 * @param[in] filenameW wide string
 * @return BOOLEAN TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL deleteafileW(wchar_t *filenameW);
+FILEIO_IMPEXP BOOL deleteafileW(const wchar_t *filenameW);
 
 #endif /* __DELETEAFILE_H__ */
 /*--------------------------------------------------------------------------*/

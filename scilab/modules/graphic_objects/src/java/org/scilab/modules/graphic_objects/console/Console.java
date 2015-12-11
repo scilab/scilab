@@ -6,16 +6,21 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.graphic_objects.console;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CONSOLE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SHOWHIDDENHANDLES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SHOWHIDDENPROPERTIES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TOOLBAR_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_USEDEPRECATEDLF__;
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Vincent COUVERT
@@ -32,11 +37,20 @@ public final class Console extends GraphicObject {
 
     private boolean showHiddenHandles;
 
+    private boolean showHiddenProperties;
+
     private ScilabMode scilabMode;
+
+    private boolean useDeprecatedLF = false;
+
+    private boolean toolbarVisible = false;
 
     /** Console properties names */
     private enum ConsoleProperty {
-        SHOWHIDDENHANDLES
+        SHOWHIDDENHANDLES,
+        SHOWHIDDENPROPERTIES,
+        USEDEPRECATEDLF,
+        TOOLBARVISIBLE
     };
 
     /**
@@ -72,8 +86,9 @@ public final class Console extends GraphicObject {
      * Set the scilabMode property
      * @param scilabMode the new value to set
      */
-    public void setScilabMode(ScilabMode scilabMode) {
+    public UpdateStatus setScilabMode(ScilabMode scilabMode) {
         this.scilabMode = scilabMode;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -85,19 +100,37 @@ public final class Console extends GraphicObject {
     }
 
     /**
-     * Set the showHiddenHandles proeprty
+     * Set the showHiddenHandles property
      * @param showHiddenHandles the new value to set
      */
-    public void setShowHiddenHandles(boolean showHiddenHandles) {
+    public UpdateStatus setShowHiddenHandles(boolean showHiddenHandles) {
         this.showHiddenHandles = showHiddenHandles;
+        return UpdateStatus.Success;
     }
 
     /**
-     * Get the showHiddenHandles proeprty
+     * Get the showHiddenHandles property
      * @return showHiddenHandles
      */
     public boolean getShowHiddenHandles() {
         return this.showHiddenHandles;
+    }
+
+    /**
+     * Set the showHiddenProperties property
+     * @param showHiddenProperties the new value to set
+     */
+    public UpdateStatus setShowHiddenProperties(boolean showHiddenProperties) {
+        this.showHiddenProperties = showHiddenProperties;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * Get the showHiddenProperties property
+     * @return showHiddenProperties
+     */
+    public boolean getShowHiddenProperties() {
+        return this.showHiddenProperties;
     }
 
     /**
@@ -117,6 +150,12 @@ public final class Console extends GraphicObject {
     public Object getPropertyFromName(int propertyName) {
         if (propertyName == __GO_SHOWHIDDENHANDLES__) {
             return ConsoleProperty.SHOWHIDDENHANDLES;
+        } else if (propertyName == __GO_SHOWHIDDENPROPERTIES__) {
+            return ConsoleProperty.SHOWHIDDENPROPERTIES;
+        } else if (propertyName == __GO_USEDEPRECATEDLF__) {
+            return ConsoleProperty.USEDEPRECATEDLF;
+        } else if (propertyName == __GO_TOOLBAR_VISIBLE__) {
+            return ConsoleProperty.TOOLBARVISIBLE;
         } else {
             return super.getPropertyFromName(propertyName);
         }
@@ -129,6 +168,12 @@ public final class Console extends GraphicObject {
     public Object getProperty(Object property) {
         if (property == ConsoleProperty.SHOWHIDDENHANDLES) {
             return getShowHiddenHandles();
+        } else if (property == ConsoleProperty.SHOWHIDDENPROPERTIES) {
+            return getShowHiddenProperties();
+        } else if (property == ConsoleProperty.USEDEPRECATEDLF) {
+            return getUseDeprecatedLF();
+        } else if (property == ConsoleProperty.TOOLBARVISIBLE) {
+            return getToolbarVisible();
         } else {
             return super.getProperty(property);
         }
@@ -143,10 +188,40 @@ public final class Console extends GraphicObject {
     public UpdateStatus setProperty(Object property, Object value) {
         if (property == ConsoleProperty.SHOWHIDDENHANDLES) {
             setShowHiddenHandles((Boolean) value);
+        } else if (property == ConsoleProperty.SHOWHIDDENPROPERTIES) {
+            setShowHiddenProperties((Boolean) value);
+        } else if (property == ConsoleProperty.USEDEPRECATEDLF) {
+            setUseDeprecatedLF((Boolean) value);
+        } else if (property == ConsoleProperty.TOOLBARVISIBLE) {
+            setToolbarVisible((Boolean) value);
         } else {
             return super.setProperty(property, value);
         }
         return UpdateStatus.Success;
     }
 
+    public boolean getUseDeprecatedLF() {
+        return useDeprecatedLF;
+    }
+
+    public UpdateStatus setUseDeprecatedLF(boolean useDeprecatedLF) {
+        if (this.useDeprecatedLF == useDeprecatedLF) {
+            return UpdateStatus.NoChange;
+        }
+        this.useDeprecatedLF = useDeprecatedLF;
+        return UpdateStatus.Success;
+    }
+
+    public Boolean getToolbarVisible() {
+        return toolbarVisible;
+    }
+
+    public UpdateStatus setToolbarVisible(Boolean status) {
+        if (status.equals(toolbarVisible)) {
+            return UpdateStatus.NoChange;
+        }
+
+        toolbarVisible = status;
+        return UpdateStatus.Success;
+    }
 }

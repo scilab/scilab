@@ -6,18 +6,154 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "gw_elementary_functions.h"
+#include "basic_functions.h"
+#include "Scierror.h"
+#include "api_scilab.h"
+
+#define MAGI_LETTER		'm'
+#define FRK_LETTER		'f'
+#define HILB_LETTER		'h'
+
+char getGenerateMode(void* pvApiCtx, int* _piAddress);
+int getGenerateSize(void* pvApiCtx, int* _piAddress);
 /*--------------------------------------------------------------------------*/
-extern int C2F(inttestmatrix)(int *id);
-/*--------------------------------------------------------------------------*/
-int sci_testmatrix(char *fname, unsigned long fname_len)
+int sci_testmatrix(char *fname, void* pvApiCtx)
 {
-    static int id[6];
-    C2F(inttestmatrix)(id);
+    SciErr sciErr;
+    int iRet						= 0;
+
+    int iRows1					= 0;
+    int iCols1					= 0;
+    int* piAddr1				= NULL;
+    char cMode					= 0;
+
+
+    int iRows2					= 0;
+    int iCols2					= 0;
+    int* piAddr2				= NULL;
+    int iDim						= 0;
+
+    double *pdblRealRet = NULL;
+
+    CheckRhs(2, 2);
+    CheckLhs(1, 1);
+
+    /*check input 1*/
+    sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr1);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    cMode = getGenerateMode(pvApiCtx, piAddr1);
+
+    if (cMode == -1)
+    {
+        return 1;
+    }
+
+    iDim = getGenerateSize(pvApiCtx, piAddr2);
+
+
+    if (cMode != FRK_LETTER && cMode != HILB_LETTER && iDim == 2)
+    {
+        iDim = 0;
+    }
+
+    if (iDim == 0)
+    {
+        iRet = createEmptyMatrix(pvApiCtx, Rhs + 1);
+        if (iRet)
+        {
+            return 1;
+        }
+        LhsVar(1) = Rhs + 1;
+        PutLhsVar();
+        return 0;
+    }
+
+    sciErr = allocMatrixOfDouble(pvApiCtx, Rhs + 1, iDim, iDim, &pdblRealRet);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    switch (cMode)
+    {
+        case FRK_LETTER :
+            franck_matrix(iDim, pdblRealRet);
+            break;
+        case HILB_LETTER :
+            hilb_matrix(iDim, pdblRealRet);
+            break;
+        default : //Magic case and others
+            magic_matrix(iDim, pdblRealRet);
+            break;
+    }
+
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
     return 0;
+}
+
+char getGenerateMode(void* pvApiCtx, int* _piAddress)
+{
+    int iRet = 0;
+
+    char* pstData;
+
+    iRet = getAllocatedSingleString(pvApiCtx, _piAddress, &pstData);
+    if (iRet)
+    {
+        return -1;
+    }
+
+    return pstData[0];
+}
+
+int getGenerateSize(void* pvApiCtx, int* _piAddress)
+{
+    SciErr sciErr;
+    int iRet = 0;
+    int iRows = 0;
+    int iCols = 0;
+
+    double* pdblReal = NULL;
+    double* pdblImg	 = NULL;
+
+    if (isVarComplex(pvApiCtx, _piAddress))
+    {
+        sciErr = getComplexMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal, &pdblImg);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+    }
+    else
+    {
+        sciErr = getMatrixOfDouble(pvApiCtx, _piAddress, &iRows, &iCols, &pdblReal);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 0;
+        }
+    }
+    return abs((int)pdblReal[0]);
+
 }
 /*--------------------------------------------------------------------------*/

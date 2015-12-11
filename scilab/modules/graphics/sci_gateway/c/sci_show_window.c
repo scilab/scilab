@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,6 +29,7 @@
 #include "Interaction.h"
 #include "FigureList.h"
 #include "CurrentFigure.h"
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -36,7 +37,7 @@
 #include "CurrentSubwin.h"
 #include "sci_types.h"
 /*--------------------------------------------------------------------------*/
-int sci_show_window(char *fname, unsigned long fname_len)
+int sci_show_window(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -44,8 +45,9 @@ int sci_show_window(char *fname, unsigned long fname_len)
     long long* llstackPointer = NULL;
     double* pdblstackPointer = NULL;
 
-    char* pFigureUID = NULL;
-    char* pstrAxesUID = NULL;
+    int iFigureUID = 0;
+    int iAxesUID = 0;
+    int* piAxesUID = &iAxesUID;
 
     CheckInputArgument(pvApiCtx, 0, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -86,15 +88,15 @@ int sci_show_window(char *fname, unsigned long fname_len)
                 return -1;
             }
 
-            pFigureUID = (char*)getObjectFromHandle((long int)(*llstackPointer));
+            iFigureUID = getObjectFromHandle((long int)(*llstackPointer));
 
-            if (pFigureUID == NULL)
+            if (iFigureUID == 0)
             {
                 Scierror(999, _("%s: Handle does not or no longer exists.\n"), fname);
                 return -1;
             }
 
-            getGraphicObjectProperty(pFigureUID, __GO_TYPE__, jni_int, (void **) &piType);
+            getGraphicObjectProperty(iFigureUID, __GO_TYPE__, jni_int, (void **) &piType);
             if (type != __GO_FIGURE__)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A '%s' handle or a real scalar expected.\n"), fname, 1, "Figure");
@@ -111,7 +113,7 @@ int sci_show_window(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -121,16 +123,16 @@ int sci_show_window(char *fname, unsigned long fname_len)
                 return -1;
             }
             winNum = (int) * pdblstackPointer;
-            pFigureUID = (char*)getFigureFromIndex(winNum);
+            iFigureUID = getFigureFromIndex(winNum);
 
-            if (pFigureUID == NULL)
+            if (iFigureUID == 0)
             {
-                pFigureUID = createNewFigureWithAxes();
-                setGraphicObjectProperty(pFigureUID, __GO_ID__, &winNum, jni_int, 1);
-                setCurrentFigure(pFigureUID);
+                iFigureUID = createNewFigureWithAxes();
+                setGraphicObjectProperty(iFigureUID, __GO_ID__, &winNum, jni_int, 1);
+                setCurrentFigure(iFigureUID);
 
-                getGraphicObjectProperty(pFigureUID, __GO_SELECTED_CHILD__, jni_string,  (void**)&pstrAxesUID);
-                setCurrentSubWin(pstrAxesUID);
+                getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_int,  (void**)&piAxesUID);
+                setCurrentSubWin(iAxesUID);
             }
         }
         else
@@ -144,18 +146,18 @@ int sci_show_window(char *fname, unsigned long fname_len)
         /* nbInputArgument(pvApiCtx) == 0 */
         /* raise current figure */
         getOrCreateDefaultSubwin();
-        pFigureUID = (char*)getCurrentFigure();
+        iFigureUID = getCurrentFigure();
     }
 
     /* Check that the requested figure really exists */
-    if (pFigureUID == NULL)
+    if (iFigureUID == 0)
     {
         Scierror(999, _("%s: '%s' handle does not or no longer exists.\n"), fname, "Figure");
         return -1;
     }
 
     /* Actually show the window */
-    showWindow(pFigureUID);
+    showWindow(iFigureUID);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

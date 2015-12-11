@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -52,7 +52,7 @@ int ScilabGateway::wrap(char * fname, const int envId, void * pvApiCtx)
         {
             idObj = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             delete[] tmpvar;
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Cannot wrap argument %d."), i);
@@ -62,7 +62,7 @@ int ScilabGateway::wrap(char * fname, const int envId, void * pvApiCtx)
         {
             ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, idObj, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
             delete[] tmpvar;

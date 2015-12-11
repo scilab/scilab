@@ -21,13 +21,12 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include <string.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "machine.h"
 #include "charEncoding.h"
-#include "cvstr.h"
 #include "mput.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void writec(int *flag, int *nevprt,
@@ -81,7 +80,10 @@ ipar[7:6+lfil] = character codes for file name
         }
         else  /* buffer is full write it to the file */
         {
-            F2C(cvstr)(&three, &(ipar[2]), type, &job, (unsigned long)strlen(type));
+            for (i = 0; i < three; ++i)
+            {
+                type[i] = (char) ipar[i + 2];
+            }
             for (i = 2; i >= 0; i--)
                 if (type[i] != ' ')
                 {
@@ -99,12 +101,15 @@ ipar[7:6+lfil] = character codes for file name
     }
     else if (*flag == 4)
     {
-        F2C(cvstr)(&(ipar[1]), &(ipar[7]), str, &job, (unsigned long)strlen(str));
+        for (i = 0; i < ipar[1]; ++i)
+        {
+            str[i] = (char) ipar[i + 7];
+        }
         str[ipar[1]] = '\0';
         wcfopen(fd, str, "wb");
         if (!fd )
         {
-            sciprint(_("Could not open the file!\n"));
+            scicos_print(_("Could not open the file!\n"));
             *flag = -3;
             return;
         }
@@ -120,7 +125,10 @@ ipar[7:6+lfil] = character codes for file name
         k    = (int) z[1];
         if (k >= 1) /* flush rest of buffer */
         {
-            F2C(cvstr)(&three, &(ipar[2]), type, &job, (unsigned long)strlen(type));
+            for (i = 0; i < three; ++i)
+            {
+                type[i] = (char) ipar[i + 2];
+            }
             for (i = 2; i >= 0; i--)
                 if (type[i] != ' ')
                 {

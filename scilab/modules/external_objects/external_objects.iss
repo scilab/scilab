@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -34,7 +34,7 @@ Source: modules\{#EXTERNAL_OBJECTS}\macros\cleanmacros.bat; DestDir: {app}\modul
 Source: modules\{#EXTERNAL_OBJECTS}\macros\*.bin; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#EXTERNAL_OBJECTS}\macros\*.sci; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#EXTERNAL_OBJECTS}\macros\lib; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#EXTERNAL_OBJECTS}\macros\names; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#EXTERNAL_OBJECTS}\macros\names; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#EXTERNAL_OBJECTS}\tests\*.*; DestDir: {app}\modules\{#EXTERNAL_OBJECTS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;

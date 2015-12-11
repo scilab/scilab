@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@ extern int C2F(intreadb)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
 int sci_readb(char *fname, unsigned long fname_len)
 {
-    C2F(intreadb)();
+    //C2F(intreadb)();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

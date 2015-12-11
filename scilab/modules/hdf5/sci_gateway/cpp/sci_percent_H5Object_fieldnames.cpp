@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_hdf5;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_H5Object_fieldnames(char * fname, unsigned long fname_len)
+int sci_percent_H5Object_fieldnames(char * fname, int* pvApiCtx)
 {
     H5Object * hobj = 0;
     SciErr err;

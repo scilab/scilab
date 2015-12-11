@@ -4,13 +4,10 @@
 
 package org.scilab.modules.helptools.scilab;
 
-import java.util.Arrays;
 import java.util.Set;
-import java.util.Map;
 import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.Reader;
@@ -222,7 +219,7 @@ public final class ScilabLexer {
 
     public ScilabLexer(Set<String> primitives, Set<String> macros) {
         commands = primitives;
-        this.macros = macros;
+        ScilabLexer.macros = macros;
     }
 
     private void loadNames(String[] files, Set<String> set) {
@@ -6857,8 +6854,7 @@ public final class ScilabLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 51 :
-                {
+                case 51 : {
                     handler.handleDefault(", ");
                 }
                 case 77:

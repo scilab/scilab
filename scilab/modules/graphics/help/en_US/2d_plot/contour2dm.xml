@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) Scilab Enterprises 
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="contour2dm">
+    <refnamediv>
+        <refname>contour2dm</refname>
+        <refpurpose>compute level curves of a surface defined with a mesh</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[xc, yc] = contour2dm(x, y, polygons, func, nz)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>
+                        two vectors of size <literal>n</literal>, <literal>(x(i),y(i))</literal> gives the coordinates of 
+                        node  <literal>i</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>polygons</term>
+                <listitem>
+                    <para>
+                        is a <literal>[Ntr,N+2]</literal> matrix. Each line of <varname>polygons</varname> specifies a convex polygon 
+                        of the  mesh <literal>polygons(j) = [number,node1,node2,node3, ..., nodeN, flag]</literal>. 
+                        <literal>node1,node2,node3, ..., nodeN</literal> are the number of the nodes which constitutes 
+                        the polygon. number is the number of the polygons and flag is an integer 
+                        not used in the <function>contour2dm</function> function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>func</term>
+                <listitem>
+                    <para>
+                        a vector of size <literal>n</literal> : <literal>func(i)</literal> gives the value at node <literal>i</literal>
+                        of the function.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>nz</term>
+                <listitem>
+                    <para>
+                        the level values or the number of levels.
+                    </para>
+                    <variablelist>
+                        <varlistentry>
+                            <term>
+                                If <literal>nz</literal> is an integer
+                            </term>
+                            <listitem>
+                                <para>
+                                    its value gives the number of
+                                    level curves  equally spaced from <literal>zmin</literal> to <literal>zmax</literal> as follows:
+                                </para>
+                                <programlisting role="no-scilab-exec"><![CDATA[ 
+z= zmin + (1:nz)*(zmax-zmin)/(nz+1)
+ ]]></programlisting>
+                             </listitem>
+                        </varlistentry>
+                        <varlistentry>
+                            <term>
+                                If <literal>nz</literal> is a vector
+                            </term>
+                            <listitem>
+                                <para>
+                                    <literal>nz(i)</literal> gives the value of
+                                    the <literal>i</literal>-th level curve.
+                                </para>
+                            </listitem>
+                        </varlistentry>
+                    </variablelist>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>xc, yc</term>
+                <listitem>
+                    <para>
+                        vectors of identical sizes containing the contours definitions. See below for details.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>contour2dm</function> computes level curves of a surface
+            <literal>z = f(x, y)</literal> on a 2D plot.  The values of
+            <literal>f(x,y)</literal> are given by the matrix <varname>z</varname>
+            at the points of the mesh defined by <varname>x</varname> and <varname>y</varname>.
+        </para>
+        <para>
+            <literal>xc(1)</literal> contains the level associated with first
+            contour path, <literal>yc(1)</literal> contains the number
+            <literal>N1</literal> of points defining this contour path and
+            (<literal>xc(1+(1:N1))</literal>, <literal>yc(1+(1:N1))</literal> )
+            contain the coordinates of the paths points. The second path begin
+            at <literal>xc(2+N1)</literal> and <literal>yc(2+N1)</literal> and
+            so on.
+        </para>
+        <para>
+            Note that some loops can appear on a level curve when some vertexes of polygons as the same value as the level one. See example #2
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+m = [6 5 4; ...
+           6 2 5; ...
+           6 4 1; ...
+           5 2 3];
+
+nodes = [55  20; ...
+          85  5; ...
+          100 10; ...
+          75  30; ...
+          80  20; ...
+          70  15];
+z_fec = [-1 -1 0 0 1 1];
+
+f = scf();
+f.color_map = jetcolormap(12);
+fec(nodes(:, 1), nodes(:, 2), [(1:size(m, 1))', m, (1:size(m, 1))'], z_fec);
+[xc, yc] = contour2dm(nodes(:,1), nodes(:,2), [(1:size(m, 1))', m, (1:size(m, 1))'], z_fec, [-0.5, 0, 0.5]);
+k=1;n=yc(k);c=1;
+N = size(xc, '*')
+while k <= N & k+yc(k)<=N
+  n=yc(k);
+  plot2d(xc(k+(1:n)),yc(k+(1:n)));
+  c=c+1;
+  k=k+n+1;
+end
+ ]]></programlisting>
+        <scilab:image>
+        m = [6 5 4; ...
+                   6 2 5; ...
+                   6 4 1; ...
+                   5 2 3];
+
+        nodes = [55  20; ...
+                  85  5; ...
+                  100 10; ...
+                  75  30; ...
+                  80  20; ...
+                  70  15];
+        z_fec = [-1 -1 0 0 1 1];
+
+        f = scf();
+        f.color_map = jetcolormap(12);
+        fec(nodes(:, 1), nodes(:, 2), [(1:size(m, 1))', m, (1:size(m, 1))'], z_fec);
+        [xc, yc] = contour2dm(nodes(:,1), nodes(:,2), [(1:size(m, 1))', m, (1:size(m, 1))'], z_fec, [-0.5, 0, 0.5]);
+        k=1;n=yc(k);c=1;
+        N = size(xc, '*');
+        while k &lt;= N &amp; k+yc(k) &lt;=N
+          n=yc(k);
+          plot2d(xc(k+(1:n)),yc(k+(1:n)))
+          c=c+1;
+          k=k+n+1;
+        end
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+f=scf();
+f.color_map = jetcolormap(3);
+m = [1  2  3; ...
+     1  3  4; ...
+     3  4  5; ...
+     6  2  3; ...
+     7  6  3; ...
+     7  3  5; ...
+     7  5  8; ...
+     2  9  6; ...
+     9  6  10; ...
+     6  7  10; ...
+     10 11 7; ...
+     7  8  12; ...
+     9  10 13; ...
+     7  10 11; ...
+     7  12 11; ...
+     13 10 14; ...
+     10 11 14; ...
+     11 14 15; ...
+     11 12 15];
+
+nodes = [0  50; ... //1
+         20 60; ... //2
+         15 40; ... //3
+         0  30; ... //4
+         20 20; ... //5
+         30 45; ... //6
+         27 25; ... //7
+         26 10; ... //8
+         35 65; ... //9
+         40 42; ... //10
+         45 30; ... //11
+         42 15; ... //12
+         50 62; ... //13
+         55 40; ... //14
+         53 17]; //15
+
+z = [0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2];
+
+nb_mesh = [(1:size(m, 1))', m, (1:size(m, 1))'];
+fec(nodes(:, 1), nodes(:, 2), nb_mesh, z, mesh=%t);
+e=gce();
+e.children.foreground = -2;
+
+// Contour2dm
+[xc, yc] = contour2dm(nodes(:,1), nodes(:,2), nb_mesh, z, linspace(0,3,4));
+k=1;n=yc(k);c=1;
+N = size(xc, '*');
+while k <= N & k+yc(k)<=N
+    n=yc(k);
+    plot2d(xc(k+(1:n)),yc(k+(1:n)));
+    e=gce();
+    e.children.foreground = -1;
+    c=c+1;
+    k=k+n+1;
+end
+// Here we have a loop in the green part because each vertex on this level curve is equal to 1.
+// To be clearer, let us change the color_map
+f.color_map = jetcolormap(1024);
+ ]]></programlisting>
+        <scilab:image>
+            f=scf();
+            f.color_map = jetcolormap(3);
+            m = [1  2  3; ...
+                 1  3  4; ...
+                 3  4  5; ...
+                 6  2  3; ...
+                 7  6  3; ...
+                 7  3  5; ...
+                 7  5  8; ...
+                 2  9  6; ...
+                 9  6  10; ...
+                 6  7  10; ...
+                 10 11 7; ...
+                 7  8  12; ...
+                 9  10 13; ...
+                 7  10 11; ...
+                 7  12 11; ...
+                 13 10 14; ...
+                 10 11 14; ...
+                 11 14 15; ...
+                 11 12 15];
+
+            nodes = [0  50; ... //1
+                     20 60; ... //2
+                     15 40; ... //3
+                     0  30; ... //4
+                     20 20; ... //5
+                     30 45; ... //6
+                     27 25; ... //7
+                     26 10; ... //8
+                     35 65; ... //9
+                     40 42; ... //10
+                     45 30; ... //11
+                     42 15; ... //12
+                     50 62; ... //13
+                     55 40; ... //14
+                     53 17]; //15
+
+            z = [0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 2, 2, 2];
+
+            nb_mesh = [(1:size(m, 1))', m, (1:size(m, 1))'];
+            fec(nodes(:, 1), nodes(:, 2), nb_mesh, z, mesh=%t);
+            e=gce();
+            e.children.foreground = -2;
+
+            // Contour2dm
+            [xc, yc] = contour2dm(nodes(:,1), nodes(:,2), nb_mesh, z, linspace(0,3,4));
+            k=1;n=yc(k);c=1;
+            N = size(xc, '*');
+            while k &lt;= N &amp; k+yc(k) &lt;= N
+                n=yc(k);
+                plot2d(xc(k+(1:n)),yc(k+(1:n)));
+                e=gce();
+                e.children.foreground = -1;
+                c=c+1;
+                k=k+n+1;
+            end
+            // Here we have a loop in the green part because each vertex on this level curve is equal to 1.
+            // To be clearer, let us change the color_map
+            f.color_map = jetcolormap(1024);
+        </scilab:image>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="contour2di">contour2di</link>
+            </member>
+            <member>
+                <link linkend="contour2d">contour2d</link>
+            </member>
+            <member>
+                <link linkend="contour">contour</link>
+            </member>
+            <member>
+                <link linkend="fec">fec</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>
+                    <para>
+                        Function contour2dm introduced.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

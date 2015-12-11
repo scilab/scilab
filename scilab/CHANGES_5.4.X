@@ -64,7 +64,7 @@ Xcos
 * Two new fixed-size step ODE solvers added: Dormand-Prince 4(5) and Runge-Kutta 4(5).
   Added to the CVode package, they also benefit from the rootfinding feature.
 
-* Implicit fixed-size stop ODE solver added: Implicit Runge-Kutta 4(5).
+* Implicit fixed-size step ODE solver added: Implicit Runge-Kutta 4(5).
   Added to the CVode package, it also benefits from the CVode rootfinding feature.
 
 * Block parameter errors (types and sizes) reporting improved.
@@ -308,7 +308,7 @@ Scilab
 
 * Bug #11851 fixed - Default EOL under Mac is now LF.
 
-* Bug #11860 fixed - wavwrite failed for 24-bit files due to an error in 
+* Bug #11860 fixed - wavwrite failed for 24-bit files due to an error in
                      savewave function.
 
 * Bug #11924 fixed - winclose() was not tagged as obsolete.

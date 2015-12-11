@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.text;
@@ -24,6 +24,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.textObject.Text;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
@@ -50,18 +51,18 @@ public class TextManager {
     /**
      * The {@see Map} off existing {@see TextEntity}.
      */
-    private final Map<String, Texture> spriteMap = new ConcurrentHashMap<String, Texture>();
+    protected final Map<Integer, Texture> spriteMap = new ConcurrentHashMap<Integer, Texture>();
 
     /**
      * The used texture manager.
      */
-    private final TextureManager textureManager;
+    protected final TextureManager textureManager;
 
     /**
      * The bounds of the scale factor range for which the texture does not
      * need to be updated.
      */
-    private double[] FACTOR_UPDATE_INTERVAL = {0.99, 1.01};
+    protected double[] FACTOR_UPDATE_INTERVAL = {0.99, 1.01};
 
     /**
      * Default constructor.
@@ -86,44 +87,51 @@ public class TextManager {
 
         Transformation projection = drawingTools.getTransformationManager().getCanvasProjection();
 
-        Vector3d textPosition = new Vector3d(text.getPosition());
-
-        String parentAxesId = text.getParentAxes();
+        Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
+        if (parentAxes != null) {
+            double[][] factors = parentAxes.getScaleTranslateFactors();
+            Double[] pos = text.getPosition();
+            pos[0] = pos[0] * factors[0][0] + factors[1][0];
+            pos[1] = pos[1] * factors[0][1] + factors[1][1];
+            pos[2] = pos[2] * factors[0][2] + factors[1][2];
 
-        /* Compute the text box vectors and the text box to texture dimension ratios */
-        Vector3d[] textBoxVectors =  computeTextBoxVectors(projection, text, texture.getDataProvider().getTextureSize(), parentAxes);
-        double[] ratios = computeRatios(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize(), spriteDims);
+            Vector3d textPosition = new Vector3d(pos);
 
-        /* If text box mode is equal to filled, the texture must be updated */
-        if (text.getTextBoxMode() == 2 && ratios[0] != 1.0) {
-            texture = updateSprite(colorMap, text, ratios[0], ratios[1]);
+            /* Compute the text box vectors and the text box to texture dimension ratios */
+            Vector3d[] textBoxVectors =  computeTextBoxVectors(projection, text, texture.getDataProvider().getTextureSize(), parentAxes);
+            double[] ratios = computeRatios(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize(), spriteDims);
+
+            /* If text box mode is equal to filled, the texture must be updated */
+            if (text.getTextBoxMode() == 2 && ratios[0] != 1.0) {
+                texture = updateSprite(colorMap, text, ratios[0], ratios[1]);
+            }
+
+            /* Compute the text texture's actual position, which depends on the object's text box mode property */
+            Vector3d[] cornerPositions = computeTextPosition(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize());
+
+            /* Draw in window coordinates */
+            drawingTools.getTransformationManager().useWindowCoordinate();
+
+            /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
+            drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * text.getFontAngle() / Math.PI);
+
+            drawingTools.getTransformationManager().useSceneCoordinate();
+
+            /* Compute the corners of the text's bounding box in window coordinates */
+            Vector3d[] projCorners;
+            if (text.getTextBoxMode() == 2) {
+                projCorners = computeProjTextBoxCorners(cornerPositions[1], text.getFontAngle(), textBoxVectors);
+            } else {
+                projCorners = computeProjCorners(cornerPositions[0], text.getFontAngle(), texture.getDataProvider().getTextureSize());
+            }
+
+            Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
+            Double[] coordinates = cornersToCoordinateArray(corners);
+
+            /* Set the computed coordinates */
+            text.setCorners(coordinates);
         }
-
-        /* Compute the text texture's actual position, which depends on the object's text box mode property */
-        Vector3d[] cornerPositions = computeTextPosition(projection, text, textBoxVectors, texture.getDataProvider().getTextureSize());
-
-        /* Draw in window coordinates */
-        drawingTools.getTransformationManager().useWindowCoordinate();
-
-        /* The Text object's rotation direction convention is opposite to the standard one, its angle is expressed in radians. */
-        drawingTools.draw(texture, AnchorPosition.LOWER_LEFT, cornerPositions[0], -180.0 * text.getFontAngle() / Math.PI);
-
-        drawingTools.getTransformationManager().useSceneCoordinate();
-
-        /* Compute the corners of the text's bounding box in window coordinates */
-        Vector3d[] projCorners;
-        if (text.getTextBoxMode() == 2) {
-            projCorners = computeProjTextBoxCorners(cornerPositions[1], text.getFontAngle(), textBoxVectors);
-        } else {
-            projCorners = computeProjCorners(cornerPositions[0], text.getFontAngle(), texture.getDataProvider().getTextureSize());
-        }
-
-        Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
-        Double[] coordinates = cornersToCoordinateArray(corners);
-
-        /* Set the computed coordinates */
-        text.setCorners(coordinates);
     }
 
     /**
@@ -137,18 +145,20 @@ public class TextManager {
      * @param parentAxes the Axes for which the coordinates are computed.
      * @return the text box width and height vectors (in window coordinates).
      */
-    private Vector3d[] computeTextBoxVectors(Transformation projection, Text text, Dimension dimension, Axes parentAxes) {
+    protected Vector3d[] computeTextBoxVectors(Transformation projection, Text text, Dimension dimension, Axes parentAxes) {
         Double[] textBox = text.getTextBox();
-
         Vector3d[] textBoxVectors = new Vector3d[2];
+        double[][] factors = parentAxes.getScaleTranslateFactors();
+        Double[] pos = text.getPosition();
 
         /* The text position vector before logarithmic scaling */
-        Vector3d unscaledTextPosition = new Vector3d(text.getPosition());
+        Vector3d textPosition = new Vector3d(pos);
 
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
         /* Apply logarithmic scaling and then project */
-        Vector3d textPosition = ScaleUtils.applyLogScale(unscaledTextPosition, logFlags);
+        textPosition = ScaleUtils.applyLogScale(textPosition, logFlags);
+        textPosition = new Vector3d(textPosition.getX() * factors[0][0] + factors[1][0], textPosition.getY() * factors[0][1] + factors[1][1], textPosition.getZ() * factors[0][2] + factors[1][2]);
         Vector3d projTextPosition = projection.project(textPosition);
 
         /* Compute the text label vectors in window coordinates */
@@ -169,13 +179,12 @@ public class TextManager {
         textWidth = ScaleUtils.applyInverseLogScale(textWidth, logFlags);
         textHeight = ScaleUtils.applyInverseLogScale(textHeight, logFlags);
 
-
-        textWidth = textWidth.minus(unscaledTextPosition);
-        textHeight = textHeight.minus(unscaledTextPosition);
+        textWidth = textWidth.minus(textPosition);
+        textHeight = textHeight.minus(textPosition);
 
         if (text.getTextBoxMode() >= 1) {
-            textWidth = textWidth.getNormalized().times(textBox[0]);
-            textHeight = textHeight.getNormalized().times(textBox[1]);
+            textWidth = textWidth.getNormalized().times(textBox[0] * factors[0][0]);
+            textHeight = textHeight.getNormalized().times(textBox[1] * factors[0][1]);
         }
 
         /*
@@ -197,8 +206,8 @@ public class TextManager {
         }
 
         /* Computes the lower-right and upper-left corners. */
-        textWidth = textWidth.plus(unscaledTextPosition);
-        textHeight = textHeight.plus(unscaledTextPosition);
+        textWidth = textWidth.plus(textPosition);
+        textHeight = textHeight.plus(textPosition);
 
         /* Finally re-apply logarithmic scaling, compute the vectors and project */
         textWidth = ScaleUtils.applyLogScale(textWidth, logFlags);
@@ -235,8 +244,8 @@ public class TextManager {
      * @param baseSpriteDimension the unscaled text texture's dimension (in pixels).
      * @return the minimum ratios (2 elements: text box to current texture and text box to unscaled texture ratios).
      */
-    private double[] computeRatios(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDimension,
-                                   Dimension baseSpriteDimension) {
+    protected double[] computeRatios(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDimension,
+                                     Dimension baseSpriteDimension) {
         /* 1st element: ratio for the current texture, 2nd element: ratio for the unscaled texture */
         double[] ratios = new double[] {1.0, 1.0};
 
@@ -269,18 +278,18 @@ public class TextManager {
      * @return the lower-left corners of the Scilab {@see Text}'s text and of its text box in window coordinates (2 elements).
      * @throws DegenerateMatrixException if the projection is not possible.
      */
-    private Vector3d[] computeTextPosition(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDim) throws DegenerateMatrixException {
+    protected Vector3d[] computeTextPosition(Transformation projection, Text text, Vector3d[] textBoxVectors, Dimension spriteDim) throws DegenerateMatrixException {
         Vector3d[] cornerPositions = new Vector3d[2];
-
-        Vector3d textPosition = new Vector3d(text.getPosition());
-
-        String parentAxesId = text.getParentAxes();
+        Integer parentAxesId = text.getParentAxes();
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(parentAxesId);
+        double[][] factors = parentAxes.getScaleTranslateFactors();
+        Double[] pos = text.getPosition();
+        Vector3d textPosition = new Vector3d(pos);
 
         /* Apply logarithmic scaling */
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
         textPosition = ScaleUtils.applyLogScale(textPosition, logFlags);
-
+        textPosition = new Vector3d(textPosition.getX() * factors[0][0] + factors[1][0], textPosition.getY() * factors[0][1] + factors[1][1], textPosition.getZ() * factors[0][2] + factors[1][2]);
 
         textPosition = projection.project(textPosition);
 
@@ -288,8 +297,6 @@ public class TextManager {
         cornerPositions[1] = new Vector3d(textPosition);
 
         if (text.getTextBoxMode() >= 1) {
-            Double[] textBox = text.getTextBox();
-
             Vector3d textBoxWidth = new Vector3d(textBoxVectors[0]);
             Vector3d textBoxHeight = new Vector3d(textBoxVectors[1]);
 
@@ -360,7 +367,7 @@ public class TextManager {
      * @return the corners' window coordinates (4-element array).
      * @throws DegenerateMatrixException if the projection is not possible.
      */
-    private Vector3d[] computeProjCorners(Transformation canvasProj, Vector3d position, double fontAngle, Dimension spriteDim) throws DegenerateMatrixException {
+    protected Vector3d[] computeProjCorners(Transformation canvasProj, Vector3d position, double fontAngle, Dimension spriteDim) throws DegenerateMatrixException {
         position = canvasProj.project(position);
         return computeProjCorners(position, fontAngle, spriteDim);
     }
@@ -373,7 +380,7 @@ public class TextManager {
      * @return the corners' window coordinates (4-element array).
      * @throws DegenerateMatrixException if the projection is not possible.
      */
-    private Vector3d[] computeProjTextBoxCorners(Vector3d position, double fontAngle, Vector3d[] textBoxVectors) throws DegenerateMatrixException {
+    protected Vector3d[] computeProjTextBoxCorners(Vector3d position, double fontAngle, Vector3d[] textBoxVectors) throws DegenerateMatrixException {
         double projTextBoxWidth = textBoxVectors[0].getNorm();
         double projTextBoxHeight = textBoxVectors[1].getNorm();
 
@@ -389,7 +396,7 @@ public class TextManager {
      * @return the corners' window coordinates (4-element array).
      * @throws DegenerateMatrixException if the projection is not possible.
      */
-    private Vector3d[] computeProjCorners(Vector3d projPosition, double fontAngle, Dimension spriteDim) throws DegenerateMatrixException {
+    protected Vector3d[] computeProjCorners(Vector3d projPosition, double fontAngle, Dimension spriteDim) throws DegenerateMatrixException {
         Vector3d[] projCorners = new Vector3d[4];
 
         /*
@@ -421,7 +428,7 @@ public class TextManager {
      * @param parentAxes the Axes for which the coordinates are computed.
      * @return the corners of the text's bounding box in user coordinates (4-element array).
      */
-    private Vector3d[] computeCorners(Transformation projection, Vector3d[] projCorners, Axes parentAxes) {
+    protected Vector3d[] computeCorners(Transformation projection, Vector3d[] projCorners, Axes parentAxes) {
         Vector3d[] corners = new Vector3d[4];
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
@@ -447,7 +454,7 @@ public class TextManager {
      * @param corners of the bounding box (4-element array).
      * @return the corners' coordinates (12-element array).
      */
-    private Double[] cornersToCoordinateArray(Vector3d[] corners) {
+    protected Double[] cornersToCoordinateArray(Vector3d[] corners) {
         Double[] coordinates = new Double[12];
         coordinates[0] = corners[0].getX();
         coordinates[1] = corners[0].getY();
@@ -468,13 +475,12 @@ public class TextManager {
         return coordinates;
     }
 
-
     /**
      * Update the data if needed.
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (!(__GO_POSITION__ == property) && !(__GO_FONT_ANGLE__ == property)) {
             dispose(id);
         }
@@ -486,7 +492,7 @@ public class TextManager {
      * @param text the given Scilab {@see Text}.
      * @return the SciRenderer {@see Texture} corresponding to the given Scilab {@see Text}.
      */
-    private Texture getTexture(final ColorMap colorMap, final Text text) {
+    protected Texture getTexture(final ColorMap colorMap, final Text text) {
         Texture texture = spriteMap.get(text.getIdentifier());
         if (texture == null) {
             if (text.getTextBoxMode() == 2) {
@@ -508,7 +514,7 @@ public class TextManager {
      * @param baseScaleFactor the scale factor relative to the unscaled texture's dimensions.
      * @return the corresponding texture.
      */
-    private Texture updateSprite(final ColorMap colorMap, final Text text, double scaleFactor, double baseScaleFactor) {
+    protected Texture updateSprite(final ColorMap colorMap, final Text text, double scaleFactor, double baseScaleFactor) {
         Texture texture = spriteMap.get(text.getIdentifier());
 
         /* Create a new texture if the scale factor falls outside of the range */
@@ -528,7 +534,7 @@ public class TextManager {
      * @param text the given Scilab {@see Text}.
      * @return the texture's dimension.
      */
-    private Dimension getSpriteDims(final ColorMap colorMap, final Text text) {
+    protected Dimension getSpriteDims(final ColorMap colorMap, final Text text) {
         TextSpriteDrawer spriteDrawer;
 
         if (text.getTextBoxMode() == 2) {
@@ -547,7 +553,7 @@ public class TextManager {
      * @param textObject the given text object.
      * @return a new texture for the given text object.
      */
-    private Texture createSprite(final ColorMap colorMap, final Text textObject) {
+    protected Texture createSprite(final ColorMap colorMap, final Text textObject) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject);
         Texture texture = textureManager.createTexture();
         texture.setMagnificationFilter(Texture.Filter.LINEAR);
@@ -563,7 +569,7 @@ public class TextManager {
      * @param scaleFactor the scale factor to apply.
      * @return a new texture for the given text object.
      */
-    private Texture createSprite(final ColorMap colorMap, final Text textObject, double scaleFactor) {
+    protected Texture createSprite(final ColorMap colorMap, final Text textObject, double scaleFactor) {
         TextSpriteDrawer spriteDrawer = new TextSpriteDrawer(colorMap, textObject, scaleFactor);
         Texture texture = textureManager.createTexture();
         texture.setMagnificationFilter(Texture.Filter.LINEAR);
@@ -576,7 +582,7 @@ public class TextManager {
      * Dispose the texture corresponding to the given id.
      * @param id the given id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         Texture texture = spriteMap.get(id);
         if (texture != null) {
             textureManager.dispose(texture);
@@ -599,7 +605,7 @@ public class TextManager {
     public static void updateTextCorners(Text text) {
         Vector3d[] projCorners = null;
 
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(text.getParentFrameOrFigure());
         Axes parentAxes = (Axes) GraphicController.getController().getObjectFromId(text.getParentAxes());
 
         /* Compute the corners */
@@ -619,6 +625,20 @@ public class TextManager {
 
             Vector3d[] corners = currentVisitor.getTextManager().computeCorners(currentProj, projCorners, parentAxes);
             Double[] coordinates = currentVisitor.getTextManager().cornersToCoordinateArray(corners);
+
+            double[][] factors = parentAxes.getScaleTranslateFactors();
+            coordinates[0] = (coordinates[0] - factors[1][0]) / factors[0][0];
+            coordinates[1] = (coordinates[1] - factors[1][1]) / factors[0][1];
+            coordinates[2] = (coordinates[2] - factors[1][2]) / factors[0][2];
+            coordinates[3] = (coordinates[3] - factors[1][0]) / factors[0][0];
+            coordinates[4] = (coordinates[4] - factors[1][1]) / factors[0][1];
+            coordinates[5] = (coordinates[5] - factors[1][2]) / factors[0][2];
+            coordinates[6] = (coordinates[6] - factors[1][0]) / factors[0][0];
+            coordinates[7] = (coordinates[7] - factors[1][1]) / factors[0][1];
+            coordinates[8] = (coordinates[8] - factors[1][2]) / factors[0][2];
+            coordinates[9] = (coordinates[9] - factors[1][0]) / factors[0][0];
+            coordinates[10] = (coordinates[10] - factors[1][1]) / factors[0][1];
+            coordinates[11] = (coordinates[11] - factors[1][2]) / factors[0][2];
 
             /* Set the computed coordinates */
             text.setCorners(coordinates);

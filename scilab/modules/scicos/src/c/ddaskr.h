@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -47,15 +47,14 @@ struct DDrWork_t
 };
 
 // Derivative computation, root functions, preconditioner calculation and application
-typedef int (*DDASResFn) (realtype *tOld, realtype *y, realtype *yp, realtype *res, int *flag, double *dummy1, int *dummy2);
-typedef int (*DDASRootFn) (int *neq, realtype *tOld, realtype *y, int *ng, realtype *groot, double *dummy1, int *dummy2);
-typedef int (*DDASJacFn) (realtype *t, realtype *y, realtype *yp, realtype *pd, realtype *cj, double *dummy1, int *dummy2);
-typedef int (*DDASJacPsolFn) (realtype *res, int *ires, int *neq, realtype *tOld, realtype *actual, realtype *actualP,
-                              realtype *rewt, realtype *savr, realtype *wk, realtype *h, realtype *cj, realtype *wp,
-                              int *iwp, int *ier, double *dummy1, int *dummy2);
-typedef int (*DDASPsolFn) (int *neq, realtype *tOld, realtype *actual, realtype *actualP,
-                           realtype *savr, realtype *wk, realtype *cj, realtype *wght, realtype *wp,
-                           int *iwp, realtype *b, realtype *eplin, int *ier, double *dummy1, int *dummy2);
+typedef void (*DDASResFn) (realtype *tOld, realtype *y, realtype *yp, realtype *res, int *flag, realtype *dummy1, int *dummy2);
+typedef void (*DDASRootFn) (int *neq, realtype *tOld, realtype *y, int *ng, realtype *groot, realtype *dummy1, int *dummy2);
+typedef void (*DDASJacPsolFn) (realtype *res, int *ires, int *neq, realtype *tOld, realtype *actual, realtype *actualP,
+                               realtype *rewt, realtype *savr, realtype *wk, realtype *h, realtype *cj, realtype *wp,
+                               int *iwp, int *ier, realtype *dummy1, int *dummy2);
+typedef void (*DDASPsolFn) (int *neq, realtype *tOld, realtype *actual, realtype *actualP,
+                            realtype *savr, realtype *wk, realtype *cj, realtype *wght, realtype *wp,
+                            int *iwp, realtype *b, realtype *eplin, int *ier, realtype *dummy1, int *dummy2);
 typedef void (*DDASErrHandlerFn) (int error_code, const char *module, const char *function, char *msg, void *user_data);
 
 // DDaskr problem memory structure
@@ -75,17 +74,20 @@ typedef struct DDaskrMemRec
     int lrw;
     int * iwork;
     int liw;
-    DDASJacFn j_fun;
+    int maxnhIC;
     DDASErrHandlerFn ehfun;
     DDASRootFn g_fun;
     int ng_fun;
     int * jroot;
+    int solver;
     DDASJacPsolFn jacpsol;
     DDASPsolFn psol;
+    realtype * rpar;
+    int * ipar;
 } *DDaskrMem;
 
 // Creating the problem
-void * DDaskrCreate (int * neq, int ng);
+void * DDaskrCreate (int * neq, int ng, int solverIndex);
 
 // Allocating the problem
 int DDaskrInit (void * ddaskr_mem, DDASResFn Res, realtype t0, N_Vector yy0, N_Vector yp0, DDASJacPsolFn jacpsol, DDASPsolFn psol);
@@ -108,6 +110,9 @@ int DDaskrSetMaxStep (void * ddaskr_mem, realtype hmax);
 // Specifying the time beyond which the integration is not to proceed
 int DDaskrSetStopTime (void * ddaskr_mem, realtype tcrit);
 
+// Sets the maximum number of steps in an integration interval
+int DDaskrSetMaxNumSteps (void * ddaskr_mem, long int maxnh);
+
 // Sets the maximum number of Jacobian or preconditioner evaluations
 int DDaskrSetMaxNumJacsIC (void * ddaskr_mem, int maxnj);
 
@@ -115,16 +120,13 @@ int DDaskrSetMaxNumJacsIC (void * ddaskr_mem, int maxnj);
 int DDaskrSetMaxNumItersIC (void * ddaskr_mem, int maxnit);
 
 // Sets the maximum number of values of the artificial stepsize parameter H to be tried
-int DDaskrSetMaxNumStepsIC (void * ddaskr_mem, int maxnh);
+int DDaskrSetMaxNumStepsIC (void * ddaskr_mem, int MaxnhIC);
 
 // Sets the flag to turn off the linesearch algorithm
 int DDaskrSetLineSearchOffIC (void * ddaskr_mem, int lsoff);
 
 // Specifying which components are differential and which ones are algrebraic, in order to get consistent initial values
 int DDaskrSetId (void * ddaskr_mem, N_Vector xproperty);
-
-// Specifying the Jacobian function
-int DDaskrDlsSetDenseJacFn (void * ddaskr_mem, DDASJacFn J_fun);
 
 // Solving the problem
 int DDaskrSolve (void * ddaskr_mem, realtype tOut, realtype * tOld, N_Vector yOut, N_Vector ypOut, int itask);

@@ -5,9 +5,12 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 //who
 
 a    = 33;
 bbb  = -1;
 vars = who("get");
-if or(vars(1:2)<>["bbb";"a"]) then pause,end
+assert_checktrue(find(vars == "bbb") <> []);
+assert_checktrue(find(vars == "a") <> []);

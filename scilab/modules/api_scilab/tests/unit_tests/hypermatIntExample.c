@@ -6,17 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "api_scilab.h"
-#include "Scierror.h"
+#include <api_scilab.h>
 #include "localization.h"
-#include "sciprint.h"
-#include "MALLOC.h"
 
-int hypermatIntExample(char *fname, unsigned long fname_len)
+int hypermatIntExample(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -159,11 +156,41 @@ int hypermatIntExample(char *fname, unsigned long fname_len)
                         return sciErr.iErr;
                     }
                     break;
+                case SCI_INT64:
+                    sciErr = getHypermatOfInteger64(pvApiCtx, piAddr, &dims, &ndims, (long long*)&data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+
+                    sciErr = createHypermatOfInteger64(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const long long*)data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+                    break;
+                case SCI_UINT64:
+                    sciErr = getHypermatOfUnsignedInteger64(pvApiCtx, piAddr, &dims, &ndims, (unsigned long long*)&data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+
+                    sciErr = createHypermatOfUnsignedInteger64(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const unsigned long long*)data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+                    break;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument %d: An integer expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: An integer expected.\n"), fname, 1);
             return 1;
         }
 

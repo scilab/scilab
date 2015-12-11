@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="nancumsum">
+    <refnamediv>
+        <refname>nancumsum</refname>
+        <refpurpose>Somme cumulative ignorant les valeurs NaNs
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>s = nancumsum(x,orient)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>une matrice de réels, de complexes, de booléens ou de polynômes.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orient</term>
+                <listitem>
+                    <para>(optionnel) cet argument peut prendre les valeurs
+                        "*", 1, 2, "r" ou "c".
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>un scalaire ou une matrice, contenant la somme  
+                        cumulative des valeurs de x, où les NaNs sont ignorés.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            La fonction renvoie dans <literal>s</literal>
+            la somme cumulative des éléments de <literal>x </literal>, où les NaN ne sont 
+            pris en compte.
+        </para>
+        <para>
+            <literal>s=nancumsum(x)</literal> équivalent à <literal>s=nancumsum(x)</literal> 
+            retourne dans s, la somme cumulative (ignorant les NaNs) de tous les éléments de
+            <literal>x</literal>.
+        </para>
+        <para>
+            <literal>s=nancumsum(x,"r")</literal> équivalent à <literal>s=nancumsum(x,1)</literal> 
+            retourne la somme cumulative (ignorant les NaNs) des lignes de <literal>x</literal>.
+        </para>
+        <para>
+            <literal>s=nancumsum(x,"c")</literal> équivalent à <literal>s=nancumsum(x,2)</literal> 
+            retourne la somme cumulative (ignorant les NaNs) des colonnes de <literal>x</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+a=[1 2 %nan;%nan 5 6]
+s=nancumsum(a)
+s=nancumsum(a,'r')
+s=nancumsum(a,'c')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nansum">nansum</link>
+            </member>
+            <member>
+                <link linkend="cumsum">cumsum</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

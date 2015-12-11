@@ -8,7 +8,7 @@ function [wn,z,p] = damp(R,dt1)
     if argn(2)<1 then
         error(msprintf(_("%s: Wrong number of input arguments: %d or %d expected.\n"),"damp",1,2))
     end
-    //handling optionnal argument dt1
+    //handling optional argument dt1
     if argn(2)==1 then
         dt1=[];
     else
@@ -65,7 +65,7 @@ function [wn,z,p] = damp(R,dt1)
     if dt==[] then
         //R does not furnish time domain
         if dt1==[] then
-            //no user time domain specified, continuuous time assumed
+            //no user time domain specified, continuous time assumed
             dt=0
         else
             //user time domain specified

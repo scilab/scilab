@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -27,7 +27,7 @@ import org.scilab.forge.scirenderer.tranformations.Vector4d;
  * Collision and relative positions of convexs object are relatively easy to determinate.
  * About the method isBehind, it could be interesting to use the algorithm of Chung-Wang.
  */
-public abstract class ConvexObject extends AbstractDrawable3DObject {
+public abstract class ConvexObject extends AbstractDrawable3DObject implements Clippable {
 
     private List<ConvexObject> areas;
 
@@ -49,10 +49,7 @@ public abstract class ConvexObject extends AbstractDrawable3DObject {
     public abstract List<ConvexObject> breakObject(ConvexObject o);
 
     /**
-     * Abstract method
-     * Break this ConvexObject against a plane
-     * @param v plane definition
-     * @return a list of ConvexObject.
+     * {@inheritDoc}
      */
     public abstract List<ConvexObject> breakObject(Vector4d v);
 
@@ -81,7 +78,7 @@ public abstract class ConvexObject extends AbstractDrawable3DObject {
      */
     public boolean areCoplanar(ConvexObject o) {
         if (!(this instanceof Segment)) {
-            double sc = vertices[0].scalar(v0v1);
+            double sc = vertices[0].scalar(getNormal());
             if (o instanceof Segment) {
                 return isEqual(sc, o.vertices[0].scalar(v0v1)) && isEqual(sc, o.vertices[1].scalar(v0v1));
             }
@@ -96,6 +93,8 @@ public abstract class ConvexObject extends AbstractDrawable3DObject {
             return true;
         }
 
+        getNormal();
+        o.getNormal();
         Vector3d v = Vector3d.product(v0, o.v0);
         return isNull(v.scalar(vertices[0].minus(o.vertices[0])));
     }
@@ -109,10 +108,8 @@ public abstract class ConvexObject extends AbstractDrawable3DObject {
         BoundingBox bbox = getBBox();
         BoundingBox obbox = o.getBBox();
         // Quick test in using bounding boxes
-        if (!bbox.isIntersecting(obbox)) {
-            if (bbox.xCompare(obbox) != 0 || bbox.yCompare(obbox) != 0) {
-                return 0;
-            }
+        if (bbox.isNonZOverlapping(obbox)) {
+            return 0;
         }
 
         // Check if the two objects intersect in projection plane or not

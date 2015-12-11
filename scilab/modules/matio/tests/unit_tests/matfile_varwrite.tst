@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 filename=TMPDIR+"/test_matfile.mat";
 fd = matfile_open(filename,"w");
 matfile_varwrite(fd, "foo", "bar", %t);

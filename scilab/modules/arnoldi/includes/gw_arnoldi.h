@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,13 +18,13 @@
 /*--------------------------------------------------------------------------*/
 ARNOLDI_IMPEXP int gw_arnoldi(void);
 /*--------------------------------------------------------------------------*/
-ARNOLDI_IMPEXP int sci_dsaupd(char *fname, unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_dnaupd(char *fname, unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_znaupd(char *fname, unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_dseupd(char *fname, unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_dneupd(char *fname, unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_zneupd(char *fname, unsigned long fname_len);
-ARNOLDI_IMPEXP int sci_eigs(char *fname, unsigned long fname_len);
+ARNOLDI_IMPEXP int sci_dsaupd(char *fname, void* pvApiCtx);
+ARNOLDI_IMPEXP int sci_dnaupd(char *fname, void* pvApiCtx);
+ARNOLDI_IMPEXP int sci_znaupd(char *fname, void* pvApiCtx);
+ARNOLDI_IMPEXP int sci_dseupd(char *fname, void* pvApiCtx);
+ARNOLDI_IMPEXP int sci_dneupd(char *fname, void* pvApiCtx);
+ARNOLDI_IMPEXP int sci_zneupd(char *fname, void* pvApiCtx);
+ARNOLDI_IMPEXP int sci_eigs(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_ARNOLDI_H__ */
 /*--------------------------------------------------------------------------*/

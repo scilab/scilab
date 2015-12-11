@@ -7,7 +7,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,9 +24,9 @@ import java.util.Arrays;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};<br />
+ * String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};<BR>
  * ScilabString aMatrix = new ScilabString(a);
  * </code>
  *
@@ -147,6 +147,13 @@ public class ScilabString implements ScilabType {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public boolean isReference() {
+        return false;
+    }
+
+    /**
      * @return the height of the data matrix
      * @see org.scilab.modules.types.ScilabType#getHeight()
      */
@@ -178,6 +185,14 @@ public class ScilabString implements ScilabType {
     @Override
     public boolean isEmpty() {
         return (data == null);
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.deepHashCode(data);
+        return result;
     }
 
     /**
@@ -222,7 +237,7 @@ public class ScilabString implements ScilabType {
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return a Scilab-like String representation of the data.

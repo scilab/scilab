@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;-------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -17,9 +17,9 @@ uk_UA.LANGUAGE =uk_UA
 
 uk_UA.MsgBoxJRENotFound =Java Runtime Environment not detected.
 uk_UA.MsgBoxJREURL =Please download & Install JRE at http://www.java.com/en/download/
-uk_UA.MsgBoxJREReinstall = Reinstall Scilab after your JRE update.
-uk_UA.MsgBoxSSERequired = CPU SSE2 instructions are required for Scilab to run correctly.
-uk_UA.MsgBoxX64Ready = For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
+uk_UA.MsgBoxJREReinstall =Reinstall Scilab after your JRE update.
+uk_UA.MsgBoxSSERequired =CPU SSE2 instructions are required for Scilab to run correctly.
+uk_UA.MsgBoxX64Ready =For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
 
 uk_UA.MsgBoxJavaDetection1 =Java is not installed on this computer and this program needs it.
 uk_UA.MsgBoxJavaDetection2 =Please choose to install Java Runtime:
@@ -28,10 +28,6 @@ uk_UA.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but
 uk_UA.MsgBoxDevToolsRequired2 =Please install development_tools module.
 uk_UA.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
 uk_UA.MsgBoxTclsciRequired2 =Please install tclsci module.
-uk_UA.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
-uk_UA.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
-uk_UA.MsgBoxFftw3 =Do you want to open a web page about this add-on ?
-uk_UA.MsgBoxFftw4 =Can not open web page.
 uk_UA.MsgBoxWinVer =Windows 2000 is required.
 uk_UA.MsgBoxScicosRequired1 =You choose to install Xcos module but Scicos module is not selected.
 uk_UA.MsgBoxScicosRequired2 =Please also install Scicos module.
@@ -66,21 +62,21 @@ uk_UA.DescriptionTclTK =TCL/TK in Scilab
 uk_UA.DescriptionSpreadsheet =Spreadsheet Toolbox
 uk_UA.DescriptionJVM =Java Runtime
 uk_UA.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
-uk_UA.DescriptionFftwModule = FFTW interface for Scilab
-uk_UA.DescriptionFftwMKLDownload = Download FFTW library optimized by Intel Math Kernel Library
-uk_UA.DescriptionRefFftwLibrary = Reference FFTW library
+uk_UA.DescriptionFftwModule =FFTW interface for Scilab
+uk_UA.DescriptionMKLFftwLibrary =FFTW library optimized by Intel Math Kernel Library
+uk_UA.DescriptionRefFftwLibrary =Reference FFTW library
 uk_UA.DescriptionParametersTlbx =Parameters Toolbox
 uk_UA.DescriptionGeneticTlbx =Genetic Algorithms Toolbox
 uk_UA.DescriptionSimulAnnealingTlbx =Simulated Annealing Toolbox
 uk_UA.DescriptionDevTools =Development Tools
 uk_UA.DescriptionTests =Tests for Scilab
-uk_UA.DescriptionTlbxSkeleton =A toolbox skeleton (to extend scilab)
-uk_UA.DescriptionComConnector = COM connector
-uk_UA.DescriptionSciNotes = SciNotes: Editor for Scilab
-uk_UA.DescriptionXcos = XCos 1.1
-uk_UA.DescriptionParallel = Parallel Computing with Scilab
-uk_UA.DescriptionModulesManager = Tools for management of extern modules 
-uk_UA.DescriptionModuleJVM = JVM Module
+uk_UA.DescriptionTlbxSkeleton =A toolbox skeleton (to extend Scilab)
+uk_UA.DescriptionComConnector =COM connector
+uk_UA.DescriptionSciNotes =SciNotes: Editor for Scilab
+uk_UA.DescriptionXcos =Xcos
+uk_UA.DescriptionParallel =Parallel Computing with Scilab
+uk_UA.DescriptionModulesManager =Tools for management of extern modules
+uk_UA.DescriptionModuleJVM =JVM Module
 ;
 uk_UA.ConsoleIconName =Scilab Console
 ;
@@ -102,15 +98,15 @@ uk_UA.DescriptionCreateDesktopIcon =Create a &desktop icon
 ;
 uk_UA.DescriptionQuickLaunch =Create a shortcut in Quick Launch Bar
 ;
-uk_UA.DescriptionAssociateSceSci =Associate *.sce,*.sci files with scilab
+uk_UA.DescriptionAssociateSceSci =Associate *.sce,*.sci files with Scilab
 ;
-uk_UA.DescriptionAssociateTstDem =Associate *.tst files with scilab
+uk_UA.DescriptionAssociateTstDem =Associate *.tst files with Scilab
 ;
-uk_UA.DescriptionAssociateBinSav =Associate *.bin, *.sav files with scilab
+uk_UA.DescriptionAssociateBinSav =Associate *.bin, *.sav files with Scilab
 ;
-uk_UA.DescriptionAssociateGraph =Associate *.graph *.graphb files with scilab
+uk_UA.DescriptionAssociateGraph =Associate *.graph *.graphb files with Scilab
 ;
-uk_UA.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with scilab
+uk_UA.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with Scilab
 ;
 uk_UA.DescriptionDefaultInstall =Installation (Default)
 uk_UA.DescriptionFullInstall =Full installation
@@ -120,29 +116,11 @@ uk_UA.DescriptionCLIInstall =Command Line Minimal Installation (no gui)
 uk_UA.DescriptionCPUOptimization =CPU Optimization for Scilab
 uk_UA.DescriptionATLASLibrary =Atlas Library for Scilab
 uk_UA.DescriptionRefBlasLibrary =Blas, Lapack Reference libraries for Scilab
-uk_UA.DescriptionMKLLibrary =Download Intel Math Kernel Library for Scilab
-;
-uk_UA.DownloadMKLLabel =Downloading Intel Math Kernel Library files for Scilab
-uk_UA.DownloadMKLDescription =Please wait while Setup is downloading extra files to your computer.
-;
-uk_UA.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
+uk_UA.DescriptionMKLLibrary =Intel Math Kernel Library for Scilab
 ;
 uk_UA.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
 uk_UA.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
 ;
-uk_UA.DownloadCHMLabel =Downloading CHM files for Scilab.
-uk_UA.DownloadCHMDescription =Please wait while Setup is downloading extra files to your computer.
-uk_UA.DoTasksJustAfterInstallMsg4 =CHM files not installed.
-uk_UA.DescriptionCHM=Download scilab help as CHM
-;
-uk_UA.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
-uk_UA.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
-uk_UA.NextButtonClickwpReadyMsg3 =Impossible to download CHM files(files will be not installed).
-;
 uk_UA.DescriptionAtoms =ATOMS
-;
-uk_UA.DescriptionHelpScilabCHM =Scilab Help
-uk_UA.ScilabCHM =modules\helptools\chm\scilab_uk_UA_help.chm
-;
 ;-------------------------------------------------------------------------------
 ;

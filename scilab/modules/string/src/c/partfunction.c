@@ -7,16 +7,17 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "partfunction.h"
 #include "freeArrayOfString.h"
 #include "charEncoding.h"
+
 /*--------------------------------------------------------------------------*/
 #define BLANK_CHAR ' '
 /*--------------------------------------------------------------------------*/
@@ -35,37 +36,65 @@ char **partfunction(char** stringInput, int m, int n, int *vectInput, int row)
         int lengthstringInput = 0;
         wchar_t *wcInput = to_wide_string(stringInput[i]);
         wchar_t *wcOutput = NULL;
-        if (wcInput)
-        {
-            lengthstringInput = (int)wcslen(wcInput);
-        }
 
         wcOutput = (wchar_t*)MALLOC(sizeof(wchar_t) * ((row) + 1));
 
-        for (j = 0; j < row; j++)
+        if (wcInput)
         {
-            if ( vectInput[j] > lengthstringInput )
+            lengthstringInput = (int)wcslen(wcInput);
+            for (j = 0; j < row; j++)
+            {
+                if ( vectInput[j] > lengthstringInput )
+                {
+                    wcOutput[j] = L' ';
+                }
+                else
+                {
+                    wcOutput[j] = wcInput[vectInput[j] - 1];
+                }
+            }
+            FREE(wcInput);
+        }
+        else // fill output with blank
+        {
+            for (j = 0; j < row; j++)
             {
                 wcOutput[j] = L' ';
             }
-            else
-            {
-                wcOutput[j] = wcInput[vectInput[j] - 1];
-            }
         }
+
         wcOutput[j] = '\0';
         parts[i] = wide_string_to_UTF8(wcOutput);
-        if (wcOutput)
-        {
-            FREE(wcOutput);
-            wcOutput = NULL;
-        }
-        if (wcInput)
-        {
-            FREE(wcInput);
-            wcInput = NULL;
-        }
+        FREE(wcOutput);
     }
     return parts;
+}
+/*--------------------------------------------------------------------------*/
+wchar_t **partfunctionW(wchar_t** _pwstStringInput, int _iRows, int _iCols, int *_piVectInput, int _iVectSize)
+{
+    int i, j;
+    wchar_t **pwstParts = NULL;
+    int iSize = _iRows * _iCols;
+
+    pwstParts = (wchar_t**)MALLOC(sizeof(wchar_t*) * (iSize));
+
+    for (i = 0 ; i < iSize ; i++)
+    {
+        pwstParts[i] = (wchar_t*)MALLOC(sizeof(wchar_t) * (_iVectSize + 1));
+
+        for (j = 0 ; j < _iVectSize ; j++)
+        {
+            if (_piVectInput[j] > wcslen(_pwstStringInput[i]))
+            {
+                pwstParts[i][j] = L' ';
+            }
+            else
+            {
+                pwstParts[i][j] = _pwstStringInput[i][_piVectInput[j] - 1];
+            }
+        }
+        pwstParts[i][j] = '\0';
+    }
+    return pwstParts;
 }
 /*--------------------------------------------------------------------------*/

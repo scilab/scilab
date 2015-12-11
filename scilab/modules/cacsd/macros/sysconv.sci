@@ -5,13 +5,13 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [s1,s2]=sysconv(s1,s2)
     //Syntax : [s1,s2]=sysconv(s1,s2)
     //
     // Converts s1 and s2 into common representation in order that
-    // system interconnexion operations can be applied.
+    // system interconnection operations can be applied.
     // The conversion rules in given in the following table.
     //   'c'  -> continuous time system
     //   'd'  -> discrete time system

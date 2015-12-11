@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,18 +20,16 @@
 #include "InitializeJVM.h"
 #include "loadClasspath.h"
 #include "loadLibrarypath.h"
-#include "setgetSCIpath.h"
+#include "sci_path.h"
 #include "getScilabJNIEnv.h"
 #include "getScilabJavaVM.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "JVM.h"
 #include "createMainScilabObject.h"
 #include "scilabDefaults.h"
 #include "localization.h"
 #include "fromjava.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "catchIfJavaException.h"
 /*--------------------------------------------------------------------------*/
 static void DoLoadClasspathInEtc(char *sciPath);
@@ -42,7 +40,7 @@ BOOL InitializeJVM(void)
     BOOL bOK = FALSE;
     char *sciPath = NULL;
 
-    sciPath = getSCIpath();
+    sciPath = getSCI();
 
     if (!startJVM(sciPath))
     {
@@ -59,7 +57,7 @@ BOOL InitializeJVM(void)
 
         if (!createMainScilabObject())
         {
-            char *errorMsg = strdup(gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
+            char *errorMsg = os_strdup(gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
 
             if (IsFromJava())
             {

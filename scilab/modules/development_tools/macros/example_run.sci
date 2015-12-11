@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function boolStatus = example_run(modulesName, functionsName, helpLanguage, varargin)
 
@@ -37,10 +37,10 @@ function boolStatus = example_run(modulesName, functionsName, helpLanguage, vara
     end
 
     if typeof(helpLanguage)<>"string" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "example_run", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "example_run", 3));
     end
     if size(helpLanguage, "*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "example_run", 3));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"), "example_run", 3));
     end
 
     for kMod = 1:size(modulesName, "*")

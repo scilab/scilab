@@ -6,14 +6,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Shape;
 import java.awt.geom.Path2D;
+import java.awt.geom.Rectangle2D;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,20 +31,16 @@ public abstract class AbstractDrawable3DObject {
     private static int defaultPrecedence = 0;
 
     protected final Vector3d[] vertices;
-
     protected final Color[] colors;
+    protected final Color color;
+
     protected int precedence;
-    protected Boolean is2d;
-    protected Double zindex;
     protected Vector3d v0;
     protected Vector3d v1;
     protected Vector3d v0v1;
     protected double nv0v1;
     protected Vector3d normal;
     protected BoundingBox bbox;
-    protected boolean marked;
-    protected boolean marked2;
-    protected Boolean degenerated;
 
     /**
      * Default constructor
@@ -50,10 +48,16 @@ public abstract class AbstractDrawable3DObject {
      */
     public AbstractDrawable3DObject(Vector3d[] vertices, Color[] colors) throws InvalidPolygonException {
         if (vertices == null || vertices.length == 0) {
-            throw new InvalidPolygonException("Invalid 3D Object: no vertices was givenl");
+            throw new InvalidPolygonException("Invalid 3D Object: no vertices was given");
         }
         this.vertices = vertices;
-        this.colors = colors;
+        if (colors != null && AbstractDrawable3DObject.isMonochromatic(colors)) {
+            this.color = colors[0];
+            this.colors = null;
+        } else {
+            this.colors = colors;
+            this.color = null;
+        }
         if (isDegenerate()) {
             throw new InvalidPolygonException("Invalid 3D Object: two vertices are the same");
         }
@@ -61,7 +65,18 @@ public abstract class AbstractDrawable3DObject {
             throw new InvalidPolygonException("Invalid 3D Object: contains NaN or Inf coordinates");
         }
         setPrecedence(defaultPrecedence++);
-        getNormal();
+    }
+
+    final Color getColor(final int i) {
+        if (colors != null) {
+            return colors[i];
+        }
+
+        return color;
+    }
+
+    final boolean isMonochromatic() {
+        return color != null;
     }
 
     /**
@@ -122,24 +137,6 @@ public abstract class AbstractDrawable3DObject {
      */
     public int getPrecedence() {
         return precedence;
-    }
-
-    /**
-     * Determinates if this object is 2D in looking at the z coordinates
-     * (when all the drawn objects are 2D, we can avoid the projection)
-     */
-    public boolean is2D() {
-        if (is2d == null) {
-            for (Vector3d v : vertices) {
-                if (v.getZ() != 0) {
-                    is2d = Boolean.FALSE;
-                    return is2d;
-                }
-            }
-            is2d = Boolean.TRUE;
-        }
-
-        return is2d;
     }
 
     /**
@@ -353,16 +350,12 @@ public abstract class AbstractDrawable3DObject {
      * @return true if there are two vertices which are indentical
      */
     protected boolean isDegenerate() {
-        if (degenerated == null) {
-            Set<Vector3d> set = new HashSet<Vector3d>();
-            for (Vector3d v : vertices) {
-                set.add(v);
-            }
-
-            degenerated = set.size() != vertices.length;
+        Set<Vector3d> set = new HashSet<Vector3d>();
+        for (Vector3d v : vertices) {
+            set.add(v);
         }
 
-        return degenerated;
+        return set.size() != vertices.length;
     }
 
     protected boolean isNanOrInf() {
@@ -389,5 +382,45 @@ public abstract class AbstractDrawable3DObject {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Create a clip rect for 2D view according to clipping planes passed as arguments
+     * @param v the clipping plane equation
+     */
+    public final static void makeClip(final double[] clip, final double[] v) {
+        if (v[1] == 0) {
+            double x = -v[3] / v[0];
+            if (Double.isNaN(clip[0])) {
+                clip[0] = x;
+            } else if (clip[0] > x) {
+                clip[1] = clip[0];
+                clip[0] = x;
+            } else {
+                clip[1] = x;
+            }
+        } else {
+            double y = -v[3] / v[1];
+            if (Double.isNaN(clip[2])) {
+                clip[2] = y;
+            } else if (clip[2] > y) {
+                clip[3] = clip[2];
+                clip[2] = y;
+            } else {
+                clip[3] = y;
+            }
+        }
+    }
+
+    /**
+     * Get the clipping shape (for 2D view)
+     * @return the clipping shape
+     */
+    public final static Shape getClip(final double[] clip) {
+        if (!Double.isNaN(clip[0]) && !Double.isNaN(clip[1]) && !Double.isNaN(clip[2]) && !Double.isNaN(clip[3])) {
+            return new Rectangle2D.Double(clip[0], clip[2], clip[1] - clip[0], clip[3] - clip[2]);
+        }
+
+        return null;
     }
 }

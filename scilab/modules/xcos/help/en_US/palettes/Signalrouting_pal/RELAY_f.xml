@@ -229,7 +229,7 @@
     <refsection id="Example_RELAY_f">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/signalrouting_pal/RELAY_f_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/signalrouting_pal/RELAY_f_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/signalrouting_pal/RELAY_f_Example.zcos" valign="middle"/>

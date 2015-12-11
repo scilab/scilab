@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,7 +22,7 @@
 #define sci_void        0
 
 char* getScilabVersionAttribute(int _iFile);
-int getSODFormatAttribute(int _iFile);
+HDF5_SCILAB_IMPEXP int getSODFormatAttribute(int _iFile);
 
 HDF5_SCILAB_IMPEXP int isComplexData(int _iDatasetId);
 
@@ -30,7 +30,7 @@ HDF5_SCILAB_IMPEXP int getVariableNames(int _iFile, char **pstNameList);
 
 HDF5_SCILAB_IMPEXP int getDataSetId(int  _iFile);
 
-HDF5_SCILAB_IMPEXP int getDataSetIdFromName(int _iFile, char *_pstName);
+HDF5_SCILAB_IMPEXP int getDataSetIdFromName(int _iFile, const char *_pstName);
 HDF5_SCILAB_IMPEXP void closeDataSet(int _id);
 
 HDF5_SCILAB_IMPEXP int getDatasetInfo(int _iDatasetId, int* _iComplex, int* _iDims, int* _piDims);
@@ -49,6 +49,7 @@ HDF5_SCILAB_IMPEXP int readDoubleMatrix(int _iDatasetId, double *_pdblData);
 HDF5_SCILAB_IMPEXP int readDoubleComplexMatrix(int _iDatasetId, double *_pdblReal, double *_pdblImg);
 
 HDF5_SCILAB_IMPEXP int readStringMatrix(int _iDatasetId, char **_pstData);
+HDF5_SCILAB_IMPEXP int freeStringMatrix(int _iDatasetId, char** _pstData);
 
 HDF5_SCILAB_IMPEXP int readBooleanMatrix(int _iDatasetId, int* _piData);
 
@@ -77,4 +78,10 @@ HDF5_SCILAB_IMPEXP int getListItemDataset(int _iDatasetId, void* _piItemRef, int
 HDF5_SCILAB_IMPEXP int deleteListItemReferences(int _iDatasetId, void* _piItemRef);
 
 HDF5_SCILAB_IMPEXP  void reset_item_count();
+
+//Scilab 6
+HDF5_SCILAB_IMPEXP int getVariableNames6(int _iFile, char **names);
+HDF5_SCILAB_IMPEXP char* getScilabTypeFromDataSet6(int dataset);
+HDF5_SCILAB_IMPEXP int getListDims6(int dataset, int* items);
+
 #endif /* !__H5_READDATATOFILE_H__ */

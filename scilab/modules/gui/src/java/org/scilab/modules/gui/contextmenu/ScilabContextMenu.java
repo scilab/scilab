@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -78,6 +78,10 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
      */
     public void setText(String newText) {
         ScilabBridge.setText(this, newText);
+    }
+
+    public void setEmptyText() {
+        setText(null);
     }
 
     /**
@@ -258,4 +262,15 @@ public class ScilabContextMenu extends ScilabWidget implements ContextMenu {
         // TODO Auto-generated method stub
     }
 
+    @Override
+    public void resetBackground() {
+        // TODO Auto-generated method stub
+
+    }
+
+    @Override
+    public void resetForeground() {
+        // TODO Auto-generated method stub
+
+    }
 }

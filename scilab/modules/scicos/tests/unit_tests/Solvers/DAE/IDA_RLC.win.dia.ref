@@ -1,0 +1,62 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- ENGLISH IMPOSED -->
+//
+// <-- XCOS TEST -->
+//
+ilib_verbose(0); //to remove ilib_* traces
+// Import diagram
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Solvers/DAE/RLC.zcos"));
+// Redefining messagebox() to avoid popup
+prot = funcprot();
+funcprot(0);
+function messagebox(msg, msg_title)
+endfunction
+funcprot(prot);
+IDA_val_ref = [
+  -0.0019611
+  -0.0015823
+  -0.0011972
+  -0.0008074
+  -0.0004144
+  -0.0000198
+   0.0003750
+   0.0007682
+   0.0011584
+   0.0015440
+   0.0019236
+   0.0022955
+   0.0026584
+   0.0030108
+   0.0033513
+   0.0036786
+   0.0039914
+   0.0042884
+   0.0045685
+   0.0048305
+   0.0050736
+   0.0052965
+   0.0054986
+   0.0056790
+   0.0058369
+   0.0059719
+   0.0060832
+   0.0061706
+   0.0062336
+   0.0062720 ];
+IDA_time_ref = (1.7:.01:1.99)';
+scs_m.props.tol(6) = 101; // Solver
+scs_m.props.context = "L = .0001; per = 0.01;"; // Period, to get more varied results
+scicos_simulate(scs_m);   // IDA
+--------------------------------------------\
+ Main Modelica : TMPDIR\RLC_im.mo
+
+ Flat Modelica : TMPDIR\RLC_imf.mo
+ Simulation C code :TMPDIR\RLC_im.c
+assert_checkalmostequal(res.values, IDA_val_ref, [], 1d-7);
+assert_checkalmostequal(res.time, IDA_time_ref);

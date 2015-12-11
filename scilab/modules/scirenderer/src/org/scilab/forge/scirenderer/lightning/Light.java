@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.lightning;
@@ -80,6 +80,19 @@ public interface Light {
      * @param position the new position.
      */
     void setPosition(Vector3d position);
+
+    /**
+     * Get the light direction.
+     * @return the light direction.
+     */
+    Vector3d getDirection();
+
+    /**
+     * Set the light direction.
+     * Used only for directional light.
+     * @param position the new position.
+     */
+    void setDirection(Vector3d direction);
 
     /**
      * Return the spot direction.

@@ -21,19 +21,14 @@
 //
 
 function [x,y,typ]=LOGIC(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,mat,herit,exprs]=scicos_getvalue([msprintf(gettext("Set %s block parameters"), "LOGIC"); " ";gettext("Combinatorial logic");" ";
@@ -42,7 +37,9 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
             [gettext("Truth Table (matrix of outputs)"); gettext("Accepts Inherited Events (0:No, 1:Yes)")], ..
             list("mat",[-1,-2],"vec",1), exprs);
 
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             nout=size(mat,2)
             nin=(log(size(mat,1))/log(2))
             u1=floor(nin)
@@ -71,7 +68,8 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
                 graphics.exprs=exprs;
                 mat=int8(mat);
                 model.opar=list(mat);
-                x.graphics=graphics;x.model=model;
+                x.graphics=graphics;
+                x.model=model;
                 break
             end
         end
@@ -91,7 +89,7 @@ function [x,y,typ]=LOGIC(job,arg1,arg2)
         model.firing=%f
         model.dep_ut=[%t %f]
         exprs=[sci2exp(mat);sci2exp(0)]
-        gr_i=["xstringb(orig(1),orig(2),[''Logic''],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

@@ -5,14 +5,14 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function f=%p_j_s(p,s)
     // %p_j_s(p,s)  computes p.^s for p polynomial matrix in special cases
     //!
 
     if s==[] then f=[],return,end
-    if  or(imag(s)<>0)|or(int(s)<>s) then error(msprintf(_("%s: Wrong type for input argument #%d: integer expected.\n"),"%p_j_s",2)),end
+    if  or(imag(s)<>0)|or(int(s)<>s) then error(msprintf(_("%s: Wrong type for input argument #%d: An integer matrix expected.\n"),"%p_j_s",2)),end
     [m,n]=size(p)
     [ms,ns]=size(s)
     if ms==1&ns==1 then

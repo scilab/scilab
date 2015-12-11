@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView;
@@ -16,7 +16,9 @@ import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.buffers.IndicesBuffer;
 import org.scilab.modules.graphic_objects.MainDataLoader;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.renderer.JoGLView.util.BufferAllocation;
 import org.scilab.modules.renderer.JoGLView.util.OutOfMemoryException;
@@ -143,12 +145,12 @@ public class DataManager {
      */
     private static final int DEFAULT_LOG_MASK = 0;
 
-
-    private final Map<String, ElementsBuffer> vertexBufferMap = new HashMap<String, ElementsBuffer>();
-    private final Map<String, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<String, ElementsBuffer>();
-    private final Map<String, ElementsBuffer> texturesCoordinatesBufferMap = new HashMap<String, ElementsBuffer>();
-    private final Map<String, IndicesBuffer> indexBufferMap = new HashMap<String, IndicesBuffer>();
-    private final Map<String, IndicesBuffer> wireIndexBufferMap = new HashMap<String, IndicesBuffer>();
+    private final Map<Integer, TransformedElementsBuffer> vertexBufferMap = new HashMap<Integer, TransformedElementsBuffer>();
+    private final Map<Integer, ElementsBuffer> normalBufferMap = new HashMap<Integer, ElementsBuffer>();
+    private final Map<Integer, ElementsBuffer> colorBufferMap = new ConcurrentHashMap<Integer, ElementsBuffer>();
+    private final Map<Integer, ElementsBuffer> texturesCoordinatesBufferMap = new HashMap<Integer, ElementsBuffer>();
+    private final Map<Integer, IndicesBuffer> indexBufferMap = new HashMap<Integer, IndicesBuffer>();
+    private final Map<Integer, IndicesBuffer> wireIndexBufferMap = new HashMap<Integer, IndicesBuffer>();
     private final Canvas canvas;
 
 
@@ -166,14 +168,39 @@ public class DataManager {
      * @return the vertex buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getVertexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public ElementsBuffer getVertexBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
+        GraphicObject currentObject = GraphicController.getController().getObjectFromId(id);
+        Axes axes = (Axes) GraphicController.getController().getObjectFromId(currentObject.getParentAxes());
+        double[][] factors = axes.getScaleTranslateFactors();
+
         if (vertexBufferMap.containsKey(id)) {
-            return vertexBufferMap.get(id);
+            TransformedElementsBuffer buf = vertexBufferMap.get(id);
+            if (buf.isSameFactors(factors)) {
+                return buf.getBuffer();
+            }
+        }
+
+        ElementsBuffer vertexBuffer = canvas.getBuffersManager().createElementsBuffer();
+        fillVertexBuffer(vertexBuffer, id, factors[0], factors[1]);
+        vertexBufferMap.put(id, new TransformedElementsBuffer(vertexBuffer, factors));
+
+        return vertexBuffer;
+    }
+
+    /**
+     * Return the normal buffer of the given object.
+     * @param id the given object Id.
+     * @return the vertex buffer of the given object.
+     * @throws ObjectRemovedException if the object is now longer present.
+     */
+    public ElementsBuffer getNormalBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
+        if (normalBufferMap.containsKey(id)) {
+            return normalBufferMap.get(id);
         } else {
-            ElementsBuffer vertexBuffer = canvas.getBuffersManager().createElementsBuffer();
-            fillVertexBuffer(vertexBuffer, id);
-            vertexBufferMap.put(id, vertexBuffer);
-            return vertexBuffer;
+            ElementsBuffer normalBuffer = canvas.getBuffersManager().createElementsBuffer();
+            fillNormalBuffer(normalBuffer, id);
+            normalBufferMap.put(id, normalBuffer);
+            return normalBuffer;
         }
     }
 
@@ -183,7 +210,7 @@ public class DataManager {
      * @return the texture coordinates corresponding to the given graphic object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getTextureCoordinatesBuffer(String identifier) throws ObjectRemovedException, OutOfMemoryException {
+    public ElementsBuffer getTextureCoordinatesBuffer(Integer identifier) throws ObjectRemovedException, OutOfMemoryException {
         if (texturesCoordinatesBufferMap.containsKey(identifier)) {
             return texturesCoordinatesBufferMap.get(identifier);
         } else {
@@ -200,7 +227,7 @@ public class DataManager {
      * @return the color buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public ElementsBuffer getColorBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public ElementsBuffer getColorBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         if (colorBufferMap.containsKey(id)) {
             return colorBufferMap.get(id);
         } else {
@@ -217,7 +244,7 @@ public class DataManager {
      * @return the index buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public IndicesBuffer getIndexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public IndicesBuffer getIndexBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         if (indexBufferMap.containsKey(id)) {
             return indexBufferMap.get(id);
         } else {
@@ -234,7 +261,7 @@ public class DataManager {
      * @return the wire index buffer of the given object.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public IndicesBuffer getWireIndexBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public IndicesBuffer getWireIndexBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         if (wireIndexBufferMap.containsKey(id)) {
             return wireIndexBufferMap.get(id);
         } else {
@@ -250,7 +277,7 @@ public class DataManager {
      * @param id given object id.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    public void updateTextureCoordinatesBuffer(String id) throws ObjectRemovedException, OutOfMemoryException {
+    public void updateTextureCoordinatesBuffer(Integer id) throws ObjectRemovedException, OutOfMemoryException {
         ElementsBuffer textureCoordinatesBuffer = texturesCoordinatesBufferMap.get(id);
         if (textureCoordinatesBuffer != null) {
             fillTextureCoordinatesBuffer(textureCoordinatesBuffer, id);
@@ -262,7 +289,7 @@ public class DataManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) throws OutOfMemoryException {
+    public void update(Integer id, int property) throws OutOfMemoryException {
         Integer type = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
 
         try {
@@ -303,10 +330,19 @@ public class DataManager {
      * @throws ObjectRemovedException if the object is no longer present.
      * @throws OutOfMemoryException if there was not enough memory.
      */
-    private void updateChildrenVertexIndex(String id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
-        ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
-        if (vertexBuffer != null) {
-            updateVertexBuffer(vertexBuffer, id, coordinateMask);
+    private void updateChildrenVertexIndex(Integer id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
+        GraphicObject currentObject = GraphicController.getController().getObjectFromId(id);
+        Axes axes = (Axes) GraphicController.getController().getObjectFromId(currentObject.getParentAxes());
+        double[][] factors = axes.getScaleTranslateFactors();
+
+        TransformedElementsBuffer buf = vertexBufferMap.get(id);
+        if (buf != null) {
+            updateVertexBuffer(buf.getBuffer(), id, coordinateMask, factors[0], factors[1]);
+        }
+
+        ElementsBuffer normalBuffer = normalBufferMap.get(id);
+        if (normalBuffer != null) {
+            fillNormalBuffer(normalBuffer, id);
         }
 
         /*
@@ -326,7 +362,7 @@ public class DataManager {
             fillWireIndexBuffer(wireIndexBuffer, id);
         }
 
-        for (String childId : (String []) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__)) {
+        for (Integer childId : (Integer []) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_CHILDREN__)) {
             updateChildrenVertexIndex(childId, coordinateMask);
         }
     }
@@ -335,10 +371,15 @@ public class DataManager {
      * Clear the buffer corresponding to the given object.
      * @param id object id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         if (vertexBufferMap.containsKey(id)) {
-            canvas.getBuffersManager().dispose(vertexBufferMap.get(id));
+            canvas.getBuffersManager().dispose(vertexBufferMap.get(id).getBuffer());
             vertexBufferMap.remove(id);
+        }
+
+        if (normalBufferMap.containsKey(id)) {
+            canvas.getBuffersManager().dispose(normalBufferMap.get(id));
+            normalBufferMap.remove(id);
         }
 
         if (colorBufferMap.containsKey(id)) {
@@ -384,10 +425,15 @@ public class DataManager {
      * @param id the object id.
      * @throws ObjectRemovedException if the object is now longer present.
      */
-    private void fillBuffers(String id) throws ObjectRemovedException, OutOfMemoryException {
-        ElementsBuffer vertexBuffer = vertexBufferMap.get(id);
-        if (vertexBuffer != null) {
-            fillVertexBuffer(vertexBuffer, id);
+    private void fillBuffers(Integer id) throws ObjectRemovedException, OutOfMemoryException {
+        TransformedElementsBuffer buf = vertexBufferMap.get(id);
+        if (buf != null) {
+            fillVertexBuffer(buf.getBuffer(), id, buf.getScale(), buf.getTranslate());
+        }
+
+        ElementsBuffer normalBuffer = normalBufferMap.get(id);
+        if (normalBuffer != null) {
+            fillNormalBuffer(normalBuffer, id);
         }
 
         ElementsBuffer colorBuffer = colorBufferMap.get(id);
@@ -411,40 +457,47 @@ public class DataManager {
         }
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
-        fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08);
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, Integer id, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
+        fillVertexBuffer(vertexBuffer, id, 0x01 | 0x02 | 0x04 | 0x08, scale, translate);
     }
 
-    private void fillVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillVertexBuffer(ElementsBuffer vertexBuffer, Integer id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException, OutOfMemoryException {
         int logMask = MainDataLoader.getLogMask(id);
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
-        MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
+        MainDataLoader.fillVertices(id, data, 4, coordinateMask, scale, translate, logMask);
         vertexBuffer.setData(data, 4);
     }
 
-    private void updateVertexBuffer(ElementsBuffer vertexBuffer, String id, int coordinateMask) throws ObjectRemovedException {
+    private void fillNormalBuffer(ElementsBuffer normalBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
+        int length = MainDataLoader.getDataSize(id);
+        FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
+        MainDataLoader.fillNormals(id, getVertexBuffer(id).getData(), data, 4);
+        normalBuffer.setData(data, 4);
+    }
+
+    private void updateVertexBuffer(ElementsBuffer vertexBuffer, Integer id, int coordinateMask, double[] scale, double[] translate) throws ObjectRemovedException {
         int logMask = MainDataLoader.getLogMask(id);
         FloatBuffer data = vertexBuffer.getData();
-        MainDataLoader.fillVertices(id, data, 4, coordinateMask, DEFAULT_SCALE, DEFAULT_TRANSLATE, logMask);
+        MainDataLoader.fillVertices(id, data, 4, coordinateMask, scale, translate, logMask);
         vertexBuffer.setData(data, 4);
     }
 
-    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillTextureCoordinatesBuffer(ElementsBuffer colorBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillTextureCoordinates(id, data, length);
         colorBuffer.setData(data, 4);
     }
 
-    private void fillColorBuffer(ElementsBuffer colorBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillColorBuffer(ElementsBuffer colorBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getDataSize(id);
         FloatBuffer data = BufferAllocation.newFloatBuffer(length * 4);
         MainDataLoader.fillColors(id, data, 4);
         colorBuffer.setData(data, 4);
     }
 
-    private void fillIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillIndexBuffer(IndicesBuffer indexBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getIndicesSize(id);
         IntBuffer data = BufferAllocation.newIntBuffer(length);
 
@@ -463,7 +516,7 @@ public class DataManager {
         indexBuffer.setData(data);
     }
 
-    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, String id) throws ObjectRemovedException, OutOfMemoryException {
+    private void fillWireIndexBuffer(IndicesBuffer indexBuffer, Integer id) throws ObjectRemovedException, OutOfMemoryException {
         int length = MainDataLoader.getWireIndicesSize(id);
         IntBuffer data = BufferAllocation.newIntBuffer(length);
 
@@ -480,5 +533,40 @@ public class DataManager {
         data.limit(actualLength);
 
         indexBuffer.setData(data);
+    }
+
+    private static class TransformedElementsBuffer {
+
+        ElementsBuffer buffer;
+        double[][] factors;
+
+        TransformedElementsBuffer(ElementsBuffer buffer, double[][] factors) {
+            this.buffer = buffer;
+            this.factors = factors;
+        }
+
+        ElementsBuffer getBuffer() {
+            return buffer;
+        }
+
+        double[] getScale() {
+            return factors[0];
+        }
+
+        double[] getTranslate() {
+            return factors[1];
+        }
+
+        boolean isSameFactors(final double[][] factors) {
+            for (int i = 0; i < 2; i++) {
+                for (int j = 0; j < 3; j++) {
+                    if (this.factors[i][j] != factors[i][j]) {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }

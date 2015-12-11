@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at;
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function comet(varargin)
     //Comet-like trajectory.
@@ -160,7 +160,6 @@ function comet(varargin)
                 tail(l).data=[tail(l).data;[x(n-k+i,l),y(n-k+i,l)]];
             end
             if modulo(i,step)==0 then
-                //draw(axes),
                 fig.immediate_drawing = "on"
                 fig.immediate_drawing = "off"
             end
@@ -169,5 +168,5 @@ function comet(varargin)
         delete(body)
     endfunction
     //not to generate an error message if the window is closed
-    exec(anim,-1,"errcatch")
+    exec(anim, "errcatch", -1);
 endfunction

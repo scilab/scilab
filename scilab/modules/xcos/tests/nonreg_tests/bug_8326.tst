@@ -21,5 +21,5 @@
 // Put an OUT_f block
 // link them together
 // Select all elements
-// Right-click Region to superblock must not throw an exception.
+// Right-click Selection to superblock must not throw an exception.
 

@@ -7,11 +7,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
+
 #include <stdlib.h>
 #include "ConsolePrintf.h"
 #include "ConsoleRead.h"
@@ -20,18 +21,19 @@
 #include "SetConsolePrompt.h"
 #include "InitializeConsole.h"
 #include "PromptToHome.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "ScilabLinesUpdate.h"
 #include "GetCharWithoutOutput.h"
 #include "ConsoleIsWaitingForInput.h"
 #include "scilines.h"
+
 /*--------------------------------------------------------------------------*/
 char *ConsoleRead(void)
 {
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
-int ConsolePrintf(char *line)
+int ConsolePrintf(const char *line)
 {
     int len = 0;
     return len;

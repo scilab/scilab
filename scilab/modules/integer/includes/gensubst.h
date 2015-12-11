@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,5 +29,7 @@
  * @return
  */
 INTEGER_IMPEXP int C2F(gensubst)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy);
+
+INTEGER_IMPEXP int C2F(gensubst1)(int *typ, int *n, int *dx, int *incx, int *dy, int *incy);
 
 #endif /* __GENSUBST_H__ */

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // =============================================================================
 // WAVE Audio File Format
@@ -137,7 +137,7 @@ function savewave(filename,x,rate,nbits)
                 // Scale data according to bits/samples: [-1,+1] -> [-8 388 608,+8 388 607]
                 data = round((data+1)*(2^24-1)/2)-(2^23);
             case 4 then
-                dtype="l"
+                dtype="i"
                 // signed 32-bit
                 // Scale data according to bits/samples: [-1,+1] -> [-2 147 483 648,+2 147 483 647]
                 data = round((data+1)*(2^32-1)/2)-(2^31);
@@ -156,12 +156,19 @@ function savewave(filename,x,rate,nbits)
                 oct2 = (floor((data-(oct3*2^16))/(2^8)));
                 oct1 = (floor(data-(oct3*2^16)-(oct2*2^8)));//lsb
                 data_line = zeros(3*total_samples,1);
-                data_line(1:6:$) = oct1(1,:)';
-                data_line(2:6:$) = oct2(1,:)';
-                data_line(3:6:$) = oct3(1,:)';
-                data_line(4:6:$) = oct1(2,:)';
-                data_line(5:6:$) = oct2(2,:)';
-                data_line(6:6:$) = oct3(2,:)';
+                select channels
+                case 1
+                    data_line(1:3:$) = oct1(1,:)';
+                    data_line(2:3:$) = oct2(1,:)';
+                    data_line(3:3:$) = oct3(1,:)';
+                case 2
+                    data_line(1:6:$) = oct1(1,:)';
+                    data_line(2:6:$) = oct2(1,:)';
+                    data_line(3:6:$) = oct3(1,:)';
+                    data_line(4:6:$) = oct1(2,:)';
+                    data_line(5:6:$) = oct2(2,:)';
+                    data_line(6:6:$) = oct3(2,:)';
+                end
                 data_line = data_line';
             else
                 data_line = data;
@@ -178,7 +185,7 @@ function savewave(filename,x,rate,nbits)
             // Determine if a pad-byte is appended to data chunk:
             %v2_1$1 = total_samples * BytesPerSample;
             if ( %v2_1$1 - fix(%v2_1$1./2).*2 ) then
-                mput(0,fid,"uc");
+                mput(0,"uc",fid);
             end
         else
             // Unknown wave-format for data.
@@ -225,7 +232,7 @@ function savewave(filename,x,rate,nbits)
     end;
 
     if ~(type(filename) == 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n" ),"savewave",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n" ),"savewave",1));
     end
 
     if strindex(filename,".")==[] then

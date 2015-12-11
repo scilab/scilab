@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -39,9 +39,9 @@ void setClipboardContents(char *text)
     CallScilabBridge::setClipboardContents(getScilabJavaVM(), text);
 }
 
-void copyFigureToClipBoard(char * figID)
+void copyFigureToClipBoard(int iFigID)
 {
-    CallScilabBridge::copyFigureToClipBoard(getScilabJavaVM(), figID);
+    CallScilabBridge::copyFigureToClipBoard(getScilabJavaVM(), iFigID);
 }
 
 

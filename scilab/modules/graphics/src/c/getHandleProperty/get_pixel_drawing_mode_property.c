@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,19 +33,19 @@
 
 /*------------------------------------------------------------------------*/
 
-int get_pixel_drawing_mode_property(void* _pvCtx, char* pobjUID)
+void* get_pixel_drawing_mode_property(void* _pvCtx, int iObjUID)
 {
     int iPixelDrawingMode = 0;
     int* pixelDrawingMode = &iPixelDrawingMode;
-    getGraphicObjectProperty(pobjUID, __GO_PIXEL_DRAWING_MODE__, jni_int, (void**)&pixelDrawingMode);
+    getGraphicObjectProperty(iObjUID, __GO_PIXEL_DRAWING_MODE__, jni_int, (void**)&pixelDrawingMode);
 
     if (pixelDrawingMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "pixel_drawing_mode");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnString(_pvCtx, getPixelMode (*pixelDrawingMode));
+    return sciReturnString(getPixelMode (*pixelDrawingMode));
 
 }
 

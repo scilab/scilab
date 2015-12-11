@@ -6,12 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include <math.h>
 #include <string.h>
+
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
@@ -25,7 +27,7 @@ extern int C2F(znaupd)(int * ido, char * bmat, int * n, char * which,
                        doublecomplex * workl, int * lworkl, double * rwork,
                        int * info);
 /*--------------------------------------------------------------------------*/
-int sci_znaupd(char *fname, unsigned long fname_len)
+int sci_znaupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -62,9 +64,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     doublecomplex* pWORKL   = NULL;
 
     int IDO,   mIDO,   nIDO;
-    int mBMAT,  nBMAT;
     int mN,     nN;
-    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;
@@ -97,7 +97,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -115,7 +115,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -131,7 +131,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         return 1;
     }
 
@@ -147,7 +147,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         return 1;
     }
 
@@ -163,7 +163,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 7);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 7);
         return 1;
     }
 
@@ -180,7 +180,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 8);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 8);
         return 1;
     }
 
@@ -196,7 +196,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 9);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 9);
         return 1;
     }
 
@@ -213,7 +213,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 10);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 10);
         return 1;
     }
 
@@ -230,7 +230,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 11);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 11);
         return 1;
     }
 
@@ -248,7 +248,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 12);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 12);
         return 1;
     }
 
@@ -266,7 +266,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 13);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 13);
         return 1;
     }
 
@@ -283,7 +283,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 14);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 14);
         return 1;
     }
 
@@ -300,7 +300,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 15);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 15);
         return 1;
     }
 
@@ -317,19 +317,19 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     }
 
     /* Check some sizes */
-    if (mIPARAM*nIPARAM != 11)
+    if (mIPARAM * nIPARAM != 11)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPARAM", 11);
         return 0;
     }
 
-    if (mIPNTR*nIPNTR != 14)
+    if (mIPNTR * nIPNTR != 14)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPNTR", 14);
         return 0;
     }
 
-    if (mRESID*nRESID != pN[0])
+    if (mRESID * nRESID != pN[0])
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", pN[0]);
         return 0;
@@ -366,7 +366,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 2.
     if (getAllocatedSingleString(pvApiCtx, piAddrpBMAT, &pBMAT))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -382,7 +382,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
     if (getAllocatedSingleString(pvApiCtx, piAddrpWHICH, &pWHICH))
     {
         freeAllocatedSingleString(pBMAT);
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
         return 1;
     }
 
@@ -397,7 +397,7 @@ int sci_znaupd(char *fname, unsigned long fname_len)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("znaupd", pINFO, 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -18,7 +18,7 @@
 ;
 #define XCOS "xcos"
 ;
-Source: bin\{#XCOS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\sci{#XCOS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\jar\org.scilab.modules.{#XCOS}.jar; DestDir: {app}\modules\{#XCOS}\jar; Components: {#COMPN_XCOS}
 ;
@@ -43,9 +43,8 @@ Source: modules\{#XCOS}\macros\buildmacros.sce; DestDir: {app}\modules\{#XCOS}\m
 Source: modules\{#XCOS}\macros\buildmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\lib; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
-Source: modules\{#XCOS}\macros\names; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
-Source: modules\{#XCOS}\macros\*.bin; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 Source: modules\{#XCOS}\macros\*.sci; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
+Source: modules\{#XCOS}\macros\*.bin; DestDir: {app}\modules\{#XCOS}\macros; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#XCOS}\examples\*.*; DestDir: {app}\modules\{#XCOS}\examples; Flags: recursesubdirs; Components: {#COMPN_XCOS}
 ;

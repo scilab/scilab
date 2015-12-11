@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="cross" xml:lang="ja">
+    <refnamediv>
+        <refname>cross</refname>
+        <refpurpose>ベクトル外積</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>C = cross(A,B)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>A</term>
+                <listitem>
+                    <para>実数, 複素数, 多項式または3行N列または1行3列の論理値行列.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>B</term>
+                <listitem>
+                    <para>
+                        実数, 複素数, 多項式またはAと同じ大きさの論理値行列.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>C</term>
+                <listitem>
+                    <para>
+                        実数, 複素数, 多項式またはA及びBと同じ大きさの論理値行列.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <function>cross</function> は以下のような
+            <varname>A</varname> 及び <varname>B</varname>の外積を返します:
+            <para>
+                <latex>
+                    \begin{eqnarray}
+                    C = A \wedge B
+                    \end{eqnarray}
+                </latex>
+            </para>
+        </para>
+        <para>
+            <varname>A</varname> 及び <varname>B</varname> は,
+            通常の行列または疎行列とすることができます.
+            しかし,分数行列はサポートされていません.
+            論理値行列の場合,
+            <function>cross</function> は%t (または %f)を
+            1 (または 0), '&amp;' (または '|') を
+            '*' (または '+') として計算します.
+        </para>
+        <para>
+            最後に, <varname>A</varname> 及び <varname>B</varname> が
+            3行N列行列の場合, 列毎に計算が行われます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=[1;2;3];
+B=[2;3;4];
+cross(A,B) // 予測値: [-1;2;-1]
+A=[%i,2,1+%i];
+B=[1,%i,2+%i];
+cross(A,B) // 予測値: [5+%i,2-%i,-3]
+A=[%t;%f;%t];
+B=[%t;%f;%f];
+cross(A,B) // 予測値: [0;1;0]
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>関数 cross が導入されました.</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

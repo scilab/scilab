@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -15,6 +15,7 @@
 
 #include "dynlib_fileio.h"
 #include "machine.h"
+#include "charEncoding.h"
 
 /**
 * Opens file given by file and return it's id
@@ -36,7 +37,7 @@ typedef enum
     MOPEN_INVALID_STATUS = 5
 } mopenError;
 
-FILEIO_IMPEXP void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
+FILEIO_IMPEXP int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int* _piID);
 
 #endif  /* __MOPEN_H__ */
 /*--------------------------------------------------------------------------*/

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="optim_nsga2" xml:lang="en">
@@ -64,8 +64,10 @@
             <varlistentry>
                 <term>Log</term>
                 <listitem>
-                    <para>if %T, we will display to information message during the run
-                        of the genetic algorithm.
+                    <para>
+                        if %T, will call the output function at the end of each
+                        iteration, see <literal>"output_func"</literal> under
+                        <varname>param</varname> variable below.
                     </para>
                 </listitem>
             </varlistentry>
@@ -76,42 +78,55 @@
                     <itemizedlist>
                         <listitem>
                             <para> 'codage_func': the function which will perform the coding
-                                and decoding of individuals (default function: codage_identity).
+                                and decoding of individuals (default function: <link linkend="coding_ga_identity">coding_ga_identity</link>).
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'init_func': the function which will perform the
                                 initialization of the population (default function:
-                                init_ga_default). 
+                                <link linkend="init_ga_default">init_ga_default</link>).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                'dimension', 'minbounds' and 'maxbounds':
+                                parameters used by the initialization function to define the initial population.
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'crossover_func': the function which will perform the
                                 crossover between two individuals (default function:
-                                crossover_ga_default). 
+                                <link linkend="crossover_ga_default">crossover_ga_default</link>).
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'mutation_func': the function which will perform the
                                 mutation of one individual (default function:
-                                mutation_ga_default). 
+                                <link linkend="mutation_ga_default">mutation_ga_default</link>).
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'selection_func': the function whcih will perform the
                                 selection of individuals at the end of a generation (default
-                                function: selection_ga_elitist). 
+                                function: <link linkend="selection_ga_elitist">selection_ga_elitist</link>).
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'nb_couples': the number of couples which will be
                                 selected so as to perform the crossover and mutation (default
-                                value: 100). 
+                                value: 100).
                             </para>
                         </listitem>
                         <listitem>
                             <para> 'pressure': the value the efficiency of the worst
                                 individual (default value: 0.05).
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                "output_func": a callback function called after each
+                                generation if <varname>Log</varname> is %T (default
+                                function <literal>output_nsga2_default</literal>).
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -160,7 +175,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function f = deb_1(x)
    f1_x1 = x(1);
    g_x2  = 1 + 9 * sum((x(2:$)-x(1)).^2) / (length(x) - 1);

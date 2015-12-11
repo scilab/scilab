@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Farid BELAHCENE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="permute" xml:lang="en">
@@ -39,19 +39,30 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>Permute the dimensions of an array.</literal>
+            Permutes the dimensions of an array according to <varname>dims</varname>.
+        </para>
+        <para>
+            Input argument <varname>dims</varname> must be a valid permutation where dimension <literal>#i</literal> becomes <literal>#dims(i)</literal>.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //example 1:
-x=[1 2 3;4 5 6];
-y=permute(x,[2 1]);
+x=[1 2 3;4 5 6]
+y=permute(x,[2 1])
 
 //example 2:
-x=matrix(1:12,[2,3,2]);
-y=permute(x,[3 1 2]);
+x=matrix(1:12,[2,3,2])
+y=permute(x,[3 1 2])
+
+x = matrix(1:12, [3 2 2])
+y = permute(x, [3 4 1 2])
+// Dimensions are changed according to dims
+// #1=rows    becomes #3=pages
+// #2=columns becomes #4=books
+// #3=pages   becomes #1=rows
+// #4=books   becomes #2=columns
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

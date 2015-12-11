@@ -57,7 +57,5 @@ exit
 // Answer "Yes"
 // The figure must be closed
 // No message must appear in the console
-// Scilab must not quit.
-exit
 // Scilab must quit.
 

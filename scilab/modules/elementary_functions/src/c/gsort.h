@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,14 +29,15 @@
 #define LIST_SORT 'l'
 #define GLOBAL_SORT 'g'
 
+#include "dynlib_elementary_functions.h"
 
-void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-int C2F(gsortd)(double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-int C2F(gsortint)(int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-int C2F(gsortuint)(unsigned int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-int C2F(gsortshort)(short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-int C2F(gsortushort)(unsigned short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-int C2F(gsortchar)(char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
-int C2F(gsortuchar)(unsigned char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP void C2F(gsorts)(char **data, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(gsortd)(double *xD, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(gsortint)(int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(gsortuint)(unsigned int *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(gsortshort)(short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(gsortushort)(unsigned short *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(gsortchar)(char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
+ELEMENTARY_FUNCTIONS_IMPEXP int C2F(gsortuchar)(unsigned char *xI, int *ind, int *iflag, int *m, int *n, char *type, char *iord);
 
 #endif /* _GSORT_H_ */

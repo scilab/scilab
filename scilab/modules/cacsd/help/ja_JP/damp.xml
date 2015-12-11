@@ -113,7 +113,6 @@
             返します.
             <literal>dt</literal> が指定され, 0でない場合,
             その根はまず連続時間系の等価な根に変換されます.
-            
             配列 <literal>wn(i)</literal> および<literal>z(i)</literal> は
             それぞれ<literal>R(i)</literal>の固有周波数およびダンピング乗数と
             なります.

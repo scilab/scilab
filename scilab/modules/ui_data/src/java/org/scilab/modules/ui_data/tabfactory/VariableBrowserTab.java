@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,7 +15,7 @@ package org.scilab.modules.ui_data.tabfactory;
 import java.util.List;
 import java.util.ListIterator;
 
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.ui_data.variablebrowser.ScilabVariableBrowser;
@@ -32,8 +32,8 @@ public class VariableBrowserTab {
      *            the uuid to restore
      * @return a new SciNotes instance
      */
-    public static SwingScilabTab getVariableBrowserInstance() {
-        final SwingScilabTab varbrowser = ScilabVariableBrowser
+    public static SwingScilabDockablePanel getVariableBrowserInstance() {
+        final SwingScilabDockablePanel varbrowser = ScilabVariableBrowser
                                           .createVarBrowserTab();
         ScilabTabFactory.getInstance().addToCache(varbrowser);
 
@@ -51,13 +51,13 @@ public class VariableBrowserTab {
             }
 
             @Override
-            public String askForClosing(final List<SwingScilabTab> list) {
+            public String askForClosing(final List<SwingScilabDockablePanel> list) {
                 return null;
             }
 
             @Override
-            public void updateDependencies(List<SwingScilabTab> list,
-            ListIterator<SwingScilabTab> it) {
+            public void updateDependencies(List<SwingScilabDockablePanel> list,
+                                           ListIterator<SwingScilabDockablePanel> it) {
             }
         });
 

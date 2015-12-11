@@ -7,13 +7,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="fec">
     <refnamediv>
         <refname>fec</refname>
-        <refpurpose>pseudo-color plot of a function defined on a triangular mesh</refpurpose>
+        <refpurpose>pseudo-color plot of a function defined on a mesh</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -46,11 +46,11 @@
                 <term>triangles</term>
                 <listitem>
                     <para>
-                        is a <literal>[Ntr,5]</literal> matrix. Each line of <literal>triangles</literal> specifies a triangle 
-                        of the  mesh <literal>triangle(j) = [number,node1,node2,node3,flag]</literal>. 
-                        <literal>node1,node2,node3</literal> are the number of the nodes which constitutes 
-                        the triangle. number is the number of the triangle and flag is an integer 
-                        not used in the fec function
+                        is a <literal>[Ntr,N+2]</literal> matrix. Each line of <varname>triangles</varname> specifies a convex polygon 
+                        of the  mesh <literal>triangles(j) = [number,node1,node2,node3, ..., nodeN, flag]</literal>. 
+                        <literal>node1,node2,node3, ..., nodeN</literal> are the number of the nodes which constitutes 
+                        the polygon. number is the number of the polygons and flag is an integer 
+                        not used in the fec function.
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,8 +98,8 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>This function is the good one to draw linear triangular finite element solutions 
-            or simply to display a function defined on a triangulation. The color interpolation
+        <para>This function is the good one to draw linear finite element solutions, based on polygons
+            or simply to display a function defined on a polygon mapping. The color interpolation
             is done through software computation and so it is not too fast.
         </para>
         <para>
@@ -107,18 +107,18 @@
             section).
         </para>
         <para>    
-            The <literal>zminmax</literal> argument gives the z values associated with the first and the last 
+            The <varname>zminmax</varname> argument gives the z values associated with the first and the last 
             color (of the current colormap). More exactly if the colormap have nc colors and if we note 
-            <emphasis>dz = (zmax-zmin)/nc</emphasis>, then the part of the triangulation where  
+            <emphasis>dz = (zmax-zmin)/nc</emphasis>, then the part of the polygon mapping where  
             <emphasis>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</emphasis> is filled with the color <emphasis>i</emphasis>). 
             By default <emphasis>zmin = min(func)</emphasis> and <emphasis>zmax = max(func)</emphasis>. If you want to do 
-            an animation with func values that varie in time, take for zmin and zmax the global 
+            an animation with func values that varies in time, take for zmin and zmax the global
             minimum and maximum or something close.
         </para>
         <para>
-            The <literal>colout</literal> argument lets the user choosing the colors for the 2 extremes
+            The <varname>colout</varname> argument lets the user choosing the colors for the 2 extremes
             regions <emphasis>{func &lt; zmin}</emphasis> and <emphasis>{func &gt; zmax}</emphasis>, <literal>under_min_col</literal> and 
-            <literal>upper_max_col</literal> may be equal (independantly) to:
+            <literal>upper_max_col</literal> may be equal (independently) to:
         </para>
         <variablelist>
             <varlistentry>
@@ -146,10 +146,13 @@
             </varlistentry>
         </variablelist>
         <para>
-            If you do not want to use the complete colormap you may use the <literal>colminmax</literal>
+            If you do not want to use the complete colormap you may use the <varname>colminmax</varname>
             argument with <emphasis>1 &lt;= colmin &lt; colmax &lt;= nc</emphasis> (nc being the number of colors 
             of the current colormap) so as to use only the [colmin,colmax]  sub-part of the colormap.
             (by default all the colors of the colormap are used).
+        </para>
+        <para>
+            Note that for historical reasons, the third input argument is called <varname>triangles</varname>, but <function>fec</function> accepts all types of convex polygons.
         </para>
         <para>
             See the demo files <literal>demos/fec</literal>:
@@ -339,6 +342,34 @@ show_window()
             xtitle("fec using the jet colormap")
             show_window()
         </scilab:image>
+        <programlisting role="example"><![CDATA[ 
+// define a mapping with one quadrangle (4 vertices, 1 quadrangle)
+x = [1 2 2 1];
+y = [1 1 2 2];
+T = [1 1 2 3 4 0];
+z = [-1; -1; 1; 1];  // values of the func at each vertices
+
+clf()
+f = gcf();
+f.color_map = jetcolormap(12);
+colorbar(-1,1);
+fec(x,y,T,z,mesh=%t)
+xtitle("fec using the hot colormap, composed by one quadrangle")
+ ]]></programlisting>
+        <scilab:image>
+            // define a mapping with one quadrangle (4 vertices, 1 quadrangle)
+            x = [1 2 2 1];
+            y = [1 1 2 2];
+            T = [1 1 2 3 4 0];
+            z = [-1 -1 1 1];  // values of the func at each vertices
+            
+            clf()
+            f = gcf();
+            f.color_map = jetcolormap(12);
+            colorbar(-1,1);
+            fec(x,y,T,z,mesh=%t)
+            xtitle("fec using the hot colormap, composed by one quadrangle")
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -353,5 +384,18 @@ show_window()
                 <link linkend="Sgrayplot">Sgrayplot</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>
+                    <para>
+                        Mapping is not limited on triangles anymore. All types of convex polygons are acceptable.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

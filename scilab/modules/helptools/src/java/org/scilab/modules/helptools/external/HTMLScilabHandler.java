@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,8 +22,6 @@ import org.xml.sax.Attributes;
 import org.xml.sax.Locator;
 
 import org.scilab.modules.helptools.HTMLDocbookTagConverter;
-import org.scilab.modules.helptools.image.ImageConverter;
-import org.scilab.modules.helptools.image.ScilabImageConverter;
 
 /**
  * Handle the included SCILAB code
@@ -34,42 +32,19 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
     private static final String IMAGE = "image";
     private static final String BASENAME = "_";
 
-    private static HTMLScilabHandler instance;
-
-    private int compt = 1;
     private StringBuilder buffer = new StringBuilder(8192);
     private String baseDir;
     private String outputDir;
-    private boolean isLocalized;
+    private Boolean isLocalized;
     private int line;
 
     /**
      * Constructor
      * @param baseDir the base directory where to put the generated images
      */
-    private HTMLScilabHandler(String outputDir, String baseDir) {
+    public HTMLScilabHandler(String outputDir, String baseDir) {
         this.outputDir = outputDir + File.separator + baseDir;
         this.baseDir = baseDir + "/";
-    }
-
-    public static HTMLScilabHandler getInstance(String outputDir, String baseDir) {
-        if (instance == null) {
-            instance = new HTMLScilabHandler(outputDir, baseDir);
-        }
-
-        return instance;
-    }
-
-    public static HTMLScilabHandler getInstance() {
-        return instance;
-    }
-
-    public void resetCompt() {
-        compt = 1;
-    }
-
-    public static void clean() {
-        instance = null;
     }
 
     /**
@@ -84,8 +59,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
      */
     public StringBuilder startExternalXML(String localName, Attributes attributes, Locator locator) {
         if (localName.equals("image")) {
-            String v = attributes.getValue("localized");
-            isLocalized = "true".equalsIgnoreCase(v);
+            isLocalized = getLocalized(null, attributes);
             line = locator.getLineNumber();
         }
 
@@ -111,7 +85,7 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
             }
             String language = ((HTMLDocbookTagConverter) getConverter()).getLanguage();
             String fileName;
-            if (isLocalized) {
+            if (isLocalized != null && isLocalized.booleanValue()) {
                 fileName = baseName + BASENAME + language + BASENAME + (compt++) + ".png";
             } else {
                 fileName = baseName + BASENAME + (compt++) + ".png";
@@ -126,20 +100,19 @@ public class HTMLScilabHandler extends ExternalXMLHandler {
             if (getConverter() instanceof HTMLDocbookTagConverter) {
                 baseImagePath = ((HTMLDocbookTagConverter) getConverter()).getBaseImagePath();
             }
-            if (isLocalized || (existing = getExistingFile(outputDir, fileName)) == null) {
-                ret = ImageConverter.getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
+            if ((isLocalized != null && isLocalized.booleanValue()) || (existing = getExistingFile(outputDir, fileName)) == null) {
+                ret = getConverter().getImageConverter().getImageByCode(currentFileName, buffer.toString(), attributes, "image/scilab", f, baseDir + f.getName(), baseImagePath, line, language, isLocalized);
             } else {
-                ret = ImageConverter.getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".", baseImagePath);
-                ret = ScilabImageConverter.getInstance().getHTMLCodeToReturn(buffer.toString(), ret);
+                ret = getConverter().getImageConverter().getImageByFile(attributes, null, existing.getAbsolutePath(), outputDir, ".", baseImagePath);
             }
 
             buffer.setLength(0);
-
             return ret;
         }
 
         recreateTag(buffer, localName, null);
 
+        buffer.setLength(0);
         return null;
     }
 

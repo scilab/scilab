@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.ui_data;
@@ -15,7 +15,7 @@ package org.scilab.modules.ui_data;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.localization.Messages;
 import org.scilab.modules.types.ScilabTypeEnum;
 import org.scilab.modules.types.ScilabTypeEnumDescription;
@@ -53,20 +53,20 @@ public class BrowseVar {
 
     public static final int[] COLUMNSALIGNMENT = new int[] { -1, JLabel.LEFT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT, JLabel.RIGHT};
 
-    private static final ImageIcon NO_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("noicon"));
-    private static final ImageIcon DOUBLE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("double"));
-    private static final ImageIcon POLYNOMIAL_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("polynomial"));
-    private static final ImageIcon BOOLEAN_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("boolean"));
-    private static final ImageIcon SPARSE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("sparse"));
-    private static final ImageIcon INT_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("int"));
-    private static final ImageIcon HANDLE_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("handle"));
-    private static final ImageIcon STRING_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("string"));
-    private static final ImageIcon FUNCTION_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("function"));
-    private static final ImageIcon LIST_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("list"));
-    private static final ImageIcon TLIST_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("tlist"));
-    private static final ImageIcon MLIST_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("mlist"));
-    private static final ImageIcon USER_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("user"));
-    private static final ImageIcon FPTR_ICON = new ImageIcon(ScilabSwingUtilities.findIcon("fptr"));
+    private static final ImageIcon NO_ICON = new ImageIcon(FindIconHelper.findIcon("noicon"));
+    private static final ImageIcon DOUBLE_ICON = new ImageIcon(FindIconHelper.findIcon("double"));
+    private static final ImageIcon POLYNOMIAL_ICON = new ImageIcon(FindIconHelper.findIcon("polynomial"));
+    private static final ImageIcon BOOLEAN_ICON = new ImageIcon(FindIconHelper.findIcon("boolean"));
+    private static final ImageIcon SPARSE_ICON = new ImageIcon(FindIconHelper.findIcon("sparse"));
+    private static final ImageIcon INT_ICON = new ImageIcon(FindIconHelper.findIcon("int"));
+    private static final ImageIcon HANDLE_ICON = new ImageIcon(FindIconHelper.findIcon("handle"));
+    private static final ImageIcon STRING_ICON = new ImageIcon(FindIconHelper.findIcon("string"));
+    private static final ImageIcon FUNCTION_ICON = new ImageIcon(FindIconHelper.findIcon("function"));
+    private static final ImageIcon LIST_ICON = new ImageIcon(FindIconHelper.findIcon("list"));
+    private static final ImageIcon TLIST_ICON = new ImageIcon(FindIconHelper.findIcon("tlist"));
+    private static final ImageIcon MLIST_ICON = new ImageIcon(FindIconHelper.findIcon("mlist"));
+    private static final ImageIcon USER_ICON = new ImageIcon(FindIconHelper.findIcon("user"));
+    private static final ImageIcon FPTR_ICON = new ImageIcon(FindIconHelper.findIcon("fptr"));
 
     /**
      * Default private constructor for utility class
@@ -140,13 +140,18 @@ public class BrowseVar {
             data[i][NAME_COLUMN_INDEX] = dataNames[i];
             data[i][SIZE_COLUMN_INDEX] = dataSizes[i];
             data[i][TYPE_DESC_COLUMN_INDEX] = ScilabTypeEnumDescription.getTypeDescriptionFromId(dataTypes[i]);
+
             if (dataTypes[i] == ScilabTypeEnum.sci_ints.swigValue() && dataIntegerTypes[i] != 0) {
                 // It is an integer. We want to detail the precision of the int
                 data[i][TYPE_DESC_COLUMN_INDEX] = data[i][TYPE_DESC_COLUMN_INDEX] + " " + dataIntegerTypes[i];
             }
+
             if ((dataTypes[i] == ScilabTypeEnum.sci_tlist.swigValue() || dataTypes[i] == ScilabTypeEnum.sci_mlist.swigValue()) && !variableListTypes[i].equals("")) {
+                // Improve the display of the list
+                String varType = ScilabTypeEnumDescription.getListTypeDescription(variableListTypes[i]);
+
                 // It is a tlist and we want to display the user datatype
-                data[i][TYPE_DESC_COLUMN_INDEX] = variableListTypes[i] + " (" + data[i][TYPE_DESC_COLUMN_INDEX] + ")";
+                data[i][TYPE_DESC_COLUMN_INDEX] = varType + " (" + data[i][TYPE_DESC_COLUMN_INDEX] + ")";
             }
             data[i][VISIBILITY_COLUMN_INDEX] = dataVisibility[i];
             data[i][BYTES_COLUMN_INDEX] = dataBytes[i];

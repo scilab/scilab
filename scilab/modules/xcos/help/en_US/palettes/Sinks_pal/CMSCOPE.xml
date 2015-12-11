@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scicos
- * 
+ *
  * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
  * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
- * 
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
  *  (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
- * 
+ *
  * See the file ./license.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="CMSCOPE">
@@ -97,7 +97,7 @@
             block displays its input with respect to simulation time. The Scope
             block can have multiple axes (one per port); all axes have a common
             time range with independent y-axes. The Scope allows you to adjust the
-            amount of time and the range of input values displayed. 
+            amount of time and the range of input values displayed.
             
         </para>
     </refsection>
@@ -126,19 +126,7 @@
                     <emphasis role="bold">Drawing colors </emphasis>
                 </para>
                 <para>
-                    a vector of integers. The i-th element is the color number (
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CMSCOPE_img3_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    ) or dash type (
-                    <inlinemediaobject>
-                        <imageobject>
-                            <imagedata fileref="../../../../help/images/CMSCOPE_img4_eng.gif" align="center" valign="middle"/>
-                        </imageobject>
-                    </inlinemediaobject>
-                    ) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.
+                    a vector of integers. The i-th element is the color number (≥ 0) or marker type (&lt; 0) used to draw the evolution of the i-th input port signal. See<emphasis role="bold">plot2d</emphasis> for color (dash type) definitions.
                 </para>
                 <para> Properties : Type 'vec' of size -1 </para>
             </listitem>
@@ -200,7 +188,7 @@
                     <emphasis role="bold">Accept herited events 0/1</emphasis>
                 </para>
                 <para>
-                    if 0<emphasis role="bold">CSCOPE_f</emphasis> draws a new point only when an event occurs on its event input port. if 1<emphasis role="bold">CSCOPE_f</emphasis> draws a new point when an event occurs on its event input port and when it's regular input changes due to an event on an other upstrem block (herited events).
+                    if 0<emphasis role="bold">CSCOPE_f</emphasis> draws a new point only when an event occurs on its event input port. if 1<emphasis role="bold">CSCOPE_f</emphasis> draws a new point when an event occurs on its event input port and when it's regular input changes due to an event on an other upstream block (herited events).
                 </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>
@@ -295,5 +283,15 @@
                 <para> SCI/modules/scicos_blocks/src/c/cmscope.c (Type 4)</para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_CMSCOPE">
+        <title>Multi display scope example</title>
+        <link type="scilab" linkend="scilab.xcos/xcos/tests/unit_tests/cmscope.zcos">
+            <inlinemediaobject>
+                <imageobject>
+                    <imagedata align="center" fileref="../../../../tests/unit_tests/cmscope.zcos" valign="middle"/>
+                </imageobject>
+            </inlinemediaobject>
+        </link>
     </refsection>
 </refentry>

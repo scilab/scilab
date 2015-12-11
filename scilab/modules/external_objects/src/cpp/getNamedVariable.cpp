@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -35,7 +35,7 @@ int ScilabGateway::getNamedVariable(char * fname, const int envId, void * pvApiC
     {
         idObj = env.getNamedVariable(varName);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         freeAllocatedSingleString(varName);
         throw;
@@ -46,7 +46,7 @@ int ScilabGateway::getNamedVariable(char * fname, const int envId, void * pvApiC
     {
         ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, idObj, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         env.removeobject(idObj);
         throw;

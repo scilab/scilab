@@ -365,9 +365,6 @@
     <ClCompile Include="..\foriterator.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\fromws_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\gain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -974,6 +971,9 @@
     <ClCompile Include="..\..\cpp\HelpersCLI.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cpp\fromws_c.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\blocks.h">
@@ -1034,7 +1034,7 @@
     <None Include="..\Slicot_Import.def">
       <Filter>Source Files</Filter>
     </None>
-    <None Include="..\core_import.def">
+    <None Include="..\core_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
   </ItemGroup>

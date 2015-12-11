@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,7 +18,7 @@ import java.io.File;
 import javax.swing.SwingUtilities;
 
 import org.scilab.modules.commons.OS;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.ui_data.filebrowser.SwingScilabTreeTable;
@@ -66,7 +66,7 @@ public class EditFileWithDefaultAppAction extends CommonCallBack {
                     dt.edit(file);
                 }
             } catch (Exception e) {
-                ScilabModalDialog.show((SwingScilabTab) SwingUtilities.getAncestorOfClass(SwingScilabTab.class, table), String.format(UiDataMessages.CANNOTREAD, file.getName()));
+                ScilabModalDialog.show((SwingScilabDockablePanel) SwingUtilities.getAncestorOfClass(SwingScilabDockablePanel.class, table), String.format(UiDataMessages.CANNOTREAD, file.getName()));
             }
         }
     }

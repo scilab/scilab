@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Farid BELAHCENE
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: ajout du contrôle d'erreur
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="intc">
+    <refnamediv>
+        <refname>intc</refname>
+        <refpurpose>intégrale de Cauchy</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[y [,err]] = intc(a, b, f [,abserr [,relerr]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>a, b</term>
+                <listitem>
+                    <para>scalaires complexes</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>f</term>
+                <listitem>
+                    <para>fonction "externe"</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>abserr, rerr</term>
+                <listitem>
+                    <para>scalaires réels, erreurs absolue et relative recherchées.
+                        Valeurs par défaut: <literal>1.d-14</literal> et <literal>1d-8</literal>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>err</term>
+                <listitem>
+                    <para>scalaire réel, erreur absolue estimée sur le résultat.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Si <literal>f</literal> est une fonction complexe, <literal>intc(a, b, f)</literal>
+            calcule l'intérgale de <literal>a</literal> à <literal>b</literal> de <literal>f(z)dz</literal> le long
+            du segment <literal>[a b]</literal> du plan complexe.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+function y = f(z)
+  y = z^(3 + %pi * %i)
+endfunction
+
+intc(1+%i, 4-%i, f)
+
+[r, err] = intc(1+%i, 4-%i, f, 1d-10, 1d-6)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="intg">intg</link>
+            </member>
+            <member>
+                <link linkend="intl">intl</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>Ajout des erreurs absolue et relative (entrée) et absolue (sortie).</revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

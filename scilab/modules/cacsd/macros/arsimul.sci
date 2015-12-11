@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
@@ -124,7 +124,7 @@ function z=arsimul(x1,x2,x3,x4,x5,x6,x7,x8)
     // result dimensions.
     //
     xi=[0*ones(al,1);xi];
-    z=ode("discret",xi,0,1:Nu,fff);
+    z=ode("discrete",xi,0,1:Nu,fff);
     // Now z contains y_{1},.....y_{Nu};
     z=z(1:al,:)
 endfunction

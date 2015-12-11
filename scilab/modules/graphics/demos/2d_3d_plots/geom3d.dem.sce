@@ -40,10 +40,18 @@ function demo_geom3d()
     current_axe.rotation_angles = [70,47];
     current_axe.background      = BackgroundColorId;
 
-    // A second 2d graphics'
-    [x1,y1] = geom3d([0,0],[0,0],[5,0]);
-    xsegs(x1,y1);
-    xstring(x1(1),y1(1),"The point (0,0,0)");
+    // Add special point for datatip
+    param3d(0, 0, 0);
+    e = gce();
+    dt = datatipCreate(e, 0);
+    function str=mydisplay(h)
+        pt = h.data;
+        str = msprintf('The point\n (%0.2g,%0.2g,%0.2g)', pt(1), pt(2), pt(3))
+    endfunction
+    datatipSetDisplay(dt,"mydisplay")
+
+    a = gca();
+    a.rotation_angles = [75, 225];
 
     xtitle(my_plot_desc," "," "," ");
 

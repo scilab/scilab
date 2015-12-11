@@ -6,13 +6,14 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
 #ifndef __FPRINTFMAT_H__
 #define __FPRINTFMAT_H__
 
+#include "dynlib_fileio.h"
 typedef enum
 {
     FPRINTFMAT_NO_ERROR = 0,
@@ -25,9 +26,9 @@ typedef enum
 #define DEFAULT_FPRINTFMAT_FORMAT "%lf"
 #define DEFAULT_FPRINTFMAT_SEPARATOR " "
 
-fprintfMatError fprintfMat(char *filename, char *format, char *separator,
-                           double *MatrixValues, int m, int n,
-                           char **textAdded, int sizeTextAdded);
+FILEIO_IMPEXP fprintfMatError fprintfMat(char *filename, char *format, char *separator,
+        double *MatrixValues, int m, int n,
+        char **textAdded, int sizeTextAdded);
 
 #endif /* __FPRINTFMAT_H__ */
 /*--------------------------------------------------------------------------*/

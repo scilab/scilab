@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,11 +29,11 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-static int getInitialRectangle(double initRect[4]);
-static int getEditionMode(int rhsPos);
-static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSize);
+static int getInitialRectangle(double initRect[4], void* pvApiCtx);
+static int getEditionMode(int rhsPos, void* pvApiCtx);
+static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSize, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-static int getInitialRectangle(double initRect[4])
+static int getInitialRectangle(double initRect[4], void* pvApiCtx)
 {
     SciErr sciErr;
     int rectNbRow = 0;
@@ -57,7 +57,7 @@ static int getInitialRectangle(double initRect[4])
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &rectNbRow, &rectNbCol, &rectStackPointer);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), "rubberbox", 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), "rubberbox", 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -75,7 +75,7 @@ static int getInitialRectangle(double initRect[4])
     /* pointer on the stack */
     rect = (rectStackPointer);
 
-    /* intialize to 0 */
+    /* initialize to 0 */
     for (i = 0; i < 4; i++)
     {
         initRect[i] = 0.0;
@@ -89,7 +89,7 @@ static int getInitialRectangle(double initRect[4])
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-static int getEditionMode(int rhsPos)
+static int getEditionMode(int rhsPos, void* pvApiCtx)
 {
     SciErr sciErr;
     int nbRow = 0;
@@ -110,7 +110,7 @@ static int getEditionMode(int rhsPos)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: Boolean matrix expected.\n"), "rubberbox", rhsPos);
+        Scierror(202, _("%s: Wrong type for argument #%d: Boolean matrix expected.\n"), "rubberbox", rhsPos);
         return 1;
     }
 
@@ -132,7 +132,7 @@ static int getEditionMode(int rhsPos)
 
 }
 /*--------------------------------------------------------------------------*/
-static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSize)
+static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSize, void* pvApiCtx)
 {
     SciErr sciErr;
     int zero = 0;
@@ -206,7 +206,7 @@ static int returnRectAndButton(const double *_piJavaValues, int _iSelectedRectSi
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_rubberbox(char * fname, unsigned long fname_len)
+int sci_rubberbox(char * fname, void *pvApiCtx)
 {
     /* [final_rect, btn] = rubberbox([initial_rect],[edition_mode]) */
 
@@ -214,8 +214,9 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
     int initialRectSize = 0;
 
     double *piJavaValues = NULL;
-    char *pFigureUID = NULL;
-    char *pSubwinUID = (char*)getOrCreateDefaultSubwin();
+    int iFigureUID = 0;
+    int* piFigureUID = &iFigureUID;
+    int iSubwinUID = getOrCreateDefaultSubwin();
     int iView = 0;
     int* piView = &iView;
 
@@ -225,8 +226,8 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
     CheckOutputArgument(pvApiCtx, 1, 2);
     // iView == 1 => 2D
     // else 3D
-    getGraphicObjectProperty(pSubwinUID, __GO_VIEW__, jni_int, (void**)&piView);
-    getGraphicObjectProperty(pSubwinUID, __GO_PARENT__, jni_string, (void **)&pFigureUID);
+    getGraphicObjectProperty(iSubwinUID, __GO_VIEW__, jni_int, (void**)&piView);
+    iFigureUID = getParentObject(iSubwinUID);
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
@@ -247,7 +248,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
         if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
         {
             /* rubberbox(initial_rect) */
-            if (getInitialRectangle(initialRect) == 1)
+            if (getInitialRectangle(initialRect, pvApiCtx) == 1)
             {
                 bClickMode = TRUE;
                 initialRectSize = 4;
@@ -261,7 +262,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
         else if (checkInputArgumentType(pvApiCtx, 1, sci_boolean))
         {
             /* rubberbox(editionMode) */
-            int editionModeStatus = getEditionMode(1);
+            int editionModeStatus = getEditionMode(1, pvApiCtx);
             initialRectSize = 0;
             if (editionModeStatus == 1)
             {
@@ -281,7 +282,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
         }
         else
         {
-            /* Wrong parameter specified, neither edition mode nor intial rect */
+            /* Wrong parameter specified, neither edition mode nor initial rect */
             Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector or a boolean expected.\n"), fname, 1);
             return -1;
         }
@@ -290,7 +291,7 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
     {
         /* rubberbox(initial_rect, edition_mode) */
 
-        /* Default values, intial rect and edition mode to false */
+        /* Default values, initial rect and edition mode to false */
         double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
         int editionModeStatus = 0;
 
@@ -315,14 +316,14 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
         }
 
         /* Getting initial rect */
-        if (getInitialRectangle(initialRect) != 1)
+        if (getInitialRectangle(initialRect, pvApiCtx) != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: Vector of size %d or %d expected.\n"), fname, 1, 2, 4);
             return -1;
         }
 
         /* Getting edition mode */
-        editionModeStatus = getEditionMode(2);
+        editionModeStatus = getEditionMode(2, pvApiCtx);
 
         if (editionModeStatus == 1)
         {
@@ -349,20 +350,20 @@ int sci_rubberbox(char * fname, unsigned long fname_len)
 
     if (bClickMode == TRUE)
     {
-        piJavaValues = javaClickRubberBox(pFigureUID, initialRect, initialRectSize);
+        piJavaValues = javaClickRubberBox(iFigureUID, initialRect, initialRectSize);
     }
     else
     {
-        piJavaValues = javaDragRubberBox(pFigureUID);
+        piJavaValues = javaDragRubberBox(iFigureUID);
     }
     /* Put values into the stack and return */
     if (iView == 1)
     {
-        return returnRectAndButton(piJavaValues, 6);
+        return returnRectAndButton(piJavaValues, 6, pvApiCtx);
     }
     else
     {
-        return returnRectAndButton(piJavaValues, 4);
+        return returnRectAndButton(piJavaValues, 4, pvApiCtx);
     }
 }
 

@@ -7,31 +7,33 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * This code is also published under the GPL v3 license.
  *
  */
 #include <string.h>
 #include <stdio.h>
+
+#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "csvWrite.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "csvDefault.h"
 #include "checkCsvWriteFormat.h"
 #include "gw_csv_helpers.h"
+#include "os_string.h"
 
+
+static void freeVar(char** separator, char** decimal, char** filename, char** precisionFormat, char*** pHeadersLines, int sizeHeader);
 // =============================================================================
 // csvWrite(M, filename[, separator, decimal, precision]) */
 // with M string or double (not complex)
 // =============================================================================
-int sci_csvWrite(char *fname, unsigned long fname_len)
+int sci_csvWrite(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -70,16 +72,13 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
         pHeadersLines = csv_getArgumentAsMatrixOfString(pvApiCtx, 6, fname, &m6, &n6, &iErr);
         if (iErr)
         {
+            freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
             return 0;
         }
         isOnlyRowOrCol = ((m6 > 1) && (n6 == 1)) || ((m6 == 1) && (n6 > 1)) || ((m6 == 1) && (n6 == 1));
         if (!isOnlyRowOrCol)
         {
-            if (pHeadersLines)
-            {
-                freeArrayOfString(pHeadersLines, nbHeadersLines);
-                pHeadersLines = NULL;
-            }
+            freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
             Scierror(999, _("%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array of strings expected.\n"), fname, 6);
             return 0;
         }
@@ -94,22 +93,14 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
             int iFormatValue = (int) csv_getArgumentAsScalarDouble(pvApiCtx, 5, fname, &iErr);
             if (iErr)
             {
-                if (pHeadersLines)
-                {
-                    freeArrayOfString(pHeadersLines, nbHeadersLines);
-                    pHeadersLines = NULL;
-                }
+                freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
                 return 0;
             }
 
             if ((iFormatValue < 1) || (iFormatValue > 17))
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: A double (value 1 to 17) expected.\n"), fname, 5);
-                if (pHeadersLines)
-                {
-                    freeArrayOfString(pHeadersLines, nbHeadersLines);
-                    pHeadersLines = NULL;
-                }
+                freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
                 return 0;
             }
 
@@ -117,11 +108,7 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
             if (precisionFormat == NULL)
             {
                 Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                if (pHeadersLines)
-                {
-                    freeArrayOfString(pHeadersLines, nbHeadersLines);
-                    pHeadersLines = NULL;
-                }
+                freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
                 return 0;
             }
             sprintf(precisionFormat, FORMAT_FIELDVALUESTR, iFormatValue);
@@ -131,28 +118,21 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
             precisionFormat = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 5, fname, getCsvDefaultPrecision(), &iErr);
             if (iErr)
             {
+                freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
                 return 0;
             }
+
             if (checkCsvWriteFormat(precisionFormat))
             {
                 Scierror(999, _("%s: Not supported format %s.\n"), fname, precisionFormat);
-                if (precisionFormat)
-                {
-                    FREE(precisionFormat);
-                    precisionFormat = NULL;
-                }
-                if (pHeadersLines)
-                {
-                    freeArrayOfString(pHeadersLines, nbHeadersLines);
-                    pHeadersLines = NULL;
-                }
+                freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
                 return 0;
             }
         }
     }
     else
     {
-        precisionFormat = strdup(getCsvDefaultPrecision());
+        precisionFormat = os_strdup(getCsvDefaultPrecision());
     }
 
     if (Rhs > 3)
@@ -160,16 +140,7 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
         decimal = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 4, fname, getCsvDefaultDecimal(), &iErr);
         if (iErr)
         {
-            if (precisionFormat)
-            {
-                FREE(precisionFormat);
-                precisionFormat = NULL;
-            }
-            if (pHeadersLines)
-            {
-                freeArrayOfString(pHeadersLines, nbHeadersLines);
-                pHeadersLines = NULL;
-            }
+            freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
             return 0;
         }
 
@@ -177,13 +148,13 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
         {
             //invalid value
             Scierror(999, _("%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"), "write_csv", 4, ".", ",");
-            FREE(precisionFormat);
+            freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
             return 1;
         }
     }
     else
     {
-        decimal = strdup(getCsvDefaultDecimal());
+        decimal = os_strdup(getCsvDefaultDecimal());
     }
 
     if (Rhs > 2)
@@ -191,83 +162,26 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
         separator = csv_getArgumentAsStringWithEmptyManagement(pvApiCtx, 3, fname, getCsvDefaultSeparator(), &iErr);
         if (iErr)
         {
-            if (pHeadersLines)
-            {
-                freeArrayOfString(pHeadersLines, nbHeadersLines);
-                pHeadersLines = NULL;
-            }
-            if (precisionFormat)
-            {
-                FREE(precisionFormat);
-                precisionFormat = NULL;
-            }
-            if (decimal)
-            {
-                FREE(decimal);
-                decimal = NULL;
-            }
+            freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
             return 0;
         }
     }
     else
     {
-        separator = strdup(getCsvDefaultSeparator());
+        separator = os_strdup(getCsvDefaultSeparator());
     }
 
     filename = csv_getArgumentAsString(pvApiCtx, 2, fname, &iErr);
     if (iErr)
     {
-        if (pHeadersLines)
-        {
-            freeArrayOfString(pHeadersLines, nbHeadersLines);
-            pHeadersLines = NULL;
-        }
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-        if (precisionFormat)
-        {
-            FREE(precisionFormat);
-            precisionFormat = NULL;
-        }
-        if (decimal)
-        {
-            FREE(decimal);
-            decimal = NULL;
-        }
+        freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
         return 0;
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
     if (sciErr.iErr)
     {
-        if (pHeadersLines)
-        {
-            freeArrayOfString(pHeadersLines, nbHeadersLines);
-            pHeadersLines = NULL;
-        }
-        if (filename)
-        {
-            FREE(filename);
-            filename = NULL;
-        }
-        if (precisionFormat)
-        {
-            FREE(precisionFormat);
-            precisionFormat = NULL;
-        }
-        if (decimal)
-        {
-            FREE(decimal);
-            decimal = NULL;
-        }
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
+        freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
         printError(&sciErr, 0);
         return 0;
     }
@@ -275,31 +189,7 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
     sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType1);
     if (sciErr.iErr)
     {
-        if (pHeadersLines)
-        {
-            freeArrayOfString(pHeadersLines, nbHeadersLines);
-            pHeadersLines = NULL;
-        }
-        if (filename)
-        {
-            FREE(filename);
-            filename = NULL;
-        }
-        if (precisionFormat)
-        {
-            FREE(precisionFormat);
-            precisionFormat = NULL;
-        }
-        if (decimal)
-        {
-            FREE(decimal);
-            decimal = NULL;
-        }
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
+        freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
         printError(&sciErr, 0);
         return 0;
     }
@@ -309,31 +199,7 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
         pStringValues = csv_getArgumentAsMatrixOfString(pvApiCtx, 1, fname, &m1, &n1, &iErr);
         if (iErr)
         {
-            if (pHeadersLines)
-            {
-                freeArrayOfString(pHeadersLines, nbHeadersLines);
-                pHeadersLines = NULL;
-            }
-            if (filename)
-            {
-                FREE(filename);
-                filename = NULL;
-            }
-            if (precisionFormat)
-            {
-                FREE(precisionFormat);
-                precisionFormat = NULL;
-            }
-            if (decimal)
-            {
-                FREE(decimal);
-                decimal = NULL;
-            }
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
+            freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
             return 0;
         }
     }
@@ -351,63 +217,14 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
 
         if (sciErr.iErr)
         {
-            if (pHeadersLines)
-            {
-                freeArrayOfString(pHeadersLines, nbHeadersLines);
-                pHeadersLines = NULL;
-            }
-            if (precisionFormat)
-            {
-                FREE(precisionFormat);
-                precisionFormat = NULL;
-            }
-            if (filename)
-            {
-                FREE(filename);
-                filename = NULL;
-            }
-            if (decimal)
-            {
-                FREE(decimal);
-                decimal = NULL;
-            }
-            if (separator)
-            {
-                FREE(separator);
-                separator = NULL;
-            }
+            freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
             printError(&sciErr, 0);
             return 0;
         }
     }
     else
     {
-        if (pHeadersLines)
-        {
-            freeArrayOfString(pHeadersLines, nbHeadersLines);
-            pHeadersLines = NULL;
-        }
-        if (precisionFormat)
-        {
-            FREE(precisionFormat);
-            precisionFormat = NULL;
-        }
-        if (filename)
-        {
-            FREE(filename);
-            filename = NULL;
-        }
-        if (decimal)
-        {
-            FREE(decimal);
-            decimal = NULL;
-        }
-        if (separator)
-        {
-            FREE(separator);
-            separator = NULL;
-        }
-
+        freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
         Scierror(999, _("%s: Wrong type for input argument #%d: A matrix of string or a matrix of real expected.\n"), fname, 1);
         return 0;
     }
@@ -444,32 +261,6 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
         }
     }
 
-    if (pHeadersLines)
-    {
-        freeArrayOfString(pHeadersLines, nbHeadersLines);
-        pHeadersLines = NULL;
-    }
-    if (pStringValues)
-    {
-        freeArrayOfString(pStringValues, m1 * n1);
-        pStringValues = NULL;
-    }
-    if (decimal)
-    {
-        FREE(decimal);
-        decimal = NULL;
-    }
-    if (separator)
-    {
-        FREE(separator);
-        separator = NULL;
-    }
-    if (precisionFormat)
-    {
-        FREE(precisionFormat);
-        precisionFormat = NULL;
-    }
-
     switch (csvError)
     {
         case CSV_WRITE_SEPARATOR_DECIMAL_EQUAL:
@@ -497,13 +288,41 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
         break;
     }
 
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-
+    freeVar(&separator, &decimal, &filename, &precisionFormat, &pHeadersLines, nbHeadersLines);
     return 0;
 }
 // =============================================================================
+static void freeVar(char** separator, char** decimal, char** filename, char** precisionFormat, char*** pHeadersLines, int sizeHeader)
+{
+    if (separator && *separator)
+    {
+        FREE(*separator);
+        *separator = NULL;
+    }
+
+    if (decimal && *decimal)
+    {
+        FREE(*decimal);
+        *decimal = NULL;
+    }
+
+    if (filename && *filename)
+    {
+        FREE(*filename);
+        *filename = NULL;
+    }
+
+    if (precisionFormat && *precisionFormat)
+    {
+        FREE(*precisionFormat);
+        *precisionFormat = NULL;
+    }
+
+    if (pHeadersLines && *pHeadersLines)
+    {
+        freeArrayOfString(*pHeadersLines, sizeHeader);
+        *pHeadersLines = NULL;
+    }
+
+}
 

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //=============================================================================
 function bOK = configure_msvc()
@@ -27,16 +27,11 @@ function bOK = configure_msvc()
     end
 
     msvc = findmsvccompiler();
-    if win64() & detectmsvc64tools() then
-        bOK = dlwConfigureVcx64();
-    else
-        bOK = dlwConfigureVcx86();
-        if ~bOK then
-            warning(msprintf(gettext("Microsoft Visual Studio C x86 Compiler not found.")));
-        end
+    if ~isempty(msvc) then
+        val = setenv("SCILAB_MSVC", "1");
     end
 
-
+    bOK = %T;
 endfunction
 //=============================================================================
 

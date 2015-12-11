@@ -116,11 +116,21 @@
             </literal>
             and the structure shown below:
         </para>
-        <para/>
         <mediaobject>
             <imageobject>
-                <imagedata fileref="../../../images/sources_pal/en_US/rfile_f_record_en_US.png" align="center"/>
+                <imagedata fileref="../../../images/palettes/sources_pal/en_US/rfile_f_record_en_US.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Field #1";
+box "Field #2";
+box "...";
+box "Field #(N-1)";
+box "Field #N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>
             The <emphasis role="bold">Time Record Selection</emphasis> parameter allows to user the selection of one field in the
@@ -324,14 +334,10 @@
         <para>
             It use its activation output as event input of CSCOPE. In the file, the first field of the record is the time, the two others are regular data. The feedback of the
             activation output on event input ensures the file sequential read.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
-                Open this example in Xcos
-            </link>
-            .
         </para>
         <para/>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sources_pal/en_US/rfile_f_en_US.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata fileref="../../../../examples/sources_pal/en_US/rfile_f_en_US.zcos" align="center" valign="middle"/>

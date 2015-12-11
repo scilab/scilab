@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,26 +28,26 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_fractional_font_property(void* _pvCtx, char* pobjUID)
+void* get_fractional_font_property(void* _pvCtx, int iObjUID)
 {
     int iFractionalFont = 0;
     int* fractionalFont = &iFractionalFont;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&fractionalFont);
+    getGraphicObjectProperty(iObjUID, __GO_FONT_FRACTIONAL__, jni_bool, (void **)&fractionalFont);
 
     if (fractionalFont == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "fractional_font");
-        return -1;
+        return NULL;
     }
 
     if (iFractionalFont)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 /*------------------------------------------------------------------------*/

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -38,7 +38,7 @@ public final class ImageExporter {
      * @param figureIndex index of the figure to export
      * @return copy of the OpenGL canvas of the figure or null if an error occurred
      */
-    public static Image imageExport(String uid) {
+    public static Image imageExport(Integer uid) {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
         Canvas canvas = visitor.getCanvas();
         if (canvas instanceof JoGLCanvas) {

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -67,13 +67,24 @@ matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matf
             break;
         case sci_mlist:
             /* Only cells structs and hypermatrices are managed */
-            if (item_position > 0)
+            if (isCell(pvApiCtx, var_addr))
             {
-                tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+                tmp_res = GetCellVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+            }
+            else if (isStruct(pvApiCtx, var_addr))
+            {
+                tmp_res = GetStructVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
             }
             else
             {
-                tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, -1);
+                if (item_position > 0)
+                {
+                    tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
+                }
+                else
+                {
+                    tmp_res = GetMlistVariable(pvApiCtx, iVar, name, matfile_version, parent, -1);
+                }
             }
             break;
         case sci_sparse:

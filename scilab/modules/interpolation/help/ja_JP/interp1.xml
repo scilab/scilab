@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="interp1" xml:lang="ja">
@@ -152,6 +152,17 @@ plot(xx,[yy1;yy2;yy3],x,y,'*')
 xtitle('interpolation of square function')
 legend(['linear','spline','nearest'],a=2)
  ]]></programlisting>
+        <scilab:image>
+            x=linspace(0,3,20);
+            y=x.^2;
+            xx=linspace(0,3,100);
+            yy1=interp1(x,y,xx,'linear');
+            yy2=interp1(x,y,xx,'spline');
+            yy3=interp1(x,y,xx,'nearest');
+            plot(xx',[yy1;yy2;yy3]',x,y,'*')
+            xtitle('interpolation of square function')
+            legend(['linear','spline','nearest'],a=2)
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>参照</title>
@@ -166,5 +177,14 @@ legend(['linear','spline','nearest'],a=2)
                 <link linkend="splin">splin</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>以前では, 入力引数の虚部は暗黙のうちに無視されていました.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

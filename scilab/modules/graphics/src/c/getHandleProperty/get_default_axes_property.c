@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,25 +19,45 @@
 /*        handle                                                          */
 /*------------------------------------------------------------------------*/
 
+#include "graphicObjectProperties.h"
+#include "getGraphicObjectProperty.h"
 #include "getHandleProperty.h"
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "HandleManagement.h"
 #include "AxesModel.h"
 /*--------------------------------------------------------------------------*/
-int get_default_axes_property(void* _pvCtx, char* pobjUID)
+void* get_default_axes_property(void* _pvCtx, int iObjUID)
 {
 
-    if (pobjUID != NULL)
+    if (iObjUID != 0)
     {
-        /* This property should not be called on an handle */
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_axes");
-        return -1;
+        /* This property exists for figures since Scilab 5.5.0 */
+
+        int iVisible = 0;
+        int* piVisible = &iVisible;
+        getGraphicObjectProperty(iObjUID, __GO_DEFAULT_AXES__, jni_bool, (void **)&piVisible);
+
+        if (piVisible == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "default_axes");
+            return FALSE;
+        }
+
+        if (iVisible == 0)
+        {
+            return sciReturnString("off");
+        }
+        else
+        {
+            return sciReturnString("on");
+        }
     }
 
-    return sciReturnHandle(_pvCtx, getHandle(getAxesModel()));
+    /* Return default axes (gda()) */
+    return sciReturnHandle(getHandle(getAxesModel()));
 }
 /*--------------------------------------------------------------------------*/

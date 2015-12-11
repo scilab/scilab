@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ode" xml:lang="ru">
@@ -546,7 +546,7 @@ ccode=['#include <math.h>'
        '}']
 mputl(ccode,TMPDIR+'/myode.c') // создаём C-файл
 // Компилируем
-ilib_for_link('myode','myode.c',[],'c',TMPDIR+'/Makefile',TMPDIR+'/loader.sce');
+ilib_for_link('myode','myode.c',[],'c',[],TMPDIR+'/loader.sce');
 exec(TMPDIR+'/loader.sce') // пошаговая компоновка
 y0=0;
 t0=0;

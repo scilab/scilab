@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,7 +19,7 @@
 * returns user locale string
 * @return Locale user example fr_FR or en_US
 */
-char* getLocaleUserInfo(void);
+wchar_t* getLocaleUserInfo(void);
 
 /**
 * returns system locale string

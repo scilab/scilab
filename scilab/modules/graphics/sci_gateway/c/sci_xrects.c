@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_xrects(char *fname, unsigned long fname_len)
+int sci_xrects(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -46,11 +46,11 @@ int sci_xrects(char *fname, unsigned long fname_len)
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     long  hdl = 0;
     int i = 0;
-    char* psubwinUID = NULL;
+    int iSubwinUID = 0;
 
     int foreground = 0;
     int *piForeground = &foreground;
-    char *pstCompoundUID = NULL;
+    int iCompoundUID = 0;
 
     CheckInputArgument(pvApiCtx, 1, 2);
 
@@ -66,7 +66,7 @@ int sci_xrects(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -91,7 +91,7 @@ int sci_xrects(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 
@@ -127,15 +127,15 @@ int sci_xrects(char *fname, unsigned long fname_len)
         }
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     // Create compound.
-    pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
+    iCompoundUID = createGraphicObject(__GO_COMPOUND__);
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(psubwinUID, pstCompoundUID);
+    setGraphicObjectRelationship(iSubwinUID, iCompoundUID);
 
     /** Get Subwin line color */
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
+    getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piForeground);
 
     for (i = 0; i < n1; ++i)
     {
@@ -165,14 +165,11 @@ int sci_xrects(char *fname, unsigned long fname_len)
             }
         }
         // Add newly created object to Compound
-        setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
+        setGraphicObjectRelationship(iCompoundUID, getObjectFromHandle(hdl));
     }
 
     /** make Compound current object **/
-    setCurrentObject(pstCompoundUID);
-
-    releaseGraphicObjectProperty(-1, pstCompoundUID, jni_string, 0);
-
+    setCurrentObject(iCompoundUID);
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
 

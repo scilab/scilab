@@ -2,9 +2,9 @@ LIBRARY    randlib.dll
 
 
 EXPORTS
-  sgamma_
-  sexpo_
-  ignuin_
-  ignbin_
-  ignpoi_
-  ranf_
+sgamma_
+sexpo_
+ignuin_
+ignbin_
+ignpoi_
+ranf_

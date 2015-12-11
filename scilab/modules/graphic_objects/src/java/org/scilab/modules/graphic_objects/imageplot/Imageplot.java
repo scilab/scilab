@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,6 +16,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MATPLOT_TRANSLATE__;
 
 import org.scilab.modules.graphic_objects.contouredObject.ClippableContouredObject;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * ImagePlot class
@@ -86,18 +87,20 @@ public abstract class Imageplot extends ClippableContouredObject {
     }
 
     public Double[] getScale() {
-        return scale;
+        return new Double[] {scale[0], scale[1]};
     }
 
-    public void setScale(Double[] scale) {
+    public UpdateStatus setScale(Double[] scale) {
         this.scale = scale;
+        return UpdateStatus.Success;
     }
 
     public Double[] getTranslate() {
-        return translate;
+        return new Double[] {translate[0], translate[1]};
     }
 
-    public void setTranslate(Double[] translate) {
+    public UpdateStatus setTranslate(Double[] translate) {
         this.translate = translate;
+        return UpdateStatus.Success;
     }
 }

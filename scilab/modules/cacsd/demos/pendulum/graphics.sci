@@ -7,7 +7,7 @@
 
 function P=initialize_display(xg,teta)
     clf();a=gca();a.isoview="on";
-    drawlater();//f=gcf();f.pixmap='on'
+    drawlater();//f=gcf();
     a.data_bounds=[-0.4 -0.2;0.4 0.3];
     a.margins=zeros(1,4);
     y1=0;lb=l;hc=0.05;lc=0.1;teta=.25;r=0.013
@@ -108,7 +108,7 @@ endfunction
 function draw1()
     f=gcf();f.figure_position=[10 10];show_window()
     clf();
-    drawlater();//f.pixmap='on';
+    drawlater();
     f.background=color("gray");
     f.figure_size=[850,650];
     y=y(:,1:70);  n=size(y,2);
@@ -120,7 +120,7 @@ function draw1()
     a1.x_label.text="time";
     a1.y_label.text="position";
     a1.box = "on";
-    p1=xpoly(1,y(1,1));p1=gce();
+    xpoly(1,y(1,1));p1=gce();
 
     a2=newaxes();sca(a2);
     a2.axes_bounds=[0.5,0,0.5,0.5];
@@ -152,13 +152,11 @@ function draw1()
         // contains draw now
         P=set_pendulum(P,xx,tt);
     end
-    //f.pixmap='off'
 endfunction
 
 function draw2()
     f=gcf();f.figure_position=[10 10];show_window()
     clf();
-    //f.pixmap='on';
     drawlater()
     f.figure_size=[850,650];
     f.background=color("gray");
@@ -176,7 +174,7 @@ function draw2()
     a1.x_label.text="time";
     a1.y_label.text="Control (u)";
     a1.box = "on";
-    p1=xpoly(t1(1),c(1));p1=gce();
+    xpoly(t1(1),c(1));p1=gce();
 
     a2=newaxes();sca(a2);
     a2.axes_bounds=[0.5,0,0.5,0.5];
@@ -209,6 +207,5 @@ function draw2()
         // contains draw now
         P=set_pendulum(P,xx,tt);
     end
-    //f.pixmap='off'
 
 endfunction

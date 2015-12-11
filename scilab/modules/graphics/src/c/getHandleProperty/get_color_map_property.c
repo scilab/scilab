@@ -11,7 +11,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,21 +30,21 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_color_map_property(void* _pvCtx, char* pobjUID)
+void* get_color_map_property(void* _pvCtx, int iObjUID)
 {
     double *pdblColorMap = NULL;
 
     int iCmapSize = 0;
     int * piCmapSize = &iCmapSize;
 
-    getGraphicObjectProperty(pobjUID, __GO_COLORMAP_SIZE__, jni_int, (void **)&piCmapSize);
-    getGraphicObjectProperty(pobjUID, __GO_COLORMAP__, jni_double_vector, (void **)&pdblColorMap);
+    getGraphicObjectProperty(iObjUID, __GO_COLORMAP_SIZE__, jni_int, (void **)&piCmapSize);
+    getGraphicObjectProperty(iObjUID, __GO_COLORMAP__, jni_double_vector, (void **)&pdblColorMap);
     if (pdblColorMap == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_map");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnMatrix(_pvCtx, pdblColorMap, iCmapSize, 3);
+    return sciReturnMatrix(pdblColorMap, iCmapSize, 3);
 }
 /*--------------------------------------------------------------------------*/

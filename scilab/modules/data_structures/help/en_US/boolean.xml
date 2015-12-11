@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="boolean">
@@ -18,7 +18,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            A boolean variable is <constant>%T</constant> (for "true") or <constant>%F</constant> (for "false"). These variables can be used to define matrices of booleans, with the usual syntax. Boolean matrices can be manipulated as ordinary matrices for elements extraction/insertion and concatenation. Note that other usual operations (<literal>+</literal>, <literal>*</literal>, <literal>-</literal>, <literal>^</literal>, etc) are undefined for boolean matrices. Three special operators are defined for boolean matrices:
+            A boolean variable is <constant>%T</constant> (for "true") or <constant>%F</constant> (for "false"). These variables can be used to define matrices of booleans, with the usual syntax. Boolean matrices can be manipulated as ordinary matrices for elements extraction/insertion and concatenation.
+        </para>
+        <para>
+            <note>
+                Note that other usual operations (<literal>+</literal>, <literal>*</literal>, <literal>-</literal>, <literal>^</literal>, etc) are undefined for boolean matrices. Three special operators are defined for boolean matrices:
+            </note>
         </para>
         <variablelist>
             <varlistentry>

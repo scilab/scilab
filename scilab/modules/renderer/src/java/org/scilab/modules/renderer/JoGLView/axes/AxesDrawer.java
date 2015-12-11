@@ -7,12 +7,11 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.axes;
 
-import org.scilab.forge.scirenderer.Canvas;
 import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.clipping.ClippingPlane;
@@ -25,21 +24,27 @@ import org.scilab.forge.scirenderer.tranformations.TransformationStack;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
 import org.scilab.forge.scirenderer.tranformations.Vector4d;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.axes.Box;
+import org.scilab.modules.graphic_objects.axes.Camera.ViewType;
 import org.scilab.modules.graphic_objects.contouredObject.Line;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty;
 import org.scilab.modules.graphic_objects.graphicObject.ClippableProperty.ClipStateType;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
+import org.scilab.modules.graphic_objects.figure.Figure;
+import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.legend.Legend.LegendLocation;
 import org.scilab.modules.renderer.JoGLView.DrawerVisitor;
 import org.scilab.modules.renderer.JoGLView.axes.ruler.AxesRulerDrawer;
 import org.scilab.modules.renderer.JoGLView.label.AxisLabelPositioner;
 import org.scilab.modules.renderer.JoGLView.label.LabelManager;
-import org.scilab.modules.renderer.JoGLView.label.LabelPositioner;
 import org.scilab.modules.renderer.JoGLView.label.TitlePositioner;
 import org.scilab.modules.renderer.JoGLView.label.YAxisLabelPositioner;
+import org.scilab.modules.renderer.JoGLView.legend.LegendDrawer;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 import java.awt.Dimension;
 import java.awt.geom.Rectangle2D;
@@ -74,16 +79,16 @@ public class AxesDrawer {
     private final LabelManager labelManager;
 
     /** The x-axis label positioner. */
-    private final Map<String, AxisLabelPositioner> xAxisLabelPositioner = new HashMap<String, AxisLabelPositioner>();
+    private final Map<Integer, AxisLabelPositioner> xAxisLabelPositioner = new HashMap<Integer, AxisLabelPositioner>();
 
     /** The y-axis label positioner. */
-    private final Map<String, AxisLabelPositioner> yAxisLabelPositioner = new HashMap<String, AxisLabelPositioner>();
+    private final Map<Integer, AxisLabelPositioner> yAxisLabelPositioner = new HashMap<Integer, AxisLabelPositioner>();
 
     /** The z-axis label positioner. */
-    private final Map<String, AxisLabelPositioner> zAxisLabelPositioner = new HashMap<String, AxisLabelPositioner>();
+    private final Map<Integer, AxisLabelPositioner> zAxisLabelPositioner = new HashMap<Integer, AxisLabelPositioner>();
 
     /** The title positioner. */
-    private final Map<String, TitlePositioner> titlePositioner = new HashMap<String, TitlePositioner>();
+    private final Map<Integer, TitlePositioner> titlePositioner = new HashMap<Integer, TitlePositioner>();
 
     /**
      * The current reversed bounds. Used by the functions converting
@@ -101,13 +106,13 @@ public class AxesDrawer {
     private Transformation currentDataTransformation;
 
     /** The set of object to window coordinate projections associated to all the Axes drawn by this drawer. */
-    private final Map<String, Transformation> projectionMap = new HashMap<String, Transformation>();
+    private final Map<Integer, Transformation> projectionMap = new HashMap<Integer, Transformation>();
 
     /** The set of object (in 2d view mode) to window coordinate projections associated to all the Axes drawn by this drawer. */
-    private final Map<String, Transformation> projection2dViewMap = new HashMap<String, Transformation>();
+    private final Map<Integer, Transformation> projection2dViewMap = new HashMap<Integer, Transformation>();
 
     /** This is a __MAP__ */
-    private final Map<String, Transformation> sceneProjectionMap = new HashMap<String, Transformation>();
+    private final Map<Integer, Transformation> sceneProjectionMap = new HashMap<Integer, Transformation>();
 
     /**
      * Default constructor.
@@ -123,13 +128,24 @@ public class AxesDrawer {
         reversedBoundsIntervals = new double[3];
     }
 
+    /**
+     * @return the axis label manager
+     */
+    public LabelManager getLabelManager() {
+        return labelManager;
+    }
+
     public Transformation getCurrentProjection(Axes axes) throws DegenerateMatrixException {
         DrawingTools drawingTools = visitor.getDrawingTools();
-        Integer[] size = visitor.getFigure().getAxesSize();
         Transformation zoneProjection = computeZoneProjection(axes);
-        Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
+        Transformation transformation = computeBoxTransformation(axes, visitor.getCanvas().getDimension(), false);
         Transformation dataTransformation = computeDataTransformation(axes);
-        Transformation windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
+        Transformation windowTrans;
+        if (drawingTools == null) {
+            windowTrans = TransformationFactory.getIdentity();
+        } else {
+            windowTrans = drawingTools.getTransformationManager().getWindowTransformation().getInverseTransformation();
+        }
         Transformation current = zoneProjection.rightTimes(transformation);
         current = current.rightTimes(dataTransformation);
 
@@ -141,20 +157,162 @@ public class AxesDrawer {
      * @param axes the axes
      */
     public void computeRulers(Axes axes) {
-        DrawingTools drawingTools = visitor.getDrawingTools();
-        ColorMap colorMap = visitor.getColorMap();
+        Figure figure = (Figure) GraphicController.getController().getObjectFromId(axes.getParentFigure());
+
+        //figure may be null during xml loading
+        if (figure == null) {
+            return;
+        }
+
+        final ColorMap colorMap = figure.getColorMap();
         try {
-            Integer[] size = visitor.getFigure().getAxesSize();
-            double w = ((double) (int) size[0]) / 2;
-            double h = ((double) (int) size[1]) / 2;
+            Dimension dims = visitor.getCanvas().getDimension();
+            double w = dims.getWidth() / 2.0;
+            double h = dims.getHeight() / 2.0;
+
             Transformation windowTrans = TransformationFactory.getAffineTransformation(new Vector3d(w, h, 1), new Vector3d(w, h, 0));
             Transformation zoneProjection = computeZoneProjection(axes);
-            Transformation transformation = computeBoxTransformation(axes, new Dimension(size[0], size[1]), false);
+            Transformation transformation = computeBoxTransformation(axes, dims, false);
             Transformation canvasTrans = windowTrans.rightTimes(zoneProjection).rightTimes(transformation);
 
-            rulerDrawer.computeRulers(axes, this, colorMap, drawingTools, transformation, canvasTrans);
+            rulerDrawer.computeRulers(axes, this, colorMap, transformation, canvasTrans);
         } catch (DegenerateMatrixException e) {
 
+        }
+    }
+
+    public void computeMargins(Axes axes) {
+        if (axes.getAutoMargins() && axes.getViewAsEnum() == ViewType.VIEW_2D) {
+            Figure figure = (Figure) GraphicController.getController().getObjectFromId(axes.getParentFigure());
+            ColorMap colorMap = null;
+            if (figure != null) {
+                colorMap = figure.getColorMap();
+            } else {
+                return;
+            }
+
+            Dimension[] marginLabels = labelManager.getLabelsSize(colorMap, axes, this);
+            Integer[] size = {visitor.getCanvas().getWidth(), visitor.getCanvas().getHeight()};
+            if (size[0] != 0 && size[1] != 0) {
+                // [x_left, y_up, w, h]
+                Double[] axesBounds = axes.getAxesBounds();
+                // [l, r, t, b]
+                Double[] margins = axes.getMargins();
+                // m is a copy of margins
+                Double[] mt = new Double[] { 0., 0., 0., 0. };
+                Double[] ml = new Double[] { 0., 0., 0., 0. };
+                Double[] ma = new Double[] { 0., 0., 0., 0. };
+                Double[] m = new Double[] { 0., 0., 0., 0. };
+                AxisProperty.AxisLocation xloc = axes.getXAxis().getAxisLocation();
+                AxisProperty.AxisLocation yloc = axes.getYAxis().getAxisLocation();
+                final double DEFAULT_MARGIN = 0.125;
+
+                // We compute the adapted margins for axes titles.
+                if (marginLabels[0].height != 0 || marginLabels[2].height != 0 || marginLabels[1].width != 0) {
+                    if (marginLabels[2].height != 0) {
+                        final double th = (marginLabels[2].height + 2 + TitlePositioner.TITLEOFFSET) / (size[1] * axesBounds[3]);
+                        mt[2] = th;
+                    }
+
+                    if (marginLabels[0].height != 0 && (xloc == AxisProperty.AxisLocation.BOTTOM || xloc == AxisProperty.AxisLocation.TOP)) {
+                        final double xh = (marginLabels[0].height + 2) / (size[1] * axesBounds[3]);
+                        if (xloc == AxisProperty.AxisLocation.BOTTOM) {
+                            mt[3] = xh;
+                        } else {
+                            mt[2] += xh;
+                        }
+                    }
+
+                    if (marginLabels[1].width != 0 && (yloc == AxisProperty.AxisLocation.LEFT || yloc == AxisProperty.AxisLocation.RIGHT)) {
+                        final double yh = (marginLabels[1].width + 2) / (size[0] * axesBounds[2]);
+                        if (yloc == AxisProperty.AxisLocation.LEFT) {
+                            mt[0] = yh;
+                        } else {
+                            mt[1] = yh;
+                        }
+                    }
+                }
+
+                //computeRulers(axes);
+                final double xratio = rulerDrawer.getRulerDrawer(axes, 0).getDistanceRatio();
+                final double yratio = rulerDrawer.getRulerDrawer(axes, 1).getDistanceRatio();
+
+                if (xloc == AxisProperty.AxisLocation.BOTTOM) {
+                    ma[3] = (1 - margins[2] - margins[3]) * xratio / 2.;
+                } else if (xloc == AxisProperty.AxisLocation.TOP) {
+                    ma[2] = (1 - margins[2] - margins[3]) * xratio / 2.;
+                }
+
+                if (yloc == AxisProperty.AxisLocation.LEFT) {
+                    ma[0] = (1 - margins[0] - margins[1]) * yratio / 2.;
+                } else if (yloc == AxisProperty.AxisLocation.RIGHT) {
+                    ma[1] = (1 - margins[0] - margins[1]) * yratio / 2.;
+                }
+
+                // Get the legend if any (only one ???)
+                if (axes.getChildren() != null) {
+                    for (Integer i : axes.getChildren()) {
+                        GraphicObject child = GraphicController.getController().getObjectFromId(i);
+                        if (child instanceof Legend) {
+                            Legend legend = (Legend) child;
+                            Dimension legDims = visitor.getLegendDrawer().computeDimensions(axes, legend);
+                            if (legDims != null) {
+                                LegendLocation legLoc = legend.getLegendLocationAsEnum();
+                                double C;
+                                /*
+                                 * Legends dimension are linearly dependent of margins... so we need to solve an equation
+                                 * to find a good value for margins.
+                                 * For example:
+                                 *  legend.w = texture.w + 3/8 * line.w + line.w
+                                 *  where line.w = LINE_WIDTH * ab[2] * (1 - m[0] - m[1]) * size[0];
+                                 *  the minimal value for m[1] is the solution of the equation (where unknown is m[1]):
+                                 *   legend.w = ab[2] * m[1] * size[0].
+                                 */
+                                switch (legLoc) {
+                                    case OUT_UPPER_RIGHT:
+                                    case OUT_LOWER_RIGHT:
+                                        // 1/8 of LINE_WIDTH is xOffset
+                                        // see legendDims[0] = ... in LegendDrawer::draw
+                                        // we add 2*xoffset to have a little space around the box
+                                        C = legend.getLineWidth() + LegendDrawer.LINE_WIDTH * (3. / 8. + 2. / 8.);
+                                        m[0] = Math.max(ma[0] + mt[0], DEFAULT_MARGIN);
+                                        m[1] = Math.max(((legDims.width + 2) / (axesBounds[2] * size[0]) + C * (1 - m[0])) / (1 + C) + ma[1] + mt[1], DEFAULT_MARGIN);
+                                        break;
+                                    case OUT_UPPER_LEFT:
+                                    case OUT_LOWER_LEFT:
+                                        C = legend.getLineWidth() + LegendDrawer.LINE_WIDTH * (3. / 8. + 2. / 8.);
+                                        m[1] = Math.max(ma[1] + mt[1], DEFAULT_MARGIN);
+                                        m[0] = Math.max(((legDims.width + 2) / (axesBounds[2] * size[0]) + C * (1 - m[1])) / (1 + C) + ma[0] + mt[0], DEFAULT_MARGIN);
+                                        break;
+                                    case UPPER_CAPTION:
+                                        C = LegendDrawer.Y_OFFSET * (3. + 2.);
+                                        m[3] = Math.max(ma[3] + mt[3], DEFAULT_MARGIN);
+                                        m[2] = Math.max(Math.max(((legDims.height + 2) / (axesBounds[3] * size[1]) + C * (1 - m[3])) / (1 + C), mt[2]) + ma[2], DEFAULT_MARGIN);
+                                        break;
+                                    case LOWER_CAPTION:
+                                        C = LegendDrawer.Y_OFFSET * (3. + 2.);
+                                        m[2] = Math.max(ma[2] + mt[2], DEFAULT_MARGIN);
+                                        m[3] = Math.max(Math.max(((legDims.height + 2) / (axesBounds[3] * size[1]) + C * (1 - m[2])) / (1 + C), mt[3]) + ma[3], DEFAULT_MARGIN);
+                                        break;
+                                    default:
+                                }
+                            }
+                            break;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < m.length; i++) {
+                    if (m[i] == 0) {
+                        m[i] = Math.max(ma[i] + mt[i], DEFAULT_MARGIN);
+                    }
+                }
+
+                if (!m[0].equals(margins[0]) || !m[1].equals(margins[1]) || !m[2].equals(margins[2]) || !m[3].equals(margins[3])) {
+                    axes.setMargins(m);
+                    //computeRulers(axes);
+                }
+            }
         }
     }
 
@@ -165,8 +323,9 @@ public class AxesDrawer {
      */
     public void draw(Axes axes) throws SciRendererException {
         DrawingTools drawingTools = visitor.getDrawingTools();
-        Integer[] size = visitor.getFigure().getAxesSize();
-        Dimension canvasDimension = new Dimension(size[0], size[1]);
+        //Integer[] size = visitor.getFigure().getAxesSize();
+        //Dimension canvasDimension = new Dimension(size[0], size[1]);
+        Dimension canvasDimension = visitor.getCanvas().getDimension();
         ColorMap colorMap = visitor.getColorMap();
         TransformationStack modelViewStack = drawingTools.getTransformationManager().getModelViewStack();
         TransformationStack projectionStack = drawingTools.getTransformationManager().getProjectionStack();
@@ -197,7 +356,7 @@ public class AxesDrawer {
         addProjection(axes.getIdentifier(), currentProjection);
 
         /* 2d view projection, to do: optimize computation */
-        if (axes.getRotationAngles()[0] != 0 || axes.getRotationAngles()[1] != DEFAULT_THETA) {
+        if ((axes.getRotationAngles()[0] != 0 || axes.getRotationAngles()[1] != DEFAULT_THETA)) {
             Transformation transformation2dView = computeBoxTransformation(axes, canvasDimension, true);
             currentProjection = zoneProjection.rightTimes(transformation2dView);
             currentProjection = currentProjection.rightTimes(dataTransformation);
@@ -274,7 +433,7 @@ public class AxesDrawer {
             /**
              * Draw hidden part of box.
              */
-            if (!visitor.is2DView()) {
+            if (axes.getViewAsEnum() != ViewType.VIEW_2D) {
                 appearance.setLineColor(ColorFactory.createColor(colorMap, axes.getHiddenAxisColor()));
                 appearance.setLineWidth(axes.getLineThickness().floatValue());
                 appearance.setLinePattern(HIDDEN_BORDER_PATTERN.asPattern());
@@ -322,7 +481,7 @@ public class AxesDrawer {
     }
 
     /**
-     * Compute zone where the axes is draw. In normalised window coordinate.
+     * Compute zone where the axes is draw. In normalized window coordinate.
      * @param axes the given {@see axes}.
      * @return the zone where the axes is draw.
      */
@@ -373,8 +532,6 @@ public class AxesDrawer {
      * @throws DegenerateMatrixException if data bounds are not corrects.
      */
     private Transformation computeDataTransformation(Axes axes) throws DegenerateMatrixException {
-        Double[] bounds = axes.getDisplayedBounds();
-
         // Reverse data if needed.
         Transformation transformation = TransformationFactory.getScaleTransformation(
                                             axes.getAxes()[0].getReverse() ? 1 : -1,
@@ -382,22 +539,29 @@ public class AxesDrawer {
                                             axes.getAxes()[2].getReverse() ? 1 : -1
                                         );
 
-        // Scale data.
-        Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
-                2.0 / (bounds[1] - bounds[0]),
-                2.0 / (bounds[3] - bounds[2]),
-                2.0 / (bounds[5] - bounds[4])
-                                             );
-        transformation = transformation.rightTimes(scaleTransformation);
+        if (axes.getZoomEnabled()) {
+            Double[] bounds = axes.getCorrectedBounds();
+
+            // Scale data.
+            Transformation scaleTransformation = TransformationFactory.getScaleTransformation(
+                    2.0 / (bounds[1] - bounds[0]),
+                    2.0 / (bounds[3] - bounds[2]),
+                    2.0 / (bounds[5] - bounds[4])
+                                                 );
+            transformation = transformation.rightTimes(scaleTransformation);
 
 
-        // Translate data.
-        Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
-                    -(bounds[0] + bounds[1]) / 2.0,
-                    -(bounds[2] + bounds[3]) / 2.0,
-                    -(bounds[4] + bounds[5]) / 2.0
-                );
-        transformation = transformation.rightTimes(translateTransformation);
+            // Translate data.
+            Transformation translateTransformation = TransformationFactory.getTranslateTransformation(
+                        -(bounds[0] + bounds[1]) / 2.0,
+                        -(bounds[2] + bounds[3]) / 2.0,
+                        -(bounds[4] + bounds[5]) / 2.0
+                    );
+            transformation = transformation.rightTimes(translateTransformation);
+
+            return transformation;
+        }
+
         return transformation;
     }
 
@@ -415,7 +579,6 @@ public class AxesDrawer {
      */
     private Transformation computeBoxTransformation(Axes axes, Dimension canvasDimension, boolean use2dView) throws DegenerateMatrixException {
         Double[] bounds = axes.getDisplayedBounds();
-
         double theta;
 
         double tmpX;
@@ -469,10 +632,17 @@ public class AxesDrawer {
         // Scale projected data to fit in the cube.
         Transformation isoScale;
         if (axes.getIsoview()) {
-            double w = zone.getWidth();
-            double h = zone.getHeight();
-            double minScale = Math.min(tmpX * w, tmpY * h);
-            isoScale = TransformationFactory.getScaleTransformation(minScale / w, minScale / h, tmpZ);
+            Double[] axesBounds = axes.getAxesBounds();
+            Double[] margins = axes.getMargins();
+            double w = (1 - margins[0] - margins[1]) * axesBounds[2];
+            double h = (1 - margins[2] - margins[3]) * axesBounds[3];
+            double minScale;
+            if (h > w) {
+                minScale = Math.min(tmpX, tmpY * (h / w));
+            } else {
+                minScale = Math.min(tmpX * (w / h), tmpY);
+            }
+            isoScale = TransformationFactory.getScaleTransformation(minScale, minScale, tmpZ);
         } else {
             isoScale = TransformationFactory.getScaleTransformation(tmpX, tmpY, tmpZ);
         }
@@ -481,13 +651,12 @@ public class AxesDrawer {
         return transformation;
     }
 
-
     /**
      * Computes and sets the reversed bounds of the given Axes.
      * @param axes the given {@see Axes}.
      */
     private void computeReversedBounds(Axes axes) {
-        Double[] currentBounds = axes.getDisplayedBounds();
+        Double[] currentBounds = axes.getCorrectedBounds();
 
         /* Reverse */
         if (axes.getAxes()[0].getReverse()) {
@@ -597,6 +766,10 @@ public class AxesDrawer {
     private Transformation computeProjection(Axes axes, DrawingTools drawingTools, Dimension canvasDimension, boolean use2dView) {
         Transformation projection;
 
+        if (drawingTools == null) {
+            return TransformationFactory.getIdentity();
+        }
+
         try {
             /* Compute the zone projection. */
             Transformation zoneProjection = computeZoneProjection(axes);
@@ -642,7 +815,7 @@ public class AxesDrawer {
      * @param axesId the identifier of the given Axes.
      * @param projection the corresponding projection.
      */
-    public synchronized void addProjection(String axesId, Transformation projection) {
+    public synchronized void addProjection(Integer axesId, Transformation projection) {
         projectionMap.put(axesId, projection);
     }
 
@@ -652,7 +825,7 @@ public class AxesDrawer {
      * @param id the identifier of the given Axes.
      * @return the projection.
      */
-    public Transformation getProjection(String id) {
+    public Transformation getProjection(Integer id) {
         return projectionMap.get(id);
     }
 
@@ -661,7 +834,7 @@ public class AxesDrawer {
      * the projection map.
      * @param axesId the identifier of the given Axes.
      */
-    public void removeProjection(String axesId) {
+    public void removeProjection(Integer axesId) {
         projectionMap.remove(axesId);
     }
 
@@ -671,7 +844,7 @@ public class AxesDrawer {
      * @param axesId the identifier of the given Axes.
      * @param projection the corresponding projection.
      */
-    public synchronized void addProjection2dView(String axesId, Transformation projection) {
+    public synchronized void addProjection2dView(Integer axesId, Transformation projection) {
         projection2dViewMap.put(axesId, projection);
     }
 
@@ -681,11 +854,11 @@ public class AxesDrawer {
      * @param id the identifier of the given Axes.
      * @return the projection.
      */
-    public Transformation getProjection2dView(String id) {
+    public Transformation getProjection2dView(Integer id) {
         return projection2dViewMap.get(id);
     }
 
-    public Transformation getSceneProjection(String id) {
+    public Transformation getSceneProjection(Integer id) {
         return sceneProjectionMap.get(id);
     }
 
@@ -694,7 +867,7 @@ public class AxesDrawer {
      * the projection map.
      * @param axesId the identifier of the given Axes.
      */
-    public void removeProjection2dView(String axesId) {
+    public void removeProjection2dView(Integer axesId) {
         projection2dViewMap.remove(axesId);
     }
 
@@ -704,10 +877,9 @@ public class AxesDrawer {
      * @param axes the given Axes.
      */
     public static void updateAxesTransformation(Axes axes) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
-        Integer[] size = currentVisitor.getFigure().getAxesSize();
-        Dimension canvasDimension = new Dimension(size[0], size[1]);
+        Dimension canvasDimension = currentVisitor.getCanvas().getDimension();
 
         Transformation transformation = axesDrawer.getProjection(axes.getIdentifier());
 
@@ -739,27 +911,40 @@ public class AxesDrawer {
      * @returns the 2d view coordinates (3-element array).
      */
     public static double[] compute2dViewCoordinates(Axes axes, double[] coordinates) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        // used in geom3d
+
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         AxesDrawer axesDrawer;
         Transformation projection;
         Transformation projection2d;
-
-        Vector3d point = new Vector3d(coordinates);
+        double[] coords = coordinates;
 
         if (currentVisitor != null) {
-            Integer[] size = currentVisitor.getFigure().getAxesSize();
-            Dimension canvasDimension = new Dimension(size[0], size[1]);
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+            Dimension canvasDimension = currentVisitor.getCanvas().getDimension();
+            double[][] factors = axes.getScaleTranslateFactors();
+            ScaleUtils.applyLogScale(coords, logFlags);
 
             axesDrawer = currentVisitor.getAxesDrawer();
+            coords[0] = coords[0] * factors[0][0] + factors[1][0];
+            coords[1] = coords[1] * factors[0][1] + factors[1][1];
+            coords[2] = coords[2] * factors[0][2] + factors[1][2];
 
             projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
             projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, true);
-
+            Vector3d point = new Vector3d(coords);
             point = projection.project(point);
             point = projection2d.unproject(point);
+
+            coords = point.getData();
+            coords[0] = (coords[0] - factors[1][0]) / factors[0][0];
+            coords[1] = (coords[1] - factors[1][1]) / factors[0][1];
+            coords[2] = (coords[2] - factors[1][2]) / factors[0][2];
+
+            ScaleUtils.applyInverseLogScale(coords, logFlags);
         }
 
-        return new double[] {point.getX(), point.getY(), point.getZ()};
+        return coords;
     }
 
     /**
@@ -771,27 +956,168 @@ public class AxesDrawer {
      * @returns the pixel coordinates (2-element array: x, y).
      */
     public static double[] computePixelFrom2dViewCoordinates(Axes axes, double[] coordinates) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        // used by xchange
+
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
         AxesDrawer axesDrawer;
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
         if (currentVisitor != null) {
-            Integer[] size = currentVisitor.getFigure().getAxesSize();
-            double height = (double) size[1];
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+            double[][] factors = axes.getScaleTranslateFactors();
+            ScaleUtils.applyLogScale(coordinates, logFlags);
 
             axesDrawer = currentVisitor.getAxesDrawer();
+            coords2dView[0] = coordinates[0] * factors[0][0] + factors[1][0];
+            coords2dView[1] = coordinates[1] * factors[0][1] + factors[1][1];
+            coords2dView[2] = coordinates[2] * factors[0][2] + factors[1][2];
 
             Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
+            if (projection2d == null) {
+                updateAxesTransformation(axes);
+                projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
+            }
 
-            Vector3d point = new Vector3d(coordinates);
+            Vector3d point = new Vector3d(coords2dView);
             point = projection2d.project(point);
 
             /* Convert the window coordinates to pixel coordinates, only y changes due to the differing y-axis convention */
             coords2dView[0] = point.getX();
-            coords2dView[1] = height - point.getY();
+            coords2dView[1] = currentVisitor.getCanvas().getHeight() - point.getY();
+            coords2dView[2] = 0;
         }
 
         return coords2dView;
+    }
+
+    /**
+     * Computes and returns the pixel coordinates from a point's coordinates expressed in the current
+     * 3d view coordinate frame, using the given Axes. The returned pixel coordinates are expressed
+     * in the AWT's 2d coordinate frame.
+     * @param axes the given Axes.
+     * @param coordinates the 3d view coordinates (3-element array: x, y, z).
+     * @returns the pixel coordinates (2-element array: x, y).
+     */
+    public static double[] computePixelFrom3dCoordinates(Axes axes, double[] coordinates) {
+        DrawerVisitor currentVisitor;
+        AxesDrawer axesDrawer;
+        Transformation projection;
+        Transformation projection2d;
+
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
+        boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+        double[][] factors = axes.getScaleTranslateFactors();
+
+        Vector3d point = new Vector3d(coordinates);
+        point = ScaleUtils.applyLogScale(point, logFlags);
+        double[] coords = point.getData();
+
+        if (currentVisitor != null) {
+            axesDrawer = currentVisitor.getAxesDrawer();
+
+            coords[0] = coords[0] * factors[0][0] + factors[1][0];
+            coords[1] = coords[1] * factors[0][1] + factors[1][1];
+            coords[2] = coords[2] * factors[0][2] + factors[1][2];
+
+            projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), currentVisitor.getCanvas().getDimension(), false);
+
+            point = new Vector3d(coords);
+            point = projection.project(point);
+        }
+
+        return new double[] {point.getX(), currentVisitor.getCanvas().getHeight() - point.getY(), point.getZ()};
+    }
+
+    /**
+     * Computes and returns the pixel coordinates from a point's coordinates expressed in the current
+     * 3d view coordinate frame, using the given Axes. The returned pixel coordinates are expressed
+     * in the AWT's 2d coordinate frame.
+     * @param axes the given Axes.
+     * @param coordinates the 3d view coordinates (3-element array: x, y, z).
+     * @returns the pixel coordinates (2-element array: x, y).
+     */
+    public static double[][] computePixelFrom3dCoordinates(Axes axes, double[] coordsX, double[] coordsY, double[] coordsZ) {
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
+
+        if (currentVisitor != null) {
+            AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
+            Dimension canvasDimension = currentVisitor.getCanvas().getDimension();
+            double height = canvasDimension.getHeight();
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+            double[][] factors = axes.getScaleTranslateFactors();
+            double[] coords = new double[3];
+            double[][] ret = new double[coordsX.length][2];
+            Transformation projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
+
+            for (int i = 0; i < coordsX.length; i++) {
+                coords[0] = coordsX[i];
+                coords[1] = coordsY[i];
+                coords[2] = coordsZ[i];
+                ScaleUtils.applyLogScale(coords, logFlags);
+
+                coords[0] = coords[0] * factors[0][0] + factors[1][0];
+                coords[1] = coords[1] * factors[0][1] + factors[1][1];
+                coords[2] = coords[2] * factors[0][2] + factors[1][2];
+
+                Vector3d point = new Vector3d(coords);
+                point = projection.project(point);
+                ret[i][0] = point.getX();
+                ret[i][1] = height - point.getY();
+            }
+
+            return ret;
+        }
+
+        return null;
+    }
+
+    /**
+     * Computes and returns the coordinates of a point onto the 3d view plane.
+     * To compute them, the point is projected using the object to window coordinate projection, then
+     * unprojected using the object to window coordinate projection corresponding to the 3d view
+     * @param axes the given Axes.
+     * @param coordinates the object (x,y,z) coordinates to project onto the 2d view plane (3-element array).
+     * @returns the 3d view coordinates (3-element array).
+     */
+    public static double[] compute3dViewCoordinates(Axes axes, double[] coordinates) {
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
+        AxesDrawer axesDrawer;
+        Transformation projection;
+        Transformation projection2d;
+        double[] coords = coordinates;
+
+        if (currentVisitor != null) {
+            if (axes.getViewAsEnum() == ViewType.VIEW_2D) {
+                // No need to projet/unproject since the product is identity
+                return new double[] {coords[0], coords[1], coords[2]};
+            }
+
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+            Dimension canvasDimension = currentVisitor.getCanvas().getDimension();
+            double[][] factors = axes.getScaleTranslateFactors();
+            ScaleUtils.applyLogScale(coords, logFlags);
+
+            axesDrawer = currentVisitor.getAxesDrawer();
+            coords[0] = coords[0] * factors[0][0] + factors[1][0];
+            coords[1] = coords[1] * factors[0][1] + factors[1][1];
+            coords[2] = coords[2] * factors[0][2] + factors[1][2];
+
+            projection = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, false);
+            projection2d = axesDrawer.computeProjection(axes, currentVisitor.getDrawingTools(), canvasDimension, true);
+
+            Vector3d point = new Vector3d(coords);
+            point = projection2d.project(point);
+            point = projection.unproject(point);
+
+            coords = point.getData();
+            coords[0] = (coords[0] - factors[1][0]) / factors[0][0];
+            coords[1] = (coords[1] - factors[1][1]) / factors[0][1];
+            coords[2] = (coords[2] - factors[1][2]) / factors[0][2];
+
+            ScaleUtils.applyInverseLogScale(coords, logFlags);
+        }
+
+        return coords;
     }
 
     /**
@@ -804,25 +1130,37 @@ public class AxesDrawer {
      * @return coordinates the 2d view coordinates (3-element array: x, y, z).
      */
     public static double[] compute2dViewFromPixelCoordinates(Axes axes, double[] coordinates) {
+        // used by xgetmouse and by xchange
+
         DrawerVisitor currentVisitor;
         AxesDrawer axesDrawer;
-
         double[] coords2dView = new double[] {0.0, 0.0, 0.0};
 
-        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
 
         if (currentVisitor != null) {
-            Integer[] size = currentVisitor.getFigure().getAxesSize();
-            double height = (double) size[1];
+            boolean[] logFlags = { axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
+            double[][] factors = axes.getScaleTranslateFactors();
 
             axesDrawer = currentVisitor.getAxesDrawer();
 
             /* Convert the pixel coordinates to window coordinates, only y changes due to the differing y-axis convention */
-            Vector3d point = new Vector3d(coordinates[0], height - coordinates[1], 0.0);
+            Vector3d point = new Vector3d(coordinates[0], currentVisitor.getCanvas().getHeight() - coordinates[1], 0.0);
 
             Transformation projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
+            if (projection2d == null) {
+                updateAxesTransformation(axes);
+                projection2d = axesDrawer.getProjection2dView(axes.getIdentifier());
+            }
+
             point = projection2d.unproject(point);
             coords2dView = point.getData();
+
+            coords2dView[0] = (coords2dView[0] - factors[1][0]) / factors[0][0];
+            coords2dView[1] = (coords2dView[1] - factors[1][1]) / factors[0][1];
+            coords2dView[2] = (coords2dView[2] - factors[1][2]) / factors[0][2];
+
+            ScaleUtils.applyInverseLogScale(coords2dView, logFlags);
         }
 
         return coords2dView;
@@ -835,7 +1173,7 @@ public class AxesDrawer {
      * @return The un-projected point.
      */
     public static Vector3d unProject(Axes axes, Vector3d point) {
-        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        DrawerVisitor currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
 
         if (currentVisitor != null) {
             AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
@@ -862,12 +1200,11 @@ public class AxesDrawer {
 
         double[] viewingArea = new double[] {0.0, 0.0, 0.0, 0.0};
 
-        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFigure());
+        currentVisitor = DrawerVisitor.getVisitor(axes.getParentFrameOrFigure());
 
         if (currentVisitor != null) {
-            Integer[] size = currentVisitor.getFigure().getAxesSize();
-            double width = (double) size[0];
-            double height = (double) size[1];
+            double width = currentVisitor.getCanvas().getDimension().getWidth();
+            double height = currentVisitor.getCanvas().getDimension().getHeight();
             double upperLeftY;
             AxesDrawer axesDrawer = currentVisitor.getAxesDrawer();
             Rectangle2D axesZone = axesDrawer.computeZone(axes);
@@ -931,7 +1268,7 @@ public class AxesDrawer {
                  * against the Axes box planes.
                  */
                 numPlanes = 6;
-                Double[] bounds = parentAxes.getDisplayedBounds();
+                Double[] bounds = parentAxes.getCorrectedBounds();
 
                 for (int i = 0; i < numPlanes; i++) {
                     clipBounds[i] = bounds[i];
@@ -954,6 +1291,7 @@ public class AxesDrawer {
                 clipBounds[2] = clipBox[1] - clipBox[3];
                 clipBounds[3] = clipBox[1];
 
+                double[][] factors = parentAxes.getScaleTranslateFactors();
                 Double[] bounds = parentAxes.getMaximalDisplayedBounds();
 
                 /*
@@ -989,6 +1327,11 @@ public class AxesDrawer {
                     }
                 }
 
+                clipBounds[0] = clipBounds[0] * factors[0][0] + factors[1][0];
+                clipBounds[1] = clipBounds[1] * factors[0][0] + factors[1][0];
+                clipBounds[2] = clipBounds[2] * factors[0][1] + factors[1][1];
+                clipBounds[3] = clipBounds[3] * factors[0][1] + factors[1][1];
+
                 offsets[0] = CLIPPING_EPSILON * (clipBounds[1] - clipBounds[0]);
                 offsets[1] = CLIPPING_EPSILON * (clipBounds[3] - clipBounds[2]);
             }
@@ -1007,6 +1350,7 @@ public class AxesDrawer {
             }
 
             Transformation currentTransformation = drawingTools.getTransformationManager().getTransformation();
+
             for (int i = 0 ; i < numPlanes; i++) {
                 ClippingPlane plane = drawingTools.getClippingManager().getClippingPlane(i);
                 plane.setTransformation(currentTransformation);
@@ -1083,7 +1427,7 @@ public class AxesDrawer {
      * Returns the title positioner.
      * @return the title positioner.
      */
-    public LabelPositioner getTitlePositioner(Axes axes) {
+    public TitlePositioner getTitlePositioner(Axes axes) {
         TitlePositioner positioner = this.titlePositioner.get(axes.getIdentifier());
         if (positioner == null) {
             positioner = new TitlePositioner();
@@ -1104,7 +1448,7 @@ public class AxesDrawer {
         this.titlePositioner.clear();
     }
 
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (this.rulerDrawer.update(id, property)) {
             GraphicObject object = GraphicController.getController().getObjectFromId(id);
             if (object instanceof Axes) {
@@ -1113,7 +1457,7 @@ public class AxesDrawer {
         }
     }
 
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         this.rulerDrawer.dispose(id);
         projectionMap.remove(id);
         projection2dViewMap.remove(id);

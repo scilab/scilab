@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 #ifndef __INTERNAL_COMMON_API__
@@ -36,16 +36,6 @@ void createNamedVariable(int *_piVarID);
 int updateLstk(int _iNewPos, int _iSCIDataAddress, int _iVarSize);
 
 /**
-*
-* @param[in]
-* @param[in]
-* @param[in]
-* @param[in]
-* @return
-*/
-int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress);
-
-/**
 * @param[in] _piAddress variable address
 * @param[in] _iType type to check
 * @return 1 for true and 0 for false
@@ -64,6 +54,10 @@ int checkNamedVarType(void* _pvCtx, const char *_pstName, int _iType);
 * @return 1 for true (variable name is valid) and 0 for false
 */
 int checkNamedVarFormat(void* _pvCtx, const char *_pstName);
+
+
+SciErr sciErrInit();
+void sciErrClean(SciErr* _psciErr);
 
 #endif /* __INTERNAL_COMMON_API__ */
 

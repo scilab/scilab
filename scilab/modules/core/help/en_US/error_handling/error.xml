@@ -42,7 +42,7 @@
             <literal>error</literal> function allows to issue an error message and to
             handle the error. By default <literal>error</literal> stops the current
             execution and resume to the prompt level. This default can be changed
-            using the <literal>errcatch</literal> or <literal>execstr(...,'errcatch')</literal> functions.
+            using the <literal>execstr(...,'errcatch')</literal> functions.
         </para>
         <para>
             <literal>error(message)</literal> prints the character string contained in
@@ -81,9 +81,6 @@ lasterror()]]></programlisting>
         <simplelist type="inline">
             <member>
                 <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>

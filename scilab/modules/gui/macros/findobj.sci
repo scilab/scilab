@@ -6,13 +6,25 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function h =  findobj(propertyName, propertyValue)
 
     rhs = argn(2);
-    if rhs<>2 then
-        error(msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"), "findobj", 2));
-        return
+    if rhs<> [1 2] then
+        error(msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "findobj", 1, 2));
+        return;
+    end
+
+    if rhs == 1 then
+        h = get(propertyName);
+        if h <> [] then
+            return;
+        end
+    elseif strcmpi(propertyName, "tag") == 0 then
+        h = get(propertyValue);
+        if h <> [] then
+            return;
+        end
     end
 
     // Return value

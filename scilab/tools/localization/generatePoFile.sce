@@ -6,22 +6,20 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function  generatePoFile(LANGUAGE)
     if getos() <> "Windows" then
         error(999, "Used only under Windows");
     end
 
-    if ~isdef("%c_a_c") then
-        exec("SCI/modules/overloading/macros/%c_a_c.sci");
-    end
-
     LC = "LC_MESSAGES";
-    DEST_FILE_MO = SCI + filesep() + "locale" + filesep() + LANGUAGE + filesep() + LC + filesep() + "scilab.mo";
-    DEST_FILE_PO = strsubst(DEST_FILE_MO, "scilab.mo", "scilab.po");
+    DEST_PATH_MO = SCI + filesep() + "locale" + filesep() + LANGUAGE + filesep() + LC + filesep();
+    DEST_FILE_MO = "scilab.mo";
+    DEST_FILE_PO = "scilab.po";
     LC = "LC_MESSAGES";
     PATH_GETTEXT_TOOLS = SCI + filesep() + "tools/gettext";
+    PATH_GETTEXT_TOOLS = getrelativefilename(DEST_PATH_MO, PATH_GETTEXT_TOOLS);
 
     // make destination directories
     if ~isdir(SCI + filesep() + "locale") then
@@ -48,21 +46,24 @@ function  generatePoFile(LANGUAGE)
     for k = 1:size(PATH_PO, "*")
         if LANGUAGE ==  "en_US" then
             if findfiles(PATH_PO(k), FILENAME_PO(k)) <> [] then
-                List_files = [List_files ; fullpath(PATH_PO(k) +  FILENAME_PO(k))];
+                List_files = [List_files ; getrelativefilename(DEST_PATH_MO, fullpath(PATH_PO(k) +  FILENAME_PO(k)))];
             end
         else
             if findfiles(PATH_PO(k), FILENAME_PO) <> [] then
-                List_files = [List_files ; fullpath(PATH_PO(k) +  FILENAME_PO)];
+                List_files = [List_files ; getrelativefilename(DEST_PATH_MO, fullpath(PATH_PO(k) +  FILENAME_PO))];
             end
         end
     end
 
     if (List_files <> []) then
-        if newest([DEST_FILE_MO; List_files]) <> 1 then
+        if newest([DEST_PATH_MO + DEST_FILE_MO; DEST_PATH_MO + List_files]) <> 1 then
+            curPath = pwd();
+            cd(DEST_PATH_MO)
             cmdline_msgcat = PATH_GETTEXT_TOOLS + filesep() + "msgcat --use-first -o " + DEST_FILE_PO + " " + strcat("""" + List_files + """", " ");
             unix(cmdline_msgcat);
             cmline_msgfmt = PATH_GETTEXT_TOOLS + filesep() + "msgfmt --statistics -o " + DEST_FILE_MO + " " + DEST_FILE_PO;
             unix(cmline_msgfmt);
+            cd(curPath)
         end
     end
 

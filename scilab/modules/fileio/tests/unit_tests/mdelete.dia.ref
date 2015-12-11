@@ -19,8 +19,7 @@ if lsResult == []      then bugmes();quit;end
 mdelete dummyFile.dummy
 // Test if the file has been deleted or not
 lsResult = ls("dummyFile.dummy")
- lsResult  =
- 
-     []
+ lsResult  = 
+    []
 // Testing if the file is effectively dead
 if lsResult <> []      then bugmes();quit;end

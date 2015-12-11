@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -63,43 +63,43 @@ int sci_print(char *fname, void *pvApiCtx)
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLDoc_p(char *fname, unsigned long fname_len)
+int sci_percent_XMLDoc_p(char *fname, void* pvApiCtx)
 {
     return sci_print(fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLElem_p(char *fname, unsigned long fname_len)
+int sci_percent_XMLElem_p(char *fname, void* pvApiCtx)
 {
     return sci_print(fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLNs_p(char *fname, unsigned long fname_len)
+int sci_percent_XMLNs_p(char *fname, void* pvApiCtx)
 {
     return sci_print(fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLList_p(char *fname, unsigned long fname_len)
+int sci_percent_XMLList_p(char *fname, void* pvApiCtx)
 {
     return sci_print(fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_p(char *fname, unsigned long fname_len)
+int sci_percent_XMLAttr_p(char *fname, void* pvApiCtx)
 {
     return sci_print(fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLSet_p(char *fname, unsigned long fname_len)
+int sci_percent_XMLSet_p(char *fname, void* pvApiCtx)
 {
     return sci_print(fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLValid_p(char *fname, unsigned long fname_len)
+int sci_percent_XMLValid_p(char *fname, void* pvApiCtx)
 {
     return sci_print(fname, pvApiCtx);
 }

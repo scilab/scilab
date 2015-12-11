@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -17,13 +17,8 @@
 /*--------------------------------------------------------------------------*/
 OPTIMIZATION_IMPEXP int gw_optimization(void);
 /*--------------------------------------------------------------------------*/
-OPTIMIZATION_IMPEXP int sci_optim(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_semidef(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_fsolve(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_sqrsolve(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_qld(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_qp_solve(char *fname, unsigned long fname_len);
-OPTIMIZATION_IMPEXP int sci_readmps(char *fname, unsigned long fname_len);
+OPTIMIZATION_IMPEXP int sci_qld(char *fname,  void* pvApiCtx);
+OPTIMIZATION_IMPEXP int sci_qp_solve(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_OPTIM__ */
 /*--------------------------------------------------------------------------*/

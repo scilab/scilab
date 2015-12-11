@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,8 +16,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
-
-import javax.swing.JScrollBar;
+import java.awt.event.MouseEvent;
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
@@ -211,6 +210,18 @@ public class ScilabComponent extends mxGraphComponent {
                     }
                 }
             });
+        }
+
+        /**
+         * @see javax.swing.JComponent#processMouseMotionEvent(java.awt.event.MouseEvent)
+         *
+         * Overloaded to filter out any cursor update if the graph is locked
+         */
+        @Override
+        protected void processMouseMotionEvent(MouseEvent e) {
+            if (!getGraph().isCellsLocked()) {
+                super.processMouseMotionEvent(e);
+            }
         }
     }
 

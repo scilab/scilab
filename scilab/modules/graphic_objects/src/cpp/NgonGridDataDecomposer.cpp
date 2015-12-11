@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,7 +24,7 @@ extern "C"
 
 NgonGridDataDecomposer* NgonGridDataDecomposer::decomposer = NULL;
 
-int NgonGridDataDecomposer::getDataSize(char* id)
+int NgonGridDataDecomposer::getDataSize(int id)
 {
     int numX = 0;
     int* piNumX = &numX;
@@ -41,7 +41,7 @@ int NgonGridDataDecomposer::getDataSize(char* id)
 #endif
 }
 
-void NgonGridDataDecomposer::fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void NgonGridDataDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* x = NULL;
     double* y = NULL;
@@ -370,7 +370,7 @@ double NgonGridDataDecomposer::getValue(double* values, int numX, int numY, int 
     return values[numX * j + i];
 }
 
-int NgonGridDataDecomposer::getIndicesSize(char* id)
+int NgonGridDataDecomposer::getIndicesSize(int id)
 {
     int numX = 0;
     int* piNumX = &numX;
@@ -389,7 +389,7 @@ int NgonGridDataDecomposer::getIndicesSize(char* id)
 }
 
 
-int NgonGridDataDecomposer::fillIndices(char* id, int* buffer, int bufferLength, int logMask)
+int NgonGridDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* x = NULL;
     double* y = NULL;
@@ -670,7 +670,7 @@ double NgonGridDataDecomposer::computeFacetAverageZValue(double* z, int numX, in
     return avgz;
 }
 
-void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize)
+void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOffset, float* color, int elementsSize, bool hasTransparency)
 {
     for (int k = 0; k < 4; k++)
     {
@@ -680,7 +680,14 @@ void NgonGridDataDecomposer::writeFacetColorToBuffer(float* buffer, int bufferOf
 
         if (elementsSize == 4)
         {
-            buffer[bufferOffset + 3] = 1.0;
+            if (hasTransparency)
+            {
+                buffer[bufferOffset + 3] = color[3];
+            }
+            else
+            {
+                buffer[bufferOffset + 3] = 1.0;
+            }
         }
 
         bufferOffset += elementsSize;

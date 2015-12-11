@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -18,6 +18,7 @@
 ;
 #define STATISTICS "statistics"
 
+Source: bin\{#STATISTICS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#STATISTICS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\dcd_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -29,14 +30,11 @@ Source: modules\{#STATISTICS}\etc\{#STATISTICS}.quit; DestDir: {app}\modules\{#S
 Source: modules\{#STATISTICS}\etc\{#STATISTICS}.start; DestDir: {app}\modules\{#STATISTICS}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STATISTICS}\macros\lib; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#STATISTICS}\macros\names; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#STATISTICS}\macros\*.bin; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#STATISTICS}\macros\*.sci; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#STATISTICS}\macros\*.bin; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#STATISTICS}\macros\buildmacros.sce; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#STATISTICS}\macros\buildmacros.bat; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#STATISTICS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#STATISTICS}\macros; Components: {#COMPN_SCILAB}
-;
-;Source: modules\{#STATISTICS}\demos\*.*; DestDir: {app}\modules\{#STATISTICS}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#STATISTICS}\tests\*.*; DestDir: {app}\modules\{#STATISTICS}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;

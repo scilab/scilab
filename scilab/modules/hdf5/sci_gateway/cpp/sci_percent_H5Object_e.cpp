@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_hdf5;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
+int sci_percent_H5Object_e(char * fname, int* pvApiCtx)
 {
     H5Object * obj = 0;
     SciErr err;
@@ -61,7 +61,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
 
     if (fieldtype != sci_matrix && fieldtype != sci_strings)
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string or double expected.\n"), fname, 1);
         return 0;
     }
 
@@ -151,7 +151,7 @@ int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
         {
             H5Object & robj = obj->getData(nbIn - 1, index);
             //robj.createOnScilabStack(nbIn + 1, pvApiCtx);
-            robj.toScilab(pvApiCtx, nbIn + 1);
+            robj.toScilab(pvApiCtx, nbIn + 1, 0, 0, H5Options::isReadFlip());
         }
         /*        else if (obj->isReference())
                 {

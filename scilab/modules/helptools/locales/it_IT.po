@@ -8,29 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-09-30 15:51+0000\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
-"Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una singola "
-"stringa.\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -58,9 +47,6 @@ msgstr "Il modulo '%s' di Scilab non è installato.\n"
 
 msgid "Version"
 msgstr "Versione"
-
-msgid "Description"
-msgstr "Descrizione"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -112,12 +98,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Eliminazione dei file di aiuto in corso --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: Il browser di aiuto è disabilitato in modalità %s.\n"
 
@@ -162,102 +142,89 @@ msgid "%s: File skipped %s."
 msgstr "%s: Il file %s è stato saltato."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
 
 msgid " * Add some comments about XML file"
-msgstr ""
+msgstr " * Aggiungere alcuni commenti sul file XML"
 
 msgid "Add short description here."
-msgstr ""
+msgstr "Aggiungere qui una breve descrizione"
 
 msgid "Calling Sequence"
-msgstr ""
+msgstr "Sequenza di chiamata"
 
 msgid "Arguments"
-msgstr ""
+msgstr "Argomenti"
 
 msgid "            Add here the input/output argument description."
 msgstr ""
+"            Aggiungere qui la descrizione degli argomenti in ingresso/uscita."
 
 msgid "          Add here a paragraph of the function description."
-msgstr ""
+msgstr "          Aggiungere qui un paragrafo per descrivere la funzione."
 
 msgid "          Other paragraph can be added"
-msgstr ""
+msgstr "          Può essere aggiunto un altro paragrafo"
 
 msgid "More information"
-msgstr ""
+msgstr "Maggiori informazioni"
 
 msgid "Examples"
-msgstr ""
+msgstr "Esempi"
 
 msgid "        Add here scilab instructions and comments"
-msgstr ""
+msgstr "        Aggiungere qui le istruzioni e i commenti di Scilab"
 
 msgid "        Add here scilab instructions to generate a graphic"
-msgstr ""
+msgstr "        Aggiungere qui le istruzioni di Scilab per creare un grafico"
 
 msgid "See Also"
-msgstr ""
+msgstr "Vedere anche"
 
 msgid "add a reference"
-msgstr ""
+msgstr "aggiungere un riferimento"
 
 msgid "add a reference name"
-msgstr ""
+msgstr "aggiungere un nome di riferimento"
 
 msgid "Authors"
-msgstr ""
+msgstr "Autori"
 
 msgid "add the author name and author reference"
-msgstr ""
+msgstr "aggiungere il nome dell'autore e un riferimento all'autore"
 
 msgid "add another author name and his/her reference"
-msgstr ""
+msgstr "aggiungere il nome di un altro autore e un riferimento a lui/lei"
 
 msgid "Bibliography"
-msgstr ""
+msgstr "Bibliografia"
 
 msgid "         Add here the function bibliography"
-msgstr ""
+msgstr "         Aggiungere qui la funzione bibliografia"
 
 msgid "History"
-msgstr ""
+msgstr "Cronologia"
 
 msgid "Used Functions"
-msgstr ""
+msgstr "Funzioni usate"
 
 msgid "         Add here the Scilab, C,... used code references"
 msgstr ""
+"         Aggiungere qui i riferimenti al codice usato di Scilab, C,..."
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 "%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"
 
-#, c-format
-msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr "%s: Questa funzione è supportata solo su piattaforme Windows.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
-"almeno %d.\n"
-
-#, c-format
-msgid "%s: hhc.exe not found.\n"
-msgstr "%s: hhc.exe non è stato trovato.\n"
-
-#, c-format
-msgid "%s: no file generate.\n"
-msgstr "%s: non è stato generato alcun file.\n"
-
 msgid "Help chapter"
 msgstr "Capitolo di aiuto"
+
+msgid "Scilab Help"
+msgstr "Aiuto di Scilab"
 
 #, c-format
 msgid ""
@@ -285,8 +252,9 @@ msgstr ""
 msgid "\t%s\n"
 msgstr "\t%s\n"
 
-msgid "Building the scilab manual file ["
-msgstr "Creazione del file [ del manuale di Scilab in corso"
+#, c-format
+msgid "Building the scilab manual file [%s]\n"
+msgstr "Creazione del file [%s] del manuale di Scilab\n"
 
 #, c-format
 msgid ""
@@ -320,12 +288,6 @@ msgstr "%s: Controllare %s, il numero dei moduli non è valido.\n"
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"singola stringa.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -375,3 +337,9 @@ msgstr ""
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: Le 2 mlist non devono avere alcun campo in comune.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d.\n"

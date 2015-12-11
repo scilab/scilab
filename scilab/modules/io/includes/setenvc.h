@@ -6,12 +6,15 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef __SETENVC_H__
 #define __SETENVC_H__
+
+#include <wchar.h>
+
 #include "dynlib_io.h"
 #include "BOOL.h"
 
@@ -21,7 +24,8 @@
  * @param[in] value the value of the variable "string"
  * @return FALSE if there is a problem otherwise TRUE
  */
-IO_IMPEXP BOOL setenvc(char *string, char *value);
+IO_IMPEXP BOOL setenvc(const char *string, const char *value);
+IO_IMPEXP BOOL setenvcW(const wchar_t *string, const wchar_t *value);
 
 #endif /* __SETENVC_H__ */
 /*--------------------------------------------------------------------------*/

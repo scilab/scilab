@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,20 +14,39 @@
 #define __SCILAB_VIEW_HXX__
 
 #include <map>
+#include <list>
+#include <vector>
 #include <string>
 
 #include "dynlib_graphic_objects.h"
 
+//disable warnings about exports STL items
+#pragma warning (disable : 4251)
+
 extern "C"
 {
-    void ScilabNativeView__createObject(char const* pstId);
-    void ScilabNativeView__deleteObject(char const* pstId);
-    void ScilabNativeView__updateObject(char const* pstId, int iProperty);
-    void ScilabNativeView__setCurrentFigure(char const* pstId);
-    void ScilabNativeView__setCurrentSubWin(char const* pstId);
-    void ScilabNativeView__setCurrentObject(char const* pstId);
+    void ScilabNativeView__createObject(int id);
+    void ScilabNativeView__deleteObject(int id);
+    void ScilabNativeView__updateObject(int id, int iProperty);
+    void ScilabNativeView__setCurrentFigure(int id);
+    void ScilabNativeView__setCurrentSubWin(int id);
+    void ScilabNativeView__setCurrentObject(int id);
     int ScilabNativeView__getValidDefaultFigureId();
+    int ScilabNativeView__getFigureFromIndex(int figNum);
 }
+
+struct PathItem
+{
+    typedef std::list<int> __child;
+    typedef __child::iterator __child_iterator;
+
+    std::string tag;
+    int uid;
+    int parent;
+    __child children;
+
+    PathItem() : tag(""), uid(0), parent(0) {}
+};
 
 class GRAPHIC_OBJECTS_IMPEXP ScilabView
 {
@@ -36,54 +55,79 @@ private :
     ~ScilabView() {}
 
     // Define type for easy manipulation.
-    typedef std::map<std::string, long>  __handleList;
+    typedef std::map<int, long>  __handleList;
     typedef __handleList::iterator          __handleList_iterator;
-    typedef std::map<long, std::string>  __uidList;
+    typedef std::map<long, int>  __uidList;
     typedef __uidList::iterator          __uidList_iterator;
-    typedef std::map<std::string, int>    __figureList;
+    typedef std::map<int, int>    __figureList;
     typedef __figureList::iterator          __figureList_iterator;
+    typedef __figureList::reverse_iterator          __figureList_reverse_iterator;
+    typedef std::map<int, std::vector<int> >  __userdata;
 
-    static __figureList                     m_figureList;
-    static __handleList                     m_handleList;
-    static __uidList                        m_uidList;
-    static long                             m_topHandleValue;
-    static std::string                      m_currentFigure;
-    static std::string                      m_currentObject;
-    static std::string                      m_currentSubWin;
-    static std::string                      m_figureModel;
-    static std::string                      m_axesModel;
+    typedef  std::map<int, PathItem*> __pathList;
+    typedef __pathList::iterator __pathList_iterator;
+    typedef  std::map<std::string, int> __pathFigList;
+    typedef __pathFigList::iterator __pathFigList_iterator;
+
+    static __figureList     m_figureList;
+    static __handleList     m_handleList;
+    static __uidList        m_uidList;
+    static __pathFigList    m_pathFigList;
+    static __pathList       m_pathList;
+    static __userdata       m_userdata;
+    static long             m_topHandleValue;
+    static int              m_currentFigure;
+    static int              m_currentObject;
+    static int              m_currentSubWin;
+    static int              m_figureModel;
+    static int              m_axesModel;
 
 public :
-    static void   createObject(char const* pstId);
-    static void   deleteObject(char const* pstId);
-    static void   updateObject(char const* pstId, int iProperty);
+    static void createObject(int iUID);
+    static void deleteObject(int iUID);
+    static void updateObject(int iUID, int iProperty);
 
-    static int    getNbFigure(void);
-    static void   getFiguresId(int ids[]);
-    static void   registerToController(void);
-    static void   unregisterToController(void);
-    static bool   existsFigureId(int id);
-    static char const*  getFigureFromIndex(int figureNumber);
-    static bool   isEmptyFigureList(void);
-    static int getValidDefaultFigureId();
+    static int  getNbFigure(void);
+    static void getFiguresId(int ids[]);
+    static void registerToController(void);
+    static void unregisterToController(void);
+    static bool existsFigureId(int id);
+    static int  getFigureFromIndex(int figureNumber);
+    static bool isEmptyFigureList(void);
+    static int  getValidDefaultFigureId();
 
-    static char const*  getCurrentFigure(void);
-    static void   setCurrentFigure(char const* UID);
+    static int  getCurrentFigure(void);
+    static void setCurrentFigure(int iUID);
 
-    static char const*  getCurrentObject(void);
-    static void   setCurrentObject(char const* UID);
+    static int  getCurrentObject(void);
+    static void setCurrentObject(int iUID);
 
-    static char const*  getCurrentSubWin(void);
-    static void   setCurrentSubWin(char const* UID);
+    static int  getCurrentSubWin(void);
+    static void setCurrentSubWin(int iUID);
 
-    static long   getObjectHandle(char const* UID);
-    static char const*  getObjectFromHandle(long handle);
+    static long getObjectHandle(int iUID);
+    static int  getObjectFromHandle(long handle);
 
-    static char const*  getFigureModel(void);
-    static void   setFigureModel(char const* UID);
+    static int  getFigureModel(void);
+    static void setFigureModel(int iUID);
 
-    static char const* getAxesModel(void);
-    static void setAxesModel(char const* UID);
+    static int  getAxesModel(void);
+    static void setAxesModel(int iUID);
+
+    static PathItem* getItem(int uid);
+    static PathItem* getItem(std::string _pstTag);
+    static PathItem* getItem(std::string _pstTag, std::list<int>& _ignoredList);
+    static PathItem* getFigureItem(std::string _pstTag);
+
+    static int search_path(char* _pstPath);
+    static std::string get_path(int uid);
+
+    static void setUserdata(int _id, int* _data, int _datasize);
+    static int getUserdataSize(int _id);
+    static int* getUserdata(int _id);
+
+private :
+    static PathItem* search_children(PathItem* _path, std::string _subPath, bool _bDeep, std::list<int>& _ignoredList);
 
 };
 

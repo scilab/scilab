@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*------------------------------------------------------------------------*/
@@ -17,19 +17,19 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "loadOnUseClassPath.h"
 #include "BOOL.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 };
 /*------------------------------------------------------------------------*/
 using namespace org_scilab_modules_history_browser;
 static BOOL alreadyLoadedJava = FALSE;
 /*------------------------------------------------------------------------*/
-void CommandHistoryAppendLine (char * lineToAppend)
+void CommandHistoryAppendLine (char* _pstLine)
 {
     if (getScilabMode() == SCILAB_STD)
     {
-        if (strcmp(lineToAppend, "") != 0)
+        if (strlen(_pstLine) != 0)
         {
-            CommandHistory::appendLine(getScilabJavaVM(), lineToAppend);
+            CommandHistory::appendLine(getScilabJavaVM(), _pstLine);
         }
     }
 }

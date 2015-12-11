@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry
@@ -112,10 +112,21 @@
             Ce  bloc permet à l'utilisateur d'écrire des données dans un fichier binaire C dont le nom est défini par la chaîne  <emphasis role="bold">Output File Name</emphasis>. Le fichier est une séquence
             d'enregistrements. Chaque enregistrement a une longueur fixée par le paramètre <emphasis role="bold">Input Size</emphasis> et la structure ci-dessous :
         </para>
-        <para />
-        <mediaobject><imageobject>
-                <imagedata fileref="../../../images/sinks_pal/fr_FR/writec_f_record_fr_FR.png" align="center" />
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="../../../images/palettes/sinks_pal/fr_FR/writec_f_record_fr_FR.gif"/>
             </imageobject>
+            <textobject>
+                <programlisting role="pic"><![CDATA[
+.PS
+box "Champ #1";
+box "Champ #2";
+box "...";
+box "Champ #(N-1)";
+box "Champ #N";
+.PE
+                ]]></programlisting>
+            </textobject>
         </mediaobject>
         <para>où les entrées du bloc sont numérotées de haut en bas.</para>
         <para>
@@ -287,13 +298,9 @@
             les dates des événements, nous utilisons un bloc TIME_f et un multiplexeur pour former le vecteur d'entrée du bloc WRITEC_f
             qui enregistre les données dans le fichier <emphasis>"TMPDIR/writec_f.datas"</emphasis>. Vous pouvez ensuite lire les ces
             données avec le bloc <link linkend="READC_f">READC_f</link>.
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
-                Ouvrir cet exemple dans Xcos
-            </link>
-            .
         </para>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/sinks_pal/fr_FR/writec_f_fr_FR.zcos" valign="middle"/>

@@ -6,12 +6,15 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [result, status] = perl(varargin)
     commandLine = "";
     lhs = argn(1);
     rhs = argn(2);
+
+    //Function deprecated in Scilab 5.5 and obsolete in Scilab 6.0
+    warnobsolete(scilabRemovedVersion="6.0.0")
 
     if (rhs) then
         // Check that the first param is a file

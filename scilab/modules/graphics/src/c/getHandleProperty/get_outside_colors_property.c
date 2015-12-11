@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,18 +29,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_outside_colors_property(void* _pvCtx, char* pobjUID)
+void* get_outside_colors_property(void* _pvCtx, int iObjUID)
 {
     int* colors = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, (void **)&colors);
+    getGraphicObjectProperty(iObjUID, __GO_OUTSIDE_COLOR__, jni_int_vector, (void **)&colors);
 
     if (colors == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "outside_colors");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVectorFromInt(_pvCtx, colors, 2);
+    return sciReturnRowVectorFromInt(colors, 2);
 }
 /*------------------------------------------------------------------------*/

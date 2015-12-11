@@ -32,25 +32,25 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Функции Scilab являются переменными. <literal>funcprot</literal> 
-            позволяет пользователю определить что Scilab должен делать при 
+            Функции Scilab являются переменными. <function>funcprot</function>
+            позволяет пользователю определить что Scilab должен делать при
             переопределении таких переменных.
         </para>
         <itemizedlist>
             <listitem>
                 <para>
-                    Если <literal>prot == 0</literal>, то ничего особого не будет делаться.
+                    Если <code>prot == 0</code>, то ничего особого не будет делаться.
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Если <literal>prot == 1</literal>, то Scilab формирует сообщение с 
+                    Если <code>prot == 1</code>, то Scilab формирует сообщение с
                     предупреждением во время переопределения функции (это режим по умолчанию).
                 </para>
             </listitem>
             <listitem>
                 <para>
-                    Если <literal>prot == 2</literal>, то Scilab формирует ошибку во время переопределения функции.
+                    Если <code>prot == 2</code>, то Scilab формирует ошибку во время переопределения функции.
                 </para>
             </listitem>
         </itemizedlist>
@@ -66,7 +66,8 @@ funcprot(0)
 deff('x = foo(a)', 'x = a;')
 deff('x = foo(a)', 'x = a + 1;')
 foo = 33
-funcprot(previousprot)]]></programlisting>
+funcprot(previousprot)
+]]></programlisting>
     </refsection>
     <refsection>
         <title>История</title>

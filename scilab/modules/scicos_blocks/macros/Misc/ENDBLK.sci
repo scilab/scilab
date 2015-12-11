@@ -20,16 +20,10 @@
 //
 
 function [x,y,typ]=ENDBLK(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the internal edge trigger block
         for i=1:length(arg1.model.rpar.objs) do
@@ -52,7 +46,7 @@ function [x,y,typ]=ENDBLK(job,arg1,arg2)
             end
             xx=arg1(spath)// get the block
             execstr("xxn="+xx.gui+"(''set'',xx)")
-            if ~isequalbitwise(xxn,xx) then
+            if diffobjs(xxn,xx)==1 then
                 model=xx.model
                 model_n=xxn.model
                 if ~is_modelica_block(xx) then
@@ -139,7 +133,7 @@ function [x,y,typ]=ENDBLK(job,arg1,arg2)
         pout=[],..
         pein=2,..
         peout=2,..
-        gr_i=list("xstringb(orig(1),orig(2),'' END '',sz(1),sz(2),''fill'');",8),..
+        gr_i=[],..
         id="",..
         in_implicit=[],..
         out_implicit=[]),..
@@ -198,7 +192,7 @@ function [x,y,typ]=ENDBLK(job,arg1,arg2)
         nzcross=0,..
         nmode=0,..
         equations=list())
-        gr_i="xstringb(orig(1),orig(2),'' END '',sz(1),sz(2),''fill'')";
+        gr_i=[];
         x=standard_define([2 2],model,[],gr_i)
     end
 endfunction

@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- TEST WITH GRAPHIC -->
+// <-- ENGLISH IMPOSED -->
 // <-- Non-regression test for bug 4108 -->
 //
 // <-- Bugzilla URL -->
@@ -19,6 +20,8 @@ legend_positions = ["in_upper_right", "in_upper_left", "in_lower_right",..
 "lower_caption", "by_coordinates"];
 x = 1:10;
 plot(x,[x;x.^2]);
+WARNING: Transposing row vector X to get compatible dimensions
+WARNING: Transposing data matrix Y to get compatible dimensions
 curves = gce();
 // check all cases
 for loc = legend_positions,

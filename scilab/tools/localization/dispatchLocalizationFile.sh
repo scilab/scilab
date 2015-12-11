@@ -7,7 +7,7 @@
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
 # are also available at
-# http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+# http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 #
 # This script takes a list of localization files dumped by launchpad
 # here https://translations.launchpad.net/scilab/trunk/+export
@@ -27,7 +27,13 @@ if test -z "$SCI"; then
         exit 2
 fi
 
+TMPDIR=""
 LAUNCHPAD_DIRECTORY=$1
+if test \( ! -d $LAUNCHPAD_DIRECTORY -a -f $LAUNCHPAD_DIRECTORY \); then
+    TMPDIR=$(mktemp -d)
+    tar --one-top-level=$TMPDIR -xzf $LAUNCHPAD_DIRECTORY
+    LAUNCHPAD_DIRECTORY=$TMPDIR
+fi
 if test ! -d $LAUNCHPAD_DIRECTORY; then
     echo "Could not find $LAUNCHPAD_DIRECTORY."
     echo "Exiting..."
@@ -72,22 +78,19 @@ for file in $LAUNCHPAD_DIRECTORY/*.po; do
         
         # Do not copy empty files
         if test -n "$(msgcat $LAUNCHPAD_DIRECTORY/$file)"; then
-        # Before the copy, strip the line with the date. It is only making
-        # diff too big for a little gain.
-        # See bug #7059
-        sed -i -e "/X-Launchpad-Export-Date/d" $LAUNCHPAD_DIRECTORY/$file
+	    # Before the copy, strip the line with the date. It is only making
+	    # diff too big for a little gain.
+	    # See bug #7059
+	    sed -i -e "/X-Launchpad-Export-Date/d" $LAUNCHPAD_DIRECTORY/$file
 
-
-        /bin/cp -f $LAUNCHPAD_DIRECTORY/$file $TARGETFILE
-        if test $? -ne 0; then
-            echo "Error detected in the copy"
-            echo "/bin/cp $LAUNCHPAD_DIRECTORY/$file $TARGETFILE"
-            exit 1;
-        fi
+	    cp -f $LAUNCHPAD_DIRECTORY/$file $TARGETFILE
         fi
     else
         echo "Ignore locale $LOC"
     fi
 done
+
 # Remove english variants
 rm -f modules/*/locales/en_*.po
+[ -d $TMPDIR ] && rm -fr $TMPDIR
+

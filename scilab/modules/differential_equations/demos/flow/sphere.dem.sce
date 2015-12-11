@@ -6,7 +6,7 @@
 funcprot(0);
 
 my_demo_path = get_absolute_file_path("sphere.dem.sce");
-
+exec(my_demo_path+"create_interface.sci");
 exec(my_demo_path+"sphere.sci");
 exec(my_demo_path+"sphere_interface.sci");
 exesphere();

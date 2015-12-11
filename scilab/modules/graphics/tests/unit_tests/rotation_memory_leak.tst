@@ -9,22 +9,27 @@
 
 // non regression bug for graphic memory leak
 
-plot3d();
-a = gca();
+memoryIncrease = [];
 
-beginFreeMemory = getmemory();
+for k=1:10 // 10 times to be sure Java GC runs
+    plot3d();
+    a = gca();
 
-// rotate for a long time and find if there are memory leaks
-for i = 1:3600,
-  a.rotation_angles(2) = i;
-end;
+    beginFreeMemory = getmemory();
 
-endFreeMemory = getmemory();
+    // rotate for a long time and find if there are memory leaks
+    for i = 1:3600,
+        a.rotation_angles(2) = i;
+    end
 
-// not much should have been allocated.
-memoryIncrease = beginFreeMemory - endFreeMemory;
+    endFreeMemory = getmemory();
+
+    // not much should have been allocated.
+    memoryIncrease(k) = beginFreeMemory - endFreeMemory;
+    delete(gcf())
+end
 
 // let say that the rotation should not use more than 10 Meg
-if (memoryIncrease > 10000) then pause; end
+if (mean(memoryIncrease) > 10000) then pause; end
 
 

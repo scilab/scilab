@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -32,17 +32,17 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_size_property(void* _pvCtx, char* pobjUID)
+void* get_axes_size_property(void* _pvCtx, int iObjUID)
 {
     int* axesSize = NULL;
-    getGraphicObjectProperty(pobjUID, __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
+    getGraphicObjectProperty(iObjUID, __GO_AXES_SIZE__, jni_int_vector, (void **)&axesSize);
 
     if (axesSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_size");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowIntVector(_pvCtx, axesSize, 2);
+    return sciReturnRowIntVector(axesSize, 2);
 }
 /*------------------------------------------------------------------------*/

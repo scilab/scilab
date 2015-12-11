@@ -14,12 +14,12 @@
 // fullpath returns different results on Windows and Linux for non-existent file
 cd TMPDIR;
 tmp=getlongpathname(TMPDIR);
-res1=pathconvert(fullpath("CHAN"));
-ref1=pathconvert(tmp+"/CHAN");
+res1=pathconvert(fullpath("a"));
+ref1=pathconvert(tmp+"/a");
 assert_checkequal(res1,ref1);
-res2=pathconvert(fullpath("CHAN/b"));
-ref2=pathconvert(tmp+"/CHAN/b");
+res2=pathconvert(fullpath("a/b"));
+ref2=pathconvert(tmp+"/a/b");
 assert_checkequal(res2,ref2);
-res3=pathconvert(fullpath("../a/b/c"));
-ref3=pathconvert("/tmp/a/b/c");
+res3=pathconvert(fullpath("a/b/c"));
+ref3=pathconvert(tmp + "/a/b/c");
 assert_checkequal(res3, ref3);

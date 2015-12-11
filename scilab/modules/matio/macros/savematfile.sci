@@ -1,4 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier: bug #13102 fixed
 // Copyright (C) 2002-2004 - INRIA - Vincent COUVERT
 // Copyright (C) ???? - INRIA - Serge STEER
 //
@@ -6,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function savematfile(varargin)
     // Save variables in a Matlab binary or ASCII file into Scilab
@@ -126,9 +127,11 @@ function savematfile(varargin)
         mtlb_names=vars;
 
         // Part to delete Scilab variables from mtlb_names (should be improved)
-        mtlb_names(1)=[];// remove varargin
-        mtlb_names(mtlb_names=="savematfile")=[];
-        mtlb_names(($-predef()+1):$)=[]; // clear predefined variables
+        predef_names = [predef("names");"savematfile";"varargin"];
+        for i=1:size(predef_names, "*")
+            mtlb_names(mtlb_names==predef_names(i))=[];
+        end
+        //mtlb_names(($-predef()+1):$)=[]; // clear predefined variables
     end
 
     // If binary format and no extension for filename, .mat is added
@@ -224,9 +227,10 @@ function savematfile(varargin)
                 MOPT=[M O P T]
 
                 [m,n]=size(x)
+
                 head=[MOPT*[1000;100;10;1] m,n,it,length(mtlb_names(mtlb_k))+1]
 
-                head=mput(head,"uil",mtlb_fd);
+                mput(head,"uil",mtlb_fd);
                 mput([ascii(mtlb_names(mtlb_k)) 0],"c",mtlb_fd);
                 select P
                 case 0 then
@@ -316,8 +320,35 @@ function savematfile(varargin)
             end
 
             matfile_close(mtlb_fd);
-        else // Version 7.3 ???
-            error(msprintf(gettext("Version %d MAT-file not implemented."),version));
+        else // Version 7.3
+            // Open file for writing
+            mtlb_fd=matfile_open(mtlb_thefile, "w", "7.3"); // "7.3" specifies a Matlab 7.3 file
+            if mtlb_fd == -1 then
+                error(msprintf(gettext("%s: Could not open file ''%s''.\n"),"savematfile",mtlb_thefile))
+            end
+            // Clear variable wich are no more used to avoid name conflicts
+            for k=["varargin","mtlb_names","mtlb_fmt","mtlb_fd"]
+                if or(mtlb_names==k) then
+                    error(msprintf(gettext("Name conflict: it is not possible to save variable with name %s."),k))
+                end
+            end
+            clear("x","k","rhs","lhs","kk","err","sep","bin","version","mtlb_thefile","mtlb_opts");
+
+            // Write variables as miCOMPRESSED data type
+            for k=1:size(mtlb_names,"*")
+                %var=evstr(mtlb_names(k));
+                // We transpose the sparse matrix so as to ease the conversion to the matlab sparse format
+                if type(%var)==5 then %var = %var'; end
+                if and(type(%var)<>[9 11 13]) then
+                    if ~matfile_varwrite(mtlb_fd, mtlb_names(k), %var, %T) then
+                        error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
+                    end
+                else
+                    error(msprintf(gettext("savematfile: could not save variable named %s.\n"), mtlb_names(k)));
+                end
+            end
+
+            matfile_close(mtlb_fd);
         end
 
         // ASCII save

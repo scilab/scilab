@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine nlis0 (n,simul,prosca,xn,fn,fpn,t,tmin,tmax,d,g,
      /                  amd,amf,imp,io,logic,nap,napmax,x,izs,rzs,dzs)
@@ -85,7 +85,7 @@ c
           t=tmax
           logic=1
       endif
-      if (imp.ge.4) then
+      if (imp.ge.3) then
         write (bufstr,1000) fpn,d2,tmin,tmax
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif
@@ -130,7 +130,7 @@ c
           td=t
           indicd=indic
           logic=0
-          if (imp.ge.4) then
+          if (imp.ge.3) then
             write (bufstr,1004) t,indic
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -151,7 +151,7 @@ c
           fpd=fp
           indicd=indic
           logic=0
-          if(imp.ge.4) then
+          if(imp.ge.3) then
             write (bufstr,1002) t,ffn,fp
             call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
             endif
@@ -160,7 +160,7 @@ c
 c
 c     --- test 1 ok, donc deuxieme test de Wolfe
 c
-      if(imp.ge.4) then
+      if(imp.ge.3) then
         write (bufstr,1003) t,ffn,fp
         call basout(io_out ,io ,bufstr(1:lnblnk(bufstr)))
         endif

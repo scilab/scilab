@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,13 +18,10 @@
 #include "GetXmlFileEncoding.h"
 #include "FileExist.h"
 #include "addToLibrarypath.h"
-#include "setgetSCIpath.h"
-#include "MALLOC.h"
+#include "sci_path.h"
+#include "sci_malloc.h"
 #include "localization.h"
-#include "stricmp.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "BOOL.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
@@ -93,7 +90,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
                     {
 #define KEYWORDSCILAB "$SCILAB"
                         char *FullLibrarypath = NULL;
-                        char *sciPath = getSCIpath();
+                        char *sciPath = getSCI();
 
                         if (strncmp(libraryPath, KEYWORDSCILAB, strlen(KEYWORDSCILAB)) == 0)
                         {
@@ -106,7 +103,7 @@ BOOL LoadLibrarypath(char *xmlfilename)
                         }
                         else
                         {
-                            FullLibrarypath = strdup(libraryPath);
+                            FullLibrarypath = os_strdup(libraryPath);
                         }
 
 

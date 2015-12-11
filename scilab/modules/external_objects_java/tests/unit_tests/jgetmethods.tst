@@ -1,0 +1,14 @@
+// ===================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Sylvestre Ledru
+//
+//  This file is distributed under the same license as the Scilab package.
+// ===================================================================
+
+
+s = "Hello World !";
+foo=jwrap(s);
+r = jgetmethods(foo);
+
+assert_checktrue(find(r=="toString") <> []);
+assert_checktrue(size(r,"*") > 30); // Currently 42

@@ -14,18 +14,18 @@
             scilab-cli &lt;Options&gt;
         </synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Описание</title>
+    <refsection role="arguments">
+        <title>Аргументы</title>
         <variablelist>
             <varlistentry>
                 <term>-args Arguments</term>
                 <listitem>
                     <para>
                         Если есть эта опция, то в Scilab передаются аргументы <literal>Arguments</literal>.
-                        Они могут затем быть получены с помощью функции 
-                        <link linkend="sciargs">sciargs</link>. Для множества передаваемых 
-                        аргументов используйте кавычки и разделяйте слова пробелами. Например, 
-                        <literal>scilab -args 'foo1 foo2'</literal>. Без этого неизвестные 
+                        Они могут затем быть получены с помощью функции
+                        <link linkend="sciargs">sciargs</link>. Для множества передаваемых
+                        аргументов используйте кавычки и разделяйте слова пробелами. Например,
+                        <literal>scilab -args 'foo1 foo2'</literal>. Без этого неизвестные
                         аргументы не будут приняты.
                     </para>
                 </listitem>
@@ -49,7 +49,7 @@
                         Запуск Scilab'а в отладчике gdb (только Unix/Linux/Mac OS X).
                     </para>
                     <para>
-                        Определите переменную  <literal>SCILAB_GDB_OPT</literal> для добавления 
+                        Определите переменную  <literal>SCILAB_GDB_OPT</literal> для добавления
                         пользовательских настроек в gdb.
                     </para>
                     <para>Совет: используйте эту опцию в дереве исходников Scilab'а.</para>
@@ -67,8 +67,8 @@
                 <listitem>
                     <para>Запуск Scilab'а в valgrind (только Unix/Linux/Mac OS X).</para>
                     <para>
-                        Определите переменную  <literal>SCILAB_VALGRIND_OPT</literal>  для 
-                        добавления пользовательских настроек в valgrind (и отмены существующих 
+                        Определите переменную  <literal>SCILAB_VALGRIND_OPT</literal>  для
+                        добавления пользовательских настроек в valgrind (и отмены существующих
                         опций valgrind).
                     </para>
                     <para>Совет: используйте эту опцию в дереве исходников Scilab'а.</para>
@@ -79,8 +79,8 @@
                 <listitem>
                     <para>Запуск Scilab'а в callgrind (только Unix/Linux/Mac OS X).</para>
                     <para>
-                        Определите переменную <literal>SCILAB_VALGRIND_OPT</literal> для 
-                        добавления пользовательских настроек в callgrind (и отмены существующих 
+                        Определите переменную <literal>SCILAB_VALGRIND_OPT</literal> для
+                        добавления пользовательских настроек в callgrind (и отмены существующих
                         опций callgrind).
                     </para>
                     <para>Совет: используйте эту опцию в дереве исходников Scilab'а.</para>
@@ -97,8 +97,8 @@
                 <term>-e Instruction</term>
                 <listitem>
                     <para>
-                        Если есть эта опция, то инструкция <literal>Instruction</literal> выполняется 
-                        первой (сразу же после исполнения файла запуска) в Scilab'e. Опции <literal>-e</literal> 
+                        Если есть эта опция, то инструкция <literal>Instruction</literal> выполняется
+                        первой (сразу же после исполнения файла запуска) в Scilab'e. Опции <literal>-e</literal>
                         и <literal>-f</literal> взаимоисключающие.
                     </para>
                     <para>
@@ -119,6 +119,16 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
+                <term>-quit</term>
+                <listitem>
+                    <para>This option forces scilab to always exit after the instruction(s) passed with the <literal>-e</literal>
+                    option, or the script referred to by the <literal>-f</literal> option, have been executed,
+                    even in case of a runtime error. This option should always be used in batch mode.
+                    It is ignored if neither <literal>-e</literal> nor <literal>-f</literal> options are present.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>-l lang</term>
                 <listitem>
                     <para>
@@ -129,7 +139,7 @@
                         (начиная с Scilab 5.2).
                     </para>
                     <para>
-                        Другими возможными значениями <literal>lang</literal> (для совместимости) являются <literal>'fr'</literal> 
+                        Другими возможными значениями <literal>lang</literal> (для совместимости) являются <literal>'fr'</literal>
                         для французского и <literal>'en'</literal> для английского языка. По умолчанию язык английский.
                         Это значение по умолчанию зафиксировано в файле <literal>scilab.start</literal>.
                     </para>
@@ -144,17 +154,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-mem N</term>
-                <listitem>
-                    <para>
-                        Установка исходного размера стека <literal>stacksize</literal> для использования 
-                        совместно с опцией <literal>-ns</literal>. Без опции <literal>-ns</literal> 
-                        исходный размер стека <literal>stacksize</literal> устанавливается файлом-сценарием 
-                        <literal>scilab.start</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-nb</term>
                 <listitem>
                     <para>
@@ -166,7 +165,7 @@
                 <term>-ns</term>
                 <listitem>
                     <para>
-                        Если есть эта опция, то файл запуска <literal>SCI/etc/scilab.start</literal> и пользовательские 
+                        Если есть эта опция, то файл запуска <literal>SCI/etc/scilab.start</literal> и пользовательские
                         файлы запуска <literal>SCIHOME/.scilab</literal> и <literal>SCIHOME/scilab.ini</literal> не исполняются.
                     </para>
                     <para>
@@ -178,7 +177,7 @@
                 <term>-nouserstartup</term>
                 <listitem>
                     <para>
-                        Если есть эта опция, то пользовательские файлы запуска <literal>SCIHOME/.scilab</literal> и 
+                        Если есть эта опция, то пользовательские файлы запуска <literal>SCIHOME/.scilab</literal> и
                         <literal>SCIHOME/scilab.ini</literal> не исполняются.
                     </para>
                 </listitem>
@@ -205,7 +204,7 @@
                         <listitem>
                             <para>
                                 Дистрибутив Scilab также предоставляет специальный бинарный файл, который
-                                делает то же, что и <literal>-nw</literal>: <literal>scilab-adv-cli</literal> 
+                                делает то же, что и <literal>-nw</literal>: <literal>scilab-adv-cli</literal>
                                 (Интерпретатор Scilab с улучшенной командной строкой).
                             </para>
                         </listitem>
@@ -233,7 +232,7 @@
                         <listitem>
                             <para>
                                 Дистрибутив Scilab также предоставляет специальный бинарный файл, который
-                                делает то же, что и <literal>-nwni</literal>: <literal>scilab-cli</literal> 
+                                делает то же, что и <literal>-nwni</literal>: <literal>scilab-cli</literal>
                                 (Интерпретатор Scilab с улучшенной командной строкой).
                             </para>
                         </listitem>
@@ -268,7 +267,7 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Описание переменных окружения</title>
         <variablelist>
             <varlistentry>
@@ -285,7 +284,7 @@
                 <term>JAVA_HOME</term>
                 <listitem>
                     <para>
-                        Определяет какую Java использовать. Например, 
+                        Определяет какую Java использовать. Например,
                         <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> запустить Scilab с Java 7.
                     </para>
                 </listitem>
@@ -306,10 +305,10 @@
             </varlistentry>
         </variablelist>
     </refsection>
-    <refsection>
+    <refsection role="description">
         <title>Опции виртуальной машины Java</title>
         <para>
-            Начиная с Scilab 5.0, графический пользовательский интерфейс (GUI) и встроенная 
+            Начиная с Scilab 5.0, графический пользовательский интерфейс (GUI) и встроенная
             документация основаны на возможностях Java. В некоторых случаях может оказаться
             важным править опции JVM (Виртуальная Машина Java).
         </para>
@@ -317,11 +316,11 @@
             Эти опции доступны в файле <emphasis>jvm_options.xml</emphasis>.
         </para>
         <para>
-            В версиях 5.0.X и 5.1.X этот файл хранится как 
+            В версиях 5.0.X и 5.1.X этот файл хранится как
             <emphasis>SCI/modules/jvm/etc/jvm_options.xml</emphasis>.
         </para>
         <para>
-            В версии &gt;= 5.2.0 этот файл доступен в 
+            В версии &gt;= 5.2.0 этот файл доступен в
             <emphasis>
                 etc/jvm_options.xml
             </emphasis>
@@ -348,8 +347,8 @@
                 <term>-Djava.compiler=JIT</term>
                 <listitem>
                     <para>
-                        Эта опция с аргументом <emphasis>JIT</emphasis> задействует оперативный 
-                        Java-компилятор (JIT). Он включается по умолчанию. <emphasis>NONE</emphasis> отключает 
+                        Эта опция с аргументом <emphasis>JIT</emphasis> задействует оперативный
+                        Java-компилятор (JIT). Он включается по умолчанию. <emphasis>NONE</emphasis> отключает
                         оперативный Java-компилятор и чрезвычайно уменьшает производительность.
                     </para>
                 </listitem>
@@ -358,26 +357,26 @@
                 <term>-verbose:jni / -Xcheck:jni</term>
                 <listitem>
                     <para>
-                        Эти опции задействуют больше проверок и выход из вызовов интерфейса для прямого 
+                        Эти опции задействуют больше проверок и выход из вызовов интерфейса для прямого
                         доступа из Java. Эти опции полезны в случае отладки и по умолчанию отключены, поскольку они уменьшают производительность.
                     </para>
                 </listitem>
             </varlistentry>
         </variablelist>
         <para>
-            Доступно очень много опций. Они могут улучшить производительность, поменять взгляды и 
+            Доступно очень много опций. Они могут улучшить производительность, поменять взгляды и
             отношение, изменить способы управления памятью... Смотрите:: <ulink url="http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp">http://java.sun.com/javase/technologies/hotspot/vmoptions.jsp</ulink>
             или <ulink url="http://blogs.sun.com/watt/resource/jvm-options-list.html">http://blogs.sun.com/watt/resource/jvm-options-list.html</ulink>.
         </para>
     </refsection>
-    <refsection>
+    <refsection role="examples">
         <title>Примеры</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 # Запустим Scilab в режиме профилирования без прикрепления gdb после каждого SIGSEGV.
 # Мы находимся в оболочке Bash
 export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
 scilab -profiling
- 
+
 # Запустим Scilab в режиме отладки без остановки после каждого SIGSEGV
 # Сначала запишем небольшой файл команд
 echo "handle SIGSEGV nostop" &> debug.txt
@@ -392,13 +391,13 @@ scilab -debug
 $ echo "disp(%pi)"|scilab-cli
 или
 $ echo "disp(%pi)"|scilab -nwni
- 
+
 # Открыть только окно справки Scilab:
 $ scilab-adv-cli -e "help()"
 или
 $ scilab -nw -e "help()"
- 
- 
+
+
 # Scilab может быть использован написания сценариев:
 echo "if 1<>2 then exit(99) end"|scilab-cli
 echo $? ]]></programlisting>
@@ -414,7 +413,7 @@ echo $? ]]></programlisting>
             </member>
         </simplelist>
     </refsection>
-    <refsection>
+    <refsection role="history">
         <title>История</title>
         <revhistory>
             <revision>
@@ -424,8 +423,14 @@ echo $? ]]></programlisting>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>
-                    введены отдельные сценарии scinotes и xcos. 
+                    введены отдельные сценарии scinotes и xcos.
                     См.SEP #87.
+                </revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>-quit</literal> option added. <literal>-mem</literal> option removed.
                 </revremark>
             </revision>
         </revhistory>

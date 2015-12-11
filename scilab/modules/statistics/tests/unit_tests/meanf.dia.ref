@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-// unit tests for meanf function 
+// unit tests for meanf function
 // =============================================================================
 assert_checkfalse(execstr("meanf()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input argument: %d to %d expected.\n"), "meanf", 2, 3);
@@ -31,10 +31,10 @@ assert_checkequal(meanf(x', x', "r"), 7);
 assert_checkequal(meanf(x', x', 1), 7);
 assert_checkequal(meanf(x', x', "*"), 7);
 assert_checkfalse(execstr("meanf(x, x, ''t'')"   ,"errcatch") == 0);
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2);
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"meanf",3,"r","c",1,2);
 assert_checkerror("meanf(x, x, ''t'')", refMsg);
 assert_checkfalse(execstr("meanf(x, x, 4)"   ,"errcatch") == 0);
-refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d.\n"),"meanf",3,"r","c",1,2);
+refMsg = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'', ''%s'', %d or %d expected.\n"),"meanf",3,"r","c",1,2);
 assert_checkerror("meanf(x, x, 4)", refMsg);
 // Matrix
 A=[1,2,10;7,7.1,7.01];
@@ -67,10 +67,10 @@ assert_checkalmostequal(meanf(sparse(A), A, "c"), sparse([8.0769231; 7.0369541])
 assert_checkalmostequal(meanf(sparse(A), A, 2), sparse([8.0769231; 7.0369541]), [], %eps);
 assert_checkalmostequal(meanf(A, sparse(A)), 7.4333069, [], %eps);
 assert_checkalmostequal(meanf(A, sparse(A), "*"), 7.4333069, [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), "r"), [6.25 5.9791209 8.7677895], [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), 1), [6.25 5.9791209 8.7677895], [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), "c"), [8.0769231; 7.0369541], [], %eps);
-assert_checkalmostequal(meanf(A, sparse(A), 2), [8.0769231; 7.0369541], [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), "r"), sparse( [6.25 5.9791209 8.7677895]), [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), 1),  sparse([6.25 5.9791209 8.7677895]), [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), "c"),  sparse([8.0769231; 7.0369541]), [], %eps);
+assert_checkalmostequal(meanf(A, sparse(A), 2),  sparse([8.0769231; 7.0369541]), [], %eps);
 assert_checkequal(meanf(int8(A), 3), int8(34));
 assert_checkequal(meanf(int8(A), 3, "*"), int8(34));
 assert_checkequal(meanf(int8(A), 3, "r"), int8([8 9 17]));

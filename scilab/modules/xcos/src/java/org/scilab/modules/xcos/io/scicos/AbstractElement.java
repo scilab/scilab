@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,6 +16,7 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
 
 /**
  * Root implementation for any Element.
@@ -27,10 +28,14 @@ import org.scilab.modules.types.ScilabType;
  *
  */
 public abstract class AbstractElement<T> implements Element<T> {
+    final JavaController controller;
+
     /**
      * Default constructor
+     * @param controller the shared controller
      */
-    protected AbstractElement() {
+    protected AbstractElement(final JavaController controller) {
+        this.controller = controller;
     }
 
     /**
@@ -64,6 +69,20 @@ public abstract class AbstractElement<T> implements Element<T> {
     public ScilabType encode(T from) {
         return encode(from, null);
     };
+
+    /**
+     * Disable the encode for all sub-classes by encoding nothing
+     *
+     * @param from the associated Java object
+     * @param element a scilab type to encode
+     * @param from
+     *            the source instance
+     * @return the element parameter
+     */
+    @Override
+    public ScilabType encode(T from, ScilabType element) {
+        return element;
+    }
 
     /**
      * Default implementation is empty.

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function eq=Equal(lhslist,expression,endsymbol)
     // Create a new 'equal' tlist
@@ -22,7 +22,6 @@ function eq=Equal(lhslist,expression,endsymbol)
         error(msprintf(gettext("lhslist should be a list and not a: %s."),typeof(lhslist)));
     end
     if and(typeof(expression)<>["funcall","cste","operation","variable"]) then
-        disp(expression)
         error(msprintf(gettext("expression can not be a: %s."),typeof(expression)))
     end
     if type(endsymbol)<>10 then

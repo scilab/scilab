@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * Please note that piece of code will be rewrited for the Scilab 6 family
  * However, the API (profile of the functions in the header files) will be
@@ -15,7 +15,7 @@
 
 #include "api_scilab.h"
 
-int sci_bug_11538(char* fname, int length)
+int sci_bug_11538(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -38,12 +38,14 @@ int sci_bug_11538(char* fname, int length)
         return 1;
     }
 
+    FREE(pstData);
+
     if (getAllocatedSingleWideString(pvApiCtx, piAddr, &pwstData))
     {
         Scierror(999, "Failed to get data as wide string");
         return 1;
     }
 
-    LhsVar(0) = 1;
+    FREE(pwstData);
     return 0;
 }

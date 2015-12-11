@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [rects,btn]=dragrect(varargin)
 
@@ -16,8 +16,11 @@ function [rects,btn]=dragrect(varargin)
 
     if size(rects,1)==1 then rects=rects(:),end
     n=size(rects,2)
-    f=gcf();pix=f.pixmap;f.pixmap="on";
+    f=gcf();
+    a=gca();
+    db = a.data_bounds;
     xrects(rects)
+    a.data_bounds = db;
     R=gce(); //Compound of rectangles
     rep=[rects(1),rects(2),-1]
     while rep(3)==-1 then
@@ -30,7 +33,6 @@ function [rects,btn]=dragrect(varargin)
         move(R,repn(1:2)-rep(1:2))
         rep=repn
     end
-    f.pixmap=stripblanks(pix)
     delete(R)
     btn=rep(3)
 endfunction

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.graphic_objects.graphicView;
@@ -23,14 +23,23 @@ public class FlattenTreeView extends TreeView {
         super();
     }
 
-    public static FlattenTreeView create() {
+    public static void createView() {
         if (me == null) {
             me = new FlattenTreeView();
+            GraphicController.getController().register(me);
+            me.show();
         }
-        return me;
+    }
+    
+    public static void deleteView() {
+        if (me != null) {
+            me.hide();
+            GraphicController.getController().unregister(me);
+            me = null;
+        }
     }
 
-    public void createObject(String id) {
+    public void createObject(Integer id) {
         try {
             GraphicObject graphiObject = GraphicController.getController().getObjectFromId(id);
             //if (!(graphiObject instanceof Uimenu)) {
@@ -41,11 +50,11 @@ public class FlattenTreeView extends TreeView {
             topModel.nodeStructureChanged(top);
             //}
         } catch (Exception e) {
-            e.printStackTrace();
+            //e.printStackTrace();
         }
     }
 
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         try {
             DefaultMutableTreeNode objectNode = allObjects.get(id);
             if (objectNode != null) {
@@ -59,7 +68,7 @@ public class FlattenTreeView extends TreeView {
         }
     }
 
-    public void updateObject(String id, int property) {
+    public void updateObject(Integer id, int property) {
 
     }
 }

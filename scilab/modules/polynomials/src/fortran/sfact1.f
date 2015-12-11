@@ -6,7 +6,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine sfact1(b,n,w,maxit,ierr)
 c!but
 c     on cherche une factorisation spectrale d'un polynome a donne
@@ -14,19 +14,19 @@ c     par : a*(a(1/z) = b(n)*z**-n+....+b(0)+ ... +b(n)*z**n
 c!liste d'appel
 c     subroutine sfact1(b,n,w,maxit,ierr)
 c
-c     double precision b(n+1),w(6*(n+1))
+c     double precision b(n+1),w(7*(n+1))
 c     integer n,maxit,ierr
 c
-c     b : contient les coeffs b(n),b(n-1),....,b(0)
+c     b : contient les coeffs b(0),b(1),....,b(n)
 c         apres execution b contient les coeff du resultat
 c     n : degre de a
-c     w : tableau de travail de taille 6*(n+1)
+c     w : tableau de travail de taille 7*(n+1)
 c     maxit : nombre maxi d'iterations admis
 c     ierr : indicateur d'erreur
 c             si ierr=0 : ok
 c             si ierr<0 : convergence a 10**ierr pres
 c             si ierr=1 : non convergence
-c             si ierr=2 : b(0) est negatif ou nul.
+c             si ierr=2 : b(n) est negatif ou nul.
 c
 c!origine
 c     V Kucera : Discrete Linear control (john Wiley& Sons) 1979

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,6 +16,7 @@
 /* file: sci_xarcs.h                                                       */
 /* desc : interface for xarcs routine                                      */
 /*------------------------------------------------------------------------*/
+#include <string.h>
 #include "api_scilab.h"
 #include "gw_graphics.h"
 #include "BuildObjects.h"
@@ -26,10 +27,11 @@
 #include "CurrentObject.h"
 
 #include "graphicObjectProperties.h"
+#include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xarcs(char *fname, unsigned long fname_len)
+int sci_xarcs(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -45,7 +47,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
     double angle1 = 0.0;
     double angle2 = 0.0;
 
-    char *pstCurrentSubWinUID = NULL;
+    int iCurrentSubWinUID = 0;
     int iCurrentSubWinForeground = 0;
     int *piCurrentSubWinForeground = &iCurrentSubWinForeground;
 
@@ -63,7 +65,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -84,7 +86,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
         }
     }
 
-    pstCurrentSubWinUID = (char*)getOrCreateDefaultSubwin();
+    iCurrentSubWinUID = getOrCreateDefaultSubwin();
 
     if (nbInputArgument(pvApiCtx) == 2)
     {
@@ -100,7 +102,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 
@@ -130,7 +132,7 @@ int sci_xarcs(char *fname, unsigned long fname_len)
             return 1;
         }
 
-        getGraphicObjectProperty(pstCurrentSubWinUID, __GO_LINE_COLOR__, jni_int, (void **)&piCurrentSubWinForeground);
+        getGraphicObjectProperty(iCurrentSubWinUID, __GO_LINE_COLOR__, jni_int, (void **)&piCurrentSubWinForeground);
         for (i2 = 0; i2 < n2; ++i2)
         {
             *(int*)(l2 + i2) = iCurrentSubWinForeground;
@@ -147,9 +149,8 @@ int sci_xarcs(char *fname, unsigned long fname_len)
 
     /* construct Compound and make it current object */
     {
-        char * o = ConstructCompoundSeq(n1);
+        int o = createCompoundSeq(iCurrentSubWinUID, n1);
         setCurrentObject(o);
-        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

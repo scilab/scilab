@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function [r] = horner(p,x)
@@ -29,7 +29,7 @@ function [r] = horner(p,x)
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"horner",2))
     end
 
-    if (x == [] | p == []) then
+    if (size(x, "*") == 0 | size(p, "*") == 0) then
         r = []
         return
     end

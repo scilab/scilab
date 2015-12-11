@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       subroutine dmpdsp(mp,d,nl,mm,nn,var,lvar,maxc,mode,ll,lunit,
      1    cw,iw)
 c!but
@@ -111,7 +111,7 @@ c     determination du format devant representer a
                   iw(ldef)=n2+32*n1
                elseif(typ.lt.0) then
                   iw(ldef)=typ
-                  fl=4
+                  fl=5
                else
                   iw(ldef)=1
                   fl=maxc
@@ -217,7 +217,7 @@ c
                      fl=n1
                   elseif(ifmt.lt.0) then
 c     Inf/Nan
-                     fl=3
+                     fl=4
                      n2=1
                   endif
 c

@@ -6,13 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution. The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "api_scilab.h"
 
-int callOverload(char *fname, unsigned long fname_len)
+int callOverload(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 1);
     CheckLhs(0, 1);

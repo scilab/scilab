@@ -6,9 +6,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+
+#include "mlist.hxx"
+#include "int.hxx"
 
 #include "H5Exception.hxx"
 #include "HDF5Scilab.hxx"
@@ -30,10 +33,10 @@ using namespace org_modules_hdf5;
   Scilab prototype:
   - h5close()
   - h5close(obj)
-/*
+*/
 
 /*--------------------------------------------------------------------------*/
-int sci_h5close(char *fname, unsigned long fname_len)
+int sci_h5close(char *fname, int* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -70,7 +73,9 @@ int sci_h5close(char *fname, unsigned long fname_len)
                      * so modify mlist contents will have effect on Scilab side.
                      * Why 28 ?? because it is the good value where the _id is located
                      */
-                    addr[28] = invalid;
+
+                    types::MList* m = (types::MList*)addr;
+                    m->set(L"_id", new types::Int32(invalid));
                 }
                 else
                 {

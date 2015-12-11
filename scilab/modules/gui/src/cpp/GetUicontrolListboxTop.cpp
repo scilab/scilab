@@ -9,43 +9,46 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "GetUicontrolListboxTop.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
-int GetUicontrolListboxTop(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolListboxTop(void* _pvCtx, int iObjUID)
 {
     int listboxTopSize = 0;
     int* piListboxTopSize = &listboxTopSize;
     int* piListboxTop = NULL;;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP_SIZE__, jni_int, (void**) &piListboxTopSize);
+    getGraphicObjectProperty(iObjUID, __GO_UI_LISTBOXTOP_SIZE__, jni_int, (void**) &piListboxTopSize);
 
     if (piListboxTopSize == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "ListboxTop");
-        return FALSE;
+        return NULL;
     }
     else
     {
         if (listboxTopSize == 0)
         {
-            return sciReturnEmptyMatrix(_pvCtx);
+            return sciReturnEmptyMatrix();
         }
         else
         {
-            getGraphicObjectProperty(sciObjUID, __GO_UI_LISTBOXTOP__, jni_int_vector, (void**) &piListboxTop);
+            getGraphicObjectProperty(iObjUID, __GO_UI_LISTBOXTOP__, jni_int_vector, (void**) &piListboxTop);
 
             if (piListboxTop == NULL)
             {
                 Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "ListboxTop");
-                return FALSE;
+                return NULL;
             }
             else
             {
-                return sciReturnRowVectorFromInt(_pvCtx, piListboxTop, listboxTopSize);
+                return sciReturnRowVectorFromInt(piListboxTop, listboxTopSize);
             }
         }
     }

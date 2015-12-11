@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@
 #include "CurrentFigure.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xdel(char *fname, unsigned long fname_len)
+int sci_xdel(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -38,7 +38,7 @@ int sci_xdel(char *fname, unsigned long fname_len)
     double* l1 = NULL;
 
     int m1 = 0, n1 = 0;
-    char *pstCurrentFigure = NULL;
+    int iCurrentFigure = 0;
     CheckInputArgument(pvApiCtx, -1, 1);
     if (nbInputArgument(pvApiCtx) >= 1)
     {
@@ -56,7 +56,7 @@ int sci_xdel(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
             return 1;
         }
 
@@ -79,10 +79,10 @@ int sci_xdel(char *fname, unsigned long fname_len)
     }
     else
     {
-        pstCurrentFigure = (char*)getCurrentFigure();
-        if (pstCurrentFigure != NULL)
+        iCurrentFigure = getCurrentFigure();
+        if (iCurrentFigure != 0)
         {
-            deleteGraphicObject(pstCurrentFigure);
+            deleteGraphicObject(iCurrentFigure);
         }
     }
     AssignOutputVariable(pvApiCtx, 1) = 0;

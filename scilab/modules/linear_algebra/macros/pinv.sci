@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function X=pinv(A,tol)
     //Pseudo inverse
@@ -35,7 +35,7 @@ function X=pinv(A,tol)
                 execstr("X="+fun+"(A,tol)")
             end
         else
-            error(msprintf(gettext("%s: Type not defined for %s. Check argument or define function %s."),"pinv",n,fun));
+            error(msprintf(gettext("%s: Function not defined for type ''%s''. Check argument or define function %s."),"pinv",n,fun));
         end
     end
 endfunction

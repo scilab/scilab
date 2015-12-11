@@ -6,16 +6,15 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef __INITIALIZELOCALIZATION_H__
 #define __INITIALIZELOCALIZATION_H__
-#include "dynlib_localization.h"
 #include "BOOL.h"
 
-LOCALIZATION_IMPEXP BOOL InitializeLocalization(void);
+BOOL InitializeLocalization(void);
 
 #endif /* __INITIALIZELOCALIZATION_H__ */
 /*--------------------------------------------------------------------------*/

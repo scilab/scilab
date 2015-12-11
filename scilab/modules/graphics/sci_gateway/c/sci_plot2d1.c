@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,7 +15,7 @@
 /* file: sci_plot2d1.c                                                    */
 /* desc : interface for plot2d1, plot2d2, plot2d3 and plot2d4 routines    */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -23,30 +23,30 @@
 #include "sciCall.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_1 (char *fname, unsigned long fname_len)
+int sci_plot2d1_1 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d1", 1, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d1", 1, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_2 (char *fname, unsigned long fname_len)
+int sci_plot2d1_2 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d2", 2, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d2", 2, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_3 (char *fname, unsigned long fname_len)
+int sci_plot2d1_3 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d3", 3, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d3", 3, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_4 (char *fname, unsigned long fname_len)
+int sci_plot2d1_4 (char *fname, void *pvApiCtx)
 {
-    return sci_plot2d1_G("plot2d4", 4, fname_len); /* NG */
+    return sci_plot2d1_G("plot2d4", 4, pvApiCtx); /* NG */
 }
 /*--------------------------------------------------------------------------*/
-int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
+int sci_plot2d1_G(char * fname, int ptype, void *pvApiCtx)
 {
     SciErr sciErr;
     int* piAddrl1 = NULL;
@@ -61,7 +61,6 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
     int *axes = &axes_def;
     int iskip = 0, test  = 0;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, i = 0, j = 0;
-    char strfl[4];
 
     static rhs_opts opts[] =
     {
@@ -81,13 +80,14 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
     int    * nax      = NULL ;
     BOOL     flagNax  = FALSE;
     char   * strf     = NULL ;
+    char strfl[4];
     char   * legend   = NULL ;
     char   * logFlags = NULL ;
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        /* lauch the default routines depending on the name of the calling funtion */
-        sci_demo(fname, fname_len);
+        /* lauch the default routines depending on the name of the calling function */
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
     CheckInputArgument(pvApiCtx, 1, 9); /* to allow plot2dxx(y) */
@@ -110,10 +110,10 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
     /* added to support plot2dxx([logflags],y) */
     if (nbInputArgument(pvApiCtx) == 1 + iskip)
     {
-        if (FirstOpt() <= nbInputArgument(pvApiCtx))
+        if (FirstOpt(pvApiCtx) <= nbInputArgument(pvApiCtx))
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 3 + iskip);
-            return(0);
+            return (0);
         }
 
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl2);
@@ -128,7 +128,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1 + iskip);
             return 1;
         }
 
@@ -161,11 +161,11 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) >= 2 + iskip)
     {
-        if (FirstOpt() < 3 + iskip)
+        if (FirstOpt(pvApiCtx) < 3 + iskip)
         {
             Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                      fname, 1, 3 + iskip);
-            return(0);
+            return (0);
         }
 
 
@@ -182,7 +182,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1 + iskip);
             return 1;
         }
 
@@ -208,7 +208,7 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2 + iskip);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2 + iskip);
             return 1;
         }
 
@@ -323,7 +323,6 @@ int sci_plot2d1_G(char * fname, int ptype, unsigned long fname_len)
 
     if (isDefStrf(strf))
     {
-        char strfl[4];
         strcpy(strfl, DEFSTRFN);
 
         strf = strfl;

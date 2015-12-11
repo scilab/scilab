@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="atomsTest" xml:lang="en">
@@ -74,7 +74,7 @@
             <emphasis role="strong">Example 1</emphasis>: Test a module already
             installed
         </para>
-        <programlisting role="example">// Display some additionnal information
+        <programlisting role="example">// Display some additional information
             atomsSetConfig("Verbose","True");
             
             // Get the list of loaded modules:
@@ -140,7 +140,7 @@
                 --------------------------------------------------------------------------
                 ans  =
                 
-                %f 
+                %f
             </programlisting>
             <para>TMPDIR is the general folder where all the temporary files of the
                 tests will be saved. The list of the tests is then shown, with their
@@ -235,12 +235,12 @@
                             to fix it
                         </td>
                     </tr>
-                    <!-- skipped : bug reoponed -->
+                    <!-- skipped : bug reopened -->
                     <tr>
                         <td>
                             <emphasis>failed : bug reopened</emphasis>
                         </td>
-                        <td>This bug used to be fixed, but it came back to an instable
+                        <td>This bug used to be fixed, but it came back to an unstable
                             status and is waiting another fix from its developer
                         </td>
                     </tr>
@@ -291,7 +291,7 @@
                     </tr>
                 </informaltable>
                 You then have a summary of the execution, indicating
-                how many tests were skipped, failed or suceed, and the duration time of
+                how many tests were skipped, failed or succeed, and the duration time of
                 the whole. In details, you have a report for each test that failed,
                 indicating where to check for error logs.
             </para>
@@ -320,7 +320,7 @@
             <revision>
                 <revnumber>5.4.0</revnumber>
                 <revdescription>
-                    atomsTest returns a status: 
+                    atomsTest returns a status:
                     <itemizedlist>
                         <listitem>Returns %t if no error has been detected</listitem><listitem>Returns %f if any error has been detected</listitem>
                     </itemizedlist>

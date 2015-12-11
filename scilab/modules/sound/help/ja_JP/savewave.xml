@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at    
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="savewave" xml:lang="ja">
+    <refnamediv>
+        <refname>savewave</refname>
+        <refpurpose>データをサウンドwavファイルに保存.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>savewave(filename,x [, rate , nbits]);</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>filename</term>
+                <listitem>
+                    <para>文字列. 出力wavファイルのパス</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>mxn 行列, ただし, m はチャンネル数, n は各チャネルの
+                        サンプル数
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>rate</term>
+                <listitem>
+                    <para>
+                        サンプリング・レート(サンプル数/秒)を指定するスカラー.
+                        22050 がデフォルト値です.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            x をwavサウンドファイルに保存します.
+            他のサウンドファイルを<literal>sox</literal>プログラムにより
+            wavファイルに変換できます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// まず0.5秒分のサウンドパラメータを作成.
+t=soundsec(0.5);
+// 次にサウンドを生成.
+s=sin(2*%pi*440*t)+sin(2*%pi*220*t)/2+sin(2*%pi*880*t)/2;
+[nr,nc]=size(t);
+s(nc/2:nc)=sin(2*%pi*330*t(nc/2:nc));
+savewave(TMPDIR+'/foo.wav',s);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="loadwave">loadwave</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+            <member>
+                <link linkend="mapsound">mapsound</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

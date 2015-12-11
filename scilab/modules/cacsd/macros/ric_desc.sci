@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [X1,X2,zero]=ric_desc(H,E)
     //[X1,X2,zero]=ric_desc(H [,E])  Descriptor Riccati solver with

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,18 +25,19 @@
 #include "BuildObjects.h"
 #include "CurrentFigure.h"
 
+#include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xname(char *fname, unsigned long fname_len)
+int sci_xname(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
     int* piAddrl1 = NULL;
     char* l1 = NULL;
 
-    char *pstCurrentFigure = NULL;
+    int iCurrentFigure = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 1, 1);
@@ -51,18 +52,18 @@ int sci_xname(char *fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 1.
     if (getAllocatedSingleString(pvApiCtx, piAddrl1, &l1))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
-    pstCurrentFigure = (char*)getCurrentFigure();
+    iCurrentFigure = getCurrentFigure();
 
-    if (pstCurrentFigure == NULL)
+    if (iCurrentFigure == 0)
     {
-        pstCurrentFigure = createNewFigureWithAxes();
+        iCurrentFigure = createNewFigureWithAxes();
     }
 
-    setGraphicObjectProperty(pstCurrentFigure, __GO_NAME__, l1, jni_string, 1);
+    setGraphicObjectProperty(iCurrentFigure, __GO_NAME__, l1, jni_string, 1);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

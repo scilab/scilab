@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,16 +25,14 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_visible_property(void* _pvCtx, char* pobjUID)
+void* get_axes_visible_property(void* _pvCtx, int iObjUID)
 {
     char * axes_visible[3]  = { NULL, NULL, NULL };
     int  const axesVisiblePropertiesNames[3] = {__GO_X_AXIS_VISIBLE__, __GO_Y_AXIS_VISIBLE__, __GO_Z_AXIS_VISIBLE__};
@@ -43,25 +41,25 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
 
     int i = 0;
     int j = 0;
-    int status = -1;
+    void* status = NULL;
 
     for (i = 0 ; i < 3 ; i++)
     {
-        getGraphicObjectProperty(pobjUID, axesVisiblePropertiesNames[i], jni_bool, (void **)&piAxesVisible);
+        getGraphicObjectProperty(iObjUID, axesVisiblePropertiesNames[i], jni_bool, (void **)&piAxesVisible);
 
         if (piAxesVisible == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_visible");
-            return -1;
+            return NULL;
         }
 
         if (iAxesVisible)
         {
-            axes_visible[i] = strdup("on");
+            axes_visible[i] = os_strdup("on");
         }
         else
         {
-            axes_visible[i] = strdup("off");
+            axes_visible[i] = os_strdup("off");
         }
 
         if (axes_visible[i] == NULL)
@@ -72,12 +70,12 @@ int get_axes_visible_property(void* _pvCtx, char* pobjUID)
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_axes_visible_property");
-            return -1;
+            return NULL;
         }
 
     }
 
-    status = sciReturnRowStringVector(_pvCtx, axes_visible, 3);
+    status = sciReturnRowStringVector(axes_visible, 3);
 
     for (i = 0 ; i < 3 ; i++)
     {

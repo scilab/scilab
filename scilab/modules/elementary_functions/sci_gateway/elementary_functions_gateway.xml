@@ -3,12 +3,12 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Allan CORNET
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
@@ -34,7 +34,7 @@
  Don't touch if you do not know what you are doing
 -->
     <!-- =================== -->
-    
+
     <PRIMITIVE gatewayId="6" primitiveId="1" primitiveName="abs" />
     <PRIMITIVE gatewayId="6" primitiveId="2" primitiveName="real" />
     <PRIMITIVE gatewayId="6" primitiveId="3" primitiveName="imag" />
@@ -53,7 +53,6 @@
     <PRIMITIVE gatewayId="6" primitiveId="16" primitiveName="max" />
     <PRIMITIVE gatewayId="6" primitiveId="17" primitiveName="min" />
     <PRIMITIVE gatewayId="6" primitiveId="18" primitiveName="kron" />
-    <PRIMITIVE gatewayId="6" primitiveId="21" primitiveName="matrix" />
     <PRIMITIVE gatewayId="6" primitiveId="22" primitiveName="sin" />
     <PRIMITIVE gatewayId="6" primitiveId="23" primitiveName="cos" />
     <PRIMITIVE gatewayId="6" primitiveId="24" primitiveName="atan" />
@@ -86,4 +85,6 @@
     <PRIMITIVE gatewayId="6" primitiveId="52" primitiveName="rat" />
     <PRIMITIVE gatewayId="6" primitiveId="53" primitiveName="base2dec" />
     <PRIMITIVE gatewayId="6" primitiveId="54" primitiveName="dec2base" />
+    <PRIMITIVE gatewayId="6" primitiveId="55" primitiveName="find" />
+    <PRIMITIVE gatewayId="6" primitiveId="56" primitiveName="log10" />
 </GATEWAY>

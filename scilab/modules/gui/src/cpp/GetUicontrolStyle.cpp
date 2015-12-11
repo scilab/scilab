@@ -7,23 +7,20 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
-#include "GetUicontrolStyle.hxx"
-
 extern "C"
 {
-#include "graphicObjectProperties.h"
-#include "getGraphicObjectProperty.h"
+#include "GetUicontrol.h"
 }
 
 /**
  ** \brief Get the style of an uicontrol object
  */
 
-char *IntToStyle(int _iStyle)
+const char *IntToStyle(int _iStyle)
 {
     switch (_iStyle)
     {
@@ -49,26 +46,32 @@ char *IntToStyle(int _iStyle)
             return "table";
         case __GO_UI_TEXT__ :
             return "text";
+        case __GO_UI_TAB__ :
+            return "tab";
+        case __GO_UI_LAYER__ :
+            return "layer";
+        case __GO_UI_SPINNER__ :
+            return "spinner";
     }
 
     return NULL;
 }
 
-int GetUicontrolStyle(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolStyle(void* _pvCtx, int iObjUID)
 {
     int iStyle = -1;
     int *piStyle = &iStyle;
 
-    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void **) &piStyle);
+    getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void **) &piStyle);
 
     if (piStyle != NULL)
     {
-        return sciReturnString(_pvCtx, IntToStyle(iStyle));
+        return sciReturnString(IntToStyle(iStyle));
     }
     else
     {
         Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "Style");
-        return FALSE;
+        return NULL;
     }
 
 }

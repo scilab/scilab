@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,10 +24,10 @@
  * @param[out] sci_version_revision
  * @return if the function has been able to load the information
  */
-BOOL getversionmodule(char *modulename,
+BOOL getversionmodule(wchar_t* modulename,
                       int *sci_version_major,
                       int *sci_version_minor,
                       int *sci_version_maintenance,
-                      char *sci_version_string,
+                      wchar_t *sci_version_string,
                       int *sci_version_revision);
 /*--------------------------------------------------------------------------*/

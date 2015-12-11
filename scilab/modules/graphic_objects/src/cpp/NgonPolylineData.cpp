@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -36,6 +36,11 @@ NgonPolylineData::NgonPolylineData(void)
     coordinatesShift = NULL;
 
     zCoordinatesSet = 0;
+
+    display_function_data = NULL;
+    display_function_data_size = 0;
+
+    colors = NULL;
 }
 
 NgonPolylineData::~NgonPolylineData(void)
@@ -53,6 +58,16 @@ NgonPolylineData::~NgonPolylineData(void)
     if (zShiftSet)
     {
         delete [] zShift;
+    }
+
+    if (display_function_data)
+    {
+        delete[] display_function_data;
+    }
+
+    if (colors)
+    {
+        delete [] colors;
     }
 }
 
@@ -78,6 +93,14 @@ int NgonPolylineData::getPropertyFromName(int propertyName)
             return Z_COORDINATES_SHIFT_SET;
         case __GO_DATA_MODEL_Z_COORDINATES_SET__ :
             return Z_COORDINATES_SET;
+        case __GO_DATA_MODEL_DISPLAY_FUNCTION__ :
+            return DISPLAY_FUNCTION_DATA;
+        case __GO_DATA_MODEL_DISPLAY_FUNCTION_SIZE__ :
+            return DISPLAY_FUNCTION_DATA_SIZE;
+        case __GO_DATA_MODEL_COLORS__ :
+            return COLORS;
+        case __GO_DATA_MODEL_NUM_COLORS__ :
+            return NUM_COLORS;
         default :
             return NgonGeneralData::getPropertyFromName(propertyName);
     }
@@ -87,85 +110,86 @@ int NgonPolylineData::getPropertyFromName(int propertyName)
 
 int NgonPolylineData::setDataProperty(int property, void const* value, int numElements)
 {
-    if (property == NUM_ELEMENTS_ARRAY)
+    switch (property)
     {
-        return setNumElementsArray((int const*) value);
+        case NUM_ELEMENTS_ARRAY :
+            return setNumElementsArray((int const*) value);
+        case X_COORDINATES_SHIFT :
+            return setXCoordinatesShift((double const*) value, numElements);
+        case Y_COORDINATES_SHIFT :
+            return setYCoordinatesShift((double const*) value, numElements);
+        case Z_COORDINATES_SHIFT :
+            return setZCoordinatesShift((double const*) value, numElements);
+        case X_COORDINATES_SHIFT_SET :
+            setXCoordinatesShiftSet(*((int const*) value));
+			return 1;
+            break;
+        case Y_COORDINATES_SHIFT_SET :
+            setYCoordinatesShiftSet(*((int const*) value));
+            return 1;
+			break;
+        case Z_COORDINATES_SHIFT_SET :
+            setZCoordinatesShiftSet(*((int const*) value));
+			return 1;
+            break;
+        case Z_COORDINATES_SET :
+            setZCoordinatesSet(*((int const*) value));
+			return 1;
+            break;
+        case DISPLAY_FUNCTION_DATA :
+            return setDisplayFunctionData((int const*) value, numElements);
+            break;
+        case COLORS :
+            return setColors((int const*) value, numElements);
+            break;
+        default :
+            return NgonGeneralData::setDataProperty(property, value, numElements);
     }
-    else if (property == X_COORDINATES_SHIFT)
-    {
-        return setXCoordinatesShift((double const*) value, numElements);
-    }
-    else if (property == Y_COORDINATES_SHIFT)
-    {
-        return setYCoordinatesShift((double const*) value, numElements);
-    }
-    else if (property == Z_COORDINATES_SHIFT)
-    {
-        return setZCoordinatesShift((double const*) value, numElements);
-    }
-    else if (property == X_COORDINATES_SHIFT_SET)
-    {
-        setXCoordinatesShiftSet(*((int const*) value));
-    }
-    else if (property == Y_COORDINATES_SHIFT_SET)
-    {
-        setYCoordinatesShiftSet(*((int const*) value));
-    }
-    else if (property == Z_COORDINATES_SHIFT_SET)
-    {
-        setZCoordinatesShiftSet(*((int const*) value));
-    }
-    else if (property == Z_COORDINATES_SET)
-    {
-        setZCoordinatesSet(*((int const*) value));
-    }
-    else
-    {
-        return NgonGeneralData::setDataProperty(property, value, numElements);
-    }
-
-    return 1;
 }
 
 void NgonPolylineData::getDataProperty(int property, void **_pvData)
 {
-    if (property == X_COORDINATES_SHIFT)
+    switch (property)
     {
-        *_pvData = getXCoordinatesShift();
+        case X_COORDINATES_SHIFT :
+            *_pvData = getXCoordinatesShift();
+            break;
+        case Y_COORDINATES_SHIFT :
+            *_pvData = getYCoordinatesShift();
+            break;
+        case Z_COORDINATES_SHIFT :
+            *_pvData = getZCoordinatesShift();
+            break;
+        case NUM_ELEMENTS :
+            ((int *) *_pvData)[0] = getNumElements();
+            break;
+        case X_COORDINATES_SHIFT_SET :
+            ((int *) *_pvData)[0] = getXCoordinatesShiftSet();
+            break;
+        case Y_COORDINATES_SHIFT_SET :
+            ((int *) *_pvData)[0] = getYCoordinatesShiftSet();
+            break;
+        case Z_COORDINATES_SHIFT_SET :
+            ((int *) *_pvData)[0] = getZCoordinatesShiftSet();
+            break;
+        case Z_COORDINATES_SET :
+            ((int *) *_pvData)[0] = getZCoordinatesSet();
+            break;
+        case DISPLAY_FUNCTION_DATA :
+            *_pvData = getDisplayFunctionData();
+            break;
+        case DISPLAY_FUNCTION_DATA_SIZE :
+            ((int *) *_pvData)[0] = getDisplayFunctionDataSize();
+            break;
+        case COLORS :
+            *_pvData = getColors();
+            break;
+        case NUM_COLORS :
+            ((int *) *_pvData)[0] = getNumColors();
+            break;
+        default :
+            NgonGeneralData::getDataProperty(property, _pvData);
     }
-    else if (property == Y_COORDINATES_SHIFT)
-    {
-        *_pvData = getYCoordinatesShift();
-    }
-    else if (property == Z_COORDINATES_SHIFT)
-    {
-        *_pvData = getZCoordinatesShift();
-    }
-    else if (property == NUM_ELEMENTS)
-    {
-        ((int *) *_pvData)[0] = getNumElements();
-    }
-    else if (property == X_COORDINATES_SHIFT_SET)
-    {
-        ((int *) *_pvData)[0] = getXCoordinatesShiftSet();
-    }
-    else if (property == Y_COORDINATES_SHIFT_SET)
-    {
-        ((int *) *_pvData)[0] = getYCoordinatesShiftSet();
-    }
-    else if (property == Z_COORDINATES_SHIFT_SET)
-    {
-        ((int *) *_pvData)[0] = getZCoordinatesShiftSet();
-    }
-    else if (property == Z_COORDINATES_SET)
-    {
-        ((int *) *_pvData)[0] = getZCoordinatesSet();
-    }
-    else
-    {
-        NgonGeneralData::getDataProperty(property, _pvData);
-    }
-
 }
 
 int NgonPolylineData::getNumElements(void)
@@ -347,7 +371,7 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
         return 1;
     }
 
-    if (numGons*numVerticesPerGon != newNumElements)
+    if (numGons * numVerticesPerGon != newNumElements)
     {
         double* newCoordinates = NULL;
         double* xShiftNew = NULL;
@@ -477,6 +501,54 @@ int NgonPolylineData::setNumElementsArray(int const* numElementsArray)
     return result;
 }
 
+int NgonPolylineData::getNumColors(void)
+{
+    return numColors;
+}
+
+int* NgonPolylineData::getColors(void)
+{
+    return colors;
+}
+
+int NgonPolylineData::setColors(int const* newColors, int numElements)
+{
+    int * _newColors = 0;
+
+    if (numElements == 0)
+    {
+        if (colors)
+        {
+            delete[] colors;
+        }
+        colors = NULL;
+        numColors = 0;
+
+        return 1;
+    }
+
+    try
+    {
+        _newColors = new int[numElements];
+    }
+    catch (const std::exception& e)
+    {
+        e.what();
+        return 0;
+    }
+
+    memcpy(_newColors, newColors, numElements * sizeof(int));
+    if (colors)
+    {
+        delete[] colors;
+    }
+
+    colors = _newColors;
+    numColors = numElements;
+
+    return 1;
+}
+
 void NgonPolylineData::copyShiftCoordinatesArray(double * newShift, double const* oldShift, int numElementsNew)
 {
     int numElementsCopied = 0;
@@ -531,3 +603,35 @@ void NgonPolylineData::deleteCoordinatesArrays(void)
     }
 }
 
+int* NgonPolylineData::getDisplayFunctionData()
+{
+    return display_function_data;
+}
+
+int NgonPolylineData::getDisplayFunctionDataSize()
+{
+    return display_function_data_size;
+}
+
+int NgonPolylineData::setDisplayFunctionData(int const* data, int numElements)
+{
+    if (display_function_data != NULL)
+    {
+        delete[] display_function_data;
+        display_function_data = NULL;
+    }
+
+    try
+    {
+        display_function_data_size = numElements;
+        display_function_data = new int[numElements];
+    }
+    catch (const std::exception& e)
+    {
+        e.what();
+        return 0;
+    }
+
+    memcpy(display_function_data, data, display_function_data_size * sizeof(int));
+    return 1;
+}

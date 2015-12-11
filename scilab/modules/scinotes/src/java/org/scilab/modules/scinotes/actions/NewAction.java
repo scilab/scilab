@@ -6,16 +6,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.scinotes.actions;
 
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 
@@ -64,7 +64,7 @@ public final class NewAction extends DefaultAction {
      * @param editor SciNotes
      * @return PushButton
      */
-    public static PushButton createButton(String tooltip, String icon, SciNotes editor) {
+    public static JButton createButton(String tooltip, String icon, SciNotes editor) {
         return createButton(tooltip, icon, new NewAction(tooltip, editor));
     }
 }

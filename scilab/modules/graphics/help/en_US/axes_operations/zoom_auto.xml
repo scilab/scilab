@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ *
+ * This help file was generated from zoom_auto.sci using help_from_sci().
+ *
+ -->
+
+<refentry version="5.0-subset Scilab" xml:id="zoom_auto" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:scilab="http://www.scilab.org"
+          xmlns:db="http://docbook.org/ns/docbook">
+    
+    <refnamediv>
+        <refname>zoom_auto</refname>
+        <refpurpose>Zoom automatically to the visible values of all axes of the figure</refpurpose>
+    </refnamediv>
+    
+    
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            zoom_auto()
+            zoom_auto(h)
+            
+        </synopsis>
+    </refsynopsisdiv>
+    
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>h:</term>
+                <listitem>
+                    <para> A Figure or Axes handle to zoom automatically</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    
+    <refsection>
+        <title>Description</title>
+        <para>
+            This function update the zoom_box of all axes of the figure when there is
+            some zoom applied to it or update the data bounds otherwise. After the call
+            the user will be able to view all visible data even if mis-configured
+            something.
+        </para>
+        <para>
+        </para>
+    </refsection>
+    
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+plot3d();
+a=gca();
+// hide some data to the user
+a.data_bounds = [-1 -1 -0.5 ; 1 1 0.5]
+sleep(1000)
+// let the user view the whole dataset
+zoom_auto()
+
+   ]]></programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>See also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="zoom_rect">zoom_rect</link>
+            </member>
+            <member>
+                <link linkend="unzoom">unzoom</link>
+            </member>
+            <member>
+                <link linkend="axes_properties">axes_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.3</revnumber>
+                <revremark>
+                    Function <function>zoom_auto</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

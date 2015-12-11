@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -40,6 +40,9 @@ public class TicksProperty {
 
     /** Default font */
     private Font defaultFont;
+
+    private String format = "";
+    private Double[] st_factors = new Double[] {1., 0.};
 
     /** TicksArrays class */
     private class TicksArrays {
@@ -125,7 +128,7 @@ public class TicksProperty {
             labelsStrings = new String[number];
 
             for (int i = 0; i < number; i++) {
-                labelsStrings[i] = new String(labels.get(i).getText());
+                labelsStrings[i] = new String(labels.get(i).getText()).replaceAll("\u00A0", " ");
             }
 
             return labelsStrings;
@@ -356,6 +359,8 @@ public class TicksProperty {
         auto = ticksProperty.auto;
 
         subticks = ticksProperty.subticks;
+        format = ticksProperty.format;
+        st_factors = ticksProperty.st_factors;
 
         defaultFont = new Font(ticksProperty.defaultFont);
 
@@ -383,6 +388,44 @@ public class TicksProperty {
         }
 
         return false;
+    }
+
+    /**
+     * @return the format
+     */
+    public String getFormat() {
+        return format;
+    }
+
+    /**
+     * @param format the format to set
+     */
+    public UpdateStatus setFormat(String format) {
+        if (!this.format.equals(format)) {
+            this.format = format;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
+    }
+
+    /**
+     * @return the format
+     */
+    public Double[] getSTFactors() {
+        return st_factors;
+    }
+
+    /**
+     * @param format the format to set
+     */
+    public UpdateStatus setSTFactors(Double[] factors) {
+        if (!this.st_factors[0].equals(factors[0]) || !this.st_factors[1].equals(factors[1])) {
+            this.st_factors = factors;
+            return UpdateStatus.Success;
+        }
+
+        return UpdateStatus.NoChange;
     }
 
     /**
@@ -693,4 +736,7 @@ public class TicksProperty {
         */
     }
 
+    public Font getDefaultFont() {
+        return defaultFont;
+    }
 }

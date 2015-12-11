@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@
 /* file: sci_champ.c                                                      */
 /* desc : interface for champ (and champ1) routine                        */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -26,19 +26,19 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int sci_champ (char *fname, unsigned long fname_len)
+int sci_champ (char *fname, void *pvApiCtx)
 {
-    return sci_champ_G(fname, C2F(champ), fname_len);
+    return sci_champ_G(fname, C2F(champ), pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_champ1 (char *fname, unsigned long fname_len)
+int sci_champ1 (char *fname, void *pvApiCtx)
 {
-    return sci_champ_G(fname, C2F(champ1), fname_len);
+    return sci_champ_G(fname, C2F(champ1), pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_champ_G(char *fname,
                 int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
-                unsigned long fname_len)
+                void *pvApiCtx)
 {
     SciErr sciErr;
     double arfact_def = 1.0;
@@ -53,6 +53,7 @@ int sci_champ_G(char *fname,
     };
 
     char   * strf = NULL;
+    char strfl[4];
     double* rect = NULL;
 
     int* piAddr1 = NULL;
@@ -70,7 +71,7 @@ int sci_champ_G(char *fname,
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
     else if (nbInputArgument(pvApiCtx) < 4)
@@ -84,7 +85,7 @@ int sci_champ_G(char *fname,
         return 0;
     }
 
-    if (FirstOpt() < 5)
+    if (FirstOpt(pvApiCtx) < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;
@@ -102,7 +103,7 @@ int sci_champ_G(char *fname,
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -119,7 +120,7 @@ int sci_champ_G(char *fname,
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -136,7 +137,7 @@ int sci_champ_G(char *fname,
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         printError(&sciErr, 0);
         return 1;
     }
@@ -153,7 +154,7 @@ int sci_champ_G(char *fname,
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &m4, &n4, &l4);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         printError(&sciErr, 0);
         return 1;
     }
@@ -194,7 +195,6 @@ int sci_champ_G(char *fname,
 
     if (isDefStrf(strf))
     {
-        char strfl[4];
         strcpy(strfl, DEFSTRFN);
         strf = strfl;
         if (!isDefRect(rect))

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,22 +15,20 @@
 #include "ui_data.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
 
-void putScilabVariable(char * name, char ** lines, int rows, int cols)
+void putScilabVariable(const char* name, const char* const* lines, int rows, int cols)
 {
     SciErr sciErr;
 
     if (rows != 0 && cols != 0)
     {
-        sciErr = createNamedMatrixOfString(pvApiCtx, name, rows, cols, lines);
+        sciErr = createNamedMatrixOfString(NULL, name, rows, cols, lines);
     }
     else
     {
-        sciErr = createNamedMatrixOfDouble(pvApiCtx, name, 0, 0, NULL);
+        sciErr = createNamedMatrixOfDouble(NULL, name, 0, 0, NULL);
     }
 
     if (sciErr.iErr)
@@ -48,7 +46,7 @@ char * getUnnamedVariable(void)
     {
         sprintf(buffer, "%s%i", "unnamed", i++);
     }
-    while (isNamedVarExist(pvApiCtx, buffer));
+    while (isNamedVarExist(NULL, buffer));
 
-    return strdup(buffer);
+    return os_strdup(buffer);
 }

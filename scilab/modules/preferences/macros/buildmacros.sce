@@ -6,11 +6,11 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 if (isdef("genlib") == %f) then
     exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
 end
 
-genlib("scinoteslib","SCI/modules/scinotes/macros",%f,%t);
+genlib("preferenceslib","SCI/modules/preferences/macros",%f,%t);
 

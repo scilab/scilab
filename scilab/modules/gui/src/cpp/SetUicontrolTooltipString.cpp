@@ -7,15 +7,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolTooltipString.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
-using namespace org_scilab_modules_gui_bridge;
-
-int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolTooltipString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int objectStyle = -1;
@@ -24,7 +25,7 @@ int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, void* _pvData, int 
     int* piType = &type;
 
     // Check type
-    getGraphicObjectProperty(sciObjUID, __GO_TYPE__, jni_int, (void**) &piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
     if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "TooltipString");
@@ -34,20 +35,20 @@ int SetUicontrolTooltipString(void* _pvCtx, char* sciObjUID, void* _pvData, int 
     // Label must be a character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string or a vector of strings expected.\n")), "TooltipString");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string or vector of strings expected.\n")), "TooltipString");
         return SET_PROPERTY_ERROR;
     }
 
     // Check size according to uicontrol style
-    getGraphicObjectProperty(sciObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
+    getGraphicObjectProperty(iObjUID, __GO_STYLE__, jni_int, (void**) &piObjectStyle);
     // Value can be string or a string vector
     if (nbCol > 1 && nbRow > 1)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "TooltipString");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string or vector of strings expected.\n")), "TooltipString");
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_TOOLTIPSTRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING__, (char**)_pvData, jni_string_vector, nbRow * nbCol);
 
     if (status == TRUE)
     {

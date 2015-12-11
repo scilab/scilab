@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,7 +28,7 @@ import javax.xml.validation.SchemaFactory;
 
 import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.commons.ScilabConstants;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog;
 import org.scilab.modules.gui.messagebox.ScilabModalDialog.IconType;
 import org.scilab.modules.gui.tabfactory.ScilabTabFactory;
@@ -155,7 +155,7 @@ public final class PaletteManager {
                 PaletteManagerView.restore(null, true);
             }
         } else if (oldValue) {
-            ClosingOperationsManager.startClosingOperation((SwingScilabTab) PaletteManagerView.get());
+            ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) PaletteManagerView.get());
         }
 
         getInstance().firePropertyChange("visible", oldValue, newValue);

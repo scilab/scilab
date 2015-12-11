@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,7 +22,7 @@ extern "C" {
      * Get the clipboard contents
      *
      * @param void
-     * @return the contents of the clipbaord or NULL if the clipbaord data are not chars
+     * @return the contents of the clipboard or NULL if the clipboard data are not chars
      */
     char *getClipboardContents(void);
 
@@ -53,7 +53,7 @@ extern "C" {
      *
      * @param figID the source figure
      */
-    void copyFigureToClipBoard(char * figID);
+    void copyFigureToClipBoard(int iFigID);
 
 #ifdef __cplusplus
 }

@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
@@ -31,10 +31,9 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32e(scicos_block *block, int flag)
 {
     if ((flag == 1) | (flag == 6))
     {
-        unsigned long *u1, *u2, *y;
+        SCSUINT32_COP *u1, *u2, *y;
         double k, C, D;
         int mu1, nu1, nu2, i, j, l, ji, jl, il;
-        int *ipar;
 
         mu1 = GetInPortRows(block, 1);
         nu1 = GetInPortCols(block, 1);
@@ -42,7 +41,6 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32e(scicos_block *block, int flag)
         u1 = Getuint32InPortPtrs(block, 1);
         u2 = Getuint32InPortPtrs(block, 2);
         y = Getuint32OutPortPtrs(block, 1);
-        ipar = GetIparPtrs(block);
 
         k = pow(2, 32);
         for (l = 0; l < nu2; l++)
@@ -61,13 +59,13 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32e(scicos_block *block, int flag)
                 }
                 if ((D > (k - 1)) | (D < 0))
                 {
-                    sciprint(_("overflow error"));
+                    scicos_print(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }
                 else
                 {
-                    y[jl] = (unsigned long)(D);
+                    y[jl] = (SCSUINT32_COP)(D);
                 }
             }
         }

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -52,11 +52,11 @@ import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
 
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.scinotes.SciNotes;
 import org.scilab.modules.scinotes.utils.ConfigSciNotesManager;
 import org.scilab.modules.scinotes.utils.SciNotesMessages;
@@ -227,7 +227,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
             }
         });
         mainFrame.setTitle(SciNotesMessages.SEARCHINFILES);
-        mainFrame.setIconImage(new ImageIcon(ScilabSwingUtilities.findIcon("system-search", "32x32")).getImage());
+        mainFrame.setIconImage(new ImageIcon(FindIconHelper.findIcon("system-search", "32x32")).getImage());
 
         getEditor().getSwingParentWindow().addWindowFocusListener(this);
         mainFrame.addWindowFocusListener(this);
@@ -302,7 +302,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         gbc.gridx = gbc.gridy = 0;
         gbc.gridwidth = gbc.gridheight = 1;
         gbc.weightx = gbc.weighty = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_START;
         panelBase.add(baseDirLabel, gbc);
 
         gbc.gridx = 0;
@@ -327,13 +327,13 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         gbc.gridy = 1;
         gbc.gridwidth = 1;
         gbc.weightx = 0;
-        gbc.fill = gbc.NONE;
+        gbc.fill = GridBagConstraints.NONE;
         gbc.anchor = GridBagConstraints.BASELINE;
         panelBase.add(chooseBaseDirButton, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.anchor = gbc.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_START;
         panelBase.add(filePatternLabel, gbc);
 
         gbc.gridy = 4;
@@ -356,7 +356,7 @@ public class SearchWordInFilesAction extends DefaultAction implements WindowFocu
         gbc.gridy = 6;
         gbc.gridwidth = 1;
         gbc.weightx = 0;
-        gbc.anchor = gbc.LINE_START;
+        gbc.anchor = GridBagConstraints.LINE_START;
         panelBase.add(wordPatternLabel, gbc);
 
         gbc.gridy = 7;

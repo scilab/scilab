@@ -6,6 +6,8 @@ EXPORTS
 ; jvm module explicit export (SEP 35)
 ; --------------------------------------- 
 getScilabJavaVM
+InitializeJVM
+TerminateJVM
 getScilabJNIEnv
 addToClasspath
 addToLibrarypath
@@ -13,3 +15,10 @@ getScilabObject
 ; --------------------------------------- 
 canCloseMainScilabObject
 forceCloseMainScilabObject
+getLibrarypath
+system_setproperty
+withEmbeddedJRE
+system_getproperty
+ExecuteInitialHooks
+loadOnUseClassPath
+loadBackGroundClassPath

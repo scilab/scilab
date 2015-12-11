@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,28 +23,25 @@ extern "C"
 #include "deleteGraphicObject.h"
 
 #include "gw_graphic_export.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xend(char * fname, unsigned long fname_len)
+int sci_xend(char * fname, void *pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 
-    const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
+    int iCurrentFigureReference = ScilabView::getCurrentFigure();
 
-    if (pstCurrentFigureReference != NULL)
+    if (iCurrentFigureReference != 0)
     {
-        char* uid = strdup(pstCurrentFigureReference);
+        int uid = iCurrentFigureReference;
 
         if (uid)
         {
             char * ret = org_scilab_modules_graphic_export::Driver::end(getScilabJavaVM(), uid);
 
             deleteGraphicObject(uid);
-            free(uid);
 
             if (*ret != '\0')
             {

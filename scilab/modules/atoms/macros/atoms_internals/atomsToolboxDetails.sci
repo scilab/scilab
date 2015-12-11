@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -30,7 +30,7 @@ function details = atomsToolboxDetails(package,field)
     end
 
     if rhs>1 & type(field)<>10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsToolboxDetails",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsToolboxDetails",2));
     end
 
     // Check input parameters dimensions
@@ -41,7 +41,7 @@ function details = atomsToolboxDetails(package,field)
     end
 
     if rhs>1 & size(field,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsToolboxDetails",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsToolboxDetails",2));
     end
 
     // Get the full list of packages
@@ -53,13 +53,13 @@ function details = atomsToolboxDetails(package,field)
     version = package(2);
 
     if ~ isfield(allpackages,name) then
-        error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name));
+        error(msprintf(gettext("%s: the package ''%s'' does not exist.\n"),"atomsToolboxDetails",name));
     end
 
     package_versions = allpackages(name);
 
     if ~ isfield(package_versions,version) then
-        error(msprintf(gettext("%s: the package ''%s'' doesn''t exist.\n"),"atomsToolboxDetails",name+" - "+version));
+        error(msprintf(gettext("%s: the package ''%s'' does not exist.\n"),"atomsToolboxDetails",name+" - "+version));
     end
 
     details = package_versions(version);
@@ -70,7 +70,7 @@ function details = atomsToolboxDetails(package,field)
     if rhs>=2 then
 
         if ~ isfield(details,field) then
-            error(msprintf(gettext("%s: the package ''%s'' doesn''t contain the field ''%s''.\n"),"atomsToolboxDetails",name+" - "+version,field));
+            error(msprintf(gettext("%s: the package ''%s'' does not contain the field ''%s''.\n"),"atomsToolboxDetails",name+" - "+version,field));
         end
 
         details = details(field);

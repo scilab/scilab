@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,19 +30,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_color_property(void* _pvCtx, char* pobjUID)
+void* get_font_color_property(void* _pvCtx, int iObjUID)
 {
     int iFontColor = 0;
     int* fontColor = &iFontColor;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_COLOR__, jni_int, (void **)&fontColor);
+    getGraphicObjectProperty(iObjUID, __GO_FONT_COLOR__, jni_int, (void **)&fontColor);
 
     if (fontColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_color");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, *fontColor);
+    return sciReturnDouble(*fontColor);
 }
 /*------------------------------------------------------------------------*/

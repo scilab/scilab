@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [r]=%l_o_l(l1,l2)
     //l1==l2
@@ -21,7 +21,13 @@ function [r]=%l_o_l(l1,l2)
         k1=definedfields(l1)
         k2=definedfields(l2)
         for i=intersect(k1,k2),
-            if and(getfield(i,l1)==getfield(i,l2)) then r(i)= %t,end
+            a=getfield(i, l1);
+            b=getfield(i, l2);
+            if exists("a") == 0 | exists("b") == 0 then //case list(1,,2)
+                r(i) = %f;
+            else
+                if and(getfield(i,l1)==getfield(i,l2)) then r(i)= %t,end
+            end
         end
         s1=1:n1;s1(k1)=[];
         s2=1:n1;s2(k2)=[];

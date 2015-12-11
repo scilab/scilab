@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function cmap = springcolormap(varargin)
 
@@ -17,18 +17,14 @@ function cmap = springcolormap(varargin)
     n=varargin(1);
 
     // Check type of input argument
-    if typeof(n)<>"constant" then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "springcolormap", 1));
-    end
-
     // Check if input argument is real
-    if ~isreal(n) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: An integer value expected.\n"), "springcolormap", 1));
+    if typeof(n)<>"constant" | ~isreal(n) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: a real scalar expected.\n"), "springcolormap", 1));
     end
 
     // Check size of input argument
     if size(n,"*")<>1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: An integer value expected.\n"), "springcolormap", 1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: a real scalar expected.\n"), "springcolormap", 1));
     end
 
     if n==0 then

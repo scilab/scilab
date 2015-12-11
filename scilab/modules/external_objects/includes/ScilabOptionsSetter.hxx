@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -42,6 +42,9 @@ public:
     static const unsigned int USESCILABINDEX;
 
     ScilabOptionsSetter(OptionsHelper & _helper, unsigned int _type) : helper(_helper), type(_type) { }
+
+    ScilabOptionsSetter(const ScilabOptionsSetter & setter) : helper(setter.helper), type(setter.type) { }
+
     ~ScilabOptionsSetter() { }
 
     virtual void set(const bool state);

@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __AXES_MODEL_H__
@@ -15,10 +15,10 @@
 #include "dynlib_graphic_objects.h"
 #include "BOOL.h"
 
-GRAPHIC_OBJECTS_IMPEXP char const* getAxesModel(void);
+GRAPHIC_OBJECTS_IMPEXP int getAxesModel(void);
 
-GRAPHIC_OBJECTS_IMPEXP void setAxesModel(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP void setAxesModel(int iUID);
 
-GRAPHIC_OBJECTS_IMPEXP BOOL isAxesModel(char const* UID);
+GRAPHIC_OBJECTS_IMPEXP BOOL isAxesModel(int iUID);
 
 #endif /* !__AXES_MODEL_H__ */

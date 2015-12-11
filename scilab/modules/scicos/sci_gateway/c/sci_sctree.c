@@ -26,11 +26,9 @@
 #include "machine.h" /* C2F */
 #include "gw_scicos.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intctree)(char *fname, unsigned long fname_len); /* fortran */
-/*--------------------------------------------------------------------------*/
-int sci_sctree(char *fname, unsigned long fname_len)
+int sci_sctree(char *fname, void* pvApiCtx)
 {
-    C2F(intctree)(fname, fname_len);
+    //C2F(intctree)(fname, pvApiCtx);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

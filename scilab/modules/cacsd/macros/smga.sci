@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [a,b1,b2,c1,c2,d11,d12,d21,d22]=smga(slp,r)
     //Matrix extractions (for use with h_inf,lft and other);

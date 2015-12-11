@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.label;
@@ -29,6 +29,7 @@ import org.scilab.modules.graphic_objects.utils.Utils;
 import org.scilab.modules.renderer.JoGLView.axes.AxesDrawer;
 import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
+import java.awt.Dimension;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -50,7 +51,7 @@ public class LabelManager {
     /**
      * The {@see Map} of existing {@see Sprite}.
      */
-    private final Map<String, Texture> textureMap = new ConcurrentHashMap<String, Texture>();
+    private final Map<Integer, Texture> textureMap = new ConcurrentHashMap<Integer, Texture>();
 
     /**
      * The used sprite manager.
@@ -65,6 +66,41 @@ public class LabelManager {
         this.textureManager = textureManager;
     }
 
+    public Dimension[] getLabelsSize(ColorMap colorMap, Axes axes, AxesDrawer drawer) {
+        final Label xl = (Label) GraphicController.getController().getObjectFromId(axes.getXAxisLabel());
+        final Label yl = (Label) GraphicController.getController().getObjectFromId(axes.getYAxisLabel());
+        final Label tl = (Label) GraphicController.getController().getObjectFromId(axes.getTitle());
+        final Dimension[] dims = new Dimension[3];
+        final Label[] labels = new Label[] {xl, yl, tl};
+        final LabelPositioner[] positioners = new LabelPositioner[] {drawer.getXAxisLabelPositioner(axes), drawer.getYAxisLabelPositioner(axes), drawer.getTitlePositioner(axes) };
+        for (int i = 0; i < 3; i++) {
+            if (labels[i] != null && !labels[i].isEmpty() && labels[i].getAutoPosition() && labels[i].getAutoRotation()) {
+                final Texture texture = getTexture(colorMap, labels[i]);
+                dims[i] = texture.getDataProvider().getTextureSize();
+                final double a = positioners[i].getAutoRotationAngle();
+                if (a == 90 || a == 270) {
+                    final int t = dims[i].width;
+                    dims[i].width = dims[i].height;
+                    dims[i].height = t;
+                }
+            } else {
+                dims[i] = new Dimension();
+            }
+        }
+
+        return dims;
+    }
+
+    public Dimension getXLabelSize(ColorMap colorMap, Axes axes, AxesDrawer drawer) {
+        final Label xl = (Label) GraphicController.getController().getObjectFromId(axes.getXAxisLabel());
+        if (xl != null && !xl.isEmpty()) {
+            final Texture texture = getTexture(colorMap, xl);
+            return texture.getDataProvider().getTextureSize();
+        }
+
+        return new Dimension();
+    }
+
     /**
      * Draws the given {@see Label} with the given {@see DrawingTools}.
      * @param drawingTools the given {@see DrawingTools}.
@@ -76,8 +112,8 @@ public class LabelManager {
     public void draw(final DrawingTools drawingTools, final ColorMap colorMap, final Label label, AxesDrawer axesDrawer) throws SciRendererException {
         /* Only the z-axis Label may not be drawn depending on the view mode */
         boolean drawnFlag = true;
-        String parentId;
-        String labelId = label.getIdentifier();
+        Integer parentId;
+        Integer labelId = label.getIdentifier();
         LabelPositioner labelPositioner;
 
         parentId = label.getParentAxes();
@@ -139,7 +175,9 @@ public class LabelManager {
         labelPositioner.setAutoRotation(label.getAutoRotation());
         labelPositioner.setUserRotationAngle(180.0 * label.getFontAngle() / Math.PI);
 
-        Vector3d labelUserPosition = new Vector3d(label.getPosition());
+        double[][] factors = parentAxes.getScaleTranslateFactors();
+        /* Un scale/translate the label position to be drawn */
+        Vector3d labelUserPosition = computeUnscaledAxesCoords(new Vector3d(label.getPosition()), factors);
 
         /* Logarithmic scaling must be applied to the label's user position to obtain object coordinates */
         labelUserPosition = ScaleUtils.applyLogScale(labelUserPosition, logFlags);
@@ -157,10 +195,10 @@ public class LabelManager {
         if (label.getAutoPosition()) {
             Vector3d cornerPos = labelPositioner.getLowerLeftCornerPosition();
             Vector3d objectCornerPos = axesDrawer.getObjectCoordinates(cornerPos);
-
             /* Apply inverse scaling to obtain user coordinates */
             objectCornerPos = ScaleUtils.applyInverseLogScale(objectCornerPos, logFlags);
 
+            objectCornerPos = computeScaledAxesCoords(objectCornerPos, factors);
             label.setPosition(new Double[] {objectCornerPos.getX(), objectCornerPos.getY(), objectCornerPos.getZ()});
 
             /*
@@ -172,21 +210,17 @@ public class LabelManager {
 
         /* Compute and set the label's corners */
         Transformation projection = axesDrawer.getProjection();
-
         Vector3d[] projCorners = labelPositioner.getProjCorners();
-
         Vector3d[] corners = computeCorners(projection, projCorners, parentAxes);
         Double[] coordinates = cornersToCoordinateArray(corners);
 
         /* Set the computed coordinates */
         label.setCorners(coordinates);
 
-
         double rotationAngle = 0.0;
 
         if (label.getAutoRotation()) {
             rotationAngle = labelPositioner.getRotationAngle();
-
             label.setFontAngle(Math.PI * rotationAngle / 180.0);
 
             /*
@@ -207,7 +241,7 @@ public class LabelManager {
                     /* Draw in window coordinates */
                     Transformation canvasProjection = drawingTools.getTransformationManager().getCanvasProjection();
                     Vector3d projLabelPos = canvasProjection.project(labelPos);
-
+                    projLabelPos = new Vector3d(Math.round(projLabelPos.getX()), Math.round(projLabelPos.getY()), Math.round(projLabelPos.getZ()));
                     drawingTools.getTransformationManager().useWindowCoordinate();
                     drawingTools.draw(labelSprite, labelAnchor, projLabelPos, rotationAngle);
                     drawingTools.getTransformationManager().useSceneCoordinate();
@@ -217,9 +251,41 @@ public class LabelManager {
                 }
             }
         }
-
     }
 
+    /**
+     * Computes the given scaled/translated coordinate for the given vector and factors
+     * Used to keep the Label position and Corners in Axes coordinates
+     * @param unscaled The un scaled/translated vector
+     * @param factors The Axes factors
+     * @return The new Coordinates
+     */
+    private Vector3d computeScaledAxesCoords(Vector3d unscaled, double[][] factors) {
+
+        double[] coord = unscaled.getData();
+        coord[0] = (coord[0] - factors[1][0]) / factors[0][0];
+        coord[1] = (coord[1] - factors[1][1]) / factors[0][1];
+        coord[2] = (coord[2] - factors[1][2]) / factors[0][2];
+
+        return new Vector3d(coord);
+    }
+
+    /**
+     * Computes the given un scaled/translated coordinate for the given vector and factors
+     * Used to draw the Label in the correct position
+     * @param scaled The scaled/translated vector
+     * @param factors The Axes factors
+     * @return The new Coordinates
+     */
+    private Vector3d computeUnscaledAxesCoords(Vector3d scaled, double[][] factors) {
+
+        double[] coord = scaled.getData();
+        coord[0] = coord[0] * factors[0][0] + factors[1][0];
+        coord[1] = coord[1] * factors[0][1] + factors[1][1];
+        coord[2] = coord[2] * factors[0][2] + factors[1][2];
+
+        return new Vector3d(coord);
+    }
     /**
      * Computes and returns the corners (in user coordinates) of a label's bounding box.
      * @param projection the projection from object coordinates to window coordinates.
@@ -231,6 +297,7 @@ public class LabelManager {
         Vector3d[] corners = new Vector3d[4];
         boolean[] logFlags = new boolean[] {parentAxes.getXAxisLogFlag(), parentAxes.getYAxisLogFlag(), parentAxes.getZAxisLogFlag()};
 
+        double[][] factors = parentAxes.getScaleTranslateFactors();
         corners[0] = projection.unproject(projCorners[0]);
         corners[1] = projection.unproject(projCorners[1]);
         corners[2] = projection.unproject(projCorners[2]);
@@ -241,6 +308,12 @@ public class LabelManager {
         corners[1] = ScaleUtils.applyInverseLogScale(corners[1], logFlags);
         corners[2] = ScaleUtils.applyInverseLogScale(corners[2], logFlags);
         corners[3] = ScaleUtils.applyInverseLogScale(corners[3], logFlags);
+
+        /* Used to keep corners in axes scaled/translated coordinates */
+        corners[0] = computeScaledAxesCoords(corners[0], factors);
+        corners[1] = computeScaledAxesCoords(corners[1], factors);
+        corners[2] = computeScaledAxesCoords(corners[2], factors);
+        corners[3] = computeScaledAxesCoords(corners[3], factors);
 
         return corners;
     }
@@ -279,7 +352,7 @@ public class LabelManager {
      * @param id the modified object.
      * @param property the changed property.
      */
-    public void update(String id, int property) {
+    public void update(Integer id, int property) {
         if (!(__GO_POSITION__ == property) && !(__GO_AUTO_POSITION__ == property)
                 && !(__GO_FONT_ANGLE__ == property) && !(__GO_AUTO_ROTATION__ == property)) {
             dispose(id);
@@ -320,7 +393,7 @@ public class LabelManager {
      * Disposes the texture corresponding to the given id.
      * @param id the given id.
      */
-    public void dispose(String id) {
+    public void dispose(Integer id) {
         Texture texture = textureMap.get(id);
         if (texture != null) {
             textureManager.dispose(texture);

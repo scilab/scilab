@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <string.h>
@@ -15,10 +15,8 @@
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
-#include "MALLOC.h"
+#include "os_string.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 
@@ -94,7 +92,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
             else
             {
                 char ** tmp_char = (char **)MALLOC(sizeof(char *));
-                tmp_char[0] = strdup("\0");
+                tmp_char[0] = os_strdup("\0");
                 sciErr = createMatrixOfStringInList(pvApiCtx, iVar, parent, item_position, 1, 1, tmp_char);
                 if (sciErr.iErr)
                 {

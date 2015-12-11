@@ -48,7 +48,7 @@
 |                                                             |
 +------------------------------------------------------------*/
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "Scierror.h"
@@ -58,13 +58,14 @@
 /*--------------------------------------------------------------------------*/
 extern CellAdr *ListNumeric;
 /*--------------------------------------------------------------------------*/
-int sci_umf_ludel(char* fname, unsigned long l)
+int sci_umf_ludel(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int it_flag     = 0;
     void * Numeric  = NULL;
     int* piAddr1    = NULL;
     CellAdr *Cell   = NULL;
+    int iType1      = 0;
 
     nbInputArgument(pvApiCtx) = Max(nbInputArgument(pvApiCtx), 0);
 
@@ -96,6 +97,15 @@ int sci_umf_ludel(char* fname, unsigned long l)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
+            return 1;
+        }
+
+        /* Check if the first argument is a pointer */
+        sciErr = getVarType(pvApiCtx, piAddr1, &iType1);
+        if (sciErr.iErr || iType1 != sci_pointer)
+        {
+            printError(&sciErr, 0);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A pointer expected.\n"), fname, 1);
             return 1;
         }
 

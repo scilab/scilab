@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.shapes.appearance;
@@ -67,6 +67,11 @@ public final class Appearance {
      * The current fill color.
      */
     private Color fillColor = DEFAULT_FILL_COLOR;
+
+    /**
+     * The material used for lighting.
+     */
+    private Material material;
 
     /**
      * Default constructor.
@@ -165,4 +170,21 @@ public final class Appearance {
     public void setFillColor(Color fillColor) {
         this.fillColor = fillColor;
     }
+
+    /**
+     * Get the material.
+     * @return  the material.
+     */
+    public Material getMaterial() {
+        return material;
+    }
+
+    /**
+     * Set the material.
+     * @param  the new material.
+     */
+    public void setMaterial(Material m) {
+        material = m;
+    }
 }
+

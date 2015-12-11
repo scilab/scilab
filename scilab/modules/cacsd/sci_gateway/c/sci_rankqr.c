@@ -7,23 +7,26 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#include "gw_cacsd.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sci_rankqr.h"
-#include "gw_slicot.h"
 /*--------------------------------------------------------------------------*/
-int sci_rankqr(char* fname, unsigned long fname_len)
+int sci_rankqr(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = 0;
     int ret = 0;
+
+    CheckInputArgument(pvApiCtx, 1, 3);
+    CheckOutputArgument(pvApiCtx, 1, 5);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -34,12 +37,12 @@ int sci_rankqr(char* fname, unsigned long fname_len)
 
     if (isVarComplex(pvApiCtx, piAddr))
     {
-        ret = sci_zrankqr("rankqr", 6L);
+        ret = sci_zrankqr("rankqr", pvApiCtx);
         return ret;
     }
     else
     {
-        ret = sci_rrankqr("rankqr", 6L);
+        ret = sci_rrankqr("rankqr", pvApiCtx);
         return ret;
     }
 }

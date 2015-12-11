@@ -136,7 +136,7 @@
                 <para>
                     <emphasis role="bold">outptr</emphasis>
                 </para>
-                <para> (sim.outptr(i+1)-sim.outptr(i)) gives the number of regular ouyput ports of the i block.</para>
+                <para> (sim.outptr(i+1)-sim.outptr(i)) gives the number of regular output ports of the i block.</para>
                 <para> outptr(i) points to the beginning of ith block outputs within the indirection table outlnk.</para>
                 <para> 
                     Size : number of blocks + 1.

@@ -30,7 +30,6 @@ SCICOS_BLOCKS_IMPEXP void matmul_i8s(scicos_block *block, int flag)
         char *u1, *u2, *y;
         double k, C, D;
         int mu1, nu1, nu2, i, j, l, ji, jl, il;
-        int *ipar;
 
         mu1 = GetInPortRows(block, 1);
         nu1 = GetInPortCols(block, 1);
@@ -38,7 +37,6 @@ SCICOS_BLOCKS_IMPEXP void matmul_i8s(scicos_block *block, int flag)
         u1 = Getint8InPortPtrs(block, 1);
         u2 = Getint8InPortPtrs(block, 2);
         y = Getint8OutPortPtrs(block, 1);
-        ipar = GetIparPtrs(block);
 
         k = pow(2, 8);
         for (l = 0; l < nu2; l++)

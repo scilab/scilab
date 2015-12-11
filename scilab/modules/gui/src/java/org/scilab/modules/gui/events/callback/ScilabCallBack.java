@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.events.callback;
@@ -27,6 +27,8 @@ public abstract class ScilabCallBack extends CommonCallBack {
 
     private static final long serialVersionUID = -4923246233703990342L;
 
+    private boolean isInterruptible = true;
+
     /**
      * Constructor
      * @param command : the command to execute.
@@ -35,6 +37,10 @@ public abstract class ScilabCallBack extends CommonCallBack {
         super(command, CallBack.UNTYPED);
     }
 
+    private ScilabCallBack(String command, boolean isInterruptible) {
+        super(command, CallBack.UNTYPED);
+        this.isInterruptible = isInterruptible;
+    }
     /**
      * Callback Factory to easily create a callback
      * just like in scilab.
@@ -42,19 +48,37 @@ public abstract class ScilabCallBack extends CommonCallBack {
      * @return a usable Scilab callback
      */
     public static ScilabCallBack create(String command) {
-        return (new ScilabCallBack(command) {
+        return create(command, true);
+    }
+
+    /**
+     * Callback Factory to easily create a callback
+     * just like in scilab.
+     * @param command : the command to execute.
+     * @return a usable Scilab callback
+     */
+    public static ScilabCallBack create(String command, boolean isInterruptible) {
+        return (new ScilabCallBack(command, isInterruptible) {
 
             private static final long serialVersionUID = -7286803341046313407L;
 
             public void callBack() {
                 Thread launchMe = new Thread() {
                     public void run() {
-                        InterpreterManagement.putCommandInScilabQueue(getCommand());
+                        if (isInterruptible()) {
+                            InterpreterManagement.putCommandInScilabQueue(getCommand());
+                        } else {
+                            InterpreterManagement.requestScilabExec(getCommand());
+                        }
                     }
                 };
                 launchMe.start();
             }
         });
+    }
+
+    boolean isInterruptible() {
+        return isInterruptible;
     }
 
     /**

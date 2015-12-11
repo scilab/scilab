@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
@@ -24,7 +24,7 @@ nm = neldermead_configure(nm,"-x0",[1.0 2.0]');
 nm = neldermead_configure(nm,"-simplex0method","spendley");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",squarefun);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
@@ -43,7 +43,7 @@ nm = neldermead_configure(nm,"-x0",[1.0 2.0]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-function",squarefun);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
@@ -63,7 +63,7 @@ nm = neldermead_configure(nm,"-simplex0method","pfeffer");
 nm = neldermead_configure(nm,"-simplex0deltausual",0.05);
 nm = neldermead_configure(nm,"-simplex0deltazero",0.0075);
 nm = neldermead_configure(nm,"-function",squarefun);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
@@ -90,7 +90,7 @@ nm = neldermead_configure(nm,"-simplex0method","given");
 nm = neldermead_configure(nm,"-coords0",coords0);
 nm = neldermead_configure(nm,"-simplex0deltazero",0.0075);
 nm = neldermead_configure(nm,"-function",squarefun);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
@@ -109,7 +109,7 @@ nm = neldermead_configure(nm,"-x0",[1.0 2.0]');
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",[1.0 2.0]);
 nm = neldermead_configure(nm,"-function",squarefun);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [
@@ -133,7 +133,7 @@ nm = neldermead_configure(nm,"-method","box");
 nm = neldermead_configure(nm,"-boundsmin",[-10.0 -10.0]);
 nm = neldermead_configure(nm,"-boundsmax",[10.0 10.0]);
 nm = neldermead_configure(nm,"-simplex0length",20.0);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 simplex0 = neldermead_get(nm,"-simplex0");
 computed = optimsimplex_getallx ( simplex0 );
 expected = [

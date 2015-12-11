@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
 
@@ -41,7 +40,7 @@ public class HTMLScilabCodeHandler extends AbstractScilabCodeHandler {
      * @param lw the LinkWriter to use to handle links
      */
     public static void setLinkWriter(LinkWriter lw) {
-        handler.linkWriter = lw;
+        HTMLScilabCodeHandler.linkWriter = lw;
     }
 
     /**

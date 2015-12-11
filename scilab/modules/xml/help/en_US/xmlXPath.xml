@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlXPath" xml:lang="en">
@@ -62,14 +62,14 @@
         <programlisting role="example"><![CDATA[
     doc = xmlRead("http://www.w3.org/TR/2009/REC-xml-names-20091208/xml-names-10-3e.xml");
 
-    // Retrieve the nodes with name equals to "note"
+    // Retrieve the nodes with name equal to "note"
     xp = xmlXPath(doc, "//note");
     s = size(xp);
     for i=1:s(2)
         xmlDump(xp(i))
     end
 
-    // Count the nodes with name equals to "note"
+    // Count the nodes with name equal to "note"
     xp = xmlXPath(doc, "count(//note)")
 
     // Retrieve the node with id="Philosophy"
@@ -79,7 +79,7 @@
         xmlDump(xp(1))
     end
 
-    // Retrieve the nodes with an attribute num equals to the number 5
+    // Retrieve the nodes with an attribute num equal to the number 5
     xp = xmlXPath(doc, "//*[number(@num)=5]");
     s = size(xp);
     if (s(2) <> 0) then
@@ -94,7 +94,10 @@
     xmlDelete(doc);
 
     // Query using namespaces
-    doc = xmlReadStr("<root xmlns:scilab=""http://www.scilab.org""><scilab:a att=""foo"" rib=""bar""><b>Hello</b></scilab:a></root>");
+    t = "<root xmlns:scilab=""http://www.scilab.org"">"+..
+        "<scilab:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b></scilab:a></root>"
+    doc = xmlReadStr(t);
 
     // We search for element named a
     xmlXPath(doc, "//a") // => nothing
@@ -106,7 +109,9 @@
     xmlDelete(doc);
 
     // Query starting on an element
-    doc = xmlReadStr("<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3""><b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>");
+    t = "<root att=""attribute""><a a1=""A1"" a2=""A2"" a3=""A3"">"+..
+        "<b>Hello</b><c>Scilab</c><b>World</b></a><b>Nothing</b></root>"
+    doc = xmlReadStr(t);
     e = doc.root.children(1);
 
     // Get the attributes of e

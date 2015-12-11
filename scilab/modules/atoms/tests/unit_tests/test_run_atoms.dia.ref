@@ -1,0 +1,29 @@
+// ============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - John Gliksberg
+//
+//  This file is distributed under the same license as the Scilab package.
+// ============================================================================
+// <-- ENGLISH IMPOSED -->
+// <-- CLI SHELL MODE -->
+// We need a clean version
+// ============================================================================
+if ~isempty( atomsGetInstalled() ) then bugmes();quit;end
+// If previous test did not end properly, restore, else backup config file
+atomsRestoreConfig(%T);
+atomsSaveConfig();
+atomsInstall("toolbox_1V6");
+atomsLoad("toolbox_1V6");
+Start Toolbox 1
+	Load macros
+// Do the actual test_run
+test_run("toolbox_1V6", "basic", "short_summary");
+   001/001 - [toolbox_1V6] basic................................passed
+   --------------------------------------------------------------------------
+   Tests:    1,    Passed:    1,    Failed:    0,    Skipped:    0
+   --------------------------------------------------------------------------
+atomsRemove("toolbox_1V6");
+	the package toolbox_1V6 (2.0-4) is currently loaded, It will be removed at next Scilab start
+// Restore original value
+// ============================================================================
+atomsRestoreConfig(%T);

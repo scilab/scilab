@@ -15,7 +15,7 @@
 //
 // We use the simulated trajectory zd
 // as an input to the armax identification macro
-// The noise in the armax is coloured and armax
+// The noise in the armax is colored and armax
 // will give a biaised estimator
 
 function demo_arm1()
@@ -46,7 +46,7 @@ function demo_arm1()
     [arc,la,lb,sig,resid] = armax(3,3,zd,u,1,1);
     disp(arc);
 
-    // using now armax1 : coloured noise identification
+    // using now armax1 : colored noise identification
     // you can test the same example with
     // n=1000; u=rand(1,n,'g') zd=narsimul(ar,u);
     [arc1, resid] = armax1(3,3,2,zd(1:n),u,1);

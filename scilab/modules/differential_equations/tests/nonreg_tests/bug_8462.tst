@@ -4,10 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- NOT FIXED -->
 // <-- CLI SHELL MODE -->
 //
-// <-- NO CHECK ERROR OUTPUT --> 
+// <-- NO CHECK ERROR OUTPUT -->
 //
 // <-- Non-regression test for bug 8462 -->
 //
@@ -18,13 +17,13 @@
 // bvodeS crashed on Windows and did not return a error.
 
 
-// calcul de concentration dans un grain sphérique
+// calcul de concentration dans un grain sphÃ©rique
 L0 = 0; // m
 L = 2e-3; // rayon du grain (m)
 D = 1e-5; // (m2.s-1)
 Cs = 1e-1; // mol/l
 k = 1e-1; // mol^(-n-1)/s
-n = 1; // ordre de la réaction
+n = 1; // ordre de la rÃ©action
 Phi = sqrt(k*Cs^n*L^2/(D*Cs));
 
 // l'equation de diffusion : D d2C/dr2 + 2/r dC/dr = rA est rendue adimensionnelle:
@@ -32,42 +31,43 @@ Phi = sqrt(k*Cs^n*L^2/(D*Cs));
 // Conditions aux limites C'(1)=1 , dC'/dr'(0)=0
 global Phi L n
 
-function rhs=fsub(x,z) // dérivées du système d'équations différentielles
-global Phi L n
-// z(1)=C'
-// z(2)=dC'/dr'
+function rhs=fsub(x,z) // dÃ©rivÃ©es du systÃ¨me d'Ã©quations diffÃ©rentielles
+    global Phi L n
+    // z(1)=C'
+    // z(2)=dC'/dr'
 
-if x==0 then
-rhs = Phi^2 * z(1)^n;
-else
-rhs = Phi^2 * z(1)^n // - 2/x * z(2);
-end
+    if x==0 then
+        rhs = Phi^2 * z(1)^n;
+    else
+        rhs = Phi^2 * z(1)^n // - 2/x * z(2);
+    end
 
 endfunction
 
 function g=gsub(i,z) // conditions aux limites
-g(1)=z(2)
-g(2)=z(1)-1
-g=g'
+    g(1)=z(2)
+    g(2)=z(1)-1
+    g=g'
 endfunction
 
-o = 1; // nombre d'équations différentielles
-m = [2]; // ordre des équations différentielles du système (ici, 1 équations d'ordre 2)
-zeta = [L0 L]; // points liés aux conditions aux limites dans l'ordre des valeurs 
+o = 1; // nombre d'Ã©quations diffÃ©rentielles
+m = [2]; // ordre des Ã©quations diffÃ©rentielles du systÃ¨me (ici, 1 Ã©quations d'ordre 2)
+zeta = [L0 L]; // points liÃ©s aux conditions aux limites dans l'ordre des valeurs
 nx = 11;
-x = linspace(L0,L,nx); // points de discrétisation
+x = linspace(L0,L,nx); // points de discrÃ©tisation
 
-
-ltol = 4;
+//as stated in the doc :
+// 1 <= ltol(1) < ltol(2) < ... < ltol(ntol) <= M where M is sum(m)
+ltol = m;
 tol = 1e-14;
 
 function [z,lhs]=ystart(x)
-z = zeros(2,1);
-z(1) = 1;
-z(2) = 0;
-lhs(1)= 0;
+    z = zeros(2,1);
+    z(1) = 1;
+    z(2) = 0;
+    lhs(1)= 0;
 endfunction
 
 ierr = 0;
 ierr = execstr("z = bvodeS(x,m,o,L0,L,fsub,gsub,zeta,ltol=ltol,tol=tol,ystart=ystart)", "errcatch");
-if ierr <> 98 then pause, end
+if ierr <> 999 then pause, end

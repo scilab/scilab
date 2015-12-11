@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,11 +33,11 @@
 
 GRAPHICS_IMPEXP int C2F(graphicsmodels) (void);
 
-GRAPHICS_IMPEXP int sciInitGraphicMode (char* pobjUID);
+GRAPHICS_IMPEXP int sciInitGraphicMode (int iObjUID);
 
-GRAPHICS_IMPEXP char *initLabel(char *parentObjUID) ; /* INITOBJECT */
+GRAPHICS_IMPEXP int initLabel(int iParentObjUID) ; /* INITOBJECT */
 
-GRAPHICS_IMPEXP void InitFigureModel(char *pfiguremdlUID); /* INITOBJECT */
+GRAPHICS_IMPEXP void InitFigureModel(int iFiguremdlUID); /* INITOBJECT */
 
 GRAPHICS_IMPEXP int InitAxesModel(void);   /* INITOBJECT */
 

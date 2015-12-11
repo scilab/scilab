@@ -6,13 +6,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 package org.scilab.modules.graphic_objects.graphicModel;
 
-import java.rmi.server.UID;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,6 +20,7 @@ import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.compound.Compound;
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.datatip.Datatip;
 import org.scilab.modules.graphic_objects.fec.Fec;
 import org.scilab.modules.graphic_objects.figure.Figure;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
@@ -30,6 +30,7 @@ import org.scilab.modules.graphic_objects.imageplot.Grayplot;
 import org.scilab.modules.graphic_objects.imageplot.Matplot;
 import org.scilab.modules.graphic_objects.label.Label;
 import org.scilab.modules.graphic_objects.legend.Legend;
+import org.scilab.modules.graphic_objects.lighting.Light;
 import org.scilab.modules.graphic_objects.polyline.Polyline;
 import org.scilab.modules.graphic_objects.rectangle.Rectangle;
 import org.scilab.modules.graphic_objects.surface.Fac3d;
@@ -40,12 +41,16 @@ import org.scilab.modules.graphic_objects.uibar.waitbar.Waitbar;
 import org.scilab.modules.graphic_objects.uicontextmenu.Uicontextmenu;
 import org.scilab.modules.graphic_objects.uicontrol.checkbox.CheckBox;
 import org.scilab.modules.graphic_objects.uicontrol.edit.Edit;
+import org.scilab.modules.graphic_objects.uicontrol.edit.Spinner;
 import org.scilab.modules.graphic_objects.uicontrol.frame.Frame;
+import org.scilab.modules.graphic_objects.uicontrol.frame.border.FrameBorder;
+import org.scilab.modules.graphic_objects.uicontrol.layer.Layer;
 import org.scilab.modules.graphic_objects.uicontrol.listbox.ListBox;
 import org.scilab.modules.graphic_objects.uicontrol.popupmenu.PopupMenu;
 import org.scilab.modules.graphic_objects.uicontrol.pushbutton.PushButton;
 import org.scilab.modules.graphic_objects.uicontrol.radiobutton.RadioButton;
 import org.scilab.modules.graphic_objects.uicontrol.slider.Slider;
+import org.scilab.modules.graphic_objects.uicontrol.tab.Tab;
 import org.scilab.modules.graphic_objects.uicontrol.table.Table;
 import org.scilab.modules.graphic_objects.uicontrol.uiimage.UiImage;
 import org.scilab.modules.graphic_objects.uicontrol.uitext.UiText;
@@ -63,7 +68,7 @@ public final class GraphicModel {
     private static GraphicObject figureModel;
     private static GraphicObject axesModel;
 
-    private Map<String, GraphicObject> allObjects = new HashMap<String, GraphicObject>();
+    private Map<Integer, GraphicObject> allObjects = new HashMap<Integer, GraphicObject>();
 
     /**
      * Default constructor
@@ -94,7 +99,7 @@ public final class GraphicModel {
      * @param id the id of the object to get
      * @return the object
      */
-    public GraphicObject getObjectFromId(String id) {
+    public GraphicObject getObjectFromId(Integer id) {
         return allObjects.get(id);
     }
 
@@ -104,7 +109,7 @@ public final class GraphicModel {
      * @param property the property name
      * @return the property
      */
-    public Object getNullProperty(String id, String property) {
+    public Object getNullProperty(Integer id, String property) {
         GraphicObject object = allObjects.get(id);
         return object.getNullProperty(property);
     }
@@ -115,7 +120,7 @@ public final class GraphicModel {
      * @param property property name
      * @return property value
      */
-    public Object getProperty(String id, int property) {
+    public Object getProperty(Integer id, int property) {
         GraphicObject object = allObjects.get(id);
 
         if (object != null) {
@@ -132,7 +137,7 @@ public final class GraphicModel {
      * @param value property value
      * @return true if the property has been set, false otherwise
      */
-    public UpdateStatus setProperty(String id, int property, Object value) {
+    public UpdateStatus setProperty(Integer id, int property, Object value) {
         GraphicObject object = allObjects.get(id);
         if (object != null) {
             synchronized (object) {
@@ -149,7 +154,7 @@ public final class GraphicModel {
      * @param type object type
      * @return the created object's id
      */
-    public String createObject(String id, GraphicObject.Type type) {
+    public Integer createObject(Integer id, GraphicObject.Type type) {
         GraphicObject object = createTypedObject(type);
 
         if (object != null) {
@@ -158,7 +163,7 @@ public final class GraphicModel {
 
             return id;
         } else {
-            return null;
+            return 0;
         }
     }
 
@@ -168,7 +173,7 @@ public final class GraphicModel {
      * @param newId : id of the clone
      * @return newId
      */
-    public String cloneObject(String id, String newId) {
+    public Integer cloneObject(Integer id, Integer newId) {
         GraphicObject object = allObjects.get(id);
         GraphicObject objectClone = object.clone();
         objectClone.setIdentifier(newId);
@@ -254,6 +259,9 @@ public final class GraphicModel {
             case EDIT:
                 createdObject = new Edit();
                 break;
+            case SPINNER:
+                createdObject = new Spinner();
+                break;
             case FRAME:
                 createdObject = new Frame();
                 break;
@@ -309,8 +317,24 @@ public final class GraphicModel {
             case WAITBAR:
                 createdObject = new Waitbar();
                 break;
-            case UNKNOWNOBJECT:
-                createdObject = null;
+            case LIGHT:
+                createdObject = new Light();
+                break;
+            case DATATIP:
+                createdObject = new Datatip();
+                break;
+            case TAB:
+                createdObject = new Tab();
+                break;
+            case LAYER:
+                createdObject = new Layer();
+                break;
+            case BORDER:
+                createdObject = new FrameBorder();
+                break;
+            case FRAME_SCROLLABLE:
+                createdObject = new Frame();
+                ((Frame)createdObject).setScrollable(true);
                 break;
             default:
                 createdObject = null;
@@ -322,7 +346,7 @@ public final class GraphicModel {
      * Deletes an object
      * @param id object id
      */
-    public void deleteObject(String id) {
+    public void deleteObject(Integer id) {
         GraphicObject object = allObjects.get(id);
         synchronized (object) {
             allObjects.remove(id);

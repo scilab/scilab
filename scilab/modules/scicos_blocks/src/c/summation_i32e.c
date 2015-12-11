@@ -21,11 +21,11 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include <stdio.h>
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "scicos.h"
 #include "scicos_block4.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void summation_i32e(scicos_block *block, int flag)
@@ -34,17 +34,15 @@ SCICOS_BLOCKS_IMPEXP void summation_i32e(scicos_block *block, int flag)
     {
         int j = 0, k = 0;
         int nu = 0, mu = 0, nin = 0;
-        long *y = NULL;
+        SCSINT32_COP *y = NULL;
         int *ipar = NULL;
         double v = 0., l = 0.;
-        double *rpar = NULL;
-        long *u = NULL;
+        SCSINT32_COP *u = NULL;
 
         y = Getint32OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);
         mu = GetInPortCols(block, 1);
         ipar = GetIparPtrs(block);
-        rpar = GetRparPtrs(block);
         nin = GetNin(block);
         l = pow(2, 32) / 2;
 
@@ -58,13 +56,13 @@ SCICOS_BLOCKS_IMPEXP void summation_i32e(scicos_block *block, int flag)
             }
             if ((v >= l) | (v < -l))
             {
-                sciprint(_("overflow error"));
+                scicos_print(_("overflow error"));
                 set_block_error(-4);
                 return;
             }
             else
             {
-                y[0] = (long)v;
+                y[0] = (SCSINT32_COP)v;
             }
         }
         else
@@ -86,13 +84,13 @@ SCICOS_BLOCKS_IMPEXP void summation_i32e(scicos_block *block, int flag)
                 }
                 if ((v >= l) | (v < -l))
                 {
-                    sciprint(_("overflow error"));
+                    scicos_print(_("overflow error"));
                     set_block_error(-4);
                     return;
                 }
                 else
                 {
-                    y[j] = (long)v;
+                    y[j] = (SCSINT32_COP)v;
                 }
             }
         }

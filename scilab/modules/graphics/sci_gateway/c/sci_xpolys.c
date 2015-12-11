@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,7 +33,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xpolys(char *fname, unsigned long fname_len)
+int sci_xpolys(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -51,9 +51,9 @@ int sci_xpolys(char *fname, unsigned long fname_len)
     int i = 0;
     long hdl = 0;
 
-    char *pstFigureUID = NULL;
-    char *pstSubWinUID = NULL;
-    char *pstCompoundUID = NULL;
+    int iFigureUID = 0;
+    int iSubWinUID = 0;
+    int iCompoundUID = 0;
     int iFalse = 0;
 
     int iVisible = 0;
@@ -73,7 +73,7 @@ int sci_xpolys(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -89,7 +89,7 @@ int sci_xpolys(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -108,13 +108,14 @@ int sci_xpolys(char *fname, unsigned long fname_len)
         ReturnArguments(pvApiCtx);
         return 0;
     }
-    pstSubWinUID = (char*)getOrCreateDefaultSubwin();
-    pstFigureUID = (char*)getCurrentFigure();
+
+    iSubWinUID = getOrCreateDefaultSubwin();
+    iFigureUID = getCurrentFigure();
     // Create compound.
-    pstCompoundUID = createGraphicObject(__GO_COMPOUND__);
-    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
+    iCompoundUID = createGraphicObject(__GO_COMPOUND__);
+    setGraphicObjectProperty(iCompoundUID, __GO_VISIBLE__, &iFalse, jni_bool, 1);
     /* Sets the parent-child relationship for the Compound */
-    setGraphicObjectRelationship(pstSubWinUID, pstCompoundUID);
+    setGraphicObjectRelationship(iSubWinUID, iCompoundUID);
 
     if (nbInputArgument(pvApiCtx) == 3)
     {
@@ -130,7 +131,7 @@ int sci_xpolys(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
             return 1;
         }
 
@@ -153,7 +154,7 @@ int sci_xpolys(char *fname, unsigned long fname_len)
         {
             Objpoly((l1 + (i * m1)), (l2 + (i * m2)), m1, 0, *(int*)(l3 + i), &hdl);
             // Add newly created object to Compound
-            setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
+            setGraphicObjectRelationship(iCompoundUID, getObjectFromHandle(hdl));
         }
     }
     else
@@ -162,15 +163,15 @@ int sci_xpolys(char *fname, unsigned long fname_len)
         {
             Objpoly((l1 + (i * m1)), (l2 + (i * m2)), m1, 0, 1, &hdl);
             // Add newly created object to Compound
-            setGraphicObjectRelationship(pstCompoundUID, getObjectFromHandle(hdl));
+            setGraphicObjectRelationship(iCompoundUID, getObjectFromHandle(hdl));
         }
     }
 
-    getGraphicObjectProperty(pstFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
+    getGraphicObjectProperty(iFigureUID, __GO_VISIBLE__, jni_bool, (void **)&piVisible);
 
-    setGraphicObjectProperty(pstCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
+    setGraphicObjectProperty(iCompoundUID, __GO_VISIBLE__, &iVisible, jni_bool, 1);
 
-    setCurrentObject(pstCompoundUID);
+    setCurrentObject(iCompoundUID);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

@@ -289,7 +289,7 @@
             </inlinemediaobject>
         </para>
         <para>The modified periodogram method of spectral estimation repeatedly
-            calculates the periodogram of windowed sub-sections of the data containes
+            calculates the periodogram of windowed sub-sections of the data contained
             in <literal>x</literal> and <literal>y</literal> . These periodograms are
             then averaged together and normalized by an appropriate constant to obtain
             the final spectral estimate. It is the averaging process which reduces the

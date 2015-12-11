@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function c=legend(varargin)
 
@@ -153,8 +153,8 @@ function h=getvalidchildren(A)
             ax=a.children
             h=[h;getvalidchildren(ax)]
         case "Compound"
-            for k=1:1:size(a.children,"*")
-                h=[h;getvalidchildren(a.children(k))]
+            for i=1:1:size(a.children,"*")
+                h=[h;getvalidchildren(a.children(i))]
             end
         end
     end

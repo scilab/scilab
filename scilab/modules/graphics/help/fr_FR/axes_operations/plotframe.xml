@@ -57,7 +57,10 @@
                             <listitem>
                                 <para>vecteur de 3 chaînes de caractères
                                     <literal>[title,x-leg,y-leg]</literal> correspondant au titre
-                                    du dessin et aux légendes des axes x et y. Le "C" majuscule est important.
+                                    du dessin et aux légendes des axes x et y.
+                                </para>
+                                <para>
+                                    <warning>Le "C" majuscule est important.</warning>
                                 </para>
                             </listitem>
                         </varlistentry>

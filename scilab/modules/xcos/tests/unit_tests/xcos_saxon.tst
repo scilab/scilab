@@ -5,6 +5,10 @@
 
 // <-- XCOS TEST -->
 //
+// <-- NO CHECK ERROR OUTPUT -->
+// Ignore "Could not find master document: non-existing-file"
+// Xcos itself will fail to start if dependency on saxon.jar
+//
 // <-- Short Description -->
 // Check that Xcos never use Saxon (before or after building doc).
 

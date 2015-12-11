@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,44 +17,54 @@
 
 namespace org_modules_xml
 {
-    VariableScope *XMLObject::scope = 0;
+VariableScope *XMLObject::scope = 0;
 
-      XMLObject::XMLObject()
+#ifdef SCILAB_DEBUG_XML
+std::set<XMLObject *> XMLObject::pointers;
+#endif
+
+XMLObject::XMLObject(): id(0), valid(true)
+{
+    if (!scope)
     {
-        if (!scope)
-        {
-            scope = new VariableScope(SCOPE_SIZE);
-        }
-        scilabType = -1;
+        scope = new VariableScope(SCOPE_SIZE);
     }
 
-    XMLObject *XMLObject::getVariableFromId(int id)
+#ifdef SCILAB_DEBUG_XML
+    XMLObject::pointers.insert(this);
+    //std::cout << "Create = " << (void*)this << std::endl;
+#endif
+
+    scilabType = -1;
+}
+
+XMLObject *XMLObject::getVariableFromId(int id)
+{
+    if (!scope)
     {
-        if (!scope)
-        {
-            return 0;
-        }
-
-        return scope->getVariableFromId(id);
-    }
-
-    int XMLObject::createOnStack(int pos, void *pvApiCtx) const
-    {
-        if (scilabType != -1)
-        {
-            return createXMLObjectAtPos(scilabType, pos, id, pvApiCtx);
-        }
-
         return 0;
     }
 
-    void XMLObject::resetScope()
-    {
-        if (scope)
-        {
-            delete scope;
+    return scope->getVariableFromId(id);
+}
 
-            scope = 0;
-        }
+int XMLObject::createOnStack(int pos, void *pvApiCtx) const
+{
+    if (scilabType != -1)
+    {
+        return createXMLObjectAtPos(scilabType, pos, id, pvApiCtx);
     }
+
+    return 0;
+}
+
+void XMLObject::resetScope()
+{
+    if (scope)
+    {
+        delete scope;
+
+        scope = 0;
+    }
+}
 }

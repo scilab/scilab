@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution. The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     // graduate - axis pretty graduations
@@ -17,7 +17,7 @@ function [xi,xa,np]=graduate( xmi, xma,n1,n2)
     // xi , xa  : real scalars
     // np       :integer scalar
     //%Description
-    // graduate looks for the mimimum interval [xi,xa] and a number of tics np
+    // graduate looks for the minimum interval [xi,xa] and a number of tics np
     // such that:
     //           xi <= xmi <= xma <= xa
     //           xa - xi / np  =  k(10**n)  k in [1 3 5]   for an integer n

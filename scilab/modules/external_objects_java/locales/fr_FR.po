@@ -1,0 +1,103 @@
+# French translation for scilab
+# Copyright (c) 2012 Rosetta Contributors and Canonical Ltd 2012
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2012.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
+"Language-Team: French <fr@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 17838)\n"
+
+#, c-format
+msgid "%s: Function %s is obsolete.\n"
+msgstr "%s : La fonction %s est obsolète.\n"
+
+msgid "Warning"
+msgstr "Attention"
+
+#, c-format
+msgid "%s: Please see documentation for more details.\n"
+msgstr "%s : Veuillez consulter l'aide pour plus de détails.\n"
+
+#, c-format
+msgid ""
+"%s: This function will be permanently removed in Scilab %s\n"
+"\n"
+msgstr ""
+"%s : Cette fonction sera définitivement supprimée dans Scilab %s\n"
+"\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une table de chaîne de "
+"caractères attendue.\n"
+
+#, c-format
+msgid "Invalid dimension for argument #%d: A row or a column expected."
+msgstr ""
+"Dimension invalide de l'argument n°%d : Une ligne ou une colonne attendue."
+
+msgid "Invalid operation"
+msgstr "Opération invalide"
+
+msgid "Invalid field name"
+msgstr "Nom de champ invalide"
+
+#, c-format
+msgid "Cannot set the field: %s"
+msgstr "Impossible de définir le champ : %s"
+
+#, c-format
+msgid ""
+"Cannot compile the code:\n"
+"%s"
+msgstr ""
+"Impossible de compiler le code : \n"
+"%s"
+
+msgid "Invalid operator: '"
+msgstr "Opérateur invalide : '"
+
+msgid "Invalid operator: .*"
+msgstr "Opérateur invalide :  .*"
+
+msgid "Invalid operator: ./"
+msgstr "Opérateur invalide :  ./"
+
+msgid "Invalid operator: .\\"
+msgstr "Opérateur invalide : .\\"
+
+msgid "Invalid operator: .*."
+msgstr "Opérateur invalide : .*."
+
+msgid "Invalid operator: ./."
+msgstr "Opérateur invalide : ./."
+
+msgid "Invalid operator: .\\."
+msgstr "Opérateur invalide : .\\."
+
+msgid "Invalid operator: .^"
+msgstr "Opérateur invalide : .^"
+
+msgid "Invalid operator: .'"
+msgstr "Opérateur invalide : .'"
+
+msgid "Exception thrown in file"
+msgstr "Une exception a été lancée dans le fichier"
+
+msgid "at line"
+msgstr "à la ligne"

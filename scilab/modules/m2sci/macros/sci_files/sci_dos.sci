@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_dos(tree)
     // M2SCI function
@@ -26,17 +26,17 @@ function [tree]=sci_dos(tree)
         else
             tree.lhs=list(V,S)
         end
-        insert(Equal(tree.lhs,tree))
+        m2sci_insert(Equal(tree.lhs,tree))
         tree=list()
 
         if rhs==2 then
-            insert(Equal(list(),Funcall("disp",1,list(S),list())),1)
+            m2sci_insert(Equal(list(),Funcall("disp",1,list(S),list())),1)
         end
     else
         tree.lhs=list(tree.lhs($:-1:1))
 
         if rhs==2 then
-            insert(Equal(list(),Funcall("disp",1,list(tree.lhs(1),tree.lhs(2)),list())),1)
+            m2sci_insert(Equal(list(),Funcall("disp",1,list(tree.lhs(1),tree.lhs(2)),list())),1)
         end
 
         tree.lhs(1).dims=list(Unknown,Unknown)

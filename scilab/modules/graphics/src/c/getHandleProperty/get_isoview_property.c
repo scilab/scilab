@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,26 +29,26 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_isoview_property(void* _pvCtx, char* pobjUID)
+void* get_isoview_property(void* _pvCtx, int iObjUID)
 {
     int iIsoview = 0;
     int* piIsoview = &iIsoview;
 
-    getGraphicObjectProperty(pobjUID, __GO_ISOVIEW__, jni_bool, (void **)&piIsoview);
+    getGraphicObjectProperty(iObjUID, __GO_ISOVIEW__, jni_bool, (void **)&piIsoview);
 
     if (piIsoview == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "isoview");
-        return -1;
+        return NULL;
     }
 
     if (iIsoview)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 /*------------------------------------------------------------------------*/

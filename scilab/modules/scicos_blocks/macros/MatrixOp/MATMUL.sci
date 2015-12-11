@@ -20,23 +20,24 @@
 //
 
 function [x,y,typ] = MATMUL(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        graphics=x.graphics;label=graphics.exprs
+        graphics=x.graphics;
+        label=graphics.exprs
         model=x.model;
-        if model.ipar==[] then model.ipar=1;end
-        if size(label,"*")==1 then label(2)=sci2exp(1),end //compatiblity
-        if size(label,"*")==2 then label(3)=sci2exp(1);end //compatibility
+        if model.ipar==[] then
+            model.ipar=1;
+        end
+        if size(label,"*")==1 then
+            label(2)=sci2exp(1),
+        end //compatiblity
+        if size(label,"*")==2 then
+            label(3)=sci2exp(1);
+        end //compatibility
         while %t do
             [ok,dtype,rule,np,exprs]=scicos_getvalue(["Set MATMUL parameter";
             "For the Multipication rule:";
@@ -47,11 +48,21 @@ function [x,y,typ] = MATMUL(job,arg1,arg2)
             ["Datatype(1=real double 2=Complex 3=int32 ...)";
             "Multiplication rule";
             "Do on Overflow(0=Nothing 1=Saturate 2=Error)"],list("vec",1,"vec",1,"vec",1),label)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             rule=int(rule)
-            if (dtype<1|dtype>8) then message("type is not supported");ok=%f;end
-            if (rule<1|rule>3) then message("Multiplication rule must be only 1,2 or 3");ok=%f;end
-            if (dtype==1|dtype==2) then np=0;end
+            if (dtype<1|dtype>8) then
+                message("type is not supported");
+                ok=%f;
+            end
+            if (rule<1|rule>3) then
+                message("Multiplication rule must be only 1,2 or 3");
+                ok=%f;
+            end
+            if (dtype==1|dtype==2) then
+                np=0;
+            end
             TABMIN=[0;0;-(2^31);-(2^15);-(2^7);0;0;0]
             TABMAX=[0;0;(2^31)-1;(2^15)-1;(2^7)-1;(2^32)-1;(2^16)-1;(2^8)-1]
             if rule==2 then
@@ -145,7 +156,8 @@ function [x,y,typ] = MATMUL(job,arg1,arg2)
                 model.ipar=rule
                 model.rpar=[kmin;kmax]
                 graphics.exprs=label;
-                x.graphics=graphics;x.model=model;
+                x.graphics=graphics;
+                x.model=model;
                 arg1=x
                 break;
             end
@@ -163,7 +175,7 @@ function [x,y,typ] = MATMUL(job,arg1,arg2)
 
         model.ipar=1
         label=[sci2exp(model.ipar)]
-        gr_i=["xstringb(orig(1),orig(2),[''MATMUL''],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([3 2],model,label,gr_i)
     end
 endfunction

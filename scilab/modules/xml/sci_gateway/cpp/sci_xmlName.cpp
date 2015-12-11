@@ -1,12 +1,12 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2011-2014 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,13 +29,13 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlName(char *fname, unsigned long fname_len)
+int sci_xmlName(char *fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
     int *addr = 0;
     const char **pstStrings = 0;
-    const char * types[] = {"XMLAttr", "XMLList", "XMLSet", "XMLElem"};
+    const int types[] = {XMLATTRIBUTE, XMLLIST, XMLSET, XMLELEMENT};
     int type;
     int size;
 
@@ -51,12 +51,11 @@ int sci_xmlName(char *fname, unsigned long fname_len)
     }
 
     type = isXMLObjects(types, 4, addr, pvApiCtx);
-    if (!type)
+    if (type == -1)
     {
         Scierror(999, gettext("%s: Wrong type for input argument #%i: XMLSet, XMLList, XMLAttr or XMLElem expected.\n"), fname, 1);
         return 0;
     }
-    type--;
 
     id = getXMLObjectId(addr, pvApiCtx);
 
@@ -101,7 +100,7 @@ int sci_xmlName(char *fname, unsigned long fname_len)
     if (size)
     {
         err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, size, const_cast < const char * const *>(pstStrings));
-        delete[]pstStrings;
+        delete[] pstStrings;
         if (err.iErr)
         {
             printError(&err, 0);
@@ -111,6 +110,10 @@ int sci_xmlName(char *fname, unsigned long fname_len)
     }
     else
     {
+        if (pstStrings)
+        {
+            delete[] pstStrings;
+        }
         createEmptyMatrix(pvApiCtx, Rhs + 1);
     }
 

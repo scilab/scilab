@@ -16,14 +16,14 @@ G=syslin("c",1/s^3);
 
 //Optimal controller K:
 
-halt()
+halt(_("Press Return to continue ... \n"));
 //K Optimal controller , ro = gamaopt^-2;
 [K,ro]=h_inf(P,r,0,1,30);
 K,gamaopt=1/sqrt(ro)
 
 // Check internal stability:
 
-halt()
+halt(_("Press Return to continue ... \n"));
 
 Tzw=lft(tf2ss(P),tf2ss(K));
 
@@ -31,7 +31,7 @@ Tzw=lft(tf2ss(P),tf2ss(K));
 
 //Optimal gain:
 
-halt()
+halt(_("Press Return to continue ... \n"));
 
 ga=h_norm(Tzw)
 
@@ -41,7 +41,7 @@ ga-gamaopt
 
 //Compare with theory
 
-halt()
+halt(_("Press Return to continue ... \n"));
 
 [N,M]=lcf(tf2ss(G)); //Left coprime factorization of G.
 

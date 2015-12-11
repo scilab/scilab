@@ -3,21 +3,6 @@
 
 EXPORTS
 ;core
-callFunctionFromGateway
-com_
-putlhsvar_
-intersci_
-iop_
-check_length
-check_scalar
-stack_
-createvar_
-check_square
-getrhsvar_ 
-checklhs_
-checkrhs_
-gettype_
-vstk_
-getWarningMode 
 MyHeapAlloc
 MyHeapFree
+

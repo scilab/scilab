@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2012 - Scilab Enterprises - Clément DAVID
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:id="xcosUpdateBlock">
+    <refnamediv>
+        <refname>xcosUpdateBlock</refname>
+        <refpurpose>Met à jour un bloc.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>xcosUpdateBlock(blk)</synopsis>
+    </refsynopsisdiv>
+    <refsection id="Module_xcosUpdateBlock">
+        <title>Module</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcos">xcos</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Description_xcosUpdateBlock">
+        <title>Description</title>
+        <para>Met à jour un bloc dans un diagram ouvert</para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <emphasis role="bold">blk :</emphasis> Le bloc a mettre à jour. La variable à le type <link linkend="scicos_block">scicos_block</link>.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>Cette fonction a été introduite en Scilab 5.4.0.</para>
+        <para>
+            <programlisting role="example"><![CDATA[
+function myExternalFunction(blk, scs_m)
+    execstr(''[ok, blk] = '' + blk.gui + ''(''''set'''', blk)'') ;
+    xcosUpdateBlock(blk) ;
+endfunction
+xcosAddToolsMenu("update block", "myExternalFunction(blk, scs_m)");
+]]></programlisting>
+        </para>
+    </refsection>
+    <refsection id="SeeAlso_loadXcos">
+        <title>Voir aussi</title>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    <link linkend="xcosAddToolsMenu">xcosAddToolsMenu - Ajoute un menu au menu "Outils" d'Xcos</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="scicos_block">scicos_block - Block type.</link>
+                </para>
+            </listitem>
+            <listitem>
+                <para>
+                    <link linkend="scicos_diagram">scicos_diagram - Diagram type.</link>
+                </para>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+    <refsection id="Authors_xcosUpdateBlock">
+        <title>Authors</title>
+        <para>
+            <emphasis role="bold">Clément David</emphasis> - Scilab Enterprises
+        </para>
+    </refsection>
+</refentry>

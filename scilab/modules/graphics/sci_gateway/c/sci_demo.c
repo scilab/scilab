@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,10 +17,11 @@
 /*------------------------------------------------------------------------*/
 
 #include "api_scilab.h"
+#include <string.h>
+#include "gw_graphics.h"
 
-int sci_demo(char * fname, int fname_len)
+int sci_demo(char * fname, void* pvApiCtx)
 {
-    int lw = 0;
-    C2F(overload)(&lw, fname, fname_len);
+    OverLoad(0);
     return 0;
 }

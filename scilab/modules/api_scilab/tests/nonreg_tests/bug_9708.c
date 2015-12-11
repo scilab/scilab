@@ -8,13 +8,12 @@
 #include <stdlib.h>
 #include <api_scilab.h>
 #include <Scierror.h>
-#include <MALLOC.h>
 #include <localization.h>
 
-int sci_bug_9708(char *fname)
+int sci_bug_9708(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    const char varname[] = "iputhereavariabletoolongforscilabandthereisnoerror";
+    const char* varname = "iputhereavariabletoolongforscilabandthereisnoerror";
 
     sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &varname);
     if (sciErr.iErr)
@@ -24,7 +23,6 @@ int sci_bug_9708(char *fname)
         return 0;
     }
 
-    LhsVar(1) = 1;
     return 0;
 }
 // =============================================================================

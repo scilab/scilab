@@ -7,7 +7,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.helptools;
@@ -139,8 +139,9 @@ public class CopyConvert extends DefaultHandler implements ErrorHandler {
             SAXParserFactory factory = SAXParserFactory.newInstance();
             factory.setNamespaceAware(true);
             // We need qNames and xmlns*.
-            factory.setFeature(
-                "http://xml.org/sax/features/namespace-prefixes", true);
+// FIXME: xmlns:db prefix is not handled by the thirdparty's stylesheet (not the right version)
+//            factory.setFeature(
+//                "http://xml.org/sax/features/namespace-prefixes", true);
             factory.setValidating(false);
             //factory.setXIncludeAware(false);
 

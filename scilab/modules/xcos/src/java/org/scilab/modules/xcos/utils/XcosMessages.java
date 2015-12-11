@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.xcos.utils;
@@ -53,9 +53,10 @@ public final class XcosMessages {
     /* Edit Menu */
     public static final String EDIT = Messages.gettext("Edit");
     public static final String BLOCK_PARAMETERS = Messages.gettext("Block Parameters") + DOTS;
-    public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Region to superblock");
+    public static final String REGION_TO_SUPERBLOCK = Messages.gettext("Selection to superblock");
     public static final String SUPERBLOCK_MASK = Messages.gettext("Superblock mask");
     public static final String CREATE = Messages.gettext("Create");
+    public static final String RENAME = Messages.gettext("Rename");
     public static final String REMOVE = Messages.gettext("Remove");
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
@@ -67,6 +68,7 @@ public final class XcosMessages {
     public static final String CREATE_CATEGORY = Messages.gettext("Create a category");
     public static final String ADDTO_CATEGORY = Messages.gettext("Add to a new category");
     public static final String DEFAULT_CATEGORY_NAME = Messages.gettext("Category");
+    public static final String ASK_FOR_A_NAME = Messages.gettext("Enter a name");
 
     public static final String DUMP = Messages.gettext("Dump");
     public static final String VIEW_IN_SCICOS = Messages.gettext("View in Scicos");
@@ -76,6 +78,7 @@ public final class XcosMessages {
     public static final String FIT_DIAGRAM_TO_VIEW = Messages.gettext("Fit diagram or blocks to view");
     public static final String NORMAL_100 = Messages.gettext("Normal 100%");
     public static final String PALETTE_BROWSER = Messages.gettext("Palette browser");
+    public static final String OLD_DIAGRAM_BROWSER = Messages.gettext("tree_show(scs_m)");
     public static final String DIAGRAM_BROWSER = Messages.gettext("Diagram browser");
     public static final String VIEWPORT = Messages.gettext("Viewport");
     public static final String GET_INFOS = Messages.gettext("Get infos");
@@ -117,8 +120,9 @@ public final class XcosMessages {
     public static final String HELP = Messages.gettext("?");
     public static final String XCOS_DOCUMENTATION = Messages.gettext("Xcos Help");
     public static final String BLOCK_DOCUMENTATION = Messages.gettext("Block Help");
-    public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demos");
-    public static final String ABOUT_XCOS = Messages.gettext("About Xcos") + DOTS;
+    public static final String XCOS_DEMONSTRATIONS = Messages.gettext("Xcos Demonstrations");
+    // For the moment, "About Xcos" points to "About Scilab", we may update this when we get a nice splash image
+    public static final String ABOUT_XCOS = Messages.gettext("About Scilab") + DOTS;
 
     /* PALETTES */
     public static final String PALETTES = Messages.gettext("Palettes");
@@ -174,7 +178,6 @@ public final class XcosMessages {
     public static final String NO_BLOCK_SELECTED = Messages.gettext("No block selected");
 
     public static final String EXPORT_TO_XML = Messages.gettext("Export to XML") + DOTS;
-    public static final String EXPORT_IN_PROGRESS = Messages.gettext("Export in progress") + DOTS;
     public static final String IMPORT_FROM_XML = Messages.gettext("Import from XML") + DOTS;
 
     public static final String ADDTO = Messages.gettext("Add to");
@@ -232,9 +235,8 @@ public final class XcosMessages {
     public static final String LOADING_USER_DEFINE = Messages.gettext("Loading user defined palettes") + DOTS;
     public static final String GENERATING_C_CODE = Messages.gettext("Generating C Code for SuperBlock") + DOTS;
     public static final String ERROR_GENERATING_C_CODE = Messages.gettext("A SuperBlock must be selected to generate code");
-    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress") + DOTS;
-    public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'scicos_cpr\' variable")
-            + DOTS;
+    public static final String SIMULATION_IN_PROGRESS = Messages.gettext("Simulation in progress");
+    public static final String COMPILATION_IN_PROGRESS = Messages.gettext("Compilation in progress, results will be stored in the \'cpr\' variable");
     public static final String GENERATE_SUPERBLOCK = Messages.gettext("Generate SuperBlock, please wait") + DOTS;
     public static final String DRAW_LINK = Messages.gettext("Click on diagram to add link point or on a compatible target to finish");
 

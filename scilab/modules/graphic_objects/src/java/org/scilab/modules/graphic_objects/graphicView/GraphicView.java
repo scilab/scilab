@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,19 +21,19 @@ public interface GraphicView extends EventListener {
      * has been updated.
      * @param id
      */
-    void updateObject(String id, int property);
+    void updateObject(Integer id, int property);
 
     /**
      * Notify an object with ID : id
      * has been created.
      * @param id
      */
-    void createObject(String id);
+    void createObject(Integer id);
 
     /**
      * Notify an object with ID : id
      * has been deleted.
      * @param id
      */
-    void deleteObject(String id);
+    void deleteObject(Integer id);
 }

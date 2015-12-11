@@ -6,15 +6,11 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "eigs_dependencies.h"
-
-extern int C2F(dgemv) (char* trans, int* m, int* n, double* alpha, double* A,
-                       int* lda, double* x, int* incx, double* beta, double* y, int* incy);
-extern double C2F(ddot) (int *n, double* x, int* incx, double* y, int* incy);
 
 void process_dneupd_data(double* DR, double* DI, double* Z, int N, int nev, double* AR,
                          doublecomplex* eigenvalue, doublecomplex* eigenvector,

@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -14,11 +14,9 @@
 #include <string.h>
 #include "promptecho.h"
 #include "basout.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "prompt.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 int C2F(promptecho)(int *lunit, char *string, int *strl, int string_len)
 {
@@ -28,7 +26,7 @@ int C2F(promptecho)(int *lunit, char *string, int *strl, int string_len)
 
     if (GetTemporaryPrompt())
     {
-        promptstr = strdup(GetTemporaryPrompt());
+        promptstr = os_strdup(GetTemporaryPrompt());
     }
     else
     {

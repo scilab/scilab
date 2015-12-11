@@ -1,0 +1,39 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Adeline CARNIS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- CLI SHELL MODE -->
+
+// <-- Non-regression test for bug 7848 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=7848
+//
+// <-- Short Description -->
+//    The third argument of correl function is now optional.
+// =============================================================================
+
+r = correl(1:10, 1:10);
+assert_checkequal(r, 1);
+
+fre = eye(10, 10);
+r = correl(1:10, 1:10, fre);
+assert_checkequal(r, 1);
+
+fre = ones(10, 10);
+r = correl(1:10, 1:10, fre);
+assert_checkequal(r, 0);
+
+r = correl(1:10, -(1:10));
+assert_checkequal(r, -1);
+
+fre = eye(10, 10);
+r = correl(1:10, -(1:10), fre);
+assert_checkequal(r, -1);
+
+fre = ones(10, 10);
+r = correl(1:10, -(1:10), fre);
+assert_checkequal(r, 0);

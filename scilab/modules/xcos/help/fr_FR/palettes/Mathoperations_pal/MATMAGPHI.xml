@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="MATMAGPHI" xml:lang="fr_FR">
@@ -146,7 +146,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <emphasis role="bold">decomposition type (1=Complex2MAG&amp;amp;PHI 2=MAG&amp;amp;PHI2Complex)</emphasis>
+                    <emphasis role="bold">decomposition type (1=Complex2MAG&amp;PHI 2=MAG&amp;PHI2Complex)</emphasis>
                 </para>
                 <para>Il indique la règle de conversion.</para>
                 <para>Propriétés : Type 'vec' de taille 1.</para>

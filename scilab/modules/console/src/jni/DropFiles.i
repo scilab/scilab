@@ -13,7 +13,7 @@
 %{
 #include "../c/dropFiles.h"
 #include "machine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 %}
 
 /* JavaDoc for DropFilesJNI class */

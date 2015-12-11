@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -91,7 +91,7 @@ XML_SCILAB_IMPEXP int isXMLObject(int *mlist, void *pvApiCtx);
  * @param mlist the mlist address
  * @return 1 if the mlist has the good type, else 0.
  */
-XML_SCILAB_IMPEXP int isXMLObjects(const char ** types, int nb, int *mlist, void *pvApiCtx);
+XML_SCILAB_IMPEXP int isXMLObjects(const int * types, int nb, int *mlist, void *pvApiCtx);
 
 /**
  * Checks if a mlist has the good type

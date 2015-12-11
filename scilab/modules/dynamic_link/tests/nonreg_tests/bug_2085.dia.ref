@@ -17,7 +17,6 @@ ilib_verbose(0);
 test_path = get_absolute_file_path('bug_2085.tst');
 currentpath = pwd();
 cd TMPDIR;
-cd ../;
 OS_TMP_DIR = pwd();
 mkdir(OS_TMP_DIR,'bug_2085');
 TEST_DIR = OS_TMP_DIR + filesep() + 'bug_2085';

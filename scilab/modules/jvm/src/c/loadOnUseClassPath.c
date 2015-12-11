@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,25 +15,22 @@
 #include <stdio.h>
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scilabDefaults.h"
 #include "getScilabJNIEnv.h"
 #include "localization.h"
-#include "setgetSCIpath.h"
-#include "stricmp.h"
+#include "sci_path.h"
 #include "addToClasspath.h"
 #include "loadOnUseClassPath.h"
 #include "loadClasspath.h"
 #include "FileExist.h"
 #include "GetXmlFileEncoding.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 BOOL loadOnUseClassPath(char const* tag)
 {
     BOOL bOK = FALSE;
-    char *sciPath = getSCIpath();
+    char *sciPath = getSCI();
 
     char *classpathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLCLASSPATH) + 1));
 
@@ -66,6 +63,14 @@ BOOL loadOnUseClassPath(char const* tag)
                 FREE(XPath);
                 XPath = NULL;
             }
+
+            if (classpathfile)
+            {
+                FREE(classpathfile);
+                classpathfile = NULL;
+            }
+
+            FREE(sciPath);
             return bOK;
         }
 
@@ -102,7 +107,7 @@ BOOL loadOnUseClassPath(char const* tag)
                         }
                         else
                         {
-                            FullClasspath = strdup(classpath);
+                            FullClasspath = os_strdup(classpath);
                         }
                         addToClasspath(FullClasspath, STARTUP);
                         FREE(FullClasspath);

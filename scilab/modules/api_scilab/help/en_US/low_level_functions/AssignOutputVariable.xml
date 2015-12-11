@@ -36,7 +36,7 @@
         <title>Description</title>
         <para>
             A C gateway function which specifies which variables created inside
-            the C interface will be returned as an output argumen into Scilab.
+            the C interface will be returned as an output argument into Scilab.
         </para>
     </refsection>
     <refsection>
@@ -58,7 +58,7 @@
         <programlisting role="example">
             <![CDATA[
 #include "api_scilab.h"
-int sci_mysizedouble(char * fname, unsigned long fname_len)
+int sci_mysizedouble(char * fname, void* pvApiCtx)
 {
     SciErr      sciErr;
     int         m_in_row;

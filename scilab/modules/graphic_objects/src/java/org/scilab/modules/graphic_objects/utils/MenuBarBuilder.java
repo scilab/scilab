@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,7 +22,6 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MNEMONIC__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_SEPARATOR__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UIMENU__;
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
 
 import java.io.File;
 import java.io.IOException;
@@ -93,7 +92,7 @@ public final class MenuBarBuilder {
      * Create console menubar from data in a XML file
      * @param consoleId the console
      */
-    public static void buildConsoleMenuBar(String consoleId) {
+    public static void buildConsoleMenuBar(Integer consoleId) {
         buildMenuBar(MAINMENUBARXMLFILE, consoleId);
     }
 
@@ -101,7 +100,7 @@ public final class MenuBarBuilder {
      * Create graphic figure menubar from data in a XML file
      * @param figureId the figure
      */
-    public static void buildFigureMenuBar(String figureId) {
+    public static void buildFigureMenuBar(Integer figureId) {
         boolean isheadless = false;
 
         try {
@@ -123,7 +122,7 @@ public final class MenuBarBuilder {
      * @param fileToLoad XML file to load
      * @param parentId the menubar parent
      */
-    public static void buildMenuBar(String fileToLoad, String parentId) {
+    public static void buildMenuBar(String fileToLoad, Integer parentId) {
 
         try {
             MenuBarConfiguration menuBarConfig =
@@ -215,10 +214,10 @@ public final class MenuBarBuilder {
          * @param parentId the tab ID to which the menus will be added to
          * @see org.scilab.modules.MenuBarConfiguration.utils.MenuBarConfiguration#addMenus(org.scilab.modules.gui.menubar.MenuBar)
          */
-        public void addMenus(String parentId) {
+        public void addMenus(Integer parentId) {
 
             // delete old menus
-            for (String childId : (String []) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__)) {
+            for (Integer childId : (Integer []) GraphicController.getController().getProperty(parentId, GraphicObjectProperties.__GO_CHILDREN__)) {
                 if (GraphicController.getController().getProperty(childId, GraphicObjectProperties.__GO_TYPE__).equals(__GO_UIMENU__)) {
                     GraphicController.getController().removeRelationShipAndDelete(childId);
                 }
@@ -228,7 +227,7 @@ public final class MenuBarBuilder {
 
             for (int i = 0; i < menus.getLength(); i++) {
                 // Create the menu
-                String menuId = null;
+                Integer menuId = null;
                 if (isParentValid) {
                     menuId = GraphicController.getController().askObject(Type.UIMENU);
                 } else {
@@ -270,7 +269,7 @@ public final class MenuBarBuilder {
          * @param parentMenuId the parent menu UID for submenus
          * @param index the index of the parent in menu list
          */
-        public void addSubMenus(String parentMenuId, int index) {
+        public void addSubMenus(Integer parentMenuId, int index) {
             Node submenu = dom.getElementsByTagName(MENU).item(index).getFirstChild();
 
             boolean separator = false;
@@ -282,7 +281,7 @@ public final class MenuBarBuilder {
                     separator = true;
                 } else if (submenu.getNodeName() == SUBMENU) {
                     // Create the menu
-                    String menuId = null;
+                    Integer menuId = null;
                     if (isParentValid) {
                         menuId = GraphicController.getController().askObject(Type.UIMENU);
                     } else {
@@ -366,14 +365,14 @@ public final class MenuBarBuilder {
         /**
          * Add submenu for menu
          * @param parentMenuItemId object with this id will become a menu with subMenuItems
-         * @param node to get attributs of the menu
+         * @param node to get attributes of the menu
          */
-        public void addSubMenuItem(String parentMenuItemId, Node node) {
+        public void addSubMenuItem(Integer parentMenuItemId, Node node) {
 
             NamedNodeMap attributes = node.getAttributes();
 
             // Create the menu
-            String subMenuItemId = null;
+            Integer subMenuItemId = null;
             if (isParentValid) {
                 subMenuItemId = GraphicController.getController().askObject(Type.UIMENU);
             } else {

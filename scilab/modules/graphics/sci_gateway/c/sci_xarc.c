@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@
 /* file: sci_xarc.h                                                       */
 /* desc : interface for xarc routine                                      */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "sciCall.h"
 #include "GetProperty.h"
@@ -30,7 +30,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xarc(char *fname, unsigned long fname_len)
+int sci_xarc(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -47,7 +47,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
     int* piAddr6 = NULL;
     int* l6 = NULL;
 
-    char* psubwinUID = NULL;
+    int iSubwinUID = 0;
     int m1 = 0, n1 = 0;
     long hdl = 0;
     int curcolor = 0;
@@ -69,7 +69,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -92,7 +92,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -115,7 +115,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         return 1;
     }
 
@@ -138,7 +138,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         return 1;
     }
 
@@ -161,7 +161,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
         return 1;
     }
 
@@ -184,7 +184,7 @@ int sci_xarc(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 6);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 6);
         return 1;
     }
 
@@ -199,9 +199,9 @@ int sci_xarc(char *fname, unsigned long fname_len)
     angle1 = DEG2RAD(*(int*)(l5) / 64.0); /* convert to radian */
     angle2 = DEG2RAD(*(int*)(l6) / 64.0);
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
-    getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piCurColor);
+    getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piCurColor);
 
     if (strcmp(fname, "xarc") == 0)
     {

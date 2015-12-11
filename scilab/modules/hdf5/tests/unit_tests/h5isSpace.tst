@@ -4,10 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 1 expected."), "h5isSpace");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5isSpace", 1);
 assert_checkerror("h5isSpace()",msgerr,77);
 assert_checkfalse(h5isSpace(42));
 assert_checkfalse(h5isSpace("42"));

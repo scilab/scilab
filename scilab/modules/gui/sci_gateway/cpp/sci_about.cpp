@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,19 +17,16 @@ extern "C"
 {
 #include "api_scilab.h"
 #include "getScilabJavaVM.h"
+#include "gw_gui.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "gw_gui.h"
-#include "BOOL.h"
-#include "MALLOC.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_about(char *fname, unsigned long fname_len)
+int sci_about( char * fname, void* pvApiCtx )
 {
-
     try
     {
         CallScilabBridge::scilabAboutBox(getScilabJavaVM());
@@ -43,8 +40,6 @@ int sci_about(char *fname, unsigned long fname_len)
     AssignOutputVariable(pvApiCtx, 1) = 0;
     returnArguments(pvApiCtx);
 
-    return TRUE;
-
+    return 0;
 }
-
 /*--------------------------------------------------------------------------*/

@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -18,7 +18,7 @@
 * Creates a GUID, a unique 128-bit int used for CLSIDs and interface identifiers.
 * @return a string (GUID)
 */
-char *createGUID(void);
+wchar_t *createGUID(void);
 
 #endif /* __CREATEGUID_H__ */
 /*--------------------------------------------------------------------------*/

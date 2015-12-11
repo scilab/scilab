@@ -21,17 +21,11 @@
 function [x,y,typ]=CBLOCK4(job,arg1,arg2)
     //
     // Copyright INRIA
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
 
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
         model=arg1.model;
@@ -39,7 +33,7 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
         label=graphics.exprs;
 
         while %t do
-            [ok,junction_name,impli,in,it,out,ot,ci,co,xx,z,oz,...
+            [ok,function_name,impli,in,it,out,ot,ci,co,xx,z,oz,...
             rpar,ipar,opar,nmode,nzcr,auto0,depu,dept,lab]=..
             scicos_getvalue("Set C-Block4 block parameters",..
             ["Simulation function";
@@ -68,7 +62,7 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
                 break
             end
             label(1)=lab
-            funam=stripblanks(junction_name)
+            funam=stripblanks(function_name)
             xx=xx(:);
             z=z(:);
             rpar=rpar(:);
@@ -127,7 +121,9 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
                 while %t
                     [ok,tt,cancel]=CC4(funam,tt)
                     if ~ok then
-                        if cancel then break,end
+                        if cancel then
+                            break,
+                        end
                     else
                         model.sim=list(funam,funtyp)
                         model.state=xx
@@ -189,8 +185,8 @@ function [x,y,typ]=CBLOCK4(job,arg1,arg2)
         "n"],...
         []);
 
-        gr_i=["xstringb(orig(1),orig(2),''C block4'',sz(1),sz(2),''fill'');"]
-        x=standard_define([2 2],model,label,gr_i)
+        gr_i=[]
+        x=standard_define([4 2],model,label,gr_i)
     end
 endfunction
 

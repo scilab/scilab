@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,7 +23,7 @@
 Interface for MATIO function called Mat_Close
 Scilab function name : matfile_close
 *******************************************************************************/
-int sci_matfile_close(char *fname, unsigned long fname_len)
+int sci_matfile_close(char *fname, void* pvApiCtx)
 {
     mat_t * matfile = NULL;
     int fileIndex = 0;

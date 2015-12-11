@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction.util;
@@ -88,7 +88,7 @@ public abstract class AbstractPointComputer implements PointComputer {
      * @return true if v feet in the bounds.
      */
     protected final boolean inBounds(Vector3d v) {
-        Double[] bounds = axes.getDisplayedBounds();
+        Double[] bounds = axes.getCorrectedBounds();
         double[] data = v.getData();
         for (int i = 0; i < AXIS_NUMBER; i++) {
             if ((bounds[i * 2] > data[i]) || (bounds[i * 2 + 1] < data[i])) {
@@ -104,7 +104,7 @@ public abstract class AbstractPointComputer implements PointComputer {
      * @return true if it feet.
      */
     protected final Vector3d clamp(Vector3d position) {
-        Double[] bounds = axes.getDisplayedBounds();
+        Double[] bounds = axes.getCorrectedBounds();
         double[] data = position.getData();
         for (int i = 0; i < AXIS_NUMBER; i++) {
             if (data[i] < bounds[i * 2]) {

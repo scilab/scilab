@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,7 +22,7 @@
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fname);
+int readSingleBoolean(void* pvApiCtx, int rhsPosition, bool* out, const char* fname);
 
 /**
  * Read a single string on the stack.
@@ -33,7 +33,7 @@ int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fnam
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fname);
+int readSingleString(void* pvApiCtx, int rhsPosition, char** out, const char* fname);
 
 /**
  * Read a vector of string on the stack.
@@ -45,6 +45,14 @@ int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fnam
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLength, char* fname);
+int readVectorString(void* pvApiCtx, int rhsPosition, char*** out, int* vectorLength, char* fname);
+
+/**
+ * Free the allocated vector of strings after the readVectorString call
+ *
+ * @param str the vector of strings
+ * @param len the length of the vector
+ */
+void releaseVectorString(char** str, int len);
 
 #endif /* !__XCOS_UTILITIES_HXX__ */

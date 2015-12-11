@@ -101,13 +101,8 @@ function demo_anim7()
 
     end
 
-    if is_handle_valid(curFig) then
-        delete(curFig);
-    end
-
 endfunction
 
 
 demo_anim7();
 clear demo_anim7;
-

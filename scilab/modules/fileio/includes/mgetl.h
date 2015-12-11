@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -44,7 +44,7 @@ typedef enum
  *
  * @return  null if it fails, else strings readed.
 **/
-FILEIO_IMPEXP char ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr);
+FILEIO_IMPEXP wchar_t ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr);
 
 #endif /* __MGETL_H__ */
 /*--------------------------------------------------------------------------*/

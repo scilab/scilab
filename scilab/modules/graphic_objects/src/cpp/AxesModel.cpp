@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,18 +18,18 @@ extern "C"
 #include "AxesModel.h"
 }
 
-char const* getAxesModel(void)
+int getAxesModel(void)
 {
     return ScilabView::getAxesModel();
 }
-void setAxesModel(char const* UID)
+void setAxesModel(int UID)
 {
     ScilabView::setAxesModel(UID);
 }
 
-BOOL isAxesModel(char const* UID)
+BOOL isAxesModel(int UID)
 {
-    if (strcmp(UID, getAxesModel()) == 0)
+    if (UID == getAxesModel())
     {
         return TRUE;
     }

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 function []=xsetech(wrect, frect, logflag, arect)
@@ -53,8 +53,9 @@ function []=xsetech(wrect, frect, logflag, arect)
     end
 
     // Check if an existing axes matches wrect
-    curFig = gcf();
-    allAxes = curFig.children;
+    a = gca()
+    curParent = a.parent;
+    allAxes = curParent.children;
     found = %F;
     for kAxes = 1:size(allAxes, "*")
         if allAxes(kAxes).type == "Axes" & and(allAxes(kAxes).axes_bounds(:)==wrect(:)) then
@@ -65,7 +66,7 @@ function []=xsetech(wrect, frect, logflag, arect)
     end
 
     if ~found then
-        a = newaxes();
+        a = newaxes(curParent);
         if ~isempty(wrect) then
             a.axes_bounds = wrect;
         end

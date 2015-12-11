@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=%g2sci(tree)
     // M2SCI function
@@ -34,8 +34,8 @@ function [tree]=%g2sci(tree)
             varslist($+1)=M2scivar(tree.out(1).name,tree.out(1).name,Infer(list(1,1),Type(Boolean,Real)))
             tree=list()
         end
-        insert(Equal(list(tmp),Cste(%T)))
-        insert(tlist(["ifthenelse","expression","then","elseifs","else"],Operation("~",list(A.operands(1)),list()),list(Equal(list(tmp),A.operands(2))),list(),list()))
+        m2sci_insert(Equal(list(tmp),Cste(%T)))
+        m2sci_insert(tlist(["ifthenelse","expression","then","elseifs","else"],Operation("~",list(A.operands(1)),list()),list(Equal(list(tmp),A.operands(2))),list(),list()))
         return
     end
 

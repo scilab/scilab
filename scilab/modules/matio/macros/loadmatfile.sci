@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function loadmatfile(varargin)
     // Loads variables in a Matlab binary or ASCII file into Scilab
@@ -123,9 +123,14 @@ function loadmatfile(varargin)
 
         // Remove comments
         rowIndexes = grep(txt, "%")
+        emptyLines = [];
         for k = rowIndexes
             txt(k) = part(txt(k), 1:(strindex(txt(k), "%") - 1));
+            if isempty(stripblanks(txt(k))) then
+                emptyLines($+1) = k;
+            end
         end
+        txt(emptyLines) = []; // Remove empty lines
 
         // Values read
         mat = evstr(txt);

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -35,7 +35,7 @@ public class ScilabFileChooser implements FileChooser {
      * Constructor
      * @param figureId id of the exported figure
      */
-    protected ScilabFileChooser(String figureId) {
+    protected ScilabFileChooser(Integer figureId) {
         component = ScilabBridge.createExportFileChooser(figureId);
     }
 
@@ -52,7 +52,7 @@ public class ScilabFileChooser implements FileChooser {
      * @param figureId int
      * @return the created export file chooser
      */
-    public static FileChooser createExportFileChooser(String figureUID) {
+    public static FileChooser createExportFileChooser(Integer figureUID) {
         return new ScilabFileChooser(figureUID);
     }
 
@@ -135,19 +135,10 @@ public class ScilabFileChooser implements FileChooser {
     }
 
     /**
-     * Get the filter index
-     * @return the filter index
-     */
-    public int getFilterIndex() {
-        return ScilabBridge.getFilterIndex(this);
-    }
-
-    /**
      * Set the dialog type (save or open a file ?)
      * @param dialogType the dialog type
      */
     public void setUiDialogType(int dialogType) {
         ScilabBridge.setUiDialogType(this, dialogType);
     }
-
 }

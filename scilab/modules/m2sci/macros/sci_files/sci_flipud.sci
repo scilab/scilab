@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_flipud(tree)
     // M2SCI function
@@ -19,7 +19,7 @@ function [tree]=sci_flipud(tree)
 
     if typeof(tree.rhs(1))<>"variable" then
         tmp=gettempvar()
-        insert(Equal(list(tmp),tree.rhs(1)))
+        m2sci_insert(Equal(list(tmp),tree.rhs(1)))
     else
         tmp=tree.rhs(1)
     end

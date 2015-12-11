@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.ruler;
@@ -28,6 +28,7 @@ import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.BuffersManager;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.ruler.graduations.Graduations;
+import org.scilab.forge.scirenderer.ruler.graduations.UserDefinedFormat;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
@@ -80,6 +81,14 @@ public class RulerDrawer {
     }
 
     /**
+     * Get the sprite factory
+     * @return the sprite factory
+     */
+    public RulerSpriteFactory getSpriteFactory() {
+        return this.spriteFactory;
+    }
+
+    /**
      * Draw the ruler
      * @param drawingTools the {@link DrawingTools} of the canvas where the ruler will be drawn.
      */
@@ -113,12 +122,11 @@ public class RulerDrawer {
 
     /**
      * Compute different parameters on a ruler
-     * @param drawingTools the {@link DrawingTools} of the canvas where the ruler will be drawn.
      * @param rulerModel the {@link RulerModel} of the drawn ruler.
      * @param canvasProjection the canvas projection.
      */
-    public RulerDrawingResult computeRuler(DrawingTools drawingTools, RulerModel model, Transformation canvasProjection) {
-        return oneShotRulerDrawer.computeRuler(drawingTools, model, canvasProjection);
+    public RulerDrawingResult computeRuler(RulerModel model, Transformation canvasProjection) {
+        return oneShotRulerDrawer.computeRuler(model, canvasProjection);
     }
 
     /**
@@ -139,6 +147,10 @@ public class RulerDrawer {
         textureManager.dispose(spriteMap.values());
         spriteMap.clear();
         oneShotRulerDrawer.dispose();
+    }
+
+    public double getDistanceRatio() {
+        return oneShotRulerDrawer.getDistanceRatio();
     }
 
     /**
@@ -171,6 +183,7 @@ public class RulerDrawer {
         private List<Double> subTicksValue;
         private List<Double> ticksValue;
         private int density;
+        private double distRatio;
 
         public OneShotRulerDrawer() { }
 
@@ -186,13 +199,17 @@ public class RulerDrawer {
             rulerModel = null;
         }
 
+        public double getDistanceRatio() {
+            return distRatio;
+        }
+
         /**
          * Compute different parameters on a ruler
          * @param drawingTools the {@link DrawingTools} of the canvas where the ruler will be drawn.
          * @param rulerModel the {@link RulerModel} of the drawn ruler.
          * @param canvasProjection the canvas projection.
          */
-        public synchronized RulerDrawingResult computeRuler(DrawingTools drawingTools, RulerModel rulerModel, Transformation canvasProjection) {
+        public synchronized RulerDrawingResult computeRuler(RulerModel rulerModel, Transformation canvasProjection) {
             // Same code as drawWithResults (without drawing)
             // Historically, computations were made when drawing and they are made before drawing.
             // TODO: remove drawWithResults ??
@@ -257,12 +274,11 @@ public class RulerDrawer {
         }
 
         /**
-         * Compute the ratio between windows ticks norm and the sprite distance.
-         * @param windowTicksNorm the windows tics norm.
-         * @return the ratio between windows ticks norm and the sprite distance.
-         */
+             * Compute the ratio between windows ticks norm and the sprite distance.
+             * @param windowTicksNorm the windows tics norm.
+             * @return the ratio between windows ticks norm and the sprite distance.
+             */
         private double computeTicksDistanceRatio(double windowTicksNorm) {
-            double distRatio;
             if (windowTicksNorm == 0) {
                 distRatio = 1.0;
             } else if (maximalSpritesDistance == 0) {
@@ -278,6 +294,10 @@ public class RulerDrawer {
          * @param drawingTools {@link DrawingTools} used to perform the ruler drawing.
          */
         private synchronized void draw(DrawingTools drawingTools) {
+            if (rulerModel == null) {
+                return;
+            }
+
             BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
             ElementsBuffer vertices = bufferManager.createElementsBuffer();
             fillVertices(vertices, rulerModel, ticksValue, subTicksValue, canvasProjection);
@@ -313,6 +333,11 @@ public class RulerDrawer {
             Graduations currentGraduations = rulerModel.getGraduations();
             Graduations ticksGraduation = currentGraduations;
             DecimalFormat format = currentGraduations.getFormat();
+            String f = rulerModel.getFormat();
+            if (f != null && !f.isEmpty()) {
+                format = new UserDefinedFormat(format, f, rulerModel.getScale(), rulerModel.getTranslate());
+            }
+
             boolean canGetMore = true;
             List<PositionedSprite> newSpritesList = new LinkedList<PositionedSprite>();
             while (currentGraduations != null) {
@@ -325,12 +350,17 @@ public class RulerDrawer {
                     Texture sprite = computeSprite(value, format);
                     Vector3d windowPosition = canvasProjection.project(rulerModel.getPosition(value));
 
+                    // X != X means NaN so we are not able to project coordinates
+                    // return basic format
+                    if (windowPosition.getX() != windowPosition.getX()) {
+                        return format;
+                    }
+
                     Dimension textureSize = computeSpriteDimension(value);
 
                     Vector3d delta = projectCenterToEdge(textureSize, windowTicksDelta);
                     PositionedSprite newSprite = new PositionedSprite(sprite, textureSize, windowPosition.plus(windowTicksDelta.plus(delta)));
                     newSpritesList.add(newSprite);
-
                     Vector3d farDelta = windowTicksDelta.plus(delta.times(2.0));
                     currentMaximalSpritesDistance = Math.max(currentMaximalSpritesDistance, farDelta.getNorm());
                 }
@@ -349,7 +379,6 @@ public class RulerDrawer {
                     }
                 }
             }
-
 
             this.graduations = ticksGraduation;
             this.maximalSpritesDistance = maxSpritesDistance;
@@ -457,8 +486,9 @@ public class RulerDrawer {
          */
         private boolean collide(List<PositionedSprite> spritesList, double margin) {
             for (int i = 0; i < spritesList.size(); i++) {
+                Rectangle2D bounds = spritesList.get(i).getWindowBounds();
                 for (int j = i + 1; j < spritesList.size(); j++) {
-                    if (collide(spritesList.get(i).getWindowBounds(), spritesList.get(j).getWindowBounds(), margin)) {
+                    if (collide(bounds, spritesList.get(j).getWindowBounds(), margin)) {
                         return true;
                     }
                 }
@@ -475,8 +505,9 @@ public class RulerDrawer {
          */
         private boolean collide(List<PositionedSprite> spritesList, List<PositionedSprite> newSpritesList, double margin) {
             for (PositionedSprite sprite1 : newSpritesList) {
+                Rectangle2D bounds = sprite1.getWindowBounds();
                 for (PositionedSprite sprite2 : spritesList) {
-                    if (collide(sprite1.getWindowBounds(), sprite2.getWindowBounds(), margin)) {
+                    if (collide(bounds, sprite2.getWindowBounds(), margin)) {
                         return true;
                     }
                 }
@@ -516,10 +547,11 @@ public class RulerDrawer {
 
             /* +1 is used to have a space between the tick and its label */
             Dimension textureSize = sprite.getDataProvider().getTextureSize();
-            double ratioX = textureSize.width / Math.abs(usedDirection.getX()) + 1;
-            double ratioY = textureSize.height / Math.abs(usedDirection.getY()) + 1;
-            double ratio = Math.min(ratioY, ratioX) / 2;
-            return usedDirection.times(ratio);
+            double ratioX = textureSize.width / Math.abs(usedDirection.getX());
+            double ratioY = textureSize.height / Math.abs(usedDirection.getY());
+            double ratio = Math.min(ratioY, ratioX);
+
+            return usedDirection.times((ratio + 1) / 2);
         }
 
         /**
@@ -538,11 +570,11 @@ public class RulerDrawer {
                 usedDirection = direction;
             }
 
-            /* +1 is used to have a space between the tick and its label */
-            double ratioX = textureSize.width / Math.abs(usedDirection.getX()) + 1;
-            double ratioY = textureSize.height / Math.abs(usedDirection.getY()) + 1;
-            double ratio = Math.min(ratioY, ratioX) / 2;
-            return usedDirection.times(ratio);
+            double ratioX = textureSize.width / Math.abs(usedDirection.getX());
+            double ratioY = textureSize.height / Math.abs(usedDirection.getY());
+            double ratio = Math.min(ratioY, ratioX);
+
+            return usedDirection.times((ratio + 1) / 2);
         }
 
         /**

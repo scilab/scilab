@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
 C/MEMBR ADD NAME=WSHRSL,SSI=0
 c
@@ -19,7 +19,7 @@ c
 c!calling sequence
 c
 c      subroutine wshrsl(ar,ai,br,bi,cr,ci,m,n,na,nb,nc,eps,rmax,fail)
-c   ar,ai  a doubly subscripted array containg the matrix a in
+c   ar,ai  a doubly subscripted array containing the matrix a in
 c          lower triangular form
 c
 c   br,bi  a doubly subscripted array containing tbe matrix br,bi

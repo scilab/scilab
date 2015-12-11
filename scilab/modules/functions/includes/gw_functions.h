@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,14 +20,8 @@
 /*--------------------------------------------------------------------------*/
 FUNCTIONS_SCILAB_IMPEXP int gw_functions(void);
 /*--------------------------------------------------------------------------*/
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_lib)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_deff)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_exec)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_execstr)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int sci_librarieslist(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int sci_libraryinfo(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int sci_whereis(char *fname, unsigned long fname_len);
+//Scilab 6
+FUNCTIONS_SCILAB_IMPEXP int sci_libfunc(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/
-

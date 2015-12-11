@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,7 +28,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
+int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
 {
     XMLAttr *attr;
     int id;
@@ -67,7 +67,7 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
     {
         if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 
@@ -91,12 +91,13 @@ int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
             if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
             {
                 freeAllocatedSingleString(prefix);
-                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
                 return 0;
             }
 
             if (getAllocatedSingleString(pvApiCtx, nameaddr, &name) != 0)
             {
+                freeAllocatedSingleString(prefix);
                 Scierror(999, _("%s: No more memory.\n"), fname);
                 return 0;
             }

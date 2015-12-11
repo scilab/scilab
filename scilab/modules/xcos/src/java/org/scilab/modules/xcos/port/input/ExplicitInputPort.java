@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,8 +21,8 @@ public class ExplicitInputPort extends InputPort {
     private static final long serialVersionUID = 3389508566614965375L;
 
     /** Default constructor */
-    public ExplicitInputPort() {
-        super("ExplicitInputPort");
+    public ExplicitInputPort(long uid) {
+        super(uid, "ExplicitInputPort");
     }
 
     /** @return always Type.EXPLICIT */
@@ -30,5 +30,4 @@ public class ExplicitInputPort extends InputPort {
     public Type getType() {
         return Type.EXPLICIT;
     }
-
 }

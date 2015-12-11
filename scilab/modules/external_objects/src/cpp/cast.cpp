@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -65,7 +65,7 @@ int ScilabGateway::cast(char * fname, const int envId, void * pvApiCtx)
         {
             ret = env.castwithid(idObj, *id);
         }
-        catch (std::exception & e)
+        catch (std::exception & /*e*/)
         {
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
             throw;
@@ -77,7 +77,7 @@ int ScilabGateway::cast(char * fname, const int envId, void * pvApiCtx)
         {
             objName = ScilabObjects::getSingleString(2, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
             throw;
@@ -87,7 +87,7 @@ int ScilabGateway::cast(char * fname, const int envId, void * pvApiCtx)
         {
             ret = env.cast(idObj, objName);
         }
-        catch (std::exception & e)
+        catch (std::exception & /*e*/)
         {
             freeAllocatedSingleString(objName);
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -102,7 +102,7 @@ int ScilabGateway::cast(char * fname, const int envId, void * pvApiCtx)
     {
         ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         env.removeobject(ret);
         throw;

@@ -1,0 +1,73 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Charlotte HECQUET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+
+// <-- Non-regression test for bug 6305 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=6305
+//
+// <-- Short Description -->
+// dsearch does not work with integers, hypermatrices and strings
+
+indref_d = [1,0, 0, 2; 2, 0, 0, 0; 0, 0, 2, 0; 4, 3, 0, 0];
+occref_d = [1, 3, 1, 1];
+inforef_d = 10;
+indref_c = [1, 2, 2, 1; 1, 0, 0, 0; 0, 0, 1, 0; 3, 2, 3, 3];
+occref_c = [4, 3, 3];
+inforef_c = 6;
+I = [3, 5, 6, 4; 4, 1, 2, 11; 1, 11, 4, 0; 10, 7, 9 9];
+
+// Integers
+I_int8 = int8(I);
+[ind, occ, info] = dsearch(I_int8, int8([3 4 7 10]),"d");
+assert_checkequal(ind, indref_d);
+assert_checkequal(occ, occref_d);
+assert_checkequal(info, inforef_d);
+[ind, occ, info] = dsearch(I_int8, int8([3 4 7 10]), "c");
+assert_checkequal(ind, indref_c);
+assert_checkequal(occ, occref_c);
+assert_checkequal(info, inforef_c);
+[ind, occ, info] = dsearch(I_int8, int8([3 4 7 10]));
+assert_checkequal(ind, indref_c);
+assert_checkequal(occ, occref_c);
+assert_checkequal(info, inforef_c);
+
+// Strings
+[ind, occ, info] = dsearch(["K", "M", "a", "g", "E", "b", "I"], ["E", "K", "O", "T"], "c");
+assert_checkequal(ind, [1 2 0 0 1 0 1]);
+assert_checkequal(occ, [3 1 0]);
+assert_checkequal(info, 3);
+
+[ind, occ, info] = dsearch(["K", "M", "a", "g", "E", "b", "I"], ["E", "K", "O", "T"], "d");
+assert_checkequal(ind, [2 0 0 0 1 0 0]);
+assert_checkequal(occ, [1 1 0 0]);
+assert_checkequal(info, 5);
+
+[ind, occ, info] = dsearch(["K", "M", "a", "g", "E", "b", "I"], ["E", "K", "O", "T"]);
+assert_checkequal(ind, [1 2 0 0 1 0 1]);
+assert_checkequal(occ, [3 1 0]);
+assert_checkequal(info, 3);
+
+// Hypermatrices
+I_hm(:,:,1) = I;
+I_hm(:,:,2) = I;
+indref_d(:,:,2) = indref_d;
+indref_c(:,:,2) = indref_c;
+[ind, occ, info] = dsearch(I_hm, [3 4 7 10], "d");
+assert_checkequal(ind, indref_d);
+assert_checkequal(occ, 2*occref_d);
+assert_checkequal(info, 2*inforef_d);
+[ind, occ, info] = dsearch(I_hm, [3 4 7 10], "c");
+assert_checkequal(ind, indref_c);
+assert_checkequal(occ, 2*occref_c);
+assert_checkequal(info, 2*inforef_c);
+[ind, occ, info] = dsearch(I_hm, [3 4 7 10]);
+assert_checkequal(ind, indref_c);
+assert_checkequal(occ, 2*occref_c);
+assert_checkequal(info, 2*inforef_c);

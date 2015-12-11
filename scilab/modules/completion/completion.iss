@@ -7,7 +7,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;
 ;--------------------------------------------------------------------------------------------------------------
 ; Inno Setup Script (5.3 and more) for Scilab (UNICODE version required)
@@ -35,13 +35,9 @@ Source: modules\{#COMPLETION}\etc\{#COMPLETION}.quit; DestDir: {app}\modules\{#C
 Source: modules\{#COMPLETION}\etc\{#COMPLETION}.start; DestDir: {app}\modules\{#COMPLETION}\etc; Components: {#COMPN_SCILAB}
 ;
 ;
-;Source: modules\{#COMPLETION}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#COMPLETION}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\macros\buildmacros.bat; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#COMPLETION}\macros\cleanmacros.bat; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#COMPLETION}\macros\*.bin; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#COMPLETION}\macros\*.sci; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#COMPLETION}\macros\lib; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
-;Source: modules\{#COMPLETION}\macros\names; DestDir: {app}\modules\{#COMPLETION}\macros; Components: {#COMPN_SCILAB}
 ;
 ;Source: modules\{#COMPLETION}\demos\*.*; DestDir: {app}\modules\{#COMPLETION}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,20 +20,20 @@
 #include "api_scilab.h"
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
-int sci_getcallbackobject(char *fname, unsigned long fname_len)
+int sci_getcallbackobject(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
     int* piAddrpObjUID = NULL;
     int nbRow = 0;
     int nbCol = 0;
-    char** pObjUID = NULL;
+    double ObjUID = 0;
     unsigned long graphicHandle = 0;
 
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
-    if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
+    if ((checkInputArgumentType(pvApiCtx, 1, sci_matrix)))
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrpObjUID);
         if (sciErr.iErr)
@@ -43,36 +43,24 @@ int sci_getcallbackobject(char *fname, unsigned long fname_len)
         }
 
         // Retrieve a matrix of string at position 1.
-        if (getAllocatedMatrixOfString(pvApiCtx, piAddrpObjUID, &nbRow, &nbCol, &pObjUID))
+        if (getScalarDouble(pvApiCtx, piAddrpObjUID, &ObjUID))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: Real expected.\n"), fname, 1);
             return 1;
-        }
-
-        if (nbCol != 1 || nbRow == 0)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-            return FALSE;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return FALSE;
     }
 
-    graphicHandle = getHandle(pObjUID[0]);
-    freeAllocatedMatrixOfString(nbRow, nbCol, pObjUID);
+    graphicHandle = getHandle((int)ObjUID);
 
     /* Create return variable */
     if (graphicHandle == 0)     /* Non-existing object --> return [] */
     {
-        double* stkAdr = NULL;
-        nbRow = 0;
-        nbCol = 0;
-
-        sciErr = allocMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &stkAdr);
-        if (sciErr.iErr)
+        if (createEmptyMatrix(pvApiCtx, nbInputArgument(pvApiCtx) + 1))
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
@@ -81,19 +69,12 @@ int sci_getcallbackobject(char *fname, unsigned long fname_len)
     }
     else                        /* Return the handle */
     {
-        long long* stkAdr = NULL;
-        nbRow = 1;
-        nbCol = 1;
-
-        sciErr = allocMatrixOfHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRow, nbCol, &stkAdr);
-        if (sciErr.iErr)
+        if (createScalarHandle(pvApiCtx, nbInputArgument(pvApiCtx) + 1, graphicHandle))
         {
             printError(&sciErr, 0);
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 1;
         }
-
-        *stkAdr = (long long)graphicHandle;
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;

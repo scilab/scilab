@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,8 +15,6 @@ package org.scilab.modules.gui.utils;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Point;
-
-import org.scilab.modules.gui.bridge.tab.SwingScilabAxes;
 
 /**
  * Class used to convert Scilab position to/from Java position
@@ -85,9 +83,9 @@ public final class PositionConverter {
         //
         //		return new Position(xCoord, yCoord);
 
-        SwingScilabAxes parentAxes = (SwingScilabAxes) parent;
+        
         int xCoord = javaPosition.x;
-        int yCoord = parentAxes.getHeight() - javaPosition.y - objectSize.height;
+        int yCoord = parent.getHeight() - javaPosition.y - objectSize.height;
 
         return new Position(xCoord, yCoord);
     }

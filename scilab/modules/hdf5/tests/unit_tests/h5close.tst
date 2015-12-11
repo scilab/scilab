@@ -4,10 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #1: A H5Object expected."), "h5close");
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A H5Object expected.\n"), "h5close", 1);
 assert_checkerror("h5close(42)",msgerr,999);
 assert_checkerror("h5close(""42"")",msgerr,999);
 

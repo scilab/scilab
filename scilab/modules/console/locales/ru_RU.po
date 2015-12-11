@@ -8,52 +8,41 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 00:56+0000\n"
+"PO-Revision-Date: 2015-10-26 16:11+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: Неверное значение входного параметра №%d.\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: Эта функциональность ещё не реализована.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
 msgstr "%s: Эта функциональность не реализована в этом режиме.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A double scalar expected.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался скаляр типа double.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось положительное "
+"значение типа double\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
+
+#, c-format
 msgid "%s: Not implemented in this mode.\n"
 msgstr "%s: Не реализовано в этом режиме.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Ошибка выделения памяти.\n"
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось целочисленное "
-"значение.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
@@ -61,16 +50,63 @@ msgstr ""
 "%s: Неверное значение для входного аргумента №%d: Ожидается скаляр (>= 0).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: Неверное количество выходных аргументов: Ожидалось %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
+
+msgid "File or Directory"
+msgstr "Файл или Каталог"
+
+msgid "Scilab Fields"
+msgstr "Поля Scilab"
+
+msgid "Scilab Function"
+msgstr "Функция Scilab"
+
+msgid "Scilab Command"
+msgstr "Команда Scilab"
+
+msgid "Scilab Macro"
+msgstr "Макрос Scilab"
+
+msgid "Scilab Variable"
+msgstr "Переменная Scilab"
+
+msgid "Graphics handle field"
+msgstr "Поле графического дескриптора"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Неверное количество выходных параметров.\n"
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+"Команда слишком длинная (больше %d символов): не удалось её передать в "
+"Scilab\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Продолжить отображение? n (no) - остановить, любая другая клавиша - "
+"продолжить]"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Введите «%s» или «%s» для возврата на стандартный уровень командной строки.\n"
+"\n"
 
 msgid "Console"
 msgstr "Командное окно"
@@ -150,6 +186,9 @@ msgstr "Японский"
 msgid "Ukrainian"
 msgstr "Украинский"
 
+msgid "Start-up directory"
+msgstr "Директория при запуске"
+
 msgid "Confirmation dialogs"
 msgstr "Диалоги подтверждения"
 
@@ -220,7 +259,7 @@ msgid "Clear console"
 msgstr "Очистить командное окно"
 
 msgid "Console box"
-msgstr ""
+msgstr "Командная строка"
 
 msgid "Completion"
 msgstr "Завершение"
@@ -235,7 +274,7 @@ msgid "Help Browser"
 msgstr "Справочная система"
 
 msgid "Console Search Field"
-msgstr ""
+msgstr "Поле поиска командного окна"
 
 msgid "Paste"
 msgstr "Вставить"
@@ -385,7 +424,7 @@ msgid "Paste a column"
 msgstr "Вставить столбец"
 
 msgid "Repeat selection on column"
-msgstr ""
+msgstr "Повтор выбора столбца"
 
 msgid "Undo"
 msgstr "Отменить"
@@ -478,7 +517,7 @@ msgid "Go to previous anchor"
 msgstr "Перейти к предыдущей метке"
 
 msgid "Start Code Navigator"
-msgstr ""
+msgstr "Запустить навигатор по коду"
 
 msgid "Search word in file"
 msgstr "Искать слово в файле"
@@ -520,7 +559,7 @@ msgid "Close all"
 msgstr "Закрыть всё"
 
 msgid "Close all but this"
-msgstr ""
+msgstr "Закрыть все, кроме этой"
 
 msgid "Convert quote to double quote"
 msgstr "Заменить кавычки на двойные кавычки"
@@ -535,7 +574,7 @@ msgid "Set the SciNotes colors"
 msgstr "Установить цвета в SciNotes"
 
 msgid "New diagram"
-msgstr ""
+msgstr "Создать диаграмму"
 
 msgid "Open file in Scilab current directory"
 msgstr "Открыть файл в текущей директории Scilab"
@@ -586,7 +625,7 @@ msgid "Execution trace and Debug"
 msgstr "Отслеживание исполнения и Отладка"
 
 msgid "Set Context"
-msgstr ""
+msgstr "Установить контекст"
 
 msgid "Compile"
 msgstr "Компилировать"
@@ -657,8 +696,8 @@ msgstr "Справка по Xcos"
 msgid "Block Help"
 msgstr "Справка по блоку"
 
-msgid "Xcos Demos"
-msgstr "Примеры Xcos"
+msgid "Xcos Demonstrations"
+msgstr "Демонстрации Xcos"
 
 msgid "About Xcos"
 msgstr "О Xcos"
@@ -684,6 +723,9 @@ msgstr "Формат печати: "
 msgid "Width: "
 msgstr "Ширина: "
 
+msgid "Recursion limit: "
+msgstr "Предел рекурсии: "
+
 msgid "Language setting"
 msgstr "Настройка языка"
 
@@ -699,6 +741,18 @@ msgstr "Динамическая память для Java (heap memory)"
 msgid "Select the memory (in MB) available in Java: "
 msgstr "Выберите память (в МБ), доступную в Java: "
 
+msgid "Use current working directory"
+msgstr "Использовать текущую рабочую директорию"
+
+msgid "Use previous working directory"
+msgstr "Использовать предыдущую рабочую директоию"
+
+msgid "Use default directory"
+msgstr "Использовать директорию по умолчанию"
+
+msgid "Default startup directory"
+msgstr "Директория при запуске по умолчанию"
+
 msgid "Desktop Layout"
 msgstr "Конфигурация рабочего стола"
 
@@ -707,6 +761,12 @@ msgstr "Выбрать конфигурацию"
 
 msgid "(Modify the layout requires to restart Scilab)"
 msgstr "(Изменение конфигурации требует перезапуска Scilab'а)"
+
+msgid "Save layout on exiting"
+msgstr "Сохранить проект при выходе"
+
+msgid "Reset layout"
+msgstr "Сбросить расположение панелей"
 
 msgid "Keys binding"
 msgstr "Привязка клавиш"
@@ -731,48 +791,6 @@ msgstr "Название действия"
 
 msgid "Key binding"
 msgstr "Привязка клавиш"
-
-msgid "File or Directory"
-msgstr "Файл или Каталог"
-
-msgid "Scilab Fields"
-msgstr "Поля Scilab"
-
-msgid "Scilab Function"
-msgstr "Функция Scilab"
-
-msgid "Scilab Command"
-msgstr "Команда Scilab"
-
-msgid "Scilab Macro"
-msgstr "Макрос Scilab"
-
-msgid "Scilab Variable"
-msgstr "Переменная Scilab"
-
-msgid "Graphics handle field"
-msgstr "Поле графического дескриптора"
-
-#, c-format
-msgid ""
-"Command is too long (more than %d characters long): could not send it to "
-"Scilab\n"
-msgstr ""
-"Команда слишком длинная (больше %d символов): не удалось её передать в "
-"Scilab\n"
-
-msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-"[Продолжить отображение? n (no) - остановить, любая другая клавиша - "
-"продолжить]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"Введите «%s» или «%s» для возврата на стандартный уровень командной строки.\n"
-"\n"
 
 msgid "Field"
 msgstr "Поле"

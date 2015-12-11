@@ -24,5 +24,5 @@ warning("i like pizza very much")
 WARNING: i like pizza very much
 diary(fd, 'close');
 txt = mgetl(FILENAME_DIARY);
-s = strsplit(txt(2),' ');
+s = strsplit(txt(3),' ');
 assert_checkequal(s($), 'much');

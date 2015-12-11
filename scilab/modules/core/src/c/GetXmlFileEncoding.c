@@ -6,16 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <string.h>
 #include "GetXmlFileEncoding.h"
 #include "libxml/xmlreader.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "BOOL.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
@@ -25,10 +23,10 @@ char *GetXmlFileEncoding(const char *filename)
     char *encoding = NULL;
     xmlDocPtr doc = NULL;
     BOOL bConvert = FALSE;
-    char *shortfilename = getshortpathname((char*)filename, &bConvert);
+    char *shortfilename = getshortpathname(filename, &bConvert);
 
     /* default */
-    encoding = strdup(DEFAULT_ENCODING);
+    encoding = os_strdup(DEFAULT_ENCODING);
 
     if (shortfilename)
     {
@@ -44,7 +42,7 @@ char *GetXmlFileEncoding(const char *filename)
                     FREE(encoding);
                     encoding = NULL;
                 }
-                encoding = strdup((char*)doc->encoding);
+                encoding = os_strdup(doc->encoding);
             }
         }
         xmlFreeDoc (doc);

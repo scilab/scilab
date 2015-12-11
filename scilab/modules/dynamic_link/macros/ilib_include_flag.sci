@@ -5,16 +5,25 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //=============================================================================
 
 function ret = ilib_include_flag(path_strings)
 
     if type(path_strings) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_include_flag", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_include_flag", 1));
     end
 
     ret = "";
+
+    if and(size(path_strings)<>1) then
+        //path_strings is not a vector
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "ilib_include_flag", 1));
+    else
+        //change path_strings to a line vector to have ret as a line vector
+        path_strings=path_strings(:)'
+    end
+
 
     for path = path_strings
         if ~isdir(fullpath(path)) then

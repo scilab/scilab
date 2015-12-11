@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -175,11 +175,11 @@ static  int LexiRowcompareCdouble(double *i, double *j)
 
     for ( jc = 0 ; jc < lexicolsdouble ; jc++)
     {
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) == (double *) 1)
         {
             return (1);
         }
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (-1);
         }
@@ -195,11 +195,11 @@ static  int LexiRowcompareDdouble(double *i, double*j)
 
     for ( jc = 0 ; jc < lexicolsdouble ; jc++)
     {
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (1);
         }
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) == (double *) 1)
         {
             return (-1);
         }
@@ -257,11 +257,11 @@ static  int LexiColcompareCdouble(double *i, double *j)
     int ic;
     for ( ic = 0 ; ic < lexirowsdouble ; ic++)
     {
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) == (double *) 1)
         {
             return (1);
         }
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (-1);
         }
@@ -276,11 +276,11 @@ static  int LexiColcompareDdouble(double *i, double *j)
     int ic;
     for ( ic = 0 ; ic < lexirowsdouble ; ic++)
     {
-        if (*i < *j || (double *)C2F(isanan)((double *)j) == 1)
+        if (*i < *j || (double *)C2F(isanan)((double *)j) == (double *) 1)
         {
             return (1);
         }
-        if (*i > *j || (double *)C2F(isanan)((double *)i) == 1)
+        if (*i > *j || (double *)C2F(isanan)((double *)i) ==  (double *) 1)
         {
             return (-1);
         }

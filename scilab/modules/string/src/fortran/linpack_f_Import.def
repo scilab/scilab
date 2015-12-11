@@ -1,5 +1,0 @@
-LIBRARY   linpack_f.dll
-
-
-EXPORTS
-icopy_

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
@@ -104,6 +104,13 @@ public class BoundingBox {
         return box.maxX >= minX && maxX >= box.minX
                && box.maxY >= minY && maxY >= box.minY
                && box.maxZ >= minZ && maxZ >= box.minZ;
+    }
+
+    /**
+     * @return true if the bbox are non-intersecting and no z-overlapping
+     */
+    public boolean isNonZOverlapping(BoundingBox box) {
+        return (box.maxX < minX || maxX < box.minX || box.maxY < minY || maxY < box.minY) || ((box.maxZ < minZ || maxZ < box.minZ) && (maxX == box.minX || box.maxX == minX || box.minY == maxY || minY == box.maxY));
     }
 
     /**

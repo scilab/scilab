@@ -21,7 +21,7 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block.h"
-#include "sciprint.h"
+#include "scicos_print.h"
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
@@ -38,7 +38,7 @@ SCICOS_BLOCKS_IMPEXP void edgetrig(scicos_block *block, int flag)
         {
             z = z * block->ipar[0];
             u = u * block->ipar[0];
-            if (((z <= 0) & (u>0)) || ((z<0) & (u >= 0)))
+            if (((z <= 0) & (u > 0)) || ((z < 0) & (u >= 0)))
             {
                 block->outptr[0][0] = 1.;
             }
@@ -49,7 +49,7 @@ SCICOS_BLOCKS_IMPEXP void edgetrig(scicos_block *block, int flag)
         }
         else    /* rising and falling edge */
         {
-            if (((z <= 0) & (u>0)) || ((z<0) & (u >= 0)) || ((z > 0) & (u <= 0)) || ((z >= 0) & (u < 0)))
+            if (((z <= 0) & (u > 0)) || ((z < 0) & (u >= 0)) || ((z > 0) & (u <= 0)) || ((z >= 0) & (u < 0)))
             {
                 block->outptr[0][0] = 1.;
             }
@@ -64,7 +64,7 @@ SCICOS_BLOCKS_IMPEXP void edgetrig(scicos_block *block, int flag)
         if (block->ng > 0)
         {
             set_block_error(-1);
-            sciprint(_("Trigger block must have discrete time input."));
+            scicos_print(_("Trigger block must have discrete time input."));
             return;
         }
     }

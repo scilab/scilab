@@ -21,29 +21,28 @@
 
 function [x,y,typ]=SQRT(job,arg1,arg2)
     //
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1
-        graphics=arg1.graphics;label=graphics.exprs
+        graphics=arg1.graphics;
+        label=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,typ,exprs]=scicos_getvalue("Set SQRT Block",..
             ["Datatype(1=real double  2=Complex)"],list("vec",1),label)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if (typ==1) then
-                junction_name="mat_sqrt";
+                function_name="mat_sqrt";
             elseif (typ==2) then
-                junction_name="matz_sqrt";
-            else message("type is not supported");ok=%f;
+                function_name="matz_sqrt";
+            else
+                message("type is not supported");
+                ok=%f;
             end
             it=typ
             ot=typ
@@ -53,9 +52,10 @@ function [x,y,typ]=SQRT(job,arg1,arg2)
             if ok then
                 label=exprs;
                 [model,graphics,ok]=set_io(model,graphics,list(in,it),list(out,ot),[],[])
-                model.sim=list(junction_name,funtyp);
+                model.sim=list(function_name,funtyp);
                 graphics.exprs=label;
-                arg1.graphics=graphics;arg1.model=model;
+                arg1.graphics=graphics;
+                arg1.model=model;
                 x=arg1
                 break
             end
@@ -73,7 +73,7 @@ function [x,y,typ]=SQRT(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         label=[sci2exp(1)]
-        gr_i=["xstringb(orig(1),orig(2),[''SQRT''],sz(1),sz(2),''fill'');"]
+        gr_i=[]
         x=standard_define([2 2],model,label,gr_i)
     end
 endfunction

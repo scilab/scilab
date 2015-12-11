@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="border_constraints_properties">
+    <refnamediv>
+        <refname>border拘束プロパティ</refname>
+        <refpurpose>border拘束プロパティの説明.</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            constraints = createConstraints("border")
+            constraints = createConstraints("border", position)
+            constraints = createConstraints("border", position, preferredsize)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>position</term>
+                <listitem>
+                    <para>文字列</para>
+                    <para>"top" | "left" | {"center"} | "right" |"bottom"</para>
+                    <para>配置における要素の位置</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>preferredsize</term>
+                <listitem>
+                    <para>
+                        <literal>[width, heigth]</literal> doubleの1行2列行列, 
+                        デフォルトは [-1, -1].
+                    </para>
+                    <para>
+                        拘束しない場合,
+                        配置における要素の推奨の
+                        <literal>width</literal> または <literal>heigth</literal>
+                        (単位:ピクセル).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>constraints</term>
+                <listitem>
+                    <para>作成された拘束.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,
+            uicontrolの<literal>constraints</literal>属性
+            を設定する境界拘束を作成します.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+         //Creating a figure with the border layout with 50 pixel padding in width and 10 in height 
+         f = figure( ...
+         "dockable"        , "off",...
+         "infobar_visible" , "off",...
+         "toolbar"         , "none",...
+         "menubar_visible" , "off",...
+         "menubar"         , "none",...
+         "default_axes"    , "off",...
+         "layout"          , "border",...
+         "layout_options", createLayoutOptions("border", [50,10]),...
+         "visible"         , "on");
+         c = createConstraints("border", "top", [50,10]);
+         //First frame is on top with 10 pixel in height
+         u_grid1 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 0 0], ...
+         "constraints", c);
+         sleep(500);
+         c.position = "left";
+         u_grid2 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [0 1 0], ...
+         "constraints", c);
+         sleep(500);
+         c.position = "center";
+         u_grid3 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [0 0 1], ...
+         "constraints", c);
+         sleep(500);
+         c.preferredsize = [10, 100];
+         c.position = "right";
+         u_grid4 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 1 0], ...
+         "constraints", c);
+         sleep(500);
+         c.position = "bottom";
+         u_grid5 = uicontrol(f,...
+         "style", "frame",...
+         "backgroundcolor", [1 0 1], ...
+         "constraints", c);
+         ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="layout">layout</link>
+            </member>
+            <member>
+                <link linkend="createConstraints">createConstraints</link>
+            </member>
+            <member>
+                <link linkend="uicontrol">uicontrol</link>
+            </member>
+            <member>
+                <link linkend="uicontrol_properties">uicontrol_properties</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    関数<function>createBorder</function>が導入されました.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

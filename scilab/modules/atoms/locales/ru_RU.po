@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-05-24 00:53+0000\n"
+"PO-Revision-Date: 2015-10-26 16:03+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
@@ -38,7 +38,7 @@ msgstr ""
 "(m x 3)-матрица строк.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась одиночная строка.\n"
 
@@ -101,7 +101,7 @@ msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не более %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась одиночная строка.\n"
 
@@ -251,8 +251,8 @@ msgstr ""
 "записи в данный каталог.\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
-msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
+msgid "%s: The file '%s' does not exist or is not read accessible.\n"
+msgstr "%s: Файл '%s' не существует или не доступен для чтения.\n"
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -288,14 +288,6 @@ msgstr "%s: Файл с тем же именем уже существует в 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -336,8 +328,10 @@ msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr "\t - «%s - %s» необходим для «%s»\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
-msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
+msgid ""
+"%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
+msgstr ""
+"%s: Файл '%s' из (%s - %s) не существует или не доступен для чтения.\n"
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -540,21 +534,6 @@ msgstr ""
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "Модуль ATOMS недоступен. Список репозиториев пуст."
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "&Файл"
-
-msgid "&Tools"
-msgstr "&Инструменты"
-
-msgid "&Edit"
-msgstr "&Правка"
-
-msgid "&?"
-msgstr "&Справка"
-
 msgid "File"
 msgstr "Файл"
 
@@ -573,8 +552,8 @@ msgstr "Справка"
 msgid "Atoms Help..."
 msgstr "Справка по Atoms"
 
-msgid "List of installed modules"
-msgstr "Список установленных модулей"
+msgid "Back"
+msgstr "Назад"
 
 msgid "Remove"
 msgstr "Удалить"
@@ -582,8 +561,11 @@ msgstr "Удалить"
 msgid "Install"
 msgstr "Установить"
 
-msgid "Update"
-msgstr "Обновить"
+msgid "Autoload"
+msgstr "Автозагрузка"
+
+msgid "List of installed modules"
+msgstr "Список установленных модулей"
 
 msgid "Installing"
 msgstr "Идёт установка"
@@ -595,15 +577,6 @@ msgid ""
 "Installation done! Please restart Scilab to take changes into account."
 msgstr "Установка завершена! Перезапустите Scilab для применения изменений."
 
-msgid "Removing"
-msgstr "Идёт удаление"
-
-msgid "Remove failed!"
-msgstr "Сбой при удалении!"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr "Удаление завершено! Перезапустите Scilab для применения изменений. "
-
 msgid "Updating"
 msgstr "Идёт обновление"
 
@@ -613,6 +586,25 @@ msgstr "Сбой при обновлении!"
 msgid "Update done! Please restart Scilab to take changes into account."
 msgstr "Обновление завершено! Перезапустите Scilab для применения изменений."
 
+msgid "Removing"
+msgstr "Идёт удаление"
+
+msgid "Remove failed!"
+msgstr "Сбой при удалении!"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr "Удаление завершено! Перезапустите Scilab для применения изменений. "
+
+msgid "The module will be automatically loaded at next startup."
+msgstr "Модуль будет автоматически загружен при следующем запуске."
+
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
+msgstr ""
+"Автозагрузка при запуске отменена. При необходимости можно использовать меню "
+"Toolboxes или atomsLoad()."
+
 msgid "Download size"
 msgstr "Размер загрузки"
 
@@ -621,6 +613,9 @@ msgstr "Смотри также"
 
 msgid "Release date"
 msgstr "Дата выпуска"
+
+msgid "Update"
+msgstr "Обновить"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -718,6 +713,15 @@ msgstr "%s: gzip не найден.\n"
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: Сбой при извлечении файла DESCRIPTION («%s»).\n"
 
+msgid "Done"
+msgstr "Готово"
+
+msgid "Scanning repository"
+msgstr "Сканирование репозитория"
+
+msgid "Skipped"
+msgstr "Пропущено"
+
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
 msgstr "%s: сохранение ('%s') не удалось.\n"
@@ -743,10 +747,11 @@ msgstr "Обновление базы данных модулей Atoms..."
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
 msgstr ""
-"%s: Неправильный формат файла %s, модуль %s - %s не содержит поля %s\n"
+"%s: Файл %s плохо форматирован, набор инструментов %s - %s не содержит поля "
+"%s\n"
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -785,11 +790,11 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"'http://','ftp://' or 'file://' expected.\n"
+"%s: Wrong value for input argument #%d: String that starts with "
+"'http(s)?://','ftp://' or 'file://' expected.\n"
 msgstr ""
-"%s:  Неверное значение входного параметра №%d: ожидалась строка, которая "
-"начинается на «http://», «ftp://» или «file://».\n"
+"%s: Неверное значение входного аргумента №%d: ожидалась строка, начинающаяся "
+"с 'http(s)?://','ftp://' или 'file://'.\n"
 
 #, c-format
 msgid ""
@@ -854,7 +859,7 @@ msgid "\t - Local location : '%s'\n"
 msgstr "\t - Локальный адрес : «%s»\n"
 
 #, c-format
-msgid "%s: The following file hasn't been copied:\n"
+msgid "%s: The following file has not been copied:\n"
 msgstr "%s: Следующий файл не был скопирован:\n"
 
 #, c-format
@@ -866,9 +871,8 @@ msgid "\t - destination : '%s'\n"
 msgstr "\t - назначение : «%s»\n"
 
 #, c-format
-msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
-msgstr ""
-"%s: Контрольная сумма загруженного файла не соответствует ожидаемой:\n"
+msgid "%s: The downloaded file does not match the MD5SUM:\n"
+msgstr "%s: Загруженные файлы не соответствуют контрольной сумме MD5SUM:\n"
 
 #, c-format
 msgid "\t - file      : '%s'\n"
@@ -898,11 +902,11 @@ msgstr ""
 "которая заканчивается на «.tar.gz», «.tgz» или «.zip».\n"
 
 #, c-format
-msgid "%s: The file %s doesn't exist or is not read accessible.\n"
-msgstr "%s: Файл «%s» не существует или недоступен для чтения.\n"
+msgid "%s: The file %s does not exist or is not read accessible.\n"
+msgstr "%s: Файл %s не существует или не доступен для чтения.\n"
 
 #, c-format
-msgid "%s: The directory %s doesn't exist.\n"
+msgid "%s: The directory %s does not exist.\n"
 msgstr "%s: Каталог %s не существует.\n"
 
 #, c-format
@@ -933,6 +937,75 @@ msgstr "Все модули"
 
 msgid "Main categories"
 msgstr "Основные категории"
+
+msgid "Aerospace"
+msgstr "Аэрокосмос"
+
+msgid "Contributed Scilab Binaries"
+msgstr "Чужие двоичные файлы для Scilab"
+
+msgid "Data Analysis And Statistics"
+msgstr "Анализ данных и статистика"
+
+msgid "Data Handling"
+msgstr "Обработка данных"
+
+msgid "Editor Styles"
+msgstr "Стили редактора"
+
+msgid "Education"
+msgstr "Образование"
+
+msgid "GUI"
+msgstr "Графический интерфейс пользователя"
+
+msgid "Graphics"
+msgstr "Графика"
+
+msgid "Graphs"
+msgstr "Графы"
+
+msgid "Image Processing"
+msgstr "Обработка изображений"
+
+msgid "Instruments Control"
+msgstr "Управление инструментами"
+
+msgid "Linear algebra"
+msgstr "Линейная алгебра"
+
+msgid "Modeling and Control Tools"
+msgstr "Инструменты моделирования и управления"
+
+msgid "Number theory"
+msgstr "Теория чисел"
+
+msgid "Numerical Maths"
+msgstr "Численная математика"
+
+msgid "Optimization"
+msgstr "Оптимизация"
+
+msgid "Physics"
+msgstr "Физика"
+
+msgid "Real-Time"
+msgstr "Реальное время"
+
+msgid "Scilab development"
+msgstr "Разработка Scilab"
+
+msgid "Signal Processing"
+msgstr "Обработка сигналов"
+
+msgid "Technical"
+msgstr "Технический"
+
+msgid "Tests"
+msgstr "Проверки"
+
+msgid "Xcos"
+msgstr "Визуальное моделирование Xcos"
 
 #, c-format
 msgid ""
@@ -1004,13 +1077,16 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: «%s» не является правильным "
 "URL.\n"
 
-#, c-format
-msgid "%s: the package '%s' doesn't exist.\n"
-msgstr "%s: пакет «%s» не существует.\n"
+msgid "Loaded<br>at startup"
+msgstr "Загружено<br>при запуске"
 
 #, c-format
-msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
-msgstr "%s: пакет «%s» не содержит поля «%s».\n"
+msgid "%s: the package '%s' does not exist.\n"
+msgstr "%s: пакет '%s' не существует.\n"
+
+#, c-format
+msgid "%s: the package '%s' does not contain the field '%s'.\n"
+msgstr "%s: пакет '%s' не имеет поля '%s'.\n"
 
 #, c-format
 msgid "%s: %s (%s) isn't installed.\n"

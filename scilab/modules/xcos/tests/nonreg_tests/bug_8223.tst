@@ -16,7 +16,7 @@
 // Loading an Xcos file after building the doc did not work
 
 // loading the Saxon xml engine
-execstr("buildDocv2(1)", "errcatch");
+execstr("buildDoc(1)", "errcatch");
 
 // check that saxon is on the classpath
 CP = javaclasspath();

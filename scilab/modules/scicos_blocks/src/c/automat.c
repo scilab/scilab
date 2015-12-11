@@ -24,7 +24,7 @@
 #include "scicos_free.h"
 #include "localization.h"
 #include "scicos.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 /* A swithcing mechansim for building hybrid automata */
@@ -37,7 +37,7 @@ SCICOS_BLOCKS_IMPEXP void automat(scicos_block *block, int flag)
     double* x = block->x;
     double* xd = block->xd;
     double* res = block->res;
-    void**   work = block->work;
+    int**   work = (int**) block->work;
     double* rpar = block->rpar;
     double* evout = block->evout;
 
@@ -64,7 +64,7 @@ SCICOS_BLOCKS_IMPEXP void automat(scicos_block *block, int flag)
 
     if (flag == 4) /*----------------------------------------------------------*/
     {
-        if ((*work = scicos_malloc(sizeof(int) * (2))) == NULL )
+        if ((*work = (int*) scicos_malloc(sizeof(int) * (2))) == NULL )
         {
             set_block_error(-16);
             return;
@@ -182,7 +182,7 @@ SCICOS_BLOCKS_IMPEXP void automat(scicos_block *block, int flag)
                 {
                     break;
                 }
-            /*      sciprint(_("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction"),Mi,k+1); */
+            /*      scicos_print(_("\n Warning!: In Mode=%d, the jump condition #%d has crossed zero in negative dierction"),Mi,k+1); */
         }
         ui = GetRealInPortPtrs(block, Mf);
         for (i = 0; i < NX; i++)

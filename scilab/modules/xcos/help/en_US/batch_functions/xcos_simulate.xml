@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>Info=xcos_simulate(scs_m, needcompile)</synopsis>
+        <synopsis>[Info, status]=xcos_simulate(scs_m, needcompile)</synopsis>
     </refsynopsisdiv>
     <refsection id="Parameters_xcos_simulate">
         <title>Arguments</title>
@@ -19,6 +19,9 @@
                 <term>needcompile</term>: An integer. If it equals 4,
                 then the simulator will perform a complete compilation of the diagram.
                 If not, it will use cached value of %cpr. DEPRECATED
+            </varlistentry>
+            <varlistentry>
+              <term>status</term>: A boolean. %T if simulation is successful, %f if simulation fails.
             </varlistentry>
         </variablelist>
     </refsection>
@@ -43,7 +46,7 @@
             importXcosDiagram
         </link>
         ).
-        
+
         <para>
             User can also define <literal>pre_xcos_simulate</literal>
             function that will run before simulation.
@@ -78,7 +81,7 @@
     <refsection id="Examples_xcos_simulate">
         <title>Examples</title>
         <para>
-            The xcos diagram in <link type="scilab" linkend="scilab.zcos/xcos/demos/batch_simulation.zcos">SCI/modules/xcos/demos/batch_simulation.zcos</link>.
+            The xcos diagram in <link type="scilab" linkend="scilab.xcos/xcos/demos/batch_simulation.zcos">SCI/modules/xcos/demos/batch_simulation.zcos</link>.
             <mediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../demos/batch_simulation.zcos"/>
@@ -155,7 +158,7 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
       ]]></programlisting>
         </para>
         <para>
-            The xcos diagram: <link type="scilab" linkend="scilab.zcos/xcos/demos/Command.zcos">SCI/modules/xcos/demos/Command.zcos</link>
+            The xcos diagram: <link type="scilab" linkend="scilab.xcos/xcos/demos/Command.zcos">SCI/modules/xcos/demos/Command.zcos</link>
             <mediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../demos/Command.zcos"/>
@@ -203,7 +206,7 @@ xcos_simulate(scs_m, 4);
       ]]></programlisting>
         </para>
         <para>
-            The xcos diagram: <link type="scilab" linkend="scilab.zcos/xcos/demos/Command_bode.zcos">SCI/modules/xcos/demos/Command_bode.zcos</link>
+            The xcos diagram: <link type="scilab" linkend="scilab.xcos/xcos/demos/Command_bode.zcos">SCI/modules/xcos/demos/Command_bode.zcos</link>
             <mediaobject>
                 <imageobject>
                     <imagedata align="center" fileref="../../../demos/Command_bode.zcos"/>

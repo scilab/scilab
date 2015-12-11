@@ -9,17 +9,40 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-18 04:45+0000\n"
+"PO-Revision-Date: 2015-10-09 07:42+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
 
-msgid "Scilab graphic module disabled -nogui or -nwni mode.\n"
-msgstr "Графічний модуль Scilab у режимах -nogui і -nwni вимкнено.\n"
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: Invalid driver: %s.\n"
+msgstr "%s: некоректний драйвер: %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: сталася помилка: %s\n"
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr "%s: некоректний шлях: %s.\n"
 
 #, c-format
 msgid ""
@@ -29,8 +52,9 @@ msgstr ""
 "назву елемента керування.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: A real expected.\n"
-msgstr "%s: помилковий тип аргументу %d: мало бути використано ціле число.\n"
+msgid "%s: Wrong type for argument #%d: A real expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано дійсне число.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -39,9 +63,9 @@ msgstr ""
 "дійсне число.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Handle matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: Handle matrix expected.\n"
 msgstr ""
-"%s: помилковий тип аргументу %d: мало бути вказано матрицю елементів "
+"%s: помилковий тип параметра №%d: мало бути використано матрицю елементів "
 "керування.\n"
 
 #, c-format
@@ -68,9 +92,8 @@ msgstr ""
 "елемент керування рисунком.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати матрицю з рядків.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr "%s: помилковий тип параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid ""
@@ -103,32 +126,6 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr "%s: %s\n"
 
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-msgid "%s: Invalid driver: %s.\n"
-msgstr "%s: некоректний драйвер: %s.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: сталася помилка: %s\n"
-
-#, c-format
-msgid "%s: Invalid path: %s.\n"
-msgstr "%s: некоректний шлях: %s.\n"
-
 msgid "xinit must be called before xend."
 msgstr "До xend має бути викликано xinit."
 
@@ -153,41 +150,17 @@ msgstr ""
 "Не вдалося створити файл з експортованими даними. Будь ласка, повідомте про "
 "цю помилку за допомогою сторінки http://bugzilla.scilab.org."
 
-msgid "Scilab Graphic export module not installed.\n"
-msgstr "Модуль експорту графічних даних Scilab не встановлено.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgid ""
+"Unable to create export file, the file cannot be created or is locked by an "
+"other process."
 msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d.\n"
+"Не вдалося створити файл з експортованими даними. Файл неможливо створити "
+"або файл заблоковано іншим процесом."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: EMF format only available under Microsoft Windows OS.\n"
-msgstr ""
-"%s: формат EMF можна використовувати лише у операційних системах сімейства "
-"Microsoft Windows.\n"
-
-#, c-format
-msgid "%s: Unable to find pstoedit.\n"
-msgstr "%s: не вдалося знайти pstoedit.\n"
-
-#, c-format
-msgid "%s: Unable to create export file, permission denied.\n"
-msgstr ""
-"%s: не вдалося створити файл з експортованими даними, недостатньо прав "
-"доступу.\n"
-
-#, c-format
-msgid "%s: Unable to execute pstoedit.\n"
-msgstr "%s: не вдалося виконати pstoedit.\n"
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» Scilab не встановлено.\n"

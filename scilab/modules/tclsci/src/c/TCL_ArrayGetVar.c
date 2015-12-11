@@ -7,17 +7,15 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include <string.h>
 #include <stdio.h>
 #include "TCL_ArrayGetVar.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define TCL_NOT_DEFINE "#NOT DEF.#"
 /*--------------------------------------------------------------------------*/
@@ -32,7 +30,7 @@ char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter, char *VarName, char *index)
 
     if (index == NULL)
     {
-        return strdup(TCL_NOT_DEFINE);
+        return os_strdup(TCL_NOT_DEFINE);
     }
 
     sprintf(ArrayName, "%s(%s)", VarName, index);
@@ -41,11 +39,11 @@ char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter, char *VarName, char *index)
 
     if (RetStr)
     {
-        return strdup(RetStr);
+        return os_strdup(RetStr);
     }
     else
     {
-        return strdup(TCL_NOT_DEFINE);
+        return os_strdup(TCL_NOT_DEFINE);
     }
 }
 /*--------------------------------------------------------------------------*/

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,6 +15,7 @@ package org.scilab.modules.graphic_objects.imageplot;
 import org.scilab.modules.graphic_objects.ObjectRemovedException;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
@@ -120,15 +121,17 @@ public class Grayplot extends Imageplot {
     /**
      * @param dataMapping the dataMapping to set
      */
-    public void setDataMapping(Integer dataMapping) {
+    public UpdateStatus setDataMapping(Integer dataMapping) {
         setDataMappingAsEnum(DataMapping.intToEnum(dataMapping));
+        return UpdateStatus.Success;
     }
 
     /**
      * @param dataMapping the dataMapping to set
      */
-    public void setDataMappingAsEnum(DataMapping dataMapping) {
+    public UpdateStatus setDataMappingAsEnum(DataMapping dataMapping) {
         this.dataMapping = dataMapping;
+        return UpdateStatus.Success;
     }
 
     /**

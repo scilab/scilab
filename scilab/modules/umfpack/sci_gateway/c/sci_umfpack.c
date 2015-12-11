@@ -65,6 +65,8 @@
   |              mb >= 1 , nb = mA in Case 2                    |
   |                                                             |
   +------------------------------------------------------------*/
+
+#include <string.h> // memset
 #include "api_scilab.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
@@ -72,9 +74,9 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int sci_umfpack(char* fname, unsigned long l)
+int sci_umfpack(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -117,6 +119,9 @@ int sci_umfpack(char* fname, unsigned long l)
     int* Wi         = NULL;
     double* W       = NULL;
     char* pStr      = NULL;
+    int iType2      = 0;
+    int iTypeA      = 0;
+    int iTypeB      = 0;
 
     /* Check numbers of input/output arguments */
     CheckInputArgument(pvApiCtx, 3, 3);
@@ -127,6 +132,14 @@ int sci_umfpack(char* fname, unsigned long l)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
+    if (sciErr.iErr || iType2 != sci_strings)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -148,14 +161,24 @@ int sci_umfpack(char* fname, unsigned long l)
     else
     {
         Scierror(999, _("%s: Wrong input argument #%d: '%s' or '%s' expected.\n"), fname, 2, "\\", "/");
+        FREE(pStr);
         return 1;
     }
+    FREE(pStr);
 
     /* get A */
     sciErr = getVarAddressFromPosition(pvApiCtx, num_A, &piAddrA);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddrA, &iTypeA);
+    if (sciErr.iErr || iTypeA != sci_sparse)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A sparse matrix expected.\n"), fname, 1);
         return 1;
     }
 
@@ -197,6 +220,14 @@ int sci_umfpack(char* fname, unsigned long l)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
+        return 1;
+    }
+
+    sciErr = getVarType(pvApiCtx, piAddrB, &iTypeB);
+    if (sciErr.iErr || iTypeB != sci_matrix)
+    {
+        printError(&sciErr, 0);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), fname, 3);
         return 1;
     }
 
@@ -388,6 +419,24 @@ int sci_umfpack(char* fname, unsigned long l)
         umfpack_di_free_numeric(&Numeric);
     }
 
+    if (piNbItemRow != NULL)
+    {
+        FREE(piNbItemRow);
+    }
+    if (piColPos != NULL)
+    {
+        FREE(piColPos);
+    }
+    if (pdblSpReal != NULL)
+    {
+        FREE(pdblSpReal);
+    }
+    if (pdblSpImg != NULL)
+    {
+        FREE(pdblSpImg);
+    }
+    FREE(W);
+    FREE(Wi);
     freeCcsSparse(A);
 
     AssignOutputVariable(pvApiCtx, 1) = 4;

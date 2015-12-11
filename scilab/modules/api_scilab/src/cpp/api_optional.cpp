@@ -6,14 +6,24 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
+#include "function.hxx"
+#include "gatewaystruct.hxx"
+#include "alltypes.hxx"
+
+extern "C"
+{
+#include <string.h>
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "call_scilab.h"
 #include "sciprint.h"
+#include "sci_malloc.h"
+}
+
 
 static int findOptional(void* _pvCtx, char *fname, rhs_opts opts[]);
 static void printOptionalNames(void* _pvCtx, rhs_opts opts[]);
@@ -21,15 +31,13 @@ static void printOptionalNames(void* _pvCtx, rhs_opts opts[]);
 /**************************/
 /*   optional functions   */
 /**************************/
-int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[])
+int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
 {
-    int k, i = 0;
-    char name[nlgh + 1];
-    int nopt = NumOpt();        /* optional arguments on the stack */
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::optional_list opt = *pStr->m_pOpt;
+    int i = 0;
 
     /* reset first field since opts is declared static in calling function */
-    /* this could be avoided with ansi compilers by removing static in the
-     * opts declaration */
 
     while (opts[i].pstName != NULL)
     {
@@ -37,40 +45,87 @@ int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[])
         i++;
     }
 
-    /* Walking through last arguments */
-
-    for (k = Rhs - nopt + 1; k <= Rhs; k++)
+    for (i = 0 ; i < opt.size() ; i++)
     {
-        if (IsOpt(k, name) == 0)
+        int typeOfOpt = -1;
+        char* pstOpts = wide_string_to_UTF8(opt[i].first.c_str());
+        int index = findOptional(_pvCtx, pstOpts, opts);
+        FREE(pstOpts);
+
+        if (index < 0)
         {
-            Scierror(999, _("%s: Optional arguments name=val must be at the end.\n"), fname);
+            sciprint(_("%ls: Unrecognized optional arguments %ls.\n"), pStr->m_pstName, opt[i].first.c_str());
+            printOptionalNames(_pvCtx, opts);
             return 0;
+        }
+
+        opts[index].iPos = i + 1;
+        types::GenericType* pGT = (types::GenericType*)opt[i].second;
+        getVarType(_pvCtx, (int*)pGT, &typeOfOpt);
+        opts[index].iType = typeOfOpt;
+
+        if (typeOfOpt == sci_implicit_poly)
+        {
+            types::InternalType* pIT = NULL;
+            types::ImplicitList* pIL = pGT->getAs<types::ImplicitList>();
+            pIT = pIL->extractFullMatrix();
+            types::Double* impResult = (types::Double*)pIT;
+            opts[index].iRows = impResult->getRows();
+            opts[index].iCols = impResult->getCols();
+            opts[index].piAddr = (int*)impResult;
+            opts[index].iType = sci_matrix;
         }
         else
         {
-            int isopt = findOptional(_pvCtx, name, opts);
-
-            if (isopt >= 0)
-            {
-                rhs_opts *ro = &opts[isopt];
-                ro->iPos = k;
-                getVarAddressFromPosition(_pvCtx, k, &ro->piAddr);
-                getVarType(_pvCtx, ro->piAddr, &ro->iType);
-                getVarDimension(_pvCtx, ro->piAddr, &ro->iRows, &ro->iCols);
-            }
-            else
-            {
-                sciprint(_("%s: Unrecognized optional arguments %s.\n"), fname, name);
-                printOptionalNames(_pvCtx, opts);
-                SciError(999);
-                return 0;
-            }
+            opts[index].iRows = pGT->getRows();
+            opts[index].iCols = pGT->getCols();
+            opts[index].piAddr = (int*)pGT;
         }
     }
+    //   int index = -1;
+    //GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+
+    //   wchar_t* pwstProperty = to_wide_string(pstProperty);
+
+    //   for(int i = 0 ; i < pStr->m_pOpt->size() ; i++)
+    //   {
+    //       std::pair<std::wstring, InternalType*> current = (*pStr->m_pOpt)[i];
+    //       if(wcscmp(current.first.c_str(), pwstProperty) == 0)
+    //       {
+    //           index = i;
+    //           break;
+    //       }
+    //   }
+
+    //   FREE(pwstProperty);
+
     return 1;
 }
 
-static int findOptional(void* _pvCtx, char *fname, rhs_opts opts[])
+int FirstOpt(void* _pvCtx)
+{
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    return (int)pStr->m_pIn->size() + 1;
+}
+
+int NumOpt(void* _pvCtx)
+{
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    return (int)pStr->m_pOpt->size();
+}
+
+int FindOpt(void* _pvCtx, char* pstProperty, rhs_opts opts[])
+{
+    int i = findOptional(_pvCtx, pstProperty, opts);
+    if (i >= 0 && opts[i].iPos > 0)
+    {
+        return i;
+    }
+
+    return -1;
+}
+
+static int findOptional(void* _pvCtx, char *pstProperty, rhs_opts opts[])
 {
     int rep = -1, i = 0;
 
@@ -79,7 +134,7 @@ static int findOptional(void* _pvCtx, char *fname, rhs_opts opts[])
         int cmp;
 
         /* name is terminated by white space and we want to ignore them */
-        if ((cmp = strcmp(fname, opts[i].pstName)) == 0)
+        if ((cmp = strcmp(pstProperty, opts[i].pstName)) == 0)
         {
             rep = i;
             break;
@@ -107,6 +162,7 @@ void printOptionalNames(void* _pvCtx, rhs_opts opts[])
         sciprint(_("Optional argument list is empty.\n"));
         return;
     }
+
     sciprint(_("Optional arguments list: \n"));
     while (opts[i + 1].pstName != NULL)
     {

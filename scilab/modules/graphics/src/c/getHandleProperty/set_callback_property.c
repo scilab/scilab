@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,7 +19,7 @@
 /* desc : function to modify in Scilab the callback field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include "sci_types.h"
+#include <string.h>
 #include "setHandleProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
@@ -28,9 +28,9 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*------------------------------------------------------------------------*/
-int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     // Callback must be only one character string
 
@@ -46,7 +46,7 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
     {
         if (nbCol != 1)
         {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+            Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
         cbString = (char*)_pvData;
@@ -60,7 +60,7 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
             return SET_PROPERTY_ERROR;
         }
 
-        getMatrixOfDoubleInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &pdblData);
+        getMatrixOfDoubleInList(_pvCtx, (int*)_pvData, 1, &iRows, &iCols, &pdblData);
         if (iRows * iCols != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "callback_type");
@@ -72,21 +72,21 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         }
 
 
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
+        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
         if (iRows * iCols != 1)
         {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+            Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
 
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, NULL);
+        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, NULL);
         cbString = (char*)MALLOC(sizeof(char) * (iLen + 1));
-        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, &cbString);
+        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, &cbString);
     }
     else
     {
 
-        Scierror(999, _("Wrong type for '%s' property: A string or a 2-item list expected.\n"), "Callback");
+        Scierror(999, _("Wrong type for '%s' property: string or 2-item list expected.\n"), "Callback");
         return SET_PROPERTY_ERROR;
     }
 
@@ -95,7 +95,7 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         cbType = -1; /* Disabled */
     }
 
-    status = setGraphicObjectProperty(pobjUID, __GO_CALLBACK__, cbString, jni_string, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_CALLBACK__, cbString, jni_string, 1);
 
     if (status != TRUE)
     {
@@ -103,7 +103,7 @@ int set_callback_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueT
         return SET_PROPERTY_ERROR;
     }
 
-    if (setGraphicObjectProperty(pobjUID, __GO_CALLBACKTYPE__, &cbType, jni_int, 1) == FALSE)
+    if (setGraphicObjectProperty(iObjUID, __GO_CALLBACKTYPE__, &cbType, jni_int, 1) == FALSE)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "callback_type");
         return SET_PROPERTY_ERROR;

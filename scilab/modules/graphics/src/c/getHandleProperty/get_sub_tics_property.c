@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_sub_tics_property(void* _pvCtx, char* pobjUID)
+void* get_sub_tics_property(void* _pvCtx, int iObjUID)
 {
     int iType = -1;
     int *piType = &iType;
@@ -42,7 +42,12 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
     /*Dj.A 17/12/2003*/
     /* modified jb Silvy 01/2006 */
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    if (piType == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
+        return NULL;
+    }
 
     /*
      * Type test required as the Axis object stores subticks as a single int
@@ -50,15 +55,15 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
      */
     if (iType == __GO_AXIS__)
     {
-        getGraphicObjectProperty(pobjUID, __GO_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        getGraphicObjectProperty(iObjUID, __GO_SUBTICKS__, jni_int, (void**)&piSubTicks);
 
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return -1;
+            return NULL;
         }
 
-        return sciReturnDouble(_pvCtx, iSubTicks);
+        return sciReturnDouble(iSubTicks);
     }
     else if (iType == __GO_AXES__)
     {
@@ -66,37 +71,53 @@ int get_sub_tics_property(void* _pvCtx, char* pobjUID)
         int iView = 0;
         int* piView = &iView;
 
-        getGraphicObjectProperty(pobjUID, __GO_X_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
-
+        getGraphicObjectProperty(iObjUID, __GO_X_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return -1;
+            return NULL;
         }
 
         sub_ticks[0] = iSubTicks;
 
-        getGraphicObjectProperty(pobjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        if (piSubTicks == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
+            return NULL;
+        }
+
         sub_ticks[1] = iSubTicks;
 
-        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_SUBTICKS__, jni_int, (void**)&piSubTicks);
+        if (piSubTicks == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
+            return NULL;
+        }
+
         sub_ticks[2] = iSubTicks;
 
-        getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
+        getGraphicObjectProperty(iObjUID, __GO_VIEW__, jni_int, (void**)&piView);
+        if (piView == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
+            return NULL;
+        }
 
         if (iView == 1)
         {
-            return sciReturnRowVector(_pvCtx, sub_ticks, 3);
+            return sciReturnRowVector(sub_ticks, 3);
         }
         else
         {
-            return sciReturnRowVector(_pvCtx, sub_ticks, 2);
+            return sciReturnRowVector(sub_ticks, 2);
         }
     }
     else
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-        return -1;
+        return NULL;
     }
 }
 /*------------------------------------------------------------------------*/

@@ -8,102 +8,41 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-03 01:07+0000\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memoria esaurita.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-msgid "Straight"
-msgstr "Diritto"
-
-msgid "Horizontal"
-msgstr "Orizzontale"
-
-msgid "Vertical"
-msgstr "Verticale"
-
-msgid "No trace nor debug printing"
-msgstr ""
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr ""
-
-msgid "Per block execution trace and Debug block calls"
-msgstr ""
-
-msgid "Debug block calls without trace"
-msgstr ""
-
-msgid "Number of recently opened files to display: "
-msgstr ""
-
-msgid "Default file format"
-msgstr ""
-
-msgid "Link Style"
-msgstr "Stile del collegamento"
-
-msgid "Diagram background"
-msgstr "Sfondo del diagramma"
-
-msgid "Grid"
-msgstr "_Griglia"
-
-msgid "Default simulation settings"
-msgstr ""
-
-msgid "Final integration time"
-msgstr "Tempo di integrazione finale"
-
-msgid "Real time scaling"
-msgstr "Riduzione in tempo reale"
-
-msgid "Integrator absolute tolerance"
-msgstr "Tolleranza assoluta dell'integratore"
-
-msgid "Integrator relative tolerance"
-msgstr "Tolleranza relativa dell'integratore"
-
-msgid "Tolerance on time"
-msgstr ""
-
-msgid "Max integration time interval"
-msgstr "Intervallo di tempo di integraione massima"
-
-msgid "Solver kind"
-msgstr ""
-
-msgid "Maximum step size (0 means no limit)"
-msgstr ""
-
-msgid "Default trace settings"
 msgstr ""
 
 #, c-format
@@ -111,6 +50,12 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
 "booleano.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid ""
@@ -127,9 +72,6 @@ msgid ""
 msgstr ""
 "Impossibile caricare la libreria Batik. \n"
 "Versione attesa %s ; versione ottenuta %s."
-
-msgid "parent diagram not found."
-msgstr ""
 
 msgid "Preview"
 msgstr "Anteprima"
@@ -248,8 +190,8 @@ msgstr "Genera lo Jacobiano"
 msgid "Error"
 msgstr "Errore"
 
-msgid "Unknowns not equals to Equations"
-msgstr "Sconosciuti non sono uguali ad Equazioni"
+msgid "Unknowns not equal to Equations"
+msgstr ""
 
 msgid "Unknowns"
 msgstr "Sconosciuti"
@@ -359,7 +301,7 @@ msgstr "Modifica"
 msgid "Block Parameters"
 msgstr "Parametri del blocco"
 
-msgid "Region to superblock"
+msgid "Selection to superblock"
 msgstr ""
 
 msgid "Superblock mask"
@@ -367,6 +309,9 @@ msgstr "Maschera del superblocco"
 
 msgid "Create"
 msgstr "Crea"
+
+msgid "Rename"
+msgstr ""
 
 msgid "Remove"
 msgstr "Rimuovi"
@@ -391,6 +336,9 @@ msgstr "Aggiungi ad una nuova categoria"
 
 msgid "Category"
 msgstr "Categoria"
+
+msgid "Enter a name"
+msgstr ""
 
 msgid "Dump"
 msgstr "Lascia"
@@ -461,6 +409,12 @@ msgstr ""
 msgid "Show/Hide shadow"
 msgstr "Mostra/Nascondi l'ombra"
 
+msgid "Grid"
+msgstr "_Griglia"
+
+msgid "Diagram background"
+msgstr "Sfondo del diagramma"
+
 msgid "Bold"
 msgstr "Grassetto"
 
@@ -497,11 +451,11 @@ msgstr "A_iuto di Xcos"
 msgid "Block Help"
 msgstr "Aiuto del blocco"
 
-msgid "Xcos Demos"
-msgstr "_Demo di Xcos"
+msgid "Xcos Demonstrations"
+msgstr ""
 
-msgid "About Xcos"
-msgstr "Informazioni su Xcos"
+msgid "About Scilab"
+msgstr ""
 
 msgid "Palettes"
 msgstr "Pannelli"
@@ -720,10 +674,46 @@ msgstr "Colore di riempimento"
 msgid "Text Color"
 msgstr "Colore del testo"
 
+msgid "Link Style"
+msgstr "Stile del collegamento"
+
+msgid "Straight"
+msgstr "Diritto"
+
+msgid "Horizontal"
+msgstr "Orizzontale"
+
+msgid "Vertical"
+msgstr "Verticale"
+
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 
 msgid "Execution trace and Debug"
+msgstr ""
+
+msgid "Final integration time"
+msgstr "Tempo di integrazione finale"
+
+msgid "Real time scaling"
+msgstr "Riduzione in tempo reale"
+
+msgid "Integrator absolute tolerance"
+msgstr "Tolleranza assoluta dell'integratore"
+
+msgid "Integrator relative tolerance"
+msgstr "Tolleranza relativa dell'integratore"
+
+msgid "Tolerance on time"
+msgstr ""
+
+msgid "Max integration time interval"
+msgstr "Intervallo di tempo di integraione massima"
+
+msgid "Solver kind"
+msgstr ""
+
+msgid "Maximum step size (0 means no limit)"
 msgstr ""
 
 msgid "Default"
@@ -768,6 +758,18 @@ msgid ""
 msgstr ""
 "Fare un clic sul diagramma per aggiungere un punto di collegamento o su un "
 "obbiettivo compatibile per terminare"
+
+msgid "No trace nor debug printing"
+msgstr ""
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
+
+msgid "Per block execution trace and Debug block calls"
+msgstr ""
+
+msgid "Debug block calls without trace"
+msgstr ""
 
 msgid "All supported formats"
 msgstr ""
@@ -865,140 +867,25 @@ msgid ""
 msgstr ""
 
 #, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr ""
+"Il modulo '%s' di Scilab è disabilitato in modalità -nogui o -nwni.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Il modulo '%s' di Scilab non è installato.\n"
 
-msgid "Basic controller"
-msgstr "Controller di base"
-
-msgid "Water tank"
-msgstr "Cisterna"
-
-msgid "Discrete Controller"
-msgstr "Controllore discreto"
-
-msgid "Kalman Filter"
-msgstr "Filtro di Kalman"
-
-msgid "Discrete Kalman Filter"
-msgstr "Filtro discreto di Kalman"
-
-msgid "Cont.Plant-Hybrid Observer"
+msgid "Number of recently opened files to display: "
 msgstr ""
 
-msgid "Temperature Controller"
-msgstr "Controllore della temperatura"
-
-msgid "Inverted Pendulum"
-msgstr "Pendolo rovesciato"
-
-msgid "Lorentz butterfly"
-msgstr "Farfalla di Lorentz"
-
-msgid "RLC Circuit"
-msgstr "Circuito RLC"
-
-msgid "Bridge Rectifer"
+msgid "Default file format"
 msgstr ""
 
-msgid "Transformer"
-msgstr "Trasformatore"
-
-msgid "Differential amplifier"
-msgstr "Amplificatore differenziale"
-
-msgid "OpAmp amplifier"
-msgstr "Amplificatore OpAmp"
-
-msgid "Switched capacitor integrator"
+msgid "Default simulation settings"
 msgstr ""
 
-msgid "DC/DC Buck Converter"
+msgid "Default trace settings"
 msgstr ""
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "Colpitts oscillator"
-msgstr ""
-
-msgid "Logic AND gate"
-msgstr "Porta logica AND"
-
-msgid "Logic NOR gate"
-msgstr "Porta logica NOR"
-
-msgid "Automotive Suspension"
-msgstr "Sospensione automobilistica"
-
-msgid "Ball on a Platform"
-msgstr "Palla su una piattaforma"
-
-msgid "Bouncing Ball"
-msgstr "Palla che rimbalza"
-
-msgid "Chaos Modelica"
-msgstr ""
-
-msgid "Hydraulics blocks"
-msgstr "Blocchi idraulici"
-
-msgid "RLC circuit"
-msgstr "Circuito RLC"
-
-msgid "Old Gain Block"
-msgstr "Vecchio blocco Gain"
-
-msgid "Standard demos"
-msgstr "Demo standard"
-
-msgid "Control Systems"
-msgstr "Sistemi di controllo"
-
-msgid "Electrical Systems"
-msgstr "Sistemi elettrici"
-
-msgid "Mechanical Systems"
-msgstr "Sistemi meccanici"
-
-msgid "Modelica demos"
-msgstr "Demo di Modelica"
-
-msgid "Old demos"
-msgstr "Vecchie demo"
-
-msgid "Simple Demo"
-msgstr "Demo semplice"
-
-msgid "Bouncing Balls"
-msgstr "Palle che rimbalzano"
-
-msgid "Simple Thermostat"
-msgstr "Termostato semplice"
-
-msgid "Table Lookup"
-msgstr "Tabella di riferimento"
-
-msgid "Signal Builder"
-msgstr ""
-
-msgid "Fibonacci Numbers"
-msgstr "Numeri di Fibonacci"
-
-msgid "Scilab block"
-msgstr "Blocco di Scilab"
-
-msgid "Xcos data types"
-msgstr "Tipi di dato di Xcos"
-
-msgid "Zero Crossing"
-msgstr ""
-
-msgid "_IF_ Xcos block"
-msgstr "Blocco _IF_ di Xcos"
-
-msgid "Goto/From blocks"
-msgstr "Blocchi Goto/From"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1078,17 +965,15 @@ msgstr ""
 "in scrittura alla directory.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
-msgstr ""
-"%s: L'argomento in ingresso %d è di tipo sbagliato: era attesa una stringa o "
-"la struttura di un diagramma"
-
-#, c-format
 msgid "Unable to open %s"
 msgstr "Impossibile aprire %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Not supported format %s.\n"
 msgstr ""
 
 #, c-format
@@ -1218,7 +1103,7 @@ msgid "%s: Unable to export the palette to hdf5.\n"
 msgstr "%s: È impossibile esportare la tavolozza ad hdf5.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument %d: Matrix of strings expected.\n"
+msgid "%s: Wrong type for argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -1264,6 +1149,100 @@ msgstr ""
 msgid "Field %s has different values."
 msgstr ""
 
+msgid "Stopped before block:"
+msgstr ""
+
+msgid "Stopped after block:"
+msgstr ""
+
+msgid "State derivative computation"
+msgstr ""
+
+msgid "Regular outputs update"
+msgstr ""
+
+msgid "States update on discrete event"
+msgstr ""
+
+msgid "Output activation dates"
+msgstr ""
+
+msgid "Initialization"
+msgstr ""
+
+msgid "Ending"
+msgstr ""
+
+msgid "ReInitialization"
+msgstr ""
+
+msgid "Continous states properties update"
+msgstr ""
+
+msgid "Zero crossing surfaces computation"
+msgstr ""
+
+msgid "Residual computation"
+msgstr ""
+
+msgid "&File"
+msgstr ""
+
+msgid "&Tools"
+msgstr ""
+
+msgid "&Edit"
+msgstr ""
+
+msgid "&?"
+msgstr ""
+
+msgid "Xcos debug"
+msgstr ""
+
+msgid "Break point conditions"
+msgstr ""
+
+msgid "Break on selected flags"
+msgstr ""
+
+msgid "After call"
+msgstr ""
+
+msgid "Before call"
+msgstr ""
+
+msgid "After date"
+msgstr ""
+
+msgid "On the Scilab condition above"
+msgstr ""
+
+msgid "Current simulation state"
+msgstr ""
+
+msgid "scs_m block path:"
+msgstr ""
+
+msgid "Time:"
+msgstr ""
+
+msgid "Flag:"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "End debug"
+msgstr ""
+
+msgid "Pause"
+msgstr ""
+
+#, c-format
+msgid "Use the %s button to end the debugging"
+msgstr ""
+
 msgid "The Scicos libraries are not loaded"
 msgstr "Le librerie di Scicos non sono caricate"
 
@@ -1292,16 +1271,4 @@ msgid "Simulation problem"
 msgstr "Problema di simulazione"
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
-
-#, c-format
-msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

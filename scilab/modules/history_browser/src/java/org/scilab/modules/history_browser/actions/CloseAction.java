@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,13 +14,15 @@ package org.scilab.modules.history_browser.actions;
 
 import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.commons.gui.ScilabKeyStroke;
 import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.gui.menuitem.ScilabMenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
-import org.scilab.modules.gui.pushbutton.ScilabPushButton;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.history_browser.CommandHistory;
 import org.scilab.modules.history_browser.CommandHistoryMessages;
@@ -72,11 +74,13 @@ public final class CloseAction extends CommonCallBack {
      * Create the associated button
      * @return the button
      */
-    public static PushButton createPushButton() {
-        PushButton pushButton = ScilabPushButton.createPushButton();
-        pushButton.setIcon(ICON);
+    public static JButton createPushButton() {
+        JButton pushButton = new JButton();
+        ScilabLAF.setDefaultProperties(pushButton);
+        pushButton.setIcon(new ImageIcon(ICON));
         pushButton.setToolTipText(LABEL);
-        pushButton.setCallback(getCallBack());
+        pushButton.addActionListener(getCallBack());
+
         return pushButton;
     }
 

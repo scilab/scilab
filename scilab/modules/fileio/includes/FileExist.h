@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -22,13 +22,13 @@
 * @param filename a string
 * @return TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL FileExist(char *filename);
+FILEIO_IMPEXP BOOL FileExist(const char *filename);
 
 /**
 * verify if filename is a valid file
 * @param filename a wide string
 * @return TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL FileExistW(wchar_t *wcfilename);
+FILEIO_IMPEXP BOOL FileExistW(const wchar_t *wcfilename);
 /*--------------------------------------------------------------------------*/
 #endif /* __FILEEXIST_H__ */

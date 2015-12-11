@@ -98,7 +98,6 @@
             language. During simulation, these instructions are interpreted by
             Scilab; the simulation of diagrams that include these types of blocks
             is slower. For more information see Scicos reference manual.
-            
         </para>
     </refsection>
     <refsection id="Dialogbox_scifunc_block_m">
@@ -118,66 +117,75 @@
                 <para>
                     <emphasis role="bold">input ports sizes</emphasis>
                 </para>
-                <para> a scalar. Number of regular input ports</para>
-                <para> Properties : Type 'vec' of size -1 </para>
+                <para> a matrix. Number of regular input ports </para>
+                <para> Properties : Type 'mat' of size [-1 2] </para>
+                <para> Example : [1,1] for one input of size 1x1; [1,1;2,3] for two inputs of size 1x1 and 2x3 </para>      
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">output port sizes</emphasis>
                 </para>
-                <para> a scalar. Number of regular output ports</para>
-                <para> Properties : Type 'vec' of size -1 </para>
+                <para> a matrix. Number of regular output ports </para>
+                <para> Properties : Type 'mat' of size [-2 2] </para>
+                <para> Example : [1,1] for one output of size 1x1; [1,1;2,3] for two outputs of size 1x1 and 2x3 </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">input event ports sizes</emphasis>
                 </para>
-                <para> a scalar. Number of input event ports</para>
+                <para> a column vector. Number of input event ports </para>
                 <para> Properties : Type 'vec' of size -1 </para>
+                <para> Example : [1] for one input event port; [1;1] for two input event ports </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">output events ports sizes</emphasis>
                 </para>
-                <para> a scalar. Number of output event ports</para>
+                <para> a column vector. Number of output event ports</para>
                 <para> Properties : Type 'vec' of size -1 </para>
+                <para> Example : [1] for one output event port; [1;1] for two output event ports </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">initial continuous state</emphasis>
                 </para>
-                <para> a column vector.</para>
+                <para> a column vector. </para>
                 <para> Properties : Type 'vec' of size -1 </para>
+                <para> Example : [0;0] for two initial continuous states </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">initial discrete state</emphasis>
                 </para>
-                <para> a column vector.</para>
+                <para> a column vector. </para>
                 <para> Properties : Type 'vec' of size -1 </para>
+                <para> Example : [0;0] for two initial discrete states </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">System parameters vector</emphasis>
                 </para>
-                <para>
-                    a string: c or d (<emphasis role="bold">CBB</emphasis> or<emphasis role="bold">	DBB</emphasis> ), other types are not supported.
-                </para>
+                <para> a column vector. </para>
                 <para> Properties : Type 'vec' of size -1 </para>
+                <para> Example : [0.5;1.5;2.5] for three parameters </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">initial firing vector </emphasis>
                 </para>
-                <para> vector. Size of this vector corresponds to the number of event outputs. The value of the i-th entry specifies the time of the preprogrammed event firing on the i-th output event port. If less than zero, no event is preprogrammed.</para>
-                <para> Properties : Type 'vec' of size sum(%4) </para>
+                <para> a column vector. Size of this vector corresponds to the number of event outputs. The value of the i-th entry specifies the time of the preprogrammed event firing on the i-th output event port. If less than zero, no event is preprogrammed. </para>
+                <para> Properties : Type 'vec' of size sum(Number of output event ports) </para>
+                <para> Example : [1;2] 1 and 2 are the preprogrammed events firing that correspond to the first output event port and to the second output event port respectively </para>
             </listitem>
             <listitem>
                 <para>
                     <emphasis role="bold">is block always active </emphasis>
                 </para>
-                <para> other dialogues are opened consecutively where used may input Scilab code associated with the computations needed (block initialization, outputs, continuous and discrete state, output events date, block ending)</para>
                 <para> Properties : Type 'vec' of size 1</para>
+                <para> Example : 1 the block is always active; 0 the block is not always active </para>
+            </listitem>
+            <listitem>
+                <para> Other dialogues are opened consecutively where the user may write Scilab code associated with the computations needed (block initialization, outputs, continuous and discrete state, output events date, block ending). </para>
             </listitem>
         </itemizedlist>
     </refsection>
@@ -252,6 +260,22 @@
                 </para>
             </listitem>
         </itemizedlist>
+    </refsection>
+    <refsection id="Example_scifunc_block_m">
+        <title>Example</title>
+        <para>
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+        </para>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/userdefinedfunctions_pal/en_US/scifunc_block_m_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
     </refsection>
     <refsection id="Interfacingfunction_scifunc_block_m">
         <title>Interfacing function</title>

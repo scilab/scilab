@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-08-30 13:50+0000\n"
+"PO-Revision-Date: 2014-03-10 15:52+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 msgid "overflow error"
@@ -24,8 +24,55 @@ msgid "Trigger block must have discrete time input."
 msgstr "Le bloc Trigger doit avoir des valeurs discrètes en entrée."
 
 #, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+"La factorisation LU a été achevée, mais le facteur U est strictement "
+"singulier : U (% d,% d) est exactement zéro."
+
+msgid "Read error!\n"
+msgstr "Erreur en lecture !\n"
+
+msgid "Could not open the file!\n"
+msgstr "Impossible d'ouvrir le fichier !\n"
+
+msgid "Read error\n"
+msgstr "Erreur en lecture\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "temps de retard=%f mais dernier temps stocké=%f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr ""
+"Essayez d'augmenter la longueur de la mémoire tampon dans le bloc delay \n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "La dimension de la mémoire tampon ou de l'entrée a changé !\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "temps de retard=%f mais dernier temps stocké=%f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr ""
+"Essayez d'augmenter la longueur de la mémoire tampon dans le bloc delay "
+"variable\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Impossible d'ouvrir /dev/audio !\n"
+
+#, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "La variable '%s' n'existe pas.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
 
 msgid "Invalid variable type.\n"
 msgstr "Type de variable invalide.\n"
@@ -64,6 +111,15 @@ msgstr "La sortie doit être du type uint16.\n"
 msgid "Output should be of uint32 type.\n"
 msgstr "La sortie doit être du type uint32.\n"
 
+msgid "Cannot read the values field.\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr "Le vecteur Time n'est pas du type double.\n"
+
+msgid "The Time vector type is complex.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
@@ -71,66 +127,11 @@ msgstr ""
 "Le vecteur Time a une dimension erronée, [%d, %d] attendu, mais [%d, %d] "
 "obtenu.\n"
 
-msgid "The Time vector type is not double.\n"
-msgstr "Le vecteur Time n'est pas du type double.\n"
+msgid "Cannot read the time field.\n"
+msgstr ""
 
 msgid "The time vector should be an increasing vector.\n"
 msgstr "Le vecteur Time est un vecteur de taille croissante.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problème d'allocation dans spline.\n"
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr ""
-"Type de variable invalide : Erreur dans le code hypermat de Scilab.\n"
-
-#, c-format
-msgid ""
-"The LU factorization has been completed, but the factor U is exactly "
-"singular : U(%d,%d) is exactly zero."
-msgstr ""
-"La factorisation LU a été achevée, mais le facteur U est strictement "
-"singulier : U (% d,% d) est exactement zéro."
-
-msgid "Read error!\n"
-msgstr "Erreur en lecture !\n"
-
-msgid "Could not open the file!\n"
-msgstr "Impossible d'ouvrir le fichier !\n"
-
-msgid "Read error\n"
-msgstr "Erreur en lecture\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "temps de retard=%f mais dernier temps stocké=%f \n"
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr ""
-"Essayez d'augmenter la longueur de la mémoire tampon dans le bloc delay \n"
-
-#, c-format
-msgid "Error when opening file '%s'.\n"
-msgstr "Erreur à l'ouverture du fichier '%s'.\n"
-
-#, c-format
-msgid "Write error in file '%s'.\n"
-msgstr "Erreur en écriture dans le fichier '%s'.\n"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "La dimension de la mémoire tampon ou de l'entrée a changé !\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "temps de retard=%f mais dernier temps stocké=%f\n"
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr ""
-"Essayez d'augmenter la longueur de la mémoire tampon dans le bloc delay "
-"variable\n"
-
-msgid "Could not open /dev/audio!\n"
-msgstr "Impossible d'ouvrir /dev/audio !\n"
 
 msgid "Clear a bit"
 msgstr "Effacer un bit"
@@ -335,6 +336,9 @@ msgstr "Type Shift"
 msgid "SR flip-flop"
 msgstr "Bascule RS"
 
+msgid "Matrix A is not square or D has wrong dimension"
+msgstr "La matrice A n'est pas carrée ou D a une dimension erronée"
+
 msgid "Invalid masked block."
 msgstr "Bloc masqué invalide."
 
@@ -435,46 +439,47 @@ msgid "Cancel"
 msgstr "Annuler"
 
 msgid "Please give the discretization domain values"
-msgstr ""
+msgstr "Veuillez renseigner les valeurs du domaine de discrétisation"
 
 #, c-format
 msgid "Please give the %s operator coefficients"
-msgstr ""
+msgstr "Veuillez renseigner les coefficients de l'opérateur %s"
 
 msgid "Please give the sign for the variable discriminant"
-msgstr ""
+msgstr "Veuillez renseigner le signe du discriminant variable"
 
 msgid "Please give the discretization method type"
-msgstr ""
+msgstr "Veuillez renseigner le type de méthode de discrétisation"
 
 msgid "Please give the discretization method degree"
-msgstr ""
+msgstr "Veuillez renseigner le degré de méthode de discrétisation"
 
 msgid "Please give the number of discretization points"
-msgstr ""
+msgstr "Veuillez renseigner le nombre de points de discrétisation"
 
 #, c-format
 msgid "Please give the initial condition %s"
-msgstr ""
+msgstr "Veuillez donner la condition initiale de %s"
 
 msgid "Please give the boundary conditions"
-msgstr ""
+msgstr "Veuillez renseigner les conditions de bornes"
 
 #, c-format
-msgid "The finite element discrtization takes %.2f seconds"
-msgstr ""
+msgid "The finite element discretization took %.2f seconds"
+msgstr "La discrétisation en élément fini a pris %.2f secondes"
 
 #, c-format
-msgid "The finite differences discrtization takes %.2f seconds"
-msgstr ""
+msgid "The finite differences discretization took %.2f seconds"
+msgstr "La discrétisation en différence finie a pris %.2f secondes"
 
 #, c-format
-msgid "The finite volume discrtization takes %.2f seconds"
-msgstr ""
+msgid "The finite volume discretization took %.2f seconds"
+msgstr "La discrétisation en volume fini a pris %.2f secondes"
 
 #, c-format
-msgid "The code generation, the compilation and link takes %.2f seconds"
+msgid "The code generation, the compilation and link took %.2f seconds"
 msgstr ""
+"La génération de code, la compilation et le lien ont pris %.2f secondes"
 
 msgid "Event output port"
 msgstr "Port de sortie de l'évènement"
@@ -682,8 +687,26 @@ msgstr "Valeur erronée du paramètre 'Fréquence' : %e."
 msgid "Implicit input port"
 msgstr "Port d'entrée implicite"
 
-msgid "Regular input port"
-msgstr "Port ordinaire d'entrée"
+msgid "Set Input block parameters"
+msgstr "Entrer les paramètres des ports d'entrée du bloc"
+
+msgid "Outport size ([-1 -2] for inherit)"
+msgstr "Dimension de port de sortie ([-1 -2] pour hériter)"
+
+msgid "Outport Type (-1 for inherit)"
+msgstr "Type du port de sortie (-1 pour hériter)"
+
+msgid "Port number must be a positive integer"
+msgstr "Le numéro du port doit être un nombre entier positif"
+
+msgid "Outport Size must be a 2 elements vector"
+msgstr ""
+"La dimension du port de sortie doit être un vecteur de deux éléments."
+
+msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
+msgstr ""
+"Le type du port de sortie doit être un nombre compris entre 1 et 9, ou -1 "
+"pour hériter."
 
 msgid "Modulo counter (0 to N counter)"
 msgstr "Modulo counter (0 to N counter)"
@@ -837,19 +860,3 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Mêmes dimensions attendues."
-
-msgid "&File"
-msgstr "&Fichier"
-
-msgid "&Tools"
-msgstr "&Outils"
-
-msgid "&Edit"
-msgstr "&Édition"
-
-msgid "&?"
-msgstr "&?"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""

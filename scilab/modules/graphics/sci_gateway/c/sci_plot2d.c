@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,7 +15,7 @@
 /* file: sci_plot2d.c                                                     */
 /* desc : interface for plot2d routine                                    */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "GetCommandArg.h"
 #include "api_scilab.h"
@@ -27,10 +27,10 @@
 #include <sciprint.h>
 
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*------------------------------------------------------------------------*/
-int sci_plot2d(char* fname, unsigned long fname_len)
+int sci_plot2d(char* fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -39,6 +39,9 @@ int sci_plot2d(char* fname, unsigned long fname_len)
     int* piAddrl2 = NULL;
     double* l2 = NULL;
     double* lt = NULL;
+    int iTypel1 = 0;
+    int iTypel2 = 0;
+    int lw = 0;
 
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int test = 0, i = 0, j = 0, iskip = 0;
@@ -59,8 +62,9 @@ int sci_plot2d(char* fname, unsigned long fname_len)
     int* nax = NULL;
     BOOL flagNax = FALSE;
     char strfl[4];
+    BOOL freeStrf = FALSE;
 
-    static rhs_opts opts[] =
+    rhs_opts opts[] =
     {
         { -1, "axesflag", -1, 0, 0, NULL},
         { -1, "frameflag", -1, 0, 0, NULL},
@@ -75,7 +79,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -95,7 +99,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         iskip = 1;
     }
 
-    if (FirstOpt() == 2 + iskip)       				/** plot2d([loglags,] y, <opt_args>); **/
+    if (FirstOpt(pvApiCtx) == 2 + iskip)                                /** plot2d([loglags,] y, <opt_args>); **/
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl2);
         if (sciErr.iErr)
@@ -104,13 +108,31 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 1 + iskip.
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+        sciErr = getVarType(pvApiCtx, piAddrl2, &iTypel2);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
             return 1;
+        }
+
+        // the argument can be a matrix of doubles or other
+        // If it is not a matrix of doubles, call overload
+        if (iTypel2 == sci_matrix)
+        {
+
+            // Retrieve a matrix of double at position 1 + iskip.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1 + iskip);
+                return 1;
+            }
+        }
+        else
+        {
+            OverLoad(1);
+            return 0;
         }
 
         if (m2 == 1 && n2 > 1)
@@ -138,7 +160,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             }
         }
     }
-    else if (FirstOpt() >= 3 + iskip)     /** plot2d([loglags,] x, y[, style [,...]]); **/
+    else if (FirstOpt(pvApiCtx) >= 3 + iskip)     /** plot2d([loglags,] x, y[, style [,...]]); **/
     {
         /* x */
         sciErr = getVarAddressFromPosition(pvApiCtx, 1 + iskip, &piAddrl1);
@@ -148,13 +170,31 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 1 + iskip.
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+        sciErr = getVarType(pvApiCtx, piAddrl1, &iTypel1);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1 + iskip);
             return 1;
+        }
+
+        // x can be a matrix of doubles or other
+        // If x is not a matrix of doubles, call overload
+        if (iTypel1 == sci_matrix)
+        {
+
+            // Retrieve a matrix of double at position 1 + iskip.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1 + iskip);
+                return 1;
+            }
+        }
+        else
+        {
+            OverLoad(1);
+            return 0;
         }
 
         /* y */
@@ -165,13 +205,31 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             return 1;
         }
 
-        // Retrieve a matrix of double at position 2 + iskip.
-        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+        sciErr = getVarType(pvApiCtx, piAddrl2, &iTypel2);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2 + iskip);
             return 1;
+        }
+
+        // y can be a matrix of doubles or other
+        // If y is not a matrix of doubles, call overload
+        if (iTypel2 == sci_matrix)
+        {
+
+            // Retrieve a matrix of double at position 1 + iskip.
+            sciErr = getMatrixOfDouble(pvApiCtx, piAddrl2, &m2, &n2, &l2);
+            if (sciErr.iErr)
+            {
+                printError(&sciErr, 0);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2 + iskip);
+                return 1;
+            }
+        }
+        else
+        {
+            OverLoad(2);
+            return 0;
         }
 
         test = (m1 * n1 == 0) ||
@@ -289,6 +347,19 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         GetLogflags(pvApiCtx, fname, 8, opts, &logFlags);
     }
 
+    freeStrf = !isDefStrf(strf);
+
+    // Check strf [0-1][0-8][0-5]
+    if (!isDefStrf(strf) && (strlen(strf) != 3 || strf[0] < '0' || strf[0] > '1' || strf[1] < '0' || strf[1] > '8' || strf[2] < '0' || strf[2] > '5'))
+    {
+        Scierror(999, _("%s: Wrong value for strf option: %s.\n"), fname, strf);
+        if (freeStrf)
+        {
+            freeAllocatedSingleString(strf);
+        }
+        return -1;
+    }
+
     if (isDefStrf(strf))
     {
         strcpy(strfl, DEFSTRFN);
@@ -306,23 +377,46 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         GetOptionalIntArg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts);
         if (frame != &frame_def)
         {
-            strfl[1] = (char)(*frame + 48);
+            if (*frame >= 0 && *frame <= 8)
+            {
+                strfl[1] = (char)(*frame + 48);
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for frameflag option.\n"), fname);
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
+                return -1;
+            }
         }
 
         GetOptionalIntArg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts);
-
         if (axes != &axes_def)
         {
-            strfl[2] = (char)(*axes + 48);
+            if ((*axes >= 0 && *axes <= 5) || *axes == 9)
+            {
+                strfl[2] = (char)(*axes + 48);
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for axesflag option.\n"), fname);
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
+                return -1;
+            }
         }
     }
 
     /* Make a test on log. mode : available or not depending on the bounds set by Rect arg. or xmin/xmax :
-    Rect case :
-    - if the min bound is strictly posivite, we can use log. mode
-    - if not, send error message
-    x/y min/max case:
-    - we find the first strictly positive min bound in Plo2dn.c ?? */
+       Rect case :
+       - if the min bound is strictly posivite, we can use log. mode
+       - if not, send error message
+       x/y min/max case:
+       - we find the first strictly positive min bound in Plo2dn.c ?? */
 
     switch (strf[1])
     {
@@ -336,18 +430,30 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             /* based on Rect arg */
             if (rect[0] > rect[2] || rect[1] > rect[3])
             {
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
                 Scierror(999, _("%s: Impossible status min > max in x or y rect data.\n"), fname);
                 return -1;
             }
 
             if (rect[0] <= 0. && logFlags[1] == 'l') /* xmin */
             {
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
                 Scierror(999, _("%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"), fname);
                 return -1;
             }
 
             if (rect[1] <= 0. && logFlags[2] == 'l') /* ymin */
             {
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
                 Scierror(999, _("%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"), fname);
                 return -1;
             }
@@ -386,6 +492,10 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             {
                 if (logFlags[1] == 'l' && sciFindStPosMin((l1), size_x) <= 0.0)
                 {
+                    if (freeStrf)
+                    {
+                        freeAllocatedSingleString(strf);
+                    }
                     Scierror(999, _("%s: At least one x data must be strictly positive to compute the bounds and use logarithmic mode.\n"), fname);
                     return -1;
                 }
@@ -397,6 +507,10 @@ int sci_plot2d(char* fname, unsigned long fname_len)
             {
                 if (logFlags[2] == 'l' && sciFindStPosMin((l2), size_y) <= 0.0)
                 {
+                    if (freeStrf)
+                    {
+                        freeAllocatedSingleString(strf);
+                    }
                     Scierror(999, _("%s: At least one y data must be strictly positive to compute the bounds and use logarithmic mode\n"), fname);
                     return -1;
                 }
@@ -412,6 +526,11 @@ int sci_plot2d(char* fname, unsigned long fname_len)
 
     // Allocated by sciGetStyle (get_style_arg function in GetCommandArg.c)
     FREE(style);
+
+    if (freeStrf)
+    {
+        freeAllocatedSingleString(strf);
+    }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

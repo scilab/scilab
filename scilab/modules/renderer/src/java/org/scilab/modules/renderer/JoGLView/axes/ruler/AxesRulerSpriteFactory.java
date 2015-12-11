@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.axes.ruler;
@@ -18,6 +18,7 @@ import org.scilab.forge.scirenderer.texture.TextureDrawer;
 import org.scilab.forge.scirenderer.texture.TextureDrawingTools;
 import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.modules.graphic_objects.axes.Axes;
+import org.scilab.modules.graphic_objects.axes.AxesContainer;
 import org.scilab.modules.graphic_objects.axes.AxisProperty;
 import org.scilab.modules.graphic_objects.figure.ColorMap;
 import org.scilab.modules.graphic_objects.figure.Figure;
@@ -37,7 +38,7 @@ import java.text.DecimalFormatSymbols;
  *
  * @author Pierre Lando
  */
-class AxesRulerSpriteFactory implements RulerSpriteFactory {
+public class AxesRulerSpriteFactory implements RulerSpriteFactory {
     /**
      * The symbol used for ticks label in log and auto ticks mode.
      */
@@ -68,7 +69,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         ColorMap figureColorMap;
         try {
             GraphicController controller = GraphicController.getController();
-            Figure parentFigure = (Figure) controller.getObjectFromId(axes.getParentFigure());
+            AxesContainer parentFigure = (AxesContainer) controller.getObjectFromId(axes.getParentFigure());
             figureColorMap = parentFigure.getColorMap();
         } catch (NullPointerException e) {
             figureColorMap = null;
@@ -156,6 +157,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
         exponentTextEntity.setTextUseFractionalMetrics(axisProperty.getFontFractional());
         exponentTextEntity.setTextColor(ColorFactory.createColor(colorMap, axisProperty.getFontColor()));
         exponentTextEntity.setFont(exponentFont);
+        final int exponentHeight = (int) exponentTextEntity.getLayout().getBounds().getHeight();
         final Dimension exponentSize = exponentTextEntity.getSize();
 
         Texture texture = textureManager.createTexture();
@@ -164,7 +166,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
 
             @Override
             public void draw(TextureDrawingTools drawingTools) {
-                drawingTools.draw(mantissaTextEntity, 0, exponentSize.height);
+                drawingTools.draw(mantissaTextEntity, 0, exponentHeight);
                 drawingTools.draw(exponentTextEntity, mantissaSize.width, 0);
             }
 
@@ -172,7 +174,7 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
             public Dimension getTextureSize() {
                 return new Dimension(
                            exponentSize.width + mantissaSize.width,
-                           exponentSize.height + mantissaSize.height
+                           exponentHeight + mantissaSize.height
                        );
             }
 
@@ -192,6 +194,16 @@ class AxesRulerSpriteFactory implements RulerSpriteFactory {
      * @return a simple texture representing the given value with the adapted format.
      */
     private Texture createSimpleSprite(String text, TextureManager textureManager) {
+        if (FormattedTextSpriteDrawer.isLatex(text) || FormattedTextSpriteDrawer.isMathML(text)) {
+            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, text, axisProperty.getTicks().getDefaultFont());
+            Texture texture = textureManager.createTexture();
+            texture.setMagnificationFilter(Texture.Filter.LINEAR);
+            texture.setMinifyingFilter(Texture.Filter.LINEAR);
+            texture.setDrawer(textObjectSpriteDrawer);
+
+            return texture;
+        }
+
         Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
         final TextEntity textEntity = new TextEntity(text);
         textEntity.setTextAntiAliased(true);

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -46,7 +46,7 @@ int ScilabGateway::objectPrint(char * fname, const int envId, void * pvApiCtx)
     {
         rep = env.getrepresentation(idObj);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         ScilabObjects::removeTemporaryVars(eId, tmpvar);
         throw;

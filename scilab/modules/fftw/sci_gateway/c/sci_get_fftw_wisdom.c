@@ -8,14 +8,15 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include <stdlib.h>
 #include "callfftw.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
@@ -31,7 +32,7 @@
 * Output : a scilab string matrix
 *
 */
-int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
+int sci_get_fftw_wisdom(char *fname, void* pvApiCtx)
 {
     int n1 = 0, i = 0, j = 0;
     char *Str = NULL;
@@ -50,7 +51,8 @@ int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
     j = 0;
     if (Str)
     {
-        for (i = 0; i < (int)strlen(Str); i++)
+        int lenStr = (int)strlen(Str);
+        for (i = 0; i < lenStr; i++)
         {
             if (Str[i] == '\n')
             {

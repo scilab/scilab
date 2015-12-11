@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=12266
 //
 // <-- Short Description -->
-// Stopping "Papillon de lorentz" demonstration while simulation was on made CMSCOPE crash. 
+// Stopping "Papillon de lorenz" demonstration while simulation was on made CMSCOPE crash. 
 
 clear is_crashed;
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/nonreg_tests/bug_12266.zcos"));

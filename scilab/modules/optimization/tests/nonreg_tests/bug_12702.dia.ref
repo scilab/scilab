@@ -1,0 +1,2579 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- ENGLISH IMPOSED -->
+//
+// <-- Non-regression test for bug 12702 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=12702
+//
+// <-- Short Description -->
+// When no extra parameters are needed in the cost function, NDcost does not work:
+//
+function f = rosenbrock(x)
+    f = 100.0 * (x(2)-x(1)^2)^2 + (1-x(1))^2;
+endfunction
+function [f, g, ind] = rosenbrockCostFixedStep(x, ind)
+    // Test based on old 'derivative' function
+    if ((ind == 1) | (ind == 4)) then
+        f = rosenbrock ( x );
+    end
+    if ((ind == 1) | (ind == 4)) then
+        g = numderivative ( rosenbrock , x(:) , %eps^(1/3));
+    end
+endfunction
+function [f, g, ind] = rosenbrockCostVariableStep(x, ind)
+    if ((ind == 1) | (ind == 4)) then
+        f = rosenbrock ( x );
+    end
+    if ((ind == 1) | (ind == 4)) then
+        g = numderivative ( rosenbrock , x(:));
+    end
+endfunction
+x0 = [-1.2 1.0];
+lines(0);
+for impval = 1:5
+    [ fopt , xopt ] = optim ( rosenbrockCostFixedStep , x0 , "gc" , imp=impval);
+end
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   1
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
+     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     53
+     realized relative precision on g:  0.11D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53783322D-16
+     norm of x =  0.74770897D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   2
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+ n1qn3: iter  14, simul  20, f= 0.13542804D+01, h'(0)=-0.33867D+00
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+ n1qn3: iter  17, simul  24, f= 0.88479943D+00, h'(0)=-0.18657D+00
+ n1qn3: iter  18, simul  25, f= 0.73594993D+00, h'(0)=-0.31085D+00
+ n1qn3: iter  19, simul  26, f= 0.63444382D+00, h'(0)=-0.42075D+00
+ n1qn3: iter  20, simul  27, f= 0.45317916D+00, h'(0)=-0.12594D+00
+ n1qn3: iter  21, simul  28, f= 0.34356278D+00, h'(0)=-0.22838D+00
+ n1qn3: iter  22, simul  30, f= 0.30624976D+00, h'(0)=-0.55446D-01
+ n1qn3: iter  23, simul  31, f= 0.25851794D+00, h'(0)=-0.14344D+00
+ n1qn3: iter  24, simul  32, f= 0.17073490D+00, h'(0)=-0.12793D+00
+ n1qn3: iter  25, simul  33, f= 0.10886882D+00, h'(0)=-0.10034D+00
+ n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+ n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+ n1qn3: iter  28, simul  36, f= 0.49926693D-01, h'(0)=-0.55493D-01
+ n1qn3: iter  29, simul  38, f= 0.36768990D-01, h'(0)=-0.91754D-02
+ n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+ n1qn3: iter  31, simul  40, f= 0.11210318D-01, h'(0)=-0.94861D-02
+ n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+ n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+ n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+ n1qn3: iter  35, simul  45, f= 0.10596353D-03, h'(0)=-0.16466D-03
+ n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+ n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+ n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+ n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+ n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+ n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
+ n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
+     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     53
+     realized relative precision on g:  0.11D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53783322D-16
+     norm of x =  0.74770897D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   3
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ -------------------------------------------------------------------------------
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+     nlis0       fpn=-0.200D+01 d2= 0.74D-04  tmin= 0.28D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.194D+01 -0.189D+01
+     nlis0     0.100D+02 -0.147D+02 -0.973D+00
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+     nlis0       fpn=-0.924D+01 d2= 0.66D-02  tmin= 0.30D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.520D+01 -0.138D+01
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+     nlis0       fpn=-0.245D+00 d2= 0.21D-03  tmin= 0.16D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.135D+00 -0.256D-01
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+     nlis0       fpn=-0.581D-02 d2= 0.59D-05  tmin= 0.98D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.435D-02 -0.290D-02
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+     nlis0       fpn=-0.833D-02 d2= 0.26D-04  tmin= 0.61D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.690D-02 -0.549D-02
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+     nlis0       fpn=-0.278D-01 d2= 0.37D-03  tmin= 0.14D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.228D-01 -0.180D-01
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+     nlis0       fpn=-0.828D-01 d2= 0.40D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.713D-01 -0.624D-01
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+     nlis0       fpn=-0.405D+00 d2= 0.11D+00  tmin= 0.79D-15 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.531D+00 -0.721D+00
+     nlis0                                      0.100D+02  0.500D+03  0.222D+03
+     nlis0                                      0.398D+01  0.333D+01  0.774D+01
+     nlis0     0.249D+01 -0.140D+01  0.190D+00
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+     nlis0       fpn=-0.161D+00 d2= 0.57D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.285D+00  0.571D+00
+     nlis0     0.140D+00 -0.107D-01  0.342D-02
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+     nlis0       fpn=-0.384D-01 d2= 0.21D-03  tmin= 0.21D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.376D-01 -0.369D-01
+     nlis0     0.100D+02 -0.318D+00 -0.257D-01
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+     nlis0       fpn=-0.627D+00 d2= 0.71D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.315D+00  0.212D+00
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+     nlis0       fpn=-0.707D+00 d2= 0.27D-02  tmin= 0.52D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D+00 -0.117D+00
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+     nlis0       fpn=-0.499D+00 d2= 0.52D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.225D+00  0.427D+00
+ n1qn3: iter  14, simul  20, f= 0.13542804D+01, h'(0)=-0.33867D+00
+     nlis0       fpn=-0.339D+00 d2= 0.36D-02  tmin= 0.47D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.151D+00  0.252D-01
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+     nlis0       fpn=-0.207D+00 d2= 0.84D-02  tmin= 0.24D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.186D+00 -0.162D+00
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+     nlis0       fpn=-0.650D+00 d2= 0.12D+00  tmin= 0.64D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.169D+01  0.738D+01
+     nlis0     0.374D+00 -0.132D+00  0.166D+00
+ n1qn3: iter  17, simul  24, f= 0.88479943D+00, h'(0)=-0.18657D+00
+     nlis0       fpn=-0.187D+00 d2= 0.20D-02  tmin= 0.62D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.149D+00 -0.115D+00
+ n1qn3: iter  18, simul  25, f= 0.73594993D+00, h'(0)=-0.31085D+00
+     nlis0       fpn=-0.311D+00 d2= 0.34D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.102D+00  0.268D+00
+ n1qn3: iter  19, simul  26, f= 0.63444382D+00, h'(0)=-0.42075D+00
+     nlis0       fpn=-0.421D+00 d2= 0.20D-02  tmin= 0.51D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.181D+00  0.576D-01
+ n1qn3: iter  20, simul  27, f= 0.45317916D+00, h'(0)=-0.12594D+00
+     nlis0       fpn=-0.126D+00 d2= 0.11D-01  tmin= 0.25D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.110D+00 -0.725D-01
+ n1qn3: iter  21, simul  28, f= 0.34356278D+00, h'(0)=-0.22838D+00
+     nlis0       fpn=-0.228D+00 d2= 0.83D-01  tmin= 0.95D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.601D+00  0.234D+01
+     nlis0     0.321D+00 -0.373D-01  0.472D-01
+ n1qn3: iter  22, simul  30, f= 0.30624976D+00, h'(0)=-0.55446D-01
+     nlis0       fpn=-0.554D-01 d2= 0.12D-02  tmin= 0.80D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.477D-01 -0.406D-01
+ n1qn3: iter  23, simul  31, f= 0.25851794D+00, h'(0)=-0.14344D+00
+     nlis0       fpn=-0.143D+00 d2= 0.30D-01  tmin= 0.17D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.878D-01 -0.226D-01
+ n1qn3: iter  24, simul  32, f= 0.17073490D+00, h'(0)=-0.12793D+00
+     nlis0       fpn=-0.128D+00 d2= 0.84D-02  tmin= 0.27D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.619D-01 -0.487D-02
+ n1qn3: iter  25, simul  33, f= 0.10886882D+00, h'(0)=-0.10034D+00
+     nlis0       fpn=-0.100D+00 d2= 0.49D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.155D-01  0.179D+00
+ n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+     nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.251D-01  0.437D-01
+ n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+     nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.183D-01 -0.148D-01
+ n1qn3: iter  28, simul  36, f= 0.49926693D-01, h'(0)=-0.55493D-01
+     nlis0       fpn=-0.555D-01 d2= 0.58D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.507D-01  0.260D+00
+     nlis0     0.413D+00 -0.132D-01  0.278D-02
+ n1qn3: iter  29, simul  38, f= 0.36768990D-01, h'(0)=-0.91754D-02
+     nlis0       fpn=-0.918D-02 d2= 0.87D-03  tmin= 0.86D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.813D-02 -0.718D-02
+ n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+     nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.174D-01 -0.109D-01
+ n1qn3: iter  31, simul  40, f= 0.11210318D-01, h'(0)=-0.94861D-02
+     nlis0       fpn=-0.949D-02 d2= 0.41D-02  tmin= 0.39D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.648D-02 -0.412D-02
+ n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+     nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.236D-01  0.889D-01
+     nlis0     0.308D+00 -0.202D-02  0.129D-02
+ n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+     nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.193D-02 -0.124D-02
+ n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+     nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.680D-03 -0.342D-03
+ n1qn3: iter  35, simul  45, f= 0.10596353D-03, h'(0)=-0.16466D-03
+     nlis0       fpn=-0.165D-03 d2= 0.22D-03  tmin= 0.17D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.994D-04 -0.378D-04
+ n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+     nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.592D-05  0.983D-06
+ n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+     nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.168D-06  0.208D-05
+ n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+     nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.80D-11 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.485D-06 -0.183D-09
+ n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+     nlis0       fpn=-0.143D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.734D-12 -0.116D-13
+ n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+     nlis0       fpn=-0.991D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.152D-15 -0.806D-21
+ n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
+     nlis0       fpn=-0.470D-24 d2= 0.75D-26  tmin= 0.26D-02 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.267D-21 -0.536D-27
+ n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
+     nlis0       fpn=-0.623D-30 d2= 0.68D-32  tmin= 0.38D+01 tmax= 0.10D+21
+     nlis0                                      0.375D+01  0.326D-23  0.187D-29
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
+     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     53
+     realized relative precision on g:  0.11D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53783322D-16
+     norm of x =  0.74770897D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   4
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ n1qn3a: descent direction -g: precon =  0.369D-04
+ -------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+ n1qn3: line search
+     nlis0       fpn=-0.200D+01 d2= 0.74D-04  tmin= 0.28D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.194D+01 -0.189D+01
+     nlis0     0.100D+02 -0.147D+02 -0.973D+00
+ n1qn3: stopping criterion on g:  0.48674D+00
+ n1qn3: matrix update:
+     Oren-Spedicato factor (not used) =  0.718D-03     diagonal: average value =  0.718D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+ n1qn3: line search
+     nlis0       fpn=-0.924D+01 d2= 0.66D-02  tmin= 0.30D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.520D+01 -0.138D+01
+ n1qn3: stopping criterion on g:  0.73079D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.94908D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.118D+01
+     Oren-Spedicato factor (not used) =  0.846D-03     diagonal: average value =  0.846D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+ n1qn3: line search
+     nlis0       fpn=-0.245D+00 d2= 0.21D-03  tmin= 0.16D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.135D+00 -0.256D-01
+ n1qn3: stopping criterion on g:  0.10270D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.17647D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.111D+01
+     Oren-Spedicato factor (not used) =  0.935D-03     diagonal: average value =  0.942D-03
+ n1qn3: descent direction d: angle(-g,d) =   1.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+ n1qn3: line search
+     nlis0       fpn=-0.581D-02 d2= 0.59D-05  tmin= 0.98D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.435D-02 -0.290D-02
+ n1qn3: stopping criterion on g:  0.76379D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.16885D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.969D+00
+     Oren-Spedicato factor (not used) =  0.952D-03     diagonal: average value =  0.915D-03
+ n1qn3: descent direction d: angle(-g,d) =  23.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+ n1qn3: line search
+     nlis0       fpn=-0.833D-02 d2= 0.26D-04  tmin= 0.61D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.690D-02 -0.549D-02
+ n1qn3: stopping criterion on g:  0.11072D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.21032D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.985D+00
+     Oren-Spedicato factor (not used) =  0.954D-03     diagonal: average value =  0.102D-02
+ n1qn3: descent direction d: angle(-g,d) =  56.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+ n1qn3: line search
+     nlis0       fpn=-0.278D-01 d2= 0.37D-03  tmin= 0.14D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.228D-01 -0.180D-01
+ n1qn3: stopping criterion on g:  0.23226D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.37768D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.113D+01
+     Oren-Spedicato factor (not used) =  0.941D-03     diagonal: average value =  0.127D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+ n1qn3: line search
+     nlis0       fpn=-0.828D-01 d2= 0.40D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.713D-01 -0.624D-01
+ n1qn3: stopping criterion on g:  0.44894D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.32918D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.817D+00
+     Oren-Spedicato factor (not used) =  0.762D-03     diagonal: average value =  0.106D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+ n1qn3: line search
+     nlis0       fpn=-0.405D+00 d2= 0.11D+00  tmin= 0.79D-15 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.531D+00 -0.721D+00
+     nlis0                                      0.100D+02  0.500D+03  0.222D+03
+     nlis0                                      0.398D+01  0.333D+01  0.774D+01
+     nlis0     0.249D+01 -0.140D+01  0.190D+00
+ n1qn3: stopping criterion on g:  0.60049D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.12764D+02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.287D+01
+     Oren-Spedicato factor (not used) =  0.248D-02     diagonal: average value =  0.292D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+ n1qn3: line search
+     nlis0       fpn=-0.161D+00 d2= 0.57D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.285D+00  0.571D+00
+     nlis0     0.140D+00 -0.107D-01  0.342D-02
+ n1qn3: stopping criterion on g:  0.48319D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41360D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.102D+01
+     Oren-Spedicato factor (not used) =  0.293D-02     diagonal: average value =  0.285D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+ n1qn3: line search
+     nlis0       fpn=-0.384D-01 d2= 0.21D-03  tmin= 0.21D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.376D-01 -0.369D-01
+     nlis0     0.100D+02 -0.318D+00 -0.257D-01
+ n1qn3: stopping criterion on g:  0.41045D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43358D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.193D+02
+     Oren-Spedicato factor (not used) =  0.403D-01     diagonal: average value =  0.645D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.7 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.627D+00 d2= 0.71D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.315D+00  0.212D+00
+ n1qn3: stopping criterion on g:  0.60708D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.18312D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.259D+00
+     Oren-Spedicato factor (not used) =  0.251D-01     diagonal: average value =  0.248D-01
+ n1qn3: descent direction d: angle(-g,d) =  15.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+ n1qn3: line search
+     nlis0       fpn=-0.707D+00 d2= 0.27D-02  tmin= 0.52D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D+00 -0.117D+00
+ n1qn3: stopping criterion on g:  0.11240D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.19476D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.190D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.468D-02
+ n1qn3: descent direction d: angle(-g,d) =  33.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+ n1qn3: line search
+     nlis0       fpn=-0.499D+00 d2= 0.52D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.225D+00  0.427D+00
+ n1qn3: stopping criterion on g:  0.43961D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43931D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.364D+01
+     Oren-Spedicato factor (not used) =  0.102D-01     diagonal: average value =  0.311D-01
+ n1qn3: descent direction d: angle(-g,d) =  56.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  14, simul  20, f= 0.13542804D+01, h'(0)=-0.33867D+00
+ n1qn3: line search
+     nlis0       fpn=-0.339D+00 d2= 0.36D-02  tmin= 0.47D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.151D+00  0.252D-01
+ n1qn3: stopping criterion on g:  0.12127D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.26394D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.759D+00
+     Oren-Spedicato factor (not used) =  0.522D-02     diagonal: average value =  0.235D-01
+ n1qn3: descent direction d: angle(-g,d) =  36.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+ n1qn3: line search
+     nlis0       fpn=-0.207D+00 d2= 0.84D-02  tmin= 0.24D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.186D+00 -0.162D+00
+ n1qn3: stopping criterion on g:  0.11958D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.15231D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.493D+01
+     Oren-Spedicato factor (not used) =  0.996D-01     diagonal: average value =  0.118D+00
+ n1qn3: descent direction d: angle(-g,d) =  47.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+ n1qn3: line search
+     nlis0       fpn=-0.650D+00 d2= 0.12D+00  tmin= 0.64D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.169D+01  0.738D+01
+     nlis0     0.374D+00 -0.132D+00  0.166D+00
+ n1qn3: stopping criterion on g:  0.29691D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14137D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.211D+00
+     Oren-Spedicato factor (not used) =  0.105D-01     diagonal: average value =  0.372D-01
+ n1qn3: descent direction d: angle(-g,d) =  53.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  17, simul  24, f= 0.88479943D+00, h'(0)=-0.18657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.187D+00 d2= 0.20D-02  tmin= 0.62D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.149D+00 -0.115D+00
+ n1qn3: stopping criterion on g:  0.15621D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.34738D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.123D+01
+     Oren-Spedicato factor (not used) =  0.634D-02     diagonal: average value =  0.386D-01
+ n1qn3: descent direction d: angle(-g,d) =  62.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  18, simul  25, f= 0.73594993D+00, h'(0)=-0.31085D+00
+ n1qn3: line search
+     nlis0       fpn=-0.311D+00 d2= 0.34D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.102D+00  0.268D+00
+ n1qn3: stopping criterion on g:  0.42709D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41295D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.285D+00
+     Oren-Spedicato factor (not used) =  0.108D-01     diagonal: average value =  0.841D-02
+ n1qn3: descent direction d: angle(-g,d) =  17.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  19, simul  26, f= 0.63444382D+00, h'(0)=-0.42075D+00
+ n1qn3: line search
+     nlis0       fpn=-0.421D+00 d2= 0.20D-02  tmin= 0.51D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.181D+00  0.576D-01
+ n1qn3: stopping criterion on g:  0.94247D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23849D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.526D+00
+     Oren-Spedicato factor (not used) =  0.345D-02     diagonal: average value =  0.461D-02
+ n1qn3: descent direction d: angle(-g,d) =  57.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  20, simul  27, f= 0.45317916D+00, h'(0)=-0.12594D+00
+ n1qn3: line search
+     nlis0       fpn=-0.126D+00 d2= 0.11D-01  tmin= 0.25D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.110D+00 -0.725D-01
+ n1qn3: stopping criterion on g:  0.67714D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23948D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.105D+01
+     Oren-Spedicato factor (not used) =  0.489D-02     diagonal: average value =  0.547D-02
+ n1qn3: descent direction d: angle(-g,d) =  59.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  21, simul  28, f= 0.34356278D+00, h'(0)=-0.22838D+00
+ n1qn3: line search
+     nlis0       fpn=-0.228D+00 d2= 0.83D-01  tmin= 0.95D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.601D+00  0.234D+01
+     nlis0     0.321D+00 -0.373D-01  0.472D-01
+ n1qn3: stopping criterion on g:  0.24287D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.87291D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.807D+00
+     Oren-Spedicato factor (not used) =  0.458D-02     diagonal: average value =  0.431D-02
+ n1qn3: descent direction d: angle(-g,d) =  73.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  22, simul  30, f= 0.30624976D+00, h'(0)=-0.55446D-01
+ n1qn3: line search
+     nlis0       fpn=-0.554D-01 d2= 0.12D-02  tmin= 0.80D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.477D-01 -0.406D-01
+ n1qn3: stopping criterion on g:  0.15832D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.36912D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.894D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.392D-02
+ n1qn3: descent direction d: angle(-g,d) =  77.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  23, simul  31, f= 0.25851794D+00, h'(0)=-0.14344D+00
+ n1qn3: line search
+     nlis0       fpn=-0.143D+00 d2= 0.30D-01  tmin= 0.17D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.878D-01 -0.226D-01
+ n1qn3: stopping criterion on g:  0.23266D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.51063D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.865D+01
+     Oren-Spedicato factor (not used) =  0.318D-01     diagonal: average value =  0.403D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  24, simul  32, f= 0.17073490D+00, h'(0)=-0.12793D+00
+ n1qn3: line search
+     nlis0       fpn=-0.128D+00 d2= 0.84D-02  tmin= 0.27D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.619D-01 -0.487D-02
+ n1qn3: stopping criterion on g:  0.10083D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.52582D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.572D-01
+     Oren-Spedicato factor (not used) =  0.208D-02     diagonal: average value =  0.227D-02
+ n1qn3: descent direction d: angle(-g,d) =  78.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  25, simul  33, f= 0.10886882D+00, h'(0)=-0.10034D+00
+ n1qn3: line search
+     nlis0       fpn=-0.100D+00 d2= 0.49D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.155D-01  0.179D+00
+ n1qn3: stopping criterion on g:  0.37918D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.24062D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.120D+01
+     Oren-Spedicato factor (not used) =  0.224D-02     diagonal: average value =  0.267D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+ n1qn3: line search
+     nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.251D-01  0.437D-01
+ n1qn3: stopping criterion on g:  0.43947D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.50600D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.757D+00
+     Oren-Spedicato factor (not used) =  0.170D-02     diagonal: average value =  0.201D-02
+ n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+ n1qn3: line search
+     nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.183D-01 -0.148D-01
+ n1qn3: stopping criterion on g:  0.21889D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.59772D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.170D+01
+     Oren-Spedicato factor (not used) =  0.290D-02     diagonal: average value =  0.351D-02
+ n1qn3: descent direction d: angle(-g,d) =  63.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  28, simul  36, f= 0.49926693D-01, h'(0)=-0.55493D-01
+ n1qn3: line search
+     nlis0       fpn=-0.555D-01 d2= 0.58D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.507D-01  0.260D+00
+     nlis0     0.413D+00 -0.132D-01  0.278D-02
+ n1qn3: stopping criterion on g:  0.14651D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14924D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.980D+00
+     Oren-Spedicato factor (not used) =  0.274D-02     diagonal: average value =  0.355D-02
+ n1qn3: descent direction d: angle(-g,d) =  84.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  29, simul  38, f= 0.36768990D-01, h'(0)=-0.91754D-02
+ n1qn3: line search
+     nlis0       fpn=-0.918D-02 d2= 0.87D-03  tmin= 0.86D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.813D-02 -0.718D-02
+ n1qn3: stopping criterion on g:  0.11306D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.29590D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.112D+01
+     Oren-Spedicato factor (not used) =  0.329D-02     diagonal: average value =  0.403D-02
+ n1qn3: descent direction d: angle(-g,d) =  85.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+ n1qn3: line search
+     nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.174D-01 -0.109D-01
+ n1qn3: stopping criterion on g:  0.64294D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.38281D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.337D+01
+     Oren-Spedicato factor (not used) =  0.116D-01     diagonal: average value =  0.134D-01
+ n1qn3: descent direction d: angle(-g,d) =  84.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  31, simul  40, f= 0.11210318D-01, h'(0)=-0.94861D-02
+ n1qn3: line search
+     nlis0       fpn=-0.949D-02 d2= 0.41D-02  tmin= 0.39D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.648D-02 -0.412D-02
+ n1qn3: stopping criterion on g:  0.32255D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.56905D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.218D+00
+     Oren-Spedicato factor (not used) =  0.229D-02     diagonal: average value =  0.316D-02
+ n1qn3: descent direction d: angle(-g,d) =  28.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+ n1qn3: line search
+     nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.236D-01  0.889D-01
+     nlis0     0.308D+00 -0.202D-02  0.129D-02
+ n1qn3: stopping criterion on g:  0.59635D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.92424D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.995D+00
+     Oren-Spedicato factor (not used) =  0.211D-02     diagonal: average value =  0.320D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+ n1qn3: line search
+     nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.193D-02 -0.124D-02
+ n1qn3: stopping criterion on g:  0.26088D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.61219D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.107D+01
+     Oren-Spedicato factor (not used) =  0.240D-02     diagonal: average value =  0.346D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+ n1qn3: line search
+     nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.680D-03 -0.342D-03
+ n1qn3: stopping criterion on g:  0.93209D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.93175D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.195D+01
+     Oren-Spedicato factor (not used) =  0.472D-02     diagonal: average value =  0.669D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  35, simul  45, f= 0.10596353D-03, h'(0)=-0.16466D-03
+ n1qn3: line search
+     nlis0       fpn=-0.165D-03 d2= 0.22D-03  tmin= 0.17D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.994D-04 -0.378D-04
+ n1qn3: stopping criterion on g:  0.13605D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43415D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.797D+00
+     Oren-Spedicato factor (not used) =  0.369D-02     diagonal: average value =  0.540D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+ n1qn3: line search
+     nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.592D-05  0.983D-06
+ n1qn3: stopping criterion on g:  0.15294D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.39644D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.278D+03
+     Oren-Spedicato factor (not used) =  0.637D+00     diagonal: average value =  0.256D+01
+ n1qn3: descent direction d: angle(-g,d) =  77.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+ n1qn3: line search
+     nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.168D-06  0.208D-05
+ n1qn3: stopping criterion on g:  0.13388D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53137D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.794D-03
+     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.159D-02
+ n1qn3: descent direction d: angle(-g,d) =  26.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+ n1qn3: line search
+     nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.80D-11 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.485D-06 -0.183D-09
+ n1qn3: stopping criterion on g:  0.27051D-07
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.11218D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.866D+00
+     Oren-Spedicato factor (not used) =  0.999D-03     diagonal: average value =  0.137D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+ n1qn3: line search
+     nlis0       fpn=-0.143D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.734D-12 -0.116D-13
+ n1qn3: stopping criterion on g:  0.61628D-10
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53526D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.399D+02
+     Oren-Spedicato factor (not used) =  0.356D-01     diagonal: average value =  0.717D-01
+ n1qn3: descent direction d: angle(-g,d) =  64.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+ n1qn3: line search
+     nlis0       fpn=-0.991D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.152D-15 -0.806D-21
+ n1qn3: stopping criterion on g:  0.92929D-13
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.84645D-02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.571D+01
+     Oren-Spedicato factor (not used) =  0.482D+00     diagonal: average value =  0.356D+00
+ n1qn3: descent direction d: angle(-g,d) =  75.5 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
+ n1qn3: line search
+     nlis0       fpn=-0.470D-24 d2= 0.75D-26  tmin= 0.26D-02 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.267D-21 -0.536D-27
+ n1qn3: stopping criterion on g:  0.10705D-15
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.55083D-05
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.349D-02
+     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.227D-02
+ n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
+ n1qn3: line search
+     nlis0       fpn=-0.623D-30 d2= 0.68D-32  tmin= 0.38D+01 tmax= 0.10D+21
+     nlis0                                      0.375D+01  0.326D-23  0.187D-29
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
+     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     53
+     realized relative precision on g:  0.11D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53783322D-16
+     norm of x =  0.74770897D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   5
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ n1qn3a: descent direction -g: precon =  0.369D-04
+ -------------------------------------------------------------------------------
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+ n1qn3: line search
+     nlis0       fpn=-0.200D+01 d2= 0.74D-04  tmin= 0.28D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.194D+01 -0.189D+01
+     nlis0     0.100D+02 -0.147D+02 -0.973D+00
+ n1qn3: stopping criterion on g:  0.48674D+00
+ n1qn3: matrix update:
+     Oren-Spedicato factor (not used) =  0.718D-03     diagonal: average value =  0.718D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+ n1qn3: line search
+     nlis0       fpn=-0.924D+01 d2= 0.66D-02  tmin= 0.30D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.520D+01 -0.138D+01
+ n1qn3: stopping criterion on g:  0.73079D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.94908D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.118D+01
+     Oren-Spedicato factor (not used) =  0.846D-03     diagonal: average value =  0.846D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+ n1qn3: line search
+     nlis0       fpn=-0.245D+00 d2= 0.21D-03  tmin= 0.16D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.135D+00 -0.256D-01
+ n1qn3: stopping criterion on g:  0.10270D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.17647D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.111D+01
+     Oren-Spedicato factor (not used) =  0.935D-03     diagonal: average value =  0.942D-03
+ n1qn3: descent direction d: angle(-g,d) =   1.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+ n1qn3: line search
+     nlis0       fpn=-0.581D-02 d2= 0.59D-05  tmin= 0.98D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.435D-02 -0.290D-02
+ n1qn3: stopping criterion on g:  0.76379D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.16885D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.969D+00
+     Oren-Spedicato factor (not used) =  0.952D-03     diagonal: average value =  0.915D-03
+ n1qn3: descent direction d: angle(-g,d) =  23.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+ n1qn3: line search
+     nlis0       fpn=-0.833D-02 d2= 0.26D-04  tmin= 0.61D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.690D-02 -0.549D-02
+ n1qn3: stopping criterion on g:  0.11072D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.21032D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.985D+00
+     Oren-Spedicato factor (not used) =  0.954D-03     diagonal: average value =  0.102D-02
+ n1qn3: descent direction d: angle(-g,d) =  56.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+ n1qn3: line search
+     nlis0       fpn=-0.278D-01 d2= 0.37D-03  tmin= 0.14D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.228D-01 -0.180D-01
+ n1qn3: stopping criterion on g:  0.23226D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.37768D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.113D+01
+     Oren-Spedicato factor (not used) =  0.941D-03     diagonal: average value =  0.127D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+ n1qn3: line search
+     nlis0       fpn=-0.828D-01 d2= 0.40D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.713D-01 -0.624D-01
+ n1qn3: stopping criterion on g:  0.44894D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.32918D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.817D+00
+     Oren-Spedicato factor (not used) =  0.762D-03     diagonal: average value =  0.106D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+ n1qn3: line search
+     nlis0       fpn=-0.405D+00 d2= 0.11D+00  tmin= 0.79D-15 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.531D+00 -0.721D+00
+     nlis0                                      0.100D+02  0.500D+03  0.222D+03
+     nlis0                                      0.398D+01  0.333D+01  0.774D+01
+     nlis0     0.249D+01 -0.140D+01  0.190D+00
+ n1qn3: stopping criterion on g:  0.60049D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.12764D+02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.287D+01
+     Oren-Spedicato factor (not used) =  0.248D-02     diagonal: average value =  0.292D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+ n1qn3: line search
+     nlis0       fpn=-0.161D+00 d2= 0.57D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.285D+00  0.571D+00
+     nlis0     0.140D+00 -0.107D-01  0.342D-02
+ n1qn3: stopping criterion on g:  0.48319D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41360D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.102D+01
+     Oren-Spedicato factor (not used) =  0.293D-02     diagonal: average value =  0.285D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+ n1qn3: line search
+     nlis0       fpn=-0.384D-01 d2= 0.21D-03  tmin= 0.21D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.376D-01 -0.369D-01
+     nlis0     0.100D+02 -0.318D+00 -0.257D-01
+ n1qn3: stopping criterion on g:  0.41045D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43358D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.193D+02
+     Oren-Spedicato factor (not used) =  0.403D-01     diagonal: average value =  0.645D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.7 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.627D+00 d2= 0.71D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.315D+00  0.212D+00
+ n1qn3: stopping criterion on g:  0.60708D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.18312D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.259D+00
+     Oren-Spedicato factor (not used) =  0.251D-01     diagonal: average value =  0.248D-01
+ n1qn3: descent direction d: angle(-g,d) =  15.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+ n1qn3: line search
+     nlis0       fpn=-0.707D+00 d2= 0.27D-02  tmin= 0.52D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D+00 -0.117D+00
+ n1qn3: stopping criterion on g:  0.11240D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.19476D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.190D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.468D-02
+ n1qn3: descent direction d: angle(-g,d) =  33.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+ n1qn3: line search
+     nlis0       fpn=-0.499D+00 d2= 0.52D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.225D+00  0.427D+00
+ n1qn3: stopping criterion on g:  0.43961D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43931D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.364D+01
+     Oren-Spedicato factor (not used) =  0.102D-01     diagonal: average value =  0.311D-01
+ n1qn3: descent direction d: angle(-g,d) =  56.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  14, simul  20, f= 0.13542804D+01, h'(0)=-0.33867D+00
+ n1qn3: line search
+     nlis0       fpn=-0.339D+00 d2= 0.36D-02  tmin= 0.47D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.151D+00  0.252D-01
+ n1qn3: stopping criterion on g:  0.12127D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.26394D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.759D+00
+     Oren-Spedicato factor (not used) =  0.522D-02     diagonal: average value =  0.235D-01
+ n1qn3: descent direction d: angle(-g,d) =  36.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+ n1qn3: line search
+     nlis0       fpn=-0.207D+00 d2= 0.84D-02  tmin= 0.24D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.186D+00 -0.162D+00
+ n1qn3: stopping criterion on g:  0.11958D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.15231D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.493D+01
+     Oren-Spedicato factor (not used) =  0.996D-01     diagonal: average value =  0.118D+00
+ n1qn3: descent direction d: angle(-g,d) =  47.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+ n1qn3: line search
+     nlis0       fpn=-0.650D+00 d2= 0.12D+00  tmin= 0.64D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.169D+01  0.738D+01
+     nlis0     0.374D+00 -0.132D+00  0.166D+00
+ n1qn3: stopping criterion on g:  0.29691D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14137D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.211D+00
+     Oren-Spedicato factor (not used) =  0.105D-01     diagonal: average value =  0.372D-01
+ n1qn3: descent direction d: angle(-g,d) =  53.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  17, simul  24, f= 0.88479943D+00, h'(0)=-0.18657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.187D+00 d2= 0.20D-02  tmin= 0.62D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.149D+00 -0.115D+00
+ n1qn3: stopping criterion on g:  0.15621D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.34738D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.123D+01
+     Oren-Spedicato factor (not used) =  0.634D-02     diagonal: average value =  0.386D-01
+ n1qn3: descent direction d: angle(-g,d) =  62.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  18, simul  25, f= 0.73594993D+00, h'(0)=-0.31085D+00
+ n1qn3: line search
+     nlis0       fpn=-0.311D+00 d2= 0.34D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.102D+00  0.268D+00
+ n1qn3: stopping criterion on g:  0.42709D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41295D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.285D+00
+     Oren-Spedicato factor (not used) =  0.108D-01     diagonal: average value =  0.841D-02
+ n1qn3: descent direction d: angle(-g,d) =  17.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  19, simul  26, f= 0.63444382D+00, h'(0)=-0.42075D+00
+ n1qn3: line search
+     nlis0       fpn=-0.421D+00 d2= 0.20D-02  tmin= 0.51D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.181D+00  0.576D-01
+ n1qn3: stopping criterion on g:  0.94247D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23849D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.526D+00
+     Oren-Spedicato factor (not used) =  0.345D-02     diagonal: average value =  0.461D-02
+ n1qn3: descent direction d: angle(-g,d) =  57.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  20, simul  27, f= 0.45317916D+00, h'(0)=-0.12594D+00
+ n1qn3: line search
+     nlis0       fpn=-0.126D+00 d2= 0.11D-01  tmin= 0.25D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.110D+00 -0.725D-01
+ n1qn3: stopping criterion on g:  0.67714D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23948D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.105D+01
+     Oren-Spedicato factor (not used) =  0.489D-02     diagonal: average value =  0.547D-02
+ n1qn3: descent direction d: angle(-g,d) =  59.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  21, simul  28, f= 0.34356278D+00, h'(0)=-0.22838D+00
+ n1qn3: line search
+     nlis0       fpn=-0.228D+00 d2= 0.83D-01  tmin= 0.95D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.601D+00  0.234D+01
+     nlis0     0.321D+00 -0.373D-01  0.472D-01
+ n1qn3: stopping criterion on g:  0.24287D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.87291D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.807D+00
+     Oren-Spedicato factor (not used) =  0.458D-02     diagonal: average value =  0.431D-02
+ n1qn3: descent direction d: angle(-g,d) =  73.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  22, simul  30, f= 0.30624976D+00, h'(0)=-0.55446D-01
+ n1qn3: line search
+     nlis0       fpn=-0.554D-01 d2= 0.12D-02  tmin= 0.80D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.477D-01 -0.406D-01
+ n1qn3: stopping criterion on g:  0.15832D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.36912D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.894D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.392D-02
+ n1qn3: descent direction d: angle(-g,d) =  77.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  23, simul  31, f= 0.25851794D+00, h'(0)=-0.14344D+00
+ n1qn3: line search
+     nlis0       fpn=-0.143D+00 d2= 0.30D-01  tmin= 0.17D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.878D-01 -0.226D-01
+ n1qn3: stopping criterion on g:  0.23266D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.51063D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.865D+01
+     Oren-Spedicato factor (not used) =  0.318D-01     diagonal: average value =  0.403D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  24, simul  32, f= 0.17073490D+00, h'(0)=-0.12793D+00
+ n1qn3: line search
+     nlis0       fpn=-0.128D+00 d2= 0.84D-02  tmin= 0.27D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.619D-01 -0.487D-02
+ n1qn3: stopping criterion on g:  0.10083D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.52582D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.572D-01
+     Oren-Spedicato factor (not used) =  0.208D-02     diagonal: average value =  0.227D-02
+ n1qn3: descent direction d: angle(-g,d) =  78.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  25, simul  33, f= 0.10886882D+00, h'(0)=-0.10034D+00
+ n1qn3: line search
+     nlis0       fpn=-0.100D+00 d2= 0.49D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.155D-01  0.179D+00
+ n1qn3: stopping criterion on g:  0.37918D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.24062D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.120D+01
+     Oren-Spedicato factor (not used) =  0.224D-02     diagonal: average value =  0.267D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+ n1qn3: line search
+     nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.251D-01  0.437D-01
+ n1qn3: stopping criterion on g:  0.43947D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.50600D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.757D+00
+     Oren-Spedicato factor (not used) =  0.170D-02     diagonal: average value =  0.201D-02
+ n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+ n1qn3: line search
+     nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.183D-01 -0.148D-01
+ n1qn3: stopping criterion on g:  0.21889D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.59772D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.170D+01
+     Oren-Spedicato factor (not used) =  0.290D-02     diagonal: average value =  0.351D-02
+ n1qn3: descent direction d: angle(-g,d) =  63.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  28, simul  36, f= 0.49926693D-01, h'(0)=-0.55493D-01
+ n1qn3: line search
+     nlis0       fpn=-0.555D-01 d2= 0.58D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.507D-01  0.260D+00
+     nlis0     0.413D+00 -0.132D-01  0.278D-02
+ n1qn3: stopping criterion on g:  0.14651D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14924D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.980D+00
+     Oren-Spedicato factor (not used) =  0.274D-02     diagonal: average value =  0.355D-02
+ n1qn3: descent direction d: angle(-g,d) =  84.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  29, simul  38, f= 0.36768990D-01, h'(0)=-0.91754D-02
+ n1qn3: line search
+     nlis0       fpn=-0.918D-02 d2= 0.87D-03  tmin= 0.86D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.813D-02 -0.718D-02
+ n1qn3: stopping criterion on g:  0.11306D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.29590D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.112D+01
+     Oren-Spedicato factor (not used) =  0.329D-02     diagonal: average value =  0.403D-02
+ n1qn3: descent direction d: angle(-g,d) =  85.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+ n1qn3: line search
+     nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.174D-01 -0.109D-01
+ n1qn3: stopping criterion on g:  0.64294D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.38281D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.337D+01
+     Oren-Spedicato factor (not used) =  0.116D-01     diagonal: average value =  0.134D-01
+ n1qn3: descent direction d: angle(-g,d) =  84.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  31, simul  40, f= 0.11210318D-01, h'(0)=-0.94861D-02
+ n1qn3: line search
+     nlis0       fpn=-0.949D-02 d2= 0.41D-02  tmin= 0.39D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.648D-02 -0.412D-02
+ n1qn3: stopping criterion on g:  0.32255D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.56905D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.218D+00
+     Oren-Spedicato factor (not used) =  0.229D-02     diagonal: average value =  0.316D-02
+ n1qn3: descent direction d: angle(-g,d) =  28.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+ n1qn3: line search
+     nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.236D-01  0.889D-01
+     nlis0     0.308D+00 -0.202D-02  0.129D-02
+ n1qn3: stopping criterion on g:  0.59635D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.92424D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.995D+00
+     Oren-Spedicato factor (not used) =  0.211D-02     diagonal: average value =  0.320D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+ n1qn3: line search
+     nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.193D-02 -0.124D-02
+ n1qn3: stopping criterion on g:  0.26088D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.61219D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.107D+01
+     Oren-Spedicato factor (not used) =  0.240D-02     diagonal: average value =  0.346D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+ n1qn3: line search
+     nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.680D-03 -0.342D-03
+ n1qn3: stopping criterion on g:  0.93209D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.93175D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.195D+01
+     Oren-Spedicato factor (not used) =  0.472D-02     diagonal: average value =  0.669D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  35, simul  45, f= 0.10596353D-03, h'(0)=-0.16466D-03
+ n1qn3: line search
+     nlis0       fpn=-0.165D-03 d2= 0.22D-03  tmin= 0.17D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.994D-04 -0.378D-04
+ n1qn3: stopping criterion on g:  0.13605D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43415D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.797D+00
+     Oren-Spedicato factor (not used) =  0.369D-02     diagonal: average value =  0.540D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+ n1qn3: line search
+     nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.592D-05  0.983D-06
+ n1qn3: stopping criterion on g:  0.15294D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.39644D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.278D+03
+     Oren-Spedicato factor (not used) =  0.637D+00     diagonal: average value =  0.256D+01
+ n1qn3: descent direction d: angle(-g,d) =  77.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+ n1qn3: line search
+     nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.168D-06  0.208D-05
+ n1qn3: stopping criterion on g:  0.13388D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53137D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.794D-03
+     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.159D-02
+ n1qn3: descent direction d: angle(-g,d) =  26.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+ n1qn3: line search
+     nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.80D-11 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.485D-06 -0.183D-09
+ n1qn3: stopping criterion on g:  0.27051D-07
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.11218D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.866D+00
+     Oren-Spedicato factor (not used) =  0.999D-03     diagonal: average value =  0.137D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+ n1qn3: line search
+     nlis0       fpn=-0.143D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.734D-12 -0.116D-13
+ n1qn3: stopping criterion on g:  0.61628D-10
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53526D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.399D+02
+     Oren-Spedicato factor (not used) =  0.356D-01     diagonal: average value =  0.717D-01
+ n1qn3: descent direction d: angle(-g,d) =  64.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+ n1qn3: line search
+     nlis0       fpn=-0.991D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.152D-15 -0.806D-21
+ n1qn3: stopping criterion on g:  0.92929D-13
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.84645D-02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.571D+01
+     Oren-Spedicato factor (not used) =  0.482D+00     diagonal: average value =  0.356D+00
+ n1qn3: descent direction d: angle(-g,d) =  75.5 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
+ n1qn3: line search
+     nlis0       fpn=-0.470D-24 d2= 0.75D-26  tmin= 0.26D-02 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.267D-21 -0.536D-27
+ n1qn3: stopping criterion on g:  0.10705D-15
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.55083D-05
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.349D-02
+     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.227D-02
+ n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
+ n1qn3: line search
+     nlis0       fpn=-0.623D-30 d2= 0.68D-32  tmin= 0.38D+01 tmax= 0.10D+21
+     nlis0                                      0.375D+01  0.326D-23  0.187D-29
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
+     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     53
+     realized relative precision on g:  0.11D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53783322D-16
+     norm of x =  0.74770897D-13
+optim: Optimization stops because too small variations for x.
+for impval = 1:5
+    [ fopt , xopt ] = optim ( rosenbrockCostVariableStep , x0 , "gc" , imp=impval);
+end
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   1
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53782996D-16 -0.220D-26
+     nlis0                  0.67542586D-02    0.53782999D-16 -0.219D-26
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     74
+     realized relative precision on g:  0.14D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53782996D-16
+     norm of x =  0.31169576D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   2
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+ n1qn3: iter  14, simul  20, f= 0.13542803D+01, h'(0)=-0.33867D+00
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+ n1qn3: iter  17, simul  24, f= 0.88479939D+00, h'(0)=-0.18657D+00
+ n1qn3: iter  18, simul  25, f= 0.73594988D+00, h'(0)=-0.31085D+00
+ n1qn3: iter  19, simul  26, f= 0.63444380D+00, h'(0)=-0.42075D+00
+ n1qn3: iter  20, simul  27, f= 0.45317909D+00, h'(0)=-0.12594D+00
+ n1qn3: iter  21, simul  28, f= 0.34356268D+00, h'(0)=-0.22838D+00
+ n1qn3: iter  22, simul  30, f= 0.30624970D+00, h'(0)=-0.55446D-01
+ n1qn3: iter  23, simul  31, f= 0.25851789D+00, h'(0)=-0.14344D+00
+ n1qn3: iter  24, simul  32, f= 0.17073487D+00, h'(0)=-0.12793D+00
+ n1qn3: iter  25, simul  33, f= 0.10886883D+00, h'(0)=-0.10034D+00
+ n1qn3: iter  26, simul  34, f= 0.93394389D-01, h'(0)=-0.12026D+00
+ n1qn3: iter  27, simul  35, f= 0.68247300D-01, h'(0)=-0.20762D-01
+ n1qn3: iter  28, simul  36, f= 0.49926744D-01, h'(0)=-0.55493D-01
+ n1qn3: iter  29, simul  38, f= 0.36769048D-01, h'(0)=-0.91754D-02
+ n1qn3: iter  30, simul  39, f= 0.28635908D-01, h'(0)=-0.25872D-01
+ n1qn3: iter  31, simul  40, f= 0.11210356D-01, h'(0)=-0.94861D-02
+ n1qn3: iter  32, simul  41, f= 0.47312700D-02, h'(0)=-0.12658D-01
+ n1qn3: iter  33, simul  43, f= 0.27115623D-02, h'(0)=-0.27046D-02
+ n1qn3: iter  34, simul  44, f= 0.78629663D-03, h'(0)=-0.10616D-02
+ n1qn3: iter  35, simul  45, f= 0.10596435D-03, h'(0)=-0.16467D-03
+ n1qn3: iter  36, simul  46, f= 0.65780431D-05, h'(0)=-0.12837D-04
+ n1qn3: iter  37, simul  47, f= 0.65357985D-06, h'(0)=-0.24148D-05
+ n1qn3: iter  38, simul  48, f= 0.48511517D-06, h'(0)=-0.97004D-06
+ n1qn3: iter  39, simul  49, f= 0.73872905D-12, h'(0)=-0.14408D-11
+ n1qn3: iter  40, simul  50, f= 0.20583977D-15, h'(0)=-0.98704D-16
+ n1qn3: iter  41, simul  51, f= 0.53783398D-16, h'(0)=-0.44983D-24
+ n1qn3: iter  42, simul  52, f= 0.53782996D-16, h'(0)=-0.22006D-26
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53782996D-16 -0.220D-26
+     nlis0                  0.67542586D-02    0.53782999D-16 -0.219D-26
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     74
+     realized relative precision on g:  0.14D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53782996D-16
+     norm of x =  0.31169576D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   3
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ -------------------------------------------------------------------------------
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+     nlis0       fpn=-0.200D+01 d2= 0.74D-04  tmin= 0.28D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.194D+01 -0.189D+01
+     nlis0     0.100D+02 -0.147D+02 -0.973D+00
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+     nlis0       fpn=-0.924D+01 d2= 0.66D-02  tmin= 0.30D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.520D+01 -0.138D+01
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+     nlis0       fpn=-0.245D+00 d2= 0.21D-03  tmin= 0.16D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.135D+00 -0.256D-01
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+     nlis0       fpn=-0.581D-02 d2= 0.59D-05  tmin= 0.98D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.435D-02 -0.290D-02
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+     nlis0       fpn=-0.833D-02 d2= 0.26D-04  tmin= 0.61D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.690D-02 -0.549D-02
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+     nlis0       fpn=-0.278D-01 d2= 0.37D-03  tmin= 0.14D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.228D-01 -0.180D-01
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+     nlis0       fpn=-0.828D-01 d2= 0.40D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.713D-01 -0.624D-01
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+     nlis0       fpn=-0.405D+00 d2= 0.11D+00  tmin= 0.79D-15 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.531D+00 -0.721D+00
+     nlis0                                      0.100D+02  0.500D+03  0.222D+03
+     nlis0                                      0.398D+01  0.333D+01  0.774D+01
+     nlis0     0.249D+01 -0.140D+01  0.190D+00
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+     nlis0       fpn=-0.161D+00 d2= 0.57D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.285D+00  0.571D+00
+     nlis0     0.140D+00 -0.107D-01  0.342D-02
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+     nlis0       fpn=-0.384D-01 d2= 0.21D-03  tmin= 0.21D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.376D-01 -0.369D-01
+     nlis0     0.100D+02 -0.318D+00 -0.257D-01
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+     nlis0       fpn=-0.627D+00 d2= 0.71D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.315D+00  0.212D+00
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+     nlis0       fpn=-0.707D+00 d2= 0.27D-02  tmin= 0.52D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D+00 -0.117D+00
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+     nlis0       fpn=-0.499D+00 d2= 0.52D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.225D+00  0.427D+00
+ n1qn3: iter  14, simul  20, f= 0.13542803D+01, h'(0)=-0.33867D+00
+     nlis0       fpn=-0.339D+00 d2= 0.36D-02  tmin= 0.47D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.151D+00  0.252D-01
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+     nlis0       fpn=-0.207D+00 d2= 0.84D-02  tmin= 0.24D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.186D+00 -0.162D+00
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+     nlis0       fpn=-0.650D+00 d2= 0.12D+00  tmin= 0.64D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.169D+01  0.738D+01
+     nlis0     0.374D+00 -0.132D+00  0.166D+00
+ n1qn3: iter  17, simul  24, f= 0.88479939D+00, h'(0)=-0.18657D+00
+     nlis0       fpn=-0.187D+00 d2= 0.20D-02  tmin= 0.62D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.149D+00 -0.115D+00
+ n1qn3: iter  18, simul  25, f= 0.73594988D+00, h'(0)=-0.31085D+00
+     nlis0       fpn=-0.311D+00 d2= 0.34D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.102D+00  0.268D+00
+ n1qn3: iter  19, simul  26, f= 0.63444380D+00, h'(0)=-0.42075D+00
+     nlis0       fpn=-0.421D+00 d2= 0.20D-02  tmin= 0.51D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.181D+00  0.576D-01
+ n1qn3: iter  20, simul  27, f= 0.45317909D+00, h'(0)=-0.12594D+00
+     nlis0       fpn=-0.126D+00 d2= 0.11D-01  tmin= 0.25D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.110D+00 -0.725D-01
+ n1qn3: iter  21, simul  28, f= 0.34356268D+00, h'(0)=-0.22838D+00
+     nlis0       fpn=-0.228D+00 d2= 0.83D-01  tmin= 0.95D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.601D+00  0.234D+01
+     nlis0     0.321D+00 -0.373D-01  0.472D-01
+ n1qn3: iter  22, simul  30, f= 0.30624970D+00, h'(0)=-0.55446D-01
+     nlis0       fpn=-0.554D-01 d2= 0.12D-02  tmin= 0.80D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.477D-01 -0.406D-01
+ n1qn3: iter  23, simul  31, f= 0.25851789D+00, h'(0)=-0.14344D+00
+     nlis0       fpn=-0.143D+00 d2= 0.30D-01  tmin= 0.17D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.878D-01 -0.226D-01
+ n1qn3: iter  24, simul  32, f= 0.17073487D+00, h'(0)=-0.12793D+00
+     nlis0       fpn=-0.128D+00 d2= 0.84D-02  tmin= 0.27D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.619D-01 -0.487D-02
+ n1qn3: iter  25, simul  33, f= 0.10886883D+00, h'(0)=-0.10034D+00
+     nlis0       fpn=-0.100D+00 d2= 0.49D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.155D-01  0.179D+00
+ n1qn3: iter  26, simul  34, f= 0.93394389D-01, h'(0)=-0.12026D+00
+     nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.251D-01  0.437D-01
+ n1qn3: iter  27, simul  35, f= 0.68247300D-01, h'(0)=-0.20762D-01
+     nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.183D-01 -0.148D-01
+ n1qn3: iter  28, simul  36, f= 0.49926744D-01, h'(0)=-0.55493D-01
+     nlis0       fpn=-0.555D-01 d2= 0.58D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.507D-01  0.260D+00
+     nlis0     0.413D+00 -0.132D-01  0.278D-02
+ n1qn3: iter  29, simul  38, f= 0.36769048D-01, h'(0)=-0.91754D-02
+     nlis0       fpn=-0.918D-02 d2= 0.87D-03  tmin= 0.86D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.813D-02 -0.718D-02
+ n1qn3: iter  30, simul  39, f= 0.28635908D-01, h'(0)=-0.25872D-01
+     nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.174D-01 -0.109D-01
+ n1qn3: iter  31, simul  40, f= 0.11210356D-01, h'(0)=-0.94861D-02
+     nlis0       fpn=-0.949D-02 d2= 0.41D-02  tmin= 0.39D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.648D-02 -0.412D-02
+ n1qn3: iter  32, simul  41, f= 0.47312700D-02, h'(0)=-0.12658D-01
+     nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.236D-01  0.889D-01
+     nlis0     0.308D+00 -0.202D-02  0.129D-02
+ n1qn3: iter  33, simul  43, f= 0.27115623D-02, h'(0)=-0.27046D-02
+     nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.193D-02 -0.124D-02
+ n1qn3: iter  34, simul  44, f= 0.78629663D-03, h'(0)=-0.10616D-02
+     nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.680D-03 -0.342D-03
+ n1qn3: iter  35, simul  45, f= 0.10596435D-03, h'(0)=-0.16467D-03
+     nlis0       fpn=-0.165D-03 d2= 0.22D-03  tmin= 0.17D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.994D-04 -0.378D-04
+ n1qn3: iter  36, simul  46, f= 0.65780431D-05, h'(0)=-0.12837D-04
+     nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.592D-05  0.986D-06
+ n1qn3: iter  37, simul  47, f= 0.65357985D-06, h'(0)=-0.24148D-05
+     nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.168D-06  0.208D-05
+ n1qn3: iter  38, simul  48, f= 0.48511517D-06, h'(0)=-0.97004D-06
+     nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.79D-11 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.485D-06 -0.182D-09
+ n1qn3: iter  39, simul  49, f= 0.73872905D-12, h'(0)=-0.14408D-11
+     nlis0       fpn=-0.144D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.739D-12 -0.116D-13
+ n1qn3: iter  40, simul  50, f= 0.20583977D-15, h'(0)=-0.98704D-16
+     nlis0       fpn=-0.987D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.152D-15 -0.920D-21
+ n1qn3: iter  41, simul  51, f= 0.53783398D-16, h'(0)=-0.44983D-24
+     nlis0       fpn=-0.450D-24 d2= 0.11D-25  tmin= 0.22D-02 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D-21  0.288D-26
+ n1qn3: iter  42, simul  52, f= 0.53782996D-16, h'(0)=-0.22006D-26
+     nlis0       fpn=-0.220D-26 d2= 0.54D-26  tmin= 0.34D-02 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.484D-21  0.145D-26
+     nlis0                                      0.100D+00  0.489D-22 -0.125D-26
+     nlis0                                      0.900D-01  0.440D-22  0.202D-27
+     nlis0                                      0.810D-01  0.391D-22 -0.202D-26
+     nlis0                                      0.729D-01  0.358D-22 -0.130D-26
+     nlis0                                      0.656D-01  0.326D-22 -0.132D-26
+     nlis0                                      0.590D-01  0.293D-22 -0.133D-26
+     nlis0                                      0.531D-01  0.261D-22 -0.208D-26
+     nlis0                                      0.478D-01  0.228D-22 -0.210D-26
+     nlis0                                      0.430D-01  0.212D-22 -0.635D-27
+     nlis0                                      0.387D-01  0.195D-22 -0.138D-26
+     nlis0                                      0.349D-01  0.163D-22 -0.140D-26
+     nlis0                                      0.314D-01  0.147D-22  0.645D-28
+     nlis0                                      0.282D-01  0.130D-22 -0.141D-26
+     nlis0                                      0.254D-01  0.130D-22 -0.141D-26
+     nlis0                                      0.229D-01  0.114D-22 -0.679D-27
+     nlis0                                      0.206D-01  0.977D-23 -0.216D-26
+     nlis0                                      0.185D-01  0.977D-23 -0.142D-26
+     nlis0                                      0.167D-01  0.814D-23 -0.694D-27
+     nlis0                                      0.150D-01  0.651D-23 -0.144D-26
+     nlis0                                      0.135D-01  0.651D-23 -0.217D-26
+     nlis0                                      0.675D-02  0.326D-23 -0.219D-26
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53782996D-16 -0.220D-26
+     nlis0                  0.67542586D-02    0.53782999D-16 -0.219D-26
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     74
+     realized relative precision on g:  0.14D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53782996D-16
+     norm of x =  0.31169576D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   4
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ n1qn3a: descent direction -g: precon =  0.369D-04
+ -------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+ n1qn3: line search
+     nlis0       fpn=-0.200D+01 d2= 0.74D-04  tmin= 0.28D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.194D+01 -0.189D+01
+     nlis0     0.100D+02 -0.147D+02 -0.973D+00
+ n1qn3: stopping criterion on g:  0.48674D+00
+ n1qn3: matrix update:
+     Oren-Spedicato factor (not used) =  0.718D-03     diagonal: average value =  0.718D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+ n1qn3: line search
+     nlis0       fpn=-0.924D+01 d2= 0.66D-02  tmin= 0.30D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.520D+01 -0.138D+01
+ n1qn3: stopping criterion on g:  0.73079D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.94908D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.118D+01
+     Oren-Spedicato factor (not used) =  0.846D-03     diagonal: average value =  0.846D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+ n1qn3: line search
+     nlis0       fpn=-0.245D+00 d2= 0.21D-03  tmin= 0.16D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.135D+00 -0.256D-01
+ n1qn3: stopping criterion on g:  0.10270D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.17647D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.111D+01
+     Oren-Spedicato factor (not used) =  0.935D-03     diagonal: average value =  0.942D-03
+ n1qn3: descent direction d: angle(-g,d) =   1.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+ n1qn3: line search
+     nlis0       fpn=-0.581D-02 d2= 0.59D-05  tmin= 0.98D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.435D-02 -0.290D-02
+ n1qn3: stopping criterion on g:  0.76379D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.16885D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.969D+00
+     Oren-Spedicato factor (not used) =  0.952D-03     diagonal: average value =  0.915D-03
+ n1qn3: descent direction d: angle(-g,d) =  23.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+ n1qn3: line search
+     nlis0       fpn=-0.833D-02 d2= 0.26D-04  tmin= 0.61D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.690D-02 -0.549D-02
+ n1qn3: stopping criterion on g:  0.11072D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.21032D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.985D+00
+     Oren-Spedicato factor (not used) =  0.954D-03     diagonal: average value =  0.102D-02
+ n1qn3: descent direction d: angle(-g,d) =  56.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+ n1qn3: line search
+     nlis0       fpn=-0.278D-01 d2= 0.37D-03  tmin= 0.14D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.228D-01 -0.180D-01
+ n1qn3: stopping criterion on g:  0.23226D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.37768D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.113D+01
+     Oren-Spedicato factor (not used) =  0.941D-03     diagonal: average value =  0.127D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+ n1qn3: line search
+     nlis0       fpn=-0.828D-01 d2= 0.40D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.713D-01 -0.624D-01
+ n1qn3: stopping criterion on g:  0.44894D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.32918D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.817D+00
+     Oren-Spedicato factor (not used) =  0.762D-03     diagonal: average value =  0.106D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+ n1qn3: line search
+     nlis0       fpn=-0.405D+00 d2= 0.11D+00  tmin= 0.79D-15 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.531D+00 -0.721D+00
+     nlis0                                      0.100D+02  0.500D+03  0.222D+03
+     nlis0                                      0.398D+01  0.333D+01  0.774D+01
+     nlis0     0.249D+01 -0.140D+01  0.190D+00
+ n1qn3: stopping criterion on g:  0.60049D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.12764D+02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.287D+01
+     Oren-Spedicato factor (not used) =  0.248D-02     diagonal: average value =  0.292D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+ n1qn3: line search
+     nlis0       fpn=-0.161D+00 d2= 0.57D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.285D+00  0.571D+00
+     nlis0     0.140D+00 -0.107D-01  0.342D-02
+ n1qn3: stopping criterion on g:  0.48319D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41360D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.102D+01
+     Oren-Spedicato factor (not used) =  0.293D-02     diagonal: average value =  0.285D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+ n1qn3: line search
+     nlis0       fpn=-0.384D-01 d2= 0.21D-03  tmin= 0.21D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.376D-01 -0.369D-01
+     nlis0     0.100D+02 -0.318D+00 -0.257D-01
+ n1qn3: stopping criterion on g:  0.41045D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43358D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.193D+02
+     Oren-Spedicato factor (not used) =  0.403D-01     diagonal: average value =  0.645D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.7 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.627D+00 d2= 0.71D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.315D+00  0.212D+00
+ n1qn3: stopping criterion on g:  0.60708D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.18312D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.259D+00
+     Oren-Spedicato factor (not used) =  0.251D-01     diagonal: average value =  0.248D-01
+ n1qn3: descent direction d: angle(-g,d) =  15.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+ n1qn3: line search
+     nlis0       fpn=-0.707D+00 d2= 0.27D-02  tmin= 0.52D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D+00 -0.117D+00
+ n1qn3: stopping criterion on g:  0.11240D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.19476D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.190D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.468D-02
+ n1qn3: descent direction d: angle(-g,d) =  33.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+ n1qn3: line search
+     nlis0       fpn=-0.499D+00 d2= 0.52D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.225D+00  0.427D+00
+ n1qn3: stopping criterion on g:  0.43961D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43931D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.364D+01
+     Oren-Spedicato factor (not used) =  0.102D-01     diagonal: average value =  0.311D-01
+ n1qn3: descent direction d: angle(-g,d) =  56.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  14, simul  20, f= 0.13542803D+01, h'(0)=-0.33867D+00
+ n1qn3: line search
+     nlis0       fpn=-0.339D+00 d2= 0.36D-02  tmin= 0.47D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.151D+00  0.252D-01
+ n1qn3: stopping criterion on g:  0.12127D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.26394D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.759D+00
+     Oren-Spedicato factor (not used) =  0.522D-02     diagonal: average value =  0.235D-01
+ n1qn3: descent direction d: angle(-g,d) =  36.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+ n1qn3: line search
+     nlis0       fpn=-0.207D+00 d2= 0.84D-02  tmin= 0.24D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.186D+00 -0.162D+00
+ n1qn3: stopping criterion on g:  0.11958D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.15231D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.493D+01
+     Oren-Spedicato factor (not used) =  0.996D-01     diagonal: average value =  0.118D+00
+ n1qn3: descent direction d: angle(-g,d) =  47.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+ n1qn3: line search
+     nlis0       fpn=-0.650D+00 d2= 0.12D+00  tmin= 0.64D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.169D+01  0.738D+01
+     nlis0     0.374D+00 -0.132D+00  0.166D+00
+ n1qn3: stopping criterion on g:  0.29691D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14137D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.211D+00
+     Oren-Spedicato factor (not used) =  0.105D-01     diagonal: average value =  0.372D-01
+ n1qn3: descent direction d: angle(-g,d) =  53.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  17, simul  24, f= 0.88479939D+00, h'(0)=-0.18657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.187D+00 d2= 0.20D-02  tmin= 0.62D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.149D+00 -0.115D+00
+ n1qn3: stopping criterion on g:  0.15621D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.34738D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.123D+01
+     Oren-Spedicato factor (not used) =  0.634D-02     diagonal: average value =  0.386D-01
+ n1qn3: descent direction d: angle(-g,d) =  62.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  18, simul  25, f= 0.73594988D+00, h'(0)=-0.31085D+00
+ n1qn3: line search
+     nlis0       fpn=-0.311D+00 d2= 0.34D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.102D+00  0.268D+00
+ n1qn3: stopping criterion on g:  0.42709D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41295D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.285D+00
+     Oren-Spedicato factor (not used) =  0.108D-01     diagonal: average value =  0.841D-02
+ n1qn3: descent direction d: angle(-g,d) =  17.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  19, simul  26, f= 0.63444380D+00, h'(0)=-0.42075D+00
+ n1qn3: line search
+     nlis0       fpn=-0.421D+00 d2= 0.20D-02  tmin= 0.51D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.181D+00  0.576D-01
+ n1qn3: stopping criterion on g:  0.94248D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23849D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.526D+00
+     Oren-Spedicato factor (not used) =  0.345D-02     diagonal: average value =  0.461D-02
+ n1qn3: descent direction d: angle(-g,d) =  57.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  20, simul  27, f= 0.45317909D+00, h'(0)=-0.12594D+00
+ n1qn3: line search
+     nlis0       fpn=-0.126D+00 d2= 0.11D-01  tmin= 0.25D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.110D+00 -0.725D-01
+ n1qn3: stopping criterion on g:  0.67714D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23948D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.105D+01
+     Oren-Spedicato factor (not used) =  0.489D-02     diagonal: average value =  0.547D-02
+ n1qn3: descent direction d: angle(-g,d) =  59.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  21, simul  28, f= 0.34356268D+00, h'(0)=-0.22838D+00
+ n1qn3: line search
+     nlis0       fpn=-0.228D+00 d2= 0.83D-01  tmin= 0.95D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.601D+00  0.234D+01
+     nlis0     0.321D+00 -0.373D-01  0.472D-01
+ n1qn3: stopping criterion on g:  0.24287D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.87291D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.807D+00
+     Oren-Spedicato factor (not used) =  0.458D-02     diagonal: average value =  0.431D-02
+ n1qn3: descent direction d: angle(-g,d) =  73.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  22, simul  30, f= 0.30624970D+00, h'(0)=-0.55446D-01
+ n1qn3: line search
+     nlis0       fpn=-0.554D-01 d2= 0.12D-02  tmin= 0.80D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.477D-01 -0.406D-01
+ n1qn3: stopping criterion on g:  0.15832D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.36912D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.894D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.392D-02
+ n1qn3: descent direction d: angle(-g,d) =  77.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  23, simul  31, f= 0.25851789D+00, h'(0)=-0.14344D+00
+ n1qn3: line search
+     nlis0       fpn=-0.143D+00 d2= 0.30D-01  tmin= 0.17D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.878D-01 -0.226D-01
+ n1qn3: stopping criterion on g:  0.23266D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.51063D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.865D+01
+     Oren-Spedicato factor (not used) =  0.318D-01     diagonal: average value =  0.403D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  24, simul  32, f= 0.17073487D+00, h'(0)=-0.12793D+00
+ n1qn3: line search
+     nlis0       fpn=-0.128D+00 d2= 0.84D-02  tmin= 0.27D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.619D-01 -0.487D-02
+ n1qn3: stopping criterion on g:  0.10083D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.52582D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.572D-01
+     Oren-Spedicato factor (not used) =  0.208D-02     diagonal: average value =  0.227D-02
+ n1qn3: descent direction d: angle(-g,d) =  78.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  25, simul  33, f= 0.10886883D+00, h'(0)=-0.10034D+00
+ n1qn3: line search
+     nlis0       fpn=-0.100D+00 d2= 0.49D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.155D-01  0.179D+00
+ n1qn3: stopping criterion on g:  0.37918D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.24062D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.120D+01
+     Oren-Spedicato factor (not used) =  0.224D-02     diagonal: average value =  0.267D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  26, simul  34, f= 0.93394389D-01, h'(0)=-0.12026D+00
+ n1qn3: line search
+     nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.251D-01  0.437D-01
+ n1qn3: stopping criterion on g:  0.43947D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.50600D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.757D+00
+     Oren-Spedicato factor (not used) =  0.170D-02     diagonal: average value =  0.201D-02
+ n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  27, simul  35, f= 0.68247300D-01, h'(0)=-0.20762D-01
+ n1qn3: line search
+     nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.183D-01 -0.148D-01
+ n1qn3: stopping criterion on g:  0.21888D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.59771D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.170D+01
+     Oren-Spedicato factor (not used) =  0.290D-02     diagonal: average value =  0.351D-02
+ n1qn3: descent direction d: angle(-g,d) =  63.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  28, simul  36, f= 0.49926744D-01, h'(0)=-0.55493D-01
+ n1qn3: line search
+     nlis0       fpn=-0.555D-01 d2= 0.58D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.507D-01  0.260D+00
+     nlis0     0.413D+00 -0.132D-01  0.278D-02
+ n1qn3: stopping criterion on g:  0.14651D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14924D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.980D+00
+     Oren-Spedicato factor (not used) =  0.274D-02     diagonal: average value =  0.355D-02
+ n1qn3: descent direction d: angle(-g,d) =  84.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  29, simul  38, f= 0.36769048D-01, h'(0)=-0.91754D-02
+ n1qn3: line search
+     nlis0       fpn=-0.918D-02 d2= 0.87D-03  tmin= 0.86D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.813D-02 -0.718D-02
+ n1qn3: stopping criterion on g:  0.11306D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.29590D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.112D+01
+     Oren-Spedicato factor (not used) =  0.329D-02     diagonal: average value =  0.403D-02
+ n1qn3: descent direction d: angle(-g,d) =  85.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  30, simul  39, f= 0.28635908D-01, h'(0)=-0.25872D-01
+ n1qn3: line search
+     nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.174D-01 -0.109D-01
+ n1qn3: stopping criterion on g:  0.64295D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.38281D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.337D+01
+     Oren-Spedicato factor (not used) =  0.116D-01     diagonal: average value =  0.134D-01
+ n1qn3: descent direction d: angle(-g,d) =  84.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  31, simul  40, f= 0.11210356D-01, h'(0)=-0.94861D-02
+ n1qn3: line search
+     nlis0       fpn=-0.949D-02 d2= 0.41D-02  tmin= 0.39D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.648D-02 -0.412D-02
+ n1qn3: stopping criterion on g:  0.32260D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.56905D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.218D+00
+     Oren-Spedicato factor (not used) =  0.229D-02     diagonal: average value =  0.316D-02
+ n1qn3: descent direction d: angle(-g,d) =  29.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  32, simul  41, f= 0.47312700D-02, h'(0)=-0.12658D-01
+ n1qn3: line search
+     nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.236D-01  0.889D-01
+     nlis0     0.308D+00 -0.202D-02  0.129D-02
+ n1qn3: stopping criterion on g:  0.59635D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.92426D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.995D+00
+     Oren-Spedicato factor (not used) =  0.211D-02     diagonal: average value =  0.320D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  33, simul  43, f= 0.27115623D-02, h'(0)=-0.27046D-02
+ n1qn3: line search
+     nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.193D-02 -0.124D-02
+ n1qn3: stopping criterion on g:  0.26088D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.61216D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.107D+01
+     Oren-Spedicato factor (not used) =  0.240D-02     diagonal: average value =  0.346D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  34, simul  44, f= 0.78629663D-03, h'(0)=-0.10616D-02
+ n1qn3: line search
+     nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.680D-03 -0.342D-03
+ n1qn3: stopping criterion on g:  0.93212D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.93179D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.195D+01
+     Oren-Spedicato factor (not used) =  0.472D-02     diagonal: average value =  0.669D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  35, simul  45, f= 0.10596435D-03, h'(0)=-0.16467D-03
+ n1qn3: line search
+     nlis0       fpn=-0.165D-03 d2= 0.22D-03  tmin= 0.17D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.994D-04 -0.378D-04
+ n1qn3: stopping criterion on g:  0.13600D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43413D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.797D+00
+     Oren-Spedicato factor (not used) =  0.369D-02     diagonal: average value =  0.540D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  36, simul  46, f= 0.65780431D-05, h'(0)=-0.12837D-04
+ n1qn3: line search
+     nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.592D-05  0.986D-06
+ n1qn3: stopping criterion on g:  0.15301D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.39650D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.276D+03
+     Oren-Spedicato factor (not used) =  0.631D+00     diagonal: average value =  0.255D+01
+ n1qn3: descent direction d: angle(-g,d) =  77.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  37, simul  47, f= 0.65357985D-06, h'(0)=-0.24148D-05
+ n1qn3: line search
+     nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.168D-06  0.208D-05
+ n1qn3: stopping criterion on g:  0.13386D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53168D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.799D-03
+     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.159D-02
+ n1qn3: descent direction d: angle(-g,d) =  26.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  38, simul  48, f= 0.48511517D-06, h'(0)=-0.97004D-06
+ n1qn3: line search
+     nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.79D-11 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.485D-06 -0.182D-09
+ n1qn3: stopping criterion on g:  0.26983D-07
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.11254D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.866D+00
+     Oren-Spedicato factor (not used) =  0.999D-03     diagonal: average value =  0.138D-02
+ n1qn3: descent direction d: angle(-g,d) =  82.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  39, simul  49, f= 0.73872905D-12, h'(0)=-0.14408D-11
+ n1qn3: line search
+     nlis0       fpn=-0.144D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.739D-12 -0.116D-13
+ n1qn3: stopping criterion on g:  0.61177D-10
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53502D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.405D+02
+     Oren-Spedicato factor (not used) =  0.361D-01     diagonal: average value =  0.727D-01
+ n1qn3: descent direction d: angle(-g,d) =  63.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  40, simul  50, f= 0.20583977D-15, h'(0)=-0.98704D-16
+ n1qn3: line search
+     nlis0       fpn=-0.987D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.152D-15 -0.920D-21
+ n1qn3: stopping criterion on g:  0.90725D-13
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.84191D-02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.567D+01
+     Oren-Spedicato factor (not used) =  0.488D+00     diagonal: average value =  0.358D+00
+ n1qn3: descent direction d: angle(-g,d) =  78.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  41, simul  51, f= 0.53783398D-16, h'(0)=-0.44983D-24
+ n1qn3: line search
+     nlis0       fpn=-0.450D-24 d2= 0.11D-25  tmin= 0.22D-02 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D-21  0.288D-26
+ n1qn3: stopping criterion on g:  0.13520D-15
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.67363D-05
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.349D-02
+     Oren-Spedicato factor (not used) =  0.102D-02     diagonal: average value =  0.211D-02
+ n1qn3: descent direction d: angle(-g,d) =  18.5 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  42, simul  52, f= 0.53782996D-16, h'(0)=-0.22006D-26
+ n1qn3: line search
+     nlis0       fpn=-0.220D-26 d2= 0.54D-26  tmin= 0.34D-02 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.484D-21  0.145D-26
+     nlis0                                      0.100D+00  0.489D-22 -0.125D-26
+     nlis0                                      0.900D-01  0.440D-22  0.202D-27
+     nlis0                                      0.810D-01  0.391D-22 -0.202D-26
+     nlis0                                      0.729D-01  0.358D-22 -0.130D-26
+     nlis0                                      0.656D-01  0.326D-22 -0.132D-26
+     nlis0                                      0.590D-01  0.293D-22 -0.133D-26
+     nlis0                                      0.531D-01  0.261D-22 -0.208D-26
+     nlis0                                      0.478D-01  0.228D-22 -0.210D-26
+     nlis0                                      0.430D-01  0.212D-22 -0.635D-27
+     nlis0                                      0.387D-01  0.195D-22 -0.138D-26
+     nlis0                                      0.349D-01  0.163D-22 -0.140D-26
+     nlis0                                      0.314D-01  0.147D-22  0.645D-28
+     nlis0                                      0.282D-01  0.130D-22 -0.141D-26
+     nlis0                                      0.254D-01  0.130D-22 -0.141D-26
+     nlis0                                      0.229D-01  0.114D-22 -0.679D-27
+     nlis0                                      0.206D-01  0.977D-23 -0.216D-26
+     nlis0                                      0.185D-01  0.977D-23 -0.142D-26
+     nlis0                                      0.167D-01  0.814D-23 -0.694D-27
+     nlis0                                      0.150D-01  0.651D-23 -0.144D-26
+     nlis0                                      0.135D-01  0.651D-23 -0.217D-26
+     nlis0                                      0.675D-02  0.326D-23 -0.219D-26
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53782996D-16 -0.220D-26
+     nlis0                  0.67542586D-02    0.53782999D-16 -0.219D-26
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     74
+     realized relative precision on g:  0.14D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53782996D-16
+     norm of x =  0.31169576D-13
+optim: Optimization stops because too small variations for x.
+ n1qn3: entry point
+     dimension of the problem (n):     2
+     absolute precision on x (dxmin): 0.22D-15
+     expected decrease for f (df1): 0.10D+01
+     relative precision on g (epsg): 0.95D-18
+     maximal number of iterations (niter):   100
+     maximal number of simulations (nsim):   100
+     printing level (impres):   5
+     allocated memory (nrz) :     58
+     used memory :                58
+     number of updates :          10
+     f         =  0.24200000D+02
+     norm of g =  0.23286769D+03
+ n1qn3a: descent direction -g: precon =  0.369D-04
+ -------------------------------------------------------------------------------
+ n1qn3: iter   1, simul   1, f= 0.24200000D+02, h'(0)=-0.20000D+01
+ n1qn3: line search
+     nlis0       fpn=-0.200D+01 d2= 0.74D-04  tmin= 0.28D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.194D+01 -0.189D+01
+     nlis0     0.100D+02 -0.147D+02 -0.973D+00
+ n1qn3: stopping criterion on g:  0.48674D+00
+ n1qn3: matrix update:
+     Oren-Spedicato factor (not used) =  0.718D-03     diagonal: average value =  0.718D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   2, simul   3, f= 0.94705115D+01, h'(0)=-0.92378D+01
+ n1qn3: line search
+     nlis0       fpn=-0.924D+01 d2= 0.66D-02  tmin= 0.30D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.520D+01 -0.138D+01
+ n1qn3: stopping criterion on g:  0.73079D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.94908D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.118D+01
+     Oren-Spedicato factor (not used) =  0.846D-03     diagonal: average value =  0.846D-03
+ n1qn3: descent direction d: angle(-g,d) =   0.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   3, simul   4, f= 0.42678391D+01, h'(0)=-0.24478D+00
+ n1qn3: line search
+     nlis0       fpn=-0.245D+00 d2= 0.21D-03  tmin= 0.16D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.135D+00 -0.256D-01
+ n1qn3: stopping criterion on g:  0.10270D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.17647D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.111D+01
+     Oren-Spedicato factor (not used) =  0.935D-03     diagonal: average value =  0.942D-03
+ n1qn3: descent direction d: angle(-g,d) =   1.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   4, simul   5, f= 0.41332370D+01, h'(0)=-0.58072D-02
+ n1qn3: line search
+     nlis0       fpn=-0.581D-02 d2= 0.59D-05  tmin= 0.98D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.435D-02 -0.290D-02
+ n1qn3: stopping criterion on g:  0.76379D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.16885D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.969D+00
+     Oren-Spedicato factor (not used) =  0.952D-03     diagonal: average value =  0.915D-03
+ n1qn3: descent direction d: angle(-g,d) =  23.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   5, simul   6, f= 0.41288855D+01, h'(0)=-0.83281D-02
+ n1qn3: line search
+     nlis0       fpn=-0.833D-02 d2= 0.26D-04  tmin= 0.61D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.690D-02 -0.549D-02
+ n1qn3: stopping criterion on g:  0.11072D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.21032D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.985D+00
+     Oren-Spedicato factor (not used) =  0.954D-03     diagonal: average value =  0.102D-02
+ n1qn3: descent direction d: angle(-g,d) =  56.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   6, simul   7, f= 0.41219818D+01, h'(0)=-0.27767D-01
+ n1qn3: line search
+     nlis0       fpn=-0.278D-01 d2= 0.37D-03  tmin= 0.14D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.228D-01 -0.180D-01
+ n1qn3: stopping criterion on g:  0.23226D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.37768D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.113D+01
+     Oren-Spedicato factor (not used) =  0.941D-03     diagonal: average value =  0.127D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   7, simul   8, f= 0.40992137D+01, h'(0)=-0.82808D-01
+ n1qn3: line search
+     nlis0       fpn=-0.828D-01 d2= 0.40D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.713D-01 -0.624D-01
+ n1qn3: stopping criterion on g:  0.44894D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.32918D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.817D+00
+     Oren-Spedicato factor (not used) =  0.762D-03     diagonal: average value =  0.106D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   8, simul   9, f= 0.40279192D+01, h'(0)=-0.40499D+00
+ n1qn3: line search
+     nlis0       fpn=-0.405D+00 d2= 0.11D+00  tmin= 0.79D-15 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.531D+00 -0.721D+00
+     nlis0                                      0.100D+02  0.500D+03  0.222D+03
+     nlis0                                      0.398D+01  0.333D+01  0.774D+01
+     nlis0     0.249D+01 -0.140D+01  0.190D+00
+ n1qn3: stopping criterion on g:  0.60049D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.12764D+02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.287D+01
+     Oren-Spedicato factor (not used) =  0.248D-02     diagonal: average value =  0.292D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter   9, simul  13, f= 0.26255752D+01, h'(0)=-0.16053D+00
+ n1qn3: line search
+     nlis0       fpn=-0.161D+00 d2= 0.57D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.285D+00  0.571D+00
+     nlis0     0.140D+00 -0.107D-01  0.342D-02
+ n1qn3: stopping criterion on g:  0.48319D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41360D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.102D+01
+     Oren-Spedicato factor (not used) =  0.293D-02     diagonal: average value =  0.285D-02
+ n1qn3: descent direction d: angle(-g,d) =  76.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  10, simul  15, f= 0.26148282D+01, h'(0)=-0.38378D-01
+ n1qn3: line search
+     nlis0       fpn=-0.384D-01 d2= 0.21D-03  tmin= 0.21D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.376D-01 -0.369D-01
+     nlis0     0.100D+02 -0.318D+00 -0.257D-01
+ n1qn3: stopping criterion on g:  0.41045D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43358D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.193D+02
+     Oren-Spedicato factor (not used) =  0.403D-01     diagonal: average value =  0.645D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.7 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  11, simul  17, f= 0.22964498D+01, h'(0)=-0.62657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.627D+00 d2= 0.71D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.315D+00  0.212D+00
+ n1qn3: stopping criterion on g:  0.60708D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.18312D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.259D+00
+     Oren-Spedicato factor (not used) =  0.251D-01     diagonal: average value =  0.248D-01
+ n1qn3: descent direction d: angle(-g,d) =  15.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  12, simul  18, f= 0.19818830D+01, h'(0)=-0.70680D+00
+ n1qn3: line search
+     nlis0       fpn=-0.707D+00 d2= 0.27D-02  tmin= 0.52D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D+00 -0.117D+00
+ n1qn3: stopping criterion on g:  0.11240D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.19476D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.190D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.468D-02
+ n1qn3: descent direction d: angle(-g,d) =  33.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  13, simul  19, f= 0.15797116D+01, h'(0)=-0.49943D+00
+ n1qn3: line search
+     nlis0       fpn=-0.499D+00 d2= 0.52D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.225D+00  0.427D+00
+ n1qn3: stopping criterion on g:  0.43961D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43931D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.364D+01
+     Oren-Spedicato factor (not used) =  0.102D-01     diagonal: average value =  0.311D-01
+ n1qn3: descent direction d: angle(-g,d) =  56.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  14, simul  20, f= 0.13542803D+01, h'(0)=-0.33867D+00
+ n1qn3: line search
+     nlis0       fpn=-0.339D+00 d2= 0.36D-02  tmin= 0.47D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.151D+00  0.252D-01
+ n1qn3: stopping criterion on g:  0.12127D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.26394D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.759D+00
+     Oren-Spedicato factor (not used) =  0.522D-02     diagonal: average value =  0.235D-01
+ n1qn3: descent direction d: angle(-g,d) =  36.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  15, simul  21, f= 0.12033041D+01, h'(0)=-0.20678D+00
+ n1qn3: line search
+     nlis0       fpn=-0.207D+00 d2= 0.84D-02  tmin= 0.24D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.186D+00 -0.162D+00
+ n1qn3: stopping criterion on g:  0.11958D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.15231D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.493D+01
+     Oren-Spedicato factor (not used) =  0.996D-01     diagonal: average value =  0.118D+00
+ n1qn3: descent direction d: angle(-g,d) =  47.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  16, simul  22, f= 0.10169710D+01, h'(0)=-0.64958D+00
+ n1qn3: line search
+     nlis0       fpn=-0.650D+00 d2= 0.12D+00  tmin= 0.64D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.169D+01  0.738D+01
+     nlis0     0.374D+00 -0.132D+00  0.166D+00
+ n1qn3: stopping criterion on g:  0.29691D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14137D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.211D+00
+     Oren-Spedicato factor (not used) =  0.105D-01     diagonal: average value =  0.372D-01
+ n1qn3: descent direction d: angle(-g,d) =  53.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  17, simul  24, f= 0.88479939D+00, h'(0)=-0.18657D+00
+ n1qn3: line search
+     nlis0       fpn=-0.187D+00 d2= 0.20D-02  tmin= 0.62D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.149D+00 -0.115D+00
+ n1qn3: stopping criterion on g:  0.15621D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.34738D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.123D+01
+     Oren-Spedicato factor (not used) =  0.634D-02     diagonal: average value =  0.386D-01
+ n1qn3: descent direction d: angle(-g,d) =  62.6 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  18, simul  25, f= 0.73594988D+00, h'(0)=-0.31085D+00
+ n1qn3: line search
+     nlis0       fpn=-0.311D+00 d2= 0.34D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.102D+00  0.268D+00
+ n1qn3: stopping criterion on g:  0.42709D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.41295D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.285D+00
+     Oren-Spedicato factor (not used) =  0.108D-01     diagonal: average value =  0.841D-02
+ n1qn3: descent direction d: angle(-g,d) =  17.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  19, simul  26, f= 0.63444380D+00, h'(0)=-0.42075D+00
+ n1qn3: line search
+     nlis0       fpn=-0.421D+00 d2= 0.20D-02  tmin= 0.51D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.181D+00  0.576D-01
+ n1qn3: stopping criterion on g:  0.94248D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23849D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.526D+00
+     Oren-Spedicato factor (not used) =  0.345D-02     diagonal: average value =  0.461D-02
+ n1qn3: descent direction d: angle(-g,d) =  57.2 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  20, simul  27, f= 0.45317909D+00, h'(0)=-0.12594D+00
+ n1qn3: line search
+     nlis0       fpn=-0.126D+00 d2= 0.11D-01  tmin= 0.25D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.110D+00 -0.725D-01
+ n1qn3: stopping criterion on g:  0.67714D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.23948D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.105D+01
+     Oren-Spedicato factor (not used) =  0.489D-02     diagonal: average value =  0.547D-02
+ n1qn3: descent direction d: angle(-g,d) =  59.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  21, simul  28, f= 0.34356268D+00, h'(0)=-0.22838D+00
+ n1qn3: line search
+     nlis0       fpn=-0.228D+00 d2= 0.83D-01  tmin= 0.95D-15 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.601D+00  0.234D+01
+     nlis0     0.321D+00 -0.373D-01  0.472D-01
+ n1qn3: stopping criterion on g:  0.24287D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.87291D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.807D+00
+     Oren-Spedicato factor (not used) =  0.458D-02     diagonal: average value =  0.431D-02
+ n1qn3: descent direction d: angle(-g,d) =  73.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  22, simul  30, f= 0.30624970D+00, h'(0)=-0.55446D-01
+ n1qn3: line search
+     nlis0       fpn=-0.554D-01 d2= 0.12D-02  tmin= 0.80D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.477D-01 -0.406D-01
+ n1qn3: stopping criterion on g:  0.15832D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.36912D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.894D+00
+     Oren-Spedicato factor (not used) =  0.380D-02     diagonal: average value =  0.392D-02
+ n1qn3: descent direction d: angle(-g,d) =  77.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  23, simul  31, f= 0.25851789D+00, h'(0)=-0.14344D+00
+ n1qn3: line search
+     nlis0       fpn=-0.143D+00 d2= 0.30D-01  tmin= 0.17D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.878D-01 -0.226D-01
+ n1qn3: stopping criterion on g:  0.23266D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.51063D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.865D+01
+     Oren-Spedicato factor (not used) =  0.318D-01     diagonal: average value =  0.403D-01
+ n1qn3: descent direction d: angle(-g,d) =  75.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  24, simul  32, f= 0.17073487D+00, h'(0)=-0.12793D+00
+ n1qn3: line search
+     nlis0       fpn=-0.128D+00 d2= 0.84D-02  tmin= 0.27D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.619D-01 -0.487D-02
+ n1qn3: stopping criterion on g:  0.10083D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.52582D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.572D-01
+     Oren-Spedicato factor (not used) =  0.208D-02     diagonal: average value =  0.227D-02
+ n1qn3: descent direction d: angle(-g,d) =  78.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  25, simul  33, f= 0.10886883D+00, h'(0)=-0.10034D+00
+ n1qn3: line search
+     nlis0       fpn=-0.100D+00 d2= 0.49D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.155D-01  0.179D+00
+ n1qn3: stopping criterion on g:  0.37918D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.24062D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.120D+01
+     Oren-Spedicato factor (not used) =  0.224D-02     diagonal: average value =  0.267D-02
+ n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  26, simul  34, f= 0.93394389D-01, h'(0)=-0.12026D+00
+ n1qn3: line search
+     nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.251D-01  0.437D-01
+ n1qn3: stopping criterion on g:  0.43947D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.50600D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.757D+00
+     Oren-Spedicato factor (not used) =  0.170D-02     diagonal: average value =  0.201D-02
+ n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  27, simul  35, f= 0.68247300D-01, h'(0)=-0.20762D-01
+ n1qn3: line search
+     nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.183D-01 -0.148D-01
+ n1qn3: stopping criterion on g:  0.21888D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.59771D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.170D+01
+     Oren-Spedicato factor (not used) =  0.290D-02     diagonal: average value =  0.351D-02
+ n1qn3: descent direction d: angle(-g,d) =  63.1 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  28, simul  36, f= 0.49926744D-01, h'(0)=-0.55493D-01
+ n1qn3: line search
+     nlis0       fpn=-0.555D-01 d2= 0.58D-01  tmin= 0.11D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.507D-01  0.260D+00
+     nlis0     0.413D+00 -0.132D-01  0.278D-02
+ n1qn3: stopping criterion on g:  0.14651D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.14924D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.980D+00
+     Oren-Spedicato factor (not used) =  0.274D-02     diagonal: average value =  0.355D-02
+ n1qn3: descent direction d: angle(-g,d) =  84.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  29, simul  38, f= 0.36769048D-01, h'(0)=-0.91754D-02
+ n1qn3: line search
+     nlis0       fpn=-0.918D-02 d2= 0.87D-03  tmin= 0.86D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.813D-02 -0.718D-02
+ n1qn3: stopping criterion on g:  0.11306D-01
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.29590D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.112D+01
+     Oren-Spedicato factor (not used) =  0.329D-02     diagonal: average value =  0.403D-02
+ n1qn3: descent direction d: angle(-g,d) =  85.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  30, simul  39, f= 0.28635908D-01, h'(0)=-0.25872D-01
+ n1qn3: line search
+     nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.174D-01 -0.109D-01
+ n1qn3: stopping criterion on g:  0.64295D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.38281D+01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.337D+01
+     Oren-Spedicato factor (not used) =  0.116D-01     diagonal: average value =  0.134D-01
+ n1qn3: descent direction d: angle(-g,d) =  84.3 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  31, simul  40, f= 0.11210356D-01, h'(0)=-0.94861D-02
+ n1qn3: line search
+     nlis0       fpn=-0.949D-02 d2= 0.41D-02  tmin= 0.39D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.648D-02 -0.412D-02
+ n1qn3: stopping criterion on g:  0.32260D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.56905D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.218D+00
+     Oren-Spedicato factor (not used) =  0.229D-02     diagonal: average value =  0.316D-02
+ n1qn3: descent direction d: angle(-g,d) =  29.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  32, simul  41, f= 0.47312700D-02, h'(0)=-0.12658D-01
+ n1qn3: line search
+     nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.236D-01  0.889D-01
+     nlis0     0.308D+00 -0.202D-02  0.129D-02
+ n1qn3: stopping criterion on g:  0.59635D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.92426D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.995D+00
+     Oren-Spedicato factor (not used) =  0.211D-02     diagonal: average value =  0.320D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  33, simul  43, f= 0.27115623D-02, h'(0)=-0.27046D-02
+ n1qn3: line search
+     nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.193D-02 -0.124D-02
+ n1qn3: stopping criterion on g:  0.26088D-02
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.61216D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.107D+01
+     Oren-Spedicato factor (not used) =  0.240D-02     diagonal: average value =  0.346D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  34, simul  44, f= 0.78629663D-03, h'(0)=-0.10616D-02
+ n1qn3: line search
+     nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.680D-03 -0.342D-03
+ n1qn3: stopping criterion on g:  0.93212D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.93179D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.195D+01
+     Oren-Spedicato factor (not used) =  0.472D-02     diagonal: average value =  0.669D-02
+ n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  35, simul  45, f= 0.10596435D-03, h'(0)=-0.16467D-03
+ n1qn3: line search
+     nlis0       fpn=-0.165D-03 d2= 0.22D-03  tmin= 0.17D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.994D-04 -0.378D-04
+ n1qn3: stopping criterion on g:  0.13600D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.43413D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.797D+00
+     Oren-Spedicato factor (not used) =  0.369D-02     diagonal: average value =  0.540D-02
+ n1qn3: descent direction d: angle(-g,d) =  86.0 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  36, simul  46, f= 0.65780431D-05, h'(0)=-0.12837D-04
+ n1qn3: line search
+     nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.592D-05  0.986D-06
+ n1qn3: stopping criterion on g:  0.15301D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.39650D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.276D+03
+     Oren-Spedicato factor (not used) =  0.631D+00     diagonal: average value =  0.255D+01
+ n1qn3: descent direction d: angle(-g,d) =  77.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  37, simul  47, f= 0.65357985D-06, h'(0)=-0.24148D-05
+ n1qn3: line search
+     nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.168D-06  0.208D-05
+ n1qn3: stopping criterion on g:  0.13386D-03
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53168D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.799D-03
+     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.159D-02
+ n1qn3: descent direction d: angle(-g,d) =  26.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  38, simul  48, f= 0.48511517D-06, h'(0)=-0.97004D-06
+ n1qn3: line search
+     nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.79D-11 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.485D-06 -0.182D-09
+ n1qn3: stopping criterion on g:  0.26983D-07
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.11254D+00
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.866D+00
+     Oren-Spedicato factor (not used) =  0.999D-03     diagonal: average value =  0.138D-02
+ n1qn3: descent direction d: angle(-g,d) =  82.9 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  39, simul  49, f= 0.73872905D-12, h'(0)=-0.14408D-11
+ n1qn3: line search
+     nlis0       fpn=-0.144D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.739D-12 -0.116D-13
+ n1qn3: stopping criterion on g:  0.61177D-10
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.53502D-01
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.405D+02
+     Oren-Spedicato factor (not used) =  0.361D-01     diagonal: average value =  0.727D-01
+ n1qn3: descent direction d: angle(-g,d) =  63.8 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  40, simul  50, f= 0.20583977D-15, h'(0)=-0.98704D-16
+ n1qn3: line search
+     nlis0       fpn=-0.987D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.152D-15 -0.920D-21
+ n1qn3: stopping criterion on g:  0.90725D-13
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.84191D-02
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.567D+01
+     Oren-Spedicato factor (not used) =  0.488D+00     diagonal: average value =  0.358D+00
+ n1qn3: descent direction d: angle(-g,d) =  78.4 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  41, simul  51, f= 0.53783398D-16, h'(0)=-0.44983D-24
+ n1qn3: line search
+     nlis0       fpn=-0.450D-24 d2= 0.11D-25  tmin= 0.22D-02 tmax= 0.10D+21
+     nlis0     0.100D+01 -0.402D-21  0.288D-26
+ n1qn3: stopping criterion on g:  0.13520D-15
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.67363D-05
+ n1qn3: matrix update:
+     fitting the ellipsoid: factor  0.349D-02
+     Oren-Spedicato factor (not used) =  0.102D-02     diagonal: average value =  0.211D-02
+ n1qn3: descent direction d: angle(-g,d) =  18.5 degrees
+ -------------------------------------------------------------------------------
+ n1qn3: iter  42, simul  52, f= 0.53782996D-16, h'(0)=-0.22006D-26
+ n1qn3: line search
+     nlis0       fpn=-0.220D-26 d2= 0.54D-26  tmin= 0.34D-02 tmax= 0.10D+21
+     nlis0                                      0.100D+01  0.484D-21  0.145D-26
+     nlis0                                      0.100D+00  0.489D-22 -0.125D-26
+     nlis0                                      0.900D-01  0.440D-22  0.202D-27
+     nlis0                                      0.810D-01  0.391D-22 -0.202D-26
+     nlis0                                      0.729D-01  0.358D-22 -0.130D-26
+     nlis0                                      0.656D-01  0.326D-22 -0.132D-26
+     nlis0                                      0.590D-01  0.293D-22 -0.133D-26
+     nlis0                                      0.531D-01  0.261D-22 -0.208D-26
+     nlis0                                      0.478D-01  0.228D-22 -0.210D-26
+     nlis0                                      0.430D-01  0.212D-22 -0.635D-27
+     nlis0                                      0.387D-01  0.195D-22 -0.138D-26
+     nlis0                                      0.349D-01  0.163D-22 -0.140D-26
+     nlis0                                      0.314D-01  0.147D-22  0.645D-28
+     nlis0                                      0.282D-01  0.130D-22 -0.141D-26
+     nlis0                                      0.254D-01  0.130D-22 -0.141D-26
+     nlis0                                      0.229D-01  0.114D-22 -0.679D-27
+     nlis0                                      0.206D-01  0.977D-23 -0.216D-26
+     nlis0                                      0.185D-01  0.977D-23 -0.142D-26
+     nlis0                                      0.167D-01  0.814D-23 -0.694D-27
+     nlis0                                      0.150D-01  0.651D-23 -0.144D-26
+     nlis0                                      0.135D-01  0.651D-23 -0.217D-26
+     nlis0                                      0.675D-02  0.326D-23 -0.219D-26
+     nlis0   fin sur tmin        pas            fonctions     derivees
+     nlis0                  0.00000000D+00    0.53782996D-16 -0.220D-26
+     nlis0                  0.67542586D-02    0.53782999D-16 -0.219D-26
+ -------------------------------------------------------------------------------
+ n1qn3: output mode is  6
+     number of iterations:   42
+     number of simulations:     74
+     realized relative precision on g:  0.14D-15
+     norm of x =  0.14142135D+01
+     f         =  0.53782996D-16
+     norm of x =  0.31169576D-13
+optim: Optimization stops because too small variations for x.

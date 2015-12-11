@@ -30,9 +30,9 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32s(scicos_block *block, int flag)
         int mu1 = GetInPortRows(block, 1);
         int nu1 = GetInPortCols(block, 1);
         int nu2 = GetInPortCols(block, 2);
-        unsigned long *u1 = Getuint32InPortPtrs(block, 1);
-        unsigned long *u2 = Getuint32InPortPtrs(block, 2);
-        unsigned long *y = Getuint32OutPortPtrs(block, 1);
+        SCSUINT32_COP *u1 = Getuint32InPortPtrs(block, 1);
+        SCSUINT32_COP *u2 = Getuint32InPortPtrs(block, 2);
+        SCSUINT32_COP *y = Getuint32OutPortPtrs(block, 1);
 
         double k = pow(2, 32);
 
@@ -55,7 +55,7 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32s(scicos_block *block, int flag)
                 }
                 if (D > (k - 1))
                 {
-                    y[jl] = (unsigned long)(k - 1);
+                    y[jl] = (SCSUINT32_COP)(k - 1);
                 }
                 else if (D < 0)
                 {
@@ -63,7 +63,7 @@ SCICOS_BLOCKS_IMPEXP void matmul_ui32s(scicos_block *block, int flag)
                 }
                 else
                 {
-                    y[jl] = (unsigned long)(D);
+                    y[jl] = (SCSUINT32_COP)(D);
                 }
             }
         }

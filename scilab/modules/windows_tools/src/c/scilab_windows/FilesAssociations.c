@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -22,10 +22,10 @@
 #include <shlwapi.h>
 #include "version.h"
 #include "FilesAssociations.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "FindScilab.h"
 #include "wmcopydata.h"
-#include "strdup_windows.h"
+#include "os_string.h"
 #include "MutexClosingScilab.h"
 #include "with_module.h"
 #include "FileExist.h"
@@ -152,7 +152,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
             {
                 if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                 {
-                    if (with_module("scinotes"))
+                    if (with_module(L"scinotes"))
                     {
                         wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
                     }
@@ -166,7 +166,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                 {
                     char *ScilabDestination = NULL;
 
-                    if (with_module("scinotes"))
+                    if (with_module(L"scinotes"))
                     {
                         wsprintf(Cmd, MSG_SCIMSG6_EDITOR, FinalFileName);
                     }
@@ -185,7 +185,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                     }
                     else
                     {
-                        if (with_module("scinotes"))
+                        if (with_module(L"scinotes"))
                         {
                             wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
                         }
@@ -213,7 +213,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                         ExtensionFileIntoLowerCase(FinalFileName);
                         if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                         {
-                            if (with_module("xcos"))
+                            if (with_module(L"xcos"))
                             {
                                 wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
                             }
@@ -227,7 +227,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                         {
                             char *ScilabDestination = NULL;
 
-                            if (with_module("xcos"))
+                            if (with_module(L"xcos"))
                             {
                                 wsprintf(Cmd, MSG_SCIMSG3_XCOS, FinalFileName);
                             }
@@ -246,7 +246,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                             }
                             else
                             {
-                                if (with_module("xcos"))
+                                if (with_module(L"xcos"))
                                 {
                                     wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
                                 }
@@ -285,7 +285,7 @@ static void ExtensionFileIntoLowerCase(char *fichier)
     char *lastdot = NULL;
     char *ext = NULL;
 
-    tmpfile = strdup(fichier);
+    tmpfile = os_strdup(fichier);
     buffer = strtok(tmpfile, ".");
     while (buffer = strtok(NULL, "."))
     {
@@ -302,7 +302,8 @@ static void ExtensionFileIntoLowerCase(char *fichier)
 static void ReplaceSlash(char *pathout, char *pathin)
 {
     int i = 0;
-    for (i = 0; i < (int)strlen(pathin); i++)
+    int len_pathin = (int)strlen(pathin);
+    for (i = 0; i < len_pathin; i++)
     {
         if (pathin[i] == '\\')
         {

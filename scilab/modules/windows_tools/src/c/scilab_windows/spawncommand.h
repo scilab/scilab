@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -37,7 +37,7 @@ pipeinfo SCILAB_WINDOWS_IMPEXP pipeSpawnErr;
 * @param[in] DetachProcess (if we want detach to scilab process)
 * @return 0
 */
-SCILAB_WINDOWS_IMPEXP int spawncommand(char *command, BOOL DetachProcess);
+SCILAB_WINDOWS_IMPEXP int spawncommand(wchar_t *command, BOOL DetachProcess);
 
 /**
 * ReadFromPipe (in or out)
@@ -51,7 +51,7 @@ SCILAB_WINDOWS_IMPEXP DWORD WINAPI ReadFromPipe (LPVOID args);
 * @param[in] command
 * @return TRUE or FALSE
 */
-SCILAB_WINDOWS_IMPEXP BOOL DetectDetachProcessInCommandLine(char *command);
+SCILAB_WINDOWS_IMPEXP BOOL DetectDetachProcessInCommandLine(wchar_t *command);
 
 /**
 * CreateOuput
@@ -74,6 +74,13 @@ SCILAB_WINDOWS_IMPEXP int ClosePipeInfo (pipeinfo pipe);
 * @param[out] exit code returned by cmd
 */
 SCILAB_WINDOWS_IMPEXP int CallWindowsShell(char *command);
+
+/**
+* Call cmd.exe windows shell
+* @param[in] command to execute
+* @param[out] exit code returned by cmd
+*/
+SCILAB_WINDOWS_IMPEXP int CallWindowsShellW(wchar_t* _pstCommand);
 
 #endif /* __SPAWNCOMMAND_H__ */
 /*--------------------------------------------------------------------------*/

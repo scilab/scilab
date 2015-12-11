@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -88,6 +88,14 @@ public :
         return decomposer;
     }
 
+    static void destroy()
+    {
+        if (decomposer)
+        {
+            delete decomposer;
+            decomposer = NULL;
+        }
+    }
     /**
      * Fills the given buffer with vertex data from the given object.
      * @param[in] the id of the given object.
@@ -99,7 +107,7 @@ public :
      * @param[in] the conversion translation factor to apply to data.
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      */
-    static void fillVertices(char* id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
+    static void fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask);
 
     /**
      * Fills the given buffer with color data from the given object.
@@ -108,7 +116,7 @@ public :
      * @param[in] the buffer length in number of elements.
      * @param[in] the number of components taken by one element in the buffer (3 or 4).
      */
-    static void fillColors(char* id, float* buffer, int bufferLength, int elementsSize);
+    static void fillColors(int id, float* buffer, int bufferLength, int elementsSize);
 
     /**
      * Fills the given buffer with index data from the given object.
@@ -118,7 +126,7 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillIndices(char* id, int* buffer, int bufferLength, int logMask);
+    static int fillIndices(int id, int* buffer, int bufferLength, int logMask);
 
     /**
      * Returns the number of wireframe indices for the given object.
@@ -128,7 +136,7 @@ public :
      * @param[in] the given object id.
      * @return the object's number of indices.
      */
-    static int getWireIndicesSize(char* id);
+    static int getWireIndicesSize(int id);
 
     /**
      * Fills the given buffer with wireframe indices data of the given object.
@@ -140,7 +148,7 @@ public :
      * @param[in] the bit mask specifying whether logarithmic coordinates are used.
      * @return the number of indices actually written.
      */
-    static int fillWireIndices(char* id, int* buffer, int bufferLength, int logMask);
+    static int fillWireIndices(int id, int* buffer, int bufferLength, int logMask);
 };
 
 #endif

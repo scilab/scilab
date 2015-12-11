@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -43,7 +43,6 @@ import javax.swing.event.CaretListener;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-import javax.swing.text.DefaultCaret;
 import javax.swing.text.Element;
 import javax.swing.text.PlainView;
 import javax.swing.text.StyledEditorKit;
@@ -189,6 +188,15 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
     }
 
     /**
+     * Interrupt the 'await input commant' queue. This will throw an {@link InterruptedException} back to the Scilab engine.
+     */
+    final public void interrupt() {
+        if (concurrentThread != null) {
+            concurrentThread.interrupt();
+        }
+    }
+
+    /**
      * Sets the command buffer after a user input in input command view
      * @param command the string to set to the buffer
      * @param displayFlag boolean indicating if the command has to be displayed
@@ -250,7 +258,7 @@ public class SciInputCommandView extends ConsoleTextPane implements InputCommand
 
                 if (e.getKeyLocation() == KeyEvent.KEY_LOCATION_NUMPAD
                         && e.getKeyCode() == KeyEvent.VK_DELETE
-                && e.getKeyChar() != KeyEvent.VK_DELETE) {
+                        && e.getKeyChar() != KeyEvent.VK_DELETE) {
                     // Fix for bug 7238
                     e.setKeyCode(KeyEvent.VK_DECIMAL);
                 }

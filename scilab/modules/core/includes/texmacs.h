@@ -7,12 +7,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __TEXMACS_H__
 #define __TEXMACS_H__
 
+#include "machine.h" /* C2F */
 
 void settexmacs(void);
 int  C2F(intexmacs)(void);

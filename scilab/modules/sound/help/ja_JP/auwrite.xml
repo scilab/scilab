@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab
+    *
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="auwrite">
+    <refnamediv>
+        <refname>auwrite</refname>
+        <refpurpose>.auサウンドファイルを書き込む</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>auwrite(y,aufile)
+            auwrite(y,Fs,aufile)
+            auwrite(y,Fs,bits,aufile)
+            auwrite(y,Fs,bits,method,aufile)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>実数ベクトルまたは行列,エントリは[-1,1]の範囲.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>aufile</term>
+                <listitem>
+                    <para>文字列(拡張子が指定されない場合,拡張子.auが追加されます)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Fs</term>
+                <listitem>
+                    <para>整数, 周波数サンプリング(単位:Hz).</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>bits</term>
+                <listitem>
+                    <para>整数, エンコーディングのビット数.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>method</term>
+                <listitem>
+                    <para>
+                        文字列, <literal>'mu'</literal> (デフォルト) または
+                        <literal>'linear'</literal>, エンコーディング手法.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            <literal>.au</literal> サウンドファイルを
+            保存するためのユーティリティ関数.
+            <literal>auwrite(y,aufile)</literal> は,
+            文字列aufileで指定されたサウンドファイルを書き込みます.
+            データは列毎に1チャネルで整列している必要があります.
+            大きさが範囲[-1,+1]の外側にある場合,無視されます.
+            サポートされる複数チャネルデータは,
+            8-bit mu-law, および8, 16, 32, 64 ビット線形形式です.
+        </para>
+        <para>
+            <literal>auwrite(y,Fs,aufile)</literal> は,
+            データのサンプル・レート<literal>Fs</literal>(単位:Hz)を
+            指定します.
+        </para>
+        <para>
+            <literal>auwrite(y,Fs,bits,aufile)</literal> は,
+            エンコーダのビット数を選択します.
+            指定可能な設定は[8,16,32,64]ビットです.
+            <literal>auwrite(y,Fs,bits,method,aufile)</literal> により,
+            エンコーディング手法を選択でき,
+            'mu' または 'linear'のどちらかを指定します.
+            'mu'を選択する場合,ビット数は 8 とする必要があることに
+            注意してください.デフォルトの手法は 8ビット 
+            mu-lawエンコーディングです.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+A=matrix(1:6,2,3);
+auwrite(A/6,22050,64,'linear',TMPDIR+'/foo.au');
+B=auread(TMPDIR+'/foo.au');
+max(abs(A- round(B*6)))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="auread">auread</link>
+            </member>
+            <member>
+                <link linkend="wavread">wavread</link>
+            </member>
+            <member>
+                <link linkend="savewave">savewave</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+            <member>
+                <link linkend="mapsound">mapsound</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

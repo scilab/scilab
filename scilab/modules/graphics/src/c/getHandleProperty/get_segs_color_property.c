@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,30 +25,34 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_segs_color_property(void* _pvCtx, char* pobjUID)
+void* get_segs_color_property(void* _pvCtx, int iObjUID)
 {
     int* segsColors = NULL;
     int iNbSegs = 0;
     int *piNbSegs = &iNbSegs;
-    int status = -1;
 
-    getGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, jni_int_vector, (void **)&segsColors);
+    getGraphicObjectProperty(iObjUID, __GO_SEGS_COLORS__, jni_int_vector, (void **)&segsColors);
 
     if (segsColors == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "segs_color");
-        return -1;
+        return NULL;
     }
 
     /* convert from int array to double one. */
-    getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
-    status = sciReturnRowIntVector(_pvCtx, segsColors, iNbSegs);
-    return status;
+    getGraphicObjectProperty(iObjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
+    if (piNbSegs == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "segs_color");
+        return NULL;
+    }
+
+    return sciReturnRowIntVector(segsColors, iNbSegs);
 }
 /*------------------------------------------------------------------------*/

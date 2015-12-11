@@ -2,14 +2,15 @@
 // Copyright (C) INRIA - Serge STEER
 // Copyright (C) 1999 - Lucien.Povy@eudil.fr (to get a good table)
 // Copyright (C) 2013 - Charlotte HECQUET (new option)
+// Copyright (C) 2013 - A. Khorshidi (to define a new optional output argument)
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
-// you should have received as part of this distribution.  The terms
+// you should have received as par of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function r=routh_t(h,k,normalized)
+function [r,num]=routh_t(h,k,normalized)
     //r=routh_t(h,k) computes routh table of denominator of the
     //system described by transfer matrix SISO continue h with the
     //feedback by the gain k
@@ -74,20 +75,28 @@ function r=routh_t(h,k,normalized)
     if rhs==2 then
 
         for i=3:nd,
-            if flag==0 then
+            if flag==0 then // for a non-normalized table
                 r(i,1:ncol-1)=[r(i-1,1),-r(i-2,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
-            else
+            else // for a normalized table
+                if r(i-1,1)==0 then
+                    if type(k)<>1 then
+                        error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"routh_t",2));
+                    end
+                    r(i-1,1)=poly(0,"eps")
+                end
                 r(i,1:ncol-1)=[1.,-r(i-2,1)/r(i-1,1)]*[r(i-2,2:ncol);r(i-1,2:ncol)]
             end
         end;
     else
         for i=3:nd,
+            // Special Case: Row of zeros detected:
             if and(r(i-1,:)==0) then
                 naux=nd-i+2 //order of previous polynomial
                 exponents=naux:-2:0
                 ncoeff=size(exponents,"*")
                 r(i-1,1:ncoeff)=r(i-2,1:ncoeff).*exponents //derivative of previous polynomial
             end
+            // Special Case: First element of the 2nd row or upper is zero and is replaced with %eps:
             if r(i-1,1)==0 then
                 if rhs==1 then
                     if typeof(r)=="rational" then
@@ -103,4 +112,25 @@ function r=routh_t(h,k,normalized)
 
         end;
     end;
+
+    if lhs==2  then
+        if rhs==2 & type(k)<>1 then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: A scalar expected.\n"),"routh_t",2));
+        end
+        nrow=size(r,"r")
+        num = 0;
+        c = 0;
+        for i = 1:nrow
+            if horner(r(i,1),%eps) >= 0 then
+                if c == 1 then
+                    num= num+1;
+                    c = 0;
+                end
+            elseif c == 0 then
+                num= num+1;
+                c = 1;
+            end;
+        end;
+    end
+
 endfunction

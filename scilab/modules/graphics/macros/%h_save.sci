@@ -6,11 +6,11 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function %h_save(h,fd)
-    version=[5 4 0 1]
+    version=[5 5 2 0]
     mput(version,"uc",fd)
 
     // There are issues when saving characters with 'c' format
@@ -61,7 +61,6 @@ function save_graphichandle(h,fd)
 
         mput(size(h.color_map,"*"),"il",fd); // color_map
         mput(h.color_map,"dl",fd) ;
-        mput(bool2s(h.pixmap=="on"),characterFormat,fd) ; // pix_map
         mput(length(h.pixel_drawing_mode),characterFormat,fd); // pixel_drawing_mode
         mput(ascii(h.pixel_drawing_mode),characterFormat,fd);
         mput(length(h.anti_aliasing),characterFormat,fd); // anti_aliasing
@@ -217,7 +216,8 @@ function save_graphichandle(h,fd)
         mput(bool2s(h.cube_scaling=="on"),characterFormat,fd) // cube_scaling
         mput(h.rotation_angles,"dl",fd) // rotation_angles
         mput(ascii(h.log_flags),characterFormat,fd) // log_flags
-        mput(bool2s(h.tight_limits=="on"),characterFormat,fd) // tight_limits
+        mput(size(h.tight_limits,"*"),characterFormat,fd); // tight_limits
+        mput(bool2s(h.tight_limits=="on"),characterFormat,fd);
         mput(size(h.data_bounds,"*"),characterFormat,fd); // data_bounds
         mput(h.data_bounds,"dl",fd);
         mput(size(h.zoom_box,"*"),characterFormat,fd);  // zoom_box
@@ -284,6 +284,8 @@ function save_graphichandle(h,fd)
         mput(h.background,"il",fd) // background
         mput(h.mark_foreground,"il",fd) // mark_foreground
         mput(h.mark_background,"il",fd) // mark_background
+        mput(h.mark_offset,"il",fd) // mark_offset
+        mput(h.mark_stride,"il",fd) // mark_stride
 
         mput(size(h.x_shift,"*"),"sl",fd); mput(h.x_shift,"dl",fd); // x_shift
         mput(size(h.y_shift,"*"),"sl",fd); mput(h.y_shift,"dl",fd); // y_shift
@@ -296,6 +298,34 @@ function save_graphichandle(h,fd)
             mput(h.clip_box,"dl",fd) // clip_box
         end
         user_data=h.user_data;save(fd,user_data) // user_data
+
+    case "Datatip"
+        mput(length(h.type),characterFormat,fd); // type
+        mput(ascii(h.type),characterFormat,fd);
+        mput(bool2s(h.visible=="on"),characterFormat,fd) // visible
+        mput(size(h.data),characterFormat,fd); // data
+        mput(h.data,"dl",fd);
+        mput(length(h.box_mode),characterFormat,fd); // box_mode
+        mput(ascii(h.box_mode),characterFormat,fd);
+        mput(length(h.label_mode),characterFormat,fd); // label_mode
+        mput(ascii(h.label_mode),characterFormat,fd);
+        mput(h.orientation,characterFormat,fd) // orientation
+        mput(bool2s(h.z_component=="on"),characterFormat,fd) // z_component
+        mput(bool2s(h.auto_orientation=="on"),characterFormat,fd) // auto_orientation
+        mput(bool2s(h.interp_mode=="on"),characterFormat,fd) // interp_mode
+        mput(length(ascii(h.display_function)),stringFormat,fd); // display_function
+        mput(h.font_foreground, "il", fd) ; // font_foreground
+        mput(h.foreground,"il",fd) // foreground
+        mput(h.background, "il", fd) ; // background
+        mput(bool2s(h.mark_mode=="on"),characterFormat,fd) // mark_mode
+        mput(h.mark_style,characterFormat,fd) // mark_style
+        mput(ascii(part(h.mark_size_unit,1)),characterFormat,fd) // mark_size_unit
+        mput(h.mark_size,characterFormat,fd) // mark_size
+        mput(h.mark_foreground,"il",fd) // mark_foreground
+        mput(h.mark_background,"il",fd) // mark_background
+        user_data=h.user_data;save(fd,user_data) // user_data
+        mput(length(h.tag),"c",fd); // tag
+        mput(ascii(h.tag),"c",fd);
 
     case "Plot3d";
         mput(length(h.type),characterFormat,fd);mput(ascii(h.type),characterFormat,fd); // type
@@ -611,6 +641,7 @@ function save_graphichandle(h,fd)
         save_text_vector(h.tics_labels,fd) // tics_labels
         mput(h.labels_font_size,"il",fd) // label_font_size
         mput(h.labels_font_color,"il",fd) // labels_font_color
+        mput(h.labels_font_style,"il",fd) // labels_font_style
         mput(bool2s(h.fractional_font=="on"),characterFormat,fd) // fractional_font
         mput(length(h.clip_state),characterFormat,fd); // clip_state
         mput(ascii(h.clip_state),characterFormat,fd);

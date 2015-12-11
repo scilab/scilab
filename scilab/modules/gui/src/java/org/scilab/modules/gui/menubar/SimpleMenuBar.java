@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,18 +25,6 @@ public interface SimpleMenuBar {
      * @param newMenu the Menu to add to the MenuBar
      */
     void add(Menu newMenu);
-
-    /**
-     * Set the element id for this menubar
-     * @param id the id of the corresponding menubar object
-     */
-    void setElementId(int id);
-
-    /**
-     * Get the element id for this menubar
-     * @return id the id of the corresponding menubar object
-     */
-    int getElementId();
 
     /**
      * Enable/Disable a menu giving its name
@@ -58,4 +46,10 @@ public interface SimpleMenuBar {
      * @param menuName the name of the menu
      */
     void removeMenu(String menuName);
+    
+    /**
+     * Set the visibility of the Toolbar
+     * @param newVisibleState true to set the toolbar visible
+     */
+    void setVisible(boolean newVisibleState);
 }

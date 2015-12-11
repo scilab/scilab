@@ -42,7 +42,7 @@
             retains only the path to libraries and not to individual function sources.
         </para>
         <para>
-            Correspondance between the function name foo and function filename foo.sci
+            Correspondence between the function name foo and function filename foo.sci
             is tacitly assumed.
         </para>
     </refsection>

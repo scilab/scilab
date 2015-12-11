@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ===========================================================================
 
+// <-- CLI SHELL MODE -->
 
 doc = xmlDocument("TMPDIR/foo.xml");
 root = xmlElement(doc, "root");

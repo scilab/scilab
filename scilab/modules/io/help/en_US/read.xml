@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="read">
@@ -71,8 +71,10 @@
         <para>
             If format contains only  <literal>a</literal> descriptors the function tries to
             read character strings (the result is a character string column
-            vector). In this case n must be equal to 1. Warning: The character strings are
-            truncated when they are longuer than 4093.
+            vector). In this case n must be equal to 1.
+        </para>
+        <para>
+            <warning>Warning: The character strings are truncated when they are longuer than 4093.</warning>
         </para>
         <para>
             Examples for <literal>format</literal>:

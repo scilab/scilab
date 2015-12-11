@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
@@ -23,7 +23,7 @@ nm = neldermead_configure(nm,"-numberofvariables",2);
 nm = neldermead_configure(nm,"-function",quadratic);
 nm = neldermead_configure(nm,"-x0",x0);
 nm = neldermead_configure(nm,"-outputcommand",neldermead_defaultoutput);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0;0], [], 1e-6 );

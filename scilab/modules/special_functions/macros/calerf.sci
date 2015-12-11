@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function y=calerf(x,flag)
 
@@ -39,7 +39,7 @@ function y=calerf(x,flag)
     elseif flag==2 then
         y=erfcx(x);
     else
-        error(msprintf(gettext("%s: Wrong value for argument %d: 0, 1 or 2 expected.\n"),"calerf",2));
+        error(msprintf(gettext("%s: Wrong value for argument #%d: 0, 1 or 2 expected.\n"),"calerf",2));
     end
 
 endfunction

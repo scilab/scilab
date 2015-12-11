@@ -8,23 +8,23 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-22 15:05+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -172,11 +172,27 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列行列ま�
 msgid "%s: error.\n"
 msgstr "%s: エラー.\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+
 #
 # File: sci_gateway/c/sci_xls_open.c, line: 81
 #, c-format
 msgid "The file %s does not exist.\n"
 msgstr "ファイル %s は存在しません。\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -189,8 +205,16 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: ファイル %s を開けません。\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: OLE2ファイル %s にxlsストリームがありません.\n"
+msgid "There is no xls stream in the ole2 file %ls.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_xls_open.c, line: 124
@@ -215,8 +239,8 @@ msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr "%s: 処理できるのは,BIFF8ファイル形式のみです.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: スカラーを指定してください.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_xls_read.c, line: 66
@@ -435,9 +459,3 @@ msgstr "ripOLE: %s のデコード時にエラー %d を発生しました.\n"
 # File: src/nospreadsheet/nospreadsheet.c, line: 19
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Scilab スプレッドシート・モジュールはインストールされていません。\n"
-
-msgid "Spreadsheet"
-msgstr "表計算"
-
-msgid "Read a xls file"
-msgstr "xlsファイルを読み込む"

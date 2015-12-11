@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,19 +30,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_font_size_property(void* _pvCtx, char* pobjUID)
+void* get_font_size_property(void* _pvCtx, int iObjUID)
 {
     double dblFontSize = 0;
     double* pdblFontSize = &dblFontSize;
 
-    getGraphicObjectProperty(pobjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
+    getGraphicObjectProperty(iObjUID, __GO_FONT_SIZE__, jni_double, (void **)&pdblFontSize);
 
     if (pdblFontSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_size");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, dblFontSize);
+    return sciReturnDouble(dblFontSize);
 }
 /*------------------------------------------------------------------------*/

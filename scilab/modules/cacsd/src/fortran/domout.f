@@ -7,7 +7,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
      $     ,istate,iopt,w,lrw,iw,liw,jacl2,mf,job)
 C!but
@@ -63,6 +63,7 @@ C!
 
       integer neq(*)
       external feq, jacl2
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
       common /sortie/ io,info,ll
 C
       nq=neq(1)

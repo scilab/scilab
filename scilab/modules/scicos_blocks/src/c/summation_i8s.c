@@ -22,7 +22,7 @@
 #include <math.h>
 #include <stdio.h>
 #include "scicos_block4.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void summation_i8s(scicos_block *block, int flag)
@@ -34,14 +34,12 @@ SCICOS_BLOCKS_IMPEXP void summation_i8s(scicos_block *block, int flag)
         char *y = NULL;
         int *ipar = NULL;
         double v = 0. , l = 0.;
-        double *rpar = NULL;
         char *u = NULL;
 
         y = Getint8OutPortPtrs(block, 1);
         nu = GetInPortRows(block, 1);
         mu = GetInPortCols(block, 1);
         ipar = GetIparPtrs(block);
-        rpar = GetRparPtrs(block);
         nin = GetNin(block);
         l = pow(2, 8) / 2;
         if (nin == 1)

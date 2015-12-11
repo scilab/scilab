@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function [x, uu] = gcd(p)
@@ -14,16 +14,22 @@ function [x, uu] = gcd(p)
     //with minimal degree such that [p1 p2]*u=[0 ... 0 pgcd]
     //!
 
-    if (type(p)<>2 & type(p)<>8) then
+    if type(p)<>1 & type(p)<>2 & type(p)<>8 then
         error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "gcd", 1));
+    end
+
+    if type(p)==1 then
+        if floor(p)<>p then
+            error(msprintf(_("%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"), "gcd", 1));
+        else
+            p = iconvert(p,4);
+        end
     end
 
     [lhs,rhs]=argn(0)
     if type(p)==8 then
         if lhs==2 then [x,uu]=%i_gcd(p), else x=%i_gcd(p), end
         return
-    elseif ~isreal(p) then
-        error(msprintf(_("%s: Wrong type for argument #%d: Real Polynomial expected.\n"), "gcd", 1));
     end
 
     [m, n] = size(p)

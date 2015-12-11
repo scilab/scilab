@@ -14,12 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
 
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "--Erzeugung von [%s] (Makros)--\n"
+msgid "Input file"
+msgstr "Eingabedatei"
+
+msgid "Input directory"
+msgstr "Eingabe-Verzeichnis"
 
 msgid "Select the directory to convert"
 msgstr "Das Verzeichnis, welches konvertiert werden soll, auswählen"
@@ -398,18 +400,6 @@ msgstr "Typ %d ist noch nicht implementiert."
 msgid "Matlab to Scilab conversion tool"
 msgstr "Konversionsprogramm Matlab nach Scilab"
 
-msgid "&File"
-msgstr "&Datei"
-
-msgid "&Tools"
-msgstr "&Zusatzprogramme"
-
-msgid "&Edit"
-msgstr "&Editieren"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "Datei"
 
@@ -476,12 +466,6 @@ msgstr "Verzeichnis-Name: "
 msgid "Browse"
 msgstr "Durchsuchen"
 
-msgid "Input directory"
-msgstr "Eingabe-Verzeichnis"
-
-msgid "Input file"
-msgstr "Eingabedatei"
-
 msgid "File name: "
 msgstr "Dateiname: "
 
@@ -502,8 +486,20 @@ msgid "%s: %s module is not installed.\n"
 msgstr "%s: %s Modul ist nicht installiert.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: falsche Anzahl an Eingangsargumenten: %d erwartet.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read variables in %s"
+msgstr ""
 
 msgid "OFF"
 msgstr "AUS"

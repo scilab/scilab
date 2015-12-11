@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 import org.apache.batik.gvt.GraphicsNode;
+import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.modules.graph.shape.LatexTextShape;
 import org.scilab.modules.graph.shape.MathMLTextShape;
 import org.scilab.modules.graph.shape.SvgShape;
@@ -91,7 +92,7 @@ public class ScilabCanvas extends mxInteractiveCanvas {
                 try {
                     // parse the text and cache it if valid. Will throw an exception
                     // if the text is not valid.
-                    ScilabGraphUtils.getTexIcon(text);
+                    new TeXFormula(SupportedLabelType.Latex.escape(text));
 
                     ret = textShapes.get(type.name());
                 } catch (RuntimeException e) {
@@ -327,6 +328,10 @@ public class ScilabCanvas extends mxInteractiveCanvas {
     @Override
     public String getImageForStyle(Map<String, Object> style) {
         String filename = mxUtils.getString(style, mxConstants.STYLE_IMAGE);
+
+        if (filename == null) {
+            return null;
+        }
 
         try {
             return new URL(this.urlBasePath, filename).toExternalForm();

@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
 C/MEMBR ADD NAME=WCERR,SSI=0
 c
@@ -27,7 +27,7 @@ c     n        : size of matrix a
 c
 c     ndng     : degree of pade approximant
 c
-c     m        :  the factor of normalisation is 2**(-m)
+c     m        :  the factor of normalization is 2**(-m)
 c
 c     maxc     : maximum admissible for m
 c

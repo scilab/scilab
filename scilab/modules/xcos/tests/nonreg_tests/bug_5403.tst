@@ -14,11 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5403
 //
 // <-- Short Description -->
-// When run diagram which doesn't request any graphic window, Xcos create a blank graphic window.
+// When running a diagram which doesn't request any graphic window, Xcos creates a blank graphic window.
 
 // xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5403.zcos");
 // Launch simulation
 // Check that no graphic window is opened
-
-
-

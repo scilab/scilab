@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //-----------------------------------------------------------------------------
 // Launch benchmarks
@@ -19,7 +19,6 @@ function bench_run(varargin)
 
     global test_list;
     global test_count;
-    global boucle_for_time;
 
     test_list          = [];
     test_count         = 0;
@@ -325,11 +324,11 @@ function [returned_time,nb_run_done] = bench_run_onebench(module,test,nb_run)
     tst_str = [ context ;
     "nb_run = "+nb_run+";";
     "tic();";
-    "for i = 1:nb_run";
+    "for __loop_iterator__ = 1:nb_run";
     bench;
     "end";
     "timing = toc();";
-    "returned_time = timing * 1000 / nb_run;"]
+    "returned_time = timing * 1000;"]
 
     mputl(tst_str,scefile);
     exec(scefile);

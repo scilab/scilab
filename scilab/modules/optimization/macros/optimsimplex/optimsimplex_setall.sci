@@ -6,11 +6,11 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 //
 // optimsimplex_setall --
-//   Set all the coordinates and and the function values of all the vertices.
+//   Set all the coordinates and the function values of all the vertices.
 //   The given matrix is expected to have the following organization
 //   * size nbve X n+1
 //   * data is organized by row : function value, then x
@@ -20,6 +20,12 @@
 //   simplex : the simplex to set
 //
 function this = optimsimplex_setall ( this , simplex )
+    if typeof(this) <> "TSIMPLEX" then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: TSIMPLEX expected.\n"), "optimsimplex_setall", 1));
+    end
+    if type(simplex) <> 1 | ~isreal(simplex) then
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: A real matrix expected.\n"), "optimsimplex_setall", 2));
+    end
     nbve = size(simplex,1)
     np1 = size(simplex,2)
     if np1 > nbve then
@@ -31,4 +37,3 @@ function this = optimsimplex_setall ( this , simplex )
     this.fv ( 1:nbve , 1 ) = simplex ( 1:nbve , 1 )
     this.x ( 1:nbve , 1:this.n ) = simplex ( 1:nbve , 2:this.n+1 )
 endfunction
-

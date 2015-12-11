@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 // This is the demonstration script of Matplot
 // used when calling Matplot without any parameter.
@@ -14,10 +14,14 @@ function %_Matplot()
     ny = 400;
     nx = 300;
     M = pmodulo((0:(ny-1))'*ones(1:nx) + ones(ny,1)*(0:nx-1),ceil(max(nx,ny)/3));
-    clf
-    f = gcf();
-    f.color_map = coolcolormap(nx);
+
     Matplot(M)
+
+    f = gcf();
+    my_plot_desc  = _("Classical Matplot");
+    f.figure_name = my_plot_desc;
+    f.color_map = coolcolormap(nx);
+
     a = gca();
     a.tight_limits = "on";
     a.isoview = "on";

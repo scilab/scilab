@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 */
 
 #include <sys/types.h>
@@ -14,13 +14,12 @@
 #include <stdio.h>
 #include <signal.h>
 
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "cliPrompt.h"
 #include "cliDisplayManagement.h"
 #include "HistoryManager.h"
 #include "initConsoleMode.h"
 #include "suspendProcess.h"
-#include "scilabmode.h"
 
 /*
  * Function called by signal when signum is caught.

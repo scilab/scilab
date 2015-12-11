@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 #include "callfftw.h"
@@ -17,7 +17,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_fftwlibraryisloaded(char *fname, unsigned long fname_len)
+int sci_fftwlibraryisloaded(char *fname, void* pvApiCtx)
 {
     int iErr;
 

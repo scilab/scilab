@@ -19,7 +19,6 @@ ilib_verbose(0);
 
 currentpath = pwd();
 cd TMPDIR;
-cd ../;
 OS_TMP_DIR = pwd();
 
 TEST_NAME = 'bug_3639_1';

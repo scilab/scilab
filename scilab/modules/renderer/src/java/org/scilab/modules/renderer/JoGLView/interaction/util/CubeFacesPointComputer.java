@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction.util;
@@ -35,7 +35,7 @@ public abstract class CubeFacesPointComputer extends AbstractPointComputer {
      */
     public CubeFacesPointComputer(final Axes axes, final Point point) {
         super(axes, point);
-        Double[] bounds = axes.getDisplayedBounds();
+        Double[] bounds = axes.getCorrectedBounds();
 
         double maxLambda = -Double.MAX_VALUE;
         Vector3d returnedValue = null;

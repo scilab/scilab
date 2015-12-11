@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function r=rank(A,tol)
     //Matrix rank
@@ -27,7 +27,7 @@ function r=rank(A,tol)
                 execstr("r="+fun+"(A,tol)")
             end
         else
-            error(msprintf(gettext("%s: Type not defined ''%s''. Check argument or define function %s."),"rank",n,fun));
+            error(msprintf(gettext("%s: Function not defined for type ''%s''. Check argument or define function %s."),"rank",n,fun));
         end
     end
 endfunction

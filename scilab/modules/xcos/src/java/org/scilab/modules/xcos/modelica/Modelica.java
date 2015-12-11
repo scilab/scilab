@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -148,7 +148,7 @@ public final class Modelica {
     public void save(Model root, File file) throws JAXBException {
         try {
             final StringWriter strw = new StringWriter();
-            marshaller.marshal(unmerge(root), strw);
+            marshaller.marshal(new org.scilab.modules.xcos.modelica.model.ObjectFactory().createModel(unmerge(root)), strw);
 
             /*
              * Customize the file to be handled by the xml2modelica tool
@@ -198,7 +198,7 @@ public final class Modelica {
     /**
      * Unmerge the model
      *
-     * @param model
+     * @param tree
      *            the model
      * @return the unmerged model
      */

@@ -2,12 +2,13 @@
 *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 *  Copyright (C) 2010 - DIGITEO - Allan CORNET
 *  Copyright (C) 2012 - Scilab Enterprises - Antoine ELIAS
+*  Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
 *
 *  This file must be used under the terms of the CeCILL.
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -19,15 +20,33 @@
 #include "isdir.h"
 #include "splitpath.h"
 #include "scicurdir.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
-static char *getPathFilename(char *fullfilename);
-static char *getFilenameWithExtension(char *fullfilename);
+static char *getPathFilename(const char *fullfilename);
+static char *getFilenameWithExtension(const char *fullfilename);
 /*--------------------------------------------------------------------------*/
-int createHDF5File(char *name)
+extern void H5_term_library(void);
+void HDF5cleanup(void)
+{
+    /* H5_term_library is not public but it is useful to cleanup hdf5 by ourselves
+       rather than let atexit do it.
+       HDF5cleanup is called in TerminateCore::TerminateCorePart2 and that avoids
+       to have the message:
+       HDF5: infinite loop closing library
+             D,T,F,FD,P,FD,P,FD,P,E,E,E,...
+       when exiting a javasci code.
+    */
+
+    H5_term_library();
+}
+/*--------------------------------------------------------------------------*/
+void HDF5ErrorCleanup()
+{
+    H5Eclear(H5Eget_current_stack());
+}
+/*--------------------------------------------------------------------------*/
+int createHDF5File(const char *name)
 {
     hid_t       file;
     hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
@@ -79,7 +98,7 @@ int createHDF5File(char *name)
     return file;
 }
 /*--------------------------------------------------------------------------*/
-int openHDF5File(char *name, int _iAppendMode)
+int openHDF5File(const char *name, int _iAppendMode)
 {
     hid_t           file;
     char *pathdest = getPathFilename(name);
@@ -132,26 +151,14 @@ int openHDF5File(char *name, int _iAppendMode)
 
     scichdir(currentpath);
 
-    if (currentpath)
-    {
-        FREE(currentpath);
-        currentpath = NULL;
-    }
-    if (filename)
-    {
-        FREE(filename);
-        filename = NULL;
-    }
-    if (pathdest)
-    {
-        FREE(pathdest);
-        pathdest = NULL;
-    }
+    FREE(currentpath);
+    FREE(filename);
+    FREE(pathdest);
 
     return file;
 }
 /*--------------------------------------------------------------------------*/
-int isHDF5File(char* _pstFilename)
+int isHDF5File(const char* _pstFilename)
 {
     int iRet = 0;
     char *pathdest = getPathFilename(_pstFilename);
@@ -166,18 +173,22 @@ int isHDF5File(char* _pstFilename)
     /* and return in previous place */
     /* see BUG 6440 */
     currentpath = scigetcwd(&ierr);
+
+    //prevent error msg to change directory to ""
+    if (strcmp(pathdest, "") != 0)
     {
-
-        //prevent error msg to change directory to ""
-        if (strcmp(pathdest, "") != 0)
-        {
-            scichdir(pathdest);
-        }
-        FREE(pathdest);
-
-        iRet = H5Fis_hdf5(filename);
-        FREE(filename);
+        scichdir(pathdest);
     }
+    FREE(pathdest);
+
+    iRet = H5Fis_hdf5(filename);
+    if (iRet == 0)
+    {
+        HDF5ErrorCleanup();
+    }
+
+    FREE(filename);
+
     scichdir(currentpath);
     FREE(currentpath);
 
@@ -186,14 +197,15 @@ int isHDF5File(char* _pstFilename)
 
 void closeHDF5File(int file)
 {
-    herr_t status					= 0;
+    herr_t status = 0;
 
-    /* printf("Open groups: %d\n", H5Fget_obj_count(file, H5F_OBJ_GROUP));
-    printf("Open datasets: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATASET));
-    printf("Open datatypes: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATATYPE));
-    printf("Open attributes: %d\n", H5Fget_obj_count(file, H5F_OBJ_ATTR));
-    printf("Open all (except the file itself): %d\n", H5Fget_obj_count(file, H5F_OBJ_ALL)  - 1);*/
-
+#ifdef _DEBUG
+    //printf("Open groups: %d\n", H5Fget_obj_count(file, H5F_OBJ_GROUP));
+    //printf("Open datasets: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATASET));
+    //printf("Open datatypes: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATATYPE));
+    //printf("Open attributes: %d\n", H5Fget_obj_count(file, H5F_OBJ_ATTR));
+    //printf("Open all (except the file itself): %d\n", H5Fget_obj_count(file, H5F_OBJ_ALL)  - 1);
+#endif
     //	H5Fflush(file, H5F_SCOPE_GLOBAL);
     status = H5Fclose(file);
     if (status < 0)
@@ -202,17 +214,17 @@ void closeHDF5File(int file)
     }
 }
 /*--------------------------------------------------------------------------*/
-static char *getPathFilename(char *fullfilename)
+static char *getPathFilename(const char *fullfilename)
 {
     char *path = NULL;
     if (fullfilename)
     {
-        char* drv  = strdup(fullfilename);
-        char* dir  = strdup(fullfilename);
-        char* name = strdup(fullfilename);
-        char* ext  = strdup(fullfilename);
+        char* drv  = os_strdup(fullfilename);
+        char* dir  = os_strdup(fullfilename);
+        char* name = os_strdup(fullfilename);
+        char* ext  = os_strdup(fullfilename);
 
-        path = strdup(fullfilename);
+        path = os_strdup(fullfilename);
 
         if (drv && dir && name && ext && path)
         {
@@ -253,17 +265,17 @@ static char *getPathFilename(char *fullfilename)
     return path;
 }
 /*--------------------------------------------------------------------------*/
-static char *getFilenameWithExtension(char *fullfilename)
+static char *getFilenameWithExtension(const char *fullfilename)
 {
     char *filename = NULL;
     if (fullfilename)
     {
-        char* drv  = strdup(fullfilename);
-        char* dir  = strdup(fullfilename);
-        char* name = strdup(fullfilename);
-        char* ext  = strdup(fullfilename);
+        char* drv  = os_strdup(fullfilename);
+        char* dir  = os_strdup(fullfilename);
+        char* name = os_strdup(fullfilename);
+        char* ext  = os_strdup(fullfilename);
 
-        filename = strdup(fullfilename);
+        filename = os_strdup(fullfilename);
 
         if (drv && dir && name && ext && filename)
         {

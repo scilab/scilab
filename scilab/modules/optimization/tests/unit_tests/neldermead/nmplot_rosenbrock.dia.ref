@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function [ y , index ] = rosenbrock ( x , index )
   y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
@@ -41,6 +41,8 @@ nm = nmplot_configure(nm,"-sigmafn",sigmafn);
 // Perform optimization
 //
 nm = nmplot_search(nm);
+optimbase_terminate: Exiting: Maximum number of iterations has been exceeded
+         - increase MaxIter option.
 // Plot the contours of the cost function and the simplex history
 xmin = -2.0; 
 xmax = 2.0 ; 

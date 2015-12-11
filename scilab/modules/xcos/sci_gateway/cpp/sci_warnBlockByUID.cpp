@@ -7,26 +7,28 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "xcosUtilities.hxx"
+#include "loadStatus.hxx"
+
 extern "C"
 {
 #include "gw_xcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
 /*--------------------------------------------------------------------------*/
-int sci_warnBlockByUID(char *fname, unsigned long fname_len)
+int sci_warnBlockByUID(char *fname, void* pvApiCtx)
 {
     int i;
 
@@ -56,6 +58,7 @@ int sci_warnBlockByUID(char *fname, unsigned long fname_len)
     }
 
     /* call the implementation */
+    set_loaded_status(XCOS_CALLED);
     Xcos::warnCellByUID(getScilabJavaVM(), path, pathLength, msg);
 
     for (i = 0; i < pathLength; i++)

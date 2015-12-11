@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.scinotes.actions;
@@ -93,7 +93,7 @@ public final class LineNumbersAction extends DefaultAction {
      * @return createMenu
      */
     public static Menu createMenu(String label, SciNotes editor, KeyStroke key) {
-        StringTokenizer tokens = new StringTokenizer(label, ";");
+        StringTokenizer tokens = new StringTokenizer(label, ";\uff1b");
         String labelLineNumbering = tokens.nextToken();
         String labelOff = tokens.nextToken();
         String labelNormal = tokens.nextToken();

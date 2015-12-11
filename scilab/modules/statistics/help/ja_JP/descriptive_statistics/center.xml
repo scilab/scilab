@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="center">
@@ -42,7 +42,6 @@
             値<literal>(x(i,j)-xbar)</literal>を
             行列 <literal>s</literal> の要素<literal>(i,j)</literal> に返します.
             ただし,<literal>xbar</literal> は,<literal>x</literal>の係数の値の平均です.
-            
             <literal>s=center(x,'r')</literal>      (もしくは等価な<literal>s=center(x,1)</literal>) は,
             <literal>x</literal>の値の行方向の中心化です.
             この関数は,<literal>xbarv(j)</literal>を<literal>j</literal>列の平均として,

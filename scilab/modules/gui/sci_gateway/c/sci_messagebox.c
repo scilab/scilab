@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,11 +16,11 @@
 #include "CallMessageBox.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "messageboxoptions.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_messagebox(char *fname, unsigned long fname_len)
+int sci_messagebox(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -63,13 +63,13 @@ int sci_messagebox(char *fname, unsigned long fname_len)
         // Retrieve a matrix of string at position 1.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRowMessage, &nbColMessage, &messageAdr))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 1;
         }
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return FALSE;
     }
 
@@ -88,13 +88,13 @@ int sci_messagebox(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 2.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrtitleAdr, &nbRow, &nbCol, &titleAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
                 return FALSE;
             }
             /* The title argument can be used to give the modal option */
@@ -106,7 +106,7 @@ int sci_messagebox(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return FALSE;
         }
     }
@@ -126,11 +126,11 @@ int sci_messagebox(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 3.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddriconAdr, &nbRow, &nbCol, &iconAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                 return 1;
             }
 
-            if (nbRow*nbCol == 1)
+            if (nbRow * nbCol == 1)
             {
                 /* The icon argument can be used to give the modal option or the buttons names */
                 if (isModalOption(iconAdr[0]))
@@ -156,7 +156,7 @@ int sci_messagebox(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string or string vector expected.\n"), fname, 3);
             return FALSE;
         }
     }
@@ -176,11 +176,11 @@ int sci_messagebox(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 4.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrbuttonsTextAdr, &nbRowButtons, &nbColButtons, &buttonsTextAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 4);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
                 return 1;
             }
 
-            if (nbRow*nbCol == 1)
+            if (nbRow * nbCol == 1)
             {
                 /* The buttons names argument can be used to give the modal option */
                 if (isModalOption(buttonsTextAdr[0]))
@@ -192,7 +192,7 @@ int sci_messagebox(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string or string vector expected.\n"), fname, 3);
             return FALSE;
         }
     }
@@ -212,19 +212,19 @@ int sci_messagebox(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 5.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrmodalOptionAdr, &nbRow, &nbCol, &modalOptionAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 5);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 5);
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 5);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 5);
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 5);
             return FALSE;
         }
     }

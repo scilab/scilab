@@ -13,7 +13,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * Scilab
  * Interface description. In this file, we define the list of the function which
@@ -67,5 +67,20 @@
     <PRIMITIVE gatewayId="25" primitiveId="34" primitiveName="uiDisplayTree" />
     <PRIMITIVE gatewayId="25" primitiveId="35" primitiveName="uiputfile" />
     <PRIMITIVE gatewayId="25" primitiveId="36" primitiveName="about" />
-    <PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="fire_closing_finished" />
+    <PRIMITIVE gatewayId="25" primitiveId="37" primitiveName="useeditor" />
+    <PRIMITIVE gatewayId="25" primitiveId="38" primitiveName="fire_closing_finished" />
+    <PRIMITIVE gatewayId="25" primitiveId="39" primitiveName="openged" />
+    <PRIMITIVE gatewayId="25" primitiveId="40" primitiveName="datatipCreate" />
+    <PRIMITIVE gatewayId="25" primitiveId="41" primitiveName="datatipRemove" />
+    <PRIMITIVE gatewayId="25" primitiveId="42" primitiveName="plotbrowser" />
+    <PRIMITIVE gatewayId="25" primitiveId="43" primitiveName="datatipManagerMode" />
+    <PRIMITIVE gatewayId="25" primitiveId="44" primitiveName="datatipToggle" />
+    <PRIMITIVE gatewayId="25" primitiveId="45" primitiveName="datatipMove" />
+    <PRIMITIVE gatewayId="25" primitiveId="46" primitiveName="datatipSetStyle" />
+    <PRIMITIVE gatewayId="25" primitiveId="47" primitiveName="datatipSetDisplay" />
+    <PRIMITIVE gatewayId="25" primitiveId="48" primitiveName="datatipSetInterp" />
+    <PRIMITIVE gatewayId="25" primitiveId="49" primitiveName="datatipSetOrientation" />
+    <PRIMITIVE gatewayId="25" primitiveId="50" primitiveName="figure"/>
+    <PRIMITIVE gatewayId="25" primitiveId="51" primitiveName="saveGui"/>
+    <PRIMITIVE gatewayId="25" primitiveId="52" primitiveName="loadGui"/>
 </GATEWAY>

@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,30 +29,35 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_data_bounds_property(void* _pvCtx, char* pobjUID)
+void* get_data_bounds_property(void* _pvCtx, int iObjUID)
 {
     double* dataBounds = NULL;
     int iView = 0;
     int* piView = &iView;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_BOUNDS__, jni_double_vector, (void **)&dataBounds);
 
     if (dataBounds == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_bounds");
-        return -1;
+        return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void **)&piView);
+    getGraphicObjectProperty(iObjUID, __GO_VIEW__, jni_int, (void **)&piView);
+    if (piView == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
+        return NULL;
+    }
 
     /**DJ.Abdemouche 2003**/
     if (iView == 1)
     {
-        return sciReturnMatrix(_pvCtx, dataBounds, 2, 3);
+        return sciReturnMatrix(dataBounds, 2, 3);
     }
     else
     {
-        return sciReturnMatrix(_pvCtx, dataBounds, 2, 2);
+        return sciReturnMatrix(dataBounds, 2, 2);
     }
 }
 /*------------------------------------------------------------------------*/

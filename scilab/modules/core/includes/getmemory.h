@@ -6,15 +6,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #ifndef __GETMEMORY__
 #define __GETMEMORY__
 
-#ifdef _MSC_VER
-#include <windows.h>
-#else
+#ifndef _MSC_VER
 #if defined(hpux)
 #include <sys/param.h>
 #include <sys/pstat.h>
@@ -32,8 +30,6 @@
 #include <sys/sysinfo.h>
 #include <machine/hal_sysinfo.h>
 #endif
-#include <stdio.h>
-#include <string.h>
 #endif /*GETMEMORY*/
 
 /**

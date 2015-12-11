@@ -6,11 +6,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "matio.h" /* mat_t */
+#include "dynlib_matio.h"
 
 #define MATFILEMANAGER_ADDFILE  0
 #define MATFILEMANAGER_DELFILE  1
@@ -24,5 +25,5 @@
  * @param fileIndex the file index in the table of files openend
  * @param matfile a pointer to the matfile entity to close
  */
-void matfile_manager(int action, int *fileIndex, mat_t **matfile);
+MATIO_IMPEXP void matfile_manager(int action, int *fileIndex, mat_t **matfile);
 

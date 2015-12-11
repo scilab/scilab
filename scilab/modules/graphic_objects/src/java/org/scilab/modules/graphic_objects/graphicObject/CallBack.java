@@ -7,10 +7,12 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.graphic_objects.graphicObject;
+
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * Abstract class to manage all callbacks.
@@ -27,6 +29,7 @@ public class CallBack {
      * Scilab instruction command type constant
      */
     public static final int SCILAB_INSTRUCTION = 0;
+    public static final int SCILAB_NOT_INTERRUPTIBLE_INSTRUCTION = 10;
     /**
      * C or Fortran function type constant
      */
@@ -35,6 +38,7 @@ public class CallBack {
      * Scilab function type constant
      */
     public static final int SCILAB_FUNCTION = 2;
+    public static final int SCILAB_NOT_INTERRUPTIBLE_FUNCTION = 12;
     /**
      * Scilab function type constant (not trapped by scilab event listeners)
      */
@@ -49,7 +53,7 @@ public class CallBack {
     public static final int JAVA_OUT_OF_XCLICK_AND_XGETMOUSE = -3;
 
     /**
-     * Scilab instruction without GCBO setting (old addmenu compatibility)
+     * Scilab instruction without GCBO setting (used in case of pause/resume/abort)
      */
     public static final int SCILAB_INSTRUCTION_WITHOUT_GCBO = 4;
 
@@ -84,8 +88,9 @@ public class CallBack {
     /**
      * @param command sets the command
      */
-    public void setCommand(String command) {
+    public UpdateStatus setCommand(String command) {
         this.command = command;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -98,8 +103,9 @@ public class CallBack {
     /**
      * @param commandType sets the command
      */
-    public void setCommandType(int commandType) {
+    public UpdateStatus setCommandType(int commandType) {
         this.commandType = commandType;
+        return UpdateStatus.Success;
     }
 
     /**

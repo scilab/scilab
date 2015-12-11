@@ -17,7 +17,7 @@
 
 
 plot2d(1:10,1:10,1,strf="020")
-drawaxis(x=2:7,y=4,dir='u',tics='v')
+drawaxis(x=2:7,y=4,dir="u",tics="v");
 e=gce();
 assert_checkequal(e.format_n, "");
 // Check that the display does not crash

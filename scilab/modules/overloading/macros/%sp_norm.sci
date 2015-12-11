@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function res=%sp_norm(S,flag)
 
@@ -32,7 +32,7 @@ function res=%sp_norm(S,flag)
             S1 = S;
         end
 
-        tol=%eps;
+        tol=2*%eps;
         x = sum(abs(S1),1)';
         res = norm(x);
         if res==0 then return,end

@@ -2,19 +2,19 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="xinfo">
     <refnamediv>
         <refname>xinfo</refname>
-        <refpurpose>affiche une chaîne de caractères dans la sous-fenêtre de messages  </refpurpose>
+        <refpurpose>Change le texte affiché dans la barre d'état de la fenêtre courante</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>xinfo(info)</synopsis>
+        <synopsis>xinfo(texte)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
-                <term>info  </term>
+                <term>texte</term>
                 <listitem>
-                    <para>chaîne de caractères
+                    <para>chaîne de caractères affichée dans la barre d'état
                     </para>
                 </listitem>
             </varlistentry>
@@ -23,7 +23,14 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>xinfo</literal> dessine la chaîne de caractères <literal>info</literal> dans la sous-fenêtre de messages de la fenêtre graphique courante.
+            <literal>xinfo</literal> change le texte qui est affiché dans la barre d'état (le panneau dans le bas des fenêtres) de la fenêtre courante. Cette fonction est l'équivalent de modifier la propriété <link linkend="figure_properties">info_message</link> de la fenêtre graphique courante (donné par <link linkend="gcf">gcf</link>).
         </para>
+    </refsection>
+    <refsection>
+      <title>Exemples</title>
+        <programlisting role="example"><![CDATA[
+f = scf(100001);
+xinfo("ID figure : " + string(f.figure_id));
+     ]]></programlisting>
     </refsection>
 </refentry>

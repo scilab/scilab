@@ -7,14 +7,17 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUiobjectEnable.hxx"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
 /* Set the enable property of an uicontrol or uimenu */
-int SetUiobjectEnable(void* _pvCtx, char *sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUiobjectEnable(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int b = (int)FALSE;
     BOOL status = FALSE;
@@ -26,7 +29,7 @@ int SetUiobjectEnable(void* _pvCtx, char *sciObjUID, void* _pvData, int valueTyp
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_ENABLE__, &b, jni_bool, 1);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_ENABLE__, &b, jni_bool, 1);
 
     if (status == TRUE)
     {

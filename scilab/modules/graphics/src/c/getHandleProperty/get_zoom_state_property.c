@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,23 +30,23 @@
 #include "getGraphicObjectProperty.h"
 
 /*------------------------------------------------------------------------*/
-int get_zoom_state_property(void* _pvCtx, char* pobjUID)
+void* get_zoom_state_property(void* _pvCtx, int iObjUID)
 {
     int iZoomState = 0;
     int *piZoomState = &iZoomState;
 
-    getGraphicObjectProperty(pobjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piZoomState);
+    getGraphicObjectProperty(iObjUID, __GO_ZOOM_ENABLED__, jni_bool, (void **)&piZoomState);
 
     if (piZoomState == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_state");
-        return -1;
+        return NULL;
     }
 
     if (iZoomState)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
-    return sciReturnString(_pvCtx, "off");
+    return sciReturnString("off");
 }
 /*------------------------------------------------------------------------*/

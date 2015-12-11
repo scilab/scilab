@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //=============================================================================
 function scilablibrarieslist = dlwGetScilabLibraries()
 
@@ -14,8 +14,6 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "core.lib"; ..
     "core_f.lib"; ..
     "lapack.lib"; ..
-    "libintl.lib"; ..
-    "intersci.lib"; ..
     "output_stream.lib"; ..
     "dynamic_link.lib"; ..
     "integer.lib"; ..
@@ -26,7 +24,14 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "call_scilab.lib"; ..
     "time.lib"; ..
     "api_scilab.lib"; ..
-    "scilab_windows.lib"];
-
+    "libintl.lib"; ..
+    "ast.lib"; ..
+    "fileio.lib"; ..
+    "io.lib"; ..
+    "string.lib"; ..
+    "threads.lib"; ..
+    "sciconsole.lib"; ..
+    "scilab_windows.lib"; ..
+    "libmex.lib"];
 endfunction
 //=============================================================================

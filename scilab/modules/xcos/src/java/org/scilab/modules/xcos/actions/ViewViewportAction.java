@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,7 +18,7 @@ import java.awt.event.ActionEvent;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
-import org.scilab.modules.gui.bridge.tab.SwingScilabTab;
+import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.checkboxmenuitem.CheckBoxMenuItem;
 import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.xcos.ViewPortTab;
@@ -84,7 +84,7 @@ public final class ViewViewportAction extends DefaultAction {
         if (status) {
             ViewPortTab.restore(graph);
         } else {
-            ClosingOperationsManager.startClosingOperation((SwingScilabTab) viewport);
+            ClosingOperationsManager.startClosingOperation((SwingScilabDockablePanel) viewport);
         }
     }
 }

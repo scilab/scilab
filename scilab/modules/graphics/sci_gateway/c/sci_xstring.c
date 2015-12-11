@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,7 +20,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -30,9 +30,10 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xstring(char *fname, unsigned long fname_len)
+int sci_xstring(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -55,6 +56,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
     long hdlstr = 0;
     int nbElement = 0, i = 0;
     BOOL isboxed = FALSE;
+    int iCurrentSubWin = 0;
 
     CheckInputArgument(pvApiCtx, 3, 5);
 
@@ -68,7 +70,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
     // Retrieve a matrix of string at position 3.
     if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m3, &n3, &Str))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 
@@ -91,7 +93,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -107,7 +109,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -149,7 +151,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
             return 1;
         }
 
@@ -175,7 +177,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 5);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 5);
             return 1;
         }
 
@@ -202,7 +204,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
         isboxed = (*l5 != 0);
     }
 
-    getOrCreateDefaultSubwin();
+    iCurrentSubWin = getOrCreateDefaultSubwin();
 
     if (nbElement == 1)
     {
@@ -245,8 +247,7 @@ int sci_xstring(char *fname, unsigned long fname_len)
          * To be modified
          */
         {
-            char * o = ConstructCompoundSeq(nbElement);
-            releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
+            int o = createCompoundSeq(iCurrentSubWin, nbElement);
         }
     }
 

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,9 +16,9 @@ extern "C" {
 #include "ExternalObjectsFunction.h"
 }
 
-void ExternalObjects_goDown()
+void ExternalObjects_goDown(void* _pvCtx)
 {
-    org_modules_external_objects::ScilabAutoCleaner::goDown();
+    org_modules_external_objects::ScilabAutoCleaner::goDown(_pvCtx);
 }
 
 

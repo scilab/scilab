@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2000 - INRIA - Carlos Klimann
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="sample">
@@ -37,7 +37,7 @@
             <varlistentry>
                 <term>orient</term>
                 <listitem>
-                    <para>Optional parameter. Admissible values are 1, 2, 'r' or 'c'</para>
+                    <para>Optional parameter. Admissible values are <literal>{'*'}, 1, 2, 'r'</literal> or <literal>'c'</literal>. The orientation to sample rows or columns. See Description below.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -51,37 +51,49 @@
     <refsection>
         <title>Description</title>
         <para>
-            This function gives a  vector (or matrix) nx1. It contains
-            a random  sample of n extractions,  with replacement, from
-            the matrix X.
+            This function returns a  vector or matrix. It contains
+            a random  sample of <literal>n</literal> extractions,  with replacement, from
+            the matrix <literal>X</literal>.
         </para>
         <para>
-            s=sample(n,X)  (or s=sample(n,X,'*'))  returns a  vector s
-            whose  values are  a random  sample  of n  values from  X,
-            extracted with replacement, from X .
+            <literal>s = sample(n, X)</literal>  (or <literal>s = sample(n, X, '*')</literal>)  returns a  vector <literal>s</literal>
+            whose  values are  a random  sample  of <literal>n</literal>  values,
+            extracted with replacement, from <literal>X</literal>.
         </para>
         <para>
-            
-            s=sample(n,X,'r')   (or,   equivalently,  s=sample(n,X,1))
-            returns  a matrix  of type  size(X,'r')xn.  It  contains a
-            random sample of n  rows, extracted with replacement, from
-            the rows of X.
+
+            <literal>s = sample(n, X, 'r')</literal>   (or,   equivalently,  <literal>s = sample(n, X, 1)</literal>)
+            returns  a matrix  of size  <literal>size(X,'r') * n</literal>.  It  contains a
+            random sample of <literal>n</literal>  rows, extracted with replacement, from
+            the rows of <literal>X</literal>.
         </para>
         <para>
-            
-            s=sample(n,X,'c')   (or,   equivalently,  s=sample(n,X,2))
-            returns  a matrix  of type  nxsize(X,'c').  It  contains a
-            random  sample of  n columns,  extracted  with replacement
-            from the columns of X.
+
+            <literal>s = sample(n, X, 'c')</literal>   (or,   equivalently,  <literal>s = sample(n, X, 2)</literal>)
+            returns  a matrix  of size  <literal>n * size(X, 'c')</literal>.  It  contains a
+            random  sample of <literal>n</literal> columns,  extracted  with replacement
+            from the columns of <literal>X</literal>.
         </para>
     </refsection>
     <refsection>
+        <title> Random number generator </title>
+        <para> <literal>sample</literal> is based on <link linkend="grand">grand</link> for generating the random samples. Use <literal>grand("setsd", seed)</literal> to change the seed for <literal>samplef</literal>.</para>
+        <programlisting role="example"><![CDATA[
+            seed = getdate("s");
+            grand("setsd", seed); //sets the seed to current date
+
+            seed = 0;
+            grand("setsd", seed); //sets the seed to default value
+            ]]>
+        </programlisting>
+    </refsection>
+    <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
-X=['a' 'dd' 'arreu'; 'ber' 'car' 'zon']
-s=sample(25,X)
-s=sample(25,X,'r')
-s=sample(25,X,'c')
+        <programlisting role="example"><![CDATA[
+X = ['a' 'dd' 'arreu'; 'ber' 'car' 'zon']
+s = sample(25, X)
+s = sample(25, X, 'r')
+s = sample(25, X, 'c')
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -92,6 +104,9 @@ s=sample(25,X,'c')
             </member>
             <member>
                 <link linkend="samwr">samwr</link>
+            </member>
+            <member>
+                <link linkend="grand">grand</link>
             </member>
         </simplelist>
     </refsection>

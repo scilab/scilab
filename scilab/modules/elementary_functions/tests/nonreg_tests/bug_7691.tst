@@ -19,8 +19,6 @@
 funmat = [
   "acosd"
   "acotd"
-  "acscd"
-  "asecd"
   "asind"
   "atand"
   "cosd"

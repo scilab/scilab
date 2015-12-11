@@ -8,27 +8,30 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "GetUicontrolVerticalAlignment.hxx"
+extern "C"
+{
+#include "GetUicontrol.h"
+}
 
-int GetUicontrolVerticalAlignment(void* _pvCtx, char *sciObjUID)
+void* GetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID)
 {
     char* alignment = NULL;
-    int status = 0;
+    void* status = NULL;
 
-    getGraphicObjectProperty(sciObjUID, __GO_UI_VERTICALALIGNMENT__, jni_string, (void**) &alignment);
+    getGraphicObjectProperty(iObjUID, __GO_UI_VERTICALALIGNMENT__, jni_string, (void**) &alignment);
 
     if (alignment == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "VerticalAlignment");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnString(_pvCtx, alignment);
+        status = sciReturnString(alignment);
         delete[] alignment;
         return status;
     }

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -164,81 +164,81 @@ public enum TerminalAccessor {
             firePropertyChange(terminal, value, aValue);
         }
     },
-    /**
-     * Max of the value
-     */
-    MAX(ModelicaMessages.MAX, Double.class, true) {
-        @Override
-        protected Object getData(Terminal terminal) {
-            if (terminal.getMax() == null) {
-                terminal.setMax(new ModelicaValue());
-            }
-
-            if (terminal.getMax().getValue().isEmpty()) {
-                return Double.valueOf(0.0);
-            }
-
-            final String value = terminal.getMax().getValue();
-            return Double.valueOf(value);
-        }
-
-        @Override
-        public void setData(Object aValue, Terminal terminal) {
-            final Object value = getData(terminal);
-            terminal.getMax().setValue(aValue.toString());
-            firePropertyChange(terminal, value, aValue);
-        }
-    },
-    /**
-     * Min of the value
-     */
-    MIN(ModelicaMessages.MIN, Double.class, true) {
-        @Override
-        protected Double getData(Terminal terminal) {
-            if (terminal.getMin() == null) {
-                terminal.setMin(new ModelicaValue());
-            }
-
-            if (terminal.getMin().getValue().isEmpty()) {
-                return Double.valueOf(0.0);
-            }
-
-            final String value = terminal.getMin().getValue();
-            return Double.valueOf(value);
-        }
-
-        @Override
-        public void setData(Object aValue, Terminal terminal) {
-            final Object value = getData(terminal);
-            terminal.getMin().setValue(aValue.toString());
-            firePropertyChange(terminal, value, aValue);
-        }
-    },
-    /**
-     * Nominal value
-     */
-    NOMINAL(ModelicaMessages.NOMINAL, Double.class, true) {
-        @Override
-        protected Double getData(Terminal terminal) {
-            if (terminal.getNominalValue() == null) {
-                terminal.setNominalValue(new ModelicaValue());
-            }
-
-            if (terminal.getNominalValue().getValue().isEmpty()) {
-                return Double.valueOf(0.0);
-            }
-
-            final String value = terminal.getNominalValue().getValue();
-            return Double.valueOf(value);
-        }
-
-        @Override
-        public void setData(Object aValue, Terminal terminal) {
-            final Object value = getData(terminal);
-            terminal.getNominalValue().setValue(aValue.toString());
-            firePropertyChange(terminal, value, aValue);
-        }
-    },
+    //    /**
+    //     * Max of the value
+    //     */
+    //    MAX(ModelicaMessages.MAX, Double.class, true) {
+    //        @Override
+    //        protected Object getData(Terminal terminal) {
+    //            if (terminal.getMax() == null) {
+    //                terminal.setMax(new ModelicaValue());
+    //            }
+    //
+    //            if (terminal.getMax().getValue().isEmpty()) {
+    //                return Double.valueOf(0.0);
+    //            }
+    //
+    //            final String value = terminal.getMax().getValue();
+    //            return Double.valueOf(value);
+    //        }
+    //
+    //        @Override
+    //        public void setData(Object aValue, Terminal terminal) {
+    //            final Object value = getData(terminal);
+    //            terminal.getMax().setValue(aValue.toString());
+    //            firePropertyChange(terminal, value, aValue);
+    //        }
+    //    },
+    //    /**
+    //     * Min of the value
+    //     */
+    //    MIN(ModelicaMessages.MIN, Double.class, true) {
+    //        @Override
+    //        protected Double getData(Terminal terminal) {
+    //            if (terminal.getMin() == null) {
+    //                terminal.setMin(new ModelicaValue());
+    //            }
+    //
+    //            if (terminal.getMin().getValue().isEmpty()) {
+    //                return Double.valueOf(0.0);
+    //            }
+    //
+    //            final String value = terminal.getMin().getValue();
+    //            return Double.valueOf(value);
+    //        }
+    //
+    //        @Override
+    //        public void setData(Object aValue, Terminal terminal) {
+    //            final Object value = getData(terminal);
+    //            terminal.getMin().setValue(aValue.toString());
+    //            firePropertyChange(terminal, value, aValue);
+    //        }
+    //    },
+    //    /**
+    //     * Nominal value
+    //     */
+    //    NOMINAL(ModelicaMessages.NOMINAL, Double.class, true) {
+    //        @Override
+    //        protected Double getData(Terminal terminal) {
+    //            if (terminal.getNominalValue() == null) {
+    //                terminal.setNominalValue(new ModelicaValue());
+    //            }
+    //
+    //            if (terminal.getNominalValue().getValue().isEmpty()) {
+    //                return Double.valueOf(0.0);
+    //            }
+    //
+    //            final String value = terminal.getNominalValue().getValue();
+    //            return Double.valueOf(value);
+    //        }
+    //
+    //        @Override
+    //        public void setData(Object aValue, Terminal terminal) {
+    //            final Object value = getData(terminal);
+    //            terminal.getNominalValue().setValue(aValue.toString());
+    //            firePropertyChange(terminal, value, aValue);
+    //        }
+    //    },
     /**
      * Comment to the terminal
      */
@@ -272,7 +272,7 @@ public enum TerminalAccessor {
                 terminal.setSelected(new ModelicaValue());
             }
 
-            return terminal.getSelected().getValue().equals(TRUE);
+            return TRUE.equals(terminal.getSelected().getValue());
         }
 
         @Override

@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,12 +33,12 @@ int geom3d(double *x, double *y, double *z, int n)
     int i = 0;
     double userCoords2d[2];
 
-    char * psubwinUID = (char*)getOrCreateDefaultSubwin();
+    int iCurrentSubwinUID = getOrCreateDefaultSubwin();
 
     for (i = 0; i < n; i++)
     {
         double userCoords[3] = {x[i], y[i], z[i]};
-        sciGet2dViewCoordinate(psubwinUID, userCoords, userCoords2d);
+        sciGet2dViewCoordinate(iCurrentSubwinUID, userCoords, userCoords2d);
         x[i] = userCoords2d[0];
         y[i] = userCoords2d[1];
     }
@@ -47,7 +47,7 @@ int geom3d(double *x, double *y, double *z, int n)
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_geom3d(char * fname, unsigned long fname_len)
+int sci_geom3d(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int ix1 = 0, m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0;
@@ -75,7 +75,7 @@ int sci_geom3d(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -92,7 +92,7 @@ int sci_geom3d(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -109,7 +109,7 @@ int sci_geom3d(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         printError(&sciErr, 0);
         return 1;
     }

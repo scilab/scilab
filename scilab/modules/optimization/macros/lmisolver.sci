@@ -5,11 +5,15 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 function [%Xlist,%OPT]=lmisolver(%Xinit,%evalfunc,%options)
     %OPT=[];%Xlist=list();
     [LHS,RHS]=argn(0);
+
+    if RHS < 2 then
+        error(msprintf(_("%s: Wrong number of input arguments: %d to %d expected.\n"),"lmisolver",2,3))
+    end
 
     if RHS==2 then
         %Mb = 1e3;%ato = 1e-10;%nu = 10;%mite = 100;%rto = 1e-10;

@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Allan CORNET
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="compile_and_run_javasci_v2" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>javasci v2でコンパイル/実行</refname>
+        
+        <refpurpose>Javasci v2によりJavaアプリケーションをコンパイルする方法</refpurpose>
+        
+    </refnamediv>
+    
+    <refsection>
+        
+        <title>Linux/Unix/MacOSX</title>
+        
+        <para>Linux/Unix/MacOSXでは, Scilab は グローバル変数SCIを以下のように設定する必要があります:</para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    バイナリ版のScilabでは, SCI は <literal>/path/to/scilab/share/scilab/</literal>を指します
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    Scilabのソースツリーでは, SCIはソースツリーのルート
+                    
+                    <literal>/path/to/scilab/source/tree/</literal>を指します
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+        
+        
+        <para>
+            
+            Javasci v2でJavaアプリケーションをコンパイルする際,
+            
+            以下のライブラリへのパスをclasspathに追加する必要があります:
+            
+        </para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <literal>org.scilab.modules.javasci.jar</literal> (全てのJavasciアプリケーションで必要) 
+                
+            </listitem>
+            
+            <listitem>
+                
+                <literal>org.scilab.modules.types.jar</literal> (アプリケーションが
+                
+                Javasci型を使用する場合)
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+        
+        
+        <para>
+            
+            例に示すコード(コードはこのページに後述)をコンパイルするためには, 
+            
+            以下のようにコマンドラインに入力します:
+            
+        </para>
+        
+        
+        
+        <para>
+            
+            <literal>javac -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample.java</literal>
+            
+        </para>
+        
+        
+        
+        <para>
+            
+            Javaアプリケーションを起動するには, 
+            
+            以下のどちらかにより,
+            
+            libjavasci ネーティブライブラリへのパスを
+            
+            指定する必要があります:
+            
+        </para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>LD_LIBRARY_PATHで指定:</para>
+                
+                <itemizedlist mark="opencircle">
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            バイナリ版のScilabでは, LD_LIBRARY_PATH は
+                            
+                            <literal>/path/to/scilab/lib/scilab/</literal> および
+                            
+                            <literal>/path/to/scilab/lib/thirdparty/</literal>を指します
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                    <listitem>
+                        
+                        <para>
+                            
+                            Scilabのソースツリーでは, LD_LIBRARY_PATH は
+                            
+                            ソースツリーのルート
+                            
+                            <literal>/path/to/scilab/modules/javasci/.libs/</literal>,
+                            
+                            <literal>/path/to/scilab/modules/types/.libs/</literal> および
+                            
+                            <literal>/path/to/scilab/.libs/</literal>
+                            
+                            を指します.
+                            
+                        </para>
+                        
+                    </listitem>
+                    
+                </itemizedlist>
+                
+                
+                
+                <para>
+                    
+                    アプリケーションは以下のコマンドライン入力により実行します:
+                    
+                </para>
+                
+                <literal>java -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    または, コマンドラインで, javaの引数として指定します:
+                    
+                </para>
+                
+                <para>
+                    
+                    <literal>java -Djava.library.path=/path/to/libjavasci/:/path/to/scilab/lib/thirdparty/ -cp $SCI/modules/javasci/jar/org.scilab.modules.javasci.jar:$SCI/modules/types/jar/org.scilab.modules.types.jar:. BasicExample</literal>
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>Windows</title>
+        
+        <para>
+            
+            このパラグラフでは, Scilabがディレクトリ
+            
+            <literal>C:\Program Files\scilab-XXXX</literal> 
+            
+            (ただし, XXXX は Scilabのバージョン, 例えば"5.4.0")
+            
+            にインストールされていると仮定します.
+            
+        </para>
+        
+        
+        
+        <para>Windowsでは, 特定の環境変数を定義する必要はありません.</para>
+        
+        
+        
+        <para>
+            
+            JavaアプリケーションをJavasci v2によりコンパイルするには, 
+            
+            以下のライブラリへのパスをclasspathに追加します:
+            
+        </para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <literal>org.scilab.modules.javasci.jar</literal> (全てのJavasciアプリケーションで必要) 
+                
+            </listitem>
+            
+            <listitem>
+                
+                <literal>org.scilab.modules.types.jar</literal> (アプリケーションがJavasci型を使用する場合) 
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+        
+        
+        <para>
+            
+            例に示すコードをコンパイルする, コマンドラインを示します:
+        </para>
+        
+        <para>
+            
+            <literal>javac -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample.java</literal>
+            
+        </para>
+        
+        
+        
+        <para>
+            
+            実行の際には, ネーティブライブラリlibjavasci.dllと
+            
+            それが依存するものへのパスを環境変数PATHに追加する必要があります.
+            
+            必要な全てのライブラリは"bin"フォルダにありますので,
+            
+            コマンドラインは以下のようになります:
+            
+        </para>
+        
+        <para>
+            
+            <literal>set PATH="C:\Program Files\scilab-XXXX\bin";%PATH%</literal>
+            
+        </para>
+        
+        
+        
+        <para>Javaアプリケーションを起動する際のコマンドラインはLinuxとほぼ同じです:</para>
+        
+        <para>
+            
+            <literal>java -cp "C:\Program Files\scilab-XXXX\modules\javasci\jar\org.scilab.modules.javasci.jar;C:\Program Files\scilab-XXXX\modules\types\jar\org.scilab.modules.types.jar";. BasicExample</literal>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>オプション</title>
+        
+        <para>
+            
+            javaを起動する際のオプション : <literal>-Djava.compiler=JIT -Xmx256m</literal>
+            
+        </para>
+        
+        <para>(これらの引数を指定すると, javasci は
+            
+            標準scilabと同様に同じ初期オプションを指定して起動されます.
+            
+        </para>
+        
+        <para>
+            
+            特定のニーズに基づき以下の2つの環境変数が使用される
+            
+            ことに注意してください:
+            
+        </para>
+        
+        <itemizedlist>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <literal>SCI_DISABLE_TK=1</literal> はTk (TclのGUI)を無効にします
+                    
+                </para>
+                
+            </listitem>
+            
+            <listitem>
+                
+                <para>
+                    
+                    <literal>SCI_JAVA_ENABLE_HEADLESS=1</literal> 
+                    
+                    は, Javaをヘッドレスモード(AWT/Swingなし)で起動します.
+                    
+                </para>
+                
+            </listitem>
+            
+        </itemizedlist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="java"><![CDATA[
+// 簡単な Javaの例
+// javasci v2
+// Filename: BasicExample.java
+
+import org.scilab.modules.javasci.Scilab;
+import org.scilab.modules.types.ScilabType;
+
+class BasicExample {
+
+    public static void main(String[] args) {
+        try {
+            Scilab sci = new Scilab();
+            sci.open();
+            sci.exec("a=cos(%pi)*sin(%pi^2);");
+            ScilabType a = sci.get("a");
+            System.out.println("a = " + a);
+        } catch (org.scilab.modules.javasci.JavasciException e) {
+            System.err.println("Could not find variable type: " + e.getLocalizedMessage());
+        }
+   }
+}
+
+ ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link type="remote" linkend="javasci/javadoc/index.html">Javasci v2の文書</link>を閲覧.
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="javasci">Javasci</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="javasci_faq_v2">Javasci FAQ</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

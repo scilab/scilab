@@ -104,6 +104,10 @@
         <para>
             Enter the command <code>champ1()</code> to see a demo.
         </para>
+        <para>
+            Be cautioned about the fact that using <link linkend="meshgrid">meshgrid</link> function before
+            using <code>champ1</code> requires adjustment. For more details, see the last example below.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
@@ -112,6 +116,24 @@ champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
  ]]></programlisting>
         <scilab:image>
             champ1(-5:5,-5:5,rand(11,11),rand(11,11),rect=[-10,-10,10,10],arfact=2)
+        </scilab:image>
+        <programlisting role="example"><![CDATA[
+// using meshgrid to get fx and fy
+clf()
+x = linspace(-1,1,30);
+y = linspace(-1,1,30);
+[X,Y] = meshgrid(x,y);
+fy = 2.*Y;
+fx = 2.*X;
+champ1(x,y,fx',fy'); //here we have transposed fx and fy
+]]></programlisting>
+        <scilab:image>
+            x = linspace(-1,1,30);
+            y = linspace(-1,1,30);
+            [X,Y] = meshgrid(x,y);
+            fy = 2.*Y;
+            fx = 2.*X;
+            champ1(x,y,fx',fy'); //here we have transposed fx and fy
         </scilab:image>
     </refsection>
     <refsection role="see also">

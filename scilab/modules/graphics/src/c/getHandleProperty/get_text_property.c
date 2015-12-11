@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -34,27 +34,27 @@
 #include <string.h>
 
 /*------------------------------------------------------------------------*/
-int get_text_property(void* _pvCtx, char* pobjUID)
+void* get_text_property(void* _pvCtx, int iObjUID)
 {
-    int* dimensions;
-    char** textMatrix;
+    int* dimensions = NULL;
+    char** textMatrix = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **) &dimensions);
+    getGraphicObjectProperty(iObjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **) &dimensions);
 
     if (dimensions == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "text");
-        return -1;
+        return NULL;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
+    getGraphicObjectProperty(iObjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
 
     if (textMatrix == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "text");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnStringMatrix(_pvCtx, textMatrix, dimensions[0], dimensions[1]);
+    return sciReturnStringMatrix(textMatrix, dimensions[0], dimensions[1]);
 }
 /*------------------------------------------------------------------------*/

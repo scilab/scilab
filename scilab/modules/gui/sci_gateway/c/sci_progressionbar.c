@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,7 +23,7 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_progressionbar(char *fname, unsigned long fname_len)
+int sci_progressionbar(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -32,7 +32,7 @@ int sci_progressionbar(char *fname, unsigned long fname_len)
     int* piAddrmessageAdr = NULL;
     long long* stkAdr = NULL;
 
-    char *pProgressionbarUID = NULL;
+    int iProgressionbarUID = 0;
 
     int nbRow = 0, nbCol = 0;
     int nbRowMessage = 0, nbColMessage = 0;
@@ -82,7 +82,7 @@ int sci_progressionbar(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 1.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRowMessage, &nbColMessage, &messageAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
         }
@@ -95,16 +95,16 @@ int sci_progressionbar(char *fname, unsigned long fname_len)
         if (handleAdr == 0)
         {
             /* Create a new ProgressionBar */
-            pProgressionbarUID = createGraphicObject(__GO_PROGRESSIONBAR__);
-            GraphicHandle = getHandle(pProgressionbarUID);
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            iProgressionbarUID = createGraphicObject(__GO_PROGRESSIONBAR__);
+            GraphicHandle = getHandle(iProgressionbarUID);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
         else
         {
             GraphicHandle = (unsigned long) * (handleAdr);
-            pProgressionbarUID = (char*)getObjectFromHandle(GraphicHandle);
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            iProgressionbarUID = getObjectFromHandle(GraphicHandle);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
         }
     }
     else if (nbInputArgument(pvApiCtx) == 2)
@@ -135,15 +135,15 @@ int sci_progressionbar(char *fname, unsigned long fname_len)
             // Retrieve a matrix of string at position 2.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrmessageAdr, &nbRowMessage, &nbColMessage, &messageAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
                 return 1;
             }
 
             GraphicHandle = (unsigned long) * handleAdr;
-            pProgressionbarUID = (char*)getObjectFromHandle(GraphicHandle);
+            iProgressionbarUID = getObjectFromHandle(GraphicHandle);
 
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
-            setGraphicObjectProperty(pProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_VALUE__, &iValue, jni_int, 1);
+            setGraphicObjectProperty(iProgressionbarUID, __GO_UI_MESSAGE__, messageAdr, jni_string_vector, nbColMessage * nbRowMessage);
             freeAllocatedMatrixOfString(nbRowMessage, nbColMessage, messageAdr);
         }
         else

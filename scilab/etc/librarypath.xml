@@ -33,6 +33,7 @@
     <path value="$SCILAB/modules/gui/.libs"/>
     <path value="$SCILAB/modules/ui_data/.libs"/>
     <path value="$SCILAB/modules/javasci/.libs"/>
+    <path value="$SCILAB/modules/xcos/.libs"/>
     <path value="$SCILAB/modules/.libs"/>
     <path value="$SCILAB/.libs"/>
     
@@ -50,7 +51,8 @@
     <path value="/usr/lib64/gluegen2/"/>
     
     <!-- Some distributions (like openSUSE) put gluegen-rt in /usr/lib instead pf /usr/lib/jni -->
-    <path value="/usr/lib" />
+    <path value="/usr/lib/" />
+    <path value="/usr/lib64/" />
     
     <!-- Make install with prefix -->
     <path value="$SCILAB/../../lib/scilab/"/>

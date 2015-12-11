@@ -7,13 +7,9 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
 
 #include "gw_matio.h"
 #include "GetMatlabVariable.h"
@@ -25,7 +21,7 @@ enum matfile_errors
     UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varwrite(char *fname, unsigned long fname_len)
+int sci_matfile_varwrite(char *fname, void* pvApiCtx)
 {
     int nbRow = 0, nbCol = 0;
     mat_t *matfile = NULL;
@@ -62,14 +58,14 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
         getScalarDouble(pvApiCtx, fd_addr, &tmp_dbl);
         if (!isScalar(pvApiCtx, fd_addr))
         {
-            Scierror(999, _("%s: Wrong size for first input argument: Single double expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for first input argument: An integer value expected.\n"), fname);
             return FALSE;
         }
         fileIndex = (int)tmp_dbl;
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for first input argument: Double expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for first input argument: An integer value expected.\n"), fname);
         return FALSE;
     }
 
@@ -102,7 +98,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
         }
         if (nbCol != 1)
         {
-            Scierror(999, _("%s: Wrong size for second input argument: Single string expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for second input argument: string expected.\n"), fname);
 
             freeAllocatedSingleString(varname);
 
@@ -111,7 +107,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for second input argument: Single string expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for second input argument: string expected.\n"), fname);
 
         freeAllocatedSingleString(varname);
 
@@ -142,7 +138,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
         getScalarBoolean(pvApiCtx, cp_flag_addr, &compressionFlag);
         if (!isScalar(pvApiCtx, cp_flag_addr))
         {
-            Scierror(999, _("%s: Wrong size for fourth input argument: Single boolean expected.\n"), fname);
+            Scierror(999, _("%s: Wrong size for fourth input argument: A boolean expected.\n"), fname);
 
             freeAllocatedSingleString(varname);
 
@@ -151,7 +147,7 @@ int sci_matfile_varwrite(char *fname, unsigned long fname_len)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for fourth input argument: Single boolean expected.\n"), fname);
+        Scierror(999, _("%s: Wrong type for fourth input argument: A boolean expected.\n"), fname);
 
         freeAllocatedSingleString(varname);
 

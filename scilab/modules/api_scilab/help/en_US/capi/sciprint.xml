@@ -3,7 +3,7 @@
     <refnamediv>
         <refname>sciprint</refname>
         <refpurpose>A C gateway function which displays standard messages to the
-            user (same profil as the C printf function)
+            user (same profile as the C printf function)
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -55,14 +55,14 @@ int ScilabGateway::exists(char * fname, const int envId, void * pvApiCtx)
     {
         exists = env.isvalidobject(*id);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         throw;
     }
 
-    createScalarBoolean(pvApiCtx, 1, exists ? 1 : 0);
+    createScalarBoolean(pvApiCtx, Rhs + 1, exists ? 1 : 0);
 
-    LhsVar(1) = 1;
+    LhsVar(1) = Rhs + 1;
     PutLhsVar();
 
     return 0;

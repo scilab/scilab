@@ -6,15 +6,15 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include <stdlib.h>
 #include "InitializeGUI.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "setMainWindowTitle.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "buildMainWindowTitle.h"
 #ifdef _MSC_VER
 #include "WindowShow.h"
@@ -25,23 +25,12 @@ BOOL InitializeGUI(void)
 {
     if (getScilabMode() == SCILAB_STD)
     {
-        char *title = NULL;
 
         // TODO why this line since already done above
         // createSwingView();
 #ifdef _MSC_VER
         WindowShow();
 #endif
-
-        title = buildMainWindowTitle();
-        if (title)
-        {
-            BOOL bOK = setMainWindowTitle(title);
-
-            FREE(title);
-            title = NULL;
-            return bOK;
-        }
     }
     else
     {

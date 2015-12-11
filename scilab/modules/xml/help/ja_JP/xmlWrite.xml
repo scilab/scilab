@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="xmlWrite" xml:lang="ja">
@@ -59,16 +59,13 @@
         <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a att=""foo"" rib=""bar""><b>Hello</b></a></root>");
     xmlWrite(doc, TMPDIR+"/foo.xml", %f);
-
     // 前のファイルをオープンし,修正,保存します
     doc1 = xmlRead(TMPDIR+"/foo.xml");
     doc1.root.children(1).name = "newName";
     xmlWrite(doc1);
-
     // 修正が行われたかどうかを調べます
     doc2 = xmlRead(TMPDIR+"/foo.xml");
     doc2.root.children(1).name
-
     xmlDelete("all");
     ]]></programlisting>
     </refsection>

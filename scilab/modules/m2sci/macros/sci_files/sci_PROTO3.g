@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at    
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_MFUN(tree)
 // Prototype for eye false ones rand randn true zeros 
@@ -104,7 +104,7 @@ if rhs==1 then
     tmp=n
     if typeof(n)<>"variable" then
       tmp=gettempvar()
-      insert(Equal(list(tmp),n))
+      m2sci_insert(Equal(list(tmp),n))
     end
     newrhs=list()
     for k=1:size(n.dims)

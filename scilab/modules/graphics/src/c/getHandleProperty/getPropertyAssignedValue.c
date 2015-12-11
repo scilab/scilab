@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,14 +19,11 @@
 #include "getPropertyAssignedValue.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BasicAlgos.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
-#include "stricmp.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 void copyDoubleVectorToIntFromStack(void* _pvData, int* _piDest, int _iNbItem)
 {
@@ -51,14 +48,14 @@ char ** createCopyStringMatrixFromStack(void* _pvData, int _iNbItem)
 
     for (i = 0 ; i < _iNbItem ; i++)
     {
-        res[i] = strdup(values[i]);
+        res[i] = os_strdup(values[i]);
     }
 
     return res;
 
 }
 /*--------------------------------------------------------------------------*/
-int tryGetBooleanValueFromStack(void* _pvData, int _iType, int _iRows, int _iCols, char* _pstPropertyName)
+int tryGetBooleanValueFromStack(void* _pvData, int _iType, int _iRows, int _iCols, char const* _pstPropertyName)
 {
     if (_iType == sci_strings)
     {

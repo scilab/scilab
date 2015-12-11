@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -18,33 +18,28 @@
 #include "Scierror.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-BOOL winopen(char *scilabfilename)
+BOOL winopen(wchar_t *scilabfilename)
 {
     BOOL bOK = FALSE;
-    char *filename = NULL;
     wchar_t *wcfilename = NULL;
     HINSTANCE error = NULL;
 
-    filename = expandPathVariable(scilabfilename);
-    if (filename)
+    wcfilename = expandPathVariableW(scilabfilename);
+    if (wcfilename)
     {
-        wcfilename = to_wide_string(filename);
-        FREE(filename);
-        filename = NULL;
-        if (wcfilename)
+        error = ShellExecuteW(NULL, L"open", wcfilename, NULL, NULL, SW_SHOWNORMAL);
+        if ( error <= (HINSTANCE)32)
         {
-            error = ShellExecuteW(NULL, L"open", wcfilename, NULL, NULL, SW_SHOWNORMAL);
-            if ( error <= (HINSTANCE)32)
-            {
-                bOK = FALSE;
-            }
-            else
-            {
-                bOK = TRUE;
-            }
+            bOK = FALSE;
         }
+        else
+        {
+            bOK = TRUE;
+        }
+
+        FREE(wcfilename);
     }
     return bOK;
 }

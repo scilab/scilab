@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,6 +16,7 @@
 /* desc : interface for xchange routine                                   */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -25,7 +26,7 @@
 #define VIEWING_RECT_SIZE 4
 
 /*--------------------------------------------------------------------------*/
-int sci_xchange(char * fname, unsigned long fname_len)
+int sci_xchange(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -60,7 +61,7 @@ int sci_xchange(char * fname, unsigned long fname_len)
     // Retrieve a matrix of double at position 3.
     if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3Input))
     {
-        Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 
@@ -84,7 +85,7 @@ int sci_xchange(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
             return 1;
         }
 
@@ -100,7 +101,7 @@ int sci_xchange(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 
@@ -163,7 +164,7 @@ int sci_xchange(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
             return 1;
         }
 
@@ -179,7 +180,7 @@ int sci_xchange(char * fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 

@@ -34,7 +34,7 @@ typedef struct
     int nevprt;
     voidg funpt ;
     int type;
-    int scsptr;
+    void* scsptr;
     int nz;
     double *z;
     int noz;
@@ -70,6 +70,7 @@ typedef struct
     void **work;
     int nmode;
     int *mode;
+    char *uid;
 } scicos_block;
 
 

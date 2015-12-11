@@ -7,13 +7,13 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -114,7 +114,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
             piDims[K] = (int)matVariable->dims[K];
         }
 
-        CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, piDims, (double*)matVariable->data, NULL, parent, item_position);
+        CreateHyperMatrixVariable(pvApiCtx, iVar, matVariable->class_type, NULL, &matVariable->rank, piDims, matVariable, parent, item_position);
 
         FREE(piDims);
     }

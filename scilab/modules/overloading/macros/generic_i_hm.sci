@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function M=generic_i_hm(default_value,varargin)
 
@@ -15,8 +15,9 @@ function M=generic_i_hm(default_value,varargin)
     rhs=rhs-1
     M=varargin(rhs);
     N=varargin(rhs-1);//inserted matrix
-    dims=matrix(double(M.dims),-1,1);
-    v=matrix(M.entries,-1,1);
+
+    dims=matrix(size(M),-1,1);
+    v=matrix(M,-1,1);
 
     nd=size(dims,"*")
     olddims=dims

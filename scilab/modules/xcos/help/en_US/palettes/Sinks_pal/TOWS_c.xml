@@ -24,7 +24,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="TOWS_c">
     <refnamediv>
         <refname>TOWS_c</refname>
-        <refpurpose>Data to Scilab worspace</refpurpose>
+        <refpurpose>Data to Scilab workspace</refpurpose>
     </refnamediv>
     <refsection>
         <title>Block Screenshot</title>
@@ -41,7 +41,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    <link linkend="TOWS_c">Data to Scilab worspace</link>
+                    <link linkend="TOWS_c">Data to Scilab workspace</link>
                 </para>
             </listitem>
             <listitem>
@@ -100,8 +100,15 @@
         <para>That block is used to put simulated data in the scilab
             workspace.
         </para>
-        <para>Each sampling time, both dates and values of input are
+        <para>
+            Each sampling time, both dates and values of input are
             recorded.
+        </para>
+        <para>
+            Records are available after the simulation in Scilab's workspace
+            as <literal>variable.time</literal> and <literal>variable.values</literal>
+            where <literal>variable</literal> is the name given in the
+            <emphasis role="bold">Scilab variable name</emphasis> field.
         </para>
     </refsection>
     <refsection id="Dialogbox_TOWS_c">
@@ -241,7 +248,7 @@
     <refsection id="Example_TOWS_c">
         <title>Example</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/sinks_pal/TOWS_c_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/sinks_pal/TOWS_c_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../../examples/sinks_pal/TOWS_c_Example.zcos" valign="middle"/>

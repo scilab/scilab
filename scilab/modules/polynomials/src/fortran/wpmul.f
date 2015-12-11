@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 C/MEMBR ADD NAME=WPMUL,SSI=0
 c     Copyright INRIA
       subroutine wpmul(p1r,p1i,d1,p2r,p2i,d2,p3r,p3i,d3)

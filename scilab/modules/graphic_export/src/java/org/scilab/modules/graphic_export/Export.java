@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,16 +18,21 @@ import java.awt.Graphics2D;
 import java.awt.Shape;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Path2D;
 import java.awt.geom.PathIterator;
 import java.awt.image.BufferedImage;
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Type;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetEncoder;
 import java.text.AttributedCharacterIterator;
@@ -73,11 +78,14 @@ public class Export {
     public static final int INVALID_FILE = 2;
     public static final int MEMORY_ERROR = 3;
     public static final int UNKNOWN_ERROR = 4;
+    public static final int FILENOTFOUND_ERROR = 5;
+    public static final int NOWRITER_ERROR = 5;
 
     private static final float DEFAULT_JPEG_COMPRESSION = 0.95f;
 
     private static final String CLASSPATH_PDF_PS_EPS_EXPORT_NAME = "pdf_ps_eps_graphic_export";
     private static final String CLASSPATH_SVG_EXPORT_NAME = "svg_graphic_export";
+    private static final String CLASSPATH_EMF_EXPORT_NAME = "emf_graphic_export";
 
     private static final Map<DrawerVisitor, Exporter> visitorsToExp = new WeakHashMap<DrawerVisitor, Exporter>();
 
@@ -94,13 +102,15 @@ public class Export {
         extToType.put("svg", 8);
         extToType.put("ps", 9);
         extToType.put("pos", 9);
+        extToType.put("emf", 10);
     }
 
+    private static boolean emfLoaded;
     private static boolean svgLoaded;
     private static boolean pdfLoaded;
 
-    public enum TYPE { PNG, JPEG, GIF, BMP, PPM, SVG, PS, EPS, PDF }
-    private static final TYPE[] types = new TYPE[] {TYPE.PNG, TYPE.BMP, TYPE.GIF, TYPE.JPEG, TYPE.PNG, TYPE.PPM, TYPE.EPS, TYPE.PDF, TYPE.SVG, TYPE.PS};
+    public enum TYPE { PNG, JPEG, GIF, BMP, PPM, SVG, PS, EPS, PDF, EMF }
+    private static final TYPE[] types = new TYPE[] {TYPE.PNG, TYPE.BMP, TYPE.GIF, TYPE.JPEG, TYPE.PNG, TYPE.PPM, TYPE.EPS, TYPE.PDF, TYPE.SVG, TYPE.PS, TYPE.EMF};
 
     /**
      * @param type the image type
@@ -127,7 +137,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int export(String uid, int type, String fileName, ExportParams params, boolean headless) {
+    public static int export(int uid, int type, String fileName, ExportParams params, boolean headless) {
         // Check that the fileName contains an extension
         int dotPosition = fileName.lastIndexOf('.'); // position of the dot
         boolean extensionFound = false;
@@ -137,14 +147,14 @@ public class Export {
 
         String extendedFilename = fileName;
         if (!extensionFound) { // Add default extension if no one found
-            String[] extensions = {"png", "bmp", "gif", "jpeg", "png", "ppm", "eps", "pdf", "svg", "ps"};
+            String[] extensions = {"png", "bmp", "gif", "jpeg", "png", "ppm", "eps", "pdf", "svg", "ps", "emf"};
             extendedFilename = fileName + "." + extensions[type];
         }
 
         DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
         if (visitor != null) {
             Canvas canvas = visitor.getCanvas();
-            if (canvas instanceof JoGLCanvas && isBitmapFormat(types[type])) {
+            if (canvas instanceof JoGLCanvas && isBitmapFormat(types[type]) && visitor.getFigure().getVisible()) {
                 try {
                     return exportBitmap(uid, type, extendedFilename, true, params);
                 } catch (OutOfMemoryError e) {
@@ -158,7 +168,6 @@ public class Export {
         return exportVectorial(uid, type, extendedFilename, params, headless);
     }
 
-
     /**
      * Export in drawing in a Graphics2D
      * @param uid the figure uid
@@ -167,7 +176,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int exportVectorial(String uid, int type, String fileName, ExportParams params, boolean headless) {
+    public static int exportVectorial(int uid, int type, String fileName, ExportParams params, boolean headless) {
         if (fileName == null) {
             return INVALID_FILE;
         }
@@ -181,6 +190,9 @@ public class Export {
         try {
             return exportVectorial(uid, types[type], f, params, headless);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
     }
@@ -192,7 +204,7 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static int exportVectorial(String uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
+    public static int exportVectorial(int uid, TYPE type, File file, ExportParams params, boolean headless) throws IOException {
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
 
         if (!headless) {
@@ -202,14 +214,29 @@ public class Export {
             int height = dims[1];
 
             Graphics2D g2d = exporter.getGraphics2D(width, height, file, params);
+            if (g2d == null) {
+                return FILENOTFOUND_ERROR;
+            }
+
             params.setParamsOnGraphics(g2d);
 
             Canvas canvas = G2DCanvasFactory.createCanvas(g2d, width, height);
             DrawerVisitor oldVisitor = DrawerVisitor.getVisitor(uid);
             DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
                 @Override
-                public void updateObject(String id, int property) {
+                public void updateObject(Integer id, int property) {
                     // Don't update during the export
+                }
+
+                @Override
+                public void visit(Figure figure) {
+                    // Fix for bug 13676: allow vectorial export even if the figure is invisible
+                    synchronized (figure) {
+                        super.visit(figure);
+                        if (!figure.getVisible()) {
+                            askAcceptVisitor(figure.getChildren());
+                        }
+                    }
                 }
             };
 
@@ -219,6 +246,8 @@ public class Export {
                 exporter.write();
             } catch (OutOfMemoryError e) {
                 return MEMORY_ERROR;
+            } catch (IOException e) {
+                throw e;
             } catch (Throwable e) {
                 return UNKNOWN_ERROR;
             } finally {
@@ -227,31 +256,37 @@ public class Export {
                 exporter.dispose();
                 exporter = null;
                 visitorsToExp.remove(visitor);
+                canvas.destroy();
             }
         } else {
             DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
-            G2DCanvas canvas = (G2DCanvas) visitor.getCanvas();
-            canvas.enableDraw();
-            Exporter exporter = null;
-            try {
-                canvas.redraw();
-                exporter = visitorsToExp.get(visitor);
-                if (exporter != null) {
-                    exporter.file = file;
-                    exporter.write();
+            if (visitor.getCanvas() instanceof G2DCanvas) {
+                G2DCanvas canvas = (G2DCanvas) visitor.getCanvas();
+                canvas.enableDraw();
+                Exporter exporter = null;
+                try {
+                    canvas.redraw();
+                    exporter = visitorsToExp.get(visitor);
+                    if (exporter != null) {
+                        exporter.file = file;
+                        exporter.write();
+                    }
+                } catch (OutOfMemoryError e) {
+                    return MEMORY_ERROR;
+                } catch (IOException e) {
+                    throw e;
+                } catch (Throwable e) {
+                    return UNKNOWN_ERROR;
+                } finally {
+                    if (exporter != null) {
+                        exporter.dispose();
+                        exporter = null;
+                        visitorsToExp.remove(visitor);
+                    }
+                    DrawerVisitor.changeVisitor(figure, null);
+                    GraphicController.getController().unregister(visitor);
+                    canvas.destroy();
                 }
-            } catch (OutOfMemoryError e) {
-                return MEMORY_ERROR;
-            } catch (Throwable e) {
-                return UNKNOWN_ERROR;
-            } finally {
-                if (exporter != null) {
-                    exporter.dispose();
-                    exporter = null;
-                    visitorsToExp.remove(visitor);
-                }
-                DrawerVisitor.changeVisitor(figure, null);
-                GraphicController.getController().unregister(visitor);
             }
         }
 
@@ -267,7 +302,7 @@ public class Export {
      * @param params the export paramaters
      * @return the export status
      */
-    public static int exportBitmap(String uid, int type, String fileName, boolean fromScreen, ExportParams params) {
+    public static int exportBitmap(int uid, int type, String fileName, boolean fromScreen, ExportParams params) {
         if (fileName == null) {
             return INVALID_FILE;
         }
@@ -281,6 +316,9 @@ public class Export {
         try {
             exportBitmap(uid, types[type], f, fromScreen, params);
         } catch (IOException e) {
+            if (e instanceof FileNotFoundException) {
+                return FILENOTFOUND_ERROR;
+            }
             return IOEXCEPTION_ERROR;
         }
 
@@ -295,7 +333,7 @@ public class Export {
      * @param fromScreen if true, then use the screen view
      * @param params the export paramaters
      */
-    public static void exportBitmap(String uid, TYPE type, File file, boolean fromScreen, ExportParams params) throws IOException {
+    public static void exportBitmap(int uid, TYPE type, File file, boolean fromScreen, ExportParams params) throws IOException {
         if (isBitmapFormat(type)) {
             JoGLCanvas joglCanvas = null;
             if (fromScreen) {
@@ -311,12 +349,12 @@ public class Export {
                 joglCanvas = (JoGLCanvas) JoGLCanvasFactory.createCanvas(dims[0], dims[1]);
                 DrawerVisitor visitor = new DrawerVisitor(null, joglCanvas, figure) {
                     @Override
-                    public void updateObject(String id, int property) {
+                    public void updateObject(Integer id, int property) {
                         // Don't update during the export
                     }
 
                     @Override
-                    public void deleteObject(String id) {
+                    public void deleteObject(Integer id) {
                         // Don't delete during the export
                     }
                 };
@@ -328,11 +366,21 @@ public class Export {
 
             if (joglCanvas != null) {
                 BufferedImage image = joglCanvas.getImage();
-                //joglCanvas.destroy();
                 PNGExporter exporter = (PNGExporter) getExporter(type);
                 exporter.setImage(file, image, params);
-                exporter.write();
+                int exportStatus = exporter.write();
                 exporter.dispose();
+                if (isBitmapFormat(type) && exportStatus == Export.NOWRITER_ERROR) {
+                    // If export fails because no writer was found for bitmap format
+                    // ==> Retry without Alpha channel in image
+                    // Needed after JoGL 2.2.4 version
+                    image = joglCanvas.getImage(false);
+                    exporter = (PNGExporter) getExporter(type);
+                    exporter.setImage(file, image, params);
+                    exporter.write();
+                    exporter.dispose();
+                }
+
             }
         }
     }
@@ -344,7 +392,7 @@ public class Export {
      * @param file the file where to export
      * @param params the export paramaters
      */
-    public static void setVisitor(String uid, int type, final ExportParams params) {
+    public static void setVisitor(int uid, int type, final ExportParams params) {
         final Exporter exporter = getExporter(types[type]);
         Figure figure = (Figure) GraphicController.getController().getObjectFromId(uid);
         final Integer[] dims = figure.getAxesSize();
@@ -358,12 +406,12 @@ public class Export {
         canvas.disableDraw();
         DrawerVisitor visitor = new DrawerVisitor(null, canvas, figure) {
             @Override
-            public void deleteObject(String id) {
+            public void deleteObject(Integer id) {
                 // Don't delete during the export
             }
 
             @Override
-            public void updateObject(String id, int property) {
+            public void updateObject(Integer id, int property) {
                 if (needUpdate(id, property)) {
                     axesDrawer.update(id, property);
                     if (property == GraphicObjectProperties.__GO_AXES_SIZE__) {
@@ -420,6 +468,12 @@ public class Export {
             case EPS :
                 loadPDF();
                 return new EPSExporter();
+            case EMF :
+                if (!emfLoaded) {
+                    ScilabCommonsUtils.loadOnUse(CLASSPATH_EMF_EXPORT_NAME);
+                    emfLoaded = true;
+                }
+                return new EMFExporter();
             default :
                 break;
         }
@@ -455,7 +509,7 @@ public class Export {
         /**
          * Write the file
          */
-        abstract void write() throws IOException;
+        abstract int write() throws IOException;
 
         abstract void dispose();
     }
@@ -488,8 +542,8 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
-            ExportBitmap.writeFile(image, "png", file);
+        public int write() throws IOException {
+            return ExportBitmap.writeFile(image, "png", file);
         }
 
         @Override
@@ -508,8 +562,8 @@ public class Export {
         public GIFExporter() { }
 
         @Override
-        public void write() throws IOException {
-            ExportBitmap.writeFile(image, "gif", file);
+        public int write() throws IOException {
+            return ExportBitmap.writeFile(image, "gif", file);
         }
     }
 
@@ -531,8 +585,8 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
-            ExportBitmap.writeFile(image, "bmp", file);
+        public int write() throws IOException {
+            return ExportBitmap.writeFile(image, "bmp", file);
         }
     }
 
@@ -544,11 +598,11 @@ public class Export {
         public JPEGExporter() { }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             if (params.compressionQuality == -1) {
-                ExportBitmap.writeJPEG(image, DEFAULT_JPEG_COMPRESSION, file);
+                return ExportBitmap.writeJPEG(image, DEFAULT_JPEG_COMPRESSION, file);
             } else {
-                ExportBitmap.writeJPEG(image, params.compressionQuality, file);
+                return ExportBitmap.writeJPEG(image, params.compressionQuality, file);
             }
         }
     }
@@ -561,7 +615,7 @@ public class Export {
         public PPMExporter() { }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
             PPMEncoder encoder = new PPMEncoder(image, out);
             int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
@@ -569,6 +623,7 @@ public class Export {
             encoder.encodePixels(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
             out.flush();
             out.close();
+            return Export.SUCCESS;
         }
     }
 
@@ -619,13 +674,14 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             boolean useCSS = true;
             OutputStream svgs = new BufferedOutputStream(new FileOutputStream(file));
             Writer out = new OutputStreamWriter(svgs, "UTF-8");
             g2d.stream(out, useCSS);
             svgs.flush();
             svgs.close();
+            return Export.SUCCESS;
         }
 
         @Override
@@ -680,7 +736,7 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             if (g2d != null) {
                 g2d.finish();
             }
@@ -694,6 +750,7 @@ public class Export {
             if (out != null) {
                 out.close();
             }
+            return Export.SUCCESS;
         }
 
         @Override
@@ -737,6 +794,7 @@ public class Export {
                         gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
                         gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
                         gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+                        gen.writeln("/DP {/Points exch def N Points 0 get Points 1 get M 2 2 Points length 1 sub {/i exch def Points i get Points i 1 add get L}for} def");
                     }
 
                     @Override
@@ -790,7 +848,16 @@ public class Export {
                     }
 
                     @Override
-                    public int processShape(Shape s) throws IOException {
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
+                    }
+
+                    @Override
+                    public int processShape(Shape s, boolean b) throws IOException {
                         if (s instanceof Ellipse2D.Double) {
                             Ellipse2D.Double ell = (Ellipse2D.Double) s;
                             if (ell.height == ell.width) {
@@ -803,9 +870,36 @@ public class Export {
 
                                 return PathIterator.WIND_NON_ZERO;
                             }
+                        } else if (s instanceof Path2D) {
+                            StringBuilder buffer = new StringBuilder();
+                            double[] coords = new double[6];
+                            PathIterator it = ((Path2D) s).getPathIterator(new AffineTransform());
+                            if (!it.isDone()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_MOVETO) {
+                                    buffer.append("[").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                    it.next();
+                                } else {
+                                    return super.processShape(s, b);
+                                }
+                            } else {
+                                return super.processShape(s, b);
+                            }
+
+                            for (; !it.isDone(); it.next()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_LINETO) {
+                                    buffer.append(" ").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                } else {
+                                    return super.processShape(s, b);
+                                }
+                            }
+                            buffer.append("] DP");
+                            gen.writeln(buffer.toString());
+                            return PathIterator.WIND_NON_ZERO;
                         }
 
-                        return super.processShape(s);
+                        return super.processShape(s, b);
                     }
                 };
                 g2d.setGraphicContext(new GraphicContext());
@@ -815,7 +909,7 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             if (g2d != null) {
                 g2d.finish();
             }
@@ -829,6 +923,7 @@ public class Export {
             if (out != null) {
                 out.close();
             }
+            return Export.SUCCESS;
         }
 
         @Override
@@ -869,6 +964,18 @@ public class Export {
                         gen.writeln("/ReEncode { /MyEncoding exch def exch findfont dup length dict begin {def} forall /Encoding MyEncoding def currentdict end definefont } def");
                         gen.writeln("/Helvetica /HelveticaLatin1 ISOLatin1Encoding ReEncode");
                         gen.writeln("/Times /TimesLatin1 ISOLatin1Encoding ReEncode");
+
+                        // DP macro is used to draw an array as a polyline
+                        gen.writeln("/DP {/Points exch def Points 0 get Points 1 get M 2 2 Points length 1 sub {/i exch def Points i get Points i 1 add get L}for} def");
+                    }
+
+                    @Override
+                    public boolean shouldBeClipped(Shape clip, Shape s) {
+                        if (clip == null || s == null) {
+                            return false;
+                        }
+
+                        return clip.getBounds2D().intersects(s.getBounds2D());
                     }
 
                     @Override
@@ -922,7 +1029,7 @@ public class Export {
                     }
 
                     @Override
-                    public int processShape(Shape s) throws IOException {
+                    public int processShape(Shape s, boolean b) throws IOException {
                         if (s instanceof Ellipse2D.Double) {
                             Ellipse2D.Double ell = (Ellipse2D.Double) s;
                             if (ell.height == ell.width) {
@@ -935,9 +1042,36 @@ public class Export {
 
                                 return PathIterator.WIND_NON_ZERO;
                             }
+                        } else if (s instanceof Path2D) {
+                            StringBuilder buffer = new StringBuilder();
+                            double[] coords = new double[6];
+                            PathIterator it = ((Path2D) s).getPathIterator(new AffineTransform());
+                            if (!it.isDone()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_MOVETO) {
+                                    buffer.append("[").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                    it.next();
+                                } else {
+                                    return super.processShape(s, b);
+                                }
+                            } else {
+                                return super.processShape(s, b);
+                            }
+
+                            for (; !it.isDone(); it.next()) {
+                                int type = it.currentSegment(coords);
+                                if (type == PathIterator.SEG_LINETO) {
+                                    buffer.append(" ").append(gen.formatDouble(coords[0])).append(" ").append(gen.formatDouble(coords[1]));
+                                } else {
+                                    return super.processShape(s, b);
+                                }
+                            }
+                            buffer.append("] DP");
+                            gen.writeln(buffer.toString());
+                            return PathIterator.WIND_NON_ZERO;
                         }
 
-                        return super.processShape(s);
+                        return super.processShape(s, b);
                     }
 
                 };
@@ -946,6 +1080,110 @@ public class Export {
             } catch (IOException e) { }
 
             return g2d;
+        }
+    }
+
+    /**
+     * EMF Exporter
+     */
+    private static class EMFExporter extends Exporter {
+
+        private OutputStream out;
+        private Class<Graphics2D> g2dClass;
+        private Constructor<Graphics2D> g2dCtor;
+        private Graphics2D g2d;
+        private ByteArrayOutputStream buffer;
+
+        public EMFExporter() {
+            try {
+                g2dClass = (Class<Graphics2D>) Class.forName("org.freehep.graphicsio.emf.EMFGraphics2D");
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException("This Scilab build does not provide EMF support");
+            }
+
+            final Constructor[] ctors = g2dClass.getDeclaredConstructors();
+            Constructor ctor = null;
+            for (int i = 0; i < ctors.length; i++) {
+                ctor = ctors[i];
+                final Type[] args = ctor.getGenericParameterTypes();
+                if (args.length != 2) {
+                    continue;
+                }
+                if (args[0] != OutputStream.class) {
+                    continue;
+                }
+                if (args[1] != Dimension.class) {
+                    continue;
+                }
+
+                g2dCtor = ctor;
+                break;
+            }
+        }
+
+        @Override
+        public Graphics2D getGraphics2D(int width, int height, File file, final ExportParams params) {
+            this.file = file;
+            try {
+                if (file == null) {
+                    buffer = new ByteArrayOutputStream();
+                    out = new BufferedOutputStream(buffer);
+                } else {
+                    out = new BufferedOutputStream(new FileOutputStream(file));
+                }
+                if (params.orientation == ExportParams.LANDSCAPE) {
+                    g2d = g2dCtor.newInstance(out, new Dimension(height, width));
+                    g2dClass.getMethod("startExport").invoke(g2d);
+                    AffineTransform transf = AffineTransform.getRotateInstance(Math.PI / 2);
+                    transf.preConcatenate(AffineTransform.getTranslateInstance(height, 0));
+                    g2d.setTransform(transf);
+                } else {
+                    g2d = g2dCtor.newInstance(out, new Dimension(width, height));
+                    g2dClass.getMethod("startExport").invoke(g2d);
+                }
+            } catch (IOException e) {
+            } catch (IllegalAccessException e) {
+            } catch (IllegalArgumentException e) {
+            } catch (InvocationTargetException e) {
+            } catch (NoSuchMethodException e) {
+            } catch (SecurityException e) {
+            } catch (InstantiationException e) {
+            }
+
+            return g2d;
+        }
+
+        @Override
+        public int write() throws IOException {
+            if (g2d != null) {
+                try {
+                    g2dClass.getMethod("endExport").invoke(g2d);
+                    g2dClass.getMethod("closeStream").invoke(g2d);
+                } catch (IllegalAccessException e) {
+                } catch (IllegalArgumentException e) {
+                } catch (InvocationTargetException e) {
+                } catch (NoSuchMethodException e) {
+                } catch (SecurityException e) {
+                }
+            }
+            if (buffer != null && file != null) {
+                FileOutputStream fos = new FileOutputStream(file);
+                buffer.writeTo(fos);
+                buffer.close();
+                fos.flush();
+                fos.close();
+            }
+            if (out != null) {
+                out.close();
+            }
+            return Export.SUCCESS;
+        }
+
+        @Override
+        public void dispose() {
+            if (g2d != null) {
+                g2d.dispose();
+            }
         }
     }
 }

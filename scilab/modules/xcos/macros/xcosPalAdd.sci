@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 
@@ -78,7 +78,7 @@ function [status, msg] = xcosPalAdd(pal, category)
         path = pal;
 
         clear pal
-        import_from_hdf5(path);
+        load(path);
         if ~exists("pal", "l") then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": palette type or path expected.\n"), "xcosPalAdd", "pal"));
         end

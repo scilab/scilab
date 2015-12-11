@@ -49,16 +49,17 @@ function nonisothermal_reactor()
     T  = solution(3,:);
     Tc = solution(4,:);
 
-    scf(1); //create new figure, figure_id=1
+    f = scf(1); //create new figure, figure_id=1
     clf    //clear previous graph
-    plot(z,[cA; cB])
+    plot(z',[cA; cB]')
     legend("Concentration of compound A","Concentration of compound B"); //make legend for lines
     xlabel("z [m]")  //tag x axis
     ylabel("Concentrations [mol/m3]")  //tag y axis
 
-    scf(2); //figure_id=2
+    g = scf(2); //figure_id=2
+    g.figure_position(1) = g.figure_position(1)+f.figure_size(1); // So the windows don't overlay
     clf
-    plot(z,[T; Tc])
+    plot(z',[T; Tc]')
     legend("Temperature of reaction mixture","Temperature of cooling water");
     xlabel("z [m]")
     ylabel("Temperature profile [oC]")

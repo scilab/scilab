@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,7 +19,7 @@
 #include <wchar.h>
 
 #include "BOOL.h"
-
+#include "dynlib_string.h"
 /**
 * array elements that are digit between 0 and 9
 * @param[in] a wide string
@@ -27,7 +27,7 @@
 * @return BOOL array
 */
 
-BOOL *IsDigitW(wchar_t *input_string, int *sizeReturnedArray);
+STRING_IMPEXP BOOL *IsDigitW(wchar_t *input_string, int *sizeReturnedArray);
 
 #endif /* __ISDIGIT_H__ */
 /*--------------------------------------------------------------------------*/

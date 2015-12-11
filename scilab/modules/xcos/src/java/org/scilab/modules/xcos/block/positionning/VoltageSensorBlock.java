@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,8 +25,8 @@ import com.mxgraph.model.mxICell;
 public class VoltageSensorBlock extends BasicBlock {
 
     /** Default constructor */
-    public VoltageSensorBlock() {
-        super();
+    public VoltageSensorBlock(long uid) {
+        super(uid);
     }
 
     /**
@@ -44,7 +44,7 @@ public class VoltageSensorBlock extends BasicBlock {
             final OutputPort port = (OutputPort) child;
 
             // Only orientate the first output port
-            if (port.getOrdering() == 1) {
+            if (index == 0) {
                 port.setOrientation(Orientation.SOUTH);
             }
         }

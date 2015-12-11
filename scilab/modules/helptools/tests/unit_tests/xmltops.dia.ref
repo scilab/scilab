@@ -4,13 +4,14 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
 // <-- NO CHECK ERROR OUTPUT -->
 // <-- NEED JVM -->
 // xmltops
 // TEST 1 (french help and english help are complete)
 // =============================================================================
-my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_1",%f,%f);
+tmpPath = TMPDIR + "/examples";
+copyfile("SCI/modules/helptools/examples", tmpPath);
+my_module_path = pathconvert(tmpPath + "/example_1",%f,%f);
 // Build the french help
 setlanguage("fr_FR");
 my_french_help_dir    =  my_module_path+"/help/fr_FR";
@@ -18,9 +19,9 @@ my_french_help_title  =  "TEST 1 [fr_FR]";
 xmltops(my_french_help_dir,my_french_help_title,"fr_FR");
 
 Génération du document maître :
-	SCI/modules/helptools/examples/example_1/help/fr_FR
+	TMPDIR/examples/example_1/help/fr_FR
 
-Génération du fichier d'aide [ps] in SCI/modules/helptools/examples/example_1/help/fr_FR.
+Génération du fichier d'aide [ps] in TMPDIR/examples/example_1/help/fr_FR.
 ps_info =  fileinfo(my_module_path+"/ps/scilab_fr_FR_help.ps");
 if ps_info == [] then bugmes();quit;end       // file existence
 if ps_info(1) < 30000 then bugmes();quit;end   // file size
@@ -34,9 +35,9 @@ my_english_help_title  =  "TEST 1 [en_US]";
 xmltops(my_english_help_dir,my_english_help_title,'en_US');
 
 Building the master document:
-	SCI/modules/helptools/examples/example_1/help/en_US
+	TMPDIR/examples/example_1/help/en_US
 
-Building the manual file [ps] in SCI/modules/helptools/examples/example_1/help/en_US.
+Building the manual file [ps] in TMPDIR/examples/example_1/help/en_US.
 ps_info =  fileinfo(my_module_path+"/ps/scilab_en_US_help.ps");
 if ps_info == [] then bugmes();quit;end       // file existence
 if ps_info(1) < 30000 then bugmes();quit;end   // file size
@@ -46,7 +47,7 @@ clean_help(my_english_help_dir);
 // TEST 2 (example_2_function_2 and example_2_function_4 are missing in the
 //         french help)
 // =============================================================================
-my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_2",%f,%f);
+my_module_path = pathconvert(tmpPath + "/example_2",%f,%f);
 // Build the french help
 setlanguage("fr_FR");
 my_french_help_dir    =  my_module_path+"/help/fr_FR";
@@ -54,9 +55,9 @@ my_french_help_title  =  "TEST 2 [fr_FR]";
 xmltops(my_french_help_dir,my_french_help_title,'fr_FR');
 
 Génération du document maître :
-	SCI/modules/helptools/examples/example_2/help/fr_FR
+	TMPDIR/examples/example_2/help/fr_FR
 
-Génération du fichier d'aide [ps] in SCI/modules/helptools/examples/example_2/help/fr_FR.
+Génération du fichier d'aide [ps] in TMPDIR/examples/example_2/help/fr_FR.
 ps_info =  fileinfo(my_module_path+"/ps/scilab_fr_FR_help.ps");
 if ps_info == [] then bugmes();quit;end       // file existence
 if ps_info(1) < 30000 then bugmes();quit;end   // file size
@@ -70,9 +71,9 @@ my_english_help_title  =  "TEST 2 [en_US]";
 xmltops(my_english_help_dir,my_english_help_title,'en_US');
 
 Building the master document:
-	SCI/modules/helptools/examples/example_2/help/en_US
+	TMPDIR/examples/example_2/help/en_US
 
-Building the manual file [ps] in SCI/modules/helptools/examples/example_2/help/en_US.
+Building the manual file [ps] in TMPDIR/examples/example_2/help/en_US.
 ps_info =  fileinfo(my_module_path+"/ps/scilab_en_US_help.ps");
 if ps_info == [] then bugmes();quit;end       // file existence
 if ps_info(1) < 30000 then bugmes();quit;end   // file size
@@ -82,7 +83,7 @@ clean_help(my_english_help_dir);
 // TEST 3 (example_3_function_3 and example_3_function_4 are missing in the
 //         english help)
 // =============================================================================
-my_module_path = pathconvert(SCI+"/modules/helptools/examples/example_3",%f,%f);
+my_module_path = pathconvert(tmpPath + "/example_3",%f,%f);
 // Build the french help
 setlanguage("fr_FR");
 my_french_help_dir    =  my_module_path+"/help/fr_FR";
@@ -90,9 +91,9 @@ my_french_help_title  =  "TEST 3 [fr_FR]";
 xmltops(my_french_help_dir,my_french_help_title,"fr_FR");
 
 Génération du document maître :
-	SCI/modules/helptools/examples/example_3/help/fr_FR
+	TMPDIR/examples/example_3/help/fr_FR
 
-Génération du fichier d'aide [ps] in SCI/modules/helptools/examples/example_3/help/fr_FR.
+Génération du fichier d'aide [ps] in TMPDIR/examples/example_3/help/fr_FR.
 ps_info =  fileinfo(my_module_path+"/ps/scilab_fr_FR_help.ps");
 if ps_info == [] then bugmes();quit;end       // file existence
 if ps_info(1) < 30000 then bugmes();quit;end   // file size
@@ -106,9 +107,9 @@ my_english_help_title  =  "TEST 3 [en_US]";
 xmltops(my_english_help_dir,my_english_help_title,"en_US","fr_FR");
 
 Building the master document:
-	SCI/modules/helptools/examples/example_3/help/en_US
+	TMPDIR/examples/example_3/help/en_US
 
-Building the manual file [ps] in SCI/modules/helptools/examples/example_3/help/en_US.
+Building the manual file [ps] in TMPDIR/examples/example_3/help/en_US.
 ps_info =  fileinfo(my_module_path+"/ps/scilab_en_US_help.ps");
 if ps_info == [] then bugmes();quit;end       // file existence
 if ps_info(1) < 30000 then bugmes();quit;end   // file size

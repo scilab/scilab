@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -14,6 +14,7 @@
 #define __FSCANFMAT_H__
 
 #include "BOOL.h"
+#include "dynlib_fileio.h"
 
 typedef enum
 {
@@ -43,9 +44,9 @@ typedef struct
 /**
 *
 */
-fscanfMatResult *fscanfMat(char *filename, char *format, char *separator);
+FILEIO_IMPEXP fscanfMatResult *fscanfMat(char *filename, char *format, char *separator);
 
-void freeFscanfMatResult(fscanfMatResult *resultStruct);
+FILEIO_IMPEXP void freeFscanfMatResult(fscanfMatResult *resultStruct);
 
 #endif /* __FSCANFMAT_H__ */
 /*--------------------------------------------------------------------------*/

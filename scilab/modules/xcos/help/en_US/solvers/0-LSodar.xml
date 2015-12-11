@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.
  * The terms are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg"  xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en_US" xml:id="LSodar">
     <refnamediv>
@@ -77,7 +77,7 @@
     <refsection>
         <title>Examples</title>
         <para>
-            <link type="scilab" linkend="scilab.zcos/xcos/examples/solvers/ODE_Example.zcos">
+            <link type="scilab" linkend="scilab.xcos/xcos/examples/solvers/ODE_Example.zcos">
                 <inlinemediaobject>
                     <imageobject>
                         <imagedata align="center" fileref="../../../examples/solvers/ODE_Example.zcos" valign="middle"/>
@@ -145,11 +145,11 @@ Time for Adams / Functional:
             ]]></screen>
         </para>
         <para>
-            These results show that on a nonstiff problem, for the same precision required, <emphasis>LSodar</emphasis> is significantly faster. Other tests prove the proximity of the results. Indeed, we find that the solution difference order between <emphasis>LSodar</emphasis> and <emphasis>CVode</emphasis> is close to the order of the highest tolerance ( 
+            These results show that on a nonstiff problem, for the same precision required, <emphasis>LSodar</emphasis> is significantly faster. Other tests prove the proximity of the results. Indeed, we find that the solution difference order between <emphasis>LSodar</emphasis> and <emphasis>CVode</emphasis> is close to the order of the highest tolerance (
             <emphasis>
                 y<subscript>lsodar</subscript> - y<subscript>cvode</subscript>
             </emphasis>
-            &#8776; <emphasis>max(reltol, abstol)</emphasis> ).
+            ≈ <emphasis>max(reltol, abstol)</emphasis> ).
         </para>
         <para>
             Variable-size step ODE solvers are not appropriate for deterministic real-time applications because the computational overhead of taking a time step varies over the course of an application.

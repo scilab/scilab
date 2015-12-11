@@ -8,7 +8,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -16,15 +16,11 @@
 #include <string.h>
 #include <ctype.h>
 #include "completeLine.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "getPartLine.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
-#include "stricmp.h"
-#include "convstr.h"
 #include "stristr.h"
 
 /*--------------------------------------------------------------------------*/
@@ -43,14 +39,21 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
     size_t stringLength = 0;
 
     //get a working copy of find
-    pointerOnFindCopy = strdup(find);
-    convstr(&pointerOnFindCopy, &pointerOnFindCopy, UPPER, 1);
+    pointerOnFindCopy = os_strdup(find);
     //last character of string
     lastchar = *(string + strlen(string) - 1);
     stringLength = strlen(string);
 
-    //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
+    // Convert to upper-case
+    {
+        char* str;
+        for (str = pointerOnFindCopy; *str != '\0'; str++)
+        {
+            *str = toupper(*str);
+        }
+    }
 
+    //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
     movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
 
     while ( movingPointerOnFindCopy )
@@ -96,18 +99,18 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
 
     if (currentline == NULL)
     {
-        return  strdup("");
+        return  os_strdup("");
     }
     lencurrentline = (int)strlen(currentline);
 
     if (postCaretLine == NULL)
     {
-        stringToAddAtTheEnd = strdup("");
+        stringToAddAtTheEnd = os_strdup("");
         lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
     }
     else
     {
-        stringToAddAtTheEnd = strdup(postCaretLine);
+        stringToAddAtTheEnd = os_strdup(postCaretLine);
         lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
     }
 

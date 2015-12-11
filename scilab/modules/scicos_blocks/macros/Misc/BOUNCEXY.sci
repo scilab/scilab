@@ -21,19 +21,14 @@
 
 function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
     //Scicos 2D animated visualization block
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         dstate=model.dstate
         while %t do
@@ -49,7 +44,9 @@ function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
             "Ymax";
             ],..
             list("vec",-1,"vec",-1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1,"vec",1),exprs)
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
 
             mess=[]
             if size(clrs,"*")<>size(siz,"*") then
@@ -90,9 +87,14 @@ function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
             end
         end
     case "define" then
-        win=-1; imode=1;clrs=[1;2];
+        win=-1;
+        imode=1;
+        clrs=[1;2];
         siz=[1;1]
-        xmin=-5;xmax=5;ymin=0;ymax=15
+        xmin=-5;
+        xmax=5;
+        ymin=0;
+        ymax=15
 
         model=scicos_model()
         model.sim=list("bouncexy",4)
@@ -124,12 +126,7 @@ function [x,y,typ]=BOUNCEXY(job,arg1,arg2)
         strcat(sci2exp(xmax));
         strcat(sci2exp(ymin));
         strcat(sci2exp(ymax))]
-        gr_i=["thick=xget(''thickness'');xset(''thickness'',2);";
-        "t=(0:0.3:2*%pi)'';";
-        "xx=orig(1)+(1/5+(cos(2.2*t)+1)*3/10)*sz(1);";
-        "yy=orig(2)+(1/4.3+(sin(t)+1)*3/10)*sz(2);";
-        "xpoly(xx,yy,''lines'');"
-        "xset(''thickness'',thick);"]
+        gr_i=[]
         x=standard_define([2 2],model,exprs,gr_i)
     end
 endfunction

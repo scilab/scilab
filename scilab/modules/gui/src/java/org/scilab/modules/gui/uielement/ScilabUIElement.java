@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,7 @@ import org.scilab.modules.gui.toolbar.ToolBar;
  * @author Bruno JOFRET
  * @author Marouane BEN JELLOUL
  */
-public abstract class ScilabUIElement extends Uicontrol implements UIElement {
+public abstract class ScilabUIElement implements UIElement {
 
     /**
      * The toolBar associated to the UIElement

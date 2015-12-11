@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-09 12:12+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:08+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ja\n"
 
 #, c-format
@@ -26,11 +26,11 @@ msgid "%s: Wrong number of input arguments: At most %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: 最大でも %d 個としてください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -112,6 +112,9 @@ msgstr "unloader.sce を生成中 ...\n"
 msgid "%s: Wrong type for input argument #%d: A string array expected.\n"
 msgstr "%s: 入力引数 #%d の型が正しくありません: 文字列の配列を指定してください.\n"
 
+msgid "Generating localization\n"
+msgstr "ローカル化を生成中\n"
+
 #, c-format
 msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
 msgstr "%s: ファイル '%s' が存在しないか, 読込みアクセス許可がありません.\n"
@@ -140,3 +143,7 @@ msgstr "%s: このモジュールはCまたはFortranコンパイラを必要と
 
 msgid "Building sources...\n"
 msgstr "ソースを構築中...\n"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"

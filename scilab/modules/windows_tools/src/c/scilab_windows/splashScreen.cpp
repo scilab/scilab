@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -15,6 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include <Windows.h>
 #include <stdio.h>
+#include <string>
 #include <CommCtrl.h>
 #include <GdiPlus.h>
 extern "C"
@@ -27,7 +28,7 @@ extern "C"
 #include "charEncoding.h"
 #include "getScilabDirectory.h"
 #include "InnosetupMutex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 };
 /*--------------------------------------------------------------------------*/
 #define SPLASH_WINDOW_CLASSNAME "Scilab splashscreen"
@@ -133,7 +134,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     wndcls.hCursor = LoadCursor(NULL, IDC_APPSTARTING);
     wndcls.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wndcls.lpszClassName = SPLASH_WINDOW_CLASSNAME;
-    wndcls.hIcon = LoadIcon(wndcls.hInstance, (char*)MAKEINTRESOURCE(IDI_APPLICATION));
+    wndcls.hIcon = LoadIcon(wndcls.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 
     if (!RegisterClass(&wndcls))
     {
@@ -196,7 +197,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
 /*--------------------------------------------------------------------------*/
 static BOOL stopSplashScreen(UINT _time, UINT _timeMax)
 {
-    if (haveConsoleWindow() || (timeSplashScreen > _timeMax))
+    if (haveConsoleWindow() || (timeSplashScreen >= _timeMax))
     {
         return TRUE;
     }
@@ -221,7 +222,7 @@ static BOOL haveConsoleWindow(void)
 
     if (hWndMainScilab == NULL)
     {
-        wsprintf(titleMainWindow, _("Scilab Console"));
+        wsprintf(titleMainWindow, _("Scilab %s Console"),  std::string(SCI_VERSION_STRING).substr(strlen("scilab-"), std::string::npos).c_str());
         hWndMainScilab = FindWindow(NULL, titleMainWindow);
     }
 

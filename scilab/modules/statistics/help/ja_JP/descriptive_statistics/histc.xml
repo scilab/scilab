@@ -1,0 +1,234 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ --><!-- This document was created with Syntext Serna Free. -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="histc">
+    <refnamediv>
+        <refname>histc</refname>
+        <refpurpose>ヒストグラムを計算</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>
+            [cf, ind] = histc(n, data [,normalization])
+            [cf, ind] = histc(x, data [,normalization])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>正の整数 (クラスの数)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>
+                        クラスを定義する漸増ベクトル
+                        (<literal>x</literal>には最低2つの要素があります)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>data</term>
+                <listitem>
+                    <para>
+                        ベクトル (解析対象のデータ)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>cf</term>
+                <listitem>
+                    <para>
+                        <varname>n</varname> または <varname>x</varname>
+                        により定義されるクラスに含まれる
+                        <varname>data</varname>の値の数を示すベクトル
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>ind</term>
+                <listitem>
+                    <para>
+                        <varname>data</varname>と同じ大きさのベクトルまたは行列で,
+                        データ<varname>data</varname>の各要素が
+                        <varname>n</varname>または<varname>x</varname>により定義された
+                        クラスに重複して属していることを示します
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>normalization</term>
+                <listitem>
+                    <para>
+                        スカラー論理値.
+                        <varname>normalization=%f (デフォルト)</varname>: 
+                        <varname>cf</varname>は,各クラスにおける点の総数を表します.
+                        <varname>normalization=%t</varname>:
+                        <varname>cf</varname>は,各クラスにおける点の数を点の総数に関して相対的に表します.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            この関数は,クラス<literal>x</literal>により<literal>data</literal>ベクトルの
+            ヒストグラムを計算します.
+            <literal>x</literal>ではなくクラスの数 <literal>n</literal>が指定された場合,等間隔で
+            <emphasis>x(1) = min(data) &lt; x(2) = x(1) + dx &lt; ... &lt; x(n+1) = max(data)</emphasis>
+            (ただし, <emphasis>dx = (x(n+1)-x(1))/n</emphasis>)となるクラスが選択されます.
+        </para>
+        <para>
+            クラスは<literal>C1 = [x(1), x(2)]</literal> および <literal>Ci = ( x(i), x(i+1)]</literal> 
+            (i &gt;= 2)で定義されます.
+            <literal>Nmax</literal>は<literal>data</literal>の総数 (Nmax = length(data)),
+            <literal>Ni</literal>は<literal>Ci</literal>に含まれる<literal>data</literal>要素の数,
+            <literal>Ci</literal>における<literal>x</literal>のヒストグラムの値は,
+            <literal>"normalized"</literal>が選択された場合は	  
+            <emphasis>Ni/(Nmax (x(i+1)-x(i)))</emphasis> となり,
+            そうでない場合は単に<emphasis>Ni</emphasis>となります.
+            正規化が行われた際,ヒストグラムは以下を確認します:
+        </para>
+        <para>
+            <latex style="display"><![CDATA[ \int_{x(1)}^{x(n+1)}h(x)\,\mathrm{d}x=1 ]]></latex>
+        </para>
+        <para>
+            <emphasis>x(1)&lt;=min(data)</emphasis> および <emphasis>max(data) &lt;= x(n+1)</emphasis>
+            の場合
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <simplelist>
+            <member> 例 #1: ガウス乱数標本のヒストグラム周辺の変化
+                <programlisting role="example"><![CDATA[
+// ガウス乱数標本
+d = rand(1, 10000, 'normal');
+[cf, ind] = histc(20, d, normalization=%f)
+// グラフィック表現を示すためにhistplotを使用
+clf(); histplot(20, d, normalization=%f);
+[cf, ind] = histc(20, d)
+clf(); histplot(20, d);
+]]></programlisting>
+                <scilab:image>
+                    d = rand(1, 10000, 'normal');
+                    [cf, ind] = histc(20, d)
+                    clf(); histplot(20, d);
+                </scilab:image>
+            </member>
+            <member>
+                例 #2: 二項(B(6,0.5)) 乱数標本のヒストグラム
+                <programlisting role="example"><![CDATA[
+d = grand(1000,1,"bin", 6, 0.5);
+c = linspace(-0.5,6.5,8);
+clf()
+subplot(2,1,1)
+[cf, ind] = histc(c, d)
+histplot(c, d, style=2);
+xtitle("Normalized histogram")
+subplot(2,1,2)
+[cf, ind] = histc(c, d, normalization=%f)
+histplot(c, d, normalization=%f, style=5);
+xtitle("Non normalized histogram")
+]]></programlisting>
+                <scilab:image localized="true">
+                    d = grand(1000,1,"bin", 6, 0.5);
+                    c = linspace(-0.5,6.5,8);
+                    clf()
+                    subplot(2,1,1)
+                    [cf, ind] = histc(c, d)
+                    histplot(c, d, style=2);
+                    xtitle("Normalized histogram")
+                    subplot(2,1,2)
+                    [cf, ind] = histc(c, d, normalization=%f)
+                    histplot(c, d, normalization=%f, style=5);
+                    xtitle("Non normalized histogram")
+                </scilab:image>
+            </member>
+            <member>
+                例 #3: 指数乱数標本のヒストグラム
+                <programlisting role="example"><![CDATA[
+lambda = 2;
+X = grand(100000,1,"exp", 1/lambda);
+Xmax = max(X);
+[cf, ind] = histc(40, X)
+clf()
+histplot(40, X, style=2);
+x = linspace(0, max(Xmax), 100)';
+plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
+legend(["exponential random sample histogram" "exact density curve"]);
+]]></programlisting>
+                <scilab:image localized="true">
+                    lambda = 2;
+                    X = grand(100000,1,"exp", 1/lambda);
+                    Xmax = max(X);
+                    [cf, ind] = histc(40, X)
+                    clf()
+                    histplot(40, X, style=2);
+                    x = linspace(0, max(Xmax), 100)';
+                    plot2d(x, lambda*exp(-lambda*x), strf="000", style=5)
+                    legend(["exponential random sample histogram" "exact density curve"]);
+                </scilab:image>
+            </member>
+            <member>
+                例 #4: ガウス乱数標本の周波数ポリゴンチャートとヒストグラム
+                <programlisting role="example"><![CDATA[
+n = 10;
+data = rand(1, 1000, "normal");
+[cf, ind] = histc(n, data)
+clf(); histplot(n, data, style=12, polygon=%t);
+legend(["normalized histogram" "frequency polygon chart"]);
+]]></programlisting>
+                <scilab:image localized="true">
+                    n = 10;
+                    data = rand(1, 1000, "normal");
+                    [cf, ind] = histc(n, data)
+                    clf(); histplot(n, data, style=12, polygon=%t);
+                    legend(["normalized histogram" "frequency polygon chart"]);
+                </scilab:image>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="histplot">histplot</link>
+            </member>
+            <member>
+                <link linkend="hist3d">hist3d</link>
+            </member>
+            <member>
+                <link linkend="plot2d">plot2d</link>
+            </member>
+            <member>
+                <link linkend="dsearch">dsearch</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>履歴</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Introduction
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

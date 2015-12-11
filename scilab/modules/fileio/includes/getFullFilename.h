@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -21,14 +21,14 @@
 * @param[in] FilenameInput can be a relative path
 * @return a full filename (path expanded)
 */
-FILEIO_IMPEXP wchar_t *getFullFilenameW(wchar_t* FilenameInput);
+FILEIO_IMPEXP wchar_t* getFullFilenameW(const wchar_t* FilenameInput);
 
 /**
 * get full filename of a file
 * @param[in] FilenameInput can be a relative path
 * @return a full filename (path expanded)
 */
-FILEIO_IMPEXP char *getFullFilename(char* Filename);
+FILEIO_IMPEXP char* getFullFilename(const char* Filename);
 
 #endif /* __GETFULLFILENAME_H__ */
 /*--------------------------------------------------------------------------*/

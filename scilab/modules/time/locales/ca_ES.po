@@ -8,20 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-04-19 18:07+0000\n"
-"Last-Translator: Marc Coll Carrillo <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:05+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha d'estar entre %d i "
-"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments: Scalar values expected.\n"
@@ -49,7 +43,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: valor incorrecte del paràmetre d'entrada #%d: s'esperava '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: el paràmetre d'entrada #%d té una mida incorrecta: s'esperava una "
 "cadena.\n"
@@ -70,6 +64,10 @@ msgid "%s: Wrong type for input argument #%d: Integer or '%s' expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un enter o "
 "'%s'.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -185,16 +183,17 @@ msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Se'n necessiten %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: Same size expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: L'argument d'entrada té una mida incorrecta: Han de tenir la mateixa "
-"mida.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-"%s: Els arguments d'entrada són d'un tipus incorrecte: Han de ser nombres "
-"enters.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
@@ -209,7 +208,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid "%s: You must call tic() before calling toc().\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same size expected.\n"
 msgstr ""
 
 #, c-format

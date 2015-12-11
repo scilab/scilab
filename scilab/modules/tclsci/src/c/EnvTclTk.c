@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -16,13 +16,13 @@
 #include <tk.h>
 
 #include "PATH_MAX.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "EnvTclTk.h"
 #include "setenvtcl.h"
 #include "GlobalTclInterp.h"
 #include "localization.h"
 #include "ConvertSlash.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 extern void	TclSetLibraryPath(Tcl_Obj * pathPtr);
 /*--------------------------------------------------------------------------*/

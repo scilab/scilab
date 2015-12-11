@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,7 +21,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "SetProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "HandleManagement.h"
@@ -36,7 +36,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xtitle(char * fname, unsigned long fname_len)
+int sci_xtitle(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -48,7 +48,7 @@ int sci_xtitle(char * fname, unsigned long fname_len)
     int  nbLabels = 0; /* number of modified labels */
     int  box = 0;
     BOOL isBoxSpecified = FALSE;
-    char * psubwinUID = NULL;
+    int iSubwinUID = 0;
     static rhs_opts opts[] =
     {
         { -1, "boxed", -1, 0, 0, NULL},
@@ -57,7 +57,7 @@ int sci_xtitle(char * fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -94,7 +94,7 @@ int sci_xtitle(char * fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
                 return 1;
             }
 
@@ -124,13 +124,14 @@ int sci_xtitle(char * fname, unsigned long fname_len)
         nbLabels--; /* it is not a label text */
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     for (narg = 1 ; narg <= nbLabels ; narg++)
     {
         int m = 0, n = 0;
         char **Str = NULL;
-        char * modifiedLabel = NULL;
+        int iModifiedLabel = 0;
+        int* piModifiedLabel = &iModifiedLabel;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, narg, &piAddrStr);
         if (sciErr.iErr)
@@ -142,7 +143,7 @@ int sci_xtitle(char * fname, unsigned long fname_len)
         // Retrieve a matrix of string at position narg.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m, &n, &Str))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, narg);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, narg);
             return 1;
         }
 
@@ -154,16 +155,16 @@ int sci_xtitle(char * fname, unsigned long fname_len)
         switch (narg)
         {
             case 1:
-                getGraphicObjectProperty(psubwinUID, __GO_TITLE__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_TITLE__, jni_int, (void **)&piModifiedLabel);
                 break;
             case 2:
-                getGraphicObjectProperty(psubwinUID, __GO_X_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_X_AXIS_LABEL__, jni_int, (void **)&piModifiedLabel);
                 break;
             case 3:
-                getGraphicObjectProperty(psubwinUID, __GO_Y_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LABEL__, jni_int, (void **)&piModifiedLabel);
                 break;
             case 4:
-                getGraphicObjectProperty(psubwinUID, __GO_Z_AXIS_LABEL__, jni_string, (void **)&modifiedLabel);
+                getGraphicObjectProperty(iSubwinUID, __GO_Z_AXIS_LABEL__, jni_int, (void **)&piModifiedLabel);
                 break;
             default:
                 break;
@@ -173,9 +174,9 @@ int sci_xtitle(char * fname, unsigned long fname_len)
         startFigureDataWriting(pFigure);
 #endif
 
-        sciSetText(modifiedLabel, Str, m, n);
+        sciSetText(iModifiedLabel, Str, m, n);
 
-        setGraphicObjectProperty(modifiedLabel, __GO_FILL_MODE__, &box, jni_bool, 1);
+        setGraphicObjectProperty(iModifiedLabel, __GO_FILL_MODE__, &box, jni_bool, 1);
 
 #if 0
         endFigureDataWriting(pFigure);
@@ -184,7 +185,7 @@ int sci_xtitle(char * fname, unsigned long fname_len)
         freeArrayOfString(Str, m * n);
     }
 
-    setCurrentObject(psubwinUID);
+    setCurrentObject(iSubwinUID);
 #if 0
     sciDrawObj(pFigure);
 #endif

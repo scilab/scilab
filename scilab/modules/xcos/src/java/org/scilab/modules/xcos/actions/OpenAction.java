@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileFilter;
 
@@ -27,7 +28,6 @@ import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.filechooser.ScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.io.XcosFileType;
@@ -75,7 +75,7 @@ public final class OpenAction extends DefaultAction {
      *            associated Scilab Graph
      * @return the button
      */
-    public static PushButton createButton(ScilabGraph scilabGraph) {
+    public static JButton createButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, OpenAction.class);
     }
 
@@ -130,13 +130,13 @@ public final class OpenAction extends DefaultAction {
 
         final File onlySelected = fc.getSelectedFile();
         if (onlySelected != null) {
-            Xcos.getInstance().open(onlySelected.getCanonicalPath(), null);
+            Xcos.getInstance().open(onlySelected.getCanonicalPath(), 0);
         }
 
         final File[] multiSelected = fc.getSelectedFiles();
         for (File file : multiSelected) {
             if (file != onlySelected) {
-                Xcos.getInstance().open(file.getCanonicalPath(), null);
+                Xcos.getInstance().open(file.getCanonicalPath(), 0);
             }
         }
     }

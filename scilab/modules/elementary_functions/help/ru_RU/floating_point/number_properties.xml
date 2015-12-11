@@ -34,9 +34,9 @@
             описывается IEEE 754). Числа <literal>F</literal> представляются в
             виде:
         </para>
-        <screen><![CDATA[ 
-sign * m * b^e
- ]]></screen>
+        <para>
+            <code>sign * m * b^e</code>
+        </para>
         <para>
             <literal>e</literal> - показатель, а 
             <literal>m</literal> - мантисса:

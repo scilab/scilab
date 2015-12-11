@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jarray">
+    <refnamediv>
+        <refname>jarray</refname>
+        <refpurpose>Create a Java array</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            jarray(className, n_1 [, n_2 [, ...]])
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>className</term>
+                <listitem>
+                    <para>A string giving the class name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>n_i</term>
+                <listitem>
+                    <para>An integer giving the array dimension</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Creates a multidimensional array n_1x...xn_p of elements with type className. An array element can be accessed in using classical Scilab notations, the indexing follows Scilab convention: it start at 1.
+        </para>
+        <para>
+            The className can be one of the primitive datatypes: double, int, boolean, short, long, float, char and byte.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               a = jarray("java.lang.String", 2, 2, 3);
+               // array insertion
+               a(1, 1, 3) = "Hi Jims !";
+               a(2, 1, 3) = "Hi Jims again !!"
+
+               // array extraction
+               length(a(2, 1, 3));
+               a(2, 1, 3)
+      ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

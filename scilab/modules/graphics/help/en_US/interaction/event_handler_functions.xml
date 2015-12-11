@@ -2,12 +2,12 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Jean-Baptiste Silvy
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="eventhandlerfunctions">
@@ -19,15 +19,16 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>event_handler_function(win,x,y,ibut)</synopsis>
+        <synopsis>event_handler_function(h,x,y,ibut)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
         <variablelist>
             <varlistentry>
-                <term>win</term>
+                <term>h</term>
                 <listitem>
-                    <para>window number where the event had occurred.</para>
+                    <para>window number if the event occurred in an axe with a figure type parent. (DEPRECATED)</para>
+                    <para>handle of the axe's parent where the event occurred.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -54,7 +55,7 @@
         <title>Description</title>
         <para>
             When the event handler mode is enable, Scilab will call the specified event handler
-            function each time an event occures in the graphic window. The event handler function
+            function each time an event occurres in the graphic window. The event handler function
             must comply with the above prototype. Each time an event occurred, the function is called
             and its four parameters are set accordingly to the window number, mouse position and
             type of event.
@@ -186,7 +187,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 function my_eventhandler(win,x,y,ibut)
   if ibut==-1000 then return,end
   [x,y]=xchange(x,y,'i2f')

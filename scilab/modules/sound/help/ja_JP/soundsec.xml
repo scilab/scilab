@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+    * Copyright (C) ????-2006 - INRIA - Scilab 
+    * 
+    * This file must be used under the terms of the CeCILL.
+    * This source file is licensed as described in the file COPYING, which
+    * you should have received as part of this distribution.  The terms
+    * are also available at
+    * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+    *
+    -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="soundsec">
+    <refnamediv>
+        <refname>soundsec</refname>
+        <refpurpose>
+            周波数<literal>freq</literal> Hzで
+            <literal>t</literal>秒分のサンプルベクトルを生成.
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼び出し手順</title>
+        <synopsis>samples=soundsec(t [,freq])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>t</term>
+                <listitem>
+                    <para>正の実数の1行1列行列, サンプルの時間長.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>freq</term>
+                <listitem>
+                    <para>
+                        正の実数の1行1列行列, サンプル/秒の周波数.
+                    </para>
+                    <para>デフォルト値は22050 Hz</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            サンプル・レート<literal>freq</literal>で
+            0から <literal>t</literal> 秒までの時間ベクトルを生成します.
+        </para>
+        <para>
+            サンプルは常に <literal>[0,t[</literal>(上界を除く)に整合するように生成されます.
+        </para>
+        <para>
+            0 を<literal>t</literal> または <literal>freq</literal> に指定すると,
+            空の行列が返されます.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[ 
+// まず0.5秒分のサウンドパラメータを作成.
+t=soundsec(0.5);
+// 次に A4 = 440Hz サインを生成
+s=sin(2*%pi*440*t);
+analyze(s,200,600,22050);
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="playsnd">playsnd</link>
+            </member>
+            <member>
+                <link linkend="analyze">analyze</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

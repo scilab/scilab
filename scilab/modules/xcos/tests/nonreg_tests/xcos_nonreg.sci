@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function xcos_nonreg(varargin)
 
@@ -395,12 +395,12 @@ function family = get_scilab_family()
     //
     // Algorithm: (grep '^\s*//--' xcos_nonreg.sci | awk -F '//-- ' '{print '//  ' $1 $2}')
     //
-    //    Initialize output to [] <=> unknow version of Scilab
+    //    Initialize output to [] <=> unknown version of Scilab
     //    Get complete version name
     //    Extract family from a known pattern found in version name
 
 
-    //-- Initialize output to [] <=> unknow version of Scilab
+    //-- Initialize output to [] <=> unknown version of Scilab
     family = []
 
     //-- Get complete version name

@@ -20,7 +20,7 @@
 //
 
 function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
-    // cor    ; correspondance table with initial block ordering
+    // cor    ; correspondence table with initial block ordering
     //
     // bllst: list with nblk elts where nblk denotes number of blocks.
     //        Each element must be a list with 16 elements:
@@ -114,7 +114,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     //extract various info from bllst
     [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     ozptr,typ_mod,rpptr,ipptr,opptr,xc0,xcd0,xd0,oxd0,rpar,..
-    ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,..
+    ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,uids,..
     bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect,typ_l);
     typ_z0=typ_z;
 
@@ -166,7 +166,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     // utiliser pour la generation de code
 
     if xptr($)==1 & zcptr($)>1 then
-        mess=msprintf(_("No continuous-time state. Thresholds are ignored; this \nmay be OK if you don''t generate external events with them.\nIf you want to reactivate the thresholds, then you need\nto include a block with continuous-time state in your diagram.\n   You can for example include DUMMY CLSS block (linear palette)."))
+        mess=msprintf(_("No continuous-time state. Thresholds are ignored; this \nmay be OK if you don''t generate external events with them.\nIf you want to reactivate the thresholds, then you need\n\nto include a block with continuous-time state in your diagram.\n   You can for example include DUMMY CLSS block (linear palette)."))
         messagebox(mess,"modal","error");
     end
 
@@ -180,7 +180,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
     ordclk=ordclk,cord=cord,oord=oord,zord=zord,..
     critev=critev(:),nb=nb,ztyp=ztyp,nblk=nblk,..
     ndcblk=ndcblk,subscr=subscr,funtyp=funtyp,..
-    iord=iord,labels=labels,modptr=modptr);
+    iord=iord,labels=labels,uids=uids,modptr=modptr);
 
     //initialize agenda
     [tevts,evtspt,pointi]=init_agenda(initexe,clkptr)
@@ -197,7 +197,7 @@ function cpr=c_pass2(bllst,connectmat,clkconnect,cor,corinv,flag)
         warning(_("Diagram contains implicit blocks, compiling for implicit Solver."))
         %scicos_solver=100
     end
-    if %scicos_solver==100 | %scicos_solver==101 then xc0=[xc0;xcd0],end
+    if or(%scicos_solver==[100, 101, 102]) then xc0=[xc0;xcd0],end
     state=scicos_state()
     state.x=xc0
     state.z=xd0
@@ -521,7 +521,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
     //testing event algebraic loops
     ok=is_alg_event_loop(typ_l,clkconnect)
     if ~ok then
-        disp(mprintf("%s: alg_event_loop failed", "c_pass2"));
+        disp(msprintf("%s: alg_event_loop failed", "c_pass2"));
         messagebox(_("Algebraic loop on events."),"modal","error");
         return
     end
@@ -562,7 +562,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
 
                     [balg,vec]=ini_ordo3(primary)
                     if balg then
-                        disp(mprintf("%s: ini_ordo (3) failed", "c_pass2"));
+                        disp(msprintf("%s: ini_ordo (3) failed", "c_pass2"));
                         messagebox(_("Algebraic loop."),"modal","error"),
                         ok=%f
                         return
@@ -597,7 +597,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
                             if show_comment then mprintf("found non convergence\n"),pause,end
                             i=lp(1)  // first typ_l
                             if i==[] then
-                                disp(mprintf("%s: ini_ordo (2) failed", "c_pass2"));
+                                disp(msprintf("%s: ini_ordo (2) failed", "c_pass2"));
                                 messagebox(_("Algebraic loop."),"modal","error")
                                 ok=%f
                                 return
@@ -989,7 +989,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
     end
     //
     if ~ok then
-        disp(mprintf("%s: scheduling failed", "c_pass2"));
+        disp(msprintf("%s: scheduling failed", "c_pass2"));
         messagebox(_("Algebraic loop."),"modal","error");
         iord=[],oord=[],zord=[],critev=[]
         return,
@@ -1093,7 +1093,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
         for i=1:nb
             if vec(i)==j-1&typ_l(i)<>-1 then
                 if j==nb+2 then
-                    disp(mprintf("%s: tree (3) failed", "c_pass2"));
+                    disp(msprintf("%s: tree (3) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 if typ_l(i)==1 then
@@ -1154,7 +1154,7 @@ endfunction
 
 function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     ozptr,typ_mod,rpptr,ipptr,opptr,xc0,xcd0,xd0,oxd0,rpar,..
-    ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,..
+    ipar,opar,typ_z,typ_x,typ_m,funs,funtyp,initexe,labels,uids,..
     bexe,boptr,blnk,blptr,ok]=extract_info(bllst,connectmat,clkconnect,typ_l)
 
     ok=%t
@@ -1176,6 +1176,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
     funs=list();
     funtyp=zeros(typ_z)
     labels=[]
+    uids=[]
     [ok,bllst]=adjust_inout(bllst,connectmat)
     if ok then
         [ok,bllst]=adjust_typ(bllst,connectmat)
@@ -1187,7 +1188,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         xptr=[],zptr=[],ozptr=[],rpptr=[],ipptr=[],opptr=[],xc0=[],..
         xcd0=[],xd0=[],oxd0=list(),rpar=[],ipar=[],opar=list(),..
         typ_z=[],typ_x=[],typ_m=[],funs=[],funtyp=[],initexe=[],..
-        labels=[],bexe=[],boptr=[],blnk=[],blptr=[]
+        labels=[],uids=[],bexe=[],boptr=[],blnk=[],blptr=[]
         return;
     end
     for i=1:nbl
@@ -1268,11 +1269,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         end
 
         //real paramaters
-        if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
-            if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
-        else
-            rpark=ll.rpar(:)
-        end
+        rpark=ll.rpar(:)
         rpar=[rpar;rpark]
         rpptr(i+1)=rpptr(i)+size(rpark,"*")
 
@@ -1333,6 +1330,12 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
             labels=[labels;ll.label(1)]
         else
             labels=[labels;" "]
+        end
+
+        if type(ll.uid)==10 then
+            uids=[uids;ll.uid(1)]
+        else
+            uids=[uids;" "]
         end
     end
 
@@ -1473,7 +1476,7 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
         for i=1:nb
             if vec(i)==j-1 then
                 if j==nb+2 then
-                    disp(mprintf("%s: tree (2) failed", "c_pass2"));
+                    disp(msprintf("%s: tree (2) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 for k=outoinptr(i):outoinptr(i+1)-1
@@ -2043,8 +2046,8 @@ function id = getBlockIds(path)
     k = path(:);
     for i = k
         b = scs_m.objs(i);
-        if typeof(b) == "Block" &  size(scs_m.objs(i).doc) >= 1 then
-            id($ + 1) = scs_m.objs(i).doc(1);
+        if typeof(b) == "Block" &  length(scs_m.objs(i).model.uid) >= 1 then
+            id($ + 1) = scs_m.objs(i).model.uid;
         end
         if typeof(b.model.rpar) == "diagram" then
             scs_m = b.model.rpar;
@@ -2472,18 +2475,18 @@ function [critev]=critical_events(connectmat,clkconnect,dep_t,typ_r,..
     end
 endfunction
 
-// adjust_typ: It resolves positives and negatives port types.
+// adjust_typ: It resolves positive and negative port types.
 //		   Its Algorithm is based on the algorithm of adjust_inout
 // Fady NASSIF: 14/06/2007
 
 function [ok,bllst]=adjust_typ(bllst,connectmat)
 
     for i=1:length(bllst)
-        if size(bllst(i).in,1)<>size(bllst(i).intyp,2) then
-            bllst(i).intyp=bllst(i).intyp(1)*ones(size(bllst(i).in,1),1);
+        if size(bllst(i).in,"*")<>size(bllst(i).intyp,"*") then
+            bllst(i).intyp=bllst(i).intyp(1)*ones(bllst(i).in);
         end
-        if size(bllst(i).out,1)<>size(bllst(i).outtyp,2) then
-            bllst(i).outtyp=bllst(i).outtyp(1)*ones(size(bllst(i).out,1),1);
+        if size(bllst(i).out,"*")<>size(bllst(i).outtyp,"*") then
+            bllst(i).outtyp=bllst(i).outtyp(1)*ones(bllst(i).out);
         end
     end
     nlnk=size(connectmat,1)
@@ -2502,7 +2505,7 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
                 //             target ports are explicitly informed
                 //             with positive types
                 if (intyp>0 & outtyp>0) then
-                    //if types of source and target port doesn't match and aren't double and complex
+                    //if types of source and target port don't match and aren't double and complex
                     //then call bad_connection, set flag ok to false and exit
 
                     if intyp<>outtyp then
@@ -2571,7 +2574,7 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
 
             //loop on the two dimensions of source/target port
             //only case : target and source ports are both
-            //            negatives or null
+            //            negative or null
             if nouttyp<=0 & nintyp<=0 then
                 findflag=%t;
                 //
@@ -2605,5 +2608,4 @@ function [ok,bllst]=adjust_typ(bllst,connectmat)
         end
     end
 endfunction
-
 

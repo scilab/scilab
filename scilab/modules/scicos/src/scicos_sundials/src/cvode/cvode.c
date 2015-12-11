@@ -5679,7 +5679,7 @@ static int CVRootfindExt(CVodeMem cv_mem)
         /* Set next root approximation tmid and get g(tmid).
         If tmid is too close to tlo or thi, adjust it inward,
         by a fractional distance that is between 0.1 and 0.5.  */
-        if ((ABS(ghi[imax]) == ZERO) || (ABS(glo[imax]) == ZERO))
+        if ((ABS(ghi[imax]) == ZERO) || (ABS(glo[imax]) == ZERO) || ghi[imax] == alpha * glo[imax])
         {
             tmid = (tlo + alpha * thi) / (1 + alpha);
         }
@@ -5691,7 +5691,6 @@ static int CVRootfindExt(CVodeMem cv_mem)
         if (tmid + 1 == tmid)
         {
             printf("tmid is nan\n\r ");
-            exit(0);
         };
 
         if (ABS(tmid - tlo) < HALF * ttol)

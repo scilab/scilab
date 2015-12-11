@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -22,13 +22,13 @@
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static int playsound(wchar_t *wcFilename);
 /*--------------------------------------------------------------------------*/
 /* private function called by playsnd */
 /*--------------------------------------------------------------------------*/
-int sci_Playsound (char *fname, unsigned long fname_len)
+int sci_PlaySound(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -59,7 +59,7 @@ int sci_Playsound (char *fname, unsigned long fname_len)
 
     if (iType1 != sci_strings )
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
@@ -72,7 +72,7 @@ int sci_Playsound (char *fname, unsigned long fname_len)
 
     //    if ( (m1 != n1) && (n1 != 1) )
     //    {
-    //        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+    //        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
     //        return 1;
     //    }
     //
@@ -102,7 +102,7 @@ int sci_Playsound (char *fname, unsigned long fname_len)
     expandedPath = expandPathVariableW(pStVarOne);
     if (pStVarOne)
     {
-        FREE(pStVarOne);
+        freeAllocatedSingleString(pStVarOne);
         pStVarOne = NULL;
     }
 

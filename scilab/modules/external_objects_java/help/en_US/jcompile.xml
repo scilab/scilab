@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jcompile">
+    <refnamediv>
+        <refname>jcompile</refname>
+        <refpurpose>Compile Java code or file</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            class = jcompile(className, code);
+            class = jcompile(javaFiles);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>className</term>
+                <listitem>
+                    <para>A string giving the class name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>code</term>
+                <listitem>
+                    <para>A row or a column of strings containing the Java code.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>javaFiles</term>
+                <listitem>
+                    <para>Path to Java files.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>class</term>
+                <listitem>
+                    <para>A mlist typed _JClass</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Compile Java source code and load the corresponding class. If the package tools.jar, distributed with JDK, is not in the classpath, the Eclipse Compiler for Java (ECJ) will be used.
+        </para>
+        <para>If the argument is a file, jcompile will compile the Java code.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               hw = jcompile("HelloWorld", ["public class HelloWorld {"
+                                            "public static String getHello() {"
+                                            "return ""Hello World !!"";"
+                                            "}"
+                                            "}"]);
+
+               hello = hw.getHello()
+
+               jremove hello hw
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+fd = mopen(TMPDIR+'/HelloWorld.java','wt');
+mputl(["public class HelloWorld {"
+                   "public static String getHello() {"
+                   "return ""Hello World !!"";"
+                   "}"
+                   "}"],fd);
+mclose(fd);
+
+jcompile(TMPDIR+"/HelloWorld.java")
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+directory=SCI+"/modules/external_objects_java/examples/com/foo/";
+// Compile of all them
+jcompile(ls(directory + "/*.java"))
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jimport">jimport</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

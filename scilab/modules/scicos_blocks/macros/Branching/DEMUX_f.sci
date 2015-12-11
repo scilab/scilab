@@ -20,24 +20,21 @@
 //
 
 function [x,y,typ]=DEMUX_f(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         while %t do
             [ok,out,exprs]=scicos_getvalue("Set DEMUX block parameters",..
             ["number of output ports or vector of sizes"],list("vec",-1),exprs)
-            if ~ok then break,end
+            if ~ok then
+                break,
+            end
             if size(out,"*")==1 then
                 if out<2 | out>8 then
                     message("Block must have at least 2 and at most 8 output ports")
@@ -51,14 +48,22 @@ function [x,y,typ]=DEMUX_f(job,arg1,arg2)
                     "and size 0 is not allowed"]   )
                     ok=%f
                 else
-                    if min(out)<0 then nin=0,else nin=sum(out),end
+                    if min(out)<0 then
+                        nin=0,
+                    else
+                        nin=sum(out),
+                    end
                     [model,graphics,ok]=check_io(model,graphics,nin,out(:),[],[])
-                    if ok then out=size(out,"*"),end
+                    if ok then
+                        out=size(out,"*"),
+                    end
                 end
             end
             if ok then
-                graphics.exprs=exprs;model.ipar=out
-                x.graphics=graphics;x.model=model
+                graphics.exprs=exprs;
+                model.ipar=out
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
@@ -74,7 +79,7 @@ function [x,y,typ]=DEMUX_f(job,arg1,arg2)
         model.dep_ut=[%t %f]
 
         exprs=string(out)
-        gr_i="xstringb(orig(1),orig(2),''Demux'',sz(1),sz(2),''fill'')"
+        gr_i=[]
         x=standard_define([.5 2],model,exprs,gr_i)
     end
 endfunction

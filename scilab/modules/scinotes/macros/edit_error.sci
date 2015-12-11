@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 
 function answ = edit_error(clearerror)
@@ -16,20 +16,20 @@ function answ = edit_error(clearerror)
     [str, n, line, func] = lasterror(clearerror);
     if (n > 0) then
         if (func == "") then
-            answ = gettext("the last error did not occur inside a library function.");
+            answ = gettext("The last error did not occur inside a Scilab macro.");
         else
             p = get_function_path(func);
             if (p <> []) then
                 editor(p, line, func);
-                answ = gettext("opening file ") + p + gettext(" on line ") + ..
+                answ = gettext("Opening file ") + p + gettext(" on line ") + ..
                 msprintf("%d",line) + gettext(" of the source file of the function ") + func;
             else
-                answ = gettext("the source file of the function ") + func + ..
+                answ = gettext("The source file of the function ") + func + ..
                 gettext(" was not found in any library path");
             end
         end
     else
-        answ = gettext(" was not found in any library path");
+        answ = gettext("There is no recorded error");
     end
 endfunction
 

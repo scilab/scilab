@@ -7,7 +7,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // =============================================================================
 function [y, Fs, bits] = wavread(wavfile, ext)
@@ -271,7 +271,7 @@ function Data = read_dat_pcm(fid,total_bytes , nChannels, nBitsPerSample, ext, w
         if wFormatTag == 3 then
             dtype = "f";
         else
-            dtype = "l";
+            dtype = "i";
         end
     else
         error(msprintf(gettext("%s: An error occurred: %s\n"), "read_dat_pcm", gettext("Cannot read .wav file  with more than 16 bits per sample.")));

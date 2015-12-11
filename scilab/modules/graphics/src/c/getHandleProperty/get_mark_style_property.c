@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,19 +30,19 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_style_property(void* _pvCtx, char* pobjUID)
+void* get_mark_style_property(void* _pvCtx, int iObjUID)
 {
     int iMarkStyle = 0;
     int* piMarkStyle = &iMarkStyle;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
+    getGraphicObjectProperty(iObjUID, __GO_MARK_STYLE__, jni_int, (void**)&piMarkStyle);
 
     if (piMarkStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_style");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iMarkStyle);
+    return sciReturnDouble(iMarkStyle);
 }
 /*------------------------------------------------------------------------*/

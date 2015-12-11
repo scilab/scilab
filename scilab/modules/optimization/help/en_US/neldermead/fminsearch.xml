@@ -7,7 +7,7 @@
     <refnamediv>
         <refname>fminsearch</refname>
         <refpurpose>
-            Computes the unconstrained minimimum of given function with
+            Computes the unconstrained minimum of given function with
             the Nelder-Mead algorithm.
         </refpurpose>
     </refnamediv>
@@ -201,7 +201,7 @@
             </varlistentry>
         </variablelist>
         <para>
-            It might happen that the function requires additionnal arguments to be evaluated.
+            It might happen that the function requires additional arguments to be evaluated.
             In this case, we can use the following feature.
             The argument <literal>costf</literal> can also be the list <literal>(myfun,a1,a2,...)</literal>.
             In this case <literal>myfun</literal>, the first element in the list, must be a function and must
@@ -701,9 +701,8 @@ fopt = 0
                     is (much) lower with <link linkend="optim">optim</link>, when the
                     function is sufficiently smooth. If the derivatives of the function are
                     not available, it is still possible to use numerical derivatives combined
-                    with the <link linkend="optim">optim</link> function (this feature
-                    is provided by the <link linkend="derivative">derivative</link> and
-                    <link linkend="numdiff">numdiff</link> functions).
+                    with the <link linkend="optim">optim</link> function: this feature
+                    is provided by the <link linkend="numderivative">numderivative</link> function.
                     If the function has discontinuous derivatives, the <link linkend="optim">optim</link>
                     function provides the <literal>nd</literal> solver which is very efficient.
                     Still, there are situations where the cost function is discontinuous or "noisy".
@@ -735,8 +734,8 @@ fopt = 0
                     Although the algorithm practically converges in many situations,
                     the Nelder-Mead algorithm is not a provably convergent algorithm.
                     There are several known counter-examples where the algorithm
-                    fails to converge on a stationnary point and, instead, converge
-                    to a non-stationnary point. This situation is often indicated by a
+                    fails to converge on a stationary point and, instead, converge
+                    to a non-stationary point. This situation is often indicated by a
                     repeated application of the contraction step. In that situation, we simply restart the
                     algorithm with the final point as the new initial guess.
                     If the algorithm converges to the same point, there is a good

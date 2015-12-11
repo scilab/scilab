@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,8 +18,8 @@
 /*--------------------------------------------------------------------------*/
 SOUND_IMPEXP int gw_sound(void);
 /*--------------------------------------------------------------------------*/
-SOUND_IMPEXP int sci_beep(char *fname, unsigned long fname_len);
-SOUND_IMPEXP int sci_Playsound(char *fname, unsigned long fname_len);
+SOUND_IMPEXP int sci_beep(char *fname, void* pvApiCtx);
+SOUND_IMPEXP int sci_PlaySound(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SOUND__ */
 /*--------------------------------------------------------------------------*/

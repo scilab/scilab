@@ -1,4 +1,9 @@
 #
+# Prerequirements
+#
+bin/xml2-config
+
+#
 # Linux objects files
 #
 *.loT
@@ -9,8 +14,10 @@
 #
 # Linux autotool files
 #
+.dirstamp
 .deps
 .libs
+/config.cache
 Makefile
 
 #
@@ -44,6 +51,8 @@ lib
 #
 # windows files
 #
+vld.ini
+modules/windows_tools/src/c/WScilex/memory_leak_report.txt
 
 #
 # Innosetup files (Windows)
@@ -75,6 +84,7 @@ Debug
 *.suo
 *.ncb
 VTune
+*.pdb
 
 #
 # F2C files (windows)
@@ -105,6 +115,11 @@ workspace/
 .classpath
 .project
 .cproject
+.settings/
+
+# vim files
+/tags
+*.swp
 
 # MacOS files
 .DS_Store
@@ -112,6 +127,7 @@ workspace/
 #
 # scilab/ specific files
 #
+/usr
 /thirdparty
 /include
 Makefile.OBJ
@@ -126,6 +142,7 @@ lib
 tcllib
 _tmp_project.h
 scilab-bin
+scilab6-bin
 scilab-cli-bin
 tclmajor
 tclminor
@@ -166,6 +183,9 @@ modules/types/src/jni/sci_types_wrap.c
 *.gcov
 *.gcno
 *.gcda
+
+# Automake tests generated files
+*.trs
 
 # clang / scan-build generated temporary files
 modules/*/*.plist

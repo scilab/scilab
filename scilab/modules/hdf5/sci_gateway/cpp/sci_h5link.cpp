@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -76,7 +76,7 @@ int sci_h5link(char *fname, unsigned long fname_len)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 
@@ -110,7 +110,7 @@ int sci_h5link(char *fname, unsigned long fname_len)
     {
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return 0;
         }
 
@@ -163,7 +163,7 @@ int sci_h5link(char *fname, unsigned long fname_len)
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a boolean expected.\n"), fname);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string or boolean expected.\n"), fname);
             return 0;
         }
     }

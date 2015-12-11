@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [y,Fs,bits]=auread(aufile,ext)
 
@@ -62,7 +62,7 @@ function [y,Fs,bits]=auread(aufile,ext)
             y = [snd("samples"),snd("chans")];
             return
         elseif exts>2 then
-            error(msprintf(gettext("%s: An error occurred: %s\n"),"auread",gettext("Index range must be specified as a scalar or 2-element vector.")));
+            error(msprintf(gettext("%s: An error occurred: %s\n"),"auread",gettext("Index range must be specified as a scalar or a 2 elements vector.")));
         elseif exts==1 then
             ext = [1,ext];
         end
@@ -163,11 +163,11 @@ function [snd]=read_sndhdr(fid)
         error("Not a .au sound file.")
     end
 
-    snd("offset")=mget(1,"ulb",fid)
-    snd("databytes")=mget(1,"ulb",fid)
-    snd("format")=mget(1,"ulb",fid)
-    snd("rate")=mget(1,"ulb",fid)
-    snd("chans")=mget(1,"ulb",fid)
+    snd("offset")=mget(1,"uib",fid)
+    snd("databytes")=mget(1,"uib",fid)
+    snd("format")=mget(1,"uib",fid)
+    snd("rate")=mget(1,"uib",fid)
+    snd("chans")=mget(1,"uib",fid)
 
     // Directly determine how long info string is:
     info_len = snd("offset")-24;

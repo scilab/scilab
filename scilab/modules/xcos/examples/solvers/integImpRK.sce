@@ -3,8 +3,6 @@
 //
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 
-// Run with exec("SCI/modules/xcos/examples/solvers/integRK.sce");
-
 // Import the diagram and augment the ending time
 loadScicos();
 loadXcosLibs();
@@ -20,7 +18,7 @@ for solver=1:5
     if (solver == 5) then scs_m.props.tol(6) = 7; end
 
     // Set max step size and reltol if implicit Runge-Kutta
-    if (solver == 5) then scs_m.props.tol(7) = 0.01; scs_m.props.tol(2) = 1.0e-10; end
+    if (solver == 5) then scs_m.props.tol(7) = 0.01; scs_m.props.tol(2) = 1d-10; end
 
     // Start the timer, launch the simulation and display time
     tic();

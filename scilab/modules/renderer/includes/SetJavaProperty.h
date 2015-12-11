@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -28,12 +28,12 @@ extern "C" {
     /**
      * Update subwin size and scale
      */
-    RENDERER_IMPEXP void sciJavaUpdateSubwinScale(char * pSubwinUID);
+    RENDERER_IMPEXP void sciJavaUpdateSubwinScale(int iubwinUID);
 
     /**
      * Update bounding box of a text object if needed
      */
-    RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(char * pTextUID);
+    RENDERER_IMPEXP void sciJavaUpdateTextBoundingBox(int iTextUID);
 
 #ifdef __cplusplus
 }

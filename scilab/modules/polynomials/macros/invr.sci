@@ -5,11 +5,11 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 function [f,d]=invr(h,flag)
-    //if h is a scalar, polynomial or rational fonction matrix, invr
+    //if h is a scalar, polynomial or rational function matrix, invr
     //computes h^(-1).
     //!
     if argn(2)==1 then

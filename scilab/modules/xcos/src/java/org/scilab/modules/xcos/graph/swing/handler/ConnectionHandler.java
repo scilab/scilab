@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -206,6 +206,17 @@ public class ConnectionHandler extends mxConnectionHandler {
 
             e.consume();
         } else {
+            if (marker.hasValidState() && connectPreview.getPreviewState() != null) {
+                final mxGraph graph = graphComponent.getGraph();
+                final double x = graph.snap(e.getX());
+                final double y = graph.snap(e.getY());
+
+                // We are ending a link creation on an valid port,
+                // so sync the points coordinates with the model
+                mxICell cell = (mxICell) connectPreview.getPreviewState().getCell();
+                cell.setGeometry(cell.getGeometry());
+            }
+
             multiPointLinkStarted = false;
             super.mouseReleased(e);
         }

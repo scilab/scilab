@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,7 +16,7 @@
 extern "C"
 {
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 }
 
@@ -25,10 +25,10 @@ extern "C"
 namespace org_modules_xml
 {
 
-std::string * XMLValidation::errorBuffer = 0;
-std::list<XMLValidation *>& XMLValidation::openValidationFiles = *new std::list < XMLValidation * >();
+std::string XMLValidation::errorBuffer;
+std::list<XMLValidation *> XMLValidation::openValidationFiles;
 
-XMLValidation::XMLValidation(): XMLObject()
+XMLValidation::XMLValidation(): XMLObject(), validationFile(0)
 {
     scilabType = XMLVALID;
 }
@@ -45,7 +45,7 @@ void XMLValidation::errorFunction(void *ctx, const char *msg, ...)
     vsnprintf(str, BUFFER_SIZE, msg, args);
 #endif
     va_end(args);
-    errorBuffer->append(str);
+    errorBuffer.append(str);
 }
 
 void XMLValidation::errorReaderFunction(void * arg, const char * msg, xmlParserSeverities severity, xmlTextReaderLocatorPtr locator)
@@ -56,7 +56,7 @@ void XMLValidation::errorReaderFunction(void * arg, const char * msg, xmlParserS
         << xmlTextReaderLocatorLineNumber(locator) << std::endl
         << msg << std::endl;
 
-    errorBuffer->append(oss.str());
+    errorBuffer.append(oss.str());
 }
 
 
@@ -127,3 +127,4 @@ void XMLValidation::closeAllValidationFiles()
     delete[]arr;
 }
 }
+

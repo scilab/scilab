@@ -30,7 +30,6 @@ C
 C     Directly generates ratio of chisquare variates
 C
 C**********************************************************************
-      include 'stack.h'
 C     .. Scalar Arguments ..
       DOUBLE PRECISION dfd,dfn
 C     ..
@@ -53,12 +52,12 @@ C     JJV changed constant so that it will not underflow at compile time
 C     JJV while not slowing generator by using double precision or logs.
 C      IF (.NOT. (xden.LE. (1.0E-38*xnum))) GO TO 20
       IF (.NOT. (xden.LE. (1.0E-37*xnum))) GO TO 20
-      call basout(io,wte,'F: generated numbers would cause overflow')
+      call basout(io,6,'F: generated numbers would cause overflow')
 c      WRITE (*,*) ' Numerator ',xnum,' Denominator ',xden
 C     JJV next 2 lines changed to maintain truncation of large deviates.
 C      WRITE (*,*) ' GENF returning 1.0E38'
 C      genf = 1.0E38
-       call basout(io,wte,' GENF returning 1.0E37')
+       call basout(io,6,' GENF returning 1.0E37')
       genf = 1.0E37
       GO TO 30
 

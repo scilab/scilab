@@ -1,0 +1,18 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- ENGLISH IMPOSED -->
+// <-- XCOS TEST -->
+
+// Import diagram
+assert_checktrue(importXcosDiagram("SCI/modules/xcos/tests/unit_tests/Integer/iselect.zcos"));
+
+A_ref = int32([0;0;0;0;1;1;1;2;2;2;3;3;3;3;3;3;3;3;3;3;3;3;3;3;3;2;2;2;1;1;1;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0]);
+ 
+try scicos_simulate(scs_m, 'nw'); catch disp(lasterror()); end
+
+assert_checkequal(A.values, A_ref);

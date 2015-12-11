@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 function [x,y,typ]=SELF_SWITCH(job,arg1,arg2)
@@ -14,20 +14,15 @@ function [x,y,typ]=SELF_SWITCH(job,arg1,arg2)
         diagram = scicos_diagram();
         // Input forward
         diagram.objs(1) = IN_f("define");
-        diagram.objs(1).graphics.pout = 5;
 
         // Output's forward
         diagram.objs(2)=OUT_f("define");
-        diagram.objs(2).graphics.pin = 7;
 
         diagram.objs(3)=CONST_m("define");
-        diagram.objs(3).graphics.pout = 6;
         diagram.objs(3).graphics.exprs = "0";
         diagram.objs(3).model.rpar = 0;
 
         diagram.objs(4)=SWITCH_f("define");
-        diagram.objs(4).graphics.pin = [5 6]
-        diagram.objs(4).graphics.pout = 7
         if stateOpen == %t
             diagram.objs(4).model.ipar = 1;
             diagram.objs(4).graphics.exprs = ["2";"2"];
@@ -44,14 +39,6 @@ function [x,y,typ]=SELF_SWITCH(job,arg1,arg2)
         diagram.objs(7) = scicos_link(xx=[0, 0], yy=[0, 0], from=[4, 1], to=[2, 1]);
     endfunction
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         x = arg1;
         stateOpen = x.model.opar(1);
@@ -71,8 +58,7 @@ function [x,y,typ]=SELF_SWITCH(job,arg1,arg2)
         x = scicos_block()
         x.gui="SELF_SWITCH"
         x.graphics.sz=[2,2]
-        x.graphics.gr_i=list("xstringb(orig(1),orig(2),''CUT'',sz(1),s"+...
-        "z(2),''fill'')",8)
+        x.graphics.gr_i=[]
         x.graphics.pin=0
         x.graphics.pout=0
         x.model.sim="csuper"

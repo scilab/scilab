@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.tranformations;
@@ -21,7 +21,7 @@ public class Vector3d {
     private final double x;
     private final double y;
     private final double z;
-    private Integer hash;
+    private int hash = -1;
 
     public Vector3d(Vector3d v) {
         this.x = v.x;
@@ -198,7 +198,7 @@ public class Vector3d {
 
     @Override
     public int hashCode() {
-        if (hash == null) {
+        if (hash == -1) {
             hash = Arrays.hashCode(new double[] {x, y, z});
         }
         return hash;

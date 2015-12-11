@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 
 
@@ -16,7 +16,12 @@ function y=median(x,orient)
     //    - modified by farid.belahcene:the case when x is an hypermatrix
     //    - new syntaxes: median(x,'m') and median(x,dim)
 
-    [lhs,rhs]=argn(0)
+    [lhs, rhs] = argn(0);
+
+    if rhs == 0 then
+        error(msprintf(gettext("%s: Wrong number of input argument(s): %d or %d expected.\n"),"median",1,2));
+    end
+
     if argn(2)<2 then
         orient=0;
     else
@@ -70,9 +75,3 @@ function y=median(x,orient)
     end
 
 endfunction
-
-
-
-
-
-

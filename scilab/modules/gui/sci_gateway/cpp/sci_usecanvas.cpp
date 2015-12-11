@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,13 +21,13 @@ extern "C"
 #include "Scierror.h"
 #include "gw_gui.h"
 #include "BOOL.h"
-#include"MALLOC.h"
+#include"sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_usecanvas(char *fname, unsigned long fname_len)
+int sci_usecanvas(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

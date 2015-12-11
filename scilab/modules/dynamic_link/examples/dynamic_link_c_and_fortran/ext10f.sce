@@ -6,13 +6,13 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Demo file for ext10f example
 
 // builder code for ext10f.c
 link_name = "ext10f";    // functions to be added to the call table
-flag  = "f";		 // ext10f is a C function
+flag  = "f";		 // ext10f is a Fortran function
 files = ["ext10f.f" ];   // objects files for ext10f
 libs  = [];		 // other libs needed for linking
 

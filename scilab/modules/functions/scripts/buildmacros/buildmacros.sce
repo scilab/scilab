@@ -6,25 +6,19 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // ------------------------------------
 //warning('off'); // disable warnings
 // ------------------------------------
 
-if (isdef("genlib") == %f) then
-    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
-end
 // ------------------------------------
-lines(0);
+//lines(0);
 Directories=[];
 CurrentDirectory=pwd();
 
-// set stacksize
 // because scilab.start not called when we build macros
 // Previously (wrong place), it was defined in buildmacros.sce of metanet module
-
-stacksize(5000000);
 
 modules=getmodules();
 index=size(modules);
@@ -38,11 +32,12 @@ Dim=size(Directories);
 
 
 for i=1:Dim(1) do
-    chdir(Directories(i));
-    if isfile("buildmacros.sce") then
-        exec("buildmacros.sce");
-    end
-    chdir(CurrentDirectory);
+    cd(Directories(i));
+    //if (fileinfo('buildmacros.sce')<>[]) then
+    //disp(Directories(i));
+    exec("buildmacros.sce", 0);
+    //end
+    cd(CurrentDirectory);
 end
 clear CurrentDirectory Dim Directories
 exit

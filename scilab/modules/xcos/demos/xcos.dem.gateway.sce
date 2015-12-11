@@ -21,6 +21,7 @@ function subdemolist = demo_gateway()
     end
 
     subdemolist = [subdemolist; ..
+    _("Event demos")         , "event.dem.gateway.sce" ; ..
     _("Old demos")           , "old_demos.dem.gateway.sce"];
 
     subdemolist(:,2) = demopath + subdemolist(:,2);

@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.events.callback;
@@ -73,6 +73,10 @@ public abstract class CommonCallBack extends AbstractAction {
             case CallBack.SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
                 callback = ScilabCallBack.createOutOfXclickAndXgetmouse(command);
                 break;
+            case CallBack.SCILAB_NOT_INTERRUPTIBLE_FUNCTION:
+            case CallBack.SCILAB_NOT_INTERRUPTIBLE_INSTRUCTION:
+                callback = ScilabCallBack.create(command, false);
+                break;
             default:
                 callback = ScilabCallBack.create(command);
                 break;
@@ -87,7 +91,7 @@ public abstract class CommonCallBack extends AbstractAction {
      * @param objectUID the object UID
      * @return the Callback
      */
-    public static CommonCallBack createCallback(String command, int callbackType, String objectUID) {
+    public static CommonCallBack createCallback(String command, int callbackType, int objectUID) {
         CommonCallBack callback = null;
         switch (callbackType) {
             case CallBack.JAVA :
@@ -97,14 +101,21 @@ public abstract class CommonCallBack extends AbstractAction {
                 callback = JavaCallBack.createOutOfXclickAndXgetmouse(command);
                 break;
             case CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO :
-                callback = ScilabCallBack.create(command);
+                callback = ScilabCallBack.create(command, false);
                 break;
             case CallBack.SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
                 callback = ScilabCallBack.createOutOfXclickAndXgetmouse(command);
                 break;
+            case CallBack.SCILAB_NOT_INTERRUPTIBLE_FUNCTION:
+            case CallBack.SCILAB_NOT_INTERRUPTIBLE_INSTRUCTION:
+                callback = ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
+                                                 + "gcbo = getcallbackobject(" + objectUID + ");"
+                                                 + command
+                                                 + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;", false);
+                break;
             default:
                 callback = ScilabCallBack.create("if exists(\"gcbo\") then %oldgcbo = gcbo; end;"
-                                                 + "gcbo = getcallbackobject(\"" + objectUID + "\");"
+                                                 + "gcbo = getcallbackobject(" + objectUID + ");"
                                                  + command
                                                  + ";if exists(\"%oldgcbo\") then gcbo = %oldgcbo; else clear gcbo; end;");
                 break;

@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at    
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  --> 
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="graphics_entities">
@@ -275,6 +275,20 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>Light: </term>
+                <listitem>
+                    <para>
+                        Lights in scilab approximates real world lighting where the appearance of
+                        a surface is given by interactions between light rays and the material properties of the
+                        surface. Because simulate real world lighting is complex
+                        and computationally expensive, one uses a simplified model.
+                    </para>
+                    <para>
+                        See <link linkend="light_properties">light entity properties</link> for details.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -323,9 +337,6 @@ plot2d(x,x^3)  //the drawing are sent to the initial figure
             </member>
             <member>
                 <link linkend="move">move</link>
-            </member>
-            <member>
-                <link linkend="draw">draw</link>
             </member>
             <member>
                 <link linkend="delete">delete</link>

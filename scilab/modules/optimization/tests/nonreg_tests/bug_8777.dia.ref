@@ -29,6 +29,8 @@ nm = neldermead_configure(nm,"-boundsmin",[1 1 1]);
 nm = neldermead_configure(nm,"-boundsmax",[2 2 2]);
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
 nm = neldermead_search(nm);
+optimbase_terminate: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",200);
 instr = "nm = neldermead_restart(nm)";
@@ -50,6 +52,8 @@ nm = neldermead_configure(nm,"-boundsmin",[1 1 1]);
 nm = neldermead_configure(nm,"-boundsmax",[2 2 2]);
 nm = neldermead_configure(nm,"-simplex0method","randbounds");
 nm = neldermead_search(nm);
+optimbase_terminate: Exiting: Maximum number of function evaluations has been exceeded
+          - increase MaxFunEvals option.
 nm = neldermead_configure(nm,"-maxiter",200);
 nm = neldermead_configure(nm,"-maxfunevals",200);
 nm = neldermead_configure(nm,"-restartsimplexmethod","randbounds");

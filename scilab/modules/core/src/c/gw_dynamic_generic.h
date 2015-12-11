@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,7 +14,7 @@
 #ifndef __GW_DYNAMIC_GENERIC_H__
 #define __GW_DYNAMIC_GENERIC_H__
 
-#include "callDynamicGateway.h"
+#include "dynamiclibrary.h"
 
 /**
 * generic function to call a gateway dynamically loaded
@@ -29,7 +29,7 @@ int gw_dynamic_generic(char *moduleName,
                        char **dynlibName,
                        char **gatewayName,
                        DynLibHandle *hModuleLib,
-                       PROC_GATEWAY *ptrGatewayFunction);
+                       void* ptrGatewayFunction);
 
 #endif /* __GW_DYNAMIC_GENERIC_H__ */
 /*--------------------------------------------------------------------------*/

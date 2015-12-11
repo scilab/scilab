@@ -1,0 +1,58 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2013 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//<-- ENGLISH IMPOSED -->
+rand("seed", 0);
+n  = 2;
+A1 = rand(n, n);
+A2 = rand(n, n);
+Xs = diag(1:n);
+Q1 = -(A1'*Xs+Xs*A1+0.1*eye());
+Q2 = -(A2'*Xs+Xs*A2+0.2*eye());
+function [LME, LMI, OBJ] = evalf(Xlist)
+    X   = Xlist(1)
+    LME = X-diag(diag(X))
+    LMI = list(-(A1'*X+X*A1+Q1), -(A2'*X+X*A2+Q2))
+    OBJ = -sum(diag(X))
+endfunction
+X = lmisolver(list(zeros(A1)), evalf);
+lmisolver: Construction of canonical representation.
+lmisolver: Basis Construction.
+lmisolver:     FEASIBILITY PHASE.
+    primal obj.  dual obj.  dual. gap 
+     6.66e-01    -5.03e+02   5.03e+02
+     8.37e+01    -4.99e+02   5.83e+02
+     6.88e+01    -2.80e+00   7.16e+01
+     4.33e+00    -2.67e+00   7.00e+00
+     5.65e-01    -1.78e-01   7.43e-01
+    -9.58e-02    -1.57e-01   6.13e-02
+lmisolver: Target value reached.
+lmisolver: feasible solution found.
+lmisolver:       OPTIMIZATION PHASE.
+    primal obj.  dual obj.  dual. gap 
+    -2.76e+00    -3.62e+00   8.56e-01
+    -3.13e+00    -3.27e+00   1.35e-01
+    -3.14e+00    -3.16e+00   1.62e-02
+    -3.14e+00    -3.14e+00   1.62e-03
+    -3.14e+00    -3.14e+00   1.27e-04
+    -3.14e+00    -3.14e+00   1.40e-05
+    -3.14e+00    -3.14e+00   4.40e-07
+    -3.14e+00    -3.14e+00   4.54e-08
+    -3.14e+00    -3.14e+00   4.06e-09
+lmisolver: optimal solution found
+X = X(1);
+refX = [1.0635042 0; 0 2.0784841];
+refY = 0;
+refZ = list([0.0731600 0.7080179; 0.7080179 0.7186999], [0.1154910 0.5345239; 0.5345239 1.4843684]);
+refC = -1.0635042;
+[Y, Z, c] = evalf(X);
+assert_checkalmostequal(X, refX, [], 1d-6);
+assert_checkalmostequal(Y, refY, [], 1d-6);
+assert_checkalmostequal(Z(1), refZ(1), [], 1d-6);
+assert_checkalmostequal(Z(2), refZ(2), [], 1d-6);
+assert_checkalmostequal(c, refC, [], 1d-6);

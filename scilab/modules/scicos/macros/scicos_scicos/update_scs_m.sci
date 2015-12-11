@@ -157,7 +157,7 @@ function scs_m_new = update_scs_m(scs_m,version)
 
                     //************** Text ****************//
                 case "Text" then
-                    o_new = mlist(["Text","graphics","model","void","gui"],...
+                    o_new = scicos_new(["Text","graphics","model","void","gui"],...
                     scicos_graphics(),scicos_model()," ","TEXT_f")
 
                     T     = getfield(1,o);

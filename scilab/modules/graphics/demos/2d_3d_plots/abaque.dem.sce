@@ -12,7 +12,7 @@ function demo_abaque()
     my_plot_desc          = "chart";
     if is_handle_valid(my_handle) then
         my_handle.figure_name = my_plot_desc;
-        chart();
+        nicholschart();
         xtitle(my_plot_desc," "," "," ");
     end
     demo_viewCode("abaque.dem.sce");

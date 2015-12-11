@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView;
@@ -20,10 +20,12 @@ import org.scilab.forge.scirenderer.ruler.graduations.Graduations;
 import org.scilab.forge.scirenderer.texture.Texture;
 import org.scilab.forge.scirenderer.texture.TextureManager;
 import org.scilab.forge.scirenderer.tranformations.Vector3d;
+import org.scilab.modules.graphic_objects.axes.Axes;
 import org.scilab.modules.graphic_objects.axis.Axis;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
 import org.scilab.modules.renderer.JoGLView.util.ColorFactory;
 import org.scilab.modules.renderer.JoGLView.util.FormattedTextSpriteDrawer;
+import org.scilab.modules.renderer.JoGLView.util.ScaleUtils;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
@@ -51,7 +53,7 @@ public class AxisDrawer {
         this.drawerVisitor = drawerVisitor;
     }
 
-    public void draw(Axis axis) {
+    public void draw(Axes axes, Axis axis) {
         double min;
         double max;
 
@@ -59,11 +61,13 @@ public class AxisDrawer {
         rulerModel.setSpriteDistance(SPRITE_DISTANCE);
         rulerModel.setSubTicksLength(SUB_TICKS_LENGTH);
         rulerModel.setTicksLength(TICKS_LENGTH);
+        boolean[] logFlags = new boolean[] {axes.getXAxisLogFlag(), axes.getYAxisLogFlag(), axes.getZAxisLogFlag()};
 
         Double[] xTicksValues;
         Double[] yTicksValues;
         double[] xMinAndMax;
         double[] yMinAndMax;
+        double[][] factors = axes.getScaleTranslateFactors();
 
         if (axis.getXTicksCoords().length == 1) {
             xTicksValues = axis.getXTicksCoords();
@@ -83,6 +87,14 @@ public class AxisDrawer {
             rulerModel.setUserGraduation(new AxisGraduation(axis, xTicksValues, xMinAndMax));
         }
 
+        Vector3d start = new Vector3d(xMinAndMax[0], yMinAndMax[0], 0);
+        Vector3d end = new Vector3d(xMinAndMax[1], yMinAndMax[1], 0);
+        start = ScaleUtils.applyLogScale(start, logFlags);
+        end = ScaleUtils.applyLogScale(end, logFlags);
+
+        start = new Vector3d(start.getX() * factors[0][0] + factors[1][0], start.getY() * factors[0][1] + factors[1][1], start.getZ() * factors[0][2] + factors[1][2]);
+        end = new Vector3d(end.getX() * factors[0][0] + factors[1][0], end.getY() * factors[0][1] + factors[1][1], end.getZ() * factors[0][2] + factors[1][2]);
+
         // TODO : RulerModel should be an interface.
         rulerModel.setAutoTicks(false);
         rulerModel.setFirstValue(0);
@@ -90,9 +102,8 @@ public class AxisDrawer {
         rulerModel.setLineVisible(axis.getTicksSegment());
         rulerModel.setColor(ColorFactory.createColor(drawerVisitor.getColorMap(), axis.getTicksColor()));
 
-        rulerModel.setPoints(new Vector3d(xMinAndMax[0], yMinAndMax[0], 0), new Vector3d(xMinAndMax[1], yMinAndMax[1], 0));
+        rulerModel.setPoints(start, end);
         rulerModel.setTicksDirection(computeTicksDirection(axis.getTicksDirectionAsEnum()));
-
 
         DrawingTools drawingTools = drawerVisitor.getDrawingTools();
 
@@ -350,7 +361,7 @@ public class AxisDrawer {
             // Should find right index through given labels.
             String[] ticksLabel = axis.getTicksLabels();
             int index = (int) Math.round(value * (ticksLabel.length - 1));
-            if ((index < 0) || (index > ticksLabel.length)) {
+            if ((index < 0) || (index > ticksLabel.length) || ticksLabel.length == 0) {
                 return null;
             } else {
                 return ticksLabel[index];

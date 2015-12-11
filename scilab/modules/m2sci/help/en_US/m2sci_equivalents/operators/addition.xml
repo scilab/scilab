@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="m2sci_addition">
@@ -55,7 +55,7 @@
                 <term>Empty matrix and addition:</term>
                 <listitem>
                     <para>
-                        In Matlab, addition can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be added to another empty matrix or a scalar. Note that when you add a scalar and an empty matrix, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
+                        In Matlab, addition can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be added to another empty matrix or a scalar.
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,7 +98,7 @@ str = 'str1str2'
 str = strcat(['str1','str2'])
 str = 'str1str2'
 A = 1 + []
-A = 1    
+A = []   
 ]]></programlisting>
                 </td>
             </tr>

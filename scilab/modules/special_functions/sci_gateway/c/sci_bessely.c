@@ -6,17 +6,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #include <string.h>
 #include "api_scilab.h"
 #include "gw_special_functions.h"
-#include "stack-c.h"
 #include "Scierror.h"
 #include "msgs.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern void  C2F(dbesyv) (double *x, int* nx, double *alpha, int *na, int *kode,
@@ -24,7 +23,7 @@ extern void  C2F(dbesyv) (double *x, int* nx, double *alpha, int *na, int *kode,
 extern void  C2F(zbesyv) (double *xr, double *xi, int* nx, double *alpha, int *na,
                           int *kode, double *rr, double *ri, double *wr, double *wi, int *ierr);
 /*--------------------------------------------------------------------------*/
-int sci_bessely(char *fname, unsigned long fname_len)
+int sci_bessely(char *fname, void* pvApiCtx)
 {
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int mr = 0, nr = 0, itr = 0, nw = 0;
@@ -267,35 +266,37 @@ int sci_bessely(char *fname, unsigned long fname_len)
 
     if (ierr == 2)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if ( C2F(errgst).ieee == 1)
-        {
-            ierr = 63;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if ( C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 63;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
     else if (ierr == 3)
     {
-        /* inacurate result */
+        /* inaccurate result */
         ierr = 4;
         C2F(msgs)(&ierr, &un);
     }
     else if (ierr == 4 || ierr == 5)
     {
-        if ( C2F(errgst).ieee == 0)
-        {
-            ierr = 69;
-            SciError(ierr);
-        }
-        else if ( C2F(errgst).ieee == 1)
-        {
-            ierr = 107;
-            C2F(msgs)(&ierr, &un);
-        }
+        // FIX ME
+        //        if ( C2F(errgst).ieee == 0)
+        //        {
+        //            ierr = 69;
+        //            SciError(ierr);
+        //        }
+        //        else if ( C2F(errgst).ieee == 1)
+        //        {
+        //            ierr = 107;
+        //            C2F(msgs)(&ierr, &un);
+        //        }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;

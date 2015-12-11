@@ -5,9 +5,8 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // <-- CLI SHELL MODE -->
-stacksize("max");
 ilib_verbose(0);
 funcprot(0);
 function make_compiled_function(name, ext, code)
@@ -180,7 +179,7 @@ for sched=0:1
   res= parallel_run(many_args, "g", init_param('dynamic_scheduling', sched,'nb_workers', many_workers ));
   if res<>g(many_args) then bugmes();quit;end;
 end;
-// test scheduling: sleeping is embarassingly parallel even on uniprocessors ! :)
+// test scheduling: sleeping is embarrassingly parallel even on uniprocessors ! :)
 function r=do_sleep(t);sleep(t*1000);r=1;endfunction
 many_workers= 80;
 sleep_time=2;
@@ -191,7 +190,7 @@ for sched=0:1
   if toc()>sleep_time+2 then bugmes();quit;end;
 end;
 // test dynamic versus static scheduling : dynamic scheduling should be better on tasks of varying length.
-args=(1:20)^2/100;
+args=(1:20).^2/100;
 for sched=0:1
   tic();
   res= parallel_run(args, "do_sleep", init_param("dynamic_scheduling", sched, 'nb_workers', 5 ));

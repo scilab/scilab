@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="parentheses">
+    <refnamediv>
+        <refname>parentheses</refname>
+        <refpurpose>( ) 左および右括弧</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>(expression)
+            [...]=func(e1,e2,...)
+            [x1,x2,...]=(e1,e2,...)
+            x(i,j)
+            v(i)
+            [...]=l(i)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>x</term>
+                <listitem>
+                    <para>任意の型の行列</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>v</term>
+                <listitem>
+                    <para>任意の型の行または列ベクトル</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>l</term>
+                <listitem>
+                    <para>リスト変数</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>func</term>
+                <listitem>
+                    <para>任意の関数名a</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>e1,e2,...  </term>
+                <listitem>
+                    <para>任意の型の式</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+            左および右括弧は以下の用途で使用されます
+        </para>
+        <para>
+            *
+            式の中で評価の順序を指定します;
+        </para>
+        <para>
+            *
+            関数の右辺の引数のリストを作成します.
+            複数の右辺の引数の間はカンマで区切られる必要があります;
+        </para>
+        <para>
+	    *
+            ベクトル,行列およびリストの中の要素を選択します.
+            詳細にについては,
+	    <link linkend="extraction">展開</link> および
+            <link linkend="insertion">挿入</link>
+	    のヘルプを参照ください;
+        </para>
+        <para>
+            <literal>[x1,x2,...]=(e1,e2,...)</literal> は,まず
+	    <literal>%t_1 = e1, %t_2 = e2, ...</literal>を実行した後,
+            <literal> x1 = %t_1, x2 = %t_2, ...</literal>とすることに等価です.
+            ただし, 変数 <literal>%t_i, i = 1, 2, ...</literal>は,ユーザから不可視です.
+        </para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+3^(-1)
+x=poly(0,"x");
+//
+(x+10)/2
+i3=eye(3,3)
+//
+a=[1 2 3;4 5 6;7 8 9],a(1,3),a([1 3],:),a(:,3)
+a(:,3)=[]
+a(1,$)=33
+a(2,[$ $-1])
+a(:,$+1)=[10;11;12]
+//
+w=ssrand(2,2,2);ssprint(w)
+ssprint(w(:,1))
+ss2tf(w(:,1))
+//
+l=list(1,2,3,4)
+[a,b,c,d]=l(:)
+l($+1)='new'
+//
+v=%t([1 1 1 1 1])
+//
+[x,y,z]=(1,2,3)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="colon">colon</link>
+            </member>
+            <member>
+                <link linkend="comma">comma</link>
+            </member>
+            <member>
+                <link linkend="brackets">brackets</link>
+            </member>
+            <member>
+                <link linkend="list">list</link>
+            </member>
+            <member>
+                <link linkend="extraction">extraction</link>
+            </member>
+            <member>
+                <link linkend="insertion">insertion</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

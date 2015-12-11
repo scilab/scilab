@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -33,7 +33,7 @@ extern "C"
 #endif
 
 /*--------------------------------------------------------------------------*/
-int sci_driver(char * fname, unsigned long fname_len )
+int sci_driver(char * fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = NULL;
@@ -60,7 +60,7 @@ int sci_driver(char * fname, unsigned long fname_len )
 
         if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 
@@ -85,17 +85,6 @@ int sci_driver(char * fname, unsigned long fname_len )
         else if (org_scilab_modules_gui::SwingView::isHeadless(getScilabJavaVM()))
         {
             org_scilab_modules_gui::SwingView::setHeadless(getScilabJavaVM(), false);
-            const char* pstCurrentFigureReference = ScilabView::getCurrentFigure();
-            if (pstCurrentFigureReference != NULL)
-            {
-                char* uid = strdup(pstCurrentFigureReference);
-
-                if (uid)
-                {
-                    deleteGraphicObject(uid);
-                }
-                free(uid);
-            }
         }
 
         freeAllocatedSingleString(driver);

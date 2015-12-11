@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,18 +30,18 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_style_property(void* _pvCtx, char* pobjUID)
+void* get_tics_style_property(void* _pvCtx, int iObjUID)
 {
     int iTicksStyle = 0;
     int* piTicksStyle = &iTicksStyle;
     char ticksStyle = 0;
 
-    getGraphicObjectProperty(pobjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
+    getGraphicObjectProperty(iObjUID, __GO_TICKS_STYLE__, jni_int, (void**)&piTicksStyle);
 
     if (piTicksStyle == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "tics_direction");
-        return -1;
+        return NULL;
     }
 
     if (iTicksStyle == 0)
@@ -59,9 +59,9 @@ int get_tics_style_property(void* _pvCtx, char* pobjUID)
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "tics_style");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnChar(_pvCtx, ticksStyle);
+    return sciReturnChar(ticksStyle);
 }
 /*------------------------------------------------------------------------*/

@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,31 +30,31 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_size_unit_property(void* _pvCtx, char* pobjUID)
+void* get_mark_size_unit_property(void* _pvCtx, int iObjUID)
 {
     int iMarkSizeUnit = 0;
     int* piMarkSizeUnit = &iMarkSizeUnit;
 
-    getGraphicObjectProperty(pobjUID, __GO_MARK_SIZE_UNIT__, jni_int, (void**)&piMarkSizeUnit);
+    getGraphicObjectProperty(iObjUID, __GO_MARK_SIZE_UNIT__, jni_int, (void**)&piMarkSizeUnit);
 
     if (piMarkSizeUnit == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size_unit");
-        return -1;
+        return NULL;
     }
 
     if (iMarkSizeUnit == 0)
     {
-        return sciReturnString(_pvCtx, "point");
+        return sciReturnString("point");
     }
     else if (iMarkSizeUnit == 1)
     {
-        return sciReturnString(_pvCtx, "tabulated");
+        return sciReturnString("tabulated");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "mark_size_unit");
-        return -1;
+        return NULL;
     }
 
 }

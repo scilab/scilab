@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Simple wrapper around genlib
 
@@ -23,11 +23,11 @@ function tbx_build_macros(name,path)
     // → name
 
     if type(name) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_macros",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_macros",1));
     end
 
     if size(name,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_macros",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_macros",1));
     end
 
     // Input argument N°2
@@ -38,11 +38,11 @@ function tbx_build_macros(name,path)
 
     else
         if type(path) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_macros",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_macros",2));
         end
 
         if size(path,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_macros",2));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_macros",2));
         end
 
         if ~isdir(path) then

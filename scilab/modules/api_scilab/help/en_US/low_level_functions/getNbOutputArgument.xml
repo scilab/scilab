@@ -9,9 +9,9 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>nb_params = getNbOutputArgument(void* _pvCtx)</synopsis>
-        <synopsis>nb_params = nbOutputArgument</synopsis>
-        <synopsis>nb_params = Lhs</synopsis>
+        <synopsis>int* nb_params = getNbOutputArgument(void* _pvCtx)</synopsis>
+        <synopsis>int nb_params = nbOutputArgument(void* _pvCtx)</synopsis>
+        <synopsis>int nb_params = Lhs</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -28,7 +28,7 @@
                 <term>nb_params</term>
                 <listitem>
                     <para>
-                        the number of output arguments present in the calling Scilab
+                        the pointer on the number of output arguments present in the calling Scilab
                         function
                     </para>
                 </listitem>
@@ -58,7 +58,7 @@
 
 int sci_mylhs(char * fname)
 {
-  sciprint("The number of output arguments is %d\n", getNbOutputArgument());
+  sciprint("The number of output arguments is %d\n", *getNbOutputArgument());
 
   return 0;
 }

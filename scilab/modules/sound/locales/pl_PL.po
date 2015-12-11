@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-12-03 13:45+0000\n"
-"Last-Translator: I.Rokach <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Polish <pl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pl\n"
 
 #, c-format
@@ -26,23 +26,8 @@ msgstr ""
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Wystąpił błąd: %s\n"
-
 msgid "Cannot play file."
 msgstr "Nie można odtworzyć pliku."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: Oczekiwano ciągu "
-"znaków.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -56,26 +41,11 @@ msgstr ""
 msgid "Scilab sound module not installed.\n"
 msgstr "Moduł dźwiękowy nie jest zainstalowany.\n"
 
-msgid "Sound file handling"
-msgstr ""
-
-msgid "FFT on a wav file"
-msgstr "FFT na pliku wav"
-
-msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr "Analiza Fouriera 0.5 sekundy parametrów dźwięku."
-
-msgid "A complete picture of the sound."
-msgstr ""
-
-msgid "see 'mapsound' function"
-msgstr "Zobacz funkcję 'mapsound'"
-
 #, c-format
 msgid "%s: Cannot open file %s.\n"
 msgstr "%s: Nie można otworzyć pliku %s.\n"
 
-msgid "Index range must be specified as a scalar or 2-element vector."
+msgid "Index range must be specified as a scalar or a 2 elements vector."
 msgstr ""
 
 msgid "Sample limit vector must have 2 elements."
@@ -157,6 +127,18 @@ msgstr ""
 
 msgid "Requires 2-D values only."
 msgstr "Wymaga tylko wartości 2-D."
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be >= %d.\n"
+msgstr ""
 
 #, c-format
 msgid ""

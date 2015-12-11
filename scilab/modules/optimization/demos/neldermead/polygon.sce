@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 mprintf("Finds the largest n-polygon with diameter smaller than 1.\n");
 
@@ -217,7 +217,7 @@ function [A,r,t] = findlargestpolygon (nv)
     [ nm , result ] = neldermead_function ( nm , x0 );
     //
     // Perform optimization
-    nm = neldermead_search(nm);
+    nm = neldermead_search(nm, "off");
     fopt = neldermead_get(nm,"-fopt")
     A = -fopt
     xopt = neldermead_get(nm,"-xopt")

@@ -44,7 +44,7 @@ function [z]=PoissonT(n)
     deff("[y]=fact(n)","if n==0 then y=1;else y=n*fact(n-1);end");
     zt=[];for i1=0:N; zt=[zt, exp(-pmean) *pmean^i1/fact(i1)];end
     plot2d1("onn",i',zt',[-2,6]);
-    xtitle(_("Simulation of a poisson random variable"));
+    xtitle(_("Simulation of a Poisson random variable"));
     current_axe = gca();
     current_axe.title.font_size = 3;
     current_axe.background = color(232,230,200);

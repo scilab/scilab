@@ -6,17 +6,25 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "noscinotes.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 int gw_scinotes(void)
 {
-    Scierror(999, _("Scilab '%s' module not installed.\n"), "scinotes");
+    if (getScilabMode() == SCILAB_NWNI)
+    {
+        Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "scinotes");
+    }
+    else
+    {
+        Scierror(999, _("Scilab '%s' module not installed.\n"), "scinotes");
+    }
     return 0;
 }
 /*--------------------------------------------------------------------------*/

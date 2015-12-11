@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 
@@ -18,7 +18,7 @@
 function [] = %_plot3d1()
     x = %pi * [-1:0.05:1]';
     z = sin(x)*cos(x)';
+    plot3d1(x, x, z, 70, 70);
     f = gcf();
     f.color_map = jetcolormap(32);
-    plot3d1(x, x, z, 70, 70);
 endfunction

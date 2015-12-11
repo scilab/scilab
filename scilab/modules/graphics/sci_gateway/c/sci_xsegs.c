@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -29,7 +29,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
-int sci_xsegs(char *fname, unsigned long fname_len)
+int sci_xsegs(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -50,7 +50,7 @@ int sci_xsegs(char *fname, unsigned long fname_len)
     double* zptr = NULL;
     int mx = 0, nx = 0, my = 0, ny = 0, mz = 0, nz = 0, mc = 0, nc = 0;
     const double arsize = 0.0 ; // no arrow here
-    char * psubwinUID = NULL;
+    int iSubwinUID = 0;
 
     CheckInputArgument(pvApiCtx, 2, 4);
 
@@ -66,7 +66,7 @@ int sci_xsegs(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -82,7 +82,7 @@ int sci_xsegs(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         return 1;
     }
 
@@ -119,7 +119,7 @@ int sci_xsegs(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                 return 1;
             }
 
@@ -147,7 +147,7 @@ int sci_xsegs(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
                 return 1;
             }
 
@@ -174,7 +174,7 @@ int sci_xsegs(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
             return 1;
         }
 
@@ -199,7 +199,7 @@ int sci_xsegs(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
             return 1;
         }
 
@@ -218,12 +218,12 @@ int sci_xsegs(char *fname, unsigned long fname_len)
         }
     }
 
-    psubwinUID = (char*)getOrCreateDefaultSubwin();
+    iSubwinUID = getOrCreateDefaultSubwin();
 
     if (mc * nc == 0)
     {
         /* no color specified, use current color (taken from axes parent) */
-        getGraphicObjectProperty(psubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piColor);
+        getGraphicObjectProperty(iSubwinUID, __GO_LINE_COLOR__, jni_int, (void**)&piColor);
 
         style = &color;
         colorFlag = 0;

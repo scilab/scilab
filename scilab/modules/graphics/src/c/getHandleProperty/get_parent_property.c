@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,27 +25,28 @@
 #include "getHandleProperty.h"
 #include "HandleManagement.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
+#include "CurrentObject.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_parent_property(void* _pvCtx, char* pobjUID)
+void* get_parent_property(void* _pvCtx, int iObjUID)
 {
-    char* parentID = NULL;
+    int iParentID = 0;
+    int* piParentID = &iParentID;
 
     /* All Graphic Objects have the __GO_PARENT__ property */
-    getGraphicObjectProperty(pobjUID, __GO_PARENT__, jni_string, (void **)&parentID);
-
-    if (strcmp(parentID, "") == 0)
+    iParentID = getParentObject(iObjUID);
+    if (iParentID == 0)
     {
         /* No parent for this object */
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
-        return sciReturnHandle(_pvCtx, getHandle(parentID));
+        return sciReturnHandle(getHandle(iParentID));
     }
 }
 /*------------------------------------------------------------------------*/

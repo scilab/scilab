@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,21 +18,21 @@
 /*--------------------------------------------------------------------------*/
 SPECIAL_FUNCTIONS_IMPEXP int gw_special_functions(void);
 /*--------------------------------------------------------------------------*/
-int sci_besselh(char *fname, unsigned long fname_len);
-int sci_besseli(char *fname, unsigned long fname_len);
-int sci_besselj(char *fname, unsigned long fname_len);
-int sci_besselk(char *fname, unsigned long fname_len);
-int sci_bessely(char *fname, unsigned long fname_len);
-int sci_beta(char *fname, unsigned long fname_len);
-int sci_legendre(char *fname, unsigned long fname_len);
-int sci_gamma(char *fname, unsigned long fname_len);
-int sci_lgamma(char *fname, unsigned long fname_len);
-int sci_dlgamma(char *fname, unsigned long fname_len);
-int sci_Faddeeva_erf(char *fname, unsigned long fname_len);
-int sci_Faddeeva_erfc(char *fname, unsigned long fname_len);
-int sci_Faddeeva_erfcx(char *fname, unsigned long fname_len);
-int sci_Faddeeva_erfi(char *fname, unsigned long fname_len);
-int sci_Faddeeva_dawson(char *fname, unsigned long fname_len);
+SPECIAL_FUNCTIONS_IMPEXP int sci_besselh(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_besseli(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_besselj(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_besselk(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_bessely(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_beta(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_legendre(char *fname, void* pvApiCtx);
+//SPECIAL_FUNCTIONS_IMPEXP int sci_gamma(char *fname, void* pvApiCtx);
+//SPECIAL_FUNCTIONS_IMPEXP int sci_lgamma(char *fname, void* pvApiCtx);
+//SPECIAL_FUNCTIONS_IMPEXP int sci_dlgamma(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erf(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfc(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfcx(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfi(char *fname, void* pvApiCtx);
+SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_dawson(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_SPECIAL_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/

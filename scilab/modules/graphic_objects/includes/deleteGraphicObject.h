@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -19,12 +19,12 @@
 ** Ask Controller to delete a graphic object
 ** referenced by the given _sId.
 */
-GRAPHIC_OBJECTS_IMPEXP void deleteGraphicObject(char *_sId);
+GRAPHIC_OBJECTS_IMPEXP void deleteGraphicObject(int iUID);
 
 /*
 ** Ask Controller to delete a data object
 ** referenced by the given _sId.
 */
-GRAPHIC_OBJECTS_IMPEXP void deleteDataObject(char const *_sId);
+GRAPHIC_OBJECTS_IMPEXP void deleteDataObject(int iUID);
 
 #endif /* !__DELETEGRAPHICOBJECT_H__ */

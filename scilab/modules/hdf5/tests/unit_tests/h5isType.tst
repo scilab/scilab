@@ -4,10 +4,10 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- ENGLISH IMPOSED -->
+//
 // <-- CLI SHELL MODE -->
 
-msgerr = msprintf(gettext("%s: Wrong number of input argument(s): 1 expected."), "h5isType");
+msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5isType", 1);
 assert_checkerror("h5isType()",msgerr,77);
 assert_checkfalse(h5isType("42"));
 assert_checkfalse(h5isType(42));
@@ -32,7 +32,7 @@ b = h5open(TMPDIR + "/x.sod", "r");
 assert_checkfalse(h5isType(b));
 assert_checkfalse(h5isType(b.root));
 assert_checkfalse(h5isType(b.root.x));
-assert_checktrue(h5isType(b.root.x.type));
+assert_checktrue(h5isType(b.root.x("0").type));
 h5close(b)
 
 c = h5open(TMPDIR + "/y.sod", "r");

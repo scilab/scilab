@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,31 +30,31 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_data_mapping_property(void* _pvCtx, char* pobjUID)
+void* get_data_mapping_property(void* _pvCtx, int iObjUID)
 {
     int iDataMapping = 0;
     int* piDataMapping = &iDataMapping;
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MAPPING__, jni_int, (void **)&piDataMapping);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MAPPING__, jni_int, (void **)&piDataMapping);
 
     if (piDataMapping == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_mapping");
-        return -1;
+        return NULL;
     }
 
     if (iDataMapping == 0)
     {
-        return sciReturnString(_pvCtx, "scaled");
+        return sciReturnString("scaled");
     }
     else if (iDataMapping == 1)
     {
-        return sciReturnString(_pvCtx, "direct");
+        return sciReturnString("direct");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "data_mapping");
-        return -1;
+        return NULL;
     }
 }
 /*------------------------------------------------------------------------*/

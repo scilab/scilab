@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 /*--------------------------------------------------------------------------*/
@@ -14,9 +14,9 @@
 #include <string.h>
 #include "FindScilab.h"
 #include "version.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "WndThread.h"
-#include "strdup_windows.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define LineMax 255
 #define NumberScilabMax 10
@@ -65,11 +65,11 @@ BOOL HaveAnotherWindowScilab(void)
 /*--------------------------------------------------------------------------*/
 char * getLastScilabFound(void)
 {
-    return strdup(ListHiddenScilabName[0]);
+    return os_strdup(ListHiddenScilabName[0]);
 }
 /*--------------------------------------------------------------------------*/
 char * getFirstScilabFound(void)
 {
-    return strdup(ListHiddenScilabName[NumberScilab - 1]);
+    return os_strdup(ListHiddenScilabName[NumberScilab - 1]);
 }
 /*--------------------------------------------------------------------------*/

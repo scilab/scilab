@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,7 +23,6 @@
 
 extern "C" {
 #include "api_scilab.h"
-#include "stack-c.h"
 #include "localization.h"
 }
 
@@ -35,9 +34,8 @@ class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabObjects
     static const char * _EOBJ[];
     static const char * _ECLASS[];
     static const char * _EVOID[];
-    static const char * _INVOKE_;
-
 public:
+    static const wchar_t * _INVOKE_;
 
     static void initialization(ScilabAbstractEnvironment & env, void * pvApiCtx);
 
@@ -45,7 +43,7 @@ public:
 
     static void createEnvironmentObjectAtPos(int type, int pos, int id, const int envId, void * pvApiCtx);
 
-    static void copyInvocationMacroToStack(int pos, ScilabAbstractEnvironment & env, void * pvApiCtx);
+    static void copyInvocationMacroToStack(int pos, const int envId, bool isNew, void * pvApiCtx);
 
     static void removeTemporaryVars(const int envId, int * tmpvar);
 
@@ -80,6 +78,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -98,6 +97,7 @@ public:
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)
@@ -112,10 +112,30 @@ public:
         return wrapper.wrapBool(data, row, col, isRef);
     }
 
+    inline static int wrapFloat(const int row, const int col, double * data, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
+    {
+        if (row == 0 || col == 0)
+        {
+            // Empty matrix is plugged on null object
+            return 0;
+        }
+        else if (row == 1 && col == 1)
+        {
+            return wrapper.wrapFloat(data, isRef);
+        }
+        else if (row == 1)
+        {
+            return wrapper.wrapFloat(data, col, isRef);
+        }
+
+        return wrapper.wrapFloat(data, row, col, isRef);
+    }
+
     inline static int wrap(const int row, const int col, double * real, double * imag, const ScilabAbstractEnvironmentWrapper & wrapper, const bool isRef)
     {
         if (row == 0 || col == 0)
         {
+            // Empty matrix is plugged on null object
             return 0;
         }
         else if (row == 1 && col == 1)

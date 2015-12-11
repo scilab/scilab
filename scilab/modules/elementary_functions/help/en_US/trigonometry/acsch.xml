@@ -32,7 +32,7 @@
     </refsection>
     <refsection>
         <title>Description</title>
-        <para>Computes the element-wise inverse hyperbolic cotsecant of the
+        <para>Computes the element-wise inverse hyperbolic cosecant of the
             argument. For real argument with absolute value greater than 1 the result
             is real.
         </para>

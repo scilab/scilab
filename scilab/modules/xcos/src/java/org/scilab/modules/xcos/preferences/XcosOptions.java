@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -16,6 +16,7 @@ import java.awt.Color;
 
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.io.XcosFileType;
 
@@ -131,21 +132,25 @@ public class XcosOptions {
         }
 
         @XConfAttribute(tag = "xcos-simulation", attributes = { "final-integration-time", "integrator-absolute-tolerance", "integrator-relative-tolerance",
-                        "tolerance-on-time", "max-integration-interval", "real-time-scaling", "solver", "max-step-size", "trace"
+                                                                "tolerance-on-time", "max-integration-interval", "real-time-scaling", "solver", "max-step-size", "trace"
                                                               })
         private void set(final String finalIntegrationTime, final String integratorAbsoluteTolerance, final String integratorRelativeTolerance,
                          final String toleranceOnTime, final String maxIntegrationTimeInterval, final String realTimeScaling, final int solver,
                          final String maximumStepSize, final int debugLevel) {
 
-            ScicosParameters.FINAL_INTEGRATION_TIME = Double.parseDouble(finalIntegrationTime);
-            ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE = Double.parseDouble(integratorAbsoluteTolerance);
-            ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE = Double.parseDouble(integratorRelativeTolerance);
-            ScicosParameters.TOLERANCE_ON_TIME = Double.parseDouble(toleranceOnTime);
-            ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL = Double.parseDouble(maxIntegrationTimeInterval);
-            ScicosParameters.REAL_TIME_SCALING = Double.parseDouble(realTimeScaling);
-            ScicosParameters.SOLVER = solver;
-            ScicosParameters.MAXIMUM_STEP_SIZE = Double.parseDouble(maximumStepSize);
-            ScicosParameters.DEBUG_LEVEL = debugLevel;
+            VectorOfDouble defaultValues = new VectorOfDouble(8);
+            defaultValues.set(ScicosParameters.FINAL_INTEGRATION_TIME, Double.parseDouble(finalIntegrationTime));
+            defaultValues.set(ScicosParameters.INTEGRATOR_ABSOLUTE_TOLERANCE, Double.parseDouble(integratorAbsoluteTolerance));
+            defaultValues.set(ScicosParameters.INTEGRATOR_RELATIVE_TOLERANCE, Double.parseDouble(integratorRelativeTolerance));
+            defaultValues.set(ScicosParameters.TOLERANCE_ON_TIME, Double.parseDouble(toleranceOnTime));
+            defaultValues.set(ScicosParameters.MAX_INTEGRATION_TIME_INTERVAL, Double.parseDouble(maxIntegrationTimeInterval));
+            defaultValues.set(ScicosParameters.MAXIMUM_STEP_SIZE, Double.parseDouble(maximumStepSize));
+            defaultValues.set(ScicosParameters.REAL_TIME_SCALING, Double.parseDouble(realTimeScaling));
+            defaultValues.set(ScicosParameters.SOLVER, solver);
+
+            ScicosParameters.DEFAULT_PARAMETERS = defaultValues;
+
+            ScicosParameters.DEFAULT_DEBUG_LEVEL = debugLevel;
         }
     }
 

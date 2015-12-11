@@ -6,15 +6,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.implementation.g2d.motor;
 
 import java.awt.BasicStroke;
-import java.awt.Stroke;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 
@@ -24,13 +21,16 @@ import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
 public class G2DStroke extends BasicStroke {
 
     private static final int[] array = new int[16];
-    private static final Stroke BASIC = new G2DStroke(1, null, 0);
+    private static final G2DStroke BASIC = new G2DStroke(1, null, 0);
+    private static float[] prevArray;
+    private static float prevFactor = -1;
+    private static short prevPattern = -1;
 
     public G2DStroke(float lineWidth, float[] dash, float phase) {
         super(lineWidth, CAP_BUTT, JOIN_MITER, 10.0f, dash, phase);
     }
 
-    public static Stroke getStroke(Appearance appearance, double dashPhase) {
+    public static G2DStroke getStroke(Appearance appearance, double dashPhase) {
         Appearance usedAppearance;
         if (appearance == null) {
             usedAppearance = new Appearance();
@@ -52,7 +52,13 @@ public class G2DStroke extends BasicStroke {
             return new G2DStroke(factor, null, 0);
         }
 
-        return new G2DStroke(factor, decodePattern(factor, pattern), (float) dashPhase);
+        if (factor != prevFactor || pattern != prevPattern) {
+            prevFactor = factor;
+            prevPattern = pattern;
+            prevArray = decodePattern(factor, pattern);
+        }
+
+        return new G2DStroke(factor, prevArray, (float) dashPhase);
     }
 
     private static final float[] decodePattern(final float factor, short pattern) {
@@ -64,6 +70,19 @@ public class G2DStroke extends BasicStroke {
         int t = Integer.numberOfTrailingZeros(n);
         n = (n >> t);
         int k = Integer.numberOfLeadingZeros(n) - 16;
+
+        // Here we try to have a shorter pattern (EPS and PS don't like too long pattern in setdash function)
+        // If the pattern is 101101101101, we can factorize the number by 101 (101+101x1000+101x1000000+101x1000000000)
+        // so we test if the pattern can be divided by 101010...., by 100100100..., ...)
+        int twopm1 = (1 << 16) - 1;
+        for (int j = 2; 2 <= 16; j++) {
+            int q = twopm1 / ((1 << j) - 1);
+            if (n % q == 0) {
+                n = n / q;
+                break;
+            }
+        }
+
         while (n != 0) {
             t = Integer.numberOfTrailingZeros(n);
             if (t == 0) {

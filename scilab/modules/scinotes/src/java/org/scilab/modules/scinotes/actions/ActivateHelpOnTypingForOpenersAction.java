@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.scinotes.actions;
@@ -43,7 +43,7 @@ public final class ActivateHelpOnTypingForOpenersAction extends DefaultCheckActi
      * doAction
      */
     public void doAction() {
-        HelpOnTypingManager.enableOpeners(getState());
+        HelpOnTypingManager.getInstance().enableOpeners(getState());
         SciNotes.activateHelpOnTyping();
     }
 
@@ -56,10 +56,10 @@ public final class ActivateHelpOnTypingForOpenersAction extends DefaultCheckActi
      */
     public static CheckBoxMenuItem createMenu(String label, SciNotes editor, KeyStroke key) {
         final CheckBoxMenuItem cb = createCheckBoxMenu(label, null, new ActivateHelpOnTypingForOpenersAction(label, editor), key);
-        cb.setChecked(HelpOnTypingManager.isOpenersActive());
+        cb.setChecked(HelpOnTypingManager.getInstance().isOpenersActive());
         ((JCheckBoxMenuItem) cb.getAsSimpleCheckBoxMenuItem()).addPropertyChangeListener(new PropertyChangeListener() {
             public void propertyChange(PropertyChangeEvent e) {
-                cb.setChecked(HelpOnTypingManager.isOpenersActive());
+                cb.setChecked(HelpOnTypingManager.getInstance().isOpenersActive());
             }
         });
 

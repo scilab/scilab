@@ -8,14 +8,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUicontrolSliderStep.hxx"
-#include "stack-c.h"
+extern "C"
+{
+#include "SetUicontrol.h"
+}
 
-int SetUicontrolSliderStep(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int SetUicontrolSliderStep(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
 
@@ -35,17 +37,17 @@ int SetUicontrolSliderStep(void* _pvCtx, char* sciObjUID, void* _pvData, int val
         double minValue = 0;
         double* pdblMinValue = &minValue;
 
-        getGraphicObjectProperty(sciObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
-        getGraphicObjectProperty(sciObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
+        getGraphicObjectProperty(iObjUID, __GO_UI_MIN__, jni_double, (void**) &pdblMinValue);
+        getGraphicObjectProperty(iObjUID, __GO_UI_MAX__, jni_double, (void**) &pdblMaxValue);
 
         pdblStep[0] = pdblStackVal[0];
         pdblStep[1] = 0.1 * (maxValue - minValue);// default big value : 10% of the scale
 
-        status = setGraphicObjectProperty(sciObjUID, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_SLIDERSTEP__, pdblStep, jni_double_vector, 2);
     }
     else if (nbRow == 1 && nbCol == 2)
     {
-        status = setGraphicObjectProperty(sciObjUID, __GO_UI_SLIDERSTEP__, _pvData, jni_double_vector, 2);
+        status = setGraphicObjectProperty(iObjUID, __GO_UI_SLIDERSTEP__, _pvData, jni_double_vector, 2);
     }
     else
     {

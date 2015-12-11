@@ -31,24 +31,28 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Makefile</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -68,125 +72,57 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
-
-</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-
-
-
-</NMakeCleanCommandLine>
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
     </NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
-
-</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-
-
-
-</NMakeCleanCommandLine>
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
     </NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
-
-</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-
-
-
-</NMakeCleanCommandLine>
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
     </NMakeOutput>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant
-</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean &amp;&amp; call ant 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean &amp;&amp; call ant
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean &amp;&amp; call ant
-
-
-</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
-cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean
-cd $(SolutionDir)modules\javasci &amp;&amp; call ant clean 
-cd $(SolutionDir)modules\hdf5 &amp;&amp; call ant clean
-cd $(SolutionDir)modules\xcos &amp;&amp; call ant clean
-
-
-
-</NMakeCleanCommandLine>
+cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
     </NMakeOutput>
   </PropertyGroup>

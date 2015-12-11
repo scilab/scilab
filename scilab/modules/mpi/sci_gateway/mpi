@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+
+<GATEWAY>
+
+<!-- =================== -->
+<!--
+ Scilab 
+ Sylvestre Ledru
+ INRIA 2007
+ ===================
+ Don't edit if you aren't sure
+-->
+<!-- =================== -->
+
+<PRIMITIVE>
+  <GATEWAY_ID>52</GATEWAY_ID>
+  <PRIMITIVE_ID>1</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>mpi_init</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<PRIMITIVE>
+  <GATEWAY_ID>52</GATEWAY_ID>
+  <PRIMITIVE_ID>2</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>mpi_finalize</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+
+<PRIMITIVE>
+  <GATEWAY_ID>52</GATEWAY_ID>
+  <PRIMITIVE_ID>3</PRIMITIVE_ID>
+	<PRIMITIVE_NAME>mpi_comm_size</PRIMITIVE_NAME>
+</PRIMITIVE>	
+
+<!--
+;52 1 mpi_send
+;52 2 mpi_recv
+;52 3 mpi_isend
+;52 4 mpi_irecv
+;52 5 mpi_init
+;52 6 mpi_finalize
+;52 7 mpi_comm_rank
+-->
+
+</GATEWAY>

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [x_best, f_best, mean_list, var_list, temp_list, f_history, x_history , iter ] = optim_sa(x0, sa_f, ItExt, ItInt, T0, Log, param)
     // Simulated annealing

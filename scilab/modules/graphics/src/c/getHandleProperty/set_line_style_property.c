@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,10 +26,11 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 /*------------------------------------------------------------------------*/
-int set_line_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_line_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iLineStyle = 1;
 
@@ -45,9 +46,9 @@ int set_line_style_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
     {
         sciprint(_("WARNING: %s\n"), _("{0,1} values are equivalent for line_style property."));
         sciprint(_("WARNING: %s\n"), _("0 will be removed after Scilab 5.4.0."));
-        sciprint(_("WARNING: %s\n"), _("Please use 1 instead."));
+        Sciwarning(_("WARNING: %s\n"), _("Please use 1 instead."));
     }
 
-    return sciSetLineStyle(pobjUID, iLineStyle);
+    return sciSetLineStyle(iObjUID, iLineStyle);
 }
 /*------------------------------------------------------------------------*/

@@ -6,7 +6,7 @@ dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
 dnl you should have received as part of this distribution.  The terms
 dnl are also available at
-dnl http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+dnl http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 dnl
 dnl libhdf5 is mandatory in Scilab
 dnl When we check :
@@ -28,7 +28,7 @@ AC_ARG_WITH(hdf5_library,
         [with_hdf5_library=$withval],
         [with_hdf5_library='yes']
         )
-        
+
 if test "x$with_hdf5_include" != "xyes"; then
     save_CFLAGS="$CFLAGS"
     CFLAGS="-I$with_hdf5_include"
@@ -39,9 +39,19 @@ if test "x$with_hdf5_include" != "xyes"; then
     CFLAGS="$save_CFLAGS"
 else
     HDF5_CFLAGS=""
-    AC_CHECK_HEADER([hdf5.h],
-        [HDF5_CFLAGS=""],
-        [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        HDF5_CFLAGS="-I$DEVTOOLS_INCDIR"
+    else
+        if test -d /usr/include/hdf5/serial; then # New Debian packaging layout since hdf5-1.8.13
+            AC_CHECK_HEADER([hdf5/serial/hdf5.h],
+                [HDF5_CFLAGS="-I/usr/include/hdf5/serial"],
+                [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+        else
+            AC_CHECK_HEADER([hdf5.h],
+                [HDF5_CFLAGS=""],
+                [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+        fi
+    fi
 fi
 
 save_LIBS="$LIBS"
@@ -52,16 +62,31 @@ if test "x$with_hdf5_library" != "xyes"; then
     LIBS="$LIBS $HDF5_LIBS"
     AC_CHECK_LIB([hdf5], [H5Fopen],
             [],
-            [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])]
+            [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])],
+            [-lz]
             )
-    
 else
-    HDF5_LIBS="-lhdf5 -lhdf5_hl"
-    LIBS="$LIBS $HDF5_LIBS"
-    AC_CHECK_LIB([hdf5], [H5Fopen],
-            [],
-            [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])]
-            )
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        HDF5_LIBS="-L$DEVTOOLS_LIBDIR -lhdf5 -lhdf5_hl"
+    else
+        if test -d /usr/include/hdf5/serial; then # New Debian packaging layout since hdf5-1.8.13
+            HDF5_LIBS="-lhdf5_serial -lhdf5_serial_hl"
+            LIBS="$LIBS $HDF5_LIBS"
+            AC_CHECK_LIB([hdf5_serial], [H5Fopen],
+                [],
+                [AC_MSG_ERROR([libhdf5_serial or libhdf5_serial_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])],
+                [-lz]
+                )
+        else
+            HDF5_LIBS="-lhdf5 -lhdf5_hl"
+            LIBS="$LIBS $HDF5_LIBS"
+            AC_CHECK_LIB([hdf5], [H5Fopen],
+                [],
+                [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])],
+                [-lz]
+                )
+        fi
+    fi
 fi
 
 LIBS="$save_LIBS"

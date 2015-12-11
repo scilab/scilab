@@ -8,13 +8,16 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
-#include "SetUiobjectForegroundColor.hxx"
-#include "stack-c.h"
-int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+extern "C"
+{
+#include "SetUicontrol.h"
+}
+
+int SetUiobjectForegroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     /* Color can be [R, G, B] or "R|G|B" */
 
@@ -64,7 +67,7 @@ int SetUiobjectForegroundColor(void* _pvCtx, char* sciObjUID, void* _pvData, int
         return SET_PROPERTY_ERROR;
     }
 
-    status = setGraphicObjectProperty(sciObjUID, __GO_UI_FOREGROUNDCOLOR__, allColors, jni_double_vector, 3);
+    status = setGraphicObjectProperty(iObjUID, __GO_UI_FOREGROUNDCOLOR__, allColors, jni_double_vector, 3);
 
     if (valueType == sci_strings)
     {

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-28 09:00+0000\n"
-"Last-Translator: Alvin Tseng <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
 
 #, c-format
@@ -36,7 +36,7 @@ msgid ""
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應為 mx1, mx2 或 mx3  矩陣字串.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
@@ -90,7 +90,7 @@ msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: 輸入參數個數錯誤: 最多應該有 %d 個.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 
 #, c-format
@@ -217,8 +217,8 @@ msgid ""
 msgstr "%s: 目錄 '%s' 無法產生, 請檢査是否有寫入此目錄之權限.\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible\n"
-msgstr "%s:  檔案 '%s' 不存在或無法讀取.\n"
+msgid "%s: The file '%s' does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: DESCRIPTION file cannot be found in the package '%s'\n"
@@ -250,14 +250,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: 輸入參數數目錯誤: 預期為 %d 或 %d 個.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料型態錯誤: 應該是字串.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -294,8 +286,9 @@ msgid "\t - '%s - %s' is needed by '%s'\n"
 msgstr "\t - '%s - %s' 必須經由 '%s'\n"
 
 #, c-format
-msgid "%s: The file '%s' doesn't exist or is not read accessible.\n"
-msgstr "%s: 檔案 '%s' 不存在或是無讀取權限.\n"
+msgid ""
+"%s: The file '%s' from (%s - %s) does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred while loading '%s-%s':\n"
@@ -476,21 +469,6 @@ msgstr "無任何有效的 ATOMS 模組. 請檢查網路連線是否正常或是
 msgid "No ATOMS module is available: your repository list is empty."
 msgstr "沒有可取得的ATOMS模組:你的倉庫清單是空的."
 
-msgid "ATOMS"
-msgstr "ATOMS"
-
-msgid "&File"
-msgstr "檔案(&F)"
-
-msgid "&Tools"
-msgstr "工具(&T)"
-
-msgid "&Edit"
-msgstr "編輯(&E)"
-
-msgid "&?"
-msgstr "&?"
-
 msgid "File"
 msgstr "檔案"
 
@@ -509,8 +487,8 @@ msgstr "?"
 msgid "Atoms Help..."
 msgstr "Atoms 線上文件..."
 
-msgid "List of installed modules"
-msgstr "已安裝模組清單"
+msgid "Back"
+msgstr ""
 
 msgid "Remove"
 msgstr "移除"
@@ -518,8 +496,11 @@ msgstr "移除"
 msgid "Install"
 msgstr "安裝"
 
-msgid "Update"
-msgstr "更新"
+msgid "Autoload"
+msgstr ""
+
+msgid "List of installed modules"
+msgstr "已安裝模組清單"
 
 msgid "Installing"
 msgstr "安裝中"
@@ -531,15 +512,6 @@ msgid ""
 "Installation done! Please restart Scilab to take changes into account."
 msgstr "安裝完畢！請重新啟動 Scilab 使變更發生作用."
 
-msgid "Removing"
-msgstr "刪除中"
-
-msgid "Remove failed!"
-msgstr "移除失敗"
-
-msgid "Remove done! Please restart Scilab to take changes into account. "
-msgstr "已移除 ! 請重新啟動 Scilab  使變更發生作用. "
-
 msgid "Updating"
 msgstr "更新中"
 
@@ -549,6 +521,23 @@ msgstr "更新失敗！"
 msgid "Update done! Please restart Scilab to take changes into account."
 msgstr "更新完成!   請重新啟動 Scilab  使變更發生作用."
 
+msgid "Removing"
+msgstr "刪除中"
+
+msgid "Remove failed!"
+msgstr "移除失敗"
+
+msgid "Remove done! Please restart Scilab to take changes into account. "
+msgstr "已移除 ! 請重新啟動 Scilab  使變更發生作用. "
+
+msgid "The module will be automatically loaded at next startup."
+msgstr ""
+
+msgid ""
+"Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
+"used to load the module when needed."
+msgstr ""
+
 msgid "Download size"
 msgstr "下載大小"
 
@@ -557,6 +546,9 @@ msgstr "可參閱"
 
 msgid "Release date"
 msgstr "發佈日期"
+
+msgid "Update"
+msgstr "更新"
 
 #, c-format
 msgid "A new version ('%s') of '%s' is available"
@@ -641,6 +633,15 @@ msgstr "%s: gzip 不存在.\n"
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: 抽取 DESCRIPTION 描述檔 ('%s') 內資訊失敗.\n"
 
+msgid "Done"
+msgstr ""
+
+msgid "Scanning repository"
+msgstr ""
+
+msgid "Skipped"
+msgstr ""
+
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
 msgstr ""
@@ -664,9 +665,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: The file %s is not well formated, the toolbox %s - %s doesn't contain "
+"%s: The file %s is not well formated, the toolbox %s - %s does not contain "
 "the %s field\n"
-msgstr "%s: 檔案 %s 格式不夠良好,  toolbox %s - %s 無法獲得 %s 域\n"
+msgstr ""
 
 #, c-format
 msgid "%s: name and version are not both defined\n"
@@ -703,9 +704,9 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: String that start with "
-"'http://','ftp://' or 'file://' expected.\n"
-msgstr "%s: 第  %d 輸入參數數值錯誤: 應為 'http://','ftp://' 或 'file://' 起頭的字串.\n"
+"%s: Wrong value for input argument #%d: String that starts with "
+"'http(s)?://','ftp://' or 'file://' expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -769,8 +770,8 @@ msgid "\t - Local location : '%s'\n"
 msgstr "\t - 局部位置 : '%s'\n"
 
 #, c-format
-msgid "%s: The following file hasn't been copied:\n"
-msgstr "%s: 以下檔案未曾複製:\n"
+msgid "%s: The following file has not been copied:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - source    : '%s'\n"
@@ -781,8 +782,8 @@ msgid "\t - destination : '%s'\n"
 msgstr "\t - 目的地: '%s'\n"
 
 #, c-format
-msgid "%s: The downloaded file doesn't check the MD5SUM:\n"
-msgstr "%s: 下載之檔案無法檢查 MD5SUM:\n"
+msgid "%s: The downloaded file does not match the MD5SUM:\n"
+msgstr ""
 
 #, c-format
 msgid "\t - file      : '%s'\n"
@@ -808,12 +809,12 @@ msgid ""
 msgstr "%s: 第 %d 個輸入參數數值錯誤:應為後綴為  .tar.gz, .tgz 或 .zip 的字串 .\n"
 
 #, c-format
-msgid "%s: The file %s doesn't exist or is not read accessible.\n"
-msgstr "%s:  檔案 %s 不存在或無法讀取.\n"
+msgid "%s: The file %s does not exist or is not read accessible.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: The directory %s doesn't exist.\n"
-msgstr "%s: 目錄 %s 不存在.\n"
+msgid "%s: The directory %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: The extraction of the archive '%s' has failed.\n"
@@ -837,6 +838,75 @@ msgstr "所有模組"
 
 msgid "Main categories"
 msgstr "主要的分類"
+
+msgid "Aerospace"
+msgstr ""
+
+msgid "Contributed Scilab Binaries"
+msgstr ""
+
+msgid "Data Analysis And Statistics"
+msgstr ""
+
+msgid "Data Handling"
+msgstr ""
+
+msgid "Editor Styles"
+msgstr ""
+
+msgid "Education"
+msgstr ""
+
+msgid "GUI"
+msgstr ""
+
+msgid "Graphics"
+msgstr ""
+
+msgid "Graphs"
+msgstr ""
+
+msgid "Image Processing"
+msgstr ""
+
+msgid "Instruments Control"
+msgstr ""
+
+msgid "Linear algebra"
+msgstr ""
+
+msgid "Modeling and Control Tools"
+msgstr ""
+
+msgid "Number theory"
+msgstr ""
+
+msgid "Numerical Maths"
+msgstr ""
+
+msgid "Optimization"
+msgstr ""
+
+msgid "Physics"
+msgstr ""
+
+msgid "Real-Time"
+msgstr ""
+
+msgid "Scilab development"
+msgstr ""
+
+msgid "Signal Processing"
+msgstr ""
+
+msgid "Technical"
+msgstr ""
+
+msgid "Tests"
+msgstr ""
+
+msgid "Xcos"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -895,13 +965,16 @@ msgstr "%s: 第 %d 行敘述的格式不符\n"
 msgid "%s: Wrong value for input argument #%d: '%s' is not a valid URL.\n"
 msgstr "%s: 第 #%d 輸入參數數值錯誤: '%s' 不是正確的 URL.\n"
 
-#, c-format
-msgid "%s: the package '%s' doesn't exist.\n"
-msgstr "%s: 套件'%s' 不存在.\n"
+msgid "Loaded<br>at startup"
+msgstr ""
 
 #, c-format
-msgid "%s: the package '%s' doesn't contain the field '%s'.\n"
-msgstr "%s: 套件'%s' 未含 '%s' 欄位.\n"
+msgid "%s: the package '%s' does not exist.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: the package '%s' does not contain the field '%s'.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s (%s) isn't installed.\n"

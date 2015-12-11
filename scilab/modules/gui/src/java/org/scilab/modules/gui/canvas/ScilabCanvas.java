@@ -8,7 +8,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -159,14 +159,14 @@ public class ScilabCanvas extends ScilabDockable implements Canvas {
     }
 
     /**
-     * @param onOrOff set wether the swap buffer mode is on or off.
+     * @param onOrOff set whether the swap buffer mode is on or off.
      */
     public void setAutoSwapBufferMode(boolean onOrOff) {
         ScilabBridge.setAutoSwapBufferMode(this, onOrOff);
     }
 
     /**
-     * @return set wether the swap buffer mode is on or off.
+     * @return set whether the swap buffer mode is on or off.
      */
     public boolean getAutoSwapBufferMode() {
         return ScilabBridge.getAutoSwapBufferMode(this);

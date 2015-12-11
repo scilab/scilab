@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-09-11 09:19+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
@@ -41,22 +41,26 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
-msgid "%s: Wrong size for first input argument: Single string expected.\n"
-msgstr ""
-"%s: Il primo argomento in ingresso ha una dimensione sbagliata: era attesa "
-"una sola stringa.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Single string expected.\n"
+msgid "%s: Wrong size for first input argument: string expected.\n"
 msgstr ""
-"%s: Il primo argomento in ingresso è di tipo sbagliato: era attesa una sola "
+"%s: Il primo argomento in ingresso ha una dimensione sbagliata: era attesa "
+"una stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: string expected.\n"
+msgstr ""
+"%s: Il primo argomento in ingresso è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: Single string expected.\n"
+msgid "%s: Wrong size for second input argument: string expected.\n"
 msgstr ""
 "%s: Il secondo argomento in ingresso ha una dimensione sbagliata: era attesa "
-"una sola stringa.\n"
+"una stringa.\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
@@ -65,21 +69,45 @@ msgstr ""
 "o 'w'.\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: Single string expected.\n"
+msgid "%s: Wrong type for second input argument: string expected.\n"
 msgstr ""
 "%s: Il secondo argomento in ingresso è di tipo sbagliato: era attesa una "
-"sola stringa.\n"
+"stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
+msgid "%s: Wrong size for first input argument: An integer value expected.\n"
+msgstr ""
+"%s: Il primo argomento in ingresso ha una dimensione sbagliata: era atteso "
+"un valore intero.\n"
+
+#, c-format
+msgid "%s: Wrong type for first input argument: An integer value expected.\n"
+msgstr ""
+"%s: Il primo argomento in ingresso è di tipo sbagliato: era atteso un valore "
+"intero.\n"
+
+#, c-format
+msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
 msgstr ""
 "%s: Il quarto argomento in ingresso ha una dimensione sbagliata: era atteso "
-"un solo booleano.\n"
+"un booleano.\n"
 
 #, c-format
-msgid "%s: Wrong type for fourth input argument: Single boolean expected.\n"
+msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
 msgstr ""
-"%s: Il quarto argomento in ingresso è di tipo sbagliato: era atteso un solo "
+"%s: Il quarto argomento in ingresso è di tipo sbagliato: era atteso un "
 "booleano.\n"
 
 #, c-format
@@ -87,10 +115,8 @@ msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr "%s: Gli array N-D di char non sono sviluppati.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Mlist expected.\n"
-msgstr ""
-"%s: Il primo argomento in ingresso è di tipo sbagliato: era attesa una "
-"Mlist.\n"
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr "%s: Il salvataggio di un array 2D di stringhe non è sviluppato.\n"
 
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
@@ -106,16 +132,6 @@ msgstr ""
 "differenti non è sviluppato.\n"
 
 #, c-format
-msgid "%s: 2D array of strings saving is not implemented.\n"
-msgstr "%s: Il salvataggio di un array 2D di stringhe non è sviluppato.\n"
-
-#, c-format
-msgid "%s: Wrong type for first input argument: String matrix expected.\n"
-msgstr ""
-"%s: Il primo argomento in ingresso è di tipo sbagliato: era attesa una "
-"matrice di stringhe.\n"
-
-#, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
 "%s: Il primo argomento in ingresso è di tipo sbagliato: era attesa una "
@@ -128,6 +144,14 @@ msgstr ""
 "matrice di interi.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: MList expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
 msgstr ""
 "%s: Le Mlist di tipo %s non possono essere scritte in file binari di "
@@ -138,45 +162,6 @@ msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
 msgstr ""
 "%s: Il primo argomento in ingresso è di tipo sbagliato: era attesa una "
 "matrice sparsa.\n"
-
-msgid "Scilab matio module not installed.\n"
-msgstr "Il modulo matio di Scilab non è installato.\n"
-
-#, c-format
-msgid "Found Datatype=%d, expecting %d."
-msgstr "Trovato tipo di dato=%d, atteso %d."
-
-msgid "Unknown Class."
-msgstr "Classe sconosciuta."
-
-#, c-format
-msgid "Not implemented DataType: %d."
-msgstr "Il seg. tipo di dato non è sviluppato: %d."
-
-msgid "Invalid level 5 binary MAT-file!."
-msgstr "MAT-file binario di livello 5 non valido!"
-
-msgid "Scilab string matrix saved as Matlab Cell."
-msgstr ""
-"La matrice di stringhe di Scilab è stata salvata come cella di Matlab."
-
-#, c-format
-msgid "Unknown integer type: %s."
-msgstr "Tipo intero sconosciuto: %s."
-
-#, c-format
-msgid "%s mlist type not yet implemented."
-msgstr "%s: il tipo mlist non è ancora sviluppato."
-
-#, c-format
-msgid "%s not yet implemented."
-msgstr "%s non è ancora sviluppato."
-
-msgid "MATLAB 5.0 MAT-file, Generated by Scilab"
-msgstr "MATLAB 5.0 MAT-file, generato da Scilab"
-
-msgid "Error while writing MI."
-msgstr "Errore durante la scrittura di MI."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -230,10 +215,6 @@ msgstr "%s: Non è possibile aprire il file \"%s\".\n"
 #, c-format
 msgid "savematfile: could not save variable named %s.\n"
 msgstr "savematfile: non è possibile salvare una variabile chiamata %s.\n"
-
-#, c-format
-msgid "Version %d MAT-file not implemented."
-msgstr "La versione %d dei MAT-file non è sviluppata."
 
 #, c-format
 msgid "Variable %s can not be saved in ASCII file: IGNORED."

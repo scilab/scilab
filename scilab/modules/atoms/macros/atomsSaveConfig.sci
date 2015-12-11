@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Save the config file in a config.bak file, so that we don't lose information while testing
 
@@ -24,6 +24,9 @@ function atomsSaveConfig(force)
     end
 
     pathsystemuser = atomsPath("system", "user");
+
+    proxy_attrs = ["enabled", "host", "port", "user", "password"];
+    setPreferencesValue("//web/body/previous-proxy", [proxy_attrs ; getPreferencesValue("//web/body/proxy", proxy_attrs)]);
 
     if isfile(pathsystemuser + "config.bak") then
         if ~force then

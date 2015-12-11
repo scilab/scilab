@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -24,7 +24,7 @@
 #include "localization.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_contour2di(char * fname, unsigned long fname_len)
+int sci_contour2di(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int flagx = 0, nz = 10; /* default number of level curves : 10 */
@@ -60,7 +60,7 @@ int sci_contour2di(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr1, &m1, &n1, &l1);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         printError(&sciErr, 0);
         return 1;
     }
@@ -84,7 +84,7 @@ int sci_contour2di(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &m2, &n2, &l2);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
         printError(&sciErr, 0);
         return 1;
     }
@@ -108,7 +108,7 @@ int sci_contour2di(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr3, &m3, &n3, &l3);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 3);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 3);
         printError(&sciErr, 0);
         return 1;
     }
@@ -152,7 +152,7 @@ int sci_contour2di(char * fname, unsigned long fname_len)
     sciErr = getMatrixOfDouble(pvApiCtx, piAddr4, &m4, &n4, &l4);
     if (sciErr.iErr)
     {
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 4);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 4);
         printError(&sciErr, 0);
         return 1;
     }

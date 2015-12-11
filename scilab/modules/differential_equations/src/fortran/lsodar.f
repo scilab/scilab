@@ -1092,6 +1092,7 @@ c-----------------------------------------------------------------------
 c the following card is for optimized compilation on lll compilers.
 clll. optimize
 c-----------------------------------------------------------------------
+
       external prja, solsy
       integer illin, init, lyh, lewt, lacor, lsavf, lwm, liwm,
      1   mxstep, mxhnil, nhnil, ntrep, nslast, nyh, iowns
@@ -1130,16 +1131,17 @@ c in subroutines lsodar, rchek, and roots.  groups of variables are
 c replaced by dummy arrays in the common declarations in routines
 c where those variables are not used.
 c-----------------------------------------------------------------------
-      integer         iero
-      common /ierode/ iero
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ tret, rowns(209),
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      2   illin, init, lyh, lewt, lacor, lsavf, lwm, liwm,
      3   mxstep, mxhnil, nhnil, ntrep, nslast, nyh, iowns(6),
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsa001/
       common /lsa001/ tsw, rowns2(20), pdnorm,
      1   insufr, insufi, ixpr, iowns2(2), jtyp, mused, mxordn, mxords
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ rownr3(2), t0, tlast, toutc,
      1   lg0, lg1, lgx, iownr3(2), irfnd, itaskc, ngc, nge
 c
@@ -1361,7 +1363,7 @@ c-----------------------------------------------------------------------
 c initial call to f.  (lf0 points to yh(*,2).) -------------------------
       lf0 = lyh + nyh
       call f (neq, t, y, rwork(lf0))
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nfe = 1
 c load the initial value vector in yh. ---------------------------------
       do 115 i = 1,n
@@ -1428,7 +1430,7 @@ c check for a zero of g at t. ------------------------------------------
       if (ngc .eq. 0) go to 270
       call rchek (1, g, neq, y, rwork(lyh), nyh,
      1   rwork(lg0), rwork(lg1), rwork(lgx), jroot, irt)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       if (irt .eq. 0) go to 270
       go to 632
 c-----------------------------------------------------------------------
@@ -1447,7 +1449,7 @@ c
       if (itask .eq. 1 .or. itask .eq. 4) toutc = tout
       call rchek (2, g, neq, y, rwork(lyh), nyh,
      1   rwork(lg0), rwork(lg1), rwork(lgx), jroot, irt)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       if (irt .lt. 0) go to 632
       if (irt .ne. 1) go to 205
       irfnd = 1
@@ -1538,7 +1540,7 @@ c-----------------------------------------------------------------------
       call stoda (neq, y, rwork(lyh), nyh, rwork(lyh), rwork(lewt),
      1   rwork(lsavf), rwork(lacor), rwork(lwm), iwork(liwm),
      2   f, jac, prja, solsy)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       kgo = 1 - kflag
       go to (300, 530, 540), kgo
 c-----------------------------------------------------------------------
@@ -1575,7 +1577,7 @@ c
       if (ngc .eq. 0) go to 315
       call rchek (3, g, neq, y, rwork(lyh), nyh,
      1   rwork(lg0), rwork(lg1), rwork(lgx), jroot, irt)
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       if (irt .ne. 1) go to 315
       irfnd = 1
       istate = 3

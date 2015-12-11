@@ -6,13 +6,14 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>呼び出し手順</title>
-        <synopsis>clearglobal()
-            clearglobal nam1 .. namn
-            clearglobal('nam1', ..,'namn')
+        <synopsis>
+            clearglobal()
+            clearglobal nam1 ... namn
+            clearglobal('nam1', ...,'namn')
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>パラメータ</title>
+        <title>引数</title>
         <variablelist>
             <varlistentry>
                 <term>nam1,..., namn</term>
@@ -25,16 +26,18 @@
     <refsection>
         <title>説明</title>
         <para>
-            <literal>clearglobal() </literal> はグローバル変数を全て削除します.
+            <code>clearglobal()</code> は,グローバル変数を全て削除します.
         </para>
         <para>
             <literal>clearglobal nam1 .. namn</literal>  は名前で指定したグローバル変数を
             削除します.
         </para>
         <para>
-            <literal>clearglobal() </literal> はグローバル変数のみをクリアし,
-            これらのグローバル変数のローカルなコピーは破棄されないことに
-            注意してください.
+            <note>
+                <code>clearglobal()</code> はグローバル変数のみをクリアし,
+                これらのグローバル変数のローカルなコピーは破棄されないことに
+                注意してください.
+            </note>
         </para>
     </refsection>
     <refsection>

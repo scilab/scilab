@@ -6,7 +6,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -15,11 +15,12 @@
 #include <Windows.h>
 #include <windowsx.h>
 #include "WndThread.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "version.h"
 #include "wmcopydata.h"
 #include "storeCommand.h"
-#include "strdup_windows.h"
+#include "os_string.h"
+#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static HWND hWndScilab = NULL;
 HANDLE HandleThreadWnd = NULL;
@@ -137,7 +138,7 @@ static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd, HWND hWndSend, PCOPYDATASTRUCT 
 
     if ( GetCommandFromAnotherScilab(TitleWndSend, Command) )
     {
-        StoreCommand (Command);
+        StoreCommand(Command);
     }
 
     return TRUE;
@@ -148,7 +149,7 @@ char *getCurrentTitleScilabHiddenWindow(void)
     char *currentTitle = NULL;
     if ( strcmp(titleHiddenScilabWindow, "") )
     {
-        currentTitle = strdup(titleHiddenScilabWindow);
+        currentTitle = os_strdup(titleHiddenScilabWindow);
     }
     return currentTitle;
 }

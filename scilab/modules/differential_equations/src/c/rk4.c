@@ -7,12 +7,12 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #include "rk4.h"
-#include "stack-c.h"
+#include "common_structure.h"
 /*--------------------------------------------------------------------------*/
 /* Runge-Kutta (RK4) method */
 /* http://media4.obspm.fr/public/DEA/cours/chapitre3/souschapitre2/section4/page5/section3_2_4_5.html */

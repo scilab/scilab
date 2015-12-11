@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function tree=sci_acoth(tree)
     // M2SCI function
@@ -16,7 +16,7 @@ function tree=sci_acoth(tree)
     X=getrhs(tree)
     X=convert2double(X)
 
-    set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."),expression2code(X),expression2code(tree)),2)
+    set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."), strcat(expression2code(X), ""), strcat(expression2code(tree), "")),2)
 
     tree.name="atanh"
     Op=Operation("./",list(Cste(1),X),list())

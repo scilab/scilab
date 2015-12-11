@@ -23,7 +23,7 @@
 #include "machine.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(mtran)();
+extern int C2F(mtran)(double* a, int* na, double* b, int* nb, int* m, int* n);
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void mathermit_m(scicos_block *block, int flag)
 {

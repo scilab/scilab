@@ -9,7 +9,7 @@ c     This source file is licensed as described in the file COPYING,
 c     which
 c     you should have received as part of this distribution.  The terms
 c     are also available at
-c     http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c     http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 C     /MEMBR ADD NAME=IMPINS,SSI=0
 c     Copyright INRIA
       subroutine impins(mat1,dep1,lig1,col1,mat2,

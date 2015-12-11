@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -18,6 +18,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
+import org.scilab.modules.graphic_objects.graphicObject.GraphicObject.UpdateStatus;
 
 /**
  * @author Vincent COUVERT
@@ -110,8 +111,9 @@ public abstract class Uibar extends GraphicObject {
      * Set the uibar message
      * @param message the message
      */
-    public void setMessage(String[] message) {
+    public UpdateStatus setMessage(String[] message) {
         this.message = message;
+        return UpdateStatus.Success;
     }
 
     /**
@@ -126,8 +128,9 @@ public abstract class Uibar extends GraphicObject {
      * Set the uibar value
      * @param value the value
      */
-    public void setValue(Integer value) {
+    public UpdateStatus setValue(Integer value) {
         this.value = value;
+        return UpdateStatus.Success;
     }
 
     /**

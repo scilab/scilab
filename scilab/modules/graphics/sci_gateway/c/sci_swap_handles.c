@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,7 +14,7 @@
 /* file: sci_swap_handles.c                                               */
 /* desc : interface for swap_handles routine                              */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "HandleManagement.h"
@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_swap_handles(char * fname, unsigned long fname_len)
+int sci_swap_handles(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -39,13 +39,23 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
     int firstHdlRow = 0;
     int secondHdlCol = 0;
     int secondHdlRow = 0;
-    char *pstHandle_1 = NULL;
-    char *pstHandle_2 = NULL;
-    char *pstParent_1 = NULL;
-    char *pstParent_2 = NULL;
+    int iHandle_1 = 0;
+    int iHandle_2 = 0;
+    int iType_1 = 0;
+    int iType_2 = 0;
+    int * piType_1 = &iType_1;
+    int * piType_2 = &iType_2;
+    int iParent_1 = 0;
+    int* piParent_1 = &iParent_1;
+    int iParent_2 = 0;
+    int* piParent_2 = &iParent_2;
+    int iParentType_1 = 0;
+    int iParentType_2 = 0;
+    int * piParentType_1 = &iParentType_1;
+    int * piParentType_2 = &iParentType_2;
     int iChildrenCount = 0;
     int *piChildrenCount = &iChildrenCount;
-    char **pstChildrenUID = NULL;
+    int* piChildrenUID = NULL;
     int i = 0;
     long h = 0;
 
@@ -93,39 +103,49 @@ int sci_swap_handles(char * fname, unsigned long fname_len)
 
     /* get the two handles and swap them */
     h = (long) * (firstHdlStkIndex);
-    pstHandle_1 = (char*)getObjectFromHandle(h);
+    iHandle_1 = getObjectFromHandle(h);
 
     h = (long) * (secondHdlStkIndex);
-    pstHandle_2 = (char*)getObjectFromHandle(h);
+    iHandle_2 = getObjectFromHandle(h);
 
-    getGraphicObjectProperty(pstHandle_1, __GO_PARENT__, jni_string, (void **)&pstParent_1);
-    getGraphicObjectProperty(pstHandle_2, __GO_PARENT__, jni_string, (void **)&pstParent_2);
+    getGraphicObjectProperty(iHandle_1, __GO_TYPE__, jni_int, (void **)&piType_1);
+    getGraphicObjectProperty(iHandle_2, __GO_TYPE__, jni_int, (void **)&piType_2);
+
+    iParent_1 = getParentObject(iHandle_1);
+    iParent_2 = getParentObject(iHandle_2);
+
+    getGraphicObjectProperty(iParent_1, __GO_TYPE__, jni_int, (void **)&piParentType_1);
+    getGraphicObjectProperty(iParent_2, __GO_TYPE__, jni_int, (void **)&piParentType_2);
 
     // Check if objects do not have the same parent
-    if (strcmp(pstParent_1, pstParent_2) == 0)
+    if (iParent_1 == iParent_2)
     {
-        getGraphicObjectProperty(pstParent_1, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
-        getGraphicObjectProperty(pstParent_1, __GO_CHILDREN__, jni_string_vector, (void **)&pstChildrenUID);
+        getGraphicObjectProperty(iParent_1, __GO_CHILDREN_COUNT__, jni_int, (void **)&piChildrenCount);
+        getGraphicObjectProperty(iParent_1, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
 
         for (i = 0 ; i < iChildrenCount ; ++i)
         {
-            if (strcmp(pstChildrenUID[i], pstHandle_1) == 0)
+            if (piChildrenUID[i] == iHandle_1)
             {
-                pstChildrenUID[i] = pstHandle_2;
+                piChildrenUID[i] = iHandle_2;
             }
-            else if (strcmp(pstChildrenUID[i], pstHandle_2) == 0)
+            else if (piChildrenUID[i] == iHandle_2)
             {
-                pstChildrenUID[i] = pstHandle_1;
+                piChildrenUID[i] = iHandle_1;
             }
         }
 
-        setGraphicObjectProperty(pstParent_1, __GO_CHILDREN__, pstChildrenUID, jni_string_vector, iChildrenCount);
-
+        setGraphicObjectProperty(iParent_1, __GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
+    }
+    else if (iType_1 == iType_2 || iParentType_1 == iParentType_2)
+    {
+        setGraphicObjectRelationship(iParent_1, iHandle_2);
+        setGraphicObjectRelationship(iParent_2, iHandle_1);
     }
     else
     {
-        setGraphicObjectRelationship(pstParent_1, pstHandle_2);
-        setGraphicObjectRelationship(pstParent_2, pstHandle_1);
+        Scierror(999, _("%s: Handles do not have the same parent type neither the same type.\n"), fname);
+        return 0;
     }
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);

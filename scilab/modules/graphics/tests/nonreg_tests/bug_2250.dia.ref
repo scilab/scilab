@@ -18,7 +18,7 @@ backgroundvariable = 5;
 f.background = backgroundvariable;
 userdatavariable = ["my user_data - entry will not be saved, - but i.e. the backgroundvariable will be saved."];
 f.user_data = userdatavariable;
-save(pathconvert(TMPDIR+"/bug_2250.scg",%f), "f")
+save(pathconvert(TMPDIR+"/bug_2250.scg",%f), "f");
 delete(f)
 load(pathconvert(TMPDIR+"/bug_2250.scg",%f))
 figureloaded = gcf();

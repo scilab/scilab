@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,8 +26,8 @@ public class ImplicitOutputPort extends OutputPort {
     private static final long serialVersionUID = 4210196486062437007L;
 
     /** Default constructor */
-    public ImplicitOutputPort() {
-        super("ImplicitOutputPort");
+    public ImplicitOutputPort(long uid) {
+        super(uid, "ImplicitOutputPort");
     }
 
     /** @return always Type.IMPLICIT */

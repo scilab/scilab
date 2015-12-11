@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.tests.modules.javasci;
@@ -63,7 +63,7 @@ public class testExec {
         assertEquals(b.getHeight(), 10);
         assertEquals(b.getWidth(), 10);
 
-        /* Check results of the addition of two matrixes */
+        /* Check results of the addition of two matrices */
         assertTrue(sci.exec("c = [42, 12; 32, 32] + [2, 1; 3, 2]; sumMatrix = sum(c);"));
         ScilabType c = sci.get("c");
 

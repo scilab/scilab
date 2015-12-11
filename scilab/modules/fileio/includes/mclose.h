@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -26,6 +26,8 @@
 * all opened file if *id = -2
 */
 FILEIO_IMPEXP void C2F(mclose) (int *fd, double *res);
-
+FILEIO_IMPEXP int mclose(int _iID);
+FILEIO_IMPEXP int mcloseAll();
+FILEIO_IMPEXP int mcloseCurrentFile();
 #endif /* __MCLOSE_H__ */
 /*--------------------------------------------------------------------------*/

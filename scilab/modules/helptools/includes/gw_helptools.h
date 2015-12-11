@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,10 +17,8 @@
 #include "dynlib_helptools.h"
 /*--------------------------------------------------------------------------*/
 HELPTOOLS_IMPEXP int gw_helptools(void);
-
 /*--------------------------------------------------------------------------*/
-HELPTOOLS_IMPEXP int sci_buildDocv2(char *fname, unsigned long fname_len);
-
+HELPTOOLS_IMPEXP int sci_buildDoc(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_HELPTOOLS__ */
 /*--------------------------------------------------------------------------*/

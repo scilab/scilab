@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -27,37 +27,37 @@ function atomsDownload(url_in,file_out,md5sum)
     // Check input parameters type
     // =========================================================================
     if type(url_in) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 1));
     end
 
     if type(file_out) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 2));
     end
 
     if (rhs>2) & (type(md5sum) <> 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"), "atomsDownload", 3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "atomsDownload", 3));
     end
 
     // Check input parameters size
     // =========================================================================
 
     if size(url_in, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDownload",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDownload",1));
     end
 
     if size(file_out, "*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDownload",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDownload",2));
     end
 
     if (rhs>2) & (size(md5sum,"*") <> 1) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDownload",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDownload",3));
     end
 
     // Check input parameters value
     // =========================================================================
 
-    if regexp(url_in,"/^(http|ftp|file):\/\//","o") <> 1 then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: String that start with ''http://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
+    if regexp(url_in,"/^(https?|ftp|file):\/\//","o") <> 1 then
+        error(msprintf(gettext("%s: Wrong value for input argument #%d: String that starts with ''http(s)?://'',''ftp://'' or ''file://'' expected.\n"),"atomsDownload",1));
     end
 
     if (rhs>2) & (length(md5sum)<>32) then
@@ -106,8 +106,9 @@ function atomsDownload(url_in,file_out,md5sum)
 
     // Build the command
     // =========================================================================
+    winId = [];
 
-    if regexp(url_in, "/^(http|ftp):\/\//", "o") == 1 then
+    if regexp(url_in, "/^(https?|ftp):\/\//", "o") == 1 then
         proxy_host_arg = "";
         proxy_user_arg = "";
         timeout_arg  = "";
@@ -162,6 +163,11 @@ function atomsDownload(url_in,file_out,md5sum)
             end
 
         end
+
+        if WGET & atomsGetConfig("useProxy") == "False" then
+            proxy_user_arg = " --no-proxy";
+        end
+
 
         if getos() == "Windows" & CURL then
             download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F) + """" + proxy_host_arg + proxy_user_arg + timeout_arg + " -s """ + url_in + """ -o """ + file_out + """";
@@ -226,7 +232,7 @@ function atomsDownload(url_in,file_out,md5sum)
         file_in = pathconvert(part(url_in,length(url_pattern)+1:length(url_in)),%F);
 
         if copyfile(file_in,file_out) <> 1 then
-            mprintf(gettext("%s: The following file hasn''t been copied:\n"),"atomsDownload");
+            mprintf(gettext("%s: The following file has not been copied:\n"),"atomsDownload");
             mprintf(gettext("\t - source    : ''%s''\n"),file_in);
             mprintf(gettext("\t - destination : ''%s''\n"),file_out);
             atomsCloseProgressBar(winId);
@@ -243,7 +249,7 @@ function atomsDownload(url_in,file_out,md5sum)
         filemd5 = getmd5(file_out);
 
         if filemd5 <> md5sum then
-            mprintf(gettext("%s: The downloaded file doesn''t check the MD5SUM:\n"),"atomsDownload");
+            mprintf(gettext("%s: The downloaded file does not match the MD5SUM:\n"),"atomsDownload");
             mprintf(gettext("\t - file      : ''%s''\n"),file_out);
             mprintf(gettext("\t - MD5SUM expected : ''%s''\n"),md5sum);
             mprintf(gettext("\t - MD5SUM watched  : ''%s''\n"),filemd5);
@@ -253,5 +259,9 @@ function atomsDownload(url_in,file_out,md5sum)
 
     end
 
-    atomsCloseProgressBar(winId);
+    // Close progress bar handle, if not closed yet
+    // =========================================================================
+    if (~isempty(winId))
+        atomsCloseProgressBar(winId);
+    end
 endfunction

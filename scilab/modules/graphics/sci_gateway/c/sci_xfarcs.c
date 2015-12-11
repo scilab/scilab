@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,9 +27,10 @@
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
+#include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xfarcs(char *fname, unsigned long fname_len)
+int sci_xfarcs(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -42,6 +43,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
     int m2 = 0, n2 = 0;
 
     long hdl = 0;
+    int iCurrentSubWin = 0;
 
     int i = 0;
 
@@ -62,7 +64,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+        Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
         return 1;
     }
 
@@ -86,7 +88,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
-            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
             return 1;
         }
 
@@ -121,7 +123,7 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
         }
     }
 
-    getOrCreateDefaultSubwin();
+    iCurrentSubWin = getOrCreateDefaultSubwin();
 
     for (i = 0; i < n1; ++i)
     {
@@ -133,9 +135,8 @@ int sci_xfarcs(char *fname, unsigned long fname_len)
 
     /** Construct Compound and make it current object **/
     {
-        char * o = ConstructCompoundSeq(n1);
+        int o = createCompoundSeq(iCurrentSubWin, n1);
         setCurrentObject(o);
-        releaseGraphicObjectProperty(__GO_PARENT__, o, jni_string, 1);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;

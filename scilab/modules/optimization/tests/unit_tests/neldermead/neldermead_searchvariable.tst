@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
 // <-- CLI SHELL MODE -->
@@ -14,7 +14,7 @@
 
 
 function [ y , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 //
@@ -66,7 +66,7 @@ assert_checkequal ( status , "tolsize" );
 // Cleanup
 nm = neldermead_destroy(nm);
 
-// Check that the verbose mode is functionnal
+// Check that the verbose mode is functional
 // Few iterations are necessary to check this
 // Many iterations costs a lot more in time.
 nm = neldermead_new ();
@@ -84,7 +84,7 @@ nm = neldermead_configure(nm,"-method","variable");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",1);
 nm = neldermead_configure(nm,"-storehistory",%t);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 status = neldermead_get(nm,"-status");
 assert_checkequal ( status , "maxiter" );
 nm = neldermead_destroy(nm);

@@ -6,7 +6,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // This is the builder.sce
 // must be run from this directory
@@ -15,7 +15,7 @@
 ilib_name  = "libmex"
 
 // objects files (but do not give mexfiles here)
-files = ["temptst2.o"];
+files = ["temptst2.cpp"];
 
 // other libs needed for linking (must be shared library names)
 libs  = [];

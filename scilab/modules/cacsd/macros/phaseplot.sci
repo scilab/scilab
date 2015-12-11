@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function []=phaseplot(varargin)
     rhs=size(varargin)
@@ -98,15 +98,10 @@ function []=phaseplot(varargin)
         e=gce();
     end
     for i=1:size(e.children,"*")
-        datatipInitStruct(e.children(i),"formatfunction","formatPhaseplotTip")
+        e.children(i).display_function = "formatPhaseplotTip";
     end
     if comments<>[] then
         legend(comments)
     end
     fig.immediate_drawing=id;
-endfunction
-function str=formatPhaseplotTip(curve,pt,index)
-    //this function is called by the datatips mechanism to format the tip
-    //string for the magnitude bode curves
-    str=msprintf("%.4g"+_("Hz")+"\n%.4g"+"°", pt(1),pt(2))
 endfunction

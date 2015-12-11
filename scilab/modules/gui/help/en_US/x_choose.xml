@@ -43,7 +43,9 @@
             Returns in <literal>num</literal> the number of the chosen item.
         </para>
         <para>
-            WARNING: this dialog was not modal before Scilab 5.0, please use x_choose_modeless for ascendant compatibility.
+            <warning>
+                WARNING: this dialog was not modal before Scilab 5.0, please use x_choose_modeless for ascendant compatibility.
+            </warning>
         </para>
     </refsection>
     <refsection>

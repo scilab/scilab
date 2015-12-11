@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,14 +26,14 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_segs_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_segs_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
     int iNbSegs = 0;
@@ -46,7 +46,7 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
+    getGraphicObjectProperty(iObjUID, __GO_NUMBER_ARROWS__, jni_int, (void**)&piNbSegs);
 
     if (piNbSegs == NULL)
     {
@@ -65,7 +65,7 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         int value = (int) ((double*)_pvData)[0];
 
         /* 1-element array which is internally duplicated */
-        status = setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, &value, jni_int_vector, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_SEGS_COLORS__, &value, jni_int_vector, 1);
     }
     else if (nbRow * nbCol == iNbSegs)
     {
@@ -78,7 +78,7 @@ int set_segs_color_property(void* _pvCtx, char* pobjUID, void* _pvData, int valu
         }
 
         copyDoubleVectorToIntFromStack(_pvData, segsColors, iNbSegs);
-        status = setGraphicObjectProperty(pobjUID, __GO_SEGS_COLORS__, segsColors, jni_int_vector, iNbSegs);
+        status = setGraphicObjectProperty(iObjUID, __GO_SEGS_COLORS__, segsColors, jni_int_vector, iNbSegs);
 
         FREE(segsColors);
     }

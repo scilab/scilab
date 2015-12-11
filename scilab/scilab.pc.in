@@ -7,7 +7,7 @@ includedir=@includedir@/scilab
 Name: libscilab
 Description: Scilab Library
 URL: http://www.scilab.org
-Version: 5.0
+Version: @SCILAB_BINARY_VERSION@
 Requires: libxml-2.0 libpcre
 Libs: -L${libdir} -lscilab
-Cflags: -I${includedir} -lieee -lSM -lncurses -ltk8.4 -ltcl8.4 -ldl
+Cflags: -I${includedir} -lieee -lSM -lncurses @TCLTK_LIBS@

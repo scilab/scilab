@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,6 +21,16 @@ static int checkColorComponent(double c)
 /*--------------------------------------------------------------------------*/
 int checkColorRange(double r, double g, double b)
 {
+    if (r == -1 && g == -1 && b == -1) //default laf
+    {
+        return 1;
+    }
+
+    if (r == -2 && g == -2 && b == -2) //transparence
+    {
+        return 1;
+    }
+
     return checkColorComponent(r) && checkColorComponent(g) && checkColorComponent(b);
 }
 /*--------------------------------------------------------------------------*/

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function z=bvodeS(x,m,n,a,b,fsub,gsub,zeta,...
     ystart,dfsub,dgsub,fixpnt,ndimf,ndimi,ltol,tol,ntol,nonlin,...
@@ -129,7 +129,7 @@ endfunction
 
 function J=%dfsub(x,z)
     sz=size(z);if sz(1)==1, z=z'; end
-    J=derivative(list(%fsubT,x),z)
+    J=numderivative(list(%fsubT,x),z)
 endfunction
 
 function J=%dfsub1(x,z)
@@ -146,7 +146,7 @@ endfunction
 
 function dg=%dgsub(i,z)
     sz=size(z);if sz(1)==1, z=z'; end
-    dg=derivative(list(%gsubT,i),z)
+    dg=numderivative(list(%gsubT,i),z)
 endfunction
 
 function dg=%dgsub1(i,z)

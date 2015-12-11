@@ -62,6 +62,10 @@
             Комментарий <code>//</code> комментирует строку, т. е. строки, которые начинаются с
             <code>//</code>, игнорируются интерпретатором.
         </para>
+        <para>
+            It is the same with <code>/*</code> which start to comment a
+            block of code and with <code>*/</code> which end to comment this block.
+        </para>
     </refsection>
     <refsection>
         <title>Примеры</title>
@@ -78,6 +82,8 @@ x*B-a // близко к нулю
 a=4 / 2; // Должно быть 2
 a=2 ./ [2,4]; //     1.    0.5
 // Комментарии - это хорошо. Они помогают понять код
+/* Even long, that is to say on many lines,
+comments are useful */
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

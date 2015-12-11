@@ -17,14 +17,13 @@ clll. optimize
      2   r, rh, rhdn, rhsm, rhup, told, vnorm
       dimension neq(*), y(*), yh(nyh,*), yh1(*), ewt(*), savf(*),
      1   savr(*), acor(*), wm(*), iwm(*)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, conit, crate, el(13), elco(13,12),
      1   hold, rmax, tesco(3,12),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround, iownd(14),
      3   ialth, ipup, lmax, meo, nqnyh, nslp,
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nre, nje, nqu
-      integer         iero
-      common /ierode/ iero
 c-----------------------------------------------------------------------
 c%purpose
 c stodi performs one step of the integration of an initial value
@@ -255,14 +254,14 @@ c-----------------------------------------------------------------------
       crate = 0.70d+0
       call pjac (neq, y, yh, nyh, ewt, acor, savr, savf, wm, iwm,
      1   res, jac, adda )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       if (ierpj .eq. 0) go to 250
       ires = ierpj
       go to (430, 435, 430), ires
 c get residual at predicted values, if not already done in pjac. -------
  240  ires = 1
       call res ( neq, tn, y, savf, savr, ires )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       kgo = abs(ires)
       go to ( 250, 435, 430 ) , kgo
@@ -295,7 +294,7 @@ c-----------------------------------------------------------------------
       delp = del
       ires = 1
       call res ( neq, tn, y, savf, savr, ires )
-      if(iero.gt.0) return
+      if(ierror.gt.0) return
       nre = nre + 1
       kgo = abs(ires)
       go to ( 270, 435, 410 ) , kgo

@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Xcos
+ *
+ * Copyright (C) INRIA - METALAU Project <scicos@inria.fr> (HTML version)
+ * Copyright (C) DIGITEO - Scilab Consortium (XML Docbook version)
+ * Copyright 2011 - Bernard DUJARDIN <bernard.dujardin@contrib.scilab.org>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ *  (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * 
+ * See the file ./license.txt
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xmln.mml="http://www.w3.org/1998/Math/MathML">
+    <refnamediv>
+        <refname>JKFLIPFLOP</refname>
+        <refpurpose id="Purpose_JKFLIPFLOP">JK flip-flop</refpurpose>
+    </refnamediv>
+    <refsection id="Description_JKFLIPFLOP">
+        <title>Description</title>
+        <para>
+            The JK flip flop is the most versatile of the basic flip-flops. It has two inputs traditionally labeled
+            <emphasis role="bold">J</emphasis> (Set) and <emphasis role="bold">K</emphasis> (Reset).
+        </para>
+        <itemizedlist>
+            <listitem>
+                <para>
+                    When the inputs  <emphasis role="bold">J</emphasis> and <emphasis role="bold">K</emphasis>
+                    are different, the output <emphasis role="bold">Q</emphasis> takes the value of
+                    <emphasis role="bold">J</emphasis> at the next falling edge.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    When the inputs <emphasis role="bold">J</emphasis> and <emphasis role="bold">K</emphasis> are both low, no change occurs in the output state.
+                </para>
+                <para/>
+            </listitem>
+            <listitem>
+                <para>
+                    When the inputs are both high the output <emphasis role="bold">Q</emphasis> will toggle from
+                    one state to other. It can perform the functions of the set/reset (SR) flip-flop and has the advantage that there are no ambiguous states.
+                </para>
+            </listitem>
+        </itemizedlist>
+        <para>
+            The <emphasis role="bold">!Q</emphasis> output is the logical negation of <emphasis role="bold">Q</emphasis>
+        </para>
+        <para>
+            It can also act as a T flip-flop to accomplish toggling action if <emphasis role="bold">J</emphasis>
+            and <emphasis role="bold">K</emphasis> are tied together. This toggle application finds extensive use
+            in binary counters.
+        </para>
+        <para>
+            The user can set the initial output state with <emphasis role="bold">Initial Value</emphasis>
+            parameter.
+        </para>
+        <para> The truth table of this block is:</para>
+        <para/>
+        <informaltable border="1" cellpadding="3">
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{J}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{K}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{Q_n}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[\boldsymbol{!Q_n}]]></latex>
+                </td>
+                <td align="left"/>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[Q_{n-1}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[!Q_{n-1}]]></latex>
+                </td>
+                <td align="left">Hold</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">Reset</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[0]]></latex>
+                </td>
+                <td align="left">Set</td>
+            </tr>
+            <tr>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[1]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[!Q_{n-1}]]></latex>
+                </td>
+                <td align="left">
+                    <latex><![CDATA[Q_{n-1}]]></latex>
+                </td>
+                <td align="left">Toggle</td>
+            </tr>
+        </informaltable>
+        <para>
+            where 
+            <emphasis><literal>
+                    Q<subscript>n-1</subscript>
+                </literal>
+            </emphasis>
+            is the previous state of
+            <emphasis><literal>
+                    Q<subscript>n</subscript>
+                </literal>
+            </emphasis>
+            .
+        </para>
+        <refsection id="Data_Type_JKFLIPFLOP">
+            <title>Data types</title>
+            <para>
+                The block supports the following types :
+            </para>
+            <itemizedlist>
+                <listitem>
+                    <para>
+                        Inputs:
+                    </para>
+                    <itemizedlist>
+                        <listitem>
+                            <para>
+                                <emphasis role="bold">J</emphasis>: scalar. Scilab's int8 data type only.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis role="bold">clk</emphasis>: scalar. Scilab's real double.
+                            </para>
+                        </listitem>
+                        <listitem>
+                            <para>
+                                <emphasis role="bold">K</emphasis>: scalar. Scilab's int8 data type only.
+                            </para>
+                        </listitem>
+                    </itemizedlist>
+                    <para>
+                        A positive input is considered as logical 1, a negative or a null input as logical 0.
+                    </para>
+                    <para/>
+                </listitem>
+                <listitem>
+                    <para>
+                        Outputs: scalar. Scilab's int8 data type.
+                    </para>
+                </listitem>
+            </itemizedlist>
+        </refsection>
+    </refsection>
+    <refsection id="Examples_JKFLIPFLOP">
+        <title>Example</title>
+        <para>
+            The following example builds a 3 bits asynchronous counter with JK flipflops wired as T flipflops. You can show on the
+            right the timing diagram of the 
+            <emphasis><literal>
+                    Q<subscript>0</subscript>
+                </literal>
+            </emphasis>
+            to 
+            <emphasis><literal>
+                    Q<subscript>2</subscript>
+                </literal>
+            </emphasis>
+            outputs of counter.
+        </para>
+        <para>
+            <link type="scilab" linkend="scilab.zcos/xcos/examples/integer_pal/en_US/JKFLIPFLOP_en_US.zcos">
+                <inlinemediaobject>
+                    <imageobject>
+                        <imagedata fileref="../../../../examples/integer_pal/en_US/JKFLIPFLOP_en_US.zcos" align="center" valign="middle"/>
+                    </imageobject>
+                </inlinemediaobject>
+            </link>
+		</para>
+        <scilab:image><![CDATA[
+importXcosDiagram(SCI + "/modules/xcos/examples/integer_pal/en_US/JKFLIPFLOP_en_US.zcos");
+xcos_simulate(scs_m, 4);
+]]></scilab:image>
+    </refsection>
+    <refsection role="see also" id="Seealso_JKFLIPFLOP">
+        <title>See also</title>
+        <itemizedlist>
+            <listitem>
+                <link linkend="DLATCH">DLATCH</link>
+            </listitem>
+            <listitem>
+                <link linkend="DFLIPFLOP">DFLIPFLOP</link>
+            </listitem>
+            <listitem>
+                <link linkend="SRFLIPFLOP">SRFLIPFLOP</link>
+            </listitem>
+        </itemizedlist>
+    </refsection>
+</refentry>

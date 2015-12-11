@@ -33,9 +33,9 @@
             64 bits prescritos por IEEE 754). Números de <literal>F</literal> são da
             forma: 
         </para>
-        <programlisting><![CDATA[ 
-     sign * m * b^e
- ]]></programlisting>
+        <para>
+            <code>sign * m * b^e</code>
+        </para>
         <para>
             <literal>e</literal> é o expoente e <literal>m</literal> a
             mantissa:

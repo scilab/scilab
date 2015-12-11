@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDelete(char *fname, unsigned long fname_len)
+int sci_xmlDelete(char *fname, void* pvApiCtx)
 {
     int id;
     SciErr err;
@@ -56,7 +56,7 @@ int sci_xmlDelete(char *fname, unsigned long fname_len)
     {
         if (!checkVarDimension(pvApiCtx, addr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 

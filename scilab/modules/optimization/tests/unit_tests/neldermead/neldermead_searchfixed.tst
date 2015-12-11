@@ -6,12 +6,12 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // <-- CLI SHELL MODE -->
 
 function [ y , index ] = squarefun ( x , index )
-y = x(1)^2+x(2)^2;
+    y = x(1)^2+x(2)^2;
 endfunction
 
 nm = neldermead_new ();
@@ -21,7 +21,7 @@ nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",0.5);
 nm = neldermead_configure(nm,"-method","fixed");
 nm = neldermead_configure(nm,"-function",squarefun);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0.0;0.0], 1e-6 );
 fopt = neldermead_get(nm,"-fopt");
@@ -38,7 +38,7 @@ nm = neldermead_configure(nm,"-method","fixed");
 nm = neldermead_configure(nm,"-function",squarefun);
 // Set the relative size to zero: it should never stop...
 nm = neldermead_configure(nm,"-tolsimplexizerelative",0.0);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0.0;0.0], 1e-6 );
 fopt = neldermead_get(nm,"-fopt");
@@ -56,7 +56,7 @@ nm = neldermead_configure(nm,"-maxiter",5);
 nm = neldermead_configure(nm,"-verbose",1);
 // Set the relative size to zero: it should never stop...
 nm = neldermead_configure(nm,"-tolsimplexizerelative",0.0);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 xopt = neldermead_get(nm,"-xopt");
 assert_checkalmostequal ( xopt , [0.0;0.0], 1e-6 );
 fopt = neldermead_get(nm,"-fopt");
@@ -64,7 +64,7 @@ assert_checkalmostequal ( fopt , 0.0, 1e-6 );
 nm = neldermead_destroy(nm);
 
 function [ y , index ] = rosenbrock ( x , index )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 nm = neldermead_new ();
@@ -78,8 +78,8 @@ nm = neldermead_configure(nm,"-tolxrelative",10*%eps);
 nm = neldermead_configure(nm,"-simplex0method","axes");
 nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","fixed");
-nm = neldermead_search(nm);
-// With fixed-size simplices, one cannot lead the 
+nm = neldermead_search(nm, "off");
+// With fixed-size simplices, one cannot lead the
 // simplex to the optimum.
 // Check optimum point
 xopt = neldermead_get(nm,"-xopt");
@@ -93,7 +93,7 @@ assert_checkequal ( status , "maxfuneval" );
 // Cleanup
 nm = neldermead_destroy(nm);
 
-// Check that the verbose mode is functionnal
+// Check that the verbose mode is functional
 // Few iterations are necessary to check this
 // Many iterations costs a lot more in time.
 nm = neldermead_new ();
@@ -109,7 +109,7 @@ nm = neldermead_configure(nm,"-simplex0length",1.0);
 nm = neldermead_configure(nm,"-method","fixed");
 nm = neldermead_configure(nm,"-verbose",1);
 nm = neldermead_configure(nm,"-verbosetermination",0);
-nm = neldermead_search(nm);
+nm = neldermead_search(nm, "off");
 status = neldermead_get(nm,"-status");
 assert_checkequal ( status , "maxiter" );
 nm = neldermead_destroy(nm);

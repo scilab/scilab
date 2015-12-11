@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2013 - Scilab Enterprises - Paul Bignier: added mean squared deviation
+ *                                                         (third input argument)
+ * Copyright (C) 2000 - INRIA -
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="stdev">
+    <refnamediv>
+        <refname>stdev</refname>
+        <refpurpose>
+            standard deviation (row orcolumn-wise) of vector/matrix entries
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            y = stdev(x)
+            y = stdev(x, '*')
+            y = stdev(x, 'r')
+            y = stdev(x, 'c')
+            y = stdev(x, orien, m)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>x, y</term>
+                <listitem>
+                    <para>real vector, matrix or hypermatrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>y</term>
+                <listitem>
+                    <para>real scalar, vector or matrix</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>orien</term>
+                <listitem>
+                    <para>
+                        string scalar or positive integer, can be <literal>"*"</literal>, <literal>"r"</literal> (or <literal>1</literal>) or <literal>"c"</literal> (or <literal>2</literal>)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>m</term>
+                <listitem>
+                    <para>real scalar, vector or hypermatrix, the a priori mean</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            stdev computes the "sample" standard deviation, that
+            is, it is normalized by N-1, where N is the sequence length.
+            If <varname>m</varname> is present, then <code>stdev</code> computes the
+            mean squared deviation (normalized by N) using the a priori mean defined by <varname>m</varname>.
+        </para>
+        <para>
+            For a vector or a matrix <literal>x</literal>, <literal>y=stdev(x)</literal> returns in the
+            scalar <literal>y</literal> the standard deviation of all the entries of <literal>x</literal>.
+        </para>
+        <para>
+            <literal>y=stdev(x,'r')</literal> (or, equivalently,
+            <literal>y=stdev(x,1)</literal>) is the rowwise standard deviation. It returns in each
+            entry of the row vector <literal>y</literal> the standard deviation of each column of <literal>x</literal>.
+        </para>
+        <para>
+            <literal>y=stdev(x,'c')</literal> (or, equivalently, <literal>y=stdev(x,2)</literal>) is the columnwise stdev. It returns in each
+            entry of the column vector <literal>y</literal> the standard deviation of each row of <literal>x</literal>.
+        </para>
+        <para>
+            By extension, <literal>y=stdev(x,n)</literal> with <literal>n</literal> a positive integer returns the deviation
+            along the <literal>n</literal>-th dimension, and if <literal>n>ndims(x)</literal>, then <literal>stdev(x,n)</literal> returns <literal>zeros(x)</literal>.
+        </para>
+        <note>
+            If <varname>m</varname> is a scalar, then it is expanded to match the size of <code>mean(x)</code> along the <literal>n</literal>-th dimension.
+        </note>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+A = [1 2 10; 7 7.1 7.01];
+stdev(A)
+stdev(A, 'r')
+stdev(A, 'c')
+stdev(A, 'c', mean(A,'c'))
+stdev(A, 'c', 1)
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="nanstdev">nanstdev</link>
+            </member>
+            <member>
+                <link linkend="stdevf">stdevf</link>
+            </member>
+            <member>
+                <link linkend="sum">sum</link>
+            </member>
+            <member>
+                <link linkend="median">median</link>
+            </member>
+            <member>
+                <link linkend="mean">mean</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revdescription>
+                    Can now compute the mean squared deviation using the a priori mean defined by <varname>m</varname>
+                </revdescription>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
@@ -19,12 +19,14 @@
 #include <string.h>
 #include <stdio.h>
 #include "createtempfilename.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "splitpath.h"
 #include "machine.h"
 #include "PATH_MAX.h"
 #include "getshortpathname.h"
 #include "FileExist.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char *createtempfilename(const char *prefix, BOOL bShortFormat)
 {
@@ -50,13 +52,14 @@ char *createtempfilename(const char *prefix, BOOL bShortFormat)
     if (TmpDir)
     {
         char TempFileName[PATH_MAX];
+        int fd = 0;
         sprintf(TempFileName, "%s/%sXXXXXX", TmpDir, prefix);
-        int fd = mkstemp(TempFileName);
+        fd = mkstemp(TempFileName);
         if (fd != -1)
         {
             close(fd);
         }
-        tempfilename = strdup(TempFileName);
+        tempfilename = os_strdup(TempFileName);
     }
 #endif
     return tempfilename;
@@ -86,6 +89,8 @@ wchar_t *createtempfilenameW(const wchar_t *wcprefix, BOOL bShortFormat)
                 wcReturnedTempFilename = shortTempFilename;
             }
         }
+
+        FREE(wcTmpDir);
     }
 #else
     char *prefix = wide_string_to_UTF8(wcprefix);

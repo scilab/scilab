@@ -7,19 +7,17 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 #include <stdio.h>
 #include <string.h>
 #include "prompt.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];
@@ -30,9 +28,29 @@ static char *temporaryPrompt = NULL;
 /*------------------------------------------------------------------------*/
 void C2F(setprlev)( int *pause)
 {
-    if ( *pause == 0 )
+    //debugger prompt first !
+    if (isEnableDebug())
     {
-        sprintf(Sci_Prompt, SCIPROMPT);
+        if (isDebugInterrupted())
+        {
+            sprintf(Sci_Prompt, SCIPROMPTBREAK);
+        }
+        else
+        {
+            sprintf(Sci_Prompt, SCIPROMPTDEBUG);
+        }
+    }
+    else if ( *pause == 0 )
+    {
+        if (temporaryPrompt != NULL)
+        {
+            strcpy(Sci_Prompt, temporaryPrompt);
+            ClearTemporaryPrompt();
+        }
+        else
+        {
+            sprintf(Sci_Prompt, SCIPROMPT);
+        }
     }
     else if ( *pause > 0 )
     {
@@ -47,7 +65,7 @@ void C2F(setprlev)( int *pause)
         sprintf(Sci_Prompt, SCIPROMPT_INTERRUPT, *pause);
         // bug 5513
         // when we change prompt to a pause level, we change also temp. prompt
-        SetTemporaryPrompt(Sci_Prompt);
+        //SetTemporaryPrompt(Sci_Prompt);
     }
     else
     {
@@ -66,14 +84,10 @@ void GetCurrentPrompt(char *CurrentPrompt)
     }
 }
 /*------------------------------------------------------------------------*/
-void SetTemporaryPrompt(char *tempPrompt)
+void SetTemporaryPrompt(const char *tempPrompt)
 {
-    if (temporaryPrompt)
-    {
-        FREE(temporaryPrompt);
-        temporaryPrompt = NULL;
-    }
-    temporaryPrompt = strdup(tempPrompt);
+    ClearTemporaryPrompt();
+    temporaryPrompt = os_strdup(tempPrompt);
 }
 /*------------------------------------------------------------------------*/
 char *GetTemporaryPrompt(void)

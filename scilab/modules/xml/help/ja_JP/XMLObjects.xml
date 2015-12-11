@@ -7,7 +7,7 @@
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
 * are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 -->
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="XMLObjects" xml:lang="ja">
@@ -102,7 +102,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">content</emphasis>: 
+                        <emphasis role="bold">content</emphasis>:
                         ノードの内容を表す文字列.
                         例えば,&lt;A&gt;hello &lt;B&gt;world&lt;/B&gt; というノードA
                         の内容は文字列 "hello world"となります.
@@ -110,7 +110,7 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">type</emphasis>: 
+                        <emphasis role="bold">type</emphasis>:
                         ノードの型を表す文字列. 以下の値のどれかとなります:
                         "XML_ELEMENT_NODE", "XML_ATTRIBUTE_NODE", "XML_TEXT_NODE", "XML_CDATA_SECTION_NODE", "XML_ENTITY_REF_NODE", "XML_ENTITY_NODE", "XML_PI_NODE", "XML_COMMENT_NODE", "XML_DOCUMENT_NODE", "XML_DOCUMENT_TYPE_NODE", "XML_DOCUMENT_FRAG_NODE", "XML_NOTATION_NODE", "XML_HTML_DOCUMENT_NODE", "XML_DTD_NODE", "XML_ELEMENT_DECL", "XML_ATTRIBUTE_DECL", "XML_ENTITY_DECL", "XML_NAMESPACE_DECL", "XML_XINCLUDE_START", "XML_XINCLUDE_END", "XML_DOCB_DOCUMENT_NODE".
                     </para>
@@ -122,49 +122,44 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">attributes</emphasis>: 
+                        <emphasis role="bold">attributes</emphasis>:
                         XML属性オブジェクトとして表したノード属性;
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">children</emphasis>: 
+                        <emphasis role="bold">children</emphasis>:
                         XMLノードリストオブジェクトとして表した子要素.
                     </para>
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">line</emphasis>: 
+                        <emphasis role="bold">line</emphasis>:
                         XML要素の線の定義.
                     </para>
                 </listitem>
             </itemizedlist>
             <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     first = doc.root.children(1);
     b = first.children(1);
-
     // "new_attribute"という名前の属性を新規に追加
     first.attributes.new_attribute = "value";
-
     // firstの子の名前空間を表示
     first.namespace
-
     // ノードの内容を表示
     first.content
-
     // bは親を有します
     b.parent
-
     // firstに子を追加できます.
     first.children(3) = b
-
     // 整数でない添字により挿入を行えます.
     first.children(1.5) = "<d> Scilab</d>"
-
     // firstの子が上の行で定義されています...
     b.line
-
     xmlDump(first)
     xmlDelete(doc);
     ]]></programlisting>
@@ -178,22 +173,20 @@
             1から属性の大きさまでの添字番号によりアクセスや修正が可能です.
         </para>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     first = doc.root.children(1);
-
     // 属性を読み込みます
     first.attributes.att
-
     // 空の属性を設定します
     first.attributes.att = "";
-
     // 新しい属性を追加します
     first.attributes.hello = "world";
-
     // 添字を使用します
     first.attributes(1) = "Bonjour";
     first.attributes(1)
-
     xmlDump(first)
     xmlDelete(doc);
     ]]></programlisting>
@@ -209,18 +202,20 @@
                 </listitem>
                 <listitem>
                     <para>
-                        <emphasis role="bold">prefix</emphasis>: 
+                        <emphasis role="bold">prefix</emphasis>:
                         この名前空間で使用する接頭辞を表す文字列.
                     </para>
                 </listitem>
             </itemizedlist>
         </para>
         <programlisting role="example"><![CDATA[
-    doc = xmlReadStr("<root xmlns:bar=""http://www.scilab.org/""><bar:a att=""foo"" rib=""bar""><b>Hello</b><c> world</c></bar:a></root>");
+    s = "<root xmlns:bar=""http://www.scilab.org/"">"+..
+        "<bar:a att=""foo"" rib=""bar"">"+..
+        "<b>Hello</b><c> world</c></bar:a></root>"
+    doc = xmlReadStr(s);
     ns = doc.root.children(1).namespace;
     ns.href
     ns.prefix
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>
@@ -242,31 +237,22 @@
         <programlisting role="example"><![CDATA[
     doc = xmlReadStr("<root><a>Hello</a><b> world</b></root>");
     c = doc.root.children;
-
     // 2つの要素があることが確認できます
     c.size
-
     // 最初の要素を読み込みます
     xmlDump(c(1))
-
     // 特定の要素を他の要素で置換します
     c(1) = "<c>Hello</c>"
-
     // 新しい要素を最初の要素と二番目の要素の間に挿入します
     c(1.5) = "<d> Scilab</d>" // 1.5 or 1.234...
-
     // 新しい要素を末尾またはリストの先頭に挿入します
     c(0) = "<e>Head </e>"
     c(217) = "<f> Tail</f>"
-
     xmlDump(c)
-
     // ノードの名前を取得します
     c.name
-
     // ノードの内容を取得します
     c.content
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>
@@ -284,13 +270,10 @@
     doc = xmlReadStr("<root><a><b>Hello</b></a><a>World</a></root>");
     s = xmlXPath(doc, "//a")
     s.size
-
     s(1).content
     s(2).content
-
     // または ...
     s.content
-
     xmlDelete(doc);
     ]]></programlisting>
     </refsection>
@@ -304,12 +287,10 @@
     dtd = xmlDTD("SCI/modules/xml/tests/unit_tests/library.dtd");
     schema = xmlSchema("SCI/modules/xml/tests/unit_tests/library.xsd");
     rng = xmlRelaxNG("SCI/modules/xml/tests/unit_tests/library.rng");
-
     // 検証
     xmlValidate(doc, dtd);
     xmlValidate(doc, rng);
     xmlValidate(doc, schema);
-
     xmlDelete("all");
     ]]></programlisting>
     </refsection>

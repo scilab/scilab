@@ -1,13 +1,13 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013-2015 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.forge.scirenderer.ruler.graduations;
@@ -22,6 +22,8 @@ import java.text.DecimalFormatSymbols;
  * @author Pierre Lando
  */
 public abstract class AbstractGraduations implements Graduations {
+
+    protected static final double PRECISION = 1e-8;
 
     /** The left bracket used by {@link #toString()} */
     private static final String LEFT_BRACKET = "[";
@@ -43,7 +45,7 @@ public abstract class AbstractGraduations implements Graduations {
 
     private final Graduations parentGraduations;
     private DecimalFormat numberFormat;
-    private List<Double> subValues;
+    protected List<Double> subValues;
 
     /**
      * Constructor from parent graduations.
@@ -105,8 +107,6 @@ public abstract class AbstractGraduations implements Graduations {
         this.upperBound = upperBound;
     }
 
-
-
     @Override
     public final double getLowerBound() {
         return lowerBound;
@@ -147,10 +147,10 @@ public abstract class AbstractGraduations implements Graduations {
      * Equivalent to contain but for interval [0, upper-lower] (to avoid rounding error in computations)
      */
     public final boolean containRelative(double value) {
-        if (value == 0) {
+        if (value == 0 || Math.abs(value / (upperBound - lowerBound)) <= PRECISION) {
             return isLowerBoundIncluded;
         }
-        if (value == upperBound - lowerBound || Math.abs(1 - value / (upperBound - lowerBound)) <= 1e-15) {
+        if (value == upperBound - lowerBound || Math.abs(1 - value / (upperBound - lowerBound)) <= PRECISION) {
             return isUpperBoundIncluded;
         }
         return (0 < value) && (value < upperBound - lowerBound);
@@ -160,13 +160,20 @@ public abstract class AbstractGraduations implements Graduations {
     public final DecimalFormat getFormat() {
         if (numberFormat == null) {
             double maxDisplayedValue = Math.max(Math.abs(lowerBound), Math.abs(upperBound));
+            double len = Math.abs(upperBound - lowerBound);
 
-            if ((maxDisplayedValue < 1e-3) || (maxDisplayedValue >= 1e6)) {
+            if (maxDisplayedValue < 1e-3) {
+                numberFormat = new DecimalFormat("0.##########E00");
+            } else if (false && len <= 1e-3) {
+                // desactivated for now...
+                // the user should be able to do that itself
+                numberFormat = new TinyIntervalFormat("0.####E00", "0.##E00");
+            } else if (maxDisplayedValue >= 1e6) {
                 numberFormat = new DecimalFormat("0.##########E00");
             } else if (maxDisplayedValue < 1) {
                 numberFormat = new DecimalFormat("0.######");
             } else {
-                numberFormat = new DecimalFormat();
+                numberFormat = new DecimalFormat("#,##0.####");
             }
 
             DecimalFormatSymbols decimalFormatSymbols = numberFormat.getDecimalFormatSymbols();
@@ -204,7 +211,7 @@ public abstract class AbstractGraduations implements Graduations {
     }
 
     @Override
-    public final String toString() {
+    public String toString() {
         String lowerBoundBracket;
         String upperBoundBracket;
 
@@ -219,7 +226,7 @@ public abstract class AbstractGraduations implements Graduations {
         } else {
             upperBoundBracket = LEFT_BRACKET;
         }
-        return "Graduation " + lowerBoundBracket
+        return getClass().getSimpleName() + lowerBoundBracket
                + getFormat().format(lowerBound) + ", "
                + getFormat().format(upperBound) + upperBoundBracket;
     }

@@ -6,22 +6,33 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>isdef(name [,where])</synopsis>
+        <synopsis>ve = isdef(name [,where])</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Paramètres</title>
         <variablelist>
             <varlistentry>
+                <term>ve</term>
+                <listitem>
+                    <para>
+                        une matrice de booléens de même taille que <varname>name</varname>
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>chaîne de caractères.</para>
+                    <para>une matrice de chaînes de caractères.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>where</term>
                 <listitem>
-                    <para>une chaîne de caractères optionnelle valant par défaut
-                        <literal>'all'</literal>
+                    <para>
+                        chaîne de caractères, peut valoir <literal>'l'</literal> (pour <literal>"local"</literal>),
+                        <literal>'n'</literal> (pour <literal>"nolocal"</literal>) ou
+                        <literal>'a'</literal> (pour <literal>"all"</literal>). Par défaut, vaut
+                        <literal>'a'</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -30,44 +41,51 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>isdef(name)</literal> renvoie <literal>%T</literal> (vrai)
-            si la variable nommée <literal>name</literal> existe et
-            <literal>%F</literal> (faux) sinon.
+            <code>isdef(name)</code> renvoie <constant>%T</constant> (vrai)
+            si la variable nommée <varname>name</varname> existe et
+            <constant>%F</constant> (faux) sinon.
         </para>
         <para>
-            Mise en garde : une fonction utilisant <literal>isdef</literal> peut
-            renvoyer un résultat dépendant de l'environnement courant !
+            <caution>
+                Mise en garde : une fonction utilisant <function>isdef</function> peut
+                renvoyer un résultat dépendant de l'environnement courant !
+            </caution>
         </para>
         <para>
-            <literal>isdef(name,'local')</literal> renvoie <literal>%T</literal>
-            si la variable nommée <literal>name</literal> existe dans l'environnement
-            local de la fonction courante et <literal>%F</literal> sinon.
+            <code>isdef(name, 'l')</code> renvoie <constant>%T</constant>
+            si la variable nommée <varname>name</varname> existe dans l'environnement
+            local de la fonction courante et <constant>%F</constant> sinon.
         </para>
         <para>
-            <literal>isdef(name,'nolocal')</literal> renvoie
-            <literal>%T</literal> si la variable nommée <literal>name</literal> existe
+            <code>isdef(name, 'n')</code> renvoie
+            <constant>%T</constant> si la variable nommée <varname>name</varname> existe
             dans l'environnement appelant (y compris le niveau global) de la fonction
-            courante et <literal>%F</literal> sinon.
+            courante et <constant>%F</constant> sinon.
+        </para>
+        <para>
+            <note>
+                Remarque : seule la première lettre de l'option <varname>where</varname> est prise en compte.
+            </note>
         </para>
     </refsection>
     <refsection>
         <title>Exemples</title>
-        <programlisting role="example"><![CDATA[ 
-A=1;
-isdef('A')
-clear A
-isdef('A')
+        <programlisting role="example"><![CDATA[
+A = 1; B = 2; C = 3; D = 4;
+isdef(['A', 'B'; 'C', 'D'] )
+clear A B C D;
+isdef(['A', 'B'; 'C', 'D')
 
 function level1()
   function level2()
-    disp(isdef("a","all"));
-    disp(isdef("a","local"));
-    disp(isdef("a","nolocal"));
+    disp(isdef(["a", "b"], "a"));
+    disp(isdef(["a", "b"], "l"));
+    disp(isdef(["a", "b"], "n"));
   endfunction
   level2()
 endfunction
 function go()
-  a=1;
+  a = 1;
   level1()
 endfunction
 go()
@@ -78,6 +96,8 @@ go()
         <simplelist type="inline">
             <member>
                 <link linkend="exists">exists</link>
+            </member>
+            <member>
                 <link linkend="isglobal">isglobal</link>
             </member>
             <member>

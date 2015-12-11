@@ -44,7 +44,7 @@
     <refsection>
         <title>Description</title>
         <para>Returns the first n points of an FIR approximation to a Hilbert transform filter centred around the origin.</para>
-        <para> The FIR filter is designed by appropraitely windowing the ideal impulse response 
+        <para> The FIR filter is designed by appropriately windowing the ideal impulse response
             
             <literal>h(n)=(2/(n*pi))*(sin(n*pi/2))^2</literal> for <literal>n</literal> not equal 0 and <literal>h(0)=0</literal>.
         </para>

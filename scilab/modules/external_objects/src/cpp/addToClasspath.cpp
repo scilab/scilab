@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,7 +15,7 @@
 extern "C"
 {
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 namespace org_modules_external_objects
@@ -48,7 +48,7 @@ int ScilabGateway::addToClasspath(char * fname, const int envId, void * pvApiCtx
 
         if (!isStringType(pvApiCtx, addr))
         {
-            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for argument #%d: A string expected."), 1);
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for argument #%d: string expected."), 1);
         }
 
         if (getAllocatedMatrixOfString(pvApiCtx, addr, &rows, &cols, &className))
@@ -65,7 +65,7 @@ int ScilabGateway::addToClasspath(char * fname, const int envId, void * pvApiCtx
                 {
                     env.addtoclasspath(expandedPath);
                 }
-                catch (std::exception & e)
+                catch (std::exception & /*e*/)
                 {
                     FREE(expandedPath);
                     freeAllocatedMatrixOfString(rows, cols, className);

@@ -6,7 +6,7 @@
 *  This source file is licensed as described in the file COPYING, which
 *  you should have received as part of this distribution.  The terms
 *  are also available at
-*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
 
@@ -22,7 +22,7 @@
 #include <string.h>
 #include <hdf5.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sci_types.h"
 #include "h5_attributeConstants.h"
 #include "h5_readDataFromFile_v1.h"
@@ -161,6 +161,7 @@ static char* readAttribute_v1(int _iDatasetId, const char *_pstName)
         status = H5Tset_size(memtype, iDim);
         if (status < 0)
         {
+            FREE(pstValue);
             return NULL;
         }
 
@@ -367,8 +368,14 @@ void closeDataSet_v1(int _id)
 {
     if (_id > 0)
     {
-        H5Dclose(_id);
+        herr_t status = H5Dclose(_id);
+        if (status < 0)
+        {
+            return;
+        }
     }
+
+    return;
 }
 
 int getDataSetId_v1(int _iFile)
@@ -1156,10 +1163,6 @@ int getScilabTypeFromDataSet_v1(int _iDatasetId)
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_STRING) == 0)
     {
         iVarType = sci_strings;
-    }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
-    {
-        iVarType = sci_boolean;
     }
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
     {

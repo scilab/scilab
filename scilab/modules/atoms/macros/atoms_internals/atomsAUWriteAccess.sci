@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // Internal function
 
@@ -27,6 +27,8 @@ function res = atomsAUWriteAccess()
     // Physical test
 
     if ~ isdir(atoms_system_directory) then
+        mkdir(SCI + "/.scilab");
+        rmdir(SCI + "/.scilab");
         if mkdir(atoms_system_directory) <> 1 then
             return;
         end

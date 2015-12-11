@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,current_figure,cur_draw_mode)
 
@@ -51,7 +51,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
         /////////////////////////
 
         if (type(PropertyValue)<>10)
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"setSurfProperty",2));
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"setSurfProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end
@@ -193,7 +193,7 @@ function [fail]=setSurfProperty(PropertyName,PropertyValue,Surface,X,Y,Z,C,curre
                 Surface.surface_mode = "off";
             end
         else
-            warning(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"setSurfProperty",2));
+            warning(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"setSurfProperty",2));
             ResetFigureDDM(current_figure, cur_draw_mode);
             return;
         end

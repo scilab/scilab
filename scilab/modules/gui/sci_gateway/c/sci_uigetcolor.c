@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,7 +17,7 @@
 #include "CallColorChooser.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_uigetcolor(char *fname, unsigned long fname_len)
+int sci_uigetcolor(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -64,7 +64,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -86,14 +86,8 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
-            }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
             }
         }
         else
@@ -119,19 +113,13 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
-            }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return FALSE;
         }
 
@@ -150,7 +138,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, 2);
                 return 1;
             }
 
@@ -191,14 +179,8 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             // Retrieve a matrix of double at position 1.
             if (getAllocatedSingleString(pvApiCtx, piAddrtitleAdr, &titleAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
-            }
-
-            if (nbCol != 1)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
-                return FALSE;
             }
         }
         else
@@ -226,7 +208,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, firstColorIndex);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, firstColorIndex);
                 return 1;
             }
 
@@ -243,7 +225,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
         }
 
         /* Default green value */
-        if (VarType(firstColorIndex + 1) == sci_matrix)
+        if (checkInputArgumentType(pvApiCtx, firstColorIndex + 1, sci_matrix))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, firstColorIndex + 1, &piAddrgreenAdr);
             if (sciErr.iErr)
@@ -257,7 +239,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, firstColorIndex + 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, firstColorIndex + 1);
                 return 1;
             }
 
@@ -274,7 +256,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
         }
 
         /* Default blue value */
-        if (VarType(firstColorIndex + 2) == sci_matrix)
+        if (checkInputArgumentType(pvApiCtx, firstColorIndex + 2, sci_matrix))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, firstColorIndex + 2, &piAddrblueAdr);
             if (sciErr.iErr)
@@ -288,7 +270,7 @@ int sci_uigetcolor(char *fname, unsigned long fname_len)
             if (sciErr.iErr)
             {
                 printError(&sciErr, 0);
-                Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, firstColorIndex + 2);
+                Scierror(202, _("%s: Wrong type for argument #%d: A real expected.\n"), fname, firstColorIndex + 2);
                 return 1;
             }
 

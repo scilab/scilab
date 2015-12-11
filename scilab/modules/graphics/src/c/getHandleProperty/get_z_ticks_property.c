@@ -10,7 +10,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -25,53 +25,58 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "BasicAlgos.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_z_ticks_property(void* _pvCtx, char* pobjUID)
+void* get_z_ticks_property(void* _pvCtx, int iObjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
     int iView = 0;
     int* piView = &iView;
+    void* tList = NULL;
 
     /* retrieve number of ticks */
-    getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, (void**)&piNbTicks);
-    /* retrieve view: 0 -> 2d // 1 -> 3d */
-    getGraphicObjectProperty(pobjUID, __GO_VIEW__, jni_int, (void**)&piView);
-
-
+    getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, (void**)&piNbTicks);
     if (piNbTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_ticks");
-        return -1;
+        return NULL;
+    }
+
+    /* retrieve view: 0 -> 2d // 1 -> 3d */
+    getGraphicObjectProperty(iObjUID, __GO_VIEW__, jni_int, (void**)&piView);
+    if (piView == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
+        return NULL;
     }
 
     if (iNbTicks == 0 || iView == 0)
     {
         /* return empty matrices */
-        buildTListForTicks(NULL, NULL, 0);
+        tList = buildTListForTicks(NULL, NULL, 0);
     }
     else
     {
         char ** labels = NULL;
         double* positions = NULL;
 
-        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
+        getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_TICKS_LOCATIONS__, jni_double_vector, (void **) &positions);
 
-        getGraphicObjectProperty(pobjUID, __GO_Z_AXIS_TICKS_LABELS__, jni_string_vector, (void **) &labels);
+        getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_TICKS_LABELS__, jni_string_vector, (void **) &labels);
 
         if (positions == NULL || labels == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_ticks");
-            return -1;
+            return NULL;
         }
 
-        buildTListForTicks(positions, labels, iNbTicks);
+        tList = buildTListForTicks(positions, labels, iNbTicks);
 
         /* free arrays */
 #if 0
@@ -80,7 +85,7 @@ int get_z_ticks_property(void* _pvCtx, char* pobjUID)
 #endif
     }
 
-    return 0;
+    return tList;
 
 }
 /*------------------------------------------------------------------------*/

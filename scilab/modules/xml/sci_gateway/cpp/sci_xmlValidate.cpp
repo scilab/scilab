@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -30,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlValidate(char *fname, unsigned long fname_len)
+int sci_xmlValidate(char *fname, void* pvApiCtx)
 {
     XMLValidation *validation = 0;
 
@@ -71,7 +71,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
         doc = XMLObject::getFromId < org_modules_xml::XMLDocument > (id);
         if (!doc)
         {
-            Scierror(999, gettext("%s: XML document does not exist\n"), fname);
+            Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
             return 0;
         }
     }
@@ -125,6 +125,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
                 delete[]s;
             }
         }
+        freeAllocatedMatrixOfString(row, col, path);
     }
     else
     {
@@ -148,7 +149,7 @@ int sci_xmlValidate(char *fname, unsigned long fname_len)
 
         if (clines.size())
         {
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char *const *>(&(clines[0])));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, (int)lines.size(), 1, const_cast < const char * const *>(&(clines[0])));
         }
         else
         {

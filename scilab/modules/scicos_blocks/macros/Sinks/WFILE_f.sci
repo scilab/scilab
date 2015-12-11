@@ -21,16 +21,10 @@
 //
 
 function [x,y,typ]=WFILE_f(job,arg1,arg2)
-    x=[];y=[];typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        x=[];y=[];typ=[];
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         warnobsolete("WRITEC_f", "6.0.0");
         warnMessage = msprintf(_("Feature %s is obsolete."), "WFILE_f");
@@ -38,7 +32,8 @@ function [x,y,typ]=WFILE_f(job,arg1,arg2)
         warnXcosMessage = msprintf("%s %s", warnMessage, warnAdvise);
         warnBlockByUID(arg1.model.label, warnXcosMessage);
         x=arg1;
-        graphics=arg1.graphics;exprs=graphics.exprs
+        graphics=arg1.graphics;
+        exprs=graphics.exprs
         model=arg1.model;
         dstate=model.dstate
         lunit=dstate(2)
@@ -50,7 +45,9 @@ function [x,y,typ]=WFILE_f(job,arg1,arg2)
             gettext("&nbsp; - A formatted text file if a  format (Fortran type) is given")], [gettext("Input Size"); gettext("Output File Name"); ..
             gettext("Output Format"); gettext("Buffer Size")], list("vec",1,"str",1,"str",1,"vec",1),exprs)
 
-            if ~ok then break,end //user cancel modification
+            if ~ok then
+                break,
+            end //user cancel modification
             in=int(in)
 
             nin=in
@@ -91,7 +88,7 @@ function [x,y,typ]=WFILE_f(job,arg1,arg2)
             end
 
             if ok then
-                ipar=[length(fname1);length(frmt1);0;N;_str2code(fname1);_str2code(frmt1)]
+                ipar=[length(ascii(fname1));length(ascii(frmt1));0;N;ascii(fname1)';ascii(frmt1)']
                 if prod(size(dstate))<>(nin+1)*N+2 then
                     dstate=[-1;lunit;zeros((nin+1)*N,1)]
                 end
@@ -99,12 +96,14 @@ function [x,y,typ]=WFILE_f(job,arg1,arg2)
                 model.dstate=dstate;model.ipar=ipar
                 model.dep_ut=[%t %f] //compatibility
                 graphics.exprs=exprs;
-                x.graphics=graphics;x.model=model
+                x.graphics=graphics;
+                x.model=model
                 break
             end
         end
     case "define" then
-        in=1;nin=sum(in)
+        in=1;
+        nin=sum(in)
         frmt="(7(e10.3,1x))"
         fname="foo"
         lunit=0
@@ -115,7 +114,7 @@ function [x,y,typ]=WFILE_f(job,arg1,arg2)
         model.in=in
         model.evtin=1
         model.dstate=[-1;lunit;zeros((nin+1)*N,1)]
-        model.ipar=[length(fname);length(frmt);0;N;_str2code(fname);_str2code(frmt)]
+        model.ipar=[length(ascii(fname));length(ascii(frmt));0;N;ascii(fname)';ascii(frmt)']
         model.blocktype="d"
         model.dep_ut=[%t %f]
 
@@ -123,8 +122,7 @@ function [x,y,typ]=WFILE_f(job,arg1,arg2)
         fname;
         frmt;
         string(N)]
-        gr_i=["txt=[''write to'';''output file''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
         x=standard_define([3 2],model,exprs,gr_i)
     end
 endfunction

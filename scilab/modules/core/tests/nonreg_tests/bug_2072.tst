@@ -15,23 +15,23 @@
 
 // <-- CLI SHELL MODE -->
 
-mkdir(TMPDIR,'b2072');
+mkdir(TMPDIR,"b2072");
 
-txt=['function test()'
-     'if 1 ~=1 then'
-     '   a=3;'
-     'end'
-     'else'
-     '   a=7;'
-     'end'
-     'endfunction']
-mputl(txt,TMPDIR+'/b2072/test.sci');
-txt=['function testOK()'
-     'a=3;'
-     '   end'
-     'endfunction   ']
-mputl(txt,TMPDIR+'/b2072/testOK.sci');
+txt=["function test()"
+"if 1 ~=1 then"
+"   a=3;"
+"end"
+"else"
+"   a=7;"
+"end"
+"endfunction"];
+mputl(txt,TMPDIR+"/b2072/test.sci");
+txt=["function testOK()"
+"a=3;"
+"   end"
+"endfunction   "];
+mputl(txt,TMPDIR+"/b2072/testOK.sci");
 
-if execstr('exec(TMPDIR+''/b2072/test.sci'');','errcatch')<>34 then pause,end
-if execstr('exec(TMPDIR+''/b2072/testOK.sci'');','errcatch')<>34 then pause,end
-  
+if execstr("exec(TMPDIR+''/b2072/test.sci'');","errcatch")==0 then pause,end
+if execstr("exec(TMPDIR+''/b2072/testOK.sci'');","errcatch")==0 then pause,end
+

@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,6 +20,11 @@
  * @return number of opened windows in Scilab.
  */
 GRAPHIC_OBJECTS_IMPEXP int sciGetNbFigure(void);
+
+/**
+ * @return the next free figure id.
+ */
+GRAPHIC_OBJECTS_IMPEXP int getValidDefaultFigureId();
 
 /**
  * Fill the array Ids with all the figure ids currently used by Scilab.
@@ -51,6 +56,10 @@ GRAPHIC_OBJECTS_IMPEXP BOOL sciHasFigures(void);
  * returns the UID of window i
  * or NULL if this window does not exists
  */
-GRAPHIC_OBJECTS_IMPEXP char const* getFigureFromIndex(int figNum);
+GRAPHIC_OBJECTS_IMPEXP int getFigureFromIndex(int figNum);
+
+GRAPHIC_OBJECTS_IMPEXP int search_path(char* _pstPath);
+GRAPHIC_OBJECTS_IMPEXP char* get_path(int uid);
+
 
 #endif /* !__FIGURE_LIST_H__ */

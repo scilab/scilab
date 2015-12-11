@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function [tree]=sci_setstr(tree)
     // M2SCI function
@@ -17,7 +17,7 @@ function [tree]=sci_setstr(tree)
     X = getrhs(tree)
 
     if X.vtype==String then
-        set_infos(msprintf(gettext("In %s %s is a String,\nSo result is set to %s."),expression2code(tree),expression2code(X),expression2code(X)),0)
+        set_infos(msprintf(gettext("In %s %s is a String,\nSo result is set to %s."), strcat(expression2code(tree), ""), strcat(expression2code(X), ""), strcat(expression2code(X), "")),0)
         // Because of String concatenation
         if typeof(X)=="operation" then
             X.out(1)=tree.lhs(1)

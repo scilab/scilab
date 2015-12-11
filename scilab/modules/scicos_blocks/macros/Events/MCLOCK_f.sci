@@ -20,16 +20,10 @@
 //
 
 function [x,y,typ]=MCLOCK_f(job,arg1,arg2)
-    x=[];y=[],typ=[]
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        standard_draw(arg1)
-    case "getinputs" then
-        [x,y,typ]=standard_inputs(arg1)
-    case "getoutputs" then
-        [x,y,typ]=standard_outputs(arg1)
-    case "getorigin" then
-        [x,y]=standard_origin(arg1)
     case "set" then
         // look for the clock block
         for i=1:length(arg1.model.rpar.objs) do
@@ -44,7 +38,7 @@ function [x,y,typ]=MCLOCK_f(job,arg1,arg2)
         spath=list("model","rpar","objs",path)
         xx=arg1(spath)// get the block
         execstr("xxn="+xx.gui+"(''set'',xx)")
-        if or(xxn<>xx) then
+        if diffobjs(xxn,xx)==1 then
             // parameter or states changed
             arg1(spath)=xxn// Update
             newpar(size(newpar)+1)=path// Notify modification
@@ -103,8 +97,7 @@ function [x,y,typ]=MCLOCK_f(job,arg1,arg2)
         split2.graphics.pein=5
         split2.graphics.peout=[12;13]
 
-        gr_i=["txt=[''2freq clock'';''  f/n     f''];";
-        "xstringb(orig(1),orig(2),txt,sz(1),sz(2),''fill'')"]
+        gr_i=[]
 
         diagram=scicos_diagram();
         diagram.objs(1)=mfclck

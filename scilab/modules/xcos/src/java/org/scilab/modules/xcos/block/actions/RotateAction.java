@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -22,6 +22,7 @@ import org.scilab.modules.graph.actions.base.VertexSelectionDependantAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -68,17 +69,19 @@ public class RotateAction extends VertexSelectionDependantAction {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (((XcosDiagram) getGraph(null)).getSelectionCells().length != 0) {
+            Object[] allCells = ((XcosDiagram) getGraph(null)).getSelectionCells();
 
-            Object[] allCells = ((XcosDiagram) getGraph(null))
-                                .getSelectionCells();
+            try {
+                getGraph(null).getModel().beginUpdate();
 
-            getGraph(null).getModel().beginUpdate();
-            for (int i = 0; i < allCells.length; ++i) {
-                if (allCells[i] instanceof BasicBlock) {
-                    ((BasicBlock) allCells[i]).toggleAntiClockwiseRotation();
+                for (int i = 0; i < allCells.length; ++i) {
+                    if (allCells[i] instanceof BasicBlock) {
+                        BlockPositioning.rotateAllPorts((XcosDiagram) getGraph(null), (BasicBlock) allCells[i]);
+                    }
                 }
+            } finally {
+                getGraph(null).getModel().endUpdate();
             }
-            getGraph(null).getModel().endUpdate();
         }
     }
 }

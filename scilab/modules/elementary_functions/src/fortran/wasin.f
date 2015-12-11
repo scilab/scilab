@@ -5,7 +5,7 @@ c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
 c are also available at    
-c http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine wasin(zr, zi, ar, ai)
 *
@@ -44,6 +44,8 @@ c
 *     EXTERNAL FUNCTIONS
       double precision dlamch, logp1
       external         dlamch, logp1
+      integer          isanan
+      external         isanan
 
 *     CONSTANTS
       double precision LN2, HALFPI, Across, Bcross
@@ -124,7 +126,11 @@ c
             endif
 
          elseif (y .lt. LINF) then
-            ar = HALFPI - sqrt(y)
+            if (isanan(x).eq.1) then
+               ar = x
+            else
+               ar = HALFPI - sqrt(y)
+            endif
             ai = sqrt(y)
 
          elseif (EPSM*y - 1.d0 .ge. x) then
@@ -144,6 +150,9 @@ c
 
 *     recover the signs
       ar = szr * ar
+      if (y.eq.0d00 .and. szr.gt.0d00) then
+          szi = - szi
+      endif
       ai = szi * ai
 
       end

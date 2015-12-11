@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  */
 
 package org.scilab.modules.renderer.JoGLView.interaction.util;
@@ -69,7 +69,7 @@ public class HelpersGeometry extends DefaultGeometry {
                 data = FloatBuffer.allocate(VERTEX_BUFFER_SIZE);
             }
 
-            Double[] bounds = axes.getDisplayedBounds();
+            Double[] bounds = axes.getCorrectedBounds();
             int mainAxisIndex = (pointAComputer.getFirstAxisIndex() + 1) % 3;
             for (int axisIndex = 0; axisIndex < 3; axisIndex++) {
                 if ((mainAxisIndex != axisIndex) ^ oneAxis) {

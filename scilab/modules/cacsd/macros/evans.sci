@@ -4,7 +4,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 function evans(n,d,kmax)
     // Seuil maxi et mini (relatifs) de discretisation en espace
     // Copyright INRIA
@@ -204,7 +204,8 @@ function evans(n,d,kmax)
     E=gce();
 
     for k=1:size(E.children,"*")
-        datatipInitStruct(E.children(k),"formatfunction","formatEvansTip","K",kk)
+        E.children(k).display_function = "formatEvansTip";
+        E.children(k).display_function_data = kk;
     end
     c=captions(lhandle,legs($:-1:1),"in_upper_right")
     c.background=a.background;
@@ -216,15 +217,12 @@ function evans(n,d,kmax)
     end
 endfunction
 
-function str=formatEvansTip(curve,pt,index)
+function str=formatEvansTip(curve)
     //this function is called by the datatip mechanism to format the tip
     //string for the evans root loci curves
-    ud=datatipGetStruct(curve);
-    if index<>[] then
-        K=ud.K(index)
-    else //interpolated
-        [d,ptp,i,c]=orth_proj(curve.data,pt)
-        K=ud.K(i)+(ud.K(i+1)-ud.K(i))*c
-    end
+    ud = curve.parent.display_function_data;
+    pt = curve.data(1:2);
+    [d,ptp,i,c]=orthProj(curve.parent.data, pt);
+    K=ud(i)+(ud(i+1)-ud(i))*c;
     str=msprintf("r: %.4g %+.4g i\nK: %.4g", pt,K);
 endfunction

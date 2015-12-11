@@ -29,7 +29,7 @@ function [] = ExpT(n)
     deff("[y]=f(x)","y=lambda*exp(-lambda*x);");
     x=[0:0.1:10]';
     plot2d(x, f(x), 1, "000");
-    titre= _("macro histplot : Histogram plot");
+    titre= _("Simulation of an exponential random variable");
     xtitle(titre,_("Classes"),"N(C)/Nmax");
     PolylineFillColorId = color(179,179,0);
     current_axe = gca();
@@ -38,6 +38,7 @@ function [] = ExpT(n)
     current_axe.children(2).children.fill_mode = "on";
     current_axe.children(2).children.background = PolylineFillColorId;
     current_axe.grid = [-1 PolylineFillColorId];
+    legend([_("Simulation");_("Theory")]);
     drawnow();
 endfunction
 

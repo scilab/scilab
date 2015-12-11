@@ -39,7 +39,6 @@
         この関数は,<literal>.zcos</literal>ファイルをScilabに読み込むことにより
         得られる<link linkend="scicos_diagram">scs_m 構造体</link>を必要とします
         (<link linkend="importXcosDiagram">importXcosDiagram</link>参照).
-        
         <para>
             ユーザはシミュレーションの前に実行される
             <literal>pre_xcos_simulate</literal>を定義することも可能です.
@@ -87,28 +86,22 @@
             いくつかのコンテキスト値を変更します.
             <programlisting role="example"><![CDATA[
       importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
-
       typeof(scs_m) // ダイアグラムのデータ構造体
-
       //このダイアグラムは3つのコンテキスト変数を使用します :
       //  Amplitude : sin関数の大きさ
       //  Pulsation : sin関数のpulsation
       //  Tf        : シミュレーション終了時間
       scs_m.props.context //組込み定義
-
       //ダイアグラムに埋め込まれたパラメータを使用した最初のバッチシミュレーション
       xcos_simulate(scs_m, 4);
-
       // 終了時間の値を変更
       scs_m.props.context = ["Amplitude=2" "Pulsation=3" "Tf=10"];
       xcos_simulate(scs_m, 4);
-
       // ここでpulsationを変更
       scs_m.props.context = ["Amplitude=2" "Pulsation=9" "Tf=10"];
       xcos_simulate(scs_m, 4);
       //get the variable created by the "from workspace block"
       counter
-
       ]]></programlisting>
         </para>
         <para>
@@ -116,15 +109,11 @@
             このダイアグラムの統計的な解析
             <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/batch_simulation.zcos")
-
 typeof(scs_m) //The diagram data structure
-
 // ダイアグラムを解析するためにpre_xcos_simulationを宣言
-
 function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
     // 全てのオブジェクトを取得
     objs = scs_m.objs;
-
     links = 0;
     blocks = 0;
     other = 0;
@@ -140,17 +129,14 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
             other = other + 1;
         end
     end
-
         // ダイアグラムの解析結果を表示
         disp("Diagram Analysis:")
         disp("Found "+string(blocks)+" Blocks.")
         disp("Found "+string(links)+" Links.")
         disp("Found "+string(other)+" Other component.")
-
         // シミュレーションは行わず,ダイアグラムの解析のみを実行
         continueSimulation = %f;
     endfunction
-
     //ダイアグラムに埋め込まれたパラメータで最初のバッチシミュレーションを実行
     xcos_simulate(scs_m, 4);
       ]]></programlisting>
@@ -166,14 +152,11 @@ function continueSimulation=pre_xcos_simulate(scs_m, needcompile)
             post_xcos_simulateにより伝達関数のボード線図をプロットします,
             <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/Command.zcos")
-
 // 全てのpre_xcos_simulationを消去;
 clear pre_xcos_simulate;
-
 function post_xcos_simulate(%cpr, scs_m, needcompile)
     // 全オブジェクトを取得
     objs = scs_m.objs;
-
     clrBlock = [];
     // CLRブロックを探す
     for i=1:size(objs)
@@ -182,13 +165,11 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
             break;
         end
     end
-
     // CLRが見つかったかどうかを確認
     if isempty(clrBlock) then
         disp("No CLR block found.")
         return
     end
-
     // exprsを取得
     exprs = clrBlock.graphics.exprs;
     s = poly(0,'s');
@@ -199,9 +180,7 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
     scf(max(winsid())+1);
     bode(h, 0.01, 100);
 endfunction
-
 xcos_simulate(scs_m, 4);
-
       ]]></programlisting>
         </para>
         <para>
@@ -215,14 +194,11 @@ xcos_simulate(scs_m, 4);
             post_xcos_simulateにより伝達関数のボード線図をプロットします,
             <programlisting role="example"><![CDATA[
 importXcosDiagram("SCI/modules/xcos/demos/Command_bode.zcos")
-
 // post_xcos_simulationを全て消去;
 clear post_xcos_simulate;
-
 function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
     // 全オブジェクトを取得
     objs = scs_m.objs;
-
     clrBlock = [];
     //CLRブロックを探す
     for i=1:size(objs)
@@ -231,13 +207,11 @@ function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
             break;
         end
     end
-
     // CLRが見つかったかどうかを確認
     if isempty(clrBlock) then
         disp("No CLR block found.")
         return
     end
-
     // exprsを取得
     exprs = clrBlock.graphics.exprs;
     s = poly(0,'s');
@@ -247,13 +221,10 @@ function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
     // 新しい図を開き,ボード線図をプロット
     scf(max(winsid())+1);
     bode(h, 0.01, 100);
-
     // ボード線図のプロットの後で停止します. シミュレーションは行いません.
     continueSimulation = %f;
 endfunction
-
 xcos_simulate(scs_m, 4);
-
       ]]></programlisting>
         </para>
     </refsection>

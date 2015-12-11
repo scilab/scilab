@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -14,7 +14,6 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.io.FileInputStream;
 
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;

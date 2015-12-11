@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -17,12 +17,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
+import javax.swing.JButton;
+
 import org.scilab.modules.commons.CommonFileUtils;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 import org.scilab.modules.xcos.actions.OpenAction;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.model.Category;
@@ -76,7 +77,7 @@ public final class LoadAsPalAction extends DefaultAction {
      *            associated Scilab Graph
      * @return the button
      */
-    public static PushButton createButton(final ScilabGraph scilabGraph) {
+    public static JButton createButton(final ScilabGraph scilabGraph) {
         return createButton(scilabGraph, LoadAsPalAction.class);
     }
 
@@ -110,6 +111,6 @@ public final class LoadAsPalAction extends DefaultAction {
         final Category root = PaletteManager.getInstance().getRoot();
         root.getNode().add(c);
         c.setParent(root);
-        PaletteNode.refreshView(c);
+        PaletteNode.refreshView(root, c);
     }
 }

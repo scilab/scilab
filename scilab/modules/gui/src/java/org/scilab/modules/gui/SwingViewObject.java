@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui;
@@ -17,13 +17,13 @@ public interface SwingViewObject {
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id);
+    public void setId(Integer id);
 
     /**
      * Get the UID
      * @return the UID
      */
-    public String getId();
+    public Integer getId();
 
     /**
      * Generic method to force Swing objects to update their own properties.

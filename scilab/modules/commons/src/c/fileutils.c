@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -21,11 +21,12 @@
 #include <dirent.h>
 #endif
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 
 #include "PATH_MAX.h"
 #include "scicurdir.h"
-#include "warningmode.h"
+
 
 #include "fileutils.h"
 
@@ -40,7 +41,7 @@ int isEmptyDirectory(char *dirName)
     int ret = 1;
 
     wcpath = to_wide_string(dirName);
-    swprintf(wdirpath, wcslen(wcpath) + 2 + 1, L"%s\\*", wcpath);
+    os_swprintf(wdirpath, wcslen(wcpath) + 2 + 1, L"%s\\*", wcpath);
     FREE(wcpath);
 
     hFile = FindFirstFileW(wdirpath, &FileInformation);

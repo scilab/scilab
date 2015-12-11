@@ -6,13 +6,14 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
 #ifndef __ADDINTER_H__
 #define  __ADDINTER_H__
 
+#include <wchar.h>
 #include "dynlib_dynamic_link.h"
 #include "machine.h"
 
@@ -45,11 +46,6 @@ DYNAMIC_LINK_IMPEXP void RemoveInterf(int id);
 * @param[in] sizefcts size of fcts array
 * @return a int id of interface (-1 failed)
 */
-DYNAMIC_LINK_IMPEXP int AddInterfaceToScilab(char *filenamelib, char *spname, char **fcts, int sizefcts);
-
-/**
-* TO DO: comments
-*/
-DYNAMIC_LINK_IMPEXP void C2F(userlk)(int *k);
+DYNAMIC_LINK_IMPEXP int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize);
 
 #endif /*  __ADDINTER_H__ */

@@ -6,21 +6,15 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
 //
 
 function [x,y,typ]=BARXY(job,arg1,arg2)
-    x=[];y=[];typ=[];
+    x=[];
+    y=[];
+    typ=[];
     select job
-    case "plot" then
-        // deprecated
-    case "getinputs" then
-        // deprecater
-    case "getoutputs" then
-        // deprecated
-    case "getorigin" then
-        // deprecated
     case "set" then
         x=arg1;
         graphics=arg1.graphics;

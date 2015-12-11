@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -15,7 +15,6 @@ package org.scilab.modules.gui.bridge.waitbar;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_MESSAGE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -28,9 +27,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 
+import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.console.ScilabConsole;
-import org.scilab.modules.gui.utils.ScilabSwingUtilities;
 import org.scilab.modules.gui.waitbar.SimpleWaitBar;
 
 /**
@@ -44,7 +43,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
     private static final int WIDTH = 450;
     private static final int HEIGHT = 150;
 
-    private String uid;
+    private Integer uid;
 
     private int elementId;
 
@@ -52,7 +51,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
 
     private final JLabel messageLabel;
 
-    private final ImageIcon scilabIcon = new ImageIcon(ScilabSwingUtilities.findIcon("scilab"));
+    private final ImageIcon scilabIcon = new ImageIcon(FindIconHelper.findIcon("scilab"));
 
     /**
      * Default constructor
@@ -200,7 +199,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Set the UID
      * @param id the UID
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         uid = id;
     }
 
@@ -208,7 +207,7 @@ public class SwingScilabWaitBar extends JFrame implements SwingViewObject, Simpl
      * Get the UID
      * @return the UID
      */
-    public String getId() {
+    public Integer getId() {
         return uid;
     }
 

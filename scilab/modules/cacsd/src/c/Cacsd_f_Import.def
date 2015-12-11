@@ -13,13 +13,8 @@ intdhinf_
 inthinf_
 intricc2_
 intmucomp_
-findbd_
-sorder_
-sident_
 sciarl2_
-intereduc_
 scifreq_
-intfstair_
 scigschur_
 scigspec_ 
 scildiv_
@@ -30,3 +25,12 @@ intmb03od_
 sciresidu_
 scirtitr_
 scitzer_
+phi_
+arl2_
+arl2a_
+lq_
+expan_
+wesidu_
+sszer_
+rtitr_
+dfrmg_

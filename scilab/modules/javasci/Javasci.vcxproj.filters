@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -14,10 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{15ec80be-2eb1-4a30-b9ed-bbfb13daa61c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{a80262cb-66f7-4d15-8271-cbddc2c2816b}</UniqueIdentifier>
+      <UniqueIdentifier>{491946b4-1a29-4fa7-b74c-f1460392d869}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -28,6 +25,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\javasci2_helper.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\jni\putLists.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\jni\putLists.c">
@@ -47,8 +47,5 @@
   <ItemGroup>
     <None Include="javasci.iss" />
     <None Include="Makefile.am" />
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
 </Project>

@@ -6,7 +6,7 @@
  *  This source file is licensed as described in the file COPYING, which
  *  you should have received as part of this distribution.  The terms
  *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ *  http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -20,19 +20,19 @@ extern "C"
 #include "CurrentFigure.h"
 }
 
-char const* getCurrentFigure(void)
+int getCurrentFigure(void)
 {
     return ScilabView::getCurrentFigure();
 }
 
-void setCurrentFigure(char const* UID)
+void setCurrentFigure(int UID)
 {
     ScilabView::setCurrentFigure(UID);
 }
 
-BOOL isCurrentFigure(char const* UID)
+BOOL isCurrentFigure(int UID)
 {
-    if (strcmp(UID, ScilabView::getCurrentFigure()) == 0)
+    if (UID == ScilabView::getCurrentFigure())
     {
         return TRUE;
     }

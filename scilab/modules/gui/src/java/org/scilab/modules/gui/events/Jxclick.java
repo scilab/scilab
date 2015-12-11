@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 package org.scilab.modules.gui.events;
@@ -53,7 +53,7 @@ public final class Jxclick {
          */
         GlobalEventWatcher.enable(new GlobalMouseEventWatcher(AWTEvent.MOUSE_EVENT_MASK) {
             public void mouseEventFilter(MouseEvent mouseEvent,
-            String axesUID, int scilabMouseAction, boolean isControlDown) {
+                                         Integer axesUID, int scilabMouseAction, boolean isControlDown) {
                 mouseActionFilter(mouseEvent, axesUID, scilabMouseAction, isControlDown);
             }
         });
@@ -95,7 +95,7 @@ public final class Jxclick {
     /**
      * @return the windowID
      */
-    public static String getWindowID() {
+    public static int getWindowID() {
         return ClickInfos.getInstance().getWindowID();
     }
     /**
@@ -124,11 +124,8 @@ public final class Jxclick {
                 }
             }
         } else if (keyEvent.getID() == KeyEvent.KEY_TYPED) {
-            if (keyEvent.getSource() != null
-                    && keyEvent.getSource() instanceof SwingScilabCanvas) {
-                if (GlobalEventWatcher.isActivated()) {
-                    GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), keyEvent.isControlDown());
-                }
+            if (keyEvent.getSource() instanceof SwingScilabCanvas && GlobalEventWatcher.isActivated()) {
+                GlobalEventFilter.filterKey(keyChar, GlobalEventWatcher.getAxesUID(), keyEvent.isControlDown(), (SwingScilabCanvas) keyEvent.getSource());
             }
         }
     }
@@ -140,7 +137,7 @@ public final class Jxclick {
      * @param axes : the axes where action occurs.
      * @param isControlDown true if the CTRL key has been pressed
      */
-    private static void mouseActionFilter(MouseEvent mouseEvent, String axesUID, int scilabMouseAction, boolean isControlDown) {
+    private static void mouseActionFilter(MouseEvent mouseEvent, Integer axesUID, int scilabMouseAction, boolean isControlDown) {
         if (scilabMouseAction == SciTranslator.PRESSED
                 || scilabMouseAction == SciTranslator.CLICKED
                 || scilabMouseAction == SciTranslator.DCLICKED) {

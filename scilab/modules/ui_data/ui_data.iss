@@ -6,7 +6,7 @@
 ; This source file is licensed as described in the file COPYING, which
 ; you should have received as part of this distribution.  The terms
 ; are also available at
-; http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+; http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 ;##############################################################################################################
 ;--------------------------------------------------------------------------------------------------------------
 ; ui_data module
@@ -23,9 +23,6 @@ Source: modules\{#UI_DATA}\etc\{#UI_DATA}.quit;DestDir: {app}\modules\{#UI_DATA}
 Source: modules\{#UI_DATA}\etc\*.xml;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 Source: modules\{#UI_DATA}\etc\*.xsl;DestDir: {app}\modules\{#UI_DATA}\etc; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
-Source: modules\{#UI_DATA}\sci_gateway\{#UI_DATA}_gateway.xml; DestDir: {app}\modules\{#UI_DATA}\sci_gateway; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
-;
-
 Source: modules\{#UI_DATA}\license.txt; DestDir: {app}\modules\{#UI_DATA}; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}
 ;
 Source: modules\{#UI_DATA}\images\icons\*.png; DestDir: {app}\modules\{#UI_DATA}\images\icons; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_JVM_MODULE}

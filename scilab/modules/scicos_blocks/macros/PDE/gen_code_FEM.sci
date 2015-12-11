@@ -39,7 +39,11 @@ function [equations,impl_type]=gen_code_FEM(A,B1,B2,C1,C2,C3,F3,oper,N,..
     //    - vbc (String) : vecteur des conditions aux limites en a et b       //
     //    - kbc (Entier) : vecteur types des conditions au limites            //
     //------------------------------------------------------------------------//
-    Cla2=[];Clb2=[];Cla4=[];Clb4=[];lambda=spzeros(N,N);
+    Cla2=[];
+    Clb2=[];
+    Cla4=[];
+    Clb4=[];
+    lambda=spzeros(N,N);
     impl_type=1; // 1 pour syst�me d'�tat, -1 pour le syst�me alg�brique
     sep=[",","*","/"];
 
@@ -75,7 +79,7 @@ function [equations,impl_type]=gen_code_FEM(A,B1,B2,C1,C2,C3,F3,oper,N,..
         end
 
         for i=1:N
-            equations(i)="   res["+string(i-1)+"]="+subf(vec2(i+N),dvec2(i))+";";
+            equations(i)="   res["+string(i-1)+"]="+vec2(i+N)+"-"+dvec2(i)+";";
             F=mulfv(msprintfv(F3(i)),b7);
             if (i == 1) then
                 // prise en compte des conditions aux limites de type Dirichlet par dualisation en a

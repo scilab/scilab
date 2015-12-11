@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  * This code is also published under the GPL v3 license.
  *
@@ -15,7 +15,6 @@
 
 #ifndef __GW_CSV_HELPERS_H__
 #define __GW_CSV_HELPERS_H__
-
 
 char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar,
         const char *fname, const char *defaultValue,
@@ -44,7 +43,6 @@ int csv_isColumnVector(void* _pvCtx, int _iVar);
 int csv_isScalar(void* _pvCtx, int _iVar);
 int csv_isDoubleScalar(void* _pvCtx, int _iVar);
 int csv_isEmpty(void* _pvCtx, int _iVar);
-
 #endif /* __GW_CSV_HELPERS_H__ */
 // =============================================================================
 

@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at;
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function datatipSetOrientation(tip_handle,o)
     if argn(2)<>2 then
@@ -18,12 +18,13 @@ function datatipSetOrientation(tip_handle,o)
         "datatipSetOrientation",1,"datatip"))
     end
 
-    k=find(orientations==convstr(o))
-    if k<>[] then
-        string_handle=tip_handle.children(2)
-        point_handle=tip_handle.children(1)
-        string_handle.user_data(1)=k-1
-        setStringPosition(tip_handle, point_handle.data)
-        drawnow()
+    if o == "upper left" then
+        tip_handle.orientation = 0;
+    elseif o == "upper right" then
+        tip_handle.orientation = 1;
+    elseif o == "lower left" then
+        tip_handle.orientation = 2;
+    elseif o == "lower right" then
+        tip_handle.orientation = 3;
     end
 endfunction

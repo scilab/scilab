@@ -7,7 +7,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -23,6 +23,7 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
+import javax.swing.JButton;
 import javax.swing.KeyStroke;
 
 import org.scilab.modules.commons.OS;
@@ -30,7 +31,6 @@ import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.menuitem.MenuItem;
-import org.scilab.modules.gui.pushbutton.PushButton;
 
 /**
  * Zoom management
@@ -129,7 +129,7 @@ public class ZoomInAction extends DefaultAction {
      *            corresponding Scilab Graph
      * @return the button
      */
-    public static PushButton zoominButton(ScilabGraph scilabGraph) {
+    public static JButton zoominButton(ScilabGraph scilabGraph) {
         return createButton(scilabGraph, ZoomInAction.class);
     }
 

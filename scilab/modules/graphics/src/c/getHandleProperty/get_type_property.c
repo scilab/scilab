@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -80,19 +80,29 @@ static char *getTypeNameFromInt(int _iType)
             return "ShowHiddenHandles";
         case __GO_WAITBAR__ :
             return "Waitbar";
+        case __GO_PROGRESSIONBAR__ :
+            return "Progressionbar";
+        case __GO_DATATIP__:
+            return "Datatip";
+        case __GO_LIGHT__ :
+            return "Light";
         default :
             return "????";
     }
 }
 
 /*------------------------------------------------------------------------*/
-int get_type_property(void* _pvCtx, char* pobjUID)
+void* get_type_property(void* _pvCtx, int iObjUID)
 {
     int iType = -1;
     int *piType = &iType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
-    return sciReturnString(_pvCtx, getTypeNameFromInt(iType));
-    //return sciReturnString(sciGetCharEntityType(pobj));
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    if (piType == NULL)
+    {
+        return sciReturnString(getTypeNameFromInt(-1));
+    }
+
+    return sciReturnString(getTypeNameFromInt(iType));
 }
 /*------------------------------------------------------------------------*/

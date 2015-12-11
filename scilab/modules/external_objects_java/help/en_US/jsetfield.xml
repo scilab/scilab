@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+*
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2010 - 2011 - Calixte DENIZET <calixte@contrib.scilab.org>
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+*
+-->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" version="5.0-subset Scilab" xml:lang="en" xml:id="jsetfield">
+    <refnamediv>
+        <refname>jsetfield</refname>
+        <refpurpose>Set the field of a Java object</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>
+            jsetfield(object, fieldName, value)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parameters</title>
+        <variablelist>
+            <varlistentry>
+                <term>object</term>
+                <listitem>
+                    <para>A mlist typed _JObj or _JClass or a Scilab variable</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>fieldName</term>
+                <listitem>
+                    <para>A string giving the field name</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>value</term>
+                <listitem>
+                    <para>A Scilab variable or mlist typed _JObj as new field value</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Set the field named fieldName to the given value.
+        </para>
+        <para>
+            This function also works with beans properties which may not be mapped to a public java field.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+               c = jcompile("Test", ["public class Test {";
+                                     "public int field;";
+                                     "public Test(int n) {";
+                                     "field = n;";
+                                     "}";
+                                     "}";]);
+               t = c.new(128);
+               t.field
+               jsetfield(t, "field", 256);
+               t.field
+
+               // But it is easier to use...
+               t.field = 512;
+               t.field
+               jremove c t;
+      ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+jimport java.util.Date;
+
+d = Date.new();
+d.minutes = 3; // will call d.setMinutes(3);
+jsetfield(d, "minutes", 3); // will call d.setMinutes(3);
+
+jremove Date d;
+      ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="jgetfield">jgetfield</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.0</revnumber>
+                <revremark>
+                    Function introduced. Based on the 'JIMS' module. The main difference in the behavior compared to the JIMS module is that <link linkend="jautoUnwrap">jautoUnwrap</link> is enabled by default.
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
+

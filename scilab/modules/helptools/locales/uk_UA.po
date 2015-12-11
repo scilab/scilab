@@ -9,28 +9,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-18 04:52+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16681)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
-"значення типу «string».\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -57,9 +47,6 @@ msgstr "Модуль «%s» Scilab не встановлено.\n"
 
 msgid "Version"
 msgstr "Версія"
-
-msgid "Description"
-msgstr "Опис"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -113,12 +100,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Вилучення файлів довідки --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: у режимі %s перегляд довідки вимкнено.\n"
 
@@ -163,7 +144,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: файл пропущено %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -240,26 +221,11 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
-#, c-format
-msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr "%s: ця можливість підтримується лише на платформі Windows.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
-"%d.\n"
-
-#, c-format
-msgid "%s: hhc.exe not found.\n"
-msgstr "%s: не знайдено hhc.exe.\n"
-
-#, c-format
-msgid "%s: no file generate.\n"
-msgstr "%s: створення файла не передбачено.\n"
-
 msgid "Help chapter"
 msgstr "Глава довідки"
+
+msgid "Scilab Help"
+msgstr "Довідка зі Scilab"
 
 #, c-format
 msgid ""
@@ -287,8 +253,9 @@ msgstr ""
 msgid "\t%s\n"
 msgstr "\t%s\n"
 
-msgid "Building the scilab manual file ["
-msgstr "Збирання файла підручника зі scilab ["
+#, c-format
+msgid "Building the scilab manual file [%s]\n"
+msgstr "Збираємо файл підручника scilab [%s]\n"
 
 #, c-format
 msgid ""
@@ -321,12 +288,6 @@ msgstr "%s: будь ласка, перевірте %s, кількість мо�
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: помилковий тип вхідного параметра №%d: мало бути ціле число.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
-"рядок.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
@@ -374,3 +335,9 @@ msgstr ""
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: ці 2 mlist не повинні мати спільних полів.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати не більше "
+"%d.\n"

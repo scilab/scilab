@@ -36,12 +36,9 @@ node1 = uiCreateNode('Node 1')
 node2 = uiCreateNode('Node 2')
 node3 = uiCreateNode('Node 3')
 root = uiCreateNode('Root')
-
 treeNode1 = uiCreateTree(node1, leaf11, leaf12)
 treeNode3 = uiCreateTree(node3, leaf31, leaf32)
-
 treeRoot = uiCreateTree( root, treeNode1, node2, treeNode3)
-
 uiDisplayTree(treeRoot)
  ]]></programlisting>
     </refsection>

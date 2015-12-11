@@ -6,18 +6,18 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <windows.h>
-#include "strdup_windows.h"
 #endif
 #include <string.h>
 #include "getlongpathname.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #ifndef MAX_PATH_LONG
@@ -32,6 +32,7 @@ char *getlongpathname(char *shortpathname, BOOL *convertok)
     if (wcshortpathname)
     {
         wchar_t *wcLongName = getlongpathnameW(wcshortpathname, convertok);
+        FREE(wcshortpathname);
         if (wcLongName)
         {
             LongName = wide_string_to_UTF8(wcLongName);
@@ -40,13 +41,13 @@ char *getlongpathname(char *shortpathname, BOOL *convertok)
         }
         else
         {
-            LongName = strdup(shortpathname);
+            LongName = os_strdup(shortpathname);
             *convertok = FALSE;
         }
     }
     else
     {
-        LongName = strdup(shortpathname);
+        LongName = os_strdup(shortpathname);
         *convertok = FALSE;
     }
     return LongName;

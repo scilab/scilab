@@ -5,7 +5,7 @@
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapped)
     // From any Scilab datatype and provide a representation to the TeX, LaTeX or MathML formats
@@ -194,7 +194,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
         select a1(1)
             //Cell type
         case "ce" then
-            dim = double(a.dims);
+            dim = double(size(a));
             L = length(dim);
             if L >= 3 then
                 str = unknown_type("ce",a,exportFormat);
@@ -203,7 +203,7 @@ function str = prettyprint(a, exportFormat, delimiter, processByElement, isWrapp
             str = emptystr(dim(1),dim(2));
             for i = 1:dim(1) do
                 for j = 1:dim(2) do
-                    str(i,j) = prettyprint(a(i,j).entries,exportFormat,delimiter,%F,%F);
+                    str(i,j) = prettyprint(a{i,j},exportFormat,delimiter,%F,%F);
                 end
             end
         else

@@ -3,12 +3,13 @@
 // Copyright (C) 2008-2010 DIGITEO - Pierre MARECHAL <pierre.marechal@scilab.org>
 // Copyright (C) 2009 DIGITEO - Vincent COUVERT <vincent.couvert@scilab.org>
 // Copyright (C) 2010 - 2011 DIGITEO - Allan CORNET
+// Copyright (C) 2013 - Scilab Enterprises - Clement DAVID
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
 // you should have received as part of this distribution.  The terms
 // are also available at
-// http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+// http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function generated_files = xmltoformat(output_format,dirs,titles,directory_language,default_language)
 
@@ -252,14 +253,10 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     if all_scilab_help then
 
         // ast_tree : "Modules" Tree
-
-        if directory_language_m(1) == "fr_FR" then
-            scilab_manual = "Aide Scilab"
-        elseif directory_language_m(1) == "pt_BR" then
-            scilab_manual = "Ajuda Scilab"
-        else
-            scilab_manual = "Scilab help"
-        end
+        curLang = getlanguage();
+        setlanguage(directory_language_m(1));
+        scilab_manual = _("Scilab Help");
+        setlanguage(curLang);
 
         modules_tree = struct();
         modules_tree("level")      = 0; // It's a book
@@ -315,7 +312,6 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             contrib_tree(dirs_c(k)) = this_tree;
         end
-
     else
 
         //
@@ -433,13 +429,32 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
     // -- scilab internal toolbox
     // =========================================================================
 
+    // target format modification :
+    //  * update the format extension (eg. the created dir)
+    //  * handle the second pass build (container management or second transform)
     select output_format
     case "javaHelp" then
+        formatDescriptor = output_format;
         output_format_ext = "jar";
+        second_pass_format = "jar-only";
     case "web"
+        formatDescriptor = output_format;
         output_format_ext = "html";
-    else
+        second_pass_format = [];
+    case "ps"
+        formatDescriptor = output_format;
         output_format_ext = output_format;
+        output_format = "fo"; // ps file is generated on a second pass from fo files
+        second_pass_format = "ps";
+    case "pdf"
+        formatDescriptor = output_format;
+        output_format_ext = output_format;
+        output_format = "fo"; // pdf file is generated on a second pass from fo files
+        second_pass_format = "pdf";
+    else
+        formatDescriptor = output_format;
+        output_format_ext = output_format;
+        second_pass_format = [];
     end
 
     is_html = (output_format == "html" | output_format == "web");
@@ -447,7 +462,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
     if all_scilab_help then
 
-        mprintf(_("Building the scilab manual file ["+output_format+"]\n"));
+        mprintf(_("Building the scilab manual file [%s]\n"), formatDescriptor);
 
         // Define and create the final output directory if does not exist
         if output_format == "web" then
@@ -508,14 +523,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
         end
 
         // process the build
-        fileToExec = buildDocv2(output_format,modules_tree("master_document"), my_wanted_language);
+        fileToExec = buildDoc(output_format,modules_tree("master_document"), my_wanted_language);
         if fileToExec ~= [] then
             exec(fileToExec, -1);
-            if output_format == "javaHelp" then
-                // We don't create the jar when building the online help
-                // or the PDF
-                buildDocv2("jar-only",modules_tree("master_document"), my_wanted_language);
-            end
+        end
+        if ~isempty(second_pass_format) then
+            buildDoc(second_pass_format,modules_tree("master_document"), my_wanted_language);
         end
 
         check_move(buildDoc_file);
@@ -531,7 +544,7 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             this_tree  = contrib_tree(dirs_c(k));
 
-            mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs_c(k),SCI_long,"SCI"));
+            mprintf(_("\nBuilding the manual file [%s] in %s.\n"),formatDescriptor,strsubst(dirs_c(k),SCI_long,"SCI"));
 
             // Define and create the final output directory if does not exist
             final_output_dir = pathconvert(dirs_c(k)+"/../../"+output_format_ext,%f,%f);
@@ -587,10 +600,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
-                buildDocv2("jar-only",this_tree("master_document"),directory_language_c(k),dirs_c(k));
+            end
+            if ~isempty(second_pass_format) then
+                buildDoc(second_pass_format,this_tree("master_document"),directory_language_c(k),dirs_c(k));
             end
 
             check_move(buildDoc_file);
@@ -620,12 +635,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
 
             if nb_dir > 1 then
                 if displaydone == 0 then
-                    mprintf(_("\nBuilding the manual file [%s].\n"),output_format);
+                    mprintf(_("\nBuilding the manual file [%s].\n"),formatDescriptor);
                     displaydone = 1;
                 end
                 mprintf(_("\t%s\n"),strsubst(dirs(k),SCI_long,"SCI"));
             else
-                mprintf(_("\nBuilding the manual file [%s] in %s.\n"),output_format,strsubst(dirs(k),SCI_long,"SCI"));
+                mprintf(_("\nBuilding the manual file [%s] in %s.\n"),formatDescriptor,strsubst(dirs(k),SCI_long,"SCI"));
             end
 
             // Define and create the final output directory if does not exist
@@ -686,10 +701,12 @@ function generated_files = xmltoformat(output_format,dirs,titles,directory_langu
             end
 
             // process the build
-            fileToExec = buildDocv2(output_format,this_tree("master_document"),directory_language(k),dirs(k));
+            fileToExec = buildDoc(output_format,this_tree("master_document"),directory_language(k),dirs(k));
             if fileToExec ~= [] then
                 exec(fileToExec, -1);
-                buildDocv2("jar-only",this_tree("master_document"),directory_language(k),dirs(k));
+            end
+            if ~isempty(second_pass_format) then
+                buildDoc(second_pass_format,this_tree("master_document"),directory_language(k),dirs(k));
             end
 
             check_move(buildDoc_file);
@@ -878,7 +895,7 @@ function tree = x2f_dir_to_tree(directory,level)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_dir_to_tree",1));
     end
 
     if type(level) <> 1 then
@@ -889,7 +906,7 @@ function tree = x2f_dir_to_tree(directory,level)
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_dir_to_tree",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_dir_to_tree",1));
     end
 
     if size(level,"*") <> 1 then
@@ -1006,14 +1023,14 @@ function xmlfiles = x2f_get_xml_files(directory)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_get_xml_files",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_get_xml_files",1));
     end
 
     // Check input argument dimension
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_get_xml_files",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_get_xml_files",1));
     end
 
     // Check the directory existence
@@ -1095,14 +1112,14 @@ function directories = x2f_get_directories(directory)
     // =========================================================================
 
     if type(directory) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"x2f_get_directories",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"x2f_get_directories",1));
     end
 
     // Check input argument dimension
     // =========================================================================
 
     if size(directory,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"x2f_get_directories",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"x2f_get_directories",1));
     end
 
     // Check the directory existence

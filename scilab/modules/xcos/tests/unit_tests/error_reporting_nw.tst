@@ -18,7 +18,10 @@
 
 // Check the report against wrong port numbering on super block
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/tests/unit_tests/error_sb_port_numbering.zcos"));
-scicos_simulate(scs_m, "nw");
+try
+    scicos_simulate(scs_m, "nw");
+catch
+end
 
 //-----------------------------------------------------------------------------
 // on do_eval (context evaluation)

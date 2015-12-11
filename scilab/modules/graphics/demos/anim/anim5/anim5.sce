@@ -54,10 +54,6 @@ function demo_anim5()
         end
     end
 
-    if is_handle_valid(s) then
-        delete(curFig);
-    end
-
 endfunction
 
 

@@ -37,7 +37,7 @@ function demo_datafit()
     demo_viewCode(SCI + "/modules/optimization/demos/datafit/demo_datafit.sci");
     plot(X, Y, "+");
     l=legend(_("Experimental data"),2);
-    realtimeinit(0.1);for k=1:20,realtime(k),end
+    sleep(500);
     // solve the non linear data fitting
     [p,err] = datafit(G,Z,[3;5;10])
     // show the fitting curve

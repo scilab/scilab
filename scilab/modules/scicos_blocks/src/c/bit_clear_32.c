@@ -21,14 +21,14 @@
 /*--------------------------------------------------------------------------*/
 #include <math.h>
 #include "scicos_block4.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void bit_clear_32(scicos_block *block, int flag)
 {
     int n = 0, m = 0, i = 0;
-    long *opar = NULL;
-    long *u = NULL, *y = NULL;
+    SCSINT32_COP *opar = NULL;
+    SCSINT32_COP *u = NULL, *y = NULL;
     opar = Getint32OparPtrs(block, 1);
     u = Getint32InPortPtrs(block, 1);
     y = Getint32OutPortPtrs(block, 1);

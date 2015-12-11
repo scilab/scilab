@@ -6,7 +6,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAppend(char *fname, unsigned long fname_len)
+int sci_xmlAppend(char *fname, void* pvApiCtx)
 {
     XMLElement *parent = 0;
     XMLElement *elem = 0;
@@ -54,7 +54,7 @@ int sci_xmlAppend(char *fname, unsigned long fname_len)
     parent = XMLObject::getFromId < org_modules_xml::XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!parent)
     {
-        Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
         return 0;
     }
 
@@ -75,7 +75,7 @@ int sci_xmlAppend(char *fname, unsigned long fname_len)
     elem = XMLObject::getFromId < org_modules_xml::XMLElement > (getXMLObjectId(addr, pvApiCtx));
     if (!elem)
     {
-        Scierror(999, gettext("%s: XML Document does not exist.\n"), fname);
+        Scierror(999, gettext("%s: XML document does not exist.\n"), fname);
         return 0;
     }
 

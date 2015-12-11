@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 10019 -->
 //
 // <-- CLI SHELL MODE -->
-// 
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=10019
 //
@@ -16,7 +16,5 @@
 // 'exec' crashed on the error 113
 
 ierr = exec('SCI/modules/core/tests/nonreg_tests/bug_10019.sce','errcatch');
-msgerr = msprintf(gettext("Too large string.\n"));
-assert_checkequal(ierr, 113);
-assert_checkequal(lasterror(), msgerr);
-assert_checkerror("exec(''SCI/modules/core/tests/nonreg_tests/bug_10019.sce'', -1)", msgerr);
+assert_checkequal(ierr, 0);
+assert_checkequal(lasterror(), []);

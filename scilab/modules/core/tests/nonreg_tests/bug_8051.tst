@@ -16,4 +16,4 @@
 // <-- Short Description -->
 // execstr("[") was blocking!
 
-assert_checkequal(execstr("[","errcatch"), 2);
+assert_checkequal(execstr("[","errcatch"), 999);

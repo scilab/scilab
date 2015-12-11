@@ -9,7 +9,7 @@
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 
@@ -32,12 +32,12 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_x_label_property(void* _pvCtx, char* pobjUID, void* _pvData, int valueType, int nbRow, int nbCol)
+int set_x_label_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     int iType = -1;
     int* piType = &iType;
 
-    getGraphicObjectProperty(pobjUID, __GO_TYPE__, jni_int, (void **)&piType);
+    getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **)&piType);
 
     if (iType == __GO_AXES__)
     {

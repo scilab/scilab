@@ -23,7 +23,7 @@
 (** This module implements a sparse representation of square matrices using
 list associations. The retrieval of an element takes O(m) where m is the
 number of elements on the current row that are not equal to the default
-element (in the sense of the compare funtion provided by a module
+element (in the sense of the compare function provided by a module
 furnishing matrix elements). *)
 
 (* Functorial interface *)

@@ -1,6 +1,5 @@
       SUBROUTINE DDAINI (X, Y, YPRIME, NEQ, RES, JAC, H, WT, IDID, RPAR,
      +   IPAR, PHI, DELTA, E, WM, IWM, HMIN, UROUND, NONNEG, NTEMP)
-      common/ierode/iero
 
 C***BEGIN PROLOGUE  DDAINI
 C***SUBSIDIARY
@@ -66,7 +65,7 @@ C
       INTEGER  I, IER, IRES, JCALC, LNJE, LNRE, M, MAXIT, MJAC, NCF,
      *   NEF, NSF
       DOUBLE PRECISION
-     *   CJ, DAMP, DELNRM, ERR, OLDNRM, R, RATE, S, XOLD, YNORM
+     *   CJ, DAMP, DELNRM, IERR, OLDNRM, R, RATE, S, XOLD, YNORM
       LOGICAL  CONVGD
 C
       PARAMETER (LNRE=12)
@@ -116,9 +115,15 @@ C
 C     CORRECTOR LOOP.
 300   IWM(LNRE)=IWM(LNRE)+1
       IRES=0
+      ierror = 0
 C
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
+C     IERROR indicates if RES had the right prototype
+      if(IERROR.ne.0) then
+         IDID=-12
+         return
+      endif
       IF (IRES.LT.0) GO TO 430
 C
 C
@@ -129,7 +134,7 @@ C     EVALUATE THE ITERATION MATRIX
       CALL DDAJAC(NEQ,X,Y,YPRIME,DELTA,CJ,H,
      *   IER,WT,E,WM,IWM,RES,IRES,
      *   UROUND,JAC,RPAR,IPAR,NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
 C
       S=1000000.D0
       IF (IRES.LT.0) GO TO 430
@@ -212,9 +217,9 @@ C-----------------------------------------------------
 C
       DO 510 I=1,NEQ
 510      E(I)=Y(I)-PHI(I,1)
-      ERR=DDANRM(NEQ,E,WT,RPAR,IPAR)
+      IERR=DDANRM(NEQ,E,WT,RPAR,IPAR)
 C
-      IF (ERR.LE.1.0D0) RETURN
+      IF (IERR.LE.1.0D0) RETURN
 C
 C
 C
@@ -249,7 +254,7 @@ C
          RETURN
 C
 640   NEF=NEF+1
-      R=0.90D0/(2.0D0*ERR+0.0001D0)
+      R=0.90D0/(2.0D0*IERR+0.0001D0)
       R=MAX(0.1D0,MIN(0.5D0,R))
       H=H*R
       IF (ABS(H).GE.HMIN.AND.NEF.LT.10) GO TO 690
@@ -262,7 +267,6 @@ C-------------END OF SUBROUTINE DDAINI----------------------
       SUBROUTINE DDAJAC (NEQ, X, Y, YPRIME, DELTA, CJ, H,
      +   IER, WT, E, WM, IWM, RES, IRES, UROUND, JAC, RPAR,
      +   IPAR, NTEMP)
-      common/ierode/iero
 
 C***BEGIN PROLOGUE  DDAJAC
 C***SUBSIDIARY
@@ -349,7 +353,7 @@ C     DENSE USER-SUPPLIED MATRIX
       DO 110 I=1,LENPD
 110      WM(NPDM1+I)=0.0D0
       CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       GO TO 230
 C
 C
@@ -366,7 +370,7 @@ C     DENSE FINITE-DIFFERENCE-GENERATED MATRIX
          Y(I)=Y(I)+DEL
          YPRIME(I)=YPRIME(I)+CJ*DEL
          CALL RES(X,Y,YPRIME,E,IRES,RPAR,IPAR)
-         if(iero.ne.0) return
+         if(ierror.ne.0) return
          IF (IRES .LT. 0) RETURN
          DELINV=1.0D0/DEL
          DO 220 L=1,NEQ
@@ -391,7 +395,7 @@ C     BANDED USER-SUPPLIED MATRIX
       DO 410 I=1,LENPD
 410      WM(NPDM1+I)=0.0D0
       CALL JAC(X,Y,YPRIME,WM(NPD),CJ,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       MEBAND=2*IWM(LML)+IWM(LMU)+1
       GO TO 550
 C
@@ -417,7 +421,7 @@ C     BANDED FINITE-DIFFERENCE-GENERATED MATRIX
           Y(N)=Y(N)+DEL
 510       YPRIME(N)=YPRIME(N)+CJ*DEL
       CALL RES(X,Y,YPRIME,E,IRES,RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       IF (IRES .LT. 0) RETURN
       DO 530 N=J,NEQ,MBAND
           K= (N-J)/MBAND + 1
@@ -549,7 +553,6 @@ C------END OF SUBROUTINE DDASLV------
       END
       SUBROUTINE DDASSL (RES, NEQ, T, Y, YPRIME, TOUT, INFO, RTOL, ATOL,
      +   IDID, RWORK, LRW, IWORK, LIW, RPAR, IPAR, JAC)
-      common/ierode/iero
 C***BEGIN PROLOGUE  DDASSL
 C***PURPOSE  This code solves a system of differential/algebraic
 C            equations of the form G(T,Y,YPRIME) = 0.
@@ -1696,12 +1699,13 @@ C     COMPUTE TSTOP, IF APPLICABLE
 C
 C     COMPUTE INITIAL DERIVATIVE, UPDATING TN AND Y, IF APPLICABLE
 340   IF (INFO(11) .EQ. 0) GO TO 350
+      ierror=0
       CALL DDAINI(TN,Y,YPRIME,NEQ,
      *  RES,JAC,HO,RWORK(LWT),IDID,RPAR,IPAR,
      *  RWORK(LPHI),RWORK(LDELTA),RWORK(LE),
      *  RWORK(LWM),IWORK(LIWM),HMIN,RWORK(LROUND),
      *  INFO(10),NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       IF (IDID .LT. 0) GO TO 390
 C
 C     LOAD H WITH HO.  STORE H IN RWORK(LH)
@@ -1857,8 +1861,9 @@ C     TEST H VS. HMAX
       IF (INFO(7) .EQ. 0) GO TO 526
          RH = ABS(H)/RWORK(LHMAX)
          IF (RH .GT. 1.0D0) H = H/RH
-526   CONTINUE           
+526   CONTINUE
 C
+      ierror=0
       CALL DDASTP(TN,Y,YPRIME,NEQ,
      *   RES,JAC,H,RWORK(LWT),INFO(1),IDID,RPAR,IPAR,
      *   RWORK(LPHI),RWORK(LDELTA),RWORK(LE),
@@ -1869,7 +1874,7 @@ C
      *   RWORK(LS),HMIN,RWORK(LROUND),
      *   IWORK(LPHASE),IWORK(LJCALC),IWORK(LK),
      *   IWORK(LKOLD),IWORK(LNS),INFO(10),NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
 527   IF(IDID.LT.0)GO TO 600
 C
 C--------------------------------------------------------
@@ -2159,7 +2164,6 @@ C-----------END OF SUBROUTINE DDASSL------------------------------------
      +   IDID, RPAR, IPAR, PHI, DELTA, E, WM, IWM, ALPHA, BETA, GAMMA,
      +   PSI, SIGMA, CJ, CJOLD, HOLD, S, HMIN, UROUND, IPHASE, JCALC,
      +   K, KOLD, NS, NONNEG, NTEMP)
-      common/ierode/iero
 
 C***BEGIN PROLOGUE  DDASTP
 C***SUBSIDIARY
@@ -2265,7 +2269,7 @@ C
      *   LETF, LMXORD, LNJE, LNRE, LNST, M, MAXIT, NCF, NEF, NSF, NSP1
       DOUBLE PRECISION
      *   ALPHA0, ALPHAS, CJLAST, CK, DELNRM, ENORM, ERK, ERKM1,
-     *   ERKM2, ERKP1, ERR, EST, HNEW, OLDNRM, PNORM, R, RATE, TEMP1,
+     *   ERKM2, ERKP1, IERR, EST, HNEW, OLDNRM, PNORM, R, RATE, TEMP1,
      *   TEMP2, TERK, TERKM1, TERKM2, TERKP1, XOLD, XRATE
       LOGICAL  CONVGD
 C
@@ -2416,8 +2420,14 @@ C     MODIFIED NEWTON SCHEME.
       M=0
       IWM(LNRE)=IWM(LNRE)+1
       IRES = 0
+      ierror = 0
       CALL RES(X,Y,YPRIME,DELTA,IRES,RPAR,IPAR)
-      if(iero.ne.0) return
+C     IERROR indicates if RES had the right prototype
+      if(IERROR.ne.0) then
+         IDID=-11
+         return
+      endif
+      if(ierror.ne.0) return
       IF (IRES .LT. 0) GO TO 380
 C
 C
@@ -2432,7 +2442,7 @@ C     THIS HAS BEEN DONE.
       CALL DDAJAC(NEQ,X,Y,YPRIME,DELTA,CJ,H,
      * IER,WT,E,WM,IWM,RES,IRES,UROUND,JAC,RPAR,
      * IPAR,NTEMP)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       CJOLD=CJ
       S = 100.D0
       IF (IRES .LT. 0) GO TO 380
@@ -2488,7 +2498,7 @@ C     AND GO BACK TO DO ANOTHER ITERATION
       IRES = 0
       CALL RES(X,Y,YPRIME,DELTA,IRES,
      *  RPAR,IPAR)
-      if(iero.ne.0) return
+      if(ierror.ne.0) return
       IF (IRES .LT. 0) GO TO 380
       GO TO 350
 C
@@ -2565,8 +2575,8 @@ C
 C     CALCULATE THE LOCAL ERROR FOR THE CURRENT STEP
 C     TO SEE IF THE STEP WAS SUCCESSFUL
 430   CONTINUE
-      ERR = CK * ENORM
-      IF(ERR .GT. 1.0D0)GO TO 600
+      IERR = CK * ENORM
+      IF(IERR .GT. 1.0D0)GO TO 600
 C
 C
 C
