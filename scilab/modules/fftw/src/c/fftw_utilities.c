@@ -11,10 +11,11 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+#include <math.h>
+#include <malloc.h>
 #include "fftw_utilities.h"
 #include "sci_malloc.h"
 #include "callfftw.h"
-#include <math.h>
 int check_1D_symmetry(double *Ar, double *Ai, int nA, int iA);
 int check_2D_symmetry(double *Ar, double *Ai, int mA, int iA, int nA, int jA);
 int check_ND_symmetry(double *Ar, double *Ai, int ndims, int *dims, int *incr);
@@ -332,7 +333,7 @@ void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double 
     switch (type)
     {
         case C2C_PLAN:
-            call_fftw_execute_split_dft(p, ri, ii, ro, io);
+                call_fftw_execute_split_dft(p, ri, ii, ro, io);
             break;
         case C2R_PLAN:
             call_fftw_execute_split_dft_c2r(p, ri, ii, ro);
@@ -1331,15 +1332,24 @@ int complete_array(double *Ar, double *Ai, guru_dim_struct gdim)
 
 int withMKL(void)
 {
-    char* str = call_fftw_export_wisdom_to_string();
-    int iWithMKL = (int)(str == NULL);
-    if (iWithMKL != 0)
+    static int iWithMKL = -1;
+
+    if (iWithMKL == -1)
     {
-        FREE(str);
+        char* str = NULL;
+        iWithMKL = 1;
+        str = call_fftw_export_wisdom_to_string();
+        if (str)
+        {
+            iWithMKL = 0;
+            // According to the FFTW documentation we should free str
+            // string but doing makes Scilab crash!?
+            //free(str);
+        }
     }
+
     return iWithMKL;
-}
-/*--------------------------------------------------------------------------*/
+}/*--------------------------------------------------------------------------*/
 
 
 
