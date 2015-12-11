@@ -48,7 +48,7 @@ public class BlockWriter extends ScilabWriter {
         String[] v = new String[1];
 
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.UID, v);
-        while (v[0].isEmpty() || shared.uniqueUIDs.contains(v[0])) {
+        while (isInvalidUID(v[0])) {
             v[0] = new UID().toString();
         }
         shared.controller.setObjectProperty(uid, kind, ObjectProperties.UID, v[0]);
@@ -107,5 +107,36 @@ public class BlockWriter extends ScilabWriter {
 
         shared.layers.pop();
     }
+
+    private boolean isInvalidUID(String uid) {
+        if (uid.isEmpty()) {
+            return true;
+        }
+        if (shared.uniqueUIDs.contains(uid)) {
+            return true;
+        }
+
+        // more advanced check to remove non-generated UID without loosing performance
+        // a valid one is in the form : "-5151d0b0:12dcdfdd360:-7fff"
+        if (3 < uid.length() && uid.length() < 28) {
+            // more costly operations there but there is no allocation
+            int firstSep = uid.indexOf(':', 0);
+            if (firstSep <= 0) {
+                return true;
+            }
+
+            int secondSep = uid.indexOf(':', firstSep + 1);
+            if (secondSep <= firstSep + 1) {
+                return true;
+            }
+
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+
+
 
 }

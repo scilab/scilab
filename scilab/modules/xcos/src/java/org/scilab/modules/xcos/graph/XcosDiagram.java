@@ -1573,9 +1573,10 @@ public class XcosDiagram extends ScilabGraph {
             } else {
                 final String label = super.convertValueToString(cell);
                 if (label.isEmpty() && cell instanceof BasicBlock) {
-                    String[] interfaceFunction = new String[1];
+                    BasicBlock block = (BasicBlock) cell;
 
-                    controller.getObjectProperty(((BasicBlock) cell).getUID(), Kind.BLOCK, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+                    String[] interfaceFunction = new String[1];
+                    controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
                     ret = interfaceFunction[0];
                 } else {
                     ret = label;

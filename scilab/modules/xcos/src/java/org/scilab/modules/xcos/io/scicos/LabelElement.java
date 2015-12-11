@@ -23,6 +23,8 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.TextBlock;
+import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongElementException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongStructureException;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeException;
@@ -32,6 +34,7 @@ import org.scilab.modules.xcos.io.scicos.ScicosFormatException.WrongTypeExceptio
  */
 public final class LabelElement extends AbstractElement<TextBlock> {
     protected static final List<String> DATA_FIELD_NAMES = asList("Text", "graphics", "model", "void", "gui");
+    private static final int INTERFUNCTION_INDEX = DATA_FIELD_NAMES.indexOf("gui");
 
     /** Mutable field to easily get the data through methods */
     private ScilabMList data;
@@ -69,8 +72,10 @@ public final class LabelElement extends AbstractElement<TextBlock> {
 
         validate();
 
+        final String interfunction = ((ScilabString) data.get(INTERFUNCTION_INDEX)).getData()[0][0];
         if (into == null) {
-            block = new TextBlock(controller.createObject(Kind.ANNOTATION));
+            BlockInterFunction func = XcosCellFactory.lookForInterfunction(interfunction);
+            block = (TextBlock) XcosCellFactory.createBlock(controller, func, interfunction, controller.createObject(Kind.ANNOTATION), Kind.ANNOTATION);
         }
 
         block = beforeDecode(element, block);

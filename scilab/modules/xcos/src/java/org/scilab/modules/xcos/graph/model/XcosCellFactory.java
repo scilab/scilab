@@ -216,7 +216,11 @@ public final class XcosCellFactory {
         children.clear();
         controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, children);
 
-        diagram.addCells(cells);
+        // add all the children without using the diagram modification tracking features
+        diagram.getView().getStates().clear();
+        for (XcosCell c : cells) {
+            ((XcosCell) diagram.getDefaultParent()).insert(c);
+        }
 
         // each cell has been referenced twice (CHILDREN insert and addCells), derefence them all by one
         Arrays.stream(cells).forEach(c -> controller.deleteObject(c.getUID()));
