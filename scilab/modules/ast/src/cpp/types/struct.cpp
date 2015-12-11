@@ -49,7 +49,7 @@ Struct::Struct(int _iRows, int _iCols)
 #endif
 }
 
-Struct::Struct(int _iDims, int* _piDims)
+Struct::Struct(int _iDims, const int* _piDims)
 {
     m_bDisableCloneInCopyValue = false;
     SingleStruct** pIT  = NULL;

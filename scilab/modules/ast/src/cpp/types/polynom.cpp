@@ -39,12 +39,12 @@ Polynom::Polynom(const std::wstring& _szVarName, int _iRows, int _iCols, const i
     createPoly(_szVarName, 2, piDims, _piRank);
 }
 
-Polynom::Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims)
+Polynom::Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims)
 {
     createPoly(_szVarName, _iDims, _piDims, NULL);
 }
 
-Polynom::Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
+Polynom::Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank)
 {
     createPoly(_szVarName, _iDims, _piDims, _piRank);
 }
@@ -60,7 +60,7 @@ Polynom::~Polynom()
 #endif
 }
 
-void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
+void Polynom::createPoly(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank)
 {
     m_szVarName = _szVarName;
     SinglePoly** pPoly = NULL;

@@ -17,7 +17,7 @@ function r=mtlb_eval(%s1,%s2)
 
     // Init all variables useful to launch mfile2sci()
     deff("r=isanmfile(s)","r=%f");
-    res_path=[];
+    res_path="";
     logfile=-1;
     batch=%t;
     fnam="%fun";

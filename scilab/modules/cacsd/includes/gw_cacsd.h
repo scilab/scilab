@@ -27,16 +27,16 @@ int checkParam(void* _pvCtx, int _iPos, char* fname);
 char getIntegerValue(void* _pvCtx, int _iPos);
 
 /*--------------------------------------------------------------------------*/
-C_GATEWAY_PROTOTYPE(sci_contr);
-C_GATEWAY_PROTOTYPE(sci_dhinf);
-C_GATEWAY_PROTOTYPE(sci_hinf);
-C_GATEWAY_PROTOTYPE(sci_linmeq);
-C_GATEWAY_PROTOTYPE(sci_mucomp);
-C_GATEWAY_PROTOTYPE(sci_rankqr);
-C_GATEWAY_PROTOTYPE(sci_ricc);
-C_GATEWAY_PROTOTYPE(sci_sident);
-C_GATEWAY_PROTOTYPE(sci_sorder);
-C_GATEWAY_PROTOTYPE(sci_findbd);
+STACK_GATEWAY_PROTOTYPE(sci_contr);
+STACK_GATEWAY_PROTOTYPE(sci_dhinf);
+STACK_GATEWAY_PROTOTYPE(sci_hinf);
+STACK_GATEWAY_PROTOTYPE(sci_linmeq);
+STACK_GATEWAY_PROTOTYPE(sci_mucomp);
+STACK_GATEWAY_PROTOTYPE(sci_rankqr);
+STACK_GATEWAY_PROTOTYPE(sci_ricc);
+STACK_GATEWAY_PROTOTYPE(sci_sident);
+STACK_GATEWAY_PROTOTYPE(sci_sorder);
+STACK_GATEWAY_PROTOTYPE(sci_findbd);
 
 #endif /*  __GW_CACSD__ */
 /*--------------------------------------------------------------------------*/

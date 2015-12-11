@@ -17,8 +17,8 @@
 #include "c_gateway_prototype.h"
 #include "dynlib_boolean.h"
 /*--------------------------------------------------------------------------*/
-//C_GATEWAY_PROTOTYPE(sci_and);
-//C_GATEWAY_PROTOTYPE(sci_or);
+//STACK_GATEWAY_PROTOTYPE(sci_and);
+//STACK_GATEWAY_PROTOTYPE(sci_or);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_BOOLEAN__ */
 /*--------------------------------------------------------------------------*/

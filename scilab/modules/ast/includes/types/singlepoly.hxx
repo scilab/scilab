@@ -45,7 +45,7 @@ public :
     virtual SinglePoly*     createEmpty(int _iDims, int* _piDims, bool _bComplex);
     virtual double*         allocData(int _iSize);
     virtual double          copyValue(double _dblData);
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     bool                    setZeros();
     int                     getRank();

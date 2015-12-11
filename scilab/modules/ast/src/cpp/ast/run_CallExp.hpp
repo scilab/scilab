@@ -165,7 +165,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             if (pIT->hasInvokeOption())
             {
-                opt.emplace_back(vectOptName[iterOptName++], inTmp[iterIn++]);
+                opt[vectOptName[iterOptName++]] = inTmp[iterIn++];
 
                 //in case of macro/macrofile, we have to shift input param
                 //so add NULL item in in list to keep initial order

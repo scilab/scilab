@@ -15,13 +15,9 @@
 #ifndef __GW_FUNCTIONS_H__
 #define __GW_FUNCTIONS_H__
 /*--------------------------------------------------------------------------*/
-#include "dynlib_functions.h"
-#include "machine.h"
-/*--------------------------------------------------------------------------*/
-FUNCTIONS_SCILAB_IMPEXP int gw_functions(void);
-/*--------------------------------------------------------------------------*/
+#include "dynlib_functions_gw.h"
+#include "c_gateway_prototype.h"
 //Scilab 6
-FUNCTIONS_SCILAB_IMPEXP int sci_libfunc(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/

@@ -19,7 +19,7 @@ Pointer::Pointer()
     created = true;
 }
 
-Pointer::Pointer(void* _p)
+Pointer::Pointer(const void* _p)
 {
     data = new types::Pointer(_p);
     created = true;
@@ -40,7 +40,7 @@ int Pointer::getSize()
     return 1;
 }
 
-void* Pointer::get()
+const void* Pointer::get()
 {
     if (data)
     {
@@ -50,7 +50,7 @@ void* Pointer::get()
     return NULL;
 }
 
-void Pointer::set(void* _p)
+void Pointer::set(const void* _p)
 {
     if (data)
     {

@@ -191,6 +191,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_functions_gw.h" />
     <ClInclude Include="..\..\includes\functions_gw.hxx" />
+    <ClInclude Include="..\..\includes\gw_functions.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\bin\blasplus.lib" />

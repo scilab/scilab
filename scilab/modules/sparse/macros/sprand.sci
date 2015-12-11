@@ -33,7 +33,7 @@ function a=sprand(m,n,density,typ)
     elseif typ == "n" | typ == "normal" then //"normal" is the syntax for normal distribution with rand, the equivalent with grand is "nor"
         typ = "nor";
     end
-    
+
     density=max(min(density,1),0);
 
     nel=m*n*density; //the objective number of non zero elements
@@ -45,7 +45,11 @@ function a=sprand(m,n,density,typ)
     //---- generate a sequence of increments----------------------------
     mdist = 1/density //the mean distance between to consecutive index
     nel1  = (2.2-density)*nel; //generate more increments than requested nnz elements
-    ij    = round(1+grand(nel1,1,"exp",(mdist-1)))
+    if nel1<1
+        ij = 1;
+    else
+        ij    = round(1+grand(nel1,1,"exp",(mdist-1)))
+    end
 
     //---- sum the increments to get the index--------------------------
     ij=cumsum(ij);
@@ -68,7 +72,7 @@ function a=sprand(m,n,density,typ)
     elseif typ == "def" then
         a=sparse(ij,grand(nel1,1,typ),[m,n]);
     end
-    
+
 
 endfunction
 

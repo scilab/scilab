@@ -30,7 +30,7 @@ public :
     ~Struct();
     Struct();
     Struct(int _iRows, int _iCols);
-    Struct(int _iDims, int* _piDims);
+    Struct(int _iDims, const int* _piDims);
 
 private :
     Struct(Struct* _oCellCopyMe);
@@ -100,7 +100,7 @@ public :
         return false;
     }
 
-    bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    bool                        subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
     String*                     getFieldNames();
     bool                        exists(const std::wstring& _sKey);
     Struct*                     addField(const std::wstring& _sKey);

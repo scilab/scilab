@@ -39,8 +39,8 @@ public :
     Polynom();
     Polynom(const std::wstring& _szVarName, int _iRows, int _iCols);
     Polynom(const std::wstring& _szVarName, int _iRows, int _iCols, const int *_piRank);
-    Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims);
-    Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims);
+    Polynom(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank);
 
     virtual                 ~Polynom();
 
@@ -123,10 +123,10 @@ public :
 
 protected :
     std::wstring            m_szVarName;
-    void                    createPoly(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    void                    createPoly(const std::wstring& _szVarName, int _iDims, const int* _piDims, const int *_piRank);
 
 private :
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual SinglePoly*     getNullValue();
     virtual Polynom*        createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

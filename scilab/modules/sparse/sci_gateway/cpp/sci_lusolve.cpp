@@ -39,11 +39,11 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
     int nonZeros    = 0;
     bool fact       = false;
 
-    void *pData     = NULL;
-    double* dbl     = NULL;
-    int* colPos     = NULL;
-    int* itemsRow   = NULL;
-    int *fmatindex  = NULL;
+    const void *pData   = NULL;
+    double* dbl         = NULL;
+    int* colPos         = NULL;
+    int* itemsRow       = NULL;
+    int *fmatindex      = NULL;
 
     //check input parameters
     if (in.size() > 2)

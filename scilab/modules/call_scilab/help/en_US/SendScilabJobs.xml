@@ -79,9 +79,6 @@ SendScilabJob("disp(c);"); // Will display   4.
                 <link linkend="call_scilab">Call_Scilab</link>
             </member>
             <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
-            <member>
                 <link linkend="SendScilabJob">SendScilabJob</link>
             </member>
             <member>

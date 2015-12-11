@@ -175,7 +175,7 @@ function t=mat2exp(a,lmax)
     end
     a=String(a);
     dots="."+"."
-    t=[];
+    t="";
     if n==1 then
         x=strcat(a,";")
         lx=length(x)

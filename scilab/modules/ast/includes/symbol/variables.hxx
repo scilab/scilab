@@ -14,6 +14,7 @@
 #define __VARIABLES_HXX__
 
 #include <string>
+#include <map>
 #include <stack>
 #include "symbol.hxx"
 #include "internal.hxx"

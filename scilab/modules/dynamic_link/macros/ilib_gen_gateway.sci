@@ -113,9 +113,12 @@ function gateway_filename = ilib_gen_gateway(name,tables)
                 if or(table(kGw, 3) == ["cmex" "fmex" "Fmex"]) then
                     t = [t;
                     "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addMexFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
-                else
+                elseif table(kGw, 3) == "csci6" then
                     t = [t;
                     "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
+                else
+                    t = [t;
+                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCStackFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
                 end
             end
 
@@ -237,17 +240,20 @@ function [gate,names,cppCompilation] = new_names(table)
             gate(i, 1) = "MEX_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "csci"  then
             names(i) = table(i,2);
+            gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
+        case "csci6"  then
+            names(i) = table(i,2);
             gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "fsci"  then
             names(i) = "C2F(" + table(i,2) + ")";
-            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+            gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "cppsci"  then
             cppCompilation = %t;
             names(i) = table(i,2);
             gate(i, 2) = "CPP_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "direct"  then
             names(i) = table(i,2);
-            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+            gate(i, 1) = "STACK_GATEWAY_PROTOTYPE(" + names(i) + ");";
         else
             error(999,"Wrong interface type " + table(i,3));
         end

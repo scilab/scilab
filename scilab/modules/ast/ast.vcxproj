@@ -457,6 +457,7 @@ lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClInclude Include="includes\system_env\sci_tmpdir.h" />
     <ClInclude Include="includes\system_env\setenvvar.h" />
     <ClInclude Include="includes\system_env\threadmanagement.hxx" />
+    <ClInclude Include="includes\types\addfunction.h" />
     <ClInclude Include="includes\types\alltypes.hxx" />
     <ClInclude Include="includes\types\arrayof.hxx" />
     <ClInclude Include="includes\types\bool.hxx" />

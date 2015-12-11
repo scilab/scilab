@@ -67,7 +67,7 @@ Bool::Bool(int _iRows, int _iCols, int **_piData)
 #endif
 }
 
-Bool::Bool(int _iDims, int* _piDims)
+Bool::Bool(int _iDims, const int* _piDims)
 {
     int* piData = NULL;
     create(_piDims, _iDims, &piData, NULL);

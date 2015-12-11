@@ -25,48 +25,12 @@
     <Filter Include="Libraries Dependencies\Export">
       <UniqueIdentifier>{a5fd53b0-ac0c-4220-9487-7028c8cbe485}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\template">
+      <UniqueIdentifier>{4d2f026a-8f75-4bce-bfd9-5e27b1088b5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\cpp\api_boolean.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_boolean_sparse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_common.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_double.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_error.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_int.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_list.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_pointer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_poly.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_sparse.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_string.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\DllmainApi_scilab.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_handle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\api_optional.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\returnProperty.cpp">
@@ -102,36 +66,63 @@
     <ClCompile Include="src\cpp\api_list_cpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\api_hypermat.cpp">
+    <ClCompile Include="src\cpp\api_stack_double.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_error.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_boolean.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_boolean_sparse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_common.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_handle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_hypermat.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_int.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_list.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_optional.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_pointer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_poly.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_sparse.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_stack_string.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_template_safe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\api_template_unsafe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="includes\api_boolean.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_boolean_sparse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_double.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_error.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_int.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\cpp\api_internal_boolean_sparse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\api_internal_common.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\cpp\api_internal_double.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\api_internal_int.h">
@@ -146,31 +137,10 @@
     <ClInclude Include="src\cpp\api_internal_sparse.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\api_list.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_pointer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_poly.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\api_scilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\api_sparse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_string.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\dynlib_api_scilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_handle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_optional.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\returnProperty.h">
@@ -212,7 +182,130 @@
     <ClInclude Include="includes\api_list.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\api_hypermat.h">
+    <ClInclude Include="includes\api_struct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_double.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_double.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_error.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_double.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_boolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_boolean_sparse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_hypermat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_optional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_pointer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_poly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_sparse.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_stack_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_boolean.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\api_internal_double.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_template.h">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_boolean.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_cell.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_cell.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_common.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_int.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_list.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_list.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_poly.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_poly.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_struct.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_string.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_string.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_handle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_handle.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_optional.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_optional.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\api_internal_error.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\template\api_pointer.hpp">
+      <Filter>Header Files\template</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\api_pointer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -25,7 +25,7 @@ types::Function::ReturnValue sci_ludel(types::typed_list &in, int _iRetCount, ty
 {
     int ierr        = 0;
     int *fmatindex  = NULL;
-    void *pData     = NULL;
+    const void *pData = NULL;
 
     //check input parameters
     if (in.size() != 1 )

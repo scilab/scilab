@@ -16,7 +16,7 @@
 #define __INTERNAL_HXX__
 
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <iostream>
 #include <algorithm>
 #include <string>
@@ -54,14 +54,14 @@ namespace types
 */
 class InternalType;
 typedef std::vector<InternalType *> typed_list;
-typedef std::vector<std::pair<std::wstring, InternalType *> > optional_list;
+typedef std::unordered_map<std::wstring, InternalType *> optional_list;
 
 class EXTERN_AST InternalType
 {
 public :
     enum ScilabType
     {
-        ScilabNull, //no type, no data, nothing !
+        ScilabNull = 0, //no type, no data, nothing !
         /* Internal Type */
         ScilabInternal,
         /* Generic Types */

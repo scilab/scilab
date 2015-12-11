@@ -13,6 +13,7 @@
 #ifndef __LIBRARIES_HXX__
 #define __LIBRARIES_HXX__
 
+#include <map>
 #include <stack>
 #include "symbol.hxx"
 #include "types.hxx"

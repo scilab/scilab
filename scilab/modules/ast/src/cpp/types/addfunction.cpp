@@ -20,7 +20,12 @@ extern "C"
 #include "addfunction.h"
 }
 
-void addCFunction(const wchar_t* _wstName, OLDGW_FUNC _pFunc, const wchar_t* _wstModule)
+void addCStackFunction(const wchar_t* _wstName, OLDGW_FUNC _pFunc, const wchar_t* _wstModule)
+{
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
+}
+
+void addCFunction(const wchar_t* _wstName, GW_C_FUNC _pFunc, const wchar_t* _wstModule)
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
 }

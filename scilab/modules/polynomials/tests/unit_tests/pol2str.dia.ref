@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
+warning("off"); // WARNING_EMPTY_OPS
 assert_checkequal(pol2str(%z), "z");
 assert_checkequal(pol2str([%z %z]), ["z", "z"]);
 p = poly ([1, 2, 3], "x","coeff");
