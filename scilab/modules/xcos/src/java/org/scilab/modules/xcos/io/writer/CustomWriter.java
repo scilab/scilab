@@ -103,7 +103,7 @@ public class CustomWriter extends ScilabWriter {
                 }
                 break;
             case PORT:
-                // FIXME encode orientation from the model or not?
+                // the orientation is not encoded on the model but propagated inside the style
                 break;
             default:
                 break;

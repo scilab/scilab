@@ -124,9 +124,6 @@ public class BasicBlockCodec extends XcosObjectCodec {
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-        // FIXME is it needed ?
-        //        ((Element) node).setAttribute(SIMULATION_FUNCTION_TYPE, String.valueOf(((BasicBlock) obj).getSimulationFunctionType()));
-
         /*
          * Log some information
          */

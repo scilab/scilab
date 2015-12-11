@@ -445,10 +445,9 @@ public class XcosCell extends ScilabGraphUniqueObject {
         VectorOfScicosID children = new VectorOfScicosID();
         final ObjectProperties property = relatedPortKindProperty(v[0]);
 
-
-        // FIXME manage the index argument, possibly by counting the JGraphX children by kind
         if (property != null) {
             controller.getObjectProperty(getUID(), getKind(), property, children);
+            // do no use the index argument as it is not possible to insert out of order on the MVC (as we have kind of port)
             children.add(c.getUID());
             controller.setObjectProperty(getUID(), getKind(), property, children);
         }

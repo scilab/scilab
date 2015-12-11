@@ -105,9 +105,6 @@ public class BasicPortCodec extends XcosObjectCodec {
      */
     @Override
     public Object beforeEncode(mxCodec enc, Object obj, Node node) {
-        // FIXME find a valid usage of this
-        //        ((Element) node).setAttribute(DATA_TYPE, String.valueOf(((BasicPort) obj).getDataType()));
-
         /*
          * Log some information
          */
@@ -167,15 +164,6 @@ public class BasicPortCodec extends XcosObjectCodec {
         }
         final BasicPort port = (BasicPort) obj;
         final String attr = ((Element) node).getAttribute(DATA_TYPE);
-
-        // FIXME find a valid usage of that
-        //        // set default data type
-        //        if (attr == null || attr.equals("")) {
-        //            port.setDataType(BasicPort.DataType.REAL_MATRIX);
-        //
-        //        } else {
-        //            port.setDataType(BasicPort.DataType.valueOf(attr));
-        //        }
 
         // update connectable flag
         port.setConnectable(true);
@@ -243,13 +231,6 @@ public class BasicPortCodec extends XcosObjectCodec {
         StyleMap parentBlockMap = new StyleMap(obj.getParent().getStyle());
         flipped = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_FLIP));
         mirrored = Boolean.parseBoolean(parentBlockMap.get(ScilabGraphConstants.STYLE_MIRROR));
-
-        // FIXME handle that compatibility
-        //        final int baseAngle = orientation.getRelativeAngle(((BasicBlock) obj.getParent()).getAngle(), obj.getClass(), flipped, mirrored);
-        //
-        //        if (rotation == baseAngle) {
-        //            return;
-        //        }
 
         // Calculate the rotation for this kind of port.
         rotation = orientation.getAbsoluteAngle(obj.getClass(), flipped, mirrored);
