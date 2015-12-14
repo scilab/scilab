@@ -747,6 +747,8 @@ std::wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bCompl
         osExp.str(L"");
         osCoef.str(L"");
     }
+
+    delete[] piMaxLen;
     return ostr.str();
 }
 
