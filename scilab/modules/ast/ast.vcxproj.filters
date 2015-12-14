@@ -853,6 +853,12 @@
     <ClInclude Include="includes\types\addfunction.h">
       <Filter>Header Files\types</Filter>
     </ClInclude>
+    <ClInclude Include="includes\analysis\data\LoopDecoration.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\VarPromotion.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">
@@ -1553,6 +1559,12 @@
     </ClCompile>
     <ClCompile Include="src\cpp\system_env\coverage_instance.cpp">
       <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\DollarInfo.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitWhileExp.cpp">
+      <Filter>Source Files\analysis</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

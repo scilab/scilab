@@ -66,30 +66,45 @@ struct Decorator
         return *call;
     }
 
-    inline Clone * getClone() const
+    inline LoopDecoration * getLoopDecoration() const
     {
-        return opt.get<Clone>();
+        return opt.get<LoopDecoration>();
     }
 
-    inline Clone & setClone(Clone * _clone)
+    inline LoopDecoration & setLoopDecoration(LoopDecoration * _ld)
     {
-        opt.set(_clone);
-        return *_clone;
+        opt.set(_ld);
+        return *_ld;
     }
 
-    inline Clone & addClone(const symbol::Symbol & sym)
+    inline void addClone(const symbol::Symbol & sym)
     {
-        Clone * clone = opt.get<Clone>();
-        if (clone)
+        LoopDecoration * ld = opt.get<LoopDecoration>();
+        if (ld)
         {
-            clone->add(sym);
+            ld->addClone(sym);
         }
         else
         {
-            clone = new Clone(sym);
-            opt.set(clone);
+            ld = new LoopDecoration();
+            ld->addClone(sym);
+            opt.set(ld);
         }
-        return *clone;
+    }
+
+    inline void addPromotion(const symbol::Symbol & sym, const TIType & first, const TIType & second)
+    {
+        LoopDecoration * ld = opt.get<LoopDecoration>();
+        if (ld)
+        {
+            ld->addPromotion(sym, first, second);
+        }
+        else
+        {
+            ld = new LoopDecoration();
+            ld->addPromotion(sym, first, second);
+            opt.set(ld);
+        }
     }
 
     inline DollarInfo & setDollarInfo(const DollarInfo & di)

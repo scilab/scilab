@@ -55,36 +55,36 @@ bool ConstraintManager::check(const MPolyConstraintSet & set, const std::vector<
     {
         case InferenceConstraint::RESULT_TRUE:
         {
-	    if (!set.empty())
-	    {
-		verified.add(set);
-		set.applyConstraints(values);
-	    }
+            if (!set.empty())
+            {
+                verified.add(set);
+                set.applyConstraints(values);
+            }
             return true;
         }
         case InferenceConstraint::RESULT_FALSE:
-	    if (!set.empty())
-	    {
-		unverified.emplace(set);
-	    }
+            if (!set.empty())
+            {
+                unverified.emplace(set);
+            }
             return false;
         case InferenceConstraint::RESULT_DUNNO:
         {
             if (parent && parent->function)
             {
                 const bool ret = parent->check(set.getMPConstraints(values), parent->function->getInValues());
-		if (!set.empty())
-		{
-		    if (ret)
-		    {
-			verified.add(set);
-			set.applyConstraints(values);
-		    }
-		    else
-		    {
-			unverified.emplace(set);
-		    }
-		}
+                if (!set.empty())
+                {
+                    if (ret)
+                    {
+                        verified.add(set);
+                        set.applyConstraints(values);
+                    }
+                    else
+                    {
+                        unverified.emplace(set);
+                    }
+                }
                 return ret;
             }
             else
@@ -101,43 +101,43 @@ bool ConstraintManager::check(Kind kind, const std::vector<GVN::Value *> & value
     {
         const InferenceConstraint & ic = *generalConstraints[kind];
         InferenceConstraint::Result res = ic.check(function->getGVN(), values);
-	const MPolyConstraintSet set = ic.getMPConstraints(values); 
+        const MPolyConstraintSet set = ic.getMPConstraints(values);
         //std::wcerr << "DEBUG2=" << res << std::endl;
 
         switch (res)
         {
             case InferenceConstraint::RESULT_TRUE:
             {
-		if (!set.empty())
-		{
-		    verified.add(set);
-		    ic.applyConstraints(values);
-		}
+                if (!set.empty())
+                {
+                    verified.add(set);
+                    ic.applyConstraints(values);
+                }
                 return true;
             }
             case InferenceConstraint::RESULT_FALSE:
-		if (!set.empty())
-		{
-		    unverified.emplace(set);
-		}
+                if (!set.empty())
+                {
+                    unverified.emplace(set);
+                }
                 return false;
             case InferenceConstraint::RESULT_DUNNO:
             {
                 MPolyConstraintSet set = ic.getMPConstraints(values);
                 const bool ret = check(set, function->getInValues());
 
-		if (!set.empty())
-		{
-		    if (ret)
-		    {
-			verified.add(set);
-			ic.applyConstraints(values);
-		    }
-		    else
-		    {
-			unverified.emplace(set);
-		    }
-		}
+                if (!set.empty())
+                {
+                    if (ret)
+                    {
+                        verified.add(set);
+                        ic.applyConstraints(values);
+                    }
+                    else
+                    {
+                        unverified.emplace(set);
+                    }
+                }
                 return ret;
             }
         }
@@ -179,5 +179,29 @@ bool ConstraintManager::checkGlobalConstants(const std::set<symbol::Symbol> & gc
         }
     }
     return true;
+}
+
+std::wostream & operator<<(std::wostream & out, const ConstraintManager & cm)
+{
+    if (!cm.verified.empty())
+    {
+        out << L"Verified: " << cm.verified << L'\n';
+    }
+    if (!cm.unverified.empty())
+    {
+        out << L"Unverified: ";
+        for (const auto & unv : cm.unverified)
+        {
+            out << unv << L' ';
+        }
+        out << L'\n';
+    }
+    if (!cm.constantConstraints.empty())
+    {
+        out << L"Constants: ";
+        tools::printSet(cm.constantConstraints, out);
+        out << L'\n';
+    }
+    return out;
 }
 }

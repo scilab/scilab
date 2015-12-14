@@ -68,7 +68,7 @@ public:
     Info & read(const symbol::Symbol & sym, ast::Exp * exp);
     Info & write(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp);
     Info & define(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);
-    Info & share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp);
+    Info & share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);
     Info & clear(const symbol::Symbol & sym, ast::Exp * exp);
     Info & macrodef(ast::Exp * exp);
     std::vector<TIType> call(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId);

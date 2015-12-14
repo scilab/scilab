@@ -27,17 +27,24 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
         {
             // We have A = B (so the data associated to b is shared with a)
             const symbol::Symbol & symR = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
-            const TIType & Rtype = getSymInfo(symR).getType();
-            getDM().share(sym, symR, Rtype, &e);
-            static_cast<ast::SimpleVar &>(e.getRightExp()).getDecorator().setResult(Rtype);
-            static_cast<ast::SimpleVar &>(e.getLeftExp()).getDecorator().setResult(Rtype);
+            Info & info = getSymInfo(symR);
+            const TIType & Rtype = info.getType();
+            Result & resL = e.getLeftExp().getDecorator().setResult(Rtype);
+            resL.setConstant(info.getConstant());
+            resL.setRange(info.getRange());
+            Result & resR = e.getRightExp().getDecorator().setResult(Rtype);
+            resR.setConstant(info.getConstant());
+            resR.setRange(info.getRange());
+            getDM().share(sym, symR, Rtype, resR.isAnInt(), &e);
         }
         else
         {
+            // apply the ConstantVisitor
+            cv.setLHS(1);
+            e.getRightExp().accept(cv);
+
             if (e.getRightExp().isCallExp()) // A = foo(...)
             {
-                // apply the ConstantVisitor
-                e.getRightExp().accept(cv);
                 if (e.getRightExp().isCallExp())
                 {
                     visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ 1);
@@ -49,8 +56,6 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             }
             else // A = 1 + 2
             {
-                cv.setLHS(1);
-                e.getRightExp().accept(cv);
                 e.getRightExp().accept(*this);
             }
 
@@ -61,11 +66,15 @@ void AnalysisVisitor::visit(ast::AssignExp & e)
             e.getDecorator().safe = true;
 
             // Don't remove temp: because the value is transfered to LHS
-            //getDM().releaseTmp(RR.getTempId(), &e.getRightExp());
+            getDM().releaseTmp(RR.getTempId(), nullptr);//&e.getRightExp());
         }
     }
     else if (e.getLeftExp().isCallExp()) // A(12) = ...
     {
+        // apply the ConstantVisitor
+        cv.setLHS(1);
+        e.getRightExp().accept(cv);
+
         ast::CallExp & ce = static_cast<ast::CallExp &>(e.getLeftExp());
         if (ce.getName().isSimpleVar())
         {

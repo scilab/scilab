@@ -95,6 +95,12 @@ bool Info::isknown() const
     return local == Local::INFO_TRUE;
 }
 
+bool Info::isAnInt() const
+{
+    return constant.getGVNValue() != nullptr || getRange().isValid();
+}
+
+
 const symbol::Symbol & Info::getRightSym(ast::Exp * exp)
 {
     return static_cast<const ast::SimpleVar &>(static_cast<const ast::AssignExp *>(exp)->getRightExp()).getSymbol();
@@ -111,7 +117,7 @@ std::wostream & operator<<(std::wostream & out, const Info & info)
         << (info.R ? L"T" : L"F")
         << (info.W ? L"T" : L"F")
         << (info.O ? L"T" : L"F")
-        << L" - int:" << (info.isint ? L"T" : L"F")
+        << L" - int:" << (info.isAnInt() ? L"T" : L"F")
         << L" - local:" << (info.local == Info::Local::INFO_TRUE ? L"T" : (info.local == Info::Local::INFO_FALSE ? L"F" : L"U"))
         << L" - cleared:" << (info.cleared ? L"T" : L"F")
         << L" - exists:" << (info.exists ? L"T" : L"F")

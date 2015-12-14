@@ -65,6 +65,7 @@ struct Info
     const ConstantValue & getConstant() const;
     ConstantValue & setConstant(ConstantValue & val);
     bool isknown() const;
+    bool isAnInt() const;
     static const symbol::Symbol & getRightSym(ast::Exp * exp);
     const TIType & getType() const;
     friend std::wostream & operator<<(std::wostream & out, const Info & info);

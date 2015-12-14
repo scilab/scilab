@@ -105,9 +105,9 @@ MacroOut FunctionBlock::getOuts(CompleteMacroSignature & cms)
         Block * block = getDefBlock(*s, it, false);
         if (block == this)
         {
-	    const TIType & ty = it->second.type;
-	    const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
-	    const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
+            const TIType & ty = it->second.type;
+            const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
+            const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
             v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
         }
         else
@@ -115,10 +115,10 @@ MacroOut FunctionBlock::getOuts(CompleteMacroSignature & cms)
             addGlobal(*s);
             if (block)
             {
-		const TIType & ty = it->second.type;
-		const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
-		const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
-		v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
+                const TIType & ty = it->second.type;
+                const SymbolicDimension rows(cmsGVN, cmsGVN.getValue(*ty.rows.getValue()->poly));
+                const SymbolicDimension cols(cmsGVN, cmsGVN.getValue(*ty.cols.getValue()->poly));
+                v.emplace_back(TIType(cmsGVN, ty.type, rows, cols));
             }
             else
             {
@@ -295,7 +295,9 @@ std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
         }
     }
 
-    out << L'\n';
+    out << L'\n'
+        << L"Constraint Manager\n" << fblock.constraintManager << L'\n';
+
     const std::map<TypeLocal, std::stack<int>> & temps = fblock.getTemp();
     if (temps.empty())
     {

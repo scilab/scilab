@@ -365,6 +365,7 @@ private:
     void visit(ast::CommentExp & e) { }
     void visit(ast::NilExp & e) { }
     void visit(ast::ColonVar & e) { }
+    void visit(ast::WhileExp & e);
 
     void visit(ast::ArrayListVar & e)
     {
@@ -386,16 +387,6 @@ private:
     {
         logger.log(L"LogicalOpExp", e.getLocation());
         visit(static_cast<ast::OpExp &>(e));
-    }
-
-    void visit(ast::WhileExp & e)
-    {
-        logger.log(L"WhileExp", e.getLocation());
-        loops.push(&e);
-        e.getTest().accept(*this);
-        dm.releaseTmp(getResult().getTempId(), &e.getTest());
-        e.getBody().accept(*this);
-        loops.pop();
     }
 
     void visit(ast::BreakExp & e)

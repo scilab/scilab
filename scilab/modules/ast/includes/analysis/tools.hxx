@@ -203,10 +203,10 @@ inline std::wostream & operator<<(std::wostream & out, const IntType & it)
             out << L"NAI";
             break;
         case IntType::SIGNED :
-            out << L"S";
+            out << L'S';
             break;
         case IntType::UNSIGNED :
-            out << L"U";
+            out << L'U';
             break;
     }
     return out;
@@ -237,16 +237,16 @@ static void printSet(const T & set, std::wostream & out)
     }
     else
     {
-        out << L"{";
+        out << L'{';
         for (typename T::const_iterator i = set.begin(); i != set.end(); ++i)
         {
             if (std::next(i) == set.end())
             {
-                out << *i << L"}";
+                out << *i << L'}';
             }
             else
             {
-                out << *i << L",";
+                out << *i << L',';
             }
         }
     }
@@ -261,20 +261,20 @@ static void printMap(const T & map, std::wostream & out, const bool newLine = fa
     }
     else
     {
-        out << L"{";
+        out << L'{';
         for (typename T::const_iterator i = map.begin(); i != map.end(); ++i)
         {
             out << i->first << L" -> " << i->second;
             if (std::next(i) == map.end())
             {
-                out << L"}";
+                out << L'}';
             }
             else
             {
-                out << L",";
+                out << L',';
                 if (newLine)
                 {
-                    out << L"\n";
+                    out << L'\n';
                 }
             }
         }
@@ -286,18 +286,18 @@ static void printMapInfo(std::wostream & out, const T & map, const bool show_col
 {
     double mean = 0;
     double variance = 0;
-    double count = map.bucket_count();
+    const unsigned int count = map.bucket_count();
     unsigned int empty_bucket_count = 0;
     unsigned int collision_count = 0;
 
     out << L"Map size: " << map.size() << std::endl;
     out << L"Number of buckets: " << count << std::endl;
 
-    for (unsigned int i = 0; i < map.bucket_count(); ++i)
+    for (unsigned int i = 0; i < count; ++i)
     {
-        if (unsigned int s = map.bucket_size(i))
+        if (const unsigned int s = map.bucket_size(i))
         {
-            mean += s;
+            mean += (double)s;
             if (s > 1)
             {
                 ++collision_count;
@@ -308,14 +308,14 @@ static void printMapInfo(std::wostream & out, const T & map, const bool show_col
             ++empty_bucket_count;
         }
     }
-    mean /= count;
+    mean /= (double)count;
 
-    for (unsigned int i = 0; i < map.bucket_count(); ++i)
+    for (unsigned int i = 0; i < count; ++i)
     {
-        const unsigned int s = map.bucket_size(i);
-        variance += (mean - s) * (mean - s);
+        const double ms = mean - (double)map.bucket_size(i);
+        variance += ms * ms;
     }
-    variance /= count;
+    variance /= (double)count;
 
     out << L"Number of elements by buckets: mean=" << mean << L", sigma=" << std::sqrt(variance) << std::endl;
     out << L"Number of empty buckets: " << empty_bucket_count << std::endl;
