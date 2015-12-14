@@ -224,7 +224,7 @@ i=['#include ""stack-c.h""'
    '#include ""version.h""'
    '#if SCI_VERSION_MAJOR <= 5'
    '#if SCI_VERSION_MINOR <  2'
-   '   #error ""This example is obsolete see help ilib_buid""'
+   '   #error ""This example is obsolete see help ilib_build""'
    '#endif'
    '#endif'
    ''
@@ -429,7 +429,7 @@ i=['#include <string>'
    '#include ""version.h""'
    '#if SCI_VERSION_MAJOR <= 5'
    '#if SCI_VERSION_MINOR <  2'
-   '   #error ""This example is obsolete see help ilib_buid""'
+   '   #error ""This example is obsolete see help ilib_build""'
    '#endif'
    '#endif'
    ''
@@ -579,7 +579,7 @@ examplecflag() // __MYDEF_FOR_THIS_FUNCTION__ not detected !!!
                 <link linkend="ilib_for_link">ilib_for_link</link>
             </member>
             <member>
-                <link linkend="api_scilab">api_scilab</link>
+                <link linkend="api_scilab_legacy">api_scilab</link>
             </member>
         </simplelist>
     </refsection>

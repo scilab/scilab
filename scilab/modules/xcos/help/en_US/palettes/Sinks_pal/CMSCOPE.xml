@@ -188,7 +188,7 @@
                     <emphasis role="bold">Accept herited events 0/1</emphasis>
                 </para>
                 <para>
-                    if 0<emphasis role="bold">CSCOPE_f</emphasis> draws a new point only when an event occurs on its event input port. if 1<emphasis role="bold">CSCOPE_f</emphasis> draws a new point when an event occurs on its event input port and when it's regular input changes due to an event on an other upstrem block (herited events).
+                    if 0<emphasis role="bold">CSCOPE_f</emphasis> draws a new point only when an event occurs on its event input port. if 1<emphasis role="bold">CSCOPE_f</emphasis> draws a new point when an event occurs on its event input port and when it's regular input changes due to an event on an other upstream block (herited events).
                 </para>
                 <para> Properties : Type 'vec' of size 1 </para>
             </listitem>

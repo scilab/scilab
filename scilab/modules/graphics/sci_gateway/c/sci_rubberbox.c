@@ -75,7 +75,7 @@ static int getInitialRectangle(double initRect[4], void* pvApiCtx)
     /* pointer on the stack */
     rect = (rectStackPointer);
 
-    /* intialize to 0 */
+    /* initialize to 0 */
     for (i = 0; i < 4; i++)
     {
         initRect[i] = 0.0;
@@ -282,7 +282,7 @@ int sci_rubberbox(char * fname, void *pvApiCtx)
         }
         else
         {
-            /* Wrong parameter specified, neither edition mode nor intial rect */
+            /* Wrong parameter specified, neither edition mode nor initial rect */
             Scierror(999, _("%s: Wrong type for input argument #%d: Real row vector or a boolean expected.\n"), fname, 1);
             return -1;
         }
@@ -291,7 +291,7 @@ int sci_rubberbox(char * fname, void *pvApiCtx)
     {
         /* rubberbox(initial_rect, edition_mode) */
 
-        /* Default values, intial rect and edition mode to false */
+        /* Default values, initial rect and edition mode to false */
         double initialRect[4] = {0.0, 0.0, 0.0, 0.0};
         int editionModeStatus = 0;
 

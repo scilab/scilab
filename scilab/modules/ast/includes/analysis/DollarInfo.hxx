@@ -14,8 +14,12 @@
 #define __DOLLAR_INFO_HXX__
 
 #include <iostream>
-#include "symbol.hxx"
 #include <cstdint>
+
+namespace ast
+{
+class SimpleVar;
+}
 
 namespace analysis
 {
@@ -23,16 +27,22 @@ namespace analysis
 class DollarInfo
 {
 
-    const symbol::Symbol sym;
+    const ast::SimpleVar & var;
+    const uint32_t argsCount;
     uint32_t index;
 
 public:
 
-    DollarInfo(const symbol::Symbol _sym, const uint32_t _index) : sym(_sym), index(_index) { }
+    DollarInfo(const ast::SimpleVar & _var, const uint32_t _argsCount, const uint32_t _index) : var(_var), argsCount(_argsCount), index(_index) { }
 
-    inline symbol::Symbol getSymbol() const
+    inline const ast::SimpleVar & getVar() const
     {
-        return sym;
+        return var;
+    }
+
+    inline uint32_t getArgsCount() const
+    {
+        return argsCount;
     }
 
     inline uint32_t getIndex() const
@@ -45,11 +55,7 @@ public:
         return index;
     }
 
-    friend std::wostream & operator<<(std::wostream & out, const DollarInfo & di)
-    {
-        out << L"$ in " << di.sym << L" at index " << di.index;
-        return out;
-    }
+    friend std::wostream & operator<<(std::wostream & out, const DollarInfo & di);
 
 };
 

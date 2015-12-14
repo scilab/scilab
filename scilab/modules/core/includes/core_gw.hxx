@@ -71,5 +71,27 @@ CPP_GATEWAY_PROTOTYPE(sci_macr2tree);
 CPP_GATEWAY_PROTOTYPE(sci_predef);
 CPP_GATEWAY_PROTOTYPE(sci_debug);
 CPP_GATEWAY_PROTOTYPE(sci_recursionlimit);
+CPP_GATEWAY_PROTOTYPE(sci_type);
+CPP_GATEWAY_PROTOTYPE(sci_list_gw);
+CPP_GATEWAY_PROTOTYPE(sci_struct_gw);
+CPP_GATEWAY_PROTOTYPE(sci_null);
+CPP_GATEWAY_PROTOTYPE(sci_insert);
+CPP_GATEWAY_PROTOTYPE(sci_cell_gw);
+CPP_GATEWAY_PROTOTYPE(sci_makecell);
+CPP_GATEWAY_PROTOTYPE(sci_typeof);
+CPP_GATEWAY_PROTOTYPE(sci_tlist_gw);
+CPP_GATEWAY_PROTOTYPE(sci_mlist_gw);
+CPP_GATEWAY_PROTOTYPE(sci_isfield);
+CPP_GATEWAY_PROTOTYPE(sci_fieldnames);
+
+#ifndef NDEBUG
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItemCount);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorShowItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetUnreferencedItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorDeleteUnreferencedItems);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorShowUnreferencedItem);
+CPP_GATEWAY_PROTOTYPE(sci_inspectorGetFunctionList);
+#endif
 
 #endif /* __CORE_GW_HXX__ */

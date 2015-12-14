@@ -30,5 +30,4 @@ public class ExplicitInputPort extends InputPort {
     public Type getType() {
         return Type.EXPLICIT;
     }
-
 }

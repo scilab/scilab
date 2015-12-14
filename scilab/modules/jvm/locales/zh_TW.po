@@ -14,18 +14,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
-
-msgid "JVM interface disabled in -nogui or -nwni modes.\n"
-msgstr "JVM 介面在-nogui or -nwni模式下不作用.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: No more memory.\n"
 msgstr ""
 
 #, c-format
@@ -41,8 +34,20 @@ msgid "%s: Could not add path to java.library.path: %s.\n"
 msgstr "%s: 無法加入 java.library.path 的路徑: %s.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: 第 %d 或 %d  輸入參數型態錯誤: 應為字串.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -62,14 +67,13 @@ msgid ""
 "available).\n"
 msgstr ""
 "\n"
-"Scilab 不能新建Scilab Java Main-Class(我們找不到main Scilab class.請檢查是否"
-"Scilab 和第三方套件是存在的).\n"
+"Scilab 不能新建Scilab Java Main-Class(我們找不到main Scilab class.請檢查是否Scilab "
+"和第三方套件是存在的).\n"
 
 msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
 "not adding extra dependencies which could not be found at runtime.\n"
-msgstr ""
-"如果 Scilab 是使用 Java, 請確認您的 IDE 是否沒有加入額外相關的執行期函式庫.\n"
+msgstr "如果 Scilab 是使用 Java, 請確認您的 IDE 是否沒有加入額外相關的執行期函式庫.\n"
 
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "無法存取Main Scilab 類別:\n"
@@ -92,8 +96,7 @@ msgid ""
 "has been loaded by Scilab before calling this function.\n"
 msgstr ""
 "\n"
-"Error: 不能返回Scilab Java 環境(jvm_SCILAB):請檢查JVM 是否在呼叫這個函數之"
-"前，已經被Scilab 載入\n"
+"Error: 不能返回Scilab Java 環境(jvm_SCILAB):請檢查JVM 是否在呼叫這個函數之前，已經被Scilab 載入\n"
 
 #, c-format
 msgid ""
@@ -118,16 +121,14 @@ msgstr "錯誤: %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug http://"
-"bugzilla.scilab.org/.\n"
-msgstr ""
-"假如你正在使用Scilab的二進位版本.請到http://bugzilla.scilab.org/.回報一個臭"
-"蟲.\n"
+"If you are using a binary version of Scilab, please report a bug "
+"http://bugzilla.scilab.org/.\n"
+msgstr "假如你正在使用Scilab的二進位版本.請到http://bugzilla.scilab.org/.回報一個臭蟲.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script bin/"
-"scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script "
+"bin/scilab to provide the path to the JVM.\n"
 msgstr "假如你用的是自己建構的Scilab,請更新腳本的bin/scilab以提供JVM的路徑\n"
 
 #, c-format
@@ -138,9 +139,7 @@ msgstr "這個問題可能和SELinux有關.將它暫停使用再試試.\n"
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
 "system (or vice versa).\n"
-msgstr ""
-"也請確認您正在運行的Scilab版本是32位元或是64位元(是否有運行錯誤平台的情況發"
-"生)。\n"
+msgstr "也請確認您正在運行的Scilab版本是32位元或是64位元(是否有運行錯誤平台的情況發生)。\n"
 
 #, c-format
 msgid ""

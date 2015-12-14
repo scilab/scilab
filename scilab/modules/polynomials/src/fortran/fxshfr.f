@@ -96,7 +96,7 @@ c tried and decrease the convergence criterion
         betas = betas*.25
         if (iflag.eq.0) go to 50
 c if linear iteration signals an almost double real
-c zero attempt quadratic interation
+c zero attempt quadratic iteration
         ui = -(s+s)
         vi = s*s
         go to 20

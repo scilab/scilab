@@ -88,7 +88,7 @@
         <programlisting role="code_gateway">
             <![CDATA[ 
 #include "api_scilab.h"
-int read_write_handle(char *fname,unsigned long fname_len)
+int read_write_handle(char *fname,void* pvApiCtx)
 {
     SciErr sciErr;
     int i;

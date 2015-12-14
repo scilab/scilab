@@ -5,7 +5,5 @@ EXPORTS
 ;
 ;core
 ;
-com_
-iop_
 MyHeapAlloc
 MyHeapFree

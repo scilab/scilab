@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -325,9 +325,6 @@
     <ClInclude Include="..\cpp\LoggerView.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
-    <ClInclude Include="..\cpp\copyvarfromtlist.hxx">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
     <ClInclude Include="..\cpp\var2vec.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
@@ -417,25 +414,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dynamic_link_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Graphics_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Output_stream_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Scicos_blocks_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="scicos_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="String_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="Scicos_Export.def">
@@ -444,19 +426,16 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\scicos.iss" />
     <None Include="..\..\sci_gateway\scicos_gateway.xml" />
-    <None Include="Localization_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\locales\scicos.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="Core_f_Import.def">
+    <None Include="differential_equations_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="differential_equations_f_Import.def">
+    <None Include="core_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>

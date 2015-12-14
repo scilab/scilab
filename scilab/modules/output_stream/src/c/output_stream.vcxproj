@@ -87,18 +87,13 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -124,18 +119,13 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -161,18 +151,13 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -203,18 +188,13 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)Console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)scilocalization.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)Output_stream_f.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core_f.lib"  1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)core_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)core.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)ast_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)ast.lib"  1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(PlatformShortName) /OUT:"$(ProjectDir)fileio.lib"  1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>ast.lib;core.lib;sciconsole.lib;string.lib;output_stream_f.lib;core_f.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>ast.lib;core.lib;fileio.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>output_stream_export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
@@ -232,6 +212,7 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   <ItemGroup>
     <ClCompile Include="..\cpp\basout.cpp" />
     <ClCompile Include="..\cpp\getUniqueFilename.cpp" />
+    <ClCompile Include="..\cpp\Sciwarning.cpp" />
     <ClCompile Include="cerro.c" />
     <ClCompile Include="..\cpp\Diary.cpp" />
     <ClCompile Include="..\cpp\diary_manager.cpp" />
@@ -251,13 +232,9 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\output_stream.pot" />
-    <None Include="Console_Import.def" />
-    <None Include="Core_f_Import.def" />
+    <None Include="ast_Import.def" />
     <None Include="core_import.def" />
     <None Include="Fileio_Import.def" />
-    <None Include="Localization_Import.def" />
-    <None Include="output_stream_f_Import.def" />
-    <None Include="String_Import.def" />
     <None Include="output_stream_export.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\output_stream.iss" />
@@ -289,6 +266,7 @@ lib /DEF:"$(ProjectDir)Fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="..\..\includes\scilab_sprintf.hxx" />
     <ClInclude Include="..\..\includes\sciprint.h" />
     <ClInclude Include="..\..\includes\sciprint_full.h" />
+    <ClInclude Include="..\..\includes\Sciwarning.h" />
     <ClInclude Include="..\cpp\Diary.hxx" />
     <ClInclude Include="..\cpp\DiaryList.hxx" />
     <ClInclude Include="..\cpp\DiaryModesEnum.hxx" />

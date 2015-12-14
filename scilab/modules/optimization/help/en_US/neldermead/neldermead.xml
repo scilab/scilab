@@ -1037,7 +1037,7 @@
                             <term>key</term>
                             <listitem>
                                 <para>
-                                    the name of the key to quiery. The list of available
+                                    the name of the key to query. The list of available
                                     keys is the same as for the neldermead_configure
                                     function.
                                 </para>
@@ -1470,9 +1470,9 @@
         <title>Termination</title>
         <para>
             The current component takes into account for several generic
-            termination criterias.
+            termination criteria.
         </para>
-        <para>The following termination criterias are enabled by default :</para>
+        <para>The following termination criteria are enabled by default :</para>
         <itemizedlist>
             <listitem>
                 <para>-maxiter,</para>
@@ -2302,7 +2302,7 @@ nm = neldermead_destroy(nm);
             In the following example, we reproduce the experiment 
             published by Ken McKinnon in 1998. 
             For this particular function and this particular initial simplex,
-            the Nelder-Mead algorithm converges to a nonstationnary point. 
+            the Nelder-Mead algorithm converges to a nonstationary point.
         </para>
         <para>
             We first define the objective function, the initial simplex 
@@ -2336,7 +2336,7 @@ fstar = -0.25;
         <para>
             Then we run the algorithm two times in sequence. 
             At the end of the first optimization process, the algorithm has 
-            converged to the point [0,0] which is nonstationnary. 
+            converged to the point [0,0] which is nonstationary.
             This is why we restart the algorithm and get the correct minimum.
         </para>
         <programlisting role="example"><![CDATA[ 

@@ -202,7 +202,7 @@
                 <listitem>
                     <para>
                         this field can be use to store any scilab variable in the
-                        <literal>Matplot</literal> data structure, and to retreive it.
+                        <literal>Matplot</literal> data structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>

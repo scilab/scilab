@@ -21,82 +21,85 @@
         When debug mode is active, prompt change to <literal>debug> </literal>.
         </para>
         <term>Commands: </term>
-        <listitem>
-            <variablelist>
-                <varlistentry>
-                    <term>(h)elp: </term>
-                    <para>Show help on console</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(q)uit: </term>
-                    <para>Leave debug mode to return to normal mode of Scilab.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(w)here or bt: </term>
-                    <para>Display callstack.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(e)xec: </term>
-                    <term>(r)un: </term>
-                    <para>Execute command.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(c)ontinue: </term>
-                    <para>Continue execution.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(a)bort: </term>
-                    <para>Abort execution.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>step(n)ext or (n)ext: </term>
-                    <para>Continue execution to next expression.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>step(i)n or (i)n: </term>
-                    <para>Continue execution to next expression in sub function.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>step(o)ut or (o)ut: </term>
-                    <para>Continue execution to next expression in previous function.</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(b)reakpoint or (b)reak: </term>
-                    <synopsis>breakpoint function [line [condition]]</synopsis>
-                    <para>Add a breakpoint in a function at line <literal>line</literal></para>
-                    <para>If a condition is specified, a breakpoint become enable only if condition is <literal>%t</literal></para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(del)ete: </term>
-                    <synopsis>delete [n]</synopsis>
-                    <para>Remove all breakpoints.</para>
-                    <para>If n is specified, remove breakpoint #n</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>enable: </term>
-                    <synopsis>enable [n]</synopsis>
-                    <para>Enable all breakpoints.</para>
-                    <para>If n is specified, enable breakpoint #n</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>disable: </term>
-                    <synopsis>disable [n]</synopsis>
-                    <para>Disable all breakpoints.</para>
-                    <para>If n is specified, disable breakpoint #n</para>
-                </varlistentry>
-                <varlistentry>
-                    <term>(s)how: </term>
-                    <synopsis>show [n]</synopsis>
-                    <para>Show all breakpoints information.</para>
-                    <para>If n is specified, show breakpoint #n</para>
-                </varlistentry>
-            </variablelist>
-        </listitem>
+        <variablelist>
+            <varlistentry>
+                <term>(h)elp: </term>
+                <para>Show help on console</para>
+            </varlistentry>
+            <varlistentry>
+                <term>help: </term>
+                <para>Show help on help browser when possible otherwise display help in console</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(q)uit: </term>
+                <para>Leave debug mode to return to normal mode of Scilab.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(w)here or bt: </term>
+                <para>Display callstack.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(e)xec: </term>
+                <term>(r)un: </term>
+                <para>Execute command.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(d)isp var: </term>
+                <term>(p)rint var: </term>
+                <para>Display variable <literal>var</literal>.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(c)ontinue: </term>
+                <para>Continue execution.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(a)bort: </term>
+                <para>Abort execution.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>step(n)ext or next: </term>
+                <para>Continue execution to next expression.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>step(i)n or in: </term>
+                <para>Continue execution to next expression in sub function.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>step(o)ut or out: </term>
+                <para>Continue execution to next expression in previous function.</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(b)reakpoint or break: </term>
+                <synopsis>breakpoint function [line [condition]]</synopsis>
+                <para>Add a breakpoint in a function at line <literal>line</literal></para>
+                <para>If a condition is specified, a breakpoint become enable only if condition is <literal>%t</literal></para>
+            </varlistentry>
+            <varlistentry>
+                <term>(del)ete [n]: </term>
+                <para>Remove all breakpoints.</para>
+                <para>If n is specified, remove breakpoint #n</para>
+            </varlistentry>
+            <varlistentry>
+                <term>enable [n]: </term>
+                <para>Enable all breakpoints.</para>
+                <para>If n is specified, enable breakpoint #n</para>
+            </varlistentry>
+            <varlistentry>
+                <term>disable [n]: </term>
+                <para>Disable all breakpoints.</para>
+                <para>If n is specified, disable breakpoint #n</para>
+            </varlistentry>
+            <varlistentry>
+                <term>(s)how [n]: </term>
+                <para>Show all breakpoints information.</para>
+                <para>If n is specified, show breakpoint #n</para>
+            </varlistentry>
+        </variablelist>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-//function to overload cosinus on string
+//function to overload cosine on string
 function v = %c_cos(val)
     printf("val : %s\n", val);
     v = cos(evstr(val));

@@ -14,35 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
-
-#, c-format
-msgid "%s: Could not add line to the history.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: Matrix mit Zeichenketten "
-"erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: ein Skalar erwartet.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: ein Fehler ist aufgetreten: %s\n"
-
-msgid "filename not defined."
-msgstr "Dateiname nicht definiert."
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: muß sich in '%s' oder '%s' "
-"befinden.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -69,33 +42,76 @@ msgid "%s: Wrong type for input argument #%d.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Append lines in Scilab history failed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: Get line %d failed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: ein Fehler ist aufgetreten: %s\n"
+
+msgid "filename not defined."
+msgstr "Dateiname nicht definiert."
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Must be '%s' or '%s'.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: muß sich in '%s' oder '%s' "
+"befinden.\n"
+
+#, c-format
+msgid "%s: loadScilabHistoryFromFile failed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: getFilenameScilabHistory failed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Load Scilab history from file failed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: expandPathVariableW failed.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be in the interval [%d, %d].\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: muß sich im Intervall [%d, %d].\n"
 
 #, c-format
+msgid "%s: Reset history failed.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
-
-msgid "Command history"
-msgstr ""
-
-msgid "History Management Settings"
-msgstr ""
-
-msgid "Enable history management"
-msgstr ""
-
-msgid "History file: "
-msgstr ""
-
-msgid "History files"
-msgstr ""
-
-msgid "History lines: "
-msgstr ""
 
 msgid "Begin Session : "
 msgstr "Beginne Sitzung : "
@@ -156,3 +172,25 @@ msgstr "November"
 
 msgid "Dec"
 msgstr "Dezember"
+
+#, c-format
+msgid "%d : %s\n"
+msgstr ""
+
+msgid "Command history"
+msgstr ""
+
+msgid "History Management Settings"
+msgstr ""
+
+msgid "Enable history management"
+msgstr ""
+
+msgid "History file: "
+msgstr ""
+
+msgid "History files"
+msgstr ""
+
+msgid "History lines: "
+msgstr ""

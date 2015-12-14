@@ -225,6 +225,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/system_env/threadmanagement.cpp \
 	src/cpp/system_env/numericconstants.cpp \
 	src/cpp/system_env/numericconstants_interface.cpp \
+	src/cpp/system_env/coverage_instance.cpp \
 	src/cpp/types/addfunction.cpp src/cpp/types/internal.cpp \
 	src/cpp/types/arrayof.cpp src/cpp/types/bool.cpp \
 	src/cpp/types/callable.cpp src/cpp/types/cell.cpp \
@@ -270,6 +271,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/PolymorphicMacroCache.cpp \
 	src/cpp/analysis/SizeAnalyzer.cpp \
 	src/cpp/analysis/SymbolicList.cpp src/cpp/analysis/TIType.cpp \
+	src/cpp/analysis/DollarInfo.cpp \
 	src/cpp/analysis/IconvertAnalyzer.cpp \
 	src/cpp/analysis/InttypeAnalyzer.cpp \
 	src/cpp/analysis/IsrealAnalyzer.cpp \
@@ -286,6 +288,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitAssignExp.cpp \
 	src/cpp/analysis/VisitIfExp.cpp \
 	src/cpp/analysis/VisitForExp.cpp \
+	src/cpp/analysis/VisitWhileExp.cpp \
 	src/cpp/analysis/VisitCallExp.cpp \
 	src/cpp/analysis/VisitSeqExp.cpp \
 	src/cpp/analysis/VisitTypeExps.cpp \
@@ -462,6 +465,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/system_env/libsciast_la-threadmanagement.lo \
 	src/cpp/system_env/libsciast_la-numericconstants.lo \
 	src/cpp/system_env/libsciast_la-numericconstants_interface.lo \
+	src/cpp/system_env/libsciast_la-coverage_instance.lo \
 	src/cpp/types/libsciast_la-addfunction.lo \
 	src/cpp/types/libsciast_la-internal.lo \
 	src/cpp/types/libsciast_la-arrayof.lo \
@@ -530,6 +534,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/analysis/libsciast_la-SizeAnalyzer.lo \
 	src/cpp/analysis/libsciast_la-SymbolicList.lo \
 	src/cpp/analysis/libsciast_la-TIType.lo \
+	src/cpp/analysis/libsciast_la-DollarInfo.lo \
 	src/cpp/analysis/libsciast_la-IconvertAnalyzer.lo \
 	src/cpp/analysis/libsciast_la-InttypeAnalyzer.lo \
 	src/cpp/analysis/libsciast_la-IsrealAnalyzer.lo \
@@ -547,6 +552,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/analysis/libsciast_la-VisitAssignExp.lo \
 	src/cpp/analysis/libsciast_la-VisitIfExp.lo \
 	src/cpp/analysis/libsciast_la-VisitForExp.lo \
+	src/cpp/analysis/libsciast_la-VisitWhileExp.lo \
 	src/cpp/analysis/libsciast_la-VisitCallExp.lo \
 	src/cpp/analysis/libsciast_la-VisitSeqExp.lo \
 	src/cpp/analysis/libsciast_la-VisitTypeExps.lo \
@@ -802,6 +808,7 @@ AUTOMAKE = @AUTOMAKE@
 AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
+BLAS_CFLAGS = @BLAS_CFLAGS@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCACHE = @CCACHE@
@@ -1132,6 +1139,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/system_env/threadmanagement.cpp \
 	src/cpp/system_env/numericconstants.cpp \
 	src/cpp/system_env/numericconstants_interface.cpp \
+	src/cpp/system_env/coverage_instance.cpp \
 	src/cpp/types/addfunction.cpp src/cpp/types/internal.cpp \
 	src/cpp/types/arrayof.cpp src/cpp/types/bool.cpp \
 	src/cpp/types/callable.cpp src/cpp/types/cell.cpp \
@@ -1177,6 +1185,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/PolymorphicMacroCache.cpp \
 	src/cpp/analysis/SizeAnalyzer.cpp \
 	src/cpp/analysis/SymbolicList.cpp src/cpp/analysis/TIType.cpp \
+	src/cpp/analysis/DollarInfo.cpp \
 	src/cpp/analysis/IconvertAnalyzer.cpp \
 	src/cpp/analysis/InttypeAnalyzer.cpp \
 	src/cpp/analysis/IsrealAnalyzer.cpp \
@@ -1193,6 +1202,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/analysis/VisitAssignExp.cpp \
 	src/cpp/analysis/VisitIfExp.cpp \
 	src/cpp/analysis/VisitForExp.cpp \
+	src/cpp/analysis/VisitWhileExp.cpp \
 	src/cpp/analysis/VisitCallExp.cpp \
 	src/cpp/analysis/VisitSeqExp.cpp \
 	src/cpp/analysis/VisitTypeExps.cpp \
@@ -1328,10 +1338,11 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/special_functions/src/cpp \
+	-I$(top_srcdir)/modules/coverage/includes \
 	$(LLVM_INCLUDE) \
 	$(LLVM_CPPFLAGS) \
 	$(LLVM_LDFLAGS) \
-        $(LLVM_LIBS) \
+    $(LLVM_LIBS) \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
@@ -1918,6 +1929,9 @@ src/cpp/system_env/libsciast_la-numericconstants.lo:  \
 src/cpp/system_env/libsciast_la-numericconstants_interface.lo:  \
 	src/cpp/system_env/$(am__dirstamp) \
 	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
+src/cpp/system_env/libsciast_la-coverage_instance.lo:  \
+	src/cpp/system_env/$(am__dirstamp) \
+	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/types
 	@: > src/cpp/types/$(am__dirstamp)
@@ -2112,6 +2126,9 @@ src/cpp/analysis/libsciast_la-SymbolicList.lo:  \
 src/cpp/analysis/libsciast_la-TIType.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-DollarInfo.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-IconvertAnalyzer.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
@@ -2161,6 +2178,9 @@ src/cpp/analysis/libsciast_la-VisitIfExp.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-VisitForExp.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitWhileExp.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-VisitCallExp.lo:  \
@@ -2628,6 +2648,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-Data.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-DataManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-DiagAnalyzer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-DollarInfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-FindAnalyzer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-FunctionBlock.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-GVN.Plo@am__quote@
@@ -2671,6 +2692,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitSimpleVar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitTypeExps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitVarDec.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitWhileExp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-XBlock.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____add____.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-check_____and____.Plo@am__quote@
@@ -2852,6 +2874,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-configvariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-configvariable_interface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-context_get.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-coverage_instance.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-home.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-lasterror.Plo@am__quote@
@@ -3367,6 +3390,13 @@ src/cpp/system_env/libsciast_la-numericconstants_interface.lo: src/cpp/system_en
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-numericconstants_interface.lo `test -f 'src/cpp/system_env/numericconstants_interface.cpp' || echo '$(srcdir)/'`src/cpp/system_env/numericconstants_interface.cpp
 
+src/cpp/system_env/libsciast_la-coverage_instance.lo: src/cpp/system_env/coverage_instance.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-coverage_instance.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-coverage_instance.Tpo -c -o src/cpp/system_env/libsciast_la-coverage_instance.lo `test -f 'src/cpp/system_env/coverage_instance.cpp' || echo '$(srcdir)/'`src/cpp/system_env/coverage_instance.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/system_env/$(DEPDIR)/libsciast_la-coverage_instance.Tpo src/cpp/system_env/$(DEPDIR)/libsciast_la-coverage_instance.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/system_env/coverage_instance.cpp' object='src/cpp/system_env/libsciast_la-coverage_instance.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-coverage_instance.lo `test -f 'src/cpp/system_env/coverage_instance.cpp' || echo '$(srcdir)/'`src/cpp/system_env/coverage_instance.cpp
+
 src/cpp/types/libsciast_la-addfunction.lo: src/cpp/types/addfunction.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-addfunction.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Tpo -c -o src/cpp/types/libsciast_la-addfunction.lo `test -f 'src/cpp/types/addfunction.cpp' || echo '$(srcdir)/'`src/cpp/types/addfunction.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Tpo src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Plo
@@ -3843,6 +3873,13 @@ src/cpp/analysis/libsciast_la-TIType.lo: src/cpp/analysis/TIType.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-TIType.lo `test -f 'src/cpp/analysis/TIType.cpp' || echo '$(srcdir)/'`src/cpp/analysis/TIType.cpp
 
+src/cpp/analysis/libsciast_la-DollarInfo.lo: src/cpp/analysis/DollarInfo.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-DollarInfo.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-DollarInfo.Tpo -c -o src/cpp/analysis/libsciast_la-DollarInfo.lo `test -f 'src/cpp/analysis/DollarInfo.cpp' || echo '$(srcdir)/'`src/cpp/analysis/DollarInfo.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-DollarInfo.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-DollarInfo.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/DollarInfo.cpp' object='src/cpp/analysis/libsciast_la-DollarInfo.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-DollarInfo.lo `test -f 'src/cpp/analysis/DollarInfo.cpp' || echo '$(srcdir)/'`src/cpp/analysis/DollarInfo.cpp
+
 src/cpp/analysis/libsciast_la-IconvertAnalyzer.lo: src/cpp/analysis/IconvertAnalyzer.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-IconvertAnalyzer.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-IconvertAnalyzer.Tpo -c -o src/cpp/analysis/libsciast_la-IconvertAnalyzer.lo `test -f 'src/cpp/analysis/IconvertAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/IconvertAnalyzer.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-IconvertAnalyzer.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-IconvertAnalyzer.Plo
@@ -3961,6 +3998,13 @@ src/cpp/analysis/libsciast_la-VisitForExp.lo: src/cpp/analysis/VisitForExp.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitForExp.cpp' object='src/cpp/analysis/libsciast_la-VisitForExp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitForExp.lo `test -f 'src/cpp/analysis/VisitForExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitForExp.cpp
+
+src/cpp/analysis/libsciast_la-VisitWhileExp.lo: src/cpp/analysis/VisitWhileExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitWhileExp.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitWhileExp.Tpo -c -o src/cpp/analysis/libsciast_la-VisitWhileExp.lo `test -f 'src/cpp/analysis/VisitWhileExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitWhileExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitWhileExp.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitWhileExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitWhileExp.cpp' object='src/cpp/analysis/libsciast_la-VisitWhileExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitWhileExp.lo `test -f 'src/cpp/analysis/VisitWhileExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitWhileExp.cpp
 
 src/cpp/analysis/libsciast_la-VisitCallExp.lo: src/cpp/analysis/VisitCallExp.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitCallExp.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitCallExp.Tpo -c -o src/cpp/analysis/libsciast_la-VisitCallExp.lo `test -f 'src/cpp/analysis/VisitCallExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitCallExp.cpp

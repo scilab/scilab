@@ -733,7 +733,7 @@ void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
     }
 }
 
-void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
+void getIndexesWithDims(int _iIndex, int* _piIndexes, const int* _piDims, int _iDims)
 {
     int iMul = 1;
     for (int i = 0; i < _iDims; i++)
@@ -771,7 +771,7 @@ void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
 }
 
 
-int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
+int getIndexWithDims(int* _piIndexes, const int* _piDims, int _iDims)
 {
     int idx = 0;
     int iMult = 1;

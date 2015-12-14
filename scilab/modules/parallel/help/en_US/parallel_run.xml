@@ -116,7 +116,7 @@ end; ]]></programlisting>
             For this reason, the concurrent execution of Scilab macros cannot be safe in a shared memory environment and each parallel execution must be done in a separate memory space. As a result, one should not rely on side effects such as modifying variables from outer scope : only the data stored into the result  variables will be copied back into the calling environment.
         </para>
         <para>
-            As it is not possible to synchronize the access to Java Virtual Machine accross separate memory spaces, Scilab macros called by parallel_run are not allowed to use the JVM. This unfortunately encompass all the graphics functions as the Scilab GUI is based on Java. The spawned Scilab process are run in "nwni" mode their calls to <link linkend="disp">disp()</link> are redirected to the standard output.
+            As it is not possible to synchronize the access to Java Virtual Machine across separate memory spaces, Scilab macros called by parallel_run are not allowed to use the JVM. This unfortunately encompass all the graphics functions as the Scilab GUI is based on Java. The spawned Scilab process are run in "nwni" mode their calls to <link linkend="disp">disp()</link> are redirected to the standard output.
         </para>
     </refsection>
     <refsection>

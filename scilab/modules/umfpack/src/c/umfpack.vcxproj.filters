@@ -93,13 +93,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="Sparse_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="umfpack_header.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="..\..\Makefile.am" />

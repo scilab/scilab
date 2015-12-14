@@ -275,6 +275,7 @@ AUTOMAKE = @AUTOMAKE@
 AVALON_FRAMEWORK = @AVALON_FRAMEWORK@
 AWK = @AWK@
 BATIK = @BATIK@
+BLAS_CFLAGS = @BLAS_CFLAGS@
 BLAS_LIBS = @BLAS_LIBS@
 CC = @CC@
 CCACHE = @CCACHE@
@@ -333,6 +334,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAMCREST = @HAMCREST@
 HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
@@ -1019,10 +1021,10 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@install-data-local:
-@JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@clean-local:
+@JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@install-html-local:
+@JAVASCI_FALSE@install-data-local:
 clean: clean-am
 
 clean-am: clean-generic clean-libtool clean-local \

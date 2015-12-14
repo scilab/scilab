@@ -307,6 +307,17 @@ public class ScilabPolynomial implements ScilabType {
         return realPart[0].length;
     }
 
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.deepHashCode(imaginaryPart);
+        result = prime * result + ((polyVarName == null) ? 0 : polyVarName.hashCode());
+        result = prime * result + Arrays.deepHashCode(realPart);
+        return result;
+    }
+
     /**
      * @see org.scilab.modules.types.ScilabType#equals(Object)
      */

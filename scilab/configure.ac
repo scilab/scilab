@@ -902,21 +902,16 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
                 if test "$with_xcos" != no; then
                    # jgraphx
-                   AC_JAVA_CHECK_PACKAGE([jgraphx],[com.mxgraph.model.mxCell],[Diagram design])
+                   AC_JAVA_CHECK_JAR([jgraphx],[com.mxgraph.view.mxGraph],[Diagram design],[],[VERSION],[2.0.0.1])
                    JGRAPHX=$PACKAGE_JAR_FILE
                    AC_SUBST(JGRAPHX)
-
-                   AC_JAVA_CHECK_VERSION_PACKAGE([jgraphx],[import com.mxgraph.view.mxGraph;],$JGRAPHX,[2.0.0.1],[mxGraph.VERSION],[],[])
-
                 fi
 
                 if test "$with_external_scirenderer" = yes; then
                    # scirenderer
-                   AC_JAVA_CHECK_PACKAGE([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer])
+                   AC_JAVA_CHECK_JAR([scirenderer],[org.scilab.forge.scirenderer.PackageInfo],[Scilab Renderer],[],[VERSION],[1.1.0])
                    SCIRENDERER=$PACKAGE_JAR_FILE
                    SCIRENDERER_CP=$PACKAGE_JAR_FILE
-
-                   AC_JAVA_CHECK_VERSION_PACKAGE([scirenderer],[import org.scilab.forge.scirenderer.PackageInfo;],$SCIRENDERER,[1.1.0],[PackageInfo.VERSION])
                  else
                    echo "Use external version of scirenderer"
                    # Use the scirenderer in Scilab sources
@@ -927,30 +922,28 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_SUBST(SCIRENDERER_CP)
 
                # Docking system
-                AC_JAVA_CHECK_PACKAGE([flexdock],[org.flexdock.docking.DockingManager],[Scilab Gui])
+                AC_JAVA_CHECK_JAR([flexdock],[org.flexdock.util.Utilities],[Scilab Gui],[],[VERSION],[1.2.4])
                 FLEXDOCK=$PACKAGE_JAR_FILE
                 AC_SUBST(FLEXDOCK)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([flexdock],[import org.flexdock.util.Utilities;],$FLEXDOCK,[1.2.4],[Utilities.VERSION])
-
                 # Swing look&feel implementations
-                AC_JAVA_CHECK_PACKAGE([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
+                AC_JAVA_CHECK_JAR([looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel],"yes")
                 LOOKS=$PACKAGE_JAR_FILE
 
                 # Named differently under ArchLinux or Fedora
                 if test -z "$LOOKS"; then
-                    AC_JAVA_CHECK_PACKAGE([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
+                    AC_JAVA_CHECK_JAR([jgoodies-looks],[com.jgoodies.looks.common.MenuItemRenderer],[Scilab Gui - Look and feel])
                     LOOKS=$PACKAGE_JAR_FILE
                 fi
                 AC_SUBST(LOOKS)
 
                 #  Skin Look and Feel
-                AC_JAVA_CHECK_PACKAGE([skinlf],[com.l2fprod.util.AccessUtils],[Scilab Gui - Skin Look and Feel])
+                AC_JAVA_CHECK_JAR([skinlf],[com.l2fprod.util.AccessUtils],[Scilab Gui - Skin Look and Feel])
                 SKINLF=$PACKAGE_JAR_FILE
                 AC_SUBST(SKINLF)
 
                 # JOGL 2
-                AC_JAVA_CHECK_PACKAGE([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0])
+                AC_JAVA_CHECK_JAR([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0])
                 JOGL2=$PACKAGE_JAR_FILE
                 AC_SUBST(JOGL2)
 
@@ -981,7 +974,7 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 fi
 
                 # JoGL Native <=> Java connector
-                AC_JAVA_CHECK_PACKAGE([gluegen2-rt],[jogamp.common.os.MachineDescriptionRuntime],[Scilab 3D rendering])
+                AC_JAVA_CHECK_JAR([gluegen2-rt],[jogamp.common.os.MachineDescriptionRuntime],[Scilab 3D rendering])
                 GLUEGEN2_RT=$PACKAGE_JAR_FILE
                 AC_SUBST(GLUEGEN2_RT)
 
@@ -1002,39 +995,38 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 fi
 
                 # Jhall
-                AC_JAVA_CHECK_PACKAGE([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
+                AC_JAVA_CHECK_JAR([jhall],[javax.help.JHelp],[Scilab Help Browser],"yes")
                 # Named differently under Mandriva or Fedora
                 if test -z "$PACKAGE_JAR_FILE"; then
-                    AC_JAVA_CHECK_PACKAGE([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
+                    AC_JAVA_CHECK_JAR([javahelp2],[javax.help.JHelp],[Scilab Help Browser])
                 fi
                 JHALL=$PACKAGE_JAR_FILE
                 AC_SUBST(JHALL)
 
                 # Console API
-                AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
+                AC_JAVA_CHECK_JAR([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
                 if test -z "$PACKAGE_JAR_FILE"; then
-                    AC_JAVA_CHECK_PACKAGE([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
+                    AC_JAVA_CHECK_JAR([jrosetta-api],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab])
                 fi
                 JROSETTA_API=$PACKAGE_JAR_FILE
                 AC_SUBST(JROSETTA_API)
 
                 # Console Core
-                AC_JAVA_CHECK_PACKAGE([jrosetta-engine],[com.artenum.rosetta.core.action.AbstractConsoleAction],[JRosetta : Console Core Artenum / Scilab])
+                AC_JAVA_CHECK_JAR([jrosetta-engine],[com.artenum.rosetta.util.ConfigurationBuilder],[JRosetta : Console Core Artenum / Scilab],[],[getVersion],[1.0.4])
                 JROSETTA_ENGINE=$PACKAGE_JAR_FILE
                 AC_SUBST(JROSETTA_ENGINE)
-                AC_JAVA_CHECK_VERSION_PACKAGE([jrosetta-engine],[import com.artenum.rosetta.util.ConfigurationBuilder;],$JROSETTA_ENGINE,[1.0.4],[ConfigurationBuilder.getVersion()])
 
 
                 # MathML rendering solution
                 # Used in both graphic & help
-                AC_JAVA_CHECK_PACKAGE([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
+                AC_JAVA_CHECK_JAR([jeuclid-core],[net.sourceforge.jeuclid.LayoutContext],[MathML rendering solution (at least version 3.1.X)])
                 JEUCLID_CORE=$PACKAGE_JAR_FILE
                 AC_SUBST(JEUCLID_CORE)
 
 
                 ################ Mandatory for graphic_export features #####
                 # XML to PDF/other Translator
-                AC_JAVA_CHECK_PACKAGE([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
+                AC_JAVA_CHECK_JAR([fop],[org.apache.fop.pdf.PDFInfo],[XML to PDF Translator (fop)])
                 FOP=$PACKAGE_JAR_FILE
                 AC_SUBST(FOP)
 
@@ -1042,65 +1034,66 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                     [disable support for EMF (Windows Metafile) export])])
                 if test "x$with_emf" != xno; then
                     # Freehep Graphics2D
-                    AC_JAVA_CHECK_PACKAGE([freehep-graphics2d],[org.freehep.graphics2d.VectorGraphics],[Freehep Graphics2D])
+                    AC_JAVA_CHECK_JAR([freehep-graphics2d],[org.freehep.graphics2d.VectorGraphics],[Freehep Graphics2D])
                     FREEHEP_GRAPHICS2D=$PACKAGE_JAR_FILE
                     AC_SUBST(FREEHEP_GRAPHICS2D)
 
-                    # Freehep GraphicsIO EMF
-                    AC_JAVA_CHECK_PACKAGE([freehep-graphicsio-emf],[org.freehep.graphicsio.emf.EMFGraphics2D],[Freehep GraphicsIO EMF])
-                    FREEHEP_GRAPHICSIO_EMF=$PACKAGE_JAR_FILE
-                    AC_SUBST(FREEHEP_GRAPHICSIO_EMF)
-
                     # Freehep GraphicsIO
-                    AC_JAVA_CHECK_PACKAGE([freehep-graphicsio],[org.freehep.graphicsio.VectorGraphicsIO],[Freehep GraphicsIO])
+                    AC_JAVA_CHECK_JAR([freehep-graphicsio],[org.freehep.graphicsio.VectorGraphicsIO],[Freehep GraphicsIO])
                     FREEHEP_GRAPHICSIO=$PACKAGE_JAR_FILE
                     AC_SUBST(FREEHEP_GRAPHICSIO)
 
+                    # Freehep GraphicsIO EMF
+                    AC_JAVA_CHECK_JAR([freehep-graphicsio-emf],[org.freehep.graphicsio.emf.EMFGraphics2D],[Freehep GraphicsIO EMF])
+                    FREEHEP_GRAPHICSIO_EMF=$PACKAGE_JAR_FILE
+                    AC_SUBST(FREEHEP_GRAPHICSIO_EMF)
+
                     # Freehep IO
-                    AC_JAVA_CHECK_PACKAGE([freehep-io],[org.freehep.util.io.XMLSequence],[Freehep IO])
+                    AC_JAVA_CHECK_JAR([freehep-io],[org.freehep.util.io.XMLSequence],[Freehep IO])
                     FREEHEP_IO=$PACKAGE_JAR_FILE
                     AC_SUBST(FREEHEP_IO)
 
                     # Freehep Util
-                    AC_JAVA_CHECK_PACKAGE([freehep-util],[org.freehep.util.StringUtilities],[Freehep Util])
+                    AC_JAVA_CHECK_JAR([freehep-util],[org.freehep.util.StringUtilities],[Freehep Util])
                     FREEHEP_UTIL=$PACKAGE_JAR_FILE
                     AC_SUBST(FREEHEP_UTIL)
                 fi
 
                 # xml.apache.org SVG Library (under mandriva for example)
-                AC_JAVA_CHECK_PACKAGE([batik-all],[org.apache.batik.parser.Parser],[Apache SVG Library],"yes")
+                AC_JAVA_CHECK_JAR([batik-all],[org.apache.batik.Version],
+                                  [Apache SVG Library],"yes",[getVersion],[1.8])
                 BATIK=$PACKAGE_JAR_FILE
 
                 if test -z "$BATIK"; then
                    # Other other distribs
-                   AC_JAVA_CHECK_PACKAGE([batik],[org.apache.batik.parser.Parser],[Apache SVG Library])
+                   AC_JAVA_CHECK_JAR([batik],[org.apache.batik.Version],
+                                     [Apache SVG Library],[],[getVersion],[1.8])
                    BATIK=$PACKAGE_JAR_FILE
                 fi
                 AC_SUBST(BATIK)
-                AC_JAVA_CHECK_VERSION_PACKAGE([batik],[import org.apache.batik.Version;],$BATIK,[1.7],[Version.getVersion()])
 
                 # Commons I/O library
-                AC_JAVA_CHECK_PACKAGE([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
+                AC_JAVA_CHECK_JAR([commons-io],[org.apache.commons.io.output.CountingOutputStream],[Commons I/O library])
                 COMMONS_IO=$PACKAGE_JAR_FILE
                 AC_SUBST(COMMONS_IO)
 
                 # XML graphics common
-                AC_JAVA_CHECK_PACKAGE([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
+                AC_JAVA_CHECK_JAR([xmlgraphics-commons],[org.apache.xmlgraphics.util.Service],[Commons graphics library])
                 XMLGRAPHICS_COMMONS=$PACKAGE_JAR_FILE
                 AC_SUBST(XMLGRAPHICS_COMMONS)
 
                 # Avalon Framework (PDF)
-                AC_JAVA_CHECK_PACKAGE([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
+                AC_JAVA_CHECK_JAR([avalon-framework],[org.apache.avalon.framework.configuration.ConfigurationException],[Common framework for Java server application])
                 AVALON_FRAMEWORK=$PACKAGE_JAR_FILE
                 AC_SUBST(AVALON_FRAMEWORK)
 
                 # XML API EXT (conversion of a SVG => PNG)
-                AC_JAVA_CHECK_PACKAGE([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
+                AC_JAVA_CHECK_JAR([xml-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code],"yes")
                 XML_APIS_EXT=$PACKAGE_JAR_FILE
 
                 if test -z "$XML_APIS_EXT"; then
                     # Other other distribs (Ex: Fedora/Redhat)
-                    AC_JAVA_CHECK_PACKAGE([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
+                    AC_JAVA_CHECK_JAR([xml-commons-apis-ext],[org.w3c.dom.svg.SVGDocument],[XML Commons external code])
                     XML_APIS_EXT=$PACKAGE_JAR_FILE
                 fi
                 AC_SUBST(XML_APIS_EXT)
@@ -1109,19 +1102,17 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
 
 
                 # Logging (flexdock dep)
-                AC_JAVA_CHECK_PACKAGE([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
+                AC_JAVA_CHECK_JAR([commons-logging],[org.apache.commons.logging.LogFactory],[Apache logging])
                 COMMONS_LOGGING=$PACKAGE_JAR_FILE
                 AC_SUBST(COMMONS_LOGGING)
 
                 # JLaTeXMath
-                AC_JAVA_CHECK_PACKAGE([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering])
+                AC_JAVA_CHECK_JAR([jlatexmath],[org.scilab.forge.jlatexmath.TeXFormula],[LaTex Rendering],[],[VERSION],[1.0.3])
                 JLATEXMATH=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH)
 
-                AC_JAVA_CHECK_VERSION_PACKAGE([jlatexmath],[import org.scilab.forge.jlatexmath.TeXFormula;],$JLATEXMATH,[1.0.3],[TeXFormula.VERSION])
-
                 # JLaTeXMath FOP
-                AC_JAVA_CHECK_PACKAGE([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])
+                AC_JAVA_CHECK_JAR([jlatexmath-fop],[org.scilab.forge.jlatexmath.fop.JLaTeXMathObj],[LaTex Rendering - FOP plugin])
                 JLATEXMATH_FOP=$PACKAGE_JAR_FILE
                 AC_SUBST(JLATEXMATH_FOP)
 
@@ -1130,51 +1121,51 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
         fi
 
         # Checkstyle (code checking)
-        AC_JAVA_CHECK_PACKAGE([checkstyle],[com.puppycrawl.tools.checkstyle.CheckStyleTask],[Checkstyle - code checking],"yes")
+        AC_JAVA_CHECK_JAR([checkstyle],[com.puppycrawl.tools.checkstyle.CheckStyleTask],[Checkstyle - code checking],"yes")
         CHECKSTYLE=$PACKAGE_JAR_FILE
         AC_SUBST(CHECKSTYLE)
 
         # Commons beanutils (dependency of checkstyle)
-        AC_JAVA_CHECK_PACKAGE([commons-beanutils],[org.apache.commons.beanutils.Converter],[Bean utility],"yes")
+        AC_JAVA_CHECK_JAR([commons-beanutils],[org.apache.commons.beanutils.Converter],[Bean utility],"yes")
         COMMONS_BEANUTILS=$PACKAGE_JAR_FILE
         AC_SUBST(COMMONS_BEANUTILS)
 
         # antlr (dependency of checkstyle)
-        AC_JAVA_CHECK_PACKAGE([antlr],[antlr.TokenStreamException],[language tool for constructing recognizers],"yes")
+        AC_JAVA_CHECK_JAR([antlr],[antlr.TokenStreamException],[language tool for constructing recognizers],"yes")
         ANTLR=$PACKAGE_JAR_FILE
         AC_SUBST(ANTLR)
 
         # Junit 4 (java unitary test)
-        AC_JAVA_CHECK_PACKAGE([junit4],[org.junit.Assert],[Junit4 - Unit tests],"yes")
+        AC_JAVA_CHECK_JAR([junit4],[org.junit.Assert],[Junit4 - Unit tests],"yes")
         if test -z "$PACKAGE_JAR_FILE"; then
-                AC_JAVA_CHECK_PACKAGE([junit],[org.junit.Assert],[Junit4 -
+                AC_JAVA_CHECK_JAR([junit],[org.junit.Assert],[Junit4 -
 Unit tests],"yes")
         fi
         JUNIT4=$PACKAGE_JAR_FILE
         AC_SUBST(JUNIT4)
         
         # hamcrest (junit4 dependency)
-        AC_JAVA_CHECK_PACKAGE([hamcrest-all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
+        AC_JAVA_CHECK_JAR([hamcrest-all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
         if test -z "$PACKAGE_JAR_FILE"; then
-            AC_JAVA_CHECK_PACKAGE([hamcrest/all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
+            AC_JAVA_CHECK_JAR([hamcrest/all],[org.hamcrest.core.IsNull],[Hamcrest- library matchers],"yes")
         fi
         HAMCREST=$PACKAGE_JAR_FILE
         AC_SUBST(HAMCREST)
 
         # Cobertura (java code coverage)
-        AC_JAVA_CHECK_PACKAGE([cobertura],[net.sourceforge.cobertura.merge.Main],[cobertura - Java code coverage],"yes")
+        AC_JAVA_CHECK_JAR([cobertura],[net.sourceforge.cobertura.merge.Main],[cobertura - Java code coverage],"yes")
         COBERTURA=$PACKAGE_JAR_FILE
         AC_SUBST(COBERTURA)
 
         # ASM (a dependency of Cobertura)
-        AC_JAVA_CHECK_PACKAGE([asm3],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
+        AC_JAVA_CHECK_JAR([asm3],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
         if test -z "$ASM3"; then
-                AC_JAVA_CHECK_PACKAGE([asm],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
+                AC_JAVA_CHECK_JAR([asm],[org.objectweb.asm.Type],[Java bytecode manipulation (dep of cobertura)],"yes")
         fi
         ASM3=$PACKAGE_JAR_FILE
         AC_SUBST(ASM3)
 
-        AC_JAVA_CHECK_PACKAGE([ecj],[org.eclipse.jdt.core.compiler.batch.BatchCompiler],[Eclipse Java compiler],"yes")
+        AC_JAVA_CHECK_JAR([ecj],[org.eclipse.jdt.core.compiler.batch.BatchCompiler],[Eclipse Java compiler],"yes")
         ECJ=$PACKAGE_JAR_FILE
         if test -z "$ECJ"; then
            ECJ='$SCILAB/thirdparty/ecj.jar'
@@ -1487,7 +1478,7 @@ if test "$with_openmp" != no; then
 #   AC_OPENMP
     OPENMP_CFLAGS="-fopenmp"
     OPENMP_CXXFLAGS="-fopenmp"
-    OPENMP_LIBS="-lgomp -lstdc++" # Force -lstdc++ because some compilers do not add it automatically.
+    OPENMP_LIBS="-lgomp" 
 
     AC_CHECK_HEADERS([omp.h], [],
      [AC_MSG_ERROR([Could not find omp.h])])
@@ -1855,9 +1846,6 @@ AC_SUBST(GRAPHICS_ENABLE)
 LT_PREREQ([2.2.7])
 LT_INIT([shared dlopen disable-static])
 
-# Eliminate -lstdc++ addition to postdeps for cross compiles.
-postdeps_CXX=`echo " $postdeps_CXX " | sed 's, -lstdc++ ,,g'`
-
 # Avoid to link all the dep from others libraries (*.la included by LIBADD)
 link_all_deplibs=no
 
@@ -1955,9 +1943,9 @@ fi
 
 
 #########
-## Make sure that the libstdc++ and libgcc can be compiled as static
+## Make sure that the libstdc++ libgcc and libgfortran can be compiled as 
+## static if requested
 #########
-
 AC_CHECK_STDCPP_STATIC()
 
 #################
@@ -1974,10 +1962,47 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 # SCI_*FLAGS contains all defaults values detected on configure
-SCI_CFLAGS=$(echo                       $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
-SCI_CXXFLAGS=$(echo $STDCXX_11_CXXFLAGS $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
-SCI_FFLAGS=$(echo                       $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
-SCI_LDFLAGS=$(echo                      $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $COMPILER_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
+SCI_CFLAGS=$(echo                                             \
+             $LARGEFILE_CFLAGS                                \
+             $CODECOVERAGE_CFLAGS                             \
+             $DEBUG_CFLAGS                                    \
+             $ARCH_CFLAGS                                     \
+             $COMPILER_CFLAGS                                 \
+             $SCILIBS_CFLAGS                                  \
+             $SSE_CFLAGS                                      \
+             $BACKTRACE_CFLAGS                                \
+             $WARNING_CFLAGS                                  )
+SCI_CXXFLAGS=$(echo                                           \
+               $STDCXX_11_CXXFLAGS                            \
+               $LARGEFILE_CXXFLAGS                            \
+               $CODECOVERAGE_CXXFLAGS                         \
+               $DEBUG_CXXFLAGS                                \
+               $ARCH_CXXFLAGS                                 \
+               $COMPILER_CXXFLAGS                             \
+               $SCILIBS_CXXFLAGS                              \
+               $SSE_CXXFLAGS                                  \
+               $BACKTRACE_CXXFLAGS                            \
+               $WARNING_CXXFLAGS                              )
+SCI_FFLAGS=$(echo                                             \
+             $LARGEFILE_FFLAGS                                \
+             $CODECOVERAGE_FFLAGS                             \
+             $DEBUG_FFLAGS                                    \
+             $ARCH_FFLAGS                                     \
+             $COMPILER_FFLAGS                                 \
+             $SCILIBS_FFLAGS                                  \
+             $SSE_FFLAGS                                      \
+             $BACKTRACE_FFLAGS                                \
+             $WARNING_FFLAGS                                  )
+SCI_LDFLAGS=$(echo                                            \
+              $LARGEFILE_LDFLAGS                              \
+              $CODECOVERAGE_LDFLAGS                           \
+              $DEBUG_LDFLAGS                                  \
+              $ARCH_LDFLAGS                                   \
+              $COMPILER_LDFLAGS                               \
+              $SCILIBS_LDFLAGS                                \
+              $SSE_LDFLAGS                                    \
+              $BACKTRACE_LDFLAGS                              \
+              $WARNING_LDFLAGS                                )
 AC_SUBST(SCI_CFLAGS)
 AC_SUBST(SCI_CXXFLAGS)
 AC_SUBST(SCI_FFLAGS)
@@ -2065,6 +2090,7 @@ modules/xml/Makefile
 modules/external_objects/Makefile
 modules/external_objects_java/Makefile
 modules/slint/Makefile
+modules/coverage/Makefile
 modules/Makefile
 Makefile
 scilab.pc

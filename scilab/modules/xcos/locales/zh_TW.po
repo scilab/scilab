@@ -8,105 +8,51 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-03 02:42+0000\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
 "Last-Translator: Yung-Jang Lee <yjlee123@gmail.com>\n"
 "Language-Team: Chinese (Traditional) <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 記憶體空間不足.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-msgid "Straight"
-msgstr "直線"
-
-msgid "Horizontal"
-msgstr "水平"
-
-msgid "Vertical"
-msgstr "垂直"
-
-msgid "No trace nor debug printing"
-msgstr "無trace 及debug 輸出"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Light Simulation trace (離散和連續部分的切換)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "每一block 執行trace和 Debug block calls"
-
-msgid "Debug block calls without trace"
-msgstr "Debug block 呼叫沒有 trace"
-
-msgid "Number of recently opened files to display: "
-msgstr ""
-
-msgid "Default file format"
-msgstr ""
-
-msgid "Link Style"
-msgstr "連結方式"
-
-msgid "Diagram background"
-msgstr "圖框背景"
-
-msgid "Grid"
-msgstr "網格"
-
-msgid "Default simulation settings"
-msgstr ""
-
-msgid "Final integration time"
-msgstr "最後的整合時間"
-
-msgid "Real time scaling"
-msgstr "即時延展"
-
-msgid "Integrator absolute tolerance"
-msgstr "絶對容錯積分器"
-
-msgid "Integrator relative tolerance"
-msgstr "相對容錯積分器"
-
-msgid "Tolerance on time"
-msgstr "即時容錯"
-
-msgid "Max integration time interval"
-msgstr "最大整合的間隔時間"
-
-msgid "Solver kind"
-msgstr ""
-
-msgid "Maximum step size (0 means no limit)"
-msgstr ""
-
-msgid "Default trace settings"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為布林數(boolean).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
 
 #, c-format
 msgid ""
@@ -118,9 +64,6 @@ msgstr ""
 msgid ""
 "Unable to load the Batik library. \n"
 "Expecting version %s ; Getting version %s ."
-msgstr ""
-
-msgid "parent diagram not found."
 msgstr ""
 
 msgid "Preview"
@@ -453,6 +396,12 @@ msgstr "鏡象"
 msgid "Show/Hide shadow"
 msgstr "顯示/隱藏 陰影"
 
+msgid "Grid"
+msgstr "網格"
+
+msgid "Diagram background"
+msgstr "圖框背景"
+
 msgid "Bold"
 msgstr ""
 
@@ -492,8 +441,8 @@ msgstr "區塊說明"
 msgid "Xcos Demonstrations"
 msgstr ""
 
-msgid "About Xcos"
-msgstr "關於 Xcos"
+msgid "About Scilab"
+msgstr ""
 
 msgid "Palettes"
 msgstr "調色盤"
@@ -567,7 +516,8 @@ msgstr ""
 msgid "Palette name"
 msgstr ""
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Diagram已經異動 從上一次存檔.<br/> 你想要儲存嗎?"
 
 #, c-format
@@ -641,16 +591,20 @@ msgstr "加入到"
 msgid "Add to new diagram"
 msgstr "加入至新的圖框"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr "明確資料輸入埠必須連接到明確資料輸出埠"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr "不明確資料的輸入埠必須連接到不明確資料的輸出埠"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr "明確資料輸出埠必須連接到明確資料輸入埠"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr "不明確資料的輸出埠必須連接到不明確資料的輸入埠"
 
 msgid "Command port must be connected to control port"
@@ -693,11 +647,47 @@ msgstr "填充顏色"
 msgid "Text Color"
 msgstr ""
 
+msgid "Link Style"
+msgstr "連結方式"
+
+msgid "Straight"
+msgstr "直線"
+
+msgid "Horizontal"
+msgstr "水平"
+
+msgid "Vertical"
+msgstr "垂直"
+
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr "設定 debugging level (0,1,2,3) <br/> 假如執行 scicos_debug(n)"
 
 msgid "Execution trace and Debug"
 msgstr "執行 trace and Debug"
+
+msgid "Final integration time"
+msgstr "最後的整合時間"
+
+msgid "Real time scaling"
+msgstr "即時延展"
+
+msgid "Integrator absolute tolerance"
+msgstr "絶對容錯積分器"
+
+msgid "Integrator relative tolerance"
+msgstr "相對容錯積分器"
+
+msgid "Tolerance on time"
+msgstr "即時容錯"
+
+msgid "Max integration time interval"
+msgstr "最大整合的間隔時間"
+
+msgid "Solver kind"
+msgstr ""
+
+msgid "Maximum step size (0 means no limit)"
+msgstr ""
 
 msgid "Default"
 msgstr "預設"
@@ -736,8 +726,21 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr "點按 diagram 以增加link point 或是 相容的目標來完成"
+
+msgid "No trace nor debug printing"
+msgstr "無trace 及debug 輸出"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "Light Simulation trace (離散和連續部分的切換)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "每一block 執行trace和 Debug block calls"
+
+msgid "Debug block calls without trace"
+msgstr "Debug block 呼叫沒有 trace"
 
 msgid "All supported formats"
 msgstr ""
@@ -826,153 +829,28 @@ msgid "Expecting '%d'."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. <br/"
-">Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "使用-nogui 或 -nwni 參數的模式下 Scilab '%s' 模組已被停用.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' 模組尚未安裝.\n"
 
-msgid "Basic controller"
+msgid "Number of recently opened files to display: "
 msgstr ""
 
-msgid "Water tank"
+msgid "Default file format"
 msgstr ""
 
-msgid "Discrete Controller"
+msgid "Default simulation settings"
 msgstr ""
 
-msgid "Kalman Filter"
-msgstr ""
-
-msgid "Discrete Kalman Filter"
-msgstr ""
-
-msgid "Cont.Plant-Hybrid Observer"
-msgstr ""
-
-msgid "Temperature Controller"
-msgstr ""
-
-msgid "Inverted pendulum"
-msgstr ""
-
-msgid "Lorenz butterfly"
-msgstr ""
-
-msgid "RLC Circuit"
-msgstr ""
-
-msgid "Bridge Rectifer"
-msgstr ""
-
-msgid "Transformer"
-msgstr ""
-
-msgid "Differential amplifier"
-msgstr ""
-
-msgid "OpAmp amplifier"
-msgstr ""
-
-msgid "Switched capacitor integrator"
-msgstr ""
-
-msgid "DC/DC Buck Converter"
-msgstr ""
-
-msgid "DC/DC Boost Converter"
-msgstr ""
-
-msgid "Colpitts oscillator"
-msgstr ""
-
-msgid "Logic AND gate"
-msgstr ""
-
-msgid "Logic NOR gate"
-msgstr ""
-
-msgid "If Then Else"
-msgstr ""
-
-msgid "And"
-msgstr ""
-
-msgid "Automotive Suspension"
-msgstr ""
-
-msgid "Ball on a Platform"
-msgstr ""
-
-msgid "Bouncing Ball"
-msgstr ""
-
-msgid "Chaos Modelica"
-msgstr ""
-
-msgid "Hydraulics blocks"
-msgstr ""
-
-msgid "RLC circuit"
-msgstr ""
-
-msgid "Old Gain Block"
-msgstr ""
-
-msgid "Standard demos"
-msgstr ""
-
-msgid "Control Systems"
-msgstr ""
-
-msgid "Electrical Systems"
-msgstr ""
-
-msgid "Mechanical Systems"
-msgstr ""
-
-msgid "Modelica demos"
-msgstr ""
-
-msgid "Old demos"
-msgstr ""
-
-msgid "Simple Demo"
-msgstr ""
-
-msgid "Bouncing Balls"
-msgstr ""
-
-msgid "Simple Thermostat"
-msgstr ""
-
-msgid "Table Lookup"
-msgstr ""
-
-msgid "Signal Builder"
-msgstr ""
-
-msgid "Fibonacci Numbers"
-msgstr ""
-
-msgid "Scilab block"
-msgstr ""
-
-msgid "Xcos data types"
-msgstr ""
-
-msgid "Zero Crossing"
-msgstr ""
-
-msgid "_IF_ Xcos block"
-msgstr ""
-
-msgid "Goto/From blocks"
-msgstr ""
-
-msgid "Event demos"
+msgid "Default trace settings"
 msgstr ""
 
 #, c-format
@@ -988,7 +866,8 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr "%s: 參數 %s 型別有誤: 目錄路徑字串(directory path string)才對.\n"
 
 #, c-format
@@ -1029,8 +908,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr ""
-"%s:   在 %s 變數(variable)定義的(defined)所有路徑(All paths) 必須存在.\n"
+msgstr "%s:   在 %s 變數(variable)定義的(defined)所有路徑(All paths) 必須存在.\n"
 
 #, c-format
 msgid ""
@@ -1039,15 +917,15 @@ msgid ""
 msgstr "%s: 無法建立 %s 目錄, 請檢查你是否有存取該目錄的權限.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
-msgstr "%s: 第 %d 個 參數型別有誤: 字串或 diagram structure才對"
-
-#, c-format
 msgid "Unable to open %s"
 msgstr "無法開啟 %s。"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Not supported format %s.\n"
 msgstr ""
 
 #, c-format
@@ -1073,8 +951,10 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"
@@ -1315,16 +1195,4 @@ msgid "Simulation problem"
 msgstr ""
 
 msgid "Error in post_xcos_simulate: ending simulation."
-msgstr ""
-
-#, c-format
-msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Syntax error while trying to set up context from"
 msgstr ""

@@ -23,7 +23,7 @@
     </refsection>
     <refsection>
         <title>Windows</title>
-        <para>-- Visual studio C++ 2005, 2008, 2010, 2012, 2013 Professionnal 32 and 64 bits</para>
+        <para>-- Visual studio C++ 2005, 2008, 2010, 2012, 2013 Professional 32 and 64 bits</para>
         <para>-- Visual studio C++ 2012, 2013 Express Edition (available at no charge)</para>
         <para>
             More information is available on <ulink url="http://wiki.scilab.org/How_can_I_set_up_Microsoft_Visual_Studio_2008/2010_Express_Edition_for_use_with_Scilab_x64_on_64-bit_Windows%3F">Scilab Wiki</ulink>.

@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="is_handle_valid">
     <refnamediv>
         <refname>is_handle_valid</refname>
-        <refpurpose>Check wether a set of graphic handles is still valid.</refpurpose>
+        <refpurpose>Check whether a set of graphic handles is still valid.</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -41,7 +41,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>is_handle_valid</literal> function tests wether a set of graphic handle
+            <literal>is_handle_valid</literal> function tests whether a set of graphic handle
             is still valid. A valid handle is a handle which has not been deleted.
             The result, <literal>isValid</literal>, is a boolean matrix such as
             <literal>isValid(i,j)</literal> is true if

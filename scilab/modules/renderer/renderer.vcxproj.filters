@@ -81,9 +81,6 @@
     <None Include="renderer_header.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="graphics_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

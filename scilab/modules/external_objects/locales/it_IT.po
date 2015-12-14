@@ -6,21 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-14 21:27+0000\n"
+"PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
-msgid "Exception thrown in file"
-msgstr "Eccezione lanciata nel file"
-
-msgid "at line"
-msgstr "alla riga"
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Variabile non valida: impossibile ottenere i dati"
 
 #, c-format
 msgid "%s: An error occurred: %s"
@@ -39,9 +36,6 @@ msgstr "Nome di variabile non valido: %s"
 
 msgid "Cannot allocate memory"
 msgstr "Impossibile allocare della memoria"
-
-msgid "Invalid variable: cannot retrieve the data"
-msgstr "Variabile non valida: impossibile ottenere i dati"
 
 msgid "Invalid variable: cannot create data"
 msgstr "Variabile non valida: impossibile creare i dati"
@@ -169,7 +163,8 @@ msgstr "Impossibile invocare su oggetti nulli"
 
 #, c-format
 msgid "Wrong type for input argument #%d: A List expected."
-msgstr "L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista."
+msgstr ""
+"L'argomento in ingresso #%d è di tipo sbagliato: era attesa una lista."
 
 #, c-format
 msgid "Wrong type for input argument #%d: An Integer32 expected."

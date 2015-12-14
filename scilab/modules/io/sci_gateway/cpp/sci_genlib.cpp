@@ -32,7 +32,6 @@
 #include "context.hxx"
 #include "io_gw.hxx"
 #include "scilabWrite.hxx"
-#include "expandPathVariable.h"
 #include "configvariable.hxx"
 #include "library.hxx"
 #include "macrofile.hxx"
@@ -56,6 +55,7 @@ extern "C"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "md5.h"
+#include "pathconvert.h"
 }
 
 
@@ -135,14 +135,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[2];
         if (pIT->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
         types::Bool* p = pIT->getAs<types::Bool>();
         if (p->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
@@ -155,14 +155,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
         pIT = in[3];
         if (pIT->isBool() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
         types::Bool* p = pIT->getAs<types::Bool>();
         if (p->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A sclar boolean expected.\n"), "genlib", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "genlib", 3);
             return types::Function::Error;
         }
 
@@ -170,14 +170,14 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
     }
 
     wchar_t* pstFile = pS->get(0);
-    pstParsePath = expandPathVariableW(pstFile);
+    pstParsePath = pathconvertW(pstFile, TRUE, TRUE, AUTO_STYLE);
 
     if (in.size() == 1)
     {
         delete pS;
     }
 
-    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);
+    os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%lslib", pstParsePath);
 
     if (bVerbose)
     {
@@ -231,6 +231,15 @@ types::Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, t
 
             //compute file md5
             FILE* fmdf5 = os_wfopen(stFullPath.data(), L"rb");
+            if (fmdf5 == NULL)
+            {
+                char* pstr = wide_string_to_UTF8(stFullPath.data());
+                Scierror(999, _("%s: Cannot open file ''%s''.\n"), "genlib", pstr);
+                FREE(pstr);
+                pLib->killMe();
+                return types::Function::Error;
+            }
+
             char* md5 = md5_file(fmdf5);
             fclose(fmdf5);
 

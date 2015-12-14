@@ -10,6 +10,8 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+#include <list>
+
 #include "string.hxx"
 #include "double.hxx"
 #include "differentialequationfunctions.hxx"
@@ -33,22 +35,22 @@ extern "C"
 
 // need the current thread, not the last running thread.
 
-DifferentialEquationFunctions* DifferentialEquation::m_DifferentialEquationFunctions;
+std::list<DifferentialEquationFunctions*> DifferentialEquation::m_DifferentialEquationFunctions;
 
 using namespace types;
 void DifferentialEquation::addDifferentialEquationFunctions(DifferentialEquationFunctions* _deFunction)
 {
-    m_DifferentialEquationFunctions = _deFunction;
+    m_DifferentialEquationFunctions.push_back(_deFunction);
 }
 
 void DifferentialEquation::removeDifferentialEquationFunctions()
 {
-    m_DifferentialEquationFunctions = NULL;
+    m_DifferentialEquationFunctions.pop_back();
 }
 
 DifferentialEquationFunctions* DifferentialEquation::getDifferentialEquationFunctions()
 {
-    return m_DifferentialEquationFunctions;
+    return m_DifferentialEquationFunctions.back();
 }
 
 

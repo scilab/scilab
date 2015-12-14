@@ -81,18 +81,6 @@ public final class SplitBlock extends BasicBlock {
         if (geometry != null) {
             geometry.setWidth(DEFAULT_SIZE);
             geometry.setHeight(DEFAULT_SIZE);
-
-            /*
-             * Align the geometry on the grid
-             */
-            // FIXME
-            //            if (getParentDiagram() != null && getParentDiagram().isGridEnabled()) {
-            //                final double cx = getParentDiagram().snap(geometry.getCenterX());
-            //                final double cy = getParentDiagram().snap(geometry.getCenterY());
-            //
-            //                geometry.setX(cx - (DEFAULT_SIZE / 2));
-            //                geometry.setY(cy - (DEFAULT_SIZE / 2));
-            //            }
         }
 
         super.setGeometry(geometry);

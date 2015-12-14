@@ -38,10 +38,11 @@ class EXTERN_AST Function : public Callable
 public :
     enum FunctionType
     {
-        EntryPointC         = 0,
-        EntryPointCPP       = 1,
-        EntryPointMex       = 2,
-        EntryPointCPPOpt    = 3,
+        EntryPointOldC = 0,
+        EntryPointCPP = 1,
+        EntryPointMex = 2,
+        EntryPointCPPOpt = 3,
+        EntryPointC = 4
     };
 
     typedef int(*LOAD_DEPS)(const std::wstring&);
@@ -64,6 +65,8 @@ public :
     static Function*        createFunction(const std::wstring& _wstName, GW_FUNC_OPT _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
     static Function*        createFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
     static Function*        createFunction(const std::wstring& _wstName, MEXGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+    static Function*        createFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, const std::wstring& _wstModule);
+    static Function*        createFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
     /*dynamic gateways*/
     static Function*        createFunction(const std::wstring& _wstFunctionName, const std::wstring& _wstEntryPointName, const std::wstring& _wstLibName, FunctionType _iType, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule, bool _bCloseLibAfterCall = false);
@@ -139,9 +142,9 @@ private:
 
 class WrapFunction : public Function
 {
-private :
+private:
     WrapFunction(WrapFunction* _pWrapFunction);
-public :
+public:
     WrapFunction(const std::wstring& _wstName, OLDGW_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
 
     Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
@@ -152,8 +155,27 @@ public :
         return m_pOldFunc;
     }
 
-private :
+private:
     OLDGW_FUNC              m_pOldFunc;
+};
+
+class WrapCFunction : public Function
+{
+private:
+    WrapCFunction(WrapCFunction* _pWrapFunction);
+public:
+    WrapCFunction(const std::wstring& _wstName, GW_C_FUNC _pFunc, LOAD_DEPS _pLoadDeps, const std::wstring& _wstModule);
+
+    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
+    InternalType*           clone();
+
+    GW_C_FUNC               getFunc()
+    {
+        return m_pCFunc;
+    }
+
+private:
+    GW_C_FUNC               m_pCFunc;
 };
 
 class WrapMexFunction : public Function
@@ -199,6 +221,7 @@ private :
     GW_FUNC                 m_pFunc;
     GW_FUNC_OPT             m_pOptFunc;
     OLDGW_FUNC              m_pOldFunc;
+    GW_C_FUNC               m_pCFunc;
     MEXGW_FUNC              m_pMexFunc;
     Function*               m_pFunction;
 };

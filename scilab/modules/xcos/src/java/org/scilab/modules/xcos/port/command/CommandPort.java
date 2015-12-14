@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.port.command;
 
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 
@@ -35,5 +36,10 @@ public class CommandPort extends BasicPort {
     @Override
     public Type getType() {
         return null;
+    }
+
+    @Override
+    public PortKind getPortKind() {
+        return PortKind.PORT_EOUT;
     }
 }

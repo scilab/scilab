@@ -9,54 +9,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
-
-#
-# File: sci_gateway/c/sci_qr.c, line: 65
-# File: sci_gateway/c/sci_qr.c, line: 84
-# File: sci_gateway/c/sci_qr.c, line: 107
-# File: sci_gateway/c/sci_qr.c, line: 114
-# File: sci_gateway/c/sci_qr.c, line: 120
-# File: sci_gateway/c/sci_backslash.c, line: 63
-# File: sci_gateway/c/sci_backslash.c, line: 84
-# File: sci_gateway/c/sci_backslash.c, line: 91
-# File: sci_gateway/c/sci_eig.c, line: 79
-# File: sci_gateway/c/sci_eig.c, line: 115
-# File: sci_gateway/c/sci_eig.c, line: 133
-# File: sci_gateway/c/sci_eig.c, line: 139
-# File: sci_gateway/c/sci_hess.c, line: 47
-# File: sci_gateway/c/sci_lu.c, line: 49
-# File: sci_gateway/c/sci_det.c, line: 47
-# File: sci_gateway/c/sci_balanc.c, line: 54
-# File: sci_gateway/c/sci_balanc.c, line: 92
-# File: sci_gateway/c/sci_balanc.c, line: 115
-# File: sci_gateway/c/sci_balanc.c, line: 122
-# File: sci_gateway/c/sci_rcond.c, line: 50
-# File: sci_gateway/c/sci_schur.c, line: 70
-# File: sci_gateway/c/sci_schur.c, line: 90
-# File: sci_gateway/c/sci_schur.c, line: 173
-# File: sci_gateway/c/sci_schur.c, line: 216
-# File: sci_gateway/c/sci_schur.c, line: 231
-# File: sci_gateway/c/sci_schur.c, line: 242
-# File: sci_gateway/c/sci_chol.c, line: 48
-# File: sci_gateway/c/sci_lsq.c, line: 80
-# File: sci_gateway/c/sci_lsq.c, line: 88
-# File: sci_gateway/c/sci_slash.c, line: 59
-# File: sci_gateway/c/sci_slash.c, line: 80
-# File: sci_gateway/c/sci_slash.c, line: 87
-# File: sci_gateway/c/sci_inv.c, line: 49
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數或複數矩陣.\n"
-
-#
-# File: sci_gateway/c/sci_bdiag.c, line: 97
-#, c-format
-msgid "%s: Non convergence in QR steps.\n"
-msgstr "%s: 在 QR 計算步驟中未收斂.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -95,7 +50,96 @@ msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arguments %d and %d must have equal dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot allocate more memory.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: LAPACK error n%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real or complex matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Allocation failed.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_bdiag.c, line: 97
+#, c-format
+msgid "%s: Non convergence in QR steps.\n"
+msgstr "%s: 在 QR 計算步驟中未收斂.\n"
+
+#, c-format
+msgid "%s: Matrix is not positive definite.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"
+msgstr ""
+
+msgid "Warning :\n"
+msgstr ""
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %1.4E\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Problem is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s and %s must have equal number of rows.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or a string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
@@ -103,6 +147,122 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
+
+#, c-format
+msgid "%s: Subroutine not found: %s\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Schur exit with state %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack "
+"library problem).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Convergence problem, %d off-diagonal elements of an intermediate "
+"tridiagonal form did not converge to zero.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack "
+"library problem).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The QR algorithm failed to compute all the eigenvalues, and no "
+"eigenvectors have been computed. Elements and %d+1:N of W contain "
+"eigenvalues which have converged.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The QR algorithm failed to compute all the eigenvalues, and no "
+"eigenvectors have been computed. Elements and %d+1:N of WR and WI contain "
+"eigenvalues which have converged.\n"
+msgstr ""
+
+msgid "Non convergence in the QZ algorithm.\n"
+msgstr ""
+
+#, c-format
+msgid "The top %d  x %d blocks may not be in generalized Schur form.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The QZ iteration failed in DGGEV.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Other than QZ iteration failed in DHGEQZ.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error return from DTGEVC.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): At least %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr ""
+
+#, c-format
+msgid "Argument %d in dgees had an illegal value.\n"
+msgstr ""
+
+msgid "The QR algorithm failed to compute all the eigenvalues.\n"
+msgstr ""
+
+msgid ""
+"The eigenvalues could not be reordered because some eigenvalues were too "
+"close to separate (the problem is very ill-conditioned).\n"
+msgstr ""
+
+msgid ""
+"After reordering, roundoff changed values of some complex eigenvalues so "
+"that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. "
+"This could also be caused by underflow due to scaling.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument %d in zgees had an illegal value.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument %d in dgges had an illegal value.\n"
+msgstr ""
+
+msgid "The QZ iteration failed. (A,E) are not in Schur form.\n"
+msgstr ""
+
+msgid "Other than QZ iteration failed in DHGEQZ.\n"
+msgstr ""
+
+msgid "Reordering failed in DTGSEN.\n"
+msgstr ""
+
+#, c-format
+msgid "Argument %d in zgges had an illegal value.\n"
+msgstr ""
+
+msgid "Other than QZ iteration failed in ZHGEQZ.\n"
+msgstr ""
+
+msgid "Reordering failed in ZTGSEN.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected."
@@ -121,16 +281,13 @@ msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: must be %d, %d, %s, '%s' or '%s'.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -209,10 +366,6 @@ msgstr ""
 msgid ""
 "%s: Function not defined for type '%s'. Check argument or define function %s."
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤:應為  %d.\n"
 
 #
 # File: macros/range.sci, line: 18

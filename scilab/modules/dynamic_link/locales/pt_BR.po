@@ -8,37 +8,34 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-06-11 23:46+0000\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
 "Last-Translator: Ramiro Pereira de Magalhães <ramiro.p.magalhaes@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pt_BR\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
-"grandeza escalar.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgid "%s : Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
-"de textos.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgid "%s : Wrong type for input argument #%d: String vector expected.\n"
 msgstr ""
-"%s: tamanho incorreto para o argumento de entrada #%d: esperava-se um vetor "
-"de strings < %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: Tipo incorreto para os argumentos de entrada: esperava-se textos.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
@@ -47,27 +44,19 @@ msgstr ""
 "compartilhada.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um número "
 "inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgid "%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor errado para o argumento de entrada #%d: Deve pertencer ao conjunto "
-"{%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
+msgid ""
+"%s Wrong type for input argument #%d: string or string vector expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro.\n"
 
 #, c-format
 msgid "%s : Wrong value for argument #%d: %s\n"
@@ -77,91 +66,9 @@ msgid "Unique id of a shared library expected."
 msgstr "Esperava-se um identificador único de uma biblioteca compartilhada."
 
 #, c-format
-msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s : Tipo errado para o argumento de entrada #%d: %s\n"
-
-msgid "Unique dynamic library name expected."
-msgstr "Esperava-se um nome único de biblioteca dinâmica."
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
-"%s: Tipo incorreto para o argumento de entrada: esperava-se vetor de "
-"textos.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr "%s: Tipo incorreto para o argumento de entrada: esperava-se textos.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um número "
-"inteiro.\n"
-
-#, c-format
-msgid "Error: Not a valid internal routine number %d.\n"
-msgstr "Erro: Não é um número válido para rotina interna %d.\n"
-
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "Interface %s não está ligada.\n"
-
-#, c-format
-msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: O arquivo compartilhado não foi carregado: %s\n"
-
-#, c-format
-msgid "%s: Cannot open shared files. Max entry %d reached.\n"
-msgstr ""
-"%s: Não se pode abrir os arquivos compartilhados. Máximo de entradas %d "
-"alcançado.\n"
-
-#, c-format
-msgid "%s: Shared lib %s does not exist.\n"
-msgstr "%s: A biblioteca compartilhada %s não existe.\n"
-
-#, c-format
-msgid "%s: Already loaded from library %s\n"
-msgstr "%s: Já carregado da biblioteca %s\n"
-
-#, c-format
-msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: Problema com um dos pontos de entrada.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Um erro ocorreu: %s\n"
-
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr "%s: não é possível carregar uma dll x86 em um ambiente x64.\n"
-
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr "%s: não é possível carregar uma dll x64 em um ambiente x86.\n"
-
-#, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: O arquivo %s não existe no ambiente descrito em PATH.\n"
-
-#, c-format
-msgid "Link failed for dynamic library '%s'.\n"
-msgstr "O link falhou para a biblioteca dinâmica '%s'.\n"
-
-#, c-format
-msgid "An error occurred: %s\n"
-msgstr "Um erro ocorreu: %s\n"
-
-msgid "Shared archive loaded.\n"
-msgstr "Arquivo compartilhado carregado.\n"
-
-msgid "Link done.\n"
-msgstr "Link feito.\n"
 
 #, c-format
 msgid ""
@@ -180,65 +87,66 @@ msgid "] : %d libraries.\n"
 msgstr "] : %d bibliotecas.\n"
 
 #, c-format
-msgid "Entry point %s in shared library %d.\n"
-msgstr "Ponto de entrada %s na biblioteca compartilhada %d.\n"
-
-#, c-format
-msgid "Cannot open shared files max entry %d reached.\n"
-msgstr ""
-"Não se pode abrir os arquivos compartilhados, o máximo de entradas %d foi "
-"alcançado.\n"
-
-#, c-format
-msgid "Entry name %s.\n"
-msgstr "Nome da entrada %s.\n"
-
-#, c-format
-msgid "%s is not an entry point.\n"
-msgstr "%s não é um ponto de entrada.\n"
-
-#, c-format
-msgid "Linking %s.\n"
-msgstr "Realizando o linking de %s.\n"
-
-msgid "Calling a C function from Scilab.\n"
-msgstr ""
-
-msgid "Calling ilib_for_link to build C function.\n"
-msgstr ""
-
-msgid "Calling C function. Z = X+Y"
+msgid "Entry point %ls in shared library %d.\n"
 msgstr ""
 
 #, c-format
-msgid "with X = %d"
+msgid "%s: Wrong type for input argument #%d: real scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "with Y = %d"
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: O arquivo compartilhado não foi carregado: %s\n"
+
+#, c-format
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: A biblioteca compartilhada %s não existe.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: Já carregado da biblioteca %s\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: Problema com um dos pontos de entrada.\n"
+
+#, c-format
+msgid "%s: can not to load a x86 dll in a x64 environment.\n"
+msgstr "%s: não é possível carregar uma dll x86 em um ambiente x64.\n"
+
+#, c-format
+msgid "%s: can not load a x64 dll in a x86 environment.\n"
+msgstr "%s: não é possível carregar uma dll x64 em um ambiente x86.\n"
+
+#, c-format
+msgid "%ls: The file %ls does not exist in PATH environment.\n"
 msgstr ""
 
 #, c-format
-msgid "Result Z = %d"
+msgid "Link failed for dynamic library '%ls'.\n"
 msgstr ""
 
-msgid "Calling a Fortran subroutine from Scilab.\n"
+#, c-format
+msgid "An error occurred: %s\n"
+msgstr "Um erro ocorreu: %s\n"
+
+msgid "Shared archive loaded.\n"
+msgstr "Arquivo compartilhado carregado.\n"
+
+msgid "Link done.\n"
+msgstr "Link feito.\n"
+
+#, c-format
+msgid "Entry name %ls.\n"
 msgstr ""
 
-msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
+#, c-format
+msgid "%ls is not an entry point.\n"
 msgstr ""
 
-msgid "Calling Fortran subroutine. Z = X+Y"
+#, c-format
+msgid "Linking %ls.\n"
 msgstr ""
-
-msgid "Dynamic link"
-msgstr "Linking dinâmico"
-
-msgid "Call a C function"
-msgstr "Chamar uma função de C"
-
-msgid "Call a Fortran subroutine"
-msgstr "Chamar uma função de Fortran"
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -247,9 +155,6 @@ msgstr "%s: Um compilador de Fortran ou C necessário.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Quantidade incorreta de argumentos de entrada.\n"
-
-msgid "Microsoft Visual Studio C x86 Compiler not found."
-msgstr ""
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr ""
@@ -296,7 +201,8 @@ msgstr ""
 "texto.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
@@ -425,8 +331,8 @@ msgid ""
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 "%s: Alerta: Scilab não foi capaz de encontrar onde os fontes do Scilab se "
-"encontram. Por favor envie um relato de erro através de http://bugzilla."
-"scilab.org/\n"
+"encontram. Por favor envie um relato de erro através de "
+"http://bugzilla.scilab.org/\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
@@ -552,7 +458,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
+msgstr ""
+"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
@@ -587,6 +494,12 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um "
 "booleano.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se uma "
+"grandeza escalar.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

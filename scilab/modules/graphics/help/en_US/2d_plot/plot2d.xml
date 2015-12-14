@@ -95,7 +95,7 @@
                         <varlistentry>
                             <term>rect</term>
                             <listitem>
-                                <para>sets the mimimal bounds requested for the plot. The
+                                <para>sets the minimal bounds requested for the plot. The
                                     associated value should be a real vector with four entries:
                                     <literal>[xmin,ymin,xmax,ymax]</literal>.
                                 </para>
@@ -259,7 +259,7 @@
                                     <varlistentry>
                                         <term>y=0</term>
                                         <listitem>
-                                            <para>no computation, the plot use the previus (or
+                                            <para>no computation, the plot use the previous (or
                                                 default) scale
                                             </para>
                                         </listitem>
@@ -309,7 +309,7 @@
                                     <varlistentry>
                                         <term>y=7</term>
                                         <listitem>
-                                            <para>like y=1 but the previus plot(s) are redrawn to
+                                            <para>like y=1 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>
@@ -317,7 +317,7 @@
                                     <varlistentry>
                                         <term>y=8</term>
                                         <listitem>
-                                            <para>like y=2 but the previus plot(s) are redrawn to
+                                            <para>like y=2 but the previous plot(s) are redrawn to
                                                 use the new scale
                                             </para>
                                         </listitem>
@@ -405,7 +405,7 @@
             <varlistentry>
                 <term>rect</term>
                 <listitem>
-                    <para>This option may be used to set the mimimal bounds requested
+                    <para>This option may be used to set the minimal bounds requested
                         for the plot. If this option is specified, the associated value
                         should be a real vector with four entries:
                     </para>
@@ -779,7 +779,7 @@ a.children // list the children of the axes.
 // There are a compound made of two polylines and a legend 
 poly1= a.children(1).children(1); //store polyline handle into poly1 
 poly1.foreground = 4; // another way to change the style...
-poly1.thickness = 3;  // ...and the tickness of a curve.
+poly1.thickness = 3;  // ...and the thickness of a curve.
 poly1.clip_state='off'; // clipping control
 leg = a.children(2); // store legend handle into leg
 leg.font_style = 9; 
@@ -802,7 +802,7 @@ a.isoview='off';
             // There are a compound made of two polylines and a legend 
             poly1= a.children(1).children(1); //store polyline handle into poly1 
             poly1.foreground = 4; // another way to change the style...
-            poly1.thickness = 3;  // ...and the tickness of a curve.
+            poly1.thickness = 3;  // ...and the thickness of a curve.
             poly1.clip_state='off'; // clipping control
             leg = a.children(2); // store legend handle into leg
             leg.font_style = 9; 

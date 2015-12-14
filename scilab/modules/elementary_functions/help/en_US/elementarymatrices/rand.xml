@@ -258,7 +258,7 @@ r=rand(2,2,2)
     ]]></programlisting>
     </refsection>
     <refsection>
-        <title>Get predictible or less predictible numbers</title>
+        <title>Get predictable or less predictable numbers</title>
         <para>
             The "uniform" pseudo random number generator is a deterministic sequence which aims at
             reproducing a independent identically distributed numbers uniform in the
@@ -271,7 +271,7 @@ r=rand(2,2,2)
         </para>
         <para>
             In some situations, we may want to initialize the seed of the generator in
-            order to produce less predictible sequences. In this case, we may initialize the
+            order to produce less predictable sequences. In this case, we may initialize the
             seed with the output of the <literal>getdate</literal> function:
         </para>
         <programlisting role="example"><![CDATA[  

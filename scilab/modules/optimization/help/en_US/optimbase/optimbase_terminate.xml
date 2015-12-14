@@ -205,7 +205,7 @@
             <listitem>
                 <para>
                     The tolerance on <literal>x</literal> is examined depending on the value of the 
-                    <literal>-tolxmethod</literal> otpion.
+                    <literal>-tolxmethod</literal> option.
                 </para>
                 <variablelist>
                     <varlistentry>

@@ -31,7 +31,7 @@ public:
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_browsevar);
-C_GATEWAY_PROTOTYPE(sci_editvar);
+STACK_GATEWAY_PROTOTYPE(sci_editvar);
 CPP_GATEWAY_PROTOTYPE(sci_filebrowser);
 CPP_GATEWAY_PROTOTYPE(sci_updatebrowsevar);
 CPP_GATEWAY_PROTOTYPE(sci_closeEditvar);

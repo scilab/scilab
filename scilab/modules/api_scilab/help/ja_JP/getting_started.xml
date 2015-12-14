@@ -20,7 +20,7 @@
     <refsection>
         <title>説明</title>
         <para>
-            <link linkend="api_scilab">api_scilabプレゼンテーション</link>
+            <link linkend="api_scilab_legacy">api_scilabプレゼンテーション</link>
             で説明されたように,
             ScilabはC, C++またはFortranコード(ソースまたはライブラリ)で言語を
             拡張するためのAPIを提供します.
@@ -287,7 +287,7 @@
 #include "api_scilab.h"
 #include "BOOL.h"
 // 関数宣言
-int sci_foo(char *fname, unsigned long fname_len)
+int sci_foo(char *fname, void* pvApiCtx)
 {
     // エラー管理変数
     SciErr sciErr;

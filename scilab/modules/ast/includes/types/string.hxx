@@ -35,7 +35,7 @@ class EXTERN_AST String : public ArrayOf<wchar_t*>
 {
 public :
     String(int _iRows, int _iCols);
-    String(int _iDims, int* _piDims);
+    String(int _iDims, const int* _piDims);
     String(int _iRows, int _iCols, wchar_t const* const* _pstData);
     String(const wchar_t *_pstData);
     String(const char *_pstData);
@@ -54,7 +54,7 @@ public :
     bool                    operator==(const InternalType& it);
     bool                    operator!=(const InternalType& it);
 
-    bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    bool                    subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring    getTypeStr()
     {

@@ -68,6 +68,10 @@ public class Controller {
     return new VectorOfScicosID(JavaControllerJNI.Controller_getAll(swigCPtr, this, k.ordinal()), true);
   }
 
+  public void sortAndFillKind(VectorOfScicosID uids, VectorOfInt kind) {
+    JavaControllerJNI.Controller_sortAndFillKind(swigCPtr, this, VectorOfScicosID.getCPtr(uids), uids, VectorOfInt.getCPtr(kind), kind);
+  }
+
   public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, int[] v) {
     return JavaControllerJNI.Controller_getObjectProperty__SWIG_1(swigCPtr, this, uid, k.ordinal(), p.ordinal(), v);
   }

@@ -14,12 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Scilab '%s' Modul in Modus -nogui ider -nmwi deaktiviert.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -34,7 +30,8 @@ msgid "%s: No more memory.\n"
 msgstr "%s: kein weiterer Speicher.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -47,460 +44,6 @@ msgid ""
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d und #%d. Gleiche Dimensionen "
 "erwartet.\n"
-
-msgid "File"
-msgstr "Datei"
-
-msgid "New"
-msgstr "Neu"
-
-msgid "Open"
-msgstr "Öffnen"
-
-msgid "Open recent"
-msgstr ""
-
-msgid "Working directories;Add a directory;Remove last directory"
-msgstr ""
-
-msgid "Open file in ..."
-msgstr ""
-
-msgid "Save file in ..."
-msgstr ""
-
-msgid "Reload"
-msgstr ""
-
-msgid "Restore opened files on start-up"
-msgstr ""
-
-msgid "Open function source file"
-msgstr ""
-
-msgid "Open URL"
-msgstr ""
-
-msgid "Save"
-msgstr "Speichern"
-
-msgid "Save as"
-msgstr "Speichern als"
-
-msgid "Save All"
-msgstr "Alles sichern"
-
-msgid "Overwrite"
-msgstr ""
-
-msgid "Export"
-msgstr ""
-
-msgid "Page Setup"
-msgstr "Seite einrichten"
-
-msgid "Print Preview"
-msgstr "Druckvorschau"
-
-msgid "Print"
-msgstr "Drucken"
-
-msgid "Close"
-msgstr "Schließen"
-
-msgid "Close All"
-msgstr "Alle Schließen"
-
-msgid "Close All But This"
-msgstr "Schließe alle außer diesem"
-
-msgid "Exit Scinotes"
-msgstr ""
-
-msgid "Edit"
-msgstr "Bearbeiten"
-
-msgid "Undo"
-msgstr "Rückgängig machen"
-
-msgid "Redo"
-msgstr "Wiederholen"
-
-msgid "Cut"
-msgstr "Ausschneiden"
-
-msgid "Copy"
-msgstr "kopieren"
-
-msgid "Copy as HTML with line number"
-msgstr ""
-
-msgid "Paste"
-msgstr "Einfügen"
-
-msgid "Delete"
-msgstr "Löschen"
-
-msgid "Columns actions"
-msgstr ""
-
-msgid "Paste Column"
-msgstr ""
-
-msgid "Repeat on the Column"
-msgstr ""
-
-msgid "Select All"
-msgstr "Alle auswählen"
-
-msgid "Select current block"
-msgstr ""
-
-msgid "Search"
-msgstr "Suchen"
-
-msgid "Find/Replace"
-msgstr "Suchen/Ersetzen"
-
-msgid "Find Next"
-msgstr "Weitersuchen"
-
-msgid "Find Previous"
-msgstr "Rückwärts suchen"
-
-msgid "Incremental Search"
-msgstr "Inkrementelle Suche"
-
-msgid "Find files"
-msgstr ""
-
-msgid "Find word in files"
-msgstr ""
-
-msgid "Set anchor"
-msgstr ""
-
-msgid "Go to next anchor"
-msgstr ""
-
-msgid "Go to previous anchor"
-msgstr ""
-
-msgid "Remove anchor"
-msgstr ""
-
-msgid "Code Navigator"
-msgstr ""
-
-msgid "Format"
-msgstr ""
-
-msgid "Shift Right"
-msgstr "Umschalttaste rechts"
-
-msgid "Shift Left"
-msgstr "Umschalttaste links"
-
-msgid "Correct Indentation"
-msgstr "korrekter Einschnitt"
-
-msgid "Remove trailing spaces"
-msgstr ""
-
-msgid "Generate comments for help_from_sci"
-msgstr ""
-
-msgid "Comment Selection"
-msgstr "Auswahl kommentieren"
-
-msgid "Uncomment Selection"
-msgstr "Auswahl nicht kommentieren"
-
-msgid "Change the case"
-msgstr ""
-
-msgid "Make Selection Lowercase"
-msgstr ""
-
-msgid "Make Selection Uppercase"
-msgstr ""
-
-msgid "Capitalize Selection;Capitalize character"
-msgstr ""
-
-msgid "Single to double quote strings"
-msgstr ""
-
-msgid "Options"
-msgstr "Einstellungen"
-
-msgid "Current file encoding"
-msgstr ""
-
-msgid "Line Endings"
-msgstr "Zeilenende"
-
-msgid "Preferences"
-msgstr ""
-
-msgid "Set font"
-msgstr ""
-
-msgid "Set colors"
-msgstr ""
-
-msgid "Scinotes General settings"
-msgstr ""
-
-msgid "Auto-completion on"
-msgstr ""
-
-msgid "(, [, ..."
-msgstr ""
-
-msgid "if, function, ..."
-msgstr ""
-
-msgid "Line numbering;Off;Normal;Local numbering"
-msgstr ""
-
-msgid "Highlight current line"
-msgstr "Aktuelle Zeile hervorheben"
-
-msgid "Enable Auto Reformat"
-msgstr "schalte automatische Formatierung ein"
-
-msgid "Suppress comments when executing selection"
-msgstr ""
-
-msgid "Window"
-msgstr ""
-
-msgid "Copy tab in new window"
-msgstr ""
-
-msgid "Detach tab in new window"
-msgstr ""
-
-msgid "Copy selection in a new tab"
-msgstr ""
-
-msgid "Split View;Off;Split in two columns;Split in two rows"
-msgstr ""
-
-msgid "Execute"
-msgstr "Anwenden"
-
-msgid "... file with no echo"
-msgstr ""
-
-msgid "... file with echo"
-msgstr ""
-
-msgid "... the selection with echo;... until the caret, with echo"
-msgstr ""
-
-msgid "Save and execute"
-msgstr ""
-
-msgid "Save and execute all files"
-msgstr ""
-
-msgid "?"
-msgstr "?"
-
-msgid "Scinotes help"
-msgstr ""
-
-msgid "Help on ;Help on selection"
-msgstr ""
-
-msgid "About"
-msgstr "Über"
-
-msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
-msgstr ""
-
-msgid "Complete"
-msgstr ""
-
-msgid "Display"
-msgstr ""
-
-msgid "Header"
-msgstr ""
-
-msgid "Autosave"
-msgstr ""
-
-msgid "Editor"
-msgstr ""
-
-msgid "Use Scinotes"
-msgstr ""
-
-msgid "External editor: "
-msgstr ""
-
-msgid "(Don't forget to quote path containing white spaces)"
-msgstr ""
-
-msgid "Scilab command: "
-msgstr ""
-
-msgid "Restore previous session on start-up"
-msgstr ""
-
-msgid "Add carriage return at the end of the file."
-msgstr ""
-
-msgid "Number of recently opened files to display: "
-msgstr ""
-
-msgid "Default file encoding: "
-msgstr ""
-
-msgid "Default End-Of-Line: "
-msgstr ""
-
-msgid "Completion"
-msgstr ""
-
-msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr ""
-
-msgid "General display options"
-msgstr ""
-
-msgid "Highlight current line: "
-msgstr ""
-
-msgid "Show line numbers: "
-msgstr ""
-
-msgid "Local numbering"
-msgstr ""
-
-msgid "Normal"
-msgstr ""
-
-msgid "Wrap lines"
-msgstr ""
-
-msgid "Background color: "
-msgstr ""
-
-msgid "Cursor color: "
-msgstr ""
-
-msgid "Keywords"
-msgstr ""
-
-msgid "Enable keywords colorization"
-msgstr ""
-
-msgid "Set syntax Colors"
-msgstr ""
-
-msgid "Highlight corresponding brackets"
-msgstr ""
-
-msgid "Color: "
-msgstr ""
-
-msgid "Highlight on mouse over"
-msgstr ""
-
-msgid "Style: "
-msgstr ""
-
-msgid "Filled"
-msgstr ""
-
-msgid "Framed"
-msgstr ""
-
-msgid "Underlined"
-msgstr ""
-
-msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr ""
-
-msgid "Tabulation and Indentation"
-msgstr ""
-
-msgid "Tabulation size: "
-msgstr ""
-
-msgid "Use space"
-msgstr ""
-
-msgid "Representation: "
-msgstr ""
-
-msgid "Chevrons"
-msgstr ""
-
-msgid "Horizontal rule"
-msgstr ""
-
-msgid "Vertical rule"
-msgstr ""
-
-msgid "Enable auto indentation"
-msgstr ""
-
-msgid "Indent size: "
-msgstr ""
-
-msgid "Enable autosave in Scinotes"
-msgstr ""
-
-msgid "Save options"
-msgstr ""
-
-msgid "Save every "
-msgstr ""
-
-msgid " minutes "
-msgstr ""
-
-msgid "Close options"
-msgstr ""
-
-msgid "Delete automatically saved files"
-msgstr ""
-
-msgid "Filename"
-msgstr ""
-
-msgid "Append filename with: "
-msgstr ""
-
-#, c-format
-msgid "(%date can be used to be replaced by the current date)"
-msgstr ""
-
-msgid "Replace extension with: "
-msgstr ""
-
-msgid "Location"
-msgstr ""
-
-msgid "Source file directory"
-msgstr ""
-
-msgid "Single directory"
-msgstr ""
-
-msgid "Choose an autosave directory"
-msgstr ""
-
-msgid "Default header"
-msgstr ""
-
-msgid "Add a default header to new file"
-msgstr ""
 
 msgid "Graphics handle field"
 msgstr ""
@@ -529,11 +72,32 @@ msgstr ""
 msgid "The file %s has been modified by an other program. Reload it ?"
 msgstr ""
 
+msgid "File"
+msgstr "Datei"
+
+msgid "New"
+msgstr "Neu"
+
+msgid "Open"
+msgstr "Öffnen"
+
+msgid "Open function source file"
+msgstr ""
+
+msgid "Open URL"
+msgstr ""
+
 msgid "Source of '"
 msgstr ""
 
 msgid "Recent Files"
 msgstr "Zuletzt geöffnete Dateien"
+
+msgid "Save"
+msgstr "Speichern"
+
+msgid "Save as"
+msgstr "Speichern als"
 
 msgid "The file could not be created, check the path"
 msgstr ""
@@ -547,17 +111,80 @@ msgstr ""
 msgid "You do not have the permissions to read this file"
 msgstr ""
 
+msgid "Save All"
+msgstr "Alles sichern"
+
+msgid "Page Setup"
+msgstr "Seite einrichten"
+
+msgid "Print Preview"
+msgstr "Druckvorschau"
+
+msgid "Print"
+msgstr "Drucken"
+
 msgid "An error occurred when exporting the code using FOP"
 msgstr ""
 
 msgid "An error occurred when printing"
 msgstr ""
 
+msgid "Close"
+msgstr "Schließen"
+
+msgid "Close All"
+msgstr "Alle Schließen"
+
+msgid "Close All But This"
+msgstr "Schließe alle außer diesem"
+
 msgid "Exit"
 msgstr "Beenden"
 
+msgid "?"
+msgstr "?"
+
+msgid "Edit"
+msgstr "Bearbeiten"
+
+msgid "Undo"
+msgstr "Rückgängig machen"
+
+msgid "Redo"
+msgstr "Wiederholen"
+
+msgid "Cut"
+msgstr "Ausschneiden"
+
+msgid "Copy"
+msgstr "kopieren"
+
+msgid "Paste"
+msgstr "Einfügen"
+
+msgid "Select All"
+msgstr "Alle auswählen"
+
+msgid "Delete"
+msgstr "Löschen"
+
 msgid "Tools"
 msgstr ""
+
+msgid "Comment Selection"
+msgstr "Auswahl kommentieren"
+
+msgid "Uncomment Selection"
+msgstr "Auswahl nicht kommentieren"
+
+msgid "Shift Right"
+msgstr "Umschalttaste rechts"
+
+msgid "Shift Left"
+msgstr "Umschalttaste links"
+
+msgid "Correct Indentation"
+msgstr "korrekter Einschnitt"
 
 msgid "Help on typing"
 msgstr ""
@@ -574,6 +201,18 @@ msgstr ""
 msgid "Remove trailing whitespaces"
 msgstr ""
 
+msgid "Search"
+msgstr "Suchen"
+
+msgid "Find/Replace"
+msgstr "Suchen/Ersetzen"
+
+msgid "Find Next"
+msgstr "Weitersuchen"
+
+msgid "Find Previous"
+msgstr "Rückwärts suchen"
+
 msgid "Goto line"
 msgstr "Gehe zu Zeile"
 
@@ -582,6 +221,9 @@ msgstr "Ansicht"
 
 msgid "Show/Hide ToolBar"
 msgstr "Zusatzleiste zeigen/verstecken"
+
+msgid "Highlight current line"
+msgstr "Aktuelle Zeile hervorheben"
 
 msgid "Word Wrap"
 msgstr "Zeilenumbruch"
@@ -628,6 +270,12 @@ msgstr "Zeichenkodierung"
 msgid "Colorize"
 msgstr "Einfärben"
 
+msgid "Enable Auto Reformat"
+msgstr "schalte automatische Formatierung ein"
+
+msgid "Line Endings"
+msgstr "Zeilenende"
+
 msgid "Auto (Default)"
 msgstr "Auto"
 
@@ -639,6 +287,9 @@ msgstr "Mac Classic (CR)"
 
 msgid "Unix (LF)"
 msgstr "Unix (LF)"
+
+msgid "Execute"
+msgstr "Anwenden"
 
 msgid "Load Into Scilab"
 msgstr "Nach Scilab laden"
@@ -666,6 +317,9 @@ msgstr ""
 
 msgid "Help about '"
 msgstr "Hilfe über '"
+
+msgid "About"
+msgstr "Über"
 
 msgid "Find:"
 msgstr "Suchen:"
@@ -699,6 +353,9 @@ msgstr "ausgewählte Zeilen"
 
 msgid "Select from caret"
 msgstr ""
+
+msgid "Options"
+msgstr "Einstellungen"
 
 msgid "Case sensitive"
 msgstr "Groß-/Kleinschreibung beachten"
@@ -760,6 +417,12 @@ msgid "The file %s has been modified by another program ! Overwrite it ?"
 msgstr ""
 
 msgid "Warning: the file has been modified by another program !"
+msgstr ""
+
+msgid "Reload"
+msgstr ""
+
+msgid "Overwrite"
 msgstr ""
 
 msgid "Ignore"
@@ -888,6 +551,12 @@ msgstr ""
 msgid "No text to execute."
 msgstr ""
 
+msgid "Complete"
+msgstr ""
+
+msgid "Copy selection in a new tab"
+msgstr ""
+
 #, c-format
 msgid ""
 "The file encoding is actually %s and it will be saved in using %s. Continue ?"
@@ -962,6 +631,9 @@ msgstr ""
 msgid "Bold"
 msgstr ""
 
+msgid "Code Navigator"
+msgstr ""
+
 msgid "Absolute"
 msgstr ""
 
@@ -1026,6 +698,12 @@ msgid "Length"
 msgstr ""
 
 msgid "Tab representation"
+msgstr ""
+
+msgid "Horizontal rule"
+msgstr ""
+
+msgid "Vertical rule"
 msgstr ""
 
 msgid "Double chevrons"
@@ -1107,8 +785,331 @@ msgid "Choose the search base directory"
 msgstr ""
 
 #, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Scilab '%s' Modul in Modus -nogui ider -nmwi deaktiviert.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Scilab '%s' Modul nicht installiert.\n"
+
+msgid "Open recent"
+msgstr ""
+
+msgid "Working directories;Add a directory;Remove last directory"
+msgstr ""
+
+msgid "Open file in ..."
+msgstr ""
+
+msgid "Save file in ..."
+msgstr ""
+
+msgid "Restore opened files on start-up"
+msgstr ""
+
+msgid "Export"
+msgstr ""
+
+msgid "Exit Scinotes"
+msgstr ""
+
+msgid "Copy as HTML with line number"
+msgstr ""
+
+msgid "Columns actions"
+msgstr ""
+
+msgid "Paste Column"
+msgstr ""
+
+msgid "Repeat on the Column"
+msgstr ""
+
+msgid "Select current block"
+msgstr ""
+
+msgid "Incremental Search"
+msgstr "Inkrementelle Suche"
+
+msgid "Find files"
+msgstr ""
+
+msgid "Find word in files"
+msgstr ""
+
+msgid "Set anchor"
+msgstr ""
+
+msgid "Go to next anchor"
+msgstr ""
+
+msgid "Go to previous anchor"
+msgstr ""
+
+msgid "Remove anchor"
+msgstr ""
+
+msgid "Format"
+msgstr ""
+
+msgid "Remove trailing spaces"
+msgstr ""
+
+msgid "Generate comments for help_from_sci"
+msgstr ""
+
+msgid "Change the case"
+msgstr ""
+
+msgid "Make Selection Lowercase"
+msgstr ""
+
+msgid "Make Selection Uppercase"
+msgstr ""
+
+msgid "Capitalize Selection;Capitalize character"
+msgstr ""
+
+msgid "Single to double quote strings"
+msgstr ""
+
+msgid "Current file encoding"
+msgstr ""
+
+msgid "Preferences"
+msgstr ""
+
+msgid "Set font"
+msgstr ""
+
+msgid "Set colors"
+msgstr ""
+
+msgid "Scinotes General settings"
+msgstr ""
+
+msgid "Auto-completion on"
+msgstr ""
+
+msgid "(, [, ..."
+msgstr ""
+
+msgid "if, function, ..."
+msgstr ""
+
+msgid "Line numbering;Off;Normal;Local numbering"
+msgstr ""
+
+msgid "Suppress comments when executing selection"
+msgstr ""
+
+msgid "Window"
+msgstr ""
+
+msgid "Copy tab in new window"
+msgstr ""
+
+msgid "Detach tab in new window"
+msgstr ""
+
+msgid "Split View;Off;Split in two columns;Split in two rows"
+msgstr ""
+
+msgid "... file with no echo"
+msgstr ""
+
+msgid "... file with echo"
+msgstr ""
+
+msgid "... the selection with echo;... until the caret, with echo"
+msgstr ""
+
+msgid "Save and execute"
+msgstr ""
+
+msgid "Save and execute all files"
+msgstr ""
+
+msgid "Scinotes help"
+msgstr ""
+
+msgid "Help on ;Help on selection"
+msgstr ""
+
+msgid "Evaluate Selection with echo;Evaluate until the caret, with echo"
+msgstr ""
+
+msgid "Display"
+msgstr ""
+
+msgid "Header"
+msgstr ""
+
+msgid "Autosave"
+msgstr ""
+
+msgid "Editor"
+msgstr ""
+
+msgid "Use Scinotes"
+msgstr ""
+
+msgid "External editor: "
+msgstr ""
+
+msgid "(Don't forget to quote path containing white spaces)"
+msgstr ""
+
+msgid "Scilab command: "
+msgstr ""
+
+msgid "Restore previous session on start-up"
+msgstr ""
+
+msgid "Add carriage return at the end of the file."
+msgstr ""
+
+msgid "Number of recently opened files to display: "
+msgstr ""
+
+msgid "Default file encoding: "
+msgstr ""
+
+msgid "Default End-Of-Line: "
+msgstr ""
+
+msgid "Completion"
+msgstr ""
+
+msgid "Auto-complete brackets when cursor is at the end of a line"
+msgstr ""
+
+msgid "General display options"
+msgstr ""
+
+msgid "Highlight current line: "
+msgstr ""
+
+msgid "Show line numbers: "
+msgstr ""
+
+msgid "Local numbering"
+msgstr ""
+
+msgid "Normal"
+msgstr ""
+
+msgid "Wrap lines"
+msgstr ""
+
+msgid "Background color: "
+msgstr ""
+
+msgid "Cursor color: "
+msgstr ""
+
+msgid "Keywords"
+msgstr ""
+
+msgid "Enable keywords colorization"
+msgstr ""
+
+msgid "Set syntax Colors"
+msgstr ""
+
+msgid "Highlight corresponding brackets"
+msgstr ""
+
+msgid "Color: "
+msgstr ""
+
+msgid "Highlight on mouse over"
+msgstr ""
+
+msgid "Style: "
+msgstr ""
+
+msgid "Filled"
+msgstr ""
+
+msgid "Framed"
+msgstr ""
+
+msgid "Underlined"
+msgstr ""
+
+msgid "Highlight corresponding keywords (e.g. if ... end)"
+msgstr ""
+
+msgid "Tabulation and Indentation"
+msgstr ""
+
+msgid "Tabulation size: "
+msgstr ""
+
+msgid "Use space"
+msgstr ""
+
+msgid "Representation: "
+msgstr ""
+
+msgid "Chevrons"
+msgstr ""
+
+msgid "Enable auto indentation"
+msgstr ""
+
+msgid "Indent size: "
+msgstr ""
+
+msgid "Enable autosave in Scinotes"
+msgstr ""
+
+msgid "Save options"
+msgstr ""
+
+msgid "Save every "
+msgstr ""
+
+msgid " minutes "
+msgstr ""
+
+msgid "Close options"
+msgstr ""
+
+msgid "Delete automatically saved files"
+msgstr ""
+
+msgid "Filename"
+msgstr ""
+
+msgid "Append filename with: "
+msgstr ""
+
+#, c-format
+msgid "(%date can be used to be replaced by the current date)"
+msgstr ""
+
+msgid "Replace extension with: "
+msgstr ""
+
+msgid "Location"
+msgstr ""
+
+msgid "Source file directory"
+msgstr ""
+
+msgid "Single directory"
+msgstr ""
+
+msgid "Choose an autosave directory"
+msgstr ""
+
+msgid "Default header"
+msgstr ""
+
+msgid "Add a default header to new file"
+msgstr ""
 
 msgid "The last error did not occur inside a Scilab macro."
 msgstr ""

@@ -93,12 +93,11 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -133,12 +132,11 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -175,12 +173,11 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -223,12 +220,11 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sparse_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -277,9 +273,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\umfpack.pot" />
-    <None Include="core_import.def" />
     <None Include="Sparse_f_Import.def" />
-    <None Include="umfpack_header.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\umfpack.iss" />
     <None Include="..\..\sci_gateway\umfpack_gateway.xml" />
@@ -297,6 +291,9 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </ProjectReference>
     <ProjectReference Include="..\..\..\ast\ast.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>

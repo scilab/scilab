@@ -8,18 +8,38 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-23 14:09+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Недостаточно памяти.\n"
+
+#, c-format
+msgid "%s: Invalid driver: %s.\n"
+msgstr "%s: Неверный драйвер: %s.\n"
+
+#, c-format
+msgid "%s: An error occurred: %s\n"
+msgstr "%s: Произошла ошибка: %s\n"
+
+#, c-format
+msgid "%s: Invalid path: %s.\n"
+msgstr "%s: Некорректный путь: %s.\n"
 
 #, c-format
 msgid ""
@@ -51,7 +71,8 @@ msgstr "%s: Входной аргумент № #%d должен быть кор
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: Ожидался дескриптор ''%s''.\n"
+msgstr ""
+"%s: Неверный тип входного аргумента №%d: Ожидался дескриптор ''%s''.\n"
 
 #, c-format
 msgid ""
@@ -94,30 +115,6 @@ msgstr ""
 msgid "%s: %s\n"
 msgstr "%s: %s\n"
 
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Недостаточно памяти.\n"
-
-#, c-format
-msgid "%s: Invalid driver: %s.\n"
-msgstr "%s: Неверный драйвер: %s.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
-
-#, c-format
-msgid "%s: Invalid path: %s.\n"
-msgstr "%s: Некорректный путь: %s.\n"
-
 msgid "xinit must be called before xend."
 msgstr "xinit должен быть вызван перед xend."
 
@@ -135,11 +132,11 @@ msgstr ""
 "элементов или размера фигуры должно исправить эту ошибку."
 
 msgid ""
-"Unable to create export file, please fill a bug report at http://bugzilla."
-"scilab.org."
+"Unable to create export file, please fill a bug report at "
+"http://bugzilla.scilab.org."
 msgstr ""
-"Невозможно создать экспортный файл, пожалуйста, сообщите об ошибке на http://"
-"bugzilla.scilab.org."
+"Невозможно создать экспортный файл, пожалуйста, сообщите об ошибке на "
+"http://bugzilla.scilab.org."
 
 msgid ""
 "Unable to create export file, the file cannot be created or is locked by an "
@@ -147,6 +144,10 @@ msgid ""
 msgstr ""
 "Невозможно создать файл экспорта; этот файл нельзя создать либо он "
 "заблокирован другим процессом."
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

@@ -1,8 +1,0 @@
-LIBRARY    sciconsole.dll
-
-
-EXPORTS
-ConsolePrintf
-linesmore
-TermPrintf_Windows	
-GetCurrentPrompt

@@ -98,7 +98,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -134,7 +134,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -170,7 +170,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -211,7 +211,7 @@ lib /DEF:"$(ProjectDir)../polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;core.lib;scicos-cli.lib;output_stream.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;scicos-cli.lib;core.lib;string.lib;linear_algebra_f.lib;slicot_f.lib;polynomials_f.lib;elementary_functions_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -558,8 +558,8 @@ lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS 
     <ClInclude Include="..\..\cpp\scoUtils.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\core_Import.def" />
     <None Include="..\elementary_functions_f_Import.def" />
-    <None Include="..\core_import.def" />
     <None Include="..\Linear_algebra_f_Import.def" />
     <None Include="..\Output_stream_Import.def" />
     <None Include="..\polynomials_f_Import.def" />

@@ -53,9 +53,11 @@
         <para>
             <literal>ieee(mod)</literal> choisit le mode d'exception ieee courant pour les calculs en virgule flottante.
         </para>
-        <para>
-            La valeur initiale au lancement de Scilab est 0.
-        </para>
+        <warning>
+            <para>
+                La valeur initiale au lancement de Scilab est 2.
+            </para>
+        </warning>
     </refsection>
     <refsection>
         <title>REMARQUES</title>
@@ -71,5 +73,14 @@
 ieee(1);1/0
 ieee(2);1/0,log(0)
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Historique</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>2 est maintenant la valeur par défaut au lancement de Scilab.</revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

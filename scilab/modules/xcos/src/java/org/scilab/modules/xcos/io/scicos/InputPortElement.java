@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
+import java.rmi.server.UID;
 import java.util.List;
 
 import org.scilab.modules.graph.utils.StyleMap;
@@ -101,6 +102,7 @@ public final class InputPortElement extends AbstractElement<InputPort> {
         data = (ScilabMList) element;
 
         port = allocatePort();
+        port.setId(new UID().toString());
 
         port = beforeDecode(element, port);
 

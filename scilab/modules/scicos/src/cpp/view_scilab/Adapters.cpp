@@ -127,5 +127,22 @@ const model::BaseObject* Adapters::descriptor(types::InternalType* v)
     return nullptr;
 }
 
+types::InternalType* Adapters::allocate_view(ScicosID id, kind_t kind)
+{
+    Controller controller;
+
+    switch (kind)
+    {
+        case BLOCK:
+            return new view_scilab::BlockAdapter(controller, static_cast<model::Block*>(controller.getObject(id)));
+        case LINK:
+            return new view_scilab::LinkAdapter(controller, static_cast<model::Link*>(controller.getObject(id)));
+        case DIAGRAM:
+            return new view_scilab::DiagramAdapter(controller, static_cast<model::Diagram*>(controller.getObject(id)));
+        default:
+            return nullptr;
+    }
+}
+
 } /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

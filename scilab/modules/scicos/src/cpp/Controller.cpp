@@ -10,6 +10,7 @@
  *
  */
 
+#include <atomic>
 #include <string>
 #include <vector>
 #include <map>
@@ -47,39 +48,62 @@
 #endif
 
 #include "Controller.hxx"
+#include "model/BaseObject.hxx"
 
 #include "LoggerView.hxx"
 
 namespace org_scilab_modules_scicos
 {
 
+static inline void lock(std::atomic_flag* m)
+{
+    while (m->test_and_set(std::memory_order_acquire))  // acquire lock
+        ; // spin
+}
+
+static inline void unlock(std::atomic_flag* m)
+{
+    m->clear(std::memory_order_release);
+}
+
 /*
  * Implement SharedData methods
  */
 Controller::SharedData::SharedData() :
-    model(), allNamedViews(), allViews()
+    onModelStructuralModification(), model(),
+    onViewsStructuralModification(), allNamedViews(), allViews()
 {
+    onModelStructuralModification.clear();
+    onViewsStructuralModification.clear();
 }
 
 Controller::SharedData::~SharedData()
 {
-    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    lock(&onViewsStructuralModification);
+    for (view_set_t::iterator iter = allViews.begin(); iter != allViews.end(); ++iter)
     {
         delete *iter;
     }
+    unlock(&onViewsStructuralModification);
 }
 
 Controller::SharedData Controller::m_instance;
 
 View* Controller::register_view(const std::string& name, View* v)
 {
+    lock(&m_instance.onViewsStructuralModification);
+
     m_instance.allNamedViews.push_back(name);
     m_instance.allViews.push_back(v);
+
+    unlock(&m_instance.onViewsStructuralModification);
     return v;
 }
 
 void Controller::unregister_view(View* v)
 {
+    lock(&m_instance.onViewsStructuralModification);
+
     view_set_t::iterator it = std::find(m_instance.allViews.begin(), m_instance.allViews.end(), v);
     if (it != m_instance.allViews.end())
     {
@@ -87,11 +111,15 @@ void Controller::unregister_view(View* v)
         m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
         m_instance.allViews.erase(m_instance.allViews.begin() + d);
     }
+
+    unlock(&m_instance.onViewsStructuralModification);
 }
 
 View* Controller::unregister_view(const std::string& name)
 {
     View* view = nullptr;
+
+    lock(&m_instance.onViewsStructuralModification);
 
     view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
     if (it != m_instance.allNamedViews.end())
@@ -101,6 +129,7 @@ View* Controller::unregister_view(const std::string& name)
         m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
         m_instance.allViews.erase(m_instance.allViews.begin() + d);
     }
+    unlock(&m_instance.onViewsStructuralModification);
 
     return view;
 }
@@ -109,12 +138,14 @@ View* Controller::look_for_view(const std::string& name)
 {
     View* view = nullptr;
 
+    lock(&m_instance.onViewsStructuralModification);
     view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
     if (it != m_instance.allNamedViews.end())
     {
         size_t d = std::distance(m_instance.allNamedViews.begin(), it);
         view = *(m_instance.allViews.begin() + d);
     }
+    unlock(&m_instance.onViewsStructuralModification);
 
     return view;
 }
@@ -129,26 +160,36 @@ Controller::~Controller()
 
 ScicosID Controller::createObject(kind_t k)
 {
+    lock(&m_instance.onModelStructuralModification);
     ScicosID uid = m_instance.model.createObject(k);
+    unlock(&m_instance.onModelStructuralModification);
 
+    lock(&m_instance.onViewsStructuralModification);
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         (*iter)->objectCreated(uid, k);
     }
+    unlock(&m_instance.onViewsStructuralModification);
 
     return uid;
 }
 
 unsigned Controller::referenceObject(const ScicosID uid) const
 {
+    lock(&m_instance.onModelStructuralModification);
+
     unsigned refCount = m_instance.model.referenceObject(uid);
     REF_PRINT(uid, refCount);
 
-    auto o = getObject(uid);
+    auto o = m_instance.model.getObject(uid);
+    unlock(&m_instance.onModelStructuralModification);
+
+    lock(&m_instance.onViewsStructuralModification);
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         (*iter)->objectReferenced(uid, o->kind(), refCount);
     }
+    unlock(&m_instance.onViewsStructuralModification);
 
     return refCount;
 }
@@ -161,7 +202,9 @@ void Controller::deleteObject(ScicosID uid)
         return;
     }
 
-    auto initial = getObject(uid);
+    lock(&m_instance.onModelStructuralModification);
+
+    auto initial = m_instance.model.getObject(uid);
     if (initial == nullptr)
     {
         // defensive programming
@@ -171,15 +214,18 @@ void Controller::deleteObject(ScicosID uid)
 
     // if this object has been referenced somewhere else do not delete it but decrement the reference counter
     unsigned& refCount = m_instance.model.referenceCount(uid);
+    unlock(&m_instance.onModelStructuralModification);
     if (refCount > 0)
     {
         --refCount;
         UNREF_PRINT(uid, refCount);
 
+        lock(&m_instance.onViewsStructuralModification);
         for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
         {
             (*iter)->objectUnreferenced(uid, k, refCount);
         }
+        unlock(&m_instance.onViewsStructuralModification);
         return;
     }
 
@@ -231,12 +277,16 @@ void Controller::deleteObject(ScicosID uid)
     }
 
     // delete the object
+    lock(&m_instance.onModelStructuralModification);
     m_instance.model.deleteObject(uid);
+    unlock(&m_instance.onModelStructuralModification);
 
+    lock(&m_instance.onViewsStructuralModification);
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         (*iter)->objectDeleted(uid, k);
     }
+    unlock(&m_instance.onViewsStructuralModification);
 }
 
 void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
@@ -297,6 +347,22 @@ void Controller::deleteVector(ScicosID uid, kind_t k, object_properties_t uid_pr
     for (ScicosID id : children)
     {
         deleteObject(id);
+    }
+}
+
+template<typename T>
+void Controller::cloneProperties(model::BaseObject* initial, ScicosID clone)
+{
+    for (int i = 0; i < MAX_OBJECT_PROPERTIES; ++i)
+    {
+        enum object_properties_t p = static_cast<enum object_properties_t>(i);
+
+        T value;
+        bool status = getObjectProperty(initial->id(), initial->kind(), p, value);
+        if (status)
+        {
+            setObjectProperty(clone, initial->kind(), p, value);
+        }
     }
 }
 
@@ -361,7 +427,6 @@ ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID 
         deepClone(mapped, uid, o, k, SOURCE_BLOCK, false);
         deepCloneVector(mapped, uid, o, k, CONNECTED_SIGNALS, false);
     }
-
     return o;
 }
 
@@ -449,22 +514,74 @@ ScicosID Controller::cloneObject(ScicosID uid, bool cloneChildren, bool clonePor
     std::map<ScicosID, ScicosID> mapped;
     ScicosID clone = cloneObject(mapped, uid, cloneChildren, clonePorts);
     CLONE_PRINT(uid, clone);
+
     return clone;
 }
 
 kind_t Controller::getKind(ScicosID uid) const
 {
-    return m_instance.model.getKind(uid);
+    lock(&m_instance.onModelStructuralModification);
+
+    kind_t kind = m_instance.model.getKind(uid);
+
+    unlock(&m_instance.onModelStructuralModification);
+    return kind;
 }
 
 std::vector<ScicosID> Controller::getAll(kind_t k) const
 {
-    return m_instance.model.getAll(k);
+    lock(&m_instance.onModelStructuralModification);
+
+    auto vec = m_instance.model.getAll(k);
+
+    unlock(&m_instance.onModelStructuralModification);
+    return vec;
 }
+
+void Controller::sortAndFillKind(std::vector<ScicosID>& uids, std::vector<int>& kinds)
+{
+    lock(&m_instance.onModelStructuralModification);
+
+    // create a container of pair
+    struct local_pair
+    {
+        ScicosID first;
+        int second;
+    };
+    std::vector<local_pair> container(uids.size());
+
+    // fill it
+    for (size_t i = 0; i < uids.size(); ++i)
+    {
+        container[i] = { uids[i], m_instance.model.getKind(uids[i]) };
+    }
+
+    // sort according to the kinds
+    std::stable_sort(container.begin(), container.end(), [] (const local_pair & a, const local_pair & b)
+    {
+        return a.second < b.second;
+    });
+
+    // move things back
+    uids.clear();
+    kinds.reserve(uids.capacity());
+    for (const auto & v : container)
+    {
+        uids.push_back(v.first);
+        kinds.push_back(v.second);
+    }
+
+    unlock(&m_instance.onModelStructuralModification);
+}
+
+
 
 model::BaseObject* Controller::getObject(ScicosID uid) const
 {
-    return m_instance.model.getObject(uid);
+    lock(&m_instance.onModelStructuralModification);
+    model::BaseObject* o = m_instance.model.getObject(uid);
+    unlock(&m_instance.onModelStructuralModification);
+    return o;
 }
 
 } /* namespace org_scilab_modules_scicos */

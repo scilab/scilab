@@ -27,10 +27,10 @@
                 <term>preferredsize</term>
                 <listitem>
                     <para>
-                        <literal>[width, heigth]</literal> a 1-by-2 matrix of doubles, [-1, -1] by default.
+                        <literal>[width, height]</literal> a 1-by-2 matrix of doubles, [-1, -1] by default.
                     </para>
                     <para>
-                        The preferred <literal>width</literal> or <literal>heigth</literal> of the element in the layout in pixels if not constrained.
+                        The preferred <literal>width</literal> or <literal>height</literal> of the element in the layout in pixels if not constrained.
                     </para>
                 </listitem>
             </varlistentry>

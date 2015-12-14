@@ -49,11 +49,6 @@
                     <para>
                         In Matlab, subtraction can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be subtracted to another empty matrix or a scalar.
                     </para>
-                    <para>
-                        <note>
-                            Note that when you subtract an empty matrix to a scalar and inversely, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
-                        </note>
-                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -79,10 +74,19 @@ A = []
                 <td>
                     <programlisting role="example"><![CDATA[
 A = 1 - []
-A = 1    
+A = []    
 ]]></programlisting>
                 </td>
             </tr>
         </informaltable>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>Modified the behaviour of <literal>A - []</literal> and <literal>[] - A</literal> to return the empty matrix <literal>[]</literal> instead of <literal>A</literal> or <literal>-A</literal></revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

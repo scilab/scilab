@@ -33,6 +33,7 @@ libscimpi_la_CFLAGS=  -Iincludes/ \
 	-I$(top_srcdir)/modules/ast/includes/ast \
 	-I$(top_srcdir)/modules/ast/includes/operations \
 	-I$(top_srcdir)/modules/ast/includes/types \
+	-I$(top_srcdir)/modules/ast/includes/system_env \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/api_scilab/includes \

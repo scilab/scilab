@@ -96,7 +96,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;../coverage/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -110,7 +110,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -125,6 +125,7 @@ lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -134,7 +135,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;../coverage/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -148,7 +149,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -163,6 +164,7 @@ lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -170,7 +172,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;../coverage/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -183,7 +185,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -198,6 +200,7 @@ lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -208,7 +211,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes/ast;includes/parse;includes/exps;includes/symbol;includes/types;includes/system_env;includes/operations;includes/jit;includes/analysis;../../libs/intl;../../libs/Eigen/includes;../functions_manager/includes;../core/includes;../elementary_functions/includes;../ast/includes/operations;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../console/includes;../graphic_objects/includes;../dynamic_link/includes;../io/includes;../fileio/includes;../special_functions/src/cpp;../coverage/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;AST_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -221,7 +224,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>string.lib;fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;coverage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -236,6 +239,7 @@ lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)coverage_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)coverage.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
   </ItemDefinitionGroup>
@@ -247,6 +251,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   <ItemGroup>
     <None Include="console_Import.def" />
     <None Include="core_Import.def" />
+    <None Include="coverage_Import.def" />
     <None Include="dynamic_link_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
     <None Include="elementary_functions_Import.def" />
@@ -292,6 +297,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\data\Info.hxx" />
     <ClInclude Include="includes\analysis\data\LoopAnalyzer.hxx" />
     <ClInclude Include="includes\analysis\data\LoopBlock.hxx" />
+    <ClInclude Include="includes\analysis\data\LoopDecoration.hxx" />
     <ClInclude Include="includes\analysis\data\MacroDef.hxx" />
     <ClInclude Include="includes\analysis\data\MacroSignature.hxx" />
     <ClInclude Include="includes\analysis\data\PolymorphicMacroCache.hxx" />
@@ -299,6 +305,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\data\TITypeSignatureTuple.hxx" />
     <ClInclude Include="includes\analysis\data\TITypeTuple.hxx" />
     <ClInclude Include="includes\analysis\data\TypeLocal.hxx" />
+    <ClInclude Include="includes\analysis\data\VarPromotion.hxx" />
     <ClInclude Include="includes\analysis\data\XBlock.hxx" />
     <ClInclude Include="includes\analysis\Decorator.hxx" />
     <ClInclude Include="includes\analysis\DollarInfo.hxx" />
@@ -513,6 +520,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\system_env\configvariable.hxx" />
     <ClInclude Include="includes\system_env\configvariable_interface.h" />
     <ClInclude Include="includes\system_env\context_get.h" />
+    <ClInclude Include="includes\system_env\coverage_instance.hxx" />
     <ClInclude Include="includes\system_env\dynamic_module.h" />
     <ClInclude Include="includes\system_env\home.h" />
     <ClInclude Include="includes\system_env\lasterror.h" />
@@ -523,6 +531,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\system_env\sci_tmpdir.h" />
     <ClInclude Include="includes\system_env\setenvvar.h" />
     <ClInclude Include="includes\system_env\threadmanagement.hxx" />
+    <ClInclude Include="includes\types\addfunction.h" />
     <ClInclude Include="includes\types\alltypes.hxx" />
     <ClInclude Include="includes\types\arrayof.hxx" />
     <ClInclude Include="includes\types\bool.hxx" />
@@ -668,6 +677,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\analysis\Data.cpp" />
     <ClCompile Include="src\cpp\analysis\DataManager.cpp" />
     <ClCompile Include="src\cpp\analysis\DiagAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\DollarInfo.cpp" />
     <ClCompile Include="src\cpp\analysis\FindAnalyzer.cpp" />
     <ClCompile Include="src\cpp\analysis\FunctionBlock.cpp" />
     <ClCompile Include="src\cpp\analysis\GlobalsCollector.cpp" />
@@ -711,6 +721,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\analysis\VisitSimpleVar.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitTypeExps.cpp" />
     <ClCompile Include="src\cpp\analysis\VisitVarDec.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitWhileExp.cpp" />
     <ClCompile Include="src\cpp\analysis\XBlock.cpp" />
     <ClCompile Include="src\cpp\ast\consoledebugger.cpp" />
     <ClCompile Include="src\cpp\ast\debuggervisitor.cpp" />
@@ -812,6 +823,7 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\system_env\configvariable.cpp" />
     <ClCompile Include="src\cpp\system_env\configvariable_interface.cpp" />
     <ClCompile Include="src\cpp\system_env\context_get.cpp" />
+    <ClCompile Include="src\cpp\system_env\coverage_instance.cpp" />
     <ClCompile Include="src\cpp\system_env\dynamic_module.cpp" />
     <ClCompile Include="src\cpp\system_env\home.cpp" />
     <ClCompile Include="src\cpp\system_env\lasterror.cpp" />

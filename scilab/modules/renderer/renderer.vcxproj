@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -98,11 +98,10 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -136,11 +135,10 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -176,11 +174,10 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -222,11 +219,10 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -269,7 +265,6 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
   <ItemGroup>
     <None Include="locales\renderer.pot" />
     <None Include="renderer_header.def" />
-    <None Include="graphics_Import.def" />
     <None Include="core_import.def" />
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />

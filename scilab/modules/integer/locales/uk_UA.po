@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-26 04:08+0000\n"
+"PO-Revision-Date: 2015-10-09 17:01+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
 
 #, c-format
@@ -22,33 +22,93 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: помилковий тип параметра %d: слід використовувати матрицю дійсних "
-"значень.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність параметра %d: мало бути вказано дійсне число.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: доступну пам’ять вичерпано.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати ціле "
-"значення.\n"
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgid ""
+"%s: Wrong type of input arguments: integer, boolean or double expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати значення "
-"з набору {%s}.\n"
+"%s: помилковий тип вхідних параметрів: мало бути використано тип цілих "
+"чисел, булевих значень або значень подвійної точності.\n"
+
+msgid "Never occur"
+msgstr "Ніколи не трапляється"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип %s, %s "
+"або %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип цілого "
+"числа (int) або числа з подвійною точністю (double).\n"
+
+#, c-format
+msgid "%s: '%s' already defined by the '%s' argument."
+msgstr "%s: «%s» вже визначено параметром «%s»."
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра. Слід використовувати «%s», «%s», "
+"«%s», «%s» або «%s».\n"
+
+msgid ""
+"Warning: Syntax vector ^ scalar is obsolete. It will be removed in Scilab "
+"6.0.\n"
+"  Use vector .^ scalar instead.\n"
+msgstr ""
+"Попередження: синтаксична конструкцію «вектор ^ число» вважається "
+"застарілою. Її буде вилучено у Scilab 6.0.\n"
+"  Вам варто скористатися конструкцією «вектор .^ число».\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr "%s: помилковий тип параметра №%d: слід використовувати рядоку.\n"
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: A single string expected.\n"
+msgstr ""
+"%s: помилкова розмірність параметра №%d: мало бути використано одинарний "
+"рядок.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for argument #%d: A single string of size %d to %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність параметра №%d: мало бути викоритсано одинарний "
+"рядок розмірності від %d до %d.\n"
+
+#, c-format
+msgid "%s: Incorrect integer type: %s .\n"
+msgstr "%s: помилковий тип цілого числа: %s .\n"

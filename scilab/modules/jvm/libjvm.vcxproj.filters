@@ -183,7 +183,7 @@
     <None Include="locales\jvm.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="Scilab_Windows_Import.def">
+    <None Include="preferences_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>

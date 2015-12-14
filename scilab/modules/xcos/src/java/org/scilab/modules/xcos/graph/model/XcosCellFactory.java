@@ -21,6 +21,7 @@ import java.util.Arrays;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.utils.ScilabExported;
@@ -34,9 +35,9 @@ import org.scilab.modules.xcos.XcosView;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -49,6 +50,10 @@ import org.scilab.modules.xcos.utils.BlockPositioning;
 import com.mxgraph.model.mxCell;
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import java.util.EnumMap;
+import org.scilab.modules.xcos.block.SplitBlock;
+import org.scilab.modules.xcos.block.positionning.RoundBlock;
+;
 
 /**
  * Ease the creation of any {@link Kind} of graphical object
@@ -57,6 +62,7 @@ public final class XcosCellFactory {
 
     /** Size compatibility for user defined blocks */
     private static final double DEFAULT_SIZE_FACTOR = 20.0;
+    private static final Logger LOG = Logger.getLogger(XcosCellFactory.class.getName());
 
     /** Default singleton constructor */
     private XcosCellFactory() {
@@ -72,12 +78,22 @@ public final class XcosCellFactory {
      *            the kind of the created object (as an int)
      */
     @ScilabExported(module = "xcos", filename = "XcosCellFactory.giws.xml")
-    public static void created(long uid, int kind) {
+    public static synchronized void created(long uid, int kind) {
         lastCreated = new ScicosObjectOwner(uid, Kind.values()[kind]);
 
     }
 
     private static ScicosObjectOwner lastCreated = null;
+
+    /**
+     * Retrieve and clear the last created object (<pre>xcosCellCreated</pre> call)
+     * @return the last created object
+     */
+    public static synchronized ScicosObjectOwner getLastCreated() {
+        ScicosObjectOwner last = lastCreated;
+        lastCreated = null;
+        return last;
+    }
 
     /*
      * Diagram management
@@ -101,12 +117,12 @@ public final class XcosCellFactory {
         XcosDiagram diagram;
         try {
             synchronousScilabExec(
-                "function f(), " + buildCall("exec", filename, -1) + buildCall("xcosCellCreated", "scs_m".toCharArray()) + "endfunction; f();");
+                "function f(), " + buildCall("exec", filename, -1) + "; " + buildCall("xcosCellCreated", "scs_m".toCharArray()) + "endfunction; f();");
 
-            if (lastCreated.getKind() == Kind.DIAGRAM) {
-                diagram = new XcosDiagram(lastCreated.getUID(), lastCreated.getKind());
+            ScicosObjectOwner last = getLastCreated();
+            if (last.getKind() == Kind.DIAGRAM) {
+                diagram = new XcosDiagram(last.getUID(), last.getKind());
                 insertChildren(controller, diagram);
-                lastCreated = null;
             } else {
                 diagram = null;
             }
@@ -128,6 +144,9 @@ public final class XcosCellFactory {
      *            the current diagram instance
      */
     public static void insertChildren(JavaController controller, XcosDiagram diagram) {
+        /*
+         * Retrieve the children
+         */
         VectorOfScicosID children = new VectorOfScicosID();
         controller.getObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, children);
         final int childrenLen = children.size();
@@ -182,20 +201,25 @@ public final class XcosCellFactory {
             if (srcPort != null) {
                 l.setSource(srcPort);
             } else {
-                //          	  FIXME Commented for the alpha release
-                throw new IllegalStateException();
+                LOG.severe("Unable to connect link " + l.getId() + " : invalid source " + src[0]);
             }
 
-            BasicPort destPort = ports.get(dest[0]);;
+            BasicPort destPort = ports.get(dest[0]);
             if (destPort != null) {
                 l.setTarget(destPort);
             } else {
-                //            	  FIXME Commented for the alpha release
-                throw new IllegalStateException();
+                LOG.severe("Unable to connect link " + l.getId() + " : invalid target " + dest[0]);
             }
         }
 
+        // re-add the children cells without duplicating them
+        children.clear();
+        controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.CHILDREN, children);
+
         diagram.addCells(cells);
+
+        // each cell has been referenced twice (CHILDREN insert and addCells), derefence them all by one
+        Arrays.stream(cells).forEach(c -> controller.deleteObject(c.getUID()));
     }
 
     /*
@@ -243,23 +267,25 @@ public final class XcosCellFactory {
     private static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction) {
         BasicBlock block;
         try {
+            ScicosObjectOwner last;
+
             if (BlockInterFunction.BASIC_BLOCK.name().equals(interfaceFunction)) {
                 // deliver all the MVC speed for the casual case
-                lastCreated = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
+                last = new ScicosObjectOwner(controller.createObject(Kind.BLOCK), Kind.BLOCK);
             } else {
                 // allocate an empty block that will be filled later
                 synchronousScilabExec("xcosCellCreated(" + interfaceFunction + "(\"define\")); ");
+                last = getLastCreated();
             }
 
             // defensive programming
-            if (lastCreated == null) {
+            if (last == null) {
                 System.err.println("XcosCellFactory#createBlock : unable to allocate " + interfaceFunction);
                 return null;
             }
 
-            if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(lastCreated.getKind())) {
-                block = createBlock(controller, func, interfaceFunction, lastCreated.getUID());
-                lastCreated = null;
+            if (EnumSet.of(Kind.BLOCK, Kind.ANNOTATION).contains(last.getKind())) {
+                block = createBlock(controller, func, interfaceFunction, last.getUID(), last.getKind());
             } else {
                 block = null;
             }
@@ -272,11 +298,15 @@ public final class XcosCellFactory {
 
     private static BasicBlock createBlock(final JavaController controller, long uid, Kind kind) {
         String[] interfaceFunction = new String[1];
-        controller.getObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+        if (kind == Kind.BLOCK) {
+            controller.getObjectProperty(uid, kind, ObjectProperties.INTERFACE_FUNCTION, interfaceFunction);
+        } else { // ANNOTATION
+            interfaceFunction[0] = "TEXT_f";
+        }
 
         final BlockInterFunction func = lookForInterfunction(interfaceFunction[0]);
 
-        return createBlock(controller, func, interfaceFunction[0], uid);
+        return createBlock(controller, func, interfaceFunction[0], uid, kind);
     }
 
     public static BlockInterFunction lookForInterfunction(String interfaceFunction) {
@@ -304,7 +334,33 @@ public final class XcosCellFactory {
      *            the allocated uid
      * @return A new instance of a block.
      */
-    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction, long uid) {
+    public static BasicBlock createBlock(final JavaController controller, BlockInterFunction func, String interfaceFunction, long uid, Kind kind) {
+        /*
+         * Retrieve the JGraphX data before cell creation
+         */
+        String[] strUID = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.UID, strUID);
+
+        String[] style = new String[1];
+        controller.getObjectProperty(uid, kind, ObjectProperties.STYLE, style);
+
+        String value;
+        if (kind == Kind.ANNOTATION) {
+            String[] description = new String[1];
+            controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, description);
+            value = description[0];
+        } else { // BLOCK
+            String[] label = new String[1];
+            controller.getObjectProperty(uid, kind, ObjectProperties.LABEL, label);
+            value = label[0];
+        }
+
+        VectorOfDouble geom = new VectorOfDouble(4);
+        controller.getObjectProperty(uid, kind, ObjectProperties.GEOMETRY, geom);
+
+        /*
+         * Instanciate the block
+         */
         BasicBlock block = null;
         try {
             block = func.getKlass().getConstructor(Long.TYPE).newInstance(uid);
@@ -317,38 +373,64 @@ public final class XcosCellFactory {
 
         /*
          * Synchronize model information back to the JGraphX data
+         *
+         * Annotations have no inputs/outputs
          */
-        insertPortChildren(controller, block);
-
-        String[] strUID = new String[1];
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.UID, strUID);
-        if (!strUID[0].isEmpty()) {
-            block.setId(strUID[0]);
+        EnumMap<ObjectProperties, Integer> properties = new EnumMap<>(ObjectProperties.class);
+        properties.put(ObjectProperties.INPUTS, 0);
+        properties.put(ObjectProperties.OUTPUTS, 0);
+        properties.put(ObjectProperties.EVENT_INPUTS, 0);
+        properties.put(ObjectProperties.EVENT_OUTPUTS, 0);
+        if (block.getKind() == Kind.BLOCK) {
+            insertPortChildren(controller, properties, block);
         }
 
-        String[] style = new String[1];
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.STYLE, style);
+        block.setId(strUID[0]);
+
         if (style[0].isEmpty()) {
             block.setStyle(interfaceFunction);
         } else {
             block.setStyle(style[0]);
         }
 
-        VectorOfDouble geom = new VectorOfDouble(4);
-        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.GEOMETRY, geom);
+        block.setValue(value);
 
-        /*
-         * Compatibility to ease user definition
-         */
         double x = geom.get(0);
         double y = geom.get(1);
-        double w = geom.get(2) * DEFAULT_SIZE_FACTOR;
-        double h = geom.get(3) * DEFAULT_SIZE_FACTOR;
+        double w = geom.get(2);
+        double h = geom.get(3);
 
         /*
-         * Invert the y-axis value and translate it.
+         * Compatibility to ease user definition :
+         *   * split are not updated as they have an hard-coded fixed-size
+         *   * round blocks : ports globally layout around the block
+         *   * generic case : layout the ports per kind per block-side
          */
-        y = -y - h;
+        boolean convertGeometry;
+        if ((block instanceof SplitBlock)) {
+            convertGeometry = false;
+        } else if (block instanceof RoundBlock) {
+            int numberOfPorts = properties.get(ObjectProperties.INPUTS) +
+                                properties.get(ObjectProperties.OUTPUTS) +
+                                properties.get(ObjectProperties.EVENT_INPUTS) +
+                                properties.get(ObjectProperties.EVENT_OUTPUTS);
+            convertGeometry = (2 * w + 2 * h) < (numberOfPorts * BasicPort.DEFAULT_PORTSIZE);
+        } else {
+            convertGeometry = w < (properties.get(ObjectProperties.INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              w < (properties.get(ObjectProperties.OUTPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              h < (properties.get(ObjectProperties.EVENT_INPUTS) * BasicPort.DEFAULT_PORTSIZE) |
+                              h < (properties.get(ObjectProperties.EVENT_OUTPUTS) * BasicPort.DEFAULT_PORTSIZE);
+        }
+
+        if (convertGeometry) {
+            w = w * DEFAULT_SIZE_FACTOR;
+            h = h * DEFAULT_SIZE_FACTOR;
+
+            /*
+             * Invert the y-axis value and translate it.
+             */
+            y = -y - h;
+        }
 
 
         block.setGeometry(new mxGeometry(x, y, w, h));
@@ -356,25 +438,27 @@ public final class XcosCellFactory {
         return block;
     }
 
+    /**
+     * Instantiate a new block for an already created MVC object
+     *
+     * @param lastCreated the owned MVC object
+     * @return a block or null
+     */
+    public static BasicBlock createBlock(final JavaController controller, ScicosObjectOwner lastCreated) {
+        // pre-condition
+        if (lastCreated.getKind() != Kind.ANNOTATION && lastCreated.getKind() != Kind.BLOCK) {
+            return null;
+        }
+
+        String[] interfaceFunction = new String[1];
+        BlockInterFunction func = lookForInterfunction(interfaceFunction[0]);
+
+        return createBlock(controller, func, interfaceFunction[0], lastCreated.getUID(), lastCreated.getKind());
+    }
+
     /*
      * Port management
      */
-
-    /**
-     * Helper used to create port children on a parent block.
-     *
-     * This method does not manage the model transaction and should be used to preset the children of a block out of an {@link XcosDiagram}.
-     *
-     * @param controller
-     *            is the shared controller instance
-     * @param parent
-     *            is the parent {@link mxCell} to modify
-     */
-    private static void insertPortChildren(final JavaController controller, final XcosCell parent) {
-        final EnumSet<ObjectProperties> properties = EnumSet.of(ObjectProperties.INPUTS, ObjectProperties.OUTPUTS, ObjectProperties.EVENT_INPUTS,
-                ObjectProperties.EVENT_OUTPUTS);
-        insertPortChildren(controller, properties, parent);
-    }
 
     /**
      * Helper used to create port children on a parent block.
@@ -390,12 +474,14 @@ public final class XcosCellFactory {
      *            <LI>{@link ObjectProperties#OUTPUTS}
      *            <LI>{@link ObjectProperties#EVENT_INPUTS}
      *            <LI>{@link ObjectProperties#EVENT_OUTPUTS}
+     *            </UL>
+     *            This method will fill the value with the number of added ports
      * @param parent
      *            is the parent {@link mxCell} to modify
      */
-    private static void insertPortChildren(final JavaController controller, final EnumSet<ObjectProperties> properties, final XcosCell parent) {
-        for (ObjectProperties property : properties) {
-            insertPortChildren(controller, property, parent);
+    private static void insertPortChildren(final JavaController controller, final EnumMap<ObjectProperties, Integer> properties, final XcosCell parent) {
+        for (ObjectProperties property : properties.keySet()) {
+            properties.put(property, insertPortChildren(controller, property, parent));
         }
     }
 
@@ -415,12 +501,9 @@ public final class XcosCellFactory {
      *            <LI>{@link ObjectProperties#EVENT_OUTPUTS}
      * @param parent
      *            is the parent {@link mxCell} to modify
+     * @return the number of inserted children
      */
-    private static void insertPortChildren(final JavaController controller, final ObjectProperties property, final XcosCell parent) {
-        if (parent.getKind() != Kind.BLOCK) {
-            return;
-        }
-
+    private static int insertPortChildren(final JavaController controller, final ObjectProperties property, final XcosCell parent) {
         VectorOfScicosID modelChildren = new VectorOfScicosID();
         controller.getObjectProperty(parent.getUID(), parent.getKind(), property, modelChildren);
 
@@ -429,7 +512,16 @@ public final class XcosCellFactory {
             XcosCell child = createPort(controller, modelChildren.get(i), property);
             children[i] = child;
         }
-        Arrays.stream(children).forEach(c -> parent.insert(c));
+
+        modelChildren.clear();
+        controller.setObjectProperty(parent.getUID(), parent.getKind(), property, modelChildren);
+
+        Arrays.stream(children).forEach(c -> {
+            parent.insert(c);
+            controller.deleteObject(c.getUID());
+        });
+
+        return children.length;
     }
 
     /**

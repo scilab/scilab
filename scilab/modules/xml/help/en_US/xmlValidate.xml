@@ -48,7 +48,7 @@
         <title>Description</title>
         <para>Validate an already parsed document or a set of documents with given paths with a DTD, a Relax NG or a Schema. If the document is valid, then the returned error is an empty matrix, else a matrix of strings is returned with the error message.</para>
         <para>Validate a document with its path can improve performance and reduce the memory consumption.</para>
-        <para>It is not possible for the moment to validate a document against an external DTD. The only way to do this is to include in your XML file someting like <![CDATA[<!DOCTYPE foo SYSTEM "foo.dtd">]]> and to use xmlValidate without second argument.</para>
+        <para>It is not possible for the moment to validate a document against an external DTD. The only way to do this is to include in your XML file something like <![CDATA[<!DOCTYPE foo SYSTEM "foo.dtd">]]> and to use xmlValidate without second argument.</para>
     </refsection>
     <refsection>
         <title>Examples</title>

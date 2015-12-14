@@ -149,7 +149,7 @@ end
     &lt;title&gt;More information&lt;/title&gt;
     &lt;note&gt;&lt;para&gt;A note about foo&lt;/para&gt;&lt;/note&gt;
     &lt;caution&gt;&lt;para&gt;A caution about foo&lt;/para&gt;&lt;/caution&gt;
-    &lt;warning&gt;&lt;para&gt;A warsning about foo&lt;/para&gt;&lt;/warning&gt;
+    &lt;warning&gt;&lt;para&gt;A warning about foo&lt;/para&gt;&lt;/warning&gt;
     &lt;important&gt;&lt;para&gt;A important about foo&lt;/para&gt;&lt;/important&gt;
     &lt;tip&gt;&lt;para&gt;A tip about foo&lt;/para&gt;&lt;/tip&gt;
   &lt;/refsection&gt;

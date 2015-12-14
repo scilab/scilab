@@ -73,8 +73,9 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
     {
         int i = 0;
         int r = 0;
-        char *currentstr = dictionary[0];
-        qsort(dictionary, sizeof dictionary / sizeof dictionary[0], sizeof dictionary[0], cmp);
+        char *currentstr = NULL;
+        qsort(dictionary, sizeDictionary, sizeof dictionary[0], cmp);
+        currentstr = dictionary[0];
 
         r = cmpPos(currentstr, dictionary[1]);
         for (i = 1; i < sizeDictionary - 1; i++)

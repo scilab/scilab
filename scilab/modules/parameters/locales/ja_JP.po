@@ -14,16 +14,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %d.\n"
-msgstr ""
-"%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %d を"
-"返します.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %d を返します.\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %d.\n"
@@ -47,9 +45,7 @@ msgstr "%s: 必要なパラメータ: "
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %f.\n"
-msgstr ""
-"%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %f を"
-"返します.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %f を返します.\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %f.\n"
@@ -69,9 +65,7 @@ msgstr "%s: パラメータ %s の値が間違っています: 値 %f\n"
 
 #, c-format
 msgid "%s: wrong parameter type. %s expected. Return default value %s.\n"
-msgstr ""
-"%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %s を"
-"返します.\n"
+msgstr "%s: パラメータの型が間違っています. %s を指定してください. デフォルト値 %s を返します.\n"
 
 #, c-format
 msgid "%s: parameter not found. Return default value %s.\n"
@@ -83,86 +77,7 @@ msgstr "%s: パラメータ %s の値が間違っています: 値 %s\n"
 
 #, c-format
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
-msgstr ""
-"%s: パラメータ %s の大きさが間違っています: %d が必要ですが, %d が指定されま"
-"した.\n"
-
-msgid "Parameters"
-msgstr "パラメータ"
-
-msgid "plist handling"
-msgstr "plist処理"
-
-msgid ""
-"This demo shows examples of plist utilizations: creation, insertion, "
-"removal, ..."
-msgstr "このデモはplistの使用例を示します: 作成, 挿入, 削除, ..."
-
-#, c-format
-msgid ""
-"\n"
-"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
-"1].\n"
-msgstr ""
-"\n"
-"2つのフィールド 'min' = [0 0 0] と 'max' = [1 1 1] を有する  plist '%s' を作"
-"成します.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Check fields: \n"
-msgstr ""
-"\n"
-"フィールドを確認: \n"
-
-#, c-format
-msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr "'min' = [0 0 0] 及び 'max' = [1 1 1] と設定:\n"
-
-#, c-format
-msgid "Check values: \n"
-msgstr "値を確認: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Remove the parameter 'min' from %s.\n"
-msgstr ""
-"\n"
-"%s からパラメータ 'min' を削除.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Before remove_param: \n"
-msgstr ""
-"\n"
-"remove_paramの前: \n"
-
-#, c-format
-msgid ""
-"\n"
-"After remove_param: \n"
-msgstr ""
-"\n"
-"remove_paramの後: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check removal: \n"
-msgstr ""
-"\n"
-"削除を確認: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check type: \n"
-msgstr ""
-"\n"
-"型を確認: \n"
+msgstr "%s: パラメータ %s の大きさが間違っています: %d が必要ですが, %d が指定されました.\n"
 
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"
@@ -174,13 +89,11 @@ msgstr "この引数は Scilab %s から削除されます"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: キー %s が既に定義されています.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: キー %s が既に定義されています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"

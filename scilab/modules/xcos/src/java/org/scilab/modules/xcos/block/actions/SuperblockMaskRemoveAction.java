@@ -19,6 +19,7 @@ import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -74,6 +75,6 @@ public final class SuperblockMaskRemoveAction extends DefaultAction {
         }
 
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
-        block.unmask();
+        block.unmask(new JavaController());
     }
 }

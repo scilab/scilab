@@ -195,6 +195,9 @@ function nyquist(varargin)
     L=0;
     DIc=0.2;
     while %t
+        if isempty(Ic) then
+            break
+        end
         ksup=find(Ic-L>DIc);
         if ksup==[] then break,end
         kk1=min(ksup);

@@ -193,7 +193,7 @@
                         <para>history of simplices,</para>
                     </listitem>
                     <listitem>
-                        <para>history of termination criterias,</para>
+                        <para>history of termination criteria.</para>
                     </listitem>
                 </itemizedlist>
             </listitem>
@@ -226,7 +226,7 @@
             length equal to 0.1. The Nelder-Mead algorithm with variable simplex size
             is used. The verbose mode is enabled so that messages are generated during
             the algorithm. After the optimization is performed, the optimum is
-            retrieved with quiery features.
+            retrieved with query features.
         </para>
         <programlisting role="example"><![CDATA[
 function [f, index]=rosenbrock(x, index)

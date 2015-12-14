@@ -9,7 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function y = acot(x)
-    //Inverse cotangeant.
+    //Inverse cotangent.
 
     rhs = argn(2);
     if rhs <> 1 then

@@ -45,8 +45,12 @@ import org.scilab.modules.types.ScilabDouble;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -414,7 +418,7 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                      * reconstruct pol fields. The default types of the values.
                      *
                      * This field indicate the dimension of each entry (-1.0 is
-                     * automatic). FIXME: type the data there instead of using
+                     * automatic). TODO: type the data there instead of using
                      * the generic "pol".
                      */
                     polFields.add(new ScilabString("pol"));
@@ -434,8 +438,10 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                     exprs = new ScilabList(Arrays.asList(new ScilabString(values),
                                                          new ScilabList(Arrays.asList(new ScilabString(varNames), new ScilabString(varDesc), polFields))));
                 }
-                // FIXME: this exprs will be var2vec encoded on the model ; handle that from Java
-                //                getBlock().setExprs(exprs);
+
+                JavaController controller = new JavaController();
+                VectorOfDouble vec = new ScilabTypeCoder().var2vec(exprs);
+                controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
 
                 /*
                  * Trace the exprs update.
@@ -453,9 +459,10 @@ public final class SuperblockMaskCustomizeAction extends DefaultAction {
                 ScilabString varNames;
                 ScilabString varDesc;
 
-                //                FIXME: this exprs will be var2vec encoded on the model ; handle that from Java
-                //                ScilabType rawExprs = getBlock().getExprs();
-                ScilabType rawExprs = new ScilabDouble();
+                JavaController controller = new JavaController();
+                VectorOfDouble vec = new VectorOfDouble();
+                controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
+                ScilabType rawExprs = new ScilabTypeCoder().vec2var(vec);
 
                 // Xcos from Scilab 5.2.0 version
                 // so set default values

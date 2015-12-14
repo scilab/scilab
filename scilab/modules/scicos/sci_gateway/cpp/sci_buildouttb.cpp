@@ -113,6 +113,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1Int8->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabInt16:
@@ -126,6 +127,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1Int16->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabInt32:
@@ -139,6 +141,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1Int32->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabUInt8:
@@ -152,6 +155,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1UInt8->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabUInt16:
@@ -165,6 +169,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1UInt16->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         case types::InternalType::ScilabUInt32:
@@ -178,6 +183,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
             memcpy(buffer, p1UInt32->get(), mn1 * sizeof(char));
             p1Copy = new int[mn1];
             memcpy(p1Copy, buffer, mn1 * sizeof(int));
+            delete[] buffer;
             break;
         }
         default:
@@ -314,6 +320,7 @@ types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCoun
         {
             out.push_back(pOut);
             delete[] p1Copy;
+            delete[] p2Copy;
             return types::Function::OK;
         }
         else

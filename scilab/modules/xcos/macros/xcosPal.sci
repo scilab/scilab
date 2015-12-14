@@ -11,7 +11,7 @@
 //
 
 function pal = xcosPal(name, scs_m)
-    // Instanciate a new Xcos palette on Scilab.
+    // Instantiate a new Xcos palette on Scilab.
     //
     // Calling Sequence
     //   pal = xcosPal();
@@ -26,7 +26,7 @@ function pal = xcosPal(name, scs_m)
     //   pal: palette tlist; the palette instance
     //
     // Description
-    // Instanciate a new palette diagram.
+    // Instantiate a new palette diagram.
     //
     // The optional name argument can be used to set a name to the palette. The optional scs_m argument can be used to import diagrams as palettes.
     //

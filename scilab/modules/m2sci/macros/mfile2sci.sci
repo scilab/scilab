@@ -263,25 +263,34 @@ function res=mfile2sci(fil,res_path,Recmode,only_double,verbose_mode,prettyprint
         size3=size(not_mtlb_fun,1)
 
         if size(mtlbref_fun,"*")<>0 then
-            mtlbref_fun(:,1)=""""+mtlbref_fun(:,1)+""""
+            mtlbref_fun(:,1) = """"+mtlbref_fun(:,1)+"""";
+            mtlbref_fun12 = mtlbref_fun(:,1) + mtlbref_fun(:,2);
+        else
+            mtlbref_fun12 = [];
         end
         if size(mtlbtool_fun,"*")<>0 then
-            mtlbtool_fun(:,1)=""""+mtlbtool_fun(:,1)+""""
+            mtlbtool_fun(:,1) = """"+mtlbtool_fun(:,1)+"""";
+            mtlbtool_fun12 = mtlbtool_fun(:,1) + mtlbtool_fun(:,2);
+        else
+            mtlbtool_fun12 = [];
         end
         if size(not_mtlb_fun,"*")<>0 then
-            not_mtlb_fun(:,1)=""""+not_mtlb_fun(:,1)+""""
+            not_mtlb_fun(:,1) = """"+not_mtlb_fun(:,1)+"""";
+            not_mtlb_fun12 = not_mtlb_fun(:,1) + not_mtlb_fun(:,2);
+        else
+            not_mtlb_fun12 = [];
         end
 
         info_resume=[msprintf(gettext("****** %s: Functions of mfile2sci() session ******"),fnam);
         "*";
         msprintf(gettext("%d Matlab Function(s) not yet converted, original calling sequence used:"),size1);
-        mtlbref_fun(:,1)+mtlbref_fun(:,2);
+        mtlbref_fun12;
         "*";
         msprintf(gettext("%d Matlab Toolbox(es) Functions, original calling sequence used :"),size2);
-        mtlbtool_fun(:,1)+mtlbtool_fun(:,2);
+        mtlbtool_fun12;
         "*";
         msprintf(gettext("%d Unknown Function(s), original calling sequence used :"),size3);
-        not_mtlb_fun(:,1)+not_mtlb_fun(:,2);
+        not_mtlb_fun12;
         "*"]
 
         write(resume_logfile,margin+info_resume)

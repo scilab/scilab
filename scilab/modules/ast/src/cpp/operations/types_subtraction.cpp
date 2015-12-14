@@ -24,6 +24,7 @@
 extern "C"
 {
 #include "elem_common.h" //dset
+#include "Sciwarning.h" //Sciwarning
 }
 
 using namespace types;
@@ -731,8 +732,8 @@ void fillSubtractFunction()
     scilab_fill_sub(PolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //poly - []
-    scilab_fill_sub(Polynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_sub(PolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_sub(Polynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_sub(PolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //poly - eye
     scilab_fill_sub(Polynom, Identity, M_M, Polynom, Double, Polynom);
@@ -765,8 +766,8 @@ void fillSubtractFunction()
     scilab_fill_sub(ScalarPolynomComplex, ScalarDoubleComplex, M_M, Polynom, Double, Polynom);
 
     //scalar poly - []
-    scilab_fill_sub(ScalarPolynom, Empty, M_M, Polynom, Double, Polynom);
-    scilab_fill_sub(ScalarPolynomComplex, Empty, M_M, Polynom, Double, Polynom);
+    scilab_fill_sub(ScalarPolynom, Empty, M_E, Polynom, Double, Polynom);
+    scilab_fill_sub(ScalarPolynomComplex, Empty, M_E, Polynom, Double, Polynom);
 
     //scalar poly - eye
     scilab_fill_sub(ScalarPolynom, Identity, M_M, Polynom, Double, Polynom);
@@ -782,7 +783,7 @@ void fillSubtractFunction()
     scilab_fill_sub(Sparse, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_sub(Sparse, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_sub(Sparse, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_sub(Sparse, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_sub(Sparse, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_sub(Sparse, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -793,7 +794,7 @@ void fillSubtractFunction()
     scilab_fill_sub(SparseComplex, ScalarDouble, M_M, Sparse, Double, Double);
     scilab_fill_sub(SparseComplex, ScalarDoubleComplex, M_M, Sparse, Double, Double);
 
-    scilab_fill_sub(SparseComplex, Empty, M_M, Sparse, Double, Sparse);
+    scilab_fill_sub(SparseComplex, Empty, M_E, Sparse, Double, Sparse);
     scilab_fill_sub(SparseComplex, Identity, M_M, Sparse, Double, Sparse);
     scilab_fill_sub(SparseComplex, IdentityComplex, M_M, Sparse, Double, Sparse);
 
@@ -828,7 +829,7 @@ InternalType* sub_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -856,7 +857,7 @@ InternalType* sub_M_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -895,7 +896,10 @@ InternalType* sub_M_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_M_E(T *_pL, U * /*_pR*/)
 {
-    return _pL;
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 
@@ -907,7 +911,7 @@ InternalType* sub_MC_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -935,7 +939,7 @@ InternalType* sub_MC_MC(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -974,7 +978,10 @@ InternalType* sub_MC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_MC_E(T *_pL, U * /*_pR*/)
 {
-    return _pL;
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 
@@ -1013,8 +1020,9 @@ InternalType* sub_S_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_S_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0);
-    sub(_pL->get(0), pOut->get());
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
     return pOut;
 }
 
@@ -1054,8 +1062,9 @@ InternalType* sub_SC_SC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 {
-    O* pOut = new O(0.0, 0.0);
-    sub(_pL->get(0), _pL->getImg(0), (size_t)1, pOut->get(), pOut->getImg());
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
     return pOut;
 }
 
@@ -1063,13 +1072,19 @@ InternalType* sub_SC_E(T *_pL, U * /*_pR*/)
 template<class T, class U, class O>
 InternalType* sub_E_M(T * /*_pL*/, U *_pR)
 {
-    return opposite_M<U, O>(_pR);
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O>
 InternalType* sub_E_MC(T * /*_pL*/, U *_pR)
 {
-    return opposite_MC<U, O>(_pR);
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O>
@@ -1449,22 +1464,34 @@ template<class T, class U, class O> InternalType* sub_IC_IC(T *_pL, U *_pR)
 
 template<class T, class U, class O> types::InternalType* sub_I_E(T *_pL, U * /*_pR*/)
 {
-    return (O*)_pL;
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* sub_IC_E(T *_pL, U * /*_pR*/)
 {
-    return (O*)_pL;
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* sub_E_I(T * /*_pL*/, U *_pR)
 {
-    return opposite_I<U, O>(_pR);
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<class T, class U, class O> types::InternalType* sub_E_IC(T * /*_pL*/, U *_pR)
 {
-    return opposite_IC<U, O>(_pR);
+    Sciwarning(_("operation -: Warning adding a matrix with the empty matrix will give an empty matrix result.\n")); 
+    Double* pOut = Double::Empty();
+    sub();
+    return pOut;
 }
 
 template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
@@ -1650,7 +1677,7 @@ template<> InternalType* sub_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
     if (iDims1 != iDims2)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDims1    = _pL->getDimsArray();
@@ -1898,9 +1925,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
 
     if (iDims1 != iDims2)
     {
-        wchar_t pMsg[bsiz];
-        os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"-", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::InternalError(pMsg);
+        return nullptr;
     }
 
     int* piDims1 = _pR->getDimsArray();
@@ -2241,9 +2266,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 
     if (iDims1 != iDims2)
     {
-        wchar_t pMsg[bsiz];
-        os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
-        throw ast::InternalError(pMsg);
+        return nullptr;
     }
 
     int* piDims1 = _pR->getDimsArray();
@@ -2439,6 +2462,10 @@ template<> InternalType* sub_M_M<Double, Sparse, Double>(Double* _pL, Sparse* _p
         return pOut;
     }
 
+    if (_pL->getDims() > 2)
+    {
+        return nullptr;
+    }
 
     if (_pL->getRows() == _pR->getRows() && _pL->getCols() == _pR->getCols())
     {
@@ -2593,6 +2620,11 @@ template<> InternalType* sub_M_M<Sparse, Double, Double>(Sparse* _pL, Double* _p
         return pOut;
     }
 
+
+    if (_pR->getDims() > 2)
+    {
+        return nullptr;
+    }
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {

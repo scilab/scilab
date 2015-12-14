@@ -183,6 +183,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             return types::Function::Error;
         }
 
+        // update where to set the name of the executed file.
+        ConfigVariable::setFileNameToLastWhere(wstFile.data());
+
         ThreadManagement::LockParser();
         parser.parseFile(pwstTemp, L"exec");
         FREE(pwstTemp);
@@ -230,8 +233,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
 
         ThreadManagement::UnlockParser();
-        // update where to set the name of the executed file.
-        ConfigVariable::setFileNameToLastWhere(wstFile.data());
 
         ConfigVariable::setExecutedFileID(iID);
     }
@@ -359,6 +360,10 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd; ++j)
         {
+            if (ConfigVariable::getPromptMode() == 7)
+            {
+                stPrompt = SCIPROMPT_PAUSE;
+            }
             // printf some exp
             ast::exps_t::iterator k = j;
             int iLastLine = (*j)->getLocation().last_line;
@@ -450,6 +455,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
                 }
 
+                // avoid double delete on exps when "seqExp" is destryed and "LExp" too
+                ast::exps_t& protectExp = seqExp.getExps();
+                for (int i = 0; i < protectExp.size(); ++i)
+                {
+                    protectExp[i] = NULL;
+                }
+
                 //store message
                 iErr = ConfigVariable::getLastErrorNumber();
                 if (bErrCatch == false)
@@ -458,14 +470,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                     //restore previous prompt mode
                     ConfigVariable::setPromptMode(oldVal);
-
-                    // avoid double delete on exps when "seqExp" is destryed and "LExp" too
-                    ast::exps_t& protectExp = seqExp.getExps();
-                    for (int i = 0; i < protectExp.size(); ++i)
-                    {
-                        protectExp[i] = NULL;
-                    }
-
                     throw ie;
                 }
 

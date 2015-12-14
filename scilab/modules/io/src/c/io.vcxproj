@@ -88,12 +88,11 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io_f.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -117,12 +116,11 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io_f.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -146,12 +144,11 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io_f.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -180,12 +177,11 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;io_f.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -218,7 +214,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\io.pot" />
-    <None Include="io_f_Import.def" />
     <None Include="core_import.def" />
     <None Include="Scilab_Windows_Import.def" />
     <None Include="..\..\io.iss" />

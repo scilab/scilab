@@ -87,12 +87,11 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -115,12 +114,11 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -143,12 +141,11 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -176,12 +173,11 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)signal_processing_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;core.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;signal_processing_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -206,7 +202,6 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\signal_processing.pot" />
-    <None Include="core_import.def" />
     <None Include="signal_processing_f_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\signal_processing.iss" />
@@ -229,6 +224,9 @@ lib /DEF:"$(ProjectDir)signal_processing_f_Import.def" /SUBSYSTEM:WINDOWS /MACHI
     </ProjectReference>
     <ProjectReference Include="..\..\..\ast\ast.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\dynamic_link\src\c\dynamic_link.vcxproj">
       <Project>{eab6c580-22b3-4359-ba1d-dd7499a96163}</Project>

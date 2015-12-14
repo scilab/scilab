@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: es\n"
 
 #, c-format
@@ -278,13 +278,15 @@ msgstr ""
 "%s: Número incorrecto de argumentos de entrada: Se esperaban de %d a %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba una matriz "
 "dispersa cuadrada.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba una matriz "
 "dispersa cuadrada.\n"
@@ -296,24 +298,6 @@ msgstr "%s: La matriz y la factorización LU no tienen la misma dimensión !\n"
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr "%s: Tipo y/o tamaño y/o valor Invalido para el segundo argumento.\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " El tamaño de la pila no es suficiente para esta demostración "
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " ingrese lo siguiente en la línea de comandos de Scilab :          "
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           luego reingrese scisptdemo()                "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               CLICK PARA CONTINUAR                    "
 
 msgid "how to use this stuff"
 msgstr "como usar estas cosas"

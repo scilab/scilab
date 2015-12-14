@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-11-06 13:29+0000\n"
-"Last-Translator: Dennis Baudys <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
 
 #, c-format
@@ -22,24 +22,8 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Speicherreservierungsfehler.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: Matrix mit Zeichenketten "
-"erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: Can not read named argument %s.\n"
@@ -66,49 +50,6 @@ msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: falsche(r) Wert(e) für Eingangsargument(e)\n"
 
 #, c-format
-msgid "%s: Warning: Directory '%s' already exists.\n"
-msgstr "%s: Warnung: VErzeichnis '%s' existiert bereits.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: string expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument. Eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: kein weiterer Speicher verfügbar\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A m-by-1 array expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine m x 1 Datenfeld erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: Falscher Wert für Eingangsargument #%d.\n"
-
-#, c-format
-msgid "%s: Error while trying to retrieve the name of the current directory.\n"
-msgstr "%s: Fehler beim Abrufen des Namens des aktuellen Ordners.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: Falscher Typ für Eingangsargumente: Zeichenketten erwartet.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A 1-by-n or m-by-1 array expected.\n"
 msgstr ""
@@ -122,11 +63,6 @@ msgid ""
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: Matrix aus Fließkommazahlen "
 "erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
 #, c-format
 msgid "%s: can not open file %s.\n"
@@ -145,11 +81,6 @@ msgid "%s: can not read file %s.\n"
 msgstr "%s: kann Datei nicht lesen %s.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr ""
-"%s: falscher Wert für Eingangargument #%d: '%s' ist ein ungültiger Pfad.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
@@ -158,20 +89,92 @@ msgid "%s: Could not create the output argument.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string.\n"
-msgstr "%s: falscher Typ an Eingangsargumenten #%d: eine Zeichenkette.\n"
+msgid "%s: An error occurred.\n"
+msgstr "%s: Ein Fehler ist aufgetreten.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: no empty string expected.\n"
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument. keine leere Zeichenkette erwartet.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A string (3 characters max.) "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls: Warning: Directory '%ls' already exists.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr "%s: falsche Anzahl für Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr "%s: Falscher Wert für Eingangsargument #%d.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
+msgstr ""
+"%s: falscher Wert für Eingangargument #%d: '%s' ist ein ungültiger Pfad.\n"
 
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: die Datei %s ist nicht Scilab nicht geöffnet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -186,53 +189,41 @@ msgstr ""
 "sein.\n"
 
 #, c-format
-msgid ""
-"%s: Warning: Specified maximum number of files (%d) > Absolute maximum "
-"number of files allowed (%d).\n"
+msgid "%s: Wrong type for input argument #%d: A real expected.\n"
 msgstr ""
-"%s: Warnung: angegebene  maximale Anzahl der Dateien (%d) > erlaubte "
-"absolute maximale Anzahl der Dateien (%d).\n"
 
 #, c-format
 msgid ""
-"%s: Could not extend the number of files simultaneously open in Scilab.\n"
+"%s: Cannot check the end of file whose descriptor is %d: File is not "
+"active.\n"
 msgstr ""
-"%s: konnte die Anzahl der Dateien, die in Scilab gleichzeitig geöffnet sind, "
-"erhöhen.\n"
+
+#, c-format
+msgid "%s: File not found: '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong input arguments: '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong file descriptor: %d.\n"
+msgstr "%s: falsche Dateibeschreibung: %d.\n"
 
 #, c-format
 msgid ""
-"%s: Warning : only extend the limit for the number of scilab's files opened "
-"simultaneously.\n"
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
-"%s: Warnung: nur die obere Grenze der gleichzeitig in Scilab geöffneten "
-"Dateien erhöhen.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: Scalar expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument: Skalar erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument: Matrix expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument: Matrix erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: ein Integer erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwartet.\n"
-
-#, c-format
-msgid "%s: No such file %s.\n"
-msgstr "%s: keine derartige Datei %s.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: ein Integer oder Zeichenkette "
-"erwartet.\n"
+
+#, c-format
+msgid ""
+"%ls: Cannot check the end of file whose descriptor is %d: File is not "
+"active.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot read file whose descriptor is %d: File is not active.\n"
@@ -241,29 +232,29 @@ msgstr ""
 "aktiv.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
+msgid "%s: Wrong type for input argument #%d: A Real expected.\n"
 msgstr ""
-"%s: falsche Anzahl von Eingangsargumenten: mindestens %d werden erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong file descriptor: %d.\n"
-msgstr "%s: falsche Dateibeschreibung: %d.\n"
 
 #, c-format
 msgid "%s: Wrong file mode: READ only.\n"
 msgstr "%s: falscher Dateimodus: nur LESE Modus.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: falsche Anzahl für Eingangsargumenten: %d erwartet.\n"
+msgid "%s: Error while writing in file: disk full or deleted file.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: Skalar erwartet.\n"
+msgid "%s: Cannot read file %d.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Data mismatch.\n"
-msgstr "%s: Daten Unterschied.\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: kein weiterer Speicher verfügbar\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -271,13 +262,15 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A positive integer value expected.\n"
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A positive integer value expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
@@ -287,24 +280,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: Falscher Typ des Eingabewertes #%d: Zeichenkette oder boolescher Wert "
-"erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: String or logical unit expected.\n"
-msgstr ""
-"%s: Falsche Größe des Eingabewertes #%d: Zeichenkette oder boolescher Wert "
-"erwartet.\n"
 
 #, c-format
 msgid "%s: Too many files opened!\n"
@@ -323,63 +298,59 @@ msgid "%s: invalid status.\n"
 msgstr "%s: ungültiger Status.\n"
 
 #, c-format
-msgid "%s: No input file associated to logical unit %d.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
-"%s: keine Eingangsdatei steht im Zusammenhang mit der logischen Einheit %d.\n"
+"%s:Falscher Typ des Eingabewertes #%d: Zeichenkette oder Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Unable to read file %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
+msgstr "%s: falsche Größe für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format
 msgid "%s: invalid filename.\n"
 msgstr "%s: ungültiger Dateiname.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Integer expected.\n"
-msgstr "%s: Falsche Größe des Eingabewertes #%d: Integer erwartet.\n"
+msgid "%s: Data mismatch.\n"
+msgstr "%s: Daten Unterschied.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: falsche Größe des Eingabewertes #%d: Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
-msgstr ""
-"%s:Falscher Typ des Eingabewertes #%d: Zeichenkette oder Integer erwartet.\n"
-
-#, c-format
-msgid "%s: Specified format cannot include any '\\n'\n"
-msgstr "%s: spezifiziertes Format kann kein '\\n' enthalten\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: ein Fehler ist aufgetreten: %s\n"
-
-msgid "Not enough entries."
-msgstr "Nicht genügend Einträge"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 'w' or 'u' string expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: ein boolscher Wert erwartet.\n"
-
-#, c-format
-msgid "%s: An error occurred.\n"
-msgstr "%s: Ein Fehler ist aufgetreten.\n"
-
-#, c-format
-msgid "%s: Warning: Directory '%s' does not exist.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: A real or String expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: A string (3 characters max.) "
-"expected.\n"
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: '%s', '%s' oder '%s' erwartet.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A Strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Error while opening, reading or writing.\n"
+msgstr "%s: Fehler beim Öffnen, Lesen oder Schreiben.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Warning: Directory '%ls' does not exist.\n"
 msgstr ""
 
 msgid "Could not parse the URL.\n"
@@ -438,7 +409,8 @@ msgstr ""
 "%s: ein Fehler ist aufgetreten: zu viele (>%d) Konversionen benötigt.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
 "%s: ein Fehler ist aufgetreten: Feld %d ist zu lang (>%d) für %%[Direktive.\n"
 
@@ -446,13 +418,15 @@ msgid "Bad conversion."
 msgstr "schlechte Konversion."
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s: ein Fehler ist aufgetreten: Feld %d ist zu lang (<%d) für %%s "
 "Direktive.\n"
 
 #, c-format
-msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid ""
+"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s: ein Fehler ist aufgetreten: Feld %d ist zu lang (<%d) für %%c "
 "Direktive.\n"
@@ -466,16 +440,39 @@ msgid "Warning: Could not open directory %s: %s\n"
 msgstr "Warnung: kann Verzeichnis%s: %s nicht öffnen\n"
 
 #, c-format
+msgid "Warning: Error while opening %s: %s\n"
+msgstr "Warnung: Fehler beim Öffnen %s: %s\n"
+
+#, c-format
+msgid "Warning: Could not remove file %s: %s\n"
+msgstr "Warnung: Kann Datei nicht entfernen %s: %s\n"
+
+#, c-format
+msgid "Warning: Could not remove directory %s: %s\n"
+msgstr "Warnung: Kann Verzeichnis nicht entfernen %s: %s\n"
+
+#, c-format
+msgid "Can't go to directory %s: %s\n"
+msgstr "Kann nicht in Verzeichnis wechseln %s: %s\n"
+
+#, c-format
+msgid "Can't go to directory %s.\n"
+msgstr "Kann in Verzeichnis nicht wechseln %s.\n"
+
+msgid "Invalid buffer.\n"
+msgstr "Falscher Puffer.\n"
+
+msgid "Unknown error.\n"
+msgstr "Unbekannter Fehler.\n"
+
+msgid "Can't get current directory.\n"
+msgstr "Kann das aktuelle Verzeichnis nicht erreichen.\n"
+
+#, c-format
 msgid "%s: Cannot close file whose descriptor is %d: File is not active.\n"
 msgstr ""
 "%s: kann die Datei nicht schliessen, dessen Deskriptor %d ist: Datei ist "
 "nicht aktiv.\n"
-
-#, c-format
-msgid "%s: Cannot close file whose descriptor is %d: No file to close.\n"
-msgstr ""
-"%s: kann die Datei nicht schliessen, dessen Deskriptor %d ist: keine Datei "
-"zu schliessen.\n"
 
 #, c-format
 msgid ""
@@ -483,6 +480,11 @@ msgid ""
 msgstr ""
 "%s: falscher Wert für Eingangsargument '%d: '%s' oder '%s' oder '%s' "
 "erwartet.\n"
+
+#, c-format
+msgid "%s: No input file associated to logical unit %d.\n"
+msgstr ""
+"%s: keine Eingangsdatei steht im Zusammenhang mit der logischen Einheit %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
@@ -493,14 +495,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Format not recognized.\n"
 msgstr "%s: falscher Wert für Eingangsargument #%d: Format nicht erkannt.\n"
-
-#, c-format
-msgid "%s: No input file.\n"
-msgstr "%s: keine Eingangsdatei.\n"
-
-#, c-format
-msgid "%s: %s format not recognized.\n"
-msgstr "%s: %s Format ist nicht erlaubt.\n"
 
 #, c-format
 msgid "Warning: file '%s' already opened in Scilab.\n"
@@ -521,74 +515,10 @@ msgstr ""
 "erwartet.\n"
 
 #, c-format
-msgid "%s: No File opened in Scilab.\n"
-msgstr "%s: keine Datei in Scilab geöffnet.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid ""
+"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d ('%s'): Format nicht erkannt.\n"
-
-#, c-format
-msgid "%s: Error while opening, reading or writing '%s'.\n"
-msgstr "%s: Fehler beim Öffnen, Lesen oder Schreiben '%s'.\n"
-
-#, c-format
-msgid "%s: Error while opening, reading or writing.\n"
-msgstr "%s: Fehler beim Öffnen, Lesen oder Schreiben.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s', '%s' oder '%s' erwartet.\n"
-
-#, c-format
-msgid "%s: An error occurred in %s: errno=%s\n"
-msgstr "%s: ein Fehler ist in %s aufgetreten: Fehlernummer=%s.\n"
-
-#, c-format
-msgid "Warning: Error while opening %s: %s\n"
-msgstr "Warnung: Fehler beim Öffnen %s: %s\n"
-
-#, c-format
-msgid "Warning: Could not remove file %s: %s\n"
-msgstr "Warnung: Kann Datei nicht entfernen %s: %s\n"
-
-#, c-format
-msgid "Warning: Could not remove directory %s: %s\n"
-msgstr "Warnung: Kann Verzeichnis nicht entfernen %s: %s\n"
-
-#, c-format
-msgid "%s: Too many directives in scanf.\n"
-msgstr "%s: zu viele Direktiven in Scanf.\n"
-
-#, c-format
-msgid "Can't go to directory %s: %s\n"
-msgstr "Kann nicht in Verzeichnis wechseln %s: %s\n"
-
-#, c-format
-msgid "Can't go to directory %s.\n"
-msgstr "Kann in Verzeichnis nicht wechseln %s.\n"
-
-msgid "Invalid buffer.\n"
-msgstr "Falscher Puffer.\n"
-
-msgid "Unknown error.\n"
-msgstr "Unbekannter Fehler.\n"
-
-msgid "Can't get current directory.\n"
-msgstr "Kann das aktuelle Verzeichnis nicht erreichen.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
-msgstr ""
-"%s: falscher Variablentyp (%s) in '%s' gefunden. Datei könnte fehlerhaft "
-"sein oder beschädigt.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
@@ -609,6 +539,10 @@ msgstr "%s: falscher Typ für Eingangsargument: Zeichenkette erwartet.\n"
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Falsche Anzahl an Eingangsargumenten.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: Falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
 
 msgid "Impossible to create directory "
 msgstr "Unmöglich das Verzeichnis zu erstellen "

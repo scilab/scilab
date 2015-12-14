@@ -97,7 +97,7 @@
     <refsection id="Description_ENDBLK">
         <title>Description</title>
         <para>That block can be used to set the final time of the simulation. When
-            that block is truely parametrized then the simulator will jump to the
+            that block is truly parametrized then the simulator will jump to the
             'final integration time' defined in the Setup item of the simulate Menu
             from the time defined by the parameter 'Final simulation time' of the
             dialog box. That parameter can be a numerical value or a symbolic variable

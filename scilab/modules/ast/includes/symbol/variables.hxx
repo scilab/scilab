@@ -14,6 +14,7 @@
 #define __VARIABLES_HXX__
 
 #include <string>
+#include <map>
 #include <stack>
 #include "symbol.hxx"
 #include "internal.hxx"
@@ -40,14 +41,15 @@ struct EXTERN_AST Variable
     Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL), last(nullptr) {};
     ~Variable();
 
-    void put(types::InternalType* _pIT, int _iLevel);
+    bool put(types::InternalType* _pIT, int _iLevel);
     void setGlobalValue(types::InternalType* _pIT);
     void setGlobalVisible(int _iLevel, bool _bVisible);
 
-    inline void put(ScopedVariable* pSV)
+    inline bool put(ScopedVariable* pSV)
     {
         last = pSV;
         stack.push(last);
+        return true;
     }
 
     inline types::InternalType* get() const
@@ -154,6 +156,7 @@ struct Variables
     int getProtectedVarsName(std::list<std::wstring>& lstVarName) const;
     int getFunctionsName(std::list<std::wstring>& lst);
     int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName, int _iLevel);
+    int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName, int _iLevel);
     int getVarsToVariableBrowser(std::list<Variable*>& lst);
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel);
 

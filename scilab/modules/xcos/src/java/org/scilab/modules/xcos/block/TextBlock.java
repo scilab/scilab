@@ -20,7 +20,6 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.actions.BlockParametersAction;
 import org.scilab.modules.xcos.block.actions.RegionToSuperblockAction;
-import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * A textblock is used to annotate diagrams.
@@ -32,8 +31,6 @@ public final class TextBlock extends BasicBlock {
      */
     public TextBlock(long uid) {
         super(uid, Kind.ANNOTATION);
-
-        setValue(XcosMessages.DOTS);
     }
 
     /**

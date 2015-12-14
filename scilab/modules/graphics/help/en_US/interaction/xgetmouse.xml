@@ -194,7 +194,7 @@ while rep(3)==-1 do // mouse just moving ...
   ox=min(xc,xc1);
   oy=max(yc,yc1);
   w=abs(xc-xc1);h=abs(yc-yc1);
-  r.data=[ox,oy,w,h]; //change the retangle origin, width a height
+  r.data=[ox,oy,w,h]; //change the rectangle origin, width a height
   first=%f;
 end
  ]]></programlisting>

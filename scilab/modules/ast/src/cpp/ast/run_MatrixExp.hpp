@@ -15,10 +15,11 @@ namespace ast {
 
 /*
     [1,2;3,4] with/without special character $ and :
-*/
+    */
 template<class T>
 void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 {
+    CoverageInstance::invokeAndStartChrono((void*)&e);
     try
     {
         exps_t::const_iterator row;
@@ -30,6 +31,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
         if (lines.size() == 0)
         {
             setResult(types::Double::Empty());
+            CoverageInstance::invokeAndStartChrono((void*)&e);
             return;
         }
 
@@ -47,16 +49,17 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
                 {
                     setResult(types::Double::Empty());
                 }
+                CoverageInstance::invokeAndStartChrono((void*)&e);
                 return;
             }
         }
 
         //do all [x,x]
-        for (row = lines.begin() ; row != lines.end() ; row++)
+        for (row = lines.begin(); row != lines.end(); row++)
         {
             types::InternalType* poRow = NULL;
             exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
-            for (col = cols.begin() ; col != cols.end() ; col++)
+            for (col = cols.begin(); col != cols.end(); col++)
             {
                 setResult(NULL); // Reset value on loop re-start
 
@@ -376,7 +379,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 try
                 {
-                   poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
+                    poResult = callOverloadMatrixExp(L"f", pGTResult, pGT);
                 }
                 catch (const InternalError& error)
                 {
@@ -409,8 +412,10 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
     catch (const InternalError& error)
     {
         setResult(NULL);
+        CoverageInstance::invokeAndStartChrono((void*)&e);
         throw error;
     }
+    CoverageInstance::invokeAndStartChrono((void*)&e);
 }
 
 template<class T>

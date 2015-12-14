@@ -19,7 +19,7 @@
     <refsection>
         <title>Sending and receiving data</title>
         <para>
-            The main problem of a MPI implementation from a scripting language is due to their native characterics. Indeed, scripting language are, by nature, using dynamic variables of various <literal>types</literal> and sizes.
+            The main problem of a MPI implementation from a scripting language is due to their native characteristics. Indeed, scripting language are, by nature, using dynamic variables of various <literal>types</literal> and sizes.
         </para>
         <para>
             The implementation of MPI in Scilab is using an internal serialization and deserialization process to the MPI datatype MPI_INT. The send functions (MPI_Send, MPI_Isend, MPI_BCast, etc) will convert all the supported datatypes to MPI_INT while receiving functions (MPI_Recv, MPI_Irecv, etc) will <literal>restore</literal> the original variables.

@@ -9,28 +9,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-06 19:40+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
-"значення типу «string».\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -57,9 +47,6 @@ msgstr "Модуль «%s» Scilab не встановлено.\n"
 
 msgid "Version"
 msgstr "Версія"
-
-msgid "Description"
-msgstr "Опис"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -94,7 +81,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -327,8 +315,8 @@ msgstr "%s: помилка у форматуванні файла CHAPTER, ря�
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати рядок, "
 "який завершується підрядком «.last_successful_build».\n"

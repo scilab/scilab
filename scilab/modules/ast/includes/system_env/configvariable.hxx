@@ -144,6 +144,14 @@ public :
     static void setWarningMode(bool _bWarningMode);
     static bool getWarningMode(void);
 
+    // WarningStop
+private :
+    static bool m_bWarningStop;
+
+public :
+    static void setWarningStop(bool _bWarningStop);
+    static bool getWarningStop(void);
+
     //HOME
 private :
     static std::wstring m_HOME;

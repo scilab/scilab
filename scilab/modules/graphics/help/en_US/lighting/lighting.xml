@@ -18,12 +18,12 @@
     <refsection>
         <title>Description</title>
         <para>
-            Lighting in scilab aproximates real world lighting where the appearence of
+            Lighting in scilab approximates real world lighting where the appearance of
             a surface is given by interactions between light rays and the material properties of the
             surface.
         </para>
         <para>Because simulate real world lighting is complex
-            and computationaly expesive, one uses a simplified model.
+            and computationally expensive, one uses a simplified model.
         </para>
         <para>
             A light is represented mainly by its colors: ambient, diffuse and specular. It can
@@ -115,7 +115,7 @@
                             <term>direction: </term>
                             <listitem>
                                 <para>This field defines the ray direction for directional light.
-                                    The direction can be chaged using a 3 element vector <literal>"[x, y, z]"</literal>
+                                    The direction can be changed using a 3 element vector <literal>"[x, y, z]"</literal>
                                     representing a vector starting from the origin.
                                 </para>
                                 <para>

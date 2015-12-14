@@ -78,10 +78,10 @@ public:
      * \return true if empty
      */
     inline bool empty() const
-	{
-	    return gvn == nullptr || value == nullptr;
-	}
-    
+    {
+        return gvn == nullptr || value == nullptr;
+    }
+
     /**
      * \brief Check if this dimension is valid
      * \return true if valid
@@ -168,30 +168,30 @@ public:
      * \param dim a dim
      */
     inline void mergeAsMax(const SymbolicDimension & dim)
-	{
-	    bool mustInvalidate = true;
-	    if (isValid() && dim.isValid())
-	    {
-		if (value->poly && dim.value->poly)
-		{
-		    MultivariatePolynomial mp = *value->poly - *dim.value->poly;
-		    if (mp.isCoeffPositive())
-		    {
-			value = dim.value;
-			mustInvalidate = false;
-		    }
-		    else if (mp.isCoeffNegative())
-		    {
-			mustInvalidate = false;
-		    }
-		}
-	    }
-	    if (mustInvalidate && gvn)
-	    {
-		gvn = nullptr;
-		value = nullptr;
-	    }
-	}
+    {
+        bool mustInvalidate = true;
+        if (isValid() && dim.isValid())
+        {
+            if (value->poly && dim.value->poly)
+            {
+                MultivariatePolynomial mp = *value->poly - *dim.value->poly;
+                if (mp.isCoeffPositive())
+                {
+                    value = dim.value;
+                    mustInvalidate = false;
+                }
+                else if (mp.isCoeffNegative())
+                {
+                    mustInvalidate = false;
+                }
+            }
+        }
+        if (mustInvalidate && gvn)
+        {
+            gvn = nullptr;
+            value = nullptr;
+        }
+    }
 
     /**
      * \brief Overload of the + operator
@@ -246,15 +246,19 @@ public:
      */
     inline SymbolicDimension & operator*=(const SymbolicDimension & R)
     {
-	if (R != 1)
-	{
-	    if (*this != 1)
-	    {
-		value = gvn->getValue(OpValue::Kind::TIMES, *value, *R.value);
-	    }
-	}
+        if (R != 1)
+        {
+            if (*this != 1)
+            {
+                value = gvn->getValue(OpValue::Kind::TIMES, *value, *R.value);
+            }
+            else
+            {
+                value = R.value;
+            }
+        }
 
-	return *this;
+        return *this;
     }
 
     /**

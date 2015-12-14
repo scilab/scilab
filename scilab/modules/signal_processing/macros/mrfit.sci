@@ -47,8 +47,11 @@ function [num,den]=mrfit(w,mod,r)
     weight=ones(length(w),1);
 
     junk=find(abs(mrfitdiff(delmod./delw)) > .6);
-    ind=1+junk;
-    if junk==[] then ind=[];end;
+    if isempty(junk) then
+        ind = [];
+    else
+        ind = 1 + junk;
+    end
     weight(ind)=10*ones(length(ind),1);
 
     lwnew=[]; modnew=[];

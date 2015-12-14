@@ -14,12 +14,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pl\n"
-
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- Tworzenie [%s] (Makra) --\n"
 
 msgid "Input file"
 msgstr "Plik wejściowy"
@@ -174,7 +170,8 @@ msgid "lhs cannot be a %s."
 msgstr "lhs nie może być %s."
 
 #, c-format
-msgid "recursive extraction with one index of type %s is not yet implemented."
+msgid ""
+"recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
 "ekstrakcja rekursywna z jednym indeksem typu %s nie jest jeszcze realizowana."
 
@@ -190,7 +187,8 @@ msgid "Matlab function %s not yet converted."
 msgstr "Funkcja Matlab %s jeszcze nie jest skonwertowana."
 
 #, c-format
-msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid ""
+"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) może być zastąpiona przez %s() lub %s,  bez względu na to, czy %s "
 "jest M-plikiem czy nie."
@@ -575,7 +573,8 @@ msgstr ""
 
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
-msgstr "%d: Funkcje toolbox(-ów) programu Matlab, pozostawiono kod wejściowy:"
+msgstr ""
+"%d: Funkcje toolbox(-ów) programu Matlab, pozostawiono kod wejściowy:"
 
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
@@ -605,7 +604,8 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Koniec sesji mfie2sci() ******"
 
 #, c-format
-msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid ""
+"At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Przynajmniej jeden operand z %s jest pustą macierzą , Scilab jest równoważny "
 "[]."
@@ -624,7 +624,8 @@ msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr "Błąd M2SCI: ekstrakcja z nieznanej zmiennej %s w varlist."
 
 #, c-format
-msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid ""
+"recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "rekursywne ustawienia w zmiennej która nie jest ani komórką ani strukturą: "
 "%s."
@@ -669,7 +670,8 @@ msgid "cube_scaling only used in 3d mode."
 msgstr "cube_scaling może być użyte tylko w trybie 3d."
 
 msgid "Bessel function is not implemented for 2 outputs arguments."
-msgstr "Funkcja bessel nie jest zaimplementowana dla 2 argumentów wyjściowych."
+msgstr ""
+"Funkcja bessel nie jest zaimplementowana dla 2 argumentów wyjściowych."
 
 msgid "is a scalar."
 msgstr "jest skalarem."
@@ -793,13 +795,15 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "Nieobsługiwana klasa: %s."
 
-msgid "isequal requires fields are in the same order for structs to be equal."
+msgid ""
+"isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal wymaga, żeby pola w strukturach, które mają być równe byli w tej "
 "samej kolejności."
 
 msgid "Option -regexp not yet handled: will be ignored."
-msgstr "Opcja -regexp nie jest jeszcze obsługiwana: zostanie ona zignorowana."
+msgstr ""
+"Opcja -regexp nie jest jeszcze obsługiwana: zostanie ona zignorowana."
 
 #, c-format
 msgid "%s is an empty matrix, so result is set to []."
@@ -843,7 +847,8 @@ msgstr ""
 "the case for matrix."
 
 msgid "Option -append not yet handled: will be ignored."
-msgstr "Opcja -append nie jest jeszcze obsługiwana: zostanie ona zignorowana."
+msgstr ""
+"Opcja -append nie jest jeszcze obsługiwana: zostanie ona zignorowana."
 
 #, c-format
 msgid ""

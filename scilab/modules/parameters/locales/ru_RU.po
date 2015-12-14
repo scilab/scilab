@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
@@ -87,84 +87,6 @@ msgstr "%s: неверное значение параметра %s: значе�
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr "%s: неверный размер параметра %s: требуется %d, получено %d\n"
 
-msgid "Parameters"
-msgstr "Параметры"
-
-msgid "plist handling"
-msgstr "обработка plist"
-
-msgid ""
-"This demo shows examples of plist utilizations: creation, insertion, "
-"removal, ..."
-msgstr ""
-"Эта демонстрация показывает примеры использования plist: создание, вставка, "
-"удаление..."
-
-#, c-format
-msgid ""
-"\n"
-"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
-"1].\n"
-msgstr ""
-"\n"
-"Создать plist '%s', содержащий два поля 'min' = [0 0 0] и 'max' = [1 1 1].\n"
-
-#, c-format
-msgid ""
-"\n"
-"Check fields: \n"
-msgstr ""
-"\n"
-"Проверьте поля: \n"
-
-#, c-format
-msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr "Установите 'min' = [0 0 0] и 'max' = [1 1 1]:\n"
-
-#, c-format
-msgid "Check values: \n"
-msgstr "Проверьте значения: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Remove the parameter 'min' from %s.\n"
-msgstr ""
-"\n"
-"Удалите параметр 'min' из %s.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Before remove_param: \n"
-msgstr ""
-"\n"
-"Перед remove_param: \n"
-
-#, c-format
-msgid ""
-"\n"
-"After remove_param: \n"
-msgstr ""
-"\n"
-"После remove_param: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check removal: \n"
-msgstr ""
-"\n"
-"Проверьте удаление: \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check type: \n"
-msgstr ""
-"\n"
-"Проверьте тип: \n"
-
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"
 msgstr "Второй выходной аргумент %s устарел.\n"
@@ -179,7 +101,8 @@ msgstr "%s: Неверное количество входных аргумен�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: key %s already defined.\n"
-msgstr "%s: Неверное значение входного аргумента №%d: ключ %s уже определён.\n"
+msgstr ""
+"%s: Неверное значение входного аргумента №%d: ключ %s уже определён.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
@@ -191,7 +114,8 @@ msgstr "%s: параметр %s не определен"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось чётное число.\n"
+msgstr ""
+"%s: Неверное количество входных параметров: ожидалось чётное число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

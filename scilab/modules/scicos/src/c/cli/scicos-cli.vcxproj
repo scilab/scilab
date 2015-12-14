@@ -89,20 +89,14 @@
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks-cli_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks-cli_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;scicos_blocks-cli_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -132,20 +126,14 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks-cli_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks-cli_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;scicos_blocks-cli_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -175,20 +163,14 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks-cli_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks-cli_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;scicos_blocks-cli_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -223,20 +205,14 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)../core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../String_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Dynamic_link_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../nographics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)nographics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Scicos_blocks_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)../Localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)../Scicos_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_f.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)../Scicos_blocks-cli_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scicos_blocks-cli_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;core.lib;output_stream.lib;string.lib;dynamic_link.lib;nographics.lib;scicos_blocks_f.lib;scicos_f.lib;scilocalization.lib;elementary_functions_f.lib;core_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../../bin/libintl.lib;../../../../../bin/lapack.lib;../../../../../bin/blasplus.lib;../../../../../bin/linpack_f.lib;scicos_blocks-cli_f.lib;scicos_f.lib;elementary_functions_f.lib;differential_equations_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -311,7 +287,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\cpp\view_scilab\StateAdapter.cpp" />
     <ClCompile Include="..\..\cpp\view_scilab\TextAdapter.cpp" />
     <ClCompile Include="..\ddaskr.c" />
-    <ClCompile Include="..\DllmainScicos.c" />
     <ClCompile Include="..\ezxml.c" />
     <ClCompile Include="..\import.c" />
     <ClCompile Include="..\MlistGetFieldNumber.c" />
@@ -326,6 +301,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\scicos_print.c" />
     <ClCompile Include="..\tree.c" />
     <ClCompile Include="..\var2sci.c" />
+    <ClCompile Include="DllmainScicos-cli.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\Controller.hxx" />
@@ -336,7 +312,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClInclude Include="..\..\cpp\controller_helpers.hxx" />
     <ClInclude Include="..\..\cpp\createblklist.hxx" />
     <ClInclude Include="..\..\cpp\extractblklist.hxx" />
-    <ClInclude Include="..\..\cpp\copyvarfromtlist.hxx" />
     <ClInclude Include="..\..\cpp\LoggerView.hxx" />
     <ClInclude Include="..\..\cpp\model\Annotation.hxx" />
     <ClInclude Include="..\..\cpp\model\Block.hxx" />
@@ -379,15 +354,10 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\locales\scicos.pot" />
-    <None Include="..\Core_f_Import.def" />
     <None Include="..\differential_equations_f_Import.def" />
-    <None Include="..\Dynamic_link_Import.def" />
     <None Include="..\elementary_functions_f_Import.def" />
-    <None Include="..\nographics_Import.def" />
     <None Include="..\core_import.def" />
-    <None Include="..\Localization_Import.def" />
-    <None Include="..\Output_stream_Import.def" />
-    <None Include="..\Scicos_blocks_f_Import.def" />
+    <None Include="..\Scicos_blocks-cli_f_Import.def" />
     <None Include="..\scicos_f_Import.def" />
     <None Include="..\String_Import.def" />
     <None Include="..\..\..\Makefile.am" />
@@ -408,6 +378,9 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
       <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\differential_equations\src\c\differential_equations.vcxproj">
       <Project>{f0190b5d-fb21-47a2-99ac-06627cdd0f8a}</Project>
     </ProjectReference>
@@ -417,8 +390,14 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ProjectReference Include="..\..\..\..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\..\scicos_blocks\src\c\cli\scicos_blocks-cli.vcxproj">
       <Project>{424a5578-ba28-435f-8313-8d85886a3539}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\string\src\c\string.vcxproj">
+      <Project>{8d45767a-9b03-4905-97f6-d2f3f79141ea}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\time\time.vcxproj">
       <Project>{05d8f60b-332a-4161-b946-b8ab30ed439c}</Project>

@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<XcosDiagram savedFile="" finalIntegrationTime="100000.0" integratorAbsoluteTolerance="1.0E-6" integratorRelativeTolerance="1.0E-6" toleranceOnTime="1.0E-10" maxIntegrationTimeInterval="100001.0" maximumStepSize="0.0" realTimeScaling="1.0" solver="0.0" background="-1" gridEnabled="1" title="Untitled">
+    <!--Xcos - 2.0 - Scilab-Branch-master-GIT - 20151026 1815--><Array as="context" scilabClass="String[]"></Array>
+    <mxGraphModel as="model">
+        <root>
+            <mxCell id="8fc76804-695b-4f63-b1ba-69ea78ddc5d6"/><mxCell id="f404b43e-8a7f-4d4c-98c4-953bf5c6758b" parent="8fc76804-695b-4f63-b1ba-69ea78ddc5d6"/>
+        </root>
+    </mxGraphModel>
+</XcosDiagram>

@@ -17,16 +17,17 @@ import java.util.ArrayList;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
-import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
+import org.scilab.modules.xcos.io.HandledElement;
+import org.scilab.modules.xcos.io.sax.XcosSAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.xml.sax.Attributes;
 
 class LinkHandler implements ScilabHandler {
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler saxHandler;
 
     /**
      * Default constructor
@@ -34,7 +35,7 @@ class LinkHandler implements ScilabHandler {
      * @param saxHandler
      *            the shared sax handler
      */
-    LinkHandler(SAXHandler saxHandler) {
+    LinkHandler(XcosSAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 
@@ -42,20 +43,21 @@ class LinkHandler implements ScilabHandler {
     public BasicLink startElement(HandledElement found, Attributes atts) {
         String v;
         BasicLink link;
+        int linkKind;
         final long uid = saxHandler.controller.createObject(Kind.LINK);
 
         switch (found) {
             case CommandControlLink:
                 link = new CommandControlLink(uid);
-                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, -1);
+                linkKind = -1;
                 break;
             case ExplicitLink:
                 link = new ExplicitLink(uid);
-                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 1);
+                linkKind = 1;
                 break;
             case ImplicitLink:
                 link = new ImplicitLink(uid);
-                saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, 2);
+                linkKind = 2;
                 break;
             default:
                 throw new IllegalArgumentException();
@@ -69,6 +71,8 @@ class LinkHandler implements ScilabHandler {
             link.setId(v);
             saxHandler.allChildren.peek().put(v, uid);
         }
+
+        saxHandler.controller.setObjectProperty(uid, Kind.LINK, ObjectProperties.KIND, linkKind);
 
         v = atts.getValue("source");
         if (v != null) {

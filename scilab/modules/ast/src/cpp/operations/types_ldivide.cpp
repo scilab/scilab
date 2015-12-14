@@ -117,7 +117,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     if (_pDouble1->getDims() > 2 || _pDouble2->getDims() > 2 || _pDouble1->getRows() != _pDouble2->getRows())
     {
         //not managed
-        return 1;
+        return 0;
     }
 
     *_pDoubleOut = new Double(_pDouble1->getCols(), _pDouble2->getCols(), _pDouble1->isComplex() || _pDouble2->isComplex());

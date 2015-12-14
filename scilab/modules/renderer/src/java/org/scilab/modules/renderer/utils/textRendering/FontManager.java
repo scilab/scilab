@@ -248,8 +248,8 @@ public class FontManager {
     /**
      * Create a new font knowing its name and size.
      * @param fontName Name of the font.
-     * @param isBold wether the font is bold or not.
-     * @param isItalic wether the font is in italic or not.
+     * @param isBold whether the font is bold or not.
+     * @param isItalic whether the font is in italic or not.
      * @return new font.
      */
     protected final Font createFont(String fontName, boolean isBold, boolean isItalic) {
@@ -278,8 +278,8 @@ public class FontManager {
     /**
      * Add a new font from its font name.
      * @param fontName name of the font to add.
-     * @param isBold wether the font is bold or not.
-     * @param isItalic wether the font is in italic or not.
+     * @param isBold whether the font is bold or not.
+     * @param isItalic whether the font is in italic or not.
      * @return index of the added font.
      */
     public final int addFont(String fontName, boolean isBold, boolean isItalic) {
@@ -320,8 +320,8 @@ public class FontManager {
      * Replace a font in the font list by a new one.
      * @param index index of the font to replace
      * @param fontName Name of the font.
-     * @param isBold wether the font is bold or not.
-     * @param isItalic wether the font is in italic or not.
+     * @param isBold whether the font is bold or not.
+     * @param isItalic whether the font is in italic or not.
      * @return index of the added font or -1 if an error occurred.
      */
     public final int changeFont(int index, String fontName, boolean isBold, boolean isItalic) {

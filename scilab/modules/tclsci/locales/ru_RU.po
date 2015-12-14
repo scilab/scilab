@@ -14,83 +14,90 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
-
-msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr "Внимание: проблемы с интерфейсом TCL/TK. Интерфейс недоступен.\n"
-
-msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr "Tcl/TK интерфейс отключён в режиме -nogui.\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr "%s: Ошибка: основной TCL интерпретатор не инициализирован.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No such slave interpreter.\n"
-msgstr "%s: Нет такого ведомого интерпретатора.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: File %s not found.\n"
-msgstr "%s: Файл %s не найден.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s, at line %i of file %s\n"
 "\t%s.\n"
 msgstr ""
-"%s, в строке %i файла %s\n"
-"\t%s.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
 msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалась строка или вектор строк.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: Не осталось доступной памяти.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not read Tcl Variable.\n"
-msgstr "%s: Невозможно прочесть переменную Tcl.\n"
+msgstr ""
 
 msgid "Alpha Release"
-msgstr "Альфа-версия"
+msgstr ""
 
 msgid "Beta Release"
-msgstr "Бета-версия"
+msgstr ""
 
 msgid "Final Release"
-msgstr "Финальная версия"
+msgstr ""
 
 msgid "Unknown Release"
-msgstr "Неизвестная версия"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: ожидалось «%s».\n"
+msgstr ""
 
 msgid "This function doesn't work with Complex.\n"
-msgstr "Эта функция не работает с комплексными числами.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
 
 msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr "[] не работает с Tcl/Tk.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d или №%d: ожидалась строка.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -126,7 +133,8 @@ msgstr ""
 "Сбой инициализации TCL!\n"
 
 msgid "Tcl Error: Unable to create Tcl interpreter (Tcl_CreateInterp).\n"
-msgstr "Ошибка Tcl: Не удалось создать интерпретатор Tcl (Tcl_CreateInterp).\n"
+msgstr ""
+"Ошибка Tcl: Не удалось создать интерпретатор Tcl (Tcl_CreateInterp).\n"
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
@@ -153,44 +161,6 @@ msgstr ""
 "загрузке %s: %s\n"
 
 #, c-format
-msgid "TCL_EvalScilabCmd %s"
-msgstr "TCL_EvalScilabCmd %s"
-
-#, c-format
-msgid "Execution starts for %s"
-msgstr "Начато выполнение %s"
-
-#, c-format
-msgid "Execution ends for %s"
-msgstr "Окончено выполнение %s"
-
-msgid " Flushing starts for queued commands.\n"
-msgstr " Начался сдвиг очереди команд.\n"
-
-msgid "Warning: Too many callbacks in queue!\n"
-msgstr "Внимание: слишком много обратных вызовов в очереди!\n"
-
-#, c-format
-msgid "Flushed execution starts for %s - No option"
-msgstr "Начато выполнение сдвига %s - Без параметров"
-
-#, c-format
-msgid "Flushed execution starts for %s - seq"
-msgstr "Начато выполнение сдвига %s - seq"
-
-#, c-format
-msgid "Flushed execution ends for %s"
-msgstr "Окончено выполнение сдвига %s"
-
-msgid "Flushing ends\n"
-msgstr "Сдвиг завершен\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
-"%s: Неверное количество входных параметров: ожидалось не менее одного.\n"
-
-#, c-format
 msgid "Tcl Error : %s\n"
 msgstr "Ошибка Tcl : %s\n"
 
@@ -205,23 +175,12 @@ msgstr "Слишком длинная переменная.\n"
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr "%s: Ошибка: интерпретатор TCL не инициализирован.\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr ""
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Модуль TCL/TK не установлен.\n"
-
-msgid "Tcl/Tk"
-msgstr "Tcl/Tk"
-
-msgid "Color"
-msgstr "Цвет"
-
-msgid "Puzzle"
-msgstr "Пазл"
-
-msgid "Scroll"
-msgstr "Прокрутка"
-
-msgid "Scale"
-msgstr "Масштаб"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

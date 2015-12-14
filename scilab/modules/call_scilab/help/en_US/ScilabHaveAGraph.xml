@@ -42,9 +42,6 @@ if (ScilabHaveAGraph()){
                 <link linkend="call_scilab">Call_Scilab</link>
             </member>
             <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
-            <member>
                 <link linkend="compile_and_run_call_scilab">Compile and run with call_scilab</link>
             </member>
             <member>

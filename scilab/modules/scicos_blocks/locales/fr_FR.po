@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 msgid "overflow error"
@@ -22,66 +22,6 @@ msgstr "erreur de dépassement"
 
 msgid "Trigger block must have discrete time input."
 msgstr "Le bloc Trigger doit avoir des valeurs discrètes en entrée."
-
-#, c-format
-msgid "The '%s' variable does not exist.\n"
-msgstr "La variable '%s' n'existe pas.\n"
-
-msgid "Invalid variable type.\n"
-msgstr "Type de variable invalide.\n"
-
-#, c-format
-msgid ""
-"Data dimensions are inconsistent:\n"
-" Variable size=[%d,%d] \n"
-"Block output size=[%d,%d].\n"
-msgstr ""
-"Les dimensions des données sont inconsistantes :\n"
-" Dimension de la variable=[%d,%d] \n"
-"Dimension de la sortie du bloc=[%d,%d].\n"
-
-msgid "Output should be of Real type.\n"
-msgstr "La sortie doit être du type réel.\n"
-
-msgid "Output should be of complex type.\n"
-msgstr "La sortie doit être du type complexe.\n"
-
-msgid "Output should be of int8 type.\n"
-msgstr "La sortie doit être du type int8.\n"
-
-msgid "Output should be of int16 type.\n"
-msgstr "La sortie doit être du type int16.\n"
-
-msgid "Output should be of int32 type.\n"
-msgstr "La sortie doit être du type int32.\n"
-
-msgid "Output should be of uint8 type.\n"
-msgstr "La sortie doit être du type uint8.\n"
-
-msgid "Output should be of uint16 type.\n"
-msgstr "La sortie doit être du type uint16.\n"
-
-msgid "Output should be of uint32 type.\n"
-msgstr "La sortie doit être du type uint32.\n"
-
-#, c-format
-msgid ""
-"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
-msgstr ""
-"Le vecteur Time a une dimension erronée, [%d, %d] attendu, mais [%d, %d] "
-"obtenu.\n"
-
-msgid "The Time vector type is not double.\n"
-msgstr "Le vecteur Time n'est pas du type double.\n"
-
-msgid "The time vector should be an increasing vector.\n"
-msgstr "Le vecteur Time est un vecteur de taille croissante.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr "Problème d'allocation dans spline.\n"
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr "Type de variable invalide : Erreur dans le code hypermat de Scilab.\n"
 
 #, c-format
 msgid ""
@@ -122,6 +62,76 @@ msgstr ""
 
 msgid "Could not open /dev/audio!\n"
 msgstr "Impossible d'ouvrir /dev/audio !\n"
+
+#, c-format
+msgid "The '%s' variable does not exist.\n"
+msgstr "La variable '%s' n'existe pas.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
+
+msgid "Invalid variable type.\n"
+msgstr "Type de variable invalide.\n"
+
+#, c-format
+msgid ""
+"Data dimensions are inconsistent:\n"
+" Variable size=[%d,%d] \n"
+"Block output size=[%d,%d].\n"
+msgstr ""
+"Les dimensions des données sont inconsistantes :\n"
+" Dimension de la variable=[%d,%d] \n"
+"Dimension de la sortie du bloc=[%d,%d].\n"
+
+msgid "Output should be of Real type.\n"
+msgstr "La sortie doit être du type réel.\n"
+
+msgid "Output should be of complex type.\n"
+msgstr "La sortie doit être du type complexe.\n"
+
+msgid "Output should be of int8 type.\n"
+msgstr "La sortie doit être du type int8.\n"
+
+msgid "Output should be of int16 type.\n"
+msgstr "La sortie doit être du type int16.\n"
+
+msgid "Output should be of int32 type.\n"
+msgstr "La sortie doit être du type int32.\n"
+
+msgid "Output should be of uint8 type.\n"
+msgstr "La sortie doit être du type uint8.\n"
+
+msgid "Output should be of uint16 type.\n"
+msgstr "La sortie doit être du type uint16.\n"
+
+msgid "Output should be of uint32 type.\n"
+msgstr "La sortie doit être du type uint32.\n"
+
+msgid "Cannot read the values field.\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr "Le vecteur Time n'est pas du type double.\n"
+
+msgid "The Time vector type is complex.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
+msgstr ""
+"Le vecteur Time a une dimension erronée, [%d, %d] attendu, mais [%d, %d] "
+"obtenu.\n"
+
+msgid "Cannot read the time field.\n"
+msgstr ""
+
+msgid "The time vector should be an increasing vector.\n"
+msgstr "Le vecteur Time est un vecteur de taille croissante.\n"
 
 msgid "Clear a bit"
 msgstr "Effacer un bit"
@@ -314,7 +324,8 @@ msgid "Shift/Rotates bits"
 msgstr "Décalage/Rotation de bits"
 
 msgid "Number of Bits to Shift Left (Negative number to shift right)"
-msgstr "Nombre de Bits à décaler à gauche (Signe moins pour décaler à droite)"
+msgstr ""
+"Nombre de Bits à décaler à gauche (Signe moins pour décaler à droite)"
 
 msgid "Shift Type (0:Arithmetic, 1:Circular)"
 msgstr "Type Shift (0:Arithmétique, 1:Circulaire)"
@@ -631,8 +642,8 @@ msgstr "Type erroné du paramètre '%s'"
 
 msgid "Value type must be a numeric type (double, complex, int, int8, ...)."
 msgstr ""
-"Le type de valeur doit être un type numérique (double, complex, int, "
-"int8, ...)."
+"Le type de valeur doit être un type numérique (double, complex, int, int8, "
+"...)."
 
 msgid "Integer counter generator"
 msgstr "Générateur de compteur entier"
@@ -689,7 +700,8 @@ msgid "Port number must be a positive integer"
 msgstr "Le numéro du port doit être un nombre entier positif"
 
 msgid "Outport Size must be a 2 elements vector"
-msgstr "La dimension du port de sortie doit être un vecteur de deux éléments."
+msgstr ""
+"La dimension du port de sortie doit être un vecteur de deux éléments."
 
 msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
 msgstr ""
@@ -848,7 +860,3 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Mêmes dimensions attendues."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr "%s : Nombre erroné d'arguments d'entrée : Au plus %d attendus.\n"

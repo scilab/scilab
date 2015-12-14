@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-19 14:20+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -29,29 +29,23 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 行列を指定し�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: %d  より大きい値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: {%s} の範囲で設定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: {%s} の範囲で設定してください.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
@@ -67,8 +61,7 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
-msgstr ""
-"%s:入力引数 #%d と #%d に互換性がありません: 同じ型を指定してください.\n"
+msgstr "%s:入力引数 #%d と #%d に互換性がありません: 同じ型を指定してください.\n"
 
 #, c-format
 msgid "%s: Computed is real, but expected is complex."
@@ -81,8 +74,7 @@ msgstr "%s: 計算値は複素数ですが, 実数となる必要があります
 #, c-format
 msgid ""
 "%s: Assertion failed: expected = %s while computed = %s (mean diff = %s)"
-msgstr ""
-"%s: アサーションに失敗しました:  予想値 = %s , 計算値 = %s (差の平均 = %s)"
+msgstr "%s: アサーションに失敗しました:  予想値 = %s , 計算値 = %s (差の平均 = %s)"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -90,20 +82,16 @@ msgstr "%s: 入力引数の数が間違っています: %d 個以上の引数を
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative integers expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 負でない整数を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 負でない整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 空でない行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 空でない行列を指定してください.\n"
 
 #, c-format
 msgid "%s: No error was produced while evaluating %s."
@@ -117,34 +105,26 @@ msgstr "%s: エラーメッセージ: %s を整形中にエラーを発生しま
 msgid ""
 "%s: Assertion failed: expected error message = %s while computed error "
 "message = %s."
-msgstr ""
-"%s: アサーションが失敗しました: 予定のエラーメッセージは %s でしたが,計算され"
-"たエラーメッセージは %s でした."
+msgstr "%s: アサーションが失敗しました: 予定のエラーメッセージは %s でしたが,計算されたエラーメッセージは %s でした."
 
 #, c-format
 msgid ""
 "%s: Assertion failed: expected error number = %d while computed error number "
 "= %d."
-msgstr ""
-"%s: アサーションが失敗しました: 予定のエラー番号は %d でしたが,計算されたエ"
-"ラー番号は %d でした."
+msgstr "%s: アサーションが失敗しました: 予定のエラー番号は %d でしたが,計算されたエラー番号は %d でした."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 論理値の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 論理値の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
-msgstr ""
-"%s: アサーションが失敗しました: 条件 = %s に不正なエントリが見つかりました"
+msgstr "%s: アサーションが失敗しました: 条件 = %s に不正なエントリが見つかりました"
 
 #, c-format
 msgid ""
 "%s: Expected type %s or %s for input argument %s #%d, but got %s instead."
-msgstr ""
-"%1$s: 入力引数 %4$s #%5$d  は %2$sまたは %3$s 型とする必要がありますが, %6$s"
-"型でした."
+msgstr "%1$s: 入力引数 %4$s #%5$d  は %2$sまたは %3$s 型とする必要がありますが, %6$s型でした."
 
 #, c-format
 msgid "%s: The file %s does not exist.\n"
@@ -158,8 +138,7 @@ msgstr "%s: ファイル %s を開けません.\n"
 msgid ""
 "%s: The content of computed file %s is different from the content of "
 "reference file %s."
-msgstr ""
-"%s: 計算結果のファイル %s の内容が基準ファイルの内容 %s と異なっています."
+msgstr "%s: 計算結果のファイル %s の内容が基準ファイルの内容 %s と異なっています."
 
 #, c-format
 msgid "%s: Cannot close file %s.\n"
@@ -167,8 +146,7 @@ msgstr "%s: ファイル %s を閉じることができません.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -177,15 +155,14 @@ msgid ""
 msgstr "%s: 出力引数 %d が入力引数 %d の数と一致しません."
 
 #, c-format
-msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
-msgstr ""
-"%1$s: #%3$d 番目の引数は %2$d  行とする必要がありますが,  %4$d 行でした."
+msgid ""
+"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgstr "%1$s: #%3$d 番目の引数は %2$d  行とする必要がありますが,  %4$d 行でした."
 
 #, c-format
 msgid ""
 "%s: Expected %d columns in input argument #%d, but found %d columns instead."
-msgstr ""
-"%s: 予定では %d 列が入力引数 #%d に含まれるはずでしたが, %d 列となりました."
+msgstr "%s: 予定では %d 列が入力引数 #%d に含まれるはずでしたが, %d 列となりました."
 
 #, c-format
 msgid "%s is not an installed module"
@@ -200,37 +177,29 @@ msgstr "テスト %s は %s モジュールで利用できません."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A row array of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行配列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row array of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列の行配列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A row array of strings or empty "
 "matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行配列または空の配列を指定して"
-"ください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行配列または空の配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row array of strings or empty "
 "matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列の行配列または空の配列を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行配列または空の配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -243,9 +212,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab module name expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilabモジュール名を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilabモジュール名を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid language expected.\n"
@@ -255,15 +222,11 @@ msgstr "%s: 入力引数 #%d の値が間違っています: 有効な言語を�
 msgid ""
 "%s: Wrong value for input argument #%d: A '%s' module function name "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s'モジュール関数名を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s'モジュール関数名を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
-msgstr ""
-"%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してく"
-"ださい."
+msgstr "%s: 最初の入力引数が間違っています: 接尾辞 .dia を有するファイルを指定してください."
 
 #, c-format
 msgid "Test failed ERROR DETECTED while executing %s"
@@ -292,6 +255,10 @@ msgstr "%s: 入力引数の数が間違っています."
 msgid "%s is not an installed module or toolbox"
 msgstr "%s はインストール済みのモジュールまたはツールボックスではありません."
 
+msgid ""
+"option JVM NOT MANDATORY is deprecated, please use CLI SHELL MODE instead"
+msgstr ""
+
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr "参照先ファイル (%s) が存在しません"
@@ -300,9 +267,7 @@ msgstr "参照先ファイル (%s) が存在しません"
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
 "'testsuites'.\n"
-msgstr ""
-"ファイル'%s'は,XUnit XMLフォーマットに準拠していません. ルートタグ"
-"に'testsuites'を指定してください.\n"
+msgstr "ファイル'%s'は,XUnit XMLフォーマットに準拠していません. ルートタグに'testsuites'を指定してください.\n"
 
 #
 # File: macros/testexamples.sci, line: 17

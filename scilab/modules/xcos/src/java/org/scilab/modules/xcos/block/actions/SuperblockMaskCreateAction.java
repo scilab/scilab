@@ -14,13 +14,25 @@
 package org.scilab.modules.xcos.block.actions;
 
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.actions.base.GraphActionManager;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.types.ScilabDouble;
+import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabTList;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.JavaController;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -73,33 +85,38 @@ public final class SuperblockMaskCreateAction extends DefaultAction {
 
         SuperBlock block = (SuperBlock) graph.getSelectionCell();
 
-        block.mask();
+        JavaController controller = new JavaController();
+        block.mask(controller);
 
         /*
          * Create a valid DSUPER exprs field if not already present.
          */
-        // FIXME take a look at the DSUPER management
-        //        if (!(block.getExprs() instanceof ScilabList)) {
-        //
-        //            /* Set default values */
-        //            ScilabList exprs = new ScilabList(
-        //                Arrays.asList(
-        //                    new ScilabDouble(),
-        //                    new ScilabList(
-        //                        Arrays.asList(
-        //                            new ScilabDouble(),
-        //                            new ScilabString(
-        //                                XcosMessages.MASK_DEFAULTWINDOWNAME),
-        //                            new ScilabList(Arrays
-        //                                           .asList(new ScilabDouble()))))));
-        //
-        //            block.setExprs(exprs);
-        //
-        //            /*
-        //             * Open the customization UI on a new mask creation
-        //             */
-        //            GraphActionManager.getInstance(graph,
-        //                                           SuperblockMaskCustomizeAction.class).actionPerformed(e);
-        //        }
+
+        VectorOfDouble vec = new VectorOfDouble();
+        controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
+
+        ScilabType var = new ScilabTypeCoder().vec2var(vec);
+        if (!(var instanceof ScilabList)) {
+
+            /* Set default values */
+            ScilabList exprsVar = new ScilabList(
+                Arrays.asList(
+                    new ScilabDouble(),
+                    new ScilabList(
+                        Arrays.asList(
+                            new ScilabDouble(),
+                            new ScilabString(
+                                XcosMessages.MASK_DEFAULTWINDOWNAME),
+                            new ScilabList(Arrays
+                                           .asList(new ScilabDouble()))))));
+
+            vec = new ScilabTypeCoder().var2vec(exprsVar);
+            controller.setObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, vec);
+
+            /*
+             * Open the customization UI on a new mask creation
+             */
+            GraphActionManager.getInstance(graph, SuperblockMaskCustomizeAction.class).actionPerformed(e);
+        }
     }
 }

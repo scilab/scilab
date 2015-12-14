@@ -1168,10 +1168,6 @@ int getScilabTypeFromDataSet_v1(int _iDatasetId)
     {
         iVarType = sci_boolean;
     }
-    else if (strcmp(pstScilabClass, g_SCILAB_CLASS_BOOLEAN) == 0)
-    {
-        iVarType = sci_boolean;
-    }
     else if (strcmp(pstScilabClass, g_SCILAB_CLASS_POLY) == 0)
     {
         iVarType = sci_poly;

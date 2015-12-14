@@ -8,24 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 13:52+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ja\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: Single double expected.\n"
-msgstr ""
-"%s: 最初の入力引数の大きさが間違っています:  doubleを指定してください.\n"
+msgstr "%s: 最初の入力引数の大きさが間違っています:  doubleを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Double expected.\n"
-msgstr ""
-"%s: 最初の入力引数の大きさが間違っています:  doubleを指定してください.\n"
+msgstr "%s: 最初の入力引数の大きさが間違っています:  doubleを指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid file identifier.\n"
@@ -45,8 +43,7 @@ msgstr "%s: メモリ確保エラー.\n"
 
 #, c-format
 msgid "%s: Wrong size for first input argument: string expected.\n"
-msgstr ""
-"%s: 最初の入力引数の大きさが間違っています: 文字列を指定してください.\n"
+msgstr "%s: 最初の入力引数の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: string expected.\n"
@@ -54,14 +51,11 @@ msgstr "%s: 最初の入力引数の型が間違っています: 文字列を指
 
 #, c-format
 msgid "%s: Wrong size for second input argument: string expected.\n"
-msgstr ""
-"%s: 2番目の入力引数の大きさが間違っています: 文字列を指定してください.\n"
+msgstr "%s: 2番目の入力引数の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for second input argument: 'r' or 'w' expected.\n"
-msgstr ""
-"%s: 2番目の入力引数の値が間違っています:  'r' または 'w' を指定してくださ"
-"い.\n"
+msgstr "%s: 2番目の入力引数の値が間違っています:  'r' または 'w' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for second input argument: string expected.\n"
@@ -77,8 +71,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定�
 
 #, c-format
 msgid "%s: Wrong size for first input argument: An integer value expected.\n"
-msgstr ""
-"%s: 最初の入力引数の大きさが間違っています: 整数値を指定してください.\n"
+msgstr "%s: 最初の入力引数の大きさが間違っています: 整数値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: An integer value expected.\n"
@@ -86,8 +79,7 @@ msgstr "%s: 最初の入力引数の型が間違っています: 整数値を指
 
 #, c-format
 msgid "%s: Wrong size for fourth input argument: A boolean expected.\n"
-msgstr ""
-"%s: 4番目の入力引数の大きさが間違っています: 論理値を指定してください.\n"
+msgstr "%s: 4番目の入力引数の大きさが間違っています: 論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for fourth input argument: A boolean expected.\n"
@@ -98,8 +90,8 @@ msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr "%s: 文字のN-D配列は実装されていません\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Mlist expected.\n"
-msgstr "%s: 最初の入力引数の型が間違っています:  mlistを指定してください.\n"
+msgid "%s: 2D array of strings saving is not implemented.\n"
+msgstr "%s: 文字列の二次元配列の保存は実装されていません.\n"
 
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
@@ -112,17 +104,20 @@ msgid ""
 msgstr "%s: 長さの異なる文字列の列配列の保存は実装されていません.\n"
 
 #, c-format
-msgid "%s: 2D array of strings saving is not implemented.\n"
-msgstr "%s: 文字列の二次元配列の保存は実装されていません.\n"
-
-#, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
-msgstr ""
-"%s: 最初の入力引数の大きさが間違っています:  double行列を指定してください.\n"
+msgstr "%s: 最初の入力引数の大きさが間違っています:  double行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Integer matrix expected.\n"
 msgstr "%s: 最初の入力引数の型が間違っています:  整数行列を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: MList expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
@@ -132,13 +127,9 @@ msgstr "%s: 型 %sのmlistはMatlabバイナリファイルに書き込むこと
 msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
 msgstr "%s: 最初の入力引数の型が間違っています:  疎行列を指定してください.\n"
 
-msgid "Scilab matio module not installed.\n"
-msgstr "Scilab matio モジュールがインストールされていません.\n"
-
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented: %s."
@@ -151,9 +142,7 @@ msgstr "%s: ファイル %s を開けません.\n"
 #, c-format
 msgid ""
 "%s: No variable read in file '%s'. Check if your file is not corrupted.\n"
-msgstr ""
-"%s: ファイル '%s'から変数を読込めません. ファイルが壊れていないか確認してくだ"
-"さい.\n"
+msgstr "%s: ファイル '%s'から変数を読込めません. ファイルが壊れていないか確認してください.\n"
 
 msgid "All inputs must be character strings."
 msgstr "全ての入力は文字列とする必要があります."

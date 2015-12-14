@@ -111,7 +111,7 @@
                     <para>I found the current way to manage Scilab graphic windows from javasci pretty hard. What should I do?</para>
                 </question>
                 <answer>
-                    <para>This is embarassing. We are aware that the current solution is far from perfect. We hope we will be able to tackle this limitation in a future release.
+                    <para>This is embarrassing. We are aware that the current solution is far from perfect. We hope we will be able to tackle this limitation in a future release.
                     </para>
                 </answer>
             </qandaentry>

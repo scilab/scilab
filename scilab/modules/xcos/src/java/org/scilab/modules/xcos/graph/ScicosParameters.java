@@ -97,11 +97,6 @@ public class ScicosParameters implements Serializable, Cloneable {
     public static VectorOfDouble DEFAULT_PARAMETERS;
     public static int DEFAULT_DEBUG_LEVEL;
 
-    /*
-     * Instance data
-     */
-    private int debugLevel;
-
     /**
      * Reference to the diagram
      */
@@ -204,8 +199,10 @@ public class ScicosParameters implements Serializable, Cloneable {
     /**
      * @return current debug level
      */
-    public int getDebugLevel() {
-        return debugLevel;
+    public int getDebugLevel(final JavaController controller) {
+        int[] v = new int[1];
+        controller.getObjectProperty(getUID(), getKind(), ObjectProperties.DEBUG_LEVEL, v);
+        return v[0];
     }
 
     /**
@@ -214,10 +211,10 @@ public class ScicosParameters implements Serializable, Cloneable {
      * @throws PropertyVetoException
      *             when the value is not acceptable.
      */
-    public void setDebugLevel(int debugLevel) throws PropertyVetoException {
-        int oldValue = this.debugLevel;
+    public void setDebugLevel(final JavaController controller, int debugLevel) throws PropertyVetoException {
+        int oldValue = getDebugLevel(controller);
         vcs.fireVetoableChange(DEBUG_LEVEL_CHANGE, oldValue, debugLevel);
-        this.debugLevel = debugLevel;
+        controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DIAGRAM_CONTEXT, debugLevel);
     }
 
     /*

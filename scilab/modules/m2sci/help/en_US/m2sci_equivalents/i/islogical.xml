@@ -43,7 +43,7 @@ No equivalent
     <refsection>
         <title>Particular cases</title>
         <para>
-            There is no equivalent function for Matlab <emphasis role="bold">islogical</emphasis> function in Scilab but it can be emuled by: <emphasis role="bold">or(type(A)==[4,6])</emphasis>.
+            There is no equivalent function for Matlab <emphasis role="bold">islogical</emphasis> function in Scilab but it can be emulated by: <emphasis role="bold">or(type(A)==[4,6])</emphasis>.
         </para>
     </refsection>
 </refentry>

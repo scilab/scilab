@@ -57,7 +57,7 @@
                                     Default value is <literal>"off"</literal> and only the uicontrols properties used on the Java side are displayed.
                                 </para>
                                 <para>
-                                    Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make all available properties displayed (for example a <literal>ListboxTop</literal> property will be dispalyed for <literal>pushbutton</literal> uicontrols.
+                                    Setting this value to <literal>"on"</literal> or <literal>%T</literal> will make all available properties displayed (for example a <literal>ListboxTop</literal> property will be displayed for <literal>pushbutton</literal> uicontrols.
                                 </para>
                             </listitem>
                         </varlistentry>

@@ -8,38 +8,35 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-15 20:16+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
-
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr "%s: Questa caratteristica non è stata sviluppata.\n"
-
-#, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr "%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
+msgstr ""
+"%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
 msgstr "%s: Non è sviluppata in questa modalità.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -48,20 +45,18 @@ msgstr ""
 "scalare.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso uno "
-"scalare.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso uno "
 "scalare (>=0).\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -70,14 +65,50 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
+
+msgid "File or Directory"
+msgstr "File o Directory"
+
+msgid "Scilab Fields"
+msgstr "Campi di Scilab"
+
+msgid "Scilab Function"
+msgstr "Funzione di Scilab"
+
+msgid "Scilab Command"
+msgstr "Comando di Scilab"
+
+msgid "Scilab Macro"
+msgstr "Macro di Scilab"
+
+msgid "Scilab Variable"
+msgstr "Variabile di Scilab"
+
+msgid "Graphics handle field"
+msgstr "Campo handle dei grafici"
 
 #, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: Il numero degli argomenti in uscita è sbagliato.\n"
+msgid ""
+"Command is too long (more than %d characters long): could not send it to "
+"Scilab\n"
+msgstr ""
+"Il comando è troppo lungo (oltre %d caratteri): impossibile inviarlo a "
+"Scialab\n"
+
+msgid "[Continue display? n (no) to stop, any other key to continue]"
+msgstr ""
+"[Continuare a mostrare? n (no) per fermare, qualsiasi altro tasto per "
+"continuare]"
+
+#, c-format
+msgid ""
+"Type '%s' or '%s' to return to standard level prompt.\n"
+"\n"
+msgstr ""
+"Digitare \"%s\" o \"%s\" per tornare al prompt di livello standard.\n"
+"\n"
 
 msgid "Console"
 msgstr ""
@@ -694,6 +725,9 @@ msgstr "Formato di stampa "
 msgid "Width: "
 msgstr ""
 
+msgid "Recursion limit: "
+msgstr ""
+
 msgid "Language setting"
 msgstr "Impostazioni lingua"
 
@@ -759,48 +793,6 @@ msgstr ""
 
 msgid "Key binding"
 msgstr ""
-
-msgid "File or Directory"
-msgstr "File o Directory"
-
-msgid "Scilab Fields"
-msgstr "Campi di Scilab"
-
-msgid "Scilab Function"
-msgstr "Funzione di Scilab"
-
-msgid "Scilab Command"
-msgstr "Comando di Scilab"
-
-msgid "Scilab Macro"
-msgstr "Macro di Scilab"
-
-msgid "Scilab Variable"
-msgstr "Variabile di Scilab"
-
-msgid "Graphics handle field"
-msgstr "Campo handle dei grafici"
-
-#, c-format
-msgid ""
-"Command is too long (more than %d characters long): could not send it to "
-"Scilab\n"
-msgstr ""
-"Il comando è troppo lungo (oltre %d caratteri): impossibile inviarlo a "
-"Scialab\n"
-
-msgid "[Continue display? n (no) to stop, any other key to continue]"
-msgstr ""
-"[Continuare a mostrare? n (no) per fermare, qualsiasi altro tasto per "
-"continuare]"
-
-#, c-format
-msgid ""
-"Type '%s' or '%s' to return to standard level prompt.\n"
-"\n"
-msgstr ""
-"Digitare \"%s\" o \"%s\" per tornare al prompt di livello standard.\n"
-"\n"
 
 msgid "Field"
 msgstr "Campo"

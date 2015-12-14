@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.io.scicos;
 
+import java.rmi.server.UID;
 import static java.util.Arrays.asList;
 
 import java.util.List;
@@ -156,6 +157,7 @@ final class BlockModelElement extends BlockPartsElement {
             int nbControlPort = dataNbControlPort.getHeight();
             for (int i = 0; i < nbControlPort; i++) {
                 final BasicPort port = new ControlPort(controller.createObject(Kind.PORT));
+                port.setId(new UID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);
@@ -168,6 +170,7 @@ final class BlockModelElement extends BlockPartsElement {
             int nbCommandPort = dataNbCommandPort.getHeight();
             for (int i = 0; i < nbCommandPort; i++) {
                 final BasicPort port = new CommandPort(controller.createObject(Kind.PORT));
+                port.setId(new UID().toString());
 
                 // do not use BasicPort#addPort() to avoid the view update
                 into.insert(port, baseIndex + i);
@@ -196,7 +199,13 @@ final class BlockModelElement extends BlockPartsElement {
 
         // rpar
         field++;
-        controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.RPAR, toVectorOfDouble((ScilabDouble) data.get(field)));
+        if (data.get(field) instanceof ScilabMList) {
+            try {
+                new DiagramElement(new JavaController()).decode((ScilabMList) data.get(field), new XcosDiagram(into.getUID(), into.getKind()));
+            } catch (ScicosFormatException e) {}
+        } else if (data.get(field) instanceof ScilabDouble ) {
+            controller.setObjectProperty(into.getUID(), into.getKind(), ObjectProperties.RPAR, toVectorOfDouble((ScilabDouble) data.get(field)));
+        }
 
         // ipar
         field++;

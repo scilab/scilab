@@ -547,6 +547,9 @@ detect_java_vm() {
                         armv*)
                             proc="arm"
                             ;;
+                        aarch64)
+                            proc="aarch64"
+                            ;;
                         *)
                             echo "Could not find the Java configuration for the model <${MODEL}>. Please contact us on http://bugzilla.scilab.org"
                             ;;
@@ -593,7 +596,7 @@ detect_java_vm() {
         fi # JAVA_HOME provided or found
     fi # IS_SCILAB_BINARY
 
-# Check if the lib exists or not
+    # Check if the lib exists
     LIBJAVA="$JRE_HOME/lib/$proc/$JAVA_SHLIB"
     if test ! -f $LIBJAVA; then
         if test $SCIVERBOSE -ne 0; then
@@ -605,6 +608,15 @@ detect_java_vm() {
         # It is different for other implementation of the JVM....
         LD_LIBRARY_PATH="$JRE_HOME/lib/$proc/:$JRE_HOME/lib/$proc/server/:$JRE_HOME/lib/$proc/native_threads/${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
     fi
+
+    # Bug http://bugzilla.scilab.org/show_bug.cgi?id=14290 -
+    # Never run headless on Mac (unless explicitly asked through
+    # the SCI_JAVA_ENABLE_HEADLESS option -- which will not work anyway)
+    case $OS in
+        *darwin* | *Darwin*) # MacOS X
+            export _JAVA_OPTIONS="-Djava.awt.headless=false"
+    ;;        
+    esac
 
 ####### END OF JAVA ENV DETECTION/SETTING ######
 }
@@ -1011,8 +1023,8 @@ do_help()
     echo     "  Several environment variables can be declared:"
     echo     "  SCIVERBOSE               Provides debugging information of the startup"
     echo     "  JAVA_HOME                Declares which Java Virtual Machine to use"
-    echo     "  SCI_DISABLE_TK           Disable Tk (but not Tcl) features"
-    echo     "  SCI_JAVA_ENABLE_HEADLESS Enable Java Headless VM (ie without GUI features)"
+    echo     "  SCI_DISABLE_TK           Disables Tk (but not Tcl) features"
+    echo     "  SCI_JAVA_ENABLE_HEADLESS Runs Java Headless VM (without GUI; Windows and Linux only)"
     echo     "  SCI_DISABLE_EXCEPTION_CATCHING Disable the catch by Scilab of exception (segfault, ...)"
 
     exit

@@ -32,6 +32,7 @@
 #include "sci_malloc.h"
 #include "charEncoding.h"
 #include "os_string.h"
+#include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory);
@@ -262,7 +263,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
 
     if (dir == NULL)
     {
-        sciprint(_("Warning: Error while opening %s: %s\n"), refcstrRootDirectory, strerror(errno));
+        Sciwarning(_("Warning: Error while opening %s: %s\n"), refcstrRootDirectory, strerror(errno));
         return -1;
     }
 
@@ -287,7 +288,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
             /* Not a directory... It must be a file (at least, I hope it is a file */
             if (remove(filename) != 0)
             {
-                sciprint(_("Warning: Could not remove file %s: %s\n"), filename, strerror(errno));
+                Sciwarning(_("Warning: Could not remove file %s: %s\n"), filename, strerror(errno));
             }
 
             FREE(filename);
@@ -295,7 +296,7 @@ static int DeleteDirectory(char *refcstrRootDirectory)
     }
     if (rmdir(refcstrRootDirectory) != 0)
     {
-        sciprint(_("Warning: Could not remove directory %s: %s\n"), refcstrRootDirectory, strerror(errno));
+        Sciwarning(_("Warning: Could not remove directory %s: %s\n"), refcstrRootDirectory, strerror(errno));
     }
 
     if (dir)

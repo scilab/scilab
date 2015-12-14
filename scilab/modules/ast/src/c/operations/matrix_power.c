@@ -23,6 +23,7 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 /*
 r : real part
@@ -541,7 +542,7 @@ int iPowerRealSquareMatrixByRealScalar(
             {
                 sciprint(_("Warning :\n"));
                 sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
-                sciprint(_("computing least squares solution. (see lsq).\n"));
+                Sciwarning(_("computing least squares solution. (see lsq).\n"));
             }
         }
     }
@@ -681,7 +682,7 @@ int iPowerComplexSquareMatrixByRealScalar(
             {
                 sciprint(_("Warning :\n"));
                 sciprint(_("matrix is close to singular or badly scaled. rcond = %1.4E\n"), dblRcond);
-                sciprint(_("computing least squares solution. (see lsq).\n"));
+                Sciwarning(_("computing least squares solution. (see lsq).\n"));
             }
         }
 

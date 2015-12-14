@@ -6,105 +6,51 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-12 20:59+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:00+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Žádná další paměť.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
-msgstr "%s: Chyba při přidělování paměti.\n"
-
-msgid "Straight"
-msgstr "Přímé"
-
-msgid "Horizontal"
-msgstr "Vodorovně"
-
-msgid "Vertical"
-msgstr "Vertikální"
-
-msgid "No trace nor debug printing"
-msgstr "Žádné trasování nebo výpis ladění"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr "Křivka Simulace Světla (Přepínání Diskrétních a Průběžných částí)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "Trasování spuštění pro blok a volání bloku Ladění"
-
-msgid "Debug block calls without trace"
-msgstr "Blok Ladění volá bez trasování"
-
-msgid "Number of recently opened files to display: "
-msgstr "Počet nedávno otevřených souborů k zobrazení: "
-
-msgid "Default file format"
-msgstr "Výchozí formát souboru"
-
-msgid "Link Style"
-msgstr "Styl propojení"
-
-msgid "Diagram background"
-msgstr "Pozadí grafu"
-
-msgid "Grid"
-msgstr "Síť"
-
-msgid "Default simulation settings"
-msgstr "Výchozí nastavení simulace"
-
-msgid "Final integration time"
-msgstr "Čas konečného začlenění"
-
-msgid "Real time scaling"
-msgstr "Škálování v reálném čase"
-
-msgid "Integrator absolute tolerance"
-msgstr "Absolutní tolerance integrátoru"
-
-msgid "Integrator relative tolerance"
-msgstr "Relativní tolerance integrátoru"
-
-msgid "Tolerance on time"
-msgstr "Tolerance na čas"
-
-msgid "Max integration time interval"
-msgstr "Max časový interval začlenění"
-
-msgid "Solver kind"
-msgstr "Druh řešitele"
-
-msgid "Maximum step size (0 means no limit)"
-msgstr "Maximální velikost kroku (0 znamená bez limitu)"
-
-msgid "Default trace settings"
-msgstr "Výchozí nastavení sledování"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván boolean.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid ""
@@ -121,9 +67,6 @@ msgid ""
 msgstr ""
 "Nelze načíst knihovnu Batik. \n"
 "Očekávaná verze %s ; Získaná verze %s ."
-
-msgid "parent diagram not found."
-msgstr "nadřazené schéma nenalezeno."
 
 msgid "Preview"
 msgstr "Náhled"
@@ -459,6 +402,12 @@ msgstr "Zrcadlit"
 msgid "Show/Hide shadow"
 msgstr "Zobrazit/Skrýt stín"
 
+msgid "Grid"
+msgstr "Síť"
+
+msgid "Diagram background"
+msgstr "Pozadí grafu"
+
 msgid "Bold"
 msgstr "Tučné"
 
@@ -498,8 +447,8 @@ msgstr "Nápověda bloku"
 msgid "Xcos Demonstrations"
 msgstr ""
 
-msgid "About Xcos"
-msgstr "O Xcos"
+msgid "About Scilab"
+msgstr ""
 
 msgid "Palettes"
 msgstr "Palety"
@@ -573,7 +522,8 @@ msgstr "Povolit"
 msgid "Palette name"
 msgstr "Jméno palety"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Graf byl od posledního uložení změněn.<br/> Chcete ho uložit?"
 
 #, c-format
@@ -653,22 +603,26 @@ msgstr "Přidat do"
 msgid "Add to new diagram"
 msgstr "Přidat do nového grafu"
 
-msgid "Explicit data input port must be connected to explicit data output port"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
 msgstr ""
 "Explicitní port pro vstup dat musí být připojen k explicitnímu portu pro "
 "výstup dat"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Vstupní port implicitních dat musí být připojen k výstupnímu portu "
 "implicitních dat"
 
-msgid "Explicit data output port must be connected to explicit data input port"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
 msgstr ""
 "Explicitní port pro výstup dat musí být připojen k explicitnímu portu pro "
 "vstup dat"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Výstupní port implicitních dat musí být připojen ke vstupnímu portu "
 "implicitních dat"
@@ -714,11 +668,47 @@ msgstr "Barva výplně"
 msgid "Text Color"
 msgstr "Barva textu"
 
+msgid "Link Style"
+msgstr "Styl propojení"
+
+msgid "Straight"
+msgstr "Přímé"
+
+msgid "Horizontal"
+msgstr "Vodorovně"
+
+msgid "Vertical"
+msgstr "Vertikální"
+
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr "Nastavit úroveň ladění (0,1,2,3) <br/> provádí scicos_debug(n)"
 
 msgid "Execution trace and Debug"
 msgstr "Trasování spuštění a Ladění"
+
+msgid "Final integration time"
+msgstr "Čas konečného začlenění"
+
+msgid "Real time scaling"
+msgstr "Škálování v reálném čase"
+
+msgid "Integrator absolute tolerance"
+msgstr "Absolutní tolerance integrátoru"
+
+msgid "Integrator relative tolerance"
+msgstr "Relativní tolerance integrátoru"
+
+msgid "Tolerance on time"
+msgstr "Tolerance na čas"
+
+msgid "Max integration time interval"
+msgstr "Max časový interval začlenění"
+
+msgid "Solver kind"
+msgstr "Druh řešitele"
+
+msgid "Maximum step size (0 means no limit)"
+msgstr "Maximální velikost kroku (0 znamená bez limitu)"
 
 msgid "Default"
 msgstr "Výchozí"
@@ -757,10 +747,23 @@ msgstr "Probíhá kompilace, výsledky budou uloženy v proměnné 'scicos_cpr'"
 msgid "Generate SuperBlock, please wait"
 msgstr "Vytvářím SuperBlok, čekejte prosím"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Klikněte na graf pro přidání bod propojení nebo kompatibilní cíl pro "
 "dokončení"
+
+msgid "No trace nor debug printing"
+msgstr "Žádné trasování nebo výpis ladění"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr "Křivka Simulace Světla (Přepínání Diskrétních a Průběžných částí)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Trasování spuštění pro blok a volání bloku Ladění"
+
+msgid "Debug block calls without trace"
+msgstr "Blok Ladění volá bez trasování"
 
 msgid "All supported formats"
 msgstr "Všechny podporované formáty"
@@ -853,156 +856,31 @@ msgid "Expecting '%d'."
 msgstr "Očekáváno '%d'."
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. <br/"
-">Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
-"<html><body>Chyba sestavení: propojení ignorováno protože není spojené. <br/"
-">Prosím, znovu ho spojte.</body></html>"
+"<html><body>Chyba sestavení: propojení ignorováno protože není spojené. "
+"<br/>Prosím, znovu ho spojte.</body></html>"
+
+#, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Modul Scilabu '%s' je v režimu -nogui or -nwni zakázán.\n"
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Modul Scilabu '%s' není nainstalován.\n"
 
-msgid "Basic controller"
-msgstr "Základní ovladač"
+msgid "Number of recently opened files to display: "
+msgstr "Počet nedávno otevřených souborů k zobrazení: "
 
-msgid "Water tank"
-msgstr "Vodní nádrž"
+msgid "Default file format"
+msgstr "Výchozí formát souboru"
 
-msgid "Discrete Controller"
-msgstr "Diskrétní Ovladač"
+msgid "Default simulation settings"
+msgstr "Výchozí nastavení simulace"
 
-msgid "Kalman Filter"
-msgstr "Kalmanův Filtr"
-
-msgid "Discrete Kalman Filter"
-msgstr "Diskrétní Kalmanův Filtr"
-
-msgid "Cont.Plant-Hybrid Observer"
-msgstr "Nepř.Vkládání-Hybridní Pozorovatel"
-
-msgid "Temperature Controller"
-msgstr "Ovladač Teploty"
-
-msgid "Inverted pendulum"
-msgstr ""
-
-msgid "Lorenz butterfly"
-msgstr ""
-
-msgid "RLC Circuit"
-msgstr "Obvod RLC"
-
-msgid "Bridge Rectifer"
-msgstr "Můstkový Usměrňovač"
-
-msgid "Transformer"
-msgstr "Transformátor"
-
-msgid "Differential amplifier"
-msgstr "Diferenciální zesilovač"
-
-msgid "OpAmp amplifier"
-msgstr "Zesilovač OpAmp"
-
-msgid "Switched capacitor integrator"
-msgstr "Integrátor přepnutého kondenzátoru"
-
-msgid "DC/DC Buck Converter"
-msgstr "Snižující Měnič DC/DC"
-
-msgid "DC/DC Boost Converter"
-msgstr "Spínaný měnič DC/DC"
-
-msgid "Colpitts oscillator"
-msgstr "Colpittsův oscilátor"
-
-msgid "Logic AND gate"
-msgstr "Logická brána AND"
-
-msgid "Logic NOR gate"
-msgstr "Logická brána NOR"
-
-msgid "If Then Else"
-msgstr ""
-
-msgid "And"
-msgstr ""
-
-msgid "Automotive Suspension"
-msgstr "Automobilové Zavěšení"
-
-msgid "Ball on a Platform"
-msgstr "Míč na Plošině"
-
-msgid "Bouncing Ball"
-msgstr "Skákající Míč"
-
-msgid "Chaos Modelica"
-msgstr "Chaos Modelica"
-
-msgid "Hydraulics blocks"
-msgstr "Hydraulické bloky"
-
-msgid "RLC circuit"
-msgstr "Obvod RLC"
-
-msgid "Old Gain Block"
-msgstr "Starý blok Získání"
-
-msgid "Standard demos"
-msgstr "Standardní ukázky"
-
-msgid "Control Systems"
-msgstr "Kontrolní Systémy"
-
-msgid "Electrical Systems"
-msgstr "Elektrické Systémy"
-
-msgid "Mechanical Systems"
-msgstr "Mechanícké systémy"
-
-msgid "Modelica demos"
-msgstr "Ukázky Modelica"
-
-msgid "Old demos"
-msgstr "Staré ukázky"
-
-msgid "Simple Demo"
-msgstr "Jednoduchá Ukázka"
-
-msgid "Bouncing Balls"
-msgstr "Skákající Míče"
-
-msgid "Simple Thermostat"
-msgstr "Jednoduchý Termostat"
-
-msgid "Table Lookup"
-msgstr "Vyhledávání Tabulky"
-
-msgid "Signal Builder"
-msgstr "Stavitel Signálu"
-
-msgid "Fibonacci Numbers"
-msgstr "Fibonacciho Čísla"
-
-msgid "Scilab block"
-msgstr "Blok Scilab"
-
-msgid "Xcos data types"
-msgstr "Datové typy Xcos"
-
-msgid "Zero Crossing"
-msgstr "Průchod Nulou"
-
-msgid "_IF_ Xcos block"
-msgstr "Blok _IF_ Xcos"
-
-msgid "Goto/From blocks"
-msgstr "Bloky Goto/From"
-
-msgid "Event demos"
-msgstr ""
+msgid "Default trace settings"
+msgstr "Výchozí nastavení sledování"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1017,7 +895,8 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr "%s: Špatný typ argumentu %s: Očekáván typ bloku.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr "%s: Špatný typ argumentu %s: očekáván řetězec cesty adresáře.\n"
 
 #, c-format
@@ -1069,16 +948,16 @@ msgstr ""
 "složky přístup k zápisu.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
-msgstr "%s: Špatný typ argumentu %d: Očekáván řetězec nebo struktura grafu"
-
-#, c-format
 msgid "Unable to open %s"
 msgstr "Nelze otevřít %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d."
+
+#, c-format
+msgid "%s: Not supported format %s.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -1105,7 +984,8 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet výstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr "%s: Špatný typ argumentu %s: očekáván typ palety nebo cesta.\n"
 
 #, c-format
@@ -1352,15 +1232,3 @@ msgstr "Problém simulace"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "V post_xcos_simulate se objevila chyba: Ukončuji simulaci."
-
-#, c-format
-msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr "%s: Nelze otevřít soubor '%s' pro čtení.\n"
-
-#, c-format
-msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr "%s: Chyba při pokusu o čtení obsahu souboru z '%s'.\n"
-
-#, c-format
-msgid "%s: Syntax error while trying to set up context from"
-msgstr "%s: Syntaktická chyba při pokusu o nastavení kontextu z"

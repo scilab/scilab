@@ -74,6 +74,7 @@ src/cpp/system_env/setenvvar.cpp \
 src/cpp/system_env/threadmanagement.cpp \
 src/cpp/system_env/numericconstants.cpp \
 src/cpp/system_env/numericconstants_interface.cpp \
+src/cpp/system_env/coverage_instance.cpp \
 src/cpp/types/addfunction.cpp \
 src/cpp/types/internal.cpp \
 src/cpp/types/arrayof.cpp \
@@ -142,6 +143,7 @@ src/cpp/analysis/PolymorphicMacroCache.cpp \
 src/cpp/analysis/SizeAnalyzer.cpp \
 src/cpp/analysis/SymbolicList.cpp \
 src/cpp/analysis/TIType.cpp \
+src/cpp/analysis/DollarInfo.cpp \
 src/cpp/analysis/IconvertAnalyzer.cpp \
 src/cpp/analysis/InttypeAnalyzer.cpp \
 src/cpp/analysis/IsrealAnalyzer.cpp \
@@ -159,6 +161,7 @@ src/cpp/analysis/VisitSelectExp.cpp \
 src/cpp/analysis/VisitAssignExp.cpp \
 src/cpp/analysis/VisitIfExp.cpp \
 src/cpp/analysis/VisitForExp.cpp \
+src/cpp/analysis/VisitWhileExp.cpp \
 src/cpp/analysis/VisitCallExp.cpp \
 src/cpp/analysis/VisitSeqExp.cpp \
 src/cpp/analysis/VisitTypeExps.cpp \
@@ -335,10 +338,11 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
 	-I$(top_srcdir)/modules/special_functions/src/cpp \
+	-I$(top_srcdir)/modules/coverage/includes \
 	$(LLVM_INCLUDE) \
 	$(LLVM_CPPFLAGS) \
 	$(LLVM_LDFLAGS) \
-        $(LLVM_LIBS) \
+    $(LLVM_LIBS) \
 	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 

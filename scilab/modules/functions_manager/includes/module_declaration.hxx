@@ -14,7 +14,6 @@
 #define __MODULE_DECLARATION_HXX__
 
 #include "../../elementary_functions/includes/elem_func_gw.hxx"
-#include "../../types/includes/types_gw.hxx"
 #include "../../sparse/includes/sparse_gw.hxx"
 #include "../../boolean/includes/boolean_gw.hxx"
 #include "../../integer/includes/integer_gw.hxx"
@@ -56,4 +55,5 @@
 #include "../../preferences/includes/preferences_gw.hxx"
 #include "../../tclsci/includes/tclsci_gw.hxx"
 #include "../../slint/includes/slint_gw.hxx"
+#include "../../coverage/includes/coverage_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

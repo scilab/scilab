@@ -12,6 +12,9 @@
 
 package org.scilab.modules.xcos;
 
+import com.mxgraph.util.mxEvent;
+import com.mxgraph.util.mxEventObject;
+import com.mxgraph.util.mxEventSource;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.lang.ref.WeakReference;
@@ -82,6 +85,7 @@ import org.scilab.modules.xcos.actions.ShowHideShadowAction;
 import org.scilab.modules.xcos.actions.StartAction;
 import org.scilab.modules.xcos.actions.StopAction;
 import org.scilab.modules.xcos.actions.ViewDiagramBrowserAction;
+import org.scilab.modules.xcos.actions.ViewDiagramTreeShowAction;
 import org.scilab.modules.xcos.actions.ViewGridAction;
 import org.scilab.modules.xcos.actions.ViewViewportAction;
 import org.scilab.modules.xcos.actions.XcosDemonstrationsAction;
@@ -265,6 +269,10 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         initComponents(graph);
 
         graph.getAsComponent().addKeyListener(new ArrowKeyListener());
+        graph.getModel().addListener(mxEvent.CHANGE, (Object sender, mxEventObject evt) -> {
+            graph.setModified(true);
+            graph.updateTabTitle();
+        });
     }
 
     /*
@@ -428,6 +436,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         view.add(NormalViewAction.createMenu(diagram));
         view.addSeparator();
         view.add(ViewPaletteBrowserAction.createCheckBoxMenu(diagram));
+        view.add(ViewDiagramTreeShowAction.createMenu(diagram));
         view.add(ViewDiagramBrowserAction.createMenu(diagram));
         final CheckBoxMenuItem menuItem = ViewViewportAction.createCheckBoxMenu(diagram);
         viewport = (JCheckBoxMenuItem) menuItem.getAsSimpleCheckBoxMenuItem();

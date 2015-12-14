@@ -28,6 +28,7 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+#include "Sciwarning.h"
 
 /*------------------------------------------------------------------------*/
 int set_outside_colors_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
@@ -57,7 +58,7 @@ int set_outside_colors_property(void* _pvCtx, int iObjUID, void* _pvData, int va
             || values[1] > nbColors || values[1] < -1)
     {
         /* It is possible to set color_range outside the colormap, however it won't be used.*/
-        sciprint(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "outside_colors");
+        Sciwarning(_("WARNING: Wrong value for '%s' property: indices outside the colormap will be clamped.\n"), "outside_colors");
     }
 
     status = setGraphicObjectProperty(iObjUID, __GO_OUTSIDE_COLOR__, values, jni_int_vector, 2);

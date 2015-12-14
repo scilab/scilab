@@ -46,7 +46,7 @@ saved_ldflags="$LDFLAGS"
 
 if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
 LDFLAGS="$LDFLAGS -L$with_blas_library"
-fi
+fi	
 
 # Get fortran linker names of BLAS functions to check for.
 AC_F77_FUNC(sgemm)
@@ -64,7 +64,7 @@ if test $acx_blas_ok = no; then
         LIBS="$save_LIBS"
     elif $WITH_DEVTOOLS; then # Scilab thirdparties
         BLAS_LIBS="-L$DEVTOOLS_LIBDIR -lblas"
-        BLAS_TYPE="Generic Blas"
+        BLAS_TYPE="Generic Blas (thirdparties)"
         acx_blas_ok=yes
     fi
 fi
@@ -78,10 +78,13 @@ fi
 
 # BLAS in OpenBlas library (http://www.openblas.net/)
 if test $acx_blas_ok = no; then
-    AC_CHECK_LIB(openblas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="OpenBLAS"; BLAS_LIBS="-lopenblas"])
+	AC_CHECK_LIB(openblas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="OpenBLAS"; BLAS_LIBS="-lopenblas"])
 fi
 
 # BLAS in ATLAS library (http://math-atlas.sourceforge.net/)
+if test $acx_blas_ok = no; then
+	PKG_CHECK_MODULES(BLAS, atlas, [acx_blas_ok=yes; BLAS_TYPE="Atlas"], [acx_blas_ok=no])
+fi
 if test $acx_blas_ok = no; then
 	AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas"], [
 		AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas -latlas"], [], [-latlas])])
@@ -235,8 +238,8 @@ if test "x$LAPACK_LIBS" != x; then
                 LAPACK_LIBS=""
         fi
 elif $WITH_DEVTOOLS; then # Scilab thirdparties
-     LAPACK_LIBS="-L$DEVTOOLS_LIBDIR -llapack"
-     LAPACK_TYPE="Library -llapack"
+     LAPACK_LIBS="-L$DEVTOOLS_LIBDIR -llapack -lblas"
+     LAPACK_TYPE="Lapack (thirdparties)"
      acx_lapack_ok=yes
 fi
 
@@ -325,7 +328,7 @@ LDFLAGS="$LDFLAGS -L$with_arpack_library"
 fi
 
 if $WITH_DEVTOOLS; then # Scilab thirdparties
-    ARPACK_LIBS="-L$DEVTOOLS_LIBDIR -larpack"
+    ARPACK_LIBS="-L$DEVTOOLS_LIBDIR -larpack -llapack -lblas"
     LDFLAGS="$LDFLAGS -L$DEVTOOLS_LIBDIR"
     acx_arpack_ok=yes
 else

@@ -95,12 +95,11 @@
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -135,12 +134,11 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -177,12 +175,11 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -225,12 +222,11 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)call_scilab.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;scilab_windows.lib;scilocalization.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilab_windows.lib;call_scilab.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>
       </ModuleDefinitionFile>
@@ -275,7 +271,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <None Include="..\..\locales\windows_tools.pot" />
     <None Include="Call_scilab_Import.def" />
     <None Include="core_import.def" />
-    <None Include="localization_Import.def" />
     <None Include="scilab_windows_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\windows_tools.iss" />
@@ -307,6 +302,9 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>

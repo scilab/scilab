@@ -1017,13 +1017,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
     <None Include="Linear_algebra_f_Import.def">
-      <Filter>Libraries Dependencies\Import</Filter>
-    </None>
-    <None Include="Output_stream_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
     <None Include="Scicos_Import.def">
@@ -1044,6 +1038,9 @@
       <Filter>localization</Filter>
     </None>
     <None Include="polynomials_f_Import.def">
+      <Filter>Libraries Dependencies\Import</Filter>
+    </None>
+    <None Include="core_Import.def">
       <Filter>Libraries Dependencies\Import</Filter>
     </None>
   </ItemGroup>

@@ -8,29 +8,82 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-19 19:53+0000\n"
+"PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
 
 #, c-format
-msgid "FFTW Library %s not found.\n"
-msgstr "La libreria di FFTW %s non è stata trovata.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
-msgid "FFTW Library not found.\n"
-msgstr "La libreria FFTW non è stata trovata.\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
 
 #, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: era atteso il flag "
+"FFTW.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: Memoria esaurita.\n"
+
+#, c-format
+msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
+"stringa.\n"
+
+#, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr "%s: Non è possibile allocare altra memoria.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Creation of requested fftw plan failed.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
@@ -44,13 +97,8 @@ msgstr ""
 "nell'insieme {%s}.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d è di tipo sbagliato.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -59,7 +107,8 @@ msgstr ""
 "%d e %d.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #, c-format
@@ -102,67 +151,8 @@ msgid "%s: Incompatible input arguments #%d and #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Creation of requested fftw plan failed.\n"
+msgid "Scilab '%s' module not installed.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Memoria esaurita.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha dei valori sbagliati: era atteso il flag "
-"FFTW.\n"
-
-#, c-format
-msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An integer or a floating point number "
-"expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An array of floating point or integer "
-"numbers expected.\n"
-msgstr ""
-
-msgid "Scilab FFTW module not installed.\n"
-msgstr "Il modulo FFTW di Scilab non è installato\n"
 
 msgid "You chose to install Scilab with the fftw module."
 msgstr "Si è scelto di installare Scilab con il modulo fftw."
@@ -170,7 +160,8 @@ msgstr "Si è scelto di installare Scilab con il modulo fftw."
 msgid "This module requires: "
 msgstr "Questo modulo richiede : "
 
-msgid "Scilab will use standard fft by default until you install this library."
+msgid ""
+"Scilab will use standard fft by default until you install this library."
 msgstr ""
 "Scilab userà in modo predefinito la fft standard a meno che non si installi "
 "questa libreria."

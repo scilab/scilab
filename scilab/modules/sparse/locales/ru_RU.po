@@ -8,18 +8,168 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-26 01:06+0000\n"
+"PO-Revision-Date: 2015-10-08 22:05+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
-msgid "sparse: panic in file `%s' at line %d.\n"
-msgstr "sparse: ошибка в файле «%s» в строке %d.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments %d: A vector of size %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d  expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument %d:  Handle to sparse lu factors expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Wrong value for argument #%d: the lu handle is no more valid.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of dimensions for input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s not yet implemented for full input parameter.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Incompatible dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type argument %d: Sparse or matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+msgid ""
+" The provided \"n\" does not correspond to the matrix defined by xadj and "
+"iadj\n"
+msgstr ""
+
+#, c-format
+msgid "%s: insufficient working storage"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Real or Complex matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size %d x %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: Square sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The provided data did not satisfy the prerequisites.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Iterative procedure did not converge.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: The inputs are invalid, or the algorithm has been improperly called.\n"
+"When assertions are enabled, such errors trigger an assert.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: Sparse matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: A zero was encountered on the diagonal the matrix.\n"
@@ -223,58 +373,8 @@ msgstr "%s: Ошибка сходимости.\n"
 msgid "Algorithm pass\n"
 msgstr "Алгоритм пройден\n"
 
-#, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного параметра №%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: %s has size %d, but %d is expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: %s имеет размер %d, но ожидался "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, but a positive value is "
-"expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: %s=%d, но ожидалось "
-"положительное значение.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%s, but a floating point integer "
-"is expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: %s=%s, но ожидалось целое с "
-"плавающей точкой.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match %s: %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: %s=%d, которое не равно %s: "
-"%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s=%d, which does not match size of "
-"%s: %d.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: %s=%d, которое не равно "
-"размеру %s: %d.\n"
-
 msgid "  Possible matrix is not positive definite."
-msgstr ""
+msgstr "  Возможно матрица не является положительно определённой."
 
 msgid "Non-positive diagonal encountered, matrix is not positive definite."
 msgstr ""
@@ -297,20 +397,24 @@ msgid " SYMFCT requires CACHSZ  to be 1 x 1"
 msgstr " SYMFCT требует, чтобы размер CACHSZ  был 1 x 1"
 
 msgid " Insufficient working storage in sfinit"
-msgstr ""
+msgstr " Недостаточно рабочего хранилища в sfinit"
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "Arguments:\n"
 msgstr "Параметры:\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: Неверный тип входного параметра №%d.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась квадратная матрица.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
@@ -349,13 +453,9 @@ msgid "%s: Wrong number of input argument: At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: Column vector expected.\n"
-msgstr "%s: Неверный рамзер входного параметра №%d: ожидался вектор-столбец.\n"
+msgstr ""
+"%s: Неверный рамзер входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"

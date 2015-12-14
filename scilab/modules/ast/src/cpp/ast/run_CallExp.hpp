@@ -16,6 +16,7 @@ namespace ast {
 template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
+    CoverageInstance::invokeAndStartChrono((void*)&e);
     bool isJITCall = false;
     exps_t args;
     types::InternalType * pIT = nullptr;
@@ -64,12 +65,21 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << _W("left side of optional parameter must be a variable") << std::endl;
+                    CoverageInstance::stopChrono((void*)&e);
                     throw ast::InternalError(os.str(), 999, e.getLocation());
                 }
 
                 SimpleVar* pVar = pL->getAs<SimpleVar>();
                 Exp* pR = &pAssign->getRightExp();
-                pR->accept(*this);
+                try
+                {
+                    pR->accept(*this);
+                }
+                catch (ScilabException &)
+                {
+                    CoverageInstance::stopChrono((void*)&e);
+                    throw;
+                }
                 types::InternalType* pITR = getResult();
                 // IncreaseRef to protect opt argument of scope_end delete
                 // It will be deleted by clear_opt
@@ -85,7 +95,15 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
             int iSize = getExpectedSize();
             setExpectedSize(-1);
-            arg->accept(*this);
+            try
+            {
+                arg->accept(*this);
+            }
+            catch (ScilabException &)
+            {
+                CoverageInstance::stopChrono((void*)&e);
+                throw;
+            }
             setExpectedSize(iSize);
 
             if (getResult() == NULL)
@@ -118,13 +136,22 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
     {
         clearResult();
         cleanIn(inTmp, outTmp);
+        CoverageInstance::stopChrono((void*)&e);
         throw ie;
     }
 
     if (isJITCall == false)
     {
         // get function/variable
-        e.getName().accept(*this);
+        try
+        {
+            e.getName().accept(*this);
+        }
+        catch (ScilabException &)
+        {
+            CoverageInstance::stopChrono((void*)&e);
+            throw;
+        }
         pIT = getResult();
     }
 
@@ -138,7 +165,13 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         clearResult();
         std::wostringstream os;
         os << _W("Wrong number of output arguments.\n") << std::endl;
+        CoverageInstance::stopChrono((void*)&e);
         throw ast::InternalError(os.str(), 999, e.getLocation());
+    }
+
+    if (pIT->isCallable())
+    {
+        CoverageInstance::invoke(static_cast<types::Callable *>(pIT));
     }
 
     // manage input according the function/variable
@@ -160,7 +193,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         {
             if (pIT->hasInvokeOption())
             {
-                opt.emplace_back(vectOptName[iterOptName++], inTmp[iterIn++]);
+                opt[vectOptName[iterOptName++]] = inTmp[iterIn++];
 
                 //in case of macro/macrofile, we have to shift input param
                 //so add NULL item in in list to keep initial order
@@ -363,6 +396,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         clearResult();
         cleanInOut(in, out);
         cleanOpt(opt);
+        CoverageInstance::stopChrono((void*)&e);
 
         throw ia;
     }
@@ -377,17 +411,30 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         clearResult();
         cleanInOut(in, out);
         cleanOpt(opt);
+        CoverageInstance::stopChrono((void*)&e);
 
         throw ie;
     }
+
+    CoverageInstance::stopChrono((void*)&e);
 }
 
 template<class T>
 void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 {
+    CoverageInstance::invokeAndStartChrono((void*)&e);
+
     //get head
     T execMeCell;
-    e.getName().accept(execMeCell);
+    try
+    {
+        e.getName().accept(execMeCell);
+    }
+    catch (ScilabException &)
+    {
+        CoverageInstance::stopChrono((void*)&e);
+        throw;
+    }
 
     if (execMeCell.getResult() != NULL)
     {
@@ -401,6 +448,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 
             if (pIT->isCell() == false)
             {
+                CoverageInstance::stopChrono((void*)&e);
                 throw ast::InternalError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
             }
             //Create list of indexes
@@ -413,6 +461,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 delete pArgs;
                 std::wostringstream os;
                 os << _W("Cell : Cannot extract without arguments.\n");
+                CoverageInstance::stopChrono((void*)&e);
                 throw ast::InternalError(os.str(), 999, e.getFirstLocation());
             }
 
@@ -424,6 +473,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
                 //os << ((*e.args_get().begin())->getLocation()).getLocationString() << std::endl;
+                CoverageInstance::stopChrono((void*)&e);
                 throw ast::InternalError(os.str(), 999, e.getFirstLocation());
             }
 
@@ -453,10 +503,11 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
     else
     {
         //result == NULL ,variable doesn't exist :(
-        // Sould never be in this case
+        // Should never be in this case
         // In worst case variable pointing to function does not exists
         // visitprivate(SimpleVar) will throw the right exception.
     }
+    CoverageInstance::stopChrono((void*)&e);
 }
 
 } /* namespace ast */

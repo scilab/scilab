@@ -157,6 +157,17 @@ void setWarningMode(int _iMode)
     ConfigVariable::setWarningMode(_iMode != 0);
 }
 
+int getWarningStop(void)
+{
+    return ConfigVariable::getWarningStop() ? 1 : 0;
+}
+
+void setWarningStop(int _iStop)
+{
+    ConfigVariable::setWarningStop(_iStop != 0);
+}
+
+
 int checkReferenceModule(const wchar_t* _module)
 {
     return ConfigVariable::checkReferenceModule(_module) ? 1 : 0;

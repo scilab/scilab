@@ -60,7 +60,7 @@
                         <listitem>
                             <para>
                                 <literal>5th column</literal> : I/A, this parameter tell if
-                                the external module has been automatically or intentionaly installed.
+                                the external module has been automatically or intentionally installed.
                             </para>
                         </listitem>
                     </itemizedlist>

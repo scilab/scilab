@@ -349,7 +349,7 @@ public final class ScilabInterpreterManagement extends InterpreterManagement {
                 b.append(", ");
             }
         }
-        b.append("); ");
+        b.append(")");
 
         return b.toString();
     }

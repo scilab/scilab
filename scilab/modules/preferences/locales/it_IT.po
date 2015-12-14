@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-14 22:02+0000\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -37,51 +37,6 @@ msgid ""
 msgstr ""
 "%s: Si è verificata una eccezione di Java:\n"
 "%s"
-
-msgid "Preferences"
-msgstr "Preferenze"
-
-msgid "Preferences backup"
-msgstr "Backup delle preferenze"
-
-msgid "Select a backup file"
-msgstr "Selezionare un file di backup"
-
-msgid "Scilab Configuration files"
-msgstr "File di configurazione di Scilab"
-
-msgid "Restore"
-msgstr "Ripristina"
-
-msgid "Create a backup file"
-msgstr "Crea un file di backup"
-
-msgid "Save"
-msgstr "Salva"
-
-msgid "Select a file to open with SciNotes"
-msgstr "Selezionare un file da aprire con SciNotes"
-
-msgid "Select a directory"
-msgstr "Selezionare una directory"
-
-msgid "Please install atoms module."
-msgstr "Installare il modulo di Atoms"
-
-msgid "Please install xcos module."
-msgstr "Installare il modulo Xcos"
-
-msgid "Default"
-msgstr "Predefinito"
-
-msgid "Cancel"
-msgstr "Annulla"
-
-msgid "OK"
-msgstr "OK"
-
-msgid "Apply"
-msgstr "Applica"
 
 msgid "Invalid path:"
 msgstr "Percorso non valido:"
@@ -108,6 +63,27 @@ msgstr "Reimposta"
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Il modulo \"%s\" di Scilab non è installato.\n"
+
+msgid "Preferences"
+msgstr "Preferenze"
+
+msgid "Preferences backup"
+msgstr "Backup delle preferenze"
+
+msgid "Select a backup file"
+msgstr "Selezionare un file di backup"
+
+msgid "Scilab Configuration files"
+msgstr "File di configurazione di Scilab"
+
+msgid "Restore"
+msgstr "Ripristina"
+
+msgid "Create a backup file"
+msgstr "Crea un file di backup"
+
+msgid "Save"
+msgstr "Salva"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"

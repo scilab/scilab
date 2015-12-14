@@ -102,7 +102,7 @@ function plot(varargin)
         //
         // 1. Test if 2 data couples (first : type==1, second : type=[1,13,130])
         // are at least separated by 2 indices
-        if (couple(2:$)-couple(1:$-1)<2)
+        if (size(couple, "*") > 1 && couple(2:$)-couple(1:$-1)<2)
             warning("Error inside input argument !");
             return;
         end
@@ -169,7 +169,7 @@ function plot(varargin)
     cur_draw_mode = current_figure.immediate_drawing;
     current_figure.immediate_drawing = "off";
 
-    // check wether this is the first plot for the axes in which we will draw
+    // check whether this is the first plot for the axes in which we will draw
     curAxes = gca();
     // save auto_clear state.
     OldAutoClear = curAxes.auto_clear;

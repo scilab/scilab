@@ -20,14 +20,15 @@ function x = secd(x)
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"secd",1));
     end
 
-    n = round(x/90);
-    x = x - n*90;
-    m = pmodulo(n, 4);
-    x(m==0) = 1 ./ cos(%pi/180*x(m==0));
-    x(m==1&x<>0) = -1 ./ sin(%pi/180*x(m==1&x<>0));
-    x(m==1&x==0) = -%inf;
-    x(m==2) = -1 ./ cos(%pi/180*x(m==2));
-    x(m==3&x<>0) = 1 ./ sin(%pi/180*x(m==3&x<>0));
-    x(m==3&x==0) = %inf;
-
+    if ~isempty(x)
+        n = round(x/90);
+        x = x - n*90;
+        m = pmodulo(n, 4);
+        x(m==0) = 1 ./ cos(%pi/180*x(m==0));
+        x(m==1&x<>0) = -1 ./ sin(%pi/180*x(m==1&x<>0));
+        x(m==1&x==0) = -%inf;
+        x(m==2) = -1 ./ cos(%pi/180*x(m==2));
+        x(m==3&x<>0) = 1 ./ sin(%pi/180*x(m==3&x<>0));
+        x(m==3&x==0) = %inf;
+    end
 endfunction

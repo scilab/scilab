@@ -225,7 +225,7 @@ purpose
 		*er		a singly subscripted real array containing the real
 				parts of the eigenvalues.
 
-		*ei		a singly subscripted real array containg the imaginary
+		*ei		a singly subscripted real array containing the imaginary
 				parts of the eigenvalues.
 
 		*bs		a singly subscripted integer array that contains block

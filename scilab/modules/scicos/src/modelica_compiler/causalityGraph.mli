@@ -38,4 +38,4 @@ val strongly_connected_components: t -> int list list
 of [g] as a list of index lists. *)
 
 val print_with: (int -> unit) -> t -> unit
-(** [print_with print_fun g] prints the connexions in [g] using [print_fun]. *)
+(** [print_with print_fun g] prints the connections in [g] using [print_fun]. *)

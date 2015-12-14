@@ -88,7 +88,7 @@ end
                 <revnumber>5.4.1</revnumber>
                 <revremark>
                     <itemizedlist>
-                        <listitem>Manage shorcut root names.</listitem>
+                        <listitem>Manage shortcut root names.</listitem>
                         <listitem>Can retrieve key list names.</listitem>
                     </itemizedlist>
                 </revremark>

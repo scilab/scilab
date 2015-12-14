@@ -111,9 +111,9 @@ X = [3 7 9; 22 4 2];
 f1 = [10 1 1 1 1 1];
 f2 = [1 ; 15];
 f3 = [10 1 1];
-s=samplef(20, X, f1)      //the first value of matrix X will be choosen with frequency 10/15
-s=samplef(20, X, f2, 'r') //the second row of matrix a will be choosen with frequency  15/16
-s=samplef(20, X, f3, 'c') //the first column of matrix a will be choosen with frequency 10/12
+s=samplef(20, X, f1)      //the first value of matrix X will be chosen with frequency 10/15
+s=samplef(20, X, f2, 'r') //the second row of matrix a will be chosen with frequency  15/16
+s=samplef(20, X, f3, 'c') //the first column of matrix a will be chosen with frequency 10/12
  ]]></programlisting>
     </refsection>
     <refsection role="see also">

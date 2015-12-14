@@ -117,7 +117,7 @@ public:
     virtual Info & addRead(const symbol::Symbol & sym, ast::Exp * exp);
     virtual Info & addWrite(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp);
     virtual Info & addDefine(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);
-    virtual Info & addShare(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp);
+    virtual Info & addShare(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp);
     virtual Info & addMacroDef(ast::FunctionDec * dec);
     virtual std::vector<TIType> addCall(AnalysisVisitor & visitor, const unsigned int lhs, const symbol::Symbol & sym, std::vector<TIType> & in, ast::CallExp * callexp, uint64_t & functionId);
     virtual Info & addClear(const symbol::Symbol & sym, ast::Exp * exp);

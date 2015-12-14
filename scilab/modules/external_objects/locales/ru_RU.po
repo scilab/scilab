@@ -6,21 +6,18 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-27 14:43+0000\n"
+"PO-Revision-Date: 2015-10-08 22:05+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
-msgid "Exception thrown in file"
-msgstr "Выдан сигнал исключения в файле"
-
-msgid "at line"
-msgstr "на строке"
+msgid "Invalid variable: cannot retrieve the data"
+msgstr "Недопустимая переменная: невозможно вернуть данные"
 
 #, c-format
 msgid "%s: An error occurred: %s"
@@ -39,9 +36,6 @@ msgstr "Недопустимое имя переменной: %s"
 
 msgid "Cannot allocate memory"
 msgstr "Невозможно выделить память"
-
-msgid "Invalid variable: cannot retrieve the data"
-msgstr "Недопустимая переменная: невозможно вернуть данные"
 
 msgid "Invalid variable: cannot create data"
 msgstr "Недопустимая переменная: невозможно создать данные"

@@ -82,8 +82,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreBuildEvent>
     <ClCompile>
@@ -107,7 +106,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>special_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -122,8 +121,7 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreBuildEvent>
     <Midl>
@@ -150,7 +148,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>special_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -165,8 +163,7 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreBuildEvent>
     <ClCompile>
@@ -191,7 +188,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>special_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -208,8 +205,7 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL</Command>
     </PreBuildEvent>
     <Midl>
@@ -237,7 +233,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalDependencies>core.lib;slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>slatec_f.lib;elementary_functions_f.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>special_functions_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -275,7 +271,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <None Include="elementary_functions_f_Import.def" />
-    <None Include="core_import.def" />
     <None Include="slatec_f_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\special_functions_gateway.xml" />

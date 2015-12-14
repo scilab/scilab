@@ -18,35 +18,25 @@ import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.sax.SAXResult;
+import javax.xml.stream.XMLOutputFactory;
+import javax.xml.stream.XMLStreamException;
+import javax.xml.stream.XMLStreamWriter;
 import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
-
-import org.scilab.modules.commons.xml.ScilabTransformerFactory;
-import org.scilab.modules.types.ScilabList;
+import org.scilab.modules.commons.xml.ScilabXMLOutputFactory;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.codec.XcosCodec;
-import org.scilab.modules.xcos.io.sax.SAXHandler;
-import org.w3c.dom.Document;
+import org.scilab.modules.xcos.io.sax.XcosSAXHandler;
+import org.scilab.modules.xcos.io.writer.XcosWriter;
 import org.w3c.dom.Element;
-import org.w3c.dom.Node;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.XMLReaderFactory;
 
 public class ContentEntry implements Entry {
     private static final Logger LOG = Logger.getLogger(ContentEntry.class.getName());
 
-    private Document manifest;
     private XcosDiagram content;
     private XcosPackage pack;
-    private ScilabList dictionary;
-
-    public void setDictionary(ScilabList dictionary) {
-        this.dictionary = dictionary;
-    }
 
     @Override
     public String getMediaType() {
@@ -61,30 +51,26 @@ public class ContentEntry implements Entry {
     @Override
     public void setup(XcosPackage p) {
         pack = p;
-        manifest = p.getManifest();
         content = p.getContent();
     }
 
     @Override
     public void load(ZipEntry entry, InputStream stream) throws IOException {
         try {
-            final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
-            final Transformer aTransformer = tranFactory.newTransformer();
+            XcosSAXHandler handler = new XcosSAXHandler(content, pack.getDictionary());
+            XMLReader reader = XMLReaderFactory.createXMLReader();
+            reader.setContentHandler(handler);
+            reader.setErrorHandler(handler);
 
-            final StreamSource src = new StreamSource(stream);
-            final SAXResult result = new SAXResult(new SAXHandler(content, dictionary));
-
-            LOG.entering("Transformer", "transform");
-            aTransformer.transform(src, result);
-            LOG.exiting("Transformer", "transform");
-
-        } catch (TransformerConfigurationException e) {
-            Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
-        } catch (TransformerException e) {
+            LOG.entering("XMLReader", "parse");
+            reader.parse(new InputSource(stream));
+            LOG.exiting("XMLReader", "parse");
+        } catch (SAXException e) {
             e.printStackTrace();
-            Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
+            throw new RuntimeException(e);
         } catch (Exception e) {
             e.printStackTrace();
+            throw e;
         }
     }
 
@@ -94,48 +80,33 @@ public class ContentEntry implements Entry {
          * Append a ZipEntry
          */
         final ZipEntry entry = new ZipEntry(getFullPath());
+        entry.setTime(pack.getTime());
         stream.putNextEntry(entry);
 
         /*
          * Store content
          */
         try {
-            final XcosCodec codec = new XcosCodec();
-            final TransformerFactory tranFactory = ScilabTransformerFactory.newInstance();
-            final Transformer aTransformer = tranFactory.newTransformer();
-
-            LOG.entering("XcosCodec", "encode");
-            Object lock = XcosCodec.enableBinarySerialization(null);
-            final Node doc;
-            final ScilabList dictionary;
-            synchronized (lock) {
-                doc = codec.encode(content);
-                dictionary = XcosCodec.disableBinarySerialization();
-            }
-            LOG.exiting("XcosCodec", "encode");
-
-            final DOMSource src = new DOMSource(doc);
+            final XMLOutputFactory factory = ScilabXMLOutputFactory.newInstance();
             final StreamResult result = new StreamResult(stream);
+            final XMLStreamWriter writer = factory.createXMLStreamWriter(result);
 
-            LOG.entering("Transformer", "transform");
-            aTransformer.transform(src, result);
-            LOG.exiting("Transformer", "transform");
-
-            DictionaryEntry dictEntry = new DictionaryEntry(dictionary);
-            dictEntry.setup(pack);
-            dictEntry.store(stream);
+            LOG.entering("XMLStreamWriter", "write");
+            new XcosWriter(pack.getDictionary(), writer).write(content.getUID(), content.getKind());
+            writer.close();
+            LOG.exiting("XMLStreamWriter", "write");
 
             /*
              * Add an entry to the manifest file
              */
-            final Element e = manifest.createElement("manifest:file-entry");
+            final Element e = pack.getManifest().createElement("manifest:file-entry");
             e.setAttribute("manifest:media-type", getMediaType());
             e.setAttribute("manifest:full-path", getFullPath());
-            manifest.getFirstChild().appendChild(e);
-        } catch (TransformerConfigurationException e) {
-            Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
-        } catch (TransformerException e) {
-            Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessageAndLocation());
+            pack.getManifest().getFirstChild().appendChild(e);
+        } catch (XMLStreamException e) {
+            Logger.getLogger(ContentEntry.class.getName()).severe(e.getMessage());
+        } finally {
+            stream.closeEntry();
         }
     }
 }

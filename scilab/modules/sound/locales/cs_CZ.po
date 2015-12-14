@@ -6,34 +6,22 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-07-06 21:08+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Vyskytla se chyba: %s\n"
-
 msgid "Cannot play file."
 msgstr "Nelze přehrát soubor."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -45,21 +33,6 @@ msgstr "%s: Špatný vstupní argument očekáván #%d: '%s' nebo '%s'.\n"
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Zvukový modul Scilab není nainstalován\n"
-
-msgid "Sound file handling"
-msgstr "Zacházení se zvukovým souborem"
-
-msgid "FFT on a wav file"
-msgstr "FFT v souboru wav"
-
-msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr "Fourierova analýza  0,5 vteřin zvukových parametrů."
-
-msgid "A complete picture of the sound."
-msgstr "Celkový obrázek zvuku."
-
-msgid "see 'mapsound' function"
-msgstr "více ve funkci 'mapsound'"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -194,7 +167,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Vyskytla se chyba: %s není podporován.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Vyskytla se chyba: neplatný formát souboru. Chyba při čtení kusu <%s>.\n"
 

@@ -17,13 +17,16 @@ extern "C"
 #include "functions_manager.h"
 }
 
-void LoadModules()
+bool LoadModules()
 {
     FuncManager* pFM = FuncManager::getInstance();
-    if (pFM)
+    if (pFM == NULL)
     {
-        pFM->LoadModules();
+        return false;
     }
+
+    pFM->LoadModules();
+    return true;
 }
 
 void EndModules()

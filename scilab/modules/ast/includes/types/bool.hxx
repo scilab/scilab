@@ -42,7 +42,7 @@ public :
 public:
     Bool(int _bReal);
     Bool(int _iRows, int _iCols);
-    Bool(int _iDims, int* _piDims);
+    Bool(int _iDims, const int* _piDims);
     Bool(int _iRows, int _iCols, int **_piData);
     Bool(int _iRows, int _iCols, int * _piData);
     ~Bool();
@@ -91,7 +91,7 @@ protected :
     virtual ast::Exp*       getExp(const Location& loc);
 
 private :
-    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual int             getNullValue();
     virtual Bool*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

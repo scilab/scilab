@@ -33,9 +33,9 @@
     <br/>
 
     <div class="refsection">
-      <h3 class="title">Bienvenue dans Scilab 6.0.0-alpha-1</h3>
+      <h3 class="title">Bienvenue dans Scilab 6.0.0-alpha-2</h3>
       <p class="para">
-        Scilab 6.0.0 est une nouvelle version majeure de Scilab, la plateforme open source de calcul numérique. Cette version 6.0.0-alpha-1 est un aperçu pour les développeurs, les partenaires et la communauté à des fins de tests.
+        Scilab 6.0 est une nouvelle version majeure de Scilab, la plateforme open source de calcul numérique. Cette version 6.0.0-alpha-2 est un aperçu pour les développeurs, les partenaires et la communauté à des fins de tests.
       </p>
       <p class="para">
         Comme toute alpha, cette version n’est encore pas prête pour être utilisée en production. Si vous débutez sur Scilab, ou si vous êtes un simple utilisateur, vous devriez continuer à utiliser la version 5.5.2, et attendre une version bêta avant d'essayer la famille 6.
@@ -45,8 +45,7 @@
         Toutefois, si vous avez déjà développé du code sur Scilab, ou si vous êtes un utilisateur avancé, vous pourriez être intéressé par cette version. Pourquoi ne pas essayer vos développements effectués sur des versions antérieures de Scilab dans cette version : vérifier la compatibilité peut vous économiser du temps par la suite. Si vous trouvez des bugs ou des incompatibilités, merci de les signaler sur notre <a href="http://bugzilla.scilab.org/" class="ulink">gestionnaire de bugs</a> : cela vous aidera à avoir un meilleur produit, plus rapide, dont vous serez également bénéficiaire.
       </p>
 
-      <h2 class="title">Les nouveautés de Scilab 6.0.0-alpha-1</h2>
-
+      <h2 class="title">Les nouveautés de Scilab 6.0</h2>
       <p class="para">
         Cette version inclut une réécriture majeure du noyau interne de Scilab. Les modifications apportées aux aspects visibles du logiciel sont limitées.
       </p>
@@ -56,7 +55,7 @@
           <li>Le langage est beaucoup plus cohérent et prévisible,</li>
           <li>La grammaire est plus stricte, mais plus cohérente,</li>
           <li>La gestion des erreurs a été améliorée (mais peut encore être limitée dans l'alpha : merci d’avance de nous signaler les problèmes que vous pourriez rencontrer),</li>
-          <li>Le langage est légèrement plus comptabile avec le langage Matlab (par exemple dans le cas d’instructions de contrôle telles que les déclarations switch/case).</li>
+          <li>Le langage est légèrement plus compabible avec le langage Matlab (par exemple dans le cas d’instructions de contrôle telles que les déclarations switch/case).</li>
         </ul>
       </p>
       <p class="para">
@@ -76,21 +75,32 @@
           <li>Les structures de données natives (cell, struct), ainsi que les matrices multidimensionnelles ont, dans la plupart des cas, de meilleures performances, tant en utilisation de la mémoire, qu’en rapidité d'exécution. Si dans certains cas, vous observez une baisse de performances, nous vous remercions de nous le signaler.</li>
         </ul>
       </p>
-      <p class="para">
-        Ces changements peuvent ne pas impacter certains utilisateurs finaux, mais ils étaient grandement nécessaires, ont été travaillés très sérieusement pour apporter des améliorations majeures à la plateforme Scilab. Ces améliorations conduiront à de nouvelles améliorations futures, en termes de gestion de code, d’outils de développement (débogueur, analyseur ...), ainsi que des améliorations de Xcos, qui ne seraient pas possibles sans cette version.
-      </p>
-      <h2 class="title">Nouvelles fonctionnalités spécifiques et changelog complet</h2>
-      <p class="para">
-        Pour une liste complète des changements entre la version 5.5.2 et cette version, veuillez consulter le fichier CHANGES_6.0.X présent à la racine de l'installation de Scilab.
+      <p class="para">Plusieurs fonctionnalités additionnelles ont été ajoutées grâce aux changements faits dans le coeurs. Certaines de ces fonctionnalités sont présentes dans la version alpha-2:
+        <ul>
+          <li>Un debugger entièrement fonctionnel a été ajouté, qui permet l’exécution pas-à-pas de scripts Scilab, l'insertion de points d’arrêt (conditionnels ou non)… La commande "help debug" permet d'accéder à une aide complète.</li>
+          <li>Un outil de mesure de couverture, et de profilage a été ajouté. Il remplace l’ancienne fonction “profile” (qui est encore présente, mais pas fonctionnelle, et qui sera retirée dans la version finale). Cet outil produit un rapport HTML  sur le mesure du temps passé dans chaque ligne de script (profile). Elle n’est pas documentée, et les fonctions pour l’appeler pourront changer encore avant la version finale.</li>
+          <li>Un outil d’analyse statique, slint, est présent: il détecte le code peu clair, risqué, ou suspect. Il n’est pas documenté encore.</li>
+        </ul>
       </p>
       <h2 class="title">Principales limitations</h2>
       <p class="para">
-        Plusieurs éléments importants de la plateforme ne sont pas fonctionnels dans cette alpha :
         <ul>
-          <li>Xcos ne fonctionne pas encore; l'éditeur ne fonctionne pas encore dans cette version alpha 1 (il le sera dans la version finale, bien sûr). Le simulateur a été porté, mais n’est pas encore utilisable,</li>
-          <li>TLes fonctionnalités de débogage et de profiling disponibles dans la version 5.5.2 ne sont pas portées dans la 6; Très probablement, elles seront remplacées par de toutes nouvelles fonctionnalités,</li>
-          <li>ATOMS est fonctionnel, mais comme aucun des modules ATOMS actuellement disponibles sur <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> n’a été porté, il n’est pas d'une grande utilité.</li>
+          <li>La limitation de l'alpha-2 est maintenant que Xcos n'est que très partiellement fonctionnel : l'éditeur fonctionne, et peut charger et sauver des documents, mais certaines fonctionnalités sont encore manquantes ("superblocks", édition de blocks contenant du code Scilab, liens complexes). Surtout, la simulation ne fonctionne pas encore.</li>
+          <li>L'installation et l'usage de modules supplémentaires (ATOMS) est fonctionnelle, mais peu de modules disponibles sur <a href="http://atoms.scilab.org/">http://atoms.scilab.org/</a> ont été portés, donc cette fonctionnalités est d'un usage limité.</li>
         </ul>
+      </p>
+      <h2 class="title">Limitations spécifiques aux systèmes d'exploitation</h2>
+      <p class="para">
+      <ul>
+        <li>La fonctionalité TCL/TK n'est pas disponible sous MacOS.</li>
+        <li>Certaines fonctions concernant Windows sont évidemment disponibles uniquement sous Windows (<a href="section_02d42947da4b16801e15b82ca80009fc.html">Windows tools</a>).</li>
+        <li>La compilation de C/C++ ou autre code natif dans les modules additionnels (toolboxes), ainsi que les interfaces avec les third-parties peuvent dépendre du système d'exploitation, et donc peuvent ne pas être supportés sur toutes les plateformes.</li>
+      </ul>
+      </p>
+
+      <h2 class="title">Changelog complet</h2>
+      <p class="para">
+        Pour une liste complète des changements entre la version 5.5.2 et cette version, veuillez consulter le fichier CHANGES_6.0.X présent à la racine de l'installation de Scilab.
       </p>
     </div>
 

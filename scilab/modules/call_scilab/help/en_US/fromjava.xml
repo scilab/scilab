@@ -38,9 +38,6 @@ fromjava();
                 <link linkend="call_scilab">Call_Scilab</link>
             </member>
             <member>
-                <link linkend="api_scilab">api Scilab</link>
-            </member>
-            <member>
                 <link linkend="fromc">fromc</link>
             </member>
         </simplelist>

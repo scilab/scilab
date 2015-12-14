@@ -17,15 +17,15 @@
 /*--------------------------------------------------------------------------*/
 FILEIO_IMPEXP int gw_fileio(void);
 /*--------------------------------------------------------------------------*/
-C_GATEWAY_PROTOTYPE(sci_pwd);
-C_GATEWAY_PROTOTYPE(sci_chdir);
-C_GATEWAY_PROTOTYPE(sci_copyfile);
-C_GATEWAY_PROTOTYPE(sci_movefile);
-C_GATEWAY_PROTOTYPE(sci_fscanfMat);
-C_GATEWAY_PROTOTYPE(sci_fprintfMat);
-C_GATEWAY_PROTOTYPE(sci_getURL);
-C_GATEWAY_PROTOTYPE(sci_splitURL);
-C_GATEWAY_PROTOTYPE(sci_tempname);
+STACK_GATEWAY_PROTOTYPE(sci_pwd);
+STACK_GATEWAY_PROTOTYPE(sci_chdir);
+STACK_GATEWAY_PROTOTYPE(sci_copyfile);
+STACK_GATEWAY_PROTOTYPE(sci_movefile);
+STACK_GATEWAY_PROTOTYPE(sci_fscanfMat);
+STACK_GATEWAY_PROTOTYPE(sci_fprintfMat);
+STACK_GATEWAY_PROTOTYPE(sci_getURL);
+STACK_GATEWAY_PROTOTYPE(sci_splitURL);
+STACK_GATEWAY_PROTOTYPE(sci_tempname);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

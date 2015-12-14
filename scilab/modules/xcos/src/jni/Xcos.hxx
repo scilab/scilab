@@ -77,7 +77,7 @@ JavaVM * jvm;
 
 protected:
 jmethodID voidxcosjstringjava_lang_StringjlonglongID; // cache method id
-jmethodID voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID; // cache method id
+jmethodID voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID; // cache method id
 jmethodID voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID; // cache method id
 jclass stringArrayClass;
 jmethodID voidcloseXcosFromScilabID; // cache method id
@@ -144,7 +144,7 @@ void endSynchronize();
 // Methods
 static void xcos(JavaVM * jvm_, char const* file, long long diagramId);
 
-static void xcosDiagramToScilab(JavaVM * jvm_, char const* file, long long diagramId);
+static void xcosDiagramToScilab(JavaVM * jvm_, char const* file, long long diagramId, bool exported);
 
 static void warnCellByUID(JavaVM * jvm_, char const* const* uids, int uidsSize, char const* message);
 

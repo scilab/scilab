@@ -22,10 +22,12 @@
 Source: bin\{#SCICOS_BLOCKS}.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}-cli.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\{#SCICOS_BLOCKS}-cli_f.dll; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
 Source: bin\{#SCICOS_BLOCKS}.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}-cli.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 Source: bin\{#SCICOS_BLOCKS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
+Source: bin\{#SCICOS_BLOCKS}-cli_f.lib; DestDir: {app}\bin; Components: {#COMPN_XCOS}
 ;
 Source: modules\{#SCICOS_BLOCKS}\license.txt; DestDir: {app}\modules\{#SCICOS_BLOCKS}; Components: {#COMPN_XCOS}
 ;

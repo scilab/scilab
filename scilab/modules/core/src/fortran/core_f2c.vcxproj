@@ -87,22 +87,10 @@
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -125,7 +113,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;elementary_functions_f.lib;fileio.lib;linpack_f.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -141,22 +129,10 @@ cd ..
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -182,7 +158,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;elementary_functions_f.lib;fileio.lib;linpack_f.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -198,22 +174,10 @@ cd ..
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <ClCompile>
@@ -237,7 +201,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;elementary_functions_f.lib;fileio.lib;linpack_f.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -255,22 +219,10 @@ cd ..
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)fftw_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fftw.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)io_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)output_stream_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sparse_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreBuildEvent>
     <Midl>
@@ -297,7 +249,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;elementary_functions_f.lib;fileio.lib;linpack_f.lib;output_stream.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -338,22 +290,10 @@ cd ..
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="console_Import.def" />
-    <None Include="data_structures_Import.def" />
-    <None Include="double_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
-    <None Include="elementary_functions_Import.def" />
-    <None Include="fftw_Import.def" />
     <None Include="fileio_Import.def" />
-    <None Include="integer_Import.def" />
-    <None Include="io_f_Import.def" />
-    <None Include="core_import.def" />
     <None Include="linpack_f_Import.def" />
-    <None Include="Output_stream_f_Import.def" />
     <None Include="Output_stream_Import.def" />
-    <None Include="polynomials_f_Import.def" />
-    <None Include="sparse_f_Import.def" />
-    <None Include="string_f_Import.def" />
-    <None Include="string_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">

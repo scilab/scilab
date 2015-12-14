@@ -36,6 +36,7 @@ typedef enum EnumCommand
     DeleteCommand,
     EnableCommand,
     HelpCommand,
+    HelpShortCommand,
     ListCommand,
     NextCommand,
     QuitCommand,
@@ -291,6 +292,22 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
+            if (ConfigVariable::getScilabMode() == SCILAB_NW || ConfigVariable::getScilabMode() == SCILAB_STD)
+            {
+                StorePrioritaryCommand("help debug");
+                return types::Function::OK;
+            }
+
+            //continue tp HelpShortCommand
+        }
+        case HelpShortCommand:
+        {
+            if (iRhs > 1)
+            {
+                Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), "help", 0);
+                return types::Function::Error;
+            }
+
             //help
             print_help();
             return types::Function::OK;
@@ -485,7 +502,7 @@ types::Function::ReturnValue sci_debug(types::typed_list &in, int _iRetCount, ty
             break;
     }
 
-    sciprint("Unknow command \"%ls\".\n\n", command.c_str());
+    sciprint("Unknown command \"%ls\".\n\n", command.c_str());
     sciprint("use 'h' for more information\n\n");
     return types::Function::OK;
 }
@@ -495,32 +512,35 @@ void print_help()
     //a,b,c,d,h,i,n,o,q,s,w
 
     sciprint(_("debug commands : \n"));
-    sciprint("  help (h)          : %s.\n", _("show this help"));
+    sciprint("  h                            : %s.\n", _("show this help"));
+    sciprint("  help                         : %s.\n", _("open debug documentation page"));
+    sciprint("\n");                          
+    sciprint("  (q)uit                       : %s.\n", _("stop debugging"));
+    sciprint("  (w)here or bt                : %s.\n", _("show callstack"));
+    sciprint("\n");                          
+    sciprint("  (e)xec cmd                   : %s.\n", _("execute cmd"));
+    sciprint("  (r)un cmd                    : %s.\n", _("execute cmd"));
+    sciprint("\n");                          
+    sciprint("  (d)isp var                   : %s.\n", _("display variable"));
+    sciprint("  (p)rint var                  : %s.\n", _("display variable"));
+    sciprint("\n");                          
+    sciprint("  (c)ontinue                   : %s.\n", _("continue execution"));
+    sciprint("  (a)bort                      : %s.\n", _("abort execution"));
+    sciprint("  step(n)ext or next           : %s.\n", _("continue to next statement"));
+    sciprint("  step(i)n or in               : %s.\n", _("step into function"));
+    sciprint("  step(o)ut or out             : %s.\n", _("step outside function"));
     sciprint("\n");
-    sciprint("  quit (q)          : %s.\n", _("stop debugging"));
-    sciprint("  where (w, bt)     : %s.\n", _("show callstack"));
+    sciprint("  (b)reakpoint or break\n     func [line [\"condition\"]] : %s.\n", _("add a breakpoint"));
+    sciprint("  (del)ete                     : %s.\n", _("delete all breakpoints"));
+    sciprint("  (del)ete n                   : %s.\n", _("delete a specific breakpoint"));
+    sciprint("  enable                       : %s.\n", _("enable all breakpoints"));
+    sciprint("  enable n                     : %s.\n", _("enable a specific breakpoint"));
+    sciprint("  disable                      : %s.\n", _("disable all breakpoints"));
+    sciprint("  disable n                    : %s.\n", _("disable a specific breakpoint"));
+    sciprint("  (s)how                       : %s.\n", _("show all breakpoints"));
+    sciprint("  (s)how n                     : %s.\n", _("show a specific breakpoint"));
     sciprint("\n");
-    sciprint("  exec (e) cmd      : %s.\n", _("execute cmd"));
-    sciprint("  run (r) cmd       : %s.\n", _("execute cmd"));
-    sciprint("\n");
-    sciprint("  continue (c)      : %s.\n", _("continue execution"));
-    sciprint("  abort (a)         : %s.\n", _("abort execution"));
-    sciprint("  next (n)          : %s.\n", _("continue to next statement"));
-    sciprint("  stepin (i, in)    : %s.\n", _("step into function"));
-    sciprint("  stepout (o, out)  : %s.\n", _("step outside function"));
-    sciprint("\n");
-    sciprint("  breakpoint (break, b)\n     func [l [cond]]: %s.\n", _("set a breakpoint"));
-    sciprint("  delete (del)      : %s.\n", _("delete all breakpoints"));
-    sciprint("  delete (del) n    : %s.\n", _("delete a specific breakpoint"));
-    sciprint("  enable            : %s.\n", _("enable all breakpoints"));
-    sciprint("  enable n          : %s.\n", _("enable a specific breakpoint"));
-    sciprint("  disable           : %s.\n", _("disable all breakpoints"));
-    sciprint("  disable n         : %s.\n", _("disable a specific breakpoint"));
-    sciprint("  show (s)          : %s.\n", _("show all breakpoints"));
-    sciprint("  show (s) n        : %s.\n", _("show a specific breakpoint"));
-    sciprint("\n");
-    sciprint(_("  for more details, help debug.\n"));
-
+    sciprint(_("  for more details, show help page.\n"));
 }
 
 EnumCommand getCommand(const std::wstring& command)
@@ -581,10 +601,16 @@ EnumCommand getCommand(const std::wstring& command)
         }
         case L'h':
         {
-            if (command.size() == 1 || command == L"help")
+            if (command.size() == 1)
+            {
+                return HelpShortCommand;
+            }
+
+            if (command == L"help")
             {
                 return HelpCommand;
             }
+
             break;
         }
         case L'l':

@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>xy1</term>
                 <listitem>
-                    <para>matrice of size (2,.).</para>
+                    <para>matrix of size (2,.).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>xy</term>
                 <listitem>
-                    <para>matrice of size (2,.).</para>
+                    <para>matrix of size (2,.).</para>
                 </listitem>
             </varlistentry>
             <varlistentry>

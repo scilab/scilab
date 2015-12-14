@@ -12,6 +12,14 @@
 
 #include <algorithm>
 #include "variables.hxx"
+#include "configvariable.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
+
+extern "C"
+{
+#include "sciprint.h"
+}
 
 namespace symbol
 {
@@ -64,12 +72,12 @@ void Variable::setGlobalVisible(int _iLevel, bool _bVisible)
 }
 
 
-void Variable::put(types::InternalType* _pIT, int _iLevel)
+bool Variable::put(types::InternalType* _pIT, int _iLevel)
 {
     if (isGlobal() && isGlobalVisible(_iLevel))
     {
         setGlobalValue(_pIT);
-        return;
+        return true;
     }
 
     if (empty() || top()->m_iLevel < _iLevel)
@@ -85,6 +93,45 @@ void Variable::put(types::InternalType* _pIT, int _iLevel)
         types::InternalType* pIT = top()->m_pIT;
         if (pIT != _pIT)
         {
+            //check macro redefinition
+            if (_pIT->isMacro())
+            {
+                int iFuncProt = ConfigVariable::getFuncprot();
+                if (iFuncProt != 0)
+                {
+                    bool bEquals = false;
+                    if (pIT && pIT->isCallable())
+                    {
+                        if (pIT->isMacroFile())
+                        {
+                            types::MacroFile* pMF = pIT->getAs<types::MacroFile>();
+                            bEquals = *pMF->getMacro() == *_pIT;
+                        }
+                        else if (pIT->isMacro())
+                        {
+                            types::Macro* pM = pIT->getAs<types::Macro>();
+                            bEquals = *pM == *_pIT;
+                        }
+                    }
+
+                    if (bEquals == false)
+                    {
+                        if (iFuncProt == 2)
+                        {
+                            return false;
+                        }
+
+                        wchar_t pwstFuncName[1024];
+                        os_swprintf(pwstFuncName, 1024, L"%-24ls", name.getName().c_str());
+                        char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
+
+                        sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
+                        sciprint("\n");
+                        FREE(pstFuncName);
+                    }
+                }
+            }
+
             // _pIT may contained in pIT
             // so increases ref of _pIT before kill pIT
             top()->m_pIT = _pIT;
@@ -93,6 +140,8 @@ void Variable::put(types::InternalType* _pIT, int _iLevel)
             pIT->killMe();
         }
     }
+
+    return true;
 }
 
 Variable* Variables::getOrCreate(const Symbol& _key)
@@ -343,6 +392,28 @@ int Variables::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleNam
     return static_cast<int>(lst.size());
 }
 
+int Variables::getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName, int _iLevel)
+{
+    for (auto var : vars)
+    {
+	if (var.second->empty())
+	{
+	    continue;
+	}
+	
+	if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
+	{
+	    types::Callable * pCall = var.second->top()->m_pIT->getAs<types::Callable>();
+	    if (_stModuleName == L"" || _stModuleName == pCall->getModule())
+	    {
+		lst.push_back(pCall);
+	    }
+	}
+    }
+    
+    return static_cast<int>(lst.size());
+}
+
 int Variables::getVarsToVariableBrowser(std::list<Variable*>& lst)
 {
     for (auto var : vars)
@@ -367,23 +438,26 @@ bool Variables::putInPreviousScope(Variable* _var, types::InternalType* _pIT, in
 {
     if (_var->empty())
     {
-        _var->put(_pIT, _iLevel);
+        return _var->put(_pIT, _iLevel);
     }
     else if (_var->top()->m_iLevel > _iLevel)
     {
         ScopedVariable* pVar = _var->top();
         _var->pop();
-        putInPreviousScope(_var, _pIT, _iLevel);
+        if (putInPreviousScope(_var, _pIT, _iLevel) == false)
+        {
+            return false;
+        }
         //decresef ref before, increase it in put
         //pVar->m_pIT->DecreaseRef();
-        _var->put(pVar);
+        return _var->put(pVar);
     }
     else
     {
-        _var->put(_pIT, _iLevel);
+        return _var->put(_pIT, _iLevel);
     }
 
-    return true;
+    return false;
 }
 
 //globals

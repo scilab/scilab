@@ -167,7 +167,7 @@
             <literal>little=endian</literal> status).
         </para>
         <para>
-            This default swapping behavior can be suprressed by adding a flag in
+            This default swapping behavior can be supressed by adding a flag in
             the <function>mopen</function> function.
         </para>
         <para>

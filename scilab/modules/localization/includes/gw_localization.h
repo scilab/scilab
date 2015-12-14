@@ -17,8 +17,8 @@
 #include "dynlib_localization_gw.h"
 #include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-C_GATEWAY_PROTOTYPE(sci_addlocalizationdomain);
-C_GATEWAY_PROTOTYPE(sci_gettext);
+STACK_GATEWAY_PROTOTYPE(sci_addlocalizationdomain);
+STACK_GATEWAY_PROTOTYPE(sci_gettext);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_LOCALIZATION__ */
 /*--------------------------------------------------------------------------*/

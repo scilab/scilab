@@ -87,6 +87,11 @@ public:
         return first_line == loc.first_line && first_column == loc.first_column && last_line == loc.last_line && last_column == loc.last_column;
     }
 
+    inline bool operator!=(const Location & loc) const
+    {
+        return !(*this == loc);
+    }
+
     std::wstring getLocationString() const
     {
         std::wostringstream os;

@@ -91,7 +91,7 @@
                         <literal>zmin + (i-1)dz &lt;= z &lt; zmin + i dz</literal> is filled with the
                         color <literal>i</literal>). By default the <literal>z_bounds</literal> property value
                         is <literal>[0,0]</literal>. In this case, the <literal>zmin</literal> and <literal>zmax</literal> are
-                        autommatically set to the minumum and maximum of the <literal>func</literal> argument.
+                        autommatically set to the minimum and maximum of the <literal>func</literal> argument.
                     </para>
                 </listitem>
             </varlistentry>
@@ -186,7 +186,7 @@
                 <term>user_data: </term>
                 <listitem>
                     <para>This field can be use to store any scilab variable in the fec data
-                        structure, and to retreive it.
+                        structure, and to retrieve it.
                     </para>
                 </listitem>
             </varlistentry>

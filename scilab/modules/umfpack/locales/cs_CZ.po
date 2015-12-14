@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-05-24 21:22+0000\n"
 "Last-Translator: Zbyněk Schwarz <Unknown>\n"
@@ -14,11 +14,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
+msgstr ""
+"%s: Špatná velikost vstupních argumentů: Očekávány stejné velikosti.\n"
 
 #, c-format
 msgid ""
@@ -268,12 +269,14 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová řídká matice.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekávána čtvercová řídká "
 "matice.\n"
@@ -284,25 +287,8 @@ msgstr "%s: Matice a faktory LU nemají stejné rozměry !\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr "%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " Pro tuto ukázku je současná velikost zásobníku nedostatečná "
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " zadejte následující na příkazovém řádku scilab :          "
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              velikostzásobníku(3000000);                    "
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           pak znovu zadejte scisptdemo()                "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               KLIKNĚTE PRO POKRAČOVÁNÍ                    "
+msgstr ""
+"%s: Neplatný typ a/nebo velikost a/nebo hodnota pro druhý argument.\n"
 
 msgid "how to use this stuff"
 msgstr "jak toto používat"

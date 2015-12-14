@@ -134,8 +134,35 @@ void DebuggerMagager::sendUpdate() const
 
 void DebuggerMagager::addBreakPoint(Breakpoint* bp)
 {
-    breakpoints.push_back(bp);
-    sendUpdate();
+    //check if breakpoint does not exist
+
+    bool add = true;
+    for (const auto b : breakpoints)
+    {
+        if (b->getFunctioName() != bp->getFunctioName())
+        {
+            continue;
+        }
+
+        if (b->getMacroLine() != bp->getMacroLine())
+        {
+            continue;
+        }
+
+        if (b->getCondition() != bp->getCondition())
+        {
+            continue;
+        }
+
+        //same breakpoint, cancel add
+        add = false;
+    }
+
+    if (add)
+    {
+        breakpoints.push_back(bp);
+        sendUpdate();
+    }
 }
 
 void DebuggerMagager::removeBreakPoint(int _iBreakPoint)

@@ -8,22 +8,34 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-05-23 02:31+0000\n"
-"Last-Translator: MouetteYang <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String expected.\n"
+msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是字串.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為字串.\n"
+msgid "%s: Wrong number of output argument(s): %d expected."
+msgstr ""
 
 #, c-format
 msgid ""
@@ -31,32 +43,8 @@ msgid ""
 "expected.\n"
 msgstr "%s: 輸入參數數值錯誤: 應為'%s', '%s', '%s', '%s', '%s 或 '%s' .\n"
 
-#, c-format
-msgid "%s: Wrong number of output argument(s).\n"
-msgstr "%s: 輸出參數之數目錯誤(s).\n"
-
 msgid "File or Directory"
 msgstr "檔案或目錄"
 
 msgid "Scilab completion module not installed.\n"
 msgstr "未安裝　Scilab completion 模組.\n"
-
-#, c-format
-msgid "%s: Wrong type for input arguments.\n"
-msgstr "%s: 輸入參數的型態錯誤.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料長度錯誤: 應該是布林值.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument: string expected.\n"
-msgstr "%s：輸入參數的長度錯誤：應為一個字串。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 第 %d 個輸入參數的資料型態錯誤: 應該是字串.\n"

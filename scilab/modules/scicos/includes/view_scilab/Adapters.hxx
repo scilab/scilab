@@ -18,6 +18,7 @@
 #include <string>
 
 #include "internal.hxx"
+#include "utilities.hxx"
 #include "model/BaseObject.hxx"
 
 extern "C"
@@ -56,6 +57,7 @@ public:
     adapters_index_t lookup_by_typename(const std::wstring& name);
     std::wstring get_typename(adapters_index_t index);
     const model::BaseObject* descriptor(types::InternalType* v);
+    types::InternalType* allocate_view(ScicosID id, kind_t kind);
 
 private:
 

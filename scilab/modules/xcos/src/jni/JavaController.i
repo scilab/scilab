@@ -37,7 +37,7 @@
  * Inline std_vector.i and add insert and remove methods
  */
 namespace std {
-    
+
     template<class T> class vector {
       public:
         typedef size_t size_type;
@@ -99,7 +99,9 @@ namespace std {
                 void* buffer = nullptr;
                 int size = int(self->size()) ;
                 if (i>=0 && i<size) {
-                    buffer = ((char*) self->data()) + i;
+                    buffer = self->data() + i;
+                } else if (i==0 && size == 0) {
+                    buffer = self->data();
                 } else {
                     throw std::out_of_range("vector index out of range");
                 }
@@ -201,7 +203,7 @@ namespace std {
     SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, "Array must contain at least 1 element");
     return $null;
   }
-  $1 = &temp; 
+  $1 = &temp;
   *$1 = "";
 }
 
@@ -210,7 +212,7 @@ namespace std {
   if ($1) {
      jnewstring = JCALL1(NewStringUTF, jenv, $1->c_str());
   }
-  JCALL3(SetObjectArrayElement, jenv, $input, 0, jnewstring); 
+  JCALL3(SetObjectArrayElement, jenv, $input, 0, jnewstring);
 }
 
 %apply double &OUTPUT { double &v };
@@ -256,7 +258,7 @@ namespace std {
 %ignore org_scilab_modules_scicos::Controller::register_view;
 %include "../scicos/includes/Controller.hxx";
 
-// Instanciate templates mapped to Java
+// Instantiate templates mapped to Java
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<int>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<bool>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<double>;
@@ -308,9 +310,9 @@ import java.util.TreeMap;
 %pragma(java) modulebase="Controller"
 
 %pragma(java) modulecode=%{
-  // will contains all registered JavaViews to prevent garbage-collection 
+  // will contain all registered JavaViews to prevent garbage-collection
   private static Map<String, View> references = new TreeMap<String, View>();
-  
+
   private static long add_reference(String name, View v) {
     references.put(name, v);
     return View.getCPtr(v);

@@ -6,59 +6,70 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-24 16:55+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáván %d.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: Není více paměti.\n"
-
-#, c-format
-msgid "%s: Can not create a mlist with input argument #%d.\n"
-msgstr "%s: Nelze vytvořit mlist pomocí vstupního argumentu #%d.\n"
-
-#, c-format
-msgid "%s: Can not create a tlist with input argument #%d.\n"
-msgstr "%s: Nelze vytvořit tlist pomocí vstupního argumentu #%d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: at least %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno alespoň %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An hypermatrix expected.\n"
+msgid "%s:  Wrong type for input argument #%d: List expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input arguments: at most %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: očekáváno nejvíce %d.\n"
-
-#, c-format
-msgid "%s: Invalid index #%d in hypermatrix extraction. "
-msgstr "%s: Neplatný index #%d v extrakci hypermatici. "
-
-#, c-format
-msgid "%s: Invalid index #%d in hypermatrix insertion.\n"
+msgid "%s: Wrong type for input argument #%d: List expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Invalid hypermatrix insertion.\n"
-msgstr "%s: Neplatné vložení hypermatice.\n"
-
-msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
+msgid "%s: Soft coded field names not yet implemented.\n"
 msgstr ""
-"Přílíš mnoho argumentů v zásobníku, upravte stack.h a zvětšete intersiz.\n"
+
+#, c-format
+msgid "%s: Invalid index.\n"
+msgstr ""
+
+msgid "Invalid index.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "List element number %d is Undefined.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read the argument #%d properties.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Not implemented in scilab...\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -77,29 +88,13 @@ msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d."
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáván %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: struct array or tlist or mlist "
-"expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekáváno pole struktury, tlist nebo "
-"mlist.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
-msgstr "%s Špatný počet vstupních argumentů : je očekáván sudý počet.\n"
-
-#, c-format
-msgid "%s: 'dims' can not be used as a field name.\n"
-msgstr "%s: 'dims' nemůže být použito jako jméno pole.\n"
-
-#, c-format
-msgid "%s: field name '%s' defined twice.\n"
-msgstr "%s: jméno pole '%s' je určeno dvakrát.\n"
+msgid "%s: Wrong type for argument %d: List expected.\n"
+msgstr ""

@@ -125,7 +125,7 @@
         <title>ゲートウェイのソース</title>
         <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
-int write_poly(char *fname,unsigned long fname_len)
+int write_poly(char *fname,void* pvApiCtx)
 {
     SciErr sciErr;
     //出力変数情報 : 多項式の行列 2 x 4

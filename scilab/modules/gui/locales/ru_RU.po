@@ -10,18 +10,14 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-28 15:04+0000\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
@@ -30,21 +26,6 @@ msgstr "%s: Неверный тип аргумента №%d: ожидалась
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка выделения памяти.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s» или «%s».\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
-"«%s».\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -76,11 +57,6 @@ msgstr "%s: Функция недоступна в режиме NWNI.\n"
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
 msgstr "%s: Разряд числа не может быть представлен в «%s» режиме.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось вещественное число.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -149,31 +125,8 @@ msgid "%s: Wrong type for argument #%d: Real expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалось вещественное число.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s: Неверный тип аргумента №%d: ожидалась матрица логических значений.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидалось логическое значение.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d или %d.\n"
 
 #, c-format
 msgid ""
@@ -234,7 +187,8 @@ msgstr "%s: Неверные входные параметры: ожидалис
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d expected.\n"
-msgstr "%s: Неверное значение входного параметра №%d: должно быть больше %d.\n"
+msgstr ""
+"%s: Неверное значение входного параметра №%d: должно быть больше %d.\n"
 
 #, c-format
 msgid ""
@@ -324,6 +278,16 @@ msgstr ""
 "вещественных чисел.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
+msgstr ""
+"%s: Неверный тип аргумента №%d: ожидалась матрица логических значений.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалось логическое значение.\n"
+
+#, c-format
 msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: Ожидался графический дескриптор.\n"
@@ -348,7 +312,8 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидался дескриптор «%s».\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидался действительный "
 "дескриптор «%s».\n"
@@ -400,6 +365,10 @@ msgstr ""
 "строк.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
 msgid ""
 "%s: A Java exception arisen:\n"
 "%s"
@@ -412,19 +381,17 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалось строковое значение или "
 "имя макроса.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или имя сценария.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: string expected.\n"
@@ -439,10 +406,6 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
-
-#, c-format
 msgid "%s: Wrong number for input argument: %d or %d expected.\n"
 msgstr "%s: Неверное количество входных аргументов: ожидалось %d или %d.\n"
 
@@ -454,7 +417,8 @@ msgstr ""
 "на 1.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался скаляр или вектор-"
 "столбец.\n"
@@ -472,16 +436,28 @@ msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgid "%s:  Wrong number of output argument(s): %d to %d expected."
 msgstr ""
-"%s: Неверный размер входного аргумента №%d: ожидалось хотя бы 2 элемента.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A list expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: First element must be a string.\n"
+"%s: Wrong size for input argument #%d : At least %d elements expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: первый элемент должен быть "
-"строкой.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for element #%d of input argument #%d : string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element #%d of input argument #%d : At least %d element "
+"expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A Tree expected.\n"
@@ -489,20 +465,36 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Second element must be a mlist.\n"
+"%s: Wrong type for element #%d of input argument #%d : A struct expected.\n"
 msgstr ""
-"%s: Неверный тип входного элемента №%d: второй элемент должен быть типа "
-"mlist.\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: string expected.\n"
+msgid ""
+"%s: Wrong fields for element #%d of input argument #%d : \"%s\" and \"%s\" "
+"expected.\n"
 msgstr ""
-"%s: Неверный тип элемента %d входного аргумента №%d: ожидалось строковое "
-"значение.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for element #%d of element #%d of input argument #%d : string "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for element #%d of element #%d of input argument #%d : A "
+"single string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Error in the tree parsing.\n"
 msgstr "%s: Ошибка в анализе дерева.\n"
+
+#, c-format
+msgid ""
+"%s: A Java exception has arisen:\n"
+"%s"
+msgstr ""
 
 #, c-format
 msgid "%s: An error occurred: %s.\n"
@@ -510,6 +502,18 @@ msgstr "%s: Произошла ошибка: %s.\n"
 
 msgid "Impossible to get current look and feel"
 msgstr "Текущий внешний вид получить невозможно"
+
+#, c-format
+msgid "%s:  Wrong type for input argument #%d: A boolean expected."
+msgstr ""
+
+#, c-format
+msgid "%s:  Wrong type for input argument #%d: string expected."
+msgstr ""
+
+#, c-format
+msgid "%s:  Wrong number of input argument(s): %d to %d expected."
+msgstr ""
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
@@ -576,10 +580,6 @@ msgstr ""
 "n) или (m x 1).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
@@ -588,7 +588,8 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: Неверный входной параметр №%d: ожидался «%s» или «%s».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось значение «pos» или "
 "«gdi».\n"
@@ -599,7 +600,220 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A string matrix expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
+msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась матрица строк.\n"
+
+#, c-format
+msgid "'%s' property does not exist for this handle.\n"
+msgstr "Свойство «%s» не существует для этого дескриптора.\n"
+
+#, c-format
+msgid "No '%s' property for this object.\n"
+msgstr "Не существует свойства «%s» для этого объекта.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
+msgstr "%s: Неверный тип для предка: ожидался дескриптор или 0.\n"
+
+#, c-format
+msgid "%s: can not add a menu into the console in this mode.\n"
+msgstr "%s: нельзя добавить меню в консоль в этом режиме.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: A handle expected.\n"
+msgstr "%s: Неверный тип для предка: ожидался дескриптор.\n"
+
+#, c-format
+msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
+msgstr ""
+"%s: Неверный тип для предка: ожидался дескриптор графического окна или меню "
+"пользовательского интерфейса (uimenu).\n"
+
+#, c-format
+msgid "%s: Wrong value for parent: 0 expected.\n"
+msgstr "%s: Неверное значение для предка: ожидался 0.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Неверный размер свойства «%s»: ожидался (1 x 3)-вектор-строка вещественных "
+"чисел или строка вида «R|G|B».\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Неверное значение свойства «%s»: ожидался (1 x 3)-вектор-строка вещественных "
+"чисел или строка вида «R|G|B».\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
+"expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»: ожидался (1 x 3)-вектор-строка вещественных "
+"чисел или строка вида «R|G|B».\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидались числа между 0 и 1.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: string expected.\n"
+msgstr "Неверный тип для свойства «%s»: ожидалась строка.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: string expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидалась строка.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A real expected.\n"
+msgstr "Неверный тип свойства «%s»: ожидалось вещественное число.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидалось вещественное число.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверное значение свойства «%s»: ожидалось «%s», «%s», «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверное значение свойства «%s: ожидалось «%s», «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверный тип свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: String expected.\n"
+msgstr "Неверный тип свойства «%s»: ожидалась строка.\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: A real expected.\n"
+msgstr "Неверное значение свойства «%s»: ожидалось вещественное число.\n"
+
+#, c-format
+msgid ""
+"Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
+"property value.\n"
+msgstr ""
+"Внимание: свойство «Value» для «%s» должно быть равно значению свойства «%s» "
+"или «%s».\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: string or 1 x %d real row vector expected.\n"
+msgstr ""
+"Неверный размер свойства «%s»: ожидалась строка или (1 x %d)-вектор-строка "
+"вещественных чисел.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: string or 1 x %d real row vector expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»: ожидалась строка или (1 x %d)-вектор-строка "
+"вещественных чисел.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+"Неверный тип свойства '%s': ожидался '%s', '%s', '%s', '%s', '%s', '%s' или "
+"'%s'.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»: ожидался (1 x %d)-вектор-строка вещественных "
+"чисел.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
+msgstr ""
+"Неверный размер свойства «%s»: ожидался (1 x %d)-вектор-строка вещественных "
+"чисел.\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: string or vector of strings expected.\n"
+msgstr ""
+"Неверный размер для свойства «%s»: ожидалась строка или вектор строк.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: string or vector of strings expected.\n"
+msgstr "Неверный тип свойства '%s': ожидалась строка или вектор строк.\n"
+
+#, c-format
+msgid ""
+"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный размер свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: A real row vector expected.\n"
+msgstr ""
+"Неверный размер свойства «%s»: ожидался вектор-строка вещественных чисел.\n"
+
+#, c-format
+msgid ""
+"Wrong value for '%s' property: A String containing a numeric value "
+"expected.\n"
+msgstr ""
+"Неверное значение свойства «%s»: ожидалась строка, которая содержит "
+"численное значение.\n"
+
+#, c-format
+msgid ""
+"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgstr ""
+"Неверный тип свойства «%s»: ожидался вектор-строка вещественных чисел.\n"
+
+#, c-format
+msgid ""
+"Warning: '%s' 'Value' property should be an integer, the value will be "
+"truncated.\n"
+msgstr ""
+"Предупреждение: свойство '%s' 'Value' должно быть целым числом, значение "
+"будет усечено.\n"
+
+#, c-format
+msgid "'%s' value must be between 0 and %d.\n"
+msgstr "значение '%s' должно быть между 0 и %d.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Неверный тип свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
+
+#, c-format
+msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
+msgstr ""
+"Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
 
 msgid "&File"
 msgstr "&Файл"
@@ -639,6 +853,9 @@ msgstr "&Увеличить область"
 
 msgid "&Original View"
 msgstr "&Исходный вид"
+
+msgid "Fit zoom to data"
+msgstr "Подогнать масштаб под данные"
 
 msgid "2D/3D &Rotation"
 msgstr "2D/3D &Вращение"
@@ -1008,215 +1225,6 @@ msgstr "Пользователь: "
 
 msgid "Password: "
 msgstr "Пароль: "
-
-#, c-format
-msgid "'%s' property does not exist for this handle.\n"
-msgstr "Свойство «%s» не существует для этого дескриптора.\n"
-
-#, c-format
-msgid "No '%s' property for this object.\n"
-msgstr "Не существует свойства «%s» для этого объекта.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: A handle or 0 expected.\n"
-msgstr "%s: Неверный тип для предка: ожидался дескриптор или 0.\n"
-
-#, c-format
-msgid "%s: can not add a menu into the console in this mode.\n"
-msgstr "%s: нельзя добавить меню в консоль в этом режиме.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: A handle expected.\n"
-msgstr "%s: Неверный тип для предка: ожидался дескриптор.\n"
-
-#, c-format
-msgid "%s: Wrong type for parent: Figure or uimenu handle expected.\n"
-msgstr ""
-"%s: Неверный тип для предка: ожидался дескриптор графического окна или меню "
-"пользовательского интерфейса (uimenu).\n"
-
-#, c-format
-msgid "%s: Wrong value for parent: 0 expected.\n"
-msgstr "%s: Неверное значение для предка: ожидался 0.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
-msgstr ""
-"Неверный размер свойства «%s»: ожидался (1 x 3)-вектор-строка вещественных "
-"чисел или строка вида «R|G|B».\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
-msgstr ""
-"Неверное значение свойства «%s»: ожидался (1 x 3)-вектор-строка вещественных "
-"чисел или строка вида «R|G|B».\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: 1 x 3 real vector or a 'R|G|B' string "
-"expected.\n"
-msgstr ""
-"Неверный тип свойства «%s»: ожидался (1 x 3)-вектор-строка вещественных "
-"чисел или строка вида «R|G|B».\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: Numbers between 0 and 1 expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидались числа между 0 и 1.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: string expected.\n"
-msgstr "Неверный тип для свойства «%s»: ожидалась строка.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: string expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидалась строка.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: A real expected.\n"
-msgstr "Неверный тип свойства «%s»: ожидалось вещественное число.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A real expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидалось вещественное число.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Неверное значение свойства «%s»: ожидалось «%s», «%s», «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', '%s' or '%s' expected.\n"
-msgstr "Неверное значение свойства «%s: ожидалось «%s», «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Неверный тип свойства «%s»: ожидался «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: String expected.\n"
-msgstr "Неверный тип свойства «%s»: ожидалась строка.\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: A real expected.\n"
-msgstr "Неверное значение свойства «%s»: ожидалось вещественное число.\n"
-
-#, c-format
-msgid ""
-"Warning: '%s' 'Value' property should be equal to either '%s' or '%s' "
-"property value.\n"
-msgstr ""
-"Внимание: свойство «Value» для «%s» должно быть равно значению свойства «%s» "
-"или «%s».\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: string or 1 x %d real row vector expected.\n"
-msgstr ""
-"Неверный размер свойства «%s»: ожидалась строка или (1 x %d)-вектор-строка "
-"вещественных чисел.\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: string or 1 x %d real row vector expected.\n"
-msgstr ""
-"Неверный тип свойства «%s»: ожидалась строка или (1 x %d)-вектор-строка "
-"вещественных чисел.\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"Неверный тип свойства '%s': ожидался '%s', '%s', '%s', '%s', '%s', '%s' или "
-"'%s'.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-"Неверный тип свойства «%s»: ожидался (1 x %d)-вектор-строка вещественных "
-"чисел.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A 1 x %d real row vector expected.\n"
-msgstr ""
-"Неверный размер свойства «%s»: ожидался (1 x %d)-вектор-строка вещественных "
-"чисел.\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: string or vector of strings expected.\n"
-msgstr ""
-"Неверный размер для свойства «%s»: ожидалась строка или вектор строк.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: string or vector of strings expected.\n"
-msgstr "Неверный тип свойства '%s': ожидалась строка или вектор строк.\n"
-
-#, c-format
-msgid ""
-"Wrong size for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Неверный размер свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid ""
-"Wrong type for '%s' property: '%s', '%s', '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Неверный тип свойства «%s»: ожидался «%s», «%s», «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: A real row vector expected.\n"
-msgstr ""
-"Неверный размер свойства «%s»: ожидался вектор-строка вещественных чисел.\n"
-
-#, c-format
-msgid ""
-"Wrong value for '%s' property: A String containing a numeric value "
-"expected.\n"
-msgstr ""
-"Неверное значение свойства «%s»: ожидалась строка, которая содержит "
-"численное значение.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
-msgstr ""
-"Неверный тип свойства «%s»: ожидался вектор-строка вещественных чисел.\n"
-
-#, c-format
-msgid ""
-"Warning: '%s' 'Value' property should be an integer, the value will be "
-"truncated.\n"
-msgstr ""
-"Предупреждение: свойство '%s' 'Value' должно быть целым числом, значение "
-"будет усечено.\n"
-
-#, c-format
-msgid "'%s' value must be between 0 and %d.\n"
-msgstr "значение '%s' должно быть между 0 и %d.\n"
-
-#, c-format
-msgid "Wrong type for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Неверный тип свойства «%s»: ожидался «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong size for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Неверный размер свойства «%s»: ожидался «%s», «%s» или «%s».\n"
-
-#, c-format
-msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
-msgstr "Неверное значение для свойства «%s»: ожидалось «%s», «%s» или «%s».\n"
 
 msgid "Console Font..."
 msgstr "Цвет шрифта"
@@ -2276,8 +2284,10 @@ msgstr "Не удалось открыть: "
 msgid "Restoration error"
 msgstr "Ошибка восстановления"
 
-msgid "The configuration file has been corrupted and reset to the default one."
-msgstr "Файл настроек был повреждён и восстановлен со значениями по умолчанию."
+msgid ""
+"The configuration file has been corrupted and reset to the default one."
+msgstr ""
+"Файл настроек был повреждён и восстановлен со значениями по умолчанию."
 
 msgid "The configuration file has been corrupted. Scilab needs to restart."
 msgstr "Файл настроек был повреждён. Необходимо перезапустить Scilab."
@@ -2292,244 +2302,6 @@ msgstr "%s: Доступно только в режиме 'STANDARD'.\n"
 
 msgid "Error. A signal has been caught.\n"
 msgstr "Ошибка. Был получен сигнал.\n"
-
-msgid "Control Plot3d"
-msgstr "Управление Plot3d"
-
-msgid "Control Panel"
-msgstr "Панель управления"
-
-msgid "Rotation angle"
-msgstr "Угол поворота"
-
-msgid "Colormap"
-msgstr "Цветовая палитра"
-
-msgid "Show / Hide"
-msgstr "Показать/скрыть"
-
-msgid "messagebox"
-msgstr ""
-
-msgid "x_choose"
-msgstr ""
-
-msgid "x_dialog"
-msgstr ""
-
-msgid "x_mdialog"
-msgstr ""
-
-msgid "Simple example of message"
-msgstr "Простой пример сообщения"
-
-msgid "Button 1Button 2"
-msgstr "Кнопка 1Кнопка 2"
-
-msgid "Button 1 clicked."
-msgstr "Нажата Кнопка 1."
-
-msgid "Button 2 clicked"
-msgstr "Нажата Кнопка 2"
-
-msgid ""
-"Message: Selection (double-click on an item --> returns the item number)"
-msgstr ""
-"Сообщение: Выбор (двойной щелчок на объекте --> возвращает номер объекта)"
-
-msgid "Item selected: "
-msgstr "Выбранный объект: "
-
-msgid "Message: enter a value"
-msgstr "Сообщение: введите значение"
-
-msgid "Value entered: "
-msgstr "Введённое значение: "
-
-msgid "Message"
-msgstr "Сообщение"
-
-msgid "first row"
-msgstr "первая строка"
-
-msgid "Values entered: "
-msgstr "Введённые значения: "
-
-msgid "row"
-msgstr "строка"
-
-msgid "col"
-msgstr "стлб"
-
-msgid "Matrix to edit"
-msgstr "Матрица для редактирования"
-
-msgid "Matrix entered: "
-msgstr "Введённая матрица: "
-
-msgid "GUI"
-msgstr "Графический интерфейс"
-
-msgid "Dialogs"
-msgstr "Диалоги"
-
-msgid "Uicontrols 1"
-msgstr "Uicontrols 1"
-
-msgid "Uicontrols 2"
-msgstr "Uicontrols 2"
-
-msgid "Uicontrols with LaTeX/MathML"
-msgstr "Uicontrols с LaTeX/MathML"
-
-msgid "Show images with uicontrols "
-msgstr "Показать изображения с элементами пользовательского интерфейса "
-
-msgid "Listboxes and Popupmenus"
-msgstr "Списки и выпадающие меню"
-
-msgid "Uicontrols rendering"
-msgstr ""
-
-msgid "<Enter color name here>"
-msgstr "<Введите название цвета здесь>"
-
-msgid "Error"
-msgstr "Ошибка"
-
-msgid "Please enter a color name first."
-msgstr "Введите сначала название цвета."
-
-msgid "Unknown color."
-msgstr "Неизвестный цвет."
-
-msgid "No color selected."
-msgstr "Нет выбранного цвета."
-
-msgid "Color selection"
-msgstr "Выбор цвета"
-
-#, c-format
-msgid "Selected colors are: %s."
-msgstr "Выбранные цвета: %s."
-
-#, c-format
-msgid "Deleted colors are: %s."
-msgstr "Удалённые цвета: %s."
-
-#, c-format
-msgid "You clicked on menu '%s'."
-msgstr "Вы нажали на меню «%s»."
-
-msgid "Selected menu"
-msgstr "Выбранное меню"
-
-msgid "checked"
-msgstr "помечено"
-
-msgid "unchecked"
-msgstr "не помечено"
-
-#, c-format
-msgid "Menu '%s' is %s."
-msgstr "Меню «%s» является %s."
-
-msgid "Menu status"
-msgstr "Состояние меню"
-
-msgid "Slider value: "
-msgstr "Значение ползунка: "
-
-#, c-format
-msgid "You selected '%s'."
-msgstr "Вы выбрали «%s»."
-
-msgid "Popupmenu selection"
-msgstr "Выделение всплывающего меню"
-
-msgid "Do you really want to quit Scilab?"
-msgstr "Вы действительно хотите выйти из Scilab?"
-
-msgid "Quit Scilab"
-msgstr "Выход из Scilab"
-
-msgid "Uicontrols demo"
-msgstr "Пример uicontrols"
-
-msgid "Application"
-msgstr "Приложение"
-
-msgid "Close figure"
-msgstr "Закрыть окно"
-
-msgid "Scilab Graphics"
-msgstr "Графика"
-
-msgid "Launch plot3d"
-msgstr "Запустить plot3d"
-
-msgid "Launch plot2d"
-msgstr "Запустить plot2d"
-
-msgid "Menu"
-msgstr "Меню"
-
-msgid "Sub-menu 1"
-msgstr "Подменю 1"
-
-msgid "Sub-menu 2"
-msgstr "Подменю 2"
-
-msgid "Sub-menu 2-1"
-msgstr "Подменю 2-1"
-
-msgid "Sub-menu 2-2"
-msgstr "Подменю 2-2"
-
-msgid "item1|item2|item3|item4"
-msgstr "элемент1|элемент2|элемент3|элемент4"
-
-msgid "Pop-up menu"
-msgstr "Выпадающее меню"
-
-msgid "Slider demo"
-msgstr "Пример ползунка"
-
-msgid "Colors list edition"
-msgstr "Редактирование списка цветов"
-
-msgid "Add color in listbox"
-msgstr "Добавить цвет в список"
-
-msgid "Delete color in listbox"
-msgstr ""
-
-msgid "blue"
-msgstr "синий"
-
-msgid "green"
-msgstr "зеленый"
-
-msgid "red"
-msgstr "красный"
-
-msgid "yellow"
-msgstr "жёлтый"
-
-msgid "Display selection"
-msgstr "Отобразить выделенное"
-
-msgid "Delete selection"
-msgstr ""
-
-msgid "Default"
-msgstr "По умолчанию"
-
-msgid "Quit demonstration"
-msgstr "Выход"
-
-msgid "Uicontrols demo with LaTeX"
-msgstr "Пример использования LaTeX в uicontrols"
 
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
@@ -2597,7 +2369,8 @@ msgstr ""
 "строковое значение.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -2666,10 +2439,6 @@ msgstr ""
 " неверен: %s.\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался uitree.\n"
 
@@ -2678,7 +2447,8 @@ msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось не менее %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid ""
+"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 "%s: Неверный тип элемента %d входного аргумента №%d: ожидался uitree.\n"
 
@@ -2754,7 +2524,8 @@ msgstr "%s: Неверный тип %s: ожидался вектор-строк
 
 #, c-format
 msgid "%s: Wrong size for %s: A row vector of strings expected.\n"
-msgstr "%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
+msgstr ""
+"%s: Неверный размер %s: ожидался вектор-строка строковых переменных.\n"
 
 #, c-format
 msgid "%s: Wrong type for %s: A real expected.\n"

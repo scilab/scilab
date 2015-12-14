@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-06 14:22+0000\n"
+"PO-Revision-Date: 2015-10-26 15:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
@@ -41,38 +41,12 @@ msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr "%s: внутренняя ошибка, info=%d.\n"
+
+#, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась квадратная матрица.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
-"square matrix expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась пустая, полная или "
-"разрежённая квадратная матрица.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: B должно быть того же размера, "
-"что и A.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: k должна быть положительным целым "
-"числом.\n"
 
 #, c-format
 msgid ""
@@ -80,15 +54,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: k должна быть в диапазоне от 1 "
 "до N.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: Нераспознанное значение "
-"сигма.\n"
-" Значение сигма должно быть одним из '%s', '%s', '%s', '%s' или '%s'.\n"
 
 #, c-format
 msgid ""
@@ -102,100 +67,25 @@ msgstr ""
 " "
 
 #, c-format
-msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
-msgstr ""
-"%s: Некорректное значение сигма для комплексной или несимметричной задачи.\n"
-
-#, c-format
-msgid "%s: Invalid sigma value for real symmetric problem.\n"
-msgstr ""
-"%s: Некорректное значение сигма для вещественной симметричной задачи.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: сигма должна быть вещественной.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
-msgstr "%s: Неверный тип входного аргумента №%d: %s должен быть скаляром.\n"
-
-#, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer positive "
-"value.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: %s должен быть целым положительным "
-"значением.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: %s должен быть вещественным "
-"скаляром.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: %s должно быть целочисленным "
-"скаляром.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
-"boolean.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: %s должен быть целочисленным "
-"скаляром или логическим значением.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: %s должен быть %s или %s.\n"
-
-#, c-format
-msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B не является положительно определённой. Попробуйте sigma='SM' или "
 "sigma=scalar.\n"
 
 #, c-format
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
-msgstr "%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась вещественная или "
-"комплексная матрица.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
-msgstr ""
-"%s: Неверный размер входного аргумента №%d: Начальный вектор %s должнет быть "
-"размером N на 1.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Start vector %s must be real for real "
-"problems.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: Начальный вектор %s должен быть "
-"вещественным для вещественных задач.\n"
+"%s: Если opts.cholB - ИСТИНА, то B должна быть верхней треугольной.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалось целое число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
-"must be k < NCV <= N.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: Для вещественных симметричных "
-"задач NCV должно быть k < NCV <= N.\n"
 
 #, c-format
 msgid ""
@@ -204,31 +94,6 @@ msgid ""
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: Для вещественных "
 "несимметричных задач NCV должно быть k + 2 < NCV <= N.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
-"+ 1 < NCV <= N.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: Для комплексных задач NCV "
-"должно быть k + 1 < NCV <= N.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
-"be an integer in the range 1 to N - 1.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: Для вещественных симметричных "
-"задач значение k должно быть целым в диапазоне от 1 до N - 1.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real non symmetric or complex "
-"problems, k must be an integer in the range 1 to N - 2.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: Для вещественных "
-"несимметричных задач значение k должно быть целым в диапазоне от 1 до N - "
-"2.\n"
 
 #, c-format
 msgid ""
@@ -243,16 +108,13 @@ msgid "%s: Error with %s: info = %d \n"
 msgstr "%s: Ошибка в %s: info = %d \n"
 
 #, c-format
-msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s: Ошибка в %s: возвращён неизвестный режим.\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
 msgid "%s : Wrong number of input arguments : %d to %d expected.\n"
-msgstr "%s : Неверное количество входных аргументов: ожидалось от %d до %d.\n"
+msgstr ""
+"%s : Неверное количество входных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid ""
@@ -281,6 +143,14 @@ msgid ""
 msgstr ""
 "%s: Неверный тип входного аргумента: если A является матрицей, то "
 "используйте opts с tol, maxiter, ncv, resid, cholB"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a function, use opts with tol, "
+"maxiter, ncv, resid, cholB, issym"
+msgstr ""
+"%s: Неверный тип входного аргумента: если A - это функция, то используйте "
+"opts c tol, maxiter, ncv, resid, cholB, issym"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -344,7 +214,8 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: Ошибка в %s: info = %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: n должно быть положительным целым "
 "числом.\n"

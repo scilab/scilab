@@ -31,7 +31,7 @@
 #define NOT_SYMMETRIC	0
 
 /*
-** Check wether or not a Matrix is Symmetric.
+** Check whether or not a Matrix is Symmetric.
 */
 
 LINEAR_ALGEBRA_IMPEXP int isSymmetric(double* _pdblReal, double* _pdblImg, int _iIsComplex, int _iRows, int _iCols);

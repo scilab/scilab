@@ -19,11 +19,10 @@ import java.util.Map;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.w3c.dom.Node;
 

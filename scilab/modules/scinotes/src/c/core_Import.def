@@ -3,12 +3,6 @@ LIBRARY    core.dll
 
 EXPORTS
 ;
-callFunctionFromGateway
-com_
 freeArrayOfWideString
-getVariablesName
-getcommandkeywords
-GetFunctionsList
 MyHeapAlloc
 MyHeapFree
-MyHeapRealloc

@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-23 03:56+0000\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -22,7 +22,8 @@ msgstr "%s: Não foi possível ler o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected.\n"
-msgstr "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
 
 #, c-format
 msgid "%s: XML object does not exist.\n"
@@ -80,7 +81,8 @@ msgstr ""
 "não-vazio.\n"
 
 #, c-format
-msgid "%s: The XML Document has not an URI and there is no second argument.\n"
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr ""
 "%s: O documento XML não possui um URI, e não há um segundo argumento.\n"
 
@@ -115,10 +117,11 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLList inexistente.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
-"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", \"%s"
-"\" ou \"%s\".\n"
+"%s: Valor incorreto para o argumento de entrada #%d: esperava-se \"%s\", "
+"\"%s\" ou \"%s\".\n"
 
 #, c-format
 msgid ""
@@ -215,7 +218,8 @@ msgstr "%s: Arquivo de validação XML inexistente.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s expected\n"
-msgstr "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
+msgstr ""
+"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
 
 #, c-format
 msgid "%s: Bad input argument #%d: A valid XML name expected.\n"
@@ -398,9 +402,3 @@ msgstr "%s: Não é um XML válido para raiz.\n"
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
 msgstr "%s: O campo %s não é modificável: %s\n"
-
-msgid "XML"
-msgstr "XML"
-
-msgid "CML read"
-msgstr "Leitura de CML"

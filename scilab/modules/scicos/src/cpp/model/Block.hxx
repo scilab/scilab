@@ -34,7 +34,7 @@ struct Parameter
     // opar default value is an empty list encoded by var2vec()
     Parameter() : rpar(), ipar()
     {
-        opar = {22, 0};
+        opar = {15, 0};
     }
 };
 
@@ -47,7 +47,7 @@ struct State
     // odstate default value is an empty list encoded by var2vec()
     State() : state(), dstate()
     {
-        odstate = {22, 0};
+        odstate = {15, 0};
     }
 };
 
@@ -126,18 +126,21 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(ScicosID()), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_label(), m_style(), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
-        m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_portReference(ScicosID())
+        m_description(), m_label(), m_style(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_parameter(), m_state(), m_parentBlock(ScicosID()), m_children(), m_childrenColor(), m_context(), m_portReference(ScicosID())
     {
-        m_exprs = {12, 2, 0, 0, 0};
+        // m_exprs default value is an empty matrix encoded by var2vec()
+        m_exprs = {1, 2, 0, 0, 0};
+        // m_equations default value is an empty list encoded by var2vec()
+        m_equations = {15, 0};
         m_nmode = {0};
         m_nzcross = {0};
         m_childrenColor = { -1, 1};
     }
     Block(const Block& o) : BaseObject(BLOCK), m_parentDiagram(o.m_parentDiagram), m_interfaceFunction(o.m_interfaceFunction), m_geometry(o.m_geometry),
-        m_angle(o.m_angle), m_exprs(o.m_exprs), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
+        m_angle(o.m_angle), m_exprs(o.m_exprs), m_description(o.m_description), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
         m_sim(o.m_sim), m_in(o.m_in), m_out(o.m_out), m_ein(o.m_ein), m_eout(o.m_eout), m_parameter(o.m_parameter), m_state(o.m_state), m_parentBlock(o.m_parentBlock),
-        m_children(o.m_children), m_childrenColor(o.m_childrenColor), m_portReference(o.m_portReference) {}
+        m_children(o.m_children), m_childrenColor(o.m_childrenColor), m_context(o.m_context), m_portReference(o.m_portReference) {}
     ~Block() = default;
 
 private:
@@ -232,6 +235,22 @@ private:
         }
 
         m_exprs = data;
+        return SUCCESS;
+    }
+
+    void getDescription(std::string& data) const
+    {
+        data = m_description;
+    }
+
+    update_status_t setDescription(const std::string& data)
+    {
+        if (data == m_description)
+        {
+            return NO_CHANGES;
+        }
+
+        m_description = data;
         return SUCCESS;
     }
 
@@ -447,12 +466,12 @@ private:
         return SUCCESS;
     }
 
-    void getEquations(std::vector<std::string>& data) const
+    void getEquations(std::vector<double>& data) const
     {
         data = m_equations;
     }
 
-    update_status_t setEquations(const std::vector<std::string>& data)
+    update_status_t setEquations(const std::vector<double>& data)
     {
         if (data == m_equations)
         {
@@ -698,17 +717,34 @@ private:
         return SUCCESS;
     }
 
+    void getContext(std::vector<std::string>& data) const
+    {
+        data = m_context;
+    }
+
+    update_status_t setContext(const std::vector<std::string>& data)
+    {
+        if (data == m_context)
+        {
+            return NO_CHANGES;
+        }
+
+        m_context = data;
+        return SUCCESS;
+    }
+
 private:
     ScicosID m_parentDiagram;
     std::string m_interfaceFunction;
     Geometry m_geometry;
     Angle m_angle;
     std::vector<double> m_exprs;
+    std::string m_description;
     std::string m_label;
     std::string m_style;
     std::vector<int> m_nzcross;
     std::vector<int> m_nmode;
-    std::vector<std::string> m_equations;
+    std::vector<double> m_equations;
     std::string m_uid;
 
     Descriptor m_sim;
@@ -727,6 +763,7 @@ private:
     ScicosID m_parentBlock;
     std::vector<ScicosID> m_children;
     std::vector<int> m_childrenColor;
+    std::vector<std::string> m_context;
 
     /**
      * I/O Blocks: the corresponding parent port

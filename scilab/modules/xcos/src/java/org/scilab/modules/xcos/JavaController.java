@@ -13,9 +13,9 @@ import java.util.TreeMap;
 
 public class JavaController extends Controller {
 
-  // will contains all registered JavaViews to prevent garbage-collection 
+  // will contain all registered JavaViews to prevent garbage-collection
   private static Map<String, View> references = new TreeMap<String, View>();
-  
+
   private static long add_reference(String name, View v) {
     references.put(name, v);
     return View.getCPtr(v);

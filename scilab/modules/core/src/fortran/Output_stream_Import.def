@@ -2,9 +2,5 @@ LIBRARY    output_stream.dll
 
 
 EXPORTS
-msgs_
 error_
 basout_
-linestore_
-funnamestore_
-msgstxt_

@@ -8,14 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-06-26 01:16+0000\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
 "Last-Translator: oriolsbd <oriolsbd@yahoo.es>\n"
 "Language-Team: Catalan <ca@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ca\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: An integer value expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
@@ -23,6 +31,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
 msgstr ""
 
 #, c-format
@@ -34,6 +46,14 @@ msgid "%s: Wrong value for input argument #%d: Must be in [%d %d].\n"
 msgstr ""
 "%s: L'arguments d'entrada #%d té un valor incorrecte: Ha de ser un "
 "d'aquests: [%d %d].\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -60,10 +80,6 @@ msgid "%s: C and D must have equal number of rows.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: NCON must be a scalar.\n"
 msgstr ""
 
@@ -80,14 +96,34 @@ msgid "%s: SB10DD exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: SB10FD exit with info = %d.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix of size %dx%d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A matrix with %d columns expected.\n"
 msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte. Ha de ser un nombre "
-"real.\n"
+
+#, c-format
+msgid "%s: The system has no outputs\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The number of samples should be at least %d"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: INFO = %d on exit from IB01CD\n"
+msgstr ""
+
+#, c-format
+msgid "%s: SB10FD exit with info = %d.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: %s must be a scalar.\n"
@@ -118,10 +154,6 @@ msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong column size for input argument #%d: Same column size of input "
 "argument #%d expected.\n"
@@ -129,8 +161,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument #"
-"%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument "
+"#%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -200,7 +232,19 @@ msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Type must be continuous or "
+"discrete.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or sign.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Method must be schur or invf.\n"
 msgstr ""
 
 #, c-format
@@ -220,11 +264,6 @@ msgid "%s: RICDMF exit with info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té una mida incorrecta. Ha de ser un escalar.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same column dimension as input "
 "argument #%d expected.\n"
@@ -239,6 +278,61 @@ msgid "%s: DORGQR exit with info = %d.\n"
 msgstr ""
 
 #, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The order should be at most %d.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have at least %d columns "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The number of samples should be at least %d\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Must have %d rows expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Must have %d columns expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: INFO = %d ON EXIT FROM IB01BD\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: INFO = %d on exit from IB01AD\n"
+msgstr ""
+
+#, c-format
 msgid "%s: ZB03OD exit with info = %d.\n"
 msgstr ""
 
@@ -246,35 +340,190 @@ msgstr ""
 msgid "%s: ZUNGQR exit with info = %d.\n"
 msgstr ""
 
-msgid "CACSD"
-msgstr "CACSD"
-
-msgid "LQG"
-msgstr ""
-
-msgid "Mixed-sensitivity"
-msgstr ""
-
-msgid "PID"
-msgstr ""
-
-msgid "Inverted pendulum"
-msgstr ""
-
-msgid "Flat systems"
-msgstr ""
-
-msgid "Tracking"
-msgstr ""
-
-msgid "Robust control"
-msgstr ""
-
-msgid "Press Return to continue ... \n"
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A Matrix or polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: More or equal to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: More than degree of input argument "
+"#%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 'all' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive value expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar or string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Loop on two orders detected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Impossible to reach required order.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Failure when looking for the intersection with domains bounds.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too many solutions found.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Impossible to reach required order.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Failure when looking for the intersection with domains boundaries.\n"
+"   previous order computed solution returned.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: too many solutions found\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Division by zero...\n"
+msgstr ""
+
+msgid "Warning :\n"
+msgstr ""
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %g\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input argument.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: The algorithm has failed.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A same size as input argument %d "
+"expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument #%d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Uncontrollable system.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: An error occured in '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "matrix is close to singular or badly scaled. rcond = %s\n"
+msgstr ""
+
+msgid "Problem is singular.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A not empty matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: attempt to divide by zero.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: ierr %d from qitz (eispack).\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: L'argument d'entrada és d'un tipus incorrecte: Ha de ser un sistema "
 "dinàmic lineal.\n"
@@ -386,7 +635,8 @@ msgstr "%s: %s ha de tenir dimensió (%s, %s).\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+msgstr ""
+"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
 msgid ""
@@ -433,18 +683,6 @@ msgstr ""
 "llista.\n"
 
 #, c-format
-msgid "%s: Undefined type '%s'.\n"
-msgstr "%s: No s'ha definit el tipus '%s'.\n"
-
-#, c-format
-msgid "%s: Some output(s) are undefined.\n"
-msgstr "%s: No s'ha definit alguna sortida.\n"
-
-#, c-format
-msgid "%s: Some input(s) are undefined.\n"
-msgstr "%s: No s'ha definit alguna de les entrades.\n"
-
-#, c-format
 msgid "%s: Hybrid system not implemented.\n"
 msgstr "%s: No s'ha implementat el sistema híbrid.\n"
 
@@ -465,12 +703,24 @@ msgid "%s: Invalid sizes found during the process.\n"
 msgstr "%s: S'ha trobat mides invàlides durant el procés.\n"
 
 #, c-format
+msgid "%s: Undefined type '%s'.\n"
+msgstr "%s: No s'ha definit el tipus '%s'.\n"
+
+#, c-format
 msgid "%s: No output found.\n"
 msgstr "%s: No s'ha trobat cap sortida.\n"
 
 #, c-format
 msgid "%s: No input found.\n"
 msgstr "%s: No s'ha trobat cap entrada.\n"
+
+#, c-format
+msgid "%s: Some output(s) are undefined.\n"
+msgstr "%s: No s'ha definit alguna sortida.\n"
+
+#, c-format
+msgid "%s: Some input(s) are undefined.\n"
+msgstr "%s: No s'ha definit alguna de les entrades.\n"
 
 msgid "Frequency (Hz)"
 msgstr "Freqüència (Hz)"
@@ -482,7 +732,8 @@ msgid "Frequency (rad/s)"
 msgstr ""
 
 #, c-format
-msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid ""
+"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -599,7 +850,8 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un sistema "
 "estabilitzable.\n"
@@ -655,13 +907,6 @@ msgstr ""
 #, c-format
 msgid "%s: Input argument #%d ignored.\n"
 msgstr ""
-
-#, c-format
-msgid ""
-"%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
-msgstr ""
-"%s: Els arguments d'entrada #%d i #%d són incompatibles. Han de tenir la "
-"mateixa dimensió.\n"
 
 #, c-format
 msgid "%s: Bad conditioning.\n"
@@ -791,10 +1036,6 @@ msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Single input, single output system "
 "expected.\n"
@@ -827,8 +1068,10 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s no s'ha definit.\n"
 
 #, c-format
-msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
-msgstr "%s: Modes controlables i observables de %s prop de l'eix imaginari.\n"
+msgid ""
+"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgstr ""
+"%s: Modes controlables i observables de %s prop de l'eix imaginari.\n"
 
 #, c-format
 msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
@@ -839,10 +1082,6 @@ msgstr ""
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
 msgstr "%s: No satisfà les equacions de Francis.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument: Scalar expected.\n"
@@ -990,7 +1229,8 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s no és simètric.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 
 #, c-format
@@ -999,10 +1239,12 @@ msgstr "%s: AVÍS: La matriu A té valors propis prop de l'eix imaginari.\n"
 
 #, c-format
 msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
-msgstr "%s: Els modes controlable i observable d'A són prop de l'eix imaginari"
+msgstr ""
+"%s: Els modes controlable i observable d'A són prop de l'eix imaginari"
 
 #, c-format
-msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid ""
+"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Tots els modes d'A són gairebé no-mínims, de manera que || G || és "
 "gairebé 0.\n"
@@ -1136,10 +1378,6 @@ msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser un polinomi.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : real floating point array expected\n"
 msgstr ""
@@ -1234,7 +1472,8 @@ msgid "Numerator :"
 msgstr "Numerador:"
 
 msgid "Irreducible Factors of transfer function (click below)"
-msgstr "Factors irreductibles de la funció de transferència (feu clic a sota)"
+msgstr ""
+"Factors irreductibles de la funció de transferència (feu clic a sota)"
 
 msgid ""
 "Irreducible Factors of transfer function natural frequency and damping "

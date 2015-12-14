@@ -134,6 +134,9 @@
     <None Include="string_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+    <None Include="coverage_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\exps\all.hxx">
@@ -1081,6 +1084,18 @@
     <ClInclude Include="includes\jit\base\transposition.hxx">
       <Filter>Header Files\jit\base</Filter>
     </ClInclude>
+    <ClInclude Include="includes\system_env\coverage_instance.hxx">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\types\addfunction.h">
+      <Filter>Header Files\types</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\LoopDecoration.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\VarPromotion.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\expHistory.cpp">
@@ -1960,6 +1975,14 @@
       <Filter>Source Files\jit</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\analysis\Chrono.cpp">
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\coverage_instance.cpp">
+      <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\DollarInfo.cpp">
+      <Filter>Source Files\analysis</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\VisitWhileExp.cpp">
       <Filter>Source Files\analysis</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,6 +23,7 @@
 #include <string.h>
 
 #include "api_scilab.h"
+#include "Sciwarning.h"
 
 int mod(int a, int b);
 int rotate(int i, int step, int length);
@@ -378,7 +379,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
         resc = checkInteger(row, col, datas, pos, fname);
         if (resc == 1)
         {
-            sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos);
+            Sciwarning(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos);
         }
     }
     if (pos1 != 0)
@@ -388,7 +389,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
         resc = checkInteger(row, col, datas, pos1, fname);
         if (resc == 1)
         {
-            sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos1);
+            Sciwarning(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos1);
         }
     }
 #define callpos(i) rotate(i, shift, inarg + oarg)

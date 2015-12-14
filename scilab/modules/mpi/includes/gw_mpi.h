@@ -16,16 +16,16 @@
 #include "dynlib_mpi.h"
 #include "c_gateway_prototype.h"
 
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_init);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_finalize);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_comm_size);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_comm_rank);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_recv);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_send);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_get_processor_name);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_bcast);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_irecv);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_isend);
-MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_wait);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_init);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_finalize);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_comm_size);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_comm_rank);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_recv);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_send);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_get_processor_name);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_bcast);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_irecv);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_isend);
+MPI_IMPEXP STACK_GATEWAY_PROTOTYPE (sci_mpi_wait);
 
 #endif /*  __GW_MPI__ */

@@ -93,7 +93,7 @@
     <refsection id="Description_TKSCALE">
         <title>Description</title>
         <para>
-            This source block generates a piecewise constant signal the value of which can be set interactively using a widget in the course of the simulation. The output value is the value set by the slider (an integer between Min value and Max value) divided by the Normalization factor. Increasing proportionaly all three block parameters does not change the output range, but it does increase precision.
+            This source block generates a piecewise constant signal the value of which can be set interactively using a widget in the course of the simulation. The output value is the value set by the slider (an integer between Min value and Max value) divided by the Normalization factor. Increasing proportionally all three block parameters does not change the output range, but it does increase precision.
         </para>
         <para>
         </para>

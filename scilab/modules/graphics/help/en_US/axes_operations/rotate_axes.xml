@@ -42,7 +42,7 @@
         </para>
         <para>
             If an Axes handle is specified as input argument, the rotation will apply on it.
-            If a figure handle is specified, the first click determines the Axes objet to rotate.
+            If a figure handle is specified, the first click determines the Axes object to rotate.
             If the function is called with no argument, the rotation apply on the current figure.
         </para>
     </refsection>

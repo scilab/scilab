@@ -74,13 +74,13 @@ void dumpStackTask(bool timed);
 ** Execute scilab.start
 **
 */
-void execScilabStartTask(bool _bSerialize);
-void execScilabQuitTask(bool _bSerialize);
+int execScilabStartTask(bool _bSerialize);
+int execScilabQuitTask(bool _bSerialize);
 
 #ifdef __cplusplus
 extern "C"
 {
-    ast::Exp* parseCommand(std::wstring _command);
+ast::Exp* parseCommand(std::wstring _command);
 }
 #endif
 

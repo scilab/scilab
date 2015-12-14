@@ -38,6 +38,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingWorker;
 import javax.swing.Timer;
 
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 import org.scilab.modules.gui.bridge.filechooser.SwingScilabFileChooser;
@@ -52,6 +54,7 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.VectorOfDouble;
 import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.XcosTab;
 import org.scilab.modules.xcos.actions.SaveAsAction;
@@ -67,14 +70,16 @@ import org.scilab.modules.xcos.block.io.ImplicitInBlock;
 import org.scilab.modules.xcos.block.io.ImplicitOutBlock;
 import org.scilab.modules.xcos.configuration.ConfigurationManager;
 import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 import org.scilab.modules.xcos.io.XcosFileType;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.link.BasicLink;
-import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
-import org.scilab.modules.xcos.link.explicit.ExplicitLink;
-import org.scilab.modules.xcos.link.implicit.ImplicitLink;
+import org.scilab.modules.xcos.link.CommandControlLink;
+import org.scilab.modules.xcos.link.ExplicitLink;
+import org.scilab.modules.xcos.link.ImplicitLink;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.BasicPort.Type;
 import org.scilab.modules.xcos.port.Orientation;
@@ -87,6 +92,7 @@ import org.scilab.modules.xcos.port.output.ExplicitOutputPort;
 import org.scilab.modules.xcos.port.output.ImplicitOutputPort;
 import org.scilab.modules.xcos.preferences.XcosOptions;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.Stack;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosDialogs;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -103,6 +109,10 @@ import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
+import java.lang.reflect.Constructor;
+import org.scilab.modules.types.ScilabString;
+import org.scilab.modules.types.ScilabType;
+import org.scilab.modules.xcos.io.ScilabTypeCoder;
 
 /**
  * The base class for a diagram. This class contains jgraphx + Scicos data.
@@ -201,6 +211,38 @@ public class XcosDiagram extends ScilabGraph {
                 return klass.isInstance(cell);
             }
         });
+    }
+
+    /**
+     * Fill the hierarchy from the first element up to the root diagram (included)
+     * <p>
+     * Should be used as :
+     * <pre>
+     *  hierarchy = fillHierarchy(new ScicosObjectOwner(getUID(), getKind()))
+     * </pre>
+     * @param hierarchy the collection to fill
+     * @return the filled collection (the root at the end)
+     */
+    public static Stack<ScicosObjectOwner> lookForHierarchy(ScicosObjectOwner current) {
+        ScicosObjectOwner local = current;
+        Stack<ScicosObjectOwner> hierarchy = new Stack<>();
+        JavaController controller = new JavaController();
+
+        long[] parent = new long[] {local.getUID()};
+        if (local.getKind() == Kind.DIAGRAM) {
+            hierarchy.push(local);
+            return hierarchy;
+        }
+
+        while (parent[0] != 0l) {
+            hierarchy.push(new ScicosObjectOwner(parent[0], Kind.BLOCK));
+            controller.getObjectProperty(local.getUID(), local.getKind(), ObjectProperties.PARENT_BLOCK, parent);
+        }
+
+        controller.getObjectProperty(local.getUID(), local.getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
+        hierarchy.push(new ScicosObjectOwner(parent[0], Kind.DIAGRAM));
+
+        return hierarchy;
     }
 
     /**
@@ -603,12 +645,12 @@ public class XcosDiagram extends ScilabGraph {
     @Override
     public Object createEdge(Object parent, String id, Object value, Object source, Object target, String style) {
         Object ret = null;
+        JavaController controller = new JavaController();
 
         if (source instanceof BasicPort) {
             BasicPort src = (BasicPort) source;
             BasicLink link = null;
 
-            JavaController controller = new JavaController();
             long uid = controller.createObject(Kind.LINK);
             if (src.getType() == Type.EXPLICIT) {
                 link = new ExplicitLink(uid);
@@ -629,14 +671,13 @@ public class XcosDiagram extends ScilabGraph {
             BasicLink link = null;
 
             try {
-                link = src.getClass().newInstance();
+                Class<? extends BasicLink> klass = src.getClass();
+                Constructor<? extends BasicLink> cstr = klass.getConstructor(Long.TYPE);
+                link = cstr.newInstance(controller.createObject(Kind.LINK));
 
                 // allocate the associated geometry
                 link.setGeometry(new mxGeometry());
-
-            } catch (InstantiationException e) {
-                LOG.severe(e.toString());
-            } catch (IllegalAccessException e) {
+            } catch (ReflectiveOperationException e) {
                 LOG.severe(e.toString());
             }
 
@@ -830,6 +871,14 @@ public class XcosDiagram extends ScilabGraph {
 
         final SplitBlock splitBlock = (SplitBlock) XcosCellFactory.createBlock(f);
 
+        // snap the center of the split block on the grid
+        mxGeometry geom = splitBlock.getGeometry();
+        double x = snap(splitPoint.getX());
+        double y = snap(splitPoint.getY());
+        geom.setX(x - (geom.getWidth() / 2.));
+        geom.setY(y - (geom.getHeight() / 2.));
+        splitBlock.setGeometry(geom);
+
         getModel().beginUpdate();
         try {
             // Origin of the parent, (0,0) as default may be different in case
@@ -839,8 +888,6 @@ public class XcosDiagram extends ScilabGraph {
             }
 
             addCell(splitBlock);
-            // force resize and align on the grid
-            resizeCell(splitBlock, new mxRectangle(splitPoint.getX(), splitPoint.getY(), 0, 0));
 
             // Update old link
 
@@ -864,11 +911,7 @@ public class XcosDiagram extends ScilabGraph {
                 }
             }
 
-            // disable events
-            getModel().beginUpdate();
             getModel().remove(link);
-            getModel().endUpdate();
-
             connect(linkSource, splitBlock.getIn(), saveStartPoints, orig);
             connect(splitBlock.getOut1(), linkTarget, saveEndPoints, orig);
 
@@ -945,26 +988,6 @@ public class XcosDiagram extends ScilabGraph {
         if (gridEnable) {
             setGridSize(XcosOptions.getEdition().getGraphGrid());
         }
-
-        /*
-         * Reinstall related listeners
-         */
-
-        // FIXME handle that only for visible diagrams
-        // Property change Listener
-        // Will say if a diagram has been modified or not.
-        // final PropertyChangeListener p = new PropertyChangeListener() {
-        // @Override
-        // public void propertyChange(final PropertyChangeEvent e) {
-        // if (e.getPropertyName().compareTo(MODIFIED) == 0) {
-        // if (!e.getOldValue().equals(e.getNewValue())) {
-        // updateTabTitle();
-        // }
-        // }
-        // }
-        // };
-        // getAsComponent().removePropertyChangeListener(MODIFIED, p);
-        // getAsComponent().addPropertyChangeListener(MODIFIED, p);
     }
 
     /**
@@ -1522,15 +1545,25 @@ public class XcosDiagram extends ScilabGraph {
             final String displayedLabel = (String) style.get("displayedLabel");
             if (displayedLabel != null) {
                 if (cell instanceof BasicBlock) {
-                    try {
-                        VectorOfDouble v = new VectorOfDouble();
-                        controller.getObjectProperty(((BasicBlock) cell).getUID(), Kind.BLOCK, ObjectProperties.EXPRS, v);
+                    BasicBlock block = (BasicBlock) cell;
+                    VectorOfDouble v = new VectorOfDouble();
+                    controller.getObjectProperty(block.getUID(), block.getKind(), ObjectProperties.EXPRS, v);
 
-                        // FIXME : decode these exprs
-                        // ret = String.format(displayedLabel, ((BasicBlock) cell).getExprsFormat());
-                        ret = String.format(displayedLabel, "Not handled exprs ; please report a bug");
-                    } catch (IllegalFormatException e) {
-                        LOG.severe(e.toString());
+                    ScilabType var = new ScilabTypeCoder().vec2var(v);
+                    if (var instanceof ScilabString) {
+                        ScilabString str = (ScilabString) var;
+                        Object[] exprs = new String[str.getHeight() * str.getWidth()];
+                        for (int i = 0; i < str.getHeight() ; i++)
+                            for (int j = 0; j < str.getWidth() ; j++) {
+                                exprs[i + j * str.getHeight()] = str.getData()[i][j];
+                            }
+                        try {
+                            ret = String.format(displayedLabel, exprs);
+                        } catch (IllegalFormatException e) {
+                            LOG.severe(e.toString());
+                            ret = displayedLabel;
+                        }
+                    } else {
                         ret = displayedLabel;
                     }
                 } else {
@@ -1621,13 +1654,7 @@ public class XcosDiagram extends ScilabGraph {
      * @return save status
      */
     public boolean saveDiagram() {
-        final boolean isSuccess = saveDiagramAs(getSavedFile());
-
-        if (isSuccess) {
-            setModified(false);
-        }
-
-        return isSuccess;
+        return saveDiagramAs(getSavedFile());
     }
 
     /**
@@ -1733,6 +1760,7 @@ public class XcosDiagram extends ScilabGraph {
             XcosDialogs.couldNotSaveFile(this);
         }
 
+        updateTabTitle();
         info(XcosMessages.EMPTY_INFO);
         return isSuccess;
     }
@@ -1751,11 +1779,23 @@ public class XcosDiagram extends ScilabGraph {
         }
         setTitle(name.substring(0, name.lastIndexOf('.')));
         setModified(false);
+        updateTabTitle();
 
         fireEvent(new mxEventObject(mxEvent.ROOT));
 
         info(XcosMessages.EMPTY_INFO);
     }
+
+    @Override
+    public void setSavedFile(File savedFile) {
+        super.setSavedFile(savedFile);
+
+        if (savedFile != null) {
+            JavaController controller = new JavaController();
+            controller.setObjectProperty(getUID(), getKind(), ObjectProperties.PATH, savedFile.getAbsolutePath());
+        }
+    }
+
 
     /**
      * Set the title of the diagram
@@ -1789,13 +1829,15 @@ public class XcosDiagram extends ScilabGraph {
 
         // get the path
         CharSequence formattedPath = "";
-        final File savedFile = getSavedFile();
-        if (savedFile != null) {
-            try {
-                final String path = savedFile.getCanonicalPath();
-                formattedPath = new StringBuilder().append(" (").append(path).append(')');
-            } catch (final IOException e) {
-                LOG.warning(e.toString());
+        if (getKind() == Kind.DIAGRAM) {
+            final File savedFile = getSavedFile();
+            if (savedFile != null) {
+                try {
+                    final String path = savedFile.getCanonicalPath();
+                    formattedPath = new StringBuilder().append(" (").append(path).append(')');
+                } catch (final IOException e) {
+                    LOG.warning(e.toString());
+                }
             }
         }
 
@@ -1902,6 +1944,10 @@ public class XcosDiagram extends ScilabGraph {
      * @return Root parent of the whole parent
      */
     public XcosDiagram getRootDiagram() {
+        if (getKind() == Kind.DIAGRAM) {
+            return this;
+        }
+
         JavaController controller = new JavaController();
         long[] parent = new long[1];
         controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PARENT_DIAGRAM, parent);
@@ -1990,17 +2036,31 @@ public class XcosDiagram extends ScilabGraph {
     }
 
     /**
-     * Set the current diagram in a modified state
-     *
-     * @param modified
-     *            True or False whether the current diagram must be saved or not.
+     * Read the applicable context on this diagram.
+     * <p>
+     * This function retrieve the current diagram's context and all its parent
+     * @return the full context
      */
-    @Override
-    public void setModified(final boolean modified) {
-        super.setModified(modified);
-        // FIXME update the tab title on the caller
-        // updateTabTitle();
+    public String[] getContext() {
+        final ArrayList<String> allContext = new ArrayList<>();
+        final Stack<ScicosObjectOwner> hierarchy = lookForHierarchy(new ScicosObjectOwner(getUID(), getKind()));
+
+        final JavaController controller = new JavaController();
+        final VectorOfString context = new VectorOfString();
+
+        hierarchy.stream().forEach(o -> {
+            controller.getObjectProperty(o.getUID(), o.getKind(), ObjectProperties.DIAGRAM_CONTEXT, context);
+
+            final int length = context.size();
+            for (int i = 0; i < length; i++) {
+                allContext.add(context.get(i));
+            }
+            allContext.add("");
+        });
+
+        return allContext.toArray(new String[allContext.size()]);
     }
+
 
     /**
      * Evaluate the current context
@@ -2009,27 +2069,26 @@ public class XcosDiagram extends ScilabGraph {
      */
     public Map<String, String> evaluateContext() {
         Map<String, String> result = Collections.emptyMap();
-        // FIXME: evaluate the context on scilab 6 ?
-        // final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        // if (handler == null) {
-        // return result;
-        // }
-        //
-        // try {
-        // // first write the context strings
-        // handler.writeContext(getContext());
-        //
-        // // evaluate using script2var
-        // ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + ", struct());");
-        //
-        // // read the structure
-        // result = handler.readContext();
-        // } catch (final InterpreterException e) {
-        // info("Unable to evaluate the contexte");
-        // e.printStackTrace();
-        // } finally {
-        // handler.release();
-        // }
+        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
+        if (handler == null) {
+            return result;
+        }
+
+        try {
+            // first write the context strings
+            handler.writeContext(getContext());
+
+            // evaluate using script2var
+            ScilabInterpreterManagement.synchronousScilabExec(ScilabDirectHandler.CONTEXT + " = script2var(" + ScilabDirectHandler.CONTEXT + ", struct());");
+
+            // read the structure
+            result = handler.readContext();
+        } catch (final InterpreterException e) {
+            info("Unable to evaluate the contexte");
+            e.printStackTrace();
+        } finally {
+            handler.release();
+        }
 
         return result;
     }

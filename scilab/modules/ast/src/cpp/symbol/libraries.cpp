@@ -29,7 +29,10 @@ void Library::put(types::Library* _pLib, int _iLevel)
         types::Library* pLib = top()->m_pLib;
         if (pLib != _pLib)
         {
-            pLib->killMe();
+            // data is manage by variables.
+            // So if this library have to be killed
+            // this is alredy done by variables.
+            //pLib->killMe();
             top()->m_pLib = _pLib;
         }
     }

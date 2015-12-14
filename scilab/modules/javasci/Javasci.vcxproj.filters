@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -15,9 +15,6 @@
     </Filter>
     <Filter Include="localization">
       <UniqueIdentifier>{491946b4-1a29-4fa7-b74c-f1460392d869}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{a80262cb-66f7-4d15-8271-cbddc2c2816b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,8 +47,5 @@
   <ItemGroup>
     <None Include="javasci.iss" />
     <None Include="Makefile.am" />
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
 </Project>

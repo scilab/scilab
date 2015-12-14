@@ -66,6 +66,11 @@ public :
         return L"function";
     }
 
+    inline const std::wstring & getPath()
+    {
+        return m_stPath;
+    }
+
     virtual int getNbInputArgument(void);
     virtual int getNbOutputArgument(void);
 

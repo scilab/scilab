@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: es\n"
 
 #, c-format
@@ -90,7 +90,8 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #, c-format
@@ -168,8 +169,24 @@ msgid "%s: error.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+
+#, c-format
 msgid "The file %s does not exist.\n"
 msgstr "El archivo %s no existe.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -180,8 +197,16 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: No se puede abrir el archivo %s.\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: No hay un flujo xls en el archivo ole2 %s.\n"
+msgid "There is no xls stream in the ole2 file %ls.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Not an ole2 file.\n"
@@ -204,9 +229,8 @@ msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr "%s: Solo el formato de archivo BIFF8 es manejado.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
-"%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -326,7 +350,8 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr "%s:%d:OLE_store_stream:ERROR: No se puede abrir %s para escritura (%s)"
+msgstr ""
+"%s:%d:OLE_store_stream:ERROR: No se puede abrir %s para escritura (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
@@ -350,7 +375,8 @@ msgstr ""
 "el archivo %s\n"
 
 #, c-format
-msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: incapaz de abrir%s para escritura (%s)\n"
 
@@ -401,9 +427,3 @@ msgstr "ripOLE: la decodificación de %s terminó en un error %d.\n"
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "El módulo de hoja de cálculos de Scilab no está instalado.\n"
-
-msgid "Spreadsheet"
-msgstr "hoja de cálculo"
-
-msgid "Read a xls file"
-msgstr "Leer archivo xls"

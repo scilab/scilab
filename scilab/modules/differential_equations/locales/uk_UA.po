@@ -2,112 +2,891 @@
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the scilab package.
 #
-# Yuri Chornoivan <yurchor@gmail.com>, 2010.
+# Yuri Chornoivan <yurchor@gmail.com>, 2010, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-30 16:43+0000\n"
+"PO-Revision-Date: 2015-10-23 05:51+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
 
-msgid "Unstable trajectory"
-msgstr "Нестабільна траєкторія"
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
 
-msgid "Stable trajectory"
-msgstr "Стабільна траєкторія"
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
 
-msgid "bike simulation, stable trajectory"
-msgstr "моделювання біцикла, стабільна траекторія"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю.\n"
 
-msgid "bike simulation, unstable trajectory"
-msgstr "моделювання біцикла, нестабільна траєкторія"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
 
-msgid "spherical pendulum simulation"
-msgstr "моделювання сферичного маятника"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Value at most 20 expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: має бути значення, що не "
+"перевищує 20.\n"
 
-msgid "Simulation"
-msgstr "Моделювання"
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size %d (N) expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+"вектор розмірності %d (N).\n"
 
-msgid "n-pendulum"
-msgstr "n-маятник"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Sum of m (%d) must be less than 40.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: сума m (%d) має бути меншою "
+"за 40.\n"
 
-msgid "Wheel simulation"
-msgstr "Імітація колеса"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: zeta(j) lower or equal to zeta(j+1) "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: zeta(j) мало бути меншим або "
+"рівним zeta(j+1).\n"
 
-msgid "Bike simulation"
-msgstr "Імітація велосипеда"
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A vector of size 11 expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+"вектор розмірності 11.\n"
 
-msgid "ODE'S"
-msgstr "ЗДР"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Wrong value for element %s: %d or %d "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилкове значення елемента "
+"%s: мало бути %d або %d.\n"
 
-msgid "DAE'S"
-msgstr "СРП"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Wrong value for element %s: %d to %d "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилкове значення елемента "
+"%s: мало бути від %d до %d.\n"
 
-msgid "Flow simulation"
-msgstr "Імітація потоку"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Wrong value for element %s: %d to "
+"sum of m (=%d) expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилкове значення елемента "
+"%s: мало бути вказано число від %d до суми m (=%d).\n"
 
-msgid "Levitron"
-msgstr "Левітрон"
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Wrong value for element %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилкове значення елемента "
+"%d.\n"
 
-msgid "Blackhole"
-msgstr "Чорна діра"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Wrong value for element %d: %d to %d "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилкове значення елемента "
+"%d: мало бути від %d до %d.\n"
 
-msgid "Simulation Parameters"
-msgstr "Параметри імітації"
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: An array of size %d (ipar(4)) "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мав бути масив розмірності "
+"%d (ipar(4)).\n"
 
-msgid "Cylinder"
-msgstr "Циліндр"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: %d to sum of m (=%d) expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано число від "
+"%d до суми m (=%d).\n"
 
-msgid "Sphere"
-msgstr "Сфера"
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Bad value for ltol(%d): ltol(1) < "
+"ltol(2) < ... < ltol(NTOL) <= M (sum of m) expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: помилкове значення ltol(%d): "
+"мало бути ltol(1) < ltol(2) < ... < ltol(NTOL) <= M (суми m).\n"
 
-msgid "ODE 1D vector field"
-msgstr "Одновимірне векторне поле ЗДР"
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: An array of size %d (ipar(11)) "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мав бути масив розмірності "
+"%d (ipar(11)).\n"
 
-msgid "chemical process (implicit)"
-msgstr "хімічний процес (неявний)"
+#, c-format
+msgid "%s: Subroutine not found: %s\n"
+msgstr "%s: підпрограми не знайдено: %s\n"
 
-msgid "Lorenz differential equation"
-msgstr "Диференціальне рівняння Лоренца"
+#, c-format
+msgid "%s: Argument #%d: Subroutine not found in list: %s\n"
+msgstr "%s: параметр №%d: підпрограми у списку не знайдено: %s\n"
 
-msgid "Lokta-Volterra vector field"
-msgstr "Векторне поле Лотка-Вольтерра"
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: The first argument in the list must "
+"be a Scilab function.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: першим параметром у списку має "
+"бути функція Scilab.\n"
 
-msgid "Van der Pol vector field"
-msgstr "Векторне поле Ван-дер-Поля"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A function expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати функцію.\n"
 
-msgid "Reading a precomputed trajectory"
-msgstr "Читання попередньо обчисленої траєкторії"
+#, c-format
+msgid "%s: An error occured in '%s' subroutine.\n"
+msgstr "%s: сталася помилка у підпрограмі «%s».\n"
 
-msgid "Simulation with ode (needs a Fortran compiler)"
-msgstr "Імітація за допомогою ЗДР (потрібен компілятор Fortran)"
+#, c-format
+msgid "%s: The collocation matrix is singular.\n"
+msgstr "%s: матриця колокації є виродженою.\n"
 
-msgid "Simulation of mechanical system with holonomic constraints"
-msgstr "Моделювання механічної системи з голономними в’язями"
+#, c-format
+msgid ""
+"%s: The expected no. of subintervals exceeds storage specifications.\n"
+msgstr ""
+"%s: очікувана кількість підінтервалів перевищує обмеження специфікації "
+"пам’яті.\n"
 
-msgid "Differential equations code generated by Maple"
-msgstr "Код диференціального рівняння, створений за допомогою Maple"
+#, c-format
+msgid "%s: The nonlinear iteration has not converged.\n"
+msgstr "%s: нелінійна ітерація не збігається.\n"
+
+#, c-format
+msgid "%s: There is an input data error.\n"
+msgstr "%s: у вхідних даних помилка.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
+"дійсними елементами.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real matrix with %d to %d column(s) "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця з "
+"дійсними елементами із кількістю стовпчиків від %d до %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A scalar or a matrix of size %d "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути числове значення "
+"або матриця розмірності %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Atol and Rtol must have the same "
+"size.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: Atol має бути одного "
+"розміру з Rtol\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix or a list expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано матрицю або "
+"список.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Argument %d in the list must be a "
+"matrix.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: параметр %d у списку має бути "
+"матрицею.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A list of size %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"список розмірності %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Element %d in the info list must be a "
+"scalar.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: елемент %d у списку info має бути "
+"числом.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Element %d in the info list must be a "
+"matrix.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: елемент %d у списку info має бути "
+"матрицею.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Argument %d in the list must be of "
+"size %d.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: параметр %d у списку має "
+"бути розмірності %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: The first argument in the list must "
+"be a string, a function or a matrix in case of argument info.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: першим параметром у списку має "
+"бути рядок, функція або матриця, якщо параметром є info.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix or a function expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мала бути матриця або функція.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument(s) %d: %d expected.\n"
+msgstr "%s: помилкова розмірність вхідних параметрів №%d: мало бути %d.\n"
+
+#, c-format
+msgid "%s: %s return with state %d.\n"
+msgstr "%s: %s завершила роботу із станом %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A real matrix expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано матрицю з "
+"дійсними елементами.\n"
+
+#, c-format
+msgid "%s: Argument #%d : Subroutine not found in list: %s\n"
+msgstr "%s: параметр №%d: підпрограми у списку не знайдено: %s\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d : The first argument in the list must "
+"be a Scilab function.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: першим параметром у списку має "
+"бути функція Scilab.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : A function expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати функцію.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: It must be one of the following "
+"strings: adams or stiff.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значенням може бути один з "
+"таких рядків: adams або stiff.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати вектор "
+"дійсних чисел.\n"
+
+#, c-format
+msgid "%s: Arg %d and arg %d must have equal dimensions.\n"
+msgstr "%s: параметр %d і параметр %d повинні мати однакові розмірності.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: The first argument in the list must "
+"be a string or a function.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: першим параметром у списку має "
+"бути рядок або функція.\n"
+
+#, c-format
+msgid "%s: Wrong size for w and iw: w = %d and iw = %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність w і iw: мала бути розмірність w = %d і iw = %d.\n"
+
+msgid ""
+"The user-supplied subroutine res signalled lsodi to halt the integration and "
+"return (ires=2). Execution of the external function has failed.\n"
+msgstr ""
+"Надана користувачем підпрограма res повідомила lsodi про те, що інтегрування "
+"слід перервати і повернула керування (ires=2). Спроба виконання зовнішньої "
+"функції зазнала невдачі.\n"
+
+#, c-format
+msgid "%s: %s exit with state %d.\n"
+msgstr "%s: функція %s завершила роботу зі станом %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A 3 by N matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця 3 x N.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: Same size of input argument %d "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: розмірність має збігатися "
+"з розмірністю вхідного параметра №%d.\n"
+
+#, c-format
+msgid ""
+"%s: Argument #%d: Variable returned by scilab argument function is "
+"incorrect.\n"
+msgstr ""
+"%s: параметр №%d: змінна, повернута функцією параметра Scilab, не є "
+"коректною.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d expected.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d: мало бути %d.\n"
+
+#, c-format
+msgid ""
+"%ls: Warning: Wrong value for the first element of argument #%d: The default "
+"value will be used.\n"
+msgstr ""
+"%ls: попередження: помилкове значення першого елемента параметра №%d: буде "
+"використано типове значення.\n"
+
+#, c-format
+msgid ""
+"%ls: Warning: Wrong value for the third element of argument #%d: The default "
+"value will be used.\n"
+msgstr ""
+"%ls: попередження: помилкове значення третього елемента параметра №%d: буде "
+"використано типове значення.\n"
+
+#, c-format
+msgid ""
+"%ls: Warning: Wrong value for the fourth element of argument #%d: The "
+"default value will be used.\n"
+msgstr ""
+"%ls: попередження: помилкове значення четвертого елемента параметра №%d: "
+"буде використано типове значення.\n"
+
+#, c-format
+msgid "%s: Means termination for lack of space to divide another triangle.\n"
+msgstr "%s: зупинка через брак місця для поділу наступного трикутника.\n"
+
+#, c-format
+msgid "%s: Means termination because of roundoff noise.\n"
+msgstr "%s: зупинка через перевищення значення похибки округлення.\n"
+
+#, c-format
+msgid "%s: means termination with relative error <= 5.0* machine epsilon.\n"
+msgstr ""
+"%s: зупинка через те, що відносна похибка <= 5.0* точність машинних "
+"обчислень.\n"
+
+#, c-format
+msgid ""
+"%s: Means termination because the number of function evaluations has "
+"exceeded MEVALS.\n"
+msgstr ""
+"%s: зупинка через те, що кількість обчислень функції перевищила MEVALS.\n"
+
+#, c-format
+msgid "%s: Means termination because of error in input flag.\n"
+msgstr "%s: зупинка через помилку у прапорці вхідних даних.\n"
+
+#, c-format
+msgid "%s: twodq return with state %d.\n"
+msgstr "%s: функція twodq завершила роботу зі станом %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A 4 by N matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця 4 x N.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive value expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати додатне "
+"значення.\n"
+
+#, c-format
+msgid ""
+"%ls: Warning: Wrong value for the element %d of argument #%d: The default "
+"value will be used.\n"
+msgstr ""
+"%ls: попередження: помилкове значення елемента %d параметра №%d: буде "
+"використано типове значення.\n"
+
+#, c-format
+msgid ""
+"%ls: Warning: Wrong value for the element %d and %d of argument #%d: The "
+"default value will be used.\n"
+msgstr ""
+"%ls: попередження: помилкове значення елементів %d і %d параметра №%d: буде "
+"використано типове значення.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: minpts smaller than maxpts "
+"expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: minpts мало бути меншим за "
+"maxpts.\n"
+
+#, c-format
+msgid "%ls: Warning: maxpts was too small to obtain the required accuracy.\n"
+msgstr ""
+"%ls: попередження: значення параметра maxpts занадто мале для отримання "
+"потрібної точності.\n"
+
+#, c-format
+msgid "%s: The volume of one of the initially given tetrahedrons is zero.\n"
+msgstr "%s: об’єм одного з початкових тетраедрів дорівнює нулеві.\n"
+
+#, c-format
+msgid "%s: dcutet return with error %d.\n"
+msgstr "%s: функція dcutet повернула повідомлення про помилку %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Must not contain NaN or Inf.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: значення не повинне містити NaN "
+"та Inf.\n"
+
+#, c-format
+msgid ""
+"%s: Maximum number of subdivisions achieved. Splitting the interval might "
+"help.\n"
+msgstr ""
+"%s: перевищено максимальну кількість допоміжних ділень. Варто спробувати "
+"раціональніший поділ інтервалу.\n"
+
+#, c-format
+msgid ""
+"%s: Round-off error detected, the requested tolerance (or default) cannot be "
+"achieved. Try using bigger tolerances.\n"
+msgstr ""
+"%s: виявлено помилку округлення. Досягти потрібних або типових параметрів "
+"допуску неможливо. Спробуйте збільшити допуски.\n"
+
+#, c-format
+msgid ""
+"%s: Bad integrand behavior occurs at some points of the integration "
+"interval.\n"
+msgstr ""
+"%s: у деяких точках інтервалу інтегрування виявлено некоректну поведінку "
+"підінтегральної функції.\n"
+
+#, c-format
+msgid ""
+"%s: Convergence problem, round-off error detected. Try using bigger "
+"tolerances.\n"
+msgstr ""
+"%s: проблеми зі збіжністю. Виявлено помилку округлення. Спробуйте збільшити "
+"допуски.\n"
+
+#, c-format
+msgid "%s: The integral is probably divergent, or slowly convergent.\n"
+msgstr "%s: ймовірно, інтеграл є розбіжним або збігається надто повільно.\n"
+
+#, c-format
+msgid ""
+"%s: Invalid input, absolute tolerance <= 0 and relative tolerance < 2.e-14.\n"
+msgstr ""
+"%s: некоректні вхідні дані: абсолютний допуск <= 0 і відносний допуск < 2.e-"
+"14.\n"
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr "%s: проблеми зі збіжністю…\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: It must be one of the following "
+"strings: adams, stiff, rk, rkf, fix, root or discrete.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значенням може бути один з "
+"таких рядків: adams, stiff, rk, rkf, fix, root або discrete.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вихідних параметрів: мало бути %d, %d або %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of hmin and hmax: hmin = %d is greater than hmax = %d.\n"
+msgstr "%s: помилкове значення hmin і hmax: hmin = %d перевищує hmax = %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value of Jacobian type: A number between %d and %d expected.\n"
+msgstr ""
+"%s: помилкове значення типу якобіана: мало бути вказано число від %d до %d.\n"
+
+#, c-format
+msgid "%s: Warning: Jacobian is given, but not used.\n"
+msgstr "%s: попередження: вказано, але не використано якобіан.\n"
+
+msgid ""
+"%s: Warning: No Jacobian external given, but one is required by "
+"%ODEOPTIONS(6) value. Jacobian will be estimated.\n"
+msgstr ""
+"%s: Попередження: не вказано зовнішньої функції якобіана, але\n"
+" така функція потрібна для обчислення значення %ODEOPTIONS(6). Якобіан буде "
+"лише оцінено.\n"
+
+#, c-format
+msgid ""
+"%s: Warning: Wrong value for maximum stiff/non-stiff order allowed :\n"
+"At most %d for mxordn, %d for mxords and no null value for both expected.\n"
+"Wrong value will be reduced to the default value.\n"
+msgstr ""
+"%s: попередження: помилкове значення значення для максимального жорсткого "
+"або м’якого порядку:\n"
+"Мало бути не більше %d для mxordn, %d для mxords і ненульові значення для "
+"обох параметрів.\n"
+"Помилкове значення буде замінено типовим.\n"
+
+#, c-format
+msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\tiopt = %d\n"
+msgstr "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\tiopt = %d\n"
+
+#, c-format
+msgid "tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"
+msgstr "tcrit = %lf\th0 = %lf\thmax = %lf\thmin = %lf\n"
+
+#, c-format
+msgid ""
+"itask = %d: At most one value of t is allowed, the last element of t is "
+"used.\n"
+msgstr ""
+"itask = %d: можна використовувати не більше одного значення t, використано "
+"останній елемент t.\n"
+
+#, c-format
+msgid "Integration was stopped at t = %lf.\n"
+msgstr "Інтегрування було припинено у точці t = %lf.\n"
+
+#, c-format
+msgid "%s: Warning: At t = %lf, y is a root, jroot = "
+msgstr "%s: попередження: для t = %lf, y є коренем, jroot = "
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A real column vector expected (n x "
+"1).\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути використано "
+"вектор-стовпчик із дійсних чисел (n x 1).\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A matrix\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: матриця\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати дійсне "
+"число.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value must not exceeds dimension of "
+"argument %d.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення не повинне "
+"перевищувати розмірність параметра %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d or %d values expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мало бути %d або %d "
+"значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Value of nd exceeds dimension of "
+"y0.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: значення nd перевищує "
+"розмірність y0.\n"
+
+#, c-format
+msgid "%s: Warning: odedc forces itask = %d.\n"
+msgstr ""
+"%s: попередження: використання odedc примусово встановлює значення itask = "
+"%d.\n"
+
+#, c-format
+msgid "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\n"
+msgstr "itask = %d\tmeth = %d\tjactyp = %d\tml = %d\tmu = %d\n"
+
+#, c-format
+msgid "update at t = %lf\n"
+msgstr "оновлення для t = %lf\n"
+
+#, c-format
+msgid "integ. from tleft= %lf to tf= %lf\n"
+msgstr "інтегруємо від tleft= %lf до tf= %lf\n"
+
+#, c-format
+msgid "integ. from tleft= %lf to hf=tf= %lf\n"
+msgstr "інтегруємо від tleft= %lf до hf=tf= %lf\n"
+
+#, c-format
+msgid "integ. from tleft= %lf to hf= %lf\n"
+msgstr "інтегруємо від tleft= %lf до hf= %lf\n"
+
+msgid "Work space insufficient to finish (see messages).\n"
+msgstr "Недостатньо простору для завершення обчислень (див. повідомлення).\n"
+
+msgid "Excess work done on this call (perhaps wrong jacobian type).\n"
+msgstr ""
+"Під час цього виклику виконано надмірну роботу (ймовірно, помилковий тип "
+"якобіана).\n"
+
+msgid "Excess accuracy requested (tolerances too small).\n"
+msgstr "Надто висока точність (допуски є надто малими).\n"
+
+msgid "Illegal input detected (see printed message).\n"
+msgstr "Виявлено некоректні вхідні дані (див. виведене повідомлення).\n"
+
+msgid "Repeated error test failures (check all inputs).\n"
+msgstr ""
+"Неодноразові помилки під час проходження перевірок (перевірте усі вхідні "
+"дані).\n"
+
+msgid ""
+"Repeated convergence failures (perhaps bad jacobian supplied or wrong choice "
+"of jacobian type or tolerances).\n"
+msgstr ""
+"Неодноразові спроби досягти збіжності зазнали невдачі (ймовірно, вказано "
+"помилковий якобіан або помилково вибрано тип якобіана і допуски).\n"
+
+msgid ""
+"Error weight became zero during problem. (solution component i vanished, and "
+"atol or atol(i) = 0.)\n"
+msgstr ""
+"Під час розв’язування вага помилки стала нульовою. (компонент розв’язку i "
+"зник, а atol або atol(i) = 0.)\n"
+
+msgid ""
+"The user-supplied subroutine res set its error flag (ires = 3) despite "
+"repeated tries by lsodi to avoid that condition.\n"
+msgstr ""
+"Вказана користувачем підпрограма встановила прапорець помилки (ires = 3), "
+"незважаючи на спроби lsodi уникнути такої ситуації.\n"
+
+msgid ""
+"istate was 0 on input but lsodi was unable to compute the initial value of "
+"dy/dt.\n"
+msgstr ""
+"istate на вході дорівнювала 0, але lsodi не вдалося обчислити початкове "
+"значення dy/dt.\n"
+
+msgid ""
+"Integration was not completed because relative error tolerance was too "
+"small. rerr has been increased appropriately for continuing.\n"
+msgstr ""
+"Інтегрування не завершено, оскільки допуск для відносної похибки є надто "
+"малим. Для продовження обчислень rerr було належним чином збільшено.\n"
+
+msgid ""
+"Integration was not completed because more than 3000 derivative evaluations "
+"were needed. This is approximately 500 steps.\n"
+msgstr ""
+"Інтегрування не завершено, оскільки знадобилося понад 3000 обчислень "
+"похідної. Це приблизно 500 кроків.\n"
+
+msgid ""
+"Integration was not completed because solution vanished making a pure "
+"relative error test impossible. Must use non-zero aerr to continue. Using "
+"the one-step integration mode for one step is a good way to proceed.\n"
+msgstr ""
+"Інтегрування не завершено, оскільки розв’язок став надто малим для виконання "
+"перевірки на відносну похибку. Для продовження потрібне ненульове значення "
+"aerr. Варто скористатися однокроковим режимом інтегрування протягом "
+"виконання обчислень на одному кроці.\n"
+
+msgid ""
+"Integration was not completed because requested accuracy could not be "
+"achieved using smallest allowable stepsize. User must increase the error "
+"tolerance before continued integration can be attempted.\n"
+msgstr ""
+"Інтегрування не завершено, оскільки не вдалося досягти потрібної точності "
+"навіть за допомогою найменшого з можливих розміру кроку. Варто збільшити "
+"допуск для похибки, перш ніж продовжувати спроби інтегрування.\n"
+
+msgid ""
+"It is likely that rkf45 is inefficient for solving this problem. Too much "
+"output is restricting the natural stepsize choice. Use the one-step "
+"integrator mode.\n"
+msgstr ""
+"Ймовірно, функція rkf45 є неефективною для розв’язування цієї задачі. Зайве "
+"виведення даних обмежує природний вибір розміру кроку. Скористайтеся "
+"однокроковим режимом інтегрування.\n"
+
+msgid "invalid input parameters : atol and rtol must be greater than 0.\n"
+msgstr "Некоректні вхідні параметри: atol і rtol мають перевищувати 0.\n"
+
+msgid "Inappropriate error tolerance.\n"
+msgstr "Неприйнятний допуск похибки.\n"
+
+msgid ""
+"Too many steps necessary to reached next required time discretization point. "
+"Change discretisation of time vector t or decrease accuracy.\n"
+msgstr ""
+"Для досягнення наступної точки дискретизації потрібно забагато кроків. "
+"Змініть дискретизацію вектора часу t або зменшіть точність.\n"
+
+msgid "The error tolerances are too stringent.\n"
+msgstr "Допусти на похибку є надто строгими.\n"
+
+msgid "Atol and computed test value are zero.\n"
+msgstr "Atol і обчислене тестове значення є нульовими.\n"
+
+msgid "Cannot evaluate the preconditioner.\n"
+msgstr "Не вдалося обчислити попередні умови.\n"
+
+msgid "A singularity in the solution may be present.\n"
+msgstr "Ймовірно, розв’язок є сингулярним.\n"
+
+msgid "May be inaccurate or ill-conditioned JACOBIAN.\n"
+msgstr "Неточний або погано обумовлений якобіан.\n"
+
+msgid "Singular partial derivatives matrix (may be redundant equations).\n"
+msgstr "Вироджена матриця частинних похідних (можливо, є зайві рівняння).\n"
+
+msgid ""
+"Either ill-posed problem or discontinuity or singularity encountered.\n"
+msgstr "Маємо справу із некоректною, розривною або виродженою задачею.\n"
+
+msgid "External ''res'' return many times with ires=-1.\n"
+msgstr "Зовнішня функція «res» багато разів повертала ires=-1.\n"
+
+msgid "Error in external ''res''.\n"
+msgstr "Помилка у зовнішній функції «res».\n"
+
+msgid "failed to compute the initial Ydot.\n"
+msgstr "не вдалося обчислити початкове значення Ydot.\n"
+
+msgid "Error in external psol.\n"
+msgstr "Помилка у зовнішній функції psol.\n"
+
+msgid "The Krylov linear system did not converge.\n"
+msgstr "Лінійна система Крилова не збігається.\n"
+
+#, c-format
+msgid "%s encountered trouble.\n"
+msgstr "У %s виникли проблеми.\n"
+
+#, c-format
+msgid "Undefined function '%ls'.\n"
+msgstr "Невизначене функція «%ls».\n"
+
+#, c-format
+msgid "User function '%s' have not been setted.\n"
+msgstr "Функцію користувача «%s» не встановлено.\n"
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: слід використовувати матрицю дійсних "
+"значень.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for output argument #%d: A size less or equal than %d "
+"expected.\n"
+msgstr ""
+"%s: помилкова розмірність вихідного параметра №%d: мала бути матриця "
+"розмірності, що не перевищує %d.\n"
+
+#, c-format
+msgid "%s: Wrong size for output argument #%d: A Scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вихідного параметра №%d: слід використовувати "
+"дійсне число.\n"
+
+#, c-format
+msgid "%s: Wrong size for output argument #%d: Matrix of size %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вихідного параметра №%d: мала бути матриця "
+"розмірності %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for output argument #%d: A Matrix of size %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вихідного параметра №%d: мала бути матриця "
+"розмірності %d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for output argument #%d: A matrix of size %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вихідного параметра №%d: мала бути матриця "
+"розмірності %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for output argument #%d: Matrix expected.\n"
+msgstr ""
+"%s: помилковий тип вихідного параметра №%d: слід використовувати матрицю.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for output argument #%d: A matrix of size %d x %d expected.\n"
+msgstr ""
+"%s: помилкова розмірність вихідного параметра №%d: мало бути використано "
+"матрицю розмірності %d на %d.\n"
+
+msgid ""
+"An error occurred while getting DifferentialEquationFunctions object.\n"
+msgstr ""
+"Під час спроби отримання об’єкта DifferentialEquationFunctions сталася "
+"помилка.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d або %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of output argument(s): %d or %d expected.\n"
-msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d або %d.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
-"%d параметрів.\n"
 
 #, c-format
 msgid "%s: Invalid option %s: real matrix expected.\n"
@@ -200,7 +979,8 @@ msgstr "5: один крок без перевищення tcrit з поверн
 msgid "Meaning of jactype:"
 msgstr "Значення елемента jactype:"
 
-msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid ""
+"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0: функціональні ітерації (без використання якобіана (лише «adams» або "
 "«stiff»))"
@@ -239,7 +1019,8 @@ msgstr ""
 "матрицю J, розмірності  ml+mu+1 на ny (де ny — розмірність y у ydot=f(t,y))"
 
 msgid "such that column 1 of J is made of mu zeros followed by"
-msgstr "так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"
+msgstr ""
+"так, що стовпчик 1 матриці J складається з mu нулів, за якими слідують"
 
 msgid "df1/dy1, df2/dy1, df3/dy1,... (1+ml possibly non-zero entries)"
 msgstr "df1/dy1, df2/dy1, df3/dy1,... (1+ml можливо ненульових елементів)"
@@ -252,7 +1033,8 @@ msgid "Default values are given in square brackets"
 msgstr "Типові значення наведено у квадратних дужках"
 
 msgid "If the function is called without argument, default values are used"
-msgstr "Якщо функцію викликано без параметра, буде використано типові значення"
+msgstr ""
+"Якщо функцію викликано без параметра, буде використано типові значення"
 
 msgid "tcrit (assumes itask=4 or 5)"
 msgstr "tcrit (припускається, що itask=4 або 5)"

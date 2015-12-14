@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 #, c-format
@@ -87,85 +87,6 @@ msgstr "%s : Valeur erronée du paramètre %s : Valeur %s\n"
 msgid "%s: wrong size for parameter %s: %d requested, got %d\n"
 msgstr "%s : Dimension erronée du paramètre %s : %d attendu, %d obtenu\n"
 
-msgid "Parameters"
-msgstr "Paramètres"
-
-msgid "plist handling"
-msgstr "Gestion d'une plist"
-
-msgid ""
-"This demo shows examples of plist utilizations: creation, insertion, "
-"removal, ..."
-msgstr ""
-"Cette démonstration donne des exemples d'utilisation d'une plist : création, "
-"insertion, suppression..."
-
-#, c-format
-msgid ""
-"\n"
-"Create a plist '%s' containing two fields 'min' = [0 0 0] and 'max' = [1 1 "
-"1].\n"
-msgstr ""
-"\n"
-"Création d'une plist '%s' contenant deux champs 'min' = [0 0 0] et 'max' = "
-"[1 1 1].\n"
-
-#, c-format
-msgid ""
-"\n"
-"Check fields: \n"
-msgstr ""
-"\n"
-"Vérification des champs : \n"
-
-#, c-format
-msgid "Set 'min' = [0 0 0] and 'max' = [1 1 1]:\n"
-msgstr "Configuration de 'min' = [0 0 0] et 'max' = [1 1 1] :\n"
-
-#, c-format
-msgid "Check values: \n"
-msgstr "Vérification des valeurs : \n"
-
-#, c-format
-msgid ""
-"\n"
-"Remove the parameter 'min' from %s.\n"
-msgstr ""
-"\n"
-"Suppression du paramètre 'min' de %s.\n"
-
-#, c-format
-msgid ""
-"\n"
-"Before remove_param: \n"
-msgstr ""
-"\n"
-"Avant remove_param : \n"
-
-#, c-format
-msgid ""
-"\n"
-"After remove_param: \n"
-msgstr ""
-"\n"
-"Après remove_param : \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check removal: \n"
-msgstr ""
-"\n"
-"Vérification de la suppression : \n"
-
-#, c-format
-msgid ""
-"\n"
-"Check type: \n"
-msgstr ""
-"\n"
-"Vérification du type : \n"
-
 #, c-format
 msgid "Second output argument of %s is obsolete.\n"
 msgstr "Le deuxième argument de sortie de %s est obsolète.\n"
@@ -194,7 +115,8 @@ msgstr "%s : Le paramètre %s n'est pas défini"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): An even number expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : Un nombre pair attendu.\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : Un nombre pair attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"

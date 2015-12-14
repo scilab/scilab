@@ -259,6 +259,29 @@ bool ConfigVariable::getWarningMode(void)
 /*
 ** \}
 */
+/*
+** \}
+*/
+
+/*
+** Warning Stop
+** \{
+*/
+bool ConfigVariable::m_bWarningStop = false;
+
+void ConfigVariable::setWarningStop(bool _bWarningStop)
+{
+    m_bWarningStop = _bWarningStop;
+}
+
+bool ConfigVariable::getWarningStop(void)
+{
+    return m_bWarningStop;
+}
+/*
+** \}
+*/
+
 
 /*
 ** HOME
@@ -431,9 +454,10 @@ int ConfigVariable::getPromptMode(void)
 
 bool ConfigVariable::isEmptyLineShow(void)
 {
-    if ( m_iPromptMode == 0     ||
-            m_iPromptMode == 2  ||
-            m_iPromptMode == 3)
+    if ( m_iPromptMode == 0    ||
+            m_iPromptMode == 2 ||
+            m_iPromptMode == 3 ||
+            m_iPromptMode == 7)
     {
         return true;
     }
@@ -445,10 +469,11 @@ bool ConfigVariable::isEmptyLineShow(void)
 
 bool ConfigVariable::isPromptShow(void)
 {
-    if ( m_iPromptMode == 0     ||
-            m_iPromptMode == 1  ||
-            m_iPromptMode == 2  ||
-            m_iPromptMode == 3)
+    if ( m_iPromptMode == 0    ||
+            m_iPromptMode == 1 ||
+            m_iPromptMode == 2 ||
+            m_iPromptMode == 3 ||
+            m_iPromptMode == 7)
     {
         return true;
     }
@@ -1048,7 +1073,7 @@ bool ConfigVariable::getEndProcessing()
 ** ieee
 ** \{
 */
-int ConfigVariable::m_iIeee = 0;
+int ConfigVariable::m_iIeee = 2;
 
 void ConfigVariable::setIeee(int _iIeee)
 {
@@ -1264,6 +1289,8 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
 
         ostr << std::endl;
     }
+
+    ostr << std::endl;
 }
 
 void ConfigVariable::fillWhereError(int _iErrorLine)

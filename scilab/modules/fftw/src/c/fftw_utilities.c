@@ -332,7 +332,7 @@ void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double 
     switch (type)
     {
         case C2C_PLAN:
-                call_fftw_execute_split_dft(p, ri, ii, ro, io);
+            call_fftw_execute_split_dft(p, ri, ii, ro, io);
             break;
         case C2R_PLAN:
             call_fftw_execute_split_dft_c2r(p, ri, ii, ro);
@@ -1333,7 +1333,10 @@ int withMKL(void)
 {
     char* str = call_fftw_export_wisdom_to_string();
     int iWithMKL = (int)(str == NULL);
-    FREE(str);
+    if (iWithMKL != 0)
+    {
+        FREE(str);
+    }
     return iWithMKL;
 }
 /*--------------------------------------------------------------------------*/

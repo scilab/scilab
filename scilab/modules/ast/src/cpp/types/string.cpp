@@ -41,7 +41,7 @@ String::~String()
 #endif
 }
 
-String::String(int _iDims, int* _piDims)
+String::String(int _iDims, const int* _piDims)
 {
     wchar_t** pwsData = NULL;
     create(_piDims, _iDims, &pwsData, NULL);

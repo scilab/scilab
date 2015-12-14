@@ -1169,7 +1169,7 @@ static int import_handle_compound(int dataset, int parent)
 static int import_handle_datatip(int dataset, int parent)
 {
     int datatip = createGraphicObject(__GO_DATATIP__);
-    //set parent manualy, these no real releationship between datatip and parent
+    //set parent manually, these no real releationship between datatip and parent
     setGraphicObjectProperty(datatip, __GO_PARENT__, &parent, jni_int, 1);
 
     //data

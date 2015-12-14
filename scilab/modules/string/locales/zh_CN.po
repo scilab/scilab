@@ -8,14 +8,28 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-07-31 13:51+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
+"expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵或者整数矩阵。\n"
+
+#, c-format
+msgid "%s : wrong UTF-8 sequence.\n"
+msgstr ""
 
 msgid "WARNING : \n"
 msgstr "警告： \n"
@@ -25,45 +39,16 @@ msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr "%s：输入参数#%d的值错误：必须介于%d与%d之间。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
-"expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵或者整数矩阵。\n"
-
-#, c-format
-msgid "%s: Feature %s is obsolete.\n"
-msgstr "%s：特性%s已废弃。\n"
-
-msgid "Warning"
-msgstr "警告"
-
-#, c-format
-msgid "%s: Please use %s instead.\n"
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
-"%s：此特性将在Scilab %s中被永久移除。\n"
-"\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵。\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: 内存不足。\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s：内存分配错误。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
 msgid ""
@@ -72,96 +57,75 @@ msgid ""
 msgstr "%s：输入参数#%d的值错误：应该为'u'（大写）或'l'（小写）。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为整数矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s：第%d个输入参数的值错误：应该为‘%s’。\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为非空字符串。\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s：不能读取第%d个输入参数。\n"
+msgid "%s: No more memory.\n"
+msgstr "%s: 内存不足。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
-"expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为实数矩阵或字符串矩阵。\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
+msgid "%s: Wrong type for input argument #%d: A scalar String expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: impossible to get dimensions of this matrix.\n"
-msgstr "%s：无法得到这个矩阵的维数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument(s).\n"
-msgstr "%s：输入参数的类型错误。\n"
+msgid "%s: Wrong type for input argument #%d: string or matrix expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s：输入参数#%d的大小错误。\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
-msgstr "%s：输入参数#%d的值错误：必须 >=1。\n"
+msgid "%s: Wrong type for input argument(s).\n"
+msgstr "%s：输入参数的类型错误。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为'%s'。\n"
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: a string vector expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串向量。\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：第%d个输入参数的类型错误：应该为‘%s’或‘%s’。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为'%s'或'%s'。\n"
-
-#, c-format
-msgid "%s : Wrong size for input argument(s).\n"
-msgstr "%s：输入参数的大小错误。\n"
-
-#, c-format
-msgid "%s: error.\n"
-msgstr "%s：错误。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument(s).\n"
-msgstr "%s：输入参数的大小错误。\n"
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty real "
-"matrix expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵或者空实数矩阵。\n"
+"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
+"expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为非空字符串矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A character expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个字符。\n"
+msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Char expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
@@ -172,34 +136,13 @@ msgid "%s : No more memory.\n"
 msgstr "%s：无更多内存。\n"
 
 #, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s：输入参数的大小错误：应该为同样大小。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Character expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
-"expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵或空矩阵。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
-"Encoding problem).\n"
+msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: Row vector of strings or column "
-"vector of strings expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串行向量或字符串列向量。\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为非空字符串。\n"
+"%s: Wrong type for input argument #%d: string or string vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
@@ -210,28 +153,46 @@ msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个布尔值。\n"
 
 #, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr "%s：输入参数#%d的类型错误：应该为字符串矩阵或空矩阵。\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为非空矩阵。\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
 msgstr "%s：第%d个输入参数的大小出错：应该为单字符串（即不是字符串矩阵）。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个标量。\n"
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar double expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr "%s：第%d个输入参数的值错误：应该为整数。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个大于0的值。\n"
+msgid "%s: Wrong size for input argument #%d: A positive value expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of output arguments: %d expected.\n"
-msgstr "%s：输出参数的数目错误：应该为%d个。\n"
+msgid "%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
@@ -242,26 +203,38 @@ msgid "%s: Elements of %dth argument must be in increasing order.\n"
 msgstr "%s：第%d个参数的元素必须是升序的。\n"
 
 #, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
+
+#, c-format
+msgid "%s: error.\n"
+msgstr "%s：错误。\n"
+
+#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: a string expected, not a regexp "
 "pattern.\n"
 msgstr "%s：输入参数#%d的值错误：应该为一个字符串，而不是一个regexp模式。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Non-empty matrix of strings "
-"expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为非空字符串矩阵。\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
+msgid "%s: Wrong type for input argument #%d: A double or string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A character or a vector of single "
-"characters expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符或单字符的向量。\n"
+msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
+msgstr "%s：第%d个输入参数的值错误：应该为 '.' 或 ',' 。\n"
 
 #, c-format
 msgid "%s: Delimiter must not be alphameric.\n"
@@ -308,14 +281,6 @@ msgid "%s: Unknown error.\n"
 msgstr "%s：未知错误。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: $ expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a function expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
 
@@ -336,12 +301,6 @@ msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
-"expected.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
@@ -358,8 +317,7 @@ msgstr "%s：输入参数#%d的值错误：应该为一个非负整数。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
 "character strings or list expected.\n"
-msgstr ""
-"%s：输入参数#%d的类型错误：应该为实数或附属矩阵、字符串矩阵或者列表。\n"
+msgstr "%s：输入参数#%d的类型错误：应该为实数或附属矩阵、字符串矩阵或者列表。\n"
 
 #, c-format
 msgid "%s: Given expression has no value.\n"
@@ -370,12 +328,12 @@ msgid "%s: This feature has not been implemented: %s.\n"
 msgstr "%s：该功能尚未实现：%s\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s：输入参数的数目错误，应该为%d个。\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
-msgstr ""
+msgstr "%s：第%d个输入参数的值错误：应该为%s、%s或%s。\n"
 
 #, c-format
 msgid ""

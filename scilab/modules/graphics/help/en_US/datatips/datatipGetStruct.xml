@@ -12,7 +12,7 @@
     <refnamediv>
         <refname>datatipGetStruct</refname>
         <refpurpose>
-            Retreive the datatips data structure from the polyline entity. <emphasis role="bold">This function is obsolete.</emphasis>
+            Retrieve the datatips data structure from the polyline entity. <emphasis role="bold">This function is obsolete.</emphasis>
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
@@ -49,7 +49,7 @@
         <para>
             <literal>datatipGetStruct</literal> extract the datatips data
             structure out of the polyline  entity. It may be called
-            to retreive properties of the datatips data structure to
+            to retrieve properties of the datatips data structure to
             customize the tip display.
         </para>
     </refsection>

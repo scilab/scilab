@@ -75,6 +75,8 @@ public:
 
     /*return function list in the module _stModuleName*/
     int getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModuleName);
+    /*return function list in the module _stModuleName*/
+    int getFunctionList(std::list<types::Callable *>& lst, std::wstring _stModuleName);
 
     int getConsoleVarsName(std::list<std::wstring>& lst);
     int getVarsName(std::list<std::wstring>& lst);
@@ -117,8 +119,8 @@ public:
     types::InternalType* getGlobalValue(const Symbol& _key);
 
     /*add symbol and value in the stack*/
-    void put(const Symbol& _key, types::InternalType* _pIT);
-    void put(Variable* _var, types::InternalType* _pIT);
+    bool put(const Symbol& _key, types::InternalType* _pIT);
+    bool put(Variable* _var, types::InternalType* _pIT);
     /*add symbol and value in the previous scope*/
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT);
 

@@ -10,33 +10,21 @@ msgstr ""
 "Project-Id-Version: sound-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-27 14:59+0000\n"
+"PO-Revision-Date: 2015-10-08 21:57+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: Произошла ошибка: %s\n"
-
 msgid "Cannot play file."
 msgstr "Не удалось воспроизвести файл."
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -48,21 +36,6 @@ msgstr "%s: Неверный входной параметр №%d: ожидал
 
 msgid "Scilab sound module not installed.\n"
 msgstr "Модуль «Sound» не установлен.\n"
-
-msgid "Sound file handling"
-msgstr "Управление звуковым файлом"
-
-msgid "FFT on a wav file"
-msgstr "БПФ wav-файла"
-
-msgid "Fourier analysis of 0.5 seconds of sound parameters."
-msgstr "Фурье-анализ 0,5 секунды звуковых параметров."
-
-msgid "A complete picture of the sound."
-msgstr "Полная картина звука."
-
-msgid "see 'mapsound' function"
-msgstr "см. функцию 'mapsound'"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -200,7 +173,8 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Произошла ошибка: %s не подерживается.\n"
 
 #, c-format
-msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid ""
+"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Произошла ошибка: неверный формат файла. Ошибка чтения блока <%s>.\n"
 
@@ -224,7 +198,8 @@ msgid "Cannot read .wav file  with more than 16 bits per sample."
 msgstr "Не удалось прочитать .wav файл с более чем 16-ю битами на сэмпл."
 
 msgid "Sample limit vector must have 2 entries."
-msgstr "Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
+msgstr ""
+"Вектор границ сэмплов (Sample limit vector) должен иметь два элемента."
 
 msgid "Invalid sample limits (use ascending order)."
 msgstr "Неверные границы сэмплов (нужно указывать их по возрастанию)."

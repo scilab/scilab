@@ -43,8 +43,9 @@ static void sendExecDoneSignal(Runner* _pRunner)
     }
 }
 
-void StaticRunner::launch()
+int StaticRunner::launch()
 {
+    int iRet = 0;
     // get the runner to execute
     std::unique_ptr<Runner> runMe(getRunner());
     // set if the current comment is interruptible
@@ -110,12 +111,12 @@ void StaticRunner::launch()
             ConfigVariable::setPromptMode(iOldPromptMode);
         }
 
-        scilabErrorW(se.GetErrorMessage().c_str());
-        scilabErrorW(L"\n");
         std::wostringstream ostr;
         ConfigVariable::whereErrorToString(ostr);
         scilabErrorW(ostr.str().c_str());
+        scilabErrorW(se.GetErrorMessage().c_str());
         ConfigVariable::resetWhereError();
+        iRet = 1;
     }
     catch (const ast::InternalAbort& ia)
     {
@@ -173,6 +174,7 @@ void StaticRunner::launch()
 
     //clean debugger step flag if debugger is not interrupted ( end of debug )
     manager->resetStep();
+    return iRet;
 }
 
 void StaticRunner::setRunner(Runner* _RunMe)
@@ -227,11 +229,22 @@ void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
     ThreadManagement::WaitForAwakeRunnerSignal();
 }
 
-void StaticRunner::exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor)
+bool StaticRunner::exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor)
 {
     Runner *runMe = new Runner(_theProgram, _visitor);
     setRunner(runMe);
-    launch();
+
+    try
+    {
+        launch();
+    }
+    catch (const ast::InternalAbort& /*ia*/)
+    {
+        //catch exit command in .start or .quit
+        return false;
+    }
+
+    return true;
 }
 
 void StaticRunner_launch(void)

@@ -18,6 +18,7 @@ import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.block.AfficheBlock;
 import org.scilab.modules.xcos.block.BasicBlock;
+import org.scilab.modules.xcos.block.BasicBlock.SimulationFunctionType;
 import org.scilab.modules.xcos.block.SplitBlock;
 import org.scilab.modules.xcos.block.SuperBlock;
 import org.scilab.modules.xcos.block.TextBlock;
@@ -34,17 +35,18 @@ import org.scilab.modules.xcos.block.positionning.RoundBlock;
 import org.scilab.modules.xcos.block.positionning.Summation;
 import org.scilab.modules.xcos.block.positionning.VoltageSensorBlock;
 import org.scilab.modules.xcos.graph.model.BlockInterFunction;
+import org.scilab.modules.xcos.io.HandledElement;
 import org.xml.sax.Attributes;
 
 class BlockHandler implements ScilabHandler {
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler saxHandler;
 
     /**
      * Default constructor
      * @param saxHandler the shared sax handler
      */
-    BlockHandler(SAXHandler saxHandler) {
+    BlockHandler(XcosSAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 
@@ -71,7 +73,6 @@ class BlockHandler implements ScilabHandler {
                 block = new BigSom(uid);
                 break;
             case ConstBlock:
-                // FIXME: why not needed anymore
                 block = new BasicBlock(uid);
                 break;
             case EventInBlock:
@@ -87,7 +88,6 @@ class BlockHandler implements ScilabHandler {
                 block = new ExplicitOutBlock(uid);
                 break;
             case GainBlock:
-                // FIXME: why not needed anymore
                 block = new BasicBlock(uid);
                 break;
             case GroundBlock:
@@ -100,7 +100,6 @@ class BlockHandler implements ScilabHandler {
                 block = new ImplicitOutBlock(uid);
                 break;
             case PrintBlock:
-                // FIXME: why not needed anymore
                 block = new BasicBlock(uid);
                 break;
             case Product:
@@ -156,9 +155,24 @@ class BlockHandler implements ScilabHandler {
         if (v != null) {
             saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.SIM_BLOCKTYPE, v);
         }
+        v = atts.getValue("simulationFunctionType");
+        if (v != null) {
+            SimulationFunctionType type = SimulationFunctionType.valueOf(v);
+            saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.SIM_FUNCTION_API, type.getValue());
+        }
+
         v = atts.getValue("style");
         if (v != null) {
             saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.STYLE, v);
+        }
+
+        v = atts.getValue("value");
+        if (v != null) {
+            if (kind == Kind.BLOCK) {
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.LABEL, v);
+            } else { // ANNOTATION
+                saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, v);
+            }
         }
 
         saxHandler.insertChild(block);

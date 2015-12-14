@@ -8,22 +8,27 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-09-09 08:44+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
+msgstr ""
+"%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -34,12 +39,6 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
 
 #, c-format
 msgid "%s: ans cannot be edited.\n"
@@ -67,18 +66,6 @@ msgstr ""
 #, c-format
 msgid "%s: Type not handle yet"
 msgstr "%s : Ce type n'est pas encore pris en charge."
-
-msgid "&File"
-msgstr "&Fichier"
-
-msgid "&Close"
-msgstr "&Fermer"
-
-msgid "&?"
-msgstr "&?"
-
-msgid "&About Scilab..."
-msgstr "&À propos de Scilab..."
 
 msgid "Name"
 msgstr "Nom"
@@ -372,5 +359,21 @@ msgid "Type not supported for this operation"
 msgstr "Le type n'est pas pris en charge pour cette opération"
 
 #, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Le module '%s' de Scilab n'est pas installé.\n"
+
+msgid "&File"
+msgstr "&Fichier"
+
+msgid "&Close"
+msgstr "&Fermer"
+
+msgid "&?"
+msgstr "&?"
+
+msgid "&About Scilab..."
+msgstr "&À propos de Scilab..."

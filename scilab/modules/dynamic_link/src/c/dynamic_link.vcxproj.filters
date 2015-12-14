@@ -75,9 +75,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Io_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="core_import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
@@ -86,12 +83,6 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\dynamic_link.pot">
       <Filter>localization</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="scilab_windows_Import.def">
-      <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

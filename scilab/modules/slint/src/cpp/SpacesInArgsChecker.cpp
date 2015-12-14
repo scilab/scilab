@@ -55,7 +55,7 @@ void SpacesInArgsChecker::preCheckNode(const ast::Exp & e, SLintContext & contex
                     const wchar_t pprev = code[pos.first - 2];
                     if (prev != L' ' || pprev != L',')
                     {
-                        result.report(context, e.getLocation(), *this, _("A function argument must be preceeded by a single space."));
+                        result.report(context, e.getLocation(), *this, _("A function argument must be preceded by a single space."));
                     }
                 }
             }

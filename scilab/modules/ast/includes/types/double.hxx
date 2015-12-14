@@ -38,15 +38,15 @@ public :
     Double(int _iRows, int _iCols, bool _bComplex = false, bool _bZComplex = false);
     Double(int _iRows, int _iCols, double **_pdblReal);
     Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg);
-    Double(int _iDims, int* _piDims, bool _bComplex = false, bool _bZComplex = false);
+    Double(int _iDims, const int* _piDims, bool _bComplex = false, bool _bZComplex = false);
     Double(int _iRows, int _iCols, double * _pdblReal);
     Double(int _iRows, int _iCols, double * _pdblReal, double * _pdblImg);
-    
+
     static Double*              Empty();
     static Double*              Identity(int _iRows, int _iCols);
-    static Double*              Identity(int _iDims, int* _piDims);
-    static Double*              Identity(int _iDims, int* _piDims, double _dblReal);
-    static Double*              Identity(int _iDims, int* _piDims, double _dblReal, double _dblImg);
+    static Double*              Identity(int _iDims, const int* _piDims);
+    static Double*              Identity(int _iDims, const int* _piDims, double _dblReal);
+    static Double*              Identity(int _iDims, const int* _piDims, double _dblReal, double _dblImg);
 
 
     /*data management*/
@@ -299,7 +299,7 @@ public :
 
 
 private:
-    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     virtual double              getNullValue();
     virtual Double*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);

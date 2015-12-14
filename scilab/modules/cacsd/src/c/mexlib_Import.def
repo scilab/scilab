@@ -1,8 +1,0 @@
-	LIBRARY    libmex.dll
-
-
-EXPORTS
-;
-;core
-;
-sci_gateway

@@ -8,55 +8,14 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-11 01:01+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ja\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 定義済みの変数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
-msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" はディレクトリです"
-
-#, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: ファイル %s を開けません.\n"
-
-#, c-format
-msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
-"%s:  SODファイル形式のバージョンが間違っています. 仕様値: %d 指定値: %d\n"
-
-#, c-format
-msgid "%s: Unable to delete existing variable \"%s\"."
-msgstr "%s: 既存の変数 \"%s\" を削除できませんでした."
-
-#, c-format
-msgid ""
-"%s: Variable '%s' already exists in file '%s'\n"
-"Use -append option to replace existing variable\n"
-"."
-msgstr "%s: 変数 '%s' がファイル '%s' にすでに存在します"
-
-#, c-format
-msgid "%s: Unable to update Scilab version in \"%s\"."
-msgstr "%s: Scilabバージョンを \"%s\" に更新できませんでした."
-
-#, c-format
-msgid "%s: Unable to update HDF5 format version in \"%s\"."
-msgstr "%s: HDF5形式のバージョンを \"%s\" に更新できませんでした."
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -68,13 +27,15 @@ msgstr "%s:  H5Object が無効です.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列またはH5Objectを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはH5Objectを指定してください.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: メモリ不足です.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
@@ -94,13 +55,11 @@ msgstr "%s: H5Object  を削除できませんでした.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: double の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: double の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Five row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 5行のベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 5行のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
@@ -108,15 +67,11 @@ msgstr "%s: 入力引数#%dの型が間違っています: 文字列を指定し
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  6行のベクトルを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  6行のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d column vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  %d 列のベクトルを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  %d 列のベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Can not print H5Object: invalid object.\n"
@@ -128,8 +83,7 @@ msgstr "%s: 入力引数 #%d の型が間違っています:  H5Object を指定
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  文字列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Can not create output argument.\n"
@@ -137,8 +91,7 @@ msgstr "%s: 出力引数を作成できません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A HDF5 object expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  HDF5オブジェクトを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  HDF5オブジェクトを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
@@ -150,27 +103,22 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  実数の行ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  実数の行ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Real row or column vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています:  実数の行または列ベクトルを指定し"
-"てください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています:  実数の行または列ベクトルを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています:  文字列の行配列を指定してください.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています:  文字列の行配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A row or column vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 行または列ベクトルを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 行または列ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Can not use H5Object: invalid object.\n"
@@ -178,9 +126,7 @@ msgstr "%s: H5Objectを使用できません: オブジェクトが無効です.
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid number of arguments: more than %d expected.\n"
@@ -213,9 +159,7 @@ msgstr "%s: 2番目の引数はデータセット名とする必要がありま�
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Same size as the data expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: データには同じ大きさを指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: データには同じ大きさを指定してください.\n"
 
 #, c-format
 msgid "%s: Argument 'count' is missing.\n"
@@ -230,29 +174,97 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Unable to open file: %s\n"
 msgstr "%s: ファイルをオープンできません: %s\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
-msgstr ""
-"%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: "
-"%d\n"
+msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様上の最大値: %d 指定値: %d\n"
 
 #, c-format
 msgid "%s: Invalid HDF5 Scilab format.\n"
 msgstr "%s: 無効なHDF5 Scilab形式.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: 入力引数の数が間違っています:  %d 個より大きい引数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to open file: '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: %s is not a valid lib file.\n"
+msgstr ""
+
+msgid "Redefining permanent variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to load '%s'\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
+msgstr "%s:  SODファイル形式のバージョンが間違っています. 仕様値: %d 指定値: %d\n"
+
+#, c-format
+msgid "%s: Unable to load '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Defined variable expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 定義済みの変数を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: \"%s\" is a directory"
+msgstr "%s: 入力引数 #%d の値が間違っています: \"%s\" はディレクトリです"
+
+#, c-format
+msgid "%s: Cannot open file %s.\n"
+msgstr "%s: ファイル %s を開けません.\n"
+
+#, c-format
+msgid "%s: Unable to delete existing variable \"%s\".\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Variable '%s' already exists in file '%s'\n"
+"Use -append option to replace existing variable.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to export variable '%s' in file '%s'.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unable to update Scilab version in \"%s\"."
+msgstr "%s: Scilabバージョンを \"%s\" に更新できませんでした."
+
+#, c-format
+msgid "%s: Unable to update HDF5 format version in \"%s\"."
+msgstr "%s: HDF5形式のバージョンを \"%s\" に更新できませんでした."
+
+#, c-format
+msgid "%s: Wrong number of input arguments: More than %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています:  %d 個より大きい引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列またはdoubleを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列またはdoubleを指定してください.\n"
 
 #, c-format
 msgid "%s: Only one field can be requested.\n"
@@ -729,14 +741,6 @@ msgid "Can not read input argument #%d."
 msgstr "入力引数 #%d を読み込めませんでした."
 
 #, c-format
-msgid "Can not get the type of input argument #%d."
-msgstr "入力引数 #%d の型を取得できませんでした."
-
-#, c-format
-msgid "%s: Can not read input argument #%d."
-msgstr "%s: 入力引数 #%d を読み込めませんでした."
-
-#, c-format
 msgid "%s: Datatype not handled for now."
 msgstr "%s: データ型は現時点では処理できません."
 
@@ -765,24 +769,3 @@ msgstr "リファレンスは文字列で指定してください"
 #, c-format
 msgid "Invalid path: %s."
 msgstr "パスが無効です: %s."
-
-msgid "HDF5"
-msgstr "HDF5"
-
-msgid "Ring resonator (HDF5 data source)"
-msgstr "リング共振子 (HDF5データソース)"
-
-msgid "Ring Resonator from a HDF5 file"
-msgstr "HDF5ファイルからリング共振子"
-
-msgid "X position [a]"
-msgstr "X位置 [a]"
-
-msgid "Y position [a]"
-msgstr "Y位置 [a]"
-
-msgid "Permittivity"
-msgstr "誘導率"
-
-msgid "Ring Resonator"
-msgstr "リング共振子"

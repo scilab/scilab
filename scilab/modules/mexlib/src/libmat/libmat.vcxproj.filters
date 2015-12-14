@@ -13,9 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{567e5ac3-4edc-4ee2-bf81-7768b8d337d3}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\mex.h">
@@ -29,11 +26,6 @@
     <ResourceCompile Include="libmat.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\mexlib.cpp">

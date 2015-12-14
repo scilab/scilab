@@ -109,7 +109,7 @@ for(j = 0 ; j < iCols ; j++)
 {
 	for(i = 0 ; i < iRows ; i++)
 	{
-		/* Display the formated matrix with same scilab indice */
+		/* Display the formated matrix with same scilab index */
 		printf("[%d,%d] = %s\n",j+1,i+1,pstData[j* iRows + i]);
 	}
 }
@@ -131,7 +131,7 @@ free(pstData);
                 <link linkend="call_scilab">Call_Scilab</link>
             </member>
             <member>
-                <link linkend="api_scilab">api Scilab</link>
+                <link linkend="api_scilab_legacy">api Scilab</link>
             </member>
             <member>
                 <link linkend="SendScilabJob">SendScilabJob</link>

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2013-01-26 04:12+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
@@ -14,40 +14,81 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: no es pot llegir el paràmetre d'entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: tipus incorrecte del paràmetre %d: s'esperava una matriu de nombres "
-"reals.\n"
-
-#, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: tipus incorrecte del paràmetre %d: s'esperava un escalar real.\n"
-
-#, c-format
-msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s: mida incorrecta del paràmetre %d: s'esperava una matriu de nombres "
-"reals.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr "%s: no hi ha més memòria.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
-"%s: valor incorrecte del paràmetre d'entrada #%d: s'esperava un valor "
-"enter.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgid ""
+"%s: Wrong type of input arguments: integer, boolean or double expected.\n"
 msgstr ""
-"%s: el paràmetre d'entrada #%d té un valor incorrecte: ha d'estar dintre del "
-"conjunt {%s}.\n"
+
+msgid "Never occur"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s, %s or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : int or double expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: '%s' already defined by the '%s' argument."
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument: '%s', '%s', '%s', '%s' or '%s' "
+"expected.\n"
+msgstr ""
+
+msgid ""
+"Warning: Syntax vector ^ scalar is obsolete. It will be removed in Scilab "
+"6.0.\n"
+"  Use vector .^ scalar instead.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong size for argument #%d: A single string of size %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incorrect integer type: %s .\n"
+msgstr ""

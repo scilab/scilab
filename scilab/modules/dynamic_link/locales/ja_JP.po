@@ -8,59 +8,53 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 13:28+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String vector expected.\n"
+msgid "%s : Wrong type for input argument #%d: string expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列ベクトルを指定してくださ"
-"い.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String vector < %d expected.\n"
+msgid "%s : Wrong type for input argument #%d: String vector expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: %d より短い文字列ベクトルを指定し"
-"てください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s : second argument must be a unique id of a shared library.\n"
 msgstr "%s: 第2引数には, 共有ライブラリのユニークなIDを指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
+msgid "%ls Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
-"さい.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A int expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
+msgid ""
+"%s Wrong type for input argument #%d: string or string vector expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_link.c, line: 63
@@ -71,99 +65,10 @@ msgstr "%s: 引数 #%d で不正な値: %s\n"
 msgid "Unique id of a shared library expected."
 msgstr "共有ライブラリのユニークなIDを"
 
-#
-# File: sci_gateway/c/sci_link.c, line: 80
 #, c-format
-msgid "%s : Wrong type for input argument #%d: %s\n"
-msgstr "%s: 入力引数 #%d で不正な型: %s\n"
-
-msgid "Unique dynamic library name expected."
-msgstr "ユニークなダイナミックライブラリ名を指定してください."
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings vector expected.\n"
-msgstr "%s: 入力引数の型が間違っています: 文字列ベクトルを指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr "%s: 入力引数の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
-
-#, c-format
-msgid "Error: Not a valid internal routine number %d.\n"
-msgstr "エラー: 有効な内部 ルーチン番号 %d ではありません.\n"
-
-#
-# File: src/c/addinter.c, line: 237
-#, c-format
-msgid "Interface %s not linked.\n"
-msgstr "インターフェース %s はリンクされていません。\n"
-
-#, c-format
-msgid "%s: The shared archive was not loaded: %s\n"
-msgstr "%s: 共有アーカイブがロードされていません: %s\n"
-
-#, c-format
-msgid "%s: Cannot open shared files. Max entry %d reached.\n"
-msgstr "%s: 共有ファイルを開けません. エントリ数の最大値 %d に達しました.\n"
-
-#, c-format
-msgid "%s: Shared lib %s does not exist.\n"
-msgstr "%s: 共有ライブラリ %s が存在しません.\n"
-
-#, c-format
-msgid "%s: Already loaded from library %s\n"
-msgstr "%s: ライブラリ %s はロード済みです.\n"
-
-#, c-format
-msgid "%s: problem with one of the entry point.\n"
-msgstr "%s: エントリ点の一つに問題があります.\n"
-
-#, c-format
-msgid "%s: An error occurred: %s\n"
-msgstr "%s: エラーが発生しました: %s\n"
-
-#, c-format
-msgid "%s: can not to load a x86 dll in a x64 environment.\n"
-msgstr "%s: x64環境でx86 dll をロードすることはできません.\n"
-
-#, c-format
-msgid "%s: can not load a x64 dll in a x86 environment.\n"
-msgstr "%s: x86環境でx64 dll をロードすることはできません.\n"
-
-#, c-format
-msgid "%s: The file %s does not exist in PATH environment.\n"
-msgstr "%s: ファイル %s が環境変数PATH に存在しません.\n"
-
-#
-# File: src/c/dynamic_link.c, line: 109
-#, c-format
-msgid "Link failed for dynamic library '%s'.\n"
-msgstr "ダイナミックライブラリ '%s' のリンクが失敗しました。\n"
-
-#
-# File: src/c/dynamic_link.c, line: 110
-#, c-format
-msgid "An error occurred: %s\n"
-msgstr "エラーが起きました: %s\n"
-
-#
-# File: src/c/dynamic_link.c, line: 118
-msgid "Shared archive loaded.\n"
-msgstr "共有アーカイブをロードしました。\n"
-
-#
-# File: src/c/dynamic_link.c, line: 119
-msgid "Link done.\n"
-msgstr "リンク完了\n"
 
 #, c-format
 msgid ""
@@ -184,66 +89,72 @@ msgid "] : %d libraries.\n"
 msgstr "] : %d ライブラリ。\n"
 
 #, c-format
-msgid "Entry point %s in shared library %d.\n"
-msgstr "共有ライブラリ %2$d のエントリ点 %1$s.\n"
+msgid "Entry point %ls in shared library %d.\n"
+msgstr ""
 
 #, c-format
-msgid "Cannot open shared files max entry %d reached.\n"
-msgstr "最大エントリ数 %d に達したため, 共有ファイルをオープンできません.\n"
+msgid "%s: Wrong type for input argument #%d: real scalar expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Entry name %s.\n"
-msgstr "エントリ名 %s.\n"
+msgid "%s: The shared archive was not loaded: %s\n"
+msgstr "%s: 共有アーカイブがロードされていません: %s\n"
 
 #, c-format
-msgid "%s is not an entry point.\n"
-msgstr "%s はエントリポイントではありません.\n"
+msgid "%s: Shared lib %s does not exist.\n"
+msgstr "%s: 共有ライブラリ %s が存在しません.\n"
+
+#, c-format
+msgid "%s: Already loaded from library %s\n"
+msgstr "%s: ライブラリ %s はロード済みです.\n"
+
+#, c-format
+msgid "%s: problem with one of the entry point.\n"
+msgstr "%s: エントリ点の一つに問題があります.\n"
+
+#, c-format
+msgid "%s: can not to load a x86 dll in a x64 environment.\n"
+msgstr "%s: x64環境でx86 dll をロードすることはできません.\n"
+
+#, c-format
+msgid "%s: can not load a x64 dll in a x86 environment.\n"
+msgstr "%s: x86環境でx64 dll をロードすることはできません.\n"
+
+#, c-format
+msgid "%ls: The file %ls does not exist in PATH environment.\n"
+msgstr ""
+
+#, c-format
+msgid "Link failed for dynamic library '%ls'.\n"
+msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 396
+# File: src/c/dynamic_link.c, line: 110
 #, c-format
-msgid "Linking %s.\n"
-msgstr "%s をリンクします。\n"
+msgid "An error occurred: %s\n"
+msgstr "エラーが起きました: %s\n"
 
-msgid "Calling a C function from Scilab.\n"
-msgstr "ScilabからC関数をコール中.\n"
+#
+# File: src/c/dynamic_link.c, line: 118
+msgid "Shared archive loaded.\n"
+msgstr "共有アーカイブをロードしました。\n"
 
-msgid "Calling ilib_for_link to build C function.\n"
-msgstr "C関数構築のためにilib_for_linkをコール中.\n"
-
-msgid "Calling C function. Z = X+Y"
-msgstr "C関数をコール中. Z = X+Y"
-
-#, c-format
-msgid "with X = %d"
-msgstr "条件: X = %d"
+#
+# File: src/c/dynamic_link.c, line: 119
+msgid "Link done.\n"
+msgstr "リンク完了\n"
 
 #, c-format
-msgid "with Y = %d"
-msgstr "条件: Y = %d"
+msgid "Entry name %ls.\n"
+msgstr ""
 
 #, c-format
-msgid "Result Z = %d"
-msgstr "結果 Z = %d"
+msgid "%ls is not an entry point.\n"
+msgstr ""
 
-msgid "Calling a Fortran subroutine from Scilab.\n"
-msgstr "Scilabからfortranサブルーチンをコール中.\n"
-
-msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
-msgstr "fortranサブルーチンを構築するするためにilib_for_linkをコール中.\n"
-
-msgid "Calling Fortran subroutine. Z = X+Y"
-msgstr "fortranサブルーチンをコール中. Z = X+Y"
-
-# File: etc/dynamic_link.start, line: 43
-msgid "Dynamic link"
-msgstr "ダイナミックリンク"
-
-msgid "Call a C function"
-msgstr "C関数をコール"
-
-msgid "Call a Fortran subroutine"
-msgstr "Fortranサブルーチンをコール"
+#, c-format
+msgid "Linking %ls.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: A Fortran or C compiler is required.\n"
@@ -253,22 +164,15 @@ msgstr "%s: Fortran または Cコンパイラが必要です.\n"
 msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: 入力引数の数が間違っています.\n"
 
-msgid "Microsoft Visual Studio C x86 Compiler not found."
-msgstr "Microsoft Visual Studio C x86 コンパイラが見つかりません."
-
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
-msgstr ""
-"Intel Fortran コンパイラ 9, 10, 11 または 12 コンパイラが見つかりません."
+msgstr "Intel Fortran コンパイラ 9, 10, 11 または 12 コンパイラが見つかりません."
 
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
-msgstr ""
-"Microsoft Visual Studio C 2008 (またはそれ以降) x64 コンパイラがインストール"
-"されていません."
+msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) x64 コンパイラがインストールされていません."
 
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
-msgstr ""
-"Microsoft Visual Studio C 2008 (またはそれ以降) コンパイラが見つかりません."
+msgstr "Microsoft Visual Studio C 2008 (またはそれ以降) コンパイラが見つかりません."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -296,25 +200,21 @@ msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
 "'haveacompiler' is only supported under Windows."
-msgstr ""
-"Unix業界には複数のベンダが存在するため,'haveacompiler'関数がサポートされてい"
-"るのはWindows環境のみです."
+msgstr "Unix業界には複数のベンダが存在するため,'haveacompiler'関数がサポートされているのはWindows環境のみです."
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A matrix of strings < 999 expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 文字列の行列 < 999 を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列の行列 < 999 を指定してください.\n"
 
 #, c-format
 msgid "%s: A managed file extension for input argument #%d expected."
@@ -326,8 +226,7 @@ msgstr "%s: 入力引数 #%d の値が間違っています: または [] を指
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: existing file(s) expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 既存のファイルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 既存のファイルを指定してください.\n"
 
 #, c-format
 msgid "%s: %s already loaded in scilab."
@@ -441,8 +340,8 @@ msgid ""
 "%s: Warning: Scilab has not been able to find where the Scilab sources are. "
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
-"%s: 警告: Scilabは, Scilabソースコードの場所を見つけることができませんでし"
-"た. http://bugzilla.scilab.org/ でバグ・レポートを提出してください.\n"
+"%s: 警告: Scilabは, Scilabソースコードの場所を見つけることができませんでした. "
+"http://bugzilla.scilab.org/ でバグ・レポートを提出してください.\n"
 
 #
 # File: macros/ilib_compile.sci, line: 120
@@ -470,9 +369,7 @@ msgstr "%s: コマンド:\n"
 msgid ""
 "%s: Warning: No error code returned by the compilation but the error output "
 "is not empty:\n"
-msgstr ""
-"%s: 警告: コンパイル時にエラーコードは返されませんでしたが, エラー出力が空で"
-"はありません.\n"
+msgstr "%s: 警告: コンパイル時にエラーコードは返されませんでしたが, エラー出力が空ではありません.\n"
 
 #, c-format
 msgid "%s: Could not find the built library '%s'.\n"
@@ -496,8 +393,7 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 # File: macros/ilib_gen_Make_unix.sci, line: 58
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr ""
-"   %s: コンパイルファイル (Makefile*, libtool...) を TMPDIRにコピーしました\n"
+msgstr "   %s: コンパイルファイル (Makefile*, libtool...) を TMPDIRにコピーしました\n"
 
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 102
@@ -509,17 +405,13 @@ msgstr "   %s: TMPDIRに %s をコピーしました\n"
 #, c-format
 msgid ""
 "   %s: Did not copy %s: Source and target directories are the same (%s).\n"
-msgstr ""
-"   %s: %s をコピーできません: コピー元とコピー先のディレクトリが同じ (%s) で"
-"す.\n"
+msgstr "   %s: %s をコピーできません: コピー元とコピー先のディレクトリが同じ (%s) です.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: existing file(s) expected. Provided: "
 "%s\n"
-msgstr ""
-"%s: 引数 #%d の値が間違っています: 既存のファイルを指定してください. 以下が指"
-"定されています: %s\n"
+msgstr "%s: 引数 #%d の値が間違っています: 既存のファイルを指定してください. 以下が指定されています: %s\n"
 
 #
 # File: macros/ilib_gen_Make_unix.sci, line: 123
@@ -577,9 +469,7 @@ msgstr "   標準エラー: %s\n"
 msgid ""
 "%s: An error occurred during the detection of the compiler(s). Set "
 "ilib_verbose(2) for more information.\n"
-msgstr ""
-"%s: コンパイラ検出時にエラーが発生しました. 詳細は, ilib_verbose(2) を参照く"
-"ださい.\n"
+msgstr "%s: コンパイラ検出時にエラーが発生しました. 詳細は, ilib_verbose(2) を参照ください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
@@ -587,14 +477,11 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: %d を指定�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr ""
-"%s: 入力引数の数が不間違っています: %d,%d または %d 個の引数を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数の数が不間違っています: %d,%d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Failed to add include path : %s"
@@ -619,6 +506,10 @@ msgstr "%s: この機能には, Microsoft Visual Studio の C コンパイラが
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"

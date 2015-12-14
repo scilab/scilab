@@ -36,7 +36,10 @@ void MopenMcloseChecker::preCheckNode(const ast::Exp & e, SLintContext & context
                     if (ae.getLeftExp().isSimpleVar())
                     {
                         const symbol::Symbol & Lsym = static_cast<const ast::SimpleVar &>(ae.getLeftExp()).getSymbol();
-                        fd.top().emplace(Lsym, ae.getLeftExp().getLocation());
+                        if (!fd.empty())
+                        {
+                            fd.top().emplace(Lsym, ae.getLeftExp().getLocation());
+                        }
                     }
                     else if (ae.getLeftExp().isArrayListExp())
                     {
@@ -47,7 +50,10 @@ void MopenMcloseChecker::preCheckNode(const ast::Exp & e, SLintContext & context
                             if (first.isSimpleVar())
                             {
                                 const symbol::Symbol & Lsym = static_cast<const ast::SimpleVar &>(first).getSymbol();
-                                fd.top().emplace(Lsym, first.getLocation());
+                                if (!fd.empty())
+                                {
+                                    fd.top().emplace(Lsym, first.getLocation());
+                                }
                             }
                         }
                     }
@@ -65,13 +71,19 @@ void MopenMcloseChecker::preCheckNode(const ast::Exp & e, SLintContext & context
                     const ast::Exp & first = *args.front();
                     if (first.isStringExp() && static_cast<const ast::StringExp &>(first).getValue() == L"all")
                     {
-                        result.report(context, e.getLocation(), *this, _("The instruction mclose(\"all\") may have any side effets."));
-                        fd.top().clear();
+                        result.report(context, e.getLocation(), *this, _("The instruction mclose(\"all\") may have any side effects."));
+                        if (!fd.empty())
+                        {
+                            fd.top().clear();
+                        }
                     }
                     else if (first.isSimpleVar())
                     {
                         const symbol::Symbol & Lsym = static_cast<const ast::SimpleVar &>(first).getSymbol();
-                        fd.top().erase(Lsym);
+                        if (!fd.empty())
+                        {
+                            fd.top().erase(Lsym);
+                        }
                     }
                 }
             }

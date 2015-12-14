@@ -85,7 +85,7 @@
                 <term>len</term>
                 <listitem>
                     <para>the length of the simplex (default length = 1.0) (optional).</para>
-                    <para>If length is a value, that unique lenght is used in all directions. If length is 
+                    <para>If length is a value, that unique length is used in all directions. If length is
                         a vector with n values, each length is used with the corresponding direction (n is 
                         the dimension of the space).
                     </para>

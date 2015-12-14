@@ -224,20 +224,30 @@ void dumpStackTask(bool timed)
 ** Execute scilab.start
 **
 */
-void execScilabStartTask(bool _bSerialize)
+int execScilabStartTask(bool _bSerialize)
 {
     Parser parse;
     std::wstring stSCI = ConfigVariable::getSCIPath();
     stSCI += SCILAB_START;
 
     ThreadManagement::LockParser();
-    parse.parseFile(stSCI, L"");
+    try
+    {
+        parse.parseFile(stSCI, L"");
+    }
+    catch (const ast::InternalError& ie)
+    {
+        scilabWrite(ie.what());
+        ThreadManagement::UnlockParser();
+        return 1;
+    }
+
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");
         ThreadManagement::UnlockParser();
-        return;
+        return 1;
     }
     ThreadManagement::UnlockParser();
 
@@ -246,27 +256,38 @@ void execScilabStartTask(bool _bSerialize)
     {
         newTree = callTyper(parse.getTree());
     }
-    StaticRunner::exec(newTree, new ast::ExecVisitor());
+
+    return StaticRunner::exec(newTree, new ast::ExecVisitor()) ? 0 : 1;
 }
 
 /*
 ** Execute scilab.quit
 **
 */
-void execScilabQuitTask(bool _bSerialize)
+int execScilabQuitTask(bool _bSerialize)
 {
     Parser parse;
     std::wstring stSCI = ConfigVariable::getSCIPath();
     stSCI += SCILAB_QUIT;
 
     ThreadManagement::LockParser();
-    parse.parseFile(stSCI, L"");
+    try
+    {
+        parse.parseFile(stSCI, L"");
+    }
+    catch (const ast::InternalError& ie)
+    {
+        scilabWrite(ie.what());
+        ThreadManagement::UnlockParser();
+        return 1;
+    }
+
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.quit");
         ThreadManagement::UnlockParser();
-        return;
+        return 1;
     }
     ThreadManagement::UnlockParser();
 
@@ -275,7 +296,8 @@ void execScilabQuitTask(bool _bSerialize)
     {
         newTree = callTyper(parse.getTree());
     }
-    StaticRunner::exec(newTree, new ast::ExecVisitor());
+
+    return StaticRunner::exec(newTree, new ast::ExecVisitor()) ? 0 : 1;
 }
 
 

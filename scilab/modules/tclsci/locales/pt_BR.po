@@ -14,89 +14,90 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: pt_BR\n"
-
-msgid "Warning: Problem(s) with TCL/TK interface. Interface not enabled.\n"
-msgstr ""
-"Aviso: Problema(s) com a interface TCL/TK. A interface não foi habilitada.\n"
-
-msgid "Tcl/TK interface disabled in -nogui mode.\n"
-msgstr "Interface Tcl/TK desabilitada no modo -nogui.\n"
 
 #, c-format
 msgid "%s: Error main TCL interpreter not initialized.\n"
-msgstr "%s: Erro: o intepretador TCL principal não foi inicializado.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: No such slave interpreter.\n"
-msgstr "%s: Não há tal interpretador escravo.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string.\n"
 
 #, c-format
 msgid "%s: File %s not found.\n"
-msgstr "%s: Arquivo %s não encontrado.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s, at line %i of file %s\n"
 "\t%s.\n"
 msgstr ""
-"%s, na linha %i do arquivo %s\n"
-"\t%s.\n"
+
+#, c-format
+msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: String or vector of strings "
 "expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se um string ou um "
-"vetor de strings.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
-msgstr "%s: Memória esgotada.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Could not read Tcl Variable.\n"
-msgstr "%s: Não foi possível ler a variável Tcl.\n"
+msgstr ""
 
 msgid "Alpha Release"
-msgstr "Lançamento Alpha."
+msgstr ""
 
 msgid "Beta Release"
-msgstr "Lançamento Beta."
+msgstr ""
 
 msgid "Final Release"
-msgstr "Lançamento Final."
+msgstr ""
 
 msgid "Unknown Release"
-msgstr "Lançamento desconhecido."
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr "%s: Valor errado para argumento de entrada #%d: Esperava-se '%s'.\n"
+msgstr ""
 
 msgid "This function doesn't work with Complex.\n"
-msgstr "Esta função não funciona com complexos.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: A real expected.\n"
+msgstr ""
 
 msgid "[] doesn't work with Tcl/Tk.\n"
-msgstr "[] não funciona com Tcl/Tk.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma matriz.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
 msgstr ""
-"%s: Tipo errado para o argumento de entrada #%d ou #%d: Esperava-se um "
-"string.\n"
 
 #, c-format
 msgid "%s: An error occurred: %s\n"
@@ -160,44 +161,6 @@ msgstr ""
 "durante o carregamento de %s: %s\n"
 
 #, c-format
-msgid "TCL_EvalScilabCmd %s"
-msgstr "TCL_EvalScilabCmd %s"
-
-#, c-format
-msgid "Execution starts for %s"
-msgstr "A execução começa para %s"
-
-#, c-format
-msgid "Execution ends for %s"
-msgstr "A execução termina para %s"
-
-msgid " Flushing starts for queued commands.\n"
-msgstr " Flushing começa para os comandos em fila.\n"
-
-msgid "Warning: Too many callbacks in queue!\n"
-msgstr "Aviso: Muitos callbacks na fila!\n"
-
-#, c-format
-msgid "Flushed execution starts for %s - No option"
-msgstr "A execução em flushing começa para %s - Nenhuma opção"
-
-#, c-format
-msgid "Flushed execution starts for %s - seq"
-msgstr "A execução em flushing começa para %s - seq"
-
-#, c-format
-msgid "Flushed execution ends for %s"
-msgstr "A execução em flushing termina para %s"
-
-msgid "Flushing ends\n"
-msgstr "O flushing termina\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): at least one expected.\n"
-msgstr ""
-"%s: Número errado de argumentos de entrada: Esperava-se pelo menos um.\n"
-
-#, c-format
 msgid "Tcl Error : %s\n"
 msgstr "Erro de Tcl : %s\n"
 
@@ -212,23 +175,12 @@ msgstr "Variável muito longa.\n"
 msgid "%s: Error TCL interpreter not initialized.\n"
 msgstr "%s: Erro: interpretador TCL não inicializado.\n"
 
+#, c-format
+msgid "%s: Wrong number of input argument(s): at least one expected.\n"
+msgstr ""
+
 msgid "Scilab TCL/TK module not installed.\n"
 msgstr "Módulo Scilab TCL/TK não instalado.\n"
-
-msgid "Tcl/Tk"
-msgstr ""
-
-msgid "Color"
-msgstr ""
-
-msgid "Puzzle"
-msgstr ""
-
-msgid "Scroll"
-msgstr ""
-
-msgid "Scale"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"

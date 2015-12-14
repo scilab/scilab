@@ -31,7 +31,7 @@
         <para>[N,S] = weekday(D, form) は,
             数値(N) および文字列(S)形式で曜日を返しますが,
             S の内容は form 引数に依存します.
-            form が 'long'の場合, S には完全な曜日 (例: Thuesday)が含まれます.
+            form が 'long'の場合, S には完全な曜日 (例: Tuesday)が含まれます.
             form が 'short'の場合, S には短縮形 (例: Tue) が含まれます.
         </para>
     </refsection>

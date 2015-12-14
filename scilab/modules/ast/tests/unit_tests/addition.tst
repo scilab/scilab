@@ -44,33 +44,34 @@ UI32 = uint32([32 64 ; 96 128]);
 str = "string";
 STR = ["string1" "string2";"string3" "string4"];
 
+warning("off"); // WARNING_EMPTY_OPS
 assert_checkequal(empty + empty, []);
-assert_checkequal(empty + r, 2);
-assert_checkequal(empty + c,  1+%i*2);
-assert_checkequal(empty + R, [1,2;3,4]);
-assert_checkequal(empty + C, [ 1+%i*2, 2+%i*4; 3+%i*6, 4+%i*8]);
-assert_checkequal(empty + e, eye());
-assert_checkequal(empty + ec, ( 5+%i)*eye());
-assert_checkequal(empty + p, 1+s-s^2);
-assert_checkequal(empty + pc, 1+%i*2+(1-%i*3)*s+(-1+%i*4)*s^2);
-assert_checkequal(empty + P, [2+2*s-2*s^2,-3-3*s+3*s^2;4+4*s-4*s^2,-5-5*s+5*s^2]);
-assert_checkequal(empty + PC, [2+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2,-3-%i*6+(-3+%i*9)*s+(3-%i*12)*s^2;4+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-5-%i*10+(-5+%i*15)*s+(5-%i*20)*s^2]);
-assert_checkequal(empty + SP, sparse([1,2;3,10;4,5],[1;3;2],[4,10]));
-assert_checkequal(empty + SPC, sparse([1,2;3,10;4,5],[ 1+%i*4; 3+%i*12; 2+%i*8],[4,10]));
-assert_checkequal(empty + i8, int8(-8));
-assert_checkequal(empty + I8, int8([-8,-16;-24,-32]));
-assert_checkequal(empty + ui8, uint8(8));
-assert_checkequal(empty + UI8, uint8([8,16;24,32]));
-assert_checkequal(empty + i16, int16(-16));
-assert_checkequal(empty + I16, int16([-16,-32;-48,-64]));
-assert_checkequal(empty + ui16, uint16(16));
-assert_checkequal(empty + UI16, uint16([16,32;48,64]));
-assert_checkequal(empty + i32, int32(-32));
-assert_checkequal(empty + I32, int32([-32,-64;-96,-128]));
-assert_checkequal(empty + ui32, uint32(32));
-assert_checkequal(empty + UI32, uint32([32,64;96,128]));
+assert_checkequal(empty + r, []);
+assert_checkequal(empty + c,  empty);
+assert_checkequal(empty + R, []);
+assert_checkequal(empty + C, []);
+assert_checkequal(empty + e, []);
+assert_checkequal(empty + ec, []);
+assert_checkequal(empty + p, []);
+assert_checkequal(empty + pc, []);
+assert_checkequal(empty + P, []);
+assert_checkequal(empty + PC, []);
+assert_checkequal(empty + SP, []);
+assert_checkequal(empty + SPC, []);
+assert_checkequal(empty + i8, []);
+assert_checkequal(empty + I8, []);
+assert_checkequal(empty + ui8, []);
+assert_checkequal(empty + UI8, []);
+assert_checkequal(empty + i16, []);
+assert_checkequal(empty + I16, []);
+assert_checkequal(empty + ui16, []);
+assert_checkequal(empty + UI16, []);
+assert_checkequal(empty + i32, []);
+assert_checkequal(empty + I32, []);
+assert_checkequal(empty + ui32, []);
+assert_checkequal(empty + UI32, []);
 
-assert_checkequal(r + empty, 2);
+assert_checkequal(r + empty, []);
 assert_checkequal(r + r, 4);
 assert_checkequal(r + c,  3+%i*2);
 assert_checkequal(r + R, [3,4;5,6]);
@@ -96,7 +97,7 @@ assert_checkequal(r + I32, int32([-30,-62;-94,-126]));
 assert_checkequal(r + ui32, uint32(34));
 assert_checkequal(r + UI32, uint32([34,66;98,130]));
 
-assert_checkequal(c + empty,  1+%i*2);
+assert_checkequal(c + empty,  empty);
 assert_checkequal(c + r,  3+%i*2);
 assert_checkequal(c + c,  2+%i*4);
 assert_checkequal(c + R, [ 2+%i*2, 3+%i*2; 4+%i*2, 5+%i*2]);
@@ -110,7 +111,7 @@ assert_checkequal(c + PC, [3+%i*6+(2-%i*6)*s+(-2+%i*8)*s^2,-2-%i*4+(-3+%i*9)*s+(
 assert_checkequal(c + SP, [ 1+%i*2, 2+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 4+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 3+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2]);
 assert_checkequal(c + SPC, [ 1+%i*2, 2+%i*6, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 4+%i*14; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 3+%i*10, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2]);
 
-assert_checkequal(R + empty, [1,2;3,4]);
+assert_checkequal(R + empty, []);
 assert_checkequal(R + r, [3,4;5,6]);
 assert_checkequal(R + c, [ 2+%i*2, 3+%i*2; 4+%i*2, 5+%i*2]);
 assert_checkequal(R + R, [2,4;6,8]);
@@ -134,7 +135,7 @@ assert_checkequal(R + I32, int32([-31,-62;-93,-124]));
 assert_checkequal(R + ui32, uint32([33,34;35,36]));
 assert_checkequal(R + UI32, uint32([33,66;99,132]));
 
-assert_checkequal(C + empty, [ 1+%i*2, 2+%i*4; 3+%i*6, 4+%i*8]);
+assert_checkequal(C + empty, []);
 assert_checkequal(C + r, [ 3+%i*2, 4+%i*4; 5+%i*6, 6+%i*8]);
 assert_checkequal(C + c, [ 2+%i*4, 3+%i*6; 4+%i*8, 5+%i*10]);
 assert_checkequal(C + R, [ 2+%i*2, 4+%i*4; 6+%i*6, 8+%i*8]);
@@ -146,7 +147,7 @@ assert_checkequal(C + pc, [2+%i*4+(1-%i*3)*s+(-1+%i*4)*s^2,3+%i*6+(1-%i*3)*s+(-1
 assert_checkequal(C + P, [3+%i*2+2*s-2*s^2,-1+%i*4-3*s+3*s^2;7+%i*6+4*s-4*s^2,-1+%i*8-5*s+5*s^2]);
 assert_checkequal(C + PC, [3+%i*6+(2-%i*6)*s+(-2+%i*8)*s^2,-1-%i*2+(-3+%i*9)*s+(3-%i*12)*s^2;7+%i*14+(4-%i*12)*s+(-4+%i*16)*s^2,-1-%i*2+(-5+%i*15)*s+(5-%i*20)*s^2]);
 
-assert_checkequal(e + empty, eye());
+assert_checkequal(e + empty, []);
 assert_checkequal(e + r, 3);
 assert_checkequal(e + c,  2+%i*2);
 assert_checkequal(e + R, [2,2;3,5]);
@@ -160,7 +161,7 @@ assert_checkequal(e + PC, [3+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2,-3-%i*6+(-3+%i*9)*s+(
 assert_checkequal(e + SP, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[1;1;1;1;3;1;2],[4,10]));
 assert_checkequal(e + SPC, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 1; 1+%i*4; 1; 1; 3+%i*12; 1; 2+%i*8],[4,10]));
 
-assert_checkequal(ec + empty, ( 5+%i)*eye());
+assert_checkequal(ec + empty, []);
 assert_checkequal(ec + r,  7+%i);
 assert_checkequal(ec + c,  6+%i*3);
 assert_checkequal(ec + R, [ 6+%i, 2; 3, 9+%i]);
@@ -174,7 +175,7 @@ assert_checkequal(ec + PC, [7+%i*5+(2-%i*6)*s+(-2+%i*8)*s^2,-3-%i*6+(-3+%i*9)*s+
 assert_checkequal(ec + SP, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1; 5+%i; 5+%i; 3; 5+%i; 2],[4,10]));
 assert_checkequal(ec + SPC, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1+%i*4; 5+%i; 5+%i; 3+%i*12; 5+%i; 2+%i*8],[4,10]));
 
-assert_checkequal(p + empty, 1+s-s^2);
+assert_checkequal(p + empty, []);
 assert_checkequal(p + r, 3+s-s^2);
 assert_checkequal(p + c, 2+%i*2+s-s^2);
 assert_checkequal(p + R, [2+s-s^2,3+s-s^2;4+s-s^2,5+s-s^2]);
@@ -186,7 +187,7 @@ assert_checkequal(p + pc, 2+%i*2+(2-%i*3)*s+(-2+%i*4)*s^2);
 assert_checkequal(p + P, [3+3*s-3*s^2,-2-2*s+2*s^2;5+5*s-5*s^2,-4-4*s+4*s^2]);
 assert_checkequal(p + PC, [3+%i*4+(3-%i*6)*s+(-3+%i*8)*s^2,-2-%i*6+(-2+%i*9)*s+(2-%i*12)*s^2;5+%i*8+(5-%i*12)*s+(-5+%i*16)*s^2,-4-%i*10+(-4+%i*15)*s+(4-%i*20)*s^2]);
 
-assert_checkequal(pc + empty, 1+%i*2+(1-%i*3)*s+(-1+%i*4)*s^2);
+assert_checkequal(pc + empty, []);
 assert_checkequal(pc + r, 3+%i*2+(1-%i*3)*s+(-1+%i*4)*s^2);
 assert_checkequal(pc + c, 2+%i*4+(1-%i*3)*s+(-1+%i*4)*s^2);
 assert_checkequal(pc + R, [2+%i*2+(1-%i*3)*s+(-1+%i*4)*s^2,3+%i*2+(1-%i*3)*s+(-1+%i*4)*s^2;4+%i*2+(1-%i*3)*s+(-1+%i*4)*s^2,5+%i*2+(1-%i*3)*s+(-1+%i*4)*s^2]);
@@ -198,7 +199,7 @@ assert_checkequal(pc + pc, 2+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2);
 assert_checkequal(pc + P, [3+%i*2+(3-%i*3)*s+(-3+%i*4)*s^2,-2+%i*2+(-2-%i*3)*s+(2+%i*4)*s^2;5+%i*2+(5-%i*3)*s+(-5+%i*4)*s^2,-4+%i*2+(-4-%i*3)*s+(4+%i*4)*s^2]);
 assert_checkequal(pc + PC, [3+%i*6+(3-%i*9)*s+(-3+%i*12)*s^2,-2-%i*4+(-2+%i*6)*s+(2-%i*8)*s^2;5+%i*10+(5-%i*15)*s+(-5+%i*20)*s^2,-4-%i*8+(-4+%i*12)*s+(4-%i*16)*s^2]);
 
-assert_checkequal(P + empty, [2+2*s-2*s^2,-3-3*s+3*s^2;4+4*s-4*s^2,-5-5*s+5*s^2]);
+assert_checkequal(P + empty, []);
 assert_checkequal(P + r, [4+2*s-2*s^2,-1-3*s+3*s^2;6+4*s-4*s^2,-3-5*s+5*s^2]);
 assert_checkequal(P + c, [3+%i*2+2*s-2*s^2,-2+%i*2-3*s+3*s^2;5+%i*2+4*s-4*s^2,-4+%i*2-5*s+5*s^2]);
 assert_checkequal(P + R, [3+2*s-2*s^2,-1-3*s+3*s^2;7+4*s-4*s^2,-1-5*s+5*s^2]);
@@ -210,7 +211,7 @@ assert_checkequal(P + pc, [3+%i*2+(3-%i*3)*s+(-3+%i*4)*s^2,-2+%i*2+(-2-%i*3)*s+(
 assert_checkequal(P + P, [4+4*s-4*s^2,-6-6*s+6*s^2;8+8*s-8*s^2,-10-10*s+10*s^2]);
 assert_checkequal(P + PC, [4+%i*4+(4-%i*6)*s+(-4+%i*8)*s^2,-6-%i*6+(-6+%i*9)*s+(6-%i*12)*s^2;8+%i*8+(8-%i*12)*s+(-8+%i*16)*s^2,-10-%i*10+(-10+%i*15)*s+(10-%i*20)*s^2]);
 
-assert_checkequal(PC + empty, [2+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2,-3-%i*6+(-3+%i*9)*s+(3-%i*12)*s^2;4+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-5-%i*10+(-5+%i*15)*s+(5-%i*20)*s^2]);
+assert_checkequal(PC + empty, []);
 assert_checkequal(PC + r, [4+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2,-1-%i*6+(-3+%i*9)*s+(3-%i*12)*s^2;6+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-3-%i*10+(-5+%i*15)*s+(5-%i*20)*s^2]);
 assert_checkequal(PC + c, [3+%i*6+(2-%i*6)*s+(-2+%i*8)*s^2,-2-%i*4+(-3+%i*9)*s+(3-%i*12)*s^2;5+%i*10+(4-%i*12)*s+(-4+%i*16)*s^2,-4-%i*8+(-5+%i*15)*s+(5-%i*20)*s^2]);
 assert_checkequal(PC + R, [3+%i*4+(2-%i*6)*s+(-2+%i*8)*s^2,-1-%i*6+(-3+%i*9)*s+(3-%i*12)*s^2;7+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-1-%i*10+(-5+%i*15)*s+(5-%i*20)*s^2]);
@@ -222,7 +223,7 @@ assert_checkequal(PC + pc, [3+%i*6+(3-%i*9)*s+(-3+%i*12)*s^2,-2-%i*4+(-2+%i*6)*s
 assert_checkequal(PC + P, [4+%i*4+(4-%i*6)*s+(-4+%i*8)*s^2,-6-%i*6+(-6+%i*9)*s+(6-%i*12)*s^2;8+%i*8+(8-%i*12)*s+(-8+%i*16)*s^2,-10-%i*10+(-10+%i*15)*s+(10-%i*20)*s^2]);
 assert_checkequal(PC + PC, [4+%i*8+(4-%i*12)*s+(-4+%i*16)*s^2,-6-%i*12+(-6+%i*18)*s+(6-%i*24)*s^2;8+%i*16+(8-%i*24)*s+(-8+%i*32)*s^2,-10-%i*20+(-10+%i*30)*s+(10-%i*40)*s^2]);
 
-assert_checkequal(SP + empty, sparse([1,2;3,10;4,5],[1;3;2],[4,10]));
+assert_checkequal(SP + empty, []);
 assert_checkequal(SP + r, [2,3,2,2,2,2,2,2,2,2;2,2,2,2,2,2,2,2,2,2;2,2,2,2,2,2,2,2,2,5;2,2,2,2,4,2,2,2,2,2]);
 assert_checkequal(SP + c, [ 1+%i*2, 2+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 4+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 3+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2]);
 assert_checkequal(SP + e, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[1;1;1;1;3;1;2],[4,10]));
@@ -230,7 +231,7 @@ assert_checkequal(SP + ec, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1; 5+%i
 assert_checkequal(SP + SP, sparse([1,2;3,10;4,5],[2;6;4],[4,10]));
 assert_checkequal(SP + SPC, sparse([1,2;3,10;4,5],[ 2+%i*4; 6+%i*12; 4+%i*8],[4,10]));
 
-assert_checkequal(SPC + empty, sparse([1,2;3,10;4,5],[ 1+%i*4; 3+%i*12; 2+%i*8],[4,10]));
+assert_checkequal(SPC + empty, []);
 assert_checkequal(SPC + r, [ 2, 3+%i*4, 2, 2, 2, 2, 2, 2, 2, 2; 2, 2, 2, 2, 2, 2, 2, 2, 2, 2; 2, 2, 2, 2, 2, 2, 2, 2, 2, 5+%i*12; 2, 2, 2, 2, 4+%i*8, 2, 2, 2, 2, 2]);
 assert_checkequal(SPC + c, [ 1+%i*2, 2+%i*6, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 4+%i*14; 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 3+%i*10, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2, 1+%i*2]);
 assert_checkequal(SPC + e, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 1; 1+%i*4; 1; 1; 3+%i*12; 1; 2+%i*8],[4,10]));
@@ -238,7 +239,7 @@ assert_checkequal(SPC + ec, sparse([1,1;1,2;2,2;3,3;3,10;4,4;4,5],[ 5+%i; 1+%i*4
 assert_checkequal(SPC + SP, sparse([1,2;3,10;4,5],[ 2+%i*4; 6+%i*12; 4+%i*8],[4,10]));
 assert_checkequal(SPC + SPC, sparse([1,2;3,10;4,5],[ 2+%i*8; 6+%i*24; 4+%i*16],[4,10]));
 
-assert_checkequal(i8 + empty, int8(-8));
+assert_checkequal(i8 + empty, []);
 assert_checkequal(i8 + r, int8(-6));
 assert_checkequal(i8 + R, int8([-7,-6;-5,-4]));
 assert_checkequal(i8 + i8, int8(-16));
@@ -254,7 +255,7 @@ assert_checkequal(i8 + I32, int32([-40,-72;-104,-136]));
 assert_checkequal(i8 + ui32, uint32(24));
 assert_checkequal(i8 + UI32, uint32([24,56;88,120]));
 
-assert_checkequal(I8 + empty, int8([-8,-16;-24,-32]));
+assert_checkequal(I8 + empty, []);
 assert_checkequal(I8 + r, int8([-6,-14;-22,-30]));
 assert_checkequal(I8 + R, int8([-7,-14;-21,-28]));
 assert_checkequal(I8 + i8, int8([-16,-24;-32,-40]));
@@ -270,7 +271,7 @@ assert_checkequal(I8 + I32, int32([-40,-80;-120,-160]));
 assert_checkequal(I8 + ui32, uint32([24,16;8,0]));
 assert_checkequal(I8 + UI32, uint32([24,48;72,96]));
 
-assert_checkequal(ui8 + empty, uint8(8));
+assert_checkequal(ui8 + empty, []);
 assert_checkequal(ui8 + r, uint8(10));
 assert_checkequal(ui8 + R, uint8([9,10;11,12]));
 assert_checkequal(ui8 + i8, uint8(0));
@@ -286,7 +287,7 @@ assert_checkequal(ui8 + I32, uint32([4294967272,4294967240;4294967208,4294967176
 assert_checkequal(ui8 + ui32, uint32(40));
 assert_checkequal(ui8 + UI32, uint32([40,72;104,136]));
 
-assert_checkequal(UI8 + empty, uint8([8,16;24,32]));
+assert_checkequal(UI8 + empty, []);
 assert_checkequal(UI8 + r, uint8([10,18;26,34]));
 assert_checkequal(UI8 + R, uint8([9,18;27,36]));
 assert_checkequal(UI8 + i8, uint8([0,8;16,24]));
@@ -302,7 +303,7 @@ assert_checkequal(UI8 + I32, uint32([4294967272,4294967248;4294967224,4294967200
 assert_checkequal(UI8 + ui32, uint32([40,48;56,64]));
 assert_checkequal(UI8 + UI32, uint32([40,80;120,160]));
 
-assert_checkequal(i16 + empty, int16(-16));
+assert_checkequal(i16 + empty, []);
 assert_checkequal(i16 + r, int16(-14));
 assert_checkequal(i16 + R, int16([-15,-14;-13,-12]));
 assert_checkequal(i16 + i8, int16(-24));
@@ -318,7 +319,7 @@ assert_checkequal(i16 + I32, int32([-48,-80;-112,-144]));
 assert_checkequal(i16 + ui32, uint32(16));
 assert_checkequal(i16 + UI32, uint32([16,48;80,112]));
 
-assert_checkequal(I16 + empty, int16([-16,-32;-48,-64]));
+assert_checkequal(I16 + empty, []);
 assert_checkequal(I16 + r, int16([-14,-30;-46,-62]));
 assert_checkequal(I16 + R, int16([-15,-30;-45,-60]));
 assert_checkequal(I16 + i8, int16([-24,-40;-56,-72]));
@@ -334,7 +335,7 @@ assert_checkequal(I16 + I32, int32([-48,-96;-144,-192]));
 assert_checkequal(I16 + ui32, uint32([16,0;4294967280,4294967264]));
 assert_checkequal(I16 + UI32, uint32([16,32;48,64]));
 
-assert_checkequal(ui16 + empty, uint16(16));
+assert_checkequal(ui16 + empty, []);
 assert_checkequal(ui16 + r, uint16(18));
 assert_checkequal(ui16 + R, uint16([17,18;19,20]));
 assert_checkequal(ui16 + i8, uint16(8));
@@ -350,7 +351,7 @@ assert_checkequal(ui16 + I32, uint32([4294967280,4294967248;4294967216,429496718
 assert_checkequal(ui16 + ui32, uint32(48));
 assert_checkequal(ui16 + UI32, uint32([48,80;112,144]));
 
-assert_checkequal(UI16 + empty, uint16([16,32;48,64]));
+assert_checkequal(UI16 + empty, []);
 assert_checkequal(UI16 + r, uint16([18,34;50,66]));
 assert_checkequal(UI16 + R, uint16([17,34;51,68]));
 assert_checkequal(UI16 + i8, uint16([8,24;40,56]));
@@ -366,7 +367,7 @@ assert_checkequal(UI16 + I32, uint32([4294967280,4294967264;4294967248,429496723
 assert_checkequal(UI16 + ui32, uint32([48,64;80,96]));
 assert_checkequal(UI16 + UI32, uint32([48,96;144,192]));
 
-assert_checkequal(i32 + empty, int32(-32));
+assert_checkequal(i32 + empty, []);
 assert_checkequal(i32 + r, int32(-30));
 assert_checkequal(i32 + R, int32([-31,-30;-29,-28]));
 assert_checkequal(i32 + i8, int32(-40));
@@ -382,7 +383,7 @@ assert_checkequal(i32 + I32, int32([-64,-96;-128,-160]));
 assert_checkequal(i32 + ui32, uint32(0));
 assert_checkequal(i32 + UI32, uint32([0,32;64,96]));
 
-assert_checkequal(I32 + empty, int32([-32,-64;-96,-128]));
+assert_checkequal(I32 + empty, []);
 assert_checkequal(I32 + r, int32([-30,-62;-94,-126]));
 assert_checkequal(I32 + R, int32([-31,-62;-93,-124]));
 assert_checkequal(I32 + i8, int32([-40,-72;-104,-136]));
@@ -398,7 +399,7 @@ assert_checkequal(I32 + I32, int32([-64,-128;-192,-256]));
 assert_checkequal(I32 + ui32, uint32([0,4294967264;4294967232,4294967200]));
 assert_checkequal(I32 + UI32, uint32([0,0;0,0]));
 
-assert_checkequal(ui32 + empty, uint32(32));
+assert_checkequal(ui32 + empty, []);
 assert_checkequal(ui32 + r, uint32(34));
 assert_checkequal(ui32 + R, uint32([33,34;35,36]));
 assert_checkequal(ui32 + i8, uint32(24));
@@ -414,7 +415,7 @@ assert_checkequal(ui32 + I32, uint32([0,4294967264;4294967232,4294967200]));
 assert_checkequal(ui32 + ui32, uint32(64));
 assert_checkequal(ui32 + UI32, uint32([64,96;128,160]));
 
-assert_checkequal(UI32 + empty, uint32([32,64;96,128]));
+assert_checkequal(UI32 + empty, []);
 assert_checkequal(UI32 + r, uint32([34,66;98,130]));
 assert_checkequal(UI32 + R, uint32([33,66;99,132]));
 assert_checkequal(UI32 + i8, uint32([24,56;88,120]));
@@ -430,10 +431,10 @@ assert_checkequal(UI32 + I32, uint32([0,0;0,0]));
 assert_checkequal(UI32 + ui32, uint32([64,96;128,160]));
 assert_checkequal(UI32 + UI32, uint32([64,128;192,256]));
 
-assert_checkequal(str + empty, "string");
+assert_checkequal(str + empty, []);
 assert_checkequal(str + str, "stringstring");
 assert_checkequal(str + STR, ["stringstring1","stringstring2";"stringstring3","stringstring4"]);
 
-assert_checkequal(STR + empty, ["string1","string2";"string3","string4"]);
+assert_checkequal(STR + empty, []);
 assert_checkequal(STR + str, ["string1string","string2string";"string3string","string4string"]);
 assert_checkequal(STR + STR, ["string1string1","string2string2";"string3string3","string4string4"]);

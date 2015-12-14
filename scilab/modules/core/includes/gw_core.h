@@ -17,7 +17,7 @@
 /*--------------------------------------------------------------------------*/
 int gw_core(void);
 /*--------------------------------------------------------------------------*/
-C_GATEWAY_PROTOTYPE(C2F(sci_debug));
+STACK_GATEWAY_PROTOTYPE(C2F(sci_debug));
 int C2F(sci_who)(char *fname, unsigned long fname_len);
 //int C2F(sci_warning)(char *fname,unsigned long fname_len); -> C++
 //int C2F(sci_mode)(char *fname, unsigned long fname_len); -> c++
@@ -26,7 +26,7 @@ int C2F(sci_resume)(char *fname, unsigned long fname_len);
 int C2F(sci_return)(char *fname, unsigned long fname_len);
 int C2F(sci_isdef)(char *fname, unsigned long fname_len);
 //int C2F(sci_errclear)(char *fname, unsigned long fname_len); -> C++
-C_GATEWAY_PROTOTYPE(C2F(sci_predef));
+STACK_GATEWAY_PROTOTYPE(C2F(sci_predef));
 int C2F(sci_clearfun)(char *fname, unsigned long fname_len);
 int C2F(sci_funptr)(char *fname, unsigned long fname_len);
 //int C2F(sci_macr2lst)(char *fname, unsigned long fname_len);
@@ -48,13 +48,12 @@ int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len);
 int C2F(sci_librarieslist)(char *fname, unsigned long fname_len);
 //int C2F(sci_getvariablesonstack)(char *fname, unsigned long fname_len);
 
-//C_GATEWAY_PROTOTYPE(sci_typename); -> c++
+//STACK_GATEWAY_PROTOTYPE(sci_typename); -> c++
 int C2F(sci_funcprot)(char *fname, void* pvApiCtx);
 //int C2F(sci_newfun)(char *fname, void* pvApiCtx); -> C++
 
 //Scilab 6
-C_GATEWAY_PROTOTYPE(sci_type);
-C_GATEWAY_PROTOTYPE(sci_getdebuginfo);
+STACK_GATEWAY_PROTOTYPE(sci_getdebuginfo);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_CORE__ */
 /*--------------------------------------------------------------------------*/

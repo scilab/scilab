@@ -25,7 +25,7 @@
     <refsection>
         <title>Description</title>
         <para>Considering the current figure, this function can be used to draw the
-            hidden graphics entities and all its chidren, that may have been postponed
+            hidden graphics entities and all its children, that may have been postponed
             by a previous call to <literal>drawlater</literal>. The
             <literal>immediate_drawing</literal> property of the <literal>current figure</literal>
             is set to <literal>"on" </literal>.

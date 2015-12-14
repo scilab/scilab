@@ -378,7 +378,7 @@ public class MatchingBlockManager {
          * @param bounds the bounds
          * @param c the text component where to paint
          * @param view the view to use
-         * @return the shape containg the highlighted text
+         * @return the shape containing the highlighted text
          */
         public Shape paintLayer(Graphics g, int offs0, int offs1,
                                 Shape bounds, JTextComponent c, View view) {

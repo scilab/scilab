@@ -47,7 +47,7 @@
             <simplelist type="inline">
                 <member>constant (real not complex) into double;</member><member>string into String;</member><member>boolean into boolean;</member><member>int8 into byte;</member><member>uint8 into short;</member><member>int16 into short;</member><member>uint16 into int;</member><member>int32 into int;</member><member>uint32 into long.</member>
             </simplelist>
-            The matrices are wrapped into arrays too, e.g. an int8 matrix 3x4 is wraped into a <literal>byte[3][4]</literal> or <literal>byte[4][3]</literal> depending on conversion method which can be changed in using the command <link linkend="jconvMatrixMethod">jconvMatrixMethod</link>.
+            The matrices are wrapped into arrays too, e.g. an int8 matrix 3x4 is wrapped into a <literal>byte[3][4]</literal> or <literal>byte[4][3]</literal> depending on conversion method which can be changed in using the command <link linkend="jconvMatrixMethod">jconvMatrixMethod</link>.
             You should take care that the range of the index is the same as in Java, so <literal>a(0)</literal> is valid.
         </para>
         <para>

@@ -75,7 +75,7 @@ function flag=xcos_debug_gui(flag,block)
     _("Initialization")
     _("Ending")
     _("ReInitialization")
-    _("Continous states properties update")
+    _("Continuous states properties update")
     ""
     _("Zero crossing surfaces computation")
     _("Residual computation")];

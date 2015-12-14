@@ -98,7 +98,7 @@
                         In normal mode: <literal>loc</literal> and <literal>N</literal> have the same format. <literal>loc(i, j, ...)</literal> returns the smallest linearized index in <literal>H</literal> where <literal>N(i, j, ...)</literal> occurs. If the <literal>"last"</literal> flag is used, the greatest linearized index is returned instead. If <literal>N(i, j, ...)</literal> in not found in <literal>H</literal>, <literal>loc(i, j, ...)</literal> is set to <literal>0</literal>.
                     </para>
                     <para>
-                        In <literal>"rows"</literal> or <literal>"cols"</literal> mode: <literal>loc</literal> is a row of reals with as many components as <literal>N</literal> has respectively rows or columns. <literal>loc(i)</literal> returns the index of the first line <literal>H(loc(i), :)</literal> matching <literal>N(i, :)</literal> (or the index of the first column <literal>H(:, loc(i))</literal> matching <literal>N(:, i)</literal>). If the <literal>"shuffle"</literal> flag is additionaly specified, the order of components along the rows/columns is not considered.
+                        In <literal>"rows"</literal> or <literal>"cols"</literal> mode: <literal>loc</literal> is a row of reals with as many components as <literal>N</literal> has respectively rows or columns. <literal>loc(i)</literal> returns the index of the first line <literal>H(loc(i), :)</literal> matching <literal>N(i, :)</literal> (or the index of the first column <literal>H(:, loc(i))</literal> matching <literal>N(:, i)</literal>). If the <literal>"shuffle"</literal> flag is additionally specified, the order of components along the rows/columns is not considered.
                     </para>
                 </listitem>
             </varlistentry>
@@ -116,7 +116,7 @@
             In normal mode, <literal>%nan</literal> are supported in <literal>N</literal> but not in <literal>H</literal>. In <literal>"rows"</literal> or <literal>"cols"</literal> modes, <literal>%nan</literal> are supported everywhere.
         </para>
         <para>
-            In normal element-wise mode, members(..) uses <link linkend="dsearch">dsearch(..)</link> to fastly proceed with booleans, integer-encoded numbers (any length 8-16-32 bits signed or not), and real numbers. For complex numbers, texts, and polynomials, a slower and more memory-consuming algorithm is used. For long calculations, a progression bar is displayed.
+            In normal element-wise mode, members(..) uses <link linkend="dsearch">dsearch(..)</link> to proceed fast with booleans, integer-encoded numbers (any length 8-16-32 bits signed or not), and real numbers. For complex numbers, texts, and polynomials, a slower and more memory-consuming algorithm is used. For long calculations, a progression bar is displayed.
         </para>
     </refsection>
     <refsection>

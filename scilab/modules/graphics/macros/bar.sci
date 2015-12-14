@@ -14,7 +14,7 @@ function  bar(varargin)
     //
     // Input :
     // x : a real scalar or a vector
-    // y : a real sclar, or a vector
+    // y : a real scalar, or a vector
     // width : a double, the bar width, it's the percentage (0<width<1) of the width max of one bar which is wanted (default: width=0.8)
     // style : a string 'grouped' or 'stacked' (default: style='grouped')
 

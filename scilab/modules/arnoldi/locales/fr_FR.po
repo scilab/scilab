@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-19 11:40+0000\n"
-"Last-Translator: Julie PAUL <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:04+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
 
 #, c-format
@@ -35,8 +35,8 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input argument %s: A matrix of size %dx%d expected.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée %s : Une matrice de taille %dx"
-"%d attendue.\n"
+"%s : Dimension erronée de l'argument d'entrée %s : Une matrice de taille "
+"%dx%d attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: string expected.\n"
@@ -44,38 +44,12 @@ msgstr ""
 "%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
 
 #, c-format
+msgid "%s: internal error, info=%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice carrée attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An empty matrix or full or sparse "
-"square matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice vide ou une "
-"matrice carrée, dense ou creuse attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong dimension for input argument #%d: B must have the same size as A.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : B doit avoir la même "
-"taille que A.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : k doit être un entier "
-"positif.\n"
 
 #, c-format
 msgid ""
@@ -83,15 +57,6 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n%d : k doit être compris entre 1 "
 "et N.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Unrecognized sigma value.\n"
-" Sigma must be one of '%s', '%s', '%s', '%s' or '%s'.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Valeur sigma non "
-"reconnue.\n"
-" Sigma doit être '%s', '%s', '%s', '%s' ou '%s'.\n"
 
 #, c-format
 msgid ""
@@ -105,101 +70,25 @@ msgstr ""
 " "
 
 #, c-format
-msgid "%s: Invalid sigma value for complex or non symmetric problem.\n"
-msgstr ""
-"%s : Valeur de sigma invalide pour des problèmes complexes ou non "
-"symétriques.\n"
-
-#, c-format
-msgid "%s: Invalid sigma value for real symmetric problem.\n"
-msgstr "%s : Valeur de sigma invalide pour des problèmes réels symétriques.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: sigma must be a real.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : sigma doit être un réel.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be a scalar.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : %s doit être un scalaire.\n"
-
-#, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer positive "
-"value.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : %s doit être une valeur "
-"entière positive.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : %s doit être un scalaire "
-"réel.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : %s doit être un scalaire "
-"entier.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar or a "
-"boolean.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n%d : %s doit être un scalaire "
-"entier ou un booléen.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %s doit être %s ou %s.\n"
-
-#, c-format
-msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s : N n'est pas définie positive. Essayez avec sigma='SM' ou sigma "
 "scalaire.\n"
 
 #, c-format
 msgid "%s: If opts.cholB is true, B should be upper triangular.\n"
-msgstr "%s : Si opts.cholB est vrai, B devrait être triangulaire supérieure.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A real or complex matrix expected.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice réelle ou "
-"complexe attendue.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong dimension for input argument #%d: Start vector %s must be N by 1.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Le vecteur de début %s "
-"doit être N par 1.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Start vector %s must be real for real "
-"problems.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Le vecteur de début %s doit "
-"être réel pour des problèmes réels.\n"
+"%s : Si opts.cholB est vrai, B devrait être triangulaire supérieure.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real symmetric problems, NCV "
-"must be k < NCV <= N.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Pour des problèmes réels "
-"symétriques, NCV doit être k < NCV <= N.\n"
 
 #, c-format
 msgid ""
@@ -208,31 +97,6 @@ msgid ""
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Pour des problèmes réels "
 "non symétriques, NCV doit être k + 2 < NCV <= N.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For complex problems, NCV must be k "
-"+ 1 < NCV <= N.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Pour des problèmes "
-"complexes, NCV doit être k + 1 < NCV <= N.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real symmetric problems, k must "
-"be an integer in the range 1 to N - 1.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Pour des problèmes réels "
-"symétriques, K doit être un entier compris entre 1 et N -1.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: For real non symmetric or complex "
-"problems, k must be an integer in the range 1 to N - 2.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Pour des problèmes réels "
-"non symétriques ou complexes, k doit être un entier compris entre 1 et N - "
-"2.\n"
 
 #, c-format
 msgid ""
@@ -245,10 +109,6 @@ msgstr ""
 #, c-format
 msgid "%s: Error with %s: info = %d \n"
 msgstr "%s : Erreur avec %s : info = %d \n"
-
-#, c-format
-msgid "%s: Error with %s: unknown mode returned.\n"
-msgstr "%s : Erreur avec %s : mode inconnu retourné.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -276,7 +136,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A structure expected"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une structure attendue."
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Une structure attendue."
 
 #, c-format
 msgid ""
@@ -285,6 +146,12 @@ msgid ""
 msgstr ""
 "%s : Type erroné de l'argument d'entrée : Si A est une matrice, utilisez "
 "opts avec tol, maxiter, ncv, resid, cholB."
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument: If A is a function, use opts with tol, "
+"maxiter, ncv, resid, cholB, issym"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
@@ -351,7 +218,8 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s : Erreur avec %s: info = %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : n doit être un entier "
 "positif.\n"
@@ -374,7 +242,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a scalar expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a string expected.\n"
@@ -420,16 +289,16 @@ msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be real "
 "for real problems.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Le vecteur de début opts."
-"resid doit être réel pour des problèmes réels.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Le vecteur de début "
+"opts.resid doit être réel pour des problèmes réels.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Start vector opts.resid must be "
 "complex for complex problems.\n"
 msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Le vecteur de début opts."
-"resid doit être complexe pour des problèmes complexes.\n"
+"%s : Type erroné de l'argument d'entrée n°%d : Le vecteur de début "
+"opts.resid doit être complexe pour des problèmes complexes.\n"
 
 #, c-format
 msgid ""

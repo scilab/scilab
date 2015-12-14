@@ -19,17 +19,21 @@ function y = tand(x)
     if rhs <> 1 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"tand", 1));
     end
-    
+
     if type(x)<>1 | ~isreal(x) then
         error(msprintf(gettext("%s: Wrong type for input argument #%d: Real matrix expected.\n"),"tand",1));
     end
 
     // Argument reduction toward [-90,90[
-    n = round(x / 180);
-    x = x - n * 180;
-    y = tan(%pi/180*x);
-    // Set all singular points to nan
-    m = pmodulo(x + 90, 180);
-    y(m == 0) = %nan;
+    if ~isempty(x)
+        n = round(x / 180);
+        x = x - n * 180;
+        y = tan(%pi/180*x);
+        // Set all singular points to nan
+        m = pmodulo(x + 90, 180);
+        y(m == 0) = %nan;
+    else
+        y = []
+    end
 endfunction
 

@@ -229,6 +229,9 @@
     <ProjectReference Include="..\core\sci_gateway\cpp\core_gw.vcxproj">
       <Project>{3e933eb6-d427-4828-9b30-b6b9987491f6}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\coverage\coverage.vcxproj">
+      <Project>{b150e4a2-2ec1-4be0-b416-95cfeb13e2ff}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\data_structures\src\c\data_structures.vcxproj">
       <Project>{b7a168a0-dfc0-4c6d-b0cc-6079912a4a76}</Project>
     </ProjectReference>
@@ -343,9 +346,6 @@
     <ProjectReference Include="..\time\sci_gateway\cpp\time_gw.vcxproj">
       <Project>{28305722-6486-481d-bd0f-b4398d8a09c5}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-    <ProjectReference Include="..\types\sci_gateway\cpp\types_gw.vcxproj">
-      <Project>{c2e5f4f6-5ee7-4b36-bfac-4ac36bb41420}</Project>
     </ProjectReference>
     <ProjectReference Include="..\ui_data\src\c\ui_data.vcxproj">
       <Project>{142d643b-a9ec-49db-9d48-a925a20f63b1}</Project>

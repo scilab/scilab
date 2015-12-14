@@ -8,32 +8,20 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 11:40+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
-#
-# File: sci_gateway/c/gw_helptools.c, line: 38
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "-nogui または -nwni モードで Scilab '%s' モジュールは無効です。\n"
-
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#
-# File: macros/help.sci, line: 24
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 単一文字列を想定します。\n"
 
 #
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 171
@@ -55,8 +43,8 @@ msgid ""
 "If Scilab is started in a chroot, you might want to try to set the two "
 "environment variables: SCI_DISABLE_TK=1 SCI_JAVA_ENABLE_HEADLESS=1\n"
 msgstr ""
-"Scilabがchrootで起動された場合,ユーザが以下の2つの環境変数を設定する可能性が"
-"あります :  SCI_DISABLE_TK=1, SCI_JAVA_ENABLE_HEADLESS=1\n"
+"Scilabがchrootで起動された場合,ユーザが以下の2つの環境変数を設定する可能性があります :  SCI_DISABLE_TK=1, "
+"SCI_JAVA_ENABLE_HEADLESS=1\n"
 
 #
 # File: sci_gateway/nogui/nogui.c, line: 20
@@ -66,9 +54,6 @@ msgstr "Scilab '%s' モジュールはインストールされていません。
 
 msgid "Version"
 msgstr "バージョン"
-
-msgid "Description"
-msgstr "説明"
 
 #
 # File: macros/clean_help.sci, line: 44
@@ -95,8 +80,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 真偽値を想定します。\n"
 # File: macros/xmltoformat.sci, line: 60
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr ""
-"%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
+msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 等しいサイズを想定します。\n"
 
 #
 # File: macros/help.sci, line: 24
@@ -132,8 +116,7 @@ msgstr "%s: 入力引数で不正な値: %d から %d を想定します。\n"
 # File: macros/xmltoformat.sci, line: 686
 #, c-format
 msgid "%s: Directory %s does not exist or read access denied."
-msgstr ""
-"%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
+msgstr "%s: ディレクトリー %s は、存在しません。あるいは、読みこみは拒否されました。"
 
 #
 # File: macros/clean_help.sci, line: 112
@@ -156,8 +139,7 @@ msgstr "%s: ヘルプファイル(.jar) がインストールされていませ�
 msgid ""
 "%s: Wrong value for input argument #%d: A valid existing directory is "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
+msgstr "%s: 入力引数 #%d で不正な値: 適当な既に在るディレクトリを想定します。\n"
 
 #, c-format
 msgid "%s: Reading from directory %s\n"
@@ -387,16 +369,13 @@ msgstr "%s: CHAPTER ファイルは 行 %d で満足にフォーマットされ�
 # File: macros/help.sci, line: 24
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
-msgstr ""
-"%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定しま"
-"す。\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr "%s: 入力引数 #%d で不正な値: last_successful_buildで文字列の終了を想定します。\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr ""
-"%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
+msgstr "%s: last_successful_build ファイルは 行 %d で満足にフォーマットされません\n"
 
 #
 # File: sci_gateway/cpp/sci_buildDoc.cpp, line: 80

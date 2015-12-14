@@ -82,15 +82,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -113,7 +110,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049,4217 </AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;differential_equations.lib;string.lib;elementary_functions.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;differential_equations.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>differential_equations_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -128,15 +125,12 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -162,7 +156,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049,4217 </AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;differential_equations.lib;string.lib;elementary_functions.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;differential_equations.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>differential_equations_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -177,15 +171,12 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -209,7 +200,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049,4217 </AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;differential_equations.lib;string.lib;elementary_functions.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;differential_equations.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>differential_equations_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -226,15 +217,12 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)differential_equations_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)differential_equations.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Output_stream_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)Output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)elementary_functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -261,7 +249,7 @@ cd ..
     </PreLinkEvent>
     <Link>
       <AdditionalOptions>/ignore:4049,4217 </AdditionalOptions>
-      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;core.lib;differential_equations.lib;string.lib;elementary_functions.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;core_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/blasplus.lib;../../../../bin/lapack.lib;../../../../bin/libf2c.lib;differential_equations.lib;output_stream.lib;elementary_functions_f.lib;linpack_f.lib;slatec_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>differential_equations_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -411,15 +399,11 @@ cd ..
     <f2c_rule Include="xsetun.f" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Core_f_Import.def" />
     <None Include="differential_equations_Import.def" />
     <None Include="Elementary_functions_f_Import.def" />
-    <None Include="Elementary_functions_Import.def" />
-    <None Include="core_import.def" />
     <None Include="linpack_f_Import.def" />
     <None Include="Output_stream_Import.def" />
     <None Include="slatec_f_Import.def" />
-    <None Include="String_Import.def" />
     <None Include="..\..\sci_gateway\differential_equations_gateway.xml" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>

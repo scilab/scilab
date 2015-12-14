@@ -32,6 +32,7 @@ import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.io.HandledElement;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
 import org.scilab.modules.xcos.io.scicos.DiagramElement;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
@@ -39,6 +40,9 @@ import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import org.scilab.modules.xcos.Kind;
+import org.scilab.modules.xcos.VectorOfInt;
+import org.scilab.modules.xcos.VectorOfScicosID;
 
 class RawDataHandler implements ScilabHandler {
 
@@ -49,11 +53,6 @@ class RawDataHandler implements ScilabHandler {
         final Object value;
 
         public RawDataDescriptor(ObjectProperties as, HandledElement found, String scilabClass, Object container) {
-            // defensive programming
-            if (as == null) {
-                throw new IllegalArgumentException();
-            }
-
             this.as = as;
             this.found = found;
             this.scilabClass = scilabClass;
@@ -61,7 +60,7 @@ class RawDataHandler implements ScilabHandler {
         }
     }
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler saxHandler;
     private final Map<String, ObjectProperties> propertyMap;
 
     /**
@@ -70,22 +69,22 @@ class RawDataHandler implements ScilabHandler {
      * @param saxHandler
      *            the shared sax handler
      */
-    RawDataHandler(SAXHandler saxHandler) {
+    RawDataHandler(XcosSAXHandler saxHandler) {
         this.saxHandler = saxHandler;
 
         Map<String, ObjectProperties> localPropertyMap = new HashMap<>();
         localPropertyMap.put("context", ObjectProperties.DIAGRAM_CONTEXT);
-        localPropertyMap.put("dState", ObjectProperties.DSTATE);
-        localPropertyMap.put("equations", ObjectProperties.EQUATIONS);
         localPropertyMap.put("exprs", ObjectProperties.EXPRS);
+        localPropertyMap.put("realParameters", ObjectProperties.RPAR);
         localPropertyMap.put("integerParameters", ObjectProperties.IPAR);
+        localPropertyMap.put("objectsParameters", ObjectProperties.OPAR);
         localPropertyMap.put("nbZerosCrossing", ObjectProperties.NZCROSS);
         localPropertyMap.put("nmode", ObjectProperties.NMODE);
-        localPropertyMap.put("objectsParameters", ObjectProperties.OPAR);
-        localPropertyMap.put("oDState", ObjectProperties.ODSTATE);
-        localPropertyMap.put("points", ObjectProperties.CONTROL_POINTS);
-        localPropertyMap.put("realParameters", ObjectProperties.RPAR);
         localPropertyMap.put("state", ObjectProperties.STATE);
+        localPropertyMap.put("dState", ObjectProperties.DSTATE);
+        localPropertyMap.put("oDState", ObjectProperties.ODSTATE);
+        localPropertyMap.put("equations", ObjectProperties.EQUATIONS);
+        localPropertyMap.put("points", ObjectProperties.CONTROL_POINTS);
         propertyMap = Collections.unmodifiableMap(localPropertyMap);
     }
 
@@ -124,8 +123,11 @@ class RawDataHandler implements ScilabHandler {
                     position = Integer.valueOf(v);
                 }
 
-                if (binary && (0 <= position && position < saxHandler.dictionary.size())) {
-                    return new RawDataDescriptor(propertyMap.get(as), found, null, saxHandler.dictionary.get(position));
+                if (binary &&
+                        saxHandler.dictionary != null &&
+                        (0 <= position && position < saxHandler.dictionary.size())) {
+                    final ObjectProperties asProp = propertyMap.get(as);
+                    return new RawDataDescriptor(asProp, found, null, saxHandler.dictionary.get(position));
                 }
 
                 /*
@@ -150,7 +152,8 @@ class RawDataHandler implements ScilabHandler {
 
                 // allocate the right class and push it to a descriptor
                 final Object container = allocateDataType(found, atts, height, width, scilabClass);
-                return new RawDataDescriptor(propertyMap.get(as), found, scilabClass, container);
+                final ObjectProperties asProp = propertyMap.get(as);
+                return new RawDataDescriptor(asProp, found, scilabClass, container);
             }
             case add: {
                 // defensive programming
@@ -161,8 +164,7 @@ class RawDataHandler implements ScilabHandler {
 
                 switch (fieldValue.as) {
                     case DIAGRAM_CONTEXT: {
-                        @SuppressWarnings("unchecked")
-                        ArrayList<String> container = ((ArrayList<String>) fieldValue.value);
+                        ArrayList container = ((ArrayList) fieldValue.value);
                         container.add(atts.getValue("value"));
                         break;
                     }
@@ -218,7 +220,7 @@ class RawDataHandler implements ScilabHandler {
                         v = atts.getValue("imaginaryPart");
                         if (v != null) {
                             // allocate the imaginary part on demand
-                            if (imaginaryPartData == null) {
+                            if (localScilabValue.isReal()) {
                                 imaginaryPartData = new double[localScilabValue.getHeight()][localScilabValue.getWidth()];
                                 localScilabValue.setImaginaryPart(imaginaryPartData);
                             }
@@ -346,7 +348,7 @@ class RawDataHandler implements ScilabHandler {
                 } else if ("ScilabList".equals(scilabClass)) {
                     container = new ScilabList();
                 } else {
-                    container = new ArrayList<>();
+                    container = new ScilabList();
                 }
                 break;
         }
@@ -372,6 +374,17 @@ class RawDataHandler implements ScilabHandler {
                 RawDataDescriptor fieldValue = (RawDataDescriptor) saxHandler.parents.peek();
                 Object parent = saxHandler.parents.peek(1);
 
+                // when we are decoding data into a list "as" is null
+                if (fieldValue.as == null) {
+                    if (!(parent instanceof RawDataDescriptor)) {
+                        return;
+                    }
+
+                    ArrayList<Object> parentList = (ArrayList<Object>) ((RawDataDescriptor) parent).value;
+                    parentList.add(fieldValue.value);
+                    return;
+                }
+
                 switch (fieldValue.as) {
                     case CONTROL_POINTS: {
                         // defensive programming
@@ -393,31 +406,33 @@ class RawDataHandler implements ScilabHandler {
                         ScicosObjectOwner diagram = (ScicosObjectOwner) parent;
 
                         @SuppressWarnings("unchecked")
-                        ArrayList<String> value = (ArrayList<String>) fieldValue.value;
+                        ArrayList value = (ArrayList) fieldValue.value;
                         VectorOfString ctx = new VectorOfString(value.size());
                         for (int i = 0; i < value.size(); i++) {
-                            ctx.set(i, value.get(i));
+                            ctx.set(i, (String) value.get(i));
                         }
                         saxHandler.controller.setObjectProperty(diagram.getUID(), diagram.getKind(), ObjectProperties.DIAGRAM_CONTEXT, ctx);
                         break;
                     }
                     case STATE:
                     case DSTATE:
-                    case NZCROSS:
-                    case NMODE:
-                    case IPAR:
                     case RPAR: {
                         // defensive programming
                         if (!(parent instanceof XcosCell)) {
                             return;
                         }
                         XcosCell cell = (XcosCell) parent;
-                        if (fieldValue.value instanceof ScilabMList) {
+                        if (fieldValue.as == ObjectProperties.RPAR && fieldValue.value instanceof ScilabMList) {
                             // CORNER CASE for partially decoded sub-diagram hierarchy
                             // decode the rpar as a subdiagram using the legacy decoders
-                            try {
-                                new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(cell.getUID(), cell.getKind()));
-                            } catch (ScicosFormatException e) {
+                            // when there is no children
+                            VectorOfScicosID children = new VectorOfScicosID();
+                            saxHandler.controller.getObjectProperty(cell.getUID(), cell.getKind(), ObjectProperties.CHILDREN, children);
+                            if (children.size() == 0) {
+                                try {
+                                    new DiagramElement(saxHandler.controller).decode((ScilabMList) fieldValue.value, new XcosDiagram(cell.getUID(), cell.getKind()));
+                                } catch (ScicosFormatException e) {
+                                }
                             }
                             return;
                         }
@@ -436,6 +451,56 @@ class RawDataHandler implements ScilabHandler {
                         }
                         break;
                     }
+                    case NZCROSS:
+                    case NMODE:
+                    case IPAR: {
+                        // defensive programming
+                        if (!(parent instanceof XcosCell)) {
+                            return;
+                        }
+                        XcosCell cell = (XcosCell) parent;
+
+                        VectorOfInt vec = null;
+                        if (fieldValue.value instanceof ScilabDouble) {
+                            // defensive programming against old schema
+                            ScilabDouble value = (ScilabDouble) fieldValue.value;
+
+                            vec = new VectorOfInt(value.getHeight());
+                            for (int i = 0; i < value.getHeight(); i++) {
+                                vec.set(i, (int) value.getRealElement(i, 0));
+                            }
+                        } else if (fieldValue.value instanceof ScilabInteger) {
+                            // defensive programming against old schema
+                            ScilabInteger value = (ScilabInteger) fieldValue.value;
+
+                            vec = new VectorOfInt(value.getHeight());
+                            for (int i = 0; i < value.getHeight(); i++) {
+                                switch (value.getPrec()) {
+                                    case sci_int8:
+                                    case sci_uint8:
+                                        vec.set(i, value.getByteElement(i, 0));
+                                        break;
+                                    case sci_int16:
+                                    case sci_uint16:
+                                        vec.set(i, value.getShortElement(i, 0));
+                                        break;
+                                    case sci_int32:
+                                    case sci_uint32:
+                                        vec.set(i, value.getIntElement(i, 0));
+                                        break;
+                                    case sci_int64:
+                                    case sci_uint64:
+                                        vec.set(i, (int) value.getLongElement(i, 0));
+                                        break;
+                                }
+                            }
+                        }
+                        if (vec != null) {
+                            saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, vec);
+                        }
+                        break;
+
+                    }
                     case EXPRS:
                     case EQUATIONS:
                     case OPAR:
@@ -447,11 +512,12 @@ class RawDataHandler implements ScilabHandler {
                         XcosCell cell = (XcosCell) parent;
                         ScilabType value = (ScilabType) fieldValue.value;
 
-                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, new ScilabTypeCoder().var2vec(value));
+                        VectorOfDouble vec = new ScilabTypeCoder().var2vec(value);
+                        saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, vec);
                         break;
                     }
                     default:
-                        System.err.println("RawDataHandler not handled: " + fieldValue.as);
+                        XcosSAXHandler.LOG.warning("RawDataHandler not handled: " + fieldValue.as);
                         break;
                 }
                 break;

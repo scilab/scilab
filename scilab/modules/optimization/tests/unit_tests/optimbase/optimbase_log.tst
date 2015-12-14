@@ -14,12 +14,13 @@
 
 
 function y = rosenbrock (x)
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 //
 // Test basic verbose
 //
+warning("off"); // WARNING_EMPTY_OPS
 opt = optimbase_new ();
 computed = optimbase_cget(opt,"-verbose");
 assert_checkequal ( computed , 0 );

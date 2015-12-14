@@ -64,5 +64,26 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"predef", &sci_predef, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"debug", &sci_debug, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"recursionlimit", &sci_recursionlimit, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"list", &sci_list_gw, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"struct", &sci_struct_gw, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"null", &sci_null, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"insert", &sci_insert, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cell", &sci_cell_gw, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"makecell", &sci_makecell, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"typeof", &sci_typeof, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tlist", &sci_tlist_gw, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"mlist", &sci_mlist_gw, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isfield", &sci_isfield, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"fieldnames", &sci_fieldnames, MODULE_NAME));
+
+#ifndef NDEBUG
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItemCount", &sci_inspectorGetItemCount, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorShowItem", &sci_inspectorShowItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorShowUnreferencedItem", &sci_inspectorShowUnreferencedItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetItem", &sci_inspectorGetItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetUnreferencedItem", &sci_inspectorGetUnreferencedItem, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorDeleteUnreferencedItems", &sci_inspectorDeleteUnreferencedItems, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inspectorGetFunctionList", &sci_inspectorGetFunctionList, MODULE_NAME));
+#endif
     return 1;
 }

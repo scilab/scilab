@@ -21,6 +21,7 @@
 #include "configvariable_interface.h"
 #include "localization.h"
 #include "scisparse.h"
+#include "Sciwarning.h"
 /*--------------------------------------------------------------------------*/
 /* fortran subroutines */
 extern int C2F(qpgen2)(double *dmat, double *dvec, int *fddmat, int *n,
@@ -375,14 +376,14 @@ int sci_qp_solve(char *fname,  void* pvApiCtx)
         {
             if (getWarningMode())
             {
-                sciprint(_("\n%s: Warning: The minimization problem has no solution. The results may be inaccurate.\n\n"), fname);
+                Sciwarning(_("\n%s: Warning: The minimization problem has no solution. The results may be inaccurate.\n\n"), fname);
             }
         }
         else if (*ierr == 2)
         {
             if (getWarningMode())
             {
-                sciprint(_("\n%s: Warning: Q is not symmetric positive definite. The results may be inaccurate.\n\n"), fname);
+                Sciwarning(_("\n%s: Warning: Q is not symmetric positive definite. The results may be inaccurate.\n\n"), fname);
             }
         }
         ReturnArguments(pvApiCtx);

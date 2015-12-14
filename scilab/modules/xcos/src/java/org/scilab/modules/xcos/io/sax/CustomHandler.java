@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Optional;
+import java.util.logging.Level;
 import java.util.stream.Stream;
 
 import org.scilab.modules.xcos.Kind;
@@ -26,14 +27,15 @@ import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.model.XcosCellFactory;
-import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
+import org.scilab.modules.xcos.io.HandledElement;
+import org.scilab.modules.xcos.io.sax.XcosSAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.Orientation;
 import org.xml.sax.Attributes;
 
 class CustomHandler implements ScilabHandler {
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler saxHandler;
 
     /**
      * Default constructor
@@ -41,7 +43,7 @@ class CustomHandler implements ScilabHandler {
      * @param saxHandler
      *            the shared sax handler
      */
-    CustomHandler(SAXHandler saxHandler) {
+    CustomHandler(XcosSAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 
@@ -71,15 +73,20 @@ class CustomHandler implements ScilabHandler {
                 return null;
             }
             case XcosDiagram:
+                if (XcosSAXHandler.LOG.isLoggable(Level.FINER)) {
+                    XcosSAXHandler.LOG.entering(CustomHandler.class.getName(), "startElement(\"XcosDiagram\", ...)");
+                }
+
                 // do not allocate this is already allocated as #root
                 uid = saxHandler.root.getUID();
 
                 /*
                  * Decode some graph properties
                  */
-                v = atts.getValue("savedFile");
+                // the legacy savedFile attribute is removed to avoid any diff between two saved files with the same content
+                v = atts.getValue("debugLevel");
                 if (v != null) {
-                    saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PATH, v);
+                    saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.DEBUG_LEVEL, Integer.valueOf(v));
                 }
 
                 /*
@@ -123,7 +130,7 @@ class CustomHandler implements ScilabHandler {
 
                 saxHandler.controller.setObjectProperty(uid, Kind.DIAGRAM, ObjectProperties.PROPERTIES, properties);
 
-                // no break on purpose, we decode non-root specific properties later
+            // no break on purpose, we decode non-root specific properties later
             case SuperBlockDiagram:
                 final Kind kind;
                 if (uid == 0l) {
@@ -149,6 +156,7 @@ class CustomHandler implements ScilabHandler {
                 }
                 saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.COLOR, colors);
 
+                // TODO: implement a GUI to setup the title property (currently file name is used)
                 v = atts.getValue("title");
                 if (v != null) {
                     saxHandler.controller.setObjectProperty(uid, kind, ObjectProperties.TITLE, v);
@@ -158,7 +166,7 @@ class CustomHandler implements ScilabHandler {
                  * Update some states
                  */
                 saxHandler.allChildren.push(new HashMap<>());
-                return new ScicosObjectOwner(uid, kind);
+                return new XcosCell(uid, kind);
             default:
                 throw new IllegalArgumentException();
         }
@@ -173,6 +181,10 @@ class CustomHandler implements ScilabHandler {
                 resolve();
                 saxHandler.allChildren.pop();
                 XcosCellFactory.insertChildren(saxHandler.controller, saxHandler.root);
+
+                if (XcosSAXHandler.LOG.isLoggable(Level.FINER)) {
+                    XcosSAXHandler.LOG.exiting(CustomHandler.class.getName(), "endElement(\"XcosDiagram\")");
+                }
                 break;
             case SuperBlockDiagram:
                 resolve();

@@ -213,7 +213,7 @@
         <title>ゲートウェイのソース</title>
         <programlisting role="code_gateway"><![CDATA[ 
 #include "api_scilab.h"
-int list_createlist(char *fname,unsigned long fname_len)
+int list_createlist(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int *piAddr             = NULL;

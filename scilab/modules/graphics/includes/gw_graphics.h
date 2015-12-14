@@ -16,9 +16,8 @@
 #define __INTGRAPHICS__
 
 #include "dynlib_graphics.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-GRAPHICS_IMPEXP int gw_graphics(void);
-
 GRAPHICS_IMPEXP int sci_addcb(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_champ(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_champ1(char *fname, void *pvApiCtx);
@@ -94,11 +93,12 @@ GRAPHICS_IMPEXP int sci_demo(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_delete(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_copy(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_contour2di(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_light(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_addcolor(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_name2rgb(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_color(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_contour2dm(char *fname, void *pvApiCtx);
 /*--------------------------------------------------------------------------*/
+GRAPHICS_IMPEXP  C_GATEWAY_PROTOTYPE(sci_light);
+
 #endif /* __INTGRAPHICS__ */
 /*--------------------------------------------------------------------------*/

@@ -11,8 +11,8 @@
  */
 
 #include <string>
+#include <sstream>
 
-#include "../../includes/view_scilab/Adapters.hxx"
 #include "gw_scicos.hxx"
 
 #include "types.hxx"
@@ -23,6 +23,7 @@
 #include "list.hxx"
 #include "function.hxx"
 
+#include "view_scilab/Adapters.hxx"
 #include "view_scilab/BaseAdapter.hxx"
 #include "view_scilab/BlockAdapter.hxx"
 #include "view_scilab/CprAdapter.hxx"
@@ -130,7 +131,7 @@ types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::ty
     return mlist;
 }
 
-types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCount, types::typed_list &out)
+static types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::InternalType* type = in[0];
 
@@ -234,7 +235,31 @@ types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCount, typ
     return types::Function::OK;
 }
 
-types::Function::ReturnValue get(types::Int64* UIDs, int _iRetCount, types::typed_list &out)
+static ScicosID get(types::GenericType* UIDs, int index)
+{
+    ScicosID ret;
+
+    switch (UIDs->getType())
+    {
+        case types::InternalType::ScilabString:
+        {
+            wchar_t* str = UIDs->getAs<types::String>()->get(index);
+            std::wistringstream iss(str);
+            iss >> std::hex >> ret;
+            break;
+        }
+        case types::InternalType::ScilabInt64:
+            ret = UIDs->getAs<types::Int64>()->get(index);
+            break;
+        default:
+            ret = ScicosID();
+            break;
+    }
+
+    return ret;
+}
+
+static types::Function::ReturnValue get(types::GenericType* UIDs, int _iRetCount, types::typed_list &out)
 {
     if (UIDs->getSize() != _iRetCount)
     {
@@ -247,7 +272,7 @@ types::Function::ReturnValue get(types::Int64* UIDs, int _iRetCount, types::type
     types::Function::ReturnValue retValue = types::Function::OK;
     for (int i = 0; i < _iRetCount; ++i)
     {
-        ScicosID uid = UIDs->get(i);
+        ScicosID uid = get(UIDs, i);
 
         // create the associated object
         model::BaseObject* o = controller.getObject(uid);
@@ -305,7 +330,14 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
     switch (type->getType())
     {
         case types::InternalType::ScilabString:
-            return allocate(in, _iRetCount, out);
+            if (in.size() == 1)
+            {
+                return get(type->getAs<types::String>(), _iRetCount, out);
+            }
+            else
+            {
+                return allocate(in, _iRetCount, out);
+            }
         case types::InternalType::ScilabInt64:
             return get(type->getAs<types::Int64>(), _iRetCount, out);
         default:

@@ -80,20 +80,11 @@
     <ClCompile Include="..\cpp\getUniqueFilename.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\Sciwarning.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Console_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Localization_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="output_stream_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="String_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="output_stream_export.def">
       <Filter>Libraries Dependencies\Export</Filter>
     </None>
@@ -104,6 +95,9 @@
       <Filter>localization</Filter>
     </None>
     <None Include="Fileio_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
+    <None Include="ast_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
@@ -188,21 +182,12 @@
     <ClInclude Include="..\cpp\getUniqueFilename.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\Sciwarning.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Console_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="Localization_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="output_stream_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="String_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
     <None Include="output_stream_export.def">
@@ -213,9 +198,6 @@
     <None Include="..\..\sci_gateway\output_stream_gateway.xml" />
     <None Include="..\..\locales\output_stream.pot">
       <Filter>localization</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

@@ -8,25 +8,22 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-02-23 12:59+0000\n"
-"Last-Translator: Petersen <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: German <de@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: de\n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: falscher Größe für Eingangsargument #%d und #%d: inkompatible Länge.\n"
 
@@ -60,7 +57,8 @@ msgstr "%s: die %d th Handhabung ist kein Handhabung eines Linienzugs.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: reeller Skalar erwartet.\n"
+msgstr ""
+"%s: falscher Typ für Eingangsargument #%d: reeller Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -68,7 +66,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Real scalar expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: reeller Skalar erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: reeller Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A 'Text' handle expected.\n"
@@ -88,12 +87,8 @@ msgid "%s: The handle is not valid.\n"
 msgstr "%s: die Handhabung ist nicht gültig.\n"
 
 #, c-format
-msgid "%s: Wrong number of input arguments: %d or %d to %d expected.\n"
-msgstr ""
-"%s: falsche Anzahl von Eingangsargumenten: %d oder %d nach %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: 2D array of strings expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: 2D Datenfeld aus Zeichenketten "
 "erwartet.\n"
@@ -107,13 +102,9 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
-msgstr ""
-"%s: falsche Anzahl von Eingangsargumenten: mindestens %d werden erwartet.\n"
 
 #, c-format
 msgid "%s: Misplaced optional argument: #%d must be at position %d.\n"
@@ -127,14 +118,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: falsche Anzahl von EIngangsargumenten: %d oder %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #, c-format
@@ -224,39 +207,6 @@ msgid "%s: Wrong type for input argument #%d: A graphic handle expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument '%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
-msgid "%s: Cannot get the data type.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Cannot get the integer type for argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Cannot get the data for argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Cannot get the hypermatrix data type for argument #%d.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A real or integer expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr "%s: falscher Typ für Eingangsargument #%d: eine Realzahl erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Vector %s or %s expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: Vektor %s oder %s erwartet.\n"
@@ -276,7 +226,8 @@ msgstr ""
 "%s: falsche Größe für EIngangsargument #%d: Liste der Größe %d erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong number of mandatory input arguments. At least %d expected.\n"
+msgid ""
+"%s: Wrong number of mandatory input arguments. At least %d expected.\n"
 msgstr ""
 "%s: Falsche Anzahl von notwendigen Eingabeargumenten. Es werden mindestens "
 "%d erwartet.\n"
@@ -351,7 +302,8 @@ msgstr ""
 "Länge.\n"
 
 #, c-format
-msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
+msgid ""
+"%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d und #%d: inkompatible Länge.\n"
 
@@ -426,7 +378,8 @@ msgid "%s: Wrong number of input argument(s) : an odd number is expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A handle or a string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A handle or a string expected.\n"
 msgstr ""
 
 #, c-format
@@ -506,10 +459,6 @@ msgstr ""
 "%d\n"
 
 #, c-format
-msgid "%s: Unrecognized input argument: '%s'.\n"
-msgstr "%s: nicht erkanntes Eingangsargument: '%s'.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Boolean vector expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: boolscher Vektor erwartet.\n"
@@ -540,7 +489,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr ""
+"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid "%s: Incompatible length for input arguments #%d and #%d.\n"
@@ -548,23 +498,8 @@ msgstr "%s: inkompatible Länge für Eingangsargument '%d und #%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d, %d or %d expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: %d, %d oder %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: falsche Anzahl für Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
-msgstr "%s: Unerwartete Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
 msgstr ""
-
-#, c-format
-msgid "Figure n%d"
-msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: %d, %d oder %d erwartet.\n"
 
 #, c-format
 msgid ""
@@ -630,6 +565,51 @@ msgstr ""
 msgid "%s: Invalid vertex index.\n"
 msgstr ""
 
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Could not read property '%s' for root object.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real or integer expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%ls: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%ls: A matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Row vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Unrecognized input argument: '%s'.\n"
+msgstr "%s: nicht erkanntes Eingangsargument: '%s'.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong size for input argument #%d: A %d-element vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Figure n%d"
+msgstr ""
+
+#, c-format
+msgid "%s: window dimensions have been set less than 2^16.\n"
+msgstr ""
+
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Der übergeordnete Prozess muß ein Subwin sein.\n"
 
@@ -648,7 +628,8 @@ msgstr ""
 "Warnung: kann Log auf der Y-Achse nicht verwenden, da ymin negativ ist.\n"
 
 msgid "Warning: Can't use Log on Z-axis zmin is negative.\n"
-msgstr "Warnung: kann Log auf Z-Achse nicht verwenden, da zmin negativ ist.\n"
+msgstr ""
+"Warnung: kann Log auf Z-Achse nicht verwenden, da zmin negativ ist.\n"
 
 msgid "Warning: Nax does not work with logarithmic scaling.\n"
 msgstr "Warnung: Nax arbeitet nicht mit logarithmischer Skalierung.\n"
@@ -720,6 +701,10 @@ msgid "Wrong value for '%s' property: Must be greater or equal to %d.\n"
 msgstr ""
 
 #, c-format
+msgid "Wrong value for '%s' property: Number of mark sizes %d.\n"
+msgstr ""
+
+#, c-format
 msgid "The mark offset must be greater or equal than %d.\n"
 msgstr ""
 
@@ -729,7 +714,8 @@ msgstr ""
 
 #, c-format
 msgid "Number of columns must be %d (%d if %s coordinate).\n"
-msgstr "Anzahl der Spalten muß sich in %d (%d wenn %s Koordinate) befinden.\n"
+msgstr ""
+"Anzahl der Spalten muß sich in %d (%d wenn %s Koordinate) befinden.\n"
 
 #, c-format
 msgid "Number of elements must be %d (%d if %s coordinate).\n"
@@ -791,11 +777,13 @@ msgstr "%s: kein weiterer Speicher"
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be in the set {%s}.\n"
-msgstr "falscher Wert für Eigenschaft '%s': muß sich im Satz {%s} befinden.\n"
+msgstr ""
+"falscher Wert für Eigenschaft '%s': muß sich im Satz {%s} befinden.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real matrix expected.\n"
-msgstr "falscher Typ für '%s' Eigenschaft: ein reellwertige Matrix erwartet.\n"
+msgstr ""
+"falscher Typ für '%s' Eigenschaft: ein reellwertige Matrix erwartet.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: %d elements expected.\n"
@@ -820,7 +808,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
-msgstr "falsche Größe für Eigenschaft '%s': höchstens %d Elemente erwartet.\n"
+msgstr ""
+"falsche Größe für Eigenschaft '%s': höchstens %d Elemente erwartet.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Integer expected.\n"
@@ -886,6 +875,11 @@ msgstr ""
 "Warnung: falscher Wert für '%s' Eigenschaft: Indizes außerhalb der "
 "Farbtabelle werden geklammert.\n"
 
+msgid ""
+"The number of column of the color vector must match the number of points "
+"defining the line.\n"
+msgstr ""
+
 #, c-format
 msgid "Wrong type for '%s' property: A '%s' expected.\n"
 msgstr ""
@@ -923,71 +917,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: Must be in the set {%s}.\n"
-msgstr "falsche Größe für '%s' Eigenschaft: muß sich im Satz {%s} befinden.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"Wrong size for %s element: A %d-by-%d matrix or a vector of size %d "
-"expected.\n"
-msgstr ""
-"Falsche Größe für %s Element: ein %d-nach%d Matrix oder ein Vektor der Größe "
-"%d erwartet.\n"
-
-#, c-format
-msgid "Cannot change the %s of graphic object: its type is %s.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong value: Vector is not monotonous.\n"
-msgstr "%s: falscher Wert: Vektor ist nicht monoton.\n"
-
-msgid "Wrong type for input argument: A tlist expected.\n"
-msgstr ""
-
-#, c-format
-msgid "Wrong size for input argument: %d or %d expected.\n"
-msgstr "Falsche Größe für Eingangsargument: %d oder %d erwartet.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
-"of 3.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
-"of 4.\n"
-msgstr ""
-
-#, c-format
-msgid "Incompatible type for property ''%s''.\n"
-msgstr ""
+"falsche Größe für '%s' Eigenschaft: muß sich im Satz {%s} befinden.\n"
 
 msgid "Datatips property can not be modified directly.\n"
 msgstr ""
@@ -1003,7 +934,8 @@ msgstr ""
 "nach.\n"
 
 #, c-format
-msgid "Wrong value for '%s' property: An Integer between %d and %d expected.\n"
+msgid ""
+"Wrong value for '%s' property: An Integer between %d and %d expected.\n"
 msgstr ""
 "falscher Wert für Eigenschaft '%s': ein Integer zwischen %d und %d sein.\n"
 
@@ -1057,7 +989,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for '%s' property: Must be between %d and %d.\n"
-msgstr "falscher Wert für Eigenschaft '%s': muß zwischen %d oder %d liegen.\n"
+msgstr ""
+"falscher Wert für Eigenschaft '%s': muß zwischen %d oder %d liegen.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Graphic handle array expected.\n"
@@ -1088,6 +1021,14 @@ msgstr ""
 "logarithmischen Modus zu wechseln.\n"
 
 #, c-format
+msgid "Wrong size for '%s' property: Row vector expected.\n"
+msgstr "falsche Größe für Eigenschaft '%s': ein Reihenvektor erwartet.\n"
+
+#, c-format
+msgid "Wrong type for '%s' property: Matrix expected.\n"
+msgstr ""
+
+#, c-format
 msgid "Wrong type for '%s' property: '%s' handle or '%s' handle expected.\n"
 msgstr ""
 "falscher Typ für '%s' Eigenschaft: Handhabung '%s' oder '%s' erwartet.\n"
@@ -1110,7 +1051,8 @@ msgstr ""
 
 #, c-format
 msgid "Wrong size for '%s' property: At least %d elements expected.\n"
-msgstr "falsche Größe für Eigenschaft '%s': höchstens %d Elemente erwartet.\n"
+msgstr ""
+"falsche Größe für Eigenschaft '%s': höchstens %d Elemente erwartet.\n"
 
 msgid "Can not set directly a label object.\n"
 msgstr "Kann ein Bezeichnungs-Objekt nicht direkt setzen.\n"
@@ -1124,10 +1066,6 @@ msgid "Wrong type for '%s' property: Typed list expected.\n"
 msgstr "falscher Typ für Eigenschaft '%s': getippte Liste erwartet.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: Row vector expected.\n"
-msgstr "falsche Größe für Eigenschaft '%s': ein Reihenvektor erwartet.\n"
-
-#, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr "%s: x Vektor ist nicht monoton.\n"
 
@@ -1138,217 +1076,76 @@ msgstr ""
 msgid "Impossible case when building axis\n"
 msgstr "ungültiger Fall, wenn die Achsen erzeugt werden\n"
 
+msgid "Wrong type for input argument: A tlist expected.\n"
+msgstr ""
+
 #, c-format
-msgid "Scilab '%s' module not installed.\n"
-msgstr ""
+msgid "Wrong size for input argument: %d or %d expected.\n"
+msgstr "Falsche Größe für Eingangsargument: %d oder %d erwartet.\n"
 
-msgid "Press Return to continue ... \n"
-msgstr ""
-
-msgid "Computing in progress..."
-msgstr ""
-
+#, c-format
 msgid ""
-"Matplot1(..) displays a matrix\n"
-"(value => color#), with SCALED AXES\n"
-"(here is a part of the Mandelbrot set)"
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 3.\n"
 msgstr ""
 
-msgid "Real part"
-msgstr ""
-
-msgid "Imaginary part"
-msgstr ""
-
-msgid "Graphics with 2 different Y-scales"
-msgstr ""
-
-msgid "Plot with 3 different Y scales at shared X"
-msgstr ""
-
-msgid "Common X axis"
-msgstr ""
-
-msgid "Scale #1"
-msgstr ""
-
+#, c-format
 msgid ""
-"Please press enter into the Scilab console to see more polarplot examples"
+"%s: Wrong size for input argument #%d: The number of rows must be a multiple "
+"of 4.\n"
 msgstr ""
 
-msgid "Press enter to go on..."
+#, c-format
+msgid "Incompatible type for property ''%s''.\n"
 msgstr ""
 
-msgid "polarplot(): Only quadrant(s) reached by data are displayed"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Columns vectors expected.\n"
 msgstr ""
 
-msgid "Still a single quadrant..."
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
-msgid "on 2 quadrants..."
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Column vector expected.\n"
 msgstr ""
 
-msgid "Data on the full circle ..."
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Incompatible length.\n"
 msgstr ""
 
-msgid "A partial viewport may be set with clipping"
+#, c-format
+msgid ""
+"%s: Wrong size for input arguments #%d, #%d and #%d: Incompatible lengths.\n"
 msgstr ""
 
-msgid "Negative radii are supported:"
+#, c-format
+msgid "%s: Wrong size for input arguments #%d and #%d: Should be >= %d.\n"
 msgstr ""
 
-msgid "Big radii are supported..."
+#, c-format
+msgid ""
+"Wrong size for %s element: A %d-by-%d matrix or a vector of size %d "
+"expected.\n"
+msgstr ""
+"Falsche Größe für %s Element: ein %d-nach%d Matrix oder ein Vektor der Größe "
+"%d erwartet.\n"
+
+#, c-format
+msgid "Cannot change the %s of graphic object: its type is %s.\n"
 msgstr ""
 
-msgid "even huge radii, with properly formatted labels..."
-msgstr ""
-
-msgid "... as well as very tiny radii"
-msgstr ""
-
-msgid "Several curves may be plotted at the same time"
-msgstr ""
-
-msgid "Customize your complex function"
-msgstr "bearbeiten Sie Ihre komplexe Funktion"
-
-msgid "Control panel"
-msgstr ""
-
-msgid "Function definition"
-msgstr ""
-
-msgid "Domain type"
-msgstr ""
-
-msgid "Radius of the domain"
-msgstr ""
-
-msgid "Cut on axes"
-msgstr ""
-
-msgid "Function should contain z"
-msgstr ""
-
-msgid "Wrong definition of f(z)"
-msgstr ""
-
-msgid "Radius should be real and finite"
-msgstr ""
-
-msgid "datatips on 2D curves"
-msgstr ""
-
-msgid "datatips on 3D curves"
-msgstr ""
-
-msgid "2D curves"
-msgstr ""
-
-msgid "3D curve"
-msgstr ""
-
-msgid "Graphics"
-msgstr "Grafiken"
-
-msgid "2D and 3D plots"
-msgstr "2D und 3D Plots"
-
-msgid "Basic functions"
-msgstr "Grundfunktionen"
-
-msgid "Animation"
-msgstr ""
-
-msgid "Finite Elements"
-msgstr ""
-
-msgid "Bezier curves and surfaces"
-msgstr ""
-
-msgid "More surfaces"
-msgstr ""
-
-msgid "Complex elementary functions"
-msgstr ""
-
-msgid "bar histogram"
-msgstr ""
-
-msgid "Datatips"
-msgstr ""
-
-msgid "LaTeX/MathML"
-msgstr ""
-
-msgid "Lighting"
-msgstr ""
-
-msgid "Misc"
-msgstr "Diverses"
-
-msgid "Colormap"
-msgstr ""
-
-msgid "Matplot"
-msgstr ""
-
-msgid "Classical Matplot"
-msgstr ""
-
-msgid "Classical Matplot1"
-msgstr ""
-
-msgid "Java Image"
-msgstr ""
-
-msgid "Mandelbrot"
-msgstr ""
-
-msgid "Jet"
-msgstr "Jet"
-
-msgid "HSV"
-msgstr "HSV"
-
-msgid "Hot"
-msgstr "Heiß"
-
-msgid "Gray"
-msgstr "Grau"
-
-msgid "Winter"
-msgstr "Winter"
-
-msgid "Spring"
-msgstr "Frühling"
-
-msgid "Summer"
-msgstr "Sommer"
-
-msgid "Autumn"
-msgstr "Herbst"
-
-msgid "Bone"
-msgstr "Knochen"
-
-msgid "Copper"
-msgstr "Kupfer"
-
-msgid "Pink"
-msgstr "Rosa"
-
-msgid "Rainbow"
-msgstr "Regenbogen"
-
-msgid "Ocean"
-msgstr "Ozean"
-
-msgid "White"
-msgstr "Weiß"
+#, c-format
+msgid "%s: Wrong value: Vector is not monotonous.\n"
+msgstr "%s: falscher Wert: Vektor ist nicht monoton.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+msgid "Classical Matplot"
 msgstr ""
 
 #, c-format
@@ -1364,6 +1161,9 @@ msgstr ""
 msgid "Axes are scaled with M's indices"
 msgstr ""
 
+msgid "Classical Matplot1"
+msgstr ""
+
 #, c-format
 msgid ""
 "Matplot1(M, [ %g  %g  %g  %g ])  with  size(M)=>(%d,%d)\n"
@@ -1372,11 +1172,6 @@ msgstr ""
 
 msgid "Axes are scaled with [xmin  ymin  xmax  ymax] specified"
 msgstr ""
-
-#, c-format
-msgid "%s: Legend does not fit with the current context. Skipped\n"
-msgstr ""
-"%s: Legende stimmt nicht mit dem aktuellen Kontext überein. Übersprungen\n"
 
 #, c-format
 msgid "%s: handle no more valid ignored.\n"
@@ -1430,19 +1225,11 @@ msgid "%s: Wrong size or type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: falsche Anzahl von Eingangsargumenten: %d erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: a real scalar expected.\n"
 msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: a real scalar expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -1465,7 +1252,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 
 #, c-format
@@ -1618,7 +1406,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Variable erwartet.\n"
 
 #, c-format
 msgid "%s: Colormap too small"
@@ -1655,7 +1444,8 @@ msgid ""
 "Datatip manager cannot be enabled, user data figure field is already used"
 msgstr ""
 
-msgid "Left click on a curve to create a datatip, right opens contextual menu"
+msgid ""
+"Left click on a curve to create a datatip, right opens contextual menu"
 msgstr ""
 
 #, c-format
@@ -1800,7 +1590,8 @@ msgid "%s: Wrong size for input argument #%d: A Real expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine reelle Zahl erwartet.\n"
 
-msgid "Entity picker cannot be enabled, user data figure field is already used"
+msgid ""
+"Entity picker cannot be enabled, user data figure field is already used"
 msgstr ""
 
 msgid "Left click on a graphic entity to open its property editor"
@@ -1838,7 +1629,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr "%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
+msgstr ""
+"%s: falsche Größe für Eingangsargument #%d: eine Realzahl erwartet.\n"
 
 msgid "Ok"
 msgstr "OK"
@@ -1993,7 +1785,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
+msgid ""
+"%s: Wrong size for input argument '%s': A vector of size %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -2109,7 +1902,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
+msgid ""
+"%s: Wrong size for input arguments '%s' and '%s': Same size expected.\n"
 msgstr ""
 
 #, c-format
@@ -2130,4 +1924,12 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value given for %s."
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: a handle expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: a handle expected.\n"
 msgstr ""

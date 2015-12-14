@@ -37,7 +37,7 @@
         </para>
         <programlisting role=""><![CDATA[ 
 [As,Es]=schur(A,E)
-[As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE THE TRANPOSITION HERE
+[As,Es,Q,Z]=schur(A,E);Q=Q' //NOTE THE TRANSPOSITION HERE
 [As,Es,Z,dim] = schur(A,E,flag) 
  ]]></programlisting>
         <para>

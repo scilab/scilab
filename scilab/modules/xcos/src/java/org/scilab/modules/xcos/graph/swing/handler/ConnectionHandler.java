@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.scilab.modules.xcos.block.BasicBlock;
-import org.scilab.modules.xcos.graph.model.XcosCell;
 import org.scilab.modules.xcos.graph.swing.GraphComponent;
 
 import com.mxgraph.model.mxICell;
@@ -207,14 +206,14 @@ public class ConnectionHandler extends mxConnectionHandler {
 
             e.consume();
         } else {
-            if (marker.hasValidState()) {
+            if (marker.hasValidState() && connectPreview.getPreviewState() != null) {
                 final mxGraph graph = graphComponent.getGraph();
                 final double x = graph.snap(e.getX());
                 final double y = graph.snap(e.getY());
 
                 // We are ending a link creation on an valid port,
                 // so sync the points coordinates with the model
-                XcosCell cell = (XcosCell) connectPreview.getPreviewState().getCell();
+                mxICell cell = (mxICell) connectPreview.getPreviewState().getCell();
                 cell.setGeometry(cell.getGeometry());
             }
 

@@ -53,7 +53,9 @@
             <literal>ieee(mod)</literal> ajusta o modo corrente de excessão de
             ponto flutuante.
         </para>
-        <para>O valor de modo incial é 0.</para>
+        <warning>
+            <para>O valor de modo incial é 2.</para>
+        </warning>
     </refsection>
     <refsection>
         <title>Observações </title>
@@ -69,4 +71,10 @@ ieee(1);1/0
 ieee(2);1/0,log(0)
  ]]></programlisting>
     </refsection>
+    <revhistory>
+        <revision>
+            <revnumber>6.0.0</revnumber>
+            <revremark>O valor de modo incial é 2.</revremark>
+        </revision>
+    </revhistory>
 </refentry>

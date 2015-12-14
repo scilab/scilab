@@ -8,29 +8,43 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-05-30 08:46+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "只可在窗口模式下，不可在控制台模式下。\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s：内存分配错误。\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
-msgstr "%s：输入参数的值错误：应该为非负整数。\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr "%s：输入参数的类型错误：应该为标量。\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -41,10 +55,6 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'。\n"
 
@@ -53,12 +63,12 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 内存不足。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为字符串。\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s：内存分配错误。\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s：输入参数的类型错误：应该为字符串。\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
@@ -68,12 +78,12 @@ msgid "see help"
 msgstr "请参考帮助"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s：无法打开文件%s。\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
+msgid "%s: Cannot open file %ls.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -87,9 +97,6 @@ msgstr "%s：无法查询此类型的值。\n"
 msgid "Scilab %s Console"
 msgstr ""
 
-msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-
 msgid "Error(s) : see help powershell"
 msgstr "错误：请参阅powershell帮助。"
 
@@ -101,7 +108,3 @@ msgstr "只可用于微软 Windows。"
 
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 未找到。"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s：输入参数的数目错误：应该为%d。\n"

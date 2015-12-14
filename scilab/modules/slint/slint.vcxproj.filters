@@ -24,12 +24,6 @@
     <Filter Include="Header Files\output">
       <UniqueIdentifier>{9f137ccc-400e-45bc-9e0a-70108af226f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\output\cnes">
-      <UniqueIdentifier>{d303f476-858e-41e1-99e9-be17e9d2903e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\config\cnes">
-      <UniqueIdentifier>{a4318558-430e-4f93-a921-3881e0267214}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="slint.rc">
@@ -199,54 +193,6 @@
     <ClInclude Include="includes\XMLtools.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\output\cnes\CNESResult.hxx">
-      <Filter>Header Files\output\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\AnalysisConfiguration.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\AnalysisConfigurationType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\AnalysisRuleParameterType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\AnalysisRuleType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\CNESConfig.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\CNESException.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\ExcludedProjectFileType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\RuleLinkType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\Standard.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\StandardRuleParameterType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\StandardRuleParameterValueType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\StandardRuleType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\StandardType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\ToolConfiguration.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\config\cnes\ToolConfigurationType.hxx">
-      <Filter>Header Files\config\cnes</Filter>
-    </ClInclude>
     <ClInclude Include="includes\checkers\CommentRatioChecker.hxx">
       <Filter>Header Files\checkers</Filter>
     </ClInclude>
@@ -414,9 +360,6 @@
     <ClCompile Include="src\cpp\VariablesChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\XMLConfig.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\XMLtools.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -426,31 +369,7 @@
     <ClCompile Include="sci_gateway\cpp\sci_slint.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\AnalysisConfiguration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\AnalysisConfigurationType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\AnalysisRuleParameterType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\AnalysisRuleType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\CNESConfig.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\CNESException.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\CNESResult.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\CommentRatioChecker.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\ExcludedProjectFileType.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\FunctionArgsOrderChecker.cpp">
@@ -465,31 +384,10 @@
     <ClCompile Include="src\cpp\ReturnsCountChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\RuleLinkType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\Standard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\StandardRuleParameterType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\StandardRuleParameterValueType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\StandardRuleType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\StandardType.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\StatInCondChecker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\ToolConfiguration.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\ToolConfigurationType.cpp">
+    <ClCompile Include="src\cpp\XMLConfig.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

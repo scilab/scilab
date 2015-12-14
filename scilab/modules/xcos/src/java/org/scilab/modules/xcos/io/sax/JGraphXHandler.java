@@ -15,16 +15,18 @@ package org.scilab.modules.xcos.io.sax;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
 import org.scilab.modules.xcos.graph.model.XcosCell;
+import org.scilab.modules.xcos.io.HandledElement;
 import org.xml.sax.Attributes;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import java.util.ArrayList;
 
 class JGraphXHandler implements ScilabHandler {
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler saxHandler;
 
-    JGraphXHandler(SAXHandler saxHandler) {
+    JGraphXHandler(XcosSAXHandler saxHandler) {
         this.saxHandler = saxHandler;
     }
 
@@ -71,12 +73,6 @@ class JGraphXHandler implements ScilabHandler {
                 return g;
             }
             case mxPoint: {
-                // defensive programming
-                if (!(saxHandler.parents.peek() instanceof mxGeometry)) {
-                    return null;
-                }
-                mxGeometry parent = (mxGeometry) saxHandler.parents.peek();
-
                 mxPoint p = new mxPoint();
 
                 v = atts.getValue("x");
@@ -87,11 +83,18 @@ class JGraphXHandler implements ScilabHandler {
                 if (v != null) {
                     p.setY(Double.valueOf(v));
                 }
-                v = atts.getValue("as");
-                if ("sourcePoint".equals(v)) {
-                    parent.setSourcePoint(p);
-                } else if ("targetPoint".equals(v)) {
-                    parent.setTargetPoint(p);
+
+                if (saxHandler.parents.peek() instanceof mxGeometry) {
+                    mxGeometry parent = (mxGeometry) saxHandler.parents.peek();
+                    v = atts.getValue("as");
+                    if ("sourcePoint".equals(v)) {
+                        parent.setSourcePoint(p);
+                    } else if ("targetPoint".equals(v)) {
+                        parent.setTargetPoint(p);
+                    }
+                } else if (saxHandler.parents.peek() instanceof RawDataHandler.RawDataDescriptor) {
+                    RawDataHandler.RawDataDescriptor parent = (RawDataHandler.RawDataDescriptor) saxHandler.parents.peek();
+                    ((ArrayList) parent.value).add(p);
                 }
                 return p;
             }

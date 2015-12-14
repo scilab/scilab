@@ -15,7 +15,7 @@
 // <-- Short Description -->
 // It was not possible to launch Scilab as Minimized or Maximized Window.
 
-// Creates or uses Scilab shorcut on Desktop
+// Creates or uses Scilab shortcut on Desktop
 // Properties on Icon
 // Modify Start As Minimized
 // Start scilab

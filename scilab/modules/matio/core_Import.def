@@ -4,8 +4,6 @@ LIBRARY    core.dll
 EXPORTS
 ;core
 freeArrayOfString
-callFunctionFromGateway
-com_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

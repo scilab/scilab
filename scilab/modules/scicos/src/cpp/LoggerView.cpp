@@ -383,6 +383,9 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case PROPERTIES:
             os << "PROPERTIES";
             break;
+        case DEBUG_LEVEL:
+            os << "DEBUG_LEVEL";
+            break;
         case DIAGRAM_CONTEXT:
             os << "CONTEXT";
             break;

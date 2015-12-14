@@ -448,7 +448,7 @@ int BoolAndBool(Bool* _pL, Bool** _pOut)
         }
     }
 
-    //call non shorcut opearion
+    //call non shortcut operation
     *_pOut = NULL;
     return 0;
 }
@@ -466,7 +466,7 @@ static int IntAndInt(K* _pL, Bool** _pOut)
         }
     }
 
-    //call non shorcut opearion
+    //call non shortcut operation
     *_pOut = NULL;
     return 0;
 }
@@ -536,7 +536,7 @@ InternalType* and_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -625,7 +625,7 @@ InternalType* and_int_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
+        return nullptr;
     }
 
     int* piDimsL = _pL->getDimsArray();

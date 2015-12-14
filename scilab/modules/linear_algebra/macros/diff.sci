@@ -37,8 +37,12 @@ function x=diff(x,N,DIM)
 
 
     if N==1 then
-        if DIM==-1 then
-            x=x(2:$)-x(1:$-1)
+        if (DIM==-1) then
+            if prod(dims)>1
+                x=x(2:$)-x(1:$-1);
+            else
+                x = [];
+            end
         else
             args=emptystr(1,nd)+":"
             arg1=args;arg1(DIM)="2:$";

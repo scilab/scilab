@@ -198,7 +198,7 @@ box "Input N";
                 <para>
                     A character string defining the path and the file name of the file to be written. The block support file name expansion and you can use environment variables
                     like <emphasis>HOME</emphasis> in the path, by example <emphasis>"HOME/my_datas/foo.datas"</emphasis>. Without
-                    file path, the file is writen in the directory defined by the <emphasis>PWD</emphasis> variable.
+                    file path, the file is written in the directory defined by the <emphasis>PWD</emphasis> variable.
                 </para>
                 <para>The directory path must exist, otherwise you will be prompted by an error message.</para>
                 <para>Properties : Type 'str' of size 1.</para>

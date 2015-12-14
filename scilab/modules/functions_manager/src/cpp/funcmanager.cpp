@@ -298,7 +298,6 @@ char *GetXmlFileEncoding(const std::string& _filename)
 bool FuncManager::CreateModuleList(void)
 {
     m_ModuleMap[L"elementary_functions"] = std::pair<GW_MOD, GW_MOD>(&ElemFuncModule::Load, &ElemFuncModule::Unload);
-    m_ModuleMap[L"types"] = std::pair<GW_MOD, GW_MOD>(&TypesModule::Load, &TypesModule::Unload);
     m_ModuleMap[L"sparse"] = std::pair<GW_MOD, GW_MOD>(&SparseModule::Load, &SparseModule::Unload);
     m_ModuleMap[L"boolean"] = std::pair<GW_MOD, GW_MOD>(&BooleanModule::Load, &BooleanModule::Unload);
     m_ModuleMap[L"integer"] = std::pair<GW_MOD, GW_MOD>(&IntegerModule::Load, &IntegerModule::Unload);
@@ -347,6 +346,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"external_objects_java"] = std::pair<GW_MOD, GW_MOD>(&ExternalObjectsJavaModule::Load, &ExternalObjectsJavaModule::Unload);
     m_ModuleMap[L"preferences"] = std::pair<GW_MOD, GW_MOD>(&PreferencesModule::Load, &PreferencesModule::Unload);
     m_ModuleMap[L"slint"] = std::pair<GW_MOD, GW_MOD>(&SlintModule::Load, &SlintModule::Unload);
+    m_ModuleMap[L"coverage"] = std::pair<GW_MOD, GW_MOD>(&CoverageModule::Load, &SlintModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
@@ -398,7 +398,7 @@ bool FuncManager::ExecuteFile(const std::wstring& _stFile)
 bool FuncManager::LoadModules()
 {
     //load gateways
-    for (const auto& it : m_ModuleName)
+    for (const auto & it : m_ModuleName)
     {
         ModuleMap::iterator itModule = m_ModuleMap.find(it);
         if (itModule != m_ModuleMap.end())
@@ -414,7 +414,7 @@ bool FuncManager::LoadModules()
 bool FuncManager::EndModules()
 {
     //excute .start file
-    for (const auto& it : m_ModuleName)
+    for (const auto & it : m_ModuleName)
     {
         ExecuteQuitFile(it);
     }
@@ -426,7 +426,7 @@ bool FuncManager::EndModules()
 bool FuncManager::UnloadModules()
 {
     //load gateways
-    for (const auto& it : m_ModuleName)
+    for (const auto & it : m_ModuleName)
     {
         ModuleMap::iterator itModule = m_ModuleMap.find(it);
         if (itModule != m_ModuleMap.end())

@@ -48,7 +48,7 @@
             Samples are always generated to fit in <literal>[0,t[</literal> (excluding upper bound).
         </para>
         <para>
-            Value 0 for either <literal>t</literal> or <literal>freq</literal> return an empty matrx
+            Value 0 for either <literal>t</literal> or <literal>freq</literal> return an empty matrix
         </para>
     </refsection>
     <refsection>

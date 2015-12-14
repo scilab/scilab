@@ -27,7 +27,7 @@
                 <term>Changing font</term>
                 <listitem>
                     <para>
-                        Fonts used in graphic figures are selected from a set of fonts called loaded fonts. In other words, the loaded fonts are the ones currenlty available in graphic figures.
+                        Fonts used in graphic figures are selected from a set of fonts called loaded fonts. In other words, the loaded fonts are the ones currently available in graphic figures.
                         The list of these fonts can be obtained using the <literal>xlfont</literal> function without argument. 
                         By default, Scilab contains a set of 11 loaded fonts. This set can be modified and extended using the <literal>xlfont</literal> function with
                         a font name as argument. The added font can either be loaded from a file or be one of the system. To know the list of fonts available on the system use the

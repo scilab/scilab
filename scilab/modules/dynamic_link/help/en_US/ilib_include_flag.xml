@@ -40,7 +40,7 @@
         </para>
     </refsection>
     <refsection>
-        <title>Exemples</title>
+        <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
     
     includes_path = ["../src/includes";"/usr/include/somelib/includes";"."];

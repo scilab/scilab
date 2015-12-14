@@ -292,11 +292,11 @@ public abstract class ContextUpdate extends BasicBlock {
         public static ContextUpdate createBlock(BasicPort port) {
             for (IOBlocks io : IOBlocks.values()) {
                 if (io.getReferencedPortClass().isInstance(port)) {
-                    final XcosView disabledView = (XcosView) JavaController.look_for_view(Xcos.class.getName());
+                    final XcosView disabledView = (XcosView) JavaController.lookup_view(Xcos.class.getName());
                     try {
                         JavaController controller = new JavaController();
 
-                        // FIXME: dunno if I should disable the view there :
+                        // TODO: dunno if I should disable the view there :
                         // CHECK
                         JavaController.unregister_view(disabledView);
 
@@ -312,18 +312,8 @@ public abstract class ContextUpdate extends BasicBlock {
                         // controller.setObjectProperty(block.getUID(), k, p, v)
 
                         return block;
-                    } catch (InstantiationException e) {
+                    } catch (ReflectiveOperationException e) {
                         Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (IllegalAccessException e) {
-                        Logger.getLogger(IOBlocks.class.getName()).severe(e.toString());
-                    } catch (NoSuchMethodException e) {
-                        e.printStackTrace();
-                    } catch (SecurityException e) {
-                        e.printStackTrace();
-                    } catch (IllegalArgumentException e) {
-                        e.printStackTrace();
-                    } catch (InvocationTargetException e) {
-                        e.printStackTrace();
                     } finally {
                         JavaController.register_view(Xcos.class.getName(), disabledView);
                     }

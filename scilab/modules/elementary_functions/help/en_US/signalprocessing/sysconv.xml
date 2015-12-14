@@ -36,7 +36,7 @@
         <title>Description</title>
         <para>
             Converts <literal>s1</literal> and <literal>s2</literal> into common
-            representation in order that system interconnexion operations can be
+            representation in order that system interconnection operations can be
             applied. Utility function for experts. The conversion rules in given in
             the following table.
         </para>

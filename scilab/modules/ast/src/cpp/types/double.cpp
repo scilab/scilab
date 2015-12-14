@@ -51,7 +51,7 @@ Double* Double::Identity(int _iRows, int _iCols)
     return pI;
 }
 
-Double* Double::Identity(int _iDims, int* _piDims)
+Double* Double::Identity(int _iDims, const int* _piDims)
 {
     Double* pI = new Double(_iDims, _piDims);
     pI->setZeros();
@@ -80,7 +80,7 @@ Double* Double::Identity(int _iDims, int* _piDims)
     return pI;
 }
 
-Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
+Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal)
 {
     Double* pI = new Double(_iDims, _piDims);
     pI->setZeros();
@@ -109,7 +109,7 @@ Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
     return pI;
 }
 
-Double* Double::Identity(int _iDims, int* _piDims, double _dblReal, double _dblImg)
+Double* Double::Identity(int _iDims, const int* _piDims, double _dblReal, double _dblImg)
 {
     Double* pI = new Double(_iDims, _piDims, true);
     pI->setZeros();
@@ -242,7 +242,7 @@ Double::Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg)
 #endif
 }
 
-Double::Double(int _iDims, int* _piDims, bool _bComplex, bool _bZComplex)
+Double::Double(int _iDims, const int* _piDims, bool _bComplex, bool _bZComplex)
 {
     double *pReal   = NULL;
     double *pImg    = NULL;

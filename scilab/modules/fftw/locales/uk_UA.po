@@ -8,29 +8,93 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-04-18 04:42+0000\n"
+"PO-Revision-Date: 2015-10-09 07:02+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
 
 #, c-format
-msgid "FFTW Library %s not found.\n"
-msgstr "Бібліотеки FFTW %s не виявлено.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: помилка під час спроби виділення пам’яті.\n"
 
-msgid "FFTW Library not found.\n"
-msgstr "Бібліотеки FFTW не виявлено.\n"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано тип int32.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
+msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: слід використовувати "
+"прапорець FFTW.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: мала бути матриця %d на "
+"%d.\n"
+
+#, c-format
+msgid "%s: No more memory.\n"
+msgstr "%s: доступну пам’ять вичерпано.\n"
+
+#, c-format
+msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
+msgstr "%s: у бібліотеці MKL fftw ще не реалізовано функції wisdom.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
+
+#, c-format
 msgid "%s: Cannot allocate more memory.\n"
 msgstr "%s: не вдалося виділити більше пам’яті.\n"
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
+msgstr ""
+"%s: помилкове значення вхідного параметра №%d: слід використовувати коректне "
+"значення wisdom.\n"
+
+#, c-format
+msgid "%s: Creation of requested fftw plan failed.\n"
+msgstr "%s: спроба створення потрібного плану fftw зазнала невдачі.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
+"тип.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
+"дійсне число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
@@ -45,15 +109,10 @@ msgstr ""
 "з набору {%s}.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Array of floating point numbers expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано масив зі значень з "
-"рухомою комою.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: помилковий тип вхідного параметра №%d.\n"
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
+"«%s».\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
@@ -62,7 +121,8 @@ msgstr ""
 "значення між %d та %d.\n"
 
 #, c-format
-msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid ""
+"%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід використовувати додатні "
 "цілі числа.\n"
@@ -96,7 +156,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"
-msgstr "%s: помилкові значення вхідного параметра №%d: має бути дільник %d.\n"
+msgstr ""
+"%s: помилкові значення вхідного параметра №%d: має бути дільник %d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -116,78 +177,8 @@ msgid "%s: Incompatible input arguments #%d and #%d.\n"
 msgstr "%s: вхідні параметри №%d і №%d несумісні.\n"
 
 #, c-format
-msgid "%s: Creation of requested fftw plan failed.\n"
-msgstr "%s: спроба створення потрібного плану fftw зазнала невдачі.\n"
-
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: помилка під час спроби виділення пам’яті.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s» або "
-"«%s».\n"
-
-#, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A int32 expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: мало бути використано тип int32.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument #%d: FFTW flag expected.\n"
-msgstr ""
-"%s: помилкові значення вхідного параметра №%d: слід використовувати "
-"прапорець FFTW.\n"
-
-#, c-format
-msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
-msgstr "%s: у бібліотеці MKL fftw ще не реалізовано функції wisdom.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: a valid wisdom expected.\n"
-msgstr ""
-"%s: помилкове значення вхідного параметра №%d: слід використовувати коректне "
-"значення wisdom.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: помилкова розмірність вхідного параметра №%d: слід використовувати "
-"дійсне число.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An integer or a floating point number "
-"expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано ціле число або число "
-"з рухомою комою.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: An array of floating point or integer "
-"numbers expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано масив з чисел з "
-"рухомою комою або цілих чисел.\n"
-
-msgid "Scilab FFTW module not installed.\n"
-msgstr "Модуль FFTW Scilab не встановлено.\n"
+msgid "Scilab '%s' module not installed.\n"
+msgstr "Модуль «%s» Scilab не встановлено.\n"
 
 msgid "You chose to install Scilab with the fftw module."
 msgstr "Вами вибрано встановлення Scilab з модулем fftw."
@@ -195,10 +186,12 @@ msgstr "Вами вибрано встановлення Scilab з модуле�
 msgid "This module requires: "
 msgstr "Для роботи цього модуля потрібні: "
 
-msgid "Scilab will use standard fft by default until you install this library."
+msgid ""
+"Scilab will use standard fft by default until you install this library."
 msgstr ""
 "Scilab типово використовуватиме стандартну функцію швидкого перетворення "
 "Фур’є, доки не буде встановлено цю бібліотеку."
 
 msgid "See help fftw for more information."
-msgstr "Докладнішу інформацію можна отримати за допомогою команди «help fftw»."
+msgstr ""
+"Докладнішу інформацію можна отримати за допомогою команди «help fftw»."

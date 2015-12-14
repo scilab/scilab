@@ -221,7 +221,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Ouputs: scalar. Scilab's int8 data type.
+                    Outputs: scalar. Scilab's int8 data type.
                 </para>
             </listitem>
         </itemizedlist>

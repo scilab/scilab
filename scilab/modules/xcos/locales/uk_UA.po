@@ -9,109 +9,58 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-29 18:33+0000\n"
+"PO-Revision-Date: 2015-10-23 05:49+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
 
 #, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати від %d до "
+"%d параметрів.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: %s expected.\n"
+msgstr ""
+"%s: помилкова розмірність вхідного параметра №%d: слід використовувати %s.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string or %s expected.\n"
+msgstr "%s: помилковий тип вхідного параметра №%d: мав бути рядок або %s.\n"
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: No more memory.\n"
-msgstr "%s: доступну пам’ять вичерпано.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка під час спроби виділення пам’яті.\n"
-
-msgid "Straight"
-msgstr "Прямий"
-
-msgid "Horizontal"
-msgstr "Горизонтально"
-
-msgid "Vertical"
-msgstr "Вертикально"
-
-msgid "No trace nor debug printing"
-msgstr "Без виводу даних трасування та діагностики"
-
-msgid "Light Simulation trace (Discrete and Continuous part switches)"
-msgstr ""
-"Поверхневе трасування моделі (перемикачі дискретних та неперервних частин)"
-
-msgid "Per block execution trace and Debug block calls"
-msgstr "Трасування за виконанням блоків та виклики діагностування блоків"
-
-msgid "Debug block calls without trace"
-msgstr "Діагностика викликів блоку без трасування"
-
-msgid "Number of recently opened files to display: "
-msgstr "Кількість нещодавно відкритих файлів у списку: "
-
-msgid "Default file format"
-msgstr "Типовий формат файлів"
-
-msgid "Link Style"
-msgstr "Стиль з’єднань"
-
-msgid "Diagram background"
-msgstr "Тло діаграми"
-
-msgid "Grid"
-msgstr "Ґратка"
-
-msgid "Default simulation settings"
-msgstr "Типові параметри імітації"
-
-msgid "Final integration time"
-msgstr "Загальний час інтегрування"
-
-msgid "Real time scaling"
-msgstr "Динамічне масштабування"
-
-msgid "Integrator absolute tolerance"
-msgstr "Абсолютна похибка інтегрування"
-
-msgid "Integrator relative tolerance"
-msgstr "Відносна похибка інтегрування"
-
-msgid "Tolerance on time"
-msgstr "Похибка за часом"
-
-msgid "Max integration time interval"
-msgstr "Максимальний час інтегрування"
-
-msgid "Solver kind"
-msgstr "Тип розв’язувача"
-
-msgid "Maximum step size (0 means no limit)"
-msgstr "Максимальний розмір кроку (0 — не обмежувати)"
-
-msgid "Default trace settings"
-msgstr "Типові параметри трасування"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«boolean».\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
+"«string».\n"
 
 #, c-format
 msgid ""
@@ -128,9 +77,6 @@ msgid ""
 msgstr ""
 "Не вдалося завантажити бібліотеку Batik. \n"
 "Потрібна версія — %s; Поточна версія — %s."
-
-msgid "parent diagram not found."
-msgstr "не знайдено батьківської діаграми."
 
 msgid "Preview"
 msgstr "Перегляд"
@@ -466,6 +412,12 @@ msgstr "Віддзеркалити"
 msgid "Show/Hide shadow"
 msgstr "Показати/Сховати тінь"
 
+msgid "Grid"
+msgstr "Ґратка"
+
+msgid "Diagram background"
+msgstr "Тло діаграми"
+
 msgid "Bold"
 msgstr "Жирний"
 
@@ -505,8 +457,8 @@ msgstr "Довідка щодо блоку"
 msgid "Xcos Demonstrations"
 msgstr "Демонстрації Xcos"
 
-msgid "About Xcos"
-msgstr "Про Xcos"
+msgid "About Scilab"
+msgstr "Про Scilab"
 
 msgid "Palettes"
 msgstr "Палітри"
@@ -580,7 +532,8 @@ msgstr "Увімкнути"
 msgid "Palette name"
 msgstr "Назва палітри"
 
-msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid ""
+"Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr ""
 "З часу попереднього збереження діаграму було змінено.<br/> Бажаєте зберегти "
 "її?"
@@ -662,17 +615,23 @@ msgstr "Додати до"
 msgid "Add to new diagram"
 msgstr "Додати до нової діаграми"
 
-msgid "Explicit data input port must be connected to explicit data output port"
-msgstr "Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
+msgid ""
+"Explicit data input port must be connected to explicit data output port"
+msgstr ""
+"Порт явного вводу даних має бути з’єднано з портом явного виводу даних"
 
-msgid "Implicit data input port must be connected to implicit data output port"
+msgid ""
+"Implicit data input port must be connected to implicit data output port"
 msgstr ""
 "Порт неявного вводу даних має бути з’єднано з портом неявного виводу даних"
 
-msgid "Explicit data output port must be connected to explicit data input port"
-msgstr "Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
+msgid ""
+"Explicit data output port must be connected to explicit data input port"
+msgstr ""
+"Порт явного виводу даних має бути з’єднано з портом явного вводу даних"
 
-msgid "Implicit data output port must be connected to implicit data input port"
+msgid ""
+"Implicit data output port must be connected to implicit data input port"
 msgstr ""
 "Порт неявного виводу даних має бути з’єднано з портом неявного вводу даних"
 
@@ -718,12 +677,48 @@ msgstr "Заповнити кольором"
 msgid "Text Color"
 msgstr "Колір тексту"
 
+msgid "Link Style"
+msgstr "Стиль з’єднань"
+
+msgid "Straight"
+msgstr "Прямий"
+
+msgid "Horizontal"
+msgstr "Горизонтально"
+
+msgid "Vertical"
+msgstr "Вертикально"
+
 msgid "Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)"
 msgstr ""
 "Вказати рівень діагностики (0,1,2,3) <br/> буде виконано scicos_debug(рівень)"
 
 msgid "Execution trace and Debug"
 msgstr "Трасування виконання та діагностика"
+
+msgid "Final integration time"
+msgstr "Загальний час інтегрування"
+
+msgid "Real time scaling"
+msgstr "Динамічне масштабування"
+
+msgid "Integrator absolute tolerance"
+msgstr "Абсолютна похибка інтегрування"
+
+msgid "Integrator relative tolerance"
+msgstr "Відносна похибка інтегрування"
+
+msgid "Tolerance on time"
+msgstr "Похибка за часом"
+
+msgid "Max integration time interval"
+msgstr "Максимальний час інтегрування"
+
+msgid "Solver kind"
+msgstr "Тип розв’язувача"
+
+msgid "Maximum step size (0 means no limit)"
+msgstr "Максимальний розмір кроку (0 — не обмежувати)"
 
 msgid "Default"
 msgstr "Типовий"
@@ -757,15 +752,30 @@ msgstr "Виконується моделювання"
 
 msgid ""
 "Compilation in progress, results will be stored in the 'scicos_cpr' variable"
-msgstr "Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
+msgstr ""
+"Виконується збирання, результати буде збережено у змінній «scicos_cpr»"
 
 msgid "Generate SuperBlock, please wait"
 msgstr "Створення суперблоку, зачекайте"
 
-msgid "Click on diagram to add link point or on a compatible target to finish"
+msgid ""
+"Click on diagram to add link point or on a compatible target to finish"
 msgstr ""
 "Клацніть лівою кнопкою миші на діаграмі, щоб додати точку з’єднання, або на "
 "відповідному елементі, щоб завершити з’єднання"
+
+msgid "No trace nor debug printing"
+msgstr "Без виводу даних трасування та діагностики"
+
+msgid "Light Simulation trace (Discrete and Continuous part switches)"
+msgstr ""
+"Поверхневе трасування моделі (перемикачі дискретних та неперервних частин)"
+
+msgid "Per block execution trace and Debug block calls"
+msgstr "Трасування за виконанням блоків та виклики діагностування блоків"
+
+msgid "Debug block calls without trace"
+msgstr "Діагностика викликів блоку без трасування"
 
 msgid "All supported formats"
 msgstr "Всі підтримувані формати"
@@ -858,156 +868,31 @@ msgid "Expecting '%d'."
 msgstr "Мало бути вказано «%d»."
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. <br/"
-">Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. "
+"<br/>Please reconnect it.</body></html>"
 msgstr ""
 "<html><body>Помилка під час компіляції: зв’язок проігноровано, оскільки "
 "немає з’єднання. <br/>Будь ласка, створіть з’єднання.</body></html>"
 
 #, c-format
+msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
+msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимкнено.\n"
+
+#, c-format
 msgid "Scilab '%s' module not installed.\n"
 msgstr "Модуль «%s» Scilab не встановлено.\n"
 
-msgid "Basic controller"
-msgstr "Базовий регулятор"
+msgid "Number of recently opened files to display: "
+msgstr "Кількість нещодавно відкритих файлів у списку: "
 
-msgid "Water tank"
-msgstr "Резервуар для води"
+msgid "Default file format"
+msgstr "Типовий формат файлів"
 
-msgid "Discrete Controller"
-msgstr "Дискретний регулятор"
+msgid "Default simulation settings"
+msgstr "Типові параметри імітації"
 
-msgid "Kalman Filter"
-msgstr "Фільтр Калмана"
-
-msgid "Discrete Kalman Filter"
-msgstr "Дискретний фільтр Калмана"
-
-msgid "Cont.Plant-Hybrid Observer"
-msgstr "Неперервне спостереження за гілками-гібридами"
-
-msgid "Temperature Controller"
-msgstr "Регулятор температури"
-
-msgid "Inverted pendulum"
-msgstr "Обернений маятник"
-
-msgid "Lorenz butterfly"
-msgstr "Метелик Лоренца"
-
-msgid "RLC Circuit"
-msgstr "Коливальний контур"
-
-msgid "Bridge Rectifer"
-msgstr "Містковий випрямлювач"
-
-msgid "Transformer"
-msgstr "Перетворювач"
-
-msgid "Differential amplifier"
-msgstr "Диференційний підсилювач"
-
-msgid "OpAmp amplifier"
-msgstr "Операційний підсилювач"
-
-msgid "Switched capacitor integrator"
-msgstr "Інтегральна схема на конденсаторах з перемиканням"
-
-msgid "DC/DC Buck Converter"
-msgstr "Перетворювач DC/DC з послабленням"
-
-msgid "DC/DC Boost Converter"
-msgstr "Перетворювач DC/DC з підсиленням"
-
-msgid "Colpitts oscillator"
-msgstr "Ємнісна триточка"
-
-msgid "Logic AND gate"
-msgstr "Логічний шлюз AND"
-
-msgid "Logic NOR gate"
-msgstr "Логічний шлюз NOR"
-
-msgid "If Then Else"
-msgstr "If Then Else"
-
-msgid "And"
-msgstr "And"
-
-msgid "Automotive Suspension"
-msgstr "Автомобільна підвіска"
-
-msgid "Ball on a Platform"
-msgstr "Куля на платформі"
-
-msgid "Bouncing Ball"
-msgstr "М’ячик-стрибунець"
-
-msgid "Chaos Modelica"
-msgstr "Modelica (Хаос)"
-
-msgid "Hydraulics blocks"
-msgstr "Гідравлічні блоки"
-
-msgid "RLC circuit"
-msgstr "Коливальний контур"
-
-msgid "Old Gain Block"
-msgstr "Старий блок підсилення"
-
-msgid "Standard demos"
-msgstr "Стандартні демонстрації"
-
-msgid "Control Systems"
-msgstr "Системи керування"
-
-msgid "Electrical Systems"
-msgstr "Електричні системи"
-
-msgid "Mechanical Systems"
-msgstr "Механічні системи"
-
-msgid "Modelica demos"
-msgstr "Демонстрації Modelica"
-
-msgid "Old demos"
-msgstr "Старі демонстрації"
-
-msgid "Simple Demo"
-msgstr "Проста демонстрація"
-
-msgid "Bouncing Balls"
-msgstr "Зіткнення кульок"
-
-msgid "Simple Thermostat"
-msgstr "Простий термостат"
-
-msgid "Table Lookup"
-msgstr "Табличне перетворення"
-
-msgid "Signal Builder"
-msgstr "Побудова сигналів"
-
-msgid "Fibonacci Numbers"
-msgstr "Числа Фібоначчі"
-
-msgid "Scilab block"
-msgstr "Блок Scilab"
-
-msgid "Xcos data types"
-msgstr "Типи даних Xcos"
-
-msgid "Zero Crossing"
-msgstr "Перетин нульового рівня"
-
-msgid "_IF_ Xcos block"
-msgstr "Блок _IF_ Xcos"
-
-msgid "Goto/From blocks"
-msgstr "Блоки переходу/початку"
-
-msgid "Event demos"
-msgstr "Демонстрації подій"
+msgid "Default trace settings"
+msgstr "Типові параметри трасування"
 
 #, c-format
 msgid "%s: Unable to export %s to %s.\n"
@@ -1026,7 +911,8 @@ msgstr ""
 "тип.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати рядок шляху "
 "до каталогу.\n"
@@ -1071,7 +957,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for %s variable: A string array expected.\n"
-msgstr "%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
+msgstr ""
+"%s: помилковий тип змінної %s: слід використовувати масив з рядків.\n"
 
 #, c-format
 msgid "%s: All paths defined by %s variable must exist.\n"
@@ -1086,18 +973,16 @@ msgstr ""
 "доступу на запис до відповідного каталогу.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String or diagram structure expected"
-msgstr ""
-"%s: помилковий тип вхідного параметра %d: слід використовувати тип «string» "
-"або тип структури діаграми."
-
-#, c-format
 msgid "Unable to open %s"
 msgstr "Не вдалося відкрити %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected."
 msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d."
+
+#, c-format
+msgid "%s: Not supported format %s.\n"
+msgstr "%s: непідтримуваний формат %s.\n"
 
 #, c-format
 msgid ""
@@ -1130,7 +1015,8 @@ msgstr ""
 "від %d до %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid ""
+"%s: Wrong type for input argument %s: palette type or path expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра %s: слід використовувати тип палітри "
 "або шлях до файла.\n"
@@ -1208,7 +1094,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr ""
+"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: full path string expected.\n"
@@ -1397,15 +1284,3 @@ msgstr "Проблема імітації:"
 
 msgid "Error in post_xcos_simulate: ending simulation."
 msgstr "Помилка у post_xcos_simulate: завершуємо імітацію."
-
-#, c-format
-msgid "%s: Cannot open file '%s' for reading.\n"
-msgstr "%s: не вдалося відкрити файл «%s» для читання.\n"
-
-#, c-format
-msgid "%s: Error while trying to read file contents from '%s'.\n"
-msgstr "%s: помилка під час спроби читання вмісту файла «%s».\n"
-
-#, c-format
-msgid "%s: Syntax error while trying to set up context from"
-msgstr "%s: синтаксична помилка під час спроби встановлення контексту"

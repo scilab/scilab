@@ -267,6 +267,11 @@ int Context::getFunctionList(std::list<Symbol>& lst, const std::wstring& _stModu
     return variables.getFunctionList(lst, _stModuleName, m_iLevel);
 }
 
+int Context::getFunctionList(std::list<types::Callable *> & lst, std::wstring _stModuleName)
+{
+    return variables.getFunctionList(lst, _stModuleName, m_iLevel);
+}
+
 int Context::getConsoleVarsName(std::list<std::wstring>& lst)
 {
     if (console)
@@ -324,7 +329,7 @@ int Context::getLibrariesList(std::list<std::wstring>& lst)
     return libraries.librarieslist(lst);
 }
 
-void Context::put(Variable* _var, types::InternalType* _pIT)
+bool Context::put(Variable* _var, types::InternalType* _pIT)
 {
     if (_pIT->isLibrary())
     {
@@ -332,17 +337,23 @@ void Context::put(Variable* _var, types::InternalType* _pIT)
         lib->put((types::Library*)_pIT, m_iLevel);
     }
 
-    _var->put(_pIT, m_iLevel);
+    if (_var->put(_pIT, m_iLevel) == false)
+    {
+        return false;
+    }
+
     if (varStack.empty() == false)
     {
         (*varStack.top())[_var->getSymbol()] = _var;
     }
+
+    return true;
 }
 
-void Context::put(const Symbol& _key, types::InternalType* _pIT)
+bool Context::put(const Symbol& _key, types::InternalType* _pIT)
 {
     Variable* var = variables.getOrCreate(_key);
-    put(var, _pIT);
+    return put(var, _pIT);
 }
 
 bool Context::remove(const Symbol& _key)
@@ -366,7 +377,10 @@ bool Context::removeAll()
 bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
 {
     //add variable in previous scope
-    variables.putInPreviousScope(_var, _pIT, m_iLevel - 1);
+    if (variables.putInPreviousScope(_var, _pIT, m_iLevel - 1) == false)
+    {
+        return false;
+    }
 
     //add variable in stack of using variables
     if (varStack.empty() == false)
@@ -396,14 +410,12 @@ bool Context::addFunction(types::Function *_info)
 
 bool Context::addMacro(types::Macro *_info)
 {
-    put(Symbol(_info->getName()), _info);
-    return true;
+    return put(Symbol(_info->getName()), _info);
 }
 
 bool Context::addMacroFile(types::MacroFile *_info)
 {
-    put(Symbol(_info->getName()), _info);
-    return true;
+    return put(Symbol(_info->getName()), _info);
 }
 
 bool Context::isGlobalVisible(const Symbol& _key)

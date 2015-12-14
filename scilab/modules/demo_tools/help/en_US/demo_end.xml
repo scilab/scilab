@@ -16,7 +16,7 @@
         <refpurpose>completes a demonstration </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Séquence d'appel</title>
+        <title>Calling Sequence</title>
         <synopsis>demo_end()</synopsis>
     </refsynopsisdiv>
     <refsection>

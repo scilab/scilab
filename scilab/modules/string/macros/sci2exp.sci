@@ -112,7 +112,7 @@ function t=str2exp(a,lmax)
 
     [m,n]=size(a),
     dots="."+"."
-    t=[];
+    t="";
     quote="''"
 
     a=strsubst(a,quote,quote+quote)
@@ -175,7 +175,7 @@ function t=mat2exp(a,lmax)
     end
     a=String(a);
     dots="."+"."
-    t=[];
+    t="";
     if n==1 then
         x=strcat(a,";")
         lx=length(x)

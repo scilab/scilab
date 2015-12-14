@@ -13,7 +13,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="demo_compiler">
     <refnamediv>
         <refname>demo_compiler</refname>
-        <refpurpose>test the presence of a compileur </refpurpose>
+        <refpurpose>test the presence of a compiler </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
@@ -22,8 +22,8 @@
     <refsection>
         <title>Description</title>
         <para>
-            The function demo_compiler asks the computer if it owns a compileur C or not. 
-            It returns a boolean indicating wether the compiler exists or not.
+            The function demo_compiler asks the computer if it owns a compiler C or not.
+            It returns a boolean indicating whether the compiler exists or not.
         </para>
     </refsection>
     <refsection>

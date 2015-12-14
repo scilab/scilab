@@ -50,8 +50,10 @@ public class XcosCell extends ScilabGraphUniqueObject {
             throw new IllegalArgumentException();
         }
 
+        /* Store default values to the C++ side */
         JavaController controller = new JavaController();
-        controller.referenceObject(uid);
+        setValue(controller, value);
+        setId(controller, id);
     }
 
     /**
@@ -84,7 +86,14 @@ public class XcosCell extends ScilabGraphUniqueObject {
             return;
         }
 
-        JavaController controller = new JavaController();
+        setValue(new JavaController(), value);
+    }
+
+    private void setValue(JavaController controller, Object value) {
+        if (value == null) {
+            return;
+        }
+
         switch (getKind()) {
             case ANNOTATION:
                 controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESCRIPTION, String.valueOf(value));
@@ -108,7 +117,10 @@ public class XcosCell extends ScilabGraphUniqueObject {
     public void setId(String id) {
         super.setId(id);
 
-        JavaController controller = new JavaController();
+        setId(new JavaController(), id);
+    }
+
+    private void setId(JavaController controller, String id) {
         switch (getKind()) {
             case ANNOTATION:
             case BLOCK:
@@ -133,7 +145,10 @@ public class XcosCell extends ScilabGraphUniqueObject {
             return;
         }
 
-        JavaController controller = new JavaController();
+        setGeometry(new JavaController(), geometry);
+    }
+
+    private void setGeometry(JavaController controller, mxGeometry geometry) {
         switch (getKind()) {
             case ANNOTATION:
             case BLOCK: {
@@ -151,7 +166,6 @@ public class XcosCell extends ScilabGraphUniqueObject {
                  */
                 mxPoint sourcePoint = null;
                 mxPoint targetPoint = null;
-
                 mxICell sourceCell = getSource();
                 mxICell targetCell = getTarget();
                 if (sourceCell != null && sourceCell.getGeometry() != null) {
@@ -160,49 +174,42 @@ public class XcosCell extends ScilabGraphUniqueObject {
                 if (targetCell != null && targetCell.getGeometry() != null) {
                     targetPoint = new mxPoint(targetCell.getGeometry().getCenterX(), targetCell.getGeometry().getCenterY());
                 }
-
                 if (sourcePoint == null) {
                     sourcePoint = geometry.getSourcePoint();
                 }
                 if (targetPoint == null) {
                     targetPoint = geometry.getTargetPoint();
                 }
-
                 if (sourcePoint == null) {
                     sourcePoint = new mxPoint();
                 }
                 if (targetPoint == null) {
                     targetPoint = new mxPoint();
                 }
-
                 List<mxPoint> points = geometry.getPoints();
                 if (points == null) {
                     points = Collections.emptyList();
                 }
 
                 /*
-                 * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
-                 */
+                * At that point, the sourcePoint, targetPoint and points are valid values (but may be unknown) encode them to the the CONTROL_POINTS
+                */
 
                 // Allocate some space to contains them all
                 int nbOfPoints = 2 + points.size();
                 VectorOfDouble v = new VectorOfDouble(2 * nbOfPoints);
                 int i = 0;
-
                 // then fill the allocation space
                 v.set(2 * i, sourcePoint.getX());
                 v.set(2 * i + 1, sourcePoint.getY());
                 i++;
-
                 for (; i < nbOfPoints - 1; i++) {
                     v.set(2 * i, points.get(i - 1).getX());
                     v.set(2 * i + 1, points.get(i - 1).getY());
                 }
-
                 v.set(2 * i, targetPoint.getX());
                 v.set(2 * i + 1, targetPoint.getY());
                 i++;
-
                 /*
                  * Finally push the values to the model
                  */
@@ -226,17 +233,108 @@ public class XcosCell extends ScilabGraphUniqueObject {
             return;
         }
 
-        JavaController controller = new JavaController();
+        setStyle(new JavaController(), style);
+    }
+
+    private void setStyle(JavaController controller, String style) {
         switch (getKind()) {
             case ANNOTATION:
             case BLOCK:
             case PORT:
-                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STYLE, String.valueOf(style));
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.STYLE, style);
                 break;
             default:
                 break;
         }
+    }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see com.mxgraph.model.mxCell#removeFromParent()
+     */
+    @Override
+    public void removeFromParent() {
+        super.removeFromParent();
+
+        // do not remove from parent on SUPER_f diagram creation : there is an MVC parent but no JGraphX one
+        if (parent == null) {
+            return;
+        }
+
+        JavaController controller = new JavaController();
+        switch (getKind()) {
+            case ANNOTATION:
+            case BLOCK:
+            case LINK: {
+                /*
+                 * Retrieve the parent
+                 */
+                long[] parent = new long[1];
+                Kind parentKind = Kind.BLOCK;
+                ObjectProperties prop = ObjectProperties.PARENT_BLOCK;
+                controller.getObjectProperty(getUID(), getKind(), prop, parent);
+                if (parent[0] == 0l) {
+                    parentKind = Kind.DIAGRAM;
+                    prop = ObjectProperties.PARENT_DIAGRAM;
+                    controller.getObjectProperty(getUID(), getKind(), prop, parent);
+                }
+
+                /*
+                 * If there is a parent, clear it
+                 */
+                if (parent[0] != 0l) {
+                    VectorOfScicosID children = new VectorOfScicosID();
+                    controller.getObjectProperty(parent[0], parentKind, ObjectProperties.CHILDREN, children);
+                    children.remove(getUID());
+                    controller.setObjectProperty(parent[0], parentKind, ObjectProperties.CHILDREN, children);
+
+                    controller.setObjectProperty(getUID(), getKind(), prop, 0l);
+                }
+                break;
+            }
+            case PORT: {
+                long[] parent = new long[1];
+                Kind parentKind = Kind.BLOCK;
+                controller.getObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_BLOCK, parent);
+
+                int[] portKind = new int[1];
+                controller.getObjectProperty(getUID(), getKind(), ObjectProperties.PORT_KIND, portKind);
+                ObjectProperties property = relatedPortKindProperty(portKind[0]);
+
+                VectorOfScicosID ports = new VectorOfScicosID();
+                controller.getObjectProperty(parent[0], parentKind, property, ports);
+                ports.remove(getUID());
+                controller.setObjectProperty(parent[0], parentKind, property, ports);
+
+                controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_BLOCK, 0l);
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    private ObjectProperties relatedPortKindProperty(int portKind) {
+        ObjectProperties property;
+        switch (PortKind.values()[portKind]) {
+            case PORT_IN:
+                property = ObjectProperties.INPUTS;
+                break;
+            case PORT_OUT:
+                property = ObjectProperties.OUTPUTS;
+                break;
+            case PORT_EIN:
+                property = ObjectProperties.EVENT_INPUTS;
+                break;
+            case PORT_EOUT:
+                property = ObjectProperties.EVENT_OUTPUTS;
+                break;
+            default:
+                property = null;
+                break;
+        }
+        return property;
     }
 
     /*
@@ -278,19 +376,24 @@ public class XcosCell extends ScilabGraphUniqueObject {
     public mxICell setTerminal(mxICell terminal, boolean isSource) {
         mxICell cell = super.setTerminal(terminal, isSource);
 
+        final long uid;
         if (cell == null) {
-            return cell;
+            uid = 0l;
+        } else {
+            // a terminal of an XcosCell is always another XcosCell
+            uid = ((XcosCell) cell).getUID();
         }
 
-        // a terminal of an XcosCell is always another XcosCell
-        XcosCell t = (XcosCell) cell;
         JavaController controller = new JavaController();
         switch (getKind()) {
             case LINK:
                 if (isSource) {
-                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_PORT, t.getUID());
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.SOURCE_PORT, uid);
                 } else {
-                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, t.getUID());
+                    controller.setObjectProperty(getUID(), getKind(), ObjectProperties.DESTINATION_PORT, uid);
+                }
+                if (uid != 0l) {
+                    controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.CONNECTED_SIGNALS, getUID());
                 }
                 break;
             default:
@@ -340,24 +443,8 @@ public class XcosCell extends ScilabGraphUniqueObject {
         controller.getObjectProperty(c.getUID(), c.getKind(), ObjectProperties.PORT_KIND, v);
 
         VectorOfScicosID children = new VectorOfScicosID();
-        final ObjectProperties property;
-        switch (PortKind.values()[v[0]]) {
-            case PORT_IN:
-                property = ObjectProperties.INPUTS;
-                break;
-            case PORT_OUT:
-                property = ObjectProperties.OUTPUTS;
-                break;
-            case PORT_EIN:
-                property = ObjectProperties.EVENT_INPUTS;
-                break;
-            case PORT_EOUT:
-                property = ObjectProperties.EVENT_OUTPUTS;
-                break;
-            default:
-                property = null;
-                break;
-        }
+        final ObjectProperties property = relatedPortKindProperty(v[0]);
+
 
         // FIXME manage the index argument, possibly by counting the JGraphX children by kind
         if (property != null) {
@@ -457,13 +544,11 @@ public class XcosCell extends ScilabGraphUniqueObject {
     public Object clone() throws CloneNotSupportedException {
         JavaController controller = new JavaController();
         XcosCell c = (XcosCell) super.clone();
-        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
-        return c;
-    }
 
-    @Override
-    protected void finalize() throws Throwable {
-        JavaController controller = new JavaController();
-        controller.deleteObject(getUID());
+        c.owner = new ScicosObjectOwner(controller.cloneObject(getUID(), false, false), getKind());
+        c.setValue(controller, c.getValue());
+        c.setId(controller, c.getId());
+
+        return c;
     }
 }

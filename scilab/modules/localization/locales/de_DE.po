@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2012-05-07 18:46+0000\n"
 "Last-Translator: Dennis Baudys <Unknown>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -41,12 +41,24 @@ msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr "%s: Falscher Typ für Eingangsargument #%d: Zeichenkette erwartet.\n"
 
 #, c-format
-msgid "%s: This feature is only used on Windows.\n"
-msgstr "%s: dieses Funktionalität wird nur unter Windows verwendet\n"
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "Unsupported language '%s'.\n"
-msgstr "Nicht unterstützte Sprache '%s'.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%ls: This feature is only used on Windows.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Unsupported language '%ls'.\n"
+msgstr ""
 
 msgid "The language for menus cannot be changed on a running console.\n"
 msgstr ""
@@ -56,13 +68,13 @@ msgid "Restart Scilab to apply to menus.\n"
 msgstr "Starten Sie Scilab, um dies auf Menüs anzuwenden.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: String expected.\n"
-msgstr "%s: Falscher Typ für erstes Eingangsargument: Zeichenkette erwartet.\n"
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Unsupported language '%s'.\n"
-msgstr "%s: nicht unterstützte Sprache '%s'.\n"
+msgid "%ls: Unsupported language '%ls'.\n"
+msgstr ""
 
 #, c-format
-msgid "Switching to default language : '%s'.\n"
-msgstr "Wechsle zur voreingestellten Sprache: '%s'.\n"
+msgid "Switching to default language : '%ls'.\n"
+msgstr ""

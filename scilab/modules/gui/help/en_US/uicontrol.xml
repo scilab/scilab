@@ -106,7 +106,7 @@
             </listitem>
             <listitem>
                 <para>
-                    Tab: a container for <literal>frame</literal> style uicontrols enabling to switch between them by cliking on a tab with a given title and/or icon.
+                    Tab: a container for <literal>frame</literal> style uicontrols enabling to switch between them by clicking on a tab with a given title and/or icon.
                 </para>
                 <para>The font related properties set on the frame will be used for the tab label.</para>
             </listitem>

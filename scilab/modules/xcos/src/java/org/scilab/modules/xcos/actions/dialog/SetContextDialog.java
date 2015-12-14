@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Scilab Enterprises - Clement DAVID
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -21,6 +22,11 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.CharBuffer;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
@@ -34,6 +40,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
+import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.gui.utils.ScilabSwingUtilities;
@@ -42,6 +49,8 @@ import org.scilab.modules.xcos.VectorOfString;
 import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
+import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
+import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -69,6 +78,8 @@ public class SetContextDialog extends JDialog {
      *
      * @param parent
      *            the parent component
+     * @param graph
+     *            THe current graph
      * @param parameters
      *            the Scicos parameters
      */
@@ -164,67 +175,56 @@ public class SetContextDialog extends JDialog {
         /*
          * The cancel button just exit without doing anything
          */
-        cancelButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
+        cancelButton.addActionListener((ActionEvent e) -> {
+            dispose();
         });
 
         /*
          * The ok button parse the contextArea, reconstruct the real context and
          * set the scicosParameters before exiting.
          */
-        okButton.addActionListener(new ActionListener() {
+        okButton.addActionListener(new ActionListenerImpl());
+    }
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String context = contextArea.getText();
-                    final VectorOfString v = new VectorOfString();
+    private class ActionListenerImpl implements ActionListener {
 
-                    // Force a carriage return if needed so the last line is not ignored
-                    if (context.length() > 0 && !context.endsWith("\n")) {
-                        context += '\n';
-                    }
-                    int off = 0;
-                    int next = 0;
-                    while ((next = context.indexOf('\n', off)) != -1) {
-                        v.add(context.substring(off, next));
-                        off = next + 1;
-                    }
-                    parameters.setContext(new JavaController(), v);
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                String context = contextArea.getText();
+                final VectorOfString v = new VectorOfString();
 
-                    // FIXME : context validation is not handled yet
-                    //
-                    //                    /*
-                    //                     * Validate the context
-                    //                     */
-                    //                    final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-                    //                    if (handler == null) {
-                    //                        return;
-                    //                    }
-                    //                    try {
-                    //
-                    //                        ScilabInterpreterManagement.putCommandInScilabQueue("script2var(" + ScilabDirectHandler.CONTEXT + ", struct()); ");
-                    //                    } finally {
-                    //                        handler.release();
-                    //                    }
-
-                    dispose();
-                } catch (PropertyVetoException e2) {
-                    Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
+                // Force a carriage return if needed so the last line is not ignored
+                if (context.length() > 0 && !context.endsWith("\n")) {
+                    context += '\n';
                 }
+                int off = 0;
+                int next;
+                while ((next = context.indexOf('\n', off)) != -1) {
+                    v.add(context.substring(off, next));
+                    off = next + 1;
+                }
+                parameters.setContext(new JavaController(), v);
 
                 /*
-                 * if superblock is concerned, then regenerate child diagram.
-                 */
-                //                if (rootGraph instanceof SuperBlockDiagram) {
-                //                    SuperBlockDiagram superBlockDiagram = (SuperBlockDiagram) rootGraph;
-                //                    superBlockDiagram.getContainer().invalidateRpar();
-                //                }
+                * Validate the context
+                */
+                try {
+                    File f = File.createTempFile(ScilabDirectHandler.CONTEXT, ".sce");
+                    try (FileWriter writer = new FileWriter(f)) {
+                        writer.write(context, 0, context.length());
+                    }
+
+                    ScilabInterpreterManagement.putCommandInScilabQueue("var = script2var(mgetl(\"" + f.getAbsolutePath() + "\"), struct()); mdelete(\"" + f.getAbsolutePath() + "\");");
+                } catch (IOException ex) {
+                    Logger.getLogger(SetContextAction.class.getName()).severe(ex.toString());
+                }
+
+                dispose();
+            } catch (PropertyVetoException e2) {
+                Logger.getLogger(SetContextAction.class.getName()).severe(e2.toString());
             }
-        });
+        }
     }
 }
 // CSON: ClassDataAbstractionCoupling

@@ -6,31 +6,44 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-01-23 20:35+0000\n"
-"Last-Translator: Zbyněk Schwarz <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Pouze v Režimu Windows, není dostupné v Režimu Konzole.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Chyba při přidělování paměti.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: Chybná hodnota vstupního argumentu: Očekávány nezáporná celá čísla.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr "%s: Chybný typ vstupního argumentu: Očekáván skalár.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -41,10 +54,6 @@ msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s: Chybná hodnota vstupního argumentu #%d: Očekáván '%s'.\n"
 
@@ -53,12 +62,12 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: Špatný typ vstupních argumentů: Očekávány řetězce.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
@@ -68,12 +77,12 @@ msgid "see help"
 msgstr "Podívejte se do nápovědy"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Nelze otevřít soubor %s.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
+msgid "%s: Cannot open file %ls.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -87,9 +96,6 @@ msgstr "%s: Nelze se dotázat na hodnotu tohoto typu.\n"
 msgid "Scilab %s Console"
 msgstr ""
 
-msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-
 msgid "Error(s) : see help powershell"
 msgstr "Chyba(y): podívejte se na nápovědu powershell"
 
@@ -101,7 +107,3 @@ msgstr "Pouze pro Microsoft Windows."
 
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 nenalezen."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d.\n"

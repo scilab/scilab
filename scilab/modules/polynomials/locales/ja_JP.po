@@ -14,30 +14,158 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
-# File: etc/polynomials.start, line: 26
-msgid "Polynomials"
-msgstr "多項式"
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
 
-msgid "Introduction"
-msgstr "導入"
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A real vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Positive vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d : %s or %s expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : Valid variable name expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A polynomial expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : If algo is %s, a real is expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d : If algo is %s, a degree less than "
+"%d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Convergence problem...\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Leading coefficient is zero.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Too high degree (max 100).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: unable to find spec function\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A real matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Non negative or null value expected "
+"at degree %d.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: Convergence problem.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: singular or asymmetric problem.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: A non null denominator expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A boolean scalar expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 正方行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 浮動小数点数または多項式または有理分数"
-"配列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数または多項式または有理分数配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -48,39 +176,30 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 多項式を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 有理分数を指定してください.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 有理分数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 1入力1出力システムを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 1入力1出力システムを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or polynomial "
 "array expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 線形動的システムまたは多項式配列を指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 線形動的システムまたは多項式配列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Integer array or Polynomial expected.\n"
-msgstr ""
-"%s: 引数 #%d の型が間違っています: 整数配列または多項式を指定してください.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 整数配列または多項式を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument: Polynomial array expected.\n"
 msgstr "%s: 入力引数の型が間違っています: 多項式配列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Unexpected type for input argument #%d.\n"
@@ -88,8 +207,7 @@ msgstr "%s: 入力引数 #%d に想定外の型が指定されました.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 行ベクトルを指定してください.\n"
 
 #
 # File: macros/inv_coeff.sci, line: 24
@@ -99,14 +217,12 @@ msgstr "%s: 入力引数 %d と %d で互換性がありません。\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
-msgstr ""
-"%s: 引数 #%d の型が間違っています: 実数行列または多項式を指定してください.\n"
+msgid ""
+"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr "%s: 引数 #%d の型が間違っています: 実数行列または多項式を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String expected.\n"

@@ -320,6 +320,21 @@ public class ScilabBooleanSparse implements ScilabType {
         return cols;
     }
 
+
+
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.hashCode(colPos);
+        result = prime * result + cols;
+        result = prime * result + nbItem;
+        result = prime * result + Arrays.hashCode(nbItemRow);
+        result = prime * result + rows;
+        return result;
+    }
+
     /**
      * @see org.scilab.modules.types.ScilabType#equals(Object)
      */

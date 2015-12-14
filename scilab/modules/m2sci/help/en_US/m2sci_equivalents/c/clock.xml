@@ -43,7 +43,7 @@ No equivalent
     <refsection>
         <title>Particular cases</title>
         <para>
-            Even if there no equivalent for Matlab <emphasis role="bold">clock</emphasis> in Scilab, it can be emuled as shown in example.
+            Even if there no equivalent for Matlab <emphasis role="bold">clock</emphasis> in Scilab, it can be emulated as shown in example.
         </para>
     </refsection>
     <refsection>

@@ -8,31 +8,45 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 08:38+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:03+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: fr\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Disponible uniquement en mode graphique, non en mode standard.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s : Erreur d'allocation mémoire.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
-"%s : Valeur erronée de l'argument d'entrée : Des entiers non-négatifs "
-"attendus.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr "%s : Type erroné de l'argument d'entrée : Un scalaire attendu.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -45,12 +59,6 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
 
@@ -59,16 +67,14 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s : Erreur d'allocation mémoire.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s : Type erroné des arguments d'entrée : Une chaîne de caractères "
-"attendue.\n"
+"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
+"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
@@ -78,14 +84,12 @@ msgid "see help"
 msgstr "Consulter l'aide"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s : Impossible d'ouvrir le fichier %s.\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid "%s: Cannot open file %ls.\n"
 msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -99,10 +103,6 @@ msgstr "%s : Impossible de renseigner la valeur de ce type.\n"
 msgid "Scilab %s Console"
 msgstr "Console Scilab %s"
 
-msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-"Scilab 5.5.X sera la dernière famille qui fonctionnera sous Windows XP."
-
 msgid "Error(s) : see help powershell"
 msgstr "Erreur(s) : voir help powershell"
 
@@ -114,7 +114,3 @@ msgstr "Seulement disponible pour Microsoft Windows"
 
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 non trouvé."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d attendu(s).\n"

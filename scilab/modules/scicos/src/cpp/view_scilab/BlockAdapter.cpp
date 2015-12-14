@@ -64,22 +64,63 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), adaptor.getDiagram());
+        // If we are in a Superblock (has children) then reconstruct a DiagramAdapter, referencing the children
+        DiagramAdapter* subDiagram = nullptr;
+        std::vector<ScicosID> children;
+        controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, children);
+        if (!children.empty())
+        {
+            Controller neededController = const_cast<Controller&>(controller);
+            ScicosID newDiag = neededController.createObject(DIAGRAM);
+            subDiagram = new DiagramAdapter(controller, static_cast<org_scilab_modules_scicos::model::Diagram*>(controller.getObject(newDiag)));
+            neededController.setObjectProperty(newDiag, DIAGRAM, CHILDREN, children);
+
+            for (const ScicosID id : children)
+            {
+                auto o = controller.getObject(id);
+                neededController.setObjectProperty(o->id(), o->kind(), PARENT_DIAGRAM, newDiag);
+                neededController.referenceObject(o->id());
+            }
+            subDiagram->setFrom(adaptor.getFrom());
+            subDiagram->setTo(adaptor.getTo());
+            subDiagram->setListObjects(adaptor.getListObjects());
+            subDiagram->setContribContent(adaptor.getContribContent());
+
+            std::vector<std::string> context;
+            controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, DIAGRAM_CONTEXT, context);
+            neededController.setObjectProperty(newDiag, DIAGRAM, DIAGRAM_CONTEXT, context);
+        }
+
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), subDiagram);
         types::InternalType* mlist = localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
 
-        const_cast<BlockAdapter&>(adaptor).setDiagram(localAdaptor.getDiagram());
+        if (localAdaptor.getDiagram() != nullptr)
+        {
+            // To handle the copy constructor case calling model::set
+            const_cast<BlockAdapter&>(adaptor).setFrom(localAdaptor.getDiagram()->getFrom());
+            const_cast<BlockAdapter&>(adaptor).setTo(localAdaptor.getDiagram()->getTo());
+            const_cast<BlockAdapter&>(adaptor).setListObjects(localAdaptor.getDiagram()->getListObjects());
+            const_cast<BlockAdapter&>(adaptor).setContribContent(localAdaptor.getDiagram()->getContribContent());
+        }
+
         return mlist;
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), adaptor.getDiagram());
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), nullptr);
         if (!localAdaptor.setAsTList(v, controller))
         {
             return false;
         }
 
-        adaptor.setDiagram(localAdaptor.getDiagram());
+        if (localAdaptor.getDiagram() != nullptr)
+        {
+            adaptor.setFrom(localAdaptor.getDiagram()->getFrom());
+            adaptor.setTo(localAdaptor.getDiagram()->getTo());
+            adaptor.setListObjects(localAdaptor.getDiagram()->getListObjects());
+            adaptor.setContribContent(localAdaptor.getDiagram()->getContribContent());
+        }
         return true;
     }
 };
@@ -139,8 +180,11 @@ template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = prop
 
 BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model::Block* adaptee) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
-    diagramAdapter(nullptr),
-    doc_content(nullptr)
+    doc_content(nullptr),
+    from_vec(),
+    to_vec(),
+    list_objects(nullptr),
+    contrib_content(nullptr)
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
@@ -151,21 +195,31 @@ BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model
         property<BlockAdapter>::add_property(L"doc", &doc::get, &doc::set);
     }
 
+    setListObjects(new types::List());
+    setContribContent(new types::List());
     setDocContent(new types::List());
 }
 
 BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
     BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter, false),
-    diagramAdapter(nullptr),
-    doc_content(nullptr)
+    doc_content(nullptr),
+    from_vec(),
+    to_vec(),
+    list_objects(nullptr),
+    contrib_content(nullptr)
 {
     Controller controller;
 
-    if (adapter.getDiagram() != nullptr)
+    if (adapter.getListObjects()->getSize() > 0)
     {
         types::InternalType* model = model::get(adapter, controller);
         model::set(*this, model, controller);
         model->killMe();
+    }
+    else
+    {
+        setListObjects(new types::List());
+        setContribContent(new types::List());
     }
 
     setDocContent(adapter.getDocContent());
@@ -175,10 +229,16 @@ BlockAdapter::~BlockAdapter()
 {
     // CHILDREN will be unreferenced on Controller::deleteObject
 
-    if (diagramAdapter != nullptr)
+    if (list_objects != nullptr)
     {
-        diagramAdapter->DecreaseRef();
-        diagramAdapter->killMe();
+        list_objects->DecreaseRef();
+        list_objects->killMe();
+    }
+
+    if (contrib_content != nullptr)
+    {
+        contrib_content->DecreaseRef();
+        contrib_content->killMe();
     }
 
     doc_content->DecreaseRef();
@@ -195,29 +255,6 @@ std::wstring BlockAdapter::getShortTypeStr()
     return getSharedTypeStr();
 }
 
-DiagramAdapter* BlockAdapter::getDiagram() const
-{
-    return diagramAdapter;
-}
-
-void BlockAdapter::setDiagram(DiagramAdapter* v)
-{
-    // The old 'diagramAdapter' needs to be freed after setting it to 'v'
-    DiagramAdapter* temp = diagramAdapter;
-
-    if (v != nullptr)
-    {
-        v->IncreaseRef();
-        diagramAdapter = v;
-    }
-
-    if (temp != nullptr)
-    {
-        temp->DecreaseRef();
-        temp->killMe();
-    }
-}
-
 types::InternalType* BlockAdapter::getDocContent() const
 {
     return doc_content;
@@ -229,6 +266,66 @@ void BlockAdapter::setDocContent(types::InternalType* v)
 
     v->IncreaseRef();
     doc_content = v;
+
+    if (temp != nullptr)
+    {
+        temp->DecreaseRef();
+        temp->killMe();
+    }
+}
+
+std::vector<link_t> BlockAdapter::getFrom() const
+{
+    return from_vec;
+}
+
+void BlockAdapter::setFrom(const std::vector<link_t>& from)
+{
+    from_vec = from;
+}
+
+std::vector<link_t> BlockAdapter::getTo() const
+{
+    return to_vec;
+}
+
+void BlockAdapter::setTo(const std::vector<link_t>& to)
+{
+    to_vec = to;
+}
+
+types::List* BlockAdapter::getListObjects() const
+{
+    return list_objects;
+}
+
+void BlockAdapter::setListObjects(types::List* v)
+{
+    types::InternalType* temp = list_objects;
+
+    // Do not check if v is nullptr on purpose ; it *should* not
+    v->IncreaseRef();
+    list_objects = v;
+
+    if (temp != nullptr)
+    {
+        temp->DecreaseRef();
+        temp->killMe();
+    }
+}
+
+types::InternalType* BlockAdapter::getContribContent() const
+{
+    return contrib_content;
+}
+
+void BlockAdapter::setContribContent(types::InternalType* v)
+{
+    types::InternalType* temp = contrib_content;
+
+    // do not check if v is nullptr on purpose ; it *should* not
+    v->IncreaseRef();
+    contrib_content = v;
 
     if (temp != nullptr)
     {

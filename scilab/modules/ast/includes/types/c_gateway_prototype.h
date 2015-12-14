@@ -9,12 +9,19 @@
  *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
  *
  */
-#ifndef __C_GATEWAY_PROTOTYPE_H__
-#define __C_GATEWAY_PROTOTYPE_H__
+#ifndef __GATEWAY_PROTOTYPE_H__
+#define __GATEWAY_PROTOTYPE_H__
 
-#define C_GATEWAY_PROTOTYPE(__gateway__) int __gateway__(char* fname, void* pvApiCtx)
+typedef void* scilabEnv;
+typedef int* scilabVar;
+typedef int* scilabOpt;
+
 typedef int (*OLDGW_FUNC)(char *fname, void* pvApiCtx);
+typedef int(*GW_C_FUNC)(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out);
 typedef int (*MEXGW_FUNC)(int nlhs, int* plhs[], int nrhs, int* prhs[]);
+
+#define STACK_GATEWAY_PROTOTYPE(__gateway__) int __gateway__(char* fname, void* pvApiCtx)
+#define C_GATEWAY_PROTOTYPE(__gateway__) int __gateway__(scilabEnv env, int nin, scilabVar* in, int nopt, scilabOpt opt, int nout, scilabVar* out)
 #define MEX_GATEWAY_PROTOTYPE(__gateway__) int (__gateway__) (int nlhs, int* plhs[], int nrhs, int* prhs[]);
 
-#endif /* !__C_GATEWAY_PROTOTYPE_H__ */
+#endif /* !__GATEWAY_PROTOTYPE_H__ */

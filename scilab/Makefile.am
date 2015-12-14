@@ -38,20 +38,21 @@ if IS_MACOSX
 bin_SCRIPTS 		+= bin/checkmacosx.applescript
 endif
 
-scilab_bin_LDFLAGS 	    = $(AM_LDFLAGS) $(OPENMPI_LIBS)
+scilab_bin_LDFLAGS      = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 scilab_cli_bin_LDFLAGS  = $(AM_LDFLAGS) $(OPENMPI_LIBS)
 
+#
+# using the static system libs might produce linkage issue (eg.
+# std::nothrow for instance) but it seems to be the only acceptable
+# solution for now.
+#
 if USE_STATIC_SYSTEM_LIB
-scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc
-# -static-libgfortran
-scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc
-#-static-libgfortran
+scilab_bin_LDFLAGS += -static-libstdc++ -static-libgcc -static-libgfortran
+scilab_cli_bin_LDFLAGS += -static-libstdc++ -static-libgcc -static-libgfortran
 else
 # Clang (for example) needs an explicit reference to the lib
-scilab_bin_LDFLAGS += -lstdc++
-# -static-libgfortran
-scilab_cli_bin_LDFLAGS += -lstdc++
-#-static-libgfortran
+scilab_bin_LDFLAGS += -lstdc++ -lgfortran
+scilab_cli_bin_LDFLAGS += -lstdc++ -lgfortran
 endif
 
 scilab_bin_LDFLAGS += $(LLVM_LDFLAGS) $(LLVM_LIBS)

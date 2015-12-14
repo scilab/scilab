@@ -15,9 +15,6 @@
 #include "string.hxx"
 #include "config/XMLConfig.hxx"
 #include "SLintOptions.hxx"
-#include "config/cnes/ToolConfiguration.hxx"
-#include "config/cnes/AnalysisConfiguration.hxx"
-#include "config/cnes/CNESConfig.hxx"
 
 #define SLINT_INSERT_IN_MAP(name) callbacks.emplace(#name, &createFromXmlNode<name##Checker>)
 
@@ -25,23 +22,6 @@ namespace slint
 {
 
 std::unordered_map<std::string, XMLConfig::CBType> XMLConfig::callbacks = initCallbacks();
-
-void XMLConfig::getOptions(types::String & str, SLintOptions & options)
-{
-    const std::wstring customer(str.get(0));
-    if (customer == L"cnes")
-    {
-        const CNES::ToolConfiguration tc = CNES::ToolConfiguration::createFromXml(str.get(1));
-        const CNES::AnalysisConfiguration ac = CNES::AnalysisConfiguration::createFromXml(str.get(2));
-        const CNES::AnalysisConfigurationType & act = ac.getAnalysisConfiguration();
-        CNES::CNESConfig::getOptions(tc.getToolConfiguration(), act, options);
-        for (const CNES::ExcludedProjectFileType & epft : act.getExcludedProjectFile())
-        {
-            options.addExcludedFile(epft.getFilename());
-        }
-        options.setId(act.getId());
-    }
-}
 
 void XMLConfig::getOptions(const std::wstring & path, SLintOptions & options)
 {

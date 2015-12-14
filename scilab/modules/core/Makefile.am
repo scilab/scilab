@@ -66,7 +66,6 @@ CORE_FORTRAN_SOURCES = \
 	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c
 
 GATEWAY_CPP_SOURCES = \
@@ -110,7 +109,30 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_macr2tree.cpp \
 	sci_gateway/cpp/sci_predef.cpp \
 	sci_gateway/cpp/sci_debug.cpp \
-	sci_gateway/cpp/sci_recursionlimit.cpp
+	sci_gateway/cpp/sci_recursionlimit.cpp \
+	sci_gateway/cpp/sci_type.cpp \
+	sci_gateway/cpp/sci_list.cpp \
+	sci_gateway/cpp/sci_struct.cpp \
+	sci_gateway/cpp/sci_insert.cpp \
+	sci_gateway/cpp/sci_null.cpp \
+	sci_gateway/cpp/sci_cell.cpp \
+	sci_gateway/cpp/sci_makecell.cpp \
+	sci_gateway/cpp/sci_typeof.cpp \
+	sci_gateway/cpp/sci_tlist.cpp \
+	sci_gateway/cpp/sci_mlist.cpp \
+	sci_gateway/cpp/sci_isfield.cpp \
+	sci_gateway/cpp/sci_fieldnames.cpp
+
+if ENABLE_DEBUG
+GATEWAY_CPP_SOURCES += \
+    sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
+	sci_gateway/cpp/sci_inspectorGetItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
+	sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+endif
 
 libscicore_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

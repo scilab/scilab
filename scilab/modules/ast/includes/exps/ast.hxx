@@ -33,7 +33,7 @@ class Ast
 public:
     /** \brief Construct an Ast node.
     ** \param location scanner position informations */
-    Ast (const Location& location) : decorator(), _location (location)
+    Ast (const Location& location) : decorator(), coverId(0), _location (location)
     {
         nodeNumber = globalNodeNumber++;
     }
@@ -107,8 +107,24 @@ public:
         return decorator;
     }
 
+    inline void setCoverId(const uint64_t id)
+    {
+        coverId = id;
+    }
+
+    inline uint64_t getCoverId() const
+    {
+        return coverId;
+    }
+
+    inline uint64_t getCoverId()
+    {
+        return coverId;
+    }
+
 private:
     analysis::Decorator decorator;
+    uint64_t coverId;
     /** \brief Construct an Ast by copy. */
     Ast (const Ast&);
     /** \brief Assign an Ast to this. */

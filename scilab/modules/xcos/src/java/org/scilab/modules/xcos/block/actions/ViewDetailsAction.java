@@ -99,7 +99,7 @@ public final class ViewDetailsAction extends VertexSelectionDependantAction {
         /*
          * Build and execute the command
          */
-        final String cmd = "tree_show(scicos_new(" + data.getUID() + "));";
+        final String cmd = "tree_show(scicos_new(\"0x" + Long.toHexString(data.getUID()) + "\"));";
         ScilabInterpreterManagement.requestScilabExec(cmd);
     }
 }

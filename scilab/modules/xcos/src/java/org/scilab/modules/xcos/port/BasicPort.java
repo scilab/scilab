@@ -17,6 +17,7 @@ import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.JavaController;
 import org.scilab.modules.xcos.Kind;
 import org.scilab.modules.xcos.ObjectProperties;
+import org.scilab.modules.xcos.PortKind;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.model.XcosCell;
 
@@ -128,12 +129,15 @@ public abstract class BasicPort extends XcosCell {
         boolean isImplicit = getType() == Type.IMPLICIT;
         JavaController controller = new JavaController();
         controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
+        controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.PORT_KIND, getPortKind().ordinal());
     }
 
     /**
      * @return the type of the port (Explicit or Implicit)
      */
     public abstract Type getType();
+
+    public abstract PortKind getPortKind();
 
     /** @return The default orientation of this port */
     public final Orientation getOrientation() {

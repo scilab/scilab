@@ -36,7 +36,7 @@
             <varlistentry>
                 <term>isAllowed</term>
                 <listitem>
-                    <para>A boolean to indicate if the class relaoding is allowed or not</para>
+                    <para>A boolean to indicate if the class reloading is allowed or not</para>
                 </listitem>
             </varlistentry>
         </variablelist>

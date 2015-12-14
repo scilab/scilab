@@ -30,8 +30,8 @@
             <listitem>
                 <para>
                     With three input parameters: If dimension of first input along dimension given by third parameter
-                    reaches 1 before n interations
-                    have been made,Matlab switches to next non-singleton dimension what Scilab does not.
+                    reaches 1 before n iterations
+                    have been made, Matlab switches to next non-singleton dimension what Scilab does not.
                 </para>
             </listitem>
         </itemizedlist>

@@ -8,16 +8,20 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 14:16+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
 
 #
 # File: sci_gateway/c/sci_consolebox.c, line: 45
@@ -25,22 +29,34 @@ msgstr ""
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "ウインドウズモードに限定されます、コンソールモードではありません。\n"
 
+# File: sci_gateway/c/sci_chartooem.c, line: 48
+# File: sci_gateway/c/sci_dos.c, line: 50
+# File: sci_gateway/c/sci_dos.c, line: 62
+# File: sci_gateway/c/sci_findfileassociation.c, line: 38
+# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
+# File: sci_gateway/c/sci_mcisendstring.c, line: 106
+# File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
 
-#
-# File: sci_gateway/c/sci_createGUID.c, line: 61
 #, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
-msgstr "%s: 不正な値の入力引数: 負ではない整数を想定します。\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
 
-#
-# File: sci_gateway/c/sci_createGUID.c, line: 66
-# File: sci_gateway/c/sci_createGUID.c, line: 71
 #, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
-msgstr "%s: 入力引数で不正な型: スカラーを想定します。\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -57,17 +73,6 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 48
-# File: sci_gateway/c/sci_dos.c, line: 50
-# File: sci_gateway/c/sci_dos.c, line: 62
-# File: sci_gateway/c/sci_findfileassociation.c, line: 38
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
-# File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズ: 文字列を想定します。\n"
-
 #
 # File: sci_gateway/c/sci_dos.c, line: 70
 #, c-format
@@ -78,23 +83,13 @@ msgstr "%s: 入力引数 #%d で不正な値: '%s' を想定します。\n"
 msgid "%s: No more memory.\n"
 msgstr "%s: これ以上のメモリはありません。\n"
 
-# File: sci_gateway/c/sci_chartooem.c, line: 48
-# File: sci_gateway/c/sci_dos.c, line: 50
-# File: sci_gateway/c/sci_dos.c, line: 62
-# File: sci_gateway/c/sci_findfileassociation.c, line: 38
-# File: sci_gateway/c/sci_getsystemmetrics.c, line: 31
-# File: sci_gateway/c/sci_mcisendstring.c, line: 106
-# File: sci_gateway/c/sci_oemtochar.c, line: 48
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d で不正な型: 文字列を想定します。\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: メモリ確保エラー.\n"
 
-#
-# File: sci_gateway/c/sci_findfileassociation.c, line: 56
-# File: sci_gateway/c/sci_winhttpdownload.c, line: 67
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
-msgstr "%s: 入力引数で不正な型: 文字列を想定します。\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_getsystemmetrics.c, line: 50
@@ -107,16 +102,13 @@ msgstr "%s: 不正な値の入力引数: %s\n"
 msgid "see help"
 msgstr "ヘルプを見てください。"
 
-#
-# File: sci_gateway/c/sci_winopen.c, line: 34
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: ファイル '%s' をオープンできません。\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid "%s: Cannot open file %ls.\n"
 msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #
 # File: sci_gateway/c/sci_winqueryreg.c, line: 89
@@ -134,10 +126,6 @@ msgstr "%s: この型の値を得ることができません。\n"
 msgid "Scilab %s Console"
 msgstr "Scilab %s コンソール"
 
-msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-"Scilab 5.5.X ファミリーは Windows XP で動作する最後のバージョンとなります."
-
 msgid "Error(s) : see help powershell"
 msgstr "エラー(s): パワーシェル・ヘルプを見てください"
 
@@ -149,7 +137,3 @@ msgstr "Microsoft Windows のみです。"
 
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 が見つかりません."
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"

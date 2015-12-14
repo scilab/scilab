@@ -60,7 +60,7 @@
             <itemizedlist>
                 <listitem>
                     <para>
-                        <emphasis role="bold">Restore previous session on start-up</emphasis>: check this box to be able to restore the previous Scilab session as it was before quiting Scilab.
+                        <emphasis role="bold">Restore previous session on start-up</emphasis>: check this box to be able to restore the previous Scilab session as it was before quitting Scilab.
                     </para>
                 </listitem>
                 <listitem>

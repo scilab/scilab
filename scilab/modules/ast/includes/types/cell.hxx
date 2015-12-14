@@ -32,11 +32,11 @@ public :
     ~Cell();
     Cell();
     Cell(int _iRows, int _iCols, InternalType** data = nullptr);
-    Cell(int _iDims, int* _piDims, InternalType** data = nullptr);
+    Cell(int _iDims, const int* _piDims, InternalType** data = nullptr);
 
 private :
     Cell(Cell* _oCellCopyMe);
-    void createCell(int _iDims, int* _piDims, InternalType** data);
+    void createCell(int _iDims, const int* _piDims, InternalType** data);
 public :
 
     void                whoAmI(void)
@@ -94,7 +94,7 @@ public :
     {
         return true;
     }
-    bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
+    bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims) override;
 
     bool isTrue()
     {

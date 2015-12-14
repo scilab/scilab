@@ -2,17 +2,6 @@ LIBRARY    core.dll
 
 
 EXPORTS
-; from core
-createvar_
-checkrhs_
-checklhs_
-createvarfromptr_
-putlhsvar_
-freeArrayOfString
-gettype_
-getrhsvar_
-com_
-callFunctionFromGateway
 GetXmlFileEncoding
 MyHeapAlloc
 MyHeapFree

@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 14:18+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -62,9 +62,7 @@ msgstr "%s: XML文書が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: string expected.\n"
@@ -72,12 +70,11 @@ msgstr "%s: 入力引数 #%d の次元が間違っています: 文字列を指�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: 空でない文字列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: 空でない文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: The XML Document has not an URI and there is no second argument.\n"
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr "%s: XML文書にURIが含まれておらず、第二引数もありません.\n"
 
 #, c-format
@@ -94,8 +91,7 @@ msgstr "%s: ファイルに書き込めません: %s\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: A real scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: 実数スカラーを指定してください.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: XML attribute does not exist.\n"
@@ -106,17 +102,14 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLListが存在しません.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してくだ"
-"さい.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: '%s', '%s'  または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong dimension for input argument #%d: string or double expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: 文字列またはdoubleを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 文字列またはdoubleを指定してください.\n"
 
 #, c-format
 msgid "%s: Unknown field: %s\n"
@@ -124,8 +117,7 @@ msgstr "%s: 不明なフィールド: %s\n"
 
 #, c-format
 msgid "%s: Wrong dimension for input argument #%d: Single double expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: doubleを1つ指定してください.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: doubleを1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"
@@ -137,23 +129,17 @@ msgstr "%s: XMLListの添字が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: XMLList or XMLSet expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: XMLListまたはXMLSetを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: XMLListまたはXMLSetを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or single integer expected\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または整数を1つ指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または整数を1つ指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: string or single integer expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列または整数を1つ指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または整数を1つ指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A double expected.\n"
@@ -185,9 +171,7 @@ msgstr "%s: XML文書が存在しません.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%i: XMLSet or XMLList expected.\n"
-msgstr ""
-"%s: 入力引数#%iの型が間違っています: XMLSet または XMLListを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数#%iの型が間違っています: XMLSet または XMLListを指定してください.\n"
 
 #, c-format
 msgid "%s: XMLSet or XMLList does not exist.\n"
@@ -214,8 +198,7 @@ msgid ""
 "%s: Wrong type for input argument #%i: XMLSet, XMLList, XMLAttr or XMLElem "
 "expected.\n"
 msgstr ""
-"%s: 入力引数 #%i の型が間違っています: XMLSet, XMLList, XMLAttr または "
-"XMLElem を指定してください.\n"
+"%s: 入力引数 #%i の型が間違っています: XMLSet, XMLList, XMLAttr または XMLElem を指定してください.\n"
 
 #, c-format
 msgid "%s: XMLAttr does not exist.\n"
@@ -229,9 +212,7 @@ msgstr "%s: XMLElem が存在しません.\n"
 msgid ""
 "%s: Wrong dimensions for input argument #%d: A single boolean or string "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の次元が間違っています: 論理値または文字列を指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の次元が間違っています: 論理値または文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Invalid number of input arguments.\n"
@@ -241,38 +222,30 @@ msgstr "%s: 入力引数の数が間違っています.\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLElem or a XMLList or a XMLSet "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: XMLElemまたはXMLListまたはXMLSetを指定"
-"してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: XMLElemまたはXMLListまたはXMLSetを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLAttr or a XMLElem or a XMLList "
 "or a XMLSet expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: XMLAttrまたはXMLElemまたはXMLListまた"
-"はXMLSetを指定してください.\n"
+"%s: 入力引数 #%d の型が間違っています: XMLAttrまたはXMLElemまたはXMLListまたはXMLSetを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Matrix nx2 or nx3 of strings "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが間違っています: nx2またはnx3の文字列の行列を指定し"
-"てください.\n"
+msgstr "%s: 入力引数 #%d の大きさが間違っています: nx2またはnx3の文字列の行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A matrix of strings or a XMLDoc "
 "expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列またはXMLDocを指定してくだ"
-"さい.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の行列またはXMLDocを指定してください.\n"
 
 #, c-format
 msgid ""
@@ -285,9 +258,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A XMLDoc or a XMLElem expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: XMLDocまたはXMLElemを指定してくださ"
-"い.\n"
+msgstr "%s: 入力引数 #%d の型が間違っています: XMLDocまたはXMLElemを指定してください.\n"
 
 #, c-format
 msgid "%s: Bad number of columns for argument #%d: two expected.\n"
@@ -376,9 +347,3 @@ msgstr "%s: ルートのxmlが有効ではありません.\n"
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
 msgstr "%s: フィールド %s の変更権限がありません: %s\n"
-
-msgid "XML"
-msgstr "XML"
-
-msgid "CML read"
-msgstr "CML読み込み"

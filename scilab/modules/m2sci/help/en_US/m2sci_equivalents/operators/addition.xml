@@ -55,7 +55,7 @@
                 <term>Empty matrix and addition:</term>
                 <listitem>
                     <para>
-                        In Matlab, addition can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be added to another empty matrix or a scalar. Note that when you add a scalar and an empty matrix, Matlab result is always an empty matrix while in Scilab, result is equal to the scalar.
+                        In Matlab, addition can only be made if the operands have the same size unless one is a scalar. For exemple, empty matrices can only be added to another empty matrix or a scalar.
                     </para>
                 </listitem>
             </varlistentry>
@@ -98,7 +98,7 @@ str = 'str1str2'
 str = strcat(['str1','str2'])
 str = 'str1str2'
 A = 1 + []
-A = 1    
+A = []   
 ]]></programlisting>
                 </td>
             </tr>

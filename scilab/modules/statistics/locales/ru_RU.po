@@ -8,45 +8,46 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-01 15:30+0000\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
-msgid "X,Y,A and B"
-msgstr "X,Y,A и B"
-
-msgid "A,B,P and Q"
-msgstr "A,B,P и Q"
-
-msgid "B,P,Q,X and Y"
-msgstr "B,P,Q,X и Y"
-
-msgid "P,Q,X,Y and A"
-msgstr "P,Q,X,Y и A"
+#, c-format
+msgid "%s: Answer appears to be lower than lowest search bound %g\n"
+msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s' or '%s' expected.\n"
+msgid "%s: Answer appears to be higher than greatest search bound %s\n"
 msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s» или "
-"«%s».\n"
 
-msgid "S,Xn,Pr and Ompr"
-msgstr "S,Xn,Pr и Ompr"
+#, c-format
+msgid "%s: Answer appears to be higher than greatest search bound %f\n"
+msgstr ""
 
-msgid "Xn,Pr,Ompr,P and Q"
-msgstr "Xn,Pr,Ompr,P и Q"
+#, c-format
+msgid "%s: Std must not be zero\n"
+msgstr ""
 
-msgid "Pr,OMPr,P,Q and S"
-msgstr "Pr,OMPr,P,Q и S"
+#, c-format
+msgid "%s: cumgam returned an error\n"
+msgstr ""
 
-msgid "P,Q,S  and Xn"
-msgstr "P,Q,S  и Xn"
+#, c-format
+msgid "%s: gamma or inverse gamma routine failed\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Argument #%d out of range. Bound exceeded: %f.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Incompatible input arguments #%d and #%d': Same sizes expected.\n"
+msgstr ""
 
 #, c-format
 msgid ""
@@ -55,163 +56,6 @@ msgid ""
 msgstr ""
 "%s: Внимание: использование нецелых значений для аргумента №%d может "
 "привести к неверным результатам.\n"
-
-msgid "X and Df"
-msgstr "X и Df"
-
-msgid "Df, P and Q"
-msgstr "Df, P и Q"
-
-msgid "P,Q and X"
-msgstr "P,Q и X"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
-"«%s».\n"
-
-msgid "cdfchi: Error in cumgam\n"
-msgstr "cdfchi: Ошибка в cumgam\n"
-
-msgid "X,Df and Pnonc"
-msgstr "X,Df и Pnonc"
-
-msgid "Df,Pnonc,P and Q"
-msgstr "Df,Pnonc,P и Q"
-
-msgid "Pnonc,P,Q and X"
-msgstr "Pnonc,P,Q и X"
-
-msgid "P,Q,X and Df"
-msgstr "P,Q,X и Df"
-
-msgid "F,Dfn and Dfd"
-msgstr "F, Dfn и Dfd"
-
-msgid "Dfn,Dfd,P and Q"
-msgstr "Dfn, Dfd, P и Q"
-
-msgid "Dfd,P,Q and F"
-msgstr "Dfd, P, Q и F"
-
-msgid "P,Q,F and Dfn"
-msgstr "P, Q, F и Dfn"
-
-msgid "F,Dfn,Dfd and Pnonc"
-msgstr "F, Dfn, Dfd и Pnonc"
-
-msgid "Dfn,Dfd,Pnonc,P and Q"
-msgstr "Dfn, Dfd, Pnonc, P и Q"
-
-msgid "Dfd,Pnonc,P,Q and F"
-msgstr "Dfd,Pnonc,P,Q и F"
-
-msgid "Pnonc,P,Q,F and Dfn"
-msgstr "Pnonc,P,Q,F и Dfn"
-
-msgid "P,Q,F,Dfn and Dfd"
-msgstr "P,Q,F,Dfn и Dfd"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
-"expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s», «%s», "
-"«%s» или «%s».\n"
-
-msgid "X,Shape and Rate"
-msgstr "X,Shape and Rate"
-
-msgid "Shape,Rate,P and Q"
-msgstr "Shape,Rate,P and Q"
-
-msgid "Rate,P,Q and X"
-msgstr "Rate,P,Q and X"
-
-msgid "P,Q,X and Shape"
-msgstr "P, Q, X и Shape"
-
-msgid "S,XN,PR and OMPR"
-msgstr "S,XN,PR и OMPR"
-
-msgid "XN,PR,OMPR,P and Q"
-msgstr "XN,PR,OMPR,P и Q"
-
-msgid "PR,OMPR,P,Q and S"
-msgstr "PR,OMPR,P,Q и S"
-
-msgid "P,Q,S and Xn"
-msgstr "P,Q,S и Xn"
-
-msgid "X,Mean and Std"
-msgstr "X,Mean и Std"
-
-msgid "Mean,Std,P and Q"
-msgstr "Mean,Std,P и Q"
-
-msgid "Std,P,Q and X"
-msgstr "Std,P,Q и X"
-
-msgid "P,Q,X and Mean"
-msgstr "P,Q,X и Mean"
-
-msgid " Std must not be zero\n"
-msgstr " Std не может быть нулевым\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A matrix of integer values "
-"expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалась матрица "
-"целочисленных значений.\n"
-
-msgid "S and Xlam"
-msgstr "S и Xlam"
-
-msgid "Xlam,P and Q"
-msgstr "Xlam,P и Q"
-
-msgid "P,Q and S"
-msgstr "P,Q и S"
-
-msgid "T and Df"
-msgstr "T и Df"
-
-msgid "P,Q and T"
-msgstr "P,Q и T"
-
-#, c-format
-msgid ""
-"%s: Wrong number of input arguments with the '%s' option: %d expected.\n"
-msgstr ""
-"%s: Неверное количество входных параметров с параметром «%s»: ожидалось %d.\n"
-
-#, c-format
-msgid "%s and %s must have same size.\n"
-msgstr "%s и %s должны иметь одинаковые размеры.\n"
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %g\n"
-msgstr "Ответ оказался меньше наименьшей границы поиска %g\n"
-
-#, c-format
-msgid "Answer appears to be lower than lowest search bound %f\n"
-msgstr "Похоже ответ будет ниже нижней границы поиска %f\n"
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %s\n"
-msgstr "Результат выходит за верхнюю границу поиска %s\n"
-
-#, c-format
-msgid "Answer appears to be higher than greatest search bound %f\n"
-msgstr "Похоже ответ будет выше верхней границы поиска %f\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: Ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -304,7 +148,8 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr "%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
+msgstr ""
+"%s: Неверное количество входных аргументов: ожидалось %d, %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -388,12 +233,9 @@ msgstr ""
 "вещественных чисел.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr "%s: Неверный тип входного параметра №%d.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or vector expected.\n"
-msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или вектор.\n"
+msgstr ""
+"%s: Неверный тип входного параметра №%d: ожидался скаляр или вектор.\n"
 
 #, c-format
 msgid ""
@@ -449,12 +291,6 @@ msgstr ""
 "скаляр.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: должно быть из множества "
-"{%s}.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', %d or %d "
 "expected.\n"
@@ -497,7 +333,8 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: Обнаружены значения NaN, вместо этого используйте %s().\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидались неотрицательные "
 "значения.\n"
@@ -559,7 +396,8 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного аргумента №%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid ""
+"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра %d: ожидалось «%s», «%s», %d или "
 "%d.\n"

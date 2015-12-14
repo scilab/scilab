@@ -238,7 +238,7 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
         depp=strcat(dep([2:4,6]))
 
         while %t do
-            txt6=dialog(["You may define here functions imposing contraints";
+            txt6=dialog(["You may define here functions imposing constraints";
             "on initial inputs, states and outputs";
             "Note: these functions may be called more than once";
             " ";

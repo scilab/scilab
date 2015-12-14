@@ -39,7 +39,7 @@
             For numeric operands addition as its usual meaning.
             If one of the operands is a matrix and the other one a scalar the
             scalar is added to each matrix entries. If one of the operands is an
-            empty matrix the other operand is returned (this default behavior can be modified by the function <literal>mtlb_mode</literal>).
+            empty matrix the empty matrix <literal>[]</literal> is returned).
         </para>
         <para>
             For character strings <literal>+</literal> means concatenation.
@@ -70,5 +70,14 @@ s+2
                 <link linkend="overloading">overloading</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>Modified the behaviour of <literal>A + []</literal> to be the empty matrix <literal>[]</literal> instead of <literal>A</literal></revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

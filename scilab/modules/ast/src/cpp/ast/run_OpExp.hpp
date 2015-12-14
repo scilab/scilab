@@ -16,6 +16,7 @@ namespace ast {
 template<class T>
 void RunVisitorT<T>::visitprivate(const OpExp &e)
 {
+    CoverageInstance::invokeAndStartChrono((void*)&e);
     types::InternalType * pITL = NULL, *pITR = NULL, *pResult = NULL;
     try
     {
@@ -65,17 +66,17 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
 
         switch (e.getOper())
         {
-            case OpExp::plus :
+            case OpExp::plus:
             {
                 pResult = GenericPlus(pITL, pITR);
                 break;
             }
-            case OpExp::unaryMinus :
+            case OpExp::unaryMinus:
             {
                 pResult = GenericUnaryMinus(pITR);
                 break;
             }
-            case OpExp::minus :
+            case OpExp::minus:
             {
                 pResult = GenericMinus(pITL, pITR);
                 break;
@@ -90,7 +91,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
                 pResult = GenericLDivide(pITL, pITR);
                 break;
             }
-            case OpExp::dotldivide :
+            case OpExp::dotldivide:
             {
                 pResult = GenericDotLDivide(pITL, pITR);
                 break;
@@ -100,72 +101,72 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
                 pResult = GenericRDivide(pITL, pITR);
                 break;
             }
-            case OpExp::dotrdivide :
+            case OpExp::dotrdivide:
             {
                 pResult = GenericDotRDivide(pITL, pITR);
                 break;
             }
-            case OpExp::dottimes :
+            case OpExp::dottimes:
             {
                 pResult = GenericDotTimes(pITL, pITR);
                 break;
             }
-            case OpExp::dotpower :
+            case OpExp::dotpower:
             {
                 pResult = GenericDotPower(pITL, pITR);
                 break;
             }
-            case OpExp::eq :
+            case OpExp::eq:
             {
                 pResult = GenericComparisonEqual(pITL, pITR);
                 break;
             }
-            case OpExp::ne :
+            case OpExp::ne:
             {
                 pResult = GenericComparisonNonEqual(pITL, pITR);
                 break;
             }
-            case OpExp::lt :
+            case OpExp::lt:
             {
                 pResult = GenericLess(pITL, pITR);
                 break;
             }
-            case OpExp::le :
+            case OpExp::le:
             {
                 pResult = GenericLessEqual(pITL, pITR);
                 break;
             }
-            case OpExp::gt :
+            case OpExp::gt:
             {
                 pResult = GenericGreater(pITL, pITR);
                 break;
             }
-            case OpExp::ge :
+            case OpExp::ge:
             {
                 pResult = GenericGreaterEqual(pITL, pITR);
                 break;
             }
-            case OpExp::power :
+            case OpExp::power:
             {
                 pResult = GenericPower(pITL, pITR);
                 break;
             }
-            case OpExp::krontimes :
+            case OpExp::krontimes:
             {
                 pResult = GenericKrontimes(pITL, pITR);
                 break;
             }
-            case OpExp::kronrdivide :
+            case OpExp::kronrdivide:
             {
                 pResult = GenericKronrdivide(pITL, pITR);
                 break;
             }
-            case OpExp::kronldivide :
+            case OpExp::kronldivide:
             {
                 pResult = GenericKronldivide(pITL, pITR);
                 break;
             }
-            default :
+            default:
                 break;
         }
 
@@ -206,9 +207,11 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         }
 
         error.SetErrorLocation(e.getLocation());
+        CoverageInstance::stopChrono((void*)&e);
         throw error;
     }
 
+    CoverageInstance::stopChrono((void*)&e);
     /*if (e.getDecorator().res.isConstant())
     {
 
@@ -218,6 +221,7 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
 template<class T>
 void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 {
+    CoverageInstance::invokeAndStartChrono((void*)&e);
     try
     {
         types::InternalType *pITR = NULL; //assign only in non shortcut operations.
@@ -249,7 +253,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
         switch (e.getOper())
         {
-            case LogicalOpExp::logicalShortCutAnd :
+            case LogicalOpExp::logicalShortCutAnd:
             {
                 pResult = GenericShortcutAnd(pITL);
                 if (pResult)
@@ -259,7 +263,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
                 //Continue to logicalAnd
             }
-            case LogicalOpExp::logicalAnd :
+            case LogicalOpExp::logicalAnd:
             {
                 /*getting what to assign*/
                 e.getRight().accept(*this);
@@ -284,7 +288,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 pResult = GenericLogicalAnd(pITL, pITR);
                 break;
             }
-            case LogicalOpExp::logicalShortCutOr :
+            case LogicalOpExp::logicalShortCutOr:
             {
                 pResult = GenericShortcutOr(pITL);
                 if (pResult)
@@ -294,7 +298,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
 
                 //Continue to logicalAnd
             }
-            case LogicalOpExp::logicalOr :
+            case LogicalOpExp::logicalOr:
             {
                 /*getting what to assign*/
                 e.getRight().accept(*this);
@@ -319,7 +323,7 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
                 break;
             }
 
-            default :
+            default:
                 break;
         }
         //overloading
@@ -348,9 +352,11 @@ void RunVisitorT<T>::visitprivate(const LogicalOpExp &e)
     {
         clearResult();
         error.SetErrorLocation(e.getLocation());
+        CoverageInstance::stopChrono((void*)&e);
         throw error;
     }
 
+    CoverageInstance::stopChrono((void*)&e);
 }
 
 template<class T>

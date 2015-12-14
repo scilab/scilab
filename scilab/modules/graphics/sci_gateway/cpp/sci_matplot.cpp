@@ -278,11 +278,11 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
     }
 
     // get optional argument if necessary
-    for (int i = 0; i < opt.size(); i++)
+    for (const auto& o : opt)
     {
-        if (opt[i].first == L"strf")
+        if (o.first == L"strf")
         {
-            if (opt[i].second->isString() == false)
+            if (o.second->isString() == false)
             {
                 if (bFREE)
                 {
@@ -303,7 +303,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 {
                     delete[] axesflag;
                 }
-                Scierror(999, _("%s: Wrong type for input argument #%ls: string expected.\n"), "Matplot1", opt[i].first.c_str());
+                Scierror(999, _("%s: Wrong type for input argument #%ls: string expected.\n"), "Matplot1", o.first.c_str());
                 return types::Function::Error;
             }
 
@@ -312,12 +312,12 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 continue;
             }
 
-            strf =  wide_string_to_UTF8(opt[i].second->getAs<types::String>()->get(0));
+            strf =  wide_string_to_UTF8(o.second->getAs<types::String>()->get(0));
             bFREE = true;
         }
         else
         {
-            if (opt[i].second->isDouble() == false)
+            if (o.second->isDouble() == false)
             {
                 if (bFREE)
                 {
@@ -338,19 +338,19 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 {
                     delete[] axesflag;
                 }
-                Scierror(999, _("%s: Wrong type for input argument #%ls: A matrix expected.\n"), "Matplot1", opt[i].first.c_str());
+                Scierror(999, _("%s: Wrong type for input argument #%ls: A matrix expected.\n"), "Matplot1", o.first.c_str());
                 return types::Function::Error;
             }
 
-            types::Double* pDbl = opt[i].second->getAs<types::Double>();
+            types::Double* pDbl = o.second->getAs<types::Double>();
             double* pdbl = pDbl->get();
             int iSize = pDbl->getSize();
 
-            if (opt[i].first == L"rect" && rect == NULL)
+            if (o.first == L"rect" && rect == NULL)
             {
                 rect = pdbl;
             }
-            else if (opt[i].first == L"nax" && nax == NULL)
+            else if (o.first == L"nax" && nax == NULL)
             {
                 nax = new int[iSize];
                 for (int i = 0; i < iSize; i++)
@@ -359,7 +359,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                 }
                 flagNax = TRUE;
             }
-            else if (opt[i].first == L"frameflag" && frameflag == NULL)
+            else if (o.first == L"frameflag" && frameflag == NULL)
             {
                 frameflag = new int[iSize];
                 for (int i = 0; i < iSize; i++)
@@ -367,7 +367,7 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
                     frameflag[i] = (int)pdbl[i];
                 }
             }
-            else if (opt[i].first == L"axesflag" && axesflag == NULL)
+            else if (o.first == L"axesflag" && axesflag == NULL)
             {
                 axesflag = new int[iSize];
                 for (int i = 0; i < iSize; i++)

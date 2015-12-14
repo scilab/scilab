@@ -321,8 +321,12 @@ int main(int argc, char *argv[])
     int val = setjmp(ScilabJmpEnv);
     if (!val)
     {
-        StartScilabEngine(pSEI);
-        iRet = RunScilabEngine(pSEI);
+        iRet = StartScilabEngine(pSEI);
+        if (iRet == 0)
+        {
+            iRet = RunScilabEngine(pSEI);
+        }
+
         StopScilabEngine(pSEI);
         FREE(pSEI);
         return iRet;

@@ -8,26 +8,18 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-08-30 21:04+0000\n"
+"PO-Revision-Date: 2015-10-08 21:59+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Simplified Chinese <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
-
-#, c-format
-msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
-msgstr "Scilab的‘%s’模块在-nogui或-nwni模式中无效。\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
@@ -52,9 +44,6 @@ msgstr "Scilab模块'%s'尚未安装。\n"
 
 msgid "Version"
 msgstr "版本"
-
-msgid "Description"
-msgstr "说明"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -293,10 +282,9 @@ msgstr "%s：这个CHAPTER文件的第%d行的格式不正确。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with ."
-"last_successful_build expected.\n"
-msgstr ""
-"%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
+"%s: Wrong value for input argument #%d: A string that end with "
+".last_successful_build expected.\n"
+msgstr "%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-01-26 04:11+0000\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
 "Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Traditional Chinese <zh_TW@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: \n"
 
 #, c-format
@@ -47,7 +47,8 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid ""
+"%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 
 #, c-format
@@ -65,7 +66,8 @@ msgid "%s: Invalid field name.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 
 #, c-format
@@ -77,7 +79,8 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 
 #, c-format
@@ -178,7 +181,8 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 
 #, c-format
@@ -198,10 +202,6 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: integer values expected.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At least %d expected.\n"
 msgstr ""
 
 #, c-format
@@ -229,12 +229,6 @@ msgstr ""
 msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
 
-msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
-"scilab-6.\n"
-"           Use vector .^ scalar instead.\n"
-msgstr ""
-
 #, c-format
 msgid ""
 "%s: Wrong type for input arguments #%d and #%d: Integer values expected.\n"
@@ -249,15 +243,7 @@ msgid "%s: A null assignment can have only one non-colon index.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Unable to diagonalize.\n"
-msgstr ""
-
-#, c-format
 msgid "%s: Sparse insertion case is not implemented.\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -277,7 +263,8 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: 參數%d型別錯誤  : 應該是純量實數.\n"
 
 #, c-format
-msgid "%s: input and output matrices  must have the same number of elements.\n"
+msgid ""
+"%s: input and output matrices  must have the same number of elements.\n"
 msgstr "%s：輸入與輸出矩陣必須有相同的元素數量。\n"
 
 #, c-format

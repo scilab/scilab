@@ -66,7 +66,7 @@ No equivalent
                 <term>hold</term>
                 <listitem>
                     <para>
-                        can be emuled in Scilab by <emphasis role="bold">mtlb_hold</emphasis>
+                        can be emulated in Scilab by <emphasis role="bold">mtlb_hold</emphasis>
                     </para>
                 </listitem>
             </varlistentry>

@@ -16,9 +16,6 @@
     <Filter Include="localization">
       <UniqueIdentifier>{4fdc94d6-aa4f-4d05-aacf-7238c272d8f1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{2ebe5db2-fced-447b-bb7b-35bd57454eed}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\cpp\sci_gateway.cpp">

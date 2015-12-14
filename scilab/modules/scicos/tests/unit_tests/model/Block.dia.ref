@@ -47,15 +47,16 @@ Xcos trace: propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 1 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -180,6 +181,7 @@ Xcos debug: objectReferenced( 1 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 1 , BLOCK ) : 0
 Xcos debug: objectCreated( 5 , BLOCK )
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 5 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -191,15 +193,16 @@ Xcos trace: propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , EXPRS ) : SUCCESS
 Xcos trace: propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 5 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , RPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 5 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , COLOR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 5 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 6 , PORT )
 Xcos trace: propertyUpdated( 6 , PORT , FIRING ) : NO_CHANGES
@@ -277,6 +280,7 @@ Xcos trace: propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 5 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 5 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 5 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
@@ -409,6 +413,7 @@ Xcos debug: objectReferenced( 5 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 5 , BLOCK ) : 0
 Xcos debug: objectCreated( 9 , BLOCK )
 Xcos trace: propertyUpdated( 9 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 9 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 9 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -420,15 +425,16 @@ Xcos trace: propertyUpdated( 9 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
 Xcos trace: propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 9 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , RPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 9 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 9 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , COLOR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 9 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 10 , PORT )
 Xcos trace: propertyUpdated( 10 , PORT , FIRING ) : NO_CHANGES
@@ -506,6 +512,7 @@ Xcos trace: propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 9 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 9 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 9 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
@@ -638,6 +645,7 @@ Xcos debug: objectReferenced( 9 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 9 , BLOCK ) : 0
 Xcos debug: objectCreated( 13 , BLOCK )
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 13 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -649,15 +657,16 @@ Xcos trace: propertyUpdated( 13 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
 Xcos trace: propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 13 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 13 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , RPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 13 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 13 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , COLOR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 13 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 14 , PORT )
 Xcos trace: propertyUpdated( 14 , PORT , FIRING ) : NO_CHANGES
@@ -739,6 +748,7 @@ Xcos trace: propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 13 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 13 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 9 , BLOCK , INPUTS ) : SUCCESS
@@ -871,6 +881,7 @@ Xcos debug: objectReferenced( 13 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 13 , BLOCK ) : 0
 Xcos debug: objectCreated( 18 , BLOCK )
 Xcos trace: propertyUpdated( 18 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 18 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 18 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -882,15 +893,16 @@ Xcos trace: propertyUpdated( 18 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , EXPRS ) : SUCCESS
 Xcos trace: propertyUpdated( 18 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 18 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 18 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , RPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 18 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 18 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , COLOR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 18 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 19 , PORT )
 Xcos trace: propertyUpdated( 19 , PORT , FIRING ) : NO_CHANGES
@@ -980,6 +992,7 @@ Xcos trace: propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 18 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 18 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 18 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 13 , BLOCK , INPUTS ) : SUCCESS
@@ -1132,15 +1145,16 @@ Xcos trace: propertyUpdated( 24 , PORT , DATATYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 25 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 23 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 23 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 23 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , RPAR ) : SUCCESS
 Xcos trace: propertyUpdated( 23 , BLOCK , IPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 23 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 23 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 23 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 23 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 23 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 23 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -1290,6 +1304,7 @@ Xcos debug: objectReferenced( 23 , BLOCK ) : 1
 Xcos debug: objectUnreferenced( 23 , BLOCK ) : 0
 Xcos debug: objectCreated( 26 , BLOCK )
 Xcos trace: propertyUpdated( 26 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 26 , BLOCK , DESCRIPTION ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 Xcos trace: propertyUpdated( 26 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 Xcos trace: propertyUpdated( 26 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1301,15 +1316,16 @@ Xcos trace: propertyUpdated( 26 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , EXPRS ) : SUCCESS
 Xcos trace: propertyUpdated( 26 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 26 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 26 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , RPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 26 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 26 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 26 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 26 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , NMODE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , IPAR ) : SUCCESS
 Xcos trace: propertyUpdated( 26 , BLOCK , COLOR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 26 , BLOCK , EQUATIONS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 26 , BLOCK , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 Xcos debug: objectCreated( 27 , PORT )
 Xcos trace: propertyUpdated( 27 , PORT , FIRING ) : NO_CHANGES
@@ -1366,6 +1382,7 @@ Xcos trace: propertyUpdated( 26 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 26 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 26 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 26 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 23 , BLOCK , INPUTS ) : SUCCESS
@@ -1479,7 +1496,7 @@ Xcos trace: propertyUpdated( 32 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 33 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 29 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 29 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 29 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , IPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , OPAR ) : SUCCESS
@@ -1488,6 +1505,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 29 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -1591,6 +1609,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1623,6 +1642,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.odstate, listRef);
@@ -1659,6 +1679,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1693,6 +1714,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1727,6 +1749,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1761,6 +1784,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1795,6 +1819,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1829,6 +1854,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1863,6 +1889,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1897,6 +1924,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1931,6 +1959,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, listRef);
@@ -1965,6 +1994,7 @@ Xcos trace: propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 29 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 29 , BLOCK ) : 0
 assert_checkequal(o.model.opar, tlistRef);
@@ -2007,10 +2037,10 @@ Xcos trace: propertyUpdated( 35 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 36 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 34 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 34 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 34 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 34 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 34 , BLOCK , RPAR ) : SUCCESS
 Xcos trace: propertyUpdated( 34 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 34 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 34 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 34 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 34 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 34 , BLOCK , LABEL ) : NO_CHANGES
@@ -2216,10 +2246,10 @@ Xcos trace: propertyUpdated( 39 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 40 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 37 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 37 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 37 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 37 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 37 , BLOCK , RPAR ) : SUCCESS
 Xcos trace: propertyUpdated( 37 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 37 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 37 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 37 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 37 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 37 , BLOCK , LABEL ) : NO_CHANGES
@@ -2421,15 +2451,16 @@ Xcos trace: propertyUpdated( 41 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 41 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 41 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 41 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 41 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 41 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 41 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 41 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 41 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -2470,15 +2501,16 @@ Xcos trace: propertyUpdated( 42 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 42 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 42 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 42 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 42 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 42 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 42 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 42 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 42 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -2519,15 +2551,16 @@ Xcos trace: propertyUpdated( 44 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 45 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 43 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 43 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 43 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 43 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 43 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 43 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 43 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 43 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 43 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 43 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -2596,15 +2629,16 @@ Xcos trace: propertyUpdated( 48 , PORT , DATATYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 48 , PORT , DATATYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 46 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 46 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , IPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 46 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 46 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 46 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 46 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 46 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 46 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 46 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -2656,15 +2690,16 @@ Xcos trace: propertyUpdated( 50 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 51 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 49 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 49 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 49 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , IPAR ) : SUCCESS
-Xcos trace: propertyUpdated( 49 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 49 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 49 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 49 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 49 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 49 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 49 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -2751,15 +2786,16 @@ Xcos trace: propertyUpdated( 58 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 59 , PORT , DATATYPE ) : SUCCESS
 Xcos trace: propertyUpdated( 52 , BLOCK , STATE ) : SUCCESS
 Xcos trace: propertyUpdated( 52 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 52 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 52 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 52 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 52 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , SIM_DEP_UT ) : SUCCESS
 Xcos trace: propertyUpdated( 52 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 52 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 52 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 52 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 52 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
@@ -2965,7 +3001,7 @@ Xcos trace: propertyUpdated( 60 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , GEOMETRY ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , ANGLE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , ANGLE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 60 , BLOCK , EXPRS ) : SUCCESS
+Xcos trace: propertyUpdated( 60 , BLOCK , EXPRS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , STYLE ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
@@ -2974,15 +3010,16 @@ Xcos trace: propertyUpdated( 60 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , STATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , DSTATE ) : NO_CHANGES
-Xcos trace: propertyUpdated( 60 , BLOCK , ODSTATE ) : SUCCESS
+Xcos trace: propertyUpdated( 60 , BLOCK , ODSTATE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , RPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , IPAR ) : NO_CHANGES
-Xcos trace: propertyUpdated( 60 , BLOCK , OPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 60 , BLOCK , OPAR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 60 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 Xcos trace: propertyUpdated( 60 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
@@ -3039,6 +3076,7 @@ Xcos trace: propertyUpdated( 60 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 60 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 assert_checkequal(o.model.ipar, []);
@@ -3061,6 +3099,7 @@ Xcos trace: propertyUpdated( 60 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NZCROSS ) : SUCCESS
 Xcos trace: propertyUpdated( 60 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 60 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 assert_checkequal(o.model.nzcross, []);
@@ -3083,6 +3122,7 @@ Xcos trace: propertyUpdated( 60 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NMODE ) : SUCCESS
+Xcos trace: propertyUpdated( 60 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 assert_checkequal(o.model.nmode, []);
@@ -3105,6 +3145,7 @@ Xcos trace: propertyUpdated( 60 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 60 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 assert_checkequal(o.model.ipar, [1; 2; 3]);
@@ -3127,6 +3168,7 @@ Xcos trace: propertyUpdated( 60 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NZCROSS ) : SUCCESS
 Xcos trace: propertyUpdated( 60 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 60 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 assert_checkequal(o.model.nzcross, [1; 2; 3]);
@@ -3149,6 +3191,7 @@ Xcos trace: propertyUpdated( 60 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NZCROSS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , NMODE ) : SUCCESS
+Xcos trace: propertyUpdated( 60 , BLOCK , EQUATIONS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 60 , BLOCK , UID ) : NO_CHANGES
 Xcos debug: objectUnreferenced( 60 , BLOCK ) : 0
 assert_checkequal(o.model.nmode, [1; 2; 3]);

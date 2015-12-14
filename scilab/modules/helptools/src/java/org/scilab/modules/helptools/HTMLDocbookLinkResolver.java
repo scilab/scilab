@@ -188,6 +188,12 @@ public class HTMLDocbookLinkResolver extends DefaultHandler {
             currentLeaf.add(leaf);
             currentLeaf = leaf;
         } else if (id != null && current != null) {
+            if (mapIdDeclaringFile.containsKey(id)) {
+                String prev = mapIdDeclaringFile.get(id);
+                throw new SAXException("The id " + id + " in file " + currentFileName + " was previously declared in " + prev);
+            } else {
+                mapIdDeclaringFile.put(id, currentFileName);
+            }
             mapId.put(id, current + "#" + id);
         }
     }

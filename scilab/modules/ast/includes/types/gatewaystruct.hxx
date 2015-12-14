@@ -16,6 +16,10 @@
 #include "visitor.hxx"
 #include <string>
 
+#ifdef _MSC_VER
+#pragma warning(disable: 4251)
+#endif
+
 namespace types
 {
 class EXTERN_AST GatewayStruct
@@ -27,11 +31,17 @@ public :
     int                     m_iIn;
     int                     m_iOut;
     int*                    m_piRetCount;
-    char*                   m_pstName;
+    const char*             m_pstName;
     int*                    m_pOutOrder;
 
     GatewayStruct() {};
     ~GatewayStruct() {};
+};
+
+struct EXTERN_AST GatewayCStruct
+{
+    std::string     name;
+    std::wstring    lasterror;
 };
 }
 #endif /* !__GATEWAYSTRUCT_HXX__ */

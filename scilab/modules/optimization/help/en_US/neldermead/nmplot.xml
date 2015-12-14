@@ -231,7 +231,7 @@
                             <term>key</term>
                             <listitem>
                                 <para>
-                                    a 1-by-1 matrix of strings, the name of the key to quiery. The list of available
+                                    a 1-by-1 matrix of strings, the name of the key to query. The list of available
                                     keys is the same as for the <literal>nmplot_configure</literal> function.
                                 </para>
                             </listitem>

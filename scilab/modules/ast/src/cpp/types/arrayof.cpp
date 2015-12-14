@@ -958,7 +958,6 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
     {
         pOut = createEmpty(iDims, piNewDims, m_pImgData != NULL);
 
-        delete[] piNewDims;
         //find a way to copy existing data to new variable ...
         int iNewPos = 0;
         int* piIndexes = new int[iOrigDims];
@@ -999,6 +998,8 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
         delete[] piIndexes;
         delete[] piViewDims;
     }
+
+    delete[] piNewDims;
 
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
@@ -1053,12 +1054,18 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         //std::cout << start << ":" << step << ":" << end << std::endl;
         int size = static_cast<int>((end - start) / step + 1);
-        if (size <= 0 || getSize() == 0)
+        if (size <= 0 || m_iSize == 0)
         {
             return createEmpty();
         }
 
-        bool isRowVector = getRows() == 1;
+        if (step > 0 && (size - 1) * step + start > m_iSize ||
+                step < 0 && start > m_iSize)
+        {
+            return NULL;
+        }
+
+        bool isRowVector = m_iRows == 1;
         isRowVector = isRowVector && !isForceColVector;
         int dims[2] = {isRowVector ? 1 : size, isRowVector ? size : 1};
         pOut = createEmpty(2, dims, isComplex());

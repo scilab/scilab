@@ -6,15 +6,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-04 14:32+0000\n"
-"Last-Translator: Wesh <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:07+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Chinese (Simplified) <zh_CN@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -69,7 +69,8 @@ msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: The XML Document has not an URI and there is no second argument.\n"
+msgid ""
+"%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr ""
 
 #, c-format
@@ -97,7 +98,8 @@ msgid "%s: XMLList does not exist.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值出错：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
@@ -332,10 +334,4 @@ msgstr ""
 
 #, c-format
 msgid "%s: Field %s is not modifiable: %s\n"
-msgstr ""
-
-msgid "XML"
-msgstr ""
-
-msgid "CML read"
 msgstr ""

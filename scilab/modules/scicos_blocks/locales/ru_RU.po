@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: scilab\n"
-"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
 "PO-Revision-Date: 2015-03-08 12:25+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 
 msgid "overflow error"
 msgstr "ошибка переполнения"
@@ -23,8 +23,52 @@ msgid "Trigger block must have discrete time input."
 msgstr ""
 
 #, c-format
+msgid ""
+"The LU factorization has been completed, but the factor U is exactly "
+"singular : U(%d,%d) is exactly zero."
+msgstr ""
+"Разложение LU матрицы выполнено, но множитель U является вырожденным : "
+"U(%d,%d) равен нулю."
+
+msgid "Read error!\n"
+msgstr "Ошибка чтения!\n"
+
+msgid "Could not open the file!\n"
+msgstr "Не удалось открыть файл!\n"
+
+msgid "Read error\n"
+msgstr "Ошибка чтения\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f \n"
+msgstr "задержанное время=%f, но последнее сохранённое время=%f \n"
+
+msgid "Consider increasing the length of buffer in delay block \n"
+msgstr "Следует учесть увеличение длины буфера в блоке задержки \n"
+
+msgid "Size of buffer or input size have changed!\n"
+msgstr "Изменился размер буфера или входного размера!\n"
+
+#, c-format
+msgid "delayed time=%f but last stored time=%f\n"
+msgstr "задержанное время=%f, но последнее сохранённое время=%f\n"
+
+msgid "Consider increasing the length of buffer in variable delay block\n"
+msgstr "Учтите увеличение длины буфера в блоке переменной задержки\n"
+
+msgid "Could not open /dev/audio!\n"
+msgstr "Не удалось открыть /dev/audio!\n"
+
+#, c-format
 msgid "The '%s' variable does not exist.\n"
 msgstr "Переменная '%s' не существует.\n"
+
+#, c-format
+msgid "%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"
+msgstr ""
+
+msgid "Erroneous saved file.\n"
+msgstr ""
 
 msgid "Invalid variable type.\n"
 msgstr "Неверный тип переменной.\n"
@@ -63,6 +107,15 @@ msgstr "Тип вывода должен быть uint16.\n"
 msgid "Output should be of uint32 type.\n"
 msgstr "Тип вывода должен быть uint32.\n"
 
+msgid "Cannot read the values field.\n"
+msgstr ""
+
+msgid "The Time vector type is not double.\n"
+msgstr "Тип вектора времени отличен от типа double.\n"
+
+msgid "The Time vector type is complex.\n"
+msgstr ""
+
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
@@ -70,54 +123,11 @@ msgstr ""
 "Вектор времени имеет неверный размер, ожидалось [%d, %d], а получено [%d, "
 "%d].\n"
 
-msgid "The Time vector type is not double.\n"
-msgstr "Тип вектора времени отличен от типа double.\n"
+msgid "Cannot read the time field.\n"
+msgstr ""
 
 msgid "The time vector should be an increasing vector.\n"
 msgstr "Значения вектора времени должны возрастать.\n"
-
-msgid "Allocation problem in spline.\n"
-msgstr ""
-
-msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"The LU factorization has been completed, but the factor U is exactly "
-"singular : U(%d,%d) is exactly zero."
-msgstr ""
-"Разложение LU матрицы выполнено, но множитель U является вырожденным : U(%d,"
-"%d) равен нулю."
-
-msgid "Read error!\n"
-msgstr "Ошибка чтения!\n"
-
-msgid "Could not open the file!\n"
-msgstr "Не удалось открыть файл!\n"
-
-msgid "Read error\n"
-msgstr "Ошибка чтения\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f \n"
-msgstr "задержанное время=%f, но последнее сохранённое время=%f \n"
-
-msgid "Consider increasing the length of buffer in delay block \n"
-msgstr "Следует учесть увеличение длины буфера в блоке задержки \n"
-
-msgid "Size of buffer or input size have changed!\n"
-msgstr "Изменился размер буфера или входного размера!\n"
-
-#, c-format
-msgid "delayed time=%f but last stored time=%f\n"
-msgstr "задержанное время=%f, но последнее сохранённое время=%f\n"
-
-msgid "Consider increasing the length of buffer in variable delay block\n"
-msgstr "Учтите увеличение длины буфера в блоке переменной задержки\n"
-
-msgid "Could not open /dev/audio!\n"
-msgstr "Не удалось открыть /dev/audio!\n"
 
 msgid "Clear a bit"
 msgstr "Очистить бит"
@@ -525,8 +535,8 @@ msgid ""
 "Simulation running !!! You cannot switch<br />between formatted and "
 "unformatted when running"
 msgstr ""
-"Моделирование запущено!!! Вы не можете во время работы переключать<br /"
-">между форматированным и неформатированным"
+"Моделирование запущено!!! Вы не можете во время работы переключать<br "
+"/>между форматированным и неформатированным"
 
 msgid "You cannot modify 'Output File Name' when running."
 msgstr "Вы не можете изменить 'Имя файла вывода' во время выполнения."
@@ -830,7 +840,3 @@ msgstr ""
 
 msgid "Same sizes expected."
 msgstr "Ожидались одинаковые размеры."
-
-#, c-format
-msgid "%s: Wrong number of input arguments: At most %d expected.\n"
-msgstr ""

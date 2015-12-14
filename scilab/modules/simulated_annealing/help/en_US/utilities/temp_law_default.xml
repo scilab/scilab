@@ -43,7 +43,7 @@
             <varlistentry>
                 <term>step_var</term>
                 <listitem>
-                    <para>the variance of the obejective function values computed during
+                    <para>the variance of the objective function values computed during
                         the last temperature stage
                     </para>
                 </listitem>

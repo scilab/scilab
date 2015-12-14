@@ -55,9 +55,7 @@ Library::~Library()
 bool Library::toString(std::wostringstream& ostr)
 {
     wchar_t output[1024] = {0};
-    char* str = wide_string_to_UTF8(m_wstPath.c_str());
-    os_swprintf(output, 1024, _W("Functions files location : %s.\n").c_str(), str);
-    FREE(str);
+    os_swprintf(output, 1024, _W("Functions files location : %s.\n").c_str(), m_wstPath.c_str());
 
     ostr << output << std::endl;
 

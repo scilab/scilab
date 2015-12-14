@@ -96,7 +96,7 @@ recfib(11); //KO
             <revision>
                 <revnumber>6.0.0</revnumber>
                 <revremark>
-                    Added in Scilab 6 familly
+                    Added in Scilab 6 family
                 </revremark>
             </revision>
         </revhistory>

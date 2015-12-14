@@ -27,6 +27,7 @@
 #include "os_string.h"
 #include "csvDefault.h"
 #include "strsubst.h"
+#include "Sciwarning.h"
 // =============================================================================
 #if _MSC_VER
 #define READ_ONLY_TEXT_MODE "rt"
@@ -376,11 +377,7 @@ static int getNumbersOfColumnsInLines(const char **lines, int sizelines,
             {
                 if (previousNbColumns != NbColumns)
                 {
-                    if (getWarningMode())
-                    {
-                        sciprint(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
-                    }
-
+                    Sciwarning(_("%s: Inconsistency found in the columns. At line %d, found %d columns while the previous had %d.\n"), _("Warning"), i + 1, NbColumns, previousNbColumns);
                     return 0;
                 }
             }

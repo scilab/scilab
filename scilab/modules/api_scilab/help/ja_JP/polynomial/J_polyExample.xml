@@ -28,7 +28,7 @@
         <!--Func_list: polyExample-->
         <title>ゲートウェイのソース</title>
         <programlisting role="code_gateway"><![CDATA[ 
-int polyExample(char *fname,unsigned long fname_len)
+int polyExample(char *fname,void* pvApiCtx)
 {
 	SciErr sciErr;
 	int* piAddr = NULL;

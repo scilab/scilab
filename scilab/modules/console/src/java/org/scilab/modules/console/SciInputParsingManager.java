@@ -68,7 +68,7 @@ public class SciInputParsingManager implements InputParsingManager {
     }
 
     /**
-     * Get the level to use for completion (which keywork we sould use for completion ?)
+     * Get the level to use for completion (which keywork we should use for completion ?)
      * @return the level
      * @see com.artenum.rosetta.interfaces.core.InputParsingManager#getCompletionLevel()
      */

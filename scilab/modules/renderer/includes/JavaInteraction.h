@@ -33,7 +33,7 @@ extern "C" {
     /**
      * Call rubber box on a figure
      * @param pstObjUID figure UID on which to apply the rubber box
-     * @param intialRect if not null, specify the initial rectangle to use
+     * @param initialRect if not null, specify the initial rectangle to use
      * @return [usedButton x y z l L h]
      */
     RENDERER_IMPEXP double *javaClickRubberBox(int iObjUID, double *initialRect, int iRectSize);

@@ -8,18 +8,19 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-14 07:23+0000\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgstr ""
+"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid ""
@@ -188,7 +189,8 @@ msgid "%s: No more memory (n=%d, nnz=%d).\n"
 msgstr "%s: Не осталось доступной памяти (n=%d, nnz=%d).\n"
 
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
-msgstr "    CC^T Разложение: Матрица не является положительно определённой.\n"
+msgstr ""
+"    CC^T Разложение: Матрица не является положительно определённой.\n"
 
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
@@ -265,8 +267,8 @@ msgid ""
 " approximate (lm,vm) with the inverse iterative power method \n"
 msgstr ""
 "\n"
-" примерно (lm,vm) с использованием инверсного итеративного степенного "
-"метода \n"
+" примерно (lm,vm) с использованием инверсного итеративного степенного метода "
+"\n"
 
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
@@ -284,13 +286,15 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась квадратная разреженная "
 "матрица.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid ""
+"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась квадратная разреженная "
 "матрица.\n"
@@ -303,24 +307,6 @@ msgstr "%s: Матрица и LU-разложения имеют разные р
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
 msgstr ""
 "%s: Неправильный тип и (или) размер и (или) значение второго параметра.\n"
-
-msgid " For this demo the current stack size is not enough "
-msgstr " Для данного примера текущий размер стека недостаточен. "
-
-msgid " enter the following at the scilab prompt :          "
-msgstr " введите следующее в строку приглашения scilab :          "
-
-msgid "                                                     "
-msgstr "                                                     "
-
-msgid "              stacksize(3000000);                    "
-msgstr "              stacksize(3000000);                    "
-
-msgid "           then re enter scisptdemo()                "
-msgstr "           затем введите опять scisptdemo()                "
-
-msgid "               CLICK TO  CONTINUE                    "
-msgstr "               КЛИКНИТЕ ДЛЯ ПРОДОЛЖЕНИЯ                    "
 
 msgid "how to use this stuff"
 msgstr "Примеры использования"

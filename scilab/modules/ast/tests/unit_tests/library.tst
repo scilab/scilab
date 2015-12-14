@@ -65,3 +65,15 @@ internal_macro = 1;x = 18;
 assert_checkequal(test_macro(5), 20);
 assert_checkequal(internal_macro, 1);
 assert_checkequal(x, 18);
+
+// resume library
+mkdir("mylib");
+mputl("function mylib(), endfunction", "mylib/mylib.sci");
+genlib("myliblib", "mylib",%f,%t);
+function resumeLib()
+    l=lib("mylib");
+    l=resume(l);
+endfunction
+
+resumeLib();
+resumeLib();

@@ -94,6 +94,16 @@ public :
 
     void add_submacro(const symbol::Symbol& s, Macro* macro);
 
+    inline const std::map<symbol::Variable*, Macro*> & getSubMacros() const
+    {
+        return m_submacro;
+    }
+
+    inline const std::map<symbol::Variable*, Macro*> & getSubMacros()
+    {
+        return m_submacro;
+    }
+
 private :
     std::list<symbol::Variable*>*   m_inputArgs;
     std::list<symbol::Variable*>*   m_outputArgs;

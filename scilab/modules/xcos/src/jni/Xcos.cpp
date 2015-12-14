@@ -104,7 +104,7 @@ curEnv->DeleteLocalRef(localInstance);
 
                 /* Methods ID set to NULL */
 voidxcosjstringjava_lang_StringjlonglongID=NULL;
-voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID=NULL;
+voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID=NULL;
 voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidcloseXcosFromScilabID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
@@ -132,7 +132,7 @@ throw GiwsException::JniObjectCreationException(curEnv, this->className());
         }
         /* Methods ID set to NULL */
         voidxcosjstringjava_lang_StringjlonglongID=NULL;
-voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID=NULL;
+voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID=NULL;
 voidwarnCellByUIDjobjectArray_java_lang_Stringjava_lang_Stringjstringjava_lang_StringID=NULL;
 voidcloseXcosFromScilabID=NULL;
 voidaddToolsMenujstringjava_lang_Stringjstringjava_lang_StringID=NULL;
@@ -184,7 +184,7 @@ throw GiwsException::JniCallMethodException(curEnv);
 }
 }
 
-void Xcos::xcosDiagramToScilab (JavaVM * jvm_, char const* file, long long diagramId){
+void Xcos::xcosDiagramToScilab (JavaVM * jvm_, char const* file, long long diagramId, bool exported){
 
 JNIEnv * curEnv = NULL;
 jvm_->AttachCurrentThread(reinterpret_cast<void **>(&curEnv), NULL);
@@ -193,8 +193,8 @@ if ( cls == NULL) {
 throw GiwsException::JniCallMethodException(curEnv);
 }
 
-static jmethodID voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID = curEnv->GetStaticMethodID(cls, "xcosDiagramToScilab", "(Ljava/lang/String;J)V" ) ;
-if (voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID == NULL) {
+static jmethodID voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID = curEnv->GetStaticMethodID(cls, "xcosDiagramToScilab", "(Ljava/lang/String;JZ)V" ) ;
+if (voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID == NULL) {
 throw GiwsException::JniMethodNotFoundException(curEnv, "xcosDiagramToScilab");
 }
 
@@ -205,7 +205,9 @@ throw GiwsException::JniBadAllocException(curEnv);
 }
 
 
-                         curEnv->CallStaticVoidMethod(cls, voidxcosDiagramToScilabjstringjava_lang_StringjlonglongID ,file_, diagramId);
+jboolean exported_ = (static_cast<bool>(exported) ? JNI_TRUE : JNI_FALSE);
+
+                         curEnv->CallStaticVoidMethod(cls, voidxcosDiagramToScilabjstringjava_lang_StringjlonglongjbooleanbooleanID ,file_, diagramId, exported_);
                         curEnv->DeleteLocalRef(file_);
 if (curEnv->ExceptionCheck()) {
 throw GiwsException::JniCallMethodException(curEnv);

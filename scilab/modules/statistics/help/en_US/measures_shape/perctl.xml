@@ -31,7 +31,7 @@
             <varlistentry>
                 <term>y</term>
                 <listitem>
-                    <para>vector of positif integer values between 0 and 100.</para>
+                    <para>vector of positive integer values between 0 and 100.</para>
                 </listitem>
             </varlistentry>
         </variablelist>

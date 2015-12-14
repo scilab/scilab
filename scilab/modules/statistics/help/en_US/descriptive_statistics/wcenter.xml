@@ -36,7 +36,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            This  function computes  <literal>s</literal>,  the weigthed and centred 
+            This  function computes  <literal>s</literal>,  the weighted and centred
             version of the numerical matrix <literal>x</literal>.
         </para>
         <para>

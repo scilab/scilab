@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2011-10-21 22:39+0000\n"
-"Last-Translator: Fido <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 21:58+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Spanish <es@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: es\n"
 
 #, c-format
@@ -98,10 +98,10 @@ msgid "%s: N-D arrays of chars not implemented.\n"
 msgstr "%s: arreglos N-D de caracteres aun no fueron implementados.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: Mlist expected.\n"
+msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr ""
-"%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
-"Mlist.\n"
+"%s: El almacenamiento de arreglos bidimensionales de strings aun no está "
+"implementado.\n"
 
 #, c-format
 msgid "%s: Row array of strings saving is not implemented.\n"
@@ -117,12 +117,6 @@ msgstr ""
 "longitudesaun no está implementado.\n"
 
 #, c-format
-msgid "%s: 2D array of strings saving is not implemented.\n"
-msgstr ""
-"%s: El almacenamiento de arreglos bidimensionales de strings aun no está "
-"implementado.\n"
-
-#, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
@@ -135,6 +129,14 @@ msgstr ""
 "matriz de enteros.\n"
 
 #, c-format
+msgid "%s: Wrong type for input argument #%d: Integer matrix expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for argument %d: MList expected.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Mlists of type %s can not be written to Matlab binary files.\n"
 msgstr ""
 "%s: Mlists del tipo %s no pueden ser almacenadas en archivos binarios de "
@@ -145,9 +147,6 @@ msgid "%s: Wrong type for first input argument: Sparse matrix expected.\n"
 msgstr ""
 "%s: Tipo incorrecto para el primer argumento de entrada: Se esperaba una "
 "matriz dispersa.\n"
-
-msgid "Scilab matio module not installed.\n"
-msgstr "El módulo matio de Scilab no está instalado.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -192,7 +191,8 @@ msgstr ""
 "Conflicto de nombrado: no es posible guardar la variable con el nombre %s."
 
 msgid "Attempt to write an unsupported data type to an ASCII file."
-msgstr "Se intentó escribir un tipo de datos no soportado en un archivo ASCII."
+msgstr ""
+"Se intentó escribir un tipo de datos no soportado en un archivo ASCII."
 
 #, c-format
 msgid "%s: Could not open file '%s'.\n"
@@ -204,4 +204,5 @@ msgstr "savematfile: no se pudo guardar la variable llamada %s.\n"
 
 #, c-format
 msgid "Variable %s can not be saved in ASCII file: IGNORED."
-msgstr "La variable %s no puede ser almacenada en un archivo ASCII: IGNORADA."
+msgstr ""
+"La variable %s no puede ser almacenada en un archivo ASCII: IGNORADA."

@@ -12,12 +12,6 @@
     <Filter Include="localization">
       <UniqueIdentifier>{d39df72a-fa47-4a07-99f8-70250ae50c66}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{2d534235-ef07-4590-832a-bfd041e273c9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{b6df8b1a-7653-4c8f-b6f6-9674c7457de9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="swig">
       <UniqueIdentifier>{b2ca3b4a-3fc4-4c6b-90f2-af1e8ff083ab}</UniqueIdentifier>
     </Filter>
@@ -45,9 +39,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="core_import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\history_browser.iss" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\sci_gateway\history_browser_gateway.xml" />

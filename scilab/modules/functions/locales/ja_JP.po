@@ -8,91 +8,95 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-08 11:22+0000\n"
-"Last-Translator: Rui Hirokawa <Unknown>\n"
+"PO-Revision-Date: 2015-10-08 22:09+0000\n"
+"Last-Translator: Scilab.team <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr "%s: 入力引数 #%d を読み込めません.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の型が間違っています: スカラーまたは文字列を指定してくださ"
-"い.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: スカラーを1つ指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 'errcatch' を指定してください.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'errcatch' を指定してください.\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: メモリ確保エラー.\n"
-
-#, c-format
-msgid "%s : Memory allocation error.\n"
-msgstr "%s: メモリの割り当てに失敗しました。\n"
-
-#, c-format
-msgid "%s: Wrong value(s) for input argument(s).\n"
-msgstr "%s: 入力引数の値が間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgid ""
+"%s: Wrong type for input argument #%d: A integer or string expected.\n"
 msgstr ""
-"%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
+msgid "%s: Cannot open file %s.\n"
 msgstr ""
-"%s: 入力引数 #%d の値が間違っています: 'm' または'n'を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid "%s: Unable to parse macro '%s'"
 msgstr ""
-"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A macro without varargin and "
+"varargout expected.\n"
+msgstr ""
+
+#, c-format
+msgid "Recursion limit reached (%d).\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output arguments: %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A String expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A String expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Invalid library %s.\n"
 msgstr "%s: 無効なライブラリ %s.\n"
 
 #, c-format
-msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgid "%s: Wrong type for input arguments: macro expected.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong number of input arguments: at least %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: obsolete op-code %d.\n"
@@ -113,98 +117,30 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr "%s: ファイル %s は存在しません。\n"
 
 #, c-format
-msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
-"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 論理値を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 論理値を指定してください.\n"
-
-#
-# File: macros/genlib.sci, line: 23
-#, c-format
-msgid "-- Creation of [%s] (Macros) --\n"
-msgstr "-- [%s] の作成(マクロ) --\n"
-
-#, c-format
-msgid "%s: No files with extension %s found in %s\n"
-msgstr "%s: 拡張子 %s を有するファイルが %s で見つかりませんでした.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の型が間違っています: 文字列の行列を指定してください.\n"
-
-#
-# File: macros/genlib.sci, line: 102
-# File: macros/genlib_old.sci, line: 72
-#, c-format
-msgid "%s: %s file compilation forced\n"
-msgstr "%s: %s ファイルの強制コンパイル\n"
-
-#, c-format
-msgid "%s: Processing file: %s\n"
-msgstr "%s: ファイルを処理中: %s\n"
-
-#, c-format
-msgid "%s: Regenerate names and lib\n"
-msgstr "%s: names と lib を再度生成する\n"
-
-#
-# File: macros/genlib.sci, line: 151
-# File: macros/genlib_old.sci, line: 114
-#, c-format
-msgid "%s: %s file cannot be created\n"
-msgstr "%s: ファイル %s を作成できません。\n"
-
-#
-# File: macros/genlib.sci, line: 161
-# File: macros/genlib_old.sci, line: 123
-#, c-format
-msgid ""
-"Library file %s has been updated,\n"
-"but cannot be loaded into Scilab because %s is a protected variable.\n"
-msgstr ""
-"ライブラリ・ファイル %s は、更新されました。\n"
-"しかし、%s は保護された変数なのでScilabへロードできません。\n"
-
-#, c-format
-msgid "%s: Error in file %s : %s.\n"
-msgstr "%s: ファイル %s にエラーが発生: %s.\n"
-
-#
-# File: macros/genlib.sci, line: 204
-# File: macros/genlib_old.sci, line: 153
-#, c-format
-msgid "%s: Impossible to open file %s for writing\n"
-msgstr "%s: 書き込みのためのファイル %s を開くことができません。\n"
-
-#
-# File: macros/genlib.sci, line: 212
-# File: macros/genlib_old.sci, line: 159
-#, c-format
-msgid "%s: File %s does not contain any function.\n"
-msgstr "%s: ファイル %s は、どんな関数も含みません。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 入力引数の数が間違っています: %d 個の引数を指定してください.\n"
 
+#, c-format
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: 入力引数 #%d の大きさが正しくありません: 文字列を指定してください.\n"
+
 #
 # File: macros/getd.sci, line: 45
 #, c-format
 msgid "%s: I cannot find any files with extension %s in %s\n"
-msgstr ""
-"%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つけることができません。\n"
+msgstr "%1$s: 私は、どんなファイルも  %3$s の拡張 %2$s で見つけることができません。\n"
 
 #, c-format
 msgid "%s: Incorrect function in file %s.\n"
 msgstr "%s: ファイル %s に正しくない関数があります.\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
@@ -219,20 +155,15 @@ msgstr "%s: 変数 %s は定義されていません。\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数の名前を指定してください.\n"
 
 msgid "No comment available."
 msgstr "コメントがありません."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scilab function expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: Scilab関数を指定してください.\n"
-
-#, c-format
-msgid "%s: Wrong values for input argument: No profile data in the function\n"
-msgstr ""
-"%s: 入力引数の値が間違っています: プロファイルデータが関数に存在しません.\n"
+msgid ""
+"%s: Wrong values for input argument: No profile data in the function\n"
+msgstr "%s: 入力引数の値が間違っています: プロファイルデータが関数に存在しません.\n"
 
 #
 # File: macros/plotprofile.sci, line: 77
@@ -286,8 +217,7 @@ msgstr "%s という変数は存在しません.\n"
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A Scilab function name is expected.\n"
-msgstr ""
-"%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: Scilab関数名を指定してください.\n"
 
 #, c-format
 msgid "%s is already noncompiled.\n"

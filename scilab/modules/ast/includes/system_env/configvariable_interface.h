@@ -65,6 +65,8 @@ EXTERN_AST const char * getScilabModeString(void);
 
 EXTERN_AST int getWarningMode(void);
 EXTERN_AST void setWarningMode(int _iMode);
+EXTERN_AST int getWarningStop(void);
+EXTERN_AST void setWarningStop(int _iMode);
 
 EXTERN_AST int checkReferenceModule(const wchar_t* _module);
 EXTERN_AST void addReferenceModule(const wchar_t* _module);

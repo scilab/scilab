@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-03-19 18:34+0000\n"
+"PO-Revision-Date: 2015-10-09 07:10+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: uk\n"
 
 #, c-format
@@ -117,7 +117,8 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати рядок "
 "«%s» або «%s».\n"
@@ -208,8 +209,26 @@ msgid "%s: error.\n"
 msgstr "%s: помилка.\n"
 
 #, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
+msgstr "%s: помилкова кількість вихідних параметрів: мало бути %d.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d : string expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: мало бути використано рядковий "
+"тип.\n"
+
+#, c-format
 msgid "The file %s does not exist.\n"
 msgstr "Файла з назвою %s не існує.\n"
+
+#, c-format
+msgid "%s: The file %s does not exist.\n"
+msgstr "%s: файла з назвою %s не існує.\n"
 
 #, c-format
 msgid "%s: File %s is not an ole2 file.\n"
@@ -220,8 +239,16 @@ msgid "%s: Cannot open file %s.\n"
 msgstr "%s: не вдалося відкрити файл %s.\n"
 
 #, c-format
-msgid "%s: There is no xls stream in the ole2 file %s.\n"
-msgstr "%s: у файлі ole2 %s не виявлено потоку даних xls.\n"
+msgid "There is no xls stream in the ole2 file %ls.\n"
+msgstr "У файлі ole2 %ls немає потоку даних xls.\n"
+
+#, c-format
+msgid "%s: invalid filename.\n"
+msgstr "%s: некоректна назва файла.\n"
+
+#, c-format
+msgid "%s: invalid status.\n"
+msgstr "%s: некоректний запис стану.\n"
 
 #, c-format
 msgid "%s: Not an ole2 file.\n"
@@ -244,10 +271,9 @@ msgid "%s: Only BIFF8 file format is handled.\n"
 msgstr "%s: можлива обробка лише файлів у форматі BIFF8.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
 msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати скалярний "
-"тип.\n"
+"%s: помилковий тип вхідного параметра №%d: мало бути використано скаляр.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -372,7 +398,8 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr "%s:%d:OLE_store_stream:ПОМИЛКА: не вдалося відкрити %s для запису (%s)"
+msgstr ""
+"%s:%d:OLE_store_stream:ПОМИЛКА: не вдалося відкрити %s для запису (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
@@ -396,7 +423,8 @@ msgstr ""
 "файла %s\n"
 
 #, c-format
-msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid ""
+"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream: ПОМИЛКА: не вдалося відкрити %s для запису "
 "(%s)\n"
@@ -449,9 +477,3 @@ msgstr "ripOLE: спроба декодування %s призвела до п�
 
 msgid "Scilab spreadsheet module not installed.\n"
 msgstr "Модуль електронних таблиць Scilab не встановлено.\n"
-
-msgid "Spreadsheet"
-msgstr "Електронні таблиці"
-
-msgid "Read a xls file"
-msgstr "Читання з файла xls"

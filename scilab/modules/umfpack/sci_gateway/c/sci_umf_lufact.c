@@ -65,6 +65,7 @@
 #include "common_umfpack.h"
 #include "localization.h"
 #include "configvariable_interface.h"
+#include "Sciwarning.h"
 
 CellAdr *ListNumeric = NULL;
 CellAdr *ListCholFactors = NULL;
@@ -220,7 +221,7 @@ int sci_umf_lufact(char* fname, void* pvApiCtx)
     {
         if (getWarningMode())
         {
-            sciprint("\n%s:%s\n", _("Warning"), _("The (square) matrix appears to be singular."));
+            Sciwarning("\n%s:%s\n", _("Warning"), _("The (square) matrix appears to be singular."));
         }
     }
 

@@ -3,14 +3,3 @@
 
 EXPORTS
 ;core
-callFunctionFromGateway
-com_
-createvarfromptr_
-putlhsvar_
-createvar_
-getrhsvar_
-gettype_
-checklhs_
-checkrhs_
-MyHeapAlloc
-MyHeapFree

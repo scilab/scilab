@@ -127,7 +127,7 @@ for(j = 0 ; j < rowB_ ; j++)
                 <link linkend="call_scilab">Call_Scilab</link>
             </member>
             <member>
-                <link linkend="api_scilab">api Scilab</link>
+                <link linkend="api_scilab_legacy">api Scilab</link>
             </member>
             <member>
                 <link linkend="Double_management_reading_API">API_Scilab: Double reading</link>

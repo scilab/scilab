@@ -20,7 +20,8 @@ import org.scilab.modules.xcos.VectorOfInt;
 import org.scilab.modules.xcos.VectorOfScicosID;
 import org.scilab.modules.xcos.graph.model.ScicosObjectOwner;
 import org.scilab.modules.xcos.graph.model.XcosCell;
-import org.scilab.modules.xcos.io.sax.SAXHandler.UnresolvedReference;
+import org.scilab.modules.xcos.io.HandledElement;
+import org.scilab.modules.xcos.io.sax.XcosSAXHandler.UnresolvedReference;
 import org.scilab.modules.xcos.port.BasicPort;
 import org.scilab.modules.xcos.port.command.CommandPort;
 import org.scilab.modules.xcos.port.control.ControlPort;
@@ -32,21 +33,36 @@ import org.xml.sax.Attributes;
 
 class PortHandler implements ScilabHandler {
 
-    private final SAXHandler saxHandler;
+    private final XcosSAXHandler shared;
 
     /**
      * Default constructor
      * @param saxHandler the shared sax handler
      */
-    PortHandler(SAXHandler saxHandler) {
-        this.saxHandler = saxHandler;
+    PortHandler(XcosSAXHandler saxHandler) {
+        this.shared = saxHandler;
     }
 
     @Override
     public BasicPort startElement(HandledElement found, Attributes atts) {
+        String v;
         BasicPort port;
         ObjectProperties relatedProperty;
-        final long uid = saxHandler.controller.createObject(Kind.PORT);
+        boolean isImplicit;
+
+        /*
+         * First, check if the port has already been defined. Otherwise, create the object in the model
+         */
+        v = atts.getValue("id");
+        long uid = 0;
+        if (v != null) {
+            if (shared.allChildren.peek().containsKey(v)) {
+                uid = shared.allChildren.peek().get(v);
+            } else {
+                uid = shared.controller.createObject(Kind.PORT);
+                shared.allChildren.peek().put(v, uid);
+            }
+        }
 
         /*
          * Allocate the port with the right class to set default properties
@@ -56,49 +72,58 @@ class PortHandler implements ScilabHandler {
             case CommandPort:
                 port = new CommandPort(uid);
                 relatedProperty = ObjectProperties.EVENT_OUTPUTS;
+                isImplicit = false;
                 break;
             case ControlPort:
                 port = new ControlPort(uid);
                 relatedProperty = ObjectProperties.EVENT_INPUTS;
+                isImplicit = false;
                 break;
             case ExplicitInputPort:
                 port = new ExplicitInputPort(uid);
                 relatedProperty = ObjectProperties.INPUTS;
+                isImplicit = false;
                 break;
             case ExplicitOutputPort:
                 port = new ExplicitOutputPort(uid);
                 relatedProperty = ObjectProperties.OUTPUTS;
+                isImplicit = false;
                 break;
             case ImplicitInputPort:
                 port = new ImplicitInputPort(uid);
                 relatedProperty = ObjectProperties.INPUTS;
+                isImplicit = true;
                 break;
             case ImplicitOutputPort:
                 port = new ImplicitOutputPort(uid);
                 relatedProperty = ObjectProperties.OUTPUTS;
+                isImplicit = true;
                 break;
             default:
                 throw new IllegalArgumentException();
         }
 
+        // set the decoded XML ID
+        port.setId(v);
+
+        // set the implicit
+        shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.IMPLICIT, isImplicit);
+
         /*
          * Setup the properties
          */
-        String v;
-
-        v = atts.getValue("id");
-        if (v != null) {
-            port.setId(v);
-            saxHandler.allChildren.peek().put(v, uid);
-        }
-
         v = atts.getValue("style");
         if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, v);
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.STYLE, v);
+        }
+
+        v = atts.getValue("value");
+        if (v != null) {
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.LABEL, v);
         }
 
         VectorOfInt datatype = new VectorOfInt();
-        saxHandler.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
+        shared.controller.getObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("dataType");
         if (v != null) {
@@ -113,11 +138,11 @@ class PortHandler implements ScilabHandler {
             datatype.set(2, Integer.valueOf(v));
         }
 
-        saxHandler.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
+        shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.DATATYPE, datatype);
 
         v = atts.getValue("initialState");
         if (v != null) {
-            saxHandler.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, Double.valueOf(v));
+            shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.FIRING, Double.valueOf(v));
         }
 
         /*
@@ -134,27 +159,27 @@ class PortHandler implements ScilabHandler {
 
         v = atts.getValue("parent");
         if (v != null) {
-            parent = saxHandler.allChildren.peek().get(v);
+            parent = shared.allChildren.peek().get(v);
 
             // if we can resolve the parent, then connect it directly
             if (parent != null) {
                 VectorOfScicosID associatedPorts = new VectorOfScicosID();
-                saxHandler.controller.getObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
+                shared.controller.getObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
 
-                associatedPorts.resize(ordering + 1);
+                associatedPorts.resize(Math.max(associatedPorts.size(), ordering + 1));
                 associatedPorts.set(ordering, uid);
-                saxHandler.controller.referenceObject(uid);
+                shared.controller.referenceObject(uid);
 
-                saxHandler.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);
-                saxHandler.controller.setObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
+                shared.controller.setObjectProperty(uid, Kind.PORT, ObjectProperties.SOURCE_BLOCK, parent);
+                shared.controller.setObjectProperty(parent, Kind.BLOCK, relatedProperty, associatedPorts);
             } else {
                 // resolve the parent later
-                ArrayList<UnresolvedReference> refList = saxHandler.unresolvedReferences.get(v);
+                ArrayList<UnresolvedReference> refList = shared.unresolvedReferences.get(v);
                 if (refList == null) {
                     refList = new ArrayList<>();
-                    saxHandler.unresolvedReferences.put(v, refList);
+                    shared.unresolvedReferences.put(v, refList);
                 }
-                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.PORT), ObjectProperties.SOURCE_BLOCK, ObjectProperties.CHILDREN, ordering));
+                refList.add(new UnresolvedReference(new ScicosObjectOwner(uid, Kind.PORT), ObjectProperties.SOURCE_BLOCK, relatedProperty, ordering));
             }
         }
 
@@ -170,10 +195,10 @@ class PortHandler implements ScilabHandler {
                 opposite = ObjectProperties.DESTINATION_PORT;
             }
 
-            XcosCell cell = saxHandler.lookupForParentXcosCellElement();
+            XcosCell cell = shared.lookupForParentXcosCellElement();
             if (cell.getKind() == Kind.LINK) {
-                saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), opposite, port.getUID());
-                saxHandler.controller.setObjectProperty(port.getUID(), port.getKind(), ObjectProperties.CONNECTED_SIGNALS, cell.getUID());
+                shared.controller.setObjectProperty(cell.getUID(), cell.getKind(), opposite, port.getUID());
+                shared.controller.setObjectProperty(port.getUID(), port.getKind(), ObjectProperties.CONNECTED_SIGNALS, cell.getUID());
             }
         }
 

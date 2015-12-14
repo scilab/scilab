@@ -8,32 +8,45 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-09-28 04:13+0000\n"
+"PO-Revision-Date: 2015-10-08 22:08+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17413)\n"
+"X-Generator: Launchpad (build 17838)\n"
 "Language: it\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
+msgstr ""
 
 msgid "Only on Windows Mode, not in Console Mode.\n"
 msgstr "Solo in modalità grafica. Non in modalità console\n"
 
 #, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr "%s: Errore di allocazione della memoria.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument: Non-negative integers expected.\n"
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso ha un valore sbagliato: era atteso un intero non "
-"negativo\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: Scalar expected.\n"
+msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso è di tipo errato: era atteso uno scalare.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -46,12 +59,6 @@ msgstr ""
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: string expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s'\n"
@@ -61,16 +68,14 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa.\n"
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Strings expected.\n"
+msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
-"%s: Gli argomenti in ingresso sono di tipo sbagliato: erano attese delle "
-"stringhe.\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
+"stringa.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument: %s.\n"
@@ -80,14 +85,12 @@ msgid "see help"
 msgstr "guardare la sezione Aiuto"
 
 #, c-format
-msgid "%s: Cannot open file %s.\n"
-msgstr "%s: Non è possibile aprire il file %s\n"
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: String expected.\n"
+msgid "%s: Cannot open file %ls.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
-"stringa.\n"
 
 #, c-format
 msgid "%s: Cannot open Windows registry.\n"
@@ -102,9 +105,6 @@ msgstr ""
 msgid "Scilab %s Console"
 msgstr ""
 
-msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-
 msgid "Error(s) : see help powershell"
 msgstr "Errore/i : consultare la guida di powershell"
 
@@ -116,8 +116,3 @@ msgstr "Solo per Microsoft Windows"
 
 msgid "Powershell 1.0 not found."
 msgstr "Powershell 1.0 non trovata"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
-"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi %d.\n"

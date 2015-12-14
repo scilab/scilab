@@ -409,7 +409,7 @@ public final class BlockPositioning {
         diag.getModel().endUpdate();
 
         /*
-         * FIXME: #6705; This placement trick doesn't work on the first block Dnd as the view is not revalidated.
+         * TODO: bug #6705; This placement trick doesn't work on the first block Dnd as the view is not revalidated.
          *
          * On block loading, parentDiagram is null thus placement is not performed.
          */

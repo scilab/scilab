@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <general title="_(General)">
     <body>
-        <environment fpe="0" printing-format="v" width="10" recursion-limit="1000">
+        <environment fpe="2" printing-format="v" width="10" recursion-limit="1000">
             <fpe code="0" floating-point-exception="_(Produces an error)"/>
             <fpe code="1" floating-point-exception="_(Produces a warning)"/>
             <fpe code="2" floating-point-exception="_(Produces Inf or NaN)"/>
@@ -27,7 +27,7 @@
         <java-heap-memory heap-size="256"/>
         <startup title="_(Start-up directory)" use="current" default="" previous=""/>
     </body>
-    <confirmation-dialogs title="_(Confirmation dialogs)"> 
+    <confirmation-dialogs title="_(Confirmation dialogs)">
         <body>
             <tools>
                 <tool state="checked" id="console-exit" name="Console" description="_(Warn before exiting Scilab)"/>

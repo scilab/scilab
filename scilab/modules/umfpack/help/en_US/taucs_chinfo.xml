@@ -65,7 +65,7 @@
         <para>
             Due to the supernodal structure used for <literal>C</literal>, <literal>cnz</literal> is larger 
             than the exact number of non-zeros elements in <literal>C</literal> (and so this <literal>cnz</literal>
-            is a mesure of the memory used internally). To get the exact <literal>cnz</literal> you may retrieve 
+            is a measure of the memory used internally). To get the exact <literal>cnz</literal> you may retrieve
             the Cholesky factor with <link linkend="taucs_chget">taucs_chget</link> then apply 
             the <link linkend="nnz">nnz</link> scilab function (see the 2d example in <link linkend="taucs_chget">taucs_chget</link>).
         </para>

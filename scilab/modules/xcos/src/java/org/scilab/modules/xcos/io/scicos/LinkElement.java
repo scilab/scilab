@@ -38,6 +38,7 @@ import org.scilab.modules.xcos.port.BasicPort;
 
 import com.mxgraph.model.mxGeometry;
 import com.mxgraph.util.mxPoint;
+import java.rmi.server.UID;
 
 /**
  * Perform a link transformation between Scicos and Xcos.
@@ -106,8 +107,8 @@ public final class LinkElement extends AbstractElement<BasicLink> {
         /*
          * Fill the data
          */
-        link.setSource(start);
-        link.setTarget(end);
+        link.setTerminal(start, true);
+        link.setTerminal(end, false);
 
         mxGeometry geom = link.getGeometry();
         if (geom == null) {
@@ -136,6 +137,7 @@ public final class LinkElement extends AbstractElement<BasicLink> {
             LOG.severe(e.toString());
         }
 
+        link.setId(new UID().toString());
         return link;
     }
 

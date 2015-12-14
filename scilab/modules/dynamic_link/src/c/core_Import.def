@@ -2,19 +2,5 @@ LIBRARY    core.dll
 
 
 EXPORTS
-funtab_
-iop_
-callFunctionFromGateway
-com_
-putlhsvar_
-freeArrayOfString
-getrhsvar_
-vartype_
-checklhs_
-checkrhs_
-createvar_
-createvarfromptr_
-gettype_
 MyHeapAlloc
 MyHeapFree
-MyHeapRealloc
