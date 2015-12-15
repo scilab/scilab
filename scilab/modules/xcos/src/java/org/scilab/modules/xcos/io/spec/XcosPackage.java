@@ -151,7 +151,7 @@ public class XcosPackage {
         final Element root = manifest.createElementNS("urn:scilab:xcos:xmlns:manifest:0.1", "manifest:manifest");
         manifest.appendChild(root);
 
-        time = 0l;
+        time = ScilabCommons.getScilabVersionTimestamp();
     }
 
     private boolean hasInvalidManifest() {

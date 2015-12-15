@@ -178,7 +178,7 @@ private:
 
     void getLabel(std::string& l) const
     {
-        l = m_style;
+        l = m_label;
     }
 
     update_status_t setLabel(const std::string& label)

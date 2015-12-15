@@ -442,11 +442,12 @@ class RawDataHandler implements ScilabHandler {
                             // defensive programming against old schema
                             ScilabDouble value = (ScilabDouble) fieldValue.value;
 
-                            vec = new VectorOfDouble(value.getHeight());
-                            for (int i = 0; i < value.getHeight(); i++) {
-                                vec.set(i, value.getRealElement(i, 0));
+                            vec = new VectorOfDouble(value.getHeight() * value.getWidth());
+                            for (int i = 0; i < value.getWidth(); i++) {
+                                for (int j = 0; j < value.getHeight(); j++) {
+                                    vec.set(value.getHeight() * i + j, value.getRealElement(j, i));
+                                }
                             }
-
                             saxHandler.controller.setObjectProperty(cell.getUID(), cell.getKind(), fieldValue.as, vec);
                         }
                         break;
@@ -465,33 +466,38 @@ class RawDataHandler implements ScilabHandler {
                             // defensive programming against old schema
                             ScilabDouble value = (ScilabDouble) fieldValue.value;
 
-                            vec = new VectorOfInt(value.getHeight());
-                            for (int i = 0; i < value.getHeight(); i++) {
-                                vec.set(i, (int) value.getRealElement(i, 0));
+                            vec = new VectorOfInt(value.getHeight() * value.getWidth());
+                            for (int i = 0; i < value.getWidth(); i++) {
+                                for (int j = 0; j < value.getHeight(); j++) {
+                                    vec.set(value.getHeight() * i + j, (int) value.getRealElement(j, i));
+                                }
                             }
                         } else if (fieldValue.value instanceof ScilabInteger) {
                             // defensive programming against old schema
                             ScilabInteger value = (ScilabInteger) fieldValue.value;
 
-                            vec = new VectorOfInt(value.getHeight());
-                            for (int i = 0; i < value.getHeight(); i++) {
-                                switch (value.getPrec()) {
-                                    case sci_int8:
-                                    case sci_uint8:
-                                        vec.set(i, value.getByteElement(i, 0));
-                                        break;
-                                    case sci_int16:
-                                    case sci_uint16:
-                                        vec.set(i, value.getShortElement(i, 0));
-                                        break;
-                                    case sci_int32:
-                                    case sci_uint32:
-                                        vec.set(i, value.getIntElement(i, 0));
-                                        break;
-                                    case sci_int64:
-                                    case sci_uint64:
-                                        vec.set(i, (int) value.getLongElement(i, 0));
-                                        break;
+                            vec = new VectorOfInt(value.getHeight() * value.getWidth());
+                            for (int i = 0; i < value.getWidth(); i++) {
+                                for (int j = 0; j < value.getHeight(); j++) {
+                                    int index = value.getHeight() * i + j;
+                                    switch (value.getPrec()) {
+                                        case sci_int8:
+                                        case sci_uint8:
+                                            vec.set(index, value.getByteElement(j, i));
+                                            break;
+                                        case sci_int16:
+                                        case sci_uint16:
+                                            vec.set(index, value.getShortElement(j, i));
+                                            break;
+                                        case sci_int32:
+                                        case sci_uint32:
+                                            vec.set(index, value.getIntElement(j, i));
+                                            break;
+                                        case sci_int64:
+                                        case sci_uint64:
+                                            vec.set(index, (int) value.getLongElement(j, i));
+                                            break;
+                                    }
                                 }
                             }
                         }
