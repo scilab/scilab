@@ -686,7 +686,12 @@ includes/api_double.h \
 includes/api_error.h \
 includes/api_int.h \
 includes/api_list.h \
-includes/api_poly.h
+includes/api_poly.h \
+includes/api_pointer.h \
+includes/api_struct.h \
+includes/api_string.h \
+includes/api_handle.h \
+includes/api_optional.h
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
