@@ -35,7 +35,7 @@ public final class SplitBlock extends BasicBlock {
      * Constructor
      */
     public SplitBlock(JavaController controller, long uid, Kind kind, Object value, mxGeometry geometry, String style, String id) {
-        super(controller, uid, kind, value, new mxGeometry(0, 0, DEFAULT_SIZE, DEFAULT_SIZE), style, id);
+        super(controller, uid, kind, value, new mxGeometry(geometry == null ? DEFAULT_POSITION_X : geometry.getX(), geometry == null ? DEFAULT_POSITION_Y : geometry.getY(), DEFAULT_SIZE, DEFAULT_SIZE), style, id);
     }
 
     /**

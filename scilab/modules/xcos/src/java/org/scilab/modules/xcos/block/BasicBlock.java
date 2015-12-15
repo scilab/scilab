@@ -106,8 +106,8 @@ public class BasicBlock extends XcosCell implements Serializable {
      * Local constants
      */
 
-    private static final double DEFAULT_POSITION_X = 10.0;
-    private static final double DEFAULT_POSITION_Y = 10.0;
+    protected static final double DEFAULT_POSITION_X = 10.0;
+    protected static final double DEFAULT_POSITION_Y = 10.0;
     private static final double DEFAULT_WIDTH = 40.0;
     private static final double DEFAULT_HEIGHT = 40.0;
 
