@@ -17,6 +17,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.zip.CRC32;
 import java.util.zip.ZipEntry;
@@ -39,7 +40,6 @@ import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 import org.scilab.modules.commons.ScilabCommons;
-import org.scilab.modules.commons.ScilabCommonsUtils;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
@@ -112,7 +112,7 @@ public class XcosPackage {
      */
     private final File file;
     private Document manifest;
-    private long time;
+    private final long time;
 
     /**
      * Entries encoder/decoder stored in the encoding order
@@ -122,7 +122,7 @@ public class XcosPackage {
      * <li>the order is the encoding order (from start to end)
      * <li>decoding will be performed from the end to the start
      */
-    private Entry[] availableEntries = new Entry[] { new ContentEntry(), new DictionaryEntry() };
+    private final Entry[] availableEntries = new Entry[] { new ContentEntry(), new DictionaryEntry() };
 
     /*
      * Data to store or load into
@@ -181,9 +181,8 @@ public class XcosPackage {
             // open the file on each entry to manage non well ordered (but still
             // valid) zip files
             final FileInputStream fis = new FileInputStream(file);
-            final ZipInputStream zin = new ZipInputStream(fis);
+            try (ZipInputStream zin = new ZipInputStream(fis)) {
 
-            try {
                 ZipEntry entry;
                 while ((entry = zin.getNextEntry()) != null) {
                     final String path = entry.getName();
@@ -200,8 +199,7 @@ public class XcosPackage {
                         }
                     }
                 }
-            } finally {
-                zin.close();
+
             }
         }
     }
@@ -209,8 +207,6 @@ public class XcosPackage {
     /**
      * Check an xcos file as a ZIP package.
      *
-     * @param file
-     *            the file to read
      * @throws IOException
      *             on I/O Exception or invalid format
      * @throws TransformerException
@@ -218,10 +214,9 @@ public class XcosPackage {
      */
     public void checkHeader() throws IOException, TransformerException {
         final FileInputStream fis = new FileInputStream(file);
-        final ZipInputStream zin = new ZipInputStream(fis);
+        try (ZipInputStream zin = new ZipInputStream(fis)) {
 
-        ZipEntry entry;
-        try {
+            ZipEntry entry;
             while ((entry = zin.getNextEntry()) != null) {
                 // extract data
                 // open output streams
@@ -250,8 +245,6 @@ public class XcosPackage {
                     manifest = (Document) result.getNode();
                 }
             }
-        } finally {
-            zin.close();
         }
 
         if (hasInvalidManifest()) {
@@ -261,24 +254,31 @@ public class XcosPackage {
 
     public void store() throws IOException {
         final FileOutputStream fos = new FileOutputStream(file);
-        final ZipOutputStream zout = new ZipOutputStream(fos);
+        try (ZipOutputStream zout = new ZipOutputStream(fos,  Charset.forName("UTF-8"))) {
 
-        try {
             // add the header (standard package)
             storeHeader(zout);
+            zout.flush();
 
             // store the entries in encoding order
             for (final Entry entry : availableEntries) {
                 entry.setup(this);
+
+                final ZipEntry zentry = new ZipEntry(entry.getFullPath());
+                zentry.setTime(getTime());
+                zout.putNextEntry(zentry);
+                zout.flush();
+
                 entry.store(zout);
+                zout.flush();
             }
 
             // store the manifest file
             storeTrailer(zout);
+            zout.flush();
+
         } catch (Exception e) {
             e.printStackTrace();
-        } finally {
-            zout.close();
         }
     }
 

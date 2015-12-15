@@ -202,8 +202,8 @@ public class RawDataWriter extends ScilabWriter {
         /*
          * Emit the elements
          */
-        final int len = value.getHeight() * value.getWidth();
-        if (len > 0) {
+        final boolean isNotEmptyElement = value.getHeight() > 0 &&  value.getWidth() > 0;
+        if (isNotEmptyElement) {
             shared.stream.writeStartElement(localName);
         } else {
             shared.stream.writeEmptyElement(localName);
@@ -218,7 +218,7 @@ public class RawDataWriter extends ScilabWriter {
             writeMatrix(value, type, intPrecision);
         }
 
-        if (len > 0) {
+        if (isNotEmptyElement) {
             shared.stream.writeEndElement();
         }
     }
@@ -244,8 +244,8 @@ public class RawDataWriter extends ScilabWriter {
         for (int i = 0; i < value.getHeight(); i++) {
             for (int j = 0; j < value.getWidth(); j++) {
                 shared.stream.writeEmptyElement("data");
-                shared.stream.writeAttribute("column", Integer.toString(i));
-                shared.stream.writeAttribute("line", Integer.toString(j));
+                shared.stream.writeAttribute("line", Integer.toString(i));
+                shared.stream.writeAttribute("column", Integer.toString(j));
 
                 switch (type) {
                     case sci_boolean:

@@ -77,13 +77,6 @@ public class ContentEntry implements Entry {
     @Override
     public void store(ZipOutputStream stream) throws IOException {
         /*
-         * Append a ZipEntry
-         */
-        final ZipEntry entry = new ZipEntry(getFullPath());
-        entry.setTime(pack.getTime());
-        stream.putNextEntry(entry);
-
-        /*
          * Store content
          */
         try {

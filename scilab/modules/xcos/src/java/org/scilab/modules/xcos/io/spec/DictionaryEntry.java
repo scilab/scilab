@@ -49,30 +49,17 @@ public class DictionaryEntry implements Entry {
 
     @Override
     public void load(ZipEntry entry, InputStream stream) throws IOException {
-        ObjectInputStream ois = null;
-        try {
-            ois = new ObjectInputStream(stream);
+        try (ObjectInputStream ois = new ObjectInputStream(stream)) {
 
             pack.getDictionary().clear();
             pack.getDictionary().addAll((ScilabList) ois.readObject());
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             Logger.getLogger(DictionaryEntry.class.getName()).severe(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            Logger.getLogger(DictionaryEntry.class.getName()).severe(e.getMessage());
-        } finally {
-            ois.close();
         }
     }
 
     @Override
     public void store(ZipOutputStream stream) throws IOException {
-        /*
-         * Append a ZipEntry
-         */
-        final ZipEntry entry = new ZipEntry(getFullPath());
-        entry.setTime(pack.getTime());
-        stream.putNextEntry(entry);
-
         /*
          * Store content
          */

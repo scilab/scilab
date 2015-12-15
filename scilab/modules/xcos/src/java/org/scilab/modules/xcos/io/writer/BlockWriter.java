@@ -76,7 +76,9 @@ public class BlockWriter extends ScilabWriter {
 
         shared.controller.getObjectProperty(uid, kind, ObjectProperties.DESCRIPTION, v);
         if (!v[0].isEmpty()) {
-            shared.stream.writeAttribute("value", v[0]);
+            // remove any '\n' character that will not be preserved by the XML Handlers on re-load
+            String escaped = v[0].replace('\n', ' ');
+            shared.stream.writeAttribute("value", escaped);
         }
 
         // delegate the sub-elements to their writers

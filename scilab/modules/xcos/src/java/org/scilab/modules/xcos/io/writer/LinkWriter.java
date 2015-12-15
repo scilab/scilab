@@ -84,7 +84,9 @@ public class LinkWriter extends ScilabWriter {
             shared.stream.writeAttribute("source", src[0]);
             shared.stream.writeAttribute("target", dst[0]);
             shared.stream.writeAttribute("style", style[0]);
-            shared.stream.writeAttribute("value", value[0]);
+            // remove any '\n' character that will not be preserved by the XML Handlers on re-load
+            String escaped = value[0].replace('\n', ' ');
+            shared.stream.writeAttribute("value", escaped);
 
             shared.stream.writeEndElement(); // localName
         }
