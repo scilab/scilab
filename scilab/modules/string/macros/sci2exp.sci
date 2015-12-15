@@ -596,7 +596,7 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
     f46="''event_handler_enable'', ";
     f47="''resizefcn'', ";
     f48="''closerequestfcn'', ";
-    x=[];
+    x="";
 
 
     if a.type=="uicontrol"
@@ -648,7 +648,13 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
         x=x+f16+"''"+a.Relief+"''"+", ";
         f17_strg=String(a.sliderStep); f17_strg="["+f17_strg(1)+" "+f17_strg(2)+"]";
         if a.sliderStep <> [0.01 0.1] then x=x+f17+f17_strg+", "; end
-        if a.String <>"" then x=x+f18+"''"+a.String+"''"+" ,"; end
+        if a.String <>"" then
+            if isempty(a.String)
+                x = x + f18 + "'''' ,";
+            else
+                x=x+f18+"''"+a.String+"''"+" ,";
+            end
+        end
         if a.Style <> "pushbutton" then x=x+f19+"''"+a.Style+"''"+", "; end
         if a.TooltipString <> "" then x=x+f20+"''"+a.TooltipString+"''"+", "; end
         if a.Units <> "pixels" then x=x+f21+"''"+a.Units+"''"+", "; end
