@@ -33,7 +33,7 @@ For a high-level overview of the changes in this release, please consult the "Wh
 
 * Bug #14257 fixed - English spelling in messages and in comments.
 
-* Bug #14257 fixed - English spelling in messages and in comments.
+* Bug #14300 fixed - Crash when playing with structures.
 
 Dependencies
 =============
