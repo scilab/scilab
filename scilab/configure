@@ -32768,6 +32768,9 @@ if test "$enable_build_help" != no; then
 DOCBOOK_OK=no
 DOCBOOK_ROOT=""
 
+if test "x$ac_java_jvm_name" != "x" ; then
+    # if JDK is not enabled, skip the docbook detection
+
 
 # Check whether --with-docbook was given.
 if test "${with_docbook+set}" = set; then :
@@ -32805,7 +32808,7 @@ $as_echo_n "checking saxon9he... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 32808 "configure"
+// #line 32811 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -33022,7 +33025,7 @@ $as_echo_n "checking saxon... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 33025 "configure"
+// #line 33028 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -33240,7 +33243,7 @@ $as_echo_n "checking saxon... " >&6; }
     if test ! -f conftestSharedChecker.class ; then
 
     cat << \EOF > conftestSharedChecker.java
-// #line 33243 "configure"
+// #line 33246 "configure"
 import java.util.regex.Pattern;
 import java.io.File;
 import java.io.IOException;
@@ -33444,6 +33447,8 @@ $as_echo "$as_me: WARNING: Could not find or use the Java package/jar saxon used
 		SAXON=$PACKAGE_JAR_FILE
 	fi
 
+
+fi # JDK
 
 
 else

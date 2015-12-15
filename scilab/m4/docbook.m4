@@ -18,6 +18,9 @@ AC_DEFUN([AC_DOCBOOK], [
 DOCBOOK_OK=no
 DOCBOOK_ROOT=""
 
+if test "x$ac_java_jvm_name" != "x" ; then
+    # if JDK is not enabled, skip the docbook detection
+
 AC_ARG_WITH(docbook,
 		AC_HELP_STRING([--with-docbook=DIR],[Set the path to the docbook package]),
 		[with_docbook=$withval],
@@ -48,5 +51,7 @@ AC_ARG_WITH(docbook,
 		SAXON=$PACKAGE_JAR_FILE
 	fi
 	AC_SUBST(SAXON)
+
+fi # JDK
 
 ])
