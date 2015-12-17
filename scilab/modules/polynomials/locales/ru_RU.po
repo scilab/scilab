@@ -8,151 +8,177 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-17 15:59+0000\n"
+"PO-Revision-Date: 2015-11-30 16:24+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real scalar expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидается вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидается вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A polynomial '%ls' expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался полином '%ls'.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real vector expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный вектор.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real vector expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вещественный вектор.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive vector expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался положительный "
+"вектор.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидался тип string.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d : %s or %s expected.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d :ожидалось %s или %s.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d : ожидался скаляр.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : Valid variable name expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : ожидалось корректное имя "
+"переменной.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d : ожидался вектор.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A polynomial expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался полином.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : If algo is %s, a real is expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : если алгоритм %s, то "
+"ожидалось вещественное значение.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d : If algo is %s, a degree less than "
 "%d expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d : если алгоритм %s, то "
+"ожидалась степень меньше %d.\n"
 
 #, c-format
 msgid "%s: Convergence problem...\n"
-msgstr ""
+msgstr "%s: Проблема сходимости...\n"
 
 #, c-format
 msgid "%s: Leading coefficient is zero.\n"
-msgstr ""
+msgstr "%s: первый коэффициент равен нулю.\n"
 
 #, c-format
 msgid "%s: Too high degree (max 100).\n"
-msgstr ""
+msgstr "%s: Слишком высокая степень (максимум 100).\n"
 
 #, c-format
 msgid "%s: unable to find spec function\n"
-msgstr ""
+msgstr "%s: невозможно найти специальную функцию\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real matrix expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалась вещественная "
+"матрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A symmetric polynomial expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался симметричный "
+"полином.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non negative or null value expected "
 "at degree %d.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидалось неотрицательное "
+"значение или ноль в степени %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Convergence problem.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d: проблема сходимости.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входного параметра №%d: ожидалась квадратная матрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: singular or asymmetric problem.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: проблема сингулярности или "
+"асимметрии.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Same size expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался тот же размер.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: A non null denominator expected.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: ожидался ненулевой "
+"знаменатель.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидалось логическое значение.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean scalar expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался логический скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A square matrix expected.\n"

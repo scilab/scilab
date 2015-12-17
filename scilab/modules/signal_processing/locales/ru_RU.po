@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-03-12 14:51+0000\n"
+"PO-Revision-Date: 2015-12-08 16:30+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
@@ -42,128 +42,145 @@ msgstr "%s: Ошибка выделения памяти.\n"
 
 #, c-format
 msgid "%s : Memory allocation error.\n"
-msgstr ""
+msgstr "%s : Ошибка распределения памяти.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 msgid "fft call : needs power of two!"
-msgstr ""
+msgstr "вызов fft : требуется степень двойки!"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument: Incompatible dimensions.\n"
-msgstr ""
+msgstr "%s: Неверный размер аргумента: несовместимые размерности.\n"
 
 #, c-format
 msgid "%s: Too many coefficients are required.\n"
-msgstr ""
+msgstr "%s: Требуется слишком много коэффициентов.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента %d: ожидалась вещественная матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real scalar expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %d-element list expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался %d-элементный список.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for element %d of input argument #%d: A matrix of real "
 "expected.\n"
 msgstr ""
+"%s: Неверный тип элемента %d входного аргумента №%d: ожидалась матрица типа "
+"real.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element %d of input argument #%d: A row vector expected.\n"
 msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: ожидался вектор-"
+"строка.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element %d of input argument #%d: Size must be multiple "
 "of %d.\n"
 msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: размер должен быть "
+"кратен %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element %d of input argument #%d: A square matrix "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: ожидалась квадратная "
+"матрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for element %d of input argument #%d: Same sizes of element "
 "%d expected.\n"
 msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d: ожидался такой же "
+"размер, как у элемента %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A row vector expected.\n"
-msgstr ""
+msgstr "%s: Неверный размер входного аргумента №%d: ожидался вектор-строка.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same column dimensions "
 "expected.\n"
 msgstr ""
+"%s: Несовместимые входные аргументы №%d и №%d: ожидалось одинаковое "
+"количество столбцов.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-by-%d matrix expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидалась матрица %d на %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument %d: Real scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип аргумента %d: ожидался вещественный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A %d-by-%d array expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался массив %d на %d.\n"
 
 #, c-format
 msgid "%s: specs => invalid order filter.\n"
-msgstr ""
+msgstr "%s: specs => недопустимый порядок фильтра.\n"
 
 #, c-format
 msgid "%s: specs => too high order filter.\n"
-msgstr ""
+msgstr "%s: specs => слишком высокий порядок фильтра.\n"
 
 #, c-format
 msgid "%s: error in function syredi.\n"
-msgstr ""
+msgstr "%s: ошибка в функции syredi.\n"
 
 #, c-format
 msgid "Undefined function '%ls'.\n"
-msgstr ""
+msgstr "Неопределённая функция '%ls'.\n"
 
 #, c-format
 msgid "User function '%s' have not been setted.\n"
-msgstr ""
+msgstr "Пользовательская функция '%s' не установлена.\n"
 
 msgid "An error occurred while getting Signalprocessingfunctions object.\n"
-msgstr ""
+msgstr "Произошла ошибка при получении объекта Signalprocessingfunctions.\n"
 
 #, c-format
 msgid "%ls: error while calling user function.\n"
-msgstr ""
+msgstr "%ls: ошибка  во время вызова пользовательской функции.\n"
 
 #, c-format
 msgid "%s: Wrong type for output argument #%d: Real matrix expected.\n"
 msgstr ""
+"%s: Неверный тип выходного аргумента №%d: ожидалась вещественная матрица.\n"
 
 #, c-format
 msgid ""

@@ -8,26 +8,26 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-02-14 16:51+0000\n"
+"PO-Revision-Date: 2015-12-11 12:47+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -37,32 +37,43 @@ msgstr "%s: Неверный тип аргумента %d: Ожидалась м
 msgid ""
 "%s: Wrong size for input argument #%d : Same size as argument %d expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидался такой же размер, как у "
+"аргумента %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A tlist of type bsplin3val "
 "expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидался типизированный список "
+"типа bsplin3val.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A %s tlist expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался типизированный список типа "
+"%s.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector of size 3 expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d :ожидался вектор размером 3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d : A real positive integer vector "
 "expected.\n"
 msgstr ""
+"%s: Неверные значения входного аргумента №%d :ожидался вектор вещественный "
+"положительных целочисленных значений.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A matrix of size n x 3 expected.(n "
 ">= 10)\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидалась матрица размером n x "
+"3. (n >= 10)\n"
 
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
@@ -71,53 +82,66 @@ msgstr "%s: Парные узлы или все узлы лежат на одн�
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d, %d or %d expected.\n"
 msgstr ""
+"%s: Неверное количество выходных аргументов: ожидалось %d, %d или %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A tlist of type %s expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидался типизированный список "
+"типа %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d: A vector of size at least 2 "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался вектор размером не "
+"меньше 2.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d to #%d: Same sizes expected.\n"
 msgstr ""
+"%s: Неверные размеры входных аргументов от №%d до №%d: ожидались одинаковые "
+"размеры.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидался тип string.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d : '%s' is an unknown '%s' type.\n"
 msgstr ""
+"%s: Неверные значения входного аргумента №%d: у '%s' неизвестный тип '%s'.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d: A row vector of size at least 2 "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входных аргументов №%d:  ожидался вектор-строка размером "
+"не менее 2.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input arguments #%d: A column vector of size %d "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входных аргументов №%d: ожидался вектор--столбец "
+"размером %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
 msgstr ""
+"%s: Неверное количество входных аргументов: ожидалось как минимум %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
@@ -163,6 +187,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A vector of size 2 expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d :ожидался вектор размером 2.\n"
 
 #, c-format
 msgid "%s: Not enough points for the fit.\n"
@@ -170,12 +195,13 @@ msgstr "%s: Недостаточно точек для подгонки.\n"
 
 #, c-format
 msgid "%ls: Warning: Rank deficiency of the least square matrix.\n"
-msgstr ""
+msgstr "%ls: Предупреждение:  нехватка ранга матрицы наименьших квадратов.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : At least a size of 2 expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидался размер не менее 2.\n"
 
 #, c-format
 msgid ""
@@ -188,6 +214,7 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d : A matrix of size 2 expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d :ожидалась матрица размером 2.\n"
 
 #, c-format
 msgid "%s: Wrong value for periodic spline %s: Must be equal to %s.\n"
@@ -196,47 +223,61 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A vector expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидался вектор.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A row vector of size at least 2 "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидался вектор-строка размером "
+"не менее 2.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A matrix of size %d * %d expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидалась матрица размером %d * "
+"%d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A row vector of size at least 3 "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер водного аргумента №%d : ожидалась вектор-строка размером "
+"не менее 3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A real three dimension hypermatrix "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидалась вещественная "
+"трёхмерная гиперматрица.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for dimension %d for input argument #%d : A size of %d "
 "expected.\n"
 msgstr ""
+"%s: Неверный размер для измерения %d входного аргумента №%d: ожидался "
+"размер  %d.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d : A real vector of size 3 expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d : ожидался вещественный вектор "
+"размером 3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for element %d of input argument #%d : At least 2 and at "
 "most %d expected.\n"
 msgstr ""
+"%s: Неверный размер элемента %d входного аргумента №%d : ожидалось не менее "
+"2 и не более %d.\n"
 
 #, c-format
 msgid "%s: Problem with 'flag' = %d\n"

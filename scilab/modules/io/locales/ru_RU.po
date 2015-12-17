@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: io-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2015-10-08 21:59+0000\n"
+"PO-Revision-Date: 2015-11-30 16:37+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17838)\n"
+"X-Generator: Launchpad (build 17865)\n"
 "Language: ru\n"
 
 #, c-format
@@ -41,19 +41,20 @@ msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: Ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : string expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидался тип string.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A single string expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A scalar expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип водного аргумента №%d : ожидался скаляр.\n"
 
 #, c-format
 msgid "%s: The file \"%s\" does not exist.\n"
@@ -65,57 +66,59 @@ msgstr "%s: Файл не существует.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
+msgstr "%s: Неверное значение входного аргумента №%d.\n"
 
 #, c-format
 msgid "%s: %d logical unit already used.\n"
-msgstr ""
+msgstr "%s: %d логическая единица уже использовалась.\n"
 
 #, c-format
 msgid "%s: Too many files opened!\n"
-msgstr ""
+msgstr "%s: Открыто слишком много файлов!\n"
 
 #, c-format
 msgid "%s: Unknown file format.\n"
-msgstr ""
+msgstr "%s: Неизвестный формат файла.\n"
 
 #, c-format
 msgid "%s: File \"%s\" already exists or directory write access denied.\n"
-msgstr ""
+msgstr "%s: Файл \"%s\" уже существует или нет прав на запись.\n"
 
 #, c-format
 msgid "%s: File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "%s: Файл \"%s\" не существует либо нет прав на чтение.\n"
 
 #, c-format
 msgid "%s: Can not open File \"%s\"\n"
-msgstr ""
+msgstr "%s: Нельзя открыть файл \"%s\"\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество выходных аргументов: ожидалось %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A matrix expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d : ожидалась матрица.\n"
 
 #, c-format
 msgid "%s: Cannot close file %d.\n"
-msgstr ""
+msgstr "%s: Нельзя закрыть файл %d.\n"
 
 #, c-format
 msgid "%s: Wrong input argument #%d.\n"
-msgstr ""
+msgstr "%s: Неверный аргумент №%d.\n"
 
 #, c-format
 msgid "%s: \n"
-msgstr ""
+msgstr "%s: \n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: \"%s\", \"%s\", \"%s\", \"%s\", \"%s"
 "\" \n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: \"%s\", \"%s\", \"%s\", \"%s"
+"\", \"%s\" \n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
@@ -123,86 +126,93 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A sclar boolean expected.\n"
-msgstr ""
+msgstr "%s: Неверный тип входного аргумента №%d: ожидался логический скаляр.\n"
 
 #, c-format
 msgid "-- Creation of [%ls] (Macros) --\n"
-msgstr ""
+msgstr "-- Создание [%ls] (макрос) --\n"
 
 #, c-format
 msgid "%ls: Cannot open file ''%ls''.\n"
-msgstr ""
+msgstr "%ls: Нельзя открыть файл ''%ls''.\n"
 
 #, c-format
 msgid "%ls: Processing file: %ls\n"
-msgstr ""
+msgstr "%ls: Обработка файла: %ls\n"
 
 #, c-format
 msgid "%ls: Error in file %ls.\n"
-msgstr ""
+msgstr "%ls: Ошибка в файле %ls.\n"
 
 #, c-format
 msgid ""
 "%ls: Warning: %ls information cannot be added to file %ls. File ignored\n"
 msgstr ""
+"%ls: Предупреждение: информацию %ls нельзя добавить в файл %ls. Файл "
+"игнорируется.\n"
 
 msgid "Redefining permanent variable.\n"
-msgstr ""
+msgstr "Переопределение неизменной переменной.\n"
 
 #, c-format
 msgid "%s: %s is not a valid lib path.\n"
-msgstr ""
+msgstr "%s: %s является некорректным путём к библиотеке.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
+msgstr "%s: Неверное количество входных аргументов: ожидалось не менее %d.\n"
 
 #, c-format
 msgid "%s: %s is not a valid module file.\n"
-msgstr ""
+msgstr "%s: %s является некорректным файлом модуля.\n"
 
 #, c-format
 msgid "%s: Unable to open file: \"%ls\".\n"
-msgstr ""
+msgstr "%s: Невозможно открыть файл: \"%ls\".\n"
 
 #, c-format
 msgid "File \"%s\" already exists or directory write access denied.\n"
-msgstr ""
+msgstr "Файл \"%s\" уже существует или нет прав на запись в директорию.\n"
 
 #, c-format
 msgid "File \"%s\" does not exist or read access denied.\n"
-msgstr ""
+msgstr "Файл \"%s\" не существует или нет прав на чтение.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d : A real scalar expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидался вещественный скаляр.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d : A real scalar or file descriptor "
 "expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d : ожидался вещественный скаляр или "
+"дескриптор файла.\n"
 
 msgid "Incorrect file or format.\n"
-msgstr ""
+msgstr "Некорректный файл или формат.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался целочисленный скаляр.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A scalar integer value expected.\n"
 msgstr ""
+"%s: Неверный размер входного аргумента №%d: ожидался целочисленный скаляр.\n"
 
 #, c-format
 msgid "%s: Wrong input argument %d.\n"
-msgstr ""
+msgstr "%s: Неверный входной аргумент %d.\n"
 
 #, c-format
 msgid "End of file at line %d.\n"
-msgstr ""
+msgstr "Конец файла на строке %d.\n"
 
 #, c-format
 msgid "Undefined environment variable %s.\n"
