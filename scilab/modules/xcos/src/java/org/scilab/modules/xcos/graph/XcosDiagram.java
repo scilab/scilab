@@ -110,7 +110,6 @@ import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
-import java.rmi.server.UID;
 import java.util.Hashtable;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;

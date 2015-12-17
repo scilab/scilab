@@ -23,10 +23,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyVetoException;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.CharBuffer;
 import java.util.logging.Logger;
 
 import javax.swing.BorderFactory;
@@ -50,7 +48,6 @@ import org.scilab.modules.xcos.actions.SetContextAction;
 import org.scilab.modules.xcos.graph.ScicosParameters;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
-import org.scilab.modules.xcos.utils.FileUtils;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -207,8 +204,8 @@ public class SetContextDialog extends JDialog {
                 parameters.setContext(new JavaController(), v);
 
                 /*
-                * Validate the context
-                */
+                 * Validate the context
+                 */
                 try {
                     File f = File.createTempFile(ScilabDirectHandler.CONTEXT, ".sce");
                     try (FileWriter writer = new FileWriter(f)) {
