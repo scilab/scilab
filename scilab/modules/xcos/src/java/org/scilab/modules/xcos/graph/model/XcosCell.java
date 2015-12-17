@@ -87,7 +87,7 @@ public class XcosCell extends mxCell {
         setValue(new JavaController(), value);
     }
 
-    public void setValue(JavaController controller, Object value) {
+    public final void setValue(JavaController controller, Object value) {
         super.setValue(value);
         setMVCValue(controller, value);
     }
@@ -121,7 +121,7 @@ public class XcosCell extends mxCell {
         setId(new JavaController(), id);
     }
 
-    public void setId(JavaController controller, String id) {
+    public final void setId(JavaController controller, String id) {
         super.setId(id);
         setMVCId(controller, id);
     }
@@ -153,7 +153,7 @@ public class XcosCell extends mxCell {
         setGeometry(new JavaController(), geometry);
     }
 
-    public void setGeometry(JavaController controller, mxGeometry geometry) {
+    public final void setGeometry(JavaController controller, mxGeometry geometry) {
         super.setGeometry(geometry);
         setMVCGeometry(controller, geometry);
     }
@@ -245,7 +245,7 @@ public class XcosCell extends mxCell {
         setStyle(new JavaController(), style);
     }
 
-    public void setStyle(JavaController controller, String style) {
+    public final void setStyle(JavaController controller, String style) {
         super.setStyle(style);
         setMVCStyle(controller, style);
     }

@@ -14,6 +14,7 @@
 
 package org.scilab.modules.xcos.graph;
 
+import org.scilab.modules.xcos.graph.model.XcosGraphModel;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +26,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.Hashtable;
 import java.util.IllegalFormatException;
 import java.util.LinkedList;
 import java.util.List;
@@ -105,12 +105,13 @@ import com.mxgraph.model.mxICell;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
 import com.mxgraph.util.mxPoint;
-import com.mxgraph.util.mxRectangle;
 import com.mxgraph.util.mxUndoableEdit;
 import com.mxgraph.util.mxUndoableEdit.mxUndoableChange;
 import com.mxgraph.view.mxGraphSelectionModel;
 import com.mxgraph.view.mxMultiplicity;
 import java.lang.reflect.Constructor;
+import java.rmi.server.UID;
+import java.util.Hashtable;
 import org.scilab.modules.types.ScilabString;
 import org.scilab.modules.types.ScilabType;
 import org.scilab.modules.xcos.io.ScilabTypeCoder;
@@ -138,6 +139,7 @@ public class XcosDiagram extends ScilabGraph {
      */
     private static final mxGeometry DEFAULT_LABEL_GEOMETRY = new mxGeometry(0.5, 1.1, 0.0, 0.0);
 
+
     /**
      * Constructor
      *
@@ -147,13 +149,10 @@ public class XcosDiagram extends ScilabGraph {
      * @param uid the string UID that will be used on the default parent
      */
     public XcosDiagram(final JavaController controller, final long diagramId, final Kind kind, String uid) {
-        super(new mxGraphModel(), Xcos.getInstance().getStyleSheet());
+        super(new XcosGraphModel(controller, diagramId, kind, uid), Xcos.getInstance().getStyleSheet());
 
-        // add the default parent (the JGraphX layer)
-        XcosCell parent = new XcosCell(controller, diagramId, kind, null, null, null, uid);
-        controller.referenceObject(diagramId);
-        ((mxICell) getModel().getRoot()).insert(parent);
-        setDefaultParent(parent);
+        // set the default parent (the JGraphX layer) defined on the model
+        setDefaultParent(getModel().getChildAt(getModel().getRoot(), 0));
 
         setComponent(new GraphComponent(this));
         initComponent();
@@ -978,7 +977,7 @@ public class XcosDiagram extends ScilabGraph {
      *
      * This method *must* be used to setup the component after any reassociation.
      */
-    public void initComponent() {
+    public final void initComponent() {
         getAsComponent().setToolTips(true);
 
         // This enable stop editing cells when pressing Enter.
