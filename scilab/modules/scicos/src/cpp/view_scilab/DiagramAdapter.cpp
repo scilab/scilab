@@ -120,7 +120,7 @@ struct objs
                     {
                         // The diagram doesn't have the list of his children adapters. Create it through BlockAdapter::model::get()
                         std::wstring Model = L"model";
-                        typename property<BlockAdapter>::props_t_it found = std::lower_bound(property<BlockAdapter>::fields.begin(), property<BlockAdapter>::fields.end(), Model);
+                        property<BlockAdapter>::props_t_it found = std::lower_bound(property<BlockAdapter>::fields.begin(), property<BlockAdapter>::fields.end(), Model);
                         if (found != property<BlockAdapter>::fields.end())
                         {
                             found->get(*block, controller);
